@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.7 2002/05/27 12:58:43 southa Exp $
+ * $Id: main.cpp,v 1.8 2002/05/28 13:06:59 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.8  2002/05/28 13:06:59  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.7  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -25,13 +28,14 @@
  */
 
 #include "mushCore.h"
+#include "mushPlatform.h"
 
 int main(int argc, char *argv[])
 {
-    char *buf=new char[MAXPATHLEN];
-    CoreGlobalConfig::Instance().Set("APPLPATH", getcwd(buf, MAXPATHLEN));
-    cerr << "Path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
-    delete[] buf;
+    CoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
+    cerr << "Application path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
+    CoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
+    cerr << "System path is " << CoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
     
     string str;
     for (int i=1; i<argc; i++)
@@ -39,6 +43,9 @@ int main(int argc, char *argv[])
         str.append(argv[i]);
         if (i+1 != argc) str.append(" ");
     }
+
+    PlatformMiscUtils::TweakArgs(str);
+
     cout << "Command line was '" << str << "'" << endl;
     try
     {

@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.5 2002/05/28 16:37:36 southa Exp $
+ * $Id: CoreStandard.h,v 1.6 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.6  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.5  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *
@@ -46,6 +49,12 @@
  * Created
  *
  */
+
+
+// config.h
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 // General purpose includes used by most files 
 #include <string>
