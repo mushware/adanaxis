@@ -28,7 +28,7 @@ case "$target" in
     powerpc-apple-darwin*)
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         AC_MSG_NOTICE([* Using platform pack from src/Platform/MacOSX.])
-        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework Quicktime"
+        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime"
         AC_CHECK_HEADERS(OpenGL/gl.h,, AC_MSG_ERROR([Cannot survive without OpenGL]))
         AC_CHECK_HEADERS(OpenGL/glu.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
         AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
@@ -65,6 +65,9 @@ AC_CHECK_LIB(tiff, main,, AC_MSG_ERROR([libtiff library not found - try http://w
 AC_CHECK_LIB(smpeg, main,, AC_MSG_ERROR([libsmpeg library not found - try http://www.lokigames.com/development/]))
 AC_CHECK_LIB(SDL, main,, AC_MSG_ERROR([libSDL library not found - try http://www.libsdl.org/]))
 AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - try http://www.libsdl.org/]))
+AC_CHECK_LIB(ogg, main,, AC_MSG_ERROR([libogg library not found - try http://www.xiph.org/]))
+AC_CHECK_LIB(vorbis, main,, AC_MSG_ERROR([libvorbis library not found - try http://www.xiph.org/]))
+AC_CHECK_LIB(vorbisfile, main,, AC_MSG_ERROR([libvorbisfile library not found - try http://www.xiph.org/]))
 
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[
