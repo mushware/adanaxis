@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreRegExp.h,v 1.4 2002/08/07 13:36:46 southa Exp $
+ * $Id: CoreRegExp.h,v 1.5 2002/08/27 08:56:17 southa Exp $
  * $Log: CoreRegExp.h,v $
+ * Revision 1.5  2002/08/27 08:56:17  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:46  southa
  * Conditioned source
  *
@@ -39,7 +42,20 @@
 #ifndef COREREGEXP_H
 #define COREREGEXP_H
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#ifdef HAVE_PCRE_H
+#include <pcre.h>
+#else
+#ifdef HAVE_PCRE_PCRE_H
+#include <pcre/pcre.h>
+#else
 #include "pcre.h"
+#endif
+#endif
+
 #include "CoreStandard.h"
 
 class CoreRegExp

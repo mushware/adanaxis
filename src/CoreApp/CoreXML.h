@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: CoreXML.h,v 1.8 2002/08/07 13:36:46 southa Exp $
+ * $Id: CoreXML.h,v 1.9 2002/08/27 08:56:18 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.9  2002/08/27 08:56:18  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/07 13:36:46  southa
  * Conditioned source
  *
@@ -50,13 +53,22 @@
  *
  */
 
+#include "CoreStandard.h"
+
 // Interface to XML parser 
 extern "C"
 {
+#ifdef HAVE_EXPAT_H
+#include <expat.h>
+#else
+#ifdef HAVE_EXPAT_EXPAT_H
+#include <expat/expat.h>
+#else
 #include "expat.h"
+#endif
+#endif
 }
 
-#include "CoreStandard.h"
 #include "CoreScalar.h"
 
 class CoreXML;

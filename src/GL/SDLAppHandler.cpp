@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.17 2002/08/17 10:41:50 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.18 2002/08/27 08:56:22 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.18  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.17  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -177,9 +180,9 @@ void
 SDLAppHandler::EnterScreen(tInitType inType)
 {
     MediaSDL::Instance().InitVideo();
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
     if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
     {
         SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);

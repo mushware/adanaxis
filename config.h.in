@@ -1,5 +1,11 @@
 /* config.h.in.  Generated from configure.in by autoheader.  */
 
+/* Define to 1 if you have the <expat/expat.h> header file. */
+#undef HAVE_EXPAT_EXPAT_H
+
+/* Define to 1 if you have the <expat.h> header file. */
+#undef HAVE_EXPAT_H
+
 /* Define to 1 if you have the <GLUT/glut.h> header file. */
 #undef HAVE_GLUT_GLUT_H
 
@@ -81,11 +87,20 @@
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
+/* Define if Mix_ChannelFinished exists in SDL_mixer.h */
+#undef HAVE_MIX_CHANNELFINISHED
+
 /* Define to 1 if you have the <OpenGL/glu.h> header file. */
 #undef HAVE_OPENGL_GLU_H
 
 /* Define to 1 if you have the <OpenGL/gl.h> header file. */
 #undef HAVE_OPENGL_GL_H
+
+/* Define to 1 if you have the <pcre.h> header file. */
+#undef HAVE_PCRE_H
+
+/* Define to 1 if you have the <pcre/pcre.h> header file. */
+#undef HAVE_PCRE_PCRE_H
 
 /* Define to 1 if you have the <SDL.h> header file. */
 #undef HAVE_SDL_H

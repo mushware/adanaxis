@@ -147,6 +147,8 @@ AC_CHECK_HEADERS(sys/wait.h)
 AC_CHECK_HEADERS(sys/param.h)
 AC_CHECK_HEADERS(sys/types.h)
 
+AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header]))])
+AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
 AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
 AC_CHECK_HEADERS(SDL_mixer.h,, [AC_CHECK_HEADERS(SDL/SDL_mixer.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
 AC_CHECK_HEADERS(SDL_main.h,, [AC_CHECK_HEADERS(SDL/SDL_main.h,, AC_MSG_ERROR([Cannot find SDL_main.h header]))])
