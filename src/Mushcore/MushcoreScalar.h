@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.5 2003/01/20 17:03:22 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.6 2003/02/03 23:15:51 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.6  2003/02/03 23:15:51  southa
+ * Build work for Visual C++
+ *
  * Revision 1.5  2003/01/20 17:03:22  southa
  * Command line expression evaluator enhancements
  *
@@ -124,9 +127,9 @@ public:
         outVal = static_cast<ParamType>(longVal);
 	}
 
-    template<> MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
-    template<> MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
-    template<> MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
+    MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
+    MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
+    MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
 
 private:
     enum eTypeTag

@@ -1,6 +1,9 @@
 #
-# $Id: ParserMake.mkf,v 1.2 2002/05/28 22:36:44 southa Exp $
+# $Id: ParserMake.mkf,v 1.1 2003/01/09 14:57:08 southa Exp $
 # $Log: ParserMake.mkf,v $
+# Revision 1.1  2003/01/09 14:57:08  southa
+# Created Mushcore
+#
 # Revision 1.2  2002/05/28 22:36:44  southa
 # Script loader and tile map
 #
@@ -15,7 +18,7 @@ OBJECTS=MushcoreFlex.cpp MushcoreBison.cpp
 default:$(OBJECTS)
 
 %.cpp:%.flex $(MAKEFILE)
-	flex -PMushcoreFlex_ -L -o$@ $<
+	flex -PMushcoreFlex_ -L -t $< | sed -e 's/#include <unistd.h>/\/\/ #include <unistd.h> removed/' > $@
 
 %.cpp %.h:%.y $(MAKEFILE)
 	bison --debug --name-prefix=MushcoreBison_ --no-lines --defines --output-file=$@ $<

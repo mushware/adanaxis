@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreCommand.cpp,v 1.1 2003/01/20 17:03:22 southa Exp $
+ * $Log: TestMushcoreCommand.cpp,v $
+ * Revision 1.1  2003/01/20 17:03:22  southa
+ * Command line expression evaluator enhancements
+ *
  */
 
 #include "TestMushcoreCommand.h"
@@ -37,7 +40,7 @@ TestMushcoreCommand::TestCommand(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     
     MushcoreFunction mushFunc;
-    mushFunc.CommandAdd("configset('VAL1', 57)");
+    mushFunc.CommandAdd("configset('VAL1', -57)");
     mushFunc.CommandAdd("configset('VAL2', 45);");
     mushFunc.CommandAdd("configset('VALSUM', $VAL1+$VAL2)");
     mushFunc.CommandAdd("configset('VALDIFF', $VAL1-$VAL2)");
@@ -50,11 +53,11 @@ TestMushcoreCommand::TestCommand(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     mushFunc.CommandAdd("configset('STRING3', $STRING1+$STRING2)");
     mushFunc.ThrowErrorExecute();
 
-    tVal val1=57;
+    tVal val1=-57;
     tVal val2=45;
     
-    ValueTest("VALSUM", MushcoreScalar(102));
-    ValueTest("VALDIFF", MushcoreScalar(12));
+    ValueTest("VALSUM", MushcoreScalar(val1+val2));
+    ValueTest("VALDIFF", MushcoreScalar(val1-val2));
     ValueTest("EXPR1", MushcoreScalar(val1+35-12+val2-7));
     ValueTest("EXPR2", MushcoreScalar(val1+(35-(12+(val2-7)))));
     ValueTest("EXPR3", MushcoreScalar(val1+-val2));

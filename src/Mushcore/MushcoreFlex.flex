@@ -1,8 +1,11 @@
- // $Id: MushcoreFlex.flex,v 1.5 2003/01/20 12:23:23 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.6 2003/01/20 17:03:22 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.5 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.6 2003/01/20 17:03:22 southa Exp $
  * $Log: MushcoreFlex.flex,v $
+ * Revision 1.6  2003/01/20 17:03:22  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.5  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -74,6 +77,7 @@
 using namespace std;
 
 #define YY_DECL int MushcoreFlex::Lex(MushcoreScalar *outScalar, void *inPtr)
+#define YY_NEVER_INTERACTIVE 1
 %}
 
 %option noyywrap

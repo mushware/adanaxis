@@ -4284,6 +4284,7 @@
 			);
 			buildSettings = {
 				GCC_VERSION = 2.x;
+				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/2.95.2;
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";

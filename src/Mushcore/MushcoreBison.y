@@ -10,8 +10,11 @@
  ****************************************************************************/
 
  /*
- * $Id: MushcoreBison.y,v 1.6 2003/01/20 15:38:28 southa Exp $
+ * $Id: MushcoreBison.y,v 1.7 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.7  2003/01/20 17:03:21  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.6  2003/01/20 15:38:28  southa
  * Created MushcoreTest
  *
@@ -87,9 +90,9 @@ end: EOS
 | END_OF_FILE
 ;
 command: IDENTIFIER { INBISON->ClearParams(); }
-| VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
+| VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1, string::npos)).StringGet(); INBISON->ClearParams(); }
 ;
-scalar: VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)); }
+scalar: VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1, string::npos)); }
 | STRING { $$ = $1.StringGet();}
 | NUMBER { $$ = $1.ValGet();}
 | scalar '+' scalar { $$ = $1+$3; }

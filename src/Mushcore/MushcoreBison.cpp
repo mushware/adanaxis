@@ -31,8 +31,11 @@
  ****************************************************************************/
 
  /*
- * $Id: MushcoreBison.y,v 1.6 2003/01/20 15:38:28 southa Exp $
+ * $Id: MushcoreBison.y,v 1.7 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.7  2003/01/20 17:03:21  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.6  2003/01/20 15:38:28  southa
  * Created MushcoreTest
  *
@@ -159,9 +162,9 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    84,    85,    86,    87,    89,    90,    92,    93,    94,    95,
-    96,    97,    98,    99,   100,   102,   106,   107,   108,   110,
-   111,   113,   114
+    87,    88,    89,    90,    92,    93,    95,    96,    97,    98,
+    99,   100,   101,   102,   103,   105,   109,   110,   111,   113,
+   114,   116,   117
 };
 #endif
 
@@ -775,10 +778,10 @@ case 5:
 { INBISON->ClearParams(); ;
     break;}
 case 6:
-{ yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet(); INBISON->ClearParams(); ;
+{ yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1, string::npos)).StringGet(); INBISON->ClearParams(); ;
     break;}
 case 7:
-{ yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1)); ;
+{ yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1, string::npos)); ;
     break;}
 case 8:
 { yyval = yyvsp[0].StringGet();;
