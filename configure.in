@@ -34,9 +34,16 @@ if test "x$ac_prog_sdl_config" = "x"; then
     AC_MSG_NOTICE([Couldn't find sdl-config command.])
 else
     IC_CPPFLAGS="$IC_CPPFLAGS `$ac_prog_sdl_config --cflags`"
-    IC_LDFLAGS="$IC_LDFLAGS `$ac_prog_sdl_config --libs`"
+    IC_LIBS="$IC_LIBS `$ac_prog_sdl_config --libs`"
     AC_MSG_NOTICE([sdl-config set CPPFLAGS set to $IC_CPPFLAGS])
-    AC_MSG_NOTICE([sdl-config set LDFLAGS set to $IC_LDFLAGS])
+    AC_MSG_NOTICE([sdl-config set LIBS set to $IC_LIBS])
+    dnl Follow sdl's advice about -pthread
+    case "$IC_LIBS" in
+    *-pthread*)
+        LIBS="$LIBS -pthread"
+        ;;
+    esac
+    
 fi
 
 dnl Checks for libraries.
