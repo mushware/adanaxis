@@ -13,8 +13,8 @@ Copyright: distributable
 Group: Amusements/Game/Action/Arcade
 BuildRoot: /var/tmp/%{name}-buildroot
 Prefix: %{_prefix}
-Requires: libMesaGLU1,libMesaglut3,SDL,SDL_mixer,libexpat1_95,libpcre0,libungif4,
-BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat1_95-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libesound0-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel
+Requires: XFree86-libs,glut,SDL,SDL_mixer,expat,pcre,libungif
+BuildRequires: gcc-c++,glibc-devel,glut-devel,libstdc++-devel,XFree86-devel,pcre-devel,expat-devel,libungif-devel,libtiff-devel,SDL-devel,smpeg-devel,libogg-devel,libvorbis-devel,SDL_mixer-devel
 Provides: ic2
 
 %description
