@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.h,v 1.6 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlServer.h,v 1.7 2003/01/17 00:41:05 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.7  2003/01/17 00:41:05  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.6  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -68,15 +71,16 @@
 
 #include "MustlStandard.h"
 
+#include "MustlMushcoreSingleton.h"
+
 class MustlAddress;
 class MustlData;
 
-class MustlServer
+class MustlServer : public MushcoreSingleton<MustlServer>
 {
 public:
+    MustlServer();
     ~MustlServer();
-
-    static MustlServer& Instance(void);
 
     void Connect(void);
     void Connect(Mustl::U32 inPort);
@@ -90,7 +94,6 @@ public:
     Mustl::U32 ServerPortHostOrderGet(void) const { return m_serverPortHostOrder; }
     
 protected:
-    MustlServer();
     
 private:
     Mustl::tSocket m_tcpSocket;
@@ -99,15 +102,6 @@ private:
     Mustl::U32 m_linkCtr;
     bool m_serving;
     bool m_logTraffic;
-
-    static std::auto_ptr<MustlServer> m_instance;
 };
 
-inline  MustlServer&
-MustlServer::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MustlServer);
-    return *m_instance;
-}
 #endif

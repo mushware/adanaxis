@@ -122,10 +122,10 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     PlatformMiscUtils::Initialise();
-    MushcoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
-    // cerr << "Application path is " << MushcoreGlobalConfig::Instance().Get("APPLPATH") << endl;
-    MushcoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
-    // cerr << "System path is " << MushcoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
+    MushcoreGlobalConfig::Sgl().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
+    // cerr << "Application path is " << MushcoreGlobalConfig::Sgl().Get("APPLPATH") << endl;
+    MushcoreGlobalConfig::Sgl().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
+    // cerr << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH") << endl;
 
 
 
@@ -146,15 +146,15 @@ int main(int argc, char *argv[])
     {
         try
         {
-            MushcoreInterpreter::Instance().Execute(str);
+            MushcoreInterpreter::Sgl().Execute(str);
         }
         catch (MushcoreNonFatalFail& e)
         {
             cerr << "Exception: " << e.what() << endl;
         }
         
-        MushcoreAppHandler::Instance().Initialise();
-        MushcoreAppHandler::Instance().MainLoop();
+        MushcoreAppHandler::Sgl().Initialise();
+        MushcoreAppHandler::Sgl().MainLoop();
     }
     catch (exception& e)
     {

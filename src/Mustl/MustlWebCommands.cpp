@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebCommands.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.4 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.4  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -56,13 +59,13 @@ MustlWebCommands::MustlPostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     
     if (typeStr.substr(0,5) == "mustl")
     {
-        MustlConfig::Instance().PostDataHandle(valueStr);
-        // MustlConfig::Instance().Update();
+        MustlConfig::Sgl().PostDataHandle(valueStr);
+        // MustlConfig::Sgl().Update();
     }
 
     if (typeStr.substr(0,9) != "mustlonly")
     {
-        MushcoreInterpreter::Instance().Execute("$MUSTL_POST_HANDLER('"+typeStr+"','"+valueStr+"')");
+        MushcoreInterpreter::Sgl().Execute("$MUSTL_POST_HANDLER('"+typeStr+"','"+valueStr+"')");
     }
     
     return MushcoreScalar(0);
@@ -80,7 +83,7 @@ MustlWebCommands::MustlInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     ioCommand.PopParam(dataName);
 
     MustlConfigDef *configDef;
-    if (MushcoreData<MustlConfigDef>::Instance().GetIfExists(configDef, dataName))
+    if (MushcoreData<MustlConfigDef>::Sgl().GetIfExists(configDef, dataName))
     {
         configDef->WebInputPrint(ioEnv.Out(), dataName);
     }
@@ -98,9 +101,9 @@ MustlWebCommands::MustlServerStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv
     // time_t now(time(NULL));
     // ioEnv.Out() << "Status at " << ctime(&now);
     // ioEnv.Out() << "<br>Server: ";
-    if (MustlServer::Instance().IsServing())
+    if (MustlServer::Sgl().IsServing())
     {
-        ioEnv.Out() << "Serving on port " << MustlServer::Instance().ServerPortHostOrderGet();
+        ioEnv.Out() << "Serving on port " << MustlServer::Sgl().ServerPortHostOrderGet();
     }
     else
     {
@@ -122,9 +125,9 @@ MustlWebCommands::MustlLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
 
     MustlLink::WebStatusHeaderPrint(ioEnv.Out());
 
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         ioEnv.Out() << "<tr>";
@@ -139,10 +142,10 @@ MustlWebCommands::MustlLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
 void
 MustlWebCommands::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlpostvalues", MustlPostValues);
-    MushcoreInterpreter::Instance().AddHandler("mustlinputwrite", MustlInputWrite);
-    MushcoreInterpreter::Instance().AddHandler("mustlserverstatuswrite", MustlServerStatusWrite);
-    MushcoreInterpreter::Instance().AddHandler("mustllinkstatuswrite", MustlLinkStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("mustlpostvalues", MustlPostValues);
+    MushcoreInterpreter::Sgl().AddHandler("mustlinputwrite", MustlInputWrite);
+    MushcoreInterpreter::Sgl().AddHandler("mustlserverstatuswrite", MustlServerStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("mustllinkstatuswrite", MustlLinkStatusWrite);
 }
 
 void

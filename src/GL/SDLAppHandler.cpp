@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.32 2003/01/12 17:32:51 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.33 2003/01/13 14:31:56 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.33  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.32  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -176,7 +179,7 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     if (keyValue == 27 && inSignal.keyDown)
     {
         // Escape key pressed
-        MushcoreAppHandler::Instance().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
+        MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
     }
 }
 
@@ -220,8 +223,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
-    MediaSDL::Instance().QuitVideoIfRequired();
-    MediaSDL::Instance().InitVideo();
+    MediaSDL::Sgl().QuitVideoIfRequired();
+    MediaSDL::Sgl().InitVideo();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);

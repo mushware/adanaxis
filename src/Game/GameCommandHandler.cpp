@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.15 2003/01/12 17:32:52 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.16 2003/01/13 14:31:56 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.16  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.15  2003/01/12 17:32:52  southa
  * Mushcore work
  *
@@ -74,7 +77,7 @@ MushcoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
 MushcoreScalar
 GameCommandHandler::Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    MushcoreAppHandler::Instance().Mutate(new GameAppHandler);
+    MushcoreAppHandler::Sgl().Mutate(new GameAppHandler);
     return MushcoreScalar(0);
 }
 
@@ -104,7 +107,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             try
             {
                 PlatformMiscUtils::MakeDirectory(dirPath);
-                MushcoreGlobalConfig::Instance().Set("FIRST_RUN", 1);
+                MushcoreGlobalConfig::Sgl().Set("FIRST_RUN", 1);
 
                 found=true;
             }
@@ -116,7 +119,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     if (found)
     {
-        MushcoreGlobalConfig::Instance().Set("GLOBAL_SAVE_PATH", dirPath);
+        MushcoreGlobalConfig::Sgl().Set("GLOBAL_SAVE_PATH", dirPath);
         cout << "Save path is '" << dirPath << "'" << endl;
     }
     else
@@ -165,15 +168,15 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
             menuStr += dirEntries[i]+"="+dirEntries[i];
         }
     }
-    MushcoreGlobalConfig::Instance().Set(varName, menuStr);
+    MushcoreGlobalConfig::Sgl().Set(varName, menuStr);
     return MushcoreScalar(0);
 }
 
 void
 GameCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("game", Game);
-    MushcoreInterpreter::Instance().AddHandler("setsavepath", SetSavePath);
-    MushcoreInterpreter::Instance().AddHandler("updatecheck", UpdateCheck);
-    MushcoreInterpreter::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
+    MushcoreInterpreter::Sgl().AddHandler("game", Game);
+    MushcoreInterpreter::Sgl().AddHandler("setsavepath", SetSavePath);
+    MushcoreInterpreter::Sgl().AddHandler("updatecheck", UpdateCheck);
+    MushcoreInterpreter::Sgl().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
 }

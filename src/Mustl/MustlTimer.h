@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlTimer.h,v 1.3 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlTimer.h,v 1.4 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlTimer.h,v $
+ * Revision 1.4  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.3  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -27,36 +30,26 @@
 
 #include "MustlStandard.h"
 
-class MustlTimer
+#include "MustlMushcoreSingleton.h"
+
+class MustlTimer : public MushcoreSingleton<MustlTimer>
 {
 public:
     typedef unsigned int (*tTimerFunction)(void);
 
-    static inline MustlTimer& Instance(void);
-
+    MustlTimer();
     Mustl::tMsec CurrentMsecGet(void);
     void CurrentMsecSet(Mustl::tMsec inMsec) { m_currentMsec = inMsec; }
     void TimerFunctionSet(tTimerFunction inFunction) { m_timerFunction = inFunction; }
     
 protected:
-    MustlTimer();
 
 private:
         
     tTimerFunction m_timerFunction;
     Mustl::tMsec m_currentMsec;
     unsigned int m_lastU32Msec;
-    
-    static std::auto_ptr<MustlTimer> m_instance;
 };
-
-inline MustlTimer&
-MustlTimer::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MustlTimer);
-    return *m_instance;
-}
 
 inline Mustl::tMsec
 MustlTimer::CurrentMsecGet(void)

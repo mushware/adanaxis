@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlTimer.cpp,v 1.3 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlTimer.cpp,v 1.4 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlTimer.cpp,v $
+ * Revision 1.4  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -31,7 +34,7 @@
 using namespace Mustl;
 using namespace std;
 
-auto_ptr<MustlTimer> MustlTimer::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MustlTimer);
 
 MustlTimer::MustlTimer() :
     m_timerFunction(MustlPlatform::DefaultTimer),

@@ -98,7 +98,7 @@ MediaAudioSDL::MediaAudioSDL():
     m_music(NULL),
     m_errCtr(0)
 {
-    MediaSDL::Instance().InitAudio();
+    MediaSDL::Sgl().InitAudio();
 
     int audioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
     unsigned short audioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
@@ -107,23 +107,23 @@ MediaAudioSDL::MediaAudioSDL():
     int audioBuffer = 1024;
 
     const MushcoreScalar *pScalar;
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_RATE"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "MUSHME_AUDIO_RATE"))
     {
         audioRate = pScalar->U32Get();
     }
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_FORMAT"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "MUSHME_AUDIO_FORMAT"))
     {
         audioFormat = pScalar->U32Get();
     }
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_HARD_CHANNELS"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "MUSHME_AUDIO_HARD_CHANNELS"))
     {
         audioHardChannels = pScalar->U32Get();
     }
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_SOFT_CHANNELS"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "MUSHME_AUDIO_SOFT_CHANNELS"))
     {
         audioSoftChannels = pScalar->U32Get();
     }
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_BUFFER"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "MUSHME_AUDIO_BUFFER"))
     {
         audioBuffer = pScalar->U32Get();
     }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefMenuString.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfigDefMenuString.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfigDefMenuString.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -78,14 +81,14 @@ MustlConfigDefMenuString::MustlConfigMenuString(MushcoreCommand& ioCommand, Mush
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
     ioCommand.PopParam(menuStr);
-    MushcoreData<MustlConfigDef>::Instance().Give(name, new MustlConfigDefMenuString(defaultValue, menuStr));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefMenuString(defaultValue, menuStr));
     return MushcoreScalar(0);
 }
 
 void
 MustlConfigDefMenuString::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlconfigmenustring", MustlConfigMenuString);
+    MushcoreInterpreter::Sgl().AddHandler("mustlconfigmenustring", MustlConfigMenuString);
 }
 
 void

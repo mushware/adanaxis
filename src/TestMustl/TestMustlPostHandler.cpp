@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlPostHandler.cpp,v 1.2 2003/01/17 00:41:06 southa Exp $
+ * $Id: TestMustlPostHandler.cpp,v 1.3 2003/01/17 13:30:42 southa Exp $
  * $Log: TestMustlPostHandler.cpp,v $
+ * Revision 1.3  2003/01/17 13:30:42  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.2  2003/01/17 00:41:06  southa
  * Configuration updates from POST data
  *
@@ -42,15 +45,15 @@ TestMustlPostHandler::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 
     if (typeStr == "quit")
     {
-        TestMustlApp::Instance().DoQuit();
+        TestMustlApp::Sgl().DoQuit();
     }
     else if (typeStr == "startserver")
     {
-        MustlServer::Instance().Connect();
+        MustlServer::Sgl().Connect();
     }
     else if (typeStr == "stopserver")
     {
-        MustlServer::Instance().Disconnect();
+        MustlServer::Sgl().Disconnect();
     }
     else
     {
@@ -62,5 +65,5 @@ TestMustlPostHandler::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 void
 TestMustlPostHandler::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("posthandler", PostHandler);
+    MushcoreInterpreter::Sgl().AddHandler("posthandler", PostHandler);
 }

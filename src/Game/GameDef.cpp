@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.cpp,v 1.20 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameDef.cpp,v 1.21 2003/01/13 14:31:57 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.21  2003/01/13 14:31:57  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.20  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -87,7 +90,7 @@ GameDef::GameDef(const string& inName) :
     m_status(kStatusInvalid),
     m_isImage(false)
 {
-    m_creationMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
+    m_creationMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
 }
 
 const string

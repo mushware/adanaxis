@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.15 2003/01/17 13:30:39 southa Exp $
+ * $Id: MediaSound.cpp,v 1.16 2003/01/18 13:33:57 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.16  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.15  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -67,7 +70,6 @@ using namespace Mushware;
 using namespace std;
 
 MUSHCORE_DATA_INSTANCE(MediaSound);
-MUSHCORE_DESTROY_DATA_INSTANCE(MediaSound);
 
 MushcoreInstaller MediaSoundInstaller(MediaSound::Install);
 
@@ -85,7 +87,7 @@ MediaSound::~MediaSound()
 void
 MediaSound::Load(void)
 {
-    MediaAudio::Instance().Load(*this);
+    MediaAudio::Sgl().Load(*this);
 }
 
 void
@@ -94,8 +96,8 @@ MediaSound::Free(void)
     if (m_chunk != NULL)
     {
         // cerr << "Freeing sound '" << m_filename << "'" << endl;
-        MediaAudio::Instance().SoundHalt(*this);
-        MediaAudio::Instance().Free(*this);
+        MediaAudio::Sgl().SoundHalt(*this);
+        MediaAudio::Sgl().Free(*this);
         // cerr << "Freed sound '" << m_filename << "'" << endl;
         m_chunk=NULL;
     }
@@ -120,7 +122,7 @@ MediaSound::TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=MushcoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
+    MediaSound *sound=MushcoreData<MediaSound>::Sgl().Give(name, new MediaSound(filename));
     sound->ResidenceSet(false);
     return MushcoreScalar(0);
 }
@@ -135,7 +137,7 @@ MediaSound::ResidentSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=MushcoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
+    MediaSound *sound=MushcoreData<MediaSound>::Sgl().Give(name, new MediaSound(filename));
     sound->ResidenceSet(true);
     sound->Load();
     return MushcoreScalar(0);
@@ -150,15 +152,15 @@ MediaSound::PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSound *sound=MushcoreData<MediaSound>::Instance().Get(name);
-    MediaAudio::Instance().Play(*sound);
+    MediaSound *sound=MushcoreData<MediaSound>::Sgl().Get(name);
+    MediaAudio::Sgl().Play(*sound);
     return MushcoreScalar(0);
 }
 
 void
 MediaSound::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("residentsound", ResidentSound);
-    MushcoreInterpreter::Instance().AddHandler("transientsound", TransientSound);
-    MushcoreInterpreter::Instance().AddHandler("playsound", PlaySound);
+    MushcoreInterpreter::Sgl().AddHandler("residentsound", ResidentSound);
+    MushcoreInterpreter::Sgl().AddHandler("transientsound", TransientSound);
+    MushcoreInterpreter::Sgl().AddHandler("playsound", PlaySound);
 }

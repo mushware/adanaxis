@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.4 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.5 2003/01/18 17:05:47 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.5  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.4  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -54,9 +57,9 @@
 #include "MushcoreStandard.h"
 
 #include "MushcoreConfig.h"
-#include "MushcoreSingletonConcrete.h"
+#include "MushcoreSingleton.h"
 
-class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingletonConcrete<MushcoreGlobalConfig>
+class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingleton<MushcoreGlobalConfig>
 {
 public:
     ~MushcoreGlobalConfig() { cerr << "Destroyed MushcoreGlobalConfig" << endl; }

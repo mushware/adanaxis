@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.3 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.3  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -62,7 +65,7 @@ class MushcoreAppHandler
 {
 public:
     virtual ~MushcoreAppHandler() {};
-    static MushcoreAppHandler& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreAppHandler:m_instance);}
+    static MushcoreAppHandler& Sgl(void) {return *((m_instance==NULL)?m_instance=new MushcoreAppHandler:m_instance);}
     virtual void Mutate(MushcoreAppHandler *inAppHandler);
     virtual void Initialise(void);
     virtual void MainLoop(void);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefBool.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfigDefBool.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfigDefBool.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -96,14 +99,14 @@ MustlConfigDefBool::MustlConfigBool(MushcoreCommand& ioCommand, MushcoreEnv& ioE
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<MustlConfigDef>::Instance().Give(name, new MustlConfigDefBool(defaultValue));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefBool(defaultValue));
     return MushcoreScalar(0);
 }
 
 void
 MustlConfigDefBool::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlconfigbool", MustlConfigBool);
+    MushcoreInterpreter::Sgl().AddHandler("mustlconfigbool", MustlConfigBool);
 }
 
 void

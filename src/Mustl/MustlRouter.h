@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.h,v 1.5 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlRouter.h,v 1.6 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.6  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.5  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -50,14 +53,15 @@
 
 #include "MustlStandard.h"
 
+#include "MustlMushcoreSingleton.h"
+
 class MustlData;
 class MustlLink;
 class MustlMessageHandler;
 
-class MustlRouter
+class MustlRouter : public MushcoreSingleton<MustlRouter>
 {
 public:
-    static inline MustlRouter& Instance(void);
     void ReceiveAll(MustlMessageHandler& inHandler);
 
 protected:
@@ -75,15 +79,7 @@ private:
     void ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlMessageHandler& inHandler);
     
     Mustl::tMsec m_lastTickMsec;
-    
-    static std::auto_ptr<MustlRouter> m_instance;
+
 }; 
 
-inline  MustlRouter&
-MustlRouter::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MustlRouter);
-    return *m_instance;
-}
 #endif

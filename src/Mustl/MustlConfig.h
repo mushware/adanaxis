@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.h,v 1.6 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfig.h,v 1.7 2003/01/17 00:41:03 southa Exp $
  * $Log: MustlConfig.h,v $
+ * Revision 1.7  2003/01/17 00:41:03  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.6  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -50,7 +53,7 @@ public:
     void PostDataHandle(const std::string& inData);
     void UpdateHandlerAdd(tUpdateHandler inHandler);
 
-    static MustlConfig& Instance(void);
+    static MustlConfig& Sgl(void);
     static void Install(void);
     static void NullFunction(void);
     
@@ -66,7 +69,7 @@ private:
 };
 
 inline MustlConfig&
-MustlConfig::Instance(void)
+MustlConfig::Sgl(void)
 {
     if (m_instance == NULL)
     {

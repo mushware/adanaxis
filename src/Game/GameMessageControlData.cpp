@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMessageControlData.cpp,v 1.6 2003/01/12 17:32:55 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.7 2003/01/13 14:31:59 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.7  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.6  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -86,7 +89,7 @@ GameMessageControlData::Unpack(MustlData& ioData)
 
     if (messageSize % 4 != 0 || numEntries > kEntryLimit)
     {
-        MustlLog::Instance().NetLog() << "Bad message size for ControlDataMessage (" << messageSize << ")" << endl;
+        MustlLog::Sgl().NetLog() << "Bad message size for ControlDataMessage (" << messageSize << ")" << endl;
         numEntries=0;
     }
 

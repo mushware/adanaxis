@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.20 2003/01/17 13:30:39 southa Exp $
+ * $Id: GameRouter.cpp,v 1.21 2003/01/18 13:33:57 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.21  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.20  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -109,7 +112,7 @@ GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
             break;
 
         default:
-            MustlLog::Instance().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
+            MustlLog::Sgl().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
 }
@@ -183,20 +186,20 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 
     if (discard)
     {
-        MustlLog::Instance().NetLog() << ": Discarding ControlData for unknown target" << endl;
+        MustlLog::Sgl().NetLog() << ": Discarding ControlData for unknown target" << endl;
     }
 
     
 #if 0
-    MushcoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
+    MushcoreData<GamePiecePlayer>& playerData = GameData::Sgl().PlayerGet();
 
     if (playerData.Exists(clientName))
     {
-        MustlLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
+        MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
     }
     else
     {
-       MustlLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
+       MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
     }
 #endif
     // Apply or store the data

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.cpp,v 1.4 2003/01/13 14:32:02 southa Exp $
+ * $Id: MushcoreFunction.cpp,v 1.5 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreFunction.cpp,v $
+ * Revision 1.5  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/13 14:32:02  southa
  * Build frameworks for Mac OS X
  *
@@ -77,7 +80,7 @@ MushcoreFunction::ThrowErrorExecute(void) const
 {
     for (U32 i=0; i<m_commands.size(); ++i)
     {
-        MushcoreInterpreter::Instance().Execute(m_commands[i]);
+        MushcoreInterpreter::Sgl().Execute(m_commands[i]);
     }
 }
 
@@ -89,7 +92,7 @@ MushcoreFunction::CoalesceErrorsExecute(void) const
     {
         try
         {
-            MushcoreInterpreter::Instance().Execute(m_commands[i]);
+            MushcoreInterpreter::Sgl().Execute(m_commands[i]);
         }
         catch (MushcoreNonFatalFail& e)
         {

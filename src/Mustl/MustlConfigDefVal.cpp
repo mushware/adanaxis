@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefVal.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfigDefVal.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfigDefVal.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -102,14 +105,14 @@ MustlConfigDefVal::MustlConfigFloat(MushcoreCommand& ioCommand, MushcoreEnv& ioE
     ioCommand.PopParam(defaultValue);
     ioCommand.PopParam(lowLimit);
     ioCommand.PopParam(highLimit);
-    MushcoreData<MustlConfigDef>::Instance().Give(name, new MustlConfigDefVal(defaultValue, lowLimit, highLimit));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefVal(defaultValue, lowLimit, highLimit));
     return MushcoreScalar(0);
 }
 
 void
 MustlConfigDefVal::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlconfigfloat", MustlConfigFloat);
+    MushcoreInterpreter::Sgl().AddHandler("mustlconfigfloat", MustlConfigFloat);
 }
 
 void

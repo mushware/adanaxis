@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDataUtils.cpp,v 1.7 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameDataUtils.cpp,v 1.8 2003/01/13 14:31:57 southa Exp $
  * $Log: GameDataUtils.cpp,v $
+ * Revision 1.8  2003/01/13 14:31:57  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.7  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -49,13 +52,13 @@ GameDataUtils::NamedDialoguesAdd(const string& inStr)
     
     bool found=false;
     MushcoreRegExp regExp(inStr);
-    const GameData::DialogueMap& dialogueMap(GameData::Instance().DialogueMapGet());
+    const GameData::DialogueMap& dialogueMap(GameData::Sgl().DialogueMapGet());
     for (GameData::DialogueMapConstIterator p = dialogueMap.begin();
          p != dialogueMap.end(); ++p)
     {
         if (regExp.Search(p->first))
         {
-            GameData::Instance().CurrentDialogueAdd(p->first, *p->second);
+            GameData::Sgl().CurrentDialogueAdd(p->first, *p->second);
             found=true;
         }
     }

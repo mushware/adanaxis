@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlStandard.h,v 1.6 2003/01/17 13:30:41 southa Exp $
+ * $Id: MustlStandard.h,v 1.7 2003/01/18 13:33:59 southa Exp $
  * $Log: MustlStandard.h,v $
+ * Revision 1.7  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.6  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *
@@ -40,9 +43,9 @@
 #include <iosfwd>
 #include <list>
 #include <map>
-#include <memory>
 #include <string>
 #include <vector>
+
 
 namespace Mustl
 {

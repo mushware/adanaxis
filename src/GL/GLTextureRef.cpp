@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureRef.cpp,v 1.12 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.13 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.13  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.12  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -61,7 +64,7 @@ using namespace std;
 void
 GLTextureRef::TextureFetch(void) const
 {
-    m_texPtr=GLData::Instance().TextureFind(m_name);
+    m_texPtr=GLData::Sgl().TextureFind(m_name);
     if (m_texPtr == NULL)
     {
         throw(MushcoreLogicFail("Attempt to access non-existent texture '"+m_name+"'"));
@@ -71,7 +74,7 @@ GLTextureRef::TextureFetch(void) const
 bool
 GLTextureRef::Exists(void) const
 {
-    return (m_texPtr != NULL || GLData::Instance().TextureFind(m_name) != NULL);
+    return (m_texPtr != NULL || GLData::Sgl().TextureFind(m_name) != NULL);
 }
 
 void

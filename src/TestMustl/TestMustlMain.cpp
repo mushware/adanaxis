@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlMain.cpp,v 1.4 2003/01/14 22:02:12 southa Exp $
+ * $Id: TestMustlMain.cpp,v 1.5 2003/01/15 13:27:33 southa Exp $
  * $Log: TestMustlMain.cpp,v $
+ * Revision 1.5  2003/01/15 13:27:33  southa
+ * Static library linking fixes
+ *
  * Revision 1.4  2003/01/14 22:02:12  southa
  * Command line build fixes
  *
@@ -38,8 +41,8 @@ int main(int argc, char *argv[])
     {
         cout << "This application must be started from the mustl directory" << endl;
         cout << "Number of installed modules=" << MushcoreInstaller::NumInstalledModulesGet() << endl;
-        MushcoreGlobalConfig::Instance().Set("MUSTL_WEB_PATH", "test/mustl");
-        MushcoreGlobalConfig::Instance().Set("MUSTL_START_FILE", "test/mustl/mustlstart.txt");
+        MushcoreGlobalConfig::Sgl().Set("MUSTL_WEB_PATH", "test/mustl");
+        MushcoreGlobalConfig::Sgl().Set("MUSTL_START_FILE", "test/mustl/mustlstart.txt");
 
         for (int i=1; i<argc; ++i)
         {
@@ -51,13 +54,13 @@ int main(int argc, char *argv[])
             }
             else
             {
-                MushcoreInterpreter::Instance().Execute(argStr);
+                MushcoreInterpreter::Sgl().Execute(argStr);
             }
         }
     
-        MushcoreInterpreter::Instance().Execute("load($MUSTL_START_FILE)");
+        MushcoreInterpreter::Sgl().Execute("load($MUSTL_START_FILE)");
 
-        TestMustlApp::Instance().Enter();
+        TestMustlApp::Sgl().Enter();
     }
     catch (exception& e)
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.16 2003/01/12 17:32:57 southa Exp $
+ * $Id: GameTraits.cpp,v 1.17 2003/01/13 14:32:01 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.17  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.16  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -99,7 +102,7 @@ GameTraits::RebuildTraits(void) const
     {
         try
         {
-            m_baseTraits.push_back(GameData::Instance().TraitsGet(m_baseNames[i]));
+            m_baseTraits.push_back(GameData::Sgl().TraitsGet(m_baseNames[i]));
         }
         catch (GameDataNotPresent& e)
         {

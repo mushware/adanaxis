@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.30 2003/01/14 17:38:20 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.31 2003/01/17 13:30:39 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.31  2003/01/17 13:30:39  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.30  2003/01/14 17:38:20  southa
  * Mustl web configuration
  *
@@ -157,66 +160,66 @@ GameWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (typeStr == "config1" ||
         typeStr == "developer1")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
-        GameConfig::Instance().Update();
+        GameConfig::Sgl().PostDataHandle(valueStr);
+        GameConfig::Sgl().Update();
     }
     else if (typeStr == "singleplayer")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
+        GameConfig::Sgl().PostDataHandle(valueStr);
         GameNetUtils::KillServers();
         GameNetUtils::KillClients();
 
-        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.GameModeEnter(false);
     }
     else if (typeStr == "mpentergame")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
-        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+        GameConfig::Sgl().PostDataHandle(valueStr);
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.GameModeEnter(false);
     }
     else if (typeStr == "resumegame")
     {
-        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.GameModeEnter(true); // Resume game
     }
     else if (typeStr == "endcurrentgame")
     {
-        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.CurrentGameEnd(); // End the game
     }
     else if (typeStr == "mplogin")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
+        GameConfig::Sgl().PostDataHandle(valueStr);
     }
     else if (typeStr == "joingame")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
-        string clientName = GameConfig::Instance().ParameterGet("mpplayername").StringGet();
-        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Instance().Give(clientName, new GameDefClient(clientName));
+        GameConfig::Sgl().PostDataHandle(valueStr);
+        string clientName = GameConfig::Sgl().ParameterGet("mpplayername").StringGet();
+        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Sgl().Give(clientName, new GameDefClient(clientName));
         try
         {
-            gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
-                                    GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
+            gameDefClient->JoinGame(GameConfig::Sgl().ParameterGet("mpjoinserver").StringGet(),
+                                    GameConfig::Sgl().ParameterGet("mpjoinport").U32Get());
         }
         catch (MushcoreNonFatalFail& e)
         {
             ostringstream message;
             message << "Join game failed: " << e.what() << endl;
             PlatformMiscUtils::MinorErrorBox(message.str());
-            MustlLog::Instance().NetLog() << message.str() << endl;
+            MustlLog::Sgl().NetLog() << message.str() << endl;
             gameDefClient->Kill();
         }
     }
     else if (typeStr == "hostgame")
     {
-        GameConfig::Instance().PostDataHandle(valueStr);
-        string serverName=GameConfig::Instance().ParameterGet("mpservername").StringGet();
-        string serverMessage=GameConfig::Instance().ParameterGet("mpservermessage").StringGet();
-        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Instance().Give(serverName, new GameDefServer(serverName));
+        GameConfig::Sgl().PostDataHandle(valueStr);
+        string serverName=GameConfig::Sgl().ParameterGet("mpservername").StringGet();
+        string serverMessage=GameConfig::Sgl().ParameterGet("mpservermessage").StringGet();
+        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Sgl().Give(serverName, new GameDefServer(serverName));
         gameDefServer->ServerMessageSet(serverMessage);
-        gameDefServer->HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
-                               GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
+        gameDefServer->HostGame(GameConfig::Sgl().ParameterGet("mpcontractname").StringGet(),
+                               GameConfig::Sgl().ParameterGet("mpplayerlimit").U32Get());
     }
     else if (typeStr == "linkcleardown")
     {
@@ -236,7 +239,7 @@ GameWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     else if (typeStr == "quit")
     {
-        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.QuitModeEnter(); // Quit application
     }
     else
@@ -251,15 +254,15 @@ MushcoreScalar
 GameWebCommands::DisplayModesWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
 
-    U32 selectedMode=GameConfig::Instance().DisplayModeGet();
-    U32 size=PlatformVideoUtils::Instance().NumModesGet();
+    U32 selectedMode=GameConfig::Sgl().DisplayModeGet();
+    U32 size=PlatformVideoUtils::Sgl().NumModesGet();
 
     ioEnv.Out() << "<select name=\"displaymode\">" << endl;
     for (U32 i=0; i<size; ++i)
     {
         ioEnv.Out() << "<option value=\"" << i << "\"";
         if (i == selectedMode) ioEnv.Out() << " selected";
-        ioEnv.Out() << ">" << PlatformVideoUtils::Instance().ModeDefGet(i).NameGet() << "</option>" << endl;
+        ioEnv.Out() << ">" << PlatformVideoUtils::Sgl().ModeDefGet(i).NameGet() << "</option>" << endl;
     }
     ioEnv.Out() << "</select>" << endl;
     return MushcoreScalar(0);
@@ -276,11 +279,11 @@ GameWebCommands::GameConfigInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& i
     string dataName;
     ioCommand.PopParam(dataName);
 
-    if (!MushcoreData<GameConfigDef>::Instance().Exists(dataName))
+    if (!MushcoreData<GameConfigDef>::Sgl().Exists(dataName))
     {
         throw(MushcoreCommandFail("Config value '"+dataName+"' does not exist"));
     }
-    MushcoreData<GameConfigDef>::Instance().Get(dataName)->WebInputPrint(ioEnv.Out(), dataName);
+    MushcoreData<GameConfigDef>::Sgl().Get(dataName)->WebInputPrint(ioEnv.Out(), dataName);
     
     return MushcoreScalar(0);
 }
@@ -291,9 +294,9 @@ GameWebCommands::GameStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     time_t now(time(NULL));
     ioEnv.Out() << "Status at " << ctime(&now);
     ioEnv.Out() << "<br>Server: ";
-    if (MustlServer::Instance().IsServing())
+    if (MustlServer::Sgl().IsServing())
     {
-        ioEnv.Out() << "Serving on port " << MustlServer::Instance().ServerPortHostOrderGet();
+        ioEnv.Out() << "Serving on port " << MustlServer::Sgl().ServerPortHostOrderGet();
     }
     else
     {
@@ -318,9 +321,9 @@ GameWebCommands::GameServerStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Instance().End();
+        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Sgl().End();
 
-        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -337,10 +340,10 @@ GameWebCommands::GameServerStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
 
         // Client images for server
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -367,9 +370,9 @@ GameWebCommands::GameClientStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
 
     {
         // Server images
-        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Instance().End();
+        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Sgl().End();
 
-        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -386,9 +389,9 @@ GameWebCommands::GameClientStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
         // Local clients
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -415,9 +418,9 @@ GameWebCommands::GameLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& io
 
     MustlLink::WebStatusHeaderPrint(ioEnv.Out());
 
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         ioEnv.Out() << "<tr>";
@@ -432,11 +435,11 @@ GameWebCommands::GameLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& io
 void
 GameWebCommands::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("posthandler", PostHandler);
-    MushcoreInterpreter::Instance().AddHandler("displaymodeswrite", DisplayModesWrite);
-    MushcoreInterpreter::Instance().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
-    MushcoreInterpreter::Instance().AddHandler("gamestatuswrite", GameStatusWrite);
-    MushcoreInterpreter::Instance().AddHandler("gameserverstatuswrite", GameServerStatusWrite);
-    MushcoreInterpreter::Instance().AddHandler("gameclientstatuswrite", GameClientStatusWrite);
-    MushcoreInterpreter::Instance().AddHandler("gamelinkstatuswrite", GameLinkStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("posthandler", PostHandler);
+    MushcoreInterpreter::Sgl().AddHandler("displaymodeswrite", DisplayModesWrite);
+    MushcoreInterpreter::Sgl().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
+    MushcoreInterpreter::Sgl().AddHandler("gamestatuswrite", GameStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("gameserverstatuswrite", GameServerStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("gameclientstatuswrite", GameClientStatusWrite);
+    MushcoreInterpreter::Sgl().AddHandler("gamelinkstatuswrite", GameLinkStatusWrite);
 }

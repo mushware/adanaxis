@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.26 2003/01/11 17:07:51 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.27 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.27  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.26  2003/01/11 17:07:51  southa
  * Mushcore library separation
  *
@@ -180,12 +183,12 @@ GLTest1AppHandler::Idle(void)
 MushcoreScalar
 GLTest1AppHandler::GLTest1(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    MushcoreAppHandler::Instance().Mutate(new GLTest1AppHandler);
+    MushcoreAppHandler::Sgl().Mutate(new GLTest1AppHandler);
     return MushcoreScalar(0);
 }
 
 void
 GLTest1AppHandler::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("gltest1", GLTest1);
+    MushcoreInterpreter::Sgl().AddHandler("gltest1", GLTest1);
 }

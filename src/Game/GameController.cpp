@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.15 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameController.cpp,v 1.16 2003/01/13 14:31:57 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.16  2003/01/13 14:31:57  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.15  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -80,7 +83,7 @@ GameController::GameController():
 void
 GameController::StateGet(GameControlFrameDef& outDef, U32 inAtMsec)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     
     gameAppHandler.KeysOfInterestSet(m_keysOfInterest);
     

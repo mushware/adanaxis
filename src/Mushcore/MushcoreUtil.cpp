@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreUtil.cpp,v 1.1 2003/01/09 14:57:08 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -93,5 +96,5 @@ MushcoreUtil::U8Get(istream& inIn)
 string
 MushcoreUtil::AppDirFilename(const string& inStr)
 {
-    return MushcoreGlobalConfig::Instance().Get("APPLPATH").StringGet() + "/" + inStr;
+    return MushcoreGlobalConfig::Sgl().Get("APPLPATH").StringGet() + "/" + inStr;
 }

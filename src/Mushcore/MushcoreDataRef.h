@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreDataRef.h,v 1.3 2003/01/12 17:32:59 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.4 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.4  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/12 17:32:59  southa
  * Mushcore work
  *
@@ -120,7 +123,7 @@ template<class RefType>
 inline void
 MushcoreDataRef<RefType>::DefaultDataPtrGet(void)
 {
-    m_dataInstance = &MushcoreData<RefType>::Instance();
+    m_dataInstance = &MushcoreData<RefType>::Sgl();
 }
 
 template<class RefType>

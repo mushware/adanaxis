@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.16 2003/01/17 12:20:40 southa Exp $
+ * $Id: MustlLink.cpp,v 1.17 2003/01/18 13:33:59 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.17  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.16  2003/01/17 12:20:40  southa
  * Fixed auto_ptr duplication
  *
@@ -154,7 +157,6 @@ using namespace Mustl;
 using namespace std;
 
 MUSHCORE_DATA_INSTANCE(MustlLink);
-MUSHCORE_DESTROY_DATA_INSTANCE(MustlLink);
 
 U32 MustlLink::m_linkNameNum=1;
 
@@ -176,7 +178,7 @@ MustlLink::LinkState::Print(ostream& ioOut) const
 MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
 {
     // I am the client end of the link
-    MustlLog::Instance().NetLog() << "Connecting to " << inAddress << endl;
+    MustlLog::Sgl().NetLog() << "Connecting to " << inAddress << endl;
 
     m_netID = inID.Clone();
 
@@ -208,7 +210,7 @@ MustlLink::MustlLink(tSocket inSocket, const MustlAddress& inAddress)
 void
 MustlLink::Initialise(void)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     
     m_creationMsec=m_currentMsec;
     m_lastActivityMsec=m_currentMsec;
@@ -271,7 +273,7 @@ MustlLink::Disconnect(MustlProtocol::tReasonCode inCode)
     if (m_tcpState.linkState != kLinkStateDead ||
         m_udpState.linkState != kLinkStateDead)
     {
-        MustlLog::Instance().NetLog() << "Link closing reasonCode=" << inCode << ": " << *this << endl;
+        MustlLog::Sgl().NetLog() << "Link closing reasonCode=" << inCode << ": " << *this << endl;
     }
     
     try
@@ -285,7 +287,7 @@ MustlLink::Disconnect(MustlProtocol::tReasonCode inCode)
     }
     catch (exception& e)
     {
-        MustlLog::Instance().NetLog() << "TCP link disconnect exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "TCP link disconnect exception: " << e.what() << endl;
     }
     
     try
@@ -299,7 +301,7 @@ MustlLink::Disconnect(MustlProtocol::tReasonCode inCode)
     }
     catch (exception& e)
     {
-        MustlLog::Instance().NetLog() << "UDP link disconnect exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "UDP link disconnect exception: " << e.what() << endl;
     }
     
     m_client.TCPDisconnect();
@@ -419,7 +421,7 @@ MustlLink::TCPConnectingCheck(void)
 void
 MustlLink::Tick(void)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     
     if (m_currentMsec > m_lastActivityMsec + kLinkIdleTimeoutMsec)
     {
@@ -453,7 +455,7 @@ MustlLink::Tick(void)
             {
                 TCPLinkCheckSend();
             }
-            MustlLog::Instance().NetLog() << "TCP link check failed" << endl;
+            MustlLog::Sgl().NetLog() << "TCP link check failed" << endl;
         }
         else
         {
@@ -493,7 +495,7 @@ MustlLink::Tick(void)
             {
                 UDPLinkCheckSend();
             }
-            MustlLog::Instance().NetLog() << "UDP link check failed" << endl;
+            MustlLog::Sgl().NetLog() << "UDP link check failed" << endl;
         }
         else
         {
@@ -577,10 +579,10 @@ MustlLink::TCPSend(MustlData& ioData)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "TCPSend exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "TCPSend exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
         {
-            MustlLog::Instance().VerboseLog() << "TCPSend: Failed link=" << *this << endl;
+            MustlLog::Sgl().VerboseLog() << "TCPSend: Failed link=" << *this << endl;
         } 
         ++m_tcpState.linkErrorTotal;
         ++m_tcpState.linkErrorsSinceGood;
@@ -605,10 +607,10 @@ MustlLink::TCPReceive(MustlData& outData)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "TCPReceive exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "TCPReceive exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
         {
-            MustlLog::Instance().VerboseLog() << "TCPReceive: Failed link=" << *this << endl;
+            MustlLog::Sgl().VerboseLog() << "TCPReceive: Failed link=" << *this << endl;
         }        
         ++m_tcpState.linkErrorTotal;
         ++m_tcpState.linkErrorsSinceGood;
@@ -626,7 +628,7 @@ MustlLink::UDPSend(MustlData& ioData)
         }
         if (m_udpUseServerPort)
         {
-            MustlServer::Instance().UDPSend(m_client.UDPAddressGet(), ioData);
+            MustlServer::Sgl().UDPSend(m_client.UDPAddressGet(), ioData);
         }
         else
         {
@@ -636,10 +638,10 @@ MustlLink::UDPSend(MustlData& ioData)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "UDPSend exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "UDPSend exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)
         {
-            MustlLog::Instance().VerboseLog() << "UDPSend: Failed link=" << *this << endl;
+            MustlLog::Sgl().VerboseLog() << "UDPSend: Failed link=" << *this << endl;
         }
         ++m_udpState.linkErrorTotal;
         ++m_udpState.linkErrorsSinceGood;
@@ -668,10 +670,10 @@ MustlLink::UDPReceive(MustlData& outData)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "UDPReceive exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "UDPReceive exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)
         {
-            MustlLog::Instance().VerboseLog() << "UDPReceive: Failed link=" << *this << endl;
+            MustlLog::Sgl().VerboseLog() << "UDPReceive: Failed link=" << *this << endl;
         }
         ++m_udpState.linkErrorTotal;
         ++m_udpState.linkErrorsSinceGood;
@@ -681,7 +683,7 @@ MustlLink::UDPReceive(MustlData& outData)
 void
 MustlLink::InactivityTimerReset(void)
 {
-    m_lastActivityMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_lastActivityMsec = MustlTimer::Sgl().CurrentMsecGet();
 ;
 }
 
@@ -793,7 +795,7 @@ MustlLink::MessageHandle(U32 inType, MustlData& ioData)
             break;
 
         default:
-            MustlLog::Instance().NetLog() << "Discarding type " << inType << " link layer message" << endl; 
+            MustlLog::Sgl().NetLog() << "Discarding type " << inType << " link layer message" << endl; 
             break;
     }
 }
@@ -816,7 +818,7 @@ MustlLink::MessageTCPLinkCheckHandle(MustlData& ioData)
 void
 MustlLink::MessageTCPLinkCheckReplyHandle(MustlData& ioData)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
 
     U32 seqNum = ioData.MessageBytePop();
     if (seqNum == m_tcpState.linkCheckSeqNum &&
@@ -832,14 +834,14 @@ MustlLink::MessageTCPLinkCheckReplyHandle(MustlData& ioData)
         }
         m_tcpState.linkCheckState = kLinkCheckStateIdle;
         m_tcpState.linkErrorsSinceGood=0;
-        MustlLog::Instance().VerboseLog() << "TCP link check good" << endl;
+        MustlLog::Sgl().VerboseLog() << "TCP link check good" << endl;
     }
 }
 
 void
 MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
 
     U8 seqNum = ioData.MessageBytePop();
     if (!m_udpUseServerPort && !m_client.UDPConnectedIs())
@@ -869,7 +871,7 @@ MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
 void
 MustlLink::MessageUDPLinkCheckReplyHandle(MustlData& ioData)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
 
     U32 seqNum = ioData.MessageBytePop();
     if (seqNum == m_udpState.linkCheckSeqNum &&
@@ -885,7 +887,7 @@ MustlLink::MessageUDPLinkCheckReplyHandle(MustlData& ioData)
         }
         m_udpState.linkCheckState = kLinkCheckStateIdle;
         m_udpState.linkErrorsSinceGood=0;
-        MustlLog::Instance().VerboseLog() << "UDP link check good" << endl;
+        MustlLog::Sgl().VerboseLog() << "UDP link check good" << endl;
     }
 }
 
@@ -893,7 +895,7 @@ void
 MustlLink::MessageKillLinkHandle(MustlData& ioData)
 {
     U32 reasonCode = ioData.MessageBytePop();
-    MustlLog::Instance().VerboseLog() << "Link kill received (" << reasonCode << ")" << endl;
+    MustlLog::Sgl().VerboseLog() << "Link kill received (" << reasonCode << ")" << endl;
     if (reasonCode != MustlProtocol::kReasonCodePeerDisconnected)
     {
         Disconnect(MustlProtocol::kReasonCodePeerDisconnected);
@@ -905,7 +907,7 @@ MustlLink::MessageIDRequestHandle(MustlData& ioData)
 {
     if (m_netID == NULL)
     {
-        MustlLog::Instance().NetLog() << "No ID present to answer to ID request" << endl;
+        MustlLog::Sgl().NetLog() << "No ID present to answer to ID request" << endl;
     }
     else
     {
@@ -922,7 +924,7 @@ MustlLink::LinkInfoLog(void) const
 {
     if (!m_loggedLinkInfo)
     {
-        MustlLog::Instance().VerboseLog() << "Link: " << *this << endl;
+        MustlLog::Sgl().VerboseLog() << "Link: " << *this << endl;
     }
     m_loggedLinkInfo=true;
 }
@@ -1022,7 +1024,7 @@ ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_udpState);
     ioOut << "\">" << m_udpState.linkPingMsec << "ms</font></td>";
 
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     ioOut << "<td>" << MustlUtils::MsecDurationToString(static_cast<U32>(m_currentMsec - m_creationMsec)) << "</td>"; // Unsure about cast
     ioOut << endl;
 }

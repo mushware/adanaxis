@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.12 2003/01/13 14:31:59 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.12  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.11  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -112,17 +115,17 @@ GameMotionSpec::Render(void) const
     newQuad += newPos;
 
     // Draw old and new quads
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().
         RenderableAdd(quad, GLColour(0,0,1));
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().
         RenderableAdd(newQuad, GLColour(0,1,1));
 
     GLPoint angleVec(deltaAngle,0);
     angleVec.RotateAboutZ(newAngle);
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().
         RenderableAdd(GLLine(newPos+deltaPos*10, newPos+deltaPos*10+angleVec*10),
                       GLColour(1,0,0));
 
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().
         RenderableAdd(GLLine(newPos, newPos+deltaPos*10), GLColour(1,1,0));
 }

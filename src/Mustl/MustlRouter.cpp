@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.12 2003/01/13 15:01:20 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.13 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.13  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.12  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -91,7 +94,7 @@ using namespace Mustl;
 using namespace std;
 //using Mushware::MushcoreData;
 
-auto_ptr<MustlRouter> MustlRouter::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MustlRouter);
 
 MustlRouter::MustlRouter() :
     m_lastTickMsec(0)
@@ -130,7 +133,7 @@ MustlRouter::ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlMessageHa
 void
 MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
 {
-    tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    tMsec currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     bool callTick=false;
     
     if (m_lastTickMsec + kTickPeriod < currentMsec ||
@@ -142,12 +145,12 @@ MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
 
     UDPReceiveFromServer(inHandler);
     
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
-    MushcoreData<MustlLink>::tMapIterator killValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
+    MushcoreData<MustlLink>::tMapIterator killValue=MushcoreData<MustlLink>::Sgl().End();
 
     if (callTick)
     {
-        for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin(); p != endValue; ++p)
         {
             MUSTLASSERT(p->second != NULL);
             MustlLink& linkRef = *p->second;
@@ -159,12 +162,12 @@ MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
         }
     }
 
-    if (killValue != MushcoreData<MustlLink>::Instance().End())
+    if (killValue != MushcoreData<MustlLink>::Sgl().End())
     {
-        MushcoreData<MustlLink>::Instance().Delete(killValue);
+        MushcoreData<MustlLink>::Sgl().Delete(killValue);
     }
     
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin(); p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
         MustlLink& linkRef = *p->second;
@@ -172,9 +175,9 @@ MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
         MustlData *netData=NULL;
         while (linkRef.Receive(netData))
         {
-            if (MustlLog::Instance().TrafficLogGet())
+            if (MustlLog::Sgl().TrafficLogGet())
             {
-                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
+                MustlLog::Sgl().TrafficLog() << "received on link " << p->first << endl;
             }
             MUSTLASSERT(netData != NULL);
             ProcessMessage(*netData, linkRef, inHandler);
@@ -185,19 +188,19 @@ MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
 void
 MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& inHandler)
 {
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
     // Check for an exact address match
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
         MustlLink& linkRef = *p->second;
         if (linkRef.UDPAddressMatchDoes(ioData))
         {
-            if (MustlLog::Instance().TrafficLogGet())
+            if (MustlLog::Sgl().TrafficLogGet())
             {
-                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
+                MustlLog::Sgl().TrafficLog() << "received on link " << p->first << endl;
             }
             ProcessMessage(ioData, linkRef, inHandler);
             return;
@@ -206,7 +209,7 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& in
 
     // Check for a host match where the port number is zero.  This caters for link
     // establishment messages where the port number of the remote end is not yet known
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
@@ -214,16 +217,16 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& in
         if (linkRef.UDPAddressGet().PortGetNetworkOrder() == 0 &&
             linkRef.UDPHostMatchDoes(ioData))
         {
-            if (MustlLog::Instance().TrafficLogGet())
+            if (MustlLog::Sgl().TrafficLogGet())
             {
-                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
+                MustlLog::Sgl().TrafficLog() << "received on link " << p->first << endl;
             }
             ProcessMessage(ioData, linkRef, inHandler);
             return;
         }
     }
 
-    MustlLog::Instance().VerboseLog() << "Unrecognised message source; discarding " << ioData.SourceGet() << endl;
+    MustlLog::Sgl().VerboseLog() << "Unrecognised message source; discarding " << ioData.SourceGet() << endl;
 }
 
 void
@@ -232,7 +235,7 @@ MustlRouter::UDPReceiveFromServer(MustlMessageHandler& inHandler)
     for (U32 i=0; i<100; ++i)
     {
         MustlData netData;
-        MustlServer::Instance().UDPReceive(netData);
+        MustlServer::Sgl().UDPReceive(netData);
         if (netData.ReadSizeGet() != 0)
         {
             UDPIfAddressMatchReceive(netData, inHandler);

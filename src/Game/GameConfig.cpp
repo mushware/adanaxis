@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.24 2003/01/13 14:31:56 southa Exp $
+ * $Id: GameConfig.cpp,v 1.25 2003/01/17 13:30:37 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.25  2003/01/17 13:30:37  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.24  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -107,13 +110,13 @@ GameConfig::GameConfig()
 U32
 GameConfig::DisplayModeGet(void) const
 {
-    return MushcoreData<GameConfigDef>::Instance().Get("displaymode")->ValueGet().U32Get();
+    return MushcoreData<GameConfigDef>::Sgl().Get("displaymode")->ValueGet().U32Get();
 }
 
 void
 GameConfig::DisplayModeSet(U32 inMode)
 {
-    MushcoreData<GameConfigDef>::Instance().Get("displaymode")->ValueSet(MushcoreScalar(inMode));
+    MushcoreData<GameConfigDef>::Sgl().Get("displaymode")->ValueSet(MushcoreScalar(inMode));
     
     try
     {
@@ -128,25 +131,25 @@ GameConfig::DisplayModeSet(U32 inMode)
 void
 GameConfig::DisplayModeSetDefault(void)
 {
-    DisplayModeSet(PlatformVideoUtils::Instance().DefaultModeGet());
+    DisplayModeSet(PlatformVideoUtils::Sgl().DefaultModeGet());
 }
 
 MushcoreScalar
 GameConfig::ParameterGet(const string& inName) const
 {
-    return MushcoreData<GameConfigDef>::Instance().Get(inName)->ValueGet();
+    return MushcoreData<GameConfigDef>::Sgl().Get(inName)->ValueGet();
 }
 
 bool
 GameConfig::ParameterExists(const string& inName) const
 {
-    return MushcoreData<GameConfigDef>::Instance().Exists(inName);
+    return MushcoreData<GameConfigDef>::Sgl().Exists(inName);
 }
 
 void
 GameConfig::ParameterSet(const string& inName, const MushcoreScalar& inValue)
 {
-    MushcoreData<GameConfigDef>::Instance().Get(inName)->ValueSet(inValue);
+    MushcoreData<GameConfigDef>::Sgl().Get(inName)->ValueSet(inValue);
 }
 
 void
@@ -154,9 +157,9 @@ GameConfig::PostDataHandle(const string& inData)
 {
     bool found=false;
     
-    MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Instance().End();
+    MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Sgl().End();
 
-    for (MushcoreData<GameConfigDef>::tMapIterator p=MushcoreData<GameConfigDef>::Instance().Begin();
+    for (MushcoreData<GameConfigDef>::tMapIterator p=MushcoreData<GameConfigDef>::Sgl().Begin();
          p != endValue; ++p)
     {
         try
@@ -180,7 +183,7 @@ GameConfig::SaveToFile(void) const
 {
     string filenameStr;
     const MushcoreScalar *pScalar;
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
     {
         filenameStr = pScalar->StringGet();
     }
@@ -201,24 +204,24 @@ GameConfig::Update(void)
         string configPerms=ParameterGet("configperms").StringGet();
         if (configPerms == "none")
         {
-            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionNone);
+            MustlWebServer::Sgl().PermissionSet(MustlWebServer::kPermissionNone);
         }
         else if (configPerms == "local")
         {
-            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionLocal);
+            MustlWebServer::Sgl().PermissionSet(MustlWebServer::kPermissionLocal);
         }
         else if (configPerms == "all")
         {
-            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionAll);
+            MustlWebServer::Sgl().PermissionSet(MustlWebServer::kPermissionAll);
         }
         else
         {
-            MustlLog::Instance().WebLog() << "Unknown value for configerms '" << configPerms << "'" << endl;
+            MustlLog::Sgl().WebLog() << "Unknown value for configerms '" << configPerms << "'" << endl;
         }
     }
     if (ParameterExists("configextra"))
     {
-        MustlWebServer::Instance().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
+        MustlWebServer::Sgl().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
     }
     
 }
@@ -229,19 +232,19 @@ void
 GameConfig::HandleValueEnd(MushcoreXML& inXML)
 {
     string dataName=inXML.GetAttribOrThrow("name").StringGet();
-    if (!MushcoreData<GameConfigDef>::Instance().Exists(dataName))
+    if (!MushcoreData<GameConfigDef>::Sgl().Exists(dataName))
     {
         inXML.Throw("Config value '"+dataName+"' does not exist");
     }
-    MushcoreData<GameConfigDef>::Instance().Get(dataName)->ValueSet(MushcoreScalar(inXML.TopData()));
+    MushcoreData<GameConfigDef>::Sgl().Get(dataName)->ValueSet(MushcoreScalar(inXML.TopData()));
 }
 
 void
 GameConfig::HandleConfigStart(MushcoreXML& inXML)
 {
-    if (inXML.GetAttribOrThrow("version").StringGet() != MushcoreInfo::Instance().PackageIDGet())
+    if (inXML.GetAttribOrThrow("version").StringGet() != MushcoreInfo::Sgl().PackageIDGet())
     {
-        inXML.Throw("Config version ("+inXML.GetAttribOrThrow("version").StringGet()+" differs from application ("+MushcoreInfo::Instance().PackageIDGet()+")");
+        inXML.Throw("Config version ("+inXML.GetAttribOrThrow("version").StringGet()+" differs from application ("+MushcoreInfo::Sgl().PackageIDGet()+")");
     }
     m_pickleState=kPickleData;
 }
@@ -265,7 +268,7 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
     inOut << inPrefix << "<!-- GameConfig file saved at " << ctime(&now) << " -->" << endl;
     inOut << inPrefix << "<!-- This is an autogenerated file." << endl << "To override, create a file named userconfig.xml in the same directory -->" << endl;
 
-    inOut << inPrefix << "<config version=\"" << MushcoreInfo::Instance().PackageIDGet() << "\">" << endl;
+    inOut << inPrefix << "<config version=\"" << MushcoreInfo::Sgl().PackageIDGet() << "\">" << endl;
 
     bool savePasswords = false;
     if (ParameterExists("savepasswords"))
@@ -273,9 +276,9 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
         savePasswords = ParameterGet("savepasswords").U32Get();
     }
     
-    MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Instance().End();
+    MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Sgl().End();
 
-    for (MushcoreData<GameConfigDef>::tMapIterator p=MushcoreData<GameConfigDef>::Instance().Begin();
+    for (MushcoreData<GameConfigDef>::tMapIterator p=MushcoreData<GameConfigDef>::Sgl().Begin();
          p != endValue; ++p)
     {
         if (dynamic_cast<GameConfigDefPassword *>(p->second) == NULL ||
@@ -409,13 +412,13 @@ GameConfig::GameConfigLoad(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     MushcoreXML xml(inStream, filename);
     try
     {
-        GameConfig::Instance().Unpickle(xml);
+        GameConfig::Sgl().Unpickle(xml);
     }
     catch (MushcoreSyntaxFail& e)
     {
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
-    GameConfig::Instance().Update();
+    GameConfig::Sgl().Update();
     return MushcoreScalar(0);
 }
 
@@ -433,7 +436,7 @@ GameConfig::GameConfigValueAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ioCommand.PopParam(defaultValue);
     ioCommand.PopParam(lowLimit);
     ioCommand.PopParam(highLimit);
-    MushcoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefU32(defaultValue, lowLimit, highLimit));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefU32(defaultValue, lowLimit, highLimit));
     return MushcoreScalar(0);
 }
 
@@ -449,7 +452,7 @@ GameConfig::GameConfigStringAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
     if (numParams >= 3) ioCommand.PopParam(menuStr);
-    MushcoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefString(defaultValue, menuStr));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefString(defaultValue, menuStr));
     return MushcoreScalar(0);
 }
 
@@ -464,7 +467,7 @@ GameConfig::GameConfigPasswordAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     string name, defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefPassword(defaultValue));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefPassword(defaultValue));
     return MushcoreScalar(0);
 }
 
@@ -480,26 +483,26 @@ GameConfig::GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefBool(defaultValue));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefBool(defaultValue));
     return MushcoreScalar(0);
 }
 
 MushcoreScalar
 GameConfig::GameConfigSpecial(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    MushcoreData<GameConfigDef>::Instance().Give("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
+    MushcoreData<GameConfigDef>::Sgl().Give("displaymode", new GameConfigDefU32(PlatformVideoUtils::Sgl().DefaultModeGet(), 0, PlatformVideoUtils::Sgl().NumModesGet()));
     return MushcoreScalar(0);
 }
 
 void
 GameConfig::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("configload", GameConfigLoad);
-    MushcoreInterpreter::Instance().AddHandler("configvalueadd", GameConfigValueAdd);
-    MushcoreInterpreter::Instance().AddHandler("configstringadd", GameConfigStringAdd);
-    MushcoreInterpreter::Instance().AddHandler("configpasswordadd", GameConfigPasswordAdd);
-    MushcoreInterpreter::Instance().AddHandler("configbooladd", GameConfigBoolAdd);
-    MushcoreInterpreter::Instance().AddHandler("gameconfigspecial", GameConfigSpecial);
+    MushcoreInterpreter::Sgl().AddHandler("configload", GameConfigLoad);
+    MushcoreInterpreter::Sgl().AddHandler("configvalueadd", GameConfigValueAdd);
+    MushcoreInterpreter::Sgl().AddHandler("configstringadd", GameConfigStringAdd);
+    MushcoreInterpreter::Sgl().AddHandler("configpasswordadd", GameConfigPasswordAdd);
+    MushcoreInterpreter::Sgl().AddHandler("configbooladd", GameConfigBoolAdd);
+    MushcoreInterpreter::Sgl().AddHandler("gameconfigspecial", GameConfigSpecial);
 }
 
 char *

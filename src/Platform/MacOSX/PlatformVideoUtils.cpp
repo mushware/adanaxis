@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.9 2002/12/29 21:00:00 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.10 2003/01/12 17:33:01 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.10  2003/01/12 17:33:01  southa
+ * Mushcore work
+ *
  * Revision 1.9  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -112,7 +115,7 @@ PlatformVideoUtils::NumModesGet(void) const
 void
 PlatformVideoUtils::RenderModeInfo(U32 inNum) const
 {
-    const GLModeDef& modeDef=PlatformVideoUtils::Instance().ModeDefGet(inNum);
+    const GLModeDef& modeDef=PlatformVideoUtils::Sgl().ModeDefGet(inNum);
     GLState::ColourSet(1.0,1.0,1.0,0.8);
 GLUtils::PushMatrix();
     GLUtils gl;

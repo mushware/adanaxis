@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.35 2003/01/13 14:32:01 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.36 2003/01/17 13:30:39 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.36  2003/01/17 13:30:39  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.35  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -193,7 +196,7 @@ GameTypeRace::StandingOnHandler(const GameEventStandingOn& inEvent)
 void
 GameTypeRace::SequenceAdvance(void)
 {
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer& timer(GameData::Sgl().TimerGet());
     GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     tVal judgementRatio=0.0;
@@ -240,13 +243,13 @@ GameTypeRace::SequenceAdvance(void)
             {
                 GameTimer::tMsec oldLapTime = m_records.LapTimeGet();
                 GameDialogue *lapDifference =
-                    GameData::Instance().CurrentDialogueAdd("lapdifference",
-                        *GameData::Instance().DialogueGet("lapdifference"));
+                    GameData::Sgl().CurrentDialogueAdd("lapdifference",
+                        *GameData::Sgl().DialogueGet("lapdifference"));
                 lapDifference->TextSet(0, GameTimer::MsecDifferenceToString(lapTime - oldLapTime));
             }
             GameDialogue *lapDisplay =
-                GameData::Instance().CurrentDialogueAdd("lapdisplay",
-                    *GameData::Instance().DialogueGet("lapdisplay"));
+                GameData::Sgl().CurrentDialogueAdd("lapdisplay",
+                    *GameData::Sgl().DialogueGet("lapdisplay"));
             lapDisplay->TextSet(0, GameTimer::MsecToLongString(lapTime));
 
             m_records.LapTimePropose(lapTime);
@@ -265,14 +268,14 @@ GameTypeRace::SequenceAdvance(void)
         {
             GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
             GameDialogue *splitDialogue =
-                GameData::Instance().CurrentDialogueAdd("splitdifference",
-                                        *GameData::Instance().DialogueGet("splitdifference"));
+                GameData::Sgl().CurrentDialogueAdd("splitdifference",
+                                        *GameData::Sgl().DialogueGet("splitdifference"));
             splitDialogue->TextSet(0, GameTimer::MsecDifferenceToString(splitTime - oldSplitTime));
 
         }
         GameDialogue *splitDialogue =
-            GameData::Instance().CurrentDialogueAdd("splitdisplay",
-                                    *GameData::Instance().DialogueGet("splitdisplay"));
+            GameData::Sgl().CurrentDialogueAdd("splitdisplay",
+                                    *GameData::Sgl().DialogueGet("splitdisplay"));
         splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
 
         m_records.SplitTimePropose(previousSequence, splitTime);
@@ -292,14 +295,14 @@ GameTypeRace::SequenceAdvance(void)
 
     if (judgementRatio != 0.0)
     {
-        GameData::Instance().RewardsGet().JudgementPass(judgementRatio);
+        GameData::Sgl().RewardsGet().JudgementPass(judgementRatio);
     }
 }
   
 void
 GameTypeRace::RaceFinished(void)
 {
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer& timer(GameData::Sgl().TimerGet());
     GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
     m_raceState = kPreResult;
     m_endTime = gameTime;
@@ -342,9 +345,9 @@ GameTypeRace::Move(void)
             if (m_dispRemaining <= 0.0)
             {
                 RaceFinished();
-                GameData::Instance().RewardsGet().JudgementPass((m_laps+2) / (m_lapCount+1));
+                GameData::Sgl().RewardsGet().JudgementPass((m_laps+2) / (m_lapCount+1));
             }
-            GameData::Instance().RewardsGet().TimeCountdownPass(m_dispRemaining);    
+            GameData::Sgl().RewardsGet().TimeCountdownPass(m_dispRemaining);    
             break;
 
 	case kPreResult:
@@ -386,7 +389,7 @@ GameTypeRace::Render(void) const
 void
 GameTypeRace::UpdateTimes(void)
 {
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer& timer(GameData::Sgl().TimerGet());
     if (!timer.JudgementValid()) return;
     GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
@@ -568,7 +571,7 @@ GameTypeRace::SaveRecords(const GameRecords& inRecords) const
     {
         string filename;
         const MushcoreScalar *pScalar;
-        if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
+        if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
             ofstream outputFile(filename.c_str());
@@ -593,7 +596,7 @@ GameTypeRace::LoadRecords(void)
     {
         string filename;
         const MushcoreScalar *pScalar;
-        if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
+        if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
         }

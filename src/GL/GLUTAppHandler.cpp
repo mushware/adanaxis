@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.20 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.21 2003/01/13 14:31:55 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.21  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.20  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -125,7 +128,7 @@ GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
         // Escape key pressed
-        MushcoreAppHandler::Instance().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
+        MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
     }
 }
 
@@ -245,7 +248,7 @@ GLUTAppHandler::MillisecondsGet(void) const
 void
 GLUTAppHandler::IdleHandler(void)
 {
-    Instance().Idle();
+    Sgl().Idle();
 }
 
 void
@@ -253,42 +256,42 @@ GLUTAppHandler::VisibilityHandler(int inState)
 {
     if (inState == GLUT_NOT_VISIBLE)
     {
-        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
+        Sgl().Signal(GLAppSignal(GLAppSignal::kVisible));
     }
     else if (inState == GLUT_VISIBLE)
     {
-        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
+        Sgl().Signal(GLAppSignal(GLAppSignal::kVisible));
     }
 }
 
 void
 GLUTAppHandler::DisplayHandler(void)
 {
-    Instance().Signal(GLAppSignal(GLAppSignal::kDisplay));
+    Sgl().Signal(GLAppSignal(GLAppSignal::kDisplay));
 }
 
 void
 GLUTAppHandler::KeyboardHandler(unsigned char inKey, int inX, int inY)
 {
-    Instance().Signal(GLKeyboardSignal(1, inKey, inX, inY));
+    Sgl().Signal(GLKeyboardSignal(1, inKey, inX, inY));
 }
 
 void
 GLUTAppHandler::KeyboardUpHandler(unsigned char inKey, int inX, int inY)
 {
-    Instance().Signal(GLKeyboardSignal(0, inKey, inX, inY));
+    Sgl().Signal(GLKeyboardSignal(0, inKey, inX, inY));
 }
 
 void
 GLUTAppHandler::SpecialHandler(int inKey, int inX, int inY)
 {
-    Instance().Signal(GLKeyboardSignal(1, TranslateSpecialKey(inKey), inX, inY));
+    Sgl().Signal(GLKeyboardSignal(1, TranslateSpecialKey(inKey), inX, inY));
 }
 
 void
 GLUTAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
 {
-    Instance().Signal(GLKeyboardSignal(0, TranslateSpecialKey(inKey), inX, inY));
+    Sgl().Signal(GLKeyboardSignal(0, TranslateSpecialKey(inKey), inX, inY));
 }
 
 void

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.6 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreData.h,v 1.7 2003/01/18 17:05:47 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.7  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.6  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -87,14 +90,13 @@
 
 #include "MushcoreStandard.h"
 
-#include "MushcoreDestroySingleton.h"
 #include "MushcoreFail.h"
-#include "MushcoreSingletonConcrete.h"
+#include "MushcoreSingleton.h"
 
 #define MUSHCORE_DATA_INSTANCE(RefType) MUSHCORE_SINGLETON_INSTANCE(MushcoreData< RefType >)
 #define MUSHCORE_DESTROY_DATA_INSTANCE(RefType) MUSHCORE_DESTROY_SINGLETON_INSTANCE(MushcoreData< RefType >)
 
-template<class RefType> class MushcoreData : public MushcoreSingletonConcrete< MushcoreData<RefType> >
+template<class RefType> class MushcoreData : public MushcoreSingleton< MushcoreData<RefType> >
 {
 public:
     typedef typename std::map<std::string, RefType *> tMap;

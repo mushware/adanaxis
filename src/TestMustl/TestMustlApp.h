@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlApp.h,v 1.3 2003/01/18 13:34:00 southa Exp $
+ * $Id: TestMustlApp.h,v 1.4 2003/01/18 17:05:47 southa Exp $
  * $Log: TestMustlApp.h,v $
+ * Revision 1.4  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.3  2003/01/18 13:34:00  southa
  * Created MushcoreSingleton
  *
@@ -26,7 +29,7 @@
 
 #include "TestMustlStandard.h"
 
-class TestMustlApp : public MushcoreSingletonConcrete<TestMustlApp>
+class TestMustlApp : public MushcoreSingleton<TestMustlApp>
 {
 public:
     void Enter(void);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefPassword.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefPassword.cpp,v 1.4 2003/01/18 13:33:59 southa Exp $
  * $Log: MustlConfigDefPassword.cpp,v $
+ * Revision 1.4  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -85,14 +88,14 @@ MustlConfigDefPassword::MustlConfigPassword(MushcoreCommand& ioCommand, Mushcore
     string name, defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<MustlConfigDef>::Instance().Give(name, new MustlConfigDefPassword(defaultValue));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefPassword(defaultValue));
     return MushcoreScalar(0);
 }
 
 void
 MustlConfigDefPassword::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlconfigpassword", MustlConfigPassword);
+    MushcoreInterpreter::Sgl().AddHandler("mustlconfigpassword", MustlConfigPassword);
 }
 
 void

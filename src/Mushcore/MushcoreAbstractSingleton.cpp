@@ -9,11 +9,14 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreSingleton.cpp,v 1.1 2003/01/18 13:33:59 southa Exp $
+ * $Log: MushcoreSingleton.cpp,v $
+ * Revision 1.1  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  */
 
-#include "MushcoreSingletonConcrete.h"
+#include "MushcoreAbstractSingleton.h"
 
 using namespace Mushware;
 using namespace std;

@@ -30,8 +30,11 @@
 
 
 /*
- * $Id: MushcoreBison.cpp,v 1.4 2003/01/14 20:46:09 southa Exp $
+ * $Id: MushcoreBison.cpp,v 1.5 2003/01/17 13:30:40 southa Exp $
  * $Log: MushcoreBison.cpp,v $
+ * Revision 1.5  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.4  2003/01/14 20:46:09  southa
  * Post data handling
  *
@@ -748,10 +751,10 @@ case 5:
 { INBISON->ClearParams(); ;
     break;}
 case 6:
-{yyval=MushcoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet(); INBISON->ClearParams(); ;
+{yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet(); INBISON->ClearParams(); ;
     break;}
 case 7:
-{yyval=MushcoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet();;
+{yyval=MushcoreEnv::Sgl().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet();;
     break;}
 case 8:
 {yyval = yyvsp[0].StringGet();;

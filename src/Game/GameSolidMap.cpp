@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.32 2003/01/12 17:32:56 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.33 2003/01/13 14:32:00 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.33  2003/01/13 14:32:00  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.32  2003/01/12 17:32:56  southa
  * Mushcore work
  *
@@ -427,7 +430,7 @@ GameSolidMap::OverPlotBox(const GameMapPoint& inPoint) const
     GLRectangle rect(spacePoint-rectOffset,
                      spacePoint+rectOffset);
 
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().
         RenderableAdd(rect, GLColour(1,0.5,0));
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.33 2003/01/13 14:31:58 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.34 2003/01/17 13:30:38 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.34  2003/01/17 13:30:38  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.33  2003/01/13 14:31:58  southa
  * Build frameworks for Mac OS X
  *
@@ -138,17 +141,17 @@ GameFloorDesigner::GameFloorDesigner():
 void
 GameFloorDesigner::Init(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     m_controllerName="controller1";
-    m_tileMap=GameData::Instance().TileMapGet("tiles");
-    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
-    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
-    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floormap-template"));
+    m_tileMap=GameData::Sgl().TileMapGet("tiles");
+    m_floorMaps.push_back(GameData::Sgl().FloorMapGet("floor"));
+    m_floorMaps.push_back(GameData::Sgl().FloorMapGet("floor"));
+    m_floorMaps.push_back(GameData::Sgl().FloorMapGet("floormap-template"));
     m_floorMaps.push_back(&m_scratchArea);
     m_scratchArea=*m_floorMaps[0];
     MUSHCOREASSERT(m_tileMap != NULL);
     MUSHCOREASSERT(m_floorMaps[0] != NULL);
-    GameData::Instance().ControllerGetOrCreate(m_controllerName);
+    GameData::Sgl().ControllerGetOrCreate(m_controllerName);
     m_width=glHandler.WidthGet();
     m_height=glHandler.HeightGet();
     for (U32 i=0; i<12;++i)
@@ -178,7 +181,7 @@ GameFloorDesigner::Display(void)
 
     GameFloorMap *floorMap(m_floorMaps[m_currentMap]);
     
-    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
 
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -188,10 +191,10 @@ GameFloorDesigner::Display(void)
 
     GameMapPoint aimingPoint(GLPoint(lookAtSpec.pos / floorMap->StepGet()));
 
-    GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
-    GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
-    GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
-//GLData::Instance().LightsGet()->InvalidateAll();
+    GLState::AmbientLightSet(GameData::Sgl().CurrentViewGet()->AmbientLightingGet());
+    GLData::Sgl().LightsGet()->AmbientLightingSet(GameData::Sgl().CurrentViewGet()->AmbientLightingGet());
+    GLData::Sgl().LightsGet()->LightingFactorSet(GameData::Sgl().CurrentViewGet()->LightingFactorGet());
+//GLData::Sgl().LightsGet()->InvalidateAll();
     GameMotionSpec lookAtPoint;
     lookAtPoint.pos=GLPoint(lookAtSpec.pos);
     lookAtPoint.angle=lookAtSpec.angle;
@@ -226,8 +229,8 @@ GameFloorDesigner::Display(void)
     glMatrixMode(GL_MODELVIEW);
     
     GLState::BlendSet(GLState::kBlendLine);
-    GameData::Instance().CurrentViewGet()->OverPlotGet().Render();
-    GameData::Instance().CurrentViewGet()->OverPlotGet().Clear();
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().Render();
+    GameData::Sgl().CurrentViewGet()->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
 
     GLUtils::OrthoPrologue();
@@ -272,11 +275,11 @@ void
 GameFloorDesigner::Move(void)
 {
     MUSHCOREASSERT(m_floorMaps.size() > 0);
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
 
     if (m_controller == NULL)
     {
-        m_controller=GameData::Instance().ControllerGet(m_controllerName);
+        m_controller=GameData::Sgl().ControllerGet(m_controllerName);
     }
     GameControlFrameDef frameDef;
     m_controller->StateGet(frameDef, 0);
@@ -444,7 +447,7 @@ GameFloorDesigner::Move(void)
     }
     if (glHandler.LatchedKeyStateTake('p'))
     {
-        GameData::Instance().DumpAll(cerr);
+        GameData::Sgl().DumpAll(cerr);
     }    
 }
 
@@ -594,13 +597,13 @@ GameFloorDesigner::Save(void)
 {
     string filename;
     const MushcoreScalar *pScalar;
-    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "DESIGNER_MAP_NAME"))
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "DESIGNER_MAP_NAME"))
     {
         filename=pScalar->StringGet();
     }
     else
     {
-        filename=MushcoreEnv::Instance().VariableGet("CONTRACT_PATH").StringGet()+"/designer_map.xml";
+        filename=MushcoreEnv::Sgl().VariableGet("CONTRACT_PATH").StringGet()+"/designer_map.xml";
     }
     cout << "Saving F1 buffer to file '" << filename << "'" << endl;
 

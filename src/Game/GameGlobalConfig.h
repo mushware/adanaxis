@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGlobalConfig.h,v 1.8 2003/01/09 14:57:02 southa Exp $
+ * $Id: GameGlobalConfig.h,v 1.9 2003/01/11 13:03:13 southa Exp $
  * $Log: GameGlobalConfig.h,v $
+ * Revision 1.9  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.8  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -44,7 +47,7 @@
 class GameGlobalConfig : public MushcoreConfig
 {
 public:
-    static GameGlobalConfig& Instance(void) {return *((m_instance==NULL)?m_instance=new GameGlobalConfig:m_instance);}
+    static GameGlobalConfig& Sgl(void) {return *((m_instance==NULL)?m_instance=new GameGlobalConfig:m_instance);}
 
 private:
     static GameGlobalConfig *m_instance;

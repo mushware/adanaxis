@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.cpp,v 1.49 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLUtils.cpp,v 1.50 2003/01/13 14:31:56 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.50  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.49  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -321,7 +324,7 @@ GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, t
 const GLPoint
 GLUtils::ScreenSizeGet(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     return GLPoint(glHandler.WidthGet(), glHandler.HeightGet());
 }
 
@@ -354,7 +357,7 @@ GLUtils::LongestScreenAxis(void)
 void
 GLUtils::DisplayPrologue(void)
 {
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
 
     if (m_swapValid)
     {
@@ -534,7 +537,7 @@ GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
 
 void GLUtils::PostRedisplay(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
 
     glHandler.PostRedisplay();
 }
@@ -553,7 +556,7 @@ GLUtils::RotateAboutZ(tVal inAngle)
 
 void GLUtils::Decache(void)
 {
-    GLData::Instance().Decache();
+    GLData::Sgl().Decache();
     ++m_context;
 }
 

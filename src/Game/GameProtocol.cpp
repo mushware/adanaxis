@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.cpp,v 1.13 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.14 2003/01/13 14:31:59 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.14  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.13  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -70,7 +73,7 @@ GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const
     inObj.Pickle(netStream);
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
-    // MustlLog::Instance().NetLog() << "Sent " << ioData << endl; 
+    // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl; 
 }
 
 void
@@ -81,6 +84,6 @@ GameProtocol::DeleteObjectCreate(MustlData& ioData, MushcorePickle& inObj, const
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\" delete=\"1\">";
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
-    // MustlLog::Instance().NetLog() << "Sent " << ioData << endl;
+    // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl;
 }
 

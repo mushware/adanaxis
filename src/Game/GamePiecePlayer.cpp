@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.40 2003/01/12 17:32:55 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.41 2003/01/13 14:31:59 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.41  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.40  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -476,7 +479,7 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GamePiecePlayer *newPlayer=new GamePiecePlayer;
-    GameData::Instance().TemplateDeleteAndCreate("player1", newPlayer);
+    GameData::Sgl().TemplateDeleteAndCreate("player1", newPlayer);
     newPlayer->Unpickle(xml);
     return MushcoreScalar(0);
 }
@@ -484,5 +487,5 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GamePiecePlayer::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("loadplayer", LoadPlayer);
+    MushcoreInterpreter::Sgl().AddHandler("loadplayer", LoadPlayer);
 }

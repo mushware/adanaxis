@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.20 2003/01/12 17:32:53 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.21 2003/01/13 14:31:58 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.21  2003/01/13 14:31:58  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.20  2003/01/12 17:32:53  southa
  * Mushcore work
  *
@@ -87,11 +90,11 @@ using namespace std;
 void
 GameDialogue::Render(void) const
 {
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer& timer(GameData::Sgl().TimerGet());
    
     U32 size=m_strings.size();
     
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     timer.CurrentMsecSet(glAppHandler.MillisecondsGet());
     tVal windbackValue=timer.ClientGet().WindbackValueGet();
 
@@ -172,7 +175,7 @@ GameDialogue::Move(void)
         }
         if (m_age == spec.startTime)
         {
-            MediaAudio::Instance().Play(*spec.soundRef.Get());
+            MediaAudio::Sgl().Play(*spec.soundRef.Get());
         }
     }
 
@@ -187,7 +190,7 @@ GameDialogue::Move(void)
         }
         if (m_age == spec.startTime)
         {
-            MediaAudio::Instance().Play(*spec.soundStreamRef.Get(), spec.loop);
+            MediaAudio::Sgl().Play(*spec.soundStreamRef.Get(), spec.loop);
         }
     }
     
@@ -225,14 +228,14 @@ void GameDialogue::ExpireNow(void)
 
     if (m_killSound != "")
     {    
-        MediaAudio::Instance().Play(*MushcoreDataRef<MediaSound>(m_killSound).Get());
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(m_killSound).Get());
     }
     
     if (latestFound)
     {
         MUSHCOREASSERT(latestIndex < m_soundStreams.size());
         SoundStreamSpec& spec=m_soundStreams[latestIndex];
-        MediaAudio::Instance().Play(*spec.soundStreamRef.Get());
+        MediaAudio::Sgl().Play(*spec.soundStreamRef.Get());
     }
 }
     

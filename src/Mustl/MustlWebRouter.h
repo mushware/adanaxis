@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebRouter.h,v 1.4 2002/12/20 13:17:47 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.5 2002/12/29 20:30:57 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.5  2002/12/29 20:30:57  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -38,16 +41,18 @@
 
 #include "MustlStandard.h"
 
+#include "MustlMushcoreSingleton.h"
+
 class MustlLink;
 
-class MustlWebRouter
+class MustlWebRouter : public MushcoreSingleton<MustlWebRouter>
 {
 public:
-    static inline MustlWebRouter& Instance(void);
+    MustlWebRouter();
+
     void ReceiveAll(void);
 
 protected:
-    MustlWebRouter();
 
 private:
     enum
@@ -57,15 +62,6 @@ private:
     };
 
     Mustl::tMsec m_lastTickMsec;
-
-    static std::auto_ptr<MustlWebRouter> m_instance;
 };
 
-inline  MustlWebRouter&
-MustlWebRouter::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MustlWebRouter);
-    return *m_instance;
-}
 #endif

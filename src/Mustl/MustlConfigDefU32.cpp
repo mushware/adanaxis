@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefU32.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfigDefU32.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfigDefU32.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -102,14 +105,14 @@ MustlConfigDefU32::MustlConfigUnsigned(MushcoreCommand& ioCommand, MushcoreEnv& 
     ioCommand.PopParam(defaultValue);
     ioCommand.PopParam(lowLimit);
     ioCommand.PopParam(highLimit);
-    MushcoreData<MustlConfigDef>::Instance().Give(name, new MustlConfigDefU32(defaultValue, lowLimit, highLimit));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefU32(defaultValue, lowLimit, highLimit));
     return MushcoreScalar(0);
 }
 
 void
 MustlConfigDefU32::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("mustlconfigunsigned", MustlConfigUnsigned);
+    MushcoreInterpreter::Sgl().AddHandler("mustlconfigunsigned", MustlConfigUnsigned);
 }
 
 void

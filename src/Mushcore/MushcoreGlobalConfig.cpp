@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreGlobalConfig.cpp,v 1.4 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreGlobalConfig.cpp,v $
+ * Revision 1.4  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -51,7 +54,6 @@
 
 #include "MushcoreGlobalConfig.h"
 
-#include "MushcoreDestroySingleton.h"
 #include "MushcoreEnv.h"
 #include "MushcoreInstaller.h"
 
@@ -68,7 +70,7 @@ MushcoreGlobalConfig(MushcoreGlobalConfig::Install);
 void
 MushcoreGlobalConfig::Install(void)
 {
-    MushcoreEnv::Instance().PushConfig(Instance());
+    MushcoreEnv::Sgl().PushConfig(Sgl());
 }
 
 void

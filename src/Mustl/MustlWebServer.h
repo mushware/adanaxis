@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.h,v 1.5 2002/12/29 20:30:57 southa Exp $
+ * $Id: MustlWebServer.h,v 1.6 2003/01/15 13:27:33 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.6  2003/01/15 13:27:33  southa
+ * Static library linking fixes
+ *
  * Revision 1.5  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -50,9 +53,11 @@
 
 #include "MustlStandard.h"
 
+#include "MustlMushcoreSingleton.h"
+
 class MustlData;
 
-class MustlWebServer
+class MustlWebServer : public MushcoreSingleton<MustlWebServer>
 {
 public:
     typedef bool (*tPermissionFunction)(const std::string& inAddress);
@@ -65,9 +70,8 @@ public:
         kPermissionAll
     };
 
+    MustlWebServer();
     ~MustlWebServer();
-
-    static inline MustlWebServer& Instance(void);
 
     void Connect(Mustl::U32 inPort);
     void Disconnect(void);
@@ -80,7 +84,6 @@ public:
     static void NullFunction(void);
     
 protected:
-    MustlWebServer();
     bool CheckIPAddressAllowed(Mustl::U32 inIPNetworkOrder);
 
 private:
@@ -93,15 +96,6 @@ private:
     tPermissionFunction m_permissionFunction;
     
     bool m_serving;
-
-    static std::auto_ptr<MustlWebServer> m_instance;
 };
 
-inline MustlWebServer&
-MustlWebServer::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MustlWebServer);
-    return *m_instance;
-}
 #endif

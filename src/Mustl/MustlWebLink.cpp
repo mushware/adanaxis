@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.19 2003/01/17 13:30:41 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.20 2003/01/18 13:34:00 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.20  2003/01/18 13:34:00  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.19  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *
@@ -122,7 +125,6 @@ using namespace Mustl;
 using namespace std;
 
 MUSHCORE_DATA_INSTANCE(MustlWebLink);
-MUSHCORE_DESTROY_DATA_INSTANCE(MustlWebLink);
 
 string MustlWebLink::m_webPath="";
 
@@ -144,21 +146,21 @@ MustlWebLink::MustlWebLink(tSocket inSocket) :
         throw;
     }
     m_linkState=kLinkStateNew;
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     m_creationMsec=m_currentMsec;
     m_lastAccessMsec=m_currentMsec; // Not used
 }
 
 MustlWebLink::~MustlWebLink()
 {
-    MustlLog::Instance().WebLog() << "Closing web link" << endl;
+    MustlLog::Sgl().WebLog() << "Closing web link" << endl;
     try
     {
         Disconnect();
     }
     catch (exception& e)
     {
-        MustlLog::Instance().WebLog() << "~MustlWebLink exception: " << e.what() << endl;
+        MustlLog::Sgl().WebLog() << "~MustlWebLink exception: " << e.what() << endl;
     }
 }
 
@@ -176,13 +178,13 @@ MustlWebLink::Disconnect(void)
 void
 MustlWebLink::Tick(void)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
 }
 
 bool
 MustlWebLink::IsDead(void)
 {
-    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    m_currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     if (m_isDead ||
         m_currentMsec > m_creationMsec + kLinkLifetime ||
         m_linkErrors > kErrorLimit)
@@ -211,7 +213,7 @@ MustlWebLink::Receive(string& outStr)
         }
     } while (result > 0);
 
-    // MustlLog::Instance().WebLog() << "Received " << MustlUtils::MakePrintable(outStr) << endl;
+    // MustlLog::Sgl().WebLog() << "Received " << MustlUtils::MakePrintable(outStr) << endl;
 
     return (outStr.size() != 0);
 }
@@ -227,7 +229,7 @@ MustlWebLink::Send(MustlData& ioData)
     MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
     ioData.ReadPosAdd(sendSize);
 
-    // MustlLog::Instance().WebLog() << "Sending " << ioData << endl;
+    // MustlLog::Sgl().WebLog() << "Sending " << ioData << endl;
 }
 
 void
@@ -340,7 +342,7 @@ MustlWebLink::GetProcess(const string& inFilename)
     U32 dotCount=0;
     U32 slashCount=0;
 
-    MustlLog::Instance().WebLog() << "Serving fetch request for " << MustlUtils::MakePrintable(inFilename) << endl;
+    MustlLog::Sgl().WebLog() << "Serving fetch request for " << MustlUtils::MakePrintable(inFilename) << endl;
 
     try
     {
@@ -385,7 +387,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             if (m_webPath == "")
             {
                 const MushcoreScalar *pScalar;
-                if (MushcoreGlobalConfig::Instance().GetIfExists(pScalar, "MUSTL_WEB_PATH"))
+                if (MushcoreGlobalConfig::Sgl().GetIfExists(pScalar, "MUSTL_WEB_PATH"))
                 {
                     m_webPath = pScalar->StringGet();
                 }
@@ -400,7 +402,7 @@ MustlWebLink::GetProcess(const string& inFilename)
     }
     catch (MushcoreNonFatalFail &e)
     {
-        MustlLog::Instance().WebLog() << "Exception: " << e.what() << endl;
+        MustlLog::Sgl().WebLog() << "Exception: " << e.what() << endl;
         if (!m_isDead)
         {
             try
@@ -409,7 +411,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             }
             catch (MushcoreNonFatalFail &e)
             {
-                MustlLog::Instance().WebLog() << "Exception sending error page: " << e.what() << endl;
+                MustlLog::Sgl().WebLog() << "Exception sending error page: " << e.what() << endl;
             }
         }
     }
@@ -429,7 +431,7 @@ MustlWebLink::PostProcess(const string& inValues)
     }
     catch (MushcoreNonFatalFail &e)
     {
-        MustlLog::Instance().WebLog() << "Exception: " << e.what() << endl;
+        MustlLog::Sgl().WebLog() << "Exception: " << e.what() << endl;
     }
 }
 
@@ -528,13 +530,13 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
             }
 
             string content=dataStr.substr(startPos+6, endPos - startPos - 6);
-            // MustlLog::Instance().WebLog() << "Found mush command '" << content << "'" << endl;        
+            // MustlLog::Sgl().WebLog() << "Found mush command '" << content << "'" << endl;        
 
             try
             {
                 MushcoreCommand command(content);
                 ostringstream commandOutput;
-                MushcoreEnvOutput envOutput(MushcoreEnv::Instance(), commandOutput);
+                MushcoreEnvOutput envOutput(MushcoreEnv::Sgl(), commandOutput);
                 command.Execute();
                 dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
             }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlClient.cpp,v 1.10 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlClient.cpp,v 1.11 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.11  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.10  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -187,7 +190,7 @@ MustlClient::UDPConnect(const MustlAddress& inAddress)
 
     if (failCtr > 0)
     {
-        MustlLog::Instance().NetLog() << "Selected local UDP port " << localPort << endl;
+        MustlLog::Sgl().NetLog() << "Selected local UDP port " << localPort << endl;
     }
 
     m_udpAddress = inAddress;
@@ -244,9 +247,9 @@ MustlClient::TCPSend(MustlData& ioData)
 
     ioData.ReadPosAdd(sentSize);
     
-    if (MustlLog::Instance().TrafficLogGet())
+    if (MustlLog::Sgl().TrafficLogGet())
     {
-        MustlLog::Instance().TrafficLog() << "TCPSend to " << m_tcpAddress << ": " << ioData << endl;
+        MustlLog::Sgl().TrafficLog() << "TCPSend to " << m_tcpAddress << ": " << ioData << endl;
     }
 }
 
@@ -273,9 +276,9 @@ MustlClient::TCPReceive(MustlData& outData)
     
     outData.SourceSet(m_tcpAddress);
     
-    if (MustlLog::Instance().TrafficLogGet())
+    if (MustlLog::Sgl().TrafficLogGet())
     {
-        MustlLog::Instance().TrafficLog() << "TCPReceive from " << m_tcpAddress << ": " << outData << endl;
+        MustlLog::Sgl().TrafficLog() << "TCPReceive from " << m_tcpAddress << ": " << outData << endl;
     }
 }
 
@@ -299,9 +302,9 @@ MustlClient::UDPSend(MustlData& ioData)
         
     } while (sentSize > 0 && sentSize != receiveSize);
     
-    if (MustlLog::Instance().TrafficLogGet())
+    if (MustlLog::Sgl().TrafficLogGet())
     {
-        MustlLog::Instance().TrafficLog() << "UDPSend to " << m_udpAddress << ": " << ioData << endl;
+        MustlLog::Sgl().TrafficLog() << "UDPSend to " << m_udpAddress << ": " << ioData << endl;
     }
 }
 
@@ -339,9 +342,9 @@ MustlClient::UDPReceive(MustlData& outData)
         }
     } while (receiveSize != 0);
     
-    if (MustlLog::Instance().TrafficLogGet())
+    if (MustlLog::Sgl().TrafficLogGet())
     {
-        MustlLog::Instance().TrafficLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
+        MustlLog::Sgl().TrafficLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
     }
 }
 

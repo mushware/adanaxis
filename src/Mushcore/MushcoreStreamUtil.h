@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreStreamUtil.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreStreamUtil.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -57,14 +60,14 @@ class MushcoreStreamUtil
 {
 public:
     MushcoreStreamUtil():m_ctr(0) {}
-    Mushware::U32 BigEndianU32Get(Mushware::u8istream& inIn);
-    Mushware::U32 LittleEndianU32Get(Mushware::u8istream& inIn);
-    Mushware::U8 U8Get(Mushware::u8istream& inIn);
-    void Get(Mushware::u8istream& inIn, Mushware::U8 *outBuffer, Mushware::U32 inSize);
-    void Ignore(Mushware::u8istream &inIn, Mushware::U32 inSize);
+    Mushware::U32 BigEndianU32Get(std::istream& inIn);
+    Mushware::U32 LittleEndianU32Get(std::istream& inIn);
+    Mushware::U8 U8Get(std::istream& inIn);
+    void Get(std::istream& inIn, Mushware::U8 *outBuffer, Mushware::U32 inSize);
+    void Ignore(std::istream &inIn, Mushware::U32 inSize);
     void ZeroIndex(Mushware::U32 inWhich);
     Mushware::U32 GetIndex(Mushware::U32 inWhich);
-    void ConsumeToIndex(Mushware::u8istream& inIn, Mushware::U32 inWhich, Mushware::U32 inValue);
+    void ConsumeToIndex(std::istream& inIn, Mushware::U32 inWhich, Mushware::U32 inValue);
     
 private:
     std::vector<int> m_zero;

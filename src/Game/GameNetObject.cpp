@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.17 2003/01/12 17:32:55 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.18 2003/01/13 14:31:59 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.18  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.17  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -93,17 +96,17 @@ GameNetObject::HandleGameDefClientStart(MushcoreXML& inXML)
     {
         try
         {
-            MushcoreData<GameDefClient>::Instance().Delete(dataName);
+            MushcoreData<GameDefClient>::Sgl().Delete(dataName);
         }
         catch (MushcoreReferenceFail& e)
         {
-            MustlLog::Instance().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
+            MustlLog::Sgl().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
         }
     }
     else
     {
-        bool isUpdate = MushcoreData<GameDefClient>::Instance().Exists(dataName);
-        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
+        bool isUpdate = MushcoreData<GameDefClient>::Sgl().Exists(dataName);
+        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Sgl().Give(dataName, new GameDefClient(elementName));
         gameDefClient->ImageIsSet(true);
         gameDefClient->PlayerNameSet(dataName);
         gameDefClient->AddressSet(m_address);
@@ -112,8 +115,8 @@ GameNetObject::HandleGameDefClientStart(MushcoreXML& inXML)
         // When a client image is created, we send an update of the server image to that client
         if (!isUpdate)
         {
-            MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
-            for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+            MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
+            for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
             {
                 if (!p->second->ImageIs())
                 {
@@ -136,16 +139,16 @@ GameNetObject::HandleGameDefServerStart(MushcoreXML& inXML)
     {
         try
         {
-            MushcoreData<GameDefServer>::Instance().Delete(dataName);
+            MushcoreData<GameDefServer>::Sgl().Delete(dataName);
         }
         catch (MushcoreReferenceFail& e)
         {
-            MustlLog::Instance().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
+            MustlLog::Sgl().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
         }
     }
     else
     {
-        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Instance().Give(dataName, new GameDefServer(elementName));
+        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Sgl().Give(dataName, new GameDefServer(elementName));
         gameDefServer->ImageIsSet(true);
         gameDefServer->AddressSet(m_address);
         gameDefServer->Unpickle(inXML);

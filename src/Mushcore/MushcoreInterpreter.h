@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.4 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.5 2003/01/17 00:41:03 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.5  2003/01/17 00:41:03  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.4  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -83,7 +86,7 @@ public:
     MushcoreInterpreter();
     virtual ~MushcoreInterpreter() {}
 
-    static MushcoreInterpreter& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreInterpreter:m_instance);}
+    static MushcoreInterpreter& Sgl(void) {return *((m_instance==NULL)?m_instance=new MushcoreInterpreter:m_instance);}
 
     virtual void Execute(const std::string& inStr);
     

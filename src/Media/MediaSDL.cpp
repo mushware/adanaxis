@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.21 2003/01/18 13:33:57 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.22 2003/01/18 17:05:47 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.22  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.21  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -85,7 +88,6 @@ using namespace Mushware;
 using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MediaSDL);
-MUSHCORE_DESTROY_SINGLETON_INSTANCE(MediaSDL);
 
 MediaSDL::MediaSDL() :
     m_inited(0),

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.16 2003/01/11 17:07:53 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.17 2003/01/12 17:33:02 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.17  2003/01/12 17:33:02  southa
+ * Mushcore work
+ *
  * Revision 1.16  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -100,5 +103,5 @@ TestCommandHandler::Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("test", Execute);
+    MushcoreInterpreter::Sgl().AddHandler("test", Execute);
 }

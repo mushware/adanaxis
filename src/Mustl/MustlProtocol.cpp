@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlProtocol.cpp,v 1.4 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlProtocol.cpp,v 1.5 2002/12/29 20:59:59 southa Exp $
  * $Log: MustlProtocol.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:59  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -207,7 +210,7 @@ MustlProtocol::Unpack(MustlData& ioData)
                 // Remove the header size from messageLength, leaving the size of the content
                 if (messageLength < 5)
                 {
-                    MustlLog::Instance().NetLog() << "Bad length in application protocol message (" << messageLength << ")" << endl;
+                    MustlLog::Sgl().NetLog() << "Bad length in application protocol message (" << messageLength << ")" << endl;
                     unpackState = kUnpackStateSync1;
                     
                 }
@@ -248,7 +251,7 @@ MustlProtocol::Unpack(MustlData& ioData)
     // Error logging
     if (skippedStr.size() > 0)
     {
-        MustlLog::Instance().NetLog() << "NetProtocol skipped '" << MustlUtils::MakePrintable(skippedStr) << "'" << endl;
+        MustlLog::Sgl().NetLog() << "NetProtocol skipped '" << MustlUtils::MakePrintable(skippedStr) << "'" << endl;
     }
 }
 
@@ -265,7 +268,7 @@ MustlProtocol::RemoveLength(MustlData& ioData, U32 inType)
     }
     else
     {
-        MustlLog::Instance().NetLog() << "RemoveLength called on message type without length (" << inType << ")" << endl;
+        MustlLog::Sgl().NetLog() << "RemoveLength called on message type without length (" << inType << ")" << endl;
     }
 }
 
@@ -283,7 +286,7 @@ MustlProtocol::LinkToAppType(U32 inType)
     }
     else
     {
-        MustlLog::Instance().NetLog() << "LinkToAppType called non-app message (" << inType << ")" << endl;
+        MustlLog::Sgl().NetLog() << "LinkToAppType called non-app message (" << inType << ")" << endl;
         retType=0;
     }
     return retType;

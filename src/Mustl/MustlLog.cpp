@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.cpp,v 1.7 2003/01/17 00:41:03 southa Exp $
+ * $Id: MustlLog.cpp,v 1.8 2003/01/17 12:20:40 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.8  2003/01/17 12:20:40  southa
+ * Fixed auto_ptr duplication
+ *
  * Revision 1.7  2003/01/17 00:41:03  southa
  * Configuration updates from POST data
  *
@@ -93,7 +96,7 @@ MustlLog::Log(void)
     {
         retStream = m_outStream;
     }
-    *retStream << MustlTimer::Instance().CurrentMsecGet() << ": ";
+    *retStream << MustlTimer::Sgl().CurrentMsecGet() << ": ";
     return *retStream;
 }
 
@@ -171,31 +174,31 @@ MustlLog::UpdateHandler(void)
 {
     cerr << "MustlLog::UpdateHandler called" << endl;
     MushcoreScalar configValue;
-    if (MustlConfig::Instance().GetIfExists(configValue, "mustlnetlog"))
+    if (MustlConfig::Sgl().GetIfExists(configValue, "mustlnetlog"))
     {
-        Instance().NetLogSet(configValue.U32Get());
+        Sgl().NetLogSet(configValue.U32Get());
     }
-    if (MustlConfig::Instance().GetIfExists(configValue, "mustlweblog"))
+    if (MustlConfig::Sgl().GetIfExists(configValue, "mustlweblog"))
     {
-        Instance().WebLogSet(configValue.U32Get());
+        Sgl().WebLogSet(configValue.U32Get());
     }
-    if (MustlConfig::Instance().GetIfExists(configValue, "mustlverboselog"))
+    if (MustlConfig::Sgl().GetIfExists(configValue, "mustlverboselog"))
     {
-        Instance().VerboseLogSet(configValue.U32Get());
+        Sgl().VerboseLogSet(configValue.U32Get());
     }
-    if (MustlConfig::Instance().GetIfExists(configValue, "mustltrafficlog"))
+    if (MustlConfig::Sgl().GetIfExists(configValue, "mustltrafficlog"))
     {
-        Instance().TrafficLogSet(configValue.U32Get());
+        Sgl().TrafficLogSet(configValue.U32Get());
     }
-    if (MustlConfig::Instance().GetIfExists(configValue, "mustlcommandlog"))
+    if (MustlConfig::Sgl().GetIfExists(configValue, "mustlcommandlog"))
     {
         if (configValue.U32Get())
         {
-            MushcoreInterpreter::Instance().LogFunctionSet(LogString);
+            MushcoreInterpreter::Sgl().LogFunctionSet(LogString);
         }
         else
         {
-            MushcoreInterpreter::Instance().LogFunctionSet(NULL);
+            MushcoreInterpreter::Sgl().LogFunctionSet(NULL);
         }      
     }
 }
@@ -203,13 +206,13 @@ MustlLog::UpdateHandler(void)
 void
 MustlLog::LogString(const string& inStr)
 {
-    Instance().Log() << inStr << endl;
+    Sgl().Log() << inStr << endl;
 }
 
 void
 MustlLog::Install(void)
 {
-    MustlConfig::Instance().UpdateHandlerAdd(UpdateHandler);
+    MustlConfig::Sgl().UpdateHandlerAdd(UpdateHandler);
 }
 
 void

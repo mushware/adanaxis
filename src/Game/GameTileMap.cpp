@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.22 2003/01/12 17:32:56 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.23 2003/01/13 14:32:00 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.23  2003/01/13 14:32:00  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.22  2003/01/12 17:32:56  southa
  * Mushcore work
  *
@@ -173,7 +176,7 @@ GameTileMap::LookupSpec(U32 inNum)
         if (spec.TileTraitsAreNull())
         {
             // Do the lookup for this trait the first time it is accessed
-            spec.TileTraitsSet(dynamic_cast<GameTileTraits *>(GameData::Instance().TraitsGet(p->second.name)));
+            spec.TileTraitsSet(dynamic_cast<GameTileTraits *>(GameData::Sgl().TraitsGet(p->second.name)));
             MUSHCOREASSERT(!spec.TileTraitsAreNull());
         }
         if (inNum < kMaxVectorSize)
@@ -223,7 +226,7 @@ void
 GameTileMap::HandleTraitsStart(MushcoreXML& inXML)
 {
     GameTileTraits *pTraits(new GameTileTraits);
-    GameData::Instance().TraitsDeleteAndCreate(inXML.GetAttribOrThrow("name").StringGet(), pTraits);
+    GameData::Sgl().TraitsDeleteAndCreate(inXML.GetAttribOrThrow("name").StringGet(), pTraits);
     pTraits->Unpickle(inXML);
 }
 
@@ -350,14 +353,14 @@ GameTileMap::LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
-    GameData::Instance().TileMapGetOrCreate(name)->Unpickle(xml);
+    GameData::Sgl().TileMapGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);
 }
 
 void
 GameTileMap::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("loadtilemap", LoadTileMap);
+    MushcoreInterpreter::Sgl().AddHandler("loadtilemap", LoadTileMap);
 }
 
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.29 2003/01/13 14:32:00 southa Exp $
+ * $Id: GameSetup.cpp,v 1.30 2003/01/14 17:38:20 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.30  2003/01/14 17:38:20  southa
+ * Mustl web configuration
+ *
  * Revision 1.29  2003/01/13 14:32:00  southa
  * Build frameworks for Mac OS X
  *
@@ -151,7 +154,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
 
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
@@ -162,14 +165,14 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Instance().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Instance().PackageVersionGet()+"  ID: "+MushcoreInfo::Instance().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
         glStr.Render();
     }
     
@@ -213,14 +216,14 @@ GLUtils::RotateAboutZ(5*sin(msecNow/151));
 void
 GameSetup::ConfigInit(void)
 {
-    U32 webPort=MushcoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
+    U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
     try
     {
-        MustlWebServer::Instance().Connect(webPort);
+        MustlWebServer::Sgl().Connect(webPort);
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().WebLog() << e.what() << endl;
+        MustlLog::Sgl().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
         
@@ -233,7 +236,7 @@ GameSetup::ConfigInit(void)
 void
 GameSetup::Config(void)
 {
-    m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
+    m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
     
     GameNetUtils::WebReceive();
     GameNetUtils::NetReceive();
@@ -247,7 +250,7 @@ GameSetup::Config(void)
     
     KeyControl();
     GLUtils::PostRedisplay();
-    MediaAudio::Instance().Ticker();
+    MediaAudio::Sgl().Ticker();
     
     if (m_windowClicked)
     {
@@ -264,19 +267,19 @@ GameSetup::Config(void)
 void
 GameSetup::KeyControl(void)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
     {
-        if (!MustlWebServer::Instance().IsConnected())
+        if (!MustlWebServer::Sgl().IsConnected())
         {
-            U32 webPort=MushcoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
+            U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
             try
             {
-                MustlWebServer::Instance().Connect(webPort);
+                MustlWebServer::Sgl().Connect(webPort);
             }
             catch (MushcoreNonFatalFail& e)
             {
-                MustlLog::Instance().WebLog() << e.what() << endl;
+                MustlLog::Sgl().WebLog() << e.what() << endl;
             }
         }
         PlatformMiscUtils::LaunchURL(m_configURL);
@@ -292,8 +295,8 @@ GameSetup::ScriptFunction(const string& inName, GameAppHandler& inAppHandler) co
 void
 GameSetup::SwapIn(GameAppHandler& inAppHandler)
 {
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(0));
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0));
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.4 2003/01/13 14:32:03 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.5 2003/01/18 13:33:59 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.5  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/13 14:32:03  southa
  * Build frameworks for Mac OS X
  *
@@ -136,7 +139,6 @@
 #include <iosfwd>
 #include <list>
 #include <map>
-#include <memory>
 #include <stack>
 #include <stdexcept>
 #include <string>
@@ -154,11 +156,6 @@ namespace Mushware
     typedef unsigned short U16;
     typedef signed char S8;
     typedef unsigned char U8;
-    typedef unsigned int tSize;
-    typedef std::istream u8istream;
-    typedef std::ostream u8ostream;
-    typedef std::ifstream u8ifstream;
-    typedef std::ofstream u8ofstream;
 #ifndef M_PI
     const double M_PI=3.14159265358979;
 #endif

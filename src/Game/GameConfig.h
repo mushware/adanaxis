@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.12 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameConfig.h,v 1.13 2003/01/11 13:03:12 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.13  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.12  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -56,7 +59,7 @@
 class GameConfig : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
-    static GameConfig& Instance(void) { return *((m_instance==NULL)?m_instance=new GameConfig:m_instance); }
+    static GameConfig& Sgl(void) { return *((m_instance==NULL)?m_instance=new GameConfig:m_instance); }
     
     static void Install(void);
     static MushcoreScalar GameConfigLoad(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);

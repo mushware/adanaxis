@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mushcore.h,v 1.7 2003/01/18 13:33:57 southa Exp $
+ * $Id: Mushcore.h,v 1.8 2003/01/18 17:05:47 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.8  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.7  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -36,6 +39,7 @@
  *
  */
 
+#include "MushcoreAbstractSingleton.h"
 #include "MushcoreAppHandler.h"
 #include "MushcoreAppSignal.h"
 #include "MushcoreAutoMonkey.h"
@@ -44,7 +48,6 @@
 #include "MushcoreConfig.h"
 #include "MushcoreData.h"
 #include "MushcoreDataRef.h"
-#include "MushcoreDestroySingleton.h"
 #include "MushcoreEnv.h"
 #include "MushcoreEnvOutput.h"
 #include "MushcoreFail.h"
@@ -58,7 +61,6 @@
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"
 #include "MushcoreSingleton.h"
-#include "MushcoreSingletonConcrete.h"
 #include "MushcoreStandard.h"
 #include "MushcoreStreamUtil.h"
 #include "MushcoreUninstaller.h"

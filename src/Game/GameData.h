@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.24 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameData.h,v 1.25 2003/01/18 13:33:57 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.25  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.24  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -109,7 +112,7 @@ public:
     typedef std::map<string, GameDialogue *>::iterator DialogueMapIterator;
     typedef std::map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
-    static GameData& Instance(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
+    static GameData& Sgl(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
 
     void Clear(void);
     

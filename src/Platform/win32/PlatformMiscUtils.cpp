@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.24 2003/01/09 14:57:09 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.25 2003/01/12 17:33:02 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.25  2003/01/12 17:33:02  southa
+ * Mushcore work
+ *
  * Revision 1.24  2003/01/09 14:57:09  southa
  * Created Mushcore
  *
@@ -105,7 +108,7 @@ PlatformMiscUtils::Initialise(void)
     DWORD retVal = ExpandEnvironmentStrings("%USERPROFILE%", buffer, 500);
     if (retVal != 0)
     {
-        MushcoreGlobalConfig::Instance().Set("HOME", buffer);
+        MushcoreGlobalConfig::Sgl().Set("HOME", buffer);
 	cerr << "Set home to " << buffer << endl;
     }
     
@@ -280,7 +283,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
 void
 PlatformMiscUtils::UpdateCheck(void)
 {
-    if (MushcoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
     {
         ShowUpdateAlert();
     }
@@ -302,7 +305,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
 	    
         case IDYES:
         {
-            string updateFile=MushcoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+            string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
             LaunchFile(updateFile);
             exit(0);
         }

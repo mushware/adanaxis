@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreSingleton.cpp,v 1.1 2003/01/18 17:05:47 southa Exp $
+ * $Log: MushcoreSingleton.cpp,v $
+ * Revision 1.1  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  */
 
 #include "MushcoreSingleton.h"

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.44 2003/01/12 17:32:52 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.45 2003/01/13 14:31:56 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.45  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.44  2003/01/12 17:32:52  southa
  * Mushcore work
  *
@@ -174,12 +177,12 @@ GameAppHandler::GameAppHandler() :
     m_appState(kAppStateStartup),
     m_gameType(kGameTypeInvalid)
 {
-    MushcoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
+    MushcoreEnv::Sgl().PushConfig(GameGlobalConfig::Sgl());
 }
 
 GameAppHandler::~GameAppHandler()
 {
-    MushcoreEnv::Instance().PopConfig(GameGlobalConfig::Instance());
+    MushcoreEnv::Sgl().PopConfig(GameGlobalConfig::Sgl());
     if (m_pSetup != NULL) delete m_pSetup;
     if (m_pGame != NULL) delete m_pGame;
 }
@@ -248,11 +251,11 @@ GameAppHandler::GameModeEnter(bool inResume)
             m_pCurrent->SwapOut(*this);
         }
 
-        if (!inResume || !GameData::Instance().ContractExists("contract1"))
+        if (!inResume || !GameData::Sgl().ContractExists("contract1"))
         {
             PrepareNewGame();
         }
-        m_pGame=GameData::Instance().ContractGet("contract1");
+        m_pGame=GameData::Sgl().ContractGet("contract1");
 
         MUSHCOREASSERT(m_pGame != NULL);
         m_pCurrent=m_pGame;
@@ -275,9 +278,9 @@ GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
     
-    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
 
-    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
@@ -287,9 +290,9 @@ GameAppHandler::GameTypeDetermine(void)
 
     if (m_gameType == kGameTypeInvalid)
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
 
-        for (MushcoreData<GameDefClient>::tMapIterator p = MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p = MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -313,27 +316,27 @@ GameAppHandler::PrepareNewGame(void)
     GameTypeDetermine();
 
     // Delete the old contract and all of its data
-    GameData::Instance().Clear();
+    GameData::Sgl().Clear();
 
     // Create the contract path
-    string contractRoot=MushcoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
+    string contractRoot=MushcoreGlobalConfig::Sgl().Get("CONTRACT_ROOT").StringGet();
     string contractName;
     if (MultiplayerIs())
     {
-        contractName=GameConfig::Instance().ParameterGet("mpcontractname").StringGet();
+        contractName=GameConfig::Sgl().ParameterGet("mpcontractname").StringGet();
     }
     else
     {
-        contractName=GameConfig::Instance().ParameterGet("spcontractname").StringGet();
+        contractName=GameConfig::Sgl().ParameterGet("spcontractname").StringGet();
     }
     string contractPath=contractRoot+"/"+contractName;
-    MushcoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
+    MushcoreGlobalConfig::Sgl().Set("CONTRACT_PATH", contractPath);
 
     MushcoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
     command.Execute();
     
     // Get a pointer to the newly created contract
-    m_pGame=GameData::Instance().ContractGet("contract1");
+    m_pGame=GameData::Sgl().ContractGet("contract1");
 }
 
 void
@@ -359,5 +362,5 @@ GameAppHandler::CurrentGameEnd(void)
 {
     SetupModeEnter();
     m_pGame=NULL;
-    GameData::Instance().Clear();
+    GameData::Sgl().Clear();
 }

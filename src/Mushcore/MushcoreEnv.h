@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.4 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.5 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.5  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -84,7 +87,7 @@ class MushcoreScalar;
 class MushcoreEnv
 {
 public:
-    static MushcoreEnv& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreEnv:m_instance);}
+    static MushcoreEnv& Sgl(void) {return *((m_instance==NULL)?m_instance=new MushcoreEnv:m_instance);}
 
     void PushConfig(MushcoreConfig& inConfig);
     void PopConfig(MushcoreConfig& inConfig);

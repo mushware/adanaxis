@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.45 2003/01/12 17:32:54 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.46 2003/01/13 14:31:58 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.46  2003/01/13 14:31:58  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.45  2003/01/12 17:32:54  southa
  * Mushcore work
  *
@@ -217,7 +220,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
         RebuildLightMap();
     }
     
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     U32 timeNow=glAppHandler.MillisecondsGet();
     tVal xv=50*cos(timeNow/450.0);
     tVal yv=50*sin(timeNow/450.0);
@@ -265,7 +268,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
         }
     }
 
-    GLLights *pLights=GLData::Instance().LightsGet();
+    GLLights *pLights=GLData::Sgl().LightsGet();
     pLights->DisableAll();
     GameLightLinks lastLinks;
     U32 lightChangeCtr=0;
@@ -458,7 +461,7 @@ GameFloorMap::SetLightingFor(const GameSpacePoint& inPoint) const
 void
 GameFloorMap::SetLightingFor(const GameMapPoint &inPoint) const
 {
-    GLLights *pLights=GLData::Instance().LightsGet();
+    GLLights *pLights=GLData::Sgl().LightsGet();
     pLights->DisableAll();
     if (IsInMap(inPoint))
     {
@@ -561,7 +564,7 @@ GameFloorMap::RebuildLightMap(void) const
                 if (tileSpec.TileTraitsGet().LightGet(lightDef))
                 {
                     lightDef.BasePositionSet(GLVector(x,y,0));
-                    GLData::Instance().LightsGet()->LightAdd(lightDefs.size(), lightDef);
+                    GLData::Sgl().LightsGet()->LightAdd(lightDefs.size(), lightDef);
                     lightDefs.push_back(lightDef);
                 }
             }
@@ -668,7 +671,7 @@ GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
                     {
                         U32 lightNum=links.LinkGet(i);
 
-                        GLVector linkVec=GLData::Instance().LightsGet()->LightGet(lightNum).PositionGet();
+                        GLVector linkVec=GLData::Sgl().LightsGet()->LightGet(lightNum).PositionGet();
                         GLLine line(point, GLPoint(linkVec.x, linkVec.y));
 
                         line.Render();
@@ -877,13 +880,13 @@ GameFloorMap::LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
-    GameData::Instance().FloorMapGetOrCreate(name)->Unpickle(xml);
+    GameData::Sgl().FloorMapGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);
 }
 
 void
 GameFloorMap::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("loadfloormap", LoadFloorMap);
+    MushcoreInterpreter::Sgl().AddHandler("loadfloormap", LoadFloorMap);
 }
 

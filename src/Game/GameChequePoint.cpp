@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.13 2003/01/09 14:56:59 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.14 2003/01/13 14:31:56 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.14  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.13  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -84,7 +87,7 @@ void
 GameChequePoint::Triggered(void)
 {
     GameDataUtils::NamedDialoguesAdd(m_action);
-    GameData::Instance().TypeGet().EventHandler(GameEventSequenceAdvance());
+    GameData::Sgl().TypeGet().EventHandler(GameEventSequenceAdvance());
 }
 
 void

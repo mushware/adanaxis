@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.7 2002/12/20 13:17:47 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.8 2003/01/11 13:03:18 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.8  2003/01/11 13:03:18  southa
+ * Use Mushcore header
+ *
  * Revision 1.7  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,7 +47,7 @@ class PlatformVideoUtils
 {
 public:
     PlatformVideoUtils();
-    static PlatformVideoUtils& Instance(void) {return *((m_instance==NULL)?m_instance=new PlatformVideoUtils:m_instance);}
+    static PlatformVideoUtils& Sgl(void) {return *((m_instance==NULL)?m_instance=new PlatformVideoUtils:m_instance);}
     const GLModeDef& ModeDefGet(Mushware::U32 inNum);
     Mushware::U32 PreviousModeDef(Mushware::U32 inNum) const;
     Mushware::U32 NextModeDef(Mushware::U32 inNum) const;

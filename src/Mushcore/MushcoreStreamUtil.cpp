@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreStreamUtil.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreStreamUtil.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -63,7 +66,7 @@ using namespace Mushware;
 using namespace std;
 
 U32
-MushcoreStreamUtil::BigEndianU32Get(u8istream& inIn)
+MushcoreStreamUtil::BigEndianU32Get(istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(reinterpret_cast<char *>(buf), 4);
@@ -75,7 +78,7 @@ MushcoreStreamUtil::BigEndianU32Get(u8istream& inIn)
 }
 
 U32
-MushcoreStreamUtil::LittleEndianU32Get(u8istream& inIn)
+MushcoreStreamUtil::LittleEndianU32Get(istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(reinterpret_cast<char *>(buf), 4);
@@ -87,7 +90,7 @@ MushcoreStreamUtil::LittleEndianU32Get(u8istream& inIn)
 }
 
 U8
-MushcoreStreamUtil::U8Get(u8istream& inIn)
+MushcoreStreamUtil::U8Get(istream& inIn)
 {
     char ch; // Should be U8
     inIn.get(ch);
@@ -96,21 +99,21 @@ MushcoreStreamUtil::U8Get(u8istream& inIn)
 }
 
 void
-MushcoreStreamUtil::Ignore(u8istream& inIn, tSize inSize)
+MushcoreStreamUtil::Ignore(istream& inIn, U32 inSize)
 {
     inIn.ignore(inSize);
     m_ctr+=inSize;
 }
 
 void
-MushcoreStreamUtil::Get(u8istream& inIn, U8 *outBuffer, tSize inSize)
+MushcoreStreamUtil::Get(istream& inIn, U8 *outBuffer, U32 inSize)
 {
     inIn.read(reinterpret_cast<char *>(outBuffer), inSize);
     m_ctr+=inSize;
 }
 
 void
-MushcoreStreamUtil::ZeroIndex(tSize inWhich)
+MushcoreStreamUtil::ZeroIndex(U32 inWhich)
 {
     if (inWhich >= m_zero.size())
     {
@@ -119,8 +122,8 @@ MushcoreStreamUtil::ZeroIndex(tSize inWhich)
     m_zero[inWhich]=m_ctr;
 }
 
-tSize
-MushcoreStreamUtil::GetIndex(tSize inWhich)
+U32
+MushcoreStreamUtil::GetIndex(U32 inWhich)
 {
     if (inWhich >= m_zero.size())
     {
@@ -130,7 +133,7 @@ MushcoreStreamUtil::GetIndex(tSize inWhich)
 }
 
 void
-MushcoreStreamUtil::ConsumeToIndex(u8istream& inIn, tSize inWhich, tSize inValue)
+MushcoreStreamUtil::ConsumeToIndex(istream& inIn, U32 inWhich, U32 inValue)
 {
     int target=inValue-GetIndex(inWhich);
     if (target>0)

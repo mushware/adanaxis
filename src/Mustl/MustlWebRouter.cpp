@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebRouter.cpp,v 1.9 2003/01/11 17:58:16 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.10 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.10  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.9  2003/01/11 17:58:16  southa
  * Mustl fixes
  *
@@ -62,9 +65,8 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::MushcoreData;
 
-auto_ptr<MustlWebRouter> MustlWebRouter::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MustlWebRouter);
 
 MustlWebRouter::MustlWebRouter() :
     m_lastTickMsec(0)
@@ -74,7 +76,7 @@ MustlWebRouter::MustlWebRouter() :
 void
 MustlWebRouter::ReceiveAll(void)
 {
-    tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    tMsec currentMsec = MustlTimer::Sgl().CurrentMsecGet();
     
     bool callTick=false;;
     if (m_lastTickMsec + kTickPeriod < currentMsec)
@@ -83,10 +85,10 @@ MustlWebRouter::ReceiveAll(void)
         callTick = true;
     }
 
-    MushcoreData<MustlWebLink>::tMapIterator endValue=MushcoreData<MustlWebLink>::Instance().End();
-    MushcoreData<MustlWebLink>::tMapIterator killValue=MushcoreData<MustlWebLink>::Instance().End();
+    MushcoreData<MustlWebLink>::tMapIterator endValue=MushcoreData<MustlWebLink>::Sgl().End();
+    MushcoreData<MustlWebLink>::tMapIterator killValue=MushcoreData<MustlWebLink>::Sgl().End();
     
-    for (MushcoreData<MustlWebLink>::tMapIterator p=MushcoreData<MustlWebLink>::Instance().Begin();
+    for (MushcoreData<MustlWebLink>::tMapIterator p=MushcoreData<MustlWebLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
@@ -107,7 +109,7 @@ MustlWebRouter::ReceiveAll(void)
             {
                 if (webLink.Receive(linkData))
                 {
-                    // MustlLog::Instance().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
+                    // MustlLog::Sgl().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
                     webLink.ReceivedProcess(linkData);
                 }
                 else
@@ -117,8 +119,8 @@ MustlWebRouter::ReceiveAll(void)
             }
         }
     }
-    if (killValue != MushcoreData<MustlWebLink>::Instance().End())
+    if (killValue != MushcoreData<MustlWebLink>::Sgl().End())
     {
-        MushcoreData<MustlWebLink>::Instance().Delete(killValue);
+        MushcoreData<MustlWebLink>::Sgl().Delete(killValue);
     }
 }

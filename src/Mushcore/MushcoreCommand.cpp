@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreCommand.cpp,v 1.3 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreCommand.cpp,v $
+ * Revision 1.3  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -85,7 +88,7 @@ using namespace std;
 void
 MushcoreCommand::Execute(void)
 {
-    Execute(MushcoreEnv::Instance());
+    Execute(MushcoreEnv::Sgl());
 }
 
 void
@@ -138,5 +141,5 @@ MushcoreCommand::PopVal(void)
 MushcoreScalar
 MushcoreCommand::Despatch(void)
 {
-    return MushcoreInterpreter::Instance().Despatch(*this);
+    return MushcoreInterpreter::Sgl().Despatch(*this);
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.15 2003/01/12 17:32:57 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.16 2003/01/13 14:32:01 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.16  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.15  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -81,7 +84,7 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
     ioCommand.PopParam(filename);
     try
     {
-        MediaAudio::Instance().PlayMusic(filename);
+        MediaAudio::Sgl().PlayMusic(filename);
     }
     catch (MushcoreDeviceFail& e)
     {
@@ -93,5 +96,5 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
 void
 MediaAudioCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("playmusic", PlayMusic);
+    MushcoreInterpreter::Sgl().AddHandler("playmusic", PlayMusic);
 }

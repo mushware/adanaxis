@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.cpp,v 1.10 2003/01/12 17:33:01 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.11 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.11  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.10  2003/01/12 17:33:01  southa
  * Mushcore work
  *
@@ -99,9 +102,9 @@ bool MustlUtils::m_truncateLog=true;
 bool
 MustlUtils::FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddress)
 {
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         MUSHCOREASSERT(p->second != NULL);
@@ -117,9 +120,9 @@ MustlUtils::FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddres
 bool
 MustlUtils::FindLinkToStation(string& outName, const MustlAddress& inAddress)
 {
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
          p != endValue; ++p)
     {
         MUSHCOREASSERT(p->second != NULL);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.12 2003/01/17 13:30:39 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.13 2003/01/18 13:33:57 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.13  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.12  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -76,7 +79,7 @@ MediaSoundStream::SoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MushcoreData<MediaSoundStream>::Instance().Give(name, new MediaSoundStream(filename));
+    MushcoreData<MediaSoundStream>::Sgl().Give(name, new MediaSoundStream(filename));
     return MushcoreScalar(0);
 }
 
@@ -89,14 +92,14 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSoundStream *soundStream=MushcoreData<MediaSoundStream>::Instance().Get(name);
-    MediaAudio::Instance().Play(*soundStream) ;
+    MediaSoundStream *soundStream=MushcoreData<MediaSoundStream>::Sgl().Get(name);
+    MediaAudio::Sgl().Play(*soundStream) ;
     return MushcoreScalar(0);
 }
 
 void
 MediaSoundStream::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("soundstream", SoundStream);
-    MushcoreInterpreter::Instance().AddHandler("playsoundstream", PlaySoundStream);
+    MushcoreInterpreter::Sgl().AddHandler("soundstream", SoundStream);
+    MushcoreInterpreter::Sgl().AddHandler("playsoundstream", PlaySoundStream);
 }

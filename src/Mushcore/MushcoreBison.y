@@ -10,8 +10,11 @@
  ****************************************************************************/
 
  /*
- * $Id: MushcoreBison.y,v 1.3 2003/01/14 20:46:10 southa Exp $
+ * $Id: MushcoreBison.y,v 1.4 2003/01/18 13:33:57 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.4  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/14 20:46:10  southa
  * Post data handling
  *
@@ -74,9 +77,9 @@ end: EOS
 | END_OF_FILE
 ;
 command: IDENTIFIER { INBISON->ClearParams(); }
-| VARIABLE {$$=MushcoreEnv::Instance().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
+| VARIABLE {$$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
 ;
-scalar: VARIABLE {$$=MushcoreEnv::Instance().VariableGet($1.StringGet().substr(1)).StringGet();}
+scalar: VARIABLE {$$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet();}
 | STRING {$$ = $1.StringGet();}
 | NUMBER {$$ = $1.ValGet();}
 | scalar '+' scalar {$$ = $1.StringGet()+$3.StringGet(); /* Enhance me */ }

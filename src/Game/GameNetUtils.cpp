@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.cpp,v 1.14 2003/01/13 14:31:59 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.15 2003/01/14 17:38:20 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.15  2003/01/14 17:38:20  southa
+ * Mustl web configuration
+ *
  * Revision 1.14  2003/01/13 14:31:59  southa
  * Build frameworks for Mac OS X
  *
@@ -99,9 +102,9 @@ GameNetUtils::KillClientImages(void)
 void
 GameNetUtils::KillLinks(void)
 {
-    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin(); p != endValue; ++p)
     {
         p->second->Disconnect(MustlProtocol::kReasonCodeUserDisconnect);
     }
@@ -110,9 +113,9 @@ GameNetUtils::KillLinks(void)
 void
 GameNetUtils::KillServersByType(bool inImageIs)
 {
-    MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Sgl().End();
 
-    for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs() == inImageIs)
         {
@@ -124,9 +127,9 @@ GameNetUtils::KillServersByType(bool inImageIs)
 void
 GameNetUtils::KillClientsByType(bool inImageIs)
 {
-    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs() == inImageIs)
         {
@@ -171,12 +174,12 @@ GameNetUtils::CreateLink(MushcoreDataRef<MustlLink>& outLink, const string& inCl
     try
     {
         string linkName=MustlLink::NextLinkNameTake();
-        MushcoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
+        MushcoreData<MustlLink>::Sgl().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "Link creation failed: " << e.what() << endl;
     }
 }
 
@@ -228,12 +231,12 @@ void
 GameNetUtils::NetTicker(void)
 {
     // Needs to be called at least once a second
-    U32 currentMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
+    U32 currentMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Instance().End();
-        MushcoreData<GameDefClient>::tMapIterator killValue = MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
+        MushcoreData<GameDefClient>::tMapIterator killValue = MushcoreData<GameDefClient>::Sgl().End();
     
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -252,19 +255,19 @@ GameNetUtils::NetTicker(void)
                 killValue = p;
             }
         }
-        if (killValue != MushcoreData<GameDefClient>::Instance().End())
+        if (killValue != MushcoreData<GameDefClient>::Sgl().End())
         {
-            MushcoreData<GameDefClient>::Instance().Delete(killValue);
+            MushcoreData<GameDefClient>::Sgl().Delete(killValue);
         }
     }
     
     
     bool serverNeeded=false;
     {
-        MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
-        MushcoreData<GameDefServer>::tMapIterator killValue = MushcoreData<GameDefServer>::Instance().End();
+        MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
+        MushcoreData<GameDefServer>::tMapIterator killValue = MushcoreData<GameDefServer>::Sgl().End();
     
-        for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -284,28 +287,28 @@ GameNetUtils::NetTicker(void)
                 killValue = p;
             }
         }
-        if (killValue != MushcoreData<GameDefServer>::Instance().End())
+        if (killValue != MushcoreData<GameDefServer>::Sgl().End())
         {
-            MushcoreData<GameDefServer>::Instance().Delete(killValue);
+            MushcoreData<GameDefServer>::Sgl().Delete(killValue);
         }
     }
     
     if (serverNeeded)
     {
-        if (!MustlServer::Instance().IsServing())
+        if (!MustlServer::Sgl().IsServing())
         {
-            U32 portNum=GameConfig::Instance().ParameterGet("multiport").U32Get();
+            U32 portNum=GameConfig::Sgl().ParameterGet("multiport").U32Get();
     
             try
             {
-                MustlServer::Instance().Connect(portNum);
+                MustlServer::Sgl().Connect(portNum);
             }
             catch (MushcoreNonFatalFail& e)
             {
                 static U32 failedPortNum=65536;
                 if (portNum != failedPortNum)
                 {
-                    MustlLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
+                    MustlLog::Sgl().NetLog() << "Server creation exception: " << e.what() << endl;
                     PlatformMiscUtils::MinorErrorBox(e.what());
                     failedPortNum=portNum;
                 }
@@ -314,9 +317,9 @@ GameNetUtils::NetTicker(void)
     }
     else
     {
-        if (MustlServer::Instance().IsServing())
+        if (MustlServer::Sgl().IsServing())
         {
-            MustlServer::Instance().Disconnect();
+            MustlServer::Sgl().Disconnect();
         }
     }
 }
@@ -326,12 +329,12 @@ GameNetUtils::WebReceive(void)
 {
     try
     {
-        MustlWebServer::Instance().Accept();
-        MustlWebRouter::Instance().ReceiveAll();
+        MustlWebServer::Sgl().Accept();
+        MustlWebRouter::Sgl().ReceiveAll();
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
+        MustlLog::Sgl().WebLog() << "Network exception: " << e.what() << endl;
     }
 }
 
@@ -340,11 +343,11 @@ GameNetUtils::NetReceive(void)
 {
     try
     {
-        MustlServer::Instance().Accept();
-        MustlRouter::Instance().ReceiveAll(GameRouter::Instance());
+        MustlServer::Sgl().Accept();
+        MustlRouter::Sgl().ReceiveAll(GameRouter::Sgl());
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "Network exception: " << e.what() << endl;
     }
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.27 2003/01/17 13:30:38 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.28 2003/01/18 13:33:57 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.28  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.27  2003/01/17 13:30:38  southa
  * Source conditioning and build fixes
  *
@@ -133,7 +136,7 @@ GameDefClient::GameDefClient(const string& inName) :
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
-    m_playerRef(inName, &GameData::Instance().PlayerGet()),
+    m_playerRef(inName, &GameData::Sgl().PlayerGet()),
     m_killed(false),
     m_joined(false)
 {
@@ -156,7 +159,7 @@ GameDefClient::Ticker(const string& inName)
     // Needs calling at least once per second
     if (!m_joined) return;
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     if (gameAppHandler.GameRunningIs())
     {
         m_numLinks=kNumGameModeLinks;
@@ -205,7 +208,7 @@ GameDefClient::UpdateServer(void)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+        MustlLog::Sgl().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
     }
 }
 
@@ -221,7 +224,7 @@ void
 GameDefClient::UpdateStatus(void)
 {
     GameDef::tStatus oldStatus = StatusGet();
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
     if (m_currentMsec > CreationMsecGet() + kServerTimeoutMsec)
@@ -229,9 +232,9 @@ GameDefClient::UpdateStatus(void)
         StatusSet(GameDef::kStatusNoServer);
     }
     
-    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
 
-    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs())
         {

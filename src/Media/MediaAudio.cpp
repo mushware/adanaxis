@@ -44,7 +44,6 @@ using namespace Mushware;
 using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MediaAudio);
-MUSHCORE_DESTROY_SINGLETON_INSTANCE(MediaAudio);
 
 MediaAudio::~MediaAudio()
 {

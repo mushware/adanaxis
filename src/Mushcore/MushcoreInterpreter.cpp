@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.5 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.6 2003/01/17 00:41:02 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.6  2003/01/17 00:41:02  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.5  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -109,7 +112,7 @@ MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
     tHandlerMap::const_iterator handlerFunction = m_handlers.find(ioCommand.Name());
     if (handlerFunction != m_handlers.end())
     {
-        retScalar = handlerFunction->second(ioCommand, MushcoreEnv::Instance());
+        retScalar = handlerFunction->second(ioCommand, MushcoreEnv::Sgl());
     }
     else
     {

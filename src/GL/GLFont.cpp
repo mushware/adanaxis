@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.15 2003/01/12 17:32:50 southa Exp $
+ * $Id: GLFont.cpp,v 1.16 2003/01/13 14:31:54 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.16  2003/01/13 14:31:54  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.15  2003/01/12 17:32:50  southa
  * Mushcore work
  *
@@ -151,9 +154,9 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MushcoreInterpreter::Instance().Execute("loadpixmap('"+name+"','"+filename+"')");
+    MushcoreInterpreter::Sgl().Execute("loadpixmap('"+name+"','"+filename+"')");
     GLFont *font(new GLFont(name));
-    GLData::Instance().FontGive(name, font);
+    GLData::Sgl().FontGive(name, font);
     U32 xNum(10),yNum(10);
     tVal xSize(256),ySize(256);
     ioCommand.PopParam(xNum);
@@ -168,5 +171,5 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLFont::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("loadfontmap", LoadFontMap);
+    MushcoreInterpreter::Sgl().AddHandler("loadfontmap", LoadFontMap);
 }

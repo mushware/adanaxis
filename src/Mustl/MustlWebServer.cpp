@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.13 2003/01/15 13:27:33 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.14 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.14  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.13  2003/01/15 13:27:33  southa
  * Static library linking fixes
  *
@@ -89,7 +92,7 @@
 using namespace Mustl;
 using namespace std;
 
-auto_ptr<MustlWebServer> MustlWebServer::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MustlWebServer);
 
 MustlWebServer::MustlWebServer() :
     m_tcpSocket(MustlPlatform::InvalidSocketValueGet()),
@@ -114,7 +117,7 @@ MustlWebServer::Connect(U32 inPort)
 
     m_tcpSocket = MustlPlatform::TCPBindNonBlocking(netAddress);
     
-    MustlLog::Instance().WebLog() << "Created web server on port " << inPort << endl;
+    MustlLog::Sgl().WebLog() << "Created web server on port " << inPort << endl;
     m_serving=true;
 }
 
@@ -137,7 +140,7 @@ MustlWebServer::~MustlWebServer()
         MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
         MustlPlatform::SocketClose(m_tcpSocket);
     }
-    MustlLog::Instance().WebLog() << "Closed web server" << endl;
+    MustlLog::Sgl().WebLog() << "Closed web server" << endl;
 }
 
 void
@@ -155,14 +158,14 @@ MustlWebServer::Accept(void)
             {
                 ostringstream name;
                 name << "web" << m_linkCtr;
-                MushcoreData<MustlWebLink>::Instance().Give(name.str(), new MustlWebLink(newSocket));
+                MushcoreData<MustlWebLink>::Sgl().Give(name.str(), new MustlWebLink(newSocket));
                 m_linkCtr++;
-                MustlLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
+                MustlLog::Sgl().WebLog() << "Accepted web connection " << name.str() << endl;
             }
             else
             {
                 MustlPlatform::SocketClose(newSocket);
-                MustlLog::Instance().WebLog() << "Rejected web connection from prohibited IP address " << MustlUtils::IPAddressToLogString(remoteHost) << endl;
+                MustlLog::Sgl().WebLog() << "Rejected web connection from prohibited IP address " << MustlUtils::IPAddressToLogString(remoteHost) << endl;
             }
         }
     }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.cpp,v 1.12 2003/01/12 17:32:55 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.13 2003/01/13 14:31:59 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.13  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.12  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -78,11 +81,11 @@ GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
     // Frame number of the first frame in this sequence
     U32 startFrame = inTimer.ConstClientGet().FrameNumGet();
 
-    GameController *localController = GameData::Instance().ControllerGet("controller1");
+    GameController *localController = GameData::Sgl().ControllerGet("controller1");
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Sgl().PlayerGet().End();
 
-    for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+    for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin();
          p != endValue; ++p)
     {
         MUSHCOREASSERT(p->second != NULL);
@@ -137,16 +140,16 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
 void
 GamePlayerUtils::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
-    MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
             MUSHCOREASSERT(p->second != NULL);
             GamePiecePlayer *playerPtr;
             // Needs optimised lookup
-            if (GameData::Instance().PlayerGet().GetIfExists(playerPtr, p->first))
+            if (GameData::Sgl().PlayerGet().GetIfExists(playerPtr, p->first))
             {
                 MUSHCOREASSERT(playerPtr != NULL);
                 SendControl(*p->second, *playerPtr, inTimer, inNumFrames);
@@ -159,12 +162,12 @@ bool
 GamePlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef)
 {
     bool retVal=true;
-    MushcoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
+    MushcoreData<GamePiecePlayer>& playerData = GameData::Sgl().PlayerGet();
 
     if (!playerData.Exists(inName))
     {
         retVal = false;
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
+        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
         GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
         MUSHCOREASSERT(newPlayer != NULL);
@@ -178,7 +181,7 @@ GamePlayerUtils::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
 {
     bool retVal = false;
     GameDefClient *defClient = NULL;
-    if (MushcoreData<GameDefClient>::Instance().GetIfExists(defClient, inName))
+    if (MushcoreData<GameDefClient>::Sgl().GetIfExists(defClient, inName))
     {
         MUSHCOREASSERT(defClient != NULL);
         retVal = true;
@@ -190,12 +193,12 @@ bool
 GamePlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef)
 {
     bool retVal=true;
-    MushcoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
+    MushcoreData<GamePiecePlayer>& playerData = GameData::Sgl().PlayerGet();
 
     if (!playerData.Exists(inName))
     {
         retVal = false;
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
+        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
         GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
         MUSHCOREASSERT(newPlayer != NULL);
@@ -211,9 +214,9 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     if (inAppHandler.ServerPresent())
     {
         // Loop through the client images, checking that each one has a player attached to it
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
 
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -225,10 +228,10 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     if (inAppHandler.ServerPresent())
     {
         // Loop through the players, checking that each one has an image
-        MushcoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Instance().PlayerGet().End();
+        MushcoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Sgl().PlayerGet().End();
         MushcoreData<GamePiecePlayer>::tMapIterator killValue = endValue;
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin(); p != endValue; ++p)
+        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
         {
             if (!VerifyPlayer(p->first, *p->second))
             {
@@ -238,14 +241,14 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
         }
         if (killValue != endValue)
         {
-            GameData::Instance().PlayerGet().Delete(killValue);
+            GameData::Sgl().PlayerGet().Delete(killValue);
         }
     }
 
     // Check for non-image clients on this machine
-    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
@@ -259,13 +262,13 @@ GamePlayerUtils::ClientMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
 {
     U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Sgl().PlayerGet().End();
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
         U32 frameNum = startFrameNum + i; // Add control delay here
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin();
              p != endValue; ++p)
         {
             GamePiecePlayer& playerRef=*p->second;
@@ -275,7 +278,7 @@ GamePlayerUtils::ClientMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
                 playerRef.EnvironmentRead(inFloorMap);
                 GameEventStandingOn standingOn(playerRef.StandingOnGet()); // Maybe
     
-                GameData::Instance().TypeGet().EventHandler(standingOn); // Maybe
+                GameData::Sgl().TypeGet().EventHandler(standingOn); // Maybe
     
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))
@@ -312,13 +315,13 @@ GamePlayerUtils::ServerMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
 {
     U32 startFrameNum = inTimer.ServerGet().FrameNumGet();
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Sgl().PlayerGet().End();
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
         U32 frameNum = startFrameNum + i; // Add control delay here
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin();
              p != endValue; ++p)
         {
             GamePiecePlayer& playerRef=*p->second;
@@ -328,7 +331,7 @@ GamePlayerUtils::ServerMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
                 playerRef.EnvironmentRead(inFloorMap);
                 GameEventStandingOn standingOn(playerRef.StandingOnGet());
 
-                GameData::Instance().TypeGet().EventHandler(standingOn);
+                GameData::Sgl().TypeGet().EventHandler(standingOn);
 
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))
@@ -365,9 +368,9 @@ GamePlayerUtils::CompleteControlFrameFind(void)
 {
     U32 retFrame=0;
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+    MushcoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Sgl().PlayerGet().End();
         
-    for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+    for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin();
          p != endValue; ++p)
     {
         GamePiecePlayer& playerRef=*p->second;

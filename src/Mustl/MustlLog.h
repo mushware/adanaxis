@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.7 2003/01/17 00:41:04 southa Exp $
+ * $Id: MustlLog.h,v 1.8 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.8  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.7  2003/01/17 00:41:04  southa
  * Configuration updates from POST data
  *
@@ -62,7 +65,7 @@ public:
     MustlLog();
     ~MustlLog();
 
-    static inline MustlLog& Instance(void);
+    static inline MustlLog& Sgl(void);
 
     std::ostream& WebLog(void);
     std::ostream& NetLog(void);
@@ -104,7 +107,7 @@ private:
 };
 
 inline MustlLog&
-MustlLog::Instance(void)
+MustlLog::Sgl(void)
 {
     return m_gMustlLogInstance;
 }

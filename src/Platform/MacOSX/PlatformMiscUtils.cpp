@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.30 2003/01/12 17:33:01 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.31 2003/01/13 14:32:03 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.31  2003/01/13 14:32:03  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.30  2003/01/12 17:33:01  southa
  * Mushcore work
  *
@@ -133,7 +136,7 @@ PlatformMiscUtils::Initialise(void)
     char *home = getenv("HOME");
     if (home != NULL)
     {
-        MushcoreGlobalConfig::Instance().Set("HOME", home);
+        MushcoreGlobalConfig::Sgl().Set("HOME", home);
     }
     // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
     if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
@@ -236,7 +239,7 @@ void
 PlatformMiscUtils::ErrorBox(const string& inStr)
 {
     SDL_ShowCursor(SDL_ENABLE);
-    MediaSDL::Instance().QuitVideoIfRequired();
+    MediaSDL::Sgl().QuitVideoIfRequired();
     ShowCursor();
     Str255 messageP;
     CopyCStringToPascal(inStr.c_str(), messageP);
@@ -260,7 +263,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
     AlertStdAlertParamRec param;
     SInt16			alertType=kAlertNoteAlert;
     Str255			title;
-    CopyCStringToPascal(MushcoreInfo::Instance().ApplicationNameGet().c_str(), title);
+    CopyCStringToPascal(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), title);
     Str255          desc;
     CopyCStringToPascal(inStr.c_str(), desc);    
     SInt16			itemHit;
@@ -306,7 +309,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
 void
 PlatformMiscUtils::UpdateCheck(void)
 {
-    if (MushcoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
     {
         ShowUpdateAlert();
     }
@@ -338,7 +341,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
         {
             case kAlertStdAlertOKButton:
             {
-                string updateFile=MushcoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+                string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
                 LaunchFile(updateFile);
                 exit(0);
             }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.22 2003/01/17 13:30:38 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.23 2003/01/18 13:33:57 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.23  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.22  2003/01/17 13:30:38  southa
  * Source conditioning and build fixes
  *
@@ -113,7 +116,7 @@ GameDefServer::HostGame(const string& inContract, U32 inPlayerLimit)
 void
 GameDefServer::Ticker(const string& inName)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
     if (m_currentMsec > m_lastUpdateMsec + kUpdateMsec)
@@ -126,9 +129,9 @@ GameDefServer::Ticker(const string& inName)
 void
 GameDefServer::UpdateClients(void)
 {
-    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
     {
         GameDefClient *clientDef=p->second;
         MUSHCOREASSERT(clientDef != NULL);
@@ -166,7 +169,7 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
         }
         catch (MushcoreNonFatalFail& e)
         {
-            MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+            MustlLog::Sgl().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
         }
     }
 }

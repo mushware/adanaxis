@@ -40,15 +40,15 @@ TestMustlApp::Enter(void)
     cout << "Please view URL " << configURL.str() << " in your web browser," << endl;
     cout << "or press control-C to exit." << endl;
 
-    MustlWebServer::Instance().Connect(webPort);
+    MustlWebServer::Sgl().Connect(webPort);
 
     MustlPlatform::LaunchURL(configURL.str());
     m_doQuit = false;
 
     while (!m_doQuit)
     {
-        MustlWebServer::Instance().Accept();
-        MustlWebRouter::Instance().ReceiveAll();
+        MustlWebServer::Sgl().Accept();
+        MustlWebRouter::Sgl().ReceiveAll();
     }
 }
 

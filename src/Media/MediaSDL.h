@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.16 2003/01/18 13:33:57 southa Exp $
+ * $Id: MediaSDL.h,v 1.17 2003/01/18 17:05:47 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.17  2003/01/18 17:05:47  southa
+ * Singleton work
+ *
  * Revision 1.16  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -90,7 +93,7 @@
 
 #include "Mushcore.h"
 
-class MediaSDL : public MushcoreSingletonConcrete<MediaSDL>
+class MediaSDL : public MushcoreSingleton<MediaSDL>
 {
 public:
     MediaSDL();

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.15 2003/01/16 12:03:55 southa Exp $
+ * $Id: MustlServer.cpp,v 1.16 2003/01/17 00:41:05 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.16  2003/01/17 00:41:05  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.15  2003/01/16 12:03:55  southa
  * Platform and invalid socket fixes
  *
@@ -121,7 +124,7 @@ using namespace Mustl;
 using namespace std;
 //using Mushware::MushcoreData;
 
-auto_ptr<MustlServer> MustlServer::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MustlServer);
 
 MustlServer::MustlServer() :
     m_linkCtr(0),
@@ -143,7 +146,7 @@ MustlServer::~MustlServer()
 void
 MustlServer::Connect(void)
 {
-    U32 portNum = MustlConfig::Instance().Get("mustlnetport").U32Get();
+    U32 portNum = MustlConfig::Sgl().Get("mustlnetport").U32Get();
     Connect(portNum);
 }
 
@@ -176,7 +179,7 @@ MustlServer::Connect(U32 inPort)
             
             if (++errCtr < 100)
             {
-                MustlLog::Instance().NetLog() << "Server creation failed on port " << inPort << ": " << e.what() << endl;
+                MustlLog::Sgl().NetLog() << "Server creation failed on port " << inPort << ": " << e.what() << endl;
             }
             if (portNum > inPort+7) throw;
         }
@@ -184,7 +187,7 @@ MustlServer::Connect(U32 inPort)
     MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
     MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
     
-    MustlLog::Instance().NetLog() << "Created server on port " << m_serverPortHostOrder << endl;
+    MustlLog::Sgl().NetLog() << "Created server on port " << m_serverPortHostOrder << endl;
     m_serving=true;
 }
 
@@ -201,7 +204,7 @@ MustlServer::Disconnect(void)
         m_udpSocket = MustlPlatform::InvalidSocketValueGet();
     }
     m_serving=false;
-    MustlLog::Instance().NetLog() << "Closed server" << endl;
+    MustlLog::Sgl().NetLog() << "Closed server" << endl;
 }
 
 void
@@ -215,10 +218,10 @@ MustlServer::Accept(void)
         {
             ostringstream name;
             name << "server" << m_linkCtr;
-            MushcoreData<MustlLink>::Instance().Give(name.str(), new MustlLink(newSocket, remoteAddress));
+            MushcoreData<MustlLink>::Sgl().Give(name.str(), new MustlLink(newSocket, remoteAddress));
             m_linkCtr++;
     
-            MustlLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;
+            MustlLog::Sgl().NetLog() << "Accepted connection for " << name.str() << endl;
         }
     }
 }
@@ -236,7 +239,7 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
     }
     if (inAddress.HostGetNetworkOrder() == 0 || inAddress.PortGetNetworkOrder() == 0)
     {
-        MustlLog::Instance().NetLog() << "UDPSend (server) to bad address (" << inAddress << ")" << endl;
+        MustlLog::Sgl().NetLog() << "UDPSend (server) to bad address (" << inAddress << ")" << endl;
     }
     
     MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
@@ -244,9 +247,9 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
     U32 dataSize = MustlPlatform::UDPSend(inAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     ioData.ReadPosAdd(dataSize);
 
-    if (MustlLog::Instance().TrafficLogGet())
+    if (MustlLog::Sgl().TrafficLogGet())
     {
-        MustlLog::Instance().TrafficLog() << "UDPSend (server) to " << inAddress << ": " << ioData << endl;
+        MustlLog::Sgl().TrafficLog() << "UDPSend (server) to " << inAddress << ": " << ioData << endl;
     }
 }
 
@@ -263,9 +266,9 @@ MustlServer::UDPReceive(MustlData& ioData)
         {
             ioData.WritePosAdd(dataSize);
             ioData.SourceSet(sourceAddress);
-            if (MustlLog::Instance().TrafficLogGet())
+            if (MustlLog::Sgl().TrafficLogGet())
             {
-                MustlLog::Instance().TrafficLog() << "UDPReceive (server) received " << ioData << endl;
+                MustlLog::Sgl().TrafficLog() << "UDPReceive (server) received " << ioData << endl;
             }
         }
     }

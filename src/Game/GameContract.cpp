@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.114 2003/01/12 17:32:52 southa Exp $
+ * $Id: GameContract.cpp,v 1.115 2003/01/13 14:31:56 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.115  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.114  2003/01/12 17:32:52  southa
  * Mushcore work
  *
@@ -409,7 +412,7 @@ GameContract::GameContract() :
 
 GameContract::~GameContract()
 {
-    // GameData::Instance().Clear();
+    // GameData::Sgl().Clear();
 }
 
 void
@@ -474,12 +477,12 @@ GameContract::SwapIn(GameAppHandler& inAppHandler)
 {
     try
     {
-        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
-        glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(GameConfig::Instance().DisplayModeGet()));
+        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
+        glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(GameConfig::Sgl().DisplayModeGet()));
     }
     catch (...)
     {
-        GameConfig::Instance().DisplayModeSetDefault();
+        GameConfig::Sgl().DisplayModeSetDefault();
         throw;
     }
     GLUtils::CheckGLError();
@@ -496,41 +499,41 @@ GameContract::Init(GameAppHandler& inAppHandler)
     // Run the load script in the contract definition
     m_script.Execute();
     
-    GameData::Instance().TimerGet().Reset();
+    GameData::Sgl().TimerGet().Reset();
     if (m_tileMap == NULL)
     {
-        m_tileMap=GameData::Instance().TileMapGet("tiles");
-        m_floorMap=GameData::Instance().FloorMapGet("floor");
+        m_tileMap=GameData::Sgl().TileMapGet("tiles");
+        m_floorMap=GameData::Sgl().FloorMapGet("floor");
         MUSHCOREASSERT(m_tileMap != NULL);
         MUSHCOREASSERT(m_floorMap != NULL);
         m_floorMap->AttachTileMap(m_tileMap);
         m_tileMap->Load();
     }
-    GameData::Instance().ControllerGetOrCreate("controller1");
+    GameData::Sgl().ControllerGetOrCreate("controller1");
 
     if (!inAppHandler.MultiplayerIs())
     {
         // Create the player for a single player game
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
+        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
 
-        GameData::Instance().PlayerGet().Give("singleplayer", new GamePiecePlayer(*templatePlayer));
+        GameData::Sgl().PlayerGet().Give("singleplayer", new GamePiecePlayer(*templatePlayer));
     }
     
     if (m_floorDesigner == NULL) m_floorDesigner=new GameFloorDesigner; // This is leaked
     m_floorDesigner->Init();
-    GameData::Instance().ViewGetOrCreate("view1");
-    m_currentView=GameData::Instance().CurrentViewGet();
+    GameData::Sgl().ViewGetOrCreate("view1");
+    m_currentView=GameData::Sgl().CurrentViewGet();
     MUSHCOREASSERT(m_currentView != NULL);
     m_currentView->RectangleSet(GLRectangle(0,0,inAppHandler.WidthGet(),inAppHandler.HeightGet()));  // Might be wrong
-    // GameData::Instance().DumpAll(cout);
+    // GameData::Sgl().DumpAll(cout);
 
-    GameData::Instance().TypeGet().Initialise();
+    GameData::Sgl().TypeGet().Initialise();
 
-    GameData::Instance().CurrentDialoguesClear();
+    GameData::Sgl().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
-    m_newMode=GameConfig::Instance().DisplayModeGet();
-    GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
+    m_newMode=GameConfig::Sgl().DisplayModeGet();
+    GameData::Sgl().CurrentViewGet()->AmbientLightingSet(0.01);
 }
 
 void
@@ -550,7 +553,7 @@ void
 GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 {
     
-    const GameData::DialogueMap& currentDialogues(GameData::Instance().CurrentDialogueMapGet());
+    const GameData::DialogueMap& currentDialogues(GameData::Sgl().CurrentDialogueMapGet());
     string killName;
     
     for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
@@ -568,15 +571,15 @@ GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
     
     if (killName != "")
     {
-        GameData::Instance().CurrentDialogueDelete(killName);
+        GameData::Sgl().CurrentDialogueDelete(killName);
     }
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
-        GameData::Instance().TypeGet().Move();
+        GameData::Sgl().TypeGet().Move();
     }
     
-    if (GameData::Instance().TypeGet().IsGameOver())
+    if (GameData::Sgl().TypeGet().IsGameOver())
     {
         if (m_gameState == kGameStateRunning) m_gameState = kGameStateOver;
     }
@@ -589,18 +592,18 @@ GameContract::RunningDisplay(void)
     MUSHCOREASSERT(m_floorMap != NULL);
     m_floorMap->AttachTileMap(m_tileMap);
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    GameTimer& timer(GameData::Sgl().TimerGet());
 
     timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
     tVal windbackValue = timer.ClientGet().WindbackValueGet();
     
-    GameView& currentView = *GameData::Instance().CurrentViewGet();
+    GameView& currentView = *GameData::Sgl().CurrentViewGet();
 
     GLState::AmbientLightSet(currentView.AmbientLightingGet());
     GLState::LightingAlphaSet(1.0);
-    GLData::Instance().LightsGet()->AmbientLightingSet(currentView.AmbientLightingGet());
-    GLData::Instance().LightsGet()->LightingFactorSet(currentView.LightingFactorGet());
+    GLData::Sgl().LightsGet()->AmbientLightingSet(currentView.AmbientLightingGet());
+    GLData::Sgl().LightsGet()->LightingFactorSet(currentView.LightingFactorGet());
     
     GLUtils::DisplayPrologue();
 
@@ -613,8 +616,8 @@ GameContract::RunningDisplay(void)
     GLUtils::IdentityPrologue();
 
     // Just pick the first player for now
-    MushcoreData<GamePiecePlayer>::tMapIterator playerIter = GameData::Instance().PlayerGet().Begin();
-    if (playerIter != GameData::Instance().PlayerGet().End())
+    MushcoreData<GamePiecePlayer>::tMapIterator playerIter = GameData::Sgl().PlayerGet().Begin();
+    if (playerIter != GameData::Sgl().PlayerGet().End())
     {
         GameMotionSpec playerSpec(playerIter->second->MotionSpecGet());
         playerSpec.Windback(windbackValue);
@@ -665,9 +668,9 @@ GameContract::RunningDisplay(void)
     GLState::DepthSet(GLState::kDepthTest);
 
     {
-        MushcoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Instance().PlayerGet().End();
+        MushcoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Sgl().PlayerGet().End();
     
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin(); p != endValue; ++p)
+        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
         {
             GLUtils::PushMatrix();
             GameMotionSpec playerSpec(p->second->MotionSpecGet());
@@ -711,7 +714,7 @@ GameContract::RunningDisplay(void)
     }
     GLUtils::Flush();
 
-    GameData::Instance().TypeGet().Render();
+    GameData::Sgl().TypeGet().Render();
 
     if (m_gameState == kGameStatePaused)
     {
@@ -750,7 +753,7 @@ GameContract::RenderFastDiagnostics(void) const
 void
 GameContract::RenderText(void) const
 {
-    const GameData::DialogueMap currentDialogues(GameData::Instance().CurrentDialogueMapGet());
+    const GameData::DialogueMap currentDialogues(GameData::Sgl().CurrentDialogueMapGet());
 
     GLUtils::OrthoPrologue();
     for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
@@ -762,7 +765,7 @@ GameContract::RenderText(void) const
     }
     if (m_modeKeypressTime != 0)
     {
-        PlatformVideoUtils::Instance().RenderModeInfo(m_newMode);
+        PlatformVideoUtils::Sgl().RenderModeInfo(m_newMode);
     }
     GLUtils::OrthoEpilogue();
 }
@@ -778,7 +781,7 @@ GameContract::DesigningDisplay(void)
 void
 GameContract::Running(GameAppHandler& inAppHandler)
 {
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer& timer(GameData::Sgl().TimerGet());
         
     // Get the control events up to date
     inAppHandler.PollForControlEvents();
@@ -887,7 +890,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
         timer.CurrentMsecSet(inAppHandler.MillisecondsGet());
         // MushcoreUtils::Sleep(timer.SleepTimeGet());
     }
-    MediaAudio::Instance().Ticker();
+    MediaAudio::Sgl().Ticker();
 }
 
 void
@@ -895,7 +898,7 @@ GameContract::Paused(void)
 {
     GLUtils::PostRedisplay();
     GlobalKeyControl();
-    MediaAudio::Instance().Ticker();
+    MediaAudio::Sgl().Ticker();
 }
 
 
@@ -903,7 +906,7 @@ void
 GameContract::Over(void)
 {
     // Expects Running to have been called as well
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     // Needs sorting out
     if (gameAppHandler.KeyStateGet(' '))
     {
@@ -914,27 +917,27 @@ GameContract::Over(void)
 void
 GameContract::GlobalKeyControl(void)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
-    GameTimer& timer(GameData::Instance().TimerGet());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    GameTimer& timer(GameData::Sgl().TimerGet());
 
     if (gameAppHandler.LatchedKeyStateTake('d'))
     {
         if (m_gameState == kGameStateRunning)
         {
-            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.7);
+            GameData::Sgl().CurrentViewGet()->AmbientLightingSet(0.7);
             gameAppHandler.SetCursorState(true);
             m_gameState=kGameStateDesigning;
         }
         else
         {
-            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
+            GameData::Sgl().CurrentViewGet()->AmbientLightingSet(0.01);
             m_floorMap->SolidMapInvalidate();
             gameAppHandler.SetCursorState(false);
             m_gameState=kGameStateRunning;
         }
-        GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
-        GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
-        GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
+        GLState::AmbientLightSet(GameData::Sgl().CurrentViewGet()->AmbientLightingGet());
+        GLData::Sgl().LightsGet()->AmbientLightingSet(GameData::Sgl().CurrentViewGet()->AmbientLightingGet());
+        GLData::Sgl().LightsGet()->LightingFactorSet(GameData::Sgl().CurrentViewGet()->LightingFactorGet());
         gameAppHandler.LatchedKeyStateTake('-');
         gameAppHandler.LatchedKeyStateTake('=');
     }
@@ -966,13 +969,13 @@ GameContract::GlobalKeyControl(void)
     }
     if (gameAppHandler.LatchedKeyStateTake(' '))
     {
-        GameData::Instance().CurrentDialoguesClear();
+        GameData::Sgl().CurrentDialoguesClear();
     }
     if (gameAppHandler.LatchedKeyStateTake('-'))
     {
         if (m_modeKeypressTime != 0)
         {
-            m_newMode=PlatformVideoUtils::Instance().PreviousModeDef(m_newMode);
+            m_newMode=PlatformVideoUtils::Sgl().PreviousModeDef(m_newMode);
         }
         m_modeKeypressTime=timer.CurrentMsecGet();
     }
@@ -980,17 +983,17 @@ GameContract::GlobalKeyControl(void)
     {
         if (m_modeKeypressTime != 0)
         {
-            m_newMode=PlatformVideoUtils::Instance().NextModeDef(m_newMode);
+            m_newMode=PlatformVideoUtils::Sgl().NextModeDef(m_newMode);
         }
         m_modeKeypressTime=timer.CurrentMsecGet();
     }
     if (m_modeKeypressTime != 0 && m_modeKeypressTime +3000 < timer.CurrentMsecGet())
     {
-        if (m_newMode != GameConfig::Instance().DisplayModeGet())
+        if (m_newMode != GameConfig::Sgl().DisplayModeGet())
         {
-            gameAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(m_newMode));
+            gameAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(m_newMode));
         }
-        GameConfig::Instance().DisplayModeSet(m_newMode);
+        GameConfig::Sgl().DisplayModeSet(m_newMode);
         m_modeKeypressTime=0;
     }
 }
@@ -1041,7 +1044,7 @@ void
 GameContract::HandleDialogueStart(MushcoreXML& inXML)
 {
     string name(inXML.GetAttribOrThrow("name").StringGet());
-    GameData::Instance().DialogueDeleteAndCreate(name, new GameDialogue)->Unpickle(inXML);
+    GameData::Sgl().DialogueDeleteAndCreate(name, new GameDialogue)->Unpickle(inXML);
 }
 
 void
@@ -1050,20 +1053,20 @@ GameContract::HandleGameStart(MushcoreXML& inXML)
     string type(inXML.GetAttribOrThrow("type").StringGet());
     if (type == "race")
     {
-    GameData::Instance().TypeSet(new GameTypeRace);
+    GameData::Sgl().TypeSet(new GameTypeRace);
     }
     else
     {
         inXML.Throw("Game type must be 'race'");
     }
-    GameData::Instance().TypeGet().Unpickle(inXML);
+    GameData::Sgl().TypeGet().Unpickle(inXML);
 }
 
 void
 GameContract::HandleRewardsStart(MushcoreXML& inXML)
 {
-    GameData::Instance().RewardsSet(new GameRewards);
-    GameData::Instance().RewardsGet().Unpickle(inXML);
+    GameData::Sgl().RewardsSet(new GameRewards);
+    GameData::Sgl().RewardsGet().Unpickle(inXML);
 }
 
 void
@@ -1161,12 +1164,12 @@ GameContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
-    GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
+    GameData::Sgl().ContractGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);
 }
 
 void
 GameContract::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("loadcontract", LoadContract);
+    MushcoreInterpreter::Sgl().AddHandler("loadcontract", LoadContract);
 }

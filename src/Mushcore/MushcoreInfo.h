@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.3 2003/01/11 17:44:27 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.3  2003/01/11 17:44:27  southa
+ * Mushcore fixes
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -38,7 +41,7 @@
 class MushcoreInfo
 {
 public:
-    static MushcoreInfo& Instance(void);
+    static MushcoreInfo& Sgl(void);
     static void Mutate(MushcoreInfo *inInfo);
 
     virtual std::string ApplicationNameGet(void);
@@ -51,7 +54,7 @@ private:
 };
 
 inline MushcoreInfo&
-MushcoreInfo::Instance(void)
+MushcoreInfo::Sgl(void)
 {
     if (m_instance == NULL)
     {
