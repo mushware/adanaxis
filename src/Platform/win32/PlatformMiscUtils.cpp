@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.19 2002/11/18 12:55:13 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.20 2002/11/23 17:27:49 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.20  2002/11/23 17:27:49  southa
+ * Added SleepMsec
+ *
  * Revision 1.19  2002/11/18 12:55:13  southa
  * win32 support for URLs and directories
  *
@@ -220,6 +223,45 @@ PlatformMiscUtils::MinorErrorBox(const string& inStr)
     {
         cerr << "Dialog box failed: " << GetLastError() << endl;
     }
+}
+
+bool
+PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
+{    
+    U32 flags=MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1;
+    if (inDefault)
+    {
+         flags |= MB_DEFBUTTON1;
+    }
+    else
+    {
+         flags |= MB_DEFBUTTON2;
+    }
+	    
+    int itemHit=MessageBox(NULL,
+		    CoreInfo::ApplicationNameGet().c_str(),
+		    inStr.c_str(),
+		    flags);
+
+    bool retVal = false;
+    
+    switch (itemHit)
+    {
+	case 0:
+	    //MessageBox failed
+	    break;
+	    
+        case IDYES:
+        {
+            retVal = true;
+        }
+        break;
+
+        default:
+            break;        
+    }
+
+    return retVal;
 }
 
 void
