@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: ic2.Makefile.am,v 1.4 2003/09/17 20:04:58 southa Exp $
+# $Id: ic2.Makefile.am,v 1.5 2003/09/22 19:58:13 southa Exp $
 # $Log: ic2.Makefile.am,v $
+# Revision 1.5  2003/09/22 19:58:13  southa
+# Prebuild in makefiles
+#
 # Revision 1.4  2003/09/17 20:04:58  southa
 # Build changes
 #
@@ -50,7 +53,7 @@ core-app.pbproj/project.pbxproj
 all:prebuild-script
 
 prebuild-script:
-	$(SHELL) prebuild.sh
+	$(SHELL) -c 'if [ -f prebuild.sh ];then prebuild.sh;fi'
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
