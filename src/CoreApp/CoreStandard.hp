@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreStandard.hp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Log: CoreStandard.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
  */
 
 // General purpose includes used by most files 
@@ -16,5 +19,6 @@
 
 typedef double Val;
 typedef unsigned int U32;
+typedef unsigned char U8;
 typedef size_t Size;
 #define Vec vector

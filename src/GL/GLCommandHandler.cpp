@@ -1,12 +1,17 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLCommandHandler.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "GLCommandHandler.hp"
 #include "CoreApp.hp"
 #include "Installer.hp"
 #include "GLAppHandler.hp"
+#include "GLData.hp"
+#include "GLTexture.hp"
 
 GLCommandHandler *GLCommandHandler::m_instance = NULL;
 
@@ -31,7 +36,8 @@ GLCommandHandler::InitGL(const string& inStr)
 
 void GLCommandHandler::LoadPixmap(const string& inStr)
 {
-    }
+    GLData::Instance().AddTexture(*new GLTexture("test.gif")); 
+}
 
 void
 GLCommandHandler::Install(void)

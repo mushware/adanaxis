@@ -1,0 +1,21 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "GLStandard.hp"
+
+#include "GLTexture.hp"
+
+class GLData
+{
+public:
+    static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
+    TextureRef AddTexture(GLTexture& inTexture);
+    const GLTexture& GetTexture(TextureRef& inRef);
+    
+private:
+    vector<GLTexture> m_textures;
+
+    static GLData *m_instance;
+};

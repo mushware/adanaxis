@@ -1,0 +1,24 @@
+#ifndef GLTEXTURE_HP
+#define GLTEXTURE_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "GLStandard.hp"
+
+class GLTexture
+{
+public:
+    GLTexture(const string& inFilename);
+    ~GLTexture() {if (m_data != NULL) delete[] m_data;}
+    void Load(const string& inFilename);
+
+private:
+    Size m_xSize;
+    Size m_ySize;
+    Size m_hBytes;
+    int m_pixelType;
+    U8 *m_data;
+};
+#endif
