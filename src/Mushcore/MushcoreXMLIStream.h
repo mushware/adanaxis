@@ -16,12 +16,17 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreXMLIStream.h,v 1.1 2003/09/21 11:46:10 southa Exp $
+ * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.1  2003/09/21 11:46:10  southa
+ * XML input stream
+ *
  */
 
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
+
+class MushcoreXMLConsumer;
 
 class MushcoreXMLIStream : public MushcoreXMLStream
 {
@@ -29,30 +34,18 @@ public:
     explicit MushcoreXMLIStream(std::istream *inPStream);
     virtual ~MushcoreXMLIStream();
 
-    std::istream& IStreamGet() { return *m_pStream; }
-    bool LineAvailable(void);
-    const std::string& LineTake(void);
+    std::istream& DataStreamGet(void) { return *m_pDataStream; }
+    const std::string& TagNameGet(void) { return m_tagName; }
+
+    void ObjectRead(MushcoreXMLConsumer& inObj);
     
     void Throw(const std::string& inMessage);
     
 private:
-    std::istream *m_pStream;
-    std::string m_currentLine;
+    std::istream *m_pInputStream;
+    std::istream *m_pDataStream;
+    std::string m_tagName;
 };
-
-template<class T>
-inline MushcoreXMLIStream&
-operator>>(MushcoreXMLIStream& ioIn, T& inObj)
-{
-    ioIn.IStreamGet() >> inObj;
-    return ioIn;
-}
-
-inline bool
-operator!(MushcoreXMLIStream& ioIn)
-{
-    return !ioIn.IStreamGet();
-}
 
 //%includeGuardEnd {
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.5 2003/08/21 23:09:19 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.6 2003/09/17 19:40:36 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.6  2003/09/17 19:40:36  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.5  2003/08/21 23:09:19  southa
  * Fixed file headers
  *
@@ -79,4 +82,17 @@ string
 MushcoreUtil::TranslateFilename(const string& inStr)
 {
     return inStr;
+}
+
+U32
+MushcoreUtil::TagGet(string& outTag, const string& inStr, U32 inPos)
+{
+    U32 startPos = inStr.find('<', inPos);
+
+    if (startPos == string::npos) return 0;
+    U32 endPos = inStr.find('>', startPos);
+    if (endPos == string::npos) return 0; // No tag end
+
+    outTag = string(inStr, startPos+1, endPos-startPos-1);
+    return endPos + 1;
 }

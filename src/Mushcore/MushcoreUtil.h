@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hKnIrVXIQdJQRS47018TCg
 /*
- * $Id: MushcoreUtil.h,v 1.4 2003/08/21 23:09:19 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.5 2003/09/17 19:40:36 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.5  2003/09/17 19:40:36  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.4  2003/08/21 23:09:19  southa
  * Fixed file headers
  *
@@ -68,6 +71,7 @@ class MushcoreUtil
 {
 public:
     static std::string TranslateFilename(const std::string& inStr);
+    static Mushware::U32 TagGet(std::string& outTag, const std::string& inStr, Mushware::U32 inPos = 0);
 };
 //%includeGuardEnd {
 #endif

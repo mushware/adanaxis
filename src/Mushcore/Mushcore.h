@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l5tY/TDG7oXfdjv1zFKmuQ
 /*
- * $Id: Mushcore.h,v 1.13 2003/09/21 09:51:08 southa Exp $
+ * $Id: Mushcore.h,v 1.14 2003/09/21 11:46:10 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.14  2003/09/21 11:46:10  southa
+ * XML input stream
+ *
  * Revision 1.13  2003/09/21 09:51:08  southa
  * Stream autogenerators
  *
@@ -88,6 +91,7 @@
 #include "MushcoreUninstaller.h"
 #include "MushcoreUtil.h"
 #include "MushcoreXML.h"
+#include "MushcoreXMLConsumer.h"
 #include "MushcoreXMLIStream.h"
 #include "MushcoreXMLOStream.h"
 #include "MushcoreXMLStream.h"

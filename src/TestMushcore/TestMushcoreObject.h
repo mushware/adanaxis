@@ -16,17 +16,20 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.1 2003/09/21 09:51:10 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.2 2003/09/21 11:46:12 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.2  2003/09/21 11:46:12  southa
+ * XML input stream
+ *
  * Revision 1.1  2003/09/21 09:51:10  southa
  * Stream autogenerators
  *
  */
 
-#include "Mushcore.h"
+#include "TestMushcoreStandard.h"
 
 //:generate ostream xml1
-class TestMushcoreObject : public MushcoreObject
+class TestMushcoreObject : public MushcoreObject, public MushcoreXMLConsumer
 {
 public:
     TestMushcoreObject() :
@@ -48,6 +51,9 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     void AutoXMLRead(MushcoreXMLIStream& ioIn);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const;
+
+    Mushware::U32 AutoXMLRead(const std::string& inStr);
+    virtual void XMLDataProcess(MushcoreXMLIStream& ioIn);
 //%classPrototypes } Z45ZX1/VtF+3hZqy6oJcFw
 };
 
@@ -58,7 +64,7 @@ namespace Mushcore
 inline void
 Unpickle(MushcoreXMLIStream& ioIn, TestMushcoreObject& inObj)
 {
-    inObj.AutoXMLRead(ioIn);
+    ioIn.ObjectRead(inObj);
 }
 inline void
 Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::string& inName="")

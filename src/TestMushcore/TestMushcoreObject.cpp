@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.1 2003/09/21 09:51:10 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.2 2003/09/21 11:46:11 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.2  2003/09/21 11:46:11  southa
+ * XML input stream
+ *
  * Revision 1.1  2003/09/21 09:51:10  southa
  * Stream autogenerators
  *
@@ -21,17 +24,25 @@
 
 #include "TestMushcoreObject.h"
 
+using namespace std;
+using namespace Mushware;
+
 void
-TestMushcoreObject::AutoXMLRead(MushcoreXMLIStream& ioIn)
+TestMushcoreObject::XMLDataProcess(MushcoreXMLIStream& ioIn)
 {
-    std::string name;
-
-    while (ioIn.LineAvailable())
+    cout << "Tag " << ioIn.TagNameGet() << endl;
+    if (ioIn.TagNameGet() == "TestMushcoreObject")
     {
-        std::string line;
-        line = ioIn.LineTake();
-
-        cout << "Found line "+line+"\n";
+        MushcoreXMLIStream xmlIStream(&ioIn.DataStreamGet());
+        Mushcore::Unpickle(xmlIStream, *this);
+    }
+    else if (ioIn.TagNameGet() == "u8")
+    {
+        ioIn.DataStreamGet() >> m_u8;
+    }
+    else if (ioIn.TagNameGet() == "u32")
+    {
+        ioIn.DataStreamGet() >> m_u32;
     }
 }
 
