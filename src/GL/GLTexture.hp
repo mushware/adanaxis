@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.hp,v 1.6 2002/02/23 23:58:45 southa Exp $
+ * $Id: GLTexture.hp,v 1.7 2002/02/25 23:05:14 southa Exp $
  * $Log: GLTexture.hp,v $
+ * Revision 1.7  2002/02/25 23:05:14  southa
+ * Subclassed GLTexture
+ *
  * Revision 1.6  2002/02/23 23:58:45  southa
  * Made buildable for cygwin
  *
@@ -50,23 +53,27 @@ class GLTexture
 public:
     virtual ~GLTexture() {}
     virtual GLTexture *Clone(void) const = 0;
-    virtual GLsizei Width(const TextureRef& inRef) const {return m_textureDefs[inRef].Width();}
-    virtual GLsizei Height(const TextureRef& inRef) const {return m_textureDefs[inRef].Height();}
-    virtual GLenum PixelFormat(const TextureRef& inRef) const {return m_textureDefs[inRef].PixelFormat();}
-    virtual GLenum PixelType(const TextureRef& inRef) const {return m_textureDefs[inRef].PixelType();}
-    virtual void *DataPtr(const TextureRef& inRef) const {return m_textureDefs[inRef].DataPtr();}
+    virtual GLsizei Width(const TextureRef& inRef) const {return TextureDefGet(inRef).Width();}
+    virtual GLsizei Height(const TextureRef& inRef) const {return TextureDefGet(inRef).Height();}
+    virtual GLenum PixelFormat(const TextureRef& inRef) const {return TextureDefGet(inRef).PixelFormat();}
+    virtual GLenum PixelType(const TextureRef& inRef) const {return TextureDefGet(inRef).PixelType();}
+    virtual void *DataPtr(const TextureRef& inRef) const {return TextureDefGet(inRef).DataPtr();}
+    virtual bool Valid(const TextureRef& inRef) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
+    virtual Size NumberOf(void) const {return m_textureDefs.size();}
     virtual ostream& ostreamPrint(ostream& inOut) const;
     
 protected:
     class TextureDef
     {
     public:
-        TextureDef(U8 *inDataPtr):m_dataPtr(inDataPtr) {}
-        ~TextureDef() {if (m_autoMonkey.FreeInDestructor()) delete[]m_dataPtr;}
+        TextureDef(): m_dataPtr(NULL) {}
+        TextureDef(U8 *inDataPtr): m_dataPtr(inDataPtr) {}
+        ~TextureDef() {if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete[]m_dataPtr;}
         void WidthSet(GLsizei inWidth) {m_width=inWidth;}
         void HeightSet(GLsizei inHeight) {m_height=inHeight;}
         void PixelFormatSet(GLenum inPixelFormat) {m_pixelFormat=inPixelFormat;}
         void PixelTypeSet(GLenum inPixelType) {m_pixelType=inPixelType;}
+        bool Valid(void) const {return (m_dataPtr != NULL);}
         GLsizei Width(void) const {return m_width;}
         GLsizei Height(void) const {return m_height;}
         GLenum PixelFormat(void) const {return m_pixelFormat;}
@@ -86,6 +93,9 @@ protected:
     void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
     const string& Filename(void) const {return m_inFilename;}
     void AddTextureDef(TextureDef& inDef) {m_textureDefs.push_back(inDef);}
+    void AddTextureDef(TextureDef& inDef, Size inWhere);
+    bool TextureDefValid(Size inWhere) const;
+    const TextureDef& TextureDefGet(Size inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
     vector<TextureDef> m_textureDefs;

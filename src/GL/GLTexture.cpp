@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.6 2002/02/24 22:49:33 southa Exp $
+ * $Id: GLTexture.cpp,v 1.7 2002/02/25 23:05:14 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.7  2002/02/25 23:05:14  southa
+ * Subclassed GLTexture
+ *
  * Revision 1.6  2002/02/24 22:49:33  southa
  * Got working under cygwin
  *
@@ -27,16 +30,39 @@ ostream&
 GLTexture::ostreamPrint(ostream& inOut) const
 {
     inOut << "source " << FiletypeName() << " '" << Filename() << "'";
-    inOut << " images=" << m_textureDefs.size();
-    for (TextureRef i=0; i<m_textureDefs.size(); ++i)
+    inOut << " images=" << NumberOf() << " ";
+    for (TextureRef i=0; i<NumberOf(); ++i)
     {
-        inOut << "[image " << i << ":";
-        inOut << " width=" << Width(i);
-        inOut << " height=" << Height(i);
-        inOut << " pixelFormat=" << PixelFormat(i);
-        inOut << " pixelType=" << PixelType(i);
-        inOut << " dataPtr=" << DataPtr(i) << "] ";
+        if (Valid(i))
+        {
+            inOut << "[image " << i << ":";
+            inOut << " width=" << Width(i);
+            inOut << " height=" << Height(i);
+            inOut << " pixelFormat=" << PixelFormat(i);
+            inOut << " pixelType=" << PixelType(i);
+            inOut << " dataPtr=" << DataPtr(i) << "] ";
+        }
+        else
+        {
+            inOut << "[Not valid] ";
+        }
     }
     return inOut;
 }
 
+void
+GLTexture::AddTextureDef(TextureDef& inDef, Size inWhere)
+{
+    if (m_textureDefs.size() < inWhere+1)
+    {
+        m_textureDefs.resize(inWhere+1);
+    }
+    m_textureDefs[inWhere] = inDef;
+}
+
+bool
+GLTexture::TextureDefValid(Size inWhere) const
+{
+    if (inWhere >= m_textureDefs.size()) return false;
+    return m_textureDefs[inWhere].Valid();
+}

@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.2 2002/02/23 11:43:36 southa Exp $
+ * $Id: Test.cpp,v 1.3 2002/02/23 17:54:45 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.3  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  * Revision 1.2  2002/02/23 11:43:36  southa
  * Added AutoMonkey
  *
@@ -87,13 +90,15 @@ Test::Test2(void)
 void
 Test::Test3(void)
 {
+    char workspace[]="hello";
+    
     AutoMonkey& monkey1=*new AutoMonkey;
     if (monkey1.ReferenceCountGet() != 1)
     {
         throw TestFail("AutoMonkey fault 1");
     }
 
-    if (!monkey1.FreeInDestructor())
+    if (!monkey1.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 2");
     }
@@ -106,11 +111,11 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 4");
     }
-    if (monkey1.FreeInDestructor())
+    if (monkey1.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 5");
     }
-    if (monkey2.FreeInDestructor())
+    if (monkey2.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 6");
     }
@@ -123,11 +128,11 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 8");
     }
-    if (monkey1.FreeInDestructor())
+    if (monkey1.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 9");
     }
-    if (monkey2.FreeInDestructor())
+    if (monkey2.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 10");
     }
@@ -140,11 +145,11 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 12");
     }
-    if (monkey1.FreeInDestructor())
+    if (monkey1.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 13");
     }
-    if (monkey2.FreeInDestructor())
+    if (monkey2.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 14");
     }
@@ -158,11 +163,11 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 41");
     }
-    if (monkey3.FreeInDestructor())
+    if (monkey3.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 42");
     }
-    if (monkey4.FreeInDestructor())
+    if (monkey4.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 43");
     }
@@ -171,7 +176,7 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 44");
     }
-    if (!monkey4.FreeInDestructor())
+    if (!monkey4.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 45");
     }
@@ -187,15 +192,15 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 48");
     }
-    if (monkey1.FreeInDestructor())
+    if (monkey1.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 49");
     }
-    if (monkey2.FreeInDestructor())
+    if (monkey2.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 50");
     }
-    if (monkey3.FreeInDestructor())
+    if (monkey3.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 51");
     }
@@ -208,11 +213,11 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 81");
     }
-    if (monkey2.FreeInDestructor())
+    if (monkey2.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 82");
     }
-    if (monkey3.FreeInDestructor())
+    if (monkey3.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 83");
     }
@@ -221,7 +226,7 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 84");
     }
-    if (!monkey3.FreeInDestructor())
+    if (!monkey3.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 85");
     }
@@ -230,9 +235,17 @@ Test::Test3(void)
     {
         throw TestFail("AutoMonkey fault 86");
     }
-    if (!monkey4.FreeInDestructor())
+    if (!monkey4.FreeInDestructor(workspace))
     {
         throw TestFail("AutoMonkey fault 87");
     }
     delete &monkey4;
+    // All monkeys gone
+    AutoMonkey& monkey5=*new AutoMonkey;
+    
+    if (monkey5.FreeInDestructor(NULL))
+    {
+        throw TestFail("AutoMonkey fault 100");
+    }
+    delete &monkey5;
 }

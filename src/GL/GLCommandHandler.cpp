@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.5 2002/02/23 20:05:15 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.6 2002/02/25 23:05:14 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.6  2002/02/25 23:05:14  southa
+ * Subclassed GLTexture
+ *
  * Revision 1.5  2002/02/23 20:05:15  southa
  * Added libraries and test files
  *
@@ -24,7 +27,7 @@
 #include "Installer.hp"
 #include "GLAppHandler.hp"
 #include "GLData.hp"
-#include "GLTextureGIF.hp"
+#include "GLTextureSpr.hp"
 #include "GLTest.hp"
 
 GLCommandHandler *GLCommandHandler::m_instance = NULL;
@@ -59,7 +62,7 @@ void GLCommandHandler::LoadPixmap(const string& inStr)
 {
     try
     {
-        GLData::Instance().AddTexture(GLTextureGIF(inStr));
+        GLData::Instance().AddTexture(GLTextureSpr(inStr));
     }
     catch (LoaderFail f)
     {

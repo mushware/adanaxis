@@ -1,0 +1,16 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreUtil
+{
+public:
+    static U32 BigEndianU32Get(istream& inIn);
+    static U32 LittleEndianU32Get(istream& inIn);
+    static U8 U8Get(istream& inIn);
+
+    static string TranslateFilename(const string& inStr) {return inStr;}
+};

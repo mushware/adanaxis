@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.2 2002/02/23 20:05:15 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.3 2002/02/24 22:49:33 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.3  2002/02/24 22:49:33  southa
+ * Got working under cygwin
+ *
  * Revision 1.2  2002/02/23 20:05:15  southa
  * Added libraries and test files
  *
@@ -20,8 +23,8 @@
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadPixmap ../test/test.gif");
-    glutInitWindowSize(640,480);
+    CoreApp::Instance().Process("loadPixmap ../test/test.spr");
+    glutInitWindowSize(300,300);
 
     char buf1[]="glutInit";
     char buf2[]="";
@@ -52,6 +55,8 @@ GLTest1AppHandler::Display(void)
 
     glLineWidth(5);
     static double ticker=0;
+    static TextureRef texNum=0;
+    
     glDrawBuffer(GL_BACK);
     glClearColor(1.0, 1.0, 1.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -72,12 +77,17 @@ GLTest1AppHandler::Display(void)
     glDisable(GL_LINE_SMOOTH);
     
     glRasterPos2f(0, 0);
-    glBitmap(0,0,0,0,20*sin(ticker), 20*cos(ticker),NULL);
+    glBitmap(0,0,0,0,20+20*sin(ticker), 20+20*cos(ticker),NULL);
     const GLTexture& tex=GLData::Instance().GetTexture(0);
     static int printCtr=0;
-    if (printCtr++ % 256==0) cerr << tex << endl;
-    glDrawPixels(tex.Width(0), tex.Height(0), tex.PixelFormat(0),
-                tex.PixelType(0), tex.DataPtr(0));
+
+    if (printCtr==0)
+    {
+        printCtr=1;
+        cerr << tex << endl;
+    }
+    glDrawPixels(tex.Width(texNum), tex.Height(texNum), tex.PixelFormat(texNum),
+                     tex.PixelType(texNum), tex.DataPtr(texNum));
     
     glPopAttrib();
 
@@ -86,7 +96,17 @@ GLTest1AppHandler::Display(void)
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
     glutSwapBuffers();
-    ticker+=0.05;
+    double oldTicker=ticker;
+    ticker+=0.10;
+    if ((int) ticker != (int) oldTicker)
+    {
+        for (int i=0; i<256; ++i)
+        {    
+            texNum++;
+            if (texNum >= GLData::Instance().GetTexture(0).NumberOf()) texNum=0;
+            if (tex.Valid(texNum)) break;
+        }
+    }
 }
 
 void
