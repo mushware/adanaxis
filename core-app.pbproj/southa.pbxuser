@@ -4181,7 +4181,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 80";
 		rLen = 0;
-		rLoc = 2025;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 1822;
@@ -4231,7 +4231,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 80";
 		rLen = 0;
-		rLoc = 2025;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 1822;
@@ -5101,7 +5101,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 56";
 		rLen = 0;
-		rLoc = 1911;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 959;
@@ -8145,7 +8145,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 59";
 		rLen = 0;
-		rLoc = 1911;
+		rLoc = 2007;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 951;
@@ -8185,7 +8185,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 25";
 		rLen = 0;
-		rLoc = 987;
+		rLoc = 1083;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 0;
@@ -8194,8 +8194,8 @@
 		fRef = 7A05C3C203CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.cpp: 2";
-		rLen = 376;
-		rLoc = 1;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -8205,7 +8205,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 38";
 		rLen = 0;
-		rLoc = 1097;
+		rLoc = 1193;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 0;
@@ -8809,7 +8809,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 908;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 0;
@@ -9088,8 +9088,8 @@
 		fRef = 7A05C3C203CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.cpp: __USER_LABEL_PREFIX__";
-		rLen = 376;
-		rLoc = 1;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -9099,7 +9099,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 908;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 2269;
@@ -9119,7 +9119,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 908;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 1603;
@@ -16235,8 +16235,8 @@
 		fRef = 7A05C3C203CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.cpp: 2";
-		rLen = 376;
-		rLoc = 1;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -18441,8 +18441,8 @@
 		fRef = 7A05C3C203CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.cpp: 2";
-		rLen = 376;
-		rLoc = 1;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -18452,7 +18452,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 94";
 		rLen = 0;
-		rLoc = 2549;
+		rLoc = 2645;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 1540;
@@ -18502,7 +18502,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 86";
 		rLen = 0;
-		rLoc = 2235;
+		rLoc = 2331;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1790;
@@ -18572,7 +18572,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 89";
 		rLen = 0;
-		rLoc = 2345;
+		rLoc = 2441;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 1629;
@@ -18610,7 +18610,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 88";
 		rLen = 0;
-		rLoc = 2330;
+		rLoc = 2426;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 1970;
@@ -18640,7 +18640,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 100";
 		rLen = 0;
-		rLoc = 2630;
+		rLoc = 2726;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 1769;
@@ -21428,6 +21428,134 @@
 		);
 		perUserDictionary = {
 			PBXPerProjectTemplateStateSaveDate = 83199115;
+			"PBXTemplateGeometry-D1A6B68F034E715A00C919A9" = {
+				ContentSize = "{597, 562}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {597, 539}}";
+					Split0 = {
+						ActiveTab = 4;
+						ActiveTabName = PBXCVSModule;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {597, 539}}";
+						Split0 = {
+							Frame = "{{0, 214}, {597, 325}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {597, 208}}";
+						};
+						Tab1 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {664, 208}}";
+								Split0 = {
+									Frame = "{{0, 24}, {664, 184}}";
+									Split0 = {
+										Frame = "{{0, 0}, {325, 184}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											96.123,
+										);
+										Frame = "{{334, 0}, {330, 184}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {664, 208}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {664, 50}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {664, 50}}";
+							};
+						};
+						Tab3 = {
+							BuildMessageFrame = "{{0, 0}, {614, 203}}";
+							BuildTranscriptFrame = "{{0, 212}, {614, 85}}";
+							BuildTranscriptFrameExpanded = YES;
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						Tab4 = {
+							Frame = "{{0, 0}, {597, 226}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {313, 531}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							280,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 557}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				NavBarShownByDefault = YES;
+				StatusViewVisible = YES;
+				Template = D1A6B68F034E715A00C919A9;
+				ToolbarVisible = NO;
+				WindowLocation = "{369, 238}";
+			};
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
