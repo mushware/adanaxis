@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.5 2002/10/22 20:42:08 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.6 2002/11/12 11:49:22 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.6  2002/11/12 11:49:22  southa
+ * Initial MHTML processing
+ *
  * Revision 1.5  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -122,3 +125,7 @@ PlatformVideoUtils::ForceShowCursor(void)
 {
 }
 
+void
+PlatformVideoUtils::AppActivate(void)
+{
+}

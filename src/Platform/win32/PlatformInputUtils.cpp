@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.6 2002/10/08 22:27:00 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.7 2002/10/22 20:42:08 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.7  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/10/08 22:27:00  southa
  * Fixed for win32
  *
@@ -49,44 +52,8 @@
 
 #include <windows.h>
 
-bool
-PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    POINT cursorPos;
-    GetCursorPos(&cursorPos);
-    ioX=cursorPos.x;
-    ioY=cursorPos.y;
-    if (ioX==ioLastX && ioY==ioLastY)
-    {
-	return false;
-    }
-    else
-    {
-	    return true;
-    }
-}
-
 void
-PlatformInputUtils::GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    outXDelta=ioX-ioLastX;
-    outYDelta=ioY-ioLastY;
-}
-
-void
-PlatformInputUtils::MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    RECT rc; 
-    GetClipCursor(&rc);
-    int newXPos=(rc.left+rc.right)/2;
-    int newYPos=(rc.top+rc.bottom)/2;
-    SetCursorPos(newXPos, newYPos);
-    ioLastX=newXPos;
-    ioLastY=newYPos;
-}
-
-void
-PlatformInputUtils::MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta)
+PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
 }
 
