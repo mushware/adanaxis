@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.2 2002/11/06 14:16:57 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.3 2002/11/07 00:53:37 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.3  2002/11/07 00:53:37  southa
+ * localweb work
+ *
  * Revision 1.2  2002/11/06 14:16:57  southa
  * Basic web server
  *
@@ -198,17 +201,20 @@ MediaNetWebLink::ReceivedProcess(const string& inStr)
         {
             SendTestPage();
         }
-        // check for dynamic files
-        if (m_webPath == "")
+        else
         {
-            CoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
+            // check for dynamic files
+            if (m_webPath == "")
+            {
+                CoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
+            }
+            if (m_webPath == "")
+            {
+                throw(NetworkFail("Path to web files (LOCALWEB_PATH) not set"));
+            }
+            filename = m_webPath+"/"+filename;
+            SendFile(filename);
         }
-        if (m_webPath == "")
-        {
-            throw(NetworkFail("Path to web files (LOCALWEB_PATH) not set"));
-        }
-        filename = m_webPath+"/"+filename;
-        SendFile(filename);
     }
     catch (NetworkFail &e)
     {

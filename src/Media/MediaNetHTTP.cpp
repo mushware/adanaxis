@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetHTTP.cpp,v 1.1 2002/11/07 00:53:37 southa Exp $
+ * $Log: MediaNetHTTP.cpp,v $
+ * Revision 1.1  2002/11/07 00:53:37  southa
+ * localweb work
+ *
  */
 
 #include "MediaNetHTTP.h"
@@ -44,6 +47,7 @@ MediaNetHTTP::Endl(void)
 void
 MediaNetHTTP::Header(void)
 {
+    m_content << "<html>" << m_endl;
     m_content << "<head>" << m_endl;
     m_content << "<link rel=\"StyleSheet\" href=\"/style.css\" type=\"text/css\">" << m_endl;
     m_content << "<title>" << m_title << "</title>" << m_endl;
