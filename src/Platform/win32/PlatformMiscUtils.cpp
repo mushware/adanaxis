@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.13 2002/10/08 22:27:00 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.14 2002/10/15 14:41:30 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.14  2002/10/15 14:41:30  southa
+ * Removed VBLWait
+ *
  * Revision 1.13  2002/10/08 22:27:00  southa
  * Fixed for win32
  *
@@ -58,6 +61,7 @@
  */
 
 #include "mushPlatform.h"
+#include "mushMedia.h"
 
 #include <windows.h>
 
@@ -122,4 +126,12 @@ PlatformMiscUtils::TweakArgs(string& ioStr)
 {
 }
 
+void
+PlatformMiscUtils::ErrorBox(const string& inStr)
+{
+    if (!MessageBox(NULL, inStr.c_str(), NULL, MB_OK|MB_ICONERROR))
+    {
+        cerr << "Dialog box failed: " << GetLastError() << endl;
+    }
+}
 

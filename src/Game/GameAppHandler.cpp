@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.26 2002/10/14 18:13:18 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.27 2002/10/15 14:02:30 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.27  2002/10/15 14:02:30  southa
+ * Mode changes
+ *
  * Revision 1.26  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -148,7 +151,9 @@ GameAppHandler::Idle(void)
     }
     catch (exception& e)
     {
-        cerr << "In idle handler: " << e.what() << endl;
-        std::exit(1);
+        cerr << "Exception in idle handler: " << e.what() << endl;
+
+        PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
+        exit(1);
     }
 }
