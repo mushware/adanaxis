@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.7 2002/07/16 17:48:08 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.8 2002/07/16 19:30:09 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.8  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.7  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *
@@ -42,6 +45,9 @@
 #include "GameData.h"
 #include "GameController.h"
 #include "GameGraphicSprite.h"
+#include "GameView.h"
+
+#include "mushGL.h"
 
 CoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
 
@@ -55,7 +61,7 @@ GamePiecePlayer::Render(void)
 }
 
 void
-GamePiecePlayer::MoveGet(GLPoint& outPoint, tVal& outAngle) const
+GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 {
     if (m_controller == NULL)
     {
@@ -64,49 +70,58 @@ GamePiecePlayer::MoveGet(GLPoint& outPoint, tVal& outAngle) const
     GameControllerState controlState;
     m_controller->StateGet(controlState);
 
-    tVal deltaAngle=0.01*controlState.mouseXDelta;
-    tVal angle=m_angle+deltaAngle;
+    outSpec = m_motion;
     
-    tVal deltaX=0;
-    tVal deltaY=0;
+    outSpec.deltaAngle=0.01*controlState.mouseXDelta;
+    tVal newAngle=outSpec.angle+outSpec.deltaAngle;
+
+    outSpec.deltaPos.RotateAboutZ(-newAngle);
     
     if (controlState.leftPressed)
     {
-        deltaX -= cos(angle);
-        deltaY += sin(angle);
+        outSpec.deltaPos.x -= 1.5;
     }
     if (controlState.rightPressed)
     {
-        deltaX += cos(angle);
-        deltaY -= sin(angle);
+        outSpec.deltaPos.x += 1.5;
     }
     if (controlState.upPressed)
     {
-        deltaX += sin(angle);
-        deltaY += cos(angle);
+        outSpec.deltaPos.y += 2;
     }
     if (controlState.downPressed)
     {
-        deltaX -= sin(angle);
-        deltaY -= cos(angle);
+        outSpec.deltaPos.y -= 2;
     }
-    tVal magnitude=sqrt(deltaX*deltaX+deltaY*deltaY);
-    if (magnitude > 0)
-    {
-        deltaX /= magnitude;
-        deltaY /= magnitude;
-    }
-    outPoint.x = deltaX*4;
-    outPoint.y = deltaY*4;
-    outAngle=deltaAngle;
+    GLRectangle speedLimits(-2,-8,2,8);
+    speedLimits.ConstrainPoint(outSpec.deltaPos);
+    
+    outSpec.deltaPos.RotateAboutZ(newAngle);
+
+    // Add overplot line
+    GameData::Instance().CurrentViewGet()->OverPlotGet().
+        RenderableAdd(GLLine(outSpec.pos,
+                             outSpec.pos+outSpec.deltaPos*10),
+                      GLColour(1,1,0));
 }
 
 void
-GamePiecePlayer::MoveAdd(const GLPoint& inVec, tVal inAngle)
+GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
 {
-    m_x+=inVec.x;
-    m_y+=inVec.y;
-    m_angle+=inAngle;
+    m_motion = inSpec;
+    m_motion.pos += m_motion.deltaPos;
+    m_motion.angle += m_motion.deltaAngle;
+
+    GLPoint retardPos(m_motion.deltaPos);
+    tVal magnitude=retardPos.Magnitude();
+    if (magnitude > 1)
+    {
+        retardPos /= magnitude;
+    }
+    
+    // m_motion.deltaPos -= retardPos;
+    m_motion.deltaPos /= 1.5;
+    m_motion.deltaAngle /= 8;
 }
 
 void
@@ -141,11 +156,11 @@ GamePiecePlayer::HandlePositionEnd(CoreXML& inXML)
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for position.  Should be <position>64,96,45</position>";
     char comma;
-    if (!(data >> m_x)) inXML.Throw(failMessage);
+    if (!(data >> m_motion.pos.x)) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> m_y)) inXML.Throw(failMessage);
+    if (!(data >> m_motion.pos.y)) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> m_angle)) inXML.Throw(failMessage);
+    if (!(data >> m_motion.angle)) inXML.Throw(failMessage);
 }
 
 void
@@ -163,7 +178,7 @@ GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
         m_graphics[i]->Pickle(inOut, inPrefix+"  ");
         inOut << inPrefix << "</graphic>" << endl;
     }
-    inOut << inPrefix << "<position>" << m_x << "," << m_y << "," << m_angle << "</position>" << endl;
+    inOut << inPrefix << "<position>" << m_motion.pos.x << "," << m_motion.pos.y << "," << m_motion.angle << "</position>" << endl;
 }
 
 void

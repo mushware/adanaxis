@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.2 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.3 2002/07/16 17:48:07 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.3  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.2  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -22,6 +25,7 @@
  */
 
 #include "GLRectangle.h"
+#include "GLUtils.h"
 
 GLRectangle::GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0):
 xmin(inMinX),
@@ -69,21 +73,21 @@ GLRectangle::IsWithin(const GLPoint& inPoint) const
 }
 
 tVal
-GLRectangle::XSize(void)
+GLRectangle::XSize(void) const
 {
     COREASSERT(xmin <= xmax);
     return xmax-xmin;
 }
 
 tVal
-GLRectangle::YSize(void)
+GLRectangle::YSize(void) const
 {
     COREASSERT(ymin <= ymax);
     return ymax-ymin;
 }
 
 GLPoint
-GLRectangle::Size(void)
+GLRectangle::Size(void) const
 {
     COREASSERT(xmin <= xmax && ymin <= ymax);
     return GLPoint(xmax-xmin, ymax-ymin);
@@ -95,3 +99,15 @@ GLRectangle::FixUp(void)
     if (xmin > xmax) swap(xmin, xmax);
     if (ymin > ymax) swap(ymin, ymax);
 }
+
+void
+GLRectangle::Render(void) const
+{
+    glBegin(GL_LINE_LOOP);
+    GLUtils::Vertex(xmin, ymin);
+    GLUtils::Vertex(xmax, ymin);
+    GLUtils::Vertex(xmax, ymax);
+    GLUtils::Vertex(xmin, ymax);
+    glEnd();
+}
+

@@ -1,11 +1,15 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLLine.cpp,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Log: GLLine.cpp,v $
+ * Revision 1.1  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  */
 
 #include "GLLine.h"
-#include "GLStandard.h"
 
+#include "GLStandard.h"
+#include "GLUtils.h"
 
 GLLine::GLLine(const GLPoint& inStart, const GLPoint& inEnd):
     m_start(inStart),
@@ -25,8 +29,8 @@ GLLine::RotateAboutCentre(tVal inAngle)
     GLPoint centre;
     CentreGet(centre);
 
-    m_start.RotateAboutPoint(centre, inAngle);
-    m_end.RotateAboutPoint(centre, inAngle);    
+    m_start.RotateAboutZ(centre, inAngle);
+    m_end.RotateAboutZ(centre, inAngle);    
 }
 
 const GLPoint&
@@ -45,7 +49,7 @@ void
 GLLine::Render(void) const
 {
     glBegin(GL_LINES);
-    glVertex2f(m_start.x, m_start.y);
-    glVertex2f(m_end.x, m_end.y);
+    GLUtils::Vertex(m_start.x, m_start.y);
+    GLUtils::Vertex(m_end.x, m_end.y);
     glEnd();
 }

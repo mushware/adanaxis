@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.h,v 1.2 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLRectangle.h,v 1.3 2002/07/16 17:48:07 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.3  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.2  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -26,18 +29,23 @@
 #include "mushCore.h"
 
 #include "GLPoint.h"
+#include "GLRenderable.h"
 
-class GLRectangle
+class GLRectangle : public GLRenderable
 {
 public:
     GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0);
     GLRectangle(const GLPoint& inMin, const GLPoint& inMax);
+
+    virtual GLRectangle *Clone(void) const { return new GLRectangle(*this); }
+    virtual void Render(void) const;
+
     void Clip(const GLRectangle& inClip);
     void ConstrainPoint(GLPoint& ioPoint) const;
     bool IsWithin(const GLPoint& inPoint) const;
-    tVal XSize(void);
-    tVal YSize(void);
-    GLPoint Size(void);
+    tVal XSize(void) const;
+    tVal YSize(void) const;
+    GLPoint Size(void) const;
     GLPoint MinPoint(void) const { return GLPoint(xmin, ymin); }
     void FixUp(void);
     tVal xmin;

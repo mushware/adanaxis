@@ -1,3 +1,5 @@
+#ifndef MUSHGL_H
+#define MUSHGL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.0)
@@ -12,8 +14,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.8 2002/07/06 18:04:14 southa Exp $
+ * $Id: mushGL.h,v 1.9 2002/07/16 17:48:07 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.9  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.8  2002/07/06 18:04:14  southa
  * More designer work
  *
@@ -42,15 +47,15 @@
  * Created API directory
  *
  */
-#ifndef MUSHGL_H
-#define MUSHGL_H
 
 #include "GL/GLAppHandler.h"
+#include "GL/GLColour.h"
 #include "GL/GLData.h"
 #include "GL/GLLine.h"
 #include "GL/GLQuad.h"
 #include "GL/GLPoint.h"
 #include "GL/GLRectangle.h"
+#include "GL/GLRenderable.h"
 #include "GL/GLStandard.h"
 #include "GL/GLTexture.h"
 #include "GL/GLTextureRef.h"

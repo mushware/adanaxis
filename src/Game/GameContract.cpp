@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.28 2002/07/16 17:48:07 southa Exp $
+ * $Id: GameContract.cpp,v 1.29 2002/07/16 19:30:08 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.29  2002/07/16 19:30:08  southa
+ * Simplistic collision checking
+ *
  * Revision 1.28  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -111,10 +114,16 @@
 #include "GamePiecePlayer.h"
 #include "GameFloorDesigner.h"
 #include "GameMapArea.h"
+#include "GameMotionSpec.h"
+#include "GameView.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
-GameContract::GameContract(): m_gameState(kInit), m_fps(0), m_frames(0)
+GameContract::GameContract() :
+    m_gameState(kInit),
+    m_fps(0),
+    m_frames(0),
+    m_currentView(NULL)
 {
 }
 
@@ -190,14 +199,11 @@ GameContract::RunningDisplay(void)
     GLPoint aimingPoint=GLPoint(m_player->XGet() / m_floorMap->XStep(),
                                 m_player->YGet() / m_floorMap->YStep());
     {
-        GLPoint point;
-        GLPoint scale(m_floorMap->XStep(), m_floorMap->YStep());
-        tVal angle;
-        m_player->MoveGet(point, angle);
-        point /= scale;
-        m_floorMap->SolidMapGet().TrimVector(point, aimingPoint);
-        point *= scale;
-        m_player->MoveAdd(point, angle);
+        GameMotionSpec motion;
+        // GLPoint scale(m_floorMap->XStep(), m_floorMap->YStep());
+        m_player->MoveGet(motion);
+        // m_floorMap->SolidMapGet().TrimMotion(motion);
+        m_player->MoveConfirm(motion);
     }
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     GameMapArea visibleArea;
@@ -231,6 +237,14 @@ GameContract::RunningDisplay(void)
     m_player->Render();
     GLUtils::IdentityEpilogue();
 
+    GLUtils::IdentityPrologue();
+    GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
+    glMatrixMode(GL_MODELVIEW);
+    COREASSERT(m_currentView != NULL);
+    m_currentView->OverPlotGet().Render();
+    m_currentView->OverPlotGet().Clear();
+    GLUtils::IdentityEpilogue();
+    
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
@@ -252,6 +266,8 @@ GameContract::DesigningDisplay(void)
 void
 GameContract::Init(void)
 {
+    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+
     m_tileMap=GameData::Instance().TileMapGet("tiles");
     m_floorMap=GameData::Instance().FloorMapGet("floor");
     COREASSERT(m_tileMap != NULL);
@@ -263,6 +279,10 @@ GameContract::Init(void)
     COREASSERT(m_player != NULL);
     m_floorDesigner=new GameFloorDesigner; // This is leaked
     m_floorDesigner->Init();
+    GameData::Instance().ViewGetOrCreate("view1");
+    m_currentView=GameData::Instance().CurrentViewGet();
+    COREASSERT(m_currentView != NULL);
+    m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));
     // GameData::Instance().DumpAll(cout);
 }
 

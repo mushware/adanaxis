@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.5 2002/07/16 17:48:08 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.6 2002/07/16 19:30:09 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.6  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.5  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *
@@ -34,6 +37,7 @@
  */
 
 #include "GamePiece.h"
+#include "GameMotionSpec.h"
 
 class GameGraphic;
 class GameController;
@@ -42,23 +46,21 @@ class GamePiecePlayer: public GamePiece
 {
 public:
     GamePiecePlayer():
-    m_x(0),
-    m_y(0),
-    m_angle(0),
     m_controllerName("controller1"),
     m_controller(NULL)
         {}
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual void MoveGet(GLPoint& outPoint, tVal& outAngle) const;
-    virtual void MoveAdd(const GLPoint& inVec, tVal inAngle);
+    virtual void MoveGet(GameMotionSpec& inSpec) const;
+    virtual void MoveConfirm(const GameMotionSpec& inSpec);
     virtual void Render(void);
     virtual string TypeNameGet(void) const {return "player";};
 
-    tVal XGet(void) {return m_x;}
-    tVal YGet(void) {return m_y;}
-    tVal AngleGet(void) {return m_angle;}
+    tVal XGet(void) {return m_motion.pos.x;}
+    tVal YGet(void) {return m_motion.pos.y;}
+    const GLPoint& PositionGet(void) { return m_motion.pos; }
+    tVal AngleGet(void) {return m_motion.angle;}
 
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
@@ -92,9 +94,7 @@ private:
     PickleState m_pickleState;
     bool m_baseThreaded;
 
-    tVal m_x;
-    tVal m_y;
-    tVal m_angle;
+    GameMotionSpec m_motion;
     vector <GameGraphic *> m_graphics;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData

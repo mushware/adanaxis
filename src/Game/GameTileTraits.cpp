@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.8 2002/07/16 17:48:09 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.9 2002/07/16 19:30:09 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.9  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.8  2002/07/16 17:48:09  southa
  * Collision and optimisation work
  *
@@ -88,7 +91,8 @@ GameTileTraits::PermeabilityGet(tVal& outPermeability) const
             }
         }
     }
-    
+
+    // This logic is flawed
     static bool notWarnedYet=true;
     if (!foundPerm && notWarnedYet)
     {

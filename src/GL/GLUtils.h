@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.12 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLUtils.h,v 1.13 2002/07/08 14:22:02 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.13  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.12  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -65,6 +68,7 @@ public:
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(tVal inX, tVal inY);
 
+    static void Vertex(tVal inX, tVal inY) { glVertex2f(inX, inY); }
     static void IdentityPrologue(void);
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
@@ -75,6 +79,10 @@ public:
     static void DisplayEpilogue(void);
     static void ClearScreen(void);
     static void SetColour(float inRed, float inGreen, float inBlue);
+    static void SetColour(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha)
+    {
+        glColor4f(inRed, inGreen, inBlue, inAlpha);
+    }
     static void DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2);
     static void DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3);
     static void RasterPos(tVal inX, tVal inY);

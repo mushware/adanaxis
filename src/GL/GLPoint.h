@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.2 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLPoint.h,v 1.3 2002/07/16 17:48:07 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.3  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.2  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -24,8 +27,9 @@
  */
 
 #include "mushCore.h"
+#include "GLRenderable.h"
 
-class GLPoint
+class GLPoint : public GLRenderable
 {
 public:
     GLPoint(tVal inX=0, tVal inY=0):
@@ -33,14 +37,25 @@ public:
         y(inY)
         {}
 
+    virtual GLPoint *Clone(void) const { return new GLPoint(*this); }
+    virtual void Render(void) const;
+    
     U32 U32XGet(void) const { return static_cast<U32>(x); }
     U32 U32YGet(void) const { return static_cast<U32>(y); }
-    void RotateAboutPoint(const GLPoint& inPoint, tVal inAngle)
+    void RotateAboutZ(const GLPoint& inPoint, tVal inAngle)
     {
+        tVal xtemp=x;
         x = inPoint.x + (x - inPoint.x) * cos(inAngle) + (y - inPoint.y) * sin(inAngle);
-        y = inPoint.y + (y - inPoint.y) * cos(inAngle) - (x - inPoint.x) * sin(inAngle);
+        y = inPoint.y + (y - inPoint.y) * cos(inAngle) - (xtemp - inPoint.x) * sin(inAngle);
+    }
+    void RotateAboutZ(tVal inAngle)
+    {
+        tVal xtemp = x;
+        x = x * cos(inAngle) + y * sin(inAngle);
+        y = y * cos(inAngle) - xtemp * sin(inAngle);
     }
     tVal MagnitudeSquared(void) const { return x*x+y*y; }
+    tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
     void MakeInteger(void)
     {
         double temp;
@@ -50,6 +65,7 @@ public:
         y=temp;
     }
     void Print(ostream& inOstream) const { inOstream << "(" << x << "," << y << ")"; }
+    
     GLPoint& operator+=(const GLPoint& inPoint) {x+=inPoint.x; y+=inPoint.y; return *this;}
     GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
     GLPoint& operator*=(const GLPoint& inPoint) {x*=inPoint.x; y*=inPoint.y; return *this;}

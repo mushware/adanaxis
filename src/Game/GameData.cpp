@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.7 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameData.cpp,v 1.8 2002/07/06 18:04:19 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.8  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.7  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -44,6 +47,7 @@
 #include "GameTraits.h"
 #include "GameController.h"
 #include "GamePiece.h"
+#include "GameView.h"
 
 GameData *GameData::m_instance=NULL;
 
@@ -76,6 +80,11 @@ GameData::~GameData()
     }
     for (map<string, GamePiece *>::iterator p = m_pieces.begin();
          p != m_pieces.end(); ++p)
+    {
+        delete p->second;
+    }
+    for (map<string, GameView *>::iterator p = m_views.begin();
+         p != m_views.end(); ++p)
     {
         delete p->second;
     }
@@ -211,7 +220,7 @@ GameData::ControllerGet(const string& inName) const
     map<string, GameController *>::const_iterator p = m_controllers.find(inName);
     if (p == m_controllers.end())
     {
-        throw(GameDataNotPresent("Access to non-existent floormap '"+inName+"'"));
+        throw(GameDataNotPresent("Access to non-existent controller '"+inName+"'"));
     }
     return p->second;
 }
@@ -241,6 +250,45 @@ GameData::PieceGet(const string& inName) const
         throw(GameDataNotPresent("Access to non-existent piece '"+inName+"'"));
     }
     return p->second;
+}
+
+GameView *
+GameData::ViewGetOrCreate(const string& inName)
+{
+    map<string, GameView *>::const_iterator p = m_views.find(inName);
+    if (p == m_views.end())
+    {
+        GameView *pView(new GameView);
+        m_views[inName]=pView;
+        return pView;
+    }
+    else
+    {
+        return p->second;
+    }
+}
+
+GameView *
+GameData::ViewGet(const string& inName) const
+{
+    map<string, GameView *>::const_iterator p = m_views.find(inName);
+    if (p == m_views.end())
+    {
+        throw(GameDataNotPresent("Access to non-existent view '"+inName+"'"));
+    }
+    return p->second;
+}
+
+GameView *
+GameData::CurrentViewGet(void) const
+{
+    // Just return the first one for now
+    for (map<string, GameView *>::const_iterator p = m_views.begin();
+         p != m_views.end(); ++p)
+    {
+        return p->second;
+    }
+    throw(GameDataNotPresent("Access to non-existent current view"));
 }
 
 void

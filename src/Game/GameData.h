@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.6 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameData.h,v 1.7 2002/07/06 18:04:19 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.7  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.6  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -44,6 +47,7 @@ class GameContract;
 class GameTraits;
 class GameController;
 class GamePiece;
+class GameView;
 
 class GameData
 {
@@ -62,6 +66,11 @@ public:
     GameController *ControllerGet(const string& inName) const;
     GamePiece *PieceDeleteAndCreate(const string& inName, GamePiece *inPiece);
     GamePiece *PieceGet(const string& inName) const;
+    GameView *ViewGetOrCreate(const string& inName);
+    GameView *ViewGet(const string& inName) const;
+
+    GameView *CurrentViewGet(void) const;
+
     void DumpAll(ostream& inOut) const;
 
 private:
@@ -72,6 +81,8 @@ private:
     map<string, GameTraits *> m_traits;
     map<string, GameController *> m_controllers;
     map<string, GamePiece *> m_pieces;
+    map<string, GameView *> m_views;
+    
     static GameData *m_instance;
 };
 

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.12 2002/07/02 14:27:08 southa Exp $
+ * $Id: GameContract.h,v 1.13 2002/07/06 18:04:18 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.13  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.12  2002/07/02 14:27:08  southa
  * First floor map designer build
  *
@@ -59,6 +62,7 @@ class GameFloorMap;
 class GameTileMap;
 class GamePiecePlayer;
 class GameFloorDesigner;
+class GameView;
 
 class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
@@ -120,6 +124,7 @@ private:
     tVal m_fps;
     U32 m_frames;
     GameFloorDesigner *m_floorDesigner;
+    GameView *m_currentView;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
