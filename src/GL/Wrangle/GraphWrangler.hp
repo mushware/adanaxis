@@ -1,0 +1,40 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "Wrangler.hp"
+
+class GLTexture;
+
+class GraphWrangler : public Wrangler
+{
+public:
+    GraphWrangler(GLTexture &inTex):
+        m_state(kInit),
+        m_tex(inTex),
+        m_dataPtr(NULL)
+        {}
+
+    void Process(bool& outDoQuit, bool& outRedraw);
+
+protected:
+    enum State
+    {
+        kInit,
+        kFindVertAxis,
+        kFindHorizAxis,
+    };     
+
+    void Init(void);
+    void FindVertAxis(void);
+    void FindHorizAxis(void);
+    
+private:
+    State m_state;
+    GLTexture& m_tex;
+    Size m_width;
+    Size m_height;
+    Size m_hbytes;
+    U32 *m_dataPtr;
+};

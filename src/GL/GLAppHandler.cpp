@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.2 2002/02/24 22:49:33 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.2  2002/02/24 22:49:33  southa
+ * Got working under cygwin
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
@@ -54,25 +57,34 @@ GLAppHandler::CheckGLError(void)
 void
 GLAppHandler::Idle(bool& outQuit, int& outUSleepFor)
 {
-    Display();
+    glutPostRedisplay();
     CoreAppHandler::Idle(outQuit, outUSleepFor);
+}
+
+void
+GLAppHandler::StandardInit(void)
+{
+    char *argv[] = {"glutInit", ""};
+    int argc=sizeof(argv)/sizeof(argv[0]);
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDisable(GL_LIGHTING);
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_BLEND);
+    glDisable(GL_LINE_SMOOTH);
+    glutVisibilityFunc(VisibilityHandler);
+    CheckGLError();
 }
 
 void
 GLAppHandler::Initialise(void)
 {
-    char buf1[]="glutInit";
-    char buf2[]="";
-    char buf3[]="";
-    char *argv[] = {buf1,buf2,buf3};
-    int argc=sizeof(argv)/sizeof(argv[0]);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA);
-    glutCreateWindow("GLApp");
+    StandardInit();
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    CheckGLError();
+    glutCreateWindow("GLApp");
 }
 
 void
@@ -81,6 +93,21 @@ GLAppHandler::IdleHandler(void)
     bool doQuit;
     int uSleepFor;
     Instance().Idle(doQuit, uSleepFor);
+}
+
+void
+GLAppHandler::VisibilityHandler(int inState)
+{
+    if (inState == GLUT_NOT_VISIBLE)
+    {
+        cerr << "Invisible" << endl;
+        Instance().Signal(kSignalNotVisible);
+    }
+    else if (inState == GLUT_VISIBLE)
+    {
+        cerr << "Visible" << endl;
+        Instance().Signal(kSignalVisible);
+    }
 }
 
 void
@@ -134,8 +161,47 @@ GLAppHandler::Display(void)
 }
 
 void
+GLAppHandler::Signal(U32 inSignal)
+{
+    switch (inSignal)
+    {
+        case kSignalVisible:
+            m_visible=true;
+            break;
+
+        case kSignalNotVisible:
+            m_visible=false;
+            break;
+    }
+}    
+
+void
 GLAppHandler::MainLoop(void)
 {
     glutMainLoop();
     CheckGLError();
 }
+
+void
+GLAppHandler::OrthoPrologue(void)
+{
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, 	glutGet(GLUT_WINDOW_HEIGHT));
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    glPushAttrib(GL_ENABLE_BIT);
+}
+
+void
+GLAppHandler::OrthoEpilogue(void)
+{
+    glPopAttrib();
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);    
+}
+

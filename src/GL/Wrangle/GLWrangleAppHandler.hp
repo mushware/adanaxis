@@ -1,0 +1,24 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "GL/GLAppHandler.hp"
+#include "CoreCommandHandler.hp"
+
+class Wrangler;
+
+class GLWrangleAppHandler : public GLAppHandler
+{
+public:
+    GLWrangleAppHandler(): m_pWrangler(NULL) {}
+    virtual void Initialise(void);
+    virtual void Display(void);
+    virtual void Idle(bool& outQuit, int& outUSleepFor);    
+
+protected:
+private:
+    static void IdleHandler(void);
+    static void DisplayHandler(void) {Instance().Display();}
+    Wrangler *m_pWrangler;
+};

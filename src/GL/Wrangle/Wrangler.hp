@@ -1,0 +1,12 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class Wrangler
+{
+public:
+    virtual void Process(bool& outDoQuit, bool& outRedraw) = 0;
+};

@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.cpp,v 1.4 2002/02/23 23:58:45 southa Exp $
+ * $Id: GLData.cpp,v 1.5 2002/02/25 23:05:14 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.5  2002/02/25 23:05:14  southa
+ * Subclassed GLTexture
+ *
  * Revision 1.4  2002/02/23 23:58:45  southa
  * Made buildable for cygwin
  *
@@ -35,7 +38,7 @@ GLData::AddTexture(const GLTexture& inTexture)
     return ref;
 }
 
-const GLTexture&
+GLTexture&
 GLData::GetTexture(const TextureRef& inRef)
 {
     return *m_textures[inRef];

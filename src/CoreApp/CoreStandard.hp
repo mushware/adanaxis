@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.hp,v 1.6 2002/03/05 22:44:46 southa Exp $
+ * $Id: CoreStandard.hp,v 1.7 2002/03/07 22:24:33 southa Exp $
  * $Log: CoreStandard.hp,v $
+ * Revision 1.7  2002/03/07 22:24:33  southa
+ * Command interpreter working
+ *
  * Revision 1.6  2002/03/05 22:44:46  southa
  * Changes to command handling
  *
@@ -34,6 +37,7 @@
 #include <stdexcept>
 #include <stdlib.h>
 #include <errno.h>
+#include <assert.h>
 
 typedef double Val;
 typedef unsigned int U32;
@@ -41,5 +45,7 @@ typedef unsigned char U8;
 typedef size_t Size;
 
 #define Vec vector
+
+#define COREASSERT(exp) assert(exp)
 
 #endif
