@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.24 2002/08/08 18:20:29 southa Exp $
+ * $Id: GLUtils.cpp,v 1.25 2002/08/13 17:50:20 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.25  2002/08/13 17:50:20  southa
+ * Added playsound command
+ *
  * Revision 1.24  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
  *
@@ -503,7 +506,7 @@ GLUtils::TextureParamsReset(void)
             break;
 
         case kQualityHigh:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
             break;
 
