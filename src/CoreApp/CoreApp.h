@@ -1,6 +1,9 @@
 /*
- * $Id: CoreApp.h,v 1.4 2002/03/07 22:24:32 southa Exp $
+ * $Id: CoreApp.h,v 1.1 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.1  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.4  2002/03/07 22:24:32  southa
  * Command interpreter working
  *
@@ -36,8 +39,6 @@ protected:
     static CoreApp *m_instance;
     
 private:
-
-
     list<ChildRecord> m_children;
 };
 

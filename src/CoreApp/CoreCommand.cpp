@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.7 2002/05/24 16:23:09 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.8 2002/05/28 13:07:03 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.8  2002/05/28 13:07:03  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.7  2002/05/24 16:23:09  southa
  * Config and typenames
  *
@@ -34,8 +37,7 @@
 void
 CoreCommand::Execute(void)
 {
-    CoreEnv env;
-    Execute(env);
+    Execute(CoreEnv::Instance());
 }
 
 void

@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.6 2002/05/10 16:39:40 southa Exp $
+ // $Id: CoreFlex.flex,v 1.7 2002/05/28 13:07:04 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.6 2002/05/10 16:39:40 southa Exp $
+ * $Id: CoreFlex.flex,v 1.7 2002/05/28 13:07:04 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.7  2002/05/28 13:07:04  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.6  2002/05/10 16:39:40  southa
  * Changed .hp files to .h
  *
@@ -41,21 +44,37 @@ string      {sstring}|{dstring}
 ws          [ \t]+
 alpha       [A-Za-z]
 dig         [0-9]
-url         (http|ftp):{unq_string}
-piper       ->
-identifier  ({alpha}|{dig}|\$)({alpha}|{dig}|[_.\-/$])*
+identifier  ({alpha}|_)({alpha}|{dig}|_)*
 variable    \${identifier}
 num1        [-+]?{dig}+\.?([eE][-+]?{dig}+)?
 num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
-operator    [-+/*]
-unq_string  [^\n; \t]+
 eos	        [;\n]
- 
+
 %%
 
-{ws}    /* skip blanks and tabs */
+{ws}    /* ignore whitespace */
+        
+","     {
+            IFFLEXTESTING(cerr << "," << endl);
+            return ',';
+        }
+        
+"("     {
+            IFFLEXTESTING(cerr << "(" << endl);
+            return '(';
+        }
 
+")"     {
+            IFFLEXTESTING(cerr << ")" << endl);
+            return ')';
+        }
+                    
+"+"     {
+            IFFLEXTESTING(cerr << yytext << endl);
+            return '+';
+        }
+                    
 "/*"    {
         int c;
 
@@ -71,17 +90,6 @@ eos	        [;\n]
             }
         }
 
-{url} {
-    IFFLEXTESTING(cerr << "url='" << yytext << "'" << endl);
-    *outScalar=yytext;
-    return URL;
-}
-
-{piper} {
-    IFFLEXTESTING(cerr << "piper" << endl);
-    return PIPER;
-}
-
 {variable} {
     IFFLEXTESTING(cerr << "variable='" << yytext << "'" << endl);
     *outScalar=yytext;
@@ -94,16 +102,16 @@ eos	        [;\n]
     return IDENTIFIER;
 }
 
+{number} {
+    IFFLEXTESTING(cerr << "number='" << yytext << "'" << endl);
+    *outScalar=yytext;
+    return NUMBER;
+}
+
 {string} {
     IFFLEXTESTING(cerr << "string='" << yytext << "'" << endl);
     *outScalar=string(&yytext[1], strlen(yytext)-2);
     return STRING;
-}
-
-{unq_string} {
-    IFFLEXTESTING(cerr << "unq_string='" << yytext << "'" << endl);
-    *outScalar=yytext;
-    return UNQUOTED_STRING;
 }
 
 {eos} {
@@ -124,7 +132,7 @@ eos	        [;\n]
 
 %%
 
-CoreFlex::CoreFlex(const string& inStr): m_scalar(0), m_eofFound(false);
+CoreFlex::CoreFlex(const string& inStr): m_scalar(0), m_eofFound(false)
 {
     m_buffer_state=yy_scan_bytes(inStr.c_str(), inStr.size());
     if (m_buffer_state == NULL) throw "Flex failed";

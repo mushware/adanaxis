@@ -1,8 +1,11 @@
 #ifndef CORECONFIG_H
 #define CORECONFIG_H
 /*
- * $Id: CoreConfig.h,v 1.4 2002/05/27 12:58:42 southa Exp $
+ * $Id: CoreConfig.h,v 1.5 2002/05/28 13:07:03 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.5  2002/05/28 13:07:03  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.4  2002/05/27 12:58:42  southa
  * GameContract and global configs added
  *
@@ -29,6 +32,7 @@ public:
     void Set(const string& inName, const string& inStr) { Set(inName, CoreScalar(inStr)); }
     void Set(const string& inName, const tVal inVal) { Set(inName, CoreScalar(inVal)); }
     const CoreScalar& Get(const string& inName) const;
+    bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool ConfigExists(const string& inName) const;
     virtual void Pickle(ostream& inOut) const;
     virtual void Unpickle(CoreXML& inXML);

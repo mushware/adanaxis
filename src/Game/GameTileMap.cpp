@@ -1,12 +1,18 @@
 /*
- * $Id: GameTileMap.cpp,v 1.1 2002/05/28 22:36:44 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.2 2002/05/29 08:56:16 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.2  2002/05/29 08:56:16  southa
+ * Tile display
+ *
  * Revision 1.1  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
  */
 
 #include "GameTileMap.h"
+#include "GameData.h"
+
+CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 
 const string&
 GameTileMap::NameGet(U32 inNum) const
@@ -150,3 +156,28 @@ void
 GameTileMap::XMLDataHandler(CoreXML& inXML)
 {
 }
+
+CoreScalar
+GameTileMap::LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(CommandFail("Usage: loadtilemap <name> <filename>"));
+    }
+    string name, filename;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(filename);
+    ifstream inStream(filename.c_str());
+    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    CoreXML xml(inStream, filename);
+    GameData::Instance().TileMapGetOrCreate(name)->Unpickle(xml);
+    return CoreScalar(0);
+}
+
+void
+GameTileMap::Install(void)
+{
+    CoreApp::Instance().AddHandler("loadtilemap", LoadTileMap);
+}
+
+

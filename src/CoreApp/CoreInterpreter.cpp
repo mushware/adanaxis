@@ -1,6 +1,9 @@
 /*
- * $Id: CoreInterpreter.cpp,v 1.3 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreInterpreter.cpp,v 1.4 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.4  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -22,13 +25,12 @@ CoreInterpreter *CoreInterpreter::m_instance = NULL;
 CoreScalar
 CoreInterpreter::Execute(CoreCommand& ioCommand)
 {
-    CoreEnv ioEnv;
     CoreScalar retScalar(0);
     if (m_handlers.find(ioCommand.Name()) != m_handlers.end())
     {
         try
         {
-            retScalar=m_handlers[ioCommand.Name()](ioCommand, ioEnv);
+            retScalar=m_handlers[ioCommand.Name()](ioCommand, CoreEnv::Instance());
         }
         catch (FileFail& f)
         {

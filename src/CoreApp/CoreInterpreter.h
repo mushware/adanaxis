@@ -1,6 +1,9 @@
 /*
- * $Id: CoreInterpreter.h,v 1.3 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreInterpreter.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreInterpreter.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -30,7 +33,6 @@ public:
     virtual void AddHandler(const string& inName, CoreCommandHandler inHandler);
     
 private:
-    CoreEnv m_env;
     map<string, CoreCommandHandler> m_handlers;
     static CoreInterpreter *m_instance;
 };

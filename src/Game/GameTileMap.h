@@ -1,8 +1,11 @@
 #ifndef GAMETILEMAP_H
 #define GAMETILEMAP_H
 /*
- * $Id: GameTileMap.h,v 1.1 2002/05/28 22:36:44 southa Exp $
+ * $Id: GameTileMap.h,v 1.2 2002/05/29 08:56:16 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.2  2002/05/29 08:56:16  southa
+ * Tile display
+ *
  * Revision 1.1  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -16,8 +19,10 @@ public:
     GameTileMap(): m_state(kInit) {}
     virtual void Pickle(ostream& inOut) const;
     virtual void Unpickle(CoreXML& inXML);
-    void Load(void);
     const string& NameGet(U32 inNum) const;
+    void Load(void);
+    static CoreScalar LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static void Install(void);
     
 protected:
     void XMLStartHandler(CoreXML& inXML);

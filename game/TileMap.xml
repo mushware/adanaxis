@@ -2,9 +2,9 @@
 <!-- Tile map -->
 <tilemap version="0.0">
 <script type="text/core">
-loadpixmap gra ../../game/gra1.tiff
+loadpixmap('gra',$IMAGEPATH+'/gra1.tiff')
 <!-- decompose options are src, dest, xsize, ysize, xstart, ystart, xnum, ynum -->
-decompose gra gra_@ 32 32
+decompose('gra','gra_@',32,32)
 </script>
 <map>1 gra_0_0</map>
 <map>2 gra_1_0</map>

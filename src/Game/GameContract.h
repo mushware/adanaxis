@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.2 2002/05/28 13:05:55 southa Exp $
+ * $Id: GameContract.h,v 1.3 2002/05/28 22:36:44 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.3  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.2  2002/05/28 13:05:55  southa
  * Command parser extensions and TIFF loader
  *
@@ -39,5 +42,5 @@ protected:
 private:
     State m_state;
     auto_ptr<GameMap> m_gameMap;
-    auto_ptr<GameTileMap> m_tileMap;
+    GameTileMap *m_tileMap;
 };
