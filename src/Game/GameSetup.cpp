@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DFa98ulYfXZ2Qe7EUcpS0A
 /*
- * $Id: GameSetup.cpp,v 1.35 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameSetup.cpp,v 1.36 2003/10/06 22:23:45 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.36  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.35  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -126,14 +129,12 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
-#include "MustlGameClient.h"
-#include "MustlGameServer.h"
-#include "MustlGameUtils.h"
 #include "GameRouter.h"
 #include "GameSTL.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"
+#include "mushMustlGame.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

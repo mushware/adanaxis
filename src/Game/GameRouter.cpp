@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wEGV1dv23L0/XdO/oScH6A
 /*
- * $Id: GameRouter.cpp,v 1.27 2003/10/04 15:32:09 southa Exp $
+ * $Id: GameRouter.cpp,v 1.28 2003/10/06 22:23:44 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.28  2003/10/06 22:23:44  southa
+ * Game to GameMustl move
+ *
  * Revision 1.27  2003/10/04 15:32:09  southa
  * Module split
  *
@@ -99,12 +102,10 @@
 
 #include "GameRouter.h"
 
-
-#include "MustlGameID.h"
-#include "MustlGameObject.h"
-#include "MustlGameUtils.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
+
+#include "mushMustlGame.h"
 
 using namespace Mushware;
 using namespace std;

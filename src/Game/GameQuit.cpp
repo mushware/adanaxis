@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } d8DjgNYhSxudAN0lVxP0ow
 /*
- * $Id: GameQuit.cpp,v 1.13 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameQuit.cpp,v 1.14 2003/10/06 22:23:44 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.14  2003/10/06 22:23:44  southa
+ * Game to GameMustl move
+ *
  * Revision 1.13  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -59,11 +62,11 @@
 
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
-#include "MustlGameUtils.h"
 #include "GameSTL.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"
+#include "mushMustlGame.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

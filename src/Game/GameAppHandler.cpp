@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.50 2003/10/04 15:32:08 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.51 2003/10/06 22:23:43 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.51  2003/10/06 22:23:43  southa
+ * Game to GameMustl move
+ *
  * Revision 1.50  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -173,14 +176,13 @@
 #include "mushPlatform.h"
 
 #include "GameConfig.h"
-#include "MustlGameClient.h"
-#include "MustlGameServer.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
 #include "GameSTL.h"
 #include "GameSetup.h"
 
 #include "mushMedia.h"
+#include "mushMustlGame.h"
 
 using namespace Mushware;
 using namespace std;
