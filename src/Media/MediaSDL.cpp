@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: MediaSDL.cpp,v 1.4 2002/08/05 21:23:22 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.5 2002/08/05 22:19:44 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.5  2002/08/05 22:19:44  southa
+ * Removed SDL_Quit for MacOS X
+ *
  * Revision 1.4  2002/08/05 21:23:22  southa
  * Potential fix for missing SDL_Quit
  *
@@ -37,7 +40,6 @@ MediaSDL::~MediaSDL()
     if (m_inited != 0)
     {
 #if !defined(__APPLE__) && !defined(MACOSX)
-#error
         // Curiously this crashes with a malloc problem on MacOS X
         cerr << "Quitting SDL" << endl;
         SDL_Quit();
