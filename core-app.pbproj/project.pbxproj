@@ -2379,6 +2379,8 @@
 				F593968A028C01AE016230BF,
 				F54020AD02A2423901F0D71D,
 				F54020AE02A2423901F0D71D,
+				F5F06F1202AE5D2001B05200,
+				F5F06F1302AE5D2001B05200,
 				F545EE7B02A66359018FABF3,
 				F545EE7C02A66359018FABF3,
 				F545EEA102A67378018FABF3,
@@ -2389,6 +2391,12 @@
 				F546321E02AD04B701A7DA6B,
 				F54020C502A25BFC01F0D71D,
 				F54020C602A25BFC01F0D71D,
+				F5F06F0602AE531801B05200,
+				F5F06F0702AE531801B05200,
+				F5F06F0E02AE554301B05200,
+				F5F06F0F02AE554301B05200,
+				F5F06F0A02AE542D01B05200,
+				F5F06F0B02AE542D01B05200,
 				F5939693028C067F016230BF,
 				F5939694028C067F016230BF,
 				F5F2C66302A410DA01CB7A62,
@@ -2523,6 +2531,9 @@
 				F5450B8A02AD78D8010FCD91,
 				F5450B8B02AD78D8010FCD91,
 				F54668B502AE2A590163596F,
+				F5F06F0902AE531801B05200,
+				F5F06F1102AE554301B05200,
+				F5F06F1502AE5D2001B05200,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -2591,6 +2602,9 @@
 				F54631F402ACD53201A7DA6B,
 				F546321B02AD022D01A7DA6B,
 				F546321F02AD04B701A7DA6B,
+				F5F06F0802AE531801B05200,
+				F5F06F1002AE554301B05200,
+				F5F06F1402AE5D2001B05200,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -3035,6 +3049,90 @@
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
 			refType = 4;
+		};
+		F5F06F0602AE531801B05200 = {
+			isa = PBXFileReference;
+			name = GamePiece.cpp;
+			path = Game/GamePiece.cpp;
+			refType = 4;
+		};
+		F5F06F0702AE531801B05200 = {
+			isa = PBXFileReference;
+			name = GamePiece.h;
+			path = Game/GamePiece.h;
+			refType = 4;
+		};
+		F5F06F0802AE531801B05200 = {
+			fileRef = F5F06F0602AE531801B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F06F0902AE531801B05200 = {
+			fileRef = F5F06F0702AE531801B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F06F0A02AE542D01B05200 = {
+			isa = PBXFileReference;
+			name = GamePlayer.cpp;
+			path = Game/GamePlayer.cpp;
+			refType = 4;
+		};
+		F5F06F0B02AE542D01B05200 = {
+			isa = PBXFileReference;
+			name = GamePlayer.h;
+			path = Game/GamePlayer.h;
+			refType = 4;
+		};
+		F5F06F0E02AE554301B05200 = {
+			isa = PBXFileReference;
+			name = GamePiecePlayer.cpp;
+			path = Game/GamePiecePlayer.cpp;
+			refType = 4;
+		};
+		F5F06F0F02AE554301B05200 = {
+			isa = PBXFileReference;
+			name = GamePiecePlayer.h;
+			path = Game/GamePiecePlayer.h;
+			refType = 4;
+		};
+		F5F06F1002AE554301B05200 = {
+			fileRef = F5F06F0E02AE554301B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F06F1102AE554301B05200 = {
+			fileRef = F5F06F0F02AE554301B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F06F1202AE5D2001B05200 = {
+			isa = PBXFileReference;
+			name = GameController.cpp;
+			path = Game/GameController.cpp;
+			refType = 4;
+		};
+		F5F06F1302AE5D2001B05200 = {
+			isa = PBXFileReference;
+			name = GameController.h;
+			path = Game/GameController.h;
+			refType = 4;
+		};
+		F5F06F1402AE5D2001B05200 = {
+			fileRef = F5F06F1202AE5D2001B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F06F1502AE5D2001B05200 = {
+			fileRef = F5F06F1302AE5D2001B05200;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5F2C65602A3C0B201CB7A62 = {
 			isa = PBXFileReference;

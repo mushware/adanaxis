@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.h,v 1.3 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameData.h,v 1.4 2002/06/04 20:27:37 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.4  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.3  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -18,6 +21,8 @@ class GameTileMap;
 class GameFloorMap;
 class GameContract;
 class GameTraits;
+class GameController;
+class GamePiece;
 
 class GameData
 {
@@ -32,6 +37,10 @@ public:
     GameContract *ContractGet(const string& inName) const;
     GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
     GameTraits *TraitsGet(const string& inName) const;
+    GameController *ControllerGetOrCreate(const string& inName);
+    GameController *ControllerGet(const string& inName) const;
+    GamePiece *PieceDeleteAndCreate(const string& inName, GamePiece *inPiece);
+    GamePiece *PieceGet(const string& inName) const;
     void DumpAll(ostream& inOut) const;
 
 private:
@@ -40,6 +49,8 @@ private:
     map<string, GameFloorMap *> m_floormaps;
     map<string, GameContract *> m_contracts;
     map<string, GameTraits *> m_traits;
+    map<string, GameController *> m_controllers;
+    map<string, GamePiece *> m_pieces;
     static GameData *m_instance;
 };
 

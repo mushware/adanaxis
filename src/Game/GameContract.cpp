@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.14 2002/06/04 20:27:35 southa Exp $
+ * $Id: GameContract.cpp,v 1.15 2002/06/05 12:28:05 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.15  2002/06/05 12:28:05  southa
+ * Map rendered using traits
+ *
  * Revision 1.14  2002/06/04 20:27:35  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -53,6 +56,7 @@
 #include "GameGlobalConfig.h"
 #include "GameAppHandler.h"
 #include "GameTileTraits.h"
+#include "GamePiecePlayer.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -122,7 +126,8 @@ GameContract::RunningDisplay(void)
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(80,80, angle);
+    m_player->Move();
+    GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
 
     glMatrixMode(GL_MODELVIEW);
     U32 xsize=m_floorMap->XSize();
@@ -153,6 +158,9 @@ GameContract::Init(void)
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
     m_tileMap->Load();
+    GameData::Instance().ControllerGetOrCreate("controller1");
+    m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceDeleteAndCreate("player1", new GamePiecePlayer));
+    COREASSERT(m_player != NULL);
     GameData::Instance().DumpAll(cout);
 }
 

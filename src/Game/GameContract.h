@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.7 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameContract.h,v 1.8 2002/06/04 20:27:36 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.8  2002/06/04 20:27:36  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.7  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -27,6 +30,7 @@
 
 class GameFloorMap;
 class GameTileMap;
+class GamePiecePlayer;
 
 class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
@@ -81,6 +85,7 @@ private:
     GameState m_gameState;
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
+    GamePiecePlayer *m_player;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

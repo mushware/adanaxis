@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.cpp,v 1.4 2002/06/04 20:27:36 southa Exp $
+ * $Id: GameData.cpp,v 1.5 2002/06/05 12:28:05 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.5  2002/06/05 12:28:05  southa
+ * Map rendered using traits
+ *
  * Revision 1.4  2002/06/04 20:27:36  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -20,6 +23,8 @@
 #include "GameFloorMap.h"
 #include "GameContract.h"
 #include "GameTraits.h"
+#include "GameController.h"
+#include "GamePiece.h"
 
 GameData *GameData::m_instance=NULL;
 
@@ -42,6 +47,16 @@ GameData::~GameData()
     }
     for (map<string, GameTraits *>::iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
+    {
+        delete p->second;
+    }
+    for (map<string, GameController *>::iterator p = m_controllers.begin();
+         p != m_controllers.end(); ++p)
+    {
+        delete p->second;
+    }
+    for (map<string, GamePiece *>::iterator p = m_pieces.begin();
+         p != m_pieces.end(); ++p)
     {
         delete p->second;
     }
@@ -151,6 +166,60 @@ GameData::TraitsGet(const string& inName) const
     if (p == m_traits.end())
     {
         throw(GameDataNotPresent("Access to non-existent trait '"+inName+"'"));
+    }
+    return p->second;
+}
+
+GameController *
+GameData::ControllerGetOrCreate(const string& inName)
+{
+    map<string, GameController *>::const_iterator p = m_controllers.find(inName);
+    if (p == m_controllers.end())
+    {
+        GameController *pController(new GameController);
+        m_controllers[inName]=pController;
+        return pController;
+    }
+    else
+    {
+        return p->second;
+    }
+}
+
+GameController *
+GameData::ControllerGet(const string& inName) const
+{
+    map<string, GameController *>::const_iterator p = m_controllers.find(inName);
+    if (p == m_controllers.end())
+    {
+        throw(GameDataNotPresent("Access to non-existent floormap '"+inName+"'"));
+    }
+    return p->second;
+}
+
+GamePiece *
+GameData::PieceDeleteAndCreate(const string& inName, GamePiece *inPiece)
+{
+    map<string, GamePiece *>::iterator p = m_pieces.find(inName);
+    if (p != m_pieces.end())
+    {
+        delete p->second;
+        p->second=inPiece;
+    }
+    else
+    {
+        m_pieces[inName]=inPiece;
+    }
+    return inPiece;
+}
+
+GamePiece *
+GameData::PieceGet(const string& inName) const
+{
+    map<string, GamePiece *>::const_iterator p = m_pieces.find(inName);
+    if (p == m_pieces.end())
+    {
+        throw(GameDataNotPresent("Access to non-existent piece '"+inName+"'"));
     }
     return p->second;
 }
