@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: ChildRecord.cpp,v 1.4 2002/06/27 00:07:06 southa Exp $
+ * $Id: ChildRecord.cpp,v 1.5 2002/06/27 12:36:02 southa Exp $
  * $Log: ChildRecord.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:02  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/06/27 00:07:06  southa
  * Catch up
  *
@@ -27,10 +30,10 @@
  *
  */
 
-#include "ChildRecord.h"
+#include "CoreChildRecord.h"
 #include "CorePOSIX.h"
 
-ChildRecord::ChildRecord(int inPid, int inInPipe, int inOutPipe)
+CoreChildRecord::CoreChildRecord(int inPid, int inInPipe, int inOutPipe)
 {
     m_pid = inPid;
     m_inPipe = inInPipe;
@@ -38,7 +41,7 @@ ChildRecord::ChildRecord(int inPid, int inInPipe, int inOutPipe)
 }
 
 bool
-ChildRecord::StatusGet(ChildStatus &outStatus)
+CoreChildRecord::StatusGet(CoreChildStatus &outStatus)
 {
 #ifdef HAVE_POSIX
     int status=0;
@@ -49,7 +52,7 @@ ChildRecord::StatusGet(ChildStatus &outStatus)
 }
 
 bool
-ChildRecord::OutputAppend(string &outStr)
+CoreChildRecord::OutputAppend(string &outStr)
 {
 #ifdef HAVE_POSIX
     int result;

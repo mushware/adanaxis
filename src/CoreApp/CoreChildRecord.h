@@ -1,5 +1,5 @@
-#ifndef CHILDRECORD_H
-#define CHILDRECORD_H
+#ifndef CORECHILDRECORD_H
+#define CORECHILDRECORD_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.0)
@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: ChildRecord.h,v 1.1 2002/05/10 16:39:37 southa Exp $
+ * $Id: ChildRecord.h,v 1.2 2002/06/27 12:36:02 southa Exp $
  * $Log: ChildRecord.h,v $
+ * Revision 1.2  2002/06/27 12:36:02  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -27,9 +30,8 @@
  */
 
 #include "CoreStandard.h"
-using namespace std;
 
-class ChildStatus
+class CoreChildStatus
 {
 public:
     bool Exited(void) {return m_exited;}
@@ -45,7 +47,7 @@ private:
     int m_returnCode;
 };
 
-inline ostream& operator<<(ostream &s, ChildStatus cs)
+inline ostream& operator<<(ostream &s, CoreChildStatus cs)
 {
     return s << "exited=" << cs.Exited() << ", " <<
     "signalled=" << cs.Signalled() << ", " <<
@@ -53,11 +55,11 @@ inline ostream& operator<<(ostream &s, ChildStatus cs)
     "returncode=" << cs.ReturnCode();
 }
 
-class ChildRecord
+class CoreChildRecord
 {
 public:
-    ChildRecord(int inPid, int inInPipe, int inOutPipe);
-    bool StatusGet(ChildStatus& outStatus);
+    CoreChildRecord(int inPid, int inInPipe, int inOutPipe);
+    bool StatusGet(CoreChildStatus& outStatus);
     bool OutputAppend(string &outStr);
 
 private:
