@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.11 2002/07/02 18:36:56 southa Exp $
+ * $Id: GLUtils.h,v 1.12 2002/07/06 18:04:18 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.12  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.11  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -54,6 +57,7 @@
 #include "GLStandard.h"
 
 class GLTexture;
+class GLRectangle;
 
 class GLUtils
 {
@@ -77,8 +81,11 @@ public:
     static void BitmapText(const string& inStr);
     static void DrawSprite(const GLTexture& inTex, tVal inX, tVal inY);
     static void DrawSprite(const GLTexture& inTex);
+    static void DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle);
     static void DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAngle);
     static void PostRedisplay(void);
+    static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
+    static void RotateAboutZ(tVal inAngle);
     
 private:
     static void SafetyHandler(void);

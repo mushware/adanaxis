@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.5 2002/07/07 11:16:07 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.6 2002/07/07 13:25:56 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.6  2002/07/07 13:25:56  southa
+ * Template designer
+ *
  * Revision 1.5  2002/07/07 11:16:07  southa
  * More designer work
  *
@@ -305,13 +308,13 @@ GameFloorDesigner::Save(void)
 {
     string filename;
     const CoreScalar *pScalar;
-    if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "DESIGNERMAPNAME"))
+    if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "DESIGNER_MAP_NAME"))
     {
         filename=pScalar->StringGet();
     }
     else
     {
-        filename=CoreEnv::Instance().VariableGet("CONTRACTPATH").StringGet()+"/designer_map.xml";
+        filename=CoreEnv::Instance().VariableGet("CONTRACT_PATH").StringGet()+"/designer_map.xml";
     }
     cout << "Saving F1 buffer to file '" << filename << "'" << endl;
 

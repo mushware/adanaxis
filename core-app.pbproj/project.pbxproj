@@ -2630,33 +2630,15 @@
 		};
 		F5483A9902D19E6101480ACF = {
 			children = (
-				F5483A9A02D19E6101480ACF,
-				F5483A9B02D19E6101480ACF,
 				F5483A9C02D19E6101480ACF,
-				F5483A9D02D19E6101480ACF,
 			);
 			isa = PBXGroup;
 			path = system;
 			refType = 4;
 		};
-		F5483A9A02D19E6101480ACF = {
-			isa = PBXApplicationReference;
-			path = ic2.app;
-			refType = 4;
-		};
-		F5483A9B02D19E6101480ACF = {
-			isa = PBXFileReference;
-			path = contractor.ico;
-			refType = 4;
-		};
 		F5483A9C02D19E6101480ACF = {
 			isa = PBXFileReference;
 			path = start.txt;
-			refType = 4;
-		};
-		F5483A9D02D19E6101480ACF = {
-			isa = PBXExecutableFileReference;
-			path = ic2;
 			refType = 4;
 		};
 		F5483A9E02D19E6101480ACF = {

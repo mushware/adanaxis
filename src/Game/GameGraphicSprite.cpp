@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.3 2002/06/27 12:36:07 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.4 2002/07/06 18:04:19 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -32,7 +35,11 @@ GameGraphicSprite::Render(void)
 {
     if (m_texRef.Exists())
     {
-        GLUtils::DrawSprite(*m_texRef.TextureGet());
+        if (m_rotation != 0)
+        {
+            GLUtils::RotateAboutZ(m_rotation);
+        }
+        GLUtils::DrawSprite(*m_texRef.TextureGet(), m_rectangle);
     }    
 }
 
@@ -40,6 +47,30 @@ void
 GameGraphicSprite::HandleNameEnd(CoreXML& inXML)
 {
     m_texRef.NameSet(inXML.TopData());
+}
+
+void
+GameGraphicSprite::HandleRectEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for rect.  Should be <rect>0,0,1,1</rect>";
+    tVal x,y,width,height;
+    char comma;
+    if (!(data >> x)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> y)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> width)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> height)) inXML.Throw(failMessage);
+    m_rectangle=GLRectangle(x, y, x+width, y+height);
+}
+
+void
+GameGraphicSprite::HandleRotateEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    if (!(data >> m_rotation)) inXML.Throw("Bad format for rotate.  Should be <rotate>90</rotate>");
 }
 
 void
@@ -58,6 +89,7 @@ void
 GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<name>" << m_texRef.NameGet() << "</name>" << endl;
+    inOut << inPrefix << "<!-- Not fully implemented -->" << endl;
 }
 
 void
@@ -68,9 +100,15 @@ GameGraphicSprite::UnpicklePrologue(void)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["name"] = &GameGraphicSprite::NullHandler;
     m_endTable[kPickleData]["name"] = &GameGraphicSprite::HandleNameEnd;
+    m_startTable[kPickleData]["rect"] = &GameGraphicSprite::NullHandler;
+    m_endTable[kPickleData]["rect"] = &GameGraphicSprite::HandleRectEnd;
+    m_startTable[kPickleData]["rotate"] = &GameGraphicSprite::NullHandler;
+    m_endTable[kPickleData]["rotate"] = &GameGraphicSprite::HandleRotateEnd;
     m_endTable[kPickleData]["graphic"] = &GameGraphicSprite::HandleGraphicEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
+    m_rotation=0;
+    m_rectangle=GLRectangle(0,0,1,1);
 }
 
 void

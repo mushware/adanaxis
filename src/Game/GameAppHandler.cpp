@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.19 2002/07/02 14:27:08 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.20 2002/07/06 18:04:18 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.20  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.19  2002/07/02 14:27:08  southa
  * First floor map designer build
  *
@@ -93,7 +96,7 @@ GameAppHandler::Initialise(void)
     m_pGame->ScriptFunction("load");
 
     string displayType("fullscreen");
-    CoreEnv::Instance().VariableGetIfExists(displayType, "DISPLAYTYPE");
+    CoreEnv::Instance().VariableGetIfExists(displayType, "DISPLAY_TYPE");
     if (displayType == "fullscreen")
     {
         EnterScreen(kGame);
@@ -104,7 +107,7 @@ GameAppHandler::Initialise(void)
     }
     else
     {
-        throw(CommandFail("Bad value for DISPLAYTYPE ("+displayType+").  Choices are fullscreen or window"));
+        throw(CommandFail("Bad value for DISPLAY_TYPE ("+displayType+").  Choices are fullscreen or window"));
     }
     GLUtils::CheckGLError();
 }

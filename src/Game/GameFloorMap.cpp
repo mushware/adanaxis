@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.7 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.8 2002/07/07 11:16:07 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.8  2002/07/07 11:16:07  southa
+ * More designer work
+ *
  * Revision 1.7  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -64,28 +67,37 @@ GameFloorMap::Render(const GameTileMap& inTileMap)
 {
     GLUtils  gl;
     glMatrixMode(GL_MODELVIEW);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     U32 xsize=XSize();
     U32 ysize=YSize();
     gl.SetPosition(0,0);
+    GLUtils::Scale(m_xstep, m_ystep, 1);
     GLUtils::SetColour(1,1,1);
     for (U32 x=0; x<xsize; x++)
     {
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=At(x,y);
-            tVal basex=m_xstep*x;
-            tVal basey=m_ystep*y;
+            tVal basex=x;
+            tVal basey=y;
             gl.MoveTo(basex,basey);
             GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
+            glPushMatrix();
             tileTraits.Render();
+            glPopMatrix();
         }
     }
+
 }
 
 void
 GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight)
 {
     GLUtils  gl;
+    glMatrixMode(GL_MODELVIEW);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
 
     U32 timeNow=glAppHandler.GetMilliseconds();
@@ -94,22 +106,23 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
     U32 xsize=XSize();
     U32 ysize=YSize();
     gl.SetPosition(0,0);
+    GLUtils::Scale(m_xstep, m_ystep, 1);
     for (U32 x=0; x<xsize; x++)
     {
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=At(x,y);
-            tVal basex=m_xstep*x;
-            tVal basey=m_ystep*y;
+            tVal basex=x;
+            tVal basey=y;
             gl.MoveTo(basex,basey);
             GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
             if (x>=inHighlight.xmin && x < inHighlight.xmax &&
                 y>=inHighlight.ymin && y < inHighlight.ymax)
             {
-		tVal clockNow=timeNow+x*xv+y*yv;
-	    	tVal redBri=0.4+0.35*sin(clockNow/200.0);
-    		tVal greenBri=0.4+0.35*sin(clockNow/201.0);
-    		tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+                tVal clockNow=timeNow+x*xv+y*yv;
+                tVal redBri=0.4+0.35*sin(clockNow/200.0);
+                tVal greenBri=0.4+0.35*sin(clockNow/201.0);
+                tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
                 GLUtils::SetColour(redBri, greenBri, blueBri);
             }
@@ -117,7 +130,9 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
             {
                 GLUtils::SetColour(1,1,1);
             }
+            glPushMatrix();
             tileTraits.Render();
+            glPopMatrix();
         }
     }
 }

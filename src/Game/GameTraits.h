@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTraits.h,v 1.3 2002/06/27 12:36:08 southa Exp $
+ * $Id: GameTraits.h,v 1.4 2002/07/06 18:04:20 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.4  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:08  southa
  * Build process fixes
  *
@@ -41,7 +44,7 @@ public:
     
 protected:
     U32 NumberOfTraitsGet(void) const;
-    const GameTraits& GetTraits(U32 inIndex) const;
+    GameTraits& TraitsGet(U32 inIndex) const;
     const string TraitsNameGet(void) const;
 
     void UnpicklePrologue(void);

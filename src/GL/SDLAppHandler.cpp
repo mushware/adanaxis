@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.5 2002/07/06 18:04:18 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.6 2002/07/07 13:44:18 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.6  2002/07/07 13:44:18  southa
+ * Screen size config variables
+ *
  * Revision 1.5  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -126,16 +129,16 @@ SDLAppHandler::EnterScreen(tInitType inType)
     switch (inType)
     {
         case kGame:
-            CoreEnv::Instance().VariableGetIfExists(m_width, "GAMEDISPLAYWIDTH");
-            CoreEnv::Instance().VariableGetIfExists(m_height, "GAMEDISPLAYHEIGHT");
-            CoreEnv::Instance().VariableGetIfExists(m_bpp, "GAMEDISPLAYBPP");
+            CoreEnv::Instance().VariableGetIfExists(m_width, "FULLSCREEN_DISPLAY_WIDTH");
+            CoreEnv::Instance().VariableGetIfExists(m_height, "FULLSCREEN_DISPLAY_HEIGHT");
+            CoreEnv::Instance().VariableGetIfExists(m_bpp, "FULLSCREEN_DISPLAY_BPP");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL|SDL_FULLSCREEN);
             break;
 
         case kWindow:
-            CoreEnv::Instance().VariableGetIfExists(m_width, "WINDOWDISPLAYWIDTH");
-            CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOWDISPLAYHEIGHT");
-            CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOWDISPLAYBPP");
+            CoreEnv::Instance().VariableGetIfExists(m_width, "WINDOW_DISPLAY_WIDTH");
+            CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOW_DISPLAY_HEIGHT");
+            CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOW_DISPLAY_BPP");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL);
             break;
 

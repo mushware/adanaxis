@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.14 2002/06/27 12:36:06 southa Exp $
+ * $Id: GLUtils.cpp,v 1.15 2002/07/06 18:04:18 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.15  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.14  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -61,6 +64,7 @@
 #include "GLUtils.h"
 #include "GLTexture.h"
 #include "GLAppHandler.h"
+#include "GLRectangle.h"
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -209,6 +213,24 @@ GLUtils::DrawSprite(const GLTexture& inTex)
 }
 
 void
+GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
+{
+    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glTexCoord2f(inRectangle.xmin,inRectangle.ymin);
+    glVertex2f(-0.5,-0.5);
+    glTexCoord2f(inRectangle.xmin,inRectangle.ymax);
+    glVertex2f(-0.5,0.5);
+    glTexCoord2f(inRectangle.xmax,inRectangle.ymax);
+    glVertex2f(0.5,0.5);
+    glTexCoord2f(inRectangle.xmax,inRectangle.ymin);
+    glVertex2f(0.5,-0.5);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+}
+
+void
 GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
 {
     tVal width=inTex.Width();
@@ -272,6 +294,18 @@ void GLUtils::PostRedisplay(void)
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
 
     glHandler.PostRedisplay();
+}
+
+void
+GLUtils::Scale(tVal inXScale, tVal inYScale, tVal inZScale)
+{
+    glScaled(inXScale, inYScale, inZScale);
+}
+
+void
+GLUtils::RotateAboutZ(tVal inAngle)
+{
+    glRotated(inAngle, 0, 0, 1);
 }
 
 void

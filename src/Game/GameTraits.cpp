@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTraits.cpp,v 1.4 2002/06/27 12:36:08 southa Exp $
+ * $Id: GameTraits.cpp,v 1.5 2002/07/06 18:04:19 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:08  southa
  * Build process fixes
  *
@@ -57,7 +60,8 @@ GameTraits::NumberOfTraitsGet(void) const
     return m_baseTraits.size();
 }
 
-const GameTraits& GameTraits::GetTraits(U32 inIndex) const
+GameTraits&
+GameTraits::TraitsGet(U32 inIndex) const
 {
     if (!m_traitsValid)
     {

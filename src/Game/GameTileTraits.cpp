@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.5 2002/06/27 12:36:07 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.6 2002/07/06 18:04:19 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.6  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.5  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -45,6 +48,10 @@ GameTileTraits::~GameTileTraits()
 void
 GameTileTraits::Render(void)
 {
+    for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+    {
+        dynamic_cast<GameTileTraits&>(TraitsGet(i)).Render();
+    }
     for (U32 i=0; i<m_graphics.size(); ++i)
     {
         m_graphics[i]->Render();
