@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.31 2002/10/08 17:13:16 southa Exp $
+ * $Id: GLUtils.cpp,v 1.32 2002/10/08 21:44:08 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.32  2002/10/08 21:44:08  southa
+ * 3D maps
+ *
  * Revision 1.31  2002/10/08 17:13:16  southa
  * Tiered maps
  *
@@ -202,7 +205,7 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
-    gluOrtho2D(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y);
+    glOrtho(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y,-100,100);
     gluLookAt(inX, inY, -1.0, // eye position
               inX, inY, -2.0, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
