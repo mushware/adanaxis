@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameTileTraits.h,v 1.11 2002/10/10 18:25:15 southa Exp $
+ * $Id: GameTileTraits.h,v 1.12 2002/10/10 22:47:58 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.12  2002/10/10 22:47:58  southa
+ * Full light definitions
+ *
  * Revision 1.11  2002/10/10 18:25:15  southa
  * Light links and test lights
  *
@@ -104,6 +107,8 @@ private:
     bool m_hasAdhesion;
     GLLightDef m_light;
     bool m_hasLight;
+    GLuint m_listName;
+    bool m_listValid;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTileTraits& inObj)

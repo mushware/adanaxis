@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.16 2002/10/11 20:10:15 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.17 2002/10/12 11:22:21 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.17  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  * Revision 1.16  2002/10/11 20:10:15  southa
  * Various fixes and new files
  *
@@ -75,18 +78,55 @@ GameTileTraits::~GameTileTraits()
     {
         delete m_graphics[i];
     }
+    // Delete GL list
+    // glDeleteLists(m_listName, 1);
 }
 
 void
 GameTileTraits::Render(void)
 {
-    for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+    if (m_listValid)
     {
-        dynamic_cast<GameTileTraits&>(TraitsGet(i)).Render();
+        if (m_listName != 0)
+        {
+            COREASSERT(glIsList(m_listName));
+// GLState::Reset();
+            glEnable(GL_TEXTURE_2D);
+            glCallList(m_listName);
+        }
     }
-    for (U32 i=0; i<m_graphics.size(); ++i)
+    else
     {
-        m_graphics[i]->Render();
+        U32 traitsSize=NumberOfTraitsGet();
+        for (U32 i=0; i<traitsSize; ++i)
+        {
+            dynamic_cast<GameTileTraits&>(TraitsGet(i)).Render();
+        }
+        
+        U32 graphicsSize=m_graphics.size();
+        if (graphicsSize > 0)
+        {
+            m_listName=glGenLists(1);
+            // GLState::Reset();
+
+            glNewList(m_listName, GL_COMPILE);
+
+            for (U32 i=0; i<graphicsSize; ++i)
+            {
+
+
+                m_graphics[i]->Render();
+            }
+
+            glEndList();
+            glCallList(m_listName);
+            // glDeleteLists(m_listName, 1);
+        }
+        else
+        {
+            m_listName=0;
+        }
+        m_listValid=true;
     }
 }
 
@@ -244,6 +284,8 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_adhesion=-1;
     m_hasAdhesion=false;
     m_hasLight=false;
+    m_listName=0;
+    m_listValid=false;
     
     inXML.ParseStream(*this);
 }

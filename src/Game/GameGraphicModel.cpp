@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.2 2002/10/12 15:25:18 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.3 2002/10/12 17:34:20 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.3  2002/10/12 17:34:20  southa
+ * Wall edges
+ *
  * Revision 1.2  2002/10/12 15:25:18  southa
  * Facet renderer
  *
@@ -47,7 +50,8 @@ GameGraphicModel::Render(void)
             GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
             GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
             GLRender::NormalArraySet(facetDef.normals.ArrayGet());
-            GLRender::VertexTextureArray(facetDef.type, arraySize);
+            //GLRender::DrawArrays(facetDef.type, arraySize);
+            GLRender::ArraysToList(facetDef.type, arraySize);
         }
     }    
 }

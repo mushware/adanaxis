@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLRender.h,v 1.1 2002/10/12 15:24:58 southa Exp $
+ * $Id: GLRender.h,v 1.2 2002/10/12 17:34:20 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.2  2002/10/12 17:34:20  southa
+ * Wall edges
+ *
  * Revision 1.1  2002/10/12 15:24:58  southa
  * Facet renderer
  *
@@ -34,26 +37,33 @@ public:
     static void VertexArraySet(const GLfloat (*inArray)[3])
     {
         glVertexPointer(3, GL_FLOAT, 0, inArray);
+        m_vertexArray=inArray;
     }
     static void TexCoordArraySet(const GLfloat (*inArray)[2])
     {
-            glTexCoordPointer(2, GL_FLOAT, 0, inArray);
+        glTexCoordPointer(2, GL_FLOAT, 0, inArray);
+        m_texCoordArray=inArray;
     }
     static void NormalArraySet(const GLfloat (*inArray)[3])
     {
         glNormalPointer(GL_FLOAT, 0, inArray);
+        m_normalArray=inArray;
     }
     static void TextureSet(const GLTextureRef& inTexRef)
     {
         GLState::BindTexture(inTexRef.BindingNameGet());
         GLState::TextureEnable();
     }
-    static void VertexTextureArray(GLenum inType, U32 inSize)
+    static void DrawArrays(GLenum inType, U32 inSize)
     {
         glDrawArrays(inType, 0, inSize);
     }
+    static void ArraysToList(GLenum inType, U32 inSize);
 
 private:
+    static const GLfloat (*m_vertexArray)[3];
+    static const GLfloat (*m_texCoordArray)[2];
+    static const GLfloat (*m_normalArray)[3];
 };
 
 

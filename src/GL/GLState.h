@@ -2,8 +2,11 @@
 #define GLSTATE_H
 
 /*
- * $Id: GLState.h,v 1.2 2002/10/12 17:34:20 southa Exp $
+ * $Id: GLState.h,v 1.3 2002/10/13 12:26:46 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.3  2002/10/13 12:26:46  southa
+ * Facetised map rendering
+ *
  * Revision 1.2  2002/10/12 17:34:20  southa
  * Wall edges
  *
@@ -295,8 +298,11 @@ GLState::Reset(void)
     DepthSet(kDepthNone);
     m_modulateState=kModulationInvalid;
     ModulationSet(kModulationNone);
+    m_blendState=kBlendInvalid;
+    BlendSet(kBlendNone);
     glEnable(GL_TEXTURE_2D);
     m_textureEnabled=true;
+    m_boundTexture=0;
     glEnableClientState(GL_VERTEX_ARRAY); // Always enabled
     glEnableClientState(GL_TEXTURE_COORD_ARRAY); // Always enabled
     glEnableClientState(GL_NORMAL_ARRAY); // Always enabled
