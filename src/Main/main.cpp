@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.10 2002/06/11 16:36:13 southa Exp $
+ * $Id: main.cpp,v 1.11 2002/06/13 15:15:56 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.11  2002/06/13 15:15:56  southa
+ * New directory structure, FPS printing, load command
+ *
  * Revision 1.10  2002/06/11 16:36:13  southa
  * Fixes
  *
@@ -35,6 +38,25 @@
 
 #include "mushCore.h"
 #include "mushPlatform.h"
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+// SDL test
+#if 0
+
+#if defined(HAVE_SDL_SDL_MAIN_H)
+#include <SDL/SDL_main.h>
+#else
+#if defined(HAVE_SDL_MAIN_H)
+#include <SDL_main.h>
+#else
+#include "SDL_main.h"
+#endif
+#endif
+
+#endif
 
 int main(int argc, char *argv[])
 {

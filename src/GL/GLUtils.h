@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.7 2002/06/04 17:02:24 southa Exp $
+ * $Id: GLUtils.h,v 1.8 2002/06/05 12:28:05 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.8  2002/06/05 12:28:05  southa
+ * Map rendered using traits
+ *
  * Revision 1.7  2002/06/04 17:02:24  southa
  * More work
  *
@@ -40,8 +43,8 @@ public:
     static void OrthoEpilogue(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
     static void CheckGLError(void);
-    static void StandardInit(void);
-    static void GameInit(void);
+    // static void StandardInit(void);
+    // static void GameInit(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);

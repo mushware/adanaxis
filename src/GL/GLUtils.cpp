@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.10 2002/06/05 12:28:05 southa Exp $
+ * $Id: GLUtils.cpp,v 1.11 2002/06/06 16:08:42 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.11  2002/06/06 16:08:42  southa
+ * Changed game screen size to 1024x768
+ *
  * Revision 1.10  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *
@@ -285,6 +288,8 @@ GLUtils::SafetyHandler(void)
 {
 }
 
+
+#if 0
 void
 GLUtils::StandardInit(void)
 {
@@ -326,3 +331,4 @@ GLUtils::GameInit(void)
     glutDisplayFunc(SafetyHandler);
     CheckGLError();
 }
+#endif

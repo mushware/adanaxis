@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.11 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.12 2002/05/31 15:18:16 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.12  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.11  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *
@@ -53,7 +56,7 @@ GLTest1AppHandler::Initialise(void)
 {
     CoreApp::Instance().Process("loadpixmap 0 ../test/test.tiff;");
 
-    GLUtils::StandardInit();
+    EnterScreen(kWindow);
     GLUtils::CheckGLError();
 }
 

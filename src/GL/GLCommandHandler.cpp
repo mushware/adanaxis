@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.12 2002/05/28 13:07:00 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.13 2002/05/28 16:37:39 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.13  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.12  2002/05/28 13:07:00  southa
  * Command parser extensions and TIFF loader
  *
@@ -41,7 +44,7 @@
 
 #include "GLCommandHandler.h"
 #include "mushCore.h"
-#include "GLAppHandler.h"
+#include "GLUTAppHandler.h"
 #include "GLData.h"
 #include "GLTextureSpr.h"
 #include "GLTextureGIF.h"
@@ -56,7 +59,7 @@ CoreScalar
 GLCommandHandler::InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     // Save inStr to context
-    CoreAppHandler::Instance().Mutate(new GLAppHandler);
+    CoreAppHandler::Instance().Mutate(new GLUTAppHandler);
     return CoreScalar(0);
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.4 2002/05/28 16:37:36 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.5 2002/05/31 15:18:16 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.5  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.4  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *
@@ -36,12 +39,7 @@ GLWrangleAppHandler::Initialise(void)
 
     m_pWrangler = new GraphWrangler(tex);
     
-    GLUtils::StandardInit();
-    
-    glutInitWindowSize(tex.Width(), tex.Height());
-
-    glutCreateWindow("Wrangling data");
-    RegisterHandlers();
+    EnterScreen(kWindow);
     GLUtils::CheckGLError();    
 }
 
@@ -71,7 +69,7 @@ GLWrangleAppHandler::Idle(void)
     bool redraw=false;
     COREASSERT(m_pWrangler != NULL);
     m_pWrangler->Process(redraw);
-    if (redraw && IsVisible())
+    if (redraw /*&& IsVisible()*/)
     {
         glutPostRedisplay();
     }

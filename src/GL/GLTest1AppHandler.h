@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.h,v 1.1 2002/05/10 16:40:38 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.2 2002/05/31 15:18:16 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.2  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.1  2002/05/10 16:40:38  southa
  * Changed .hp files to .h
  *
@@ -15,10 +18,10 @@
  *
  */
 
-#include "GLAppHandler.h"
+#include "GLUTAppHandler.h"
 #include "mushCore.h"
 
-class GLTest1AppHandler : public GLAppHandler
+class GLTest1AppHandler : public GLUTAppHandler
 {
 public:
     virtual void Initialise(void);

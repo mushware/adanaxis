@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.h,v 1.1 2002/05/10 16:40:39 southa Exp $
+ * $Id: GLWrangleAppHandler.h,v 1.2 2002/05/31 15:18:16 southa Exp $
  * $Log: GLWrangleAppHandler.h,v $
+ * Revision 1.2  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.1  2002/05/10 16:40:39  southa
  * Changed .hp files to .h
  *
@@ -21,7 +24,7 @@
 
 class Wrangler;
 
-class GLWrangleAppHandler : public GLAppHandler
+class GLWrangleAppHandler : public GLUTAppHandler
 {
 public:
     GLWrangleAppHandler(): m_pWrangler(NULL) {}

@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.h,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameAppHandler.h,v 1.3 2002/05/31 15:18:16 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.3  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -14,7 +17,7 @@
 
 class GameBase;
 
-class GameAppHandler : public GLAppHandler
+class GameAppHandler : public GLUTAppHandler
 {
 public:
     GameAppHandler(): m_pGame(NULL) {}

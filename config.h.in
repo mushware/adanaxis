@@ -18,10 +18,10 @@
 /* Define to 1 if you have the `expat' library (-lexpat). */
 #undef HAVE_LIBEXPAT
 
-/* Define to 1 if you have the `gl' library (-lgl). */
+/* Define to 1 if you have the `GL' library (-lGL). */
 #undef HAVE_LIBGL
 
-/* Define to 1 if you have the `glu' library (-lglu). */
+/* Define to 1 if you have the `GLU' library (-lGLU). */
 #undef HAVE_LIBGLU
 
 /* Define to 1 if you have the `glu32' library (-lglu32). */
@@ -32,6 +32,15 @@
 
 /* Define to 1 if you have the `glut32' library (-lglut32). */
 #undef HAVE_LIBGLUT32
+
+/* Define to 1 if you have the `m' library (-lm). */
+#undef HAVE_LIBM
+
+/* Define to 1 if you have the `MesaGL' library (-lMesaGL). */
+#undef HAVE_LIBMESAGL
+
+/* Define to 1 if you have the `MesaGLU' library (-lMesaGLU). */
+#undef HAVE_LIBMESAGLU
 
 /* Define to 1 if you have the `ogg' library (-logg). */
 #undef HAVE_LIBOGG
@@ -44,6 +53,9 @@
 
 /* Define to 1 if you have the `SDL' library (-lSDL). */
 #undef HAVE_LIBSDL
+
+/* Define to 1 if you have the `SDL-1.1' library (-lSDL-1.1). */
+#undef HAVE_LIBSDL_1_1
 
 /* Define to 1 if you have the `SDL_mixer' library (-lSDL_mixer). */
 #undef HAVE_LIBSDL_MIXER
@@ -63,6 +75,12 @@
 /* Define to 1 if you have the `vorbisfile' library (-lvorbisfile). */
 #undef HAVE_LIBVORBISFILE
 
+/* Define to 1 if you have the `X11' library (-lX11). */
+#undef HAVE_LIBX11
+
+/* Define to 1 if you have the `Xext' library (-lXext). */
+#undef HAVE_LIBXEXT
+
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
@@ -75,11 +93,17 @@
 /* Define to 1 if you have the <SDL.h> header file. */
 #undef HAVE_SDL_H
 
+/* Define to 1 if you have the <SDL_main.h> header file. */
+#undef HAVE_SDL_MAIN_H
+
 /* Define to 1 if you have the <SDL_mixer.h> header file. */
 #undef HAVE_SDL_MIXER_H
 
 /* Define to 1 if you have the <SDL/SDL.h> header file. */
 #undef HAVE_SDL_SDL_H
+
+/* Define to 1 if you have the <SDL/SDL_main.h> header file. */
+#undef HAVE_SDL_SDL_MAIN_H
 
 /* Define to 1 if you have the <SDL/SDL_mixer.h> header file. */
 #undef HAVE_SDL_SDL_MIXER_H

@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.13 2002/06/13 15:15:55 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.14 2002/06/20 11:06:14 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.14  2002/06/20 11:06:14  southa
+ * Updated for cygwin
+ *
  * Revision 1.13  2002/06/13 15:15:55  southa
  * New directory structure, FPS printing, load command
  *
@@ -63,8 +66,7 @@ GameAppHandler::Initialise(void)
     GameGlobalConfig::Instance().Set("CONTRACTPATH", appPath+"/pixels");
     try
     {
-        MediaAudio::Init();
-        MediaAudio::PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
+        MediaAudio::Instance().PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
     }
     catch (DeviceFail& e)
     {
@@ -75,10 +77,7 @@ GameAppHandler::Initialise(void)
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
     
-    //GLUtils::StandardInit();
-    GLUtils::GameInit();
-
-    RegisterHandlers();
+    EnterScreen(kGame);
 
     GLUtils::CheckGLError();
 }
@@ -100,7 +99,7 @@ GameAppHandler::Idle(void)
     }
     catch (exception& e)
     {
-        cerr << "In glut idle handler: " << e.what() << endl;
+        cerr << "In idle handler: " << e.what() << endl;
         std::exit(1);
     }
 }

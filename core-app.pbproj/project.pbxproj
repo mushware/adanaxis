@@ -1695,6 +1695,8 @@
 			children = (
 				F5457BA402AFB19401E3BBF3,
 				F54ACE7302B642C401F28026,
+				F546F21602C1F66E01173785,
+				F546F21702C1F66E01173785,
 			);
 			isa = PBXGroup;
 			name = MacOSX;
@@ -2197,6 +2199,102 @@
 			settings = {
 			};
 		};
+		F546F21602C1F66E01173785 = {
+			isa = PBXFileReference;
+			path = SDLMain.h;
+			refType = 4;
+		};
+		F546F21702C1F66E01173785 = {
+			isa = PBXFileReference;
+			path = SDLMain.m;
+			refType = 4;
+		};
+		F546F21A02C1F7FB01173785 = {
+			isa = PBXFrameworkReference;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+		};
+		F546F21B02C1F7FB01173785 = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+		F546F59302C1F7FD01173785 = {
+			fileRef = F546F21A02C1F7FB01173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F59402C1F7FD01173785 = {
+			fileRef = F546F21B02C1F7FB01173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F59502C206E801173785 = {
+			isa = PBXFileReference;
+			name = MediaSDL.cpp;
+			path = Media/MediaSDL.cpp;
+			refType = 4;
+		};
+		F546F59602C206E801173785 = {
+			fileRef = F546F59502C206E801173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F6F402C211F901173785 = {
+			isa = PBXFileReference;
+			path = GLUTAppHandler.cpp;
+			refType = 4;
+		};
+		F546F6F502C211F901173785 = {
+			isa = PBXFileReference;
+			path = GLUTAppHandler.h;
+			refType = 4;
+		};
+		F546F6F602C211F901173785 = {
+			fileRef = F546F6F402C211F901173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F6F702C211F901173785 = {
+			fileRef = F546F6F502C211F901173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F6F802C2120701173785 = {
+			isa = PBXFileReference;
+			path = SDLAppHandler.cpp;
+			refType = 4;
+		};
+		F546F6F902C2120701173785 = {
+			isa = PBXFileReference;
+			path = SDLAppHandler.h;
+			refType = 4;
+		};
+		F546F6FA02C2120701173785 = {
+			fileRef = F546F6F802C2120701173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F6FB02C2120701173785 = {
+			fileRef = F546F6F902C2120701173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546F6FC02C22D6601173785 = {
+			fileRef = F546F21602C1F66E01173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F547DFD102395B6001A7C23C = {
 			children = (
 				F57BD7BB028AECBF01AD87C4,
@@ -2605,6 +2703,7 @@
 				F5539E2B02B4CDA0010AB4A9,
 				F5539E2C02B4CDA0010AB4A9,
 				F5539E3102B4CDCF010AB4A9,
+				F546F59502C206E801173785,
 				F5539E3302B4CE24010AB4A9,
 			);
 			isa = PBXGroup;
@@ -2785,6 +2884,8 @@
 				F52A41C702B3B4CF0109140E,
 				F56065800216D5B4015AFBD9,
 				F52A425C02B3B5050109140E,
+				F546F21A02C1F7FB01173785,
+				F546F21B02C1F7FB01173785,
 			);
 			isa = PBXGroup;
 			name = Frameworks;
@@ -3324,6 +3425,9 @@
 				F50F4E3A02B4EA9C014A78CB,
 				F50F4E3B02B4EA9C014A78CB,
 				F54ACE7602B643D401F28026,
+				F546F6F702C211F901173785,
+				F546F6FB02C2120701173785,
+				F546F6FC02C22D6601173785,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -3398,6 +3502,9 @@
 				F5539E2D02B4CDA0010AB4A9,
 				F54ACE7402B642C401F28026,
 				F545CC4F02B8E15B011D56AF,
+				F546F59602C206E801173785,
+				F546F6F602C211F901173785,
+				F546F6FA02C2120701173785,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -3421,6 +3528,8 @@
 				F5461B0302B6134B01EABA85,
 				F5461B0502B613F301EABA85,
 				F5461B0702B6148C01EABA85,
+				F546F59302C1F7FD01173785,
+				F546F59402C1F7FD01173785,
 			);
 			isa = PBXFrameworksBuildPhase;
 		};
@@ -3805,6 +3914,10 @@
 				F545E4AB02A28FE10197F408,
 				F57B3121028C579D0195BBD7,
 				F57B3122028C579D0195BBD7,
+				F546F6F402C211F901173785,
+				F546F6F502C211F901173785,
+				F546F6F802C2120701173785,
+				F546F6F902C2120701173785,
 			);
 			isa = PBXGroup;
 			path = GL;

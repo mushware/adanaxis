@@ -1,6 +1,9 @@
 /*
- * $Id: MediaAudio.h,v 1.1 2002/06/10 15:16:59 southa Exp $
+ * $Id: MediaAudio.h,v 1.2 2002/06/20 11:06:15 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.2  2002/06/20 11:06:15  southa
+ * Updated for cygwin
+ *
  * Revision 1.1  2002/06/10 15:16:59  southa
  * Integration of MP3 player
  *
@@ -11,9 +14,11 @@
 class MediaAudio
 {
 public:
-    static void Init();
-    static void PlayMusic(const string& inName);
+    MediaAudio();
+    ~MediaAudio();
+    static MediaAudio& Instance(void) {return *((m_instance==NULL)?m_instance=new MediaAudio:m_instance);}
+    void PlayMusic(const string& inName);
 
 private:
-    static bool m_audioGood;
+    static MediaAudio *m_instance;
 };
