@@ -41,9 +41,8 @@ x11-release: makefiles-withoutdata dist
 	$(MAKE) makefiles-withdata dist
 
 rpm: x11-release
-	rpm -ta ic2-@IC_VERSION@.tar.gz
-
-# $(INSTALL) ./ic2 $(RUNFILE)
+	gunzip -c ic2-@IC_VERSION@.tar.gz | bzip2 --best > ic2-@IC_VERSION@.tar.bz2
+	rpm -ta ic2-@IC_VERSION@.tar.bz2
 
 install-exec-hook:
 	rm -f $(RUNFILE)

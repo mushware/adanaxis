@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.18 2002/08/27 08:56:22 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.19 2002/09/01 16:29:18 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.19  2002/09/01 16:29:18  southa
+ * Support Redhat paths for include files
+ *
  * Revision 1.18  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -180,9 +183,9 @@ void
 SDLAppHandler::EnterScreen(tInitType inType)
 {
     MediaSDL::Instance().InitVideo();
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
     if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
     {
         SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
@@ -232,6 +235,14 @@ SDLAppHandler::EnterScreen(tInitType inType)
     if (surface == NULL)
     {
         cerr << "SDL video mode failed again - trying for any mode" << endl;
+        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
+    }
+    if (surface == NULL)
+    {
+        cerr << "SDL video mode failed again - reducing bpp to 15" << endl;
+        SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
     if (surface == NULL) throw(DeviceFail("Could not select a video mode"));

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.5 2002/08/27 08:56:29 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.6 2002/09/01 22:00:38 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.6  2002/09/01 22:00:38  southa
+ * Moved to real install paths
+ *
  * Revision 1.5  2002/08/27 08:56:29  southa
  * Source conditioning
  *
@@ -70,7 +73,6 @@ PlatformMiscUtils::GetApplPath(int argc, char *argv[])
 string
 PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
 {
-    cerr << "argv[0]=" << argv[0] << endl;
     string appPath;
     char *pBuffer=new char[MAXPATHLEN];
     if (getcwd(pBuffer, MAXPATHLEN) &&

@@ -1,14 +1,15 @@
 %define name @PACKAGE@
 %define version @VERSION@
 %define release 0
+%define RUNFILE %{_bindir}/ic2
 
 Summary: Infernal Contractor II
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.gz
+Source0: %{name}-%{version}.tar.bz2
 URL: http://www.mushware.com/
-Copyright: Public Domain
+Copyright: distributable
 Group: Amusements/Game/Action/Arcade
 BuildRoot: /var/tmp/%{name}-buildroot
 Prefix: %{_prefix}
@@ -28,19 +29,27 @@ rm -rf ${RPM_BUILD_ROOT}
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix}
-make
+%configure --program-transform-name=""
+%make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install prefix=$RPM_BUILD_ROOT/%{prefix}
+%makeinstall
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README COPYING
+%doc README COPYING NEWS AUTHORS
+%{_datadir}
+%{_bindir}
+
+%post
+rm -f %{RUNFILE}
+echo #!/bin/sh > %{RUNFILE}
+echo cd %{_datadir}/%{name}/system >> %{RUNFILE}
+echo exec %{_bindir}/ic2binary >> %{RUNFILE}
+chmod 0755 %{RUNFILE}
 
 %changelog
 
