@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.83 2002/11/01 16:15:26 southa Exp $
+ * $Id: GameContract.cpp,v 1.84 2002/11/01 17:24:49 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.84  2002/11/01 17:24:49  southa
+ * Network links on win32
+ *
  * Revision 1.83  2002/11/01 16:15:26  southa
  * Network send and receive
  *
@@ -409,13 +412,13 @@ GameContract::Init(void)
     cout << "dataOut " << dataOut << endl;
     MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("link0");
     COREASSERT(serverLink != NULL);
-    clientLink.SendTCP(dataIn);
-    serverLink->SendTCP(dataReply);
+    clientLink.UDPSend(dataIn);
+    serverLink->UDPSend(dataReply);
     for (U32 i=0; i<1e6; ++i)
         {}
     MediaNetData dataBack;
-    clientLink.ReceiveTCP(dataBack);
-    serverLink->ReceiveTCP(dataOut);
+    clientLink.UDPReceive(dataBack);
+    serverLink->UDPReceive(dataOut);
     cout << "dataIn " << dataIn << endl;
     cout << "dataOut " << dataOut << endl;
     cout << "dataBack " << dataBack << endl;

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.h,v 1.2 2002/10/31 16:41:33 southa Exp $
+ * $Id: MediaNetServer.h,v 1.3 2002/10/31 19:55:54 southa Exp $
  * $Log: MediaNetServer.h,v $
+ * Revision 1.3  2002/10/31 19:55:54  southa
+ * Network links
+ *
  * Revision 1.2  2002/10/31 16:41:33  southa
  * Network client
  *
@@ -23,5 +26,6 @@ public:
     
 private:
     TCPsocket m_serverSocket;
+    U32 m_serverPort;
     U32 m_linkCtr;
 };

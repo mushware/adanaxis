@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.3 2002/10/31 19:55:54 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.4 2002/11/01 16:15:28 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.4  2002/11/01 16:15:28  southa
+ * Network send and receive
+ *
  * Revision 1.3  2002/10/31 19:55:54  southa
  * Network links
  *
@@ -14,6 +17,8 @@
 MediaNetServer::MediaNetServer(U32 inPort) :
     m_linkCtr(0)
 {
+    m_serverPort=inPort;
+        
     MediaNet::Instance();
     
     IPaddress ip;
@@ -47,7 +52,7 @@ MediaNetServer::Accept(void)
     {
         ostringstream name;
         name << "link" << m_linkCtr;
-        CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket));
+        CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
         m_linkCtr++;
     }
 }

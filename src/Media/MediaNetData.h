@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetData.h,v 1.1 2002/11/01 16:15:27 southa Exp $
+ * $Log: MediaNetData.h,v $
+ * Revision 1.1  2002/11/01 16:15:27  southa
+ * Network send and receive
+ *
  */
 
 #include "mushCore.h"
@@ -25,7 +28,8 @@ public:
     void BytePush(U8 inByte);
 
     void PrepareForWrite(void);
-
+    void PrepareForWrite(U32 inSize);
+    
     void Print(ostream& ioOut) const;
     
 private:
@@ -140,6 +144,15 @@ MediaNetData::PrepareForWrite(void)
     if (m_writePos + kChunkSize/2 > m_data.size())
     {
         m_data.resize(m_writePos + kChunkSize);
+    }
+}
+
+inline void
+MediaNetData::PrepareForWrite(U32 inSize)
+{
+    if (inSize >= m_data.size())
+    {
+        m_data.resize(inSize+1);
     }
 }
 

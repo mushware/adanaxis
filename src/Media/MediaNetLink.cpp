@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.1 2002/10/31 19:55:54 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.2 2002/11/01 16:15:27 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.2  2002/11/01 16:15:27  southa
+ * Network send and receive
+ *
  * Revision 1.1  2002/10/31 19:55:54  southa
  * Network links
  *
@@ -14,17 +17,19 @@ auto_ptr< CoreData<MediaNetLink> > CoreData<MediaNetLink>::m_instance;
 
 MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
 {
-    Connect(inServer, inPort);
+    TCPConnect(inServer, inPort);
+    UDPConnect(inPort);
     m_tcpState=kLinkStateUntested;
-    m_udpState=kLinkStateNotMade;
+    m_udpState=kLinkStateUntested;
     RequestLinkCheck();
 }
 
-MediaNetLink::MediaNetLink(TCPsocket inSocket)
+MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
 {
-    SocketTake(inSocket);
+    TCPSocketTake(inSocket);
+    UDPConnect(inPort);
     m_tcpState=kLinkStateUntested;
-    m_udpState=kLinkStateNotMade;
+    m_udpState=kLinkStateUntested;
     RequestLinkCheck();
 }
 
@@ -33,17 +38,24 @@ MediaNetLink::~MediaNetLink()
 }
 
 void
-MediaNetLink::Connect(const string& inServer, U32 inPort)
+MediaNetLink::TCPConnect(const string& inServer, U32 inPort)
 {
-    m_client.Connect(inServer, inPort);
+    m_client.TCPConnect(inServer, inPort);
     m_targetIsServer=true;
 }
 
 void
-MediaNetLink::SocketTake(TCPsocket inSocket)
+MediaNetLink::TCPSocketTake(TCPsocket inSocket)
 {
-    m_client.SocketTake(inSocket);
+    m_client.TCPSocketTake(inSocket);
     m_targetIsServer=false;
+}
+
+void
+MediaNetLink::UDPConnect(U32 inPort)
+{
+    m_client.UDPConnect(inPort);
+    m_targetIsServer=true;
 }
 
 bool
@@ -73,25 +85,47 @@ MediaNetLink::RequestLinkCheck(void)
 }
 
 void
-MediaNetLink::SendTCP(MediaNetData& ioData)
+MediaNetLink::TCPSend(MediaNetData& ioData)
 {
     if (!LinkIsUp(m_tcpState))
     {
         // TCPLinkMake();
         COREASSERT(false);
     }
-    m_client.SendTCP(ioData);
+    m_client.TCPSend(ioData);
 }
 
 void
-MediaNetLink::ReceiveTCP(MediaNetData& outData)
+MediaNetLink::TCPReceive(MediaNetData& outData)
 {
     if (!LinkIsUp(m_tcpState))
     {
         // TCPLinkMake();
         COREASSERT(false);
     }
-    m_client.ReceiveTCP(outData);
+    m_client.TCPReceive(outData);
+}
+
+void
+MediaNetLink::UDPSend(MediaNetData& ioData)
+{
+    if (!LinkIsUp(m_udpState))
+    {
+        // UDPLinkMake();
+        COREASSERT(false);
+    }
+    m_client.UDPSend(ioData);
+}
+
+void
+MediaNetLink::UDPReceive(MediaNetData& outData)
+{
+    if (!LinkIsUp(m_udpState))
+    {
+        // UDPLinkMake();
+        COREASSERT(false);
+    }
+    m_client.UDPReceive(outData);
 }
 
 void

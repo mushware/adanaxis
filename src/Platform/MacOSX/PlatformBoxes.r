@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: PlatformBoxes.r,v 1.1 2002/10/15 18:16:41 southa Exp $
+ * $Log: PlatformBoxes.r,v $
+ * Revision 1.1  2002/10/15 18:16:41  southa
+ * Mac error box
+ *
  */
 
 
@@ -38,7 +41,7 @@ resource 'DITL' (kPlatformAboutBox) {
 {130, 342, 150, 408},
     Button {
         enabled,
-        "OK"
+        "Shite!"
     }
 }
 };
