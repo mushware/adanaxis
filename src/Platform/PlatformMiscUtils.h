@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.8 2002/10/15 14:02:31 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.9 2002/10/15 18:16:41 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.9  2002/10/15 18:16:41  southa
+ * Mac error box
+ *
  * Revision 1.8  2002/10/15 14:02:31  southa
  * Mode changes
  *
@@ -30,5 +33,10 @@ public:
     static void TweakArgs(string& ioString);
     static void Initialise(void);
     static void ErrorBox(const string& inStr);
+    static bool DirectoryExists(const string& inName);
+    static void MakeDirectory(const string& inName);
+    static void UpdateCheck(void);
+    static void LaunchFile(const string& inFile);
+    static void ShowUpdateAlert(void);
 };
 #endif

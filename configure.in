@@ -74,11 +74,11 @@ case "$target" in
     powerpc-apple-darwin*)
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         AC_MSG_NOTICE([* Using platform pack from src/Platform/MacOSX.])
-        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime"
+        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime -framework Carbon"
         AC_CHECK_HEADERS(OpenGL/gl.h,, AC_MSG_ERROR([Cannot survive without OpenGL]))
         AC_CHECK_HEADERS(OpenGL/glu.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
         AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
-        CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/MacOSX"
+        CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/MacOSX -fpascal-strings"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then

@@ -474,17 +474,6 @@
 			path = GLTest1AppHandler.cpp;
 			refType = 4;
 		};
-		F52A41C502B3B3DC0109140E = {
-			isa = PBXFileReference;
-			path = PlatformAudioUtils.h;
-			refType = 4;
-		};
-		F52A41C602B3B3DC0109140E = {
-			fileRef = F52A41C502B3B3DC0109140E;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F52A41C702B3B4CF0109140E = {
 			isa = PBXFrameworkReference;
 			name = Carbon.framework;
@@ -1813,7 +1802,6 @@
 		};
 		F5457BA202AFB16701E3BBF3 = {
 			children = (
-				F52A41C502B3B3DC0109140E,
 				F5457BA502AFB19401E3BBF3,
 				F54ACE7502B643D401F28026,
 				F595A940035B313D01A80166,
@@ -1832,7 +1820,7 @@
 			children = (
 				F594083A035C7E4D01A80164,
 				F5457BA402AFB19401E3BBF3,
-				F54ACE7302B642C401F28026,
+				F5955436035EC93201A80164,
 				F595A942035B316401A80166,
 				F546F21602C1F66E01173785,
 				F546F21702C1F66E01173785,
@@ -2921,6 +2909,7 @@
 		};
 		F5483A8A02D19C6B01480ACF = {
 			children = (
+				F5955432035EC51401A80164,
 				F54506E502CB469F019E6518,
 			);
 			isa = PBXGroup;
@@ -3272,17 +3261,6 @@
 		};
 		F54AC49902F8438001726764 = {
 			fileRef = F54AC49802F8438001726764;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F54ACE7302B642C401F28026 = {
-			isa = PBXFileReference;
-			path = PlatformMiscUtils.cpp;
-			refType = 4;
-		};
-		F54ACE7402B642C401F28026 = {
-			fileRef = F54ACE7302B642C401F28026;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -4237,7 +4215,6 @@
 				F5457B9F02AF9C7901E3BBF3,
 				F5457BAB02AFB19401E3BBF3,
 				F5457BAD02AFB19401E3BBF3,
-				F52A41C602B3B3DC0109140E,
 				F5539E2E02B4CDA0010AB4A9,
 				F5539E3202B4CDCF010AB4A9,
 				F5539E3402B4CE24010AB4A9,
@@ -4332,6 +4309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F54506E602CB469F019E6518,
+				F5955433035EC51401A80164,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4398,7 +4376,6 @@
 				F5F06F1402AE5D2001B05200,
 				F5457BAF02AFB1B101E3BBF3,
 				F5539E2D02B4CDA0010AB4A9,
-				F54ACE7402B642C401F28026,
 				F545CC4F02B8E15B011D56AF,
 				F546F59602C206E801173785,
 				F546F6F602C211F901173785,
@@ -4450,6 +4427,7 @@
 				F595A93F035B30C101A80166,
 				F595A943035B316401A80166,
 				F593D561035C11BE01A80166,
+				F5955437035EC93201A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4506,6 +4484,7 @@
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O";
 				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
 				PRODUCT_NAME = ic2;
 				SECTORDER_FLAGS = "";
 				USE_GCC3 = NO;
@@ -4920,6 +4899,29 @@
 		};
 		F59516480350B32201A80166 = {
 			fileRef = F59516470350B32201A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5955432035EC51401A80164 = {
+			isa = PBXFileReference;
+			name = StartupWindow.nib;
+			path = macosx/macosxlibs/StartupWindow.nib;
+			refType = 4;
+		};
+		F5955433035EC51401A80164 = {
+			fileRef = F5955432035EC51401A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5955436035EC93201A80164 = {
+			isa = PBXFileReference;
+			path = PlatformMiscUtils.cpp;
+			refType = 4;
+		};
+		F5955437035EC93201A80164 = {
+			fileRef = F5955436035EC93201A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

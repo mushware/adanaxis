@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.27 2002/10/15 14:02:30 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.28 2002/10/15 19:04:09 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.28  2002/10/15 19:04:09  southa
+ * Windows error box
+ *
  * Revision 1.27  2002/10/15 14:02:30  southa
  * Mode changes
  *
@@ -120,7 +123,6 @@ GameAppHandler::Initialise(void)
 
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
-
 
     try
     {

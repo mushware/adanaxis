@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.5 2002/08/07 13:36:48 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.6 2002/08/27 08:56:22 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/07 13:36:48  southa
  * Conditioned source
  *
@@ -36,6 +39,7 @@
 #include "GameCommandHandler.h"
 
 #include "mushCore.h"
+#include "mushPlatform.h"
 #include "GameAppHandler.h"
 
 CoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
@@ -47,8 +51,67 @@ GameCommandHandler::Game(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+GameCommandHandler::SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams < 2)
+    {
+        throw(CommandFail("Usage: setsavepath(name,root,...)"));
+    }
+    string dirName;
+    string rootName;
+    ioCommand.PopParam(dirName);
+    bool found=false;
+    string dirPath="/nopath";
+    for (U32 i=0; !found && i+1<numParams; ++i)
+    {
+        ioCommand.PopParam(rootName);
+        dirPath=rootName+"/"+dirName;
+        if (PlatformMiscUtils::DirectoryExists(dirPath))
+        {
+            found=true;
+        }
+        else
+        {
+            try
+            {
+                PlatformMiscUtils::MakeDirectory(dirPath);
+                CoreGlobalConfig::Instance().Set("FIRST_RUN", 1);
+
+                found=true;
+            }
+            catch (CommandFail& e)
+            {
+                cerr << e.what() << endl;
+            }
+        }
+    }
+    if (found)
+    {
+        CoreGlobalConfig::Instance().Set("GLOBAL_SAVE_PATH", dirPath);
+        cout << "Save path is '" << dirPath << "'" << endl;
+    }
+    else
+    {
+        cerr << "*** Couldn't find working save path - cannot save data" << endl;
+    }
+    return CoreScalar(0);
+}
+
+CoreScalar
+GameCommandHandler::UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    PlatformMiscUtils::UpdateCheck();
+    return CoreScalar(0);
+}
+
+
+
 void
 GameCommandHandler::Install(void)
 {
     CoreApp::Instance().AddHandler("game", Game);
+    CoreApp::Instance().AddHandler("setsavepath", SetSavePath);
+    CoreApp::Instance().AddHandler("updatecheck", UpdateCheck);
 }

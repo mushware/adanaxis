@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameCommandHandler.h,v 1.5 2002/08/07 13:36:48 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.6 2002/08/27 08:56:22 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.6  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/07 13:36:48  southa
  * Conditioned source
  *
@@ -42,5 +45,7 @@ class GameCommandHandler
 public:
     static void Install(void);
     static CoreScalar Game(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv);
 };
 #endif

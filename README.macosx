@@ -51,6 +51,11 @@ tar xvzf ../ic2-data-0_0_4.tar.gz
 Configure will complain about the absence of various libraries.  The
 following procedure was necessary to get the software to build:
 
+# Activate prebinding.  This setenv needs to be present when each of the libraries
+# is built.  See http://developer.apple.com/techpubs/macosx/ReleaseNotes/Prebinding.html
+
+setenv LD_PREBIND
+
 # Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-3.9.tar.gz
 tar xvzf pcre-3.9.tar.gz
 cd pcre-3.9

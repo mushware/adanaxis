@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: main.cpp,v 1.18 2002/09/03 10:34:38 southa Exp $
+ * $Id: main.cpp,v 1.19 2002/10/15 18:16:41 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.19  2002/10/15 18:16:41  southa
+ * Mac error box
+ *
  * Revision 1.18  2002/09/03 10:34:38  southa
  * Converted save path to Unix
  *
@@ -101,7 +104,9 @@ int main(int argc, char *argv[])
     cerr << "Application path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
     CoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
     cerr << "System path is " << CoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
-    
+
+
+
     string str;
     for (int i=1; i<argc; i++)
     {
