@@ -12,11 +12,38 @@
  ****************************************************************************/
 //%Header } CI/MB1YAZZBxkJaEWhlKSw
 /*
- * $Id: MushcoreVirtualObject.cpp,v 1.1 2003/10/02 23:33:38 southa Exp $
+ * $Id: MushcoreVirtualObject.cpp,v 1.2 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreVirtualObject.cpp,v $
+ * Revision 1.2  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *
  */
 
-#include "MushcoreObject.h"
+#include "MushcoreVirtualObject.h"
+
+void
+MushcoreVirtualObject::AutoInputPrologue(MushcoreXMLIStream& ioIn)
+{
+    // Do nothing in default prologue
+}
+
+void
+MushcoreVirtualObject::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
+{
+    // Do nothing in default epilogue
+}
+
+void
+MushcoreVirtualObject::AutoOutputPrologue(MushcoreXMLOStream& ioOut) const
+{
+    // Do nothing in default prologue
+}
+
+void
+MushcoreVirtualObject::AutoOutputEpilogue(MushcoreXMLOStream& ioOut) const
+{
+    // Do nothing in default epilogue
+}

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.6 2005/03/08 01:24:10 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.7 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.7  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.6  2005/03/08 01:24:10  southa
  * Quaternion slerp between orientations
  *
@@ -259,7 +262,7 @@ void
 TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 13
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0)); // 14
     MushGLV::Sgl().Acquaint();
     
     m_colours.resize(8);
@@ -320,6 +323,12 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     {
         std::cout << MushGLV::Sgl() << endl;
     }
+    
+    MushcoreXMLOStream xmlOut(std::cout);
+    
+    GameDialogue *dialogue = new GameDialogue;
+    MushcoreData<GameDialogue>::Sgl().Give("test", dialogue);
+    xmlOut << MushcoreData<GameDialogue>::Sgl();
 }
 
 void

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hyiZ+b2uNlo5j7vQ5mVf9w
 /*
- * $Id: GLColour.h,v 1.16 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLColour.h,v 1.17 2004/01/06 20:46:49 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.17  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.16  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -70,6 +73,8 @@
 
 #include "GLState.h"
 #include "mushMushcore.h"
+
+#include "mushMushMesh.h"
 
 class GLColour
 {
@@ -130,6 +135,36 @@ inline const GLColour operator*(Mushware::tVal a, const GLColour& b)
 {
     GLColour retCol(b);
     return retCol*=a;
+}
+
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLColour& inCol)
+{
+    Mushware::t4Val valueVec(inCol.RedGet(), inCol.GreenGet(), inCol.BlueGet(), inCol.AlphaGet());
+    
+    ioOut << valueVec;
+    
+    return ioOut;
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, GLColour& outObj)
+{
+    Mushware::t4Val valueVec;
+    
+    ioIn >> valueVec;
+
+    outObj = GLColour(valueVec[0], valueVec[1], valueVec[2], valueVec[3]);
+}
+
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const GLColour& inCol)
+{
+    Mushware::t4Val valueVec(inCol.RedGet(), inCol.GreenGet(), inCol.BlueGet(), inCol.AlphaGet());
+
+    ioOut << valueVec;
+    
+    return ioOut;
 }
 
 //%includeGuardEnd {

@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.18 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushcoreData.h,v 1.19 2004/09/26 19:42:05 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.19  2004/09/26 19:42:05  southa
+ * Added MushMesh, fixed typenames and release target
+ *
  * Revision 1.18  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -393,14 +396,6 @@ operator>>(MushcoreXMLIStream& ioIn, MushcoreData<RefType, KeyType>& outObj)
     outObj.XMLRead(ioIn);
 }
 
-// inlineHeader { Modified
-template<class RefType, class KeyType>
-inline std::ostream&
-operator<<(std::ostream& ioOut, const MushcoreData<RefType, KeyType>& inObj)
-{
-    inObj.Print(ioOut);
-    return ioOut;
-}
 template<class RefType, class KeyType>
 inline void
 MushcoreData<RefType, KeyType>::Print(std::ostream& ioOut) const
@@ -432,19 +427,6 @@ MushcoreData<RefType, KeyType>::Equals(const MushcoreData<RefType, KeyType>& inO
         ++p2;
     }
 }
-
-#if 0
-template<class RefType, class KeyType>
-inline bool
-MushcoreData<RefType, KeyType>::PtrEquals(const MushcoreData<RefType, KeyType>& inObj) const
-{
-    throw("PtrEquals hit");
-    return 1
-    // && (m_data == inObj.m_data)
-    // Don't check sequence number
-    ;
-}
-#endif
 
 template<class RefType, class KeyType>
 inline bool

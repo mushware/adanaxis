@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.30 2005/02/03 21:02:47 southa Exp $
+# $Id: SourceConditioner.pl,v 1.31 2005/02/10 12:33:52 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.31  2005/02/10 12:33:52  southa
+# Template fixes
+#
 # Revision 1.30  2005/02/03 21:02:47  southa
 # Build fixes
 #
@@ -481,6 +484,12 @@ sub AccessPrototypeGenerate($$)
             {
                 push @$outputRef, "$gConfig{INDENT}void ${capitalisedAttr}Set(const $type& inValue) { $attr=inValue; }";
             }
+            if ($comment =~ /:wref\b/)
+            {
+                push @$outputRef, "$gConfig{INDENT}// Writable reference for $attr";
+                push @$outputRef, "$gConfig{INDENT}$type& ${capitalisedAttr}WRef(void) { return $attr; }";
+            }
+            
         }
     }
 }

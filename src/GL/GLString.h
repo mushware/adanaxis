@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XagZxWZIAf6/N5/5LJQ3aw
 /*
- * $Id: GLString.h,v 1.13 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLString.h,v 1.14 2004/01/06 20:46:49 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.14  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.13  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -64,7 +67,8 @@
 #include "GLFontRef.h"
 #include "GLRenderable.h"
 
-class GLString : public GLRenderable
+//:generate virtual basic standard ostream xml1
+class GLString : public GLRenderable, public MushcoreVirtualObject
 {
 public:
     GLString() {}
@@ -78,7 +82,38 @@ private:
     GLFontRef m_fontRef;
     std::string m_value;
     Mushware::tVal m_alignment;
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual bool AutoEquals(const GLString& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } MqvS5R78ZXNteeszux3ZqA
 };
+//%inlineHeader {
+
+inline bool
+operator==(const GLString& inA, const GLString& inB)
+{
+    return inA.AutoEquals(inB);
+}
+
+inline bool
+operator!=(const GLString& inA, const GLString& inB)
+{
+    return !inA.AutoEquals(inB);
+}
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLString& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } zaG+hNv8VXBeyZ4toQsZKA
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

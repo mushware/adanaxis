@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ULcld2q1/9CHp8iLY+i0/A
 /*
- * $Id: MushcoreVirtualObject.h,v 1.2 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.3 2004/01/10 20:29:35 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.3  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.2  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -45,6 +48,11 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const = 0;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr) = 0;
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const = 0;
+
+    virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);
+    virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);   
+    virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
+    virtual void AutoOutputEpilogue(MushcoreXMLOStream& ioOut) const;   
 };
 
 inline std::ostream&

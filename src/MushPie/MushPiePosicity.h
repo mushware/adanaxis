@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } u4KzedBl1+uLt37oBoF4HQ
 /*
- * $Id: MushPiePosicity.h,v 1.5 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushPiePosicity.h,v 1.6 2005/02/10 12:34:15 southa Exp $
  * $Log: MushPiePosicity.h,v $
+ * Revision 1.6  2005/02/10 12:34:15  southa
+ * Template fixes
+ *
  * Revision 1.5  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -37,36 +40,54 @@
 
 #include "MushPieStandard.h"
 
-//:generate ostream basic
-class MushPiePosicity
+//:generate virtual standard basic ostream xml1
+class MushPiePosicity : public MushcoreVirtualObject
 {
 public:
     MushPiePosicity() {}
     MushPiePosicity(Mushware::t4Val inPos, Mushware::t4Val inVel, Mushware::tQValPair inAngPos, Mushware::tQValPair inAngVel) :
-    angPos(inAngPos),
-    angVel(inAngVel),
-    pos(inPos),
-    vel(inVel)
+        m_angPos(inAngPos),
+        m_angVel(inAngVel),
+        m_pos(inPos),
+        m_vel(inVel)
     {
     }
-                        
-    Mushware::tQValPair angPos;
-    Mushware::tQValPair angVel;
-    Mushware::t4Val pos;
-    Mushware::t4Val vel;
+
+    void InPlaceVelocityAdd(void);
+    
+private:
+    Mushware::tQValPair m_angPos; //:readwrite
+    Mushware::tQValPair m_angVel; //:readwrite
+    Mushware::t4Val m_pos; //:readwrite
+    Mushware::t4Val m_vel; //:readwrite
     
 //%classPrototypes {
 public:
-    bool AutoEquals(const MushPiePosicity& inObj) const;
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } Exb5ZZbjxTN8n4F0Gd2QIA
+    const Mushware::tQValPair& AngPos(void) const { return m_angPos; }
+    void AngPosSet(const Mushware::tQValPair& inValue) { m_angPos=inValue; }
+    const Mushware::tQValPair& AngVel(void) const { return m_angVel; }
+    void AngVelSet(const Mushware::tQValPair& inValue) { m_angVel=inValue; }
+    const Mushware::t4Val& Pos(void) const { return m_pos; }
+    void PosSet(const Mushware::t4Val& inValue) { m_pos=inValue; }
+    const Mushware::t4Val& Vel(void) const { return m_vel; }
+    void VelSet(const Mushware::t4Val& inValue) { m_vel=inValue; }
+    virtual const char *AutoNameGet(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual bool AutoEquals(const MushPiePosicity& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } sOpgXLUboTjij1lH0raC4w
 };
 
-void
-operator>>(MushcoreXMLIStream& ioIn, MushPiePosicity& outObj);
-
-MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushPiePosicity& inObj);
+inline void
+MushPiePosicity::InPlaceVelocityAdd(void)
+{
+    m_pos += m_vel;
+    m_angPos.OuterMultiplyBy(m_angVel);
+}
 
 //%inlineHeader {
 

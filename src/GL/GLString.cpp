@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } EzLZZiDzwJXk5eqmDylcMw
 /*
- * $Id: GLString.cpp,v 1.10 2003/10/04 15:32:08 southa Exp $
+ * $Id: GLString.cpp,v 1.11 2004/01/02 21:13:05 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.11  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -71,3 +74,86 @@ GLString::Render(void) const
     m_fontRef.FontGet()->RenderString(m_value, m_alignment);
     GLUtils::PopMatrix();
 }
+//%outOfLineFunctions {
+
+const char *GLString::AutoNameGet(void) const
+{
+    return "GLString";
+}
+
+MushcoreVirtualObject *GLString::AutoClone(void) const
+{
+    return new GLString(*this);
+}
+
+MushcoreVirtualObject *GLString::AutoCreate(void) const
+{
+    return new GLString;
+}
+
+MushcoreVirtualObject *GLString::AutoVirtualFactory(void)
+{
+    return new GLString;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GLString", GLString::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+bool
+GLString::AutoEquals(const GLString& inObj) const
+{
+    return 1
+        && (m_fontRef == inObj.m_fontRef)
+        && (m_value == inObj.m_value)
+        && (m_alignment == inObj.m_alignment)
+    ;
+}
+void
+GLString::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "fontRef=" << m_fontRef << ", ";
+    ioOut << "value=" << m_value << ", ";
+    ioOut << "alignment=" << m_alignment;
+    ioOut << "]";
+}
+bool
+GLString::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "fontRef")
+    {
+        ioIn >> m_fontRef;
+    }
+    else if (inTagStr == "value")
+    {
+        ioIn >> m_value;
+    }
+    else if (inTagStr == "alignment")
+    {
+        ioIn >> m_alignment;
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+GLString::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("fontRef");
+    ioOut << m_fontRef;
+    ioOut.TagSet("value");
+    ioOut << m_value;
+    ioOut.TagSet("alignment");
+    ioOut << m_alignment;
+}
+//%outOfLineFunctions } hZnvuy5Muyh2YbZEIdXxjw

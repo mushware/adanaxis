@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } frXsN++MOUlQ8TCjDarsUA
 /*
- * $Id: mushGame.h,v 1.3 2003/10/07 22:40:05 southa Exp $
+ * $Id: mushGame.h,v 1.4 2004/01/02 21:13:04 southa Exp $
  * $Log: mushGame.h,v $
+ * Revision 1.4  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/07 22:40:05  southa
  * Created MeshMover
  *
@@ -35,6 +38,7 @@
 #include "Game/GameConfigDef.h"
 #include "Game/GameController.h"
 #include "Game/GameControlFrameDef.h"
+#include "Game/GameDialogue.h"
 #include "Game/GameEvent.h"
 #include "Game/GameGraphic.h"
 #include "Game/GamePiece.h"

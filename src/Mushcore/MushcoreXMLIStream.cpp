@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.18 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.19 2005/02/10 12:34:19 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.19  2005/02/10 12:34:19  southa
+ * Template fixes
+ *
  * Revision 1.18  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *
@@ -154,10 +157,16 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
         {
             MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Threading " << tagStr << endl));
             MUSHCOREXMLISTREAM_DEBUG((m_indentStr += " "));
+            
+            outpObj->AutoInputPrologue(*this);
+            
             if (!outpObj->AutoXMLDataProcess(*this, tagStr))
             {
                 Throw("Unrecognised tag '"+tagStr+"'");
             }
+
+            outpObj->AutoInputEpilogue(*this);
+            
             MUSHCOREXMLISTREAM_DEBUG((m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1)));
             MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Unthreading " << tagStr << endl));
         }

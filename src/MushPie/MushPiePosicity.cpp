@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 0niOQpG0nEHxTZPccDWOjQ
 /*
- * $Id: MushPiePosicity.cpp,v 1.2 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePosicity.cpp,v 1.3 2004/01/08 22:41:10 southa Exp $
  * $Log: MushPiePosicity.cpp,v $
+ * Revision 1.3  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.2  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -26,59 +29,94 @@
 
 using namespace Mushware;
 
-void
-operator>>(MushcoreXMLIStream& ioIn, MushPiePosicity& outObj)
-{
-    if (ioIn.ByteTake() != '(') ioIn.Throw("Expecting '('");
-    ioIn >> outObj.angPos;
-    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
-    ioIn >> outObj.angVel;
-    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
-    ioIn >> outObj.pos;
-    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
-    ioIn >> outObj.vel;
-    if (ioIn.ByteTake() != ')') ioIn.Throw("Expecting ')'");
-}
-
-MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushPiePosicity& inObj)
-{
-    std::string localTag = ioOut.OpeningTagWrite();
-    
-    ioOut.OStreamGet() << '(';
-    ioOut << inObj.angPos;
-    ioOut.OStreamGet() << ',';
-    ioOut << inObj.angVel;
-    ioOut.OStreamGet() << ',';
-    ioOut << inObj.pos;
-    ioOut.OStreamGet() << ',';
-    ioOut << inObj.vel;
-    ioOut.OStreamGet() << ')';
-
-    ioOut.ClosingTagWrite(localTag);
-    
-    return ioOut;
-}
-
 //%outOfLineFunctions {
+
+const char *MushPiePosicity::AutoNameGet(void) const
+{
+    return "MushPiePosicity";
+}
+
+MushcoreVirtualObject *MushPiePosicity::AutoClone(void) const
+{
+    return new MushPiePosicity(*this);
+}
+
+MushcoreVirtualObject *MushPiePosicity::AutoCreate(void) const
+{
+    return new MushPiePosicity;
+}
+
+MushcoreVirtualObject *MushPiePosicity::AutoVirtualFactory(void)
+{
+    return new MushPiePosicity;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushPiePosicity", MushPiePosicity::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 bool
 MushPiePosicity::AutoEquals(const MushPiePosicity& inObj) const
 {
     return 1
-        && (angPos == inObj.angPos)
-        && (angVel == inObj.angVel)
-        && (pos == inObj.pos)
-        && (vel == inObj.vel)
+        && (m_angPos == inObj.m_angPos)
+        && (m_angVel == inObj.m_angVel)
+        && (m_pos == inObj.m_pos)
+        && (m_vel == inObj.m_vel)
     ;
 }
 void
 MushPiePosicity::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "angPos=" << angPos << ", ";
-    ioOut << "angVel=" << angVel << ", ";
-    ioOut << "pos=" << pos << ", ";
-    ioOut << "vel=" << vel;
+    ioOut << "angPos=" << m_angPos << ", ";
+    ioOut << "angVel=" << m_angVel << ", ";
+    ioOut << "pos=" << m_pos << ", ";
+    ioOut << "vel=" << m_vel;
     ioOut << "]";
 }
-//%outOfLineFunctions } bsc7mssIv/uNlMoJoGZ50g
+bool
+MushPiePosicity::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "angPos")
+    {
+        ioIn >> m_angPos;
+    }
+    else if (inTagStr == "angVel")
+    {
+        ioIn >> m_angVel;
+    }
+    else if (inTagStr == "pos")
+    {
+        ioIn >> m_pos;
+    }
+    else if (inTagStr == "vel")
+    {
+        ioIn >> m_vel;
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+MushPiePosicity::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("angPos");
+    ioOut << m_angPos;
+    ioOut.TagSet("angVel");
+    ioOut << m_angVel;
+    ioOut.TagSet("pos");
+    ioOut << m_pos;
+    ioOut.TagSet("vel");
+    ioOut << m_vel;
+}
+//%outOfLineFunctions } HyVByFbjAGYwIihEgHCa1Q

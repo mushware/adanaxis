@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } zkzLPPq+iUqLS3l2Itx/aQ
 /*
-* $Id: GLFontRef.h,v 1.11 2004/01/02 21:13:05 southa Exp $
+* $Id: GLFontRef.h,v 1.12 2004/01/06 20:46:49 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.12  2004/01/06 20:46:49  southa
+* Build fixes
+*
 * Revision 1.11  2004/01/02 21:13:05  southa
 * Source conditioning
 *
@@ -57,10 +60,13 @@
 
 class GLFont;
 
-class GLFontRef
+//:generate virtual basic standard ostream xml1
+class GLFontRef : public MushcoreVirtualObject
 {
 public:
     GLFontRef(): m_fontPtr(NULL) {}
+    virtual ~GLFontRef() {}
+    
     explicit GLFontRef(const std::string& inName, Mushware::tVal inSize=1.0): m_name(inName), m_size(inSize), m_fontPtr(NULL) {}
     void NameSet(const std::string& inName) {m_name=inName; m_fontPtr=NULL;}
     const std::string& NameGet(void) const {return m_name;}
@@ -72,8 +78,39 @@ private:
     void GetReference(void) const;
     std::string m_name;
     Mushware::tVal m_size;
-    mutable GLFont *m_fontPtr;
+    mutable GLFont *m_fontPtr; //:ignore
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual bool AutoEquals(const GLFontRef& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } BnRK317IXs8murPqdpFesg
 };
+//%inlineHeader {
+
+inline bool
+operator==(const GLFontRef& inA, const GLFontRef& inB)
+{
+    return inA.AutoEquals(inB);
+}
+
+inline bool
+operator!=(const GLFontRef& inA, const GLFontRef& inB)
+{
+    return !inA.AutoEquals(inB);
+}
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLFontRef& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } skSh5zwrtoCfCe0Hff67ww
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

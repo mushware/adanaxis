@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } r0Ak1tFOlmIY8U+EmucRug
 /*
- * $Id: GLUtils.h,v 1.42 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLUtils.h,v 1.43 2004/01/10 20:29:34 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.43  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.42  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -150,18 +153,19 @@
 #include "GLStandard.h"
 #include "GLVector.h"
 
+#include "mushMushMesh.h"
+
 class GLTexture;
 class GLRectangle;
 
 class GLUtils
 {
 public:
-
-
     GLUtils(): m_x(0), m_y(0) {}
     void SetPosition(Mushware::tVal inX, Mushware::tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(Mushware::tVal inX, Mushware::tVal inY);
     void MoveTo(const GLPoint& inPoint) { MoveTo(inPoint.x, inPoint.y); }
+    void MoveTo(const Mushware::t2Val& inPoint) { MoveTo(inPoint.X(), inPoint.Y()); }
     void MoveRelative(Mushware::tVal inX, Mushware::tVal inY);
     void MoveToEdge(Mushware::tVal inX, Mushware::tVal inY);
 
@@ -208,8 +212,6 @@ private:
     static void SafetyHandler(void);
     Mushware::tVal m_x;
     Mushware::tVal m_y;
-
-
 
     static Mushware::tVal m_eyeDistance;
     static Mushware::tVal m_screenScale;

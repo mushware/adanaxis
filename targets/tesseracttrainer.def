@@ -1,12 +1,15 @@
 # Target definition file
-# $Id: snapshot.def,v 1.4 2005/02/03 21:03:15 southa Exp $
-# $Log: snapshot.def,v $
+# $Id: tesseracttrainer.def,v 1.1 2005/03/13 00:34:49 southa Exp $
+# $Log: tesseracttrainer.def,v $
+# Revision 1.1  2005/03/13 00:34:49  southa
+# Build fixes, key support and stereo
+#
 
 
 Name: TesseractTrainer
 
 
-Use: targets/app.Makefile.am as Makefile.am
+Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/app.acinclude.m4 as acinclude.m4
 
 Subst: MUSH_APP_NAME 'tesseracttrainer'
@@ -15,7 +18,7 @@ Use: targets/sdl_app.configure.in as configure.in
 Create: src/Makefile.am
 
 Program: all
-Modules: API Game GL Main/SDLApp Media Mushcore MushGL MushMesh Platform Support TesseractTrainer
+Modules: API Game GL Main/SDLApp Media Mushcore MushGL MushMesh MushPie Platform Support TesseractTrainer
 
 ExtraDist:
 Modules: Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$
