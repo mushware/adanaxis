@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.3 2002/02/18 22:43:53 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.4 2002/02/23 17:54:45 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.4  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  * Revision 1.3  2002/02/18 22:43:53  southa
  * First stage GIF loader
  *
@@ -31,7 +34,7 @@ GLCommandHandler::HandleCommand(const string& inStr)
     try
     {
         if (inStr.substr(0,6) == "initGL") InitGL(inStr.substr(6));
-        else if (inStr.substr(0,10) == "loadPixmap") LoadPixmap(inStr.substr(10));
+        else if (inStr.substr(0,10) == "loadPixmap") LoadPixmap(inStr.substr(11));
         else if (inStr == "glTest1") GLTest::Test1(inStr);
         else return false;
     }
@@ -53,7 +56,7 @@ void GLCommandHandler::LoadPixmap(const string& inStr)
 {
     try
     {
-        GLData::Instance().AddTexture(GLTexture("test.gif"));
+        GLData::Instance().AddTexture(GLTexture(inStr));
     }
     catch (LoaderFail f)
     {

@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.3 2002/02/20 22:57:57 southa Exp $
+ * $Id: GLTexture.cpp,v 1.4 2002/02/23 17:54:45 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.4  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  * Revision 1.3  2002/02/20 22:57:57  southa
  * Loading GIF data, texture memory handling
  *
@@ -75,11 +78,21 @@ GLTexture::GLTexture(const string& inFilename)
         def.pixelFormat=GL_RGBA;
         def.pixelType=GL_UNSIGNED_BYTE;
 
-        U8 *outputPtr=def.dataPtr;
         
         for (int y=0; y<def.height; ++y)
         {
-            char *inputPtr=&image->RasterBits[(def.height-1-y)*def.width];
+            U8 *outputPtr;
+            char *inputPtr;
+            if (image->ImageDesc.Interlace)
+            {
+                inputPtr=&image->RasterBits[(def.height-1-y)*def.width];
+                outputPtr=&def.dataPtr[y*def.width*4];
+            }
+            else
+            {
+                inputPtr=&image->RasterBits[(def.height-1-y)*def.width];
+                outputPtr=&def.dataPtr[y*def.width*4];
+            }
             for (int x=0; x<def.width; ++x)
             {
                 U8 colIndex=*inputPtr++;
@@ -92,11 +105,11 @@ GLTexture::GLTexture(const string& inFilename)
                 *outputPtr++ = colors[colIndex].Green;
                 *outputPtr++ = colors[colIndex].Blue;
                 *outputPtr++ = 255; // Alpha                
-            }   
-        }
-        if (def.dataPtr + memSize != outputPtr)
-        {
-            throw(LoaderFail(inFilename, "Pointer mismatch"));
+            }
+            if (outputPtr > def.dataPtr + memSize)
+            {
+                throw(LoaderFail(inFilename, "Pointer mismatch"));
+            }
         }
     }
     

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTest1AppHandler.cpp,v 1.1 2002/02/23 17:54:45 southa Exp $
+ * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.1  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  */
 
 #include "GLTest1AppHandler.hp"
@@ -14,7 +17,7 @@
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadPixmap test_int.gif");
+    CoreApp::Instance().Process("loadPixmap ../test/test.gif");
     
     glutInitWindowSize(640,480);
 
@@ -26,7 +29,7 @@ GLTest1AppHandler::Initialise(void)
     glutInit(&argc, argv);
     glutInitDisplayString("");
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE /*| GLUT_ALPHA*/);
-    if (1)
+    if (0)
     {
         glutGameModeString("640x480:16@60");
         glutEnterGameMode();
