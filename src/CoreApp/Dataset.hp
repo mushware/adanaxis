@@ -1,11 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: Dataset.hp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Log: Dataset.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
  */
 
 #include "CoreStandard.hp"
 #include "CoreXML.hp"
-#include "RegExp.hp"
+#include "CoreRegExp.hp"
 
 class Dataset
 {
@@ -26,7 +29,7 @@ private:
     Vec< Vec<Val> > m_data;
     Vec< Vec<bool> > m_valid;
 
-    RegExp m_regexp;
+    CoreRegExp m_regexp;
     
     friend bool operator==(const Dataset& data1, const Dataset& data2);
 };

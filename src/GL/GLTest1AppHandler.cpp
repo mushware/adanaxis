@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.4 2002/02/26 17:01:38 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.5 2002/03/07 22:24:34 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.5  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.4  2002/02/26 17:01:38  southa
  * Completed Sprite loader
  *
@@ -30,7 +33,7 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-CoreApp::Instance().Process("loadpixmap ../test/test.spr;");
+    CoreApp::Instance().Process("loadpixmap ../test/test.spr;");
     glutInitWindowSize(300,300);
 
     char buf1[]="glutInit";

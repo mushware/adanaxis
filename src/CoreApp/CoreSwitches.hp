@@ -1,8 +1,11 @@
 #ifndef CORESWITCHES_HP
 #define CORESWITCHES_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreSwitches.hp,v 1.1 2002/03/07 22:24:33 southa Exp $
+ * $Log: CoreSwitches.hp,v $
+ * Revision 1.1  2002/03/07 22:24:33  southa
+ * Command interpreter working
+ *
  */
 
 #define CORETESTING(a) a
@@ -10,7 +13,7 @@
 
 #define TEXTESTING 0
 #define MONKEYTESTING 0
-#define FLEXTESTING 1
+#define FLEXTESTING 0
 
 #if TEXTESTING
 #define IFTEXTESTING(a) a

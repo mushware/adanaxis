@@ -1,0 +1,13 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreCommandHandler.hp"
+
+class WrangleCommandHandler
+{
+public:
+    static void Install(void);
+    static CoreScalar Wrangle(CoreCommand& ioCommand, CoreEnv& ioEnv);
+};

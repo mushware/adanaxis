@@ -1,0 +1,48 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#ifndef COREREGEXP_HP
+#define COREREGEXP_HP
+
+#include "pcre.h"
+#include <string>
+#include <vector>
+
+class CoreRegExp
+{
+public:
+    CoreRegExp() {m_re = NULL;}
+    CoreRegExp(const string& inPattern) {m_re = NULL;SearchPatternSet(inPattern);}
+    ~CoreRegExp() {if (m_re != NULL) pcre_free(m_re);}
+    void SearchPatternSet(const string& inPattern);
+    bool Search(const string& inString);
+    bool Search(const string& inString, vector<string>& outMatches);
+    bool Search(const string& inString, const string& inPattern);
+    bool Search(const string& inString, const string& inPattern, vector<string>& outMatches);
+
+private:
+    bool HandleRC(int inRC);
+        
+    pcre *m_re;
+    const char *m_error;
+    int m_erroffset;
+};
+
+class CoreRegExpFail: public exception
+{
+public:
+    CoreRegExpFail(const string &inMessage) {m_message=inMessage;}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, CoreRegExpFail f)
+{
+    return s<<f.SPrint();
+}
+
+#endif

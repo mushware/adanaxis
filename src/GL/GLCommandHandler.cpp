@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.7 2002/02/26 17:01:38 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.8 2002/03/07 22:24:34 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.8  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.7  2002/02/26 17:01:38  southa
  * Completed Sprite loader
  *
@@ -28,9 +31,11 @@
 #include "CoreApp.hp"
 #include "CoreTest.hp"
 #include "CoreInstaller.hp"
+#include "CoreRegExp.hp"
 #include "GLAppHandler.hp"
 #include "GLData.hp"
 #include "GLTextureSpr.hp"
+#include "GLTextureGIF.hp"
 #include "GLTest.hp"
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
@@ -50,7 +55,19 @@ GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(filename);
     try
     {
-        GLData::Instance().AddTexture(GLTextureSpr(filename));
+        CoreRegExp re;
+        if (re.Search(filename, "spr$"))
+        {
+            GLData::Instance().AddTexture(GLTextureSpr(filename));
+        }
+        else if (re.Search(filename, "gif$"))
+        {
+            GLData::Instance().AddTexture(GLTextureGIF(filename));
+        }
+        else
+        {
+            throw(LoaderFail(filename, "Couldn't decode extension"));
+        }
     }
     catch (LoaderFail f)
     {
