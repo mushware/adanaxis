@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } d8DjgNYhSxudAN0lVxP0ow
 /*
- * $Id: GameQuit.cpp,v 1.12 2003/08/21 23:08:52 southa Exp $
+ * $Id: GameQuit.cpp,v 1.13 2003/09/17 19:40:33 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.13  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:52  southa
  * Fixed file headers
  *
@@ -56,7 +59,7 @@
 
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
-#include "GameNetUtils.h"
+#include "MustlGameUtils.h"
 #include "GameSTL.h"
 
 #include "mushGL.h"
@@ -135,8 +138,8 @@ GameQuit::Init(void)
 
     MustlLog::Sgl().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
-    GameNetUtils::KillServers();
-    GameNetUtils::KillClients();
+    MustlGameUtils::KillServers();
+    MustlGameUtils::KillClients();
 }    
 
 void

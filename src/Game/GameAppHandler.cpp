@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.49 2003/10/04 12:22:58 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.50 2003/10/04 15:32:08 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.50  2003/10/04 15:32:08  southa
+ * Module split
+ *
  * Revision 1.49  2003/10/04 12:22:58  southa
  * File renaming
  *
@@ -170,8 +173,8 @@
 #include "mushPlatform.h"
 
 #include "GameConfig.h"
-#include "GameDefClient.h"
-#include "GameDefServer.h"
+#include "MustlGameClient.h"
+#include "MustlGameServer.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
 #include "GameSTL.h"
@@ -265,9 +268,9 @@ GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
     
-    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
+    MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
 
-    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlGameServer>::tMapIterator p = MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
@@ -277,9 +280,9 @@ GameAppHandler::GameTypeDetermine(void)
 
     if (m_gameType == kGameTypeInvalid)
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
+        MushcoreData<MustlGameClient>::tMapIterator endValue = MushcoreData<MustlGameClient>::Sgl().End();
 
-        for (MushcoreData<GameDefClient>::tMapIterator p = MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameClient>::tMapIterator p = MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aR8dJjPZW5KAdAjmbHfszQ
 /*
- * $Id: InfernalPlayerUtils.cpp,v 1.17 2003/10/04 12:23:02 southa Exp $
+ * $Id: InfernalPlayerUtils.cpp,v 1.2 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalPlayerUtils.cpp,v $
+ * Revision 1.2  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.17  2003/10/04 12:23:02  southa
  * File renaming
  *
@@ -77,6 +80,7 @@
 #include "InfernalSTL.h"
 
 #include "mushGame.h"
+#include "mushMustlGame.h"
 
 using namespace Mushware;
 using namespace std;
@@ -119,7 +123,7 @@ InfernalPlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames
 }
 
 void
-InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::SendControl(MustlGameClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
 {
     InfernalMessageControlData controlMessage;
     // frameNum is the first frame number in the chunk we're going to send
@@ -150,9 +154,9 @@ InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePla
 void
 InfernalPlayerUtils::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
-    MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
+    MushcoreData<MustlGameClient>::tMapIterator endValue = MushcoreData<MustlGameClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlGameClient>::tMapIterator p=MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
@@ -169,7 +173,7 @@ InfernalPlayerUtils::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames
 }
 
 bool
-InfernalPlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef)
+InfernalPlayerUtils::VerifyOrCreateImagePlayer(const string& inName, MustlGameClient& inClientDef)
 {
     bool retVal=true;
     MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
@@ -190,8 +194,8 @@ bool
 InfernalPlayerUtils::VerifyPlayer(const string& inName, InfernalPiecePlayer& inPlayer)
 {
     bool retVal = false;
-    GameDefClient *defClient = NULL;
-    if (MushcoreData<GameDefClient>::Sgl().GetIfExists(defClient, inName))
+    MustlGameClient *defClient = NULL;
+    if (MushcoreData<MustlGameClient>::Sgl().GetIfExists(defClient, inName))
     {
         MUSHCOREASSERT(defClient != NULL);
         retVal = true;
@@ -200,7 +204,7 @@ InfernalPlayerUtils::VerifyPlayer(const string& inName, InfernalPiecePlayer& inP
 }
 
 bool
-InfernalPlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef)
+InfernalPlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, MustlGameClient& inClientDef)
 {
     bool retVal=true;
     MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
@@ -224,9 +228,9 @@ InfernalPlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     if (inAppHandler.ServerPresent())
     {
         // Loop through the client images, checking that each one has a player attached to it
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
+        MushcoreData<MustlGameClient>::tMapIterator endValue=MushcoreData<MustlGameClient>::Sgl().End();
 
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameClient>::tMapIterator p=MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -256,9 +260,9 @@ InfernalPlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     }
 
     // Check for non-image clients on this machine
-    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
+    MushcoreData<MustlGameClient>::tMapIterator endValue=MushcoreData<MustlGameClient>::Sgl().End();
 
-    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlGameClient>::tMapIterator p=MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DFa98ulYfXZ2Qe7EUcpS0A
 /*
- * $Id: GameSetup.cpp,v 1.34 2003/08/21 23:08:54 southa Exp $
+ * $Id: GameSetup.cpp,v 1.35 2003/09/17 19:40:33 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.35  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.34  2003/08/21 23:08:54  southa
  * Fixed file headers
  *
@@ -123,9 +126,9 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
-#include "GameDefClient.h"
-#include "GameDefServer.h"
-#include "GameNetUtils.h"
+#include "MustlGameClient.h"
+#include "MustlGameServer.h"
+#include "MustlGameUtils.h"
 #include "GameRouter.h"
 #include "GameSTL.h"
 
@@ -254,14 +257,14 @@ GameSetup::Config(void)
 {
     m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
     
-    GameNetUtils::WebReceive();
-    GameNetUtils::NetReceive();
+    MustlGameUtils::WebReceive();
+    MustlGameUtils::NetReceive();
 
 
     if (m_currentMsec > m_lastTickerMsec + kTickerMsec)
     {
         m_lastTickerMsec = m_currentMsec;
-        GameNetUtils::NetTicker();
+        MustlGameUtils::NetTicker();
     }
     
     KeyControl();

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } pKxGNv0W5h1sUZPtuk0AFw
 /*
- * $Id: InfernalContract.h,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalContract.h,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -157,7 +160,7 @@
 #include "mushGL.h"
 
 
-class GameDefClient;
+class MustlGameClient;
 class InfernalFloorMap;
 class InfernalTileMap;
 class InfernalPiecePlayer;
@@ -206,11 +209,11 @@ protected:
     void GlobalKeyControl(void);
     void RunningMove(GameTimer& inTimer, Mushware::U32 inNumFrames);
     void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    void SendControl(const GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControl(const MustlGameClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
     void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
+    bool VerifyOrCreateImagePlayer(const std::string& inName, MustlGameClient& inClientDef);
     bool VerifyPlayer(const std::string& inName, InfernalPiecePlayer& inPlayer);
-    bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
+    bool VerifyOrCreateLocalPlayer(const std::string& inName, MustlGameClient& inClientDef);
     void ManagePlayers(GameAppHandler& inAppHandler);
     
     void XMLStartHandler(MushcoreXML& inXML);

@@ -2,41 +2,23 @@
 
 my @fileList =
 (
-'ChequePoint',
-'Contract',
-'Data',
-'DataUtils',
-'FloorDesigner',
-'FloorMap',
-'LightLinks',
-'Info',
-'Map',
-'MapArea',
-'MapPoint',
-'MessageControlData',
-'Motion',
-'MotionSpec',
-'OverPlot',
-'SolidMap',
-'SpacePoint',
-'Test',
-'TileMap',
-'TileSpec',
-'TileTraits',
-'Timer',
-'View',
-'WebCommands'
+'Def',
+'DefClient',
+'DefServer',
+'NetID',
+'NetObject',
+'NetUtils',
 );
 
 foreach my $suffix (@fileList)
 {
-    die;
-    my $command = "rm Game/Game$suffix.cpp";
+
+    my $command = "mv Game/Game$suffix.cpp MustlGame/MustlGame$suffix.cpp";
     if (system($command) != 0)
     {
         print "'$command' failed\n";
     }
-    $command = "rm Game/Game$suffix.h";
+    $command = "mv Game/Game$suffix.h MustlGame/MustlGame$suffix.h";
     if (system($command) != 0)
     {
         print "'$command' failed\n";

@@ -1796,26 +1796,6 @@
 		path = "/Users/southa/core-app/src/Mushcore/MushcoreXMLOstream.h";
 		refType = 0;
 	};
-	7A219B19052E459800A80064 = {
-		fRef = 7AD69C8A051DB76600A80064;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.cpp: MushcoreXMLIStream";
-		rLen = 0;
-		rLoc = 2539;
-		rType = 0;
-		vrLen = 1399;
-		vrLoc = 1754;
-	};
-	7A219B1A052E459800A80064 = {
-		fRef = 7AD69C89051DB76600A80064;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.h: 133";
-		rLen = 0;
-		rLoc = 3651;
-		rType = 0;
-		vrLen = 358;
-		vrLoc = 3573;
-	};
 	7A381A5B03D9CF5600A80164 = {
 		fRef = F5AAB6A103A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -8513,6 +8493,126 @@
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 4862;
+	};
+	7AB2719A052F473500A80064 = {
+		fRef = 7A6228EC052F136A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalDialogue.cpp: Move";
+		rLen = 0;
+		rLoc = 15227;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 2452;
+	};
+	7AB2719B052F473500A80064 = {
+		fRef = 7AF8B0BE03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameQuit.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1375;
+		vrLoc = 0;
+	};
+	7AB2719C052F473500A80064 = {
+		fRef = 7AF8B0BF03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRecords.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1530;
+		vrLoc = 0;
+	};
+	7AB2719D052F473500A80064 = {
+		fRef = 7AF8B0C003DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRecords.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1536;
+		vrLoc = 0;
+	};
+	7AB2719E052F473500A80064 = {
+		fRef = 7AF8B0C103DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRewards.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1543;
+		vrLoc = 0;
+	};
+	7AB271A0052F473500A80064 = {
+		fRef = 7A6228EC052F136A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalDialogue.cpp: Move";
+		rLen = 0;
+		rLoc = 15227;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 2452;
+	};
+	7AB271A1052F473500A80064 = {
+		fRef = 7AF8B0BF03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRecords.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1530;
+		vrLoc = 0;
+	};
+	7AB271A2052F473500A80064 = {
+		fRef = 7AF8B0BE03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameQuit.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1375;
+		vrLoc = 0;
+	};
+	7AB271A3052F473500A80064 = {
+		fRef = 7AF8B0BF03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRecords.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1530;
+		vrLoc = 0;
+	};
+	7AB271A4052F473500A80064 = {
+		fRef = 7AF8B0C003DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRecords.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1536;
+		vrLoc = 0;
+	};
+	7AB271A5052F473500A80064 = {
+		fRef = 7AF8B0C103DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRewards.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1543;
+		vrLoc = 0;
+	};
+	7AB271A7052F473500A80064 = {
+		fRef = 7AB44AD3052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalContract.cpp: 1195";
+		rLen = 0;
+		rLoc = 33239;
+		rType = 0;
+		vrLen = 443;
+		vrLoc = 29471;
 	};
 	7AB29587051E680700A80064 = {
 		fRef = 7AD69C8A051DB76600A80064;
@@ -19021,16 +19121,6 @@
 		vrLen = 1026;
 		vrLoc = 6260;
 	};
-	7AB4F06D052E401C00A80064 = {
-		fRef = 7AD69C8A051DB76600A80064;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.cpp: MushcoreXMLIStream";
-		rLen = 0;
-		rLoc = 2539;
-		rType = 0;
-		vrLen = 1572;
-		vrLoc = 1763;
-	};
 	7AB4F06E052E401C00A80064 = {
 		fRef = 7A7D35C6051DB02E00A80064;
 		isa = PBXTextBookmark;
@@ -19071,16 +19161,6 @@
 		vrLen = 731;
 		vrLoc = 3518;
 	};
-	7AB4F073052E401C00A80064 = {
-		fRef = 7AD69C89051DB76600A80064;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.h: 131";
-		rLen = 28;
-		rLoc = 3585;
-		rType = 0;
-		vrLen = 346;
-		vrLoc = 3583;
-	};
 	7AB53C4A0432572800A80164 = {
 		fRef = 7AB53C510432572900A80164;
 		isa = PBXTextBookmark;
@@ -19100,16 +19180,6 @@
 		rType = 0;
 		vrLen = 1627;
 		vrLoc = 1169;
-	};
-	7AB53C4C0432572800A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 32";
-		rLen = 0;
-		rLoc = 530;
-		rType = 0;
-		vrLen = 742;
-		vrLoc = 0;
 	};
 	7AB53C4D0432572800A80164 = {
 		fRef = 7AB53C500432572900A80164;
@@ -19203,16 +19273,6 @@
 		rLoc = 673;
 		rType = 0;
 		vrLen = 990;
-		vrLoc = 0;
-	};
-	7AB53C6B043264DB00A80164 = {
-		fRef = 7AF8B0A003DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameLightLinks.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1239;
 		vrLoc = 0;
 	};
 	7AB53C6C043264DB00A80164 = {
@@ -19439,56 +19499,6 @@
 		vrLen = 1562;
 		vrLoc = 3112;
 	};
-	7AB53C84043264DB00A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: PackageVersionGet";
-		rLen = 0;
-		rLoc = 370;
-		rType = 0;
-		vrLen = 406;
-		vrLoc = 0;
-	};
-	7AB53C85043264DB00A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 44";
-		rLen = 0;
-		rLoc = 659;
-		rType = 0;
-		vrLen = 742;
-		vrLoc = 0;
-	};
-	7AB53C86043264DB00A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: PackageVersionGet";
-		rLen = 0;
-		rLoc = 370;
-		rType = 0;
-		vrLen = 406;
-		vrLoc = 0;
-	};
-	7AB53C87043264DB00A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 44";
-		rLen = 0;
-		rLoc = 659;
-		rType = 0;
-		vrLen = 742;
-		vrLoc = 0;
-	};
-	7AB53C88043264DB00A80164 = {
-		fRef = 7AF8B0A003DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameLightLinks.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1239;
-		vrLoc = 0;
-	};
 	7AB53C89043264DB00A80164 = {
 		fRef = F512BC6303798C7D01A80164;
 		isa = PBXTextBookmark;
@@ -19571,30 +19581,6 @@
 		path = "/Users/southa/core-app/README";
 		refType = 0;
 	};
-	7AB5517C041E943100A80164 = {
-		fileEncoding = 4;
-		isa = PBXFileReference;
-		name = GameInfo.h;
-		path = "/Users/southa/core-app/src/Game/GameInfo.h";
-		refType = 0;
-	};
-	7AB5517D041E943100A80164 = {
-		fileEncoding = 4;
-		isa = PBXFileReference;
-		name = GameInfo.cpp;
-		path = "/Users/southa/core-app/src/Game/GameInfo.cpp";
-		refType = 0;
-	};
-	7AB55185041E973400A80164 = {
-		fRef = 7AF8B0DE03DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 49";
-		rLen = 738;
-		rLoc = 1400;
-		rType = 0;
-		vrLen = 1602;
-		vrLoc = 615;
-	};
 	7AB55187041E973400A80164 = {
 		fRef = 7AB5B6ED03DC078900A80164;
 		isa = PBXTextBookmark;
@@ -19629,26 +19615,6 @@
 		vrLen = 1303;
 		vrLoc = 224;
 	};
-	7AB5518D041E973400A80164 = {
-		fRef = 7AF8B0A003DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameLightLinks.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1239;
-		vrLoc = 0;
-	};
-	7AB5518E041E973400A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: 18";
-		rLen = 0;
-		rLoc = 319;
-		rType = 0;
-		vrLen = 342;
-		vrLoc = 0;
-	};
 	7AB5518F041E973400A80164 = {
 		fRef = 7A05C3E103CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -19659,49 +19625,9 @@
 		vrLen = 786;
 		vrLoc = 796;
 	};
-	7AB55190041E973400A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 9";
-		rLen = 0;
-		rLoc = 84;
-		rType = 0;
-		vrLen = 598;
-		vrLoc = 0;
-	};
 	7AB55191041E973400A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F59396D5028C0CA6016230BF;
-	};
-	7AB55192041E973400A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 15";
-		rLen = 0;
-		rLoc = 141;
-		rType = 0;
-		vrLen = 562;
-		vrLoc = 0;
-	};
-	7AB55193041E973400A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: 18";
-		rLen = 0;
-		rLoc = 319;
-		rType = 0;
-		vrLen = 319;
-		vrLoc = 0;
-	};
-	7AB55194041E973400A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 52";
-		rLen = 0;
-		rLoc = 660;
-		rType = 0;
-		vrLen = 681;
-		vrLoc = 20;
 	};
 	7AB55195041E973400A80164 = {
 		bstl = F57BD755028ADAEF01AD87C4;
@@ -21629,6 +21555,212 @@
 		vrLen = 646;
 		vrLoc = 0;
 	};
+	7AB5D5AE05321BED00A80064 = {
+		fRef = 7AF8B0C203DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRewards.h: 124";
+		rLen = 0;
+		rLoc = 3357;
+		rType = 0;
+		vrLen = 1529;
+		vrLoc = 0;
+	};
+	7AB5D5AF05321BED00A80064 = {
+		fRef = 7AF8B08A03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameDefClient.h: 90";
+		rLen = 0;
+		rLoc = 2388;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 1836;
+	};
+	7AB5D5B005321BED00A80064 = {
+		fRef = 7AF8B0AE03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetID.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 508;
+	};
+	7AB5D5B105321BED00A80064 = {
+		fRef = 7AF8B0B103DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetUtils.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1504;
+		vrLoc = 0;
+	};
+	7AB5D5B205321BED00A80064 = {
+		fRef = 7AF8B0B003DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetObject.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 1464;
+	};
+	7AB5D5B305321BED00A80064 = {
+		fRef = 7AF8B0B203DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetUtils.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1528;
+		vrLoc = 0;
+	};
+	7AB5D5B405321BED00A80064 = {
+		fRef = 7A063FD9052EF23800A80064;
+		isa = PBXTextBookmark;
+		name = "SourceMove.pl: 15";
+		rLen = 0;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 727;
+		vrLoc = 0;
+	};
+	7AB5D5B505321BED00A80064 = {
+		fRef = 7AB5D5C305321BED00A80064;
+		isa = PBXBookmark;
+	};
+	7AB5D5B605321BED00A80064 = {
+		fRef = 7AF8B0C203DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameRewards.h: 124";
+		rLen = 0;
+		rLoc = 3357;
+		rType = 0;
+		vrLen = 1529;
+		vrLoc = 0;
+	};
+	7AB5D5B705321BED00A80064 = {
+		fRef = 7AF8B0AE03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetID.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 508;
+	};
+	7AB5D5B805321BED00A80064 = {
+		fRef = 7AF8B08A03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameDefClient.h: 90";
+		rLen = 0;
+		rLoc = 2388;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 1836;
+	};
+	7AB5D5B905321BED00A80064 = {
+		fRef = 7AF8B0AE03DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetID.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 508;
+	};
+	7AB5D5BA05321BED00A80064 = {
+		fRef = 7AF8B0B103DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetUtils.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1504;
+		vrLoc = 0;
+	};
+	7AB5D5BB05321BED00A80064 = {
+		fRef = 7AF8B0B003DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetObject.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1423;
+		vrLoc = 1499;
+	};
+	7AB5D5BC05321BED00A80064 = {
+		fRef = 7AF8B0B203DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetUtils.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1528;
+		vrLoc = 0;
+	};
+	7AB5D5BD05321BED00A80064 = {
+		fRef = 7AF8B0B003DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetObject.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 1464;
+	};
+	7AB5D5BE05321BED00A80064 = {
+		fRef = 7AF8B0B203DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameNetUtils.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1528;
+		vrLoc = 0;
+	};
+	7AB5D5BF05321BED00A80064 = {
+		fRef = 7A063FD9052EF23800A80064;
+		isa = PBXTextBookmark;
+		name = "SourceMove.pl: 15";
+		rLen = 0;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 727;
+		vrLoc = 0;
+	};
+	7AB5D5C005321BED00A80064 = {
+		fRef = 7AB5D5C205321BED00A80064;
+		isa = PBXTextBookmark;
+		name = "MustlGameNetUtils.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1528;
+		vrLoc = 0;
+	};
+	7AB5D5C105321BED00A80064 = {
+		fRef = 7AB44AD3052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalContract.cpp: 1195";
+		rLen = 0;
+		rLoc = 33239;
+		rType = 0;
+		vrLen = 443;
+		vrLoc = 29471;
+	};
+	7AB5D5C205321BED00A80064 = {
+		isa = PBXFileReference;
+		name = MustlGameNetUtils.h;
+		path = "/Users/southa/core-app/src/MustlGame/MustlGameNetUtils.h";
+		refType = 0;
+	};
+	7AB5D5C305321BED00A80064 = {
+		isa = PBXFileReference;
+		name = MustlGameNetUtils.h;
+		path = "/Users/southa/core-app/src/MustlGame/MustlGameNetUtils.h";
+		refType = 0;
+	};
 	7AB5FC6F04F57FED00A80164 = {
 		fRef = 7AB5FC8C04F57FEE00A80164;
 		isa = PBXTextBookmark;
@@ -21657,26 +21789,6 @@
 		rLoc = 194;
 		rType = 0;
 		vrLen = 1609;
-		vrLoc = 0;
-	};
-	7AB5FC7204F57FED00A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: 11";
-		rLen = 0;
-		rLoc = 370;
-		rType = 0;
-		vrLen = 989;
-		vrLoc = 0;
-	};
-	7AB5FC7304F57FED00A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 31";
-		rLen = 0;
-		rLoc = 805;
-		rType = 0;
-		vrLen = 1110;
 		vrLoc = 0;
 	};
 	7AB5FC7404F57FED00A80164 = {
@@ -21737,26 +21849,6 @@
 		rLoc = 194;
 		rType = 0;
 		vrLen = 1609;
-		vrLoc = 0;
-	};
-	7AB5FC7B04F57FEE00A80164 = {
-		fRef = 7AB5517C041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.h: 11";
-		rLen = 0;
-		rLoc = 370;
-		rType = 0;
-		vrLen = 989;
-		vrLoc = 0;
-	};
-	7AB5FC7C04F57FEE00A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 31";
-		rLen = 0;
-		rLoc = 805;
-		rType = 0;
-		vrLen = 1110;
 		vrLoc = 0;
 	};
 	7AB5FC7D04F57FEE00A80164 = {
@@ -23267,22 +23359,12 @@
 		vrLen = 2943;
 		vrLoc = 1588;
 	};
-	7AB81970044054DA00A80164 = {
-		fRef = 7AF8B0DD03DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.cpp: GameWebCommandsInstaller";
-		rLen = 70;
-		rLoc = 3870;
-		rType = 0;
-		vrLen = 1671;
-		vrLoc = 13014;
-	};
 	7AB81971044054DA00A80164 = {
 		fRef = 7AF8B0C503DC39E700A80164;
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: Display";
 		rLen = 34;
-		rLoc = 8335;
+		rLoc = 8347;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 7172;
@@ -23327,22 +23409,12 @@
 		vrLen = 2943;
 		vrLoc = 1588;
 	};
-	7AB81978044054DA00A80164 = {
-		fRef = 7AF8B0DD03DC39E700A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.cpp: GameWebCommandsInstaller";
-		rLen = 70;
-		rLoc = 3870;
-		rType = 0;
-		vrLen = 1671;
-		vrLoc = 13014;
-	};
 	7AB81979044054DA00A80164 = {
 		fRef = 7AF8B0C503DC39E700A80164;
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: Display";
 		rLen = 34;
-		rLoc = 8335;
+		rLoc = 8347;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 7172;
@@ -23356,16 +23428,6 @@
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 6019;
-	};
-	7AB8197B044054DA00A80164 = {
-		fRef = 7AB5517D041E943100A80164;
-		isa = PBXTextBookmark;
-		name = "GameInfo.cpp: 44";
-		rLen = 0;
-		rLoc = 659;
-		rType = 0;
-		vrLen = 742;
-		vrLoc = 0;
 	};
 	7AB8197C044054DA00A80164 = {
 		fRef = 7A05C3E103CB43AC00A80164;
@@ -23605,6 +23667,216 @@
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 24617;
+	};
+	7AC47080052F208900A80064 = {
+		fRef = 7AD69C8A051DB76600A80064;
+		isa = PBXTextBookmark;
+		name = "MushcoreXMLIStream.cpp: MushcoreXMLIStream";
+		rLen = 0;
+		rLoc = 2539;
+		rType = 0;
+		vrLen = 1399;
+		vrLoc = 1754;
+	};
+	7AC47081052F208900A80064 = {
+		fRef = 7A6228F4052F1C6A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalEvent.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1094;
+		vrLoc = 0;
+	};
+	7AC47082052F208900A80064 = {
+		fRef = 7A6228F5052F1C6A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalEvent.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 577;
+		vrLoc = 0;
+	};
+	7AC47083052F208900A80064 = {
+		fRef = 7AB44AD1052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalChequePoint.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 1487;
+	};
+	7AC47084052F208900A80064 = {
+		fRef = 7A6228D0052EF92C00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalAppHandler.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 0;
+	};
+	7AC47085052F208900A80064 = {
+		fRef = 7A6228E0052F080300A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalTypeRace.cpp: InfernalTypeRace";
+		rLen = 0;
+		rLoc = 4480;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4033;
+	};
+	7AC47086052F208900A80064 = {
+		fRef = 7A6228E1052F080300A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalTypeRace.h: EventHandler";
+		rLen = 0;
+		rLoc = 3047;
+		rType = 0;
+		vrLen = 1488;
+		vrLoc = 2527;
+	};
+	7AC47088052F208900A80064 = {
+		fRef = 7AD69C8A051DB76600A80064;
+		isa = PBXTextBookmark;
+		name = "MushcoreXMLIStream.cpp: MushcoreXMLIStream";
+		rLen = 0;
+		rLoc = 2539;
+		rType = 0;
+		vrLen = 1399;
+		vrLoc = 1754;
+	};
+	7AC47089052F208900A80064 = {
+		fRef = 7A6228F4052F1C6A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalEvent.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1094;
+		vrLoc = 0;
+	};
+	7AC4708A052F208900A80064 = {
+		fRef = 7A6228F5052F1C6A00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalEvent.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 577;
+		vrLoc = 0;
+	};
+	7AC4708B052F208900A80064 = {
+		fRef = 7AB44AD1052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalChequePoint.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 1487;
+	};
+	7AC4708C052F208900A80064 = {
+		fRef = 7A6228D0052EF92C00A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalAppHandler.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 0;
+	};
+	7AC4708D052F208900A80064 = {
+		fRef = 7A6228E0052F080300A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalTypeRace.cpp: InfernalTypeRace";
+		rLen = 0;
+		rLoc = 4480;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4033;
+	};
+	7AC4708E052F208900A80064 = {
+		fRef = 7A6228E1052F080300A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalTypeRace.h: EventHandler";
+		rLen = 0;
+		rLoc = 3047;
+		rType = 0;
+		vrLen = 1488;
+		vrLoc = 2527;
+	};
+	7AC47090052F208900A80064 = {
+		fRef = 7AD69C89051DB76600A80064;
+		isa = PBXTextBookmark;
+		name = "MushcoreXMLIStream.h: 133";
+		rLen = 0;
+		rLoc = 3651;
+		rType = 0;
+		vrLen = 358;
+		vrLoc = 3573;
+	};
+	7AC47091052F208900A80064 = {
+		fRef = 7AF8B0D803DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameType.h: EventHandler";
+		rLen = 61;
+		rLoc = 1918;
+		rType = 0;
+		vrLen = 441;
+		vrLoc = 1759;
+	};
+	7AC47093052F208900A80064 = {
+		fRef = 7AD69C89051DB76600A80064;
+		isa = PBXTextBookmark;
+		name = "MushcoreXMLIStream.h: 133";
+		rLen = 0;
+		rLoc = 3651;
+		rType = 0;
+		vrLen = 358;
+		vrLoc = 3573;
+	};
+	7AC47094052F208900A80064 = {
+		fRef = 7AB44AD3052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalContract.cpp: HandleGameStart";
+		rLen = 55;
+		rLoc = 29725;
+		rType = 0;
+		vrLen = 381;
+		vrLoc = 29528;
+	};
+	7AC47095052F208900A80064 = {
+		fRef = 7AF8B0D803DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameType.h: EventHandler";
+		rLen = 61;
+		rLoc = 1918;
+		rType = 0;
+		vrLen = 441;
+		vrLoc = 1759;
+	};
+	7AC47096052F208900A80064 = {
+		fRef = 7AB44AD3052EEAE600A80064;
+		isa = PBXTextBookmark;
+		name = "InfernalContract.cpp: HandleGameStart";
+		rLen = 55;
+		rLoc = 29725;
+		rType = 0;
+		vrLen = 381;
+		vrLoc = 29528;
+	};
+	7AC47097052F208900A80064 = {
+		fRef = 7AF8B0D803DC39E700A80164;
+		isa = PBXTextBookmark;
+		name = "GameType.h: EventHandler";
+		rLen = 61;
+		rLoc = 1918;
+		rType = 0;
+		vrLen = 441;
+		vrLoc = 1759;
 	};
 	7AE4C7F604C72E3400A80164 = {
 		fRef = F5AAB69B03A8C8CC01A80164;
@@ -23871,25 +24143,39 @@
 		vrLen = 1264;
 		vrLoc = 2387;
 	};
-	7AF8B0A003DC39E700A80164 = {
+	7AF8B08A03DC39E700A80164 = {
 		fileEncoding = 30;
 		isa = PBXFileReference;
-		name = GameLightLinks.cpp;
-		path = "/Users/southa/core-app/src/Game/GameLightLinks.cpp";
+		name = GameDefClient.h;
+		path = "/Users/southa/core-app/src/Game/GameDefClient.h";
 		refType = 0;
 	};
-	7AF8B0DD03DC39E700A80164 = {
+	7AF8B0AE03DC39E700A80164 = {
 		fileEncoding = 30;
 		isa = PBXFileReference;
-		name = GameWebCommands.cpp;
-		path = "/Users/southa/core-app/src/Game/GameWebCommands.cpp";
+		name = GameNetID.h;
+		path = "/Users/southa/core-app/src/Game/GameNetID.h";
 		refType = 0;
 	};
-	7AF8B0DE03DC39E700A80164 = {
+	7AF8B0B003DC39E700A80164 = {
 		fileEncoding = 30;
 		isa = PBXFileReference;
-		name = GameWebCommands.h;
-		path = "/Users/southa/core-app/src/Game/GameWebCommands.h";
+		name = GameNetObject.h;
+		path = "/Users/southa/core-app/src/Game/GameNetObject.h";
+		refType = 0;
+	};
+	7AF8B0B103DC39E700A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetUtils.cpp;
+		path = "/Users/southa/core-app/src/Game/GameNetUtils.cpp";
+		refType = 0;
+	};
+	7AF8B0B203DC39E700A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetUtils.h;
+		path = "/Users/southa/core-app/src/Game/GameNetUtils.h";
 		refType = 0;
 	};
 	7AF8B14F03DC3B1800A80164 = {
@@ -29521,14 +29807,142 @@
 			7AF8B16403DC3B1800A80164,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 86973748;
+			PBXPerProjectTemplateStateSaveDate = 87170107;
+			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
+				ContentSize = "{693, 595}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {693, 572}}";
+					Split0 = {
+						ActiveTab = 2;
+						ActiveTabName = PBXBuildResultsModule;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {693, 572}}";
+						Split0 = {
+							Frame = "{{0, 301}, {693, 271}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {952, 321}}";
+						};
+						Tab1 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {781, 452}}";
+								Split0 = {
+									Frame = "{{0, 24}, {781, 428}}";
+									Split0 = {
+										Frame = "{{0, 0}, {383, 428}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											155.123,
+										);
+										Frame = "{{392, 0}, {389, 428}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {781, 452}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {685, 215}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {685, 215}}";
+							};
+						};
+						Tab3 = {
+							BuildMessageFrame = "{{0, 0}, {695, 200}}";
+							BuildTranscriptFrame = "{{0, 209}, {695, 64}}";
+							BuildTranscriptFrameExpanded = YES;
+							Frame = "{{0, 0}, {693, 295}}";
+						};
+						Tab4 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 100}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				NavBarShownByDefault = YES;
+				StatusViewVisible = YES;
+				Template = F5314676015831810DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{54, 341}";
+			};
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7A219B19052E459800A80064;
+									bookmark = 7AB5D5C005321BED00A80064;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -29883,7 +30297,6 @@
 										7AB16C0003EF3E0E00A80164,
 										7ABC6033041B65CC00A80164,
 										7A078AAC041D414C00A80164,
-										7AB55185041E973400A80164,
 										7AB55187041E973400A80164,
 										7AB55188041E973400A80164,
 										7AB53C4A0432572800A80164,
@@ -29893,12 +30306,10 @@
 										7AB53C60043264DB00A80164,
 										7AB53C61043264DB00A80164,
 										7AB53C66043264DB00A80164,
-										7AB53C6B043264DB00A80164,
 										7AB53C6C043264DB00A80164,
 										7AB53C6E043264DB00A80164,
 										7AB53C6F043264DB00A80164,
 										7AB8196F044054DA00A80164,
-										7AB81970044054DA00A80164,
 										7AB81971044054DA00A80164,
 										7AB81972044054DA00A80164,
 										7AB81974044054DA00A80164,
@@ -29913,8 +30324,6 @@
 										7AB5FC6F04F57FED00A80164,
 										7AB5FC7004F57FED00A80164,
 										7AB5FC7104F57FED00A80164,
-										7AB5FC7204F57FED00A80164,
-										7AB5FC7304F57FED00A80164,
 										7AB5FC7404F57FED00A80164,
 										7AB5FC7504F57FED00A80164,
 										7AB5FC7604F57FED00A80164,
@@ -29986,7 +30395,26 @@
 										7AB4F060052E401C00A80064,
 										7AB4F061052E401C00A80064,
 										7AB4F062052E401C00A80064,
-										7AB4F06D052E401C00A80064,
+										7AC47080052F208900A80064,
+										7AC47081052F208900A80064,
+										7AC47082052F208900A80064,
+										7AC47083052F208900A80064,
+										7AC47084052F208900A80064,
+										7AC47085052F208900A80064,
+										7AC47086052F208900A80064,
+										7AB2719A052F473500A80064,
+										7AB2719B052F473500A80064,
+										7AB2719C052F473500A80064,
+										7AB2719D052F473500A80064,
+										7AB2719E052F473500A80064,
+										7AB5D5AE05321BED00A80064,
+										7AB5D5AF05321BED00A80064,
+										7AB5D5B005321BED00A80064,
+										7AB5D5B105321BED00A80064,
+										7AB5D5B205321BED00A80064,
+										7AB5D5B305321BED00A80064,
+										7AB5D5B405321BED00A80064,
+										7AB5D5B505321BED00A80064,
 									);
 									prevStack = (
 										F57BD7D5028AF27C01AD87C4,
@@ -31959,11 +32387,6 @@
 										F512BCF30379F0D901A80164,
 										F512BCF40379F0D901A80164,
 										F59C48F2037A8CF701A80164,
-										F59C48F3037A8CF701A80164,
-										F59C48F6037A8CF701A80164,
-										F59C48F9037A8CF701A80164,
-										F59C4907037A8CF701A80164,
-										F59C4909037A8CF701A80164,
 										F5AAA80C037BDD6701A80164,
 										F5AA2FE40381221601A80164,
 										F5AA2FE50381221601A80164,
@@ -31996,23 +32419,9 @@
 										F5B3339803816BD201A80164,
 										F5B3339903816BD201A80164,
 										F5B3339A03816BD201A80164,
-										F5B6F6E8038179AF01A80164,
-										F5B6F6EA038179AF01A80164,
-										F5B6F6EC038179AF01A80164,
-										F5B6F6EE038179AF01A80164,
-										F5B6F6FD038179AF01A80164,
 										F5A57A1F0383C2F001A80164,
 										F5A57A200383C2F001A80164,
-										F5A57A280383C2F001A80164,
-										F5A57A2C0383C2F001A80164,
-										F5B39E1C0384323901A80164,
 										F5B39E1E0384323901A80164,
-										F5B39E270384323901A80164,
-										F5B39E290384323901A80164,
-										F5B39E2B0384323901A80164,
-										F5B39E3B0384323901A80164,
-										F5B39E420384323901A80164,
-										F5B39E440384323901A80164,
 										F5B39E460384323901A80164,
 										F5B39E470384323901A80164,
 										F5B39E4A0384323901A80164,
@@ -32055,8 +32464,6 @@
 										F5B2752903892D0A01A80164,
 										F5B2752A03892D0A01A80164,
 										F5B2752B03892D0A01A80164,
-										F5B2752D03892D0A01A80164,
-										F5B33B3C03896EF901A80164,
 										F5B33B3E03896EF901A80164,
 										F5B33B3F03896EF901A80164,
 										F5B33B4003896EF901A80164,
@@ -32100,7 +32507,6 @@
 										F5ADDD48038C464901A80164,
 										F5ADDD49038C464901A80164,
 										F5ADDD4A038C464901A80164,
-										F5ADDD4C038C464901A80164,
 										F5ADDD53038C464901A80164,
 										F5ADDD78038C464901A80164,
 										F5895945038CFC2301A80164,
@@ -32184,7 +32590,6 @@
 										F5B3D49B0394FE9801A80164,
 										F5B3D49C0394FE9801A80164,
 										F5B3D49D0394FE9801A80164,
-										F5B3D4A60394FE9801A80164,
 										F5B3D4A70394FE9801A80164,
 										F5B3D4AF0394FE9801A80164,
 										F5B3D4B40394FE9801A80164,
@@ -34052,17 +34457,10 @@
 										7A078AB0041D414C00A80164,
 										7AB5518B041E973400A80164,
 										7AB5518C041E973400A80164,
-										7AB5518D041E973400A80164,
-										7AB5518E041E973400A80164,
 										7AB5518F041E973400A80164,
-										7AB55190041E973400A80164,
 										7AB55191041E973400A80164,
-										7AB55192041E973400A80164,
-										7AB55193041E973400A80164,
-										7AB55194041E973400A80164,
 										7AB55195041E973400A80164,
 										7AB55196041E973400A80164,
-										7AB53C4C0432572800A80164,
 										7AB53C4D0432572800A80164,
 										7AB53C4E0432572800A80164,
 										7AB53C70043264DB00A80164,
@@ -34085,20 +34483,13 @@
 										7AB53C81043264DB00A80164,
 										7AB53C82043264DB00A80164,
 										7AB53C83043264DB00A80164,
-										7AB53C84043264DB00A80164,
-										7AB53C85043264DB00A80164,
-										7AB53C86043264DB00A80164,
-										7AB53C87043264DB00A80164,
-										7AB53C88043264DB00A80164,
 										7AB53C89043264DB00A80164,
 										7AB53C8A043264DB00A80164,
 										7AB53C8B043264DB00A80164,
 										7AB53C8C043264DB00A80164,
 										7AB81977044054DA00A80164,
-										7AB81978044054DA00A80164,
 										7AB81979044054DA00A80164,
 										7AB8197A044054DA00A80164,
-										7AB8197B044054DA00A80164,
 										7AB8197C044054DA00A80164,
 										7AB8197D044054DA00A80164,
 										7AB8197E044054DA00A80164,
@@ -34119,8 +34510,6 @@
 										7AB5FC7804F57FEE00A80164,
 										7AB5FC7904F57FEE00A80164,
 										7AB5FC7A04F57FEE00A80164,
-										7AB5FC7B04F57FEE00A80164,
-										7AB5FC7C04F57FEE00A80164,
 										7AB5FC7D04F57FEE00A80164,
 										7AB5FC7E04F57FEE00A80164,
 										7AB5FC7F04F57FEE00A80164,
@@ -34828,6 +35217,29 @@
 										7AB4F06A052E401C00A80064,
 										7AB4F06B052E401C00A80064,
 										7AB4F06C052E401C00A80064,
+										7AC47088052F208900A80064,
+										7AC47089052F208900A80064,
+										7AC4708A052F208900A80064,
+										7AC4708B052F208900A80064,
+										7AC4708C052F208900A80064,
+										7AC4708D052F208900A80064,
+										7AC4708E052F208900A80064,
+										7AB271A0052F473500A80064,
+										7AB271A1052F473500A80064,
+										7AB271A2052F473500A80064,
+										7AB271A3052F473500A80064,
+										7AB271A4052F473500A80064,
+										7AB271A5052F473500A80064,
+										7AB5D5B605321BED00A80064,
+										7AB5D5B705321BED00A80064,
+										7AB5D5B805321BED00A80064,
+										7AB5D5B905321BED00A80064,
+										7AB5D5BA05321BED00A80064,
+										7AB5D5BB05321BED00A80064,
+										7AB5D5BC05321BED00A80064,
+										7AB5D5BD05321BED00A80064,
+										7AB5D5BE05321BED00A80064,
+										7AB5D5BF05321BED00A80064,
 									);
 								};
 								NavCount = 1;
@@ -34867,7 +35279,7 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7A219B1A052E459800A80064;
+									bookmark = 7AB5D5C105321BED00A80064;
 									history = (
 										7AB202EB052A36FC00A80064,
 										7AB46627052B8C3B00A80064,
@@ -34883,7 +35295,9 @@
 										7AB27142052E02E400A80064,
 										7AB4F06E052E401C00A80064,
 										7AB4F06F052E401C00A80064,
-										7AB4F073052E401C00A80064,
+										7AC47090052F208900A80064,
+										7AC47091052F208900A80064,
+										7AB271A7052F473500A80064,
 									);
 									prevStack = (
 										7AB2EA0105263A5E00A80064,
@@ -34934,47 +35348,16 @@
 										7AB27145052E02E400A80064,
 										7AB4F071052E401C00A80064,
 										7AB4F072052E401C00A80064,
+										7AC47093052F208900A80064,
+										7AC47094052F208900A80064,
+										7AC47095052F208900A80064,
+										7AC47096052F208900A80064,
+										7AC47097052F208900A80064,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
 									Frame = "{{0, 0}, {693, 271}}";
-									NavBarVisible = YES;
-								};
-								NavSplitVertical = NO;
-							};
-							SplitCount = 1;
-							Tab1 = {
-								Debugger = {
-									Split0 = {
-										SplitCount = 2;
-									};
-									SplitCount = 1;
-									TabCount = 2;
-								};
-								LauncherConfigVersion = 7;
-							};
-							Tab2 = {
-								LauncherConfigVersion = 3;
-								Runner = {
-								};
-							};
-							TabCount = 5;
-						};
-						SplitCount = 1;
-						Tab1 = {
-							OptionsSetName = "Hierarchy, all classes";
-						};
-						TabCount = 5;
-					};
-				},
-				{
-					LeftSlideOut = {
-						Split0 = {
-							Split0 = {
-								NavCount = 1;
-								NavGeometry0 = {
-									Frame = "{{0, 0}, {594, 150}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -35262,138 +35645,10 @@
 					StatusViewVisible = YES;
 					Template = F5314676015831810DCA290F;
 					ToolbarVisible = YES;
-					WindowLocation = "{7, 341}";
-				},
-				{
-					ContentSize = "{594, 303}";
-					LeftSlideOut = {
-						Collapsed = NO;
-						Frame = "{{0, 23}, {594, 280}}";
-						Split0 = {
-							ActiveTab = 1;
-							ActiveTabName = PBXRunSessionModule;
-							Collapsed = YES;
-							Frame = "{{0, 0}, {594, 280}}";
-							Split0 = {
-								Frame = "{{1e+06, 1e+06}, {594, 0}}";
-							};
-							SplitCount = 1;
-							Tab0 = {
-								Frame = "{{0, 0}, {804, 321}}";
-							};
-							Tab1 = {
-								Debugger = {
-									Collapsed = NO;
-									Frame = "{{0, 0}, {594, 274}}";
-									Split0 = {
-										Frame = "{{0, 24}, {594, 250}}";
-										Split0 = {
-											Frame = "{{0, 0}, {290, 250}}";
-										};
-										Split1 = {
-											DebugVariablesTableConfiguration = (
-												Name,
-												123,
-												Value,
-												85,
-												Summary,
-												62.123,
-											);
-											Frame = "{{299, 0}, {295, 250}}";
-										};
-										SplitCount = 2;
-									};
-									SplitCount = 1;
-									Tab0 = {
-										Frame = "{{0, 0}, {100, 50}}";
-									};
-									Tab1 = {
-										Frame = "{{0, 0}, {100, 50}}";
-									};
-									TabCount = 2;
-									TabsVisible = YES;
-								};
-								Frame = "{{0, 0}, {594, 274}}";
-								LauncherConfigVersion = 7;
-							};
-							Tab2 = {
-								Frame = "{{0, 0}, {594, 274}}";
-								LauncherConfigVersion = 3;
-								Runner = {
-									Frame = "{{0, 0}, {594, 274}}";
-								};
-							};
-							Tab3 = {
-								BuildMessageFrame = "{{0, 0}, {614, 262}}";
-								BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
-								BuildTranscriptFrameExpanded = YES;
-								Frame = "{{0, 0}, {612, 295}}";
-							};
-							Tab4 = {
-								Frame = "{{0, 0}, {612, 295}}";
-							};
-							TabCount = 5;
-							TabsVisible = NO;
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Frame = "{{0, 0}, {300, 533}}";
-							GroupTreeTableConfiguration = (
-								TargetStatusColumn,
-								18,
-								MainColumn,
-								267,
-							);
-						};
-						Tab1 = {
-							ClassesFrame = "{{0, 0}, {280, 398}}";
-							ClassesTreeTableConfiguration = (
-								PBXBookColumnIdentifier,
-								20,
-								PBXClassColumnIdentifier,
-								237,
-							);
-							Frame = "{{0, 0}, {278, 659}}";
-							MembersFrame = "{{0, 407}, {280, 252}}";
-							MembersTreeTableConfiguration = (
-								PBXBookColumnIdentifier,
-								20,
-								PBXMethodColumnIdentifier,
-								236,
-							);
-						};
-						Tab2 = {
-							Frame = "{{0, 0}, {200, 100}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {200, 386}}";
-							TargetTableConfiguration = (
-								ActiveObject,
-								16,
-								ObjectNames,
-								202.296,
-							);
-						};
-						Tab4 = {
-							BreakpointsTreeTableConfiguration = (
-								breakpointColumn,
-								197,
-								enabledColumn,
-								31,
-							);
-							Frame = "{{0, 0}, {250, 386}}";
-						};
-						TabCount = 5;
-						TabsVisible = NO;
-					};
-					NavBarShownByDefault = YES;
-					StatusViewVisible = YES;
-					Template = F5534CB2020F3F8A0DCA290F;
-					ToolbarVisible = YES;
-					WindowLocation = "{4, 633}";
+					WindowLocation = "{54, 341}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 86973748;
+			PBXWorkspaceStateSaveDate = 87170107;
 		};
 		perUserProjectItems = {
 			7A078AAC041D414C00A80164 = 7A078AAC041D414C00A80164;
@@ -35551,8 +35806,6 @@
 			7A207530052B982A00A80064 = 7A207530052B982A00A80064;
 			7A207532052B982A00A80064 = 7A207532052B982A00A80064;
 			7A207534052B982A00A80064 = 7A207534052B982A00A80064;
-			7A219B19052E459800A80064 = 7A219B19052E459800A80064;
-			7A219B1A052E459800A80064 = 7A219B1A052E459800A80064;
 			7A381A5B03D9CF5600A80164 = 7A381A5B03D9CF5600A80164;
 			7A41084B03CDC4A300A80164 = 7A41084B03CDC4A300A80164;
 			7A41084F03CDC4A300A80164 = 7A41084F03CDC4A300A80164;
@@ -36204,6 +36457,18 @@
 			7AB27142052E02E400A80064 = 7AB27142052E02E400A80064;
 			7AB27144052E02E400A80064 = 7AB27144052E02E400A80064;
 			7AB27145052E02E400A80064 = 7AB27145052E02E400A80064;
+			7AB2719A052F473500A80064 = 7AB2719A052F473500A80064;
+			7AB2719B052F473500A80064 = 7AB2719B052F473500A80064;
+			7AB2719C052F473500A80064 = 7AB2719C052F473500A80064;
+			7AB2719D052F473500A80064 = 7AB2719D052F473500A80064;
+			7AB2719E052F473500A80064 = 7AB2719E052F473500A80064;
+			7AB271A0052F473500A80064 = 7AB271A0052F473500A80064;
+			7AB271A1052F473500A80064 = 7AB271A1052F473500A80064;
+			7AB271A2052F473500A80064 = 7AB271A2052F473500A80064;
+			7AB271A3052F473500A80064 = 7AB271A3052F473500A80064;
+			7AB271A4052F473500A80064 = 7AB271A4052F473500A80064;
+			7AB271A5052F473500A80064 = 7AB271A5052F473500A80064;
+			7AB271A7052F473500A80064 = 7AB271A7052F473500A80064;
 			7AB29587051E680700A80064 = 7AB29587051E680700A80064;
 			7AB29588051E680700A80064 = 7AB29588051E680700A80064;
 			7AB29589051E680700A80064 = 7AB29589051E680700A80064;
@@ -37235,15 +37500,12 @@
 			7AB4F06A052E401C00A80064 = 7AB4F06A052E401C00A80064;
 			7AB4F06B052E401C00A80064 = 7AB4F06B052E401C00A80064;
 			7AB4F06C052E401C00A80064 = 7AB4F06C052E401C00A80064;
-			7AB4F06D052E401C00A80064 = 7AB4F06D052E401C00A80064;
 			7AB4F06E052E401C00A80064 = 7AB4F06E052E401C00A80064;
 			7AB4F06F052E401C00A80064 = 7AB4F06F052E401C00A80064;
 			7AB4F071052E401C00A80064 = 7AB4F071052E401C00A80064;
 			7AB4F072052E401C00A80064 = 7AB4F072052E401C00A80064;
-			7AB4F073052E401C00A80064 = 7AB4F073052E401C00A80064;
 			7AB53C4A0432572800A80164 = 7AB53C4A0432572800A80164;
 			7AB53C4B0432572800A80164 = 7AB53C4B0432572800A80164;
-			7AB53C4C0432572800A80164 = 7AB53C4C0432572800A80164;
 			7AB53C4D0432572800A80164 = 7AB53C4D0432572800A80164;
 			7AB53C4E0432572800A80164 = 7AB53C4E0432572800A80164;
 			7AB53C5E043264DB00A80164 = 7AB53C5E043264DB00A80164;
@@ -37251,7 +37513,6 @@
 			7AB53C60043264DB00A80164 = 7AB53C60043264DB00A80164;
 			7AB53C61043264DB00A80164 = 7AB53C61043264DB00A80164;
 			7AB53C66043264DB00A80164 = 7AB53C66043264DB00A80164;
-			7AB53C6B043264DB00A80164 = 7AB53C6B043264DB00A80164;
 			7AB53C6C043264DB00A80164 = 7AB53C6C043264DB00A80164;
 			7AB53C6E043264DB00A80164 = 7AB53C6E043264DB00A80164;
 			7AB53C6F043264DB00A80164 = 7AB53C6F043264DB00A80164;
@@ -37275,28 +37536,16 @@
 			7AB53C81043264DB00A80164 = 7AB53C81043264DB00A80164;
 			7AB53C82043264DB00A80164 = 7AB53C82043264DB00A80164;
 			7AB53C83043264DB00A80164 = 7AB53C83043264DB00A80164;
-			7AB53C84043264DB00A80164 = 7AB53C84043264DB00A80164;
-			7AB53C85043264DB00A80164 = 7AB53C85043264DB00A80164;
-			7AB53C86043264DB00A80164 = 7AB53C86043264DB00A80164;
-			7AB53C87043264DB00A80164 = 7AB53C87043264DB00A80164;
-			7AB53C88043264DB00A80164 = 7AB53C88043264DB00A80164;
 			7AB53C89043264DB00A80164 = 7AB53C89043264DB00A80164;
 			7AB53C8A043264DB00A80164 = 7AB53C8A043264DB00A80164;
 			7AB53C8B043264DB00A80164 = 7AB53C8B043264DB00A80164;
 			7AB53C8C043264DB00A80164 = 7AB53C8C043264DB00A80164;
-			7AB55185041E973400A80164 = 7AB55185041E973400A80164;
 			7AB55187041E973400A80164 = 7AB55187041E973400A80164;
 			7AB55188041E973400A80164 = 7AB55188041E973400A80164;
 			7AB5518B041E973400A80164 = 7AB5518B041E973400A80164;
 			7AB5518C041E973400A80164 = 7AB5518C041E973400A80164;
-			7AB5518D041E973400A80164 = 7AB5518D041E973400A80164;
-			7AB5518E041E973400A80164 = 7AB5518E041E973400A80164;
 			7AB5518F041E973400A80164 = 7AB5518F041E973400A80164;
-			7AB55190041E973400A80164 = 7AB55190041E973400A80164;
 			7AB55191041E973400A80164 = 7AB55191041E973400A80164;
-			7AB55192041E973400A80164 = 7AB55192041E973400A80164;
-			7AB55193041E973400A80164 = 7AB55193041E973400A80164;
-			7AB55194041E973400A80164 = 7AB55194041E973400A80164;
 			7AB55195041E973400A80164 = 7AB55195041E973400A80164;
 			7AB55196041E973400A80164 = 7AB55196041E973400A80164;
 			7AB562FA03D1E9EB00A80164 = 7AB562FA03D1E9EB00A80164;
@@ -37492,19 +37741,35 @@
 			7AB5B73403DC07B300A80164 = 7AB5B73403DC07B300A80164;
 			7AB5B73503DC07B300A80164 = 7AB5B73503DC07B300A80164;
 			7AB5B73B03DC07B300A80164 = 7AB5B73B03DC07B300A80164;
+			7AB5D5AE05321BED00A80064 = 7AB5D5AE05321BED00A80064;
+			7AB5D5AF05321BED00A80064 = 7AB5D5AF05321BED00A80064;
+			7AB5D5B005321BED00A80064 = 7AB5D5B005321BED00A80064;
+			7AB5D5B105321BED00A80064 = 7AB5D5B105321BED00A80064;
+			7AB5D5B205321BED00A80064 = 7AB5D5B205321BED00A80064;
+			7AB5D5B305321BED00A80064 = 7AB5D5B305321BED00A80064;
+			7AB5D5B405321BED00A80064 = 7AB5D5B405321BED00A80064;
+			7AB5D5B505321BED00A80064 = 7AB5D5B505321BED00A80064;
+			7AB5D5B605321BED00A80064 = 7AB5D5B605321BED00A80064;
+			7AB5D5B705321BED00A80064 = 7AB5D5B705321BED00A80064;
+			7AB5D5B805321BED00A80064 = 7AB5D5B805321BED00A80064;
+			7AB5D5B905321BED00A80064 = 7AB5D5B905321BED00A80064;
+			7AB5D5BA05321BED00A80064 = 7AB5D5BA05321BED00A80064;
+			7AB5D5BB05321BED00A80064 = 7AB5D5BB05321BED00A80064;
+			7AB5D5BC05321BED00A80064 = 7AB5D5BC05321BED00A80064;
+			7AB5D5BD05321BED00A80064 = 7AB5D5BD05321BED00A80064;
+			7AB5D5BE05321BED00A80064 = 7AB5D5BE05321BED00A80064;
+			7AB5D5BF05321BED00A80064 = 7AB5D5BF05321BED00A80064;
+			7AB5D5C005321BED00A80064 = 7AB5D5C005321BED00A80064;
+			7AB5D5C105321BED00A80064 = 7AB5D5C105321BED00A80064;
 			7AB5FC6F04F57FED00A80164 = 7AB5FC6F04F57FED00A80164;
 			7AB5FC7004F57FED00A80164 = 7AB5FC7004F57FED00A80164;
 			7AB5FC7104F57FED00A80164 = 7AB5FC7104F57FED00A80164;
-			7AB5FC7204F57FED00A80164 = 7AB5FC7204F57FED00A80164;
-			7AB5FC7304F57FED00A80164 = 7AB5FC7304F57FED00A80164;
 			7AB5FC7404F57FED00A80164 = 7AB5FC7404F57FED00A80164;
 			7AB5FC7504F57FED00A80164 = 7AB5FC7504F57FED00A80164;
 			7AB5FC7604F57FED00A80164 = 7AB5FC7604F57FED00A80164;
 			7AB5FC7804F57FEE00A80164 = 7AB5FC7804F57FEE00A80164;
 			7AB5FC7904F57FEE00A80164 = 7AB5FC7904F57FEE00A80164;
 			7AB5FC7A04F57FEE00A80164 = 7AB5FC7A04F57FEE00A80164;
-			7AB5FC7B04F57FEE00A80164 = 7AB5FC7B04F57FEE00A80164;
-			7AB5FC7C04F57FEE00A80164 = 7AB5FC7C04F57FEE00A80164;
 			7AB5FC7D04F57FEE00A80164 = 7AB5FC7D04F57FEE00A80164;
 			7AB5FC7E04F57FEE00A80164 = 7AB5FC7E04F57FEE00A80164;
 			7AB5FC7F04F57FEE00A80164 = 7AB5FC7F04F57FEE00A80164;
@@ -37645,16 +37910,13 @@
 			7AB722E8052108E100A80064 = 7AB722E8052108E100A80064;
 			7AB722E9052108E100A80064 = 7AB722E9052108E100A80064;
 			7AB8196F044054DA00A80164 = 7AB8196F044054DA00A80164;
-			7AB81970044054DA00A80164 = 7AB81970044054DA00A80164;
 			7AB81971044054DA00A80164 = 7AB81971044054DA00A80164;
 			7AB81972044054DA00A80164 = 7AB81972044054DA00A80164;
 			7AB81974044054DA00A80164 = 7AB81974044054DA00A80164;
 			7AB81975044054DA00A80164 = 7AB81975044054DA00A80164;
 			7AB81977044054DA00A80164 = 7AB81977044054DA00A80164;
-			7AB81978044054DA00A80164 = 7AB81978044054DA00A80164;
 			7AB81979044054DA00A80164 = 7AB81979044054DA00A80164;
 			7AB8197A044054DA00A80164 = 7AB8197A044054DA00A80164;
-			7AB8197B044054DA00A80164 = 7AB8197B044054DA00A80164;
 			7AB8197C044054DA00A80164 = 7AB8197C044054DA00A80164;
 			7AB8197D044054DA00A80164 = 7AB8197D044054DA00A80164;
 			7AB8197E044054DA00A80164 = 7AB8197E044054DA00A80164;
@@ -37678,6 +37940,27 @@
 			7ABBD4ED04406BA300A80164 = 7ABBD4ED04406BA300A80164;
 			7ABC6033041B65CC00A80164 = 7ABC6033041B65CC00A80164;
 			7ABC6035041B65CC00A80164 = 7ABC6035041B65CC00A80164;
+			7AC47080052F208900A80064 = 7AC47080052F208900A80064;
+			7AC47081052F208900A80064 = 7AC47081052F208900A80064;
+			7AC47082052F208900A80064 = 7AC47082052F208900A80064;
+			7AC47083052F208900A80064 = 7AC47083052F208900A80064;
+			7AC47084052F208900A80064 = 7AC47084052F208900A80064;
+			7AC47085052F208900A80064 = 7AC47085052F208900A80064;
+			7AC47086052F208900A80064 = 7AC47086052F208900A80064;
+			7AC47088052F208900A80064 = 7AC47088052F208900A80064;
+			7AC47089052F208900A80064 = 7AC47089052F208900A80064;
+			7AC4708A052F208900A80064 = 7AC4708A052F208900A80064;
+			7AC4708B052F208900A80064 = 7AC4708B052F208900A80064;
+			7AC4708C052F208900A80064 = 7AC4708C052F208900A80064;
+			7AC4708D052F208900A80064 = 7AC4708D052F208900A80064;
+			7AC4708E052F208900A80064 = 7AC4708E052F208900A80064;
+			7AC47090052F208900A80064 = 7AC47090052F208900A80064;
+			7AC47091052F208900A80064 = 7AC47091052F208900A80064;
+			7AC47093052F208900A80064 = 7AC47093052F208900A80064;
+			7AC47094052F208900A80064 = 7AC47094052F208900A80064;
+			7AC47095052F208900A80064 = 7AC47095052F208900A80064;
+			7AC47096052F208900A80064 = 7AC47096052F208900A80064;
+			7AC47097052F208900A80064 = 7AC47097052F208900A80064;
 			7AE4C7F604C72E3400A80164 = 7AE4C7F604C72E3400A80164;
 			7AE4C7F704C72E3400A80164 = 7AE4C7F704C72E3400A80164;
 			7AF13A0203D32C9A00A80164 = 7AF13A0203D32C9A00A80164;
@@ -39843,11 +40126,6 @@
 			F5974ED7038ABD9601A80164 = F5974ED7038ABD9601A80164;
 			F599EBB10365C60201A80164 = F599EBB10365C60201A80164;
 			F59C48F2037A8CF701A80164 = F59C48F2037A8CF701A80164;
-			F59C48F3037A8CF701A80164 = F59C48F3037A8CF701A80164;
-			F59C48F6037A8CF701A80164 = F59C48F6037A8CF701A80164;
-			F59C48F9037A8CF701A80164 = F59C48F9037A8CF701A80164;
-			F59C4907037A8CF701A80164 = F59C4907037A8CF701A80164;
-			F59C4909037A8CF701A80164 = F59C4909037A8CF701A80164;
 			F5A0E6B602B691060115E516 = F5A0E6B602B691060115E516;
 			F5A0E6C302B691060115E516 = F5A0E6C302B691060115E516;
 			F5A0E6C502B691060115E516 = F5A0E6C502B691060115E516;
@@ -39874,8 +40152,6 @@
 			F5A0E6E702B691060115E516 = F5A0E6E702B691060115E516;
 			F5A57A1F0383C2F001A80164 = F5A57A1F0383C2F001A80164;
 			F5A57A200383C2F001A80164 = F5A57A200383C2F001A80164;
-			F5A57A280383C2F001A80164 = F5A57A280383C2F001A80164;
-			F5A57A2C0383C2F001A80164 = F5A57A2C0383C2F001A80164;
 			F5A7316A0375BA3301A80164 = F5A7316A0375BA3301A80164;
 			F5A79485039E591201A80164 = F5A79485039E591201A80164;
 			F5A79489039E591201A80164 = F5A79489039E591201A80164;
@@ -40383,7 +40659,6 @@
 			F5ADDD48038C464901A80164 = F5ADDD48038C464901A80164;
 			F5ADDD49038C464901A80164 = F5ADDD49038C464901A80164;
 			F5ADDD4A038C464901A80164 = F5ADDD4A038C464901A80164;
-			F5ADDD4C038C464901A80164 = F5ADDD4C038C464901A80164;
 			F5ADDD53038C464901A80164 = F5ADDD53038C464901A80164;
 			F5ADDD78038C464901A80164 = F5ADDD78038C464901A80164;
 			F5AFCE3203563B8001A80166 = F5AFCE3203563B8001A80166;
@@ -40412,7 +40687,6 @@
 			F5B2752903892D0A01A80164 = F5B2752903892D0A01A80164;
 			F5B2752A03892D0A01A80164 = F5B2752A03892D0A01A80164;
 			F5B2752B03892D0A01A80164 = F5B2752B03892D0A01A80164;
-			F5B2752D03892D0A01A80164 = F5B2752D03892D0A01A80164;
 			F5B3212D0396961401A80164 = F5B3212D0396961401A80164;
 			F5B3334F03816BD201A80164 = F5B3334F03816BD201A80164;
 			F5B3335103816BD201A80164 = F5B3335103816BD201A80164;
@@ -40430,7 +40704,6 @@
 			F5B3339803816BD201A80164 = F5B3339803816BD201A80164;
 			F5B3339903816BD201A80164 = F5B3339903816BD201A80164;
 			F5B3339A03816BD201A80164 = F5B3339A03816BD201A80164;
-			F5B33B3C03896EF901A80164 = F5B33B3C03896EF901A80164;
 			F5B33B3E03896EF901A80164 = F5B33B3E03896EF901A80164;
 			F5B33B3F03896EF901A80164 = F5B33B3F03896EF901A80164;
 			F5B33B4003896EF901A80164 = F5B33B4003896EF901A80164;
@@ -40509,14 +40782,7 @@
 			F5B37E800387D34401A80164 = F5B37E800387D34401A80164;
 			F5B37E820387D34401A80164 = F5B37E820387D34401A80164;
 			F5B37E830387D34401A80164 = F5B37E830387D34401A80164;
-			F5B39E1C0384323901A80164 = F5B39E1C0384323901A80164;
 			F5B39E1E0384323901A80164 = F5B39E1E0384323901A80164;
-			F5B39E270384323901A80164 = F5B39E270384323901A80164;
-			F5B39E290384323901A80164 = F5B39E290384323901A80164;
-			F5B39E2B0384323901A80164 = F5B39E2B0384323901A80164;
-			F5B39E3B0384323901A80164 = F5B39E3B0384323901A80164;
-			F5B39E420384323901A80164 = F5B39E420384323901A80164;
-			F5B39E440384323901A80164 = F5B39E440384323901A80164;
 			F5B39E460384323901A80164 = F5B39E460384323901A80164;
 			F5B39E470384323901A80164 = F5B39E470384323901A80164;
 			F5B39E4A0384323901A80164 = F5B39E4A0384323901A80164;
@@ -40538,7 +40804,6 @@
 			F5B3D49B0394FE9801A80164 = F5B3D49B0394FE9801A80164;
 			F5B3D49C0394FE9801A80164 = F5B3D49C0394FE9801A80164;
 			F5B3D49D0394FE9801A80164 = F5B3D49D0394FE9801A80164;
-			F5B3D4A60394FE9801A80164 = F5B3D4A60394FE9801A80164;
 			F5B3D4A70394FE9801A80164 = F5B3D4A70394FE9801A80164;
 			F5B3D4AF0394FE9801A80164 = F5B3D4AF0394FE9801A80164;
 			F5B3D4B40394FE9801A80164 = F5B3D4B40394FE9801A80164;
@@ -40555,11 +40820,6 @@
 			F5B6F5E7035747C301A80166 = F5B6F5E7035747C301A80166;
 			F5B6F5E8035747C301A80166 = F5B6F5E8035747C301A80166;
 			F5B6F5E9035747C301A80166 = F5B6F5E9035747C301A80166;
-			F5B6F6E8038179AF01A80164 = F5B6F6E8038179AF01A80164;
-			F5B6F6EA038179AF01A80164 = F5B6F6EA038179AF01A80164;
-			F5B6F6EC038179AF01A80164 = F5B6F6EC038179AF01A80164;
-			F5B6F6EE038179AF01A80164 = F5B6F6EE038179AF01A80164;
-			F5B6F6FD038179AF01A80164 = F5B6F6FD038179AF01A80164;
 			F5B82F8D0362E7DC01A80164 = F5B82F8D0362E7DC01A80164;
 			F5B82F900362E7DC01A80164 = F5B82F900362E7DC01A80164;
 			F5B82F910362E7DC01A80164 = F5B82F910362E7DC01A80164;
@@ -56727,13 +56987,6 @@
 		vrLen = 778;
 		vrLoc = 0;
 	};
-	F59C48E0037A815D01A80164 = {
-		fileEncoding = 30;
-		isa = PBXFileReference;
-		name = GameWebCommands.h;
-		path = "/Users/southa/core-app/src/Game/GameWebCommands.h";
-		refType = 0;
-	};
 	F59C48F2037A8CF701A80164 = {
 		fRef = F512BC6D0379C3B401A80164;
 		isa = PBXTextBookmark;
@@ -56743,56 +56996,6 @@
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 295;
-	};
-	F59C48F3037A8CF701A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 190;
-		vrLoc = 0;
-	};
-	F59C48F6037A8CF701A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 55";
-		rLen = 0;
-		rLoc = 196;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 339;
-	};
-	F59C48F9037A8CF701A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 196;
-		rType = 0;
-		vrLen = 204;
-		vrLoc = 0;
-	};
-	F59C4907037A8CF701A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 196;
-		rType = 0;
-		vrLen = 204;
-		vrLoc = 0;
-	};
-	F59C4909037A8CF701A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 196;
-		rType = 0;
-		vrLen = 202;
-		vrLoc = 0;
 	};
 	F5A0E6B602B691060115E516 = {
 		fRef = F5A0E6F002B691090115E516;
@@ -57058,26 +57261,6 @@
 		rLoc = 336;
 		rType = 0;
 		vrLen = 1865;
-		vrLoc = 0;
-	};
-	F5A57A280383C2F001A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: ProcessConfig1";
-		rLen = 0;
-		rLoc = 501;
-		rType = 0;
-		vrLen = 569;
-		vrLoc = 0;
-	};
-	F5A57A2C0383C2F001A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: PostU32Retrieve";
-		rLen = 0;
-		rLoc = 501;
-		rType = 0;
-		vrLen = 680;
 		vrLoc = 0;
 	};
 	F5A7316A0375BA3301A80164 = {
@@ -62566,16 +62749,6 @@
 		vrLen = 282;
 		vrLoc = 0;
 	};
-	F5ADDD4C038C464901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 33";
-		rLen = 0;
-		rLoc = 910;
-		rType = 0;
-		vrLen = 972;
-		vrLoc = 0;
-	};
 	F5ADDD53038C464901A80164 = {
 		fRef = F5ADDD02038C1FF601A80164;
 		isa = PBXTextBookmark;
@@ -62868,16 +63041,6 @@
 		vrLen = 1271;
 		vrLoc = 3596;
 	};
-	F5B2752D03892D0A01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: DisplayModesWrite";
-		rLen = 0;
-		rLoc = 692;
-		rType = 0;
-		vrLen = 819;
-		vrLoc = 0;
-	};
 	F5B3212D0396961401A80164 = {
 		fRef = F5B321A70396961701A80164;
 		isa = PBXTextBookmark;
@@ -63119,16 +63282,6 @@
 		name = istream.tcc;
 		path = "/usr/include/gcc/darwin/3.1/g++-v3/bits/istream.tcc";
 		refType = 0;
-	};
-	F5B33B3C03896EF901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 38";
-		rLen = 0;
-		rLoc = 972;
-		rType = 0;
-		vrLen = 893;
-		vrLoc = 0;
 	};
 	F5B33B3E03896EF901A80164 = {
 		fRef = F512BC710379E4C301A80164;
@@ -63922,16 +64075,6 @@
 		vrLen = 406;
 		vrLoc = 0;
 	};
-	F5B39E1C0384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: HandlePostValues";
-		rLen = 0;
-		rLoc = 501;
-		rType = 0;
-		vrLen = 587;
-		vrLoc = 0;
-	};
 	F5B39E1E0384323901A80164 = {
 		fRef = F5483A9C02D19E6101480ACF;
 		isa = PBXTextBookmark;
@@ -63941,66 +64084,6 @@
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 2499;
-	};
-	F5B39E270384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 29";
-		rLen = 0;
-		rLoc = 744;
-		rType = 0;
-		vrLen = 819;
-		vrLoc = 0;
-	};
-	F5B39E290384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 30";
-		rLen = 0;
-		rLoc = 744;
-		rType = 0;
-		vrLen = 819;
-		vrLoc = 0;
-	};
-	F5B39E2B0384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: SelectEpilogue";
-		rLen = 0;
-		rLoc = 744;
-		rType = 0;
-		vrLen = 819;
-		vrLoc = 0;
-	};
-	F5B39E3B0384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: SelectPrologue";
-		rLen = 0;
-		rLoc = 744;
-		rType = 0;
-		vrLen = 748;
-		vrLoc = 0;
-	};
-	F5B39E420384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: SelectPrologue";
-		rLen = 0;
-		rLoc = 744;
-		rType = 0;
-		vrLen = 748;
-		vrLoc = 0;
-	};
-	F5B39E440384323901A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: DisplayQualityWrite";
-		rLen = 0;
-		rLoc = 692;
-		rType = 0;
-		vrLen = 749;
-		vrLoc = 0;
 	};
 	F5B39E460384323901A80164 = {
 		fRef = F512BC6F0379C8C401A80164;
@@ -64212,16 +64295,6 @@
 		vrLen = 1727;
 		vrLoc = 484;
 	};
-	F5B3D4A60394FE9801A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 39";
-		rLen = 0;
-		rLoc = 1226;
-		rType = 0;
-		vrLen = 1294;
-		vrLoc = 0;
-	};
 	F5B3D4A70394FE9801A80164 = {
 		fRef = F5ADDD02038C1FF601A80164;
 		isa = PBXTextBookmark;
@@ -64381,56 +64454,6 @@
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 333;
-	};
-	F5B6F6E8038179AF01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: Install";
-		rLen = 0;
-		rLoc = 196;
-		rType = 0;
-		vrLen = 339;
-		vrLoc = 0;
-	};
-	F5B6F6EA038179AF01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 356;
-		rType = 0;
-		vrLen = 343;
-		vrLoc = 0;
-	};
-	F5B6F6EC038179AF01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 356;
-		rType = 0;
-		vrLen = 339;
-		vrLoc = 0;
-	};
-	F5B6F6EE038179AF01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: 15";
-		rLen = 0;
-		rLoc = 333;
-		rType = 0;
-		vrLen = 420;
-		vrLoc = 0;
-	};
-	F5B6F6FD038179AF01A80164 = {
-		fRef = F59C48E0037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.h: HandlePostValues";
-		rLen = 0;
-		rLoc = 292;
-		rType = 0;
-		vrLen = 419;
-		vrLoc = 0;
 	};
 	F5B82F8D0362E7DC01A80164 = {
 		fRef = F5B82FA70362E7DE01A80164;

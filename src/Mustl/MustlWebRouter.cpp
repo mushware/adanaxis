@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } P3zEKTXF2fa3fLv2sN67PQ
 /*
- * $Id: MustlWebRouter.cpp,v 1.12 2003/08/21 23:09:33 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.13 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.13  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:09:33  southa
  * Fixed file headers
  *
@@ -102,32 +105,39 @@ MustlWebRouter::ReceiveAll(void)
     for (MushcoreData<MustlWebLink>::tMapIterator p=MushcoreData<MustlWebLink>::Sgl().Begin();
          p != endValue; ++p)
     {
-        MUSTLASSERT(p->second != NULL);
-        MustlWebLink& webLink = *p->second;
-        if (callTick)
+        try
         {
-            webLink.Tick();
-        }
-
-        if (webLink.IsDead())
-        {
-            killValue=p;
-        }
-        else
-        {
-            string linkData;
-            for (U32 i=0; i<kMaxReceivesPerCall; ++i)
+            MUSTLASSERT(p->second != NULL);
+            MustlWebLink& webLink = *p->second;
+            if (callTick)
             {
-                if (webLink.Receive(linkData))
+                webLink.Tick();
+            }
+    
+            if (webLink.IsDead())
+            {
+                killValue=p;
+            }
+            else
+            {
+                string linkData;
+                for (U32 i=0; i<kMaxReceivesPerCall; ++i)
                 {
-                    // MustlLog::Sgl().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
-                    webLink.ReceivedProcess(linkData);
-                }
-                else
-                {
-                    break;
+                    if (webLink.Receive(linkData))
+                    {
+                        // MustlLog::Sgl().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
+                        webLink.ReceivedProcess(linkData);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            MustlLog::Sgl().WebLog() << "Network exception: " << e.what() << endl;
         }
     }
     if (killValue != MushcoreData<MustlWebLink>::Sgl().End())

@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } daCXMv+Y5SoIY5jtzphSpA
 /*
- * $Id: MustlWebLink.cpp,v 1.22 2003/08/21 23:09:32 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.23 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.23  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.22  2003/08/21 23:09:32  southa
  * Fixed file headers
  *
@@ -215,8 +218,20 @@ MustlWebLink::Receive(string& outStr)
     outStr="";
     do
     {
-        result=MustlPlatform::TCPReceive(m_tcpSocket, &byte, 1);
-
+        try
+        {
+            result=MustlPlatform::TCPReceive(m_tcpSocket, &byte, 1);
+        }
+        catch (MustlPermanentFail &e)
+        {
+            Disconnect();
+            throw;
+        }
+        catch (MustlTemporaryFail &e)
+        {
+            ++m_linkErrors;
+            throw;
+        }
         if (result == 1)
         {
             outStr += byte;
@@ -236,11 +251,25 @@ MustlWebLink::Send(MustlData& ioData)
     {
         throw(MustlFail("Attempt to send on dead WebLink"));
     }
-    U32 sendSize = ioData.ReadSizeGet();
-    MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
-    ioData.ReadPosAdd(sendSize);
+    try
+    {
+        U32 sendSize = ioData.ReadSizeGet();
+        MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
+        ioData.ReadPosAdd(sendSize);
+    
+    }
+    catch (MustlPermanentFail &e)
+    {
+        Disconnect();
+        throw;
+    }
+    catch (MustlTemporaryFail &e)
+    {
+        ++m_linkErrors;
+        throw;
+    }
 
-    // MustlLog::Sgl().WebLog() << "Sending " << ioData << endl;
+// MustlLog::Sgl().WebLog() << "Sending " << ioData << endl;
 }
 
 void

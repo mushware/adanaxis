@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wEGV1dv23L0/XdO/oScH6A
 /*
- * $Id: GameRouter.cpp,v 1.26 2003/10/04 12:44:34 southa Exp $
+ * $Id: GameRouter.cpp,v 1.27 2003/10/04 15:32:09 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.27  2003/10/04 15:32:09  southa
+ * Module split
+ *
  * Revision 1.26  2003/10/04 12:44:34  southa
  * File renaming
  *
@@ -97,9 +100,9 @@
 #include "GameRouter.h"
 
 
-#include "GameNetID.h"
-#include "GameNetObject.h"
-#include "GameNetUtils.h"
+#include "MustlGameID.h"
+#include "MustlGameObject.h"
+#include "MustlGameUtils.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
 
@@ -131,7 +134,7 @@ GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
 void
 GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
 {
-    GameNetID netID(ioData);
+    MustlGameID netID(ioData);
 
     // We add the -image suffix if the target of this link is a client.  Not rigourous
     if (!inLink.TargetServerIs())
@@ -144,7 +147,7 @@ GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
 void
 GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
 {
-    GameNetObject netObject;
+    MustlGameObject netObject;
 
     netObject.AddressSet(inLink.TCPAddressGet());
     

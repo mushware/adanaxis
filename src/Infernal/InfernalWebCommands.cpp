@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Oqf24n6H6L5K+Ki53Vpj+Q
 /*
- * $Id: InfernalWebCommands.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Id: InfernalWebCommands.cpp,v 1.2 2003/10/04 15:32:12 southa Exp $
  * $Log: InfernalWebCommands.cpp,v $
+ * Revision 1.2  2003/10/04 15:32:12  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:23:07  southa
  * File renaming
  *
@@ -152,6 +155,7 @@
 
 #include "Mushcore.h"
 #include "mushMedia.h"
+#include "mushMustlGame.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
@@ -179,8 +183,8 @@ InfernalWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     else if (typeStr == "singleplayer")
     {
         GameConfig::Sgl().PostDataHandle(valueStr);
-        GameNetUtils::KillServers();
-        GameNetUtils::KillClients();
+        MustlGameUtils::KillServers();
+        MustlGameUtils::KillClients();
 
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
         gameHandler.GameModeEnter(false);
@@ -209,7 +213,7 @@ InfernalWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     {
         GameConfig::Sgl().PostDataHandle(valueStr);
         string clientName = GameConfig::Sgl().ParameterGet("mpplayername").StringGet();
-        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Sgl().Give(clientName, new GameDefClient(clientName));
+        MustlGameClient *gameDefClient = MushcoreData<MustlGameClient>::Sgl().Give(clientName, new MustlGameClient(clientName));
         try
         {
             gameDefClient->JoinGame(GameConfig::Sgl().ParameterGet("mpjoinserver").StringGet(),
@@ -229,26 +233,26 @@ InfernalWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         GameConfig::Sgl().PostDataHandle(valueStr);
         string serverName=GameConfig::Sgl().ParameterGet("mpservername").StringGet();
         string serverMessage=GameConfig::Sgl().ParameterGet("mpservermessage").StringGet();
-        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Sgl().Give(serverName, new GameDefServer(serverName));
+        MustlGameServer *gameDefServer = MushcoreData<MustlGameServer>::Sgl().Give(serverName, new MustlGameServer(serverName));
         gameDefServer->ServerMessageSet(serverMessage);
         gameDefServer->HostGame(GameConfig::Sgl().ParameterGet("mpcontractname").StringGet(),
                                GameConfig::Sgl().ParameterGet("mpplayerlimit").U32Get());
     }
     else if (typeStr == "linkcleardown")
     {
-        GameNetUtils::KillLinks();
+        MustlGameUtils::KillLinks();
     }
     else if (typeStr == "hostcleardown")
     {
         // Kill server first so that it can tell anything with a client image that it's going
-        GameNetUtils::KillServers();
-        GameNetUtils::KillClientImages();
+        MustlGameUtils::KillServers();
+        MustlGameUtils::KillClientImages();
     }
     else if (typeStr == "joincleardown")
     {
         // Kill clients first so that they can tell the servers with images that they're going
-        GameNetUtils::KillClients();
-        GameNetUtils::KillServerImages();
+        MustlGameUtils::KillClients();
+        MustlGameUtils::KillServerImages();
     }
     else if (typeStr == "quit")
     {
@@ -334,9 +338,9 @@ InfernalWebCommands::GameServerStatusWrite(MushcoreCommand& ioCommand, MushcoreE
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Sgl().End();
+        MushcoreData<MustlGameServer>::tMapIterator endValue=MushcoreData<MustlGameServer>::Sgl().End();
 
-        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameServer>::tMapIterator p=MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -349,14 +353,14 @@ InfernalWebCommands::GameServerStatusWrite(MushcoreCommand& ioCommand, MushcoreE
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
 
     ioEnv.Out() << "<tr>";
-    GameDefClient::WebHeaderPrint(ioEnv.Out());
+    MustlGameClient::WebHeaderPrint(ioEnv.Out());
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
+        MushcoreData<MustlGameClient>::tMapIterator endValue=MushcoreData<MustlGameClient>::Sgl().End();
 
         // Client images for server
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameClient>::tMapIterator p=MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -383,9 +387,9 @@ InfernalWebCommands::GameClientStatusWrite(MushcoreCommand& ioCommand, MushcoreE
 
     {
         // Server images
-        MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Sgl().End();
+        MushcoreData<MustlGameServer>::tMapIterator endValue=MushcoreData<MustlGameServer>::Sgl().End();
 
-        for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameServer>::tMapIterator p=MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -398,13 +402,13 @@ InfernalWebCommands::GameClientStatusWrite(MushcoreCommand& ioCommand, MushcoreE
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
 
     ioEnv.Out() << "<tr>";
-    GameDefClient::WebHeaderPrint(ioEnv.Out());
+    MustlGameClient::WebHeaderPrint(ioEnv.Out());
     ioEnv.Out() << "</tr>";
 
     {
-        MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Sgl().End();
+        MushcoreData<MustlGameClient>::tMapIterator endValue=MushcoreData<MustlGameClient>::Sgl().End();
         // Local clients
-        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlGameClient>::tMapIterator p=MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {

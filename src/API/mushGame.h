@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } IVPfuMRcU1i5lN3+uMpRoQ
 /*
- * $Id$
- * $Log$
+ * $Id: mushGame.h,v 1.1 2003/10/04 15:32:08 southa Exp $
+ * $Log: mushGame.h,v $
+ * Revision 1.1  2003/10/04 15:32:08  southa
+ * Module split
+ *
  */
 
 #include "Game/GameAppHandler.h"
@@ -26,12 +29,8 @@
 #include "Game/GameConfigDef.h"
 #include "Game/GameController.h"
 #include "Game/GameControlFrameDef.h"
-#include "Game/GameDefClient.h"
-#include "Game/GameDefServer.h"
 #include "Game/GameEvent.h"
 #include "Game/GameGraphic.h"
-#include "Game/GameNetID.h"
-#include "Game/GameNetUtils.h"
 #include "Game/GameProtocol.h"
 #include "Game/GameRecords.h"
 #include "Game/GameRewards.h"

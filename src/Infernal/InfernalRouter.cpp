@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VeozmCH3dPYlaBddjtbDKw
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalRouter.cpp,v 1.1 2003/10/04 15:32:11 southa Exp $
+ * $Log: InfernalRouter.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:11  southa
+ * Module split
+ *
  */
 
 #include "InfernalRouter.h"
@@ -21,6 +24,8 @@
 #include "InfernalData.h"
 #include "InfernalMessageControlData.h"
 #include "InfernalPiecePlayer.h"
+
+#include "mushMustlGame.h"
 
 using namespace Mushware;
 using namespace std;
@@ -49,10 +54,10 @@ InfernalRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 
     if (inLink.NetIDExists())
     {
-        const GameNetID& gameNetID = dynamic_cast<const GameNetID&>(inLink.NetIDGet());
+        const MustlGameID& gameNetID = dynamic_cast<const MustlGameID&>(inLink.NetIDGet());
         if (gameNetID.DataRefGet().Exists())
         {
-            GameDefClient *clientDef = gameNetID.DataRefGet().Get();
+            MustlGameClient *clientDef = gameNetID.DataRefGet().Get();
             if (clientDef->PlayerRefGet().Exists())
             {
                 InfernalPiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();

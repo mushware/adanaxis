@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } oMQ1VLZnjYUkw29lLBIRAQ
 /*
- * $Id: InfernalContract.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:34  southa
  * File renaming
  *
@@ -403,6 +406,7 @@
 #include "mushGame.h"
 #include "mushGL.h"
 #include "mushMedia.h"
+#include "mushMustlGame.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
@@ -822,7 +826,7 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
         if (inAppHandler.MultiplayerIs())
         {
             InfernalPlayerUtils::SendControlQueues(timer, numClientFrames);
-            GameNetUtils::NetReceive();
+            MustlGameUtils::NetReceive();
         }
         MUSHCOREASSERT(m_floorMap != NULL);
         
@@ -876,7 +880,7 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
             // Keep web links ticking over
             if (i == 0)
             {
-                GameNetUtils::WebReceive();
+                MustlGameUtils::WebReceive();
             }
         }
         timer.Periodic100msDone(numPeriodic100ms);
@@ -887,7 +891,7 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
         {
             if (inAppHandler.MultiplayerIs())
             {
-                GameNetUtils::NetTicker();
+                MustlGameUtils::NetTicker();
                 InfernalPlayerUtils::ManagePlayers(inAppHandler);
             }
 

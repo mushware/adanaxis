@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } /aBkZ5RiZAE5bMJb3KNxLQ
 /*
- * $Id: InfernalPlayerUtils.h,v 1.1 2003/10/04 12:44:36 southa Exp $
+ * $Id: InfernalPlayerUtils.h,v 1.2 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalPlayerUtils.h,v $
+ * Revision 1.2  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:44:36  southa
  * File renaming
  *
@@ -53,7 +56,7 @@
 #include "Mushcore.h"
 
 class GameAppHandler;
-class GameDefClient;
+class MustlGameClient;
 class InfernalFloorMap;
 class InfernalPiecePlayer;
 class GameTimer;
@@ -62,11 +65,11 @@ class InfernalPlayerUtils
 {
 public:
     static void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    static void SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    static void SendControl(MustlGameClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
     static void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    static bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
+    static bool VerifyOrCreateImagePlayer(const std::string& inName, MustlGameClient& inClientDef);
     static bool VerifyPlayer(const std::string& inName, InfernalPiecePlayer& inPlayer);
-    static bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
+    static bool VerifyOrCreateLocalPlayer(const std::string& inName, MustlGameClient& inClientDef);
     static void ManagePlayers(GameAppHandler& inAppHandler);
     static void ClientMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer, Mushware::U32 inNumFrames);
     static void ServerMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer, Mushware::U32 inNumFrames);

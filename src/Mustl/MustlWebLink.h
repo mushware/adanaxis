@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } cOJ0YnSgCprNsBxG/Bg3gQ
 /*
- * $Id: MustlWebLink.h,v 1.6 2003/08/21 23:09:33 southa Exp $
+ * $Id: MustlWebLink.h,v 1.7 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.7  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.6  2003/08/21 23:09:33  southa
  * Fixed file headers
  *
@@ -119,7 +122,7 @@ private:
     enum
     {
         kLinkLifetime=30000, // Times in msec
-        kErrorLimit=100
+        kErrorLimit=5
     };
 
     void GetProcess(const std::string& inFilename);
