@@ -173,6 +173,14 @@ SOURCE=..\..\src\MushMesh\MushMeshBox.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\MushMesh\MushMeshConnector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshConnector.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\MushMesh\MushMeshMath.cpp
 # End Source File
 # Begin Source File
@@ -197,11 +205,27 @@ SOURCE=..\..\src\MushMesh\MushMeshPatchPipe.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\MushMesh\MushMeshPatchTypes.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatchTypes.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\MushMesh\MushMeshStandard.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshStandard.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshStitchable.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshStitchable.h
 # End Source File
 # Begin Source File
 

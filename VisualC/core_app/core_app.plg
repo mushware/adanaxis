@@ -14,74 +14,27 @@ make  all-recursive
 make[1]: Entering directory `/home/mushware/core-app'
 Making all in src
 make[2]: Entering directory `/home/mushware/core-app/src'
-if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMesh.lo -MD -MP -MF ".deps/MushMesh.Tpo" \
-  -c -o MushMesh.lo `test -f './MushMesh/MushMesh.cpp' || echo './'`./MushMesh/MushMesh.cpp; \
-then mv -f ".deps/MushMesh.Tpo" ".deps/MushMesh.Plo"; \
-else rm -f ".deps/MushMesh.Tpo"; exit 1; \
+if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshConnector.lo -MD -MP -MF ".deps/MushMeshConnector.Tpo" \
+  -c -o MushMeshConnector.lo `test -f './MushMesh/MushMeshConnector.cpp' || echo './'`./MushMesh/MushMeshConnector.cpp; \
+then mv -f ".deps/MushMeshConnector.Tpo" ".deps/MushMeshConnector.Plo"; \
+else rm -f ".deps/MushMeshConnector.Tpo"; exit 1; \
 fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMesh.lo -MD -MP -MF .deps/MushMesh.Tpo -c ./MushMesh/MushMesh.cpp -o MushMesh.o
-echo timestamp > MushMesh.lo
-if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshPatchPipe.lo -MD -MP -MF ".deps/MushMeshPatchPipe.Tpo" \
-  -c -o MushMeshPatchPipe.lo `test -f './MushMesh/MushMeshPatchPipe.cpp' || echo './'`./MushMesh/MushMeshPatchPipe.cpp; \
-then mv -f ".deps/MushMeshPatchPipe.Tpo" ".deps/MushMeshPatchPipe.Plo"; \
-else rm -f ".deps/MushMeshPatchPipe.Tpo"; exit 1; \
+g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshConnector.lo -MD -MP -MF .deps/MushMeshConnector.Tpo -c ./MushMesh/MushMeshConnector.cpp -o MushMeshConnector.o
+echo timestamp > MushMeshConnector.lo
+if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshStitchable.lo -MD -MP -MF ".deps/MushMeshStitchable.Tpo" \
+  -c -o MushMeshStitchable.lo `test -f './MushMesh/MushMeshStitchable.cpp' || echo './'`./MushMesh/MushMeshStitchable.cpp; \
+then mv -f ".deps/MushMeshStitchable.Tpo" ".deps/MushMeshStitchable.Plo"; \
+else rm -f ".deps/MushMeshStitchable.Tpo"; exit 1; \
 fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshPatchPipe.lo -MD -MP -MF .deps/MushMeshPatchPipe.Tpo -c ./MushMesh/MushMeshPatchPipe.cpp -o MushMeshPatchPipe.o
-echo timestamp > MushMeshPatchPipe.lo
-if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshSubdivide.lo -MD -MP -MF ".deps/MushMeshSubdivide.Tpo" \
-  -c -o MushMeshSubdivide.lo `test -f './MushMesh/MushMeshSubdivide.cpp' || echo './'`./MushMesh/MushMeshSubdivide.cpp; \
-then mv -f ".deps/MushMeshSubdivide.Tpo" ".deps/MushMeshSubdivide.Plo"; \
-else rm -f ".deps/MushMeshSubdivide.Tpo"; exit 1; \
-fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshSubdivide.lo -MD -MP -MF .deps/MushMeshSubdivide.Tpo -c ./MushMesh/MushMeshSubdivide.cpp -o MushMeshSubdivide.o
-echo timestamp > MushMeshSubdivide.lo
-/bin/bash ../libtool --mode=link g++  -g -Wall   -o libmushmesh.la -rpath C:/MinGW/lib  MushMesh.lo MushMeshArray.lo MushMeshBox.lo MushMeshMath.lo MushMeshPatch.lo MushMeshPatchPipe.lo MushMeshStandard.lo MushMeshSTL.lo MushMeshSubdivide.lo MushMeshUtils.lo MushMeshVector.lo MushMeshWorkspace.lo MushMeshWorkspaceBased.lo  
+g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshStitchable.lo -MD -MP -MF .deps/MushMeshStitchable.Tpo -c ./MushMesh/MushMeshStitchable.cpp -o MushMeshStitchable.o
+echo timestamp > MushMeshStitchable.lo
+/bin/bash ../libtool --mode=link g++  -g -Wall   -o libmushmesh.la -rpath C:/MinGW/lib  MushMesh.lo MushMeshArray.lo MushMeshBox.lo MushMeshConnector.lo MushMeshMath.lo MushMeshPatch.lo MushMeshPatchPipe.lo MushMeshPatchTypes.lo MushMeshStandard.lo MushMeshStitchable.lo MushMeshSTL.lo MushMeshSubdivide.lo MushMeshUtils.lo MushMeshVector.lo MushMeshWorkspace.lo MushMeshWorkspaceBased.lo  
 libtool: link: warning: undefined symbols not allowed in i686-pc-cygwin shared libraries
 rm -fr .libs/libmushmesh.la .libs/libmushmesh.* .libs/libmushmesh.*
-ar cru .libs/libmushmesh.a  MushMesh.o MushMeshArray.o MushMeshBox.o MushMeshMath.o MushMeshPatch.o MushMeshPatchPipe.o MushMeshStandard.o MushMeshSTL.o MushMeshSubdivide.o MushMeshUtils.o MushMeshVector.o MushMeshWorkspace.o MushMeshWorkspaceBased.o 
+ar cru .libs/libmushmesh.a  MushMesh.o MushMeshArray.o MushMeshBox.o MushMeshConnector.o MushMeshMath.o MushMeshPatch.o MushMeshPatchPipe.o MushMeshPatchTypes.o MushMeshStandard.o MushMeshStitchable.o MushMeshSTL.o MushMeshSubdivide.o MushMeshUtils.o MushMeshVector.o MushMeshWorkspace.o MushMeshWorkspaceBased.o 
 ranlib .libs/libmushmesh.a
 creating libmushmesh.la
 (cd .libs && rm -f libmushmesh.la && ln -s ../libmushmesh.la libmushmesh.la)
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshApp.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshApp.Tpo" \
-  -c -o test_mushmesh-TestMushMeshApp.o `test -f './TestMushMesh/TestMushMeshApp.cpp' || echo './'`./TestMushMesh/TestMushMeshApp.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshApp.Tpo" ".deps/test_mushmesh-TestMushMeshApp.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshApp.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshArray.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshArray.Tpo" \
-  -c -o test_mushmesh-TestMushMeshArray.o `test -f './TestMushMesh/TestMushMeshArray.cpp' || echo './'`./TestMushMesh/TestMushMeshArray.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshArray.Tpo" ".deps/test_mushmesh-TestMushMeshArray.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshArray.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshBox.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshBox.Tpo" \
-  -c -o test_mushmesh-TestMushMeshBox.o `test -f './TestMushMesh/TestMushMeshBox.cpp' || echo './'`./TestMushMesh/TestMushMeshBox.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshBox.Tpo" ".deps/test_mushmesh-TestMushMeshBox.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshBox.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshMain.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshMain.Tpo" \
-  -c -o test_mushmesh-TestMushMeshMain.o `test -f './TestMushMesh/TestMushMeshMain.cpp' || echo './'`./TestMushMesh/TestMushMeshMain.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshMain.Tpo" ".deps/test_mushmesh-TestMushMeshMain.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshMain.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshStandard.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshStandard.Tpo" \
-  -c -o test_mushmesh-TestMushMeshStandard.o `test -f './TestMushMesh/TestMushMeshStandard.cpp' || echo './'`./TestMushMesh/TestMushMeshStandard.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshStandard.Tpo" ".deps/test_mushmesh-TestMushMeshStandard.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshStandard.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshSubdivide.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" \
-  -c -o test_mushmesh-TestMushMeshSubdivide.o `test -f './TestMushMesh/TestMushMeshSubdivide.cpp' || echo './'`./TestMushMesh/TestMushMeshSubdivide.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" ".deps/test_mushmesh-TestMushMeshSubdivide.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshUtils.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshUtils.Tpo" \
-  -c -o test_mushmesh-TestMushMeshUtils.o `test -f './TestMushMesh/TestMushMeshUtils.cpp' || echo './'`./TestMushMesh/TestMushMeshUtils.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshUtils.Tpo" ".deps/test_mushmesh-TestMushMeshUtils.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshUtils.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshVector.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshVector.Tpo" \
-  -c -o test_mushmesh-TestMushMeshVector.o `test -f './TestMushMesh/TestMushMeshVector.cpp' || echo './'`./TestMushMesh/TestMushMeshVector.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshVector.Tpo" ".deps/test_mushmesh-TestMushMeshVector.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshVector.Tpo"; exit 1; \
-fi
 /bin/bash ../libtool --mode=link g++  -g -Wall   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
 g++ -g -Wall -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
 make[2]: Leaving directory `/home/mushware/core-app/src'

@@ -21,16 +21,6 @@
 class MushMeshPatch
 {
 public:
-    typedef Mushware::tVal tCoordinateValue; 
-    typedef Mushware::tVal tTexCoordValue;
-
-    enum
-    {
-        kPositionOrder=3,
-        kNormalOrder=3,
-        kGeometryOrder = kPositionOrder + kNormalOrder,
-        kTexCoordOrder=4,
-    };
 
     virtual ~MushMeshPatch() {}
     // virtual void Render(void /* some render context */) = 0;

@@ -21,6 +21,7 @@
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
 #include "MushMeshPatch.h"
+#include "MushMeshPatchTypes.h"
 #include "MushMeshVector.h"
 #include "MushMeshWorkspaceBased.h"
 
@@ -28,22 +29,18 @@
 class MushMeshPatchPipe : public MushMeshPatch
 {
 public:
-    typedef MushMeshVector<tCoordinateValue, kGeometryOrder> tGeometryVector;
-    typedef MushMeshArray<tGeometryVector> tGeometryArray;
-    typedef MushMeshVector<tTexCoordValue, kTexCoordOrder> tTexCoordVector;
-    typedef MushMeshArray<tTexCoordVector> tTexCoordArray;
     typedef Mushware::t2BoxU32 tActiveBox;
 
-    virtual void GeometrySet(const tGeometryArray& inArray);
-    virtual void TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIndex);
+    virtual void GeometrySet(const Mushware::tGeometryArray& inArray);
+    virtual void TexCoordSet(const Mushware::tTexCoordArray& inArray, Mushware::U32 inIndex);
 
     // virtual void Render(void /* some render context */) = 0;
     virtual void Subdivide(Mushware::tVal inLevel);
 
 private:
-    MushMeshWorkspaceBased<tGeometryArray> m_geometry;
+    MushMeshWorkspaceBased<Mushware::tGeometryArray> m_geometry;
     
-    MushMeshWorkspaceBased< std::vector<tTexCoordArray> > m_texCoords;
+    MushMeshWorkspaceBased<Mushware::tTexCoordArrayVector> m_texCoords;
 
     tActiveBox m_activeBox;
 //%classPrototypes {

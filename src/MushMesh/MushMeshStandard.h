@@ -21,12 +21,18 @@
 #endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/Mushcore.h>
+#include <Mushcore/MushcoreStandard.h>
+#include <Mushcore/MushcoreIO.h>
+#include <Mushcore/MushcoreFail.h>
 #else
 #if defined(HAVE_MUSHCORE_H)
-#include <Mushcore.h>
+#include <MushcoreStandard.h>
+#include <MushcoreIO.h>
+#include <MushcoreFail.h>
 #else
-#include "Mushcore.h"
+#include "MushcoreStandard.h"
+#include "MushcoreIO.h"
+#include "MushcoreFail.h"
 #endif
 #endif
 

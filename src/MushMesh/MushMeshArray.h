@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.6 2003/10/18 12:58:38 southa Exp $
+ * $Id: MushMeshArray.h,v 1.7 2003/10/18 20:28:38 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.7  2003/10/18 20:28:38  southa
+ * Subdivision speed tests
+ *
  * Revision 1.6  2003/10/18 12:58:38  southa
  * Subdivision implementation
  *
@@ -41,8 +44,6 @@
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
 #include "MushMeshMath.h"
-
-#define MUSHMESHARRAY_VERBOSE_DEBUG
 
 #ifdef MUSHMESHARRAY_VERBOSE_DEBUG
 #include "MushMeshSTL.h"
