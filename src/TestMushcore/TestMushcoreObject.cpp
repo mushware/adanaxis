@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.9 2003/09/25 20:02:25 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.10 2003/09/26 19:18:09 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.10  2003/09/26 19:18:09  southa
+ * XML null pointer handling
+ *
  * Revision 1.9  2003/09/25 20:02:25  southa
  * XML pointer work
  *
@@ -170,19 +173,11 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     }
     else if (ioIn.TagNameGet() == "pU32")
     {
-        if (m_pU32 == NULL)
-        {
-            m_pU32 = new Mushware::U32;
-        }
-        ioIn >> *m_pU32;
+        ioIn >> m_pU32;
     }
     else if (ioIn.TagNameGet() == "pVectorU32")
     {
-        if (m_pVectorU32 == NULL)
-        {
-            m_pVectorU32 = new std::vector<Mushware::U32>;
-        }
-        ioIn >> *m_pVectorU32;
+        ioIn >> m_pVectorU32;
     }
     else if (ioIn.TagNameGet() == "vectorpU32")
     {
@@ -190,11 +185,7 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     }
     else if (ioIn.TagNameGet() == "pNull")
     {
-        if (m_pNull == NULL)
-        {
-            m_pNull = new Mushware::U32;
-        }
-        ioIn >> *m_pNull;
+        ioIn >> m_pNull;
     }
 }
 void
@@ -245,4 +236,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     }
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } nnrNN2qxVKxLgY1u49JWyg
+//%outOfLineFunctions } 6oVWrvgaLzzYCsdBJtwa6w

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.9 2003/09/25 20:02:25 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.10 2003/09/26 19:18:09 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.10  2003/09/26 19:18:09  southa
+ * XML null pointer handling
+ *
  * Revision 1.9  2003/09/25 20:02:25  southa
  * XML pointer work
  *
@@ -81,8 +84,8 @@ public:
 
             m_mapVector[3].push_back("three");
             m_mapVector[6] = vector<std::string>();
-            m_mapVector[15].push_back("\"fifteen-one\"");
-            m_mapVector[15].push_back("fifteen-two");
+            m_mapVector[15].push_back("\"fifteen-one");
+            m_mapVector[15].push_back("fifteen-two\"");
 
             m_vectorMap.push_back();
             m_vectorMap.push_back();
@@ -103,7 +106,7 @@ public:
             m_pVectorU32->push_back(1);
 
             m_vectorpU32.push_back(new Mushware::U32(2));
-            m_vectorpU32.push_back(new Mushware::U32(8));
+            m_vectorpU32.push_back(NULL);
             m_vectorpU32.push_back(new Mushware::U32(19));
 
             // m_testObject = new TestMushcoreObject(0);

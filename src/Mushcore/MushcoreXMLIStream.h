@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.7 2003/09/24 19:03:23 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.8 2003/09/25 20:02:25 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.8  2003/09/25 20:02:25  southa
+ * XML pointer work
+ *
  * Revision 1.7  2003/09/24 19:03:23  southa
  * XML map IO
  *
@@ -65,7 +68,7 @@ public:
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(std::string& outStr);
 
-    template<class T> void ObjectRead(T *inpObj);
+    template<class T> void ObjectRead(T *& inpObj);
     template<class T> void ObjectRead(vector<T>& inVector);
     template<class T> void ObjectRead(vector<T *>& inVector);
     template<class T, class U> void ObjectRead(map<T, U>& inMap);
@@ -113,29 +116,23 @@ operator>>(MushcoreXMLIStream& ioIn, T& inObj)
     ioIn.ObjectRead(inObj);
 }
 
-#if 0
 template<class T>
 inline void
-operator>>(MushcoreXMLIStream& ioIn, T *inpObj)
+MushcoreXMLIStream::ObjectRead(T *& inpObj)
 {
-    if (inpObj == NULL)
+    if (m_contentStr.substr(m_contentStart, 4) == "NULL")
     {
-        inpObj = new T;
+        inpObj = NULL;
+        m_contentStart += 4;;
     }
-    ioIn >> *inpObj;
-}
-#endif
-
-
-template<class T>
-inline void
-MushcoreXMLIStream::ObjectRead(T *inpObj)
-{
-    if (inpObj == NULL)
+    else
     {
-        inpObj = new T;
+        if (inpObj == NULL)
+        {
+            inpObj = new T;
+        }
+        *this >> *inpObj;
     }
-    *this >> *inpObj;
 }
 
 template<class T>
@@ -206,19 +203,11 @@ MushcoreXMLIStream::ObjectRead(vector<T *>& inVector)
     {
         for (;;)
         {
-            inVector.push_back(new T);
-            try
-            {
-                ObjectRead(inVector.back());
-            }
-            catch (...)
-            {
-                // Remove partially written object
-                inVector.pop_back();
-                throw;
-            }
+            T *newPtr = NULL;
+            ObjectRead(newPtr);
+            inVector.push_back(newPtr);
 
-Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
             {
             }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.7 2003/09/24 19:03:23 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.8 2003/09/25 20:02:25 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.8  2003/09/25 20:02:25  southa
+ * XML pointer work
+ *
  * Revision 1.7  2003/09/24 19:03:23  southa
  * XML map IO
  *
@@ -47,10 +50,26 @@ class MushcoreXMLOStream : public MushcoreXMLStream
 public:
     explicit MushcoreXMLOStream(std::ostream& inPStream);
     std::ostream& OStreamGet() { return m_pStream; }
+
+    template<class T> void PointerPrint(const T *inPtr);
     
 private:
     std::ostream& m_pStream;
 };
+
+template<class T>
+inline void
+MushcoreXMLOStream::PointerPrint(const T *inPtr)
+{
+    if (inPtr == NULL)
+    {
+        OStreamGet() << "NULL";
+    }
+    else
+    {
+        *this << *inPtr;
+    }
+}
 
 template<class T>
 inline MushcoreXMLOStream&
@@ -107,7 +126,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
     ioOut.OStreamGet() << "(";
     while (p != pEnd)
     {
-        ioOut << **p;
+        ioOut.PointerPrint(*p);
         ++p;
         if (p != pEnd)
         {

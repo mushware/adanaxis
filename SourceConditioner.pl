@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.9 2003/09/25 20:02:22 southa Exp $
+# $Id: SourceConditioner.pl,v 1.10 2003/09/26 19:18:06 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.10  2003/09/26 19:18:06  southa
+# XML null pointer handling
+#
 # Revision 1.9  2003/09/25 20:02:22  southa
 # XML pointer work
 #
@@ -500,28 +503,14 @@ sub XMLIStreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
-            my $indirection = IndirectionGet($attr);
             my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
 "    else if (ioIn.TagNameGet() == \"$trimmedAttr\")",
-"    {";
-            if ($indirection == 0)
-            {
-                push @$outputRef,
-"        ioIn >> $attr;",
+"    {",
+"        ioIn >> $baseAttr;",
 "    }";
-            }
-            elsif ($indirection == 1)
-            {
-                push @$outputRef,
-"        if ($baseAttr == NULL)",
-"        {",
-"            $baseAttr = new $type;",
-"        }",
-"        ioIn >> $attr;",
-"    }";
-            }
+
         }
     }
     push @$outputRef,
