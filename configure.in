@@ -155,6 +155,25 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
 
 dnl Checks for library functions.
+AC_TRY_COMPILE([
+#if defined(HAVE_SDL_SDL_MIXER_H)
+#include <SDL/SDL_mixer.h>
+#else
+#if defined(HAVE_SDL_MIXER_H)
+#include <SDL_mixer.h>
+#else
+#include "SDL_mixer.h"
+#endif
+#endif
+],[
+Mix_ChannelFinished(0)
+],
+[
+AC_DEFINE(HAVE_MIX_CHANNELFINISHED,1,[Define if Mix_ChannelFinished exists in SDL_mixer.h])
+],[
+AC_MSG_WARN([Old version of SDL_mixer.  End-of-channel events disabled.])
+]
+)
 
 dnl Automatically generate src/Makefile.am if it's not there
 AC_CHECK_FILE(src,[
