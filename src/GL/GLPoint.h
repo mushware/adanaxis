@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLPoint.h,v 1.8 2002/08/01 16:47:09 southa Exp $
+ * $Id: GLPoint.h,v 1.9 2002/08/07 13:36:47 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.9  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/08/01 16:47:09  southa
  * First multi-box collsion checking
  *
@@ -48,7 +51,8 @@
 class GLPoint : public GLRenderable
 {
 public:
-    GLPoint(tVal inX=0, tVal inY=0):
+    GLPoint () {}
+    explicit GLPoint(tVal inX, tVal inY):
         x(inX),
         y(inY)
         {}

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.14 2002/08/17 10:41:51 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.15 2002/08/17 11:05:58 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.15  2002/08/17 11:05:58  southa
+ * Tweaked zoom for high frame rate
+ *
  * Revision 1.14  2002/08/17 10:41:51  southa
  * Designer fixes
  *

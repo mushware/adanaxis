@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.19 2002/08/08 18:42:05 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.20 2002/08/09 17:09:04 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.20  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.19  2002/08/08 18:42:05  southa
  * More motion escape tweaks
  *
@@ -168,7 +171,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 {
     tVal perm;
     GameMotionSpec trialSpec;
-    bool deltaAngleSignificant = (fabs(inSpec.deltaAngle) > 0.01);
+    bool deltaAngleSignificant = (fabs(inSpec.deltaAngle) > 0.005);
     trialSpec=inSpec;
     perm=MotionSpecPermeabilityGet(trialSpec);
 
@@ -186,10 +189,54 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
         perm=MotionSpecPermeabilityGet(trialSpec);
     }
     
-    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.001 && !deltaAngleSignificant)
+    // Try minor tweaks first
+    for (tVal delta=0.01; delta<=0.06; delta *= 2)
     {
+        if (perm <= 0)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x-=delta;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x+=delta;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.y-=delta;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.y+=delta;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+    }
+    
+    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.01 && !deltaAngleSignificant)
+    {
+	// Check that the player is trying to move sideways
+        GLPoint bounds(inSpec.shape.Size());
+ 	GLPoint deltaPos(inSpec.deltaPos);
+	deltaPos.RotateAboutZ(-inSpec.angle);
+	bool movingSideways = false;
+	if (bounds.x > bounds.y && fabs(deltaPos.x) > fabs(deltaPos.y))
+	{
+	    movingSideways=true;
+	}
+	else if (bounds.x < bounds.y && fabs(deltaPos.x) < fabs(deltaPos.y))
+	{
+	    movingSideways=true;
+	}
+	if (movingSideways)
+	{	
         // Try some angle tweaks to move us into gaps
-        for (tVal deltaAngle=0.01; deltaAngle<=0.05; deltaAngle *= 2)
+        for (tVal deltaAngle=0.01; deltaAngle<=0.021; deltaAngle *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaAngle=deltaAngle;
@@ -217,6 +264,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
             perm=MotionSpecPermeabilityGet(trialSpec);
             if (perm > 0) break;
         }
+	}
     }
 	
     if (perm <= 0 && deltaAngleSignificant)
@@ -228,43 +276,6 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
         perm=MotionSpecPermeabilityGet(trialSpec);
     }
 
-    if (perm <= 0 && deltaAngleSignificant)
-    {
-        // Rotation with no movement is blocked, so try to find a suitable deltaPos which
-        // will allow the player to turn
-        for (tVal deltaX=0.025; deltaX<=0.2; deltaX *= 2)
-        {
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=deltaX;
-            trialSpec.deltaPos.y=0;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=-deltaX;
-            trialSpec.deltaPos.y=0;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-        }
-    }
-
-    if (perm <= 0 && deltaAngleSignificant)
-    {
-        // Same for y
-        for (tVal deltaY=0.025; deltaY<=0.2; deltaY *= 2)
-        {
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=0;
-            trialSpec.deltaPos.y=deltaY;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=0;
-            trialSpec.deltaPos.y=-deltaY;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-        }
-    }
-    
     if (perm <= 0 && deltaAngleSignificant)
     {
 	// Escape from a corner where x and y need to change
@@ -294,6 +305,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 
     if (perm <= 0)
     {
+	// Cannot move at all
         trialSpec=inSpec;
         trialSpec.deltaPos=GLPoint(0,0);
         trialSpec.deltaAngle=0;

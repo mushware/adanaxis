@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.14 2002/08/07 13:36:50 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.15 2002/08/08 18:20:30 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.15  2002/08/08 18:20:30  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.14  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -85,9 +88,11 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     outSpec = m_motion.MotionSpecGet();
     // Retard the current motion
     GLPoint retardPos(outSpec.deltaPos);
-    retardPos.ConstrainMagnitude(m_adhesion);
+    retardPos.ConstrainMagnitude(m_adhesion*m_acceleration);
     outSpec.deltaPos -= retardPos*0.5;
-    outSpec.deltaAngle *= 1.0-(m_adhesion*0.5);
+
+    tVal angleRetard=outSpec.deltaAngle;
+    outSpec.deltaAngle -= 0.5*m_adhesion*angleRetard;
     
     if (m_controller == NULL)
     {
@@ -220,8 +225,8 @@ GamePiecePlayer::Unpickle(CoreXML& inXML)
 {
     UnpicklePrologue();
     m_adhesion=0.8;
-    m_acceleration=0.08;
-    m_speedLim=0.08;
+    m_acceleration=0.1;
+    m_speedLim=0.1;
     inXML.ParseStream(*this);
 }
 
