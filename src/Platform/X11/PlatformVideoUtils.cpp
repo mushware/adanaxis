@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.3 2002/10/21 10:54:33 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.4 2002/10/22 20:42:08 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.4  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/10/21 10:54:33  southa
  * X11 build updates
  *
@@ -51,7 +54,7 @@ PlatformVideoUtils::PlatformVideoUtils()
 U32
 PlatformVideoUtils::DefaultModeGet(void) const
 {
-    return 2;
+    return 0;
 }
 
 const GLModeDef&
