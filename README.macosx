@@ -56,6 +56,9 @@ following procedure was necessary to get the software to build:
 
 setenv LD_PREBIND
 
+# The perl command alter libtool so that it generates libraries which are searched for
+# releative to the executable.  If you don't want this behaviour the perl can be removed.
+
 # Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-3.9.tar.gz
 tar xvzf pcre-3.9.tar.gz
 cd pcre-3.9
@@ -67,6 +70,7 @@ sudo make install
 tar xvzf expat-1.95.4.tar.gz
 cd expat-1.95.4
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -87,11 +91,11 @@ make
 sudo make install
 sudo ranlib /usr/local/lib/libtiff.a
 
-# Download the SDL CVS snapshot from http://www.libsdl.org/cvs.php
-# libsdl >= 1.2.5 would be preferable
-tar xvzf SDL-1.2.tar.gz
-cd SDL-1.2
+# Download the SDL 1.2.5 from http://www.libsdl.org/
+tar xvzf SDL-1.2.5.tar.gz
+cd SDL-1.2.5
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -99,12 +103,13 @@ sudo make install
 tar xvzf smpeg-0.4.4.tar.gz
 cd smpeg-0.4.4
 # Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2/libtool .
-cp ../SDL-1.2/ltconfig .
-cp ../SDL-1.2/ltmain.sh .
+cp ../SDL-1.2.5/libtool .
+cp ../SDL-1.2.5/ltconfig .
+cp ../SDL-1.2.5/ltmain.sh .
 # Make sure that sdl-config is in our path
 setenv PATH ${PATH}:/usr/local/bin
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 # Ignore make erros when building plaympeg
 make -i
 sudo make -i install
@@ -113,6 +118,7 @@ sudo make -i install
 tar xvzf libogg-1.0.tar.gz
 cd libogg-1.0
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -120,6 +126,7 @@ sudo make install
 tar xvzf libvorbis-1.0.tar.gz
 cd libvorbis-1.0
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -127,10 +134,11 @@ sudo make install
 tar xvzf SDL_mixer-1.2.4.tar.gz
 cd SDL_mixer-1.2.4
 # Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2/libtool .
-cp ../SDL-1.2/ltconfig .
-cp ../SDL-1.2/ltmain.sh .
+cp ../SDL-1.2.5/libtool .
+cp ../SDL-1.2.5/ltconfig .
+cp ../SDL-1.2.5/ltmain.sh .
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 # Ignore make erros when building playwave
 make -i
 sudo make -i install
@@ -139,9 +147,10 @@ sudo make -i install
 tar xvzf SDL_net-1.2.4.tar.gz
 cd SDL_net-1.2.4
 # Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2/libtool .
-cp ../SDL-1.2/ltconfig .
-cp ../SDL-1.2/ltmain.sh .
+cp ../SDL-1.2.5/libtool .
+cp ../SDL-1.2.5/ltconfig .
+cp ../SDL-1.2.5/ltmain.sh .
 ./configure
+perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install

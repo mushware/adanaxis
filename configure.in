@@ -197,6 +197,7 @@ AC_MSG_ERROR([ic2data/Makefile.am not present.  Please run autogen.sh])
 ])
 
 LIBS="$LIBS $SDL_EXTRA_LIBS"
+
 AC_OUTPUT(ic2.spec.mdk ic2.spec.redhat ic2.spec.suse Makefile src/Makefile ic2data/Makefile)
 AC_MSG_NOTICE([Verdict was:])
 AC_MSG_NOTICE([CPPFLAGS=$CPPFLAGS])

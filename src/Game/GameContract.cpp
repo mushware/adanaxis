@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.94 2002/11/18 11:31:13 southa Exp $
+ * $Id: GameContract.cpp,v 1.95 2002/11/18 18:55:57 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.95  2002/11/18 18:55:57  southa
+ * Game resume and quit
+ *
  * Revision 1.94  2002/11/18 11:31:13  southa
  * Return to game mode
  *
@@ -745,6 +748,10 @@ GameContract::Running(void)
         // cerr << "numPeriodic1s=" << numPeriodic1s << endl;
         for (tVal i=0; i<numPeriodic1s; ++i)
         {
+            // Keep web links ticking over
+            MediaNetWebServer::Instance().Accept();
+            MediaNetWebRouter::Instance().ReceiveAll();
+            
             static U32 lastPrint=0;
             m_fps=m_frames;
             m_frames=0;
