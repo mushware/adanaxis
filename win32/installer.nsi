@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.8 2002/08/07 11:48:23 southa Exp $
+; $Id: installer.nsi,v 1.9 2002/08/27 13:18:11 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.9  2002/08/27 13:18:11  southa
+; Fixed line endings in LICENCE file
+;
 ; Revision 1.8  2002/08/07 11:48:23  southa
 ; Preparation for release 0.0.3
 ;
@@ -115,6 +118,7 @@ WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninst
 
 SetOutPath "$INSTDIR\system"
 CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
+CreateShortCut "$DESKTOP\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
 CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateDirectory "$STARTMENU\Programs\Mushware"
 CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
@@ -122,13 +126,9 @@ CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.ln
 CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk" "$INSTDIR\README.txt"
 CreateShortCut "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
 CreateShortCut "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk" "$INSTDIR\"
-CreateShortCut "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
+CreateShortCut "$STARTMENU\Programs\Mushware\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
 CreateShortCut "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
-CreateShortCut "$STARTMENU\Programs\Mushware\Register IC2 RateWare!.lnk" "http://www.mushware.co.uk/ic2/rateware"
 
-CreateShortCut "$INSTDIR\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
-CreateShortCut "$INSTDIR\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
-CreateShortCut "$INSTDIR\Register IC2 RateWare!.lnk" "http://www.mushware.co.uk/ic2/rateware"
 CreateShortCut "$INSTDIR\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
 
 SetOutPath "$INSTDIR"
@@ -147,14 +147,14 @@ DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor I
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II"
 RMDir /r "$INSTDIR"
 Delete "$DESKTOP\Infernal Contractor II.lnk"
+Delete "$DESKTOP\Mushware web site.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk"
 Delete "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk"
 Delete "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk"
-Delete "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk"
+Delete "$STARTMENU\Programs\Mushware\Mushware web site.lnk"
 Delete "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk"
-Delete "$STARTMENU\Programs\Mushware\Register IC2 RateWare!.lnk"
 FindFirst $R1 $R2 "$STARTMENU\Programs\Mushware\*.lnk"
 IfErrors err20 noerr20
 err20:

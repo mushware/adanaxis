@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.1 2002/08/07 12:36:14 southa Exp $
+# $Id: MakeInstaller.sh,v 1.2 2002/08/27 13:18:11 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.2  2002/08/27 13:18:11  southa
+# Fixed line endings in LICENCE file
+#
 # Revision 1.1  2002/08/07 12:36:14  southa
 # Created
 #
@@ -29,7 +32,7 @@ fi
 version=$1
 
 echo "Building win32 installer for version $version"
-
+strip --strip-unneeded -o release/system/ic2.exe src/ic2binary.exe 
 cp -p win32/ic2_app.ico release/system
 echo 'Converting text and XML file to DOS line endings'
 find release \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
@@ -37,6 +40,11 @@ echo 'Converting LICENCE file to DOS line endings'
 unix2dos win32/LICENCE
 echo 'Building win32 installer'
 cd win32
+
+# Copy non-executable files
+cp 'Mushware web site.url' ../release
+cp UpdateCheck.url ../release/system
+
 makensis installer.nsi
 mv IC2-win32-setup-0_0_0.exe IC2-win32-setup-$version.exe
 echo 'Done'
