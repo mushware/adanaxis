@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.2 2002/11/01 17:24:49 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.3 2002/11/08 00:25:34 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.3  2002/11/08 00:25:34  southa
+ * Added UDPSend and UDPReceive
+ *
  * Revision 1.2  2002/11/01 17:24:49  southa
  * Network links on win32
  *
@@ -65,7 +68,6 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
 
         int sockAddrSize=sizeof(sockAddr);
         int result = recvfrom(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
-    cerr << "result=" << result << endl;
         
         if (result == SOCKET_ERROR)
         {
