@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.3 2003/09/21 15:57:12 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.4 2003/09/21 18:49:41 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.4  2003/09/21 18:49:41  southa
+ * XML input stream work
+ *
  * Revision 1.3  2003/09/21 15:57:12  southa
  * XML autogenerator work
  *
@@ -30,16 +33,21 @@
 using namespace std;
 using namespace Mushware;
 
+//%outOfLineFunctions {
 void
-TestMushcoreObject::XMLDataProcess(MushcoreXMLIStream& ioIn)
+TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
 {
-    cout << "Tag " << ioIn.TagNameGet() << endl;
+    ioOut << "[";
+    ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
+    ioOut << "u32=" << m_u32;
+    ioOut << "]";
+}
+void
+TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
+{
     if (ioIn.TagNameGet() == "TestMushcoreObject")
     {
-        // MushcoreXMLIStream xmlIStream(&ioIn.DataStreamGet());
-        // Mushcore::Unpickle(xmlIStream, *this);
-
-        ioIn.ObjectRead(*this);
+        ioIn >> *this;
     }
     else if (ioIn.TagNameGet() == "u8")
     {
@@ -50,17 +58,6 @@ TestMushcoreObject::XMLDataProcess(MushcoreXMLIStream& ioIn)
         ioIn >> m_u32;
     }
 }
-
-//%outOfLineFunctions {
-void
-TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
-    ioOut << "u32=" << m_u32;
-    ioOut << "]";
-}
-
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
 {
@@ -74,5 +71,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<u32>" << m_u32 << "</u32>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } NfPFVErs7nlMep7H2sGyqw
- 
+//%outOfLineFunctions } 77cabLe7N26aRqAZzZquqg

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.2 2003/09/21 15:57:11 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.3 2003/09/21 18:49:41 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.3  2003/09/21 18:49:41  southa
+ * XML input stream work
+ *
  * Revision 1.2  2003/09/21 15:57:11  southa
  * XML autogenerator work
  *
@@ -48,11 +51,11 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 void
 MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 {
-    string tagStr;
-    U32 dataStartPos;
-
     do
     {
+        string tagStr;
+        U32 dataStartPos;
+
         while (dataStartPos = MushcoreUtil::TagGet(tagStr, m_contentStr, m_contentStart),
                 dataStartPos == 0)
         {
@@ -64,7 +67,7 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
         U32 dataEndPos;
     
         while (dataEndPos = m_contentStr.find(closingStr, dataStartPos),
-                dataEndPos == string::npos)
+               dataEndPos == string::npos)
         {
             InputFetch();
         }
@@ -75,13 +78,31 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
         m_contentStart = dataStartPos;
         m_contentEnd = dataEndPos;
 
-        inObj.XMLDataProcess(*this);
+        inObj.AutoXMLDataProcess(*this);
  
         m_contentStart = sequenceEndPos;
         m_contentEnd = contentEndStore;
         
     } while (m_contentStart < m_contentEnd);
 }
+
+void
+MushcoreXMLIStream::ObjectRead(U32& outU32)
+{
+    istringstream inStream(DataGet());
+    if (!(inStream >> outU32))
+    {
+        Throw("Read unsigned failed");
+    }
+}    
+
+void
+MushcoreXMLIStream::ObjectRead(U8& outU8)
+{
+    U32 tempValue;
+    ObjectRead(tempValue);
+    outU8 = tempValue;
+}    
 
 void
 MushcoreXMLIStream::InputFetch(void)
@@ -109,12 +130,6 @@ MushcoreXMLIStream::DataGet(void) const
     return m_contentStr.substr(m_contentStart, m_contentEnd - m_contentStart);
 }
 
-std::istream *
-MushcoreXMLIStream::TempIStreamNew(void) const
-{
-    return new std::istringstream(DataGet());
-}
-
 void
 MushcoreXMLIStream::Throw(const string& inMessage)
 {
@@ -122,4 +137,3 @@ MushcoreXMLIStream::Throw(const string& inMessage)
     message << "XML parsing failure within '" << m_contentStr.substr(m_contentStart) << "' at line " << m_contentLineNum << ": " << inMessage;
     throw(MushcoreSyntaxFail(message.str()));
 }
-

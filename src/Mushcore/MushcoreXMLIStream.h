@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.2 2003/09/21 15:57:12 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.3 2003/09/21 18:49:41 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.3  2003/09/21 18:49:41  southa
+ * XML input stream work
+ *
  * Revision 1.2  2003/09/21 15:57:12  southa
  * XML autogenerator work
  *
@@ -38,16 +41,17 @@ public:
     virtual ~MushcoreXMLIStream();
 
     std::string DataGet(void) const;
-    std::istream *TempIStreamNew(void) const;
     const std::string& TagNameGet(void) const { return m_tagName; }
 
     void ObjectRead(MushcoreXMLConsumer& inObj);
-    
+    void ObjectRead(Mushware::U32& outU32);
+    void ObjectRead(Mushware::U8& outU8);
+
+protected:
     void Throw(const std::string& inMessage);
-    
-private:
     void InputFetch(void);
-    
+
+private:    
     std::istream *m_pInputStream;
     std::string m_tagName;
     std::string m_contentStr;
@@ -57,17 +61,11 @@ private:
 };
 
 template<class T>
-inline MushcoreXMLIStream&
+inline void
 operator>>(MushcoreXMLIStream& ioIn, T& inObj)
 {
-    std::istream *pIStream = ioIn.TempIStreamNew();
-
-    *pIStream >> inObj;
-    
-    delete pIStream;
-    return ioIn;
+    ioIn.ObjectRead(inObj);
 }
-
 
 //%includeGuardEnd {
 #endif

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.3 2003/09/21 09:50:50 southa Exp $
+# $Id: SourceConditioner.pl,v 1.4 2003/09/21 11:45:46 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.4  2003/09/21 11:45:46  southa
+# XML input stream
+#
 # Revision 1.3  2003/09/21 09:50:50  southa
 # Stream autogenerators
 #
@@ -320,7 +323,7 @@ sub XMLIStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLRead(MushcoreXMLIStream& ioIn);"; 
+    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn);"; 
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -331,12 +334,31 @@ sub XMLIStreamWriteFunctionGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "void";
-    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLRead(MushcoreXMLIStream& ioIn)";
     push @$outputRef,
-"{"
-;
-    push @$outputRef, "}";  
+"void",
+"${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn)",
+"{",
+"    if (ioIn.TagNameGet() == \"$className\")",
+"    {",
+"        ioIn >> *this;",
+"    }";
+    my $attributesRef = $$infoRef{ATTRIBUTES};
+    if (defined($attributesRef))
+    {
+        for (my $i=0; $i < @$attributesRef; $i += 3)
+        {
+            my $type = $$attributesRef[$i];
+            my $attr = $$attributesRef[$i+1];
+            my $trimmedAttr = VarNameTrim($attr);
+            push @$outputRef,
+"    else if (ioIn.TagNameGet() == \"$trimmedAttr\")",
+"    {",
+"        ioIn >> $attr;",
+"    }";
+        }
+    }
+    push @$outputRef,
+"}";
 }
 
 sub XMLIStreamOperatorGenerate($$)
@@ -347,12 +369,6 @@ sub XMLIStreamOperatorGenerate($$)
 
     die "No class found for XMLIStream operator" unless defined ($className);
     
-    push @$outputRef,
-"inline void",
-"Unpickle(MushcoreXMLIStream& ioIn, $className& inObj)",
-"{",
-"    inObj.$gConfig{AUTO_PREFIX}XMLRead(ioIn);",
-"}";
 }
 
 ##########################################################

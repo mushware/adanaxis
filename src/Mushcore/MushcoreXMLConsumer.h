@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } npITgZT+9cJbbZswb9CV2A
 /*
- * $Id: MushcoreXMLConsumer.h,v 1.1 2003/09/21 15:57:31 southa Exp $
+ * $Id: MushcoreXMLConsumer.h,v 1.2 2003/09/21 18:49:41 southa Exp $
  * $Log: MushcoreXMLConsumer.h,v $
+ * Revision 1.2  2003/09/21 18:49:41  southa
+ * XML input stream work
+ *
  * Revision 1.1  2003/09/21 15:57:31  southa
  * XML autogenerator work
  *
@@ -30,7 +33,7 @@ class MushcoreXMLIStream;
 class MushcoreXMLConsumer
 {
 public:
-    virtual void XMLDataProcess(MushcoreXMLIStream& ioIn) = 0;
+    virtual void AutoXMLDataProcess(MushcoreXMLIStream& ioIn) = 0;
 };
 
 //%includeGuardEnd {

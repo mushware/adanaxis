@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.3 2003/09/21 15:57:12 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.4 2003/09/21 18:49:41 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.4  2003/09/21 18:49:41  southa
+ * XML input stream work
+ *
  * Revision 1.3  2003/09/21 15:57:12  southa
  * XML autogenerator work
  *
@@ -49,26 +52,19 @@ public:
 private:
     Mushware::U8 m_u8;
     Mushware::U32 m_u32;
+
+
 //%classPrototypes {
 public:
     void AutoPrint(std::ostream& ioOut) const;
-    void AutoXMLRead(MushcoreXMLIStream& ioIn);
+    void AutoXMLDataProcess(MushcoreXMLIStream& ioIn);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const;
-
-    Mushware::U32 AutoXMLRead(const std::string& inStr);
-    virtual void XMLDataProcess(MushcoreXMLIStream& ioIn);
-//%classPrototypes } Z45ZX1/VtF+3hZqy6oJcFw
+//%classPrototypes } M7wTzUDxlXWypQaORjFYdA
 };
-
 //%inlineNamespaced {
 namespace Mushcore
 {
 
-inline void
-Unpickle(MushcoreXMLIStream& ioIn, TestMushcoreObject& inObj)
-{
-    ioIn.ObjectRead(inObj);
-}
 inline void
 Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::string& inName="")
 {
@@ -76,16 +72,7 @@ Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::st
 }
 
 } // end namespace Mushcore
-
-// Keep the standard unpickles here
-
-inline MushcoreXMLIStream&
-operator>>(MushcoreXMLIStream& ioIn, TestMushcoreObject& outObj)
-{
-    Mushcore::Unpickle(ioIn, outObj);
-    return ioIn;
-}
-
+//%inlineNamespaced } +Fjvv2DYljqARHYMR/7PLA
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
@@ -94,7 +81,7 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     return ioOut;
 }
 //%inlineHeader } wtIj6sOLlmWIa4+bx30Igg
-//%inlineNamespaced } 4C5axkZwqb1pfTNuy9sneg
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
