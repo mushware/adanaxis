@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.15 2002/08/08 18:20:30 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.16 2002/08/08 18:32:27 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.16  2002/08/08 18:32:27  southa
+ * Corrected for new scaling
+ *
  * Revision 1.15  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
  *
@@ -220,7 +223,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
     {
         // Rotation with no movement is blocked, so try to find a suitable deltaPos which
         // will allow the player to turn
-        for (tVal deltaX=0.05; deltaX<=0.2; deltaX *= 2)
+        for (tVal deltaX=0.025; deltaX<=0.2; deltaX *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaPos.x=deltaX;
@@ -238,7 +241,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
     if (perm <= 0 && deltaAngleSignificant)
     {
         // Same for y
-        for (tVal deltaY=0.05; deltaY<=0.2; deltaY *= 2)
+        for (tVal deltaY=0.025; deltaY<=0.2; deltaY *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaPos.x=0;
