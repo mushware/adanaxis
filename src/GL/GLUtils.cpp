@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.5 2002/05/29 10:07:48 southa Exp $
+ * $Id: GLUtils.cpp,v 1.6 2002/05/31 15:18:16 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.6  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.5  2002/05/29 10:07:48  southa
  * Fixed Inits for cygwin
  *
@@ -109,10 +112,29 @@ GLUtils::BitmapText(const string& inStr)
 void
 GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
 {
+    GLuint name;
+    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_QUADS);
+    glTexCoord2f(0,0);
+    glVertex2f(inX,inY);
+    glTexCoord2f(0,1);
+    glVertex2f(inX,inY+inTex.Height());
+    glTexCoord2f(1,1);
+    glVertex2f(inX+inTex.Width(),inY+inTex.Height());
+    glTexCoord2f(1,0);
+    glVertex2f(inX+inTex.Width(),inY);
+    glEnd();
+    
+    glDisable(GL_TEXTURE_2D);
+    CheckGLError();
+#if 0
     GLUtils::RasterPos(0, 0);
     glBitmap(0,0,0,0,inX,inY,NULL);
     glDrawPixels(inTex.Width(), inTex.Height(), inTex.PixelFormat(),
              inTex.PixelType(), inTex.DataPtr());
+#endif
 }
 
 void GLUtils::PostRedisplay(void)

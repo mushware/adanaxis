@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.10 2002/05/24 18:10:43 southa Exp $
+ * $Id: GLTexture.cpp,v 1.11 2002/05/28 16:37:39 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.11  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.10  2002/05/24 18:10:43  southa
  * CoreXML and game map
  *
@@ -34,6 +37,14 @@
  */
 
 #include "GLTexture.h"
+
+GLTexture::~GLTexture()
+{
+    if (m_bound)
+    {
+        glDeleteTextures(1, &m_bindingName);
+    }
+}
 
 ostream&
 GLTexture::ostreamPrint(ostream& inOut) const
@@ -75,3 +86,24 @@ GLTexture::TextureDefValid(tSize inWhere) const
     if (inWhere >= m_textureDefs.size()) return false;
     return m_textureDefs[inWhere].Valid();
 }
+
+void
+GLTexture::BindTexture(void) const
+{
+    COREASSERT(!m_bound);
+    glGenTextures(1, &m_bindingName);
+    glBindTexture(GL_TEXTURE_2D, m_bindingName);
+    glTexImage2D(
+	GL_TEXTURE_2D, // target
+	0, // level
+	GL_RGBA, // internal format
+	Width(), // width
+	Height(), // height
+	0, //border
+	PixelFormat(), // format
+	PixelType(), // type
+	DataPtr() // pointer to data
+	);
+    m_bound=true;
+}
+

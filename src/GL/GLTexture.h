@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.h,v 1.2 2002/05/24 18:10:43 southa Exp $
+ * $Id: GLTexture.h,v 1.3 2002/05/28 16:37:39 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.3  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.2  2002/05/24 18:10:43  southa
  * CoreXML and game map
  *
@@ -50,7 +53,8 @@
 class GLTexture
 {
 public:
-    virtual ~GLTexture() {}
+    GLTexture(): m_bound(false) {}
+    virtual ~GLTexture();
     virtual GLTexture *Clone(void) const = 0;
     virtual GLsizei Width(U32 inRef=0) const {return TextureDefGet(inRef).Width();}
     virtual GLsizei Height(U32 inRef=0) const {return TextureDefGet(inRef).Height();}
@@ -61,7 +65,10 @@ public:
     virtual tSize NumberOf(void) const {return m_textureDefs.size();}
     virtual ostream& ostreamPrint(ostream& inOut) const;
     const string& FilenameGet(void) const {return m_inFilename;}
-        
+
+    GLuint BindingNameGet(U32 inRef=0) const {if (m_bound) return m_bindingName; BindTexture(); return m_bindingName;}
+    void BindTexture(void) const;
+    
 protected:
     class TextureDef
     {
@@ -99,6 +106,8 @@ protected:
 private:
     vector<TextureDef> m_textureDefs;
     string m_inFilename;
+    mutable bool m_bound;
+    mutable GLuint m_bindingName;
 };
 
 inline ostream& operator<<(ostream &inOut, const GLTexture& inTex)
