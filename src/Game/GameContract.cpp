@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.30 2002/07/18 11:40:34 southa Exp $
+ * $Id: GameContract.cpp,v 1.31 2002/07/19 15:44:40 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.31  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.30  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -230,7 +233,7 @@ GameContract::RunningDisplay(void)
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
-    GLUtils::BlendSet(GLUtils::kBlendTransparency);
+    GLUtils::BlendSet(GLUtils::kBlendTransparent);
     gl.SetPosition(0,0);
     GLUtils::SetColour(1,1,1);
     gl.MoveTo(m_player->XGet(), m_player->YGet());
