@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.11 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameDef.cpp,v 1.12 2002/11/28 15:14:13 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.12  2002/11/28 15:14:13  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.11  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -42,7 +45,7 @@
 
 GameDef::GameDef(const string& inName) :
     m_name(inName),
-    m_status(kStatusTesting),
+    m_status(kStatusInvalid),
     m_isImage(false)
 {
     m_creationMsec = dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
@@ -88,6 +91,16 @@ GameDef::HandleNameEnd(CoreXML& inXML)
 }
 
 void
+GameDef::HandleStatusEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for status.  Should be <status>3</status>";
+    U32 value;
+    if (!(data >> value)) inXML.Throw(failMessage);
+    m_status = static_cast<tStatus>(value);
+}
+
+void
 GameDef::NullHandler(CoreXML& inXML)
 {
 }
@@ -96,6 +109,7 @@ void
 GameDef::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<name>" << MediaNetUtils::MakeXMLSafe(m_name) << "</name>" << endl;
+    inOut << inPrefix << "<status>" << m_status << "</status>" << endl;
 }
 
 void
@@ -105,6 +119,8 @@ GameDef::UnpicklePrologue(void)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["name"] = &GameDef::NullHandler;
     m_endTable[kPickleData]["name"] = &GameDef::HandleNameEnd;
+    m_startTable[kPickleData]["status"] = &GameDef::NullHandler;
+    m_endTable[kPickleData]["status"] = &GameDef::HandleStatusEnd;
     m_pickleState=kPickleData;
 }
 

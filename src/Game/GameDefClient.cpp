@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.8 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.9 2002/11/28 15:14:14 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.9  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.8  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -59,7 +62,7 @@ GameDefClient::GameDefClient(const string& inName) :
     m_killed(false),
     m_joined(false)
 {
-    StatusSet(GameDef::kStatusOK);
+    StatusSet(GameDef::kStatusInvalid); // Change this
 }
 
 void

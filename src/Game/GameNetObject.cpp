@@ -61,12 +61,10 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
         gameDefClient->Unpickle(inXML);
         
         CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
-        cerr << "Made client image " << elementName << endl;
         for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
             if (!p->second->IsImage())
             {
-                cerr << "Update client sent" << endl;
                 p->second->UpdateClient(*gameDefClient);
             }
         }

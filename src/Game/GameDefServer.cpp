@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.6 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.7 2002/11/28 15:14:14 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.7  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.6  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -37,6 +40,7 @@ GameDefServer::GameDefServer(const string& inName) :
     m_lastUpdateMsec(0),
     m_killed(false)
 {
+        StatusSet(GameDef::kStatusOK); // Change this
 }
 
 void

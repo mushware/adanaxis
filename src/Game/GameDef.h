@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.7 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameDef.h,v 1.8 2002/11/28 15:14:14 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.8  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.7  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -67,6 +70,7 @@ protected:
 private:
     void NullHandler(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
+    void HandleStatusEnd(CoreXML& inXML);
 
     enum PickleState
     {
