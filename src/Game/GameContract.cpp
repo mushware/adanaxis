@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.43 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameContract.cpp,v 1.44 2002/08/08 13:39:09 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.44  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  * Revision 1.43  2002/08/07 13:36:49  southa
  * Conditioned source
  *
@@ -239,6 +242,7 @@ GameContract::Init(void)
     COREASSERT(m_currentView != NULL);
     m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));
     // GameData::Instance().DumpAll(cout);
+    m_masterScale=0.5;
 }
 
 void
@@ -269,6 +273,7 @@ GameContract::RunningMove(tVal inStep)
     {
         motion.Render();
     }
+    m_masterScale+=(0.05 - m_masterScale)/30;
 }
 
 void
@@ -283,6 +288,7 @@ GameContract::RunningDisplay(void)
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
 
+    
     GameMotionSpec playerSpec(m_player->MotionSpecGet());
 
     playerSpec.Windback(m_timer.WindbackValueGet(gameAppHandler.MillisecondsGet()));
@@ -290,12 +296,20 @@ GameContract::RunningDisplay(void)
     GameMapPoint aimingPoint(GLPoint(playerSpec.pos.x / m_floorMap->XStep(),
                                      playerSpec.pos.y / m_floorMap->YStep()));
 
-    GLUtils::OrthoLookAt(playerSpec.pos.x, playerSpec.pos.y, playerSpec.angle);
-
+    GameMotionSpec lookAtPoint;
+    lookAtPoint.pos=GLPoint(playerSpec.pos.x*m_masterScale, playerSpec.pos.y*m_masterScale);
+    lookAtPoint.angle=playerSpec.angle;
+    
+    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    // m_masterScale is the proportion of the longest axis of the screen
+    // taken up by one map piece
+    GLUtils::Scale(m_masterScale, m_masterScale, 1);
+    
+    // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
-    tVal xRadius=(gameAppHandler.WidthGet() / 2) / m_floorMap->XStep();
-    tVal yRadius=(gameAppHandler.HeightGet() / 2) / m_floorMap->YStep();
-    tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
+    GLPoint screenRatios(GLUtils::ScreenRatiosGet());
+    GLPoint screenRadius((screenRatios.x / 2) / m_floorMap->XStep(), (screenRatios.x / 2) / m_floorMap->YStep());
+    tVal circleRadius=-1+screenRadius.Magnitude()/m_masterScale;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea; // Empty area
@@ -309,19 +323,21 @@ GameContract::RunningDisplay(void)
     GLUtils::IdentityEpilogue();
 
     GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(playerSpec.pos.x, playerSpec.pos.y, playerSpec.angle);
+    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
     gl.SetPosition(0,0);
     GLUtils::ModulateSet(false);
-    gl.MoveTo(playerSpec.pos.x, playerSpec.pos.y);
+    gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-    GLUtils::Scale(64,64,1);
+    GLUtils::Scale(m_masterScale*2, m_masterScale*2, 1);
     m_player->Render();
     GLUtils::IdentityEpilogue();
 
     GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(playerSpec.pos.x, playerSpec.pos.y, playerSpec.angle);
+    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    GLUtils::Scale(m_masterScale, m_masterScale, 1);
     glMatrixMode(GL_MODELVIEW);
     COREASSERT(m_currentView != NULL);
     GLUtils::BlendSet(GLUtils::kBlendLine);
@@ -332,10 +348,11 @@ GameContract::RunningDisplay(void)
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(1.0,0.5,0.5);
+    GLUtils::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;
-    orthoGL.MoveTo(32,32);
-    GLUtils::Scale(32,32,1);
+    orthoGL.MoveToEdge(-1,-1);
+    orthoGL.MoveRelative(0.02,0.02);
+    GLUtils::Scale(0.02,0.02,1);
 
     GLString fpsStr("font-mono1",message.str());
     fpsStr.Render();
@@ -346,6 +363,7 @@ GameContract::RunningDisplay(void)
 
     m_timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
     ++m_frames;
+
 }
 
 void

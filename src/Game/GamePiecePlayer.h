@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.10 2002/08/05 13:37:29 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.11 2002/08/07 13:36:50 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.11  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/08/05 13:37:29  southa
  * Windback work
  *
@@ -113,6 +116,8 @@ private:
     vector <GameGraphic *> m_graphics;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData
+    tVal m_speedLim;
+    tVal m_acceleration;
 };
 
 inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)

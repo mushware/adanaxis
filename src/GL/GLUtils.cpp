@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.22 2002/08/01 16:47:10 southa Exp $
+ * $Id: GLUtils.cpp,v 1.23 2002/08/07 13:36:48 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.23  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.22  2002/08/01 16:47:10  southa
  * First multi-box collsion checking
  *
@@ -86,6 +89,7 @@
 #include "GLUtils.h"
 #include "GLTexture.h"
 #include "GLAppHandler.h"
+#include "GLPoint.h"
 #include "GLRectangle.h"
 
 GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
@@ -99,6 +103,26 @@ GLUtils::MoveTo(tVal inX, tVal inY)
     glTranslatef(inX-m_x,inY-m_y,0);
     m_x=inX;
     m_y=inY;
+}
+
+void
+GLUtils::MoveRelative(tVal inX, tVal inY)
+{
+    glTranslatef(inX,inY,0);
+    m_x+=inX;
+    m_y+=inY;
+}
+
+void
+GLUtils::MoveToEdge(tVal inX, tVal inY)
+{
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+
+    tVal newX=screenRatios.x*inX;
+    tVal newY=screenRatios.y*inY;
+    glTranslatef(newX-m_x,newY-m_y,0);
+    m_x=newX;
+    m_y=newY;
 }
 
 void
@@ -124,11 +148,12 @@ GLUtils::IdentityEpilogue(void)
 void
 GLUtils::OrthoPrologue(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-
+    // The screen should be enclosed by a square with corners (-0.5,-0.5) and
+    // (0.5,0.5) with aspect ratio 1.  The screen is a rectangle within the square
     IdentityPrologue();
     glMatrixMode(GL_PROJECTION);
-    gluOrtho2D(0, glHandler.WidthGet(), 0, glHandler.HeightGet());
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+    gluOrtho2D(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y);
 }
 
 void
@@ -140,16 +165,41 @@ GLUtils::OrthoEpilogue(void)
 void
 GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    glMatrixMode(GL_PROJECTION);
-    tVal width=glHandler.WidthGet();
-    tVal height=glHandler.HeightGet();
-    gluOrtho2D(-width/2, width/2, -height/2, height/2);
 
+    glMatrixMode(GL_PROJECTION);
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+    gluOrtho2D(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y);
     gluLookAt(inX, inY, 0.1, // eye position
               inX, inY, 0, // point we're looking at
               sin(inAngle),cos(inAngle),0 // direction of up
               );
+}
+
+const GLPoint
+GLUtils::ScreenSizeGet(void)
+{
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    return GLPoint(glHandler.WidthGet(), glHandler.HeightGet());
+}
+
+const GLPoint
+GLUtils::ScreenRatiosGet(void)
+{
+    return ScreenSizeGet() / LongestScreenAxis();
+}
+
+tVal
+GLUtils::LongestScreenAxis(void)
+{
+    GLPoint screenSize(ScreenSizeGet());
+    if (screenSize.x > screenSize.y)
+    {
+        return screenSize.x;
+    }
+    else
+    {
+        return screenSize.y;
+    }
 }    
 
 void

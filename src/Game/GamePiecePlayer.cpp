@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.13 2002/08/05 13:37:29 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.14 2002/08/07 13:36:50 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.14  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.13  2002/08/05 13:37:29  southa
  * Windback work
  *
@@ -100,19 +103,19 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     
     if (controlState.leftPressed)
     {
-        outSpec.deltaPos.x -= m_adhesion;
+        outSpec.deltaPos.x -= m_adhesion*m_acceleration;
     }
     if (controlState.rightPressed)
     {
-        outSpec.deltaPos.x += m_adhesion;
+        outSpec.deltaPos.x += m_adhesion*m_acceleration;
     }
     if (controlState.upPressed)
     {
-        outSpec.deltaPos.y += m_adhesion;
+        outSpec.deltaPos.y += m_adhesion*m_acceleration;
     }
     if (controlState.downPressed)
     {
-        outSpec.deltaPos.y -= m_adhesion;
+        outSpec.deltaPos.y -= m_adhesion*m_acceleration;
     }
     // Constrain magnitude to an egg-ellipse thing
     tVal magnitude;
@@ -127,10 +130,10 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
                        outSpec.deltaPos.y*outSpec.deltaPos.y);
     }
 	    
-    if (magnitude > 2)
+    if (magnitude > m_speedLim)
     {
-        // Constrain magnitude to 2
-        outSpec.deltaPos *= 2/magnitude;
+        // Constrain magnitude to speedLim
+        outSpec.deltaPos *= m_speedLim/magnitude;
     }
     
     outSpec.deltaPos.RotateAboutZ(newAngle);
@@ -217,6 +220,8 @@ GamePiecePlayer::Unpickle(CoreXML& inXML)
 {
     UnpicklePrologue();
     m_adhesion=0.8;
+    m_acceleration=0.08;
+    m_speedLim=0.08;
     inXML.ParseStream(*this);
 }
 

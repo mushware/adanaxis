@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.17 2002/08/02 15:20:55 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.18 2002/08/07 13:36:50 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.18  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.17  2002/08/02 15:20:55  southa
  * Frame rate timing
  *
@@ -254,10 +257,10 @@ GameFloorMap::HandleGameFloorMapStart(CoreXML& inXML)
     m_xsize=inXML.GetAttribOrThrow("xsize").U32Get();
     m_ysize=inXML.GetAttribOrThrow("ysize").U32Get();
     CoreScalar temp;
-    temp=CoreScalar(32.0);
+    temp=CoreScalar(1.0);
     inXML.GetAttrib(temp, "xstep");
     m_xstep=temp.ValGet();
-    temp=CoreScalar(32.0);
+    temp=CoreScalar(1.0);
     inXML.GetAttrib(temp, "ystep");
     m_ystep=temp.ValGet();
     if (m_xstep == 0 || m_ystep == 0)

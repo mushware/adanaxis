@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.16 2002/08/02 15:20:55 southa Exp $
+ * $Id: GameContract.h,v 1.17 2002/08/07 13:36:49 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.17  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.16  2002/08/02 15:20:55  southa
  * Frame rate timing
  *
@@ -139,6 +142,7 @@ private:
     GameView *m_currentView;
     bool m_renderDiagnostics;
     GameTimer m_timer;
+    tVal m_masterScale;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLFont.cpp,v 1.1 2002/08/08 13:39:09 southa Exp $
+ * $Log: GLFont.cpp,v $
+ * Revision 1.1  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  */
 
 #include "GLFont.h"
@@ -16,12 +19,24 @@ GLFont::GLFont(const string& inName):
     m_name(inName),
     m_texRef(inName)
 {
-    cerr << "Constructing font using " << inName << endl;
     // Monospaced only right now
     GLTexture *texMap(m_texRef.TextureGet());
-    cerr << "Texture: " << *texMap << endl;
-    m_xstep=texMap->Width()/8;
-    m_ystep=texMap->Height()/12;
+    m_xMapSize=texMap->Width();
+    m_yMapSize=texMap->Height();
+}
+
+void
+GLFont::ShapeSet(U32 inXNum, U32 inYNum)
+{
+    m_xNum=inXNum;
+    m_yNum=inYNum;
+}
+
+void
+GLFont::SizeSet(tVal inXSize, tVal inYSize)
+{
+    m_xUsedSize=inXSize;
+    m_yUsedSize=inYSize;
 }
 
 void
@@ -32,13 +47,13 @@ GLFont::RenderCharacter(U32 inChar) const
         static U32 warnings(0);
         if (++warnings < 5)
         {
-            cerr << "Unrenderable character '" << static_cast<char>(inChar) << "'" <<endl;
+            cerr << "Unrenderable character '" << static_cast<char>(inChar) << "' (" << inChar << ")" <<endl;
         }
     }
-    tVal xstep=(340.0/512.0)/8.0;
-    tVal ystep=(768.0/1024.0)/12.0;
-    tVal xPos=((inChar-32) % 8)*xstep;
-    tVal yPos=1-((inChar-32) / 8)*ystep;
+    tVal xstep=(m_xUsedSize/m_xMapSize)/m_xNum;
+    tVal ystep=(m_yUsedSize/m_yMapSize)/m_yNum;
+    tVal xPos=((inChar-32) % m_xNum)*xstep;
+    tVal yPos=1-((inChar-32) / m_xNum)*ystep;
     GLRectangle rect=GLRectangle(xPos, yPos-ystep, xPos+xstep, yPos);
     GLUtils::BlendSet(GLUtils::kBlendTransparent);
     GLUtils::ModulateSet(true);
@@ -52,7 +67,7 @@ GLFont::RenderString(const string& inStr) const
     U32 size=inStr.size();
     for (U32 i=0; i<size; ++i)
     {
-        gl.MoveTo(i*1.1, 0);
+        gl.MoveTo(i, 0);
         RenderCharacter(inStr[i]);
     }
     gl.MoveTo(0,0);
@@ -63,7 +78,7 @@ GLFont::LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     string name;
     string filename;
-    if (ioCommand.NumParams() != 2)
+    if (ioCommand.NumParams() < 2 || ioCommand.NumParams() > 6)
     {
         throw(CommandFail("Usage: loadfontmap <name> <filename>"));
     }
@@ -72,6 +87,14 @@ GLFont::LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     CoreApp::Instance().Process("loadpixmap('"+name+"','"+filename+"')");
     GLFont *font(new GLFont(name));
     GLData::Instance().FontGive(name, font);
+    U32 xNum(10),yNum(10);
+    tVal xSize(256),ySize(256);
+    ioCommand.PopParam(xNum);
+    ioCommand.PopParam(yNum);
+    ioCommand.PopParam(xSize);
+    ioCommand.PopParam(ySize);
+    font->ShapeSet(xNum, yNum);
+    font->SizeSet(xSize, ySize);
     return CoreScalar(0);
 }
 

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.20 2002/08/07 13:36:48 southa Exp $
+ * $Id: GLUtils.h,v 1.21 2002/08/08 13:39:09 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.21  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  * Revision 1.20  2002/08/07 13:36:48  southa
  * Conditioned source
  *
@@ -83,6 +86,7 @@
 
 class GLTexture;
 class GLRectangle;
+class GLPoint;
 
 class GLUtils
 {
@@ -108,12 +112,17 @@ public:
     GLUtils(): m_x(0), m_y(0) {}
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(tVal inX, tVal inY);
+    void MoveRelative(tVal inX, tVal inY);
+    void MoveToEdge(tVal inX, tVal inY);
 
     static void Vertex(tVal inX, tVal inY) { glVertex2f(inX, inY); }
     static void IdentityPrologue(void);
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
+    static const GLPoint ScreenSizeGet(void);
+    static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
+    static tVal LongestScreenAxis(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
