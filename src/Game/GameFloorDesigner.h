@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameFloorDesigner.h,v 1.6 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.7 2002/08/17 10:41:51 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.7  2002/08/17 10:41:51  southa
+ * Designer fixes
+ *
  * Revision 1.6  2002/08/07 13:36:49  southa
  * Conditioned source
  *

@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLPoint.h,v 1.9 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLPoint.h,v 1.10 2002/08/18 12:20:40 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.10  2002/08/18 12:20:40  southa
+ * Movement tweaks
+ *
  * Revision 1.9  2002/08/07 13:36:47  southa
  * Conditioned source
  *

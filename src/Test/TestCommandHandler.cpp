@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: TestCommandHandler.cpp,v 1.8 2002/07/06 18:04:20 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.9 2002/08/07 13:36:52 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.9  2002/08/07 13:36:52  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/07/06 18:04:20  southa
  * More designer work
  *

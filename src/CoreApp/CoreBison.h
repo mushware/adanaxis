@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreBison.h,v 1.4 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreBison.h,v 1.5 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreBison.h,v $
+ * Revision 1.5  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:15  southa
  * More designer work
  *

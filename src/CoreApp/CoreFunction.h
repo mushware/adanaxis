@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreFunction.h,v 1.6 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreFunction.h,v 1.7 2002/08/07 13:36:45 southa Exp $
  * $Log: CoreFunction.h,v $
+ * Revision 1.7  2002/08/07 13:36:45  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:16  southa
  * More designer work
  *

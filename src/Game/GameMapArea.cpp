@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameMapArea.cpp,v 1.1 2002/07/16 17:48:08 southa Exp $
+ * $Id: GameMapArea.cpp,v 1.2 2002/08/07 13:36:50 southa Exp $
  * $Log: GameMapArea.cpp,v $
+ * Revision 1.2  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *

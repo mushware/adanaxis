@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameContract.h,v 1.22 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameContract.h,v 1.23 2002/08/24 15:27:07 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.23  2002/08/24 15:27:07  southa
+ * Race restart
+ *
  * Revision 1.22  2002/08/20 11:43:25  southa
  * GameRewards added
  *

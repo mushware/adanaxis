@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLAppHandler.cpp,v 1.14 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.15 2002/08/07 13:36:46 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.15  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.14  2002/07/06 18:04:17  southa
  * More designer work
  *

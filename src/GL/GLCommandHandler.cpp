@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLCommandHandler.cpp,v 1.17 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.18 2002/08/07 13:36:46 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.18  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.17  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameMotion.cpp,v 1.2 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameMotion.cpp,v 1.3 2002/08/09 17:09:04 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.3  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.2  2002/08/07 13:36:50  southa
  * Conditioned source
  *

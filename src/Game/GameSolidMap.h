@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameSolidMap.h,v 1.6 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameSolidMap.h,v 1.7 2002/08/18 15:13:16 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.7  2002/08/18 15:13:16  southa
+ * Adhesion handling
+ *
  * Revision 1.6  2002/08/07 13:36:50  southa
  * Conditioned source
  *

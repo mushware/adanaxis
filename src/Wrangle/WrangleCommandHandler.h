@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: WrangleCommandHandler.h,v 1.3 2002/07/06 18:04:21 southa Exp $
+ * $Id: WrangleCommandHandler.h,v 1.4 2002/08/07 13:36:52 southa Exp $
  * $Log: WrangleCommandHandler.h,v $
+ * Revision 1.4  2002/08/07 13:36:52  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/07/06 18:04:21  southa
  * More designer work
  *

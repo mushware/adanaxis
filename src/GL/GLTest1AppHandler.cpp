@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.16 2002/08/01 16:47:10 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.17 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.17  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.16  2002/08/01 16:47:10  southa
  * First multi-box collsion checking
  *

@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GamePiece.h,v 1.6 2002/08/07 13:36:50 southa Exp $
+ * $Id: GamePiece.h,v 1.7 2002/08/18 15:13:15 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.7  2002/08/18 15:13:15  southa
+ * Adhesion handling
+ *
  * Revision 1.6  2002/08/07 13:36:50  southa
  * Conditioned source
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLColour.h,v 1.3 2002/08/07 13:36:46 southa Exp $
+ * $Id: GLColour.h,v 1.4 2002/08/09 17:09:02 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.4  2002/08/09 17:09:02  southa
+ * GameDialogue added
+ *
  * Revision 1.3  2002/08/07 13:36:46  southa
  * Conditioned source
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameOverPlot.cpp,v 1.1 2002/07/18 11:40:35 southa Exp $
+ * $Id: GameOverPlot.cpp,v 1.2 2002/08/07 13:36:50 southa Exp $
  * $Log: GameOverPlot.cpp,v $
+ * Revision 1.2  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/18 11:40:35  southa
  * Overplotting and movement
  *

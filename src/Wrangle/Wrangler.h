@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: Wrangler.h,v 1.4 2002/07/06 18:04:21 southa Exp $
+ * $Id: Wrangler.h,v 1.5 2002/08/07 13:36:52 southa Exp $
  * $Log: Wrangler.h,v $
+ * Revision 1.5  2002/08/07 13:36:52  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:21  southa
  * More designer work
  *

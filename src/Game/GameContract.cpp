@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameContract.cpp,v 1.61 2002/08/24 15:57:35 southa Exp $
+ * $Id: GameContract.cpp,v 1.62 2002/08/24 19:23:32 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.62  2002/08/24 19:23:32  southa
+ * Don't reload the tile map
+ *
  * Revision 1.61  2002/08/24 15:57:35  southa
  * Reset player position
  *

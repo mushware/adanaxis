@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: SDLAppHandler.cpp,v 1.16 2002/08/10 12:34:46 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.17 2002/08/17 10:41:50 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.17  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.16  2002/08/10 12:34:46  southa
  * Added current dialogues
  *

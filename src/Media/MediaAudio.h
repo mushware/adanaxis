@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: MediaAudio.h,v 1.11 2002/08/24 13:12:31 southa Exp $
+ * $Id: MediaAudio.h,v 1.12 2002/08/26 12:44:37 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.12  2002/08/26 12:44:37  southa
+ * Timed rewards and sound tweaks
+ *
  * Revision 1.11  2002/08/24 13:12:31  southa
  * Null MediaAudio device
  *

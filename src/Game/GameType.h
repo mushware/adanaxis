@@ -1,6 +1,23 @@
+#ifndef GAMETYPE_H
+#define GAMETYPE_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameType.h,v 1.4 2002/08/22 10:11:11 southa Exp $
+ * $Id: GameType.h,v 1.5 2002/08/24 15:42:24 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.5  2002/08/24 15:42:24  southa
+ * Race state change
+ *
  * Revision 1.4  2002/08/22 10:11:11  southa
  * Save records, spacebar dialogues
  *
@@ -44,3 +61,4 @@ inline ostream& operator<<(ostream &inOut, const GameType& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
+#endif

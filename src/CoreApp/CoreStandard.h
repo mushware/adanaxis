@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreStandard.h,v 1.14 2002/08/07 13:36:46 southa Exp $
+ * $Id: CoreStandard.h,v 1.15 2002/08/19 11:09:55 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.15  2002/08/19 11:09:55  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.14  2002/08/07 13:36:46  southa
  * Conditioned source
  *

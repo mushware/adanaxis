@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameFloorMap.h,v 1.13 2002/08/18 15:13:15 southa Exp $
+ * $Id: GameFloorMap.h,v 1.14 2002/08/18 20:44:34 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.14  2002/08/18 20:44:34  southa
+ * Initial chequepoint work
+ *
  * Revision 1.13  2002/08/18 15:13:15  southa
  * Adhesion handling
  *

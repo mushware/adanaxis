@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameTileTraits.cpp,v 1.11 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.12 2002/08/18 15:13:16 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.12  2002/08/18 15:13:16  southa
+ * Adhesion handling
+ *
  * Revision 1.11  2002/08/07 13:36:51  southa
  * Conditioned source
  *

@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: mushGL.h,v 1.11 2002/08/07 13:36:43 southa Exp $
+ * $Id: mushGL.h,v 1.12 2002/08/08 13:39:09 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.12  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  * Revision 1.11  2002/08/07 13:36:43  southa
  * Conditioned source
  *

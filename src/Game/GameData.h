@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameData.h,v 1.13 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameData.h,v 1.14 2002/08/22 10:11:11 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.14  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.13  2002/08/20 11:43:25  southa
  * GameRewards added
  *

@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLWrangleAppHandler.h,v 1.5 2002/07/06 18:04:20 southa Exp $
+ * $Id: GLWrangleAppHandler.h,v 1.6 2002/08/07 13:36:52 southa Exp $
  * $Log: GLWrangleAppHandler.h,v $
+ * Revision 1.6  2002/08/07 13:36:52  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/06 18:04:20  southa
  * More designer work
  *

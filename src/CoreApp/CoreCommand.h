@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreCommand.h,v 1.6 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreCommand.h,v 1.7 2002/08/07 13:36:45 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.7  2002/08/07 13:36:45  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:15  southa
  * More designer work
  *

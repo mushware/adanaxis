@@ -14,6 +14,7 @@
 
 
 
+
 /* WARNING:  This file was automatically generated!
  * Original: ./src/main/macosx/SDLMain.h
  */

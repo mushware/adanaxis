@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreApp.cpp,v 1.8 2002/07/06 18:04:14 southa Exp $
+ * $Id: CoreApp.cpp,v 1.9 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.9  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/07/06 18:04:14  southa
  * More designer work
  *

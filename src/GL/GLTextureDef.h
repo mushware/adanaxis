@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureDef.h,v 1.1 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLTextureDef.h,v 1.2 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.2  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

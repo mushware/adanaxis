@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: mushMedia.h,v 1.6 2002/08/15 13:39:30 southa Exp $
+ * $Id: mushMedia.h,v 1.7 2002/08/16 21:13:52 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.7  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.6  2002/08/15 13:39:30  southa
  * CoreData and CoreDatRef
  *

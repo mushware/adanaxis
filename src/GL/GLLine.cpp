@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLLine.cpp,v 1.3 2002/08/01 16:47:09 southa Exp $
+ * $Id: GLLine.cpp,v 1.4 2002/08/07 13:36:47 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.4  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/08/01 16:47:09  southa
  * First multi-box collsion checking
  *

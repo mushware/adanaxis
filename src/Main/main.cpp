@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: main.cpp,v 1.15 2002/07/06 18:04:20 southa Exp $
+ * $Id: main.cpp,v 1.16 2002/08/07 13:36:51 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.16  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.15  2002/07/06 18:04:20  southa
  * More designer work
  *

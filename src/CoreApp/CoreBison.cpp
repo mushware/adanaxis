@@ -13,6 +13,7 @@
 
 
 
+
 /*  A Bison parser, made from CoreBison.y
     by GNU Bison version 1.28  */
 
@@ -34,8 +35,11 @@
 
 
 /*
- * $Id: CoreBison.cpp,v 1.11 2002/07/06 18:04:14 southa Exp $
+ * $Id: CoreBison.cpp,v 1.12 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreBison.cpp,v $
+ * Revision 1.12  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.11  2002/07/06 18:04:14  southa
  * More designer work
  *

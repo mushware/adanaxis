@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameFloorMap.cpp,v 1.21 2002/08/18 15:13:15 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.22 2002/08/18 20:44:34 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.22  2002/08/18 20:44:34  southa
+ * Initial chequepoint work
+ *
  * Revision 1.21  2002/08/18 15:13:15  southa
  * Adhesion handling
  *

@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLUtils.cpp,v 1.25 2002/08/13 17:50:20 southa Exp $
+ * $Id: GLUtils.cpp,v 1.26 2002/08/24 14:54:00 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.26  2002/08/24 14:54:00  southa
+ * Use GL_LINEAR_MIPMAP_LINEAR for high quality texturing
+ *
  * Revision 1.25  2002/08/13 17:50:20  southa
  * Added playsound command
  *

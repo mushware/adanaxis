@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLAppHandler.h,v 1.15 2002/08/07 13:36:46 southa Exp $
+ * $Id: GLAppHandler.h,v 1.16 2002/08/17 10:41:50 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.16  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.15  2002/08/07 13:36:46  southa
  * Conditioned source
  *

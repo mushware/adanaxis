@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTexture.cpp,v 1.18 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLTexture.cpp,v 1.19 2002/08/24 14:37:27 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.19  2002/08/24 14:37:27  southa
+ * Use gluBuild2DMipmaps for more robust texture generation
+ *
  * Revision 1.18  2002/08/07 13:36:47  southa
  * Conditioned source
  *

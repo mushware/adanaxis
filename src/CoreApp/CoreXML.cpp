@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreXML.cpp,v 1.9 2002/07/06 18:04:17 southa Exp $
+ * $Id: CoreXML.cpp,v 1.10 2002/08/07 13:36:46 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.10  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.9  2002/07/06 18:04:17  southa
  * More designer work
  *

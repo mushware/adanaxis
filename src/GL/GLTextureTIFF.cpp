@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTextureTIFF.cpp,v 1.7 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.8 2002/08/07 13:36:48 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.8  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.7  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

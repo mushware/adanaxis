@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: SDLAppHandler.h,v 1.10 2002/08/07 13:36:48 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.11 2002/08/17 10:41:50 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.11  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.10  2002/08/07 13:36:48  southa
  * Conditioned source
  *

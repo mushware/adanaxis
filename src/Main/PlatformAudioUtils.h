@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: PlatformAudioUtils.h,v 1.3 2002/07/06 18:04:20 southa Exp $
+ * $Id: PlatformAudioUtils.h,v 1.4 2002/08/07 13:36:51 southa Exp $
  * $Log: PlatformAudioUtils.h,v $
+ * Revision 1.4  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/07/06 18:04:20  southa
  * More designer work
  *

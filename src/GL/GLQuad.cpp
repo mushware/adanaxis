@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLQuad.cpp,v 1.4 2002/08/01 16:47:10 southa Exp $
+ * $Id: GLQuad.cpp,v 1.5 2002/08/07 13:36:47 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.5  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/08/01 16:47:10  southa
  * First multi-box collsion checking
  *

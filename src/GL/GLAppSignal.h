@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLAppSignal.h,v 1.4 2002/08/07 13:36:46 southa Exp $
+ * $Id: GLAppSignal.h,v 1.5 2002/08/17 10:41:50 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.5  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.4  2002/08/07 13:36:46  southa
  * Conditioned source
  *

@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GamePiecePlayer.cpp,v 1.19 2002/08/18 20:44:35 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.20 2002/08/20 15:00:56 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.20  2002/08/20 15:00:56  southa
+ * Reward tweaks
+ *
  * Revision 1.19  2002/08/18 20:44:35  southa
  * Initial chequepoint work
  *

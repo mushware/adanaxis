@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreConfig.h,v 1.10 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreConfig.h,v 1.11 2002/08/07 13:36:45 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.11  2002/08/07 13:36:45  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/07/06 18:04:15  southa
  * More designer work
  *

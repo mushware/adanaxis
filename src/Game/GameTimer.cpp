@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTimer.cpp,v 1.8 2002/08/19 12:54:54 southa Exp $
+ * $Id: GameTimer.cpp,v 1.9 2002/08/19 23:11:22 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.9  2002/08/19 23:11:22  southa
+ * Lap and split time tweaks
+ *
  * Revision 1.8  2002/08/19 12:54:54  southa
  * Added time format
  *

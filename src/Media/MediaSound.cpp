@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MediaSound.cpp,v 1.4 2002/08/19 09:59:36 southa Exp $
+ * $Id: MediaSound.cpp,v 1.5 2002/08/24 13:12:31 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.5  2002/08/24 13:12:31  southa
+ * Null MediaAudio device
+ *
  * Revision 1.4  2002/08/19 09:59:36  southa
  * Removed sound callbacks, used polling
  *

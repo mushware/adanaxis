@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameFloorDesigner.cpp,v 1.17 2002/08/19 23:11:22 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.18 2002/08/21 10:12:21 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.18  2002/08/21 10:12:21  southa
+ * Time down counter
+ *
  * Revision 1.17  2002/08/19 23:11:22  southa
  * Lap and split time tweaks
  *

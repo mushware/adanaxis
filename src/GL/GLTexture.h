@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLTexture.h,v 1.8 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLTexture.h,v 1.9 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.9  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

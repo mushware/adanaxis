@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreEnv.cpp,v 1.11 2002/07/31 16:27:15 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.12 2002/08/07 13:36:45 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.12  2002/08/07 13:36:45  southa
+ * Conditioned source
+ *
  * Revision 1.11  2002/07/31 16:27:15  southa
  * Collision checking work
  *

@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTextureClip.cpp,v 1.5 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.6 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.6  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

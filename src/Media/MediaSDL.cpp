@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: MediaSDL.cpp,v 1.7 2002/08/07 13:36:51 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.8 2002/08/16 19:46:07 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.8  2002/08/16 19:46:07  southa
+ * MediaSound work
+ *
  * Revision 1.7  2002/08/07 13:36:51  southa
  * Conditioned source
  *

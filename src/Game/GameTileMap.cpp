@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameTileMap.cpp,v 1.10 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.11 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.11  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/07/06 18:04:19  southa
  * More designer work
  *

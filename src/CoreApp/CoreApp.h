@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreApp.h,v 1.5 2002/07/06 18:04:14 southa Exp $
+ * $Id: CoreApp.h,v 1.6 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.6  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/06 18:04:14  southa
  * More designer work
  *

@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreScript.cpp,v 1.7 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreScript.cpp,v 1.8 2002/08/07 13:36:46 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.8  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.7  2002/07/06 18:04:16  southa
  * More designer work
  *

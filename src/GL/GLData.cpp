@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLData.cpp,v 1.13 2002/08/07 13:36:46 southa Exp $
+ * $Id: GLData.cpp,v 1.14 2002/08/08 13:39:09 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.14  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  * Revision 1.13  2002/08/07 13:36:46  southa
  * Conditioned source
  *

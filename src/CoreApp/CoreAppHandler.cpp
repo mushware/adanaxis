@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreAppHandler.cpp,v 1.6 2002/07/06 18:04:14 southa Exp $
+ * $Id: CoreAppHandler.cpp,v 1.7 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.7  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:14  southa
  * More designer work
  *

@@ -1,6 +1,23 @@
+#ifndef MEDIASOUND_H
+#define MEDIASOUND_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MediaSound.h,v 1.3 2002/08/16 21:13:52 southa Exp $
+ * $Id: MediaSound.h,v 1.4 2002/08/24 13:12:32 southa Exp $
  * $Log: MediaSound.h,v $
+ * Revision 1.4  2002/08/24 13:12:32  southa
+ * Null MediaAudio device
+ *
  * Revision 1.3  2002/08/16 21:13:52  southa
  * Added MediaSoundStream
  *
@@ -39,3 +56,4 @@ private:
     Mix_Chunk *m_chunk;
     bool m_resident;
 };
+#endif

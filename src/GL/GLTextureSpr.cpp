@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTextureSpr.cpp,v 1.11 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.12 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.12  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.11  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *

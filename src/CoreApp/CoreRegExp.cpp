@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreRegExp.cpp,v 1.5 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreRegExp.cpp,v 1.6 2002/08/07 13:36:46 southa Exp $
  * $Log: CoreRegExp.cpp,v $
+ * Revision 1.6  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/06 18:04:16  southa
  * More designer work
  *

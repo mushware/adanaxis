@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameTest.h,v 1.6 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameTest.h,v 1.7 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.7  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:19  southa
  * More designer work
  *

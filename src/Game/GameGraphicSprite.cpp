@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameGraphicSprite.cpp,v 1.7 2002/07/23 14:10:46 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.8 2002/08/07 13:36:50 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.8  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.7  2002/07/23 14:10:46  southa
  * Added GameMotion
  *

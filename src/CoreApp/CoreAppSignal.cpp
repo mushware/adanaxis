@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreAppSignal.cpp,v 1.3 2002/07/06 18:04:14 southa Exp $
+ * $Id: CoreAppSignal.cpp,v 1.4 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreAppSignal.cpp,v $
+ * Revision 1.4  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/07/06 18:04:14  southa
  * More designer work
  *

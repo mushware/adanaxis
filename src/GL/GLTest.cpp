@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLTest.cpp,v 1.6 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLTest.cpp,v 1.7 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTest.cpp,v $
+ * Revision 1.7  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:17  southa
  * More designer work
  *

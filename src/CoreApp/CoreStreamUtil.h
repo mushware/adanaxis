@@ -16,9 +16,13 @@
 
 
 
+
 /*
- * $Id: CoreStreamUtil.h,v 1.2 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreStreamUtil.h,v 1.3 2002/08/07 13:36:46 southa Exp $
  * $Log: CoreStreamUtil.h,v $
+ * Revision 1.3  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.2  2002/07/06 18:04:16  southa
  * More designer work
  *

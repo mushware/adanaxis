@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLUtils.h,v 1.22 2002/08/08 18:20:29 southa Exp $
+ * $Id: GLUtils.h,v 1.23 2002/08/09 17:09:02 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.23  2002/08/09 17:09:02  southa
+ * GameDialogue added
+ *
  * Revision 1.22  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
  *

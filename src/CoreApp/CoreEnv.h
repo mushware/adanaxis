@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: CoreEnv.h,v 1.8 2002/07/31 16:27:15 southa Exp $
+ * $Id: CoreEnv.h,v 1.9 2002/08/07 13:36:45 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.9  2002/08/07 13:36:45  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/07/31 16:27:15  southa
  * Collision checking work
  *

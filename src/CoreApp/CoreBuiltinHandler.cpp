@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: CoreBuiltinHandler.cpp,v 1.3 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreBuiltinHandler.cpp,v 1.4 2002/08/07 13:36:44 southa Exp $
  * $Log: CoreBuiltinHandler.cpp,v $
+ * Revision 1.4  2002/08/07 13:36:44  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/07/06 18:04:15  southa
  * More designer work
  *

@@ -1,6 +1,23 @@
+#ifndef GAMECHEQUEPOINT_H
+#define GAMECHEQUEPOINT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameChequePoint.h,v 1.2 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameChequePoint.h,v 1.3 2002/08/21 10:12:21 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.3  2002/08/21 10:12:21  southa
+ * Time down counter
+ *
  * Revision 1.2  2002/08/20 11:43:25  southa
  * GameRewards added
  *
@@ -69,3 +86,4 @@ inline ostream& operator<<(ostream &inOut, const GameChequePoint& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
+#endif

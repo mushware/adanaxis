@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameTileTraits.h,v 1.8 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTileTraits.h,v 1.9 2002/08/18 15:13:16 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.9  2002/08/18 15:13:16  southa
+ * Adhesion handling
+ *
  * Revision 1.8  2002/08/07 13:36:51  southa
  * Conditioned source
  *

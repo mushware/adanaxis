@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameView.cpp,v 1.1 2002/07/18 11:49:28 southa Exp $
+ * $Id: GameView.cpp,v 1.2 2002/08/07 13:36:51 southa Exp $
  * $Log: GameView.cpp,v $
+ * Revision 1.2  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/18 11:49:28  southa
  * Created
  *

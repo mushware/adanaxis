@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GLData.h,v 1.5 2002/08/07 13:36:46 southa Exp $
+ * $Id: GLData.h,v 1.6 2002/08/08 13:39:09 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.6  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  * Revision 1.5  2002/08/07 13:36:46  southa
  * Conditioned source
  *

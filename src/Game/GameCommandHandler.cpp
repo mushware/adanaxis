@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameCommandHandler.cpp,v 1.4 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.5 2002/08/07 13:36:48 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.5  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:18  southa
  * More designer work
  *

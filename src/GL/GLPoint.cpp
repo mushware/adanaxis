@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLPoint.cpp,v 1.1 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLPoint.cpp,v 1.2 2002/08/07 13:36:47 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.2  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *

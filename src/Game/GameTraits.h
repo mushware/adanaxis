@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GameTraits.h,v 1.5 2002/07/08 14:22:03 southa Exp $
+ * $Id: GameTraits.h,v 1.6 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.6  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/08 14:22:03  southa
  * Rotated desks
  *

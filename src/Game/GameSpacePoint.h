@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameSpacePoint.h,v 1.2 2002/08/01 16:47:12 southa Exp $
+ * $Id: GameSpacePoint.h,v 1.3 2002/08/07 13:36:50 southa Exp $
  * $Log: GameSpacePoint.h,v $
+ * Revision 1.3  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.2  2002/08/01 16:47:12  southa
  * First multi-box collsion checking
  *

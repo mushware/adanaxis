@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameMotionSpec.h,v 1.4 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameMotionSpec.h,v 1.5 2002/08/09 17:09:04 southa Exp $
  * $Log: GameMotionSpec.h,v $
+ * Revision 1.5  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.4  2002/08/07 13:36:50  southa
  * Conditioned source
  *

@@ -14,9 +14,13 @@
 
 
 
+
 /*
- * $Id: GamePiecePlayer.h,v 1.13 2002/08/18 15:13:16 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.14 2002/08/18 20:44:35 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.14  2002/08/18 20:44:35  southa
+ * Initial chequepoint work
+ *
  * Revision 1.13  2002/08/18 15:13:16  southa
  * Adhesion handling
  *

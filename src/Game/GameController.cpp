@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GameController.cpp,v 1.7 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameController.cpp,v 1.8 2002/08/17 10:41:51 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.8  2002/08/17 10:41:51  southa
+ * Designer fixes
+ *
  * Revision 1.7  2002/08/07 13:36:49  southa
  * Conditioned source
  *

@@ -13,9 +13,13 @@
 
 
 
+
 /*
- * $Id: GLUTAppHandler.cpp,v 1.9 2002/08/07 13:36:48 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.10 2002/08/17 10:41:50 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.10  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.9  2002/08/07 13:36:48  southa
  * Conditioned source
  *

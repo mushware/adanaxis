@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: mushCore.h,v 1.8 2002/08/07 13:36:43 southa Exp $
+ * $Id: mushCore.h,v 1.9 2002/08/15 13:39:30 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.9  2002/08/15 13:39:30  southa
+ * CoreData and CoreDatRef
+ *
  * Revision 1.8  2002/08/07 13:36:43  southa
  * Conditioned source
  *
