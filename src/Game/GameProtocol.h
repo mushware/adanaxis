@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.h,v 1.4 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameProtocol.h,v 1.5 2002/12/06 11:11:16 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.5  2002/12/06 11:11:16  southa
+ * Send control information
+ *
  * Revision 1.4  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -21,26 +24,7 @@
 
 class MediaNetData;
 
-class GameControlDataMessage
-{
-public:
-    enum
-    {
-        kEntryLimit=32
-    };
-    
-    U32 startFrame;
-    struct DataEntry
-    {
-        DataEntry(U32 inOffset, const GameControlFrameDef& inDef) :
-            frameDef(inDef),
-            frameOffset(static_cast<U8>(inOffset))
-            {}
-        GameControlFrameDef frameDef;
-        U8 frameOffset;
-    };
-    vector<DataEntry> data;
-};
+
 
 class GameProtocol
 {
@@ -55,8 +39,6 @@ public:
 
     static void CreateObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName);
     static void DeleteObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName);
-
-    static void ControlDataCreate(MediaNetData& ioData, const GameControlDataMessage& inSpec);
     
 private:
 };

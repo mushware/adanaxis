@@ -4261,6 +4261,8 @@
 				F545A43202E4771E015FC162,
 				F545A43302E4771E015FC162,
 				F54AC49802F8438001726764,
+				F5AAE43603A1122B01A80164,
+				F5AAE43503A1122B01A80164,
 				F549083802ED8ACC01F581B4,
 				F549083902ED8ACC01F581B4,
 				F546082602E5EDA30166357B,
@@ -4563,6 +4565,7 @@
 				F57FF20E039D829001A80164,
 				F5A79471039E19E601A80164,
 				F5AA9AD7039E93F001A80164,
+				F5AAE43703A1122B01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4721,6 +4724,7 @@
 				F5A79472039E19E601A80164,
 				F5AA9AD4039E935801A80164,
 				F5AA9AD8039E93F001A80164,
+				F5AAE43803A1122B01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5728,6 +5732,30 @@
 		};
 		F5AAD55B0375DDBE01A80164 = {
 			fileRef = F5AAD5590375DDBE01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAE43503A1122B01A80164 = {
+			isa = PBXFileReference;
+			name = GameMessageControlData.h;
+			path = Game/GameMessageControlData.h;
+			refType = 4;
+		};
+		F5AAE43603A1122B01A80164 = {
+			isa = PBXFileReference;
+			name = GameMessageControlData.cpp;
+			path = Game/GameMessageControlData.cpp;
+			refType = 4;
+		};
+		F5AAE43703A1122B01A80164 = {
+			fileRef = F5AAE43503A1122B01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAE43803A1122B01A80164 = {
+			fileRef = F5AAE43603A1122B01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

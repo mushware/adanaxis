@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.cpp,v 1.7 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.8 2002/12/06 11:11:16 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.8  2002/12/06 11:11:16  southa
+ * Send control information
+ *
  * Revision 1.7  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -51,22 +54,3 @@ GameProtocol::DeleteObjectCreate(MediaNetData& ioData, CorePickle& inObj, const 
     // MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl;
 }
 
-void
-GameProtocol::ControlDataCreate(MediaNetData& ioData, const GameControlDataMessage& inSpec)
-{
-    MediaNetProtocol::LongAppMessageHeaderCreate(ioData, kMessageTypeControlData);
-    ioData.PrepareForWrite();
-    ioData.BytePush(inSpec.startFrame >> 8);
-    ioData.BytePush(inSpec.startFrame);
-    U32 size = inSpec.data.size();
-    COREASSERT(size <= GameControlDataMessage::kEntryLimit);
-    ioData.BytePush(size);
-    for (U32 i=0; i<size; ++i)
-    {
-        ioData.BytePush(inSpec.data[i].frameOffset);
-        ioData.BytePush(inSpec.data[i].frameDef.mouseDeltaX);
-        ioData.BytePush(inSpec.data[i].frameDef.mouseDeltaY);
-        ioData.BytePush(inSpec.data[i].frameDef.keyState);
-    }
-    MediaNetProtocol::LongAppMessageFinish(ioData);
-}

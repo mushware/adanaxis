@@ -1,6 +1,9 @@
 /*
- * $Id: GamePlayerUtils.cpp,v 1.1 2002/12/05 13:20:12 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.2 2002/12/06 11:11:16 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.2  2002/12/06 11:11:16  southa
+ * Send control information
+ *
  * Revision 1.1  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -13,6 +16,7 @@
 #include "GameData.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameMessageControlData.h"
 #include "GamePiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameTimer.h"
@@ -57,10 +61,10 @@ GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 void
 GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
 {
-    GameControlDataMessage controlMessage;
+    GameMessageControlData controlMessage;
     // frameNum is the first frame number in the chunk we're going to send
     U32 startFrameNum = inTimer.CurrentMotionFrameGet();
-    controlMessage.startFrame=startFrameNum;
+    controlMessage.StartFrameSet(startFrameNum);
     
     CoreHistoryIterator<U32, GameControlFrameDef> p = inPlayer.ControlFrameDefIteratorGet(startFrameNum);
     U32 entryCtr=0;
@@ -76,14 +80,14 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
             break;
         }
 
-        controlMessage.data.push_back(GameControlDataMessage::DataEntry(frameOffset, p.StoreGet()));
+        controlMessage.DataEntryPush(frameOffset, p.StoreGet());
  
         p.ForwardMove();
-        if (++entryCtr >= GameControlDataMessage::kEntryLimit) break;
+        if (++entryCtr >= GameMessageControlData::kEntryLimit) break;
     }
     
     MediaNetData netData;
-    GameProtocol::ControlDataCreate(netData, controlMessage);
+    controlMessage.Pack(netData);
     //cerr << "Would send " << netData << endl;
     inClient.FastSendToServer(netData);
 }
