@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.30 2002/10/07 17:49:44 southa Exp $
+ * $Id: GLUtils.cpp,v 1.31 2002/10/08 17:13:16 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.31  2002/10/08 17:13:16  southa
+ * Tiered maps
+ *
  * Revision 1.30  2002/10/07 17:49:44  southa
  * Multiple values per map element
  *
@@ -119,7 +122,8 @@
 #include "mushPlatform.h"
 
 GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
-bool GLUtils::m_modulateState=false;
+GLUtils::tModulationType GLUtils::m_modulateState=GLUtils::kModulationInvalid;
+GLUtils::tDepthType GLUtils::m_depthState=GLUtils::kDepthInvalid;
 GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
 bool GLUtils::m_polygonSmoothing=false;
 bool GLUtils::m_useLighting=true;
@@ -280,7 +284,7 @@ void
 GLUtils::ClearScreen(void)
 {
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void
@@ -525,43 +529,66 @@ GLUtils::ModulationSet(tModulationType inValue)
                 glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
                 glDisable(GL_LIGHTING);
                 break;
-                
+
             case kModulationColour:
                 glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glDisable(GL_LIGHTING);
                 break;
 
             case kModulationLighting:
-            if (m_useLighting)
-            {
-                GLfloat ambient[4]={1.0,1.0,1.0,1};
-                glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-                
-                GLfloat specular[4]={1.0,1.0,1.0,1};
-                glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+                if (m_useLighting)
+                {
+                    GLfloat ambient[4]={1.0,1.0,1.0,1};
+                    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
 
-                GLfloat diffuse[4]={0.0,0.0,0.0,1};
-                glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+                    GLfloat specular[4]={1.0,1.0,1.0,1};
+                    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
-                glMaterialf(GL_FRONT, GL_SHININESS, 20);
-                
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glEnable(GL_LIGHTING);
-                glNormal3f(0,0,1);
-            }
-            else
-            {
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-                glDisable(GL_LIGHTING);
-                ColourSet(1,1,1,1);
-            }
-            break;
+                    GLfloat diffuse[4]={0.0,0.0,0.0,1};
+                    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+
+                    glMaterialf(GL_FRONT, GL_SHININESS, 20);
+
+                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                    glEnable(GL_LIGHTING);
+                    glNormal3f(0,0,1);
+                }
+                else
+                {
+                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+                    glDisable(GL_LIGHTING);
+                    ColourSet(1,1,1,1);
+                }
+                break;
 
             default:
                 throw(LogicFail("Invalid value to GLUtils::ModulationSet"));
                 break;
         }
         m_modulateState=inValue;
+    }
+}
+
+void
+GLUtils::DepthSet(tDepthType inValue)
+{
+    if (m_depthState != inValue)
+    {
+        switch (inValue)
+        {
+            case kDepthNone:
+                glDisable(GL_DEPTH_TEST);
+                break;
+
+            case kDepthTest:
+                glEnable(GL_DEPTH_TEST);
+                break;
+
+            default:
+                throw(LogicFail("Invalid value to GLUtils::DepthSet"));
+                break;
+        }
+        m_depthState=inValue;
     }
 }
 
@@ -638,7 +665,8 @@ GLUtils::Reset(void)
         default:
             throw(LogicFail("Bad value for m_displayQuality"));
     }
-    glDisable(GL_DEPTH_TEST);
+    m_depthState=kDepthInvalid;
+    DepthSet(kDepthNone);
     m_modulateState=kModulationInvalid;
     ModulationSet(kModulationNone);
 }

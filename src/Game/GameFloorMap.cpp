@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.25 2002/10/07 17:49:45 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.26 2002/10/08 17:13:17 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.26  2002/10/08 17:13:17  southa
+ * Tiered maps
+ *
  * Revision 1.25  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -172,56 +175,59 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     GLPoint point;
 
     bool highlightOn=true;
-    
-    for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
+
+
+    U32 m_numTiers=5;
+    U32 tierHighlightSize=inTierHighlight.size();
+    for (U32 tier=0; tier<m_numTiers; ++tier)
     {
-        for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
+        if (tier < tierHighlightSize)
         {
-            if (inArea.IsWithin(point))
+            if (inTierHighlight[tier])
             {
-                if (inHighlight.IsWithin(point))
-                {
-                    tVal clockNow=timeNow+point.x*xv+point.y*yv;
-                    tVal redBri=0.4+0.35*sin(clockNow/200.0);
-                    tVal greenBri=0.4+0.35*sin(clockNow/201.0);
-                    tVal blueBri=0.4+0.35*sin(clockNow/202.0);
-
-                    GLUtils::ColourSet(redBri, greenBri, blueBri);
-                    GLUtils::ModulationSet(GLUtils::kModulationColour);
-                    highlightOn=true;
-                }
-                else if (highlightOn)
-                {
-                    GLUtils::ModulationSet(GLUtils::kModulationLighting);
-                    highlightOn=false;
-                }
-                
-                gl.MoveTo(point.x, point.y);
-
-
-                
-                
+                GLUtils::AmbientLightSet(1.0);
+            }
+            else
+            {
+                GLUtils::AmbientLightSet(0.2);
+            }
+        }
+        for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
+        {
+            for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
+            {
                 const tMapVector& mapVector=ElementGet(point);
-                U32 size=mapVector.size();
-                U32 tierHighlightSize=inTierHighlight.size();
-                for (U32 i=0; i<size; ++i)
+                U32 vecSize=mapVector.size();
+
+                if (tier < vecSize)
                 {
-                    if (i < tierHighlightSize)
+                    if (inArea.IsWithin(point))
                     {
-                        if (inTierHighlight[i])
+                        if (inHighlight.IsWithin(point))
                         {
-                            GLUtils::AmbientLightSet(1.0);
+                            tVal clockNow=timeNow+point.x*xv+point.y*yv;
+                            tVal redBri=0.4+0.35*sin(clockNow/200.0);
+                            tVal greenBri=0.4+0.35*sin(clockNow/201.0);
+                            tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+
+                            GLUtils::ColourSet(redBri, greenBri, blueBri);
+                            GLUtils::ModulationSet(GLUtils::kModulationColour);
+                            highlightOn=true;
                         }
-                        else
+                        else if (highlightOn)
                         {
-                            GLUtils::AmbientLightSet(0.2);
+                            GLUtils::ModulationSet(GLUtils::kModulationLighting);
+                            highlightOn=false;
                         }
+
+                        gl.MoveTo(point.x, point.y);
+
+                        GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
+                            (*m_tileMap->TraitsPtrGet(mapVector[tier]));
+                        glPushMatrix();
+                        tileTraits.Render();
+                        glPopMatrix();
                     }
-                    GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
-                        (*m_tileMap->TraitsPtrGet(mapVector[i]));
-                    glPushMatrix();
-                    tileTraits.Render();
-                    glPopMatrix();
                 }
             }
         }

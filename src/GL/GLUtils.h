@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.27 2002/10/07 17:49:45 southa Exp $
+ * $Id: GLUtils.h,v 1.28 2002/10/08 17:13:17 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.28  2002/10/08 17:13:17  southa
+ * Tiered maps
+ *
  * Revision 1.27  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -103,6 +106,7 @@
 
 #include "GLStandard.h"
 #include "GLPoint.h"
+#include "GLVector.h"
 
 class GLTexture;
 class GLRectangle;
@@ -125,6 +129,13 @@ public:
         kModulationNone,
         kModulationColour,
         kModulationLighting
+    };
+
+    enum tDepthType
+    {
+        kDepthInvalid,
+        kDepthNone,
+        kDepthTest
     };
     
     enum tDisplayQuality
@@ -178,6 +189,7 @@ public:
     static void BlendSet(tBlendType inType);
     static void AmbientLightSet(tVal inAmbient);
     static void ModulationSet(tModulationType inType);
+    static void DepthSet(tDepthType inType);
     static void Reset(void);
     static void TextureParamsReset(void);
     static tDisplayQuality DisplayQualityGet(void);
@@ -185,6 +197,7 @@ public:
     static void UseLightingSet(bool inValue);
     static void PushMatrix(void) { glPushMatrix(); }
     static void PopMatrix(void) { glPopMatrix(); }
+    static void Translate(const GLVector& inVec) { glTranslatef(inVec.x, inVec.y, inVec.z); }
     
 private:            
     static void SafetyHandler(void);
@@ -192,7 +205,8 @@ private:
     tVal m_y;
 
     static tBlendType m_blendState;
-    static bool m_modulateState;
+    static tModulationType m_modulateState;
+    static tDepthType m_depthState;
     static tDisplayQuality m_displayQuality;
     static bool m_polygonSmoothing;
     static bool m_useLighting;

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.h,v 1.6 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameGraphicSprite.h,v 1.7 2002/08/27 08:56:24 southa Exp $
  * $Log: GameGraphicSprite.h,v $
+ * Revision 1.7  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -61,6 +64,7 @@ private:
     void HandleGraphicEnd(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
     void HandleRectEnd(CoreXML& inXML);
+    void HandleOffsetEnd(CoreXML& inXML);
     void HandleRotateEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
@@ -81,6 +85,7 @@ private:
     GLTextureRef m_texRef;
     GLRectangle m_rectangle;
     tVal m_rotation;
+    GLVector m_offset;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameGraphicSprite& inObj)

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.19 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.20 2002/10/08 17:13:17 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.20  2002/10/08 17:13:17  southa
+ * Tiered maps
+ *
  * Revision 1.19  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -485,7 +488,7 @@ GameFloorDesigner::MoveTiers(S32 inStep)
             {
                 GameFloorMap::tMapValue value=0;
                 S32 srcTier=i+inStep;
-                if (srcTier >= 0 && srcTier < srcVector.size() && srcTier < kNumTiers)
+                if (srcTier >= 0 && srcTier < static_cast<S32>(srcVector.size()) && srcTier < kNumTiers)
                 {
                     value=srcVector[srcTier];
                     if (value != 0)

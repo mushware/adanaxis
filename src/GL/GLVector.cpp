@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: GLVector.cpp,v 1.1 2002/10/07 17:49:45 southa Exp $
+ * $Log: GLVector.cpp,v $
+ * Revision 1.1  2002/10/07 17:49:45  southa
+ * Multiple values per map element
+ *
  */
 
 #include "GLVector.h"
@@ -24,4 +27,26 @@ GLVector::Render(void) const
     glBegin(GL_POINTS);
     GLUtils::Vertex(x, y, z);
     glEnd();
+}
+
+
+void
+GLVector::Pickle(ostream& inOut, const string& inPrefix="") const
+{
+    inOut << inPrefix << "<offset>" << x << "," << y << "," << z << "</offset>" << endl;
+}
+
+void
+GLVector::Unpickle(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for offset.  Should be <offset>10,10,30</offset>";
+    char comma;
+    if (!(data >> x)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+
+    if (!(data >> y)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+
+    if (!(data >> z)) inXML.Throw(failMessage);
 }

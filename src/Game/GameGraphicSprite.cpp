@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.8 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.9 2002/08/27 08:56:24 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.9  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -49,10 +52,12 @@ GameGraphicSprite::Render(void)
 {
     if (m_texRef.Exists())
     {
+        GLUtils::PushMatrix();
         if (m_rotation != 0)
         {
             GLUtils::RotateAboutZ(m_rotation);
         }
+        GLUtils::Translate(m_offset);
         if (m_texRef.TextureGet()->NeedsAlpha())
         {
             GLUtils::BlendSet(GLUtils::kBlendTransparent);
@@ -62,6 +67,7 @@ GameGraphicSprite::Render(void)
             GLUtils::BlendSet(GLUtils::kBlendSolid);
         }
         GLUtils::DrawSprite(*m_texRef.TextureGet(), m_rectangle);
+        GLUtils::PopMatrix();
     }    
 }
 
@@ -75,6 +81,12 @@ void
 GameGraphicSprite::HandleRectEnd(CoreXML& inXML)
 {
     m_rectangle.Unpickle(inXML);
+}
+
+void
+GameGraphicSprite::HandleOffsetEnd(CoreXML& inXML)
+{
+    m_offset.Unpickle(inXML);
 }
 
 void
@@ -101,6 +113,7 @@ GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<name>" << m_texRef.NameGet() << "</name>" << endl;
     m_rectangle.Pickle(inOut, inPrefix);
+    m_offset.Pickle(inOut, inPrefix);
     inOut << inPrefix << "<rotate>" << m_rotation << "</rotate>" << endl;
 }
 
@@ -114,6 +127,8 @@ GameGraphicSprite::UnpicklePrologue(void)
     m_endTable[kPickleData]["name"] = &GameGraphicSprite::HandleNameEnd;
     m_startTable[kPickleData]["rect"] = &GameGraphicSprite::NullHandler;
     m_endTable[kPickleData]["rect"] = &GameGraphicSprite::HandleRectEnd;
+    m_startTable[kPickleData]["offset"] = &GameGraphicSprite::NullHandler;
+    m_endTable[kPickleData]["offset"] = &GameGraphicSprite::HandleOffsetEnd;
     m_startTable[kPickleData]["rotate"] = &GameGraphicSprite::NullHandler;
     m_endTable[kPickleData]["rotate"] = &GameGraphicSprite::HandleRotateEnd;
     m_endTable[kPickleData]["graphic"] = &GameGraphicSprite::HandleGraphicEnd;
@@ -121,6 +136,7 @@ GameGraphicSprite::UnpicklePrologue(void)
     m_baseThreaded=0;
     m_rotation=0;
     m_rectangle=GLRectangle(0,0,1,1);
+    m_offset=GLVector(0,0,0);
 }
 
 void

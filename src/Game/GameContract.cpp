@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.67 2002/10/08 11:58:52 southa Exp $
+ * $Id: GameContract.cpp,v 1.68 2002/10/08 17:13:17 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.68  2002/10/08 17:13:17  southa
+ * Tiered maps
+ *
  * Revision 1.67  2002/10/08 11:58:52  southa
  * Light cache
  *
@@ -433,6 +436,7 @@ GameContract::RunningDisplay(void)
     
 
     GLData::Instance().LightsGet()->LightEnable(0);
+    GLUtils::DepthSet(GLUtils::kDepthNone);
     
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
@@ -459,6 +463,8 @@ GameContract::RunningDisplay(void)
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
     GLUtils::Scale(2, 2, 1);
     m_player->Render();
+
+    GLUtils::DepthSet(GLUtils::kDepthNone);
 
     GLUtils::PopMatrix();
 
