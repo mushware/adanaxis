@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Gp4cWtpt1YXvkd2iniZVUA
 /*
- * $Id: PlatformInputUtils.h,v 1.14 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.15 2004/01/06 20:46:52 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.15  2004/01/06 20:46:52  southa
+ * Build fixes
+ *
  * Revision 1.14  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -72,11 +75,13 @@
  */
 
 #include "mushMushcore.h"
+#include "mushGL.h"
 
 class PlatformInputUtils
 {
 public:
     static void MouseDeltaOverrideGet(Mushware::S32& ioXDelta, Mushware::S32& ioYDelta);
+    static bool TranslateKey(GLKeys& outKey, const Mushware::U32 inKeyCode);
 };
 
 

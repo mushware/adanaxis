@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TwbWoOrPtUKoOEt+DCSp2g
 /*
- * $Id: GameConfigDef.cpp,v 1.19 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.20 2004/09/27 22:42:08 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.20  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.19  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -140,7 +143,9 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 void
 GameConfigDefU32::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"6\" value=\"" << MustlUtils::MakeWebSafe(m_value) << "\">" << endl;
+#ifdef MUSHWARE_USE_MUSTL
+    ioOut << "<input name=\"" << MushcoreUtil::MakeWebSafe(inName) << "\" type=\"text\" size=\"6\" value=\"" << MushcoreUtil::MakeWebSafe(m_value) << "\">" << endl;
+#endif
 }
 
 // -----
@@ -176,7 +181,9 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
     if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
-        m_value=MustlUtils::RemoveMeta(matches[0]);
+
+        m_value=MushcoreUtil::RemoveMeta(matches[0]);
+
         found=true;
     }
     return found;
@@ -188,7 +195,7 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
 
     if (m_menu.size() == 0)
     {
-        ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"20\" value=\"" << MustlUtils::MakeWebSafe(m_value) << "\">" << endl;
+        ioOut << "<input name=\"" << MushcoreUtil::MakeWebSafe(inName) << "\" type=\"text\" size=\"20\" value=\"" << MushcoreUtil::MakeWebSafe(m_value) << "\">" << endl;
     }
     else
     {
@@ -245,10 +252,10 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
     if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
-        string newValue=MustlUtils::RemoveMeta(matches[0]);
+        string newValue=MushcoreUtil::RemoveMeta(matches[0]);
         if (newValue != "******")
         {
-            m_value=MustlUtils::RemoveMeta(newValue);
+            m_value=MushcoreUtil::RemoveMeta(newValue);
             found=true;
         }
     }
@@ -258,7 +265,7 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
 void
 GameConfigDefPassword::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"password\" size=\"20\" value=\"";
+    ioOut << "<input name=\"" << MushcoreUtil::MakeWebSafe(inName) << "\" type=\"password\" size=\"20\" value=\"";
     if (m_value.size() != 0)
     {
         ioOut << "******";
@@ -312,10 +319,10 @@ GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
 void
 GameConfigDefBool::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"checkbox\" ";
+    ioOut << "<input name=\"" << MushcoreUtil::MakeWebSafe(inName) << "\" type=\"checkbox\" ";
     if (m_value) ioOut << "checked ";
     ioOut << "value=\"1\">" << endl;
-    ioOut << "<input name =\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"hidden\" value=\"0\"" << endl;
+    ioOut << "<input name =\"" << MushcoreUtil::MakeWebSafe(inName) << "\" type=\"hidden\" value=\"0\"" << endl;
 }
 
 // -----
@@ -323,7 +330,7 @@ GameConfigDefBool::WebInputPrint(ostream& ioOut, const string& inName)
 void
 GameConfigDef::SelectPrologue(ostream& ioOut, const string& inName)
 {
-    ioOut << "<select name=\"" << MustlUtils::MakeWebSafe(inName) << "\">" << endl;
+    ioOut << "<select name=\"" << MushcoreUtil::MakeWebSafe(inName) << "\">" << endl;
 }
 
 void
@@ -331,8 +338,8 @@ GameConfigDef::SelectOption(ostream& ioOut, const string& inName, const string& 
 {
     ioOut << "<option ";
     if (inSelected) ioOut << "selected ";
-    ioOut << "value=\"" << MustlUtils::MakeWebSafe(inValue) << "\">";
-    ioOut << MustlUtils::MakeWebSafe(inName);
+    ioOut << "value=\"" << MushcoreUtil::MakeWebSafe(inValue) << "\">";
+    ioOut << MushcoreUtil::MakeWebSafe(inName);
     ioOut << "</option>" << endl;
 }
 

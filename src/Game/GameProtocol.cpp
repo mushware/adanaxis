@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } V1W+V71AhWS6oE4WO+k6wg
 /*
- * $Id: GameProtocol.cpp,v 1.17 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.18 2004/01/02 21:13:07 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.18  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.17  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -76,9 +79,12 @@
 using namespace Mushware;
 using namespace std;
 
+
+
 void
 GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
+#ifdef MUSHWARE_USE_MUSTL
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\">";
@@ -86,16 +92,19 @@ GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
     // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl; 
+#endif
 }
 
 void
 GameProtocol::DeleteObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
+#ifdef MUSHWARE_USE_MUSTL
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\" delete=\"1\">";
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
     // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl;
+#endif
 }
 

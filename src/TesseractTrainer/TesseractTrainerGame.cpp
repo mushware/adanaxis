@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.5 2005/02/27 01:01:32 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.6 2005/03/08 01:24:10 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.6  2005/03/08 01:24:10  southa
+ * Quaternion slerp between orientations
+ *
  * Revision 1.5  2005/02/27 01:01:32  southa
  * Eigenplane markers
  *
@@ -55,20 +58,109 @@ TesseractTrainerGame::~TesseractTrainerGame()
 void
 TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
 {
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    
+    if (gameAppHandler.LatchedKeyStateTake('1'))
+    {
+        ++m_ttRenderFaces;
+        if (m_ttRenderFaces == 9) m_ttRenderFaces = 1;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('2'))
+    {
+        m_ttRenderFaceOutlines = !m_ttRenderFaceOutlines;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('3'))
+    {
+        m_ttRenderFaceTextures = !m_ttRenderFaceTextures;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('4'))
+    {
+        m_ttRenderFacePoints = !m_ttRenderFacePoints;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('5'))
+    {
+        m_ttRenderRotationPlanes = !m_ttRenderRotationPlanes;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('6'))
+    {
+        m_ttRenderBasicPlanes = !m_ttRenderBasicPlanes;
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('s'))
+    {
+        m_ttRenderStereo = !m_ttRenderStereo;
+    }
+    
     GLUtils::PostRedisplay();
 }
 
 void
 TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
-{
+{    
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     tVal msecNow = gameAppHandler.MillisecondsGet();
     
+    if (msecNow > m_lastChangeMsec + m_ttRotationChangeMsec ||
+        m_lastChangeMsec == 0 ||
+        gameAppHandler.LatchedKeyStateTake(' '))
+    {
+        Reorientate();
+        m_lastChangeMsec = msecNow;
+    }
+    
+    tVal proportion = (msecNow - m_lastChangeMsec) / m_ttRealignMsec;
+    if (proportion > 1) proportion = 1;
+    
+    proportion = pow(sin(proportion * M_PI/2), 4);
+    
+    tQValPair orientation =
+        MushMeshOps::SlerpNormalised(m_orientations[m_previous],
+                                     m_orientations[m_current],
+                                     proportion);
+    tQValPair angVel =
+        MushMeshOps::SlerpNormalised(m_angVels[m_previous],
+                                     m_angVels[m_current],
+                                     proportion);
+    
+    m_orientations[m_previous] = orientation;
+    m_angVels[m_previous] = angVel;
+    
+    m_orientations[m_previous].OuterMultiplyBy(m_angVels[m_previous]);
+    m_orientations[m_current].OuterMultiplyBy(m_angVels[m_current]);
+    
+    m_hypercube.OrientationSet(orientation);
+    m_hypersphere.OrientationSet(orientation);
+    m_planepair.OrientationSet(orientation);
+    m_planeset.OrientationSet(orientation);
+    
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
+    
+    if (m_ttRenderStereo)
+    {
+        RenderView(inAppHandler, -1.0);
+        RenderView(inAppHandler, 1.0);
+    }
+    else
+    {
+        RenderView(inAppHandler, 0.0);
+    }
+    
+    GLUtils::DisplayEpilogue();
+}
+
+void
+TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
+{
+    
     GLUtils::IdentityPrologue();
     
-    GLUtils::PerspectiveLookAt(GLVector(0,0,-4), GLVector(0,0,0), 0);
+    GLUtils::PerspectiveLookAt(GLVector(m_ttStereoImageSeparation*inStereo,0,-m_ttObjectDistance), GLVector(m_ttStereoImageSeparation*inStereo,0,0), 0);
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
     GLColour white(1,1,1,1);
@@ -111,52 +203,34 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
     
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
-    glLineWidth(1.0);
-    glPointSize(2.0);
+    glLineWidth(m_ttLineWidth);
+    glPointSize(m_ttPointSize);
     
     GLState::TextureDisable();
+    
+    m_hypercube.RenderFacesSet(m_ttRenderFaces);
+    m_hypercube.RenderFaceOutlinesSet(m_ttRenderFaceOutlines);
+    m_hypercube.RenderFaceTexturesSet(m_ttRenderFaceTextures);
 
-    if (msecNow > m_lastChangeMsec + 20000 || m_lastChangeMsec == 0)
-    {
-        Reorientate();
-        m_lastChangeMsec = msecNow;
-    }
+    m_hypersphere.RenderFacesSet(m_ttRenderFaces);
     
-    tVal proportion = (msecNow - m_lastChangeMsec) / 5000;
-    if (proportion > 1) proportion = 1;
-    
-    proportion = pow(sin(proportion * M_PI/2), 4);
-    
-    tQValPair orientation =
-        MushMeshOps::SlerpNormalised(m_orientations[m_previous],
-                                     m_orientations[m_current],
-                                     proportion);
-    tQValPair angVel =
-        MushMeshOps::SlerpNormalised(m_angVels[m_previous],
-                                     m_angVels[m_current],
-                                     proportion);
-    
-    m_orientations[m_previous] = orientation;
-    m_angVels[m_previous] = angVel;
-
-    m_orientations[m_previous].OuterMultiplyBy(m_angVels[m_previous]);
-    m_orientations[m_current].OuterMultiplyBy(m_angVels[m_current]);
-    
-    m_hypercube.OrientationSet(orientation);
-    m_hypersphere.OrientationSet(orientation);
-    m_planepair.OrientationSet(orientation);
-    
-    m_hypersphere.Render(0);
+    if (m_ttRenderFacePoints) m_hypersphere.Render(0);
     m_hypercube.Render(0);
-    m_planepair.Render(0);
+    if (m_ttRenderRotationPlanes) m_planepair.Render(0);
+    if (m_ttRenderBasicPlanes) m_planeset.Render(0);
     
     GLUtils::IdentityEpilogue();
-    GLUtils::DisplayEpilogue();
+
 }
 
 void
 TesseractTrainerGame::Reorientate(void)
 {
+    tVal ttRotationAMin = MushcoreEnv::Sgl().VariableGet("TT_ROTATION_A_MIN").ValGet();
+    tVal ttRotationAMax = MushcoreEnv::Sgl().VariableGet("TT_ROTATION_A_MAX").ValGet();
+    tVal ttRotationBMin = MushcoreEnv::Sgl().VariableGet("TT_ROTATION_B_MIN").ValGet();
+    tVal ttRotationBMax = MushcoreEnv::Sgl().VariableGet("TT_ROTATION_B_MAX").ValGet();
+    
     tQValPair orientation = MushMeshTools::RandomOrientation();
     
     std::swap(m_current, m_previous);
@@ -167,9 +241,9 @@ TesseractTrainerGame::Reorientate(void)
     m_angVels[m_current].OuterMultiplyBy(orientation);
     
     m_angVels[m_current].OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
-                             (0, MushMeshTools::Random(-0.03, 0.03)));
+                             (0, MushMeshTools::Random(ttRotationAMin, ttRotationAMax)));
     m_angVels[m_current].OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
-                             (1, MushMeshTools::Random(-0.03, 0.03)));
+                             (1, MushMeshTools::Random(ttRotationBMin, ttRotationBMax)));
     
     m_angVels[m_current].OuterMultiplyBy(orientation.ConjugateGet());
     
@@ -185,23 +259,26 @@ void
 TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13)); // 13
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 13
     MushGLV::Sgl().Acquaint();
     
     m_colours.resize(8);
-    tVal alpha=0.2;
-    m_colours[0] = t4GLVal(1.0,0.5,0.5,alpha);
-    m_colours[1] = t4GLVal(0.5,0.5,0.5,alpha);
-    m_colours[2] = t4GLVal(0.5,1.0,0.5,alpha);
-    m_colours[3] = t4GLVal(0.5,0.5,0.5,alpha);
-    m_colours[4] = t4GLVal(0.5,0.5,1.0,alpha);
-    m_colours[5] = t4GLVal(0.5,0.5,0.5,alpha);
-    m_colours[6] = t4GLVal(0.8,0.8,0.5,alpha);
-    m_colours[7] = t4GLVal(0.5,0.5,0.5,alpha);
+    
+    for (U32 i=0; i<m_colours.size(); ++i)
+    {
+        std::ostringstream varName;
+        varName << "TT_COLOUR_" << i;
+        MushcoreScalar textValue = MushcoreEnv::Sgl().VariableGet(varName.str());
+        std::istringstream strIStrm(textValue.StringGet());
+        MushcoreXMLIStream xmlIStrm(strIStrm);
+        
+        xmlIStrm >> m_colours[i];
+    }
     
     m_hypercube.Create(0, m_colours);
     m_hypersphere.Create(0, m_colours);
     m_planepair.Create(0, m_colours);
+    m_planeset.Create(0, m_colours);
 
     for (U32 i=0; i<2; ++i)
     {
@@ -211,7 +288,38 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     
     m_lastChangeMsec = 0;
     
-    cout << MushGLV::Sgl() << endl;
+    m_ttRotationChangeMsec = MushcoreEnv::Sgl().VariableGet("TT_ROTATION_CHANGE_MSEC").ValGet();
+    m_ttRealignMsec = MushcoreEnv::Sgl().VariableGet("TT_REALIGN_MSEC").ValGet();
+    m_ttLineWidth = MushcoreEnv::Sgl().VariableGet("TT_LINE_WIDTH").ValGet();
+    m_ttPointSize = MushcoreEnv::Sgl().VariableGet("TT_POINT_SIZE").ValGet();
+    
+    m_ttObjectDistance = MushcoreEnv::Sgl().VariableGet("TT_OBJECT_DISTANCE").ValGet();
+
+    tVal ttFogStart = MushcoreEnv::Sgl().VariableGet("TT_FOG_START").ValGet();
+    tVal ttFogEnd = MushcoreEnv::Sgl().VariableGet("TT_FOG_END").ValGet();
+    
+    float black[4] = {0,0,0,0};
+    glFogfv(GL_FOG_COLOR, black);
+    glFogf(GL_FOG_START, m_ttObjectDistance + ttFogStart);
+    glFogf(GL_FOG_END, m_ttObjectDistance + ttFogEnd);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
+    
+    
+    m_ttRenderFaces = MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACES").U32Get();
+    m_ttRenderFaceOutlines = MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_OUTLINES").U32Get();
+    m_ttRenderFaceTextures = MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_TEXTURES").U32Get();
+    m_ttRenderFacePoints = MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_POINTS").U32Get();
+    m_ttRenderRotationPlanes = MushcoreEnv::Sgl().VariableGet("TT_RENDER_ROTATION_PLANES").U32Get();
+    m_ttRenderBasicPlanes  = MushcoreEnv::Sgl().VariableGet("TT_RENDER_BASIC_PLANES").U32Get();
+    
+    m_ttRenderStereo  = MushcoreEnv::Sgl().VariableGet("TT_RENDER_STEREO").U32Get();
+    m_ttStereoEyeSeparation  = MushcoreEnv::Sgl().VariableGet("TT_STEREO_EYE_SEPARATION").ValGet();
+    m_ttStereoImageSeparation  = MushcoreEnv::Sgl().VariableGet("TT_STEREO_IMAGE_SEPARATION").ValGet();
+    
+    if (MushcoreEnv::Sgl().VariableExists("TT_DUMP_MUSHGLV"))
+    {
+        std::cout << MushGLV::Sgl() << endl;
+    }
 }
 
 void
@@ -256,7 +364,21 @@ TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "current=" << m_current << ", ";
     ioOut << "previous=" << m_previous << ", ";
     ioOut << "colours=" << m_colours << ", ";
-    ioOut << "lastChangeMsec=" << m_lastChangeMsec;
+    ioOut << "lastChangeMsec=" << m_lastChangeMsec << ", ";
+    ioOut << "ttRotationChangeMsec=" << m_ttRotationChangeMsec << ", ";
+    ioOut << "ttRealignMsec=" << m_ttRealignMsec << ", ";
+    ioOut << "ttLineWidth=" << m_ttLineWidth << ", ";
+    ioOut << "ttPointSize=" << m_ttPointSize << ", ";
+    ioOut << "ttObjectDistance=" << m_ttObjectDistance << ", ";
+    ioOut << "ttRenderFaces=" << m_ttRenderFaces << ", ";
+    ioOut << "ttRenderFaceOutlines=" << m_ttRenderFaceOutlines << ", ";
+    ioOut << "ttRenderFaceTextures=" << m_ttRenderFaceTextures << ", ";
+    ioOut << "ttRenderFacePoints=" << m_ttRenderFacePoints << ", ";
+    ioOut << "ttRenderRotationPlanes=" << m_ttRenderRotationPlanes << ", ";
+    ioOut << "ttRenderBasicPlanes=" << m_ttRenderBasicPlanes << ", ";
+    ioOut << "ttRenderStereo=" << m_ttRenderStereo << ", ";
+    ioOut << "ttStereoEyeSeparation=" << m_ttStereoEyeSeparation << ", ";
+    ioOut << "ttStereoImageSeparation=" << m_ttStereoImageSeparation;
     ioOut << "]";
 }
 bool
@@ -290,6 +412,62 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_lastChangeMsec;
     }
+    else if (inTagStr == "ttRotationChangeMsec")
+    {
+        ioIn >> m_ttRotationChangeMsec;
+    }
+    else if (inTagStr == "ttRealignMsec")
+    {
+        ioIn >> m_ttRealignMsec;
+    }
+    else if (inTagStr == "ttLineWidth")
+    {
+        ioIn >> m_ttLineWidth;
+    }
+    else if (inTagStr == "ttPointSize")
+    {
+        ioIn >> m_ttPointSize;
+    }
+    else if (inTagStr == "ttObjectDistance")
+    {
+        ioIn >> m_ttObjectDistance;
+    }
+    else if (inTagStr == "ttRenderFaces")
+    {
+        ioIn >> m_ttRenderFaces;
+    }
+    else if (inTagStr == "ttRenderFaceOutlines")
+    {
+        ioIn >> m_ttRenderFaceOutlines;
+    }
+    else if (inTagStr == "ttRenderFaceTextures")
+    {
+        ioIn >> m_ttRenderFaceTextures;
+    }
+    else if (inTagStr == "ttRenderFacePoints")
+    {
+        ioIn >> m_ttRenderFacePoints;
+    }
+    else if (inTagStr == "ttRenderRotationPlanes")
+    {
+        ioIn >> m_ttRenderRotationPlanes;
+    }
+    else if (inTagStr == "ttRenderBasicPlanes")
+    {
+        ioIn >> m_ttRenderBasicPlanes;
+    }
+    else if (inTagStr == "ttRenderStereo")
+    {
+        ioIn >> m_ttRenderStereo;
+    }
+    else if (inTagStr == "ttStereoEyeSeparation")
+    {
+        ioIn >> m_ttStereoEyeSeparation;
+    }
+    else if (inTagStr == "ttStereoImageSeparation")
+    {
+        ioIn >> m_ttStereoImageSeparation;
+    }
     else
     {
         return false;
@@ -311,5 +489,33 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_colours;
     ioOut.TagSet("lastChangeMsec");
     ioOut << m_lastChangeMsec;
+    ioOut.TagSet("ttRotationChangeMsec");
+    ioOut << m_ttRotationChangeMsec;
+    ioOut.TagSet("ttRealignMsec");
+    ioOut << m_ttRealignMsec;
+    ioOut.TagSet("ttLineWidth");
+    ioOut << m_ttLineWidth;
+    ioOut.TagSet("ttPointSize");
+    ioOut << m_ttPointSize;
+    ioOut.TagSet("ttObjectDistance");
+    ioOut << m_ttObjectDistance;
+    ioOut.TagSet("ttRenderFaces");
+    ioOut << m_ttRenderFaces;
+    ioOut.TagSet("ttRenderFaceOutlines");
+    ioOut << m_ttRenderFaceOutlines;
+    ioOut.TagSet("ttRenderFaceTextures");
+    ioOut << m_ttRenderFaceTextures;
+    ioOut.TagSet("ttRenderFacePoints");
+    ioOut << m_ttRenderFacePoints;
+    ioOut.TagSet("ttRenderRotationPlanes");
+    ioOut << m_ttRenderRotationPlanes;
+    ioOut.TagSet("ttRenderBasicPlanes");
+    ioOut << m_ttRenderBasicPlanes;
+    ioOut.TagSet("ttRenderStereo");
+    ioOut << m_ttRenderStereo;
+    ioOut.TagSet("ttStereoEyeSeparation");
+    ioOut << m_ttStereoEyeSeparation;
+    ioOut.TagSet("ttStereoImageSeparation");
+    ioOut << m_ttStereoImageSeparation;
 }
-//%outOfLineFunctions } Kdcd8IiGRdkksp7r4S6EOA
+//%outOfLineFunctions } Vyy2ggRedblg8a4ACRQ54Q

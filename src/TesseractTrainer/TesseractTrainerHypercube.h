@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } iZEF1yPrVbDw+vHpY5jCpw
 /*
- * $Id: TesseractTrainerHypercube.h,v 1.2 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerHypercube.h,v 1.3 2005/02/26 17:53:46 southa Exp $
  * $Log: TesseractTrainerHypercube.h,v $
+ * Revision 1.3  2005/02/26 17:53:46  southa
+ * Plane sets and pairs
+ *
  * Revision 1.2  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -31,6 +34,7 @@
 #include "mushMushGL.h"
 #include "mushMushMesh.h"
 
+//:generate
 class TesseractTrainerHypercube
 {
 public:
@@ -50,6 +54,18 @@ private:
     MushcoreDataRef<GLTexture> m_textureRef;
     tFacetGroup m_facetGroup;
     Mushware::tQValPair m_orientation;
+    Mushware::U32 m_renderFaces; //:readwrite
+    bool m_renderFaceOutlines; //:readwrite
+    bool m_renderFaceTextures; //:readwrite
+//%classPrototypes {
+public:
+    const Mushware::U32& RenderFaces(void) const { return m_renderFaces; }
+    void RenderFacesSet(const Mushware::U32& inValue) { m_renderFaces=inValue; }
+    const bool& RenderFaceOutlines(void) const { return m_renderFaceOutlines; }
+    void RenderFaceOutlinesSet(const bool& inValue) { m_renderFaceOutlines=inValue; }
+    const bool& RenderFaceTextures(void) const { return m_renderFaceTextures; }
+    void RenderFaceTexturesSet(const bool& inValue) { m_renderFaceTextures=inValue; }
+//%classPrototypes } F2TMclDxJ+51bLL6iBr8iQ
 };
 
 //%includeGuardEnd {

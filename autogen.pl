@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.3 2004/01/07 11:14:15 southa Exp $
+# $Id: autogen.pl,v 1.4 2004/01/07 13:22:47 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.4  2004/01/07 13:22:47  southa
+# Snapshot fixes
+#
 # Revision 1.3  2004/01/07 11:14:15  southa
 # Snapshot fixes
 #
@@ -38,6 +41,7 @@ my $gTargetType = TARGETTYPE_NONE;
 
 my %gConfig;
 my %gContext;
+my %gVars;
 
 %gConfig =
 (
@@ -88,9 +92,17 @@ sub Use($$)
 {
     my ($source, $target) = @_;
     print "Using $source as $target\n" if ($gVerbose);
-    if (system("cp -f $source $target") != 0)
+    open INUSE, $source or die "Couldn't open '$source': $!";
+    open OUTUSE, ">$target" or die "Couldn't open '$target': $!";
+    
+    while (<INUSE>)
     {
-        die "File copy '$source'->'$target' failed";
+        my $line =  $_;
+        foreach my $varExp (keys %gVars)
+        {
+            $line =~ s/$varExp/$gVars{$varExp}/;
+        }
+        print OUTUSE $line;
     }
 }
 
@@ -366,6 +378,18 @@ sub Process($)
                 '	@echo Launching test application...',
                 '	@echo',
                 '	./test_@PACKAGE@';
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /Subst:/)
+        {
+            if ($command =~ /Subst:\s*(\w+)\s+'([^']*)'$/)
+            {   
+                $gVars{$1} = $2;
+                print "Subst varaible $1 = $2\n" if $gVerbose;
             }
             else
             {

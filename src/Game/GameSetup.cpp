@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.41 2004/09/27 22:42:08 southa Exp $
+ * $Id: GameSetup.cpp,v 1.42 2005/02/10 12:33:59 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.42  2005/02/10 12:33:59  southa
+ * Template fixes
+ *
  * Revision 1.41  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *
@@ -149,8 +152,11 @@
 
 #include "mushGL.h"
 #include "mushMedia.h"
-#include "mushMustlGame.h"
 #include "mushPlatform.h"
+
+#ifdef MUSHWARE_USE_MUSTL
+#include "mushMustlGame.h"
+#endif
 
 using namespace Mushware;
 using namespace std;
@@ -250,6 +256,7 @@ GLUtils::RotateAboutZ(5*sin(msecNow/151));
 void
 GameSetup::ConfigInit(void)
 {
+#ifdef MUSHWARE_USE_MUSTL
     U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
     try
     {
@@ -261,7 +268,10 @@ GameSetup::ConfigInit(void)
         MustlLog::Sgl().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
-        
+#else
+    U32 webPort = 0;
+#endif
+    
     ostringstream configURL;
     configURL << "http://127.0.0.1:" << webPort << "/";
     m_configURL=configURL.str();
@@ -273,15 +283,16 @@ GameSetup::Config(void)
 {
     m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
     
+#ifdef MUSHWARE_USE_MUSTL
     MustlGameUtils::WebReceive();
     MustlGameUtils::NetReceive();
-
 
     if (m_currentMsec > m_lastTickerMsec + kTickerMsec)
     {
         m_lastTickerMsec = m_currentMsec;
         MustlGameUtils::NetTicker();
     }
+#endif
     
     KeyControl();
     GLUtils::PostRedisplay();
@@ -305,6 +316,7 @@ GameSetup::KeyControl(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
     {
+#ifdef MUSHWARE_USE_MUSTL
         if (!MustlWebServer::Sgl().IsConnected())
         {
             U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
@@ -326,6 +338,7 @@ GameSetup::KeyControl(void)
             cerr << "Exception: " << e.what() << endl;
             cerr << "Please open the URL manually if necessary." << endl;
         }
+#endif
         m_windowClicked=true;
     }
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } pmQovnG+eSD9h3QcMJoqMg
 /*
- * $Id: MushcoreUtil.cpp,v 1.14 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.15 2004/01/18 18:25:29 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.15  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.14  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -193,6 +196,103 @@ std::istream *
 MushcoreUtil::IStringStreamNew(const std::string& inStr)
 {
     return new istringstream(inStr);
+}
+
+string
+MushcoreUtil::MakeXMLSafe(const string& inStr)
+{
+    return MakeWebSafe(inStr);
+}
+
+string
+MushcoreUtil::MakeWebSafe(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte == '"' ||
+            byte == '\'')
+        {
+            // Discard
+        }
+        else if (byte < ' ')
+        {
+            retStr+=" ";
+        }
+        else if (byte == '<')
+        {
+            retStr+="&lt;";
+        }
+        else if (byte == '>')
+        {
+            retStr+="&gt;";
+        }
+        else if (byte == '&')
+        {
+            retStr+="&amp;";
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
+}
+
+string
+MushcoreUtil::RemoveMeta(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte == '+' || byte < ' ')
+        {
+            retStr+=" ";
+        }
+        else if (byte == '%')
+        {
+            if (i+2 >= size) break;
+            istringstream hexStream(inStr.substr(i+1, 2));
+            U32 charVal;
+            hexStream >> hex >> charVal;
+            if (charVal >= ' ')
+            {
+                retStr += charVal;
+            }
+            i+=2;
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
+}
+
+string
+MushcoreUtil::InsertMeta(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte >= ' ' && byte < '0')
+        {
+            retStr += "%";
+            retStr += "0123456789ABCDEF"[byte / 16];
+            retStr += "0123456789ABCDEF"[byte % 16];
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
 }
 
 void

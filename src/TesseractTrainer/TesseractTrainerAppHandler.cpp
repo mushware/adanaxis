@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Xj4GDjQD+0YwgfSGVwf86A
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerAppHandler.cpp,v 1.1 2005/02/03 15:46:55 southa Exp $
+ * $Log: TesseractTrainerAppHandler.cpp,v $
+ * Revision 1.1  2005/02/03 15:46:55  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerAppHandler.h"
@@ -63,6 +66,21 @@ TesseractTrainerAppHandler::PrepareNewGame(void)
 void
 TesseractTrainerAppHandler::CurrentGameEnd(void)
 {
-    SetupModeEnter();
+    QuitModeEnter();
     MushcoreData<GameBase>::Sgl().Delete("tesseracttrainer");
+}
+
+void
+TesseractTrainerAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
+{
+    bool keyHandled=false;
+    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    {
+        QuitModeEnter();
+        keyHandled=true;
+    }
+    if (!keyHandled)
+    {
+        GameAppHandler::KeyboardSignal(inSignal);
+    }
 }

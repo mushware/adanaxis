@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qWfrD/KaPbGcPpGRqeqJKA
 /*
- * $Id: GameAppHandler.cpp,v 1.56 2004/01/06 20:46:49 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.57 2004/03/06 13:13:42 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.57  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.56  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -197,7 +200,10 @@
 #include "GameSetup.h"
 
 #include "mushMedia.h"
+
+#ifdef MUSHWARE_USE_MUSTL
 #include "mushMustlGame.h"
+#endif
 
 using namespace Mushware;
 using namespace std;
@@ -287,6 +293,7 @@ GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
 
+#ifdef MUSHWARE_USE_MUSTL
     {
         MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
 
@@ -311,6 +318,7 @@ GameAppHandler::GameTypeDetermine(void)
             }
         }
     }
+#endif
     
     if (m_gameType == kGameTypeInvalid)
     {
@@ -330,8 +338,18 @@ GameAppHandler::CurrentSwapOut(void)
 void
 GameAppHandler::CurrentSwapIn(const std::string& inName)
 {
-    m_currentRef.NameSet(inName);
-    m_currentRef.RefGet().SwapIn(*this);
+    try
+    {   
+        m_currentRef.NameSet(inName);
+        m_currentRef.RefGet().SwapIn(*this);
+    }
+    catch (exception& e)
+    {
+        cerr << "Exception during start sequence: " << e.what() << endl;
+        
+        PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
+        QuitModeEnter();
+    }
 }
 
 void

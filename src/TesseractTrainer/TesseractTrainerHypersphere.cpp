@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KlSGDEnGkB9koN4E0FK9Tw
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.4 2005/02/26 17:53:47 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.4  2005/02/26 17:53:47  southa
+ * Plane sets and pairs
+ *
  * Revision 1.3  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -29,12 +32,12 @@
 
 #include "mushMushcore.h"
 
-#include "MushMeshDivide.h"
-
 using namespace Mushware;
 using namespace std;
 
-TesseractTrainerHypersphere::TesseractTrainerHypersphere()
+TesseractTrainerHypersphere::TesseractTrainerHypersphere() :
+    m_numVertices(0),
+    m_renderFaces(0)
 {
 }
 
@@ -42,12 +45,15 @@ void
 TesseractTrainerHypersphere::Create(tVal frame, const std::vector<Mushware::t4GLVal>& inColours)
 {
     t4Val scale(0.2,0.2,0.2,0.2);
-scale *= 0.95;
-    m_vertexBuffer.ClearAndResize(kNumVertices);
-    m_colourBuffer.ClearAndResize(kNumVertices);
+    scale *= 0.95;
+
+    m_numVertices = MushcoreEnv::Sgl().VariableGet("TT_TEXTURE_POINTS").U32Get();
+
+    m_vertexBuffer.ClearAndResize(m_numVertices);
+    m_colourBuffer.ClearAndResize(m_numVertices);
     m_colourBuffer.MapReadWrite();
     
-    for (U32 i=0; i<kNumVertices; ++i)
+    for (U32 i=0; i<m_numVertices; ++i)
     {
         tVertex vec(0,0,0,0);
         t4GLVal colour(1,1,1,1);
@@ -61,7 +67,7 @@ scale *= 0.95;
                     vec.Set(1-2*((double)rand()/RAND_MAX), j);
                 }
                 
-                U32 type = (i*8 / kNumVertices) & ~1;
+                U32 type = (i*8 / m_numVertices) & ~1;
 
                 if (type < inColours.size())
                 {
@@ -119,7 +125,7 @@ scale *= 0.95;
 
     glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
     
-    for (U32 i=0; i<kNumVertices; ++i)
+    for (U32 i=0; i<m_numVertices; ++i)
     {
         m_vertices[i].InPlaceElementwiseMultiply(scale);
     }
@@ -146,7 +152,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
     
     std::vector<tVertex> vertices(m_vertices);
     
-    for (U32 j=0; j<vertices.size(); ++j)
+    for (U32 j=0; j < m_numVertices; ++j)
     {
         m_orientation.InPlaceRotate(vertices[j]);
     }
@@ -162,12 +168,8 @@ TesseractTrainerHypersphere::Render(tVal frame)
 
     t3GLVal vertOffset = t3GLVal(0,0,0*distance);
     
-    float black[4] = {0,0,0,0};
     glEnable(GL_FOG);
-    glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START, 3.7);
-    glFogf(GL_FOG_END, 4.3);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
+
     GLState::BlendSet(GLState::kBlendTransparent);
     GLState::ColourSet(1,1,1,0.33);
 
@@ -176,7 +178,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
         for (U32 attempts=0;;)
         {
             m_vertexBuffer.MapReadWrite();
-            for (U32 i=0; i<kNumVertices; ++i)
+            for (U32 i=0; i<m_numVertices; ++i)
             {
                 m_vertexBuffer.Set(vertOffset + preMatrix * vertices[i], i);
             }
@@ -193,7 +195,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
     
-    glDrawArrays(GL_POINTS, 0, vertices.size());
+    glDrawArrays(GL_POINTS, 0, vertices.size() * m_renderFaces / 8);
 
     glDisableClientState(GL_COLOR_ARRAY);
     glDisableClientState(GL_VERTEX_ARRAY);

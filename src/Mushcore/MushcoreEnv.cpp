@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } rDyW2doWgnfV4Mi1vbvRZg
 /*
- * $Id: MushcoreEnv.cpp,v 1.10 2003/10/04 12:23:08 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.11 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.11  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/10/04 12:23:08  southa
  * File renaming
  *
@@ -140,7 +143,6 @@ MushcoreEnv::PopConfig(MushcoreConfig& inConfig)
 const MushcoreScalar&
 MushcoreEnv::VariableGet(const string& inName) const
 {
-    static const MushcoreScalar undefined;
     for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
          p != m_config.rend(); ++p)
     {
@@ -150,7 +152,8 @@ MushcoreEnv::VariableGet(const string& inName) const
             return *pScalar;
         }
     }
-    return undefined;
+    
+    throw(MushcoreDataFail("Access to non-existent MushcoreEnv variable '"+inName+"'"));
 }
 
 bool

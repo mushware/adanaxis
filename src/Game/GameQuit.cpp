@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8z6frlELi6JgItG1tdJiyw
 /*
- * $Id: GameQuit.cpp,v 1.19 2004/09/27 22:42:08 southa Exp $
+ * $Id: GameQuit.cpp,v 1.20 2005/02/10 12:33:58 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.20  2005/02/10 12:33:58  southa
+ * Template fixes
+ *
  * Revision 1.19  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *
@@ -81,8 +84,11 @@
 
 #include "mushGL.h"
 #include "mushMedia.h"
-#include "mushMustlGame.h"
 #include "mushPlatform.h"
+
+#ifdef MUSHWARE_USE_MUSTL
+#include "mushMustlGame.h"
+#endif
 
 using namespace Mushware;
 using namespace std;
@@ -153,22 +159,27 @@ void
 GameQuit::Init(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-
-    MustlLog::Sgl().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
+
+#ifdef MUSHWARE_USE_MUSTL
+    MustlLog::Sgl().WebLog() << "Waiting to quit" << endl;
     MustlGameUtils::KillServers();
     MustlGameUtils::KillClients();
+#endif
 }    
 
 void
 GameQuit::Timing(void)
 {
+#ifdef MUSHWARE_USE_MUSTL
     MustlWebServer::Sgl().Accept();
     MustlWebRouter::Sgl().ReceiveAll();
+#endif
     GLUtils::PostRedisplay();
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    U32 currentMsec=gameAppHandler.MillisecondsGet();
 
+#ifdef MUSHWARE_USE_MUSTL
+    U32 currentMsec=gameAppHandler.MillisecondsGet();
     if (m_startMsec + kQuitHangTime < currentMsec)
     {
         // Quit after quit hang time if all web links are closed
@@ -184,6 +195,9 @@ GameQuit::Timing(void)
         MustlLog::Sgl().WebLog() << "Quitting on timeout" << endl;
         gameAppHandler.AppQuit();
     }
+#else    
+    gameAppHandler.AppQuit();
+#endif
 }
 
 void

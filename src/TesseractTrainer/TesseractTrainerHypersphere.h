@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } oFI4VexFfs/tkyGLE4giFw
 /*
- * $Id: TesseractTrainerHypersphere.h,v 1.2 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerHypersphere.h,v 1.3 2005/02/26 17:53:47 southa Exp $
  * $Log: TesseractTrainerHypersphere.h,v $
+ * Revision 1.3  2005/02/26 17:53:47  southa
+ * Plane sets and pairs
+ *
  * Revision 1.2  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -31,6 +34,7 @@
 #include "mushMushGL.h"
 #include "mushMushMesh.h"
 
+//:generate
 class TesseractTrainerHypersphere
 {
 public:
@@ -43,15 +47,18 @@ public:
     void OrientationSet(const Mushware::tQValPair& inOrient) { m_orientation = inOrient; }
     
 private:
-    enum
-    {
-        kNumVertices = 30000
-    };
     std::vector<tVertex> m_vertices;
-
+    Mushware::U32 m_numVertices;
+    
     MushGLVertexBuffer<Mushware::t3GLVal> m_vertexBuffer;
     MushGLVertexBuffer<Mushware::t4GLVal> m_colourBuffer;
     Mushware::tQValPair m_orientation;
+    Mushware::U32 m_renderFaces; //:readwrite
+//%classPrototypes {
+public:
+    const Mushware::U32& RenderFaces(void) const { return m_renderFaces; }
+    void RenderFacesSet(const Mushware::U32& inValue) { m_renderFaces=inValue; }
+//%classPrototypes } jBvg2aVYhLSGuBezUhnMaw
 };
 //%includeGuardEnd {
 #endif

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } o3cRggzDaChnt+D4tHwV0Q
 /*
- * $Id: GameRouter.h,v 1.19 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameRouter.h,v 1.20 2004/01/06 20:46:50 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.20  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.19  2004/01/02 21:13:07  southa
  * Source conditioning
  *
@@ -78,9 +81,19 @@
  */
 
 #include "mushMushcore.h"
-#include "mushMustl.h"
 
+#ifdef MUSHWARE_USE_MUSTL
+#include "mushMustl.h"
+#endif
+
+class MustlData;
+class MustlLink;
+
+#ifdef MUSHWARE_USE_MUSTL
 class GameRouter : public MustlMessageHandler, public MushcoreSingleton<GameRouter>
+#else
+class GameRouter : public MushcoreSingleton<GameRouter>
+#endif
 {
 public:
     virtual ~GameRouter() {}

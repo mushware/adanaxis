@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aK/iFeTBrNogp26MaxgKxg
 /*
- * $Id: GameConfig.cpp,v 1.32 2004/01/06 20:46:49 southa Exp $
+ * $Id: GameConfig.cpp,v 1.33 2004/09/27 22:42:08 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.33  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.32  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -117,8 +120,11 @@
 #include "GameConfigDef.h"
 #include "GameSTL.h"
 
-#include "mushMustl.h"
 #include "mushPlatform.h"
+
+#ifdef MUSHWARE_USE_MUSTL
+#include "mushMustl.h"
+#endif
 
 using namespace Mushware;
 using namespace std;
@@ -223,6 +229,7 @@ GameConfig::SaveToFile(void) const
 void
 GameConfig::Update(void)
 {
+#ifdef MUSHWARE_USE_MUSTL
     if (ParameterExists("configperms"))
     {
         string configPerms=ParameterGet("configperms").StringGet();
@@ -247,7 +254,7 @@ GameConfig::Update(void)
     {
         MustlWebServer::Sgl().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
     }
-    
+#endif    
 }
 
 // ----- XML stuff -----
@@ -308,10 +315,10 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
         if (dynamic_cast<GameConfigDefPassword *>(p->second) == NULL ||
             savePasswords)
         {
-            inOut << inPrefix << "  <value name=\"" << MustlUtils::MakeXMLSafe(p->first) << "\">";
+            inOut << inPrefix << "  <value name=\"" << MushcoreUtil::MakeXMLSafe(p->first) << "\">";
             if (p->second != NULL)
             {
-                inOut << MustlUtils::MakeXMLSafe(p->second->ValueGet().StringGet());
+                inOut << MushcoreUtil::MakeXMLSafe(p->second->ValueGet().StringGet());
             }
             inOut << "</value>" << endl;
         }

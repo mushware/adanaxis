@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } gAAuufrhJQT+nw60TdIC4A
 /*
- * $Id: GLKeys.h,v 1.12 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLKeys.h,v 1.13 2004/01/06 20:46:49 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.13  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.12  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -89,7 +92,9 @@ public:
         kKeyMouse2,
         kKeyMouse3,
         kKeyMouse4,
-        kKeyMouse5,    
+        kKeyMouse5,
+        kKeyCommand,
+        kKeyQuit,
         kNumberOfKeys
     };
     GLKeys(Mushware::U32 inKeyValue): m_keyValue(static_cast<tKeyValue>(inKeyValue)) {}

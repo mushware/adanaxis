@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XWTplRc9rgj8oYPVlTvtrA
 /*
- * $Id: MushcoreUtil.h,v 1.13 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.14 2004/01/18 18:25:29 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.14  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.13  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -101,6 +104,14 @@ public:
     static std::istream *IStringStreamNew(const std::string& inStr);
     template<class T> static std::vector<T> ArrayToVector(const T inArray[], Mushware::U32 inSize);
     template<class T> static void VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue = T());
+    
+    
+    static std::string MakeXMLSafe(const std::string& inStr);
+    static std::string MakeWebSafe(const std::string& inStr);
+    static Mushware::U32 MakeWebSafe(Mushware::U32 inValue) { return inValue; }
+    static Mushware::tVal MakeWebSafe(Mushware::tVal inValue) { return inValue; }
+    static std::string RemoveMeta(const std::string& inStr);
+    static std::string InsertMeta(const std::string& inStr);
     
     static void BreakpointFunction(void);
 };

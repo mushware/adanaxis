@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e50mVxNYmM7sWR8WfslVyg
 /*
- * $Id: TesseractTrainerPlanePair.cpp,v 1.1 2005/02/26 17:53:48 southa Exp $
+ * $Id: TesseractTrainerPlanePair.cpp,v 1.2 2005/02/27 01:01:32 southa Exp $
  * $Log: TesseractTrainerPlanePair.cpp,v $
+ * Revision 1.2  2005/02/27 01:01:32  southa
+ * Eigenplane markers
+ *
  * Revision 1.1  2005/02/26 17:53:48  southa
  * Plane sets and pairs
  *
@@ -24,8 +27,6 @@
 #include "TesseractTrainerPixelSource.h"
 
 #include "mushMushcore.h"
-
-#include "MushMeshDivide.h"
 
 using namespace Mushware;
 using namespace std;
@@ -152,12 +153,9 @@ TesseractTrainerPlanePair::Render(tVal frame)
     const MushMeshGroup::tSuperGroup& srcZero = m_facetGroup.SuperGroup(0);
     
     glDisable(GL_CULL_FACE);
-    float black[4] = {0,0,0,0};
+
     glEnable(GL_FOG);
-    glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START, 3.7);
-    glFogf(GL_FOG_END, 4.3);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
+
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DITHER);
     

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YgKXUj/EEsggmRKVn+PRWA
 /*
- * $Id: SDLAppHandler.cpp,v 1.38 2004/01/02 21:13:06 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.39 2005/01/26 00:48:46 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.39  2005/01/26 00:48:46  southa
+ * MushMeshGroup and rendering
+ *
  * Revision 1.38  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -194,7 +197,7 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         m_latchedKeyState[keyValue]=true;
     }
 
-    if (keyValue == 27 && inSignal.keyDown)
+    if ((keyValue == 27 || keyValue == GLKeys::kKeyQuit) && inSignal.keyDown)
     {
         // Escape key pressed
         MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
@@ -543,79 +546,109 @@ GLKeys
 SDLAppHandler::TranslateKey(void *inKeyEvent) const
 {
     SDLKey keyValue=static_cast<SDL_KeyboardEvent *>(inKeyEvent)->keysym.sym;
+    GLKeys retValue = 0;
+
     switch (keyValue)
     {
         case SDLK_F1:
-            return GLKeys::kKeyF1;
+            retValue = GLKeys::kKeyF1;
+            break;
 
         case SDLK_F2:
-            return GLKeys::kKeyF2;
+            retValue = GLKeys::kKeyF2;
+            break;
 
         case SDLK_F3:
-            return GLKeys::kKeyF3;
+            retValue = GLKeys::kKeyF3;
+            break;
 
         case SDLK_F4:
-            return GLKeys::kKeyF4;
+            retValue = GLKeys::kKeyF4;
+            break;
 
         case SDLK_F5:
-            return GLKeys::kKeyF5;
+            retValue = GLKeys::kKeyF5;
+            break;
 
         case SDLK_F6:
-            return GLKeys::kKeyF6;
+            retValue = GLKeys::kKeyF6;
+            break;
 
         case SDLK_F7:
-            return GLKeys::kKeyF7;
+            retValue = GLKeys::kKeyF7;
+            break;
 
         case SDLK_F8:
-            return GLKeys::kKeyF8;
+            retValue = GLKeys::kKeyF8;
+            break;
 
         case SDLK_F9:
-            return GLKeys::kKeyF9;
+            retValue = GLKeys::kKeyF9;
+            break;
 
         case SDLK_F10:
-            return GLKeys::kKeyF10;
+            retValue = GLKeys::kKeyF10;
+            break;
 
         case SDLK_F11:
-            return GLKeys::kKeyF11;
+            retValue = GLKeys::kKeyF11;
+            break;
 
         case SDLK_F12:
-            return GLKeys::kKeyF12;
+            retValue = GLKeys::kKeyF12;
+            break;
 
         case SDLK_LEFT:
-            return GLKeys::kKeyLeft;
+            retValue = GLKeys::kKeyLeft;
+            break;
 
         case SDLK_UP:
-            return GLKeys::kKeyUp;
+            retValue = GLKeys::kKeyUp;
+            break;
 
         case SDLK_RIGHT:
-            return GLKeys::kKeyRight;
+            retValue = GLKeys::kKeyRight;
+            break;
 
         case SDLK_DOWN:
-            return GLKeys::kKeyDown;
+            retValue = GLKeys::kKeyDown;
+            break;
 
         case SDLK_PAGEUP:
-            return GLKeys::kKeyPageUp;
+            retValue = GLKeys::kKeyPageUp;
+            break;
 
         case SDLK_PAGEDOWN:
-            return GLKeys::kKeyPageDown;
+            retValue = GLKeys::kKeyPageDown;
+            break;
 
         case SDLK_HOME:
-            return GLKeys::kKeyHome;
+            retValue = GLKeys::kKeyHome;
+            break;
 
         case SDLK_END:
-            return GLKeys::kKeyEnd;
+            retValue = GLKeys::kKeyEnd;
+            break;
 
         case SDLK_INSERT:
-            return GLKeys::kKeyInsert;
-
+            retValue = GLKeys::kKeyInsert;
+            break;
+            
         default:
             if (keyValue > 0 && keyValue < 0x100)
             {
-                return keyValue;
+                retValue = keyValue;
             }
             break;
     }
-    cerr << "Ignored SDL key " << keyValue << endl;
-    return 0;
+        
+    if (!PlatformInputUtils::TranslateKey(retValue, keyValue))
+    {
+        if (keyValue == 0)
+        {
+            cerr << "Ignored SDL key " << keyValue << endl;
+        }
+    }
+    return retValue;
 }
 

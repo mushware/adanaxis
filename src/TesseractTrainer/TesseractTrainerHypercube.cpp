@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } tvE8OYNg7opzgRevdZ3rwA
 /*
- * $Id: TesseractTrainerHypercube.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerHypercube.cpp,v 1.4 2005/02/26 17:53:46 southa Exp $
  * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.4  2005/02/26 17:53:46  southa
+ * Plane sets and pairs
+ *
  * Revision 1.3  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -30,8 +33,6 @@
 #include "TesseractTrainerPixelSource.h"
 
 #include "mushMushcore.h"
-
-#include "MushMeshDivide.h"
 
 using namespace Mushware;
 using namespace std;
@@ -188,8 +189,6 @@ TesseractTrainerHypercube::Render(tVal frame)
          vec0, vec1, vec2
          );
     
-#if 1
-    
     std::vector<tVertex> vertices(m_vertices);
     
     for (U32 j=0; j<vertices.size(); ++j)
@@ -200,12 +199,9 @@ TesseractTrainerHypercube::Render(tVal frame)
     const MushMeshGroup::tSuperGroup& srcOne = m_facetGroup.SuperGroup(1);
  
     glDisable(GL_CULL_FACE);
-    float black[4] = {0,0,0,0};
+
     glEnable(GL_FOG);
-    glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START, 3.7);
-    glFogf(GL_FOG_END, 4.3);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
+
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DITHER);
     
@@ -214,62 +210,67 @@ TesseractTrainerHypercube::Render(tVal frame)
     GLState::BindTexture(m_textureRef.Get()->BindingNameGet());
     
     U32 colourNum=0;
+    U32 faceNum=0;
     
     for (MushMeshGroup::tSuperGroupConstItr itrSrcFace = srcOne.begin(); itrSrcFace != srcOne.end(); ++itrSrcFace)
     {
-
+        ++faceNum;
+        if (faceNum > m_renderFaces) break;
+        
         // Iterator itrSubFace takes us through each facet index for the face referred to by faceIter.
         // *itrSubFace is a facet index
         for (MushMeshGroup::tGroupConstItr itrSrcFacet = itrSrcFace->begin(); itrSrcFacet != itrSrcFace->end(); ++itrSrcFacet)
         {
             const MushMeshGroup::tGroup& facet = m_facetGroup.GroupAtSuperGroupGroup(0, *itrSrcFacet);
 
-#if 1            
-            GLState::ModulationSet(GLState::kModulationNone);
-            GLState::BlendSet(GLState::kBlendAccumulate);
-            GLState::TextureDisable();
-            glEnable(GL_FOG);
-            glBegin(GL_LINE_LOOP);
-            
-            for (MushMeshGroup::tGroupConstItr vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)
+            if (m_renderFaceOutlines)
             {
+                GLState::ModulationSet(GLState::kModulationNone);
+                GLState::BlendSet(GLState::kBlendAccumulate);
+                GLState::TextureDisable();
+                glEnable(GL_FOG);
+                glBegin(GL_LINE_LOOP);
                 
-                t3GLVal vert = preMatrix * vertices[*vertIter];
-                glColor4fv(&m_colours[colourNum].X());
-                glVertex3fv(&vert.X());
+                for (MushMeshGroup::tGroupConstItr vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)
+                {
+                    
+                    t3GLVal vert = preMatrix * vertices[*vertIter];
+                    glColor4fv(&m_colours[colourNum].X());
+                    glVertex3fv(&vert.X());
+                }
+                glEnd(); 
             }
-            glEnd(); 
-#endif
-#if 1
             
-            GLState::ModulationSet(GLState::kModulationColour);
-            GLState::BlendSet(GLState::kBlendAccumulate);
-            glEnable(GL_FOG);
-            GLState::TextureEnable();
-            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-            glBegin(GL_TRIANGLE_FAN);
-            
-            for (U32 i=0; i<facet.size(); ++i)
+            if (m_renderFaceTextures)
             {
-                t3GLVal vert = preMatrix * vertices[facet[i]];
-                t2GLVal texCoord = m_texCoords[i];
+                GLState::ModulationSet(GLState::kModulationColour);
+                GLState::BlendSet(GLState::kBlendAccumulate);
+                glEnable(GL_FOG);
+                GLState::TextureEnable();
+                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+                glBegin(GL_TRIANGLE_FAN);
+                
+                for (U32 i=0; i<facet.size(); ++i)
+                {
+                    t3GLVal vert = preMatrix * vertices[facet[i]];
+                    t2GLVal texCoord = m_texCoords[i];
 
-                glColor4fv(&m_colours[colourNum].X());
-                glTexCoord2fv(&texCoord.X());
-                glVertex3fv(&vert.X());
+                    glColor4fv(&m_colours[colourNum].X());
+                    glTexCoord2fv(&texCoord.X());
+                    glVertex3fv(&vert.X());
+                }
+                glEnd(); 
+                
+                GLState::TextureDisable();
             }
-            glEnd(); 
-            
-            GLState::TextureDisable();
-
-#endif
             
         }
+        
         if (colourNum+1 < m_colours.size())
         {
             ++colourNum;
         }
     }
-#endif
+
 }
 

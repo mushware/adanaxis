@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.6 2005/02/27 01:01:32 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.7 2005/03/08 01:24:10 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.7  2005/03/08 01:24:10  southa
+ * Quaternion slerp between orientations
+ *
  * Revision 1.6  2005/02/27 01:01:32  southa
  * Eigenplane markers
  *
@@ -45,6 +48,7 @@
 #include "TesseractTrainerHypercube.h"
 #include "TesseractTrainerHypersphere.h"
 #include "TesseractTrainerPlanePair.h"
+#include "TesseractTrainerPlaneSet.h"
 
 //:generate virtual standard ostream xml1
 class TesseractTrainerGame : public GameBase
@@ -63,18 +67,35 @@ public:
     
 protected:
     void Reorientate(void);
+    void RenderView(GameAppHandler& inAppHandler, Mushware::tVal inStereo);
     
 private:
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
     TesseractTrainerPlanePair m_planepair; //:ignore
+    TesseractTrainerPlaneSet m_planeset; //:ignore
     std::vector<Mushware::tQValPair> m_orientations;
     std::vector<Mushware::tQValPair> m_angVels;
     Mushware::U32 m_current;
     Mushware::U32 m_previous;
     std::vector<Mushware::t4GLVal> m_colours;
     Mushware::tVal m_lastChangeMsec;
+    Mushware::tVal m_ttRotationChangeMsec;
+    Mushware::tVal m_ttRealignMsec;
+    Mushware::tVal m_ttLineWidth;
+    Mushware::tVal m_ttPointSize;
+    Mushware::tVal m_ttObjectDistance;
 
+    Mushware::U32 m_ttRenderFaces;
+    bool m_ttRenderFaceOutlines;
+    bool m_ttRenderFaceTextures;
+    bool m_ttRenderFacePoints;
+    bool m_ttRenderRotationPlanes;
+    bool m_ttRenderBasicPlanes;
+    bool m_ttRenderStereo;
+    Mushware::tVal m_ttStereoEyeSeparation;
+    Mushware::tVal m_ttStereoImageSeparation;
+    
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;

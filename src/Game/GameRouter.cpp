@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } eldhcVkDtxHEibO1s1n+ng
 /*
- * $Id: GameRouter.cpp,v 1.29 2003/10/06 23:06:31 southa Exp $
+ * $Id: GameRouter.cpp,v 1.30 2004/01/02 21:13:07 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.30  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.29  2003/10/06 23:06:31  southa
  * Include fixes
  *
@@ -108,7 +111,9 @@
 #include "GameProtocol.h"
 #include "GameSTL.h"
 
+#ifdef MUSHWARE_USE_MUSTL
 #include "mushMustlGame.h"
+#endif
 
 using namespace Mushware;
 using namespace std;
@@ -118,6 +123,7 @@ MUSHCORE_SINGLETON_INSTANCE(GameRouter);
 void
 GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
 {
+#ifdef MUSHWARE_USE_MUSTL
     switch (inType)
     {
         case GameProtocol::kMessageTypeIDTransfer:
@@ -133,11 +139,14 @@ GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
             MustlLog::Sgl().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
+#endif
 }
 
 void
 GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
 {
+#ifdef MUSHWARE_USE_MUSTL
+
     MustlGameID netID(ioData);
 
     // We add the -image suffix if the target of this link is a client.  Not rigourous
@@ -146,11 +155,13 @@ GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
         netID.NameSuffixAdd("-image");
     }
     inLink.NetIDSet(netID);
+#endif
 }
 
 void
 GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
 {
+#ifdef MUSHWARE_USE_MUSTL
     MustlGameObject netObject;
 
     netObject.AddressSet(inLink.TCPAddressGet());
@@ -166,6 +177,7 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     {
         throw(MustlFail(e.what()));
     }
+#endif
 }
 
 

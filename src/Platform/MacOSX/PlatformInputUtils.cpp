@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 7pL8NZmUTdiVVqAI7d6PfA
 /*
- * $Id: PlatformInputUtils.cpp,v 1.13 2003/09/17 19:40:39 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.14 2004/01/02 21:13:16 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.14  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -69,6 +72,8 @@
 
 #include "mushPlatform.h"
 
+#include "mushGL.h"
+
 #include <ApplicationServices/ApplicationServices.h>
 
 using namespace Mushware;
@@ -81,4 +86,30 @@ PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
     CGGetLastMouseDelta(&xDelta, &yDelta);
     ioXDelta=xDelta;
     ioYDelta=yDelta;
+}
+
+
+bool
+PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
+{
+    bool retVal = false;
+    switch (inKeyCode)
+    {
+        case 310:
+            // Command key
+            outKey = GLKeys::kKeyCommand;
+            retVal = true;
+            break;
+            
+        case 'q':
+            GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
+
+            if (glAppHandler.KeyStateGet(GLKeys::kKeyCommand))
+            {
+                outKey = GLKeys::kKeyQuit;
+                retVal = true;
+            }
+            break;
+    }
+    return retVal;
 }

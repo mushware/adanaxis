@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } v2MyM26dfZdvOC4fLYvXRA
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerAppHandler.h,v 1.1 2005/02/03 15:46:56 southa Exp $
+ * $Log: TesseractTrainerAppHandler.h,v $
+ * Revision 1.1  2005/02/03 15:46:56  southa
+ * Quaternion work
+ *
  */
 
 #include "mushMushcore.h"
@@ -30,7 +33,7 @@ public:
     virtual ~TesseractTrainerAppHandler();
     virtual void GameModeEnter(bool inResume);
     virtual void CurrentGameEnd(void);
-
+    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
 protected:
     virtual void PrepareNewGame(void);
 
