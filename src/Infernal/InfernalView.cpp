@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } cmMabNhtshruG70urNt8JA
 /*
- * $Id: InfernalView.cpp,v 1.11 2003/09/17 19:40:34 southa Exp $
+ * $Id: InfernalView.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalView.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.11  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -51,7 +54,7 @@
 
 #include "InfernalView.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameDialogue.cpp
+ * File: src/Infernal/InfernalDialogue.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cy727gv31nGt0TV89Axaow
+//%Header } FXkWdh9/G3FsFbeou4nGWw
 /*
- * $Id: GameDialogue.cpp,v 1.24 2003/09/17 19:40:31 southa Exp $
- * $Log: GameDialogue.cpp,v $
+ * $Id: InfernalDialogue.cpp,v 1.25 2003/10/04 12:22:59 southa Exp $
+ * $Log: InfernalDialogue.cpp,v $
+ * Revision 1.25  2003/10/04 12:22:59  southa
+ * File renaming
+ *
  * Revision 1.24  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -75,7 +78,7 @@
  * Added MediaSoundStream
  *
  * Revision 1.4  2002/08/13 18:29:04  southa
- * Tidied GameDialogue code
+ * Tidied InfernalDialogue code
  *
  * Revision 1.3  2002/08/13 17:50:21  southa
  * Added playsound command
@@ -84,25 +87,26 @@
  * Added current dialogues
  *
  * Revision 1.1  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  */
 
-#include "GameDialogue.h"
+#include "InfernalDialogue.h"
 
 #include "InfernalData.h"
 #include "InfernalDataUtils.h"
 #include "InfernalMotion.h"
-#include "GameSTL.h"
-#include "InfernalTimer.h"
+#include "InfernalSTL.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
 
 void
-GameDialogue::Render(void) const
+InfernalDialogue::Render(void) const
 {
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
    
     U32 size=m_strings.size();
     
@@ -158,7 +162,7 @@ GameDialogue::Render(void) const
 }
 
 void
-GameDialogue::Move(void)
+InfernalDialogue::Move(void)
 {
     U32 size=m_strings.size();
     bool expired=true;
@@ -211,7 +215,7 @@ GameDialogue::Move(void)
 }
 
 void
-GameDialogue::TextSet(U32 inWhich, const string& inStr)
+InfernalDialogue::TextSet(U32 inWhich, const string& inStr)
 {
     if (inWhich >= m_strings.size())
     {
@@ -220,7 +224,7 @@ GameDialogue::TextSet(U32 inWhich, const string& inStr)
     m_strings[inWhich].string.TextSet(inStr);
 }
 
-void GameDialogue::ExpireNow(void)
+void InfernalDialogue::ExpireNow(void)
 {
     // Need to leave the last sound stream playing, if we haven't started it yet
     tVal latestTime=m_age;
@@ -253,7 +257,7 @@ void GameDialogue::ExpireNow(void)
     
 
 void
-GameDialogue::HandleTextEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleTextEnd(MushcoreXML& inXML)
 {
     MushcoreScalar alignment(MushcoreScalar(0));
 
@@ -269,14 +273,14 @@ GameDialogue::HandleTextEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleFontEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleFontEnd(MushcoreXML& inXML)
 {
     tVal size=inXML.GetAttribOrThrow("size").ValGet();
     m_fontRef=GLFontRef(inXML.TopData(), size);
 }
 
 void
-GameDialogue::HandleStartTimeEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleStartTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for starttime.  Should be <starttime>100.0</starttime>";
@@ -284,7 +288,7 @@ GameDialogue::HandleStartTimeEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleEndTimeEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleEndTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for endtime.  Should be <endtime>100.0</endtime>";
@@ -292,7 +296,7 @@ GameDialogue::HandleEndTimeEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleFadeTimeEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleFadeTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for fadetime.  Should be <fadetime>100.0</fadetime>";
@@ -301,7 +305,7 @@ GameDialogue::HandleFadeTimeEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleSizesEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleSizesEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for sizes.  Should be <sizes>0.0,1.0,0.0</sizes>";
@@ -316,31 +320,31 @@ GameDialogue::HandleSizesEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleStartColourEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleStartColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.startColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleMidColourEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleMidColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.midColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleEndColourEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleEndColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.endColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleMotionStart(MushcoreXML& inXML)
+InfernalDialogue::HandleMotionStart(MushcoreXML& inXML)
 {
     m_motion.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleSoundEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleSoundEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for sound.  Should be <sound>impressive<sound>";
@@ -353,7 +357,7 @@ GameDialogue::HandleSoundEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleSoundStreamEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleSoundStreamEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for soundstream.  Should be <sound>rate-music<sound>";
@@ -372,7 +376,7 @@ GameDialogue::HandleSoundStreamEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleKillSoundEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleKillSoundEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for killsound.  Should be <killsound>phone-beep</killsound>";
@@ -380,19 +384,19 @@ GameDialogue::HandleKillSoundEnd(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::HandleDialogueEnd(MushcoreXML& inXML)
+InfernalDialogue::HandleDialogueEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameDialogue::NullHandler(MushcoreXML& inXML)
+InfernalDialogue::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameDialogue::Pickle(ostream& inOut, const string& inPrefix) const
+InfernalDialogue::Pickle(ostream& inOut, const string& inPrefix) const
 {
     if (m_strings.size() != 0)
     {
@@ -401,36 +405,36 @@ GameDialogue::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameDialogue::UnpicklePrologue(void)
+InfernalDialogue::UnpicklePrologue(void)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_startTable[kPickleData]["text"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["text"] = &GameDialogue::HandleTextEnd;
-    m_startTable[kPickleData]["font"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["font"] = &GameDialogue::HandleFontEnd;
-    m_startTable[kPickleData]["startcolour"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["startcolour"] = &GameDialogue::HandleStartColourEnd;
-    m_startTable[kPickleData]["midcolour"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["midcolour"] = &GameDialogue::HandleMidColourEnd;
-    m_startTable[kPickleData]["endcolour"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["endcolour"] = &GameDialogue::HandleEndColourEnd;
-    m_startTable[kPickleData]["starttime"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["starttime"] = &GameDialogue::HandleStartTimeEnd;
-    m_startTable[kPickleData]["endtime"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["endtime"] = &GameDialogue::HandleEndTimeEnd;
-    m_startTable[kPickleData]["fadetime"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["fadetime"] = &GameDialogue::HandleFadeTimeEnd;
-    m_startTable[kPickleData]["sizes"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["sizes"] = &GameDialogue::HandleSizesEnd;
-    m_startTable[kPickleData]["motion"] = &GameDialogue::HandleMotionStart;
-    m_startTable[kPickleData]["sound"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["sound"] = &GameDialogue::HandleSoundEnd;
-    m_startTable[kPickleData]["soundstream"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["soundstream"] = &GameDialogue::HandleSoundStreamEnd;
-    m_startTable[kPickleData]["killsound"] = &GameDialogue::NullHandler;
-    m_endTable[kPickleData]["killsound"] = &GameDialogue::HandleKillSoundEnd;
-    m_endTable[kPickleData]["dialogue"] = &GameDialogue::HandleDialogueEnd;
+    m_startTable[kPickleData]["text"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["text"] = &InfernalDialogue::HandleTextEnd;
+    m_startTable[kPickleData]["font"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["font"] = &InfernalDialogue::HandleFontEnd;
+    m_startTable[kPickleData]["startcolour"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["startcolour"] = &InfernalDialogue::HandleStartColourEnd;
+    m_startTable[kPickleData]["midcolour"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["midcolour"] = &InfernalDialogue::HandleMidColourEnd;
+    m_startTable[kPickleData]["endcolour"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["endcolour"] = &InfernalDialogue::HandleEndColourEnd;
+    m_startTable[kPickleData]["starttime"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["starttime"] = &InfernalDialogue::HandleStartTimeEnd;
+    m_startTable[kPickleData]["endtime"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["endtime"] = &InfernalDialogue::HandleEndTimeEnd;
+    m_startTable[kPickleData]["fadetime"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["fadetime"] = &InfernalDialogue::HandleFadeTimeEnd;
+    m_startTable[kPickleData]["sizes"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["sizes"] = &InfernalDialogue::HandleSizesEnd;
+    m_startTable[kPickleData]["motion"] = &InfernalDialogue::HandleMotionStart;
+    m_startTable[kPickleData]["sound"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["sound"] = &InfernalDialogue::HandleSoundEnd;
+    m_startTable[kPickleData]["soundstream"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["soundstream"] = &InfernalDialogue::HandleSoundStreamEnd;
+    m_startTable[kPickleData]["killsound"] = &InfernalDialogue::NullHandler;
+    m_endTable[kPickleData]["killsound"] = &InfernalDialogue::HandleKillSoundEnd;
+    m_endTable[kPickleData]["dialogue"] = &InfernalDialogue::HandleDialogueEnd;
     m_pickleState=kPickleData;
     m_motion.MotionSpecSet(InfernalMotionSpec(GLPoint(0,0), 0));
     m_currentSpec.startColour=GLColour(0,0,0,0);
@@ -448,21 +452,21 @@ GameDialogue::UnpicklePrologue(void)
 }
 
 void
-GameDialogue::UnpickleEpilogue(void)
+InfernalDialogue::UnpickleEpilogue(void)
 {
     m_startTable.clear();
     m_endTable.clear();
 }
 
 void
-GameDialogue::Unpickle(MushcoreXML& inXML)
+InfernalDialogue::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameDialogue::XMLStartHandler(MushcoreXML& inXML)
+InfernalDialogue::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -485,7 +489,7 @@ GameDialogue::XMLStartHandler(MushcoreXML& inXML)
 }
 
 void
-GameDialogue::XMLEndHandler(MushcoreXML& inXML)
+InfernalDialogue::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -508,12 +512,12 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 }
 
 void
-GameDialogue::XMLDataHandler(MushcoreXML& inXML)
+InfernalDialogue::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
 char *
-GameDialogue::TypeNameGet(void) const
+InfernalDialogue::TypeNameGet(void) const
 {
     return "gamedialogue";
 }

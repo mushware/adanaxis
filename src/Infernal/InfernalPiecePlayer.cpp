@@ -156,15 +156,13 @@
 
 #include "InfernalPiecePlayer.h"
 
-#include "GameControlFrameDef.h"
 #include "InfernalData.h"
 #include "InfernalFloorMap.h"
-#include "GameGraphic.h"
-#include "GameGraphicSprite.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalSpacePoint.h"
 #include "InfernalView.h"
 
+#include "mushGame.h"
 #include "mushGL.h"
 
 using namespace Mushware;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LBNtPYt7sYNUx5uaXrQq8Q
 /*
- * $Id: GLFont.cpp,v 1.19 2003/08/21 23:08:20 southa Exp $
+ * $Id: GLFont.cpp,v 1.20 2003/09/17 19:40:29 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.20  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.19  2003/08/21 23:08:20  southa
  * Fixed file headers
  *
@@ -63,7 +66,7 @@
  * Display of time differences
  *
  * Revision 1.3  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.2  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0

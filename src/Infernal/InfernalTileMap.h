@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 1cSZtn21xIwWgGdrqC6Vrg
 /*
- * $Id: InfernalTileMap.h,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Id: InfernalTileMap.h,v 1.2 2003/10/04 12:44:36 southa Exp $
  * $Log: InfernalTileMap.h,v $
+ * Revision 1.2  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:07  southa
  * File renaming
  *
@@ -92,7 +95,7 @@
 #include "InfernalTileSpec.h"
 #include "Mushcore.h"
 
-class GameTraits;
+class InfernalTraits;
 
 class InfernalTileMap : public MushcorePickle, private MushcoreXMLHandler
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } /7FlwvPA/5yMYOFyvfB0EA
 /*
- * $Id: InfernalMotionSpec.h,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalMotionSpec.h,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalMotionSpec.h,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -43,7 +46,7 @@
  * Source conditioning
  *
  * Revision 1.5  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.4  2002/08/07 13:36:50  southa
  * Conditioned source

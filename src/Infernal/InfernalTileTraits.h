@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fLcANcOozaI2yLKWHa01SQ
 /*
- * $Id: InfernalTileTraits.h,v 1.22 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalTileTraits.h,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalTileTraits.h,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.22  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -86,12 +89,13 @@
  *
  */
 
-#include "GameGraphic.h"
-#include "GameTraits.h"
+#include "InfernalTraits.h"
+
+#include "mushGame.h"
 #include "mushGL.h"
 
 
-class InfernalTileTraits : public GameTraits
+class InfernalTileTraits : public InfernalTraits
 {
 public:
     virtual ~InfernalTileTraits();

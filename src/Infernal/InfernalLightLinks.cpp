@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mTTLh5yHC2UVmh40C7Kuew
 /*
- * $Id: InfernalLightLinks.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalLightLinks.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalLightLinks.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *
@@ -48,7 +51,7 @@
 
 #include "InfernalLightLinks.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Qt5hP3uEz7Mac8J18LeA9Q
 /*
- * $Id: InfernalTileTraits.cpp,v 1.28 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalTileTraits.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalTileTraits.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.28  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -102,8 +105,9 @@
 
 #include "InfernalTileTraits.h"
 
-#include "GameGraphicSprite.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
@@ -255,7 +259,7 @@ InfernalTileTraits::HandleTraitsEnd(MushcoreXML& inXML)
 void
 InfernalTileTraits::Pickle(ostream& inOut, const string& inPrefix) const
 {
-    GameTraits::Pickle(inOut, inPrefix);
+    InfernalTraits::Pickle(inOut, inPrefix);
     for (U32 i=0; i<m_graphics.size(); ++i)
     {
         inOut << inPrefix << "<graphic type=\"" << m_graphics[i]->TypeNameGet() << "\">" << endl;
@@ -272,7 +276,7 @@ InfernalTileTraits::Pickle(ostream& inOut, const string& inPrefix) const
 void
 InfernalTileTraits::Unpickle(MushcoreXML& inXML)
 {
-    GameTraits::UnpicklePrologue();
+    InfernalTraits::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["graphic"] = &InfernalTileTraits::HandleGraphicStart;
@@ -306,7 +310,7 @@ InfernalTileTraits::XMLStartHandler(MushcoreXML& inXML)
     {
         if (m_pickleState == kPickleData)
         {
-            GameTraits::XMLStartHandler(inXML);
+            InfernalTraits::XMLStartHandler(inXML);
             m_pickleState=kPickleWithinBase;
             ++m_baseThreaded;
         }
@@ -338,7 +342,7 @@ InfernalTileTraits::XMLEndHandler(MushcoreXML& inXML)
     {
         if (m_pickleState == kPickleWithinBase)
         {
-            GameTraits::XMLEndHandler(inXML);
+            InfernalTraits::XMLEndHandler(inXML);
             --m_baseThreaded;
             if (m_baseThreaded == 0)
             {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ZSpGOKBdlbUMwATwXtTDmA
 /*
- * $Id: GLString.h,v 1.10 2003/08/21 23:08:29 southa Exp $
+ * $Id: GLString.h,v 1.11 2003/09/17 19:40:30 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.11  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:08:29  southa
  * Fixed file headers
  *
@@ -40,10 +43,10 @@
  * Display of time differences
  *
  * Revision 1.3  2002/08/13 18:29:04  southa
- * Tidied GameDialogue code
+ * Tidied InfernalDialogue code
  *
  * Revision 1.2  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.1  2002/08/08 13:39:09  southa
  * Text rendering

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LLjLxpagoVgJW/eRYPI7QQ
 /*
- * $Id: GameCommandHandler.h,v 1.13 2003/08/21 23:08:35 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.14 2003/09/17 19:40:31 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.14  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.13  2003/08/21 23:08:35  southa
  * Fixed file headers
  *
@@ -65,7 +68,6 @@ class GameCommandHandler
 {
 public:
     static void Install(void);
-    static MushcoreScalar Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar UpdateCheck(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);

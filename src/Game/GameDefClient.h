@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } DM7BwhgUOa9BxJv/mO4rWA
 /*
- * $Id: GameDefClient.h,v 1.19 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameDefClient.h,v 1.20 2003/10/04 12:44:33 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.20  2003/10/04 12:44:33  southa
+ * File renaming
+ *
  * Revision 1.19  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -80,7 +83,10 @@
 #include "Mushcore.h"
 
 #include "GameDef.h"
-#include "InfernalPiecePlayer.h"
+// Need to remove this dependency
+// #include "Infernal/InfernalPiecePlayer.h"
+
+class InfernalPiecePlayer;
 
 #include "mushMedia.h"
 

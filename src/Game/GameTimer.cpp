@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Infernal/InfernalTimer.cpp
+ * File: src/Game/GameTimer.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } k00Y4DtRDLQOwOH+ceaQ4Q
+//%Header } zxGQswmlPnl8Jy/ZPhnq9w
 /*
- * $Id: InfernalTimer.cpp,v 1.23 2003/09/17 19:40:33 southa Exp $
- * $Log: InfernalTimer.cpp,v $
+ * $Id: GameTimer.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Log: GameTimer.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.23  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -63,7 +66,7 @@
  * Added time format
  *
  * Revision 1.7  2002/08/19 11:09:56  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
@@ -85,14 +88,14 @@
  *
  */
 
-#include "InfernalTimer.h"
+#include "GameTimer.h"
 
 #include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;
 
-InfernalTimer::InfernalTimer():
+GameTimer::GameTimer():
     m_clientFrameTimer(10000),
     m_serverFrameTimer(10000),
     m_timesValid(false),
@@ -102,7 +105,7 @@ InfernalTimer::InfernalTimer():
 }
 
 void
-InfernalTimer::CurrentMsecSet(U32 inMsec)
+GameTimer::CurrentMsecSet(U32 inMsec)
 {
     if (!m_timesValid)
     {
@@ -121,8 +124,8 @@ InfernalTimer::CurrentMsecSet(U32 inMsec)
     m_serverFrameTimer.CurrentUsecSet(m_currentUsec);
 }
 
-InfernalTimer::tMsec
-InfernalTimer::CurrentMsecGet(void) const
+GameTimer::tMsec
+GameTimer::CurrentMsecGet(void) const
 {
     if (!m_timesValid)
     {
@@ -132,7 +135,7 @@ InfernalTimer::CurrentMsecGet(void) const
 }
 
 void
-InfernalTimer::Reset(void)
+GameTimer::Reset(void)
 {
     m_clientFrameTimer.Reset();
     m_serverFrameTimer.Reset();
@@ -142,13 +145,13 @@ InfernalTimer::Reset(void)
 }
 
 bool
-InfernalTimer::JudgementValid(void) const
+GameTimer::JudgementValid(void) const
 {
     return m_timesValid;
 }
 
 tVal
-InfernalTimer::Periodic10msGet(void) const
+GameTimer::Periodic10msGet(void) const
 {
     double periodics;
     modf((m_currentUsec - m_periodic10msUsec) / 10000, &periodics);
@@ -156,14 +159,14 @@ InfernalTimer::Periodic10msGet(void) const
 }
 
 void
-InfernalTimer::Periodic10msDone(tVal inNum)
+GameTimer::Periodic10msDone(tVal inNum)
 {
     m_periodic10msUsec += 10000*inNum;
     if (m_periodic10msUsec > m_currentUsec) ReportJitter();
 }
 
 tVal
-InfernalTimer::Periodic100msGet(void) const
+GameTimer::Periodic100msGet(void) const
 {
     double periodics;
     modf((m_currentUsec - m_periodic100msUsec) / 100000, &periodics);
@@ -171,34 +174,34 @@ InfernalTimer::Periodic100msGet(void) const
 }
 
 void
-InfernalTimer::Periodic100msDone(tVal inNum)
+GameTimer::Periodic100msDone(tVal inNum)
 {
     m_periodic100msUsec += 100000*inNum;
     if (m_periodic100msUsec > m_currentUsec) ReportJitter();
 }
 
 tVal
-InfernalTimer::Periodic1sGet(void) const
+GameTimer::Periodic1sGet(void) const
 {
     double periodics;
     modf((m_currentUsec - m_periodic1sUsec) / 1000000, &periodics);
     return periodics;}
 
 void
-InfernalTimer::Periodic1sDone(tVal inNum)
+GameTimer::Periodic1sDone(tVal inNum)
 {
     m_periodic1sUsec += 1000000*inNum;
     if (m_periodic1sUsec > m_currentUsec) ReportJitter();
 }
 
-InfernalTimer::tMsec
-InfernalTimer::SleepTimeGet(void) const
+GameTimer::tMsec
+GameTimer::SleepTimeGet(void) const
 {
     return 0;
 }
 
 void
-InfernalTimer::ReportJitter(void) const
+GameTimer::ReportJitter(void) const
 {
     if (!m_jitterReported)
     {
@@ -208,7 +211,7 @@ InfernalTimer::ReportJitter(void) const
 }
 
 string
-InfernalTimer::MsecToString(tMsec inMsec)
+GameTimer::MsecToString(tMsec inMsec)
 {
     tVal msec=inMsec;
     if (msec < 0) msec=-msec;
@@ -245,7 +248,7 @@ InfernalTimer::MsecToString(tMsec inMsec)
 }
 
 string
-InfernalTimer::MsecDifferenceToString(tMsec inMsec)
+GameTimer::MsecDifferenceToString(tMsec inMsec)
 {
     tVal msec=inMsec;
     if (msec < 0) msec=-msec;
@@ -282,7 +285,7 @@ InfernalTimer::MsecDifferenceToString(tMsec inMsec)
 }
 
 string
-InfernalTimer::MsecToLongString(tMsec inMsec)
+GameTimer::MsecToLongString(tMsec inMsec)
 {
     tVal msec=inMsec;
     if (msec < 0) msec=-msec;

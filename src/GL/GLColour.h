@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } izCCi2dND384lK1+fIgw9Q
 /*
- * $Id: GLColour.h,v 1.13 2003/08/21 23:08:19 southa Exp $
+ * $Id: GLColour.h,v 1.14 2003/09/17 19:40:29 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.14  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.13  2003/08/21 23:08:19  southa
  * Fixed file headers
  *
@@ -46,7 +49,7 @@
  * Source conditioning
  *
  * Revision 1.4  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.3  2002/08/07 13:36:46  southa
  * Conditioned source

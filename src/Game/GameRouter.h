@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } imUV5dibLOI+wT8/pSHJqw
 /*
- * $Id: GameRouter.h,v 1.16 2003/08/21 23:08:53 southa Exp $
+ * $Id: GameRouter.h,v 1.17 2003/09/17 19:40:33 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.17  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.16  2003/08/21 23:08:53  southa
  * Fixed file headers
  *
@@ -74,12 +77,12 @@
 class GameRouter : public MustlMessageHandler, public MushcoreSingleton<GameRouter>
 {
 public:
-    void MessageHandle(MustlData& ioData, MustlLink& inLink, Mushware::U32 inType);
+    virtual ~GameRouter() {}
+    virtual void MessageHandle(MustlData& ioData, MustlLink& inLink, Mushware::U32 inType);
 
 protected:
-    void IDTransferHandle(MustlData& ioData, MustlLink& inLink);
-    void NetObjectHandle(MustlData& ioData, const MustlLink& inLink);
-    void ControlDataHandle(MustlData& ioData, const MustlLink& inLink);
+    virtual void IDTransferHandle(MustlData& ioData, MustlLink& inLink);
+    virtual void NetObjectHandle(MustlData& ioData, const MustlLink& inLink);
     
 private:
 };

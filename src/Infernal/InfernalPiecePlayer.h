@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JtZQnntRKq9o0IGhePKVyg
 /*
- * $Id: InfernalPiecePlayer.h,v 1.32 2003/10/04 12:23:01 southa Exp $
+ * $Id: InfernalPiecePlayer.h,v 1.1 2003/10/04 12:44:36 southa Exp $
  * $Log: InfernalPiecePlayer.h,v $
+ * Revision 1.1  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.32  2003/10/04 12:23:01  southa
  * File renaming
  *
@@ -118,10 +121,11 @@
 
 #include "Mushcore.h"
 
-#include "GameControlFrameDef.h"
 #include "InfernalFloorMap.h"
 #include "InfernalMotion.h"
 #include "InfernalPiece.h"
+
+#include "mushGame.h"
 
 class GameGraphic;
 

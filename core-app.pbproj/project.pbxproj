@@ -67,14 +67,14 @@
 				7A05C3EB03CB43AC00A80164,
 				7A05C3ED03CB43AC00A80164,
 				7A05C3EE03CB43AC00A80164,
-				7AB5B6EE03DC078900A80164,
-				7AB5B6EF03DC078900A80164,
-				7AEACAC903D1B4A000A80164,
-				7AEACAC803D1B4A000A80164,
 				7A05C3EF03CB43AC00A80164,
 				7A05C3F003CB43AC00A80164,
 				7A05C3F103CB43AC00A80164,
 				7A05C3F203CB43AC00A80164,
+				7AB5B6EE03DC078900A80164,
+				7AB5B6EF03DC078900A80164,
+				7AEACAC903D1B4A000A80164,
+				7AEACAC803D1B4A000A80164,
 				7A05C3F303CB43AC00A80164,
 				7A05C3F403CB43AC00A80164,
 				7A05C3F503CB43AC00A80164,
@@ -987,6 +987,246 @@
 			settings = {
 			};
 		};
+		7A6228D0052EF92C00A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalAppHandler.cpp;
+			refType = 4;
+		};
+		7A6228D1052EF92C00A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalAppHandler.h;
+			refType = 4;
+		};
+		7A6228D2052EF92C00A80064 = {
+			fileRef = 7A6228D0052EF92C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228D3052EF92C00A80064 = {
+			fileRef = 7A6228D1052EF92C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228D4052EF99800A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = mushGame.h;
+			refType = 4;
+		};
+		7A6228D5052EF99800A80064 = {
+			fileRef = 7A6228D4052EF99800A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228D6052EFB6C00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalSTL.h;
+			refType = 4;
+		};
+		7A6228D7052EFB6C00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalSTL.cpp;
+			refType = 4;
+		};
+		7A6228D8052EFB6C00A80064 = {
+			fileRef = 7A6228D6052EFB6C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228D9052EFB6C00A80064 = {
+			fileRef = 7A6228D7052EFB6C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228DA052EFD6400A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalCommandHandler.h;
+			refType = 4;
+		};
+		7A6228DB052EFD6400A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalCommandHandler.cpp;
+			refType = 4;
+		};
+		7A6228DC052EFD6400A80064 = {
+			fileRef = 7A6228DA052EFD6400A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228DD052EFD6400A80064 = {
+			fileRef = 7A6228DB052EFD6400A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228DE052F080300A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalTraits.cpp;
+			refType = 4;
+		};
+		7A6228DF052F080300A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalTraits.h;
+			refType = 4;
+		};
+		7A6228E0052F080300A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalTypeRace.cpp;
+			refType = 4;
+		};
+		7A6228E1052F080300A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalTypeRace.h;
+			refType = 4;
+		};
+		7A6228E2052F080300A80064 = {
+			fileRef = 7A6228DE052F080300A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228E3052F080300A80064 = {
+			fileRef = 7A6228DF052F080300A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228E4052F080300A80064 = {
+			fileRef = 7A6228E0052F080300A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228E5052F080300A80064 = {
+			fileRef = 7A6228E1052F080300A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228E6052F087500A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GameTimer.cpp;
+			refType = 4;
+		};
+		7A6228E7052F087500A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GameTimer.h;
+			refType = 4;
+		};
+		7A6228E8052F087500A80064 = {
+			fileRef = 7A6228E6052F087500A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228E9052F087500A80064 = {
+			fileRef = 7A6228E7052F087500A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228EA052F0EFF00A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GameSwitches.h;
+			refType = 4;
+		};
+		7A6228EB052F0EFF00A80064 = {
+			fileRef = 7A6228EA052F0EFF00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228EC052F136A00A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalDialogue.cpp;
+			refType = 4;
+		};
+		7A6228ED052F136A00A80064 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = InfernalDialogue.h;
+			refType = 4;
+		};
+		7A6228EE052F136A00A80064 = {
+			fileRef = 7A6228EC052F136A00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228EF052F136A00A80064 = {
+			fileRef = 7A6228ED052F136A00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228F0052F166C00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalRouter.h;
+			refType = 4;
+		};
+		7A6228F1052F166C00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalRouter.cpp;
+			refType = 4;
+		};
+		7A6228F2052F166C00A80064 = {
+			fileRef = 7A6228F0052F166C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228F3052F166C00A80064 = {
+			fileRef = 7A6228F1052F166C00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228F4052F1C6A00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalEvent.h;
+			refType = 4;
+		};
+		7A6228F5052F1C6A00A80064 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = InfernalEvent.cpp;
+			refType = 4;
+		};
+		7A6228F6052F1C6A00A80064 = {
+			fileRef = 7A6228F4052F1C6A00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6228F7052F1C6A00A80064 = {
+			fileRef = 7A6228F5052F1C6A00A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A78FB8603D4711F00A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1602,14 +1842,22 @@
 		};
 		7AB44AD0052EEAE600A80064 = {
 			children = (
+				7A6228D0052EF92C00A80064,
+				7A6228D1052EF92C00A80064,
 				7AB44AD1052EEAE600A80064,
 				7AB44AD2052EEAE600A80064,
 				7AB44AD3052EEAE600A80064,
 				7AB44AD4052EEAE600A80064,
+				7A6228DB052EFD6400A80064,
+				7A6228DA052EFD6400A80064,
 				7AB44AD5052EEAE600A80064,
 				7AB44AD6052EEAE600A80064,
 				7AB44AD7052EEAE600A80064,
 				7AB44AD8052EEAE600A80064,
+				7A6228EC052F136A00A80064,
+				7A6228ED052F136A00A80064,
+				7A6228F5052F1C6A00A80064,
+				7A6228F4052F1C6A00A80064,
 				7AB44AD9052EEAE600A80064,
 				7AB44ADA052EEAE600A80064,
 				7AB44ADB052EEAE600A80064,
@@ -1637,9 +1885,14 @@
 				7A6228C2052EF71000A80064,
 				7A6228C3052EF71000A80064,
 				7A6228C4052EF71000A80064,
+				7A6228F1052F166C00A80064,
+				7A6228F0052F166C00A80064,
 				7AB44AEE052EEAE600A80064,
 				7AB44AEF052EEAE600A80064,
 				7AB44AF0052EEAE600A80064,
+				7A6228D7052EFB6C00A80064,
+				7A6228D6052EFB6C00A80064,
+				7AF8B0CA03DC39E700A80164,
 				7AB44AF1052EEAE600A80064,
 				7AB44AF2052EEAE600A80064,
 				7AB44AF3052EEAE600A80064,
@@ -1648,8 +1901,10 @@
 				7AB44AF6052EEAE600A80064,
 				7AB44AF7052EEAE600A80064,
 				7AB44AF8052EEAE600A80064,
-				7AB44AF9052EEAE600A80064,
-				7AB44AFA052EEAE600A80064,
+				7A6228DE052F080300A80064,
+				7A6228DF052F080300A80064,
+				7A6228E0052F080300A80064,
+				7A6228E1052F080300A80064,
 				7AB44AFB052EEAE600A80064,
 				7AB44AFC052EEAE600A80064,
 				7AB44AFD052EEAE600A80064,
@@ -1897,18 +2152,6 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalTileTraits.h;
-			refType = 4;
-		};
-		7AB44AF9052EEAE600A80064 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = InfernalTimer.cpp;
-			refType = 4;
-		};
-		7AB44AFA052EEAE600A80064 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = InfernalTimer.h;
 			refType = 4;
 		};
 		7AB44AFB052EEAE600A80064 = {
@@ -2171,18 +2414,6 @@
 		};
 		7AB44B26052EEAE600A80064 = {
 			fileRef = 7AB44AF8052EEAE600A80064;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AB44B27052EEAE600A80064 = {
-			fileRef = 7AB44AF9052EEAE600A80064;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AB44B28052EEAE600A80064 = {
-			fileRef = 7AB44AFA052EEAE600A80064;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -3938,8 +4169,6 @@
 				7AF8B08003DC39E700A80164,
 				7AF8B08103DC39E700A80164,
 				7AF8B08203DC39E700A80164,
-				7AF8B08D03DC39E700A80164,
-				7AF8B08E03DC39E700A80164,
 				7AF8B08F03DC39E700A80164,
 				7AF8B09603DC39E700A80164,
 				7AF8B09703DC39E700A80164,
@@ -3965,13 +4194,11 @@
 				7AF8B0C603DC39E700A80164,
 				7AB40C6303F1828100A80164,
 				7AB40C6403F1828100A80164,
-				7AF8B0CA03DC39E700A80164,
-				7AF8B0D503DC39E700A80164,
-				7AF8B0D603DC39E700A80164,
+				7A6228EA052F0EFF00A80064,
+				7A6228E6052F087500A80064,
+				7A6228E7052F087500A80064,
 				7AF8B0D703DC39E700A80164,
 				7AF8B0D803DC39E700A80164,
-				7AF8B0D903DC39E700A80164,
-				7AF8B0DA03DC39E700A80164,
 			);
 			isa = PBXGroup;
 			path = Game;
@@ -4101,18 +4328,6 @@
 			isa = PBXFileReference;
 			name = GameDefServer.h;
 			path = src/Game/GameDefServer.h;
-			refType = 4;
-		};
-		7AF8B08D03DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameDialogue.cpp;
-			refType = 4;
-		};
-		7AF8B08E03DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameDialogue.h;
 			refType = 4;
 		};
 		7AF8B08F03DC39E700A80164 = {
@@ -4298,20 +4513,9 @@
 		7AF8B0CA03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameSwitches.h;
-			refType = 4;
-		};
-		7AF8B0D503DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameTraits.cpp;
-			refType = 4;
-		};
-		7AF8B0D603DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameTraits.h;
-			refType = 4;
+			name = InfernalSwitches.h;
+			path = src/Infernal/InfernalSwitches.h;
+			refType = 2;
 		};
 		7AF8B0D703DC39E700A80164 = {
 			fileEncoding = 30;
@@ -4323,18 +4527,6 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GameType.h;
-			refType = 4;
-		};
-		7AF8B0D903DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameTypeRace.cpp;
-			refType = 4;
-		};
-		7AF8B0DA03DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameTypeRace.h;
 			refType = 4;
 		};
 		7AF8B0DF03DC39E700A80164 = {
@@ -4453,18 +4645,6 @@
 		};
 		7AF8B0FA03DC39E800A80164 = {
 			fileRef = 7AF8B08C03DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B0FB03DC39E800A80164 = {
-			fileRef = 7AF8B08D03DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B0FC03DC39E800A80164 = {
-			fileRef = 7AF8B08E03DC39E700A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -4649,18 +4829,6 @@
 			settings = {
 			};
 		};
-		7AF8B14303DC39E800A80164 = {
-			fileRef = 7AF8B0D503DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B14403DC39E800A80164 = {
-			fileRef = 7AF8B0D603DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		7AF8B14503DC39E800A80164 = {
 			fileRef = 7AF8B0D703DC39E700A80164;
 			isa = PBXBuildFile;
@@ -4669,18 +4837,6 @@
 		};
 		7AF8B14603DC39E800A80164 = {
 			fileRef = 7AF8B0D803DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B14703DC39E800A80164 = {
-			fileRef = 7AF8B0D903DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B14803DC39E800A80164 = {
-			fileRef = 7AF8B0DA03DC39E700A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -5939,6 +6095,7 @@
 		F5456B4D0289845101446FAA = {
 			children = (
 				F52B3BF9028C25CF0179D0A8,
+				7A6228D4052EF99800A80064,
 				F5539E3502B4D0A6010AB4A9,
 				F5457B9602AF8D8501E3BBF3,
 			);
@@ -7014,7 +7171,6 @@
 				7AF8B0F603DC39E700A80164,
 				7AF8B0F803DC39E700A80164,
 				7AF8B0FA03DC39E800A80164,
-				7AF8B0FC03DC39E800A80164,
 				7AF8B0FD03DC39E800A80164,
 				7AF8B10503DC39E800A80164,
 				7AF8B10703DC39E800A80164,
@@ -7031,9 +7187,7 @@
 				7AF8B13203DC39E800A80164,
 				7AF8B13403DC39E800A80164,
 				7AF8B13803DC39E800A80164,
-				7AF8B14403DC39E800A80164,
 				7AF8B14603DC39E800A80164,
-				7AF8B14803DC39E800A80164,
 				7AB40C6603F1828100A80164,
 				7AB44B00052EEAE600A80064,
 				7AB44B02052EEAE600A80064,
@@ -7056,12 +7210,22 @@
 				7AB44B22052EEAE600A80064,
 				7AB44B24052EEAE600A80064,
 				7AB44B26052EEAE600A80064,
-				7AB44B28052EEAE600A80064,
 				7AB44B2A052EEAE600A80064,
 				7AB44B2C052EEAE600A80064,
 				7A6228C6052EF71000A80064,
 				7A6228C8052EF71000A80064,
 				7A6228CA052EF71000A80064,
+				7A6228D3052EF92C00A80064,
+				7A6228D5052EF99800A80064,
+				7A6228D8052EFB6C00A80064,
+				7A6228DC052EFD6400A80064,
+				7A6228E3052F080300A80064,
+				7A6228E5052F080300A80064,
+				7A6228E9052F087500A80064,
+				7A6228EB052F0EFF00A80064,
+				7A6228EF052F136A00A80064,
+				7A6228F2052F166C00A80064,
+				7A6228F6052F1C6A00A80064,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7134,7 +7298,6 @@
 				7AF8B0F503DC39E700A80164,
 				7AF8B0F703DC39E700A80164,
 				7AF8B0F903DC39E800A80164,
-				7AF8B0FB03DC39E800A80164,
 				7AF8B10403DC39E800A80164,
 				7AF8B10603DC39E800A80164,
 				7AF8B10803DC39E800A80164,
@@ -7149,9 +7312,7 @@
 				7AF8B12F03DC39E800A80164,
 				7AF8B13103DC39E800A80164,
 				7AF8B13303DC39E800A80164,
-				7AF8B14303DC39E800A80164,
 				7AF8B14503DC39E800A80164,
-				7AF8B14703DC39E800A80164,
 				7AB40C6503F1828100A80164,
 				7AB44AFF052EEAE600A80064,
 				7AB44B01052EEAE600A80064,
@@ -7172,12 +7333,20 @@
 				7AB44B21052EEAE600A80064,
 				7AB44B23052EEAE600A80064,
 				7AB44B25052EEAE600A80064,
-				7AB44B27052EEAE600A80064,
 				7AB44B29052EEAE600A80064,
 				7AB44B2B052EEAE600A80064,
 				7A6228C5052EF71000A80064,
 				7A6228C7052EF71000A80064,
 				7A6228C9052EF71000A80064,
+				7A6228D2052EF92C00A80064,
+				7A6228D9052EFB6C00A80064,
+				7A6228DD052EFD6400A80064,
+				7A6228E2052F080300A80064,
+				7A6228E4052F080300A80064,
+				7A6228E8052F087500A80064,
+				7A6228EE052F136A00A80064,
+				7A6228F3052F166C00A80064,
+				7A6228F7052F1C6A00A80064,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

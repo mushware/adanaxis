@@ -97,7 +97,7 @@
  * Added current dialogues
  *
  * Revision 1.19  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.18  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
@@ -153,10 +153,9 @@
  */
 
 #include "Mushcore.h"
+#include "mushGame.h"
 #include "mushGL.h"
 
-#include "GameBase.h"
-#include "InfernalTimer.h"
 
 class GameDefClient;
 class InfernalFloorMap;
@@ -205,10 +204,10 @@ protected:
     void RenderFastDiagnostics(void) const;
     void DesigningDisplay(void);
     void GlobalKeyControl(void);
-    void RunningMove(InfernalTimer& inTimer, Mushware::U32 inNumFrames);
-    void FillControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
-    void SendControl(const GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
-    void SendControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
+    void RunningMove(GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControl(const GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
     bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
     bool VerifyPlayer(const std::string& inName, InfernalPiecePlayer& inPlayer);
     bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
@@ -259,7 +258,7 @@ private:
     Mushware::U32 m_frames;
     InfernalFloorDesigner *m_floorDesigner;
     InfernalView *m_currentView;
-    InfernalTimer::tMsec m_modeKeypressTime;
+    GameTimer::tMsec m_modeKeypressTime;
     Mushware::U32 m_newMode;
     tDiagnostic m_renderDiagnostics;
     bool m_fastDiagnostics;

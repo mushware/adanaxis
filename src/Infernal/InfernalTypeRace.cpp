@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameTypeRace.cpp
+ * File: src/Infernal/InfernalTypeRace.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eJJXnixZPEpA+0E2cnyEOw
+//%Header } 7eDOjlMAR1UQYJUhR6Jr0w
 /*
- * $Id: GameTypeRace.cpp,v 1.39 2003/09/17 19:40:34 southa Exp $
- * $Log: GameTypeRace.cpp,v $
+ * $Id: InfernalTypeRace.cpp,v 1.40 2003/10/04 12:23:03 southa Exp $
+ * $Log: InfernalTypeRace.cpp,v $
+ * Revision 1.40  2003/10/04 12:23:03  southa
+ * File renaming
+ *
  * Revision 1.39  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -96,10 +99,10 @@
  * Win and lose handling
  *
  * Revision 1.12  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.11  2002/08/21 15:39:01  southa
- * GameTypeRace states
+ * InfernalTypeRace states
  *
  * Revision 1.10  2002/08/21 10:12:21  southa
  * Time down counter
@@ -123,7 +126,7 @@
  * Added time format
  *
  * Revision 1.3  2002/08/19 11:09:56  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.2  2002/08/19 09:59:36  southa
  * Removed sound callbacks, used polling
@@ -136,28 +139,28 @@
  *
  */
 
-#include "GameTypeRace.h"
+#include "InfernalTypeRace.h"
 
-#include "GameAppHandler.h"
 #include "InfernalChequePoint.h"
+#include "InfernalDialogue.h"
 #include "InfernalData.h"
 #include "InfernalDataUtils.h"
-#include "GameDialogue.h"
-#include "GameEvent.h"
-#include "GameRewards.h"
-#include "GameSTL.h"
+#include "InfernalEvent.h"
+#include "InfernalSTL.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
 
-GameTypeRace::GameTypeRace():
+InfernalTypeRace::InfernalTypeRace():
     m_lapStartTimeValid(false),
     m_chequePointTimeValid(false)
 {
 }
 
 void
-GameTypeRace::Initialise(void)
+InfernalTypeRace::Initialise(void)
 {
     LoadRecords();
     m_lapStartTimeValid=false;
@@ -171,13 +174,13 @@ GameTypeRace::Initialise(void)
 }
 
 void
-GameTypeRace::EventHandler(const GameEvent& inEvent)
+InfernalTypeRace::EventHandler(const GameEvent& inEvent)
 {
-    if (typeid(inEvent) == typeid(GameEventStandingOn))
+    if (typeid(inEvent) == typeid(InfernalEventStandingOn))
     {
-        StandingOnHandler(dynamic_cast<const GameEventStandingOn&>(inEvent));
+        StandingOnHandler(dynamic_cast<const InfernalEventStandingOn&>(inEvent));
     }
-    else if (typeid(inEvent) == typeid(GameEventSequenceAdvance))
+    else if (typeid(inEvent) == typeid(InfernalEventSequenceAdvance))
     {
         switch(m_raceState)
         {
@@ -193,7 +196,7 @@ GameTypeRace::EventHandler(const GameEvent& inEvent)
 }
 
 void
-GameTypeRace::StandingOnHandler(const GameEventStandingOn& inEvent)
+InfernalTypeRace::StandingOnHandler(const InfernalEventStandingOn& inEvent)
 {
     U32 size=m_chequePoints.size();
     for (U32 i=0; i<size; ++i)
@@ -206,10 +209,10 @@ GameTypeRace::StandingOnHandler(const GameEventStandingOn& inEvent)
 }
 
 void
-GameTypeRace::SequenceAdvance(void)
+InfernalTypeRace::SequenceAdvance(void)
 {
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
-    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     tVal judgementRatio=0.0;
 
@@ -250,19 +253,19 @@ GameTypeRace::SequenceAdvance(void)
         }
         if (m_lapStartTimeValid)
         {
-            InfernalTimer::tMsec lapTime = m_dispLap;
+            GameTimer::tMsec lapTime = m_dispLap;
             if (m_records.LapTimeValid())
             {
-                InfernalTimer::tMsec oldLapTime = m_records.LapTimeGet();
-                GameDialogue *lapDifference =
+                GameTimer::tMsec oldLapTime = m_records.LapTimeGet();
+                InfernalDialogue *lapDifference =
                     InfernalData::Sgl().CurrentDialogueAdd("lapdifference",
                         *InfernalData::Sgl().DialogueGet("lapdifference"));
-                lapDifference->TextSet(0, InfernalTimer::MsecDifferenceToString(lapTime - oldLapTime));
+                lapDifference->TextSet(0, GameTimer::MsecDifferenceToString(lapTime - oldLapTime));
             }
-            GameDialogue *lapDisplay =
+            InfernalDialogue *lapDisplay =
                 InfernalData::Sgl().CurrentDialogueAdd("lapdisplay",
                     *InfernalData::Sgl().DialogueGet("lapdisplay"));
-            lapDisplay->TextSet(0, InfernalTimer::MsecToLongString(lapTime));
+            lapDisplay->TextSet(0, GameTimer::MsecToLongString(lapTime));
 
             m_records.LapTimePropose(lapTime);
             if (judgementRatio == 0.0)
@@ -275,20 +278,20 @@ GameTypeRace::SequenceAdvance(void)
     }
     if (m_chequePointTimeValid)
     {
-        InfernalTimer::tMsec splitTime = m_dispSplit;
+        GameTimer::tMsec splitTime = m_dispSplit;
         if (m_records.SplitTimeValid(previousSequence))
         {
-            InfernalTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
-            GameDialogue *splitDialogue =
+            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
+            InfernalDialogue *splitDialogue =
                 InfernalData::Sgl().CurrentDialogueAdd("splitdifference",
                                         *InfernalData::Sgl().DialogueGet("splitdifference"));
-            splitDialogue->TextSet(0, InfernalTimer::MsecDifferenceToString(splitTime - oldSplitTime));
+            splitDialogue->TextSet(0, GameTimer::MsecDifferenceToString(splitTime - oldSplitTime));
 
         }
-        GameDialogue *splitDialogue =
+        InfernalDialogue *splitDialogue =
             InfernalData::Sgl().CurrentDialogueAdd("splitdisplay",
                                     *InfernalData::Sgl().DialogueGet("splitdisplay"));
-        splitDialogue->TextSet(0, InfernalTimer::MsecToString(splitTime));
+        splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
 
         m_records.SplitTimePropose(previousSequence, splitTime);
         if (judgementRatio == 0.0)
@@ -312,10 +315,10 @@ GameTypeRace::SequenceAdvance(void)
 }
   
 void
-GameTypeRace::RaceFinished(void)
+InfernalTypeRace::RaceFinished(void)
 {
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
-    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
     m_raceState = kPreResult;
     m_endTime = gameTime;
 
@@ -341,13 +344,13 @@ GameTypeRace::RaceFinished(void)
 }
 
 bool
-GameTypeRace::IsGameOver(void) const
+InfernalTypeRace::IsGameOver(void) const
 {
     return m_raceState == kResult;
 }
 
 void
-GameTypeRace::Move(void)
+InfernalTypeRace::Move(void)
 {
     switch (m_raceState)
     {
@@ -378,7 +381,7 @@ GameTypeRace::Move(void)
 }
 
 void
-GameTypeRace::Render(void) const
+InfernalTypeRace::Render(void) const
 {
     switch (m_raceState)
     {
@@ -399,11 +402,11 @@ GameTypeRace::Render(void) const
 }
 
 void
-GameTypeRace::UpdateTimes(void)
+InfernalTypeRace::UpdateTimes(void)
 {
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
     if (!timer.JudgementValid()) return;
-    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     switch (m_raceState)
     {
@@ -427,28 +430,28 @@ GameTypeRace::UpdateTimes(void)
 }
 
 void
-GameTypeRace::RenderTimes(void) const
+InfernalTypeRace::RenderTimes(void) const
 {
     GLUtils::OrthoPrologue();
     GLState::ColourSet(1.0,1.0,1.0,0.75);
     GLUtils orthoGL;
     orthoGL.MoveToEdge(1,1);
     orthoGL.MoveRelative(-0.03,-0.03);
-    GLString remainingStr(InfernalTimer::MsecToLongString(m_dispRemaining),
+    GLString remainingStr(GameTimer::MsecToLongString(m_dispRemaining),
                           GLFontRef("font-mono1", 0.03), 1.0);
     remainingStr.Render();
     GLState::ColourSet(1.0,1.0,0.0,0.75);
     if (m_records.LapTimeValid())
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString lapRecordStr(InfernalTimer::MsecToLongString(m_records.LapTimeGet()),
+        GLString lapRecordStr(GameTimer::MsecToLongString(m_records.LapTimeGet()),
                               GLFontRef("font-mono1", 0.02), 1.0);
         lapRecordStr.Render();
     }
     if (m_lapStartTimeValid)
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString lapTimeStr(InfernalTimer::MsecToLongString(m_dispLap),
+        GLString lapTimeStr(GameTimer::MsecToLongString(m_dispLap),
                               GLFontRef("font-mono1", 0.02), 1.0);
         lapTimeStr.Render();
     }
@@ -471,7 +474,7 @@ GameTypeRace::RenderTimes(void) const
     if (m_records.SplitTimeValid(prevSequence))
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitRecordStr(InfernalTimer::MsecToString(m_records.SplitTimeGet(prevSequence)),
+        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(prevSequence)),
                               GLFontRef("font-mono1", 0.02), -1.0);
         splitRecordStr.Render();
     }
@@ -479,7 +482,7 @@ GameTypeRace::RenderTimes(void) const
     if (m_chequePointTimeValid)
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitTimeStr(InfernalTimer::MsecToString(m_dispSplit),
+        GLString splitTimeStr(GameTimer::MsecToString(m_dispSplit),
                             GLFontRef("font-mono1", 0.02), -1.0);
         splitTimeStr.Render();
     }
@@ -487,7 +490,7 @@ GameTypeRace::RenderTimes(void) const
 }
 
 void
-GameTypeRace::RenderResult(void) const
+InfernalTypeRace::RenderResult(void) const
 {
     // Table layout
     const tVal row1=-0.1;
@@ -511,13 +514,13 @@ GameTypeRace::RenderResult(void) const
         timeStr.Render();
         if (m_records.RaceTimeValid())
         {
-            timeStr.TextSet(InfernalTimer::MsecToLongString(m_records.RaceTimeGet()));
+            timeStr.TextSet(GameTimer::MsecToLongString(m_records.RaceTimeGet()));
             orthoGL.MoveTo(column2,row1);
             timeStr.Render();
         }
         if (m_worldRecords.RaceTimeValid())
         {
-            timeStr.TextSet(InfernalTimer::MsecToLongString(m_worldRecords.RaceTimeGet()));
+            timeStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.RaceTimeGet()));
             orthoGL.MoveTo(column3,row1);
             timeStr.Render();
         }
@@ -536,12 +539,12 @@ GameTypeRace::RenderResult(void) const
         GLString lapRecordStr("Lap :", GLFontRef("font-mono1", 0.03), 1);
         orthoGL.MoveTo(column1, row1+2*rowSpacing);
         lapRecordStr.Render();
-        lapRecordStr.TextSet(InfernalTimer::MsecToLongString(m_records.LapTimeGet()));
+        lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
         orthoGL.MoveTo(column2, row1+2*rowSpacing);
         lapRecordStr.Render();
         if (m_worldRecords.LapTimeValid())
         {
-            lapRecordStr.TextSet(InfernalTimer::MsecToLongString(m_worldRecords.LapTimeGet()));
+            lapRecordStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.LapTimeGet()));
             orthoGL.MoveTo(column3, row1+2*rowSpacing);
             lapRecordStr.Render();
         }
@@ -561,13 +564,13 @@ GameTypeRace::RenderResult(void) const
             orthoGL.MoveTo(column1, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
-            splitRecordStr.TextSet(InfernalTimer::MsecToString(m_records.SplitTimeGet(i)));
+            splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(i)));
             orthoGL.MoveTo(column2, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
             if (m_worldRecords.SplitTimeValid(i))
             {
-                splitRecordStr.TextSet(InfernalTimer::MsecToString(m_worldRecords.SplitTimeGet(i)));
+                splitRecordStr.TextSet(GameTimer::MsecToString(m_worldRecords.SplitTimeGet(i)));
                 orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
                 splitRecordStr.Render();
             }
@@ -577,7 +580,7 @@ GameTypeRace::RenderResult(void) const
 }
 
 void
-GameTypeRace::SaveRecords(const GameRecords& inRecords) const
+InfernalTypeRace::SaveRecords(const GameRecords& inRecords) const
 {
     try
     {
@@ -602,7 +605,7 @@ GameTypeRace::SaveRecords(const GameRecords& inRecords) const
 }
 
 void
-GameTypeRace::LoadRecords(void)
+InfernalTypeRace::LoadRecords(void)
 {
     try
     {
@@ -622,14 +625,14 @@ GameTypeRace::LoadRecords(void)
 }
 
 void
-GameTypeRace::HandleGameEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleGameEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameTypeRace::HandleLapTimeEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleLapTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for laptime.  Should be <laptime>45.0</laptime>";
@@ -639,7 +642,7 @@ GameTypeRace::HandleLapTimeEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleStartActionEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleStartActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for startaction.  Should be <startaction>^racestart</startaction>";
@@ -647,7 +650,7 @@ GameTypeRace::HandleStartActionEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleFinalLapActionEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleFinalLapActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for finallapaction.  Should be <finallapaction>^finallap</finallapaction>";
@@ -655,7 +658,7 @@ GameTypeRace::HandleFinalLapActionEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleWinActionEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleWinActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for winaction.  Should be <winaction>^racewin</winaction>";
@@ -663,7 +666,7 @@ GameTypeRace::HandleWinActionEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleLoseActionEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleLoseActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for loseaction.  Should be <loseaction>^racelose</loseaction>";
@@ -671,7 +674,7 @@ GameTypeRace::HandleLoseActionEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleInitialTimeEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleInitialTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for initialtime.  Should be <initialtime>120</initialtime>";
@@ -680,7 +683,7 @@ GameTypeRace::HandleInitialTimeEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleLapsEnd(MushcoreXML& inXML)
+InfernalTypeRace::HandleLapsEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for laps.  Should be <laps>5</laps>";
@@ -688,7 +691,7 @@ GameTypeRace::HandleLapsEnd(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleChequePointStart(MushcoreXML& inXML)
+InfernalTypeRace::HandleChequePointStart(MushcoreXML& inXML)
 {
     InfernalChequePoint *chequePoint=new InfernalChequePoint;
     m_chequePoints.push_back(chequePoint);
@@ -696,39 +699,39 @@ GameTypeRace::HandleChequePointStart(MushcoreXML& inXML)
 }
 
 void
-GameTypeRace::NullHandler(MushcoreXML& inXML)
+InfernalTypeRace::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameTypeRace::Pickle(ostream& inOut, const string& inPrefix) const
+InfernalTypeRace::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<!-- Not implemented -->" << endl;
 }
 
 void
-GameTypeRace::UnpicklePrologue(void)
+InfernalTypeRace::UnpicklePrologue(void)
 {
     GameType::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_startTable[kPickleData]["chequepoint"] = &GameTypeRace::HandleChequePointStart;
-    m_endTable[kPickleData]["chequepoint"] = &GameTypeRace::NullHandler;
-    m_startTable[kPickleData]["laptime"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["laptime"] = &GameTypeRace::HandleLapTimeEnd;
-    m_startTable[kPickleData]["startaction"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["startaction"] = &GameTypeRace::HandleStartActionEnd;
-    m_startTable[kPickleData]["finallapaction"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["finallapaction"] = &GameTypeRace::HandleFinalLapActionEnd;
-    m_startTable[kPickleData]["winaction"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["winaction"] = &GameTypeRace::HandleWinActionEnd;
-    m_startTable[kPickleData]["loseaction"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["loseaction"] = &GameTypeRace::HandleLoseActionEnd;
-    m_startTable[kPickleData]["initialtime"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["initialtime"] = &GameTypeRace::HandleInitialTimeEnd;
-    m_startTable[kPickleData]["laps"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["laps"] = &GameTypeRace::HandleLapsEnd;
-    m_endTable[kPickleData]["game"] = &GameTypeRace::HandleGameEnd;
+    m_startTable[kPickleData]["chequepoint"] = &InfernalTypeRace::HandleChequePointStart;
+    m_endTable[kPickleData]["chequepoint"] = &InfernalTypeRace::NullHandler;
+    m_startTable[kPickleData]["laptime"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["laptime"] = &InfernalTypeRace::HandleLapTimeEnd;
+    m_startTable[kPickleData]["startaction"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["startaction"] = &InfernalTypeRace::HandleStartActionEnd;
+    m_startTable[kPickleData]["finallapaction"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["finallapaction"] = &InfernalTypeRace::HandleFinalLapActionEnd;
+    m_startTable[kPickleData]["winaction"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["winaction"] = &InfernalTypeRace::HandleWinActionEnd;
+    m_startTable[kPickleData]["loseaction"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["loseaction"] = &InfernalTypeRace::HandleLoseActionEnd;
+    m_startTable[kPickleData]["initialtime"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["initialtime"] = &InfernalTypeRace::HandleInitialTimeEnd;
+    m_startTable[kPickleData]["laps"] = &InfernalTypeRace::NullHandler;
+    m_endTable[kPickleData]["laps"] = &InfernalTypeRace::HandleLapsEnd;
+    m_endTable[kPickleData]["game"] = &InfernalTypeRace::HandleGameEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
     m_sequence=0;
@@ -738,14 +741,14 @@ GameTypeRace::UnpicklePrologue(void)
 }
 
 void
-GameTypeRace::Unpickle(MushcoreXML& inXML)
+InfernalTypeRace::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameTypeRace::UnpickleEpilogue(void)
+InfernalTypeRace::UnpickleEpilogue(void)
 {
     GameType::UnpickleEpilogue();
     m_startTable.resize(0);
@@ -754,7 +757,7 @@ GameTypeRace::UnpickleEpilogue(void)
 }
 
 void
-GameTypeRace::XMLStartHandler(MushcoreXML& inXML)
+InfernalTypeRace::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -786,7 +789,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameTypeRace::XMLEndHandler(MushcoreXML& inXML)
+InfernalTypeRace::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -821,12 +824,12 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameTypeRace::XMLDataHandler(MushcoreXML& inXML)
+InfernalTypeRace::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
 char *
-GameTypeRace::TypeNameGet(void) const
+InfernalTypeRace::TypeNameGet(void) const
 {
     return "gametyperace";
 }

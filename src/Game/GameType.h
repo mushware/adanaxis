@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fusdHcJJ9bUvpylMoCVBZg
 /*
- * $Id: GameType.h,v 1.12 2003/08/21 23:08:58 southa Exp $
+ * $Id: GameType.h,v 1.13 2003/09/17 19:40:34 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.13  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:58  southa
  * Fixed file headers
  *
@@ -46,10 +49,10 @@
  * Save records, spacebar dialogues
  *
  * Revision 1.3  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.2  2002/08/19 11:09:56  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.1  2002/08/18 20:44:35  southa
  * Initial chequepoint work

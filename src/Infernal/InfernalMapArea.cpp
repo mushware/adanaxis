@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } tmWTtFIfUwLn2jjU0kcPlw
 /*
- * $Id: InfernalMapArea.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalMapArea.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalMapArea.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -51,7 +54,7 @@
 
 #include "InfernalMapArea.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.48 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.49 2003/10/04 12:22:58 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.49  2003/10/04 12:22:58  southa
+ * File renaming
+ *
  * Revision 1.48  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -167,11 +170,8 @@
 #include "mushPlatform.h"
 
 #include "GameConfig.h"
-#include "InfernalContract.h"
-#include "InfernalData.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
-#include "InfernalFloorMap.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
 #include "GameSTL.h"
@@ -184,7 +184,6 @@ using namespace std;
 
 GameAppHandler::GameAppHandler() :
     m_pSetup(NULL),
-    m_pGame(NULL),
     m_pCurrent(NULL),
     m_appState(kAppStateStartup),
     m_gameType(kGameTypeInvalid)
@@ -196,7 +195,6 @@ GameAppHandler::~GameAppHandler()
 {
     MushcoreEnv::Sgl().PopConfig(GameGlobalConfig::Sgl());
     if (m_pSetup != NULL) delete m_pSetup;
-    if (m_pGame != NULL) delete m_pGame;
 }
 
 void
@@ -254,29 +252,6 @@ GameAppHandler::SetupModeEnter(void)
 }
 
 void
-GameAppHandler::GameModeEnter(bool inResume)
-{
-    if (m_appState != kAppStateGame)
-    {
-        if (m_pCurrent != NULL)
-        {
-            m_pCurrent->SwapOut(*this);
-        }
-
-        if (!inResume || !InfernalData::Sgl().ContractExists("contract1"))
-        {
-            PrepareNewGame();
-        }
-        m_pGame=InfernalData::Sgl().ContractGet("contract1");
-
-        MUSHCOREASSERT(m_pGame != NULL);
-        m_pCurrent=m_pGame;
-        m_pCurrent->SwapIn(*this);
-        m_appState=kAppStateGame;
-    }
-}
-
-void
 GameAppHandler::QuitModeEnter(void)
 {
     if (m_appState != kAppStateQuit)
@@ -320,35 +295,19 @@ GameAppHandler::GameTypeDetermine(void)
 }
 
 void
-GameAppHandler::PrepareNewGame(void)
+GameAppHandler::CurrentSwapOut(void)
 {
-    m_pGame = NULL; // We're about to delete this
-    
-    // Work out what the game type is
-    GameTypeDetermine();
-
-    // Delete the old contract and all of its data
-    InfernalData::Sgl().Clear();
-
-    // Create the contract path
-    string contractRoot=MushcoreGlobalConfig::Sgl().Get("CONTRACT_ROOT").StringGet();
-    string contractName;
-    if (MultiplayerIs())
+    if (m_pCurrent != NULL)
     {
-        contractName=GameConfig::Sgl().ParameterGet("mpcontractname").StringGet();
+        m_pCurrent->SwapOut(*this);
     }
-    else
-    {
-        contractName=GameConfig::Sgl().ParameterGet("spcontractname").StringGet();
-    }
-    string contractPath=contractRoot+"/"+contractName;
-    MushcoreGlobalConfig::Sgl().Set("CONTRACT_PATH", contractPath);
+}
 
-    MushcoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
-    command.Execute();
-    
-    // Get a pointer to the newly created contract
-    m_pGame=InfernalData::Sgl().ContractGet("contract1");
+void
+GameAppHandler::CurrentSwapIn(GameBase *inpGame)
+{
+    m_pCurrent=inpGame;
+    m_pCurrent->SwapIn(*this);
 }
 
 void
@@ -369,10 +328,3 @@ GameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     }
 }
 
-void
-GameAppHandler::CurrentGameEnd(void)
-{
-    SetupModeEnter();
-    m_pGame=NULL;
-    InfernalData::Sgl().Clear();
-}

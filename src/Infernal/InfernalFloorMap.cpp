@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2fmRrjQdlXl0zix4qq0b6w
 /*
- * $Id: InfernalFloorMap.cpp,v 1.50 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalFloorMap.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
  * $Log: InfernalFloorMap.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:05  southa
+ * File renaming
+ *
  * Revision 1.50  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -185,7 +188,7 @@
 #include "InfernalData.h"
 #include "InfernalMapArea.h"
 #include "InfernalMapPoint.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalSpacePoint.h"
 #include "InfernalTileMap.h"
 #include "InfernalTileTraits.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } wtaCfE3Bg2cWSVhLCRxLsA
 /*
- * $Id: GameEvent.h,v 1.9 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameEvent.h,v 1.10 2003/10/04 12:22:59 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.10  2003/10/04 12:22:59  southa
+ * File renaming
+ *
  * Revision 1.9  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -40,7 +43,7 @@
  * Source conditioning
  *
  * Revision 1.2  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.1  2002/08/18 20:44:34  southa
  * Initial chequepoint work
@@ -48,8 +51,6 @@
  */
 
 #include "Mushcore.h"
-
-#include "InfernalFloorMap.h"
 
 class GameEvent
 {
@@ -59,17 +60,6 @@ protected:
     GameEvent() {}
 };
 
-class GameEventStandingOn : public GameEvent
-{
-public:
-    explicit GameEventStandingOn(const InfernalFloorMap::tMapVector& inValues) { mapValues = inValues; }
-    InfernalFloorMap::tMapVector mapValues;
-};
-
-class GameEventSequenceAdvance : public GameEvent
-{
-public:
-};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

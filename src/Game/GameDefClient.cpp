@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } m88+th2pONGD/3Tj10JOUg
 /*
- * $Id: GameDefClient.cpp,v 1.31 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.32 2003/10/04 12:22:59 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.32  2003/10/04 12:22:59  southa
+ * File renaming
+ *
  * Revision 1.31  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -127,7 +130,10 @@
 #include "GameDefClient.h"
 
 #include "GameAppHandler.h"
-#include "InfernalData.h"
+
+// Need to remove this dependency
+#include "Infernal/InfernalData.h"
+
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 #include "GameProtocol.h"

@@ -2941,7 +2941,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 132";
 		rLen = 49;
-		rLoc = 3292;
+		rLoc = 3296;
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 3338;
@@ -3263,7 +3263,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 164";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 3194;
@@ -4457,7 +4457,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 102";
 		rLen = 0;
-		rLoc = 3779;
+		rLoc = 3788;
 		rType = 0;
 		vrLen = 1328;
 		vrLoc = 3781;
@@ -5107,7 +5107,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 101";
 		rLen = 0;
-		rLoc = 3779;
+		rLoc = 3788;
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 2217;
@@ -12483,7 +12483,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 147";
 		rLen = 0;
-		rLoc = 5905;
+		rLoc = 5914;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 1616;
@@ -14113,7 +14113,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 178";
 		rLen = 0;
-		rLoc = 4034;
+		rLoc = 4038;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 3327;
@@ -16024,7 +16024,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 83";
 		rLen = 0;
-		rLoc = 2901;
+		rLoc = 2910;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 1884;
@@ -16406,7 +16406,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 190";
 		rLen = 0;
-		rLoc = 5573;
+		rLoc = 5583;
 		rType = 0;
 		vrLen = 1827;
 		vrLoc = 4735;
@@ -16526,7 +16526,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 149";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4187;
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 3295;
@@ -19086,7 +19086,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 133";
 		rLen = 0;
-		rLoc = 4580;
+		rLoc = 4589;
 		rType = 0;
 		vrLen = 2247;
 		vrLoc = 3467;
@@ -19116,7 +19116,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 133";
 		rLen = 0;
-		rLoc = 4580;
+		rLoc = 4589;
 		rType = 0;
 		vrLen = 2247;
 		vrLoc = 3467;
@@ -19424,7 +19424,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: S16";
 		rLen = 0;
-		rLoc = 3996;
+		rLoc = 4000;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 3687;
@@ -19614,7 +19614,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 198";
 		rLen = 0;
-		rLoc = 5764;
+		rLoc = 5774;
 		rType = 0;
 		vrLen = 1879;
 		vrLoc = 4651;
@@ -20192,7 +20192,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 159";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 2846;
@@ -20212,7 +20212,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 139";
 		rLen = 0;
-		rLoc = 3337;
+		rLoc = 3341;
 		rType = 0;
 		vrLen = 1046;
 		vrLoc = 2843;
@@ -20996,7 +20996,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: tLongVal";
 		rLen = 0;
-		rLoc = 3441;
+		rLoc = 3445;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 2976;
@@ -21026,7 +21026,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: MUSHCOREASSERT";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 2956;
@@ -21076,7 +21076,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 159";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 3194;
@@ -21096,7 +21096,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 159";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 3194;
@@ -21264,7 +21264,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 159";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 3280;
@@ -21314,7 +21314,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 159";
 		rLen = 0;
-		rLoc = 3814;
+		rLoc = 3818;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 3280;
@@ -21384,7 +21384,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 142";
 		rLen = 0;
-		rLoc = 3467;
+		rLoc = 3471;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 2752;
@@ -21912,7 +21912,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 110";
 		rLen = 0;
-		rLoc = 4756;
+		rLoc = 4765;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2791;
@@ -22262,7 +22262,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: Install";
 		rLen = 0;
-		rLoc = 4143;
+		rLoc = 4147;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 2865;
@@ -22532,7 +22532,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 70";
 		rLen = 0;
-		rLoc = 2330;
+		rLoc = 2339;
 		rType = 0;
 		vrLen = 1891;
 		vrLoc = 2181;
@@ -22602,7 +22602,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStandard.h: 129";
 		rLen = 0;
-		rLoc = 3146;
+		rLoc = 3150;
 		rType = 0;
 		vrLen = 919;
 		vrLoc = 2767;
@@ -23435,7 +23435,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 227";
 		rLen = 0;
-		rLoc = 6697;
+		rLoc = 6707;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 4678;
@@ -23485,7 +23485,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 227";
 		rLen = 0;
-		rLoc = 6697;
+		rLoc = 6707;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 4678;
@@ -26391,7 +26391,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 164";
 		rLen = 0;
-		rLoc = 5976;
+		rLoc = 5985;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 4126;
@@ -26831,7 +26831,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 150";
 		rLen = 0;
-		rLoc = 4760;
+		rLoc = 4764;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 2900;
@@ -26931,7 +26931,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 111";
 		rLen = 0;
-		rLoc = 3311;
+		rLoc = 3315;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 2436;
@@ -27601,7 +27601,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 4025;
+		rLoc = 4029;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 3648;
@@ -27621,7 +27621,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PerspectiveLookAt";
 		rLen = 0;
-		rLoc = 4178;
+		rLoc = 4182;
 		rType = 0;
 		vrLen = 1739;
 		vrLoc = 2823;
@@ -27641,7 +27641,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 4025;
+		rLoc = 4029;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 3648;
@@ -28261,7 +28261,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 100";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 1399;
@@ -28481,7 +28481,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.cpp: 26";
 		rLen = 0;
-		rLoc = 1607;
+		rLoc = 1611;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 0;
@@ -28541,7 +28541,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.cpp: 53";
 		rLen = 0;
-		rLoc = 1607;
+		rLoc = 1611;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 123;
@@ -28691,7 +28691,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 157";
 		rLen = 0;
-		rLoc = 4672;
+		rLoc = 4676;
 		rType = 0;
 		vrLen = 2139;
 		vrLoc = 2847;
@@ -28801,7 +28801,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: LoadFontMap";
 		rLen = 0;
-		rLoc = 2042;
+		rLoc = 2046;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 1108;
@@ -29211,7 +29211,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 115";
 		rLen = 0;
-		rLoc = 3109;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1956;
 		vrLoc = 2143;
@@ -29521,135 +29521,7 @@
 			7AF8B16403DC3B1800A80164,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 86963819;
-			"PBXTemplateGeometry-F5CA7EC9015C08ED0DCA290F" = {
-				ContentSize = "{665, 594}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 0}, {665, 594}}";
-					Split0 = {
-						ActiveTab = 3;
-						ActiveTabName = PBXProjectFindModule;
-						Collapsed = NO;
-						Frame = "{{0, 0}, {665, 594}}";
-						Split0 = {
-							Frame = "{{0, 301}, {665, 293}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Frame = "{{0, 0}, {484, 208}}";
-						};
-						Tab1 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {664, 208}}";
-								Split0 = {
-									Frame = "{{0, 24}, {664, 184}}";
-									Split0 = {
-										Frame = "{{0, 0}, {325, 184}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											96.123,
-										);
-										Frame = "{{334, 0}, {330, 184}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab2 = {
-							Frame = "{{0, 0}, {664, 50}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 50}}";
-							};
-						};
-						Tab3 = {
-							BuildMessageFrame = "{{0, 0}, {667, 265}}";
-							BuildTranscriptFrame = "{{0, 274}, {667, 2}}";
-							BuildTranscriptFrameExpanded = YES;
-							Frame = "{{0, 0}, {665, 298}}";
-						};
-						Tab4 = {
-							Frame = "{{0, 0}, {665, 295}}";
-						};
-						TabCount = 5;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							280,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				NavBarShownByDefault = YES;
-				StatusViewVisible = NO;
-				Template = F5CA7EC9015C08ED0DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{422, 258}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 86973748;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
@@ -35521,7 +35393,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 86963819;
+			PBXWorkspaceStateSaveDate = 86973748;
 		};
 		perUserProjectItems = {
 			7A078AAC041D414C00A80164 = 7A078AAC041D414C00A80164;
@@ -40956,7 +40828,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: RenderString";
 		rLen = 0;
-		rLoc = 2029;
+		rLoc = 2033;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 1018;
@@ -40996,7 +40868,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: RenderString";
 		rLen = 0;
-		rLoc = 2029;
+		rLoc = 2033;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 1010;
@@ -42620,7 +42492,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: IdentityPrologue";
 		rLen = 0;
-		rLoc = 2117;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 1178;
@@ -42850,7 +42722,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: Vertex";
 		rLen = 0;
-		rLoc = 2117;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 1178;
@@ -42880,7 +42752,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: BitmapText";
 		rLen = 0;
-		rLoc = 2927;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 1690;
 		vrLoc = 1178;
@@ -45034,7 +44906,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 105";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 1615;
@@ -45124,7 +44996,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 113";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 1698;
@@ -45154,7 +45026,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 108";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 1799;
 		vrLoc = 1698;
@@ -45204,7 +45076,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 118";
 		rLen = 0;
-		rLoc = 3891;
+		rLoc = 3895;
 		rType = 0;
 		vrLen = 1897;
 		vrLoc = 1856;
@@ -45324,7 +45196,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 120";
 		rLen = 158;
-		rLoc = 3910;
+		rLoc = 3914;
 		rType = 0;
 		vrLen = 1953;
 		vrLoc = 1907;
@@ -45414,7 +45286,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: DisplayQualityGet";
 		rLen = 0;
-		rLoc = 3950;
+		rLoc = 3954;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 1893;
@@ -45444,7 +45316,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: Reset";
 		rLen = 0;
-		rLoc = 4054;
+		rLoc = 4058;
 		rType = 0;
 		vrLen = 2001;
 		vrLoc = 2117;
@@ -45704,7 +45576,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: DrawSprite";
 		rLen = 0;
-		rLoc = 3256;
+		rLoc = 3260;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 1225;
@@ -45764,7 +45636,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 87";
 		rLen = 55;
-		rLoc = 3528;
+		rLoc = 3532;
 		rType = 0;
 		vrLen = 492;
 		vrLoc = 1225;
@@ -45854,7 +45726,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 88";
 		rLen = 0;
-		rLoc = 3604;
+		rLoc = 3608;
 		rType = 0;
 		vrLen = 1714;
 		vrLoc = 1180;
@@ -46304,7 +46176,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 7";
 		rLen = 0;
-		rLoc = 2451;
+		rLoc = 2455;
 		rType = 0;
 		vrLen = 45;
 		vrLoc = 0;
@@ -46374,7 +46246,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 7";
 		rLen = 0;
-		rLoc = 2451;
+		rLoc = 2455;
 		rType = 0;
 		vrLen = 45;
 		vrLoc = 0;
@@ -46424,7 +46296,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 7";
 		rLen = 0;
-		rLoc = 2451;
+		rLoc = 2455;
 		rType = 0;
 		vrLen = 45;
 		vrLoc = 0;
@@ -46484,7 +46356,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 10";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 2359;
 		rType = 0;
 		vrLen = 192;
 		vrLoc = 0;
@@ -46524,7 +46396,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 13";
 		rLen = 0;
-		rLoc = 2352;
+		rLoc = 2356;
 		rType = 0;
 		vrLen = 267;
 		vrLoc = 0;
@@ -46554,7 +46426,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: 21";
 		rLen = 0;
-		rLoc = 2352;
+		rLoc = 2356;
 		rType = 0;
 		vrLen = 488;
 		vrLoc = 0;
@@ -47174,7 +47046,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: GLUtils";
 		rLen = 0;
-		rLoc = 2520;
+		rLoc = 2524;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 2009;
@@ -47438,7 +47310,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 2952;
+		rLoc = 2956;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 2460;
@@ -47508,7 +47380,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 115";
 		rLen = 0;
-		rLoc = 2920;
+		rLoc = 2924;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 2141;
@@ -47528,7 +47400,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 2927;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 2141;
@@ -47548,7 +47420,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 2927;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 2141;
@@ -47568,7 +47440,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: MoveToEdge";
 		rLen = 0;
-		rLoc = 2879;
+		rLoc = 2883;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 2141;
@@ -47918,7 +47790,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: kBlendSolid";
 		rLen = 0;
-		rLoc = 2066;
+		rLoc = 2070;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 1150;
@@ -49188,7 +49060,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 144";
 		rLen = 0;
-		rLoc = 4615;
+		rLoc = 4619;
 		rType = 0;
 		vrLen = 1905;
 		vrLoc = 2844;
@@ -49198,7 +49070,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 143";
 		rLen = 0;
-		rLoc = 4569;
+		rLoc = 4573;
 		rType = 0;
 		vrLen = 1869;
 		vrLoc = 2842;
@@ -49208,7 +49080,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 141";
 		rLen = 0;
-		rLoc = 4526;
+		rLoc = 4530;
 		rType = 0;
 		vrLen = 1882;
 		vrLoc = 2911;
@@ -49228,7 +49100,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: CheckGLError";
 		rLen = 0;
-		rLoc = 2143;
+		rLoc = 2147;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 1064;
@@ -49549,7 +49421,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: RenderString";
 		rLen = 0;
-		rLoc = 2029;
+		rLoc = 2033;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 931;
@@ -49679,7 +49551,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.h: operator*";
 		rLen = 0;
-		rLoc = 2387;
+		rLoc = 2391;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1182;
@@ -50411,7 +50283,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 66";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2325;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 0;
@@ -50431,7 +50303,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 62";
 		rLen = 0;
-		rLoc = 2127;
+		rLoc = 2136;
 		rType = 0;
 		vrLen = 1676;
 		vrLoc = 1359;
@@ -50539,7 +50411,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 107";
 		rLen = 0;
-		rLoc = 3199;
+		rLoc = 3203;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 2138;
@@ -50839,7 +50711,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 126";
 		rLen = 0;
-		rLoc = 3746;
+		rLoc = 3750;
 		rType = 0;
 		vrLen = 1065;
 		vrLoc = 2702;
@@ -50919,7 +50791,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 132";
 		rLen = 0;
-		rLoc = 4753;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 2436;
@@ -51506,7 +51378,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: Translate";
 		rLen = 0;
-		rLoc = 5197;
+		rLoc = 5201;
 		rType = 0;
 		vrLen = 2213;
 		vrLoc = 2988;
@@ -51526,7 +51398,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 181";
 		rLen = 0;
-		rLoc = 5637;
+		rLoc = 5641;
 		rType = 0;
 		vrLen = 2233;
 		vrLoc = 3072;
@@ -51806,7 +51678,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 171";
 		rLen = 0;
-		rLoc = 5291;
+		rLoc = 5295;
 		rType = 0;
 		vrLen = 1328;
 		vrLoc = 4001;
@@ -51936,7 +51808,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 174";
 		rLen = 0;
-		rLoc = 5432;
+		rLoc = 5436;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 4001;
@@ -51946,7 +51818,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: GLUtils";
 		rLen = 0;
-		rLoc = 3103;
+		rLoc = 3107;
 		rType = 0;
 		vrLen = 886;
 		vrLoc = 2784;
@@ -51966,7 +51838,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 173";
 		rLen = 0;
-		rLoc = 5392;
+		rLoc = 5396;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4151;
@@ -52036,7 +51908,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 174";
 		rLen = 0;
-		rLoc = 5431;
+		rLoc = 5435;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 4151;
@@ -52486,7 +52358,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 209";
 		rLen = 0;
-		rLoc = 5229;
+		rLoc = 5233;
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 3764;
@@ -52506,7 +52378,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 123";
 		rLen = 0;
-		rLoc = 2927;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 2289;
 		vrLoc = 2866;
@@ -52586,7 +52458,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 163";
 		rLen = 0;
-		rLoc = 4893;
+		rLoc = 4897;
 		rType = 0;
 		vrLen = 2096;
 		vrLoc = 3059;
@@ -52606,7 +52478,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 175";
 		rLen = 0;
-		rLoc = 5229;
+		rLoc = 5233;
 		rType = 0;
 		vrLen = 2133;
 		vrLoc = 3022;
@@ -52626,7 +52498,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 152";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 2133;
 		vrLoc = 3022;
@@ -52646,7 +52518,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 148";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 2161;
 		vrLoc = 2927;
@@ -52756,7 +52628,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 148";
 		rLen = 0;
-		rLoc = 4068;
+		rLoc = 4072;
 		rType = 0;
 		vrLen = 2161;
 		vrLoc = 2927;
@@ -52846,7 +52718,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PerspeciveLookAt";
 		rLen = 0;
-		rLoc = 3451;
+		rLoc = 3455;
 		rType = 0;
 		vrLen = 2148;
 		vrLoc = 3007;
@@ -52866,7 +52738,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PerspeciveLookAt";
 		rLen = 0;
-		rLoc = 3464;
+		rLoc = 3468;
 		rType = 0;
 		vrLen = 2148;
 		vrLoc = 3007;
@@ -52926,7 +52798,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PerspectiveLookAt";
 		rLen = 0;
-		rLoc = 3464;
+		rLoc = 3468;
 		rType = 0;
 		vrLen = 2148;
 		vrLoc = 3007;
@@ -53360,7 +53232,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 176";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2373;
 		vrLoc = 2782;
@@ -53380,7 +53252,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PushMatrix";
 		rLen = 0;
-		rLoc = 4820;
+		rLoc = 4824;
 		rType = 0;
 		vrLen = 2373;
 		vrLoc = 2782;
@@ -53400,7 +53272,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 177";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2339;
 		vrLoc = 2816;
@@ -53430,7 +53302,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: UseLightingSet";
 		rLen = 3;
-		rLoc = 4809;
+		rLoc = 4813;
 		rType = 0;
 		vrLen = 2339;
 		vrLoc = 2816;
@@ -53450,7 +53322,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: PopMatrix";
 		rLen = 0;
-		rLoc = 4554;
+		rLoc = 4558;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 2304;
@@ -53470,7 +53342,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: kQualityMedium";
 		rLen = 0;
-		rLoc = 2781;
+		rLoc = 2785;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 2304;
@@ -53490,7 +53362,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 118";
 		rLen = 0;
-		rLoc = 2781;
+		rLoc = 2785;
 		rType = 0;
 		vrLen = 2017;
 		vrLoc = 3138;
@@ -53510,7 +53382,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: UseLightingSet";
 		rLen = 0;
-		rLoc = 4838;
+		rLoc = 4842;
 		rType = 0;
 		vrLen = 2017;
 		vrLoc = 3138;
@@ -53530,7 +53402,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 185";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2091;
 		vrLoc = 3064;
@@ -53690,7 +53562,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 185";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 3027;
@@ -53750,7 +53622,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 185";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 3027;
@@ -53840,7 +53712,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 185";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 3027;
@@ -53880,7 +53752,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 185";
 		rLen = 0;
-		rLoc = 4894;
+		rLoc = 4898;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 3027;
@@ -54106,7 +53978,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 108";
 		rLen = 0;
-		rLoc = 3239;
+		rLoc = 3243;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 1922;
@@ -55000,7 +54872,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: ModulationSet";
 		rLen = 0;
-		rLoc = 4760;
+		rLoc = 4764;
 		rType = 0;
 		vrLen = 1857;
 		vrLoc = 3298;
@@ -55120,7 +54992,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 106";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 2060;
@@ -55730,7 +55602,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.h: 89";
 		rLen = 0;
-		rLoc = 2387;
+		rLoc = 2391;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1154;
@@ -55920,7 +55792,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: Vertex";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3096;
 		rType = 0;
 		vrLen = 2191;
 		vrLoc = 2748;
@@ -55930,7 +55802,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.h: 89";
 		rLen = 0;
-		rLoc = 2387;
+		rLoc = 2391;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1154;
@@ -55970,7 +55842,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: LongestScreenAxis";
 		rLen = 0;
-		rLoc = 3411;
+		rLoc = 3415;
 		rType = 0;
 		vrLen = 2201;
 		vrLoc = 2748;
@@ -55990,7 +55862,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: ScreenScaleGet";
 		rLen = 0;
-		rLoc = 3389;
+		rLoc = 3393;
 		rType = 0;
 		vrLen = 2192;
 		vrLoc = 2748;
@@ -56010,7 +55882,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 195";
 		rLen = 0;
-		rLoc = 5133;
+		rLoc = 5137;
 		rType = 0;
 		vrLen = 1783;
 		vrLoc = 3372;
@@ -56234,7 +56106,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 112";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 2969;
@@ -56254,7 +56126,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 105";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 1578;
 		vrLoc = 1827;
@@ -56788,7 +56660,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: Flush";
 		rLen = 0;
-		rLoc = 5197;
+		rLoc = 5201;
 		rType = 0;
 		vrLen = 2202;
 		vrLoc = 2996;
@@ -56798,7 +56670,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 109";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 2250;
@@ -58593,7 +58465,7 @@
 		isa = PBXTextBookmark;
 		name = "GLFont.cpp: RenderString";
 		rLen = 0;
-		rLoc = 1946;
+		rLoc = 1950;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 1052;
@@ -61111,7 +60983,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 189";
 		rLen = 0;
-		rLoc = 5573;
+		rLoc = 5583;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 4637;
@@ -62219,7 +62091,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 163";
 		rLen = 0;
-		rLoc = 4938;
+		rLoc = 4948;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 4043;
@@ -62319,7 +62191,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 167";
 		rLen = 0;
-		rLoc = 5219;
+		rLoc = 5229;
 		rType = 0;
 		vrLen = 1881;
 		vrLoc = 3473;
@@ -62369,7 +62241,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 167";
 		rLen = 0;
-		rLoc = 5219;
+		rLoc = 5229;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 3814;
@@ -62429,7 +62301,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 170";
 		rLen = 0;
-		rLoc = 5219;
+		rLoc = 5229;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 3814;
@@ -62469,7 +62341,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 150";
 		rLen = 222;
-		rLoc = 4245;
+		rLoc = 4249;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 3814;
@@ -62489,7 +62361,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 169";
 		rLen = 0;
-		rLoc = 5162;
+		rLoc = 5172;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 3814;
@@ -62569,7 +62441,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 161";
 		rLen = 0;
-		rLoc = 5349;
+		rLoc = 5359;
 		rType = 0;
 		vrLen = 1592;
 		vrLoc = 3666;
@@ -63513,7 +63385,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 186";
 		rLen = 0;
-		rLoc = 5532;
+		rLoc = 5542;
 		rType = 0;
 		vrLen = 1866;
 		vrLoc = 4137;
@@ -63533,7 +63405,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 187";
 		rLen = 0;
-		rLoc = 5589;
+		rLoc = 5599;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 4401;
@@ -63543,7 +63415,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 177";
 		rLen = 0;
-		rLoc = 5295;
+		rLoc = 5305;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 4400;
@@ -63553,7 +63425,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 177";
 		rLen = 0;
-		rLoc = 5295;
+		rLoc = 5305;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 4400;
@@ -63653,7 +63525,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 190";
 		rLen = 0;
-		rLoc = 5705;
+		rLoc = 5715;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 4400;
@@ -63755,7 +63627,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 178";
 		rLen = 0;
-		rLoc = 5343;
+		rLoc = 5353;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 4163;
@@ -63775,7 +63647,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 186";
 		rLen = 0;
-		rLoc = 5743;
+		rLoc = 5753;
 		rType = 0;
 		vrLen = 1767;
 		vrLoc = 4163;
@@ -63845,7 +63717,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 153";
 		rLen = 0;
-		rLoc = 4828;
+		rLoc = 4832;
 		rType = 0;
 		vrLen = 1915;
 		vrLoc = 3137;
@@ -63955,7 +63827,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 158";
 		rLen = 0;
-		rLoc = 4917;
+		rLoc = 4927;
 		rType = 0;
 		vrLen = 1868;
 		vrLoc = 3262;
@@ -63965,7 +63837,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 157";
 		rLen = 0;
-		rLoc = 4880;
+		rLoc = 4884;
 		rType = 0;
 		vrLen = 1928;
 		vrLoc = 2990;
@@ -63985,7 +63857,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 142";
 		rLen = 0;
-		rLoc = 4094;
+		rLoc = 4098;
 		rType = 0;
 		vrLen = 1923;
 		vrLoc = 2990;
@@ -64065,7 +63937,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 124";
 		rLen = 0;
-		rLoc = 3597;
+		rLoc = 3601;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 2499;
@@ -64325,7 +64197,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 194";
 		rLen = 0;
-		rLoc = 5816;
+		rLoc = 5826;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 4372;
@@ -64817,7 +64689,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 109";
 		rLen = 0;
-		rLoc = 2735;
+		rLoc = 2739;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 2261;
@@ -64857,7 +64729,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 208";
 		rLen = 0;
-		rLoc = 5211;
+		rLoc = 5215;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 3792;
@@ -64877,7 +64749,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 138";
 		rLen = 0;
-		rLoc = 2927;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 2664;
@@ -64917,7 +64789,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 104";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3146;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 2969;
@@ -65037,7 +64909,7 @@
 		isa = PBXTextBookmark;
 		name = "GLUtils.h: 217";
 		rLen = 0;
-		rLoc = 5229;
+		rLoc = 5233;
 		rType = 0;
 		vrLen = 1149;
 		vrLoc = 4006;

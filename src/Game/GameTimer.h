@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef INFERNALTIMER_H
-#define INFERNALTIMER_H
-//%includeGuardStart } 8cwcwdNY33jV9WeSsbgB1w
+#ifndef GAMETIMER_H
+#define GAMETIMER_H
+//%includeGuardStart } 8tZcei9nSmXbMwI0zbZwEw
 //%Header {
 /*****************************************************************************
  *
- * File: src/Infernal/InfernalTimer.h
+ * File: src/Game/GameTimer.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GZGazlLXHTsci08M+3VEQg
+//%Header } tnPrj/F2b1sK/tn4g1+1Cg
 /*
- * $Id: InfernalTimer.h,v 1.21 2003/09/17 19:40:33 southa Exp $
- * $Log: InfernalTimer.h,v $
+ * $Id: GameTimer.h,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Log: GameTimer.h,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.21  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -64,7 +67,7 @@
  * Added time format
  *
  * Revision 1.6  2002/08/19 11:09:56  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.5  2002/08/07 13:36:51  southa
  * Conditioned source
@@ -87,13 +90,13 @@
 
 #include "GameFrameTimer.h"
 
-class InfernalTimer
+class GameTimer
 {
 public:
     typedef double tMsec;
     typedef double tUsec;
     
-    InfernalTimer();
+    GameTimer();
     
     void CurrentMsecSet(Mushware::U32 inMsec);
     tMsec CurrentMsecGet(void) const;

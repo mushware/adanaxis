@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } qN8XY++gnazR/H/0JEVVKQ
 /*
- * $Id: GLUtils.h,v 1.39 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLUtils.h,v 1.40 2003/10/04 12:22:58 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.40  2003/10/04 12:22:58  southa
+ * File renaming
+ *
  * Revision 1.39  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -67,7 +70,7 @@
  * Source conditioning
  *
  * Revision 1.23  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.22  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0

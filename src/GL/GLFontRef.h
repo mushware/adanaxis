@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nAX018VRFSthbRWjHMLK1w
 /*
-* $Id: GLFontRef.h,v 1.8 2003/08/21 23:08:21 southa Exp $
+* $Id: GLFontRef.h,v 1.9 2003/09/17 19:40:29 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.9  2003/09/17 19:40:29  southa
+* Source conditioning upgrades
+*
 * Revision 1.8  2003/08/21 23:08:21  southa
 * Fixed file headers
 *
@@ -37,7 +40,7 @@
 * Source conditioning
 *
 * Revision 1.2  2002/08/09 17:09:02  southa
-* GameDialogue added
+* InfernalDialogue added
 *
 * Revision 1.1  2002/08/08 13:39:09  southa
 * Text rendering

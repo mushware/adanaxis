@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 7Ncqiw4lqHW+MAghyFVZNg
 /*
- * $Id: GameCommandHandler.cpp,v 1.20 2003/08/21 23:08:35 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.21 2003/09/17 19:40:31 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.21  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.20  2003/08/21 23:08:35  southa
  * Fixed file headers
  *
@@ -88,13 +91,6 @@ using namespace Mushware;
 using namespace std;
 
 MushcoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
-
-MushcoreScalar
-GameCommandHandler::Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
-{
-    MushcoreAppHandler::Sgl().Mutate(new GameAppHandler);
-    return MushcoreScalar(0);
-}
 
 MushcoreScalar
 GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
@@ -190,7 +186,6 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
 void
 GameCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("game", Game);
     MushcoreInterpreter::Sgl().HandlerAdd("setsavepath", SetSavePath);
     MushcoreInterpreter::Sgl().HandlerAdd("updatecheck", UpdateCheck);
     MushcoreInterpreter::Sgl().HandlerAdd("readdirectorytomenu", ReadDirectoryToMenu);

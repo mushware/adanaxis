@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEAPPHANDLER_H
-#define GAMEAPPHANDLER_H
-//%includeGuardStart } wBmcsG1CoSpxwZO+dBp4YA
+#ifndef INFERNALAPPHANDLER_H
+#define INFERNALAPPHANDLER_H
+//%includeGuardStart } lDBb90O8OIQ7X8pBqaxh1g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameAppHandler.h
+ * File: src/Infernal/InfernalAppHandler.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,7 +14,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Urmfh8wpsW09q0BQ27695Q
+//%Header } XOlHJtYQGjJw7ayofXG12w
 /*
  * $Id: GameAppHandler.h,v 1.21 2003/09/17 19:40:31 southa Exp $
  * $Log: GameAppHandler.h,v $
@@ -84,61 +84,21 @@
  */
 
 #include "Mushcore.h"
-#include "mushGL.h"
+#include "mushGame.h"
 
-class GameBase;
-
-class GameAppHandler : public SDLAppHandler
+class InfernalAppHandler : public GameAppHandler
 {
 public:
-    GameAppHandler();
-    virtual ~GameAppHandler();
-    virtual void Initialise(void);
-    virtual void Display(void);
-    virtual void Idle(void);
-
-    virtual void SetupModeEnter(void);
-    virtual void GameModeEnter(bool inResume) = 0;
-    virtual void QuitModeEnter(void);
-    virtual void CurrentGameEnd(void) = 0;
-
-    bool ServerPresent(void) const { return m_gameType == kGameTypeServer; }
-    bool NetworkActive(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
-    bool MultiplayerIs(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
-    bool GameRunningIs(void) const { return m_appState == kAppStateGame; }
+    InfernalAppHandler();
+    virtual ~InfernalAppHandler();
+    virtual void GameModeEnter(bool inResume);
+    virtual void CurrentGameEnd(void);
     
 protected:
-    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
-    virtual void PrepareNewGame(void) = 0;
+    virtual void PrepareNewGame(void);
     
-    bool StateGameIs(void) const { return (m_appState != kAppStateGame); }
-    void StateGameSet(void) { m_appState=kAppStateGame; }
-    void CurrentSwapOut(void);
-    void CurrentSwapIn(GameBase *inpGame);
-    void GameTypeDetermine(void); // Not sure about exporting this
-        
 private:
-    enum tAppState
-    {
-        kAppStateInvalid,
-        kAppStateStartup,
-        kAppStateSetup,
-        kAppStateGame,
-        kAppStateQuit
-    };
-
-    enum tGameType
-    {
-        kGameTypeInvalid,
-        kGameTypeServer,
-        kGameTypeClient,
-        kGameTypeSingle
-    };
-        
-    GameBase *m_pSetup;
-    GameBase *m_pCurrent;
-    tAppState m_appState;
-    tGameType m_gameType;
+    GameBase *m_pGame;
 };
 //%includeGuardEnd {
 #endif

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Y7vNeA9oLxjRkjys8zy/jA
 /*
- * $Id: InfernalMessageControlData.h,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalMessageControlData.h,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalMessageControlData.h,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -46,7 +49,7 @@
 
 #include "Mushcore.h"
 
-#include "GameControlFrameDef.h"
+#include "mushGame.h"
 
 class MustlData;
 

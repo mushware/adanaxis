@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEDIALOGUE_H
-#define GAMEDIALOGUE_H
-//%includeGuardStart } tQ9gbrAH/MS6DEfkfqIY2w
+#ifndef INFERNALDIALOGUE_H
+#define INFERNALDIALOGUE_H
+//%includeGuardStart } z9cb2iqguhGreRKr9PsZPA
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameDialogue.h
+ * File: src/Infernal/InfernalDialogue.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rDXN7pdHwwX5Yl2cJ7TVig
+//%Header } pude4iauGa09mdv14bs4Yg
 /*
- * $Id: GameDialogue.h,v 1.18 2003/09/17 19:40:31 southa Exp $
- * $Log: GameDialogue.h,v $
+ * $Id: InfernalDialogue.h,v 1.19 2003/10/04 12:22:59 southa Exp $
+ * $Log: InfernalDialogue.h,v $
+ * Revision 1.19  2003/10/04 12:22:59  southa
+ * File renaming
+ *
  * Revision 1.18  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -64,13 +67,13 @@
  * MushcoreData and MushcoreDatRef
  *
  * Revision 1.3  2002/08/13 18:29:04  southa
- * Tidied GameDialogue code
+ * Tidied InfernalDialogue code
  *
  * Revision 1.2  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
  * Revision 1.1  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  */
 
@@ -79,7 +82,7 @@
 #include "mushGL.h"
 #include "mushMedia.h"
 
-class GameDialogue : public GLRenderable, public MushcorePickle, protected MushcoreXMLHandler
+class InfernalDialogue : public GLRenderable, public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
@@ -89,7 +92,7 @@ public:
     virtual std::string TypeNameGet(void) {return "dialogue";}
     virtual void Render(void) const;
     virtual void Move(void);
-    virtual GLRenderable *Clone(void) const { return new GameDialogue(*this); }
+    virtual GLRenderable *Clone(void) const { return new InfernalDialogue(*this); }
     virtual bool ExpiredGet(void) { return m_expired; }
     virtual void TextSet(Mushware::U32 inWhich, const std::string& inStr);
     virtual void ExpireNow();
@@ -125,7 +128,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<std::string, void (GameDialogue::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (InfernalDialogue::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

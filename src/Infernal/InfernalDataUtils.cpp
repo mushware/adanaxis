@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r0XbEmK9l6ohe5aiL2+V1g
 /*
- * $Id: InfernalDataUtils.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalDataUtils.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalDataUtils.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *
@@ -55,7 +58,7 @@
 #include "InfernalDataUtils.h"
 
 #include "InfernalData.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

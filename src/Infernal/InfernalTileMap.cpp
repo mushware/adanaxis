@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } D/TTKukzTYTQ9KA0lxxwDw
 /*
- * $Id: InfernalTileMap.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Id: InfernalTileMap.cpp,v 1.2 2003/10/04 12:44:36 southa Exp $
  * $Log: InfernalTileMap.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:07  southa
  * File renaming
  *
@@ -100,9 +103,11 @@
 #include "InfernalTileMap.h"
 
 #include "InfernalData.h"
-#include "GameSTL.h"
-#include "GameSwitches.h"
+#include "InfernalSTL.h"
+#include "InfernalSwitches.h"
 #include "InfernalTileTraits.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;

@@ -82,7 +82,7 @@
  * Added current dialogues
  *
  * Revision 1.10  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.9  2002/08/07 13:36:49  southa
  * Conditioned source
@@ -118,22 +118,22 @@
 class InfernalTileMap;
 class InfernalFloorMap;
 class InfernalContract;
-class GameTraits;
+class InfernalTraits;
 class GameController;
 class InfernalPiece;
 class InfernalPiecePlayer;
-class GameDialogue;
+class InfernalDialogue;
 class InfernalView;
-class InfernalTimer;
+class GameTimer;
 class GameType;
 class GameRewards;
 
 class InfernalData
 {
 public:
-    typedef std::map<std::string, GameDialogue *> DialogueMap;
-    typedef std::map<std::string, GameDialogue *>::iterator DialogueMapIterator;
-    typedef std::map<std::string, GameDialogue *>::const_iterator DialogueMapConstIterator;
+    typedef std::map<std::string, InfernalDialogue *> DialogueMap;
+    typedef std::map<std::string, InfernalDialogue *>::iterator DialogueMapIterator;
+    typedef std::map<std::string, InfernalDialogue *>::const_iterator DialogueMapConstIterator;
     ~InfernalData();
     static InfernalData& Sgl(void) {return *((m_instance==NULL)?m_instance=new InfernalData:m_instance);}
 
@@ -147,16 +147,16 @@ public:
     InfernalContract *ContractGet(const std::string& inName) const;
     bool ContractExists(const std::string& inName) const;
     void ContractsClear(void);
-    GameTraits *TraitsDeleteAndCreate(const std::string& inName, GameTraits *inTraits);
-    GameTraits *TraitsGet(const std::string& inName) const;
+    InfernalTraits *TraitsDeleteAndCreate(const std::string& inName, InfernalTraits *inTraits);
+    InfernalTraits *TraitsGet(const std::string& inName) const;
     GameController *ControllerGetOrCreate(const std::string& inName);
     GameController *ControllerGet(const std::string& inName) const;
     const InfernalPiece *TemplateDeleteAndCreate(const std::string& inName, InfernalPiece *inPiece);
     const InfernalPiece *TemplateGet(const std::string& inName) const;
     InfernalPiece *PieceDeleteAndCreate(const std::string& inName, InfernalPiece *inPiece);
     InfernalPiece *PieceGet(const std::string& inName) const;
-    GameDialogue *DialogueDeleteAndCreate(const std::string& inName, GameDialogue *inDialogue);
-    GameDialogue *DialogueGet(const std::string& inName) const;
+    InfernalDialogue *DialogueDeleteAndCreate(const std::string& inName, InfernalDialogue *inDialogue);
+    InfernalDialogue *DialogueGet(const std::string& inName) const;
     const DialogueMap& DialogueMapGet(void) const { return m_dialogues; }
     InfernalView *ViewGetOrCreate(const std::string& inName);
     InfernalView *ViewGet(const std::string& inName) const;
@@ -164,13 +164,13 @@ public:
 
     MushcoreData<InfernalPiecePlayer>& PlayerGet(void) { return m_playerData; }
     
-    InfernalTimer& TimerGet(void);
+    GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;
     void TypeSet(GameType *inType);
     GameRewards& RewardsGet(void) const;
     void RewardsSet(GameRewards *inRewards);
 
-    GameDialogue *CurrentDialogueAdd(const std::string& inName, const GameDialogue& inDialogue);
+    InfernalDialogue *CurrentDialogueAdd(const std::string& inName, const InfernalDialogue& inDialogue);
     void CurrentDialogueDelete(const std::string& inName);
     const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
     void CurrentDialoguesClear(void);
@@ -184,7 +184,7 @@ private:
     std::map<std::string, InfernalTileMap *> m_tilemaps;
     std::map<std::string, InfernalFloorMap *> m_floormaps;
     std::map<std::string, InfernalContract *> m_contracts;
-    std::map<std::string, GameTraits *> m_traits;
+    std::map<std::string, InfernalTraits *> m_traits;
     std::map<std::string, GameController *> m_controllers;
     DialogueMap m_dialogues;
     std::map<std::string, InfernalPiece *> m_templates;
@@ -193,7 +193,7 @@ private:
 
     MushcoreData<InfernalPiecePlayer> m_playerData;
     
-    InfernalTimer *m_timer;
+    GameTimer *m_timer;
     GameType *m_gameType;
     GameRewards *m_gameRewards;
     

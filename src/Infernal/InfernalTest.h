@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 3TT2eoMsYMVPdNTCNe0Anw
 /*
- * $Id: InfernalTest.h,v 1.13 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalTest.h,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalTest.h,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.13  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -61,7 +64,7 @@
 
 #include "Mushcore.h"
 
-#include "GameBase.h"
+#include "mushGame.h"
 
 class InfernalTest: public GameBase
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7aw6V/9lK++dZ0qJ8aUG7g
 /*
- * $Id: MushcoreStandard.h,v 1.11 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.12 2003/09/23 22:57:57 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.12  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.11  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -82,7 +85,7 @@
  * Source conditioning
  *
  * Revision 1.15  2002/08/19 11:09:55  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.14  2002/08/07 13:36:46  southa
  * Conditioned source

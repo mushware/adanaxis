@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.15 2003/07/17 19:06:59 southa Exp $
+# $Id: autogen.sh,v 1.16 2003/09/17 20:15:54 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.16  2003/09/17 20:15:54  southa
+# Prebuild script
+#
 # Revision 1.15  2003/07/17 19:06:59  southa
 # Screen out hidden files
 #
@@ -71,7 +74,7 @@ case ic2:
     echo Building Makefile.am in `pwd`
     echo 'bin_PROGRAMS=ic2binary' > Makefile.am
     echo -n 'ic2binary_SOURCES=' >> Makefile.am
-    foreach module ( Game GL Media Platform Mushcore Mustl Main API)
+    foreach module ( Infernal Game GL Media Platform Mushcore Mustl Main API)
     find $module -path 'Platform/*/*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -exec echo -n " " {} \;  >> Makefile.am
     end
     find Support -name 'sstream' -exec echo -n " " {} \; >> Makefile.am

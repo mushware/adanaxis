@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Oqf24n6H6L5K+Ki53Vpj+Q
 /*
- * $Id: InfernalWebCommands.cpp,v 1.35 2003/09/17 19:40:34 southa Exp $
+ * $Id: InfernalWebCommands.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalWebCommands.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.35  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -144,13 +147,8 @@
 
 #include "InfernalWebCommands.h"
 
-#include "GameAppHandler.h"
-#include "GameConfig.h"
-#include "GameConfigDef.h"
-#include "GameDefClient.h"
-#include "GameDefServer.h"
-#include "GameNetUtils.h"
-#include "GameSTL.h"
+#include "mushGame.h"
+#include "InfernalSTL.h"
 
 #include "Mushcore.h"
 #include "mushMedia.h"

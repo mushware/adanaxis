@@ -69,30 +69,25 @@
 
 #include "InfernalPlayerUtils.h"
 
-#include "GameAppHandler.h"
-#include "GameController.h"
 #include "InfernalData.h"
-#include "GameDefClient.h"
-#include "GameDefServer.h"
-#include "GameEvent.h"
+#include "InfernalEvent.h"
 #include "InfernalFloorMap.h"
 #include "InfernalMessageControlData.h"
 #include "InfernalPiecePlayer.h"
-#include "GameProtocol.h"
-#include "GameSTL.h"
-#include "InfernalTimer.h"
-#include "GameType.h"
+#include "InfernalSTL.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
 
 void
-InfernalPlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
-    InfernalTimer::tMsec frameInterval = inTimer.ConstClientGet().FrameIntervalMsecGet(); // Msec between motion frames
-    InfernalTimer::tMsec currentMsec = inTimer.CurrentMsecGet(); // Current Msec
+    GameTimer::tMsec frameInterval = inTimer.ConstClientGet().FrameIntervalMsecGet(); // Msec between motion frames
+    GameTimer::tMsec currentMsec = inTimer.CurrentMsecGet(); // Current Msec
                                                             // Msec of the frame immediately before our first one
-    InfernalTimer::tMsec previousFrameMsec = currentMsec - frameInterval * inNumFrames;
+    GameTimer::tMsec previousFrameMsec = currentMsec - frameInterval * inNumFrames;
     // Frame number of the first frame in this sequence
     U32 startFrame = inTimer.ConstClientGet().FrameNumGet();
 
@@ -111,7 +106,7 @@ InfernalPlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFr
         }
         else if (localController != NULL)
         {
-            InfernalTimer::tMsec frameMsec = previousFrameMsec; // Msec of frame we're working on
+            GameTimer::tMsec frameMsec = previousFrameMsec; // Msec of frame we're working on
             for (U32 i=0; i<inNumFrames; ++i)
             {
                 frameMsec += frameInterval;
@@ -124,7 +119,7 @@ InfernalPlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFr
 }
 
 void
-InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
 {
     InfernalMessageControlData controlMessage;
     // frameNum is the first frame number in the chunk we're going to send
@@ -153,7 +148,7 @@ InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePla
 }
 
 void
-InfernalPlayerUtils::SendControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
     MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
 
@@ -273,7 +268,7 @@ InfernalPlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
 }
 
 void
-InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer, U32 inNumFrames)
 {
     U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
 
@@ -291,7 +286,7 @@ InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inT
             if (!playerRef.ImageIs())
             {
                 playerRef.EnvironmentRead(inFloorMap);
-                GameEventStandingOn standingOn(playerRef.StandingOnGet()); // Maybe
+                InfernalEventStandingOn standingOn(playerRef.StandingOnGet()); // Maybe
     
                 InfernalData::Sgl().TypeGet().EventHandler(standingOn); // Maybe
     
@@ -326,7 +321,7 @@ InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inT
 }
 
 void
-InfernalPlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer, U32 inNumFrames)
 {
     U32 startFrameNum = inTimer.ServerGet().FrameNumGet();
 
@@ -344,7 +339,7 @@ InfernalPlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, InfernalTimer& inT
             if (playerRef.ImageIs())
             {
                 playerRef.EnvironmentRead(inFloorMap);
-                GameEventStandingOn standingOn(playerRef.StandingOnGet());
+                InfernalEventStandingOn standingOn(playerRef.StandingOnGet());
 
                 InfernalData::Sgl().TypeGet().EventHandler(standingOn);
 

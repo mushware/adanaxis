@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } QaBXlfcICd5ALRSMTQImmQ
 /*
- * $Id: InfernalMotion.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalMotion.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalMotion.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -51,7 +54,7 @@
  * Source conditioning
  *
  * Revision 1.3  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.2  2002/08/07 13:36:50  southa
  * Conditioned source
@@ -63,7 +66,7 @@
 
 #include "InfernalMotion.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

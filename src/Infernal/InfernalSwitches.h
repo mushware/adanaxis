@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMESWITCHES_H
-#define GAMESWITCHES_H
-//%includeGuardStart } okcOyE9KWaQDg9MnsjCRVA
+#ifndef INFERNALSWITCHES_H
+#define INFERNALSWITCHES_H
+//%includeGuardStart } 0cta57GumIcmnjfxx4BNww
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameSwitches.h
+ * File: src/Infernal/InfernalSwitches.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,7 +14,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tTsHzl+vX5w2gN9X8bJ7eg
+//%Header } apvezLqPvi+wIQuvC60mAA
 /*
  * $Id: GameSwitches.h,v 1.9 2003/09/17 19:40:33 southa Exp $
  * $Log: GameSwitches.h,v $
@@ -47,6 +47,13 @@
  *
  */
 
+#define CACHETESTING 0
+
+#if CACHETESTING
+#define IFCACHETESTING(a) a
+#else
+#define IFCACHETESTING(a)
+#endif
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

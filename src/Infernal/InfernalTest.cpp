@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } EpPDDskMyzdHlHbYNUQ41A
 /*
- * $Id: InfernalTest.cpp,v 1.14 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalTest.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
  * $Log: InfernalTest.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:06  southa
+ * File renaming
+ *
  * Revision 1.14  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -60,7 +63,7 @@
 
 #include "InfernalTest.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 #include "Mushcore.h"
 #include "mushGL.h"

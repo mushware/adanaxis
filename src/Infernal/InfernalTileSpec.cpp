@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } JB0oSO4tyd6g+dgqPjwUpQ
 /*
- * $Id: InfernalTileSpec.cpp,v 1.7 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalTileSpec.cpp,v 1.1 2003/10/04 12:23:07 southa Exp $
  * $Log: InfernalTileSpec.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:07  southa
+ * File renaming
+ *
  * Revision 1.7  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -39,7 +42,7 @@
 
 #include "InfernalTileSpec.h"
 
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalTileTraits.h"
 
 using namespace Mushware;

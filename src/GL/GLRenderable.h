@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } B1/Pwft0I2cMLAhCLuraCw
 /*
- * $Id: GLRenderable.h,v 1.8 2003/08/21 23:08:27 southa Exp $
+ * $Id: GLRenderable.h,v 1.9 2003/09/17 19:40:29 southa Exp $
  * $Log: GLRenderable.h,v $
+ * Revision 1.9  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.8  2003/08/21 23:08:27  southa
  * Fixed file headers
  *
@@ -34,7 +37,7 @@
  * Source conditioning
  *
  * Revision 1.3  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.2  2002/08/07 13:36:47  southa
  * Conditioned source

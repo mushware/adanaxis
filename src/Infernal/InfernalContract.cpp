@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } oMQ1VLZnjYUkw29lLBIRAQ
 /*
- * $Id: InfernalContract.cpp,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -207,13 +210,13 @@
  * Save records, spacebar dialogues
  *
  * Revision 1.57  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.56  2002/08/20 11:43:25  southa
  * GameRewards added
  *
  * Revision 1.55  2002/08/19 11:09:55  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.54  2002/08/18 21:47:53  southa
  * Added temporary sound test
@@ -240,7 +243,7 @@
  * Added current dialogues
  *
  * Revision 1.46  2002/08/09 17:09:03  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.45  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
@@ -378,39 +381,29 @@
 
 #include "InfernalContract.h"
 
-#include "Mushcore.h"
-#include "mushGL.h"
-#include "mushMedia.h"
-#include "mushPlatform.h"
-
-#include "GameAppHandler.h"
-#include "GameConfig.h"
-#include "GameConfigDef.h"
-#include "GameControlFrameDef.h"
-#include "GameController.h"
 #include "InfernalData.h"
 #include "InfernalDataUtils.h"
-#include "GameDefClient.h"
-#include "GameDialogue.h"
-#include "GameEvent.h"
+#include "InfernalDialogue.h"
 #include "InfernalFloorDesigner.h"
 #include "InfernalFloorMap.h"
-#include "GameGlobalConfig.h"
 #include "InfernalMapArea.h"
 #include "InfernalMapPoint.h"
 #include "InfernalMotionSpec.h"
-#include "GameNetUtils.h"
 #include "InfernalPiecePlayer.h"
 #include "InfernalPlayerUtils.h"
-#include "GameRewards.h"
-#include "GameRouter.h"
-#include "GameSTL.h"
+#include "InfernalRouter.h"
+#include "InfernalSTL.h"
 #include "InfernalSpacePoint.h"
 #include "InfernalTileMap.h"
 #include "InfernalTileTraits.h"
-#include "InfernalTimer.h"
-#include "GameTypeRace.h"
+#include "InfernalTypeRace.h"
 #include "InfernalView.h"
+
+#include "Mushcore.h"
+#include "mushGame.h"
+#include "mushGL.h"
+#include "mushMedia.h"
+#include "mushPlatform.h"
 
 using namespace Mushware;
 using namespace std;
@@ -500,6 +493,7 @@ InfernalContract::SwapIn(GameAppHandler& inAppHandler)
     {
         GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
         glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(GameConfig::Sgl().DisplayModeGet()));
+        GameRouter::Sgl().SingletonMutate(new InfernalRouter);
     }
     catch (...)
     {
@@ -512,6 +506,7 @@ InfernalContract::SwapIn(GameAppHandler& inAppHandler)
 void
 InfernalContract::SwapOut(GameAppHandler& inAppHandler)
 {
+    GameRouter::Sgl().SingletonMutate(new GameRouter);
 }
 
 void
@@ -571,13 +566,13 @@ InfernalContract::InitDisplay(void)
 }
 
 void
-InfernalContract::RunningMove(InfernalTimer& inTimer, U32 inNumFrames)
+InfernalContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 {
     
     const InfernalData::DialogueMap& currentDialogues(InfernalData::Sgl().CurrentDialogueMapGet());
     string killName;
     
-    for (map<std::string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+    for (map<std::string, InfernalDialogue *>::const_iterator p = currentDialogues.begin();
          p != currentDialogues.end(); ++p)
     {
         for (U32 i=0; i<inNumFrames; ++i)
@@ -614,7 +609,7 @@ InfernalContract::RunningDisplay(void)
     m_floorMap->AttachTileMap(m_tileMap);
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
 
     timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
     tVal windbackValue = timer.ClientGet().WindbackValueGet();
@@ -777,7 +772,7 @@ InfernalContract::RenderText(void) const
     const InfernalData::DialogueMap currentDialogues(InfernalData::Sgl().CurrentDialogueMapGet());
 
     GLUtils::OrthoPrologue();
-    for (map<std::string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+    for (map<std::string, InfernalDialogue *>::const_iterator p = currentDialogues.begin();
          p != currentDialogues.end(); ++p)
     {
         GLUtils::PushMatrix();
@@ -802,7 +797,7 @@ InfernalContract::DesigningDisplay(void)
 void
 InfernalContract::Running(GameAppHandler& inAppHandler)
 {
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
         
     // Get the control events up to date
     inAppHandler.PollForControlEvents();
@@ -939,7 +934,7 @@ void
 InfernalContract::GlobalKeyControl(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    GameTimer& timer(InfernalData::Sgl().TimerGet());
 
     if (gameAppHandler.LatchedKeyStateTake('d'))
     {
@@ -1065,7 +1060,7 @@ void
 InfernalContract::HandleDialogueStart(MushcoreXML& inXML)
 {
     string name(inXML.GetAttribOrThrow("name").StringGet());
-    InfernalData::Sgl().DialogueDeleteAndCreate(name, new GameDialogue)->Unpickle(inXML);
+    InfernalData::Sgl().DialogueDeleteAndCreate(name, new InfernalDialogue)->Unpickle(inXML);
 }
 
 void
@@ -1074,7 +1069,7 @@ InfernalContract::HandleGameStart(MushcoreXML& inXML)
     string type(inXML.GetAttribOrThrow("type").StringGet());
     if (type == "race")
     {
-    InfernalData::Sgl().TypeSet(new GameTypeRace);
+    InfernalData::Sgl().TypeSet(new InfernalTypeRace);
     }
     else
     {

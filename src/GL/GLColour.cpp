@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wAiYZA5VGs61ng/mx32jig
 /*
- * $Id: GLColour.cpp,v 1.12 2003/08/21 23:08:19 southa Exp $
+ * $Id: GLColour.cpp,v 1.13 2003/09/17 19:40:29 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.13  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:19  southa
  * Fixed file headers
  *
@@ -42,7 +45,7 @@
  * Source conditioning
  *
  * Revision 1.3  2002/08/09 17:09:02  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.2  2002/08/07 13:36:46  southa
  * Conditioned source

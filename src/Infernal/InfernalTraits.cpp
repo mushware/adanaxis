@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameTraits.cpp
+ * File: src/Infernal/InfernalTraits.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 63OX9wqN5hCMvxdSz74nvQ
+//%Header } ZjK/+n4rA32V+xyOYYeoXw
 /*
- * $Id: GameTraits.cpp,v 1.21 2003/09/17 19:40:33 southa Exp $
- * $Log: GameTraits.cpp,v $
+ * $Id: InfernalTraits.cpp,v 1.22 2003/10/04 12:23:03 southa Exp $
+ * $Log: InfernalTraits.cpp,v $
+ * Revision 1.22  2003/10/04 12:23:03  southa
+ * File renaming
+ *
  * Revision 1.21  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -79,16 +82,16 @@
  *
  */
 
-#include "GameTraits.h"
+#include "InfernalTraits.h"
 
 #include "InfernalData.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;
 
 void
-GameTraits::Verify(void)
+InfernalTraits::Verify(void)
 {
     if (!m_traitsValid) RebuildTraits();
     if (!m_traitsValid)
@@ -107,7 +110,7 @@ GameTraits::Verify(void)
 }
 
 void
-GameTraits::RebuildTraits(void) const
+InfernalTraits::RebuildTraits(void) const
 {
     MUSHCOREASSERT(!m_traitsValid);
     m_baseTraits.resize(0);
@@ -131,7 +134,7 @@ GameTraits::RebuildTraits(void) const
 
 
 void
-GameTraits::HandleBaseEnd(MushcoreXML& inXML)
+InfernalTraits::HandleBaseEnd(MushcoreXML& inXML)
 {
     string inStr(inXML.TopData());
     U32 start=0;
@@ -145,18 +148,18 @@ GameTraits::HandleBaseEnd(MushcoreXML& inXML)
 }
 
 void
-GameTraits::HandleTraitsEnd(MushcoreXML& inXML)
+InfernalTraits::HandleTraitsEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
 
 void
-GameTraits::NullHandler(MushcoreXML& inXML)
+InfernalTraits::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameTraits::Pickle(ostream& inOut, const string& inPrefix) const
+InfernalTraits::Pickle(ostream& inOut, const string& inPrefix) const
 {
     if (m_baseNames.size() != 0)
     {
@@ -171,33 +174,33 @@ GameTraits::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameTraits::UnpicklePrologue(void)
+InfernalTraits::UnpicklePrologue(void)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_startTable[kPickleData]["base"] = &GameTraits::NullHandler;
-    m_endTable[kPickleData]["base"] = &GameTraits::HandleBaseEnd;
-    m_endTable[kPickleData]["traits"] = &GameTraits::HandleTraitsEnd;
+    m_startTable[kPickleData]["base"] = &InfernalTraits::NullHandler;
+    m_endTable[kPickleData]["base"] = &InfernalTraits::HandleBaseEnd;
+    m_endTable[kPickleData]["traits"] = &InfernalTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseNames.clear();
 }
 
 void
-GameTraits::UnpickleEpilogue(void)
+InfernalTraits::UnpickleEpilogue(void)
 {
     m_startTable.clear();
     m_endTable.clear();
 }
 
 void
-GameTraits::Unpickle(MushcoreXML& inXML)
+InfernalTraits::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameTraits::XMLStartHandler(MushcoreXML& inXML)
+InfernalTraits::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -220,7 +223,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameTraits::XMLEndHandler(MushcoreXML& inXML)
+InfernalTraits::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -243,7 +246,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameTraits::XMLDataHandler(MushcoreXML& inXML)
+InfernalTraits::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

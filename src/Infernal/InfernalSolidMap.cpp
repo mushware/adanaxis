@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 4OdrKIpo8h8pHc5zr1zokQ
 /*
- * $Id: InfernalSolidMap.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalSolidMap.cpp,v 1.2 2003/10/04 12:44:36 southa Exp $
  * $Log: InfernalSolidMap.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -63,7 +66,7 @@
  * Movement tweaks
  *
  * Revision 1.20  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.19  2002/08/08 18:42:05  southa
  * More motion escape tweaks
@@ -132,7 +135,7 @@
 #include "InfernalMapArea.h"
 #include "InfernalMapPoint.h"
 #include "InfernalMotionSpec.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalSpacePoint.h"
 #include "InfernalView.h"
 

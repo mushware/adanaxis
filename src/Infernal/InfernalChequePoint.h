@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Hn8hGWAF8X+36S0U9pCfBA
 /*
- * $Id: InfernalChequePoint.h,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalChequePoint.h,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalChequePoint.h,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -67,7 +70,7 @@
 
 #include "Mushcore.h"
 
-class GameEventStandingOn;
+class InfernalEventStandingOn;
 
 class InfernalChequePoint : public MushcorePickle, protected MushcoreXMLHandler
 {
@@ -80,7 +83,7 @@ public:
     Mushware::U32 SequenceGet(void) { return m_sequence; }
     Mushware::tVal ParTimeGet(void) { return m_parTime; }
     Mushware::tVal AddTimeGet(void) { return m_addTime; }
-    void StandingOnHandler(const GameEventStandingOn& inEvent);
+    void StandingOnHandler(const InfernalEventStandingOn& inEvent);
     
 protected:
     void UnpicklePrologue(void);

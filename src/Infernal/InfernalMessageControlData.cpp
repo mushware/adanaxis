@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } R+pKymA8SAb1UYCqnHwBTg
 /*
- * $Id: InfernalMessageControlData.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalMessageControlData.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalMessageControlData.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *
@@ -51,9 +54,9 @@
 
 #include "InfernalMessageControlData.h"
 
-#include "GameProtocol.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 
+#include "mushGame.h"
 #include "mushMedia.h"
 
 using namespace Mushware;

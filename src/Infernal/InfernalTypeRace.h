@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMETYPERACE_H
-#define GAMETYPERACE_H
-//%includeGuardStart } qbCPw1q6IIfgW77HKth5DQ
+#ifndef INFERNALTYPERACE_H
+#define INFERNALTYPERACE_H
+//%includeGuardStart } rlnnLu8XDMRMTMH2QxvAEQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameTypeRace.h
+ * File: src/Infernal/InfernalTypeRace.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nfAugSgHwldSQ5P+g0PQzA
+//%Header } bYoSX+vreI2xpwSuWEZ8/A
 /*
- * $Id: GameTypeRace.h,v 1.22 2003/09/17 19:40:34 southa Exp $
- * $Log: GameTypeRace.h,v $
+ * $Id: InfernalTypeRace.h,v 1.23 2003/10/04 12:23:04 southa Exp $
+ * $Log: InfernalTypeRace.h,v $
+ * Revision 1.23  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.22  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -64,10 +67,10 @@
  * Win and lose handling
  *
  * Revision 1.7  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.6  2002/08/21 15:39:01  southa
- * GameTypeRace states
+ * InfernalTypeRace states
  *
  * Revision 1.5  2002/08/21 10:12:21  southa
  * Time down counter
@@ -79,7 +82,7 @@
  * Display of records and lap/split times
  *
  * Revision 1.2  2002/08/19 11:09:56  southa
- * GameTypeRace rendering
+ * InfernalTypeRace rendering
  *
  * Revision 1.1  2002/08/18 20:51:09  southa
  * Moved
@@ -89,20 +92,19 @@
  *
  */
 
-#include "GameRecords.h"
-#include "InfernalTimer.h"
-#include "GameType.h"
 #include "Mushcore.h"
 
-class InfernalChequePoint;
-class GameEvent;
-class GameEventStandingOn;
+#include "mushGame.h"
 
-class GameTypeRace : public GameType
+class InfernalChequePoint;
+class InfernalEvent;
+class InfernalEventStandingOn;
+
+class InfernalTypeRace : public GameType
 {
 public:
-    GameTypeRace();
-    virtual ~GameTypeRace() {}
+    InfernalTypeRace();
+    virtual ~InfernalTypeRace() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
@@ -120,7 +122,7 @@ protected:
     void XMLEndHandler(MushcoreXML& inXML);
     void XMLDataHandler(MushcoreXML& inXML);
 
-    void StandingOnHandler(const GameEventStandingOn& inEvent);
+    void StandingOnHandler(const InfernalEventStandingOn& inEvent);
     
 private:
     void HandleGameEnd(MushcoreXML& inXML);
@@ -142,7 +144,7 @@ private:
         kPickleNumStates
     };
     
-    typedef std::map<std::string, void (GameTypeRace::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (InfernalTypeRace::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
@@ -170,15 +172,15 @@ private:
     std::vector<InfernalChequePoint *> m_chequePoints;
     GameRecords m_records;
     GameRecords m_worldRecords;
-    InfernalTimer::tMsec m_startTime;
-    InfernalTimer::tMsec m_endTime;
-    InfernalTimer::tMsec m_lapStartTime;
-    InfernalTimer::tMsec m_chequePointTime;
-    InfernalTimer::tMsec m_dispRemaining;
-    InfernalTimer::tMsec m_dispLap;
-    InfernalTimer::tMsec m_dispSplit;
-    InfernalTimer::tMsec m_lapParTime;
-    InfernalTimer::tMsec m_timeAllowance;
+    GameTimer::tMsec m_startTime;
+    GameTimer::tMsec m_endTime;
+    GameTimer::tMsec m_lapStartTime;
+    GameTimer::tMsec m_chequePointTime;
+    GameTimer::tMsec m_dispRemaining;
+    GameTimer::tMsec m_dispLap;
+    GameTimer::tMsec m_dispSplit;
+    GameTimer::tMsec m_lapParTime;
+    GameTimer::tMsec m_timeAllowance;
     RaceState m_raceState;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
@@ -192,7 +194,7 @@ private:
     Mushware::tVal m_resultAlpha;
 };
 
-inline std::ostream& operator<<(std::ostream &inOut, const GameTypeRace& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const InfernalTypeRace& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

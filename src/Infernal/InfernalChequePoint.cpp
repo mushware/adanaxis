@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } hu5+CQDupViMzWYdaLkYDA
 /*
- * $Id: InfernalChequePoint.cpp,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalChequePoint.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalChequePoint.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -54,7 +57,7 @@
  * Source conditioning
  *
  * Revision 1.5  2002/08/21 16:09:04  southa
- * GameTypeRace state tweaks
+ * InfernalTypeRace state tweaks
  *
  * Revision 1.4  2002/08/21 10:12:21  southa
  * Time down counter
@@ -73,15 +76,16 @@
 #include "InfernalChequePoint.h"
 #include "InfernalData.h"
 #include "InfernalDataUtils.h"
-#include "GameEvent.h"
-#include "GameSTL.h"
-#include "GameType.h"
+#include "InfernalEvent.h"
+#include "InfernalSTL.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
 
 void
-InfernalChequePoint::StandingOnHandler(const GameEventStandingOn& inEvent)
+InfernalChequePoint::StandingOnHandler(const InfernalEventStandingOn& inEvent)
 {
     U32 size=m_mapValues.size();
     for (U32 i=0; i<size; ++i)
@@ -102,7 +106,7 @@ void
 InfernalChequePoint::Triggered(void)
 {
     InfernalDataUtils::NamedDialoguesAdd(m_action);
-    InfernalData::Sgl().TypeGet().EventHandler(GameEventSequenceAdvance());
+    InfernalData::Sgl().TypeGet().EventHandler(InfernalEventSequenceAdvance());
 }
 
 void

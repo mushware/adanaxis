@@ -23,12 +23,12 @@
 #include "GameFrameTimer.h"
 
 #include "GameSTL.h"
-#include "InfernalTimer.h"
+#include "GameTimer.h"
 
 using namespace Mushware;
 using namespace std;
 
-GameFrameTimer::GameFrameTimer(InfernalTimer::tUsec inInterval):
+GameFrameTimer::GameFrameTimer(GameTimer::tUsec inInterval):
     m_averageFrameUsec(0),
     m_frameIntervalUsec(inInterval),
     m_jitterReported(false)

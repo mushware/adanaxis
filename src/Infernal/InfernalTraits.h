@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMETRAITS_H
-#define GAMETRAITS_H
-//%includeGuardStart } mUlzHm9RAXeWN9ISGkFUyw
+#ifndef INFERNALTRAITS_H
+#define INFERNALTRAITS_H
+//%includeGuardStart } Ofi9gx/UF+E0TyehI9eX6g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameTraits.h
+ * File: src/Infernal/InfernalTraits.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bEeNmU1BeRIN83FHz6/7EA
+//%Header } 9TXubQLB0Cd3oSdOFa1kiQ
 /*
- * $Id: GameTraits.h,v 1.19 2003/08/21 23:08:58 southa Exp $
- * $Log: GameTraits.h,v $
+ * $Id: InfernalTraits.h,v 1.20 2003/09/17 19:40:33 southa Exp $
+ * $Log: InfernalTraits.h,v $
+ * Revision 1.20  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.19  2003/08/21 23:08:58  southa
  * Fixed file headers
  *
@@ -79,18 +82,18 @@
 
 #include "Mushcore.h"
 
-class GameTraits : public MushcorePickle, protected MushcoreXMLHandler
+class InfernalTraits : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
-    GameTraits(): m_traitsValid(false) {}
-    virtual ~GameTraits() {}
+    InfernalTraits(): m_traitsValid(false) {}
+    virtual ~InfernalTraits() {}
     void Verify(void);
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(MushcoreXML& inXML);
     
 protected:
     Mushware::U32 NumberOfTraitsGet(void) const;
-    GameTraits& TraitsGet(Mushware::U32 inIndex) const;
+    InfernalTraits& TraitsGet(Mushware::U32 inIndex) const;
     const std::string TraitsNameGet(void) const;
 
     void UnpicklePrologue(void);
@@ -111,7 +114,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<std::string, void (GameTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (InfernalTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
@@ -121,18 +124,18 @@ private:
     std::vector<std::string> m_baseNames;
     mutable std::string m_failMessage;
     mutable bool m_traitsValid;
-    mutable std::vector<GameTraits *> m_baseTraits;
+    mutable std::vector<InfernalTraits *> m_baseTraits;
 };
 
 inline Mushware::U32
-GameTraits::NumberOfTraitsGet(void) const
+InfernalTraits::NumberOfTraitsGet(void) const
 {
     if (!m_traitsValid) RebuildTraits();
     return m_baseTraits.size();
 }
 
-inline GameTraits&
-GameTraits::TraitsGet(Mushware::U32 inIndex) const
+inline InfernalTraits&
+InfernalTraits::TraitsGet(Mushware::U32 inIndex) const
 {
     if (!m_traitsValid)
     {
@@ -142,7 +145,7 @@ GameTraits::TraitsGet(Mushware::U32 inIndex) const
     return *m_baseTraits[inIndex];
 }
 
-inline std::ostream& operator<<(std::ostream &inOut, const GameTraits& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const InfernalTraits& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

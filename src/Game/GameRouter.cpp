@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wEGV1dv23L0/XdO/oScH6A
 /*
- * $Id: GameRouter.cpp,v 1.25 2003/10/04 12:23:02 southa Exp $
+ * $Id: GameRouter.cpp,v 1.26 2003/10/04 12:44:34 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.26  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.25  2003/10/04 12:23:02  southa
  * File renaming
  *
@@ -93,12 +96,10 @@
 
 #include "GameRouter.h"
 
-#include "InfernalData.h"
-#include "InfernalMessageControlData.h"
+
 #include "GameNetID.h"
 #include "GameNetObject.h"
 #include "GameNetUtils.h"
-#include "InfernalPiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
 
@@ -119,10 +120,6 @@ GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
         case GameProtocol::kMessageTypeCreateObject:
         case GameProtocol::kMessageTypeDeleteObject:
             NetObjectHandle(ioData, inLink);
-            break;
-
-        case GameProtocol::kMessageTypeControlData:
-            ControlDataHandle(ioData, inLink);
             break;
 
         default:
@@ -164,62 +161,6 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     }
 }
 
-void
-GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
-{
-    // Find object that relates to this control data
-
-    bool discard=true;
-    
-    if (inLink.NetIDExists())
-    {
-        const GameNetID& gameNetID = dynamic_cast<const GameNetID&>(inLink.NetIDGet());
-        if (gameNetID.DataRefGet().Exists())
-        {
-            GameDefClient *clientDef = gameNetID.DataRefGet().Get();
-            if (clientDef->PlayerRefGet().Exists())
-            {
-                InfernalPiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
-
-                InfernalMessageControlData controlData;
-                controlData.Unpack(ioData);
-
-                U32 size = controlData.DataSizeGet();
-                U32 startFrame = controlData.StartFrameGet();
-                
-                for (U32 i=0; i<size; ++i)
-                {
-                    const InfernalMessageControlData::DataEntry& dataEntry = controlData.DataEntryGet(i);
-                    piecePlayer->ControlFrameDefAdd(dataEntry.frameDef, startFrame + dataEntry.frameOffset);
-                }
-                
-                discard=false;
-            }
-        }
-    }
-
-    if (discard)
-    {
-        MustlLog::Sgl().NetLog() << ": Discarding ControlData for unknown target" << endl;
-    }
-
-    
-#if 0
-    MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
-
-    if (playerData.Exists(clientName))
-    {
-        MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
-    }
-    else
-    {
-       MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
-    }
-#endif
-    // Apply or store the data
-
-    // Resend object's MotionSpec to the clients as necessary
-}
 
 /************************************************************************************
 

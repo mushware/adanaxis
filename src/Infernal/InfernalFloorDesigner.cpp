@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } M902pzdqb1vaK4Wbqkv1jA
 /*
- * $Id: InfernalFloorDesigner.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalFloorDesigner.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalFloorDesigner.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *
@@ -132,16 +135,14 @@
 
 #include "InfernalFloorDesigner.h"
 
-#include "GameAppHandler.h"
-#include "GameControlFrameDef.h"
-#include "GameController.h"
 #include "InfernalData.h"
 #include "InfernalMapArea.h"
 #include "InfernalMapPoint.h"
 #include "InfernalMotionSpec.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalView.h"
 
+#include "mushGame.h"
 #include "mushGL.h"
 
 using namespace Mushware;

@@ -78,7 +78,7 @@
  * Added current dialogues
  *
  * Revision 1.11  2002/08/09 17:09:04  southa
- * GameDialogue added
+ * InfernalDialogue added
  *
  * Revision 1.10  2002/08/07 13:36:49  southa
  * Conditioned source
@@ -114,18 +114,16 @@
 
 #include "InfernalData.h"
 #include "InfernalContract.h"
-#include "GameController.h"
-#include "GameDialogue.h"
+#include "InfernalDialogue.h"
 #include "InfernalFloorMap.h"
 #include "InfernalPiece.h"
 #include "InfernalPiecePlayer.h"
-#include "GameRewards.h"
-#include "GameSTL.h"
+#include "InfernalSTL.h"
 #include "InfernalTileMap.h"
-#include "InfernalTimer.h"
-#include "GameTraits.h"
-#include "GameType.h"
+#include "InfernalTraits.h"
 #include "InfernalView.h"
+
+#include "mushGame.h"
 
 using namespace Mushware;
 using namespace std;
@@ -168,7 +166,7 @@ InfernalData::Clear(void)
     }
     m_contracts.clear();
 
-    for (map<std::string, GameTraits *>::iterator p = m_traits.begin();
+    for (map<std::string, InfernalTraits *>::iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
         delete p->second;
@@ -189,7 +187,7 @@ InfernalData::Clear(void)
     }
     m_templates.clear();
 
-    for (map<std::string, GameDialogue *>::iterator p = m_dialogues.begin();
+    for (map<std::string, InfernalDialogue *>::iterator p = m_dialogues.begin();
          p != m_dialogues.end(); ++p)
     {
         delete p->second;
@@ -218,7 +216,7 @@ InfernalData::Clear(void)
         delete m_gameRewards;
         m_gameRewards=NULL;
     }
-    for (map<std::string, GameDialogue *>::iterator p = m_currentDialogues.begin();
+    for (map<std::string, InfernalDialogue *>::iterator p = m_currentDialogues.begin();
          p != m_currentDialogues.end(); ++p)
     {
         delete p->second;
@@ -327,10 +325,10 @@ InfernalData::ContractsClear(void)
     m_contracts.clear();
 }
 
-GameTraits *
-InfernalData::TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits)
+InfernalTraits *
+InfernalData::TraitsDeleteAndCreate(const string& inName, InfernalTraits *inTraits)
 {
-    map<std::string, GameTraits *>::iterator p = m_traits.find(inName);
+    map<std::string, InfernalTraits *>::iterator p = m_traits.find(inName);
     if (p != m_traits.end())
     {
         delete p->second;
@@ -343,10 +341,10 @@ InfernalData::TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits)
     return inTraits;
 }
 
-GameTraits *
+InfernalTraits *
 InfernalData::TraitsGet(const string& inName) const
 {
-    map<std::string, GameTraits *>::const_iterator p = m_traits.find(inName);
+    map<std::string, InfernalTraits *>::const_iterator p = m_traits.find(inName);
     if (p == m_traits.end())
     {
         throw(MushcoreDataFail("Access to non-existent trait '"+inName+"'"));
@@ -408,10 +406,10 @@ InfernalData::TemplateGet(const string& inName) const
     return p->second;
 }
 
-GameDialogue *
-InfernalData::DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue)
+InfernalDialogue *
+InfernalData::DialogueDeleteAndCreate(const string& inName, InfernalDialogue *inDialogue)
 {
-    map<std::string, GameDialogue *>::iterator p = m_dialogues.find(inName);
+    map<std::string, InfernalDialogue *>::iterator p = m_dialogues.find(inName);
     if (p != m_dialogues.end())
     {
         delete p->second;
@@ -424,10 +422,10 @@ InfernalData::DialogueDeleteAndCreate(const string& inName, GameDialogue *inDial
     return inDialogue;
 }
 
-GameDialogue *
+InfernalDialogue *
 InfernalData::DialogueGet(const string& inName) const
 {
-    map<std::string, GameDialogue *>::const_iterator p = m_dialogues.find(inName);
+    map<std::string, InfernalDialogue *>::const_iterator p = m_dialogues.find(inName);
     if (p == m_dialogues.end())
     {
         throw(MushcoreDataFail("Access to non-existent dialogue '"+inName+"'"));
@@ -474,12 +472,12 @@ InfernalData::CurrentViewGet(void) const
     throw(MushcoreDataFail("Access to non-existent current view"));
 }
 
-InfernalTimer&
+GameTimer&
 InfernalData::TimerGet(void)
 {
     if (m_timer == NULL)
     {
-        m_timer = new InfernalTimer;
+        m_timer = new GameTimer;
     }
     return *m_timer;
 }
@@ -524,11 +522,11 @@ InfernalData::RewardsSet(GameRewards *inRewards)
     m_gameRewards=inRewards;
 }
 
-GameDialogue *
-InfernalData::CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue)
+InfernalDialogue *
+InfernalData::CurrentDialogueAdd(const string& inName, const InfernalDialogue& inDialogue)
 {
-    GameDialogue *newDialogue = new GameDialogue(inDialogue);
-    map<std::string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    InfernalDialogue *newDialogue = new InfernalDialogue(inDialogue);
+    map<std::string, InfernalDialogue *>::iterator p = m_currentDialogues.find(inName);
     if (p == m_currentDialogues.end())
     {
         m_currentDialogues[inName] = newDialogue;
@@ -544,7 +542,7 @@ InfernalData::CurrentDialogueAdd(const string& inName, const GameDialogue& inDia
 void
 InfernalData::CurrentDialogueDelete(const string& inName)
 {
-    map<std::string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    map<std::string, InfernalDialogue *>::iterator p = m_currentDialogues.find(inName);
     if (p == m_currentDialogues.end())
     {
         throw(MushcoreLogicFail("Attempt to delete non-existent current dialogue '"+inName+"'"));
@@ -598,7 +596,7 @@ InfernalData::DumpAll(ostream& inOut) const
     }
     inOut << "</chunk>" << endl;
     inOut << "<chunk type=\"traits\">" << endl;
-    for (map<std::string, GameTraits *>::const_iterator p = m_traits.begin();
+    for (map<std::string, InfernalTraits *>::const_iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
         inOut << "  <traits type=\"" << p->second->TypeNameGet() << "\" name=\"" << p->first << "\">" << endl;
