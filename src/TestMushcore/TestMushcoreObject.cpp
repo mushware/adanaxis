@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LQSTCy0TkFLyIzkXR+k2qA
 /*
- * $Id: TestMushcoreObject.cpp,v 1.17 2004/01/02 21:13:18 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.18 2004/01/08 16:06:11 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.18  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.17  2004/01/02 21:13:18  southa
  * Source conditioning
  *
@@ -93,11 +96,11 @@ MushcoreVirtualObject *TestMushcoreObject::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("TestMushcoreObject", TestMushcoreObject::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 bool
 TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
@@ -319,4 +322,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } DQUJ+S2mK4sMoo1P2vYHMA
+//%outOfLineFunctions } 0IrYj6k5iv+3Y6OlqPZp9w

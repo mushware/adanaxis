@@ -5451,8 +5451,16 @@
 				7A62B8FB05A49D05002A5F1C,
 				7A62B8FC05A49D05002A5F1C,
 				7A62B8FD05A49D05002A5F1C,
+				7A6AC92E05B9727A0019F752,
+				7A6AC92D05B9727A0019F752,
+				7A6AC93A05B972840019F752,
+				7A6AC93905B972840019F752,
+				7A6AC94605B9728C0019F752,
+				7A6AC94505B9728C0019F752,
 				7A62B8FE05A49D05002A5F1C,
 				7A62B8FF05A49D05002A5F1C,
+				7A6AC8D805B972140019F752,
+				7A6AC8D705B972140019F752,
 			);
 			isa = PBXGroup;
 			path = TestMushcore;
@@ -10215,6 +10223,118 @@
 			settings = {
 			};
 		};
+		7A6AC8D705B972140019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushcoreVirtualPointerObject.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC8D805B972140019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushcoreVirtualPointerObject.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC8D905B972140019F752 = {
+			fileRef = 7A6AC8D705B972140019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC8DA05B972140019F752 = {
+			fileRef = 7A6AC8D805B972140019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC92D05B9727A0019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushcoreObjectBase.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC92E05B9727A0019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushcoreObjectBase.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC92F05B9727A0019F752 = {
+			fileRef = 7A6AC92D05B9727A0019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC93005B9727A0019F752 = {
+			fileRef = 7A6AC92E05B9727A0019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC93905B972840019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushcoreObjectSub.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC93A05B972840019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushcoreObjectSub.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC93B05B972840019F752 = {
+			fileRef = 7A6AC93905B972840019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC93C05B972840019F752 = {
+			fileRef = 7A6AC93A05B972840019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC94505B9728C0019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushcoreObjectSubSub.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC94605B9728C0019F752 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushcoreObjectSubSub.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A6AC94705B9728C0019F752 = {
+			fileRef = 7A6AC94505B9728C0019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A6AC94805B9728C0019F752 = {
+			fileRef = 7A6AC94605B9728C0019F752;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A6CE13405A5899B00777D9B = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -12276,6 +12396,10 @@
 				7A719A4E05A99C4500C42A20,
 				7A719A5805A99C4700C42A20,
 				7A719B0105A9A0A200C42A20,
+				7A6AC8D905B972140019F752,
+				7A6AC92F05B9727A0019F752,
+				7A6AC93B05B972840019F752,
+				7A6AC94705B9728C0019F752,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12298,6 +12422,10 @@
 				7A719A4C05A99C4400C42A20,
 				7A719A5305A99C4600C42A20,
 				7A719ACC05A9A01200C42A20,
+				7A6AC8DA05B972140019F752,
+				7A6AC93005B9727A0019F752,
+				7A6AC93C05B972840019F752,
+				7A6AC94805B9728C0019F752,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

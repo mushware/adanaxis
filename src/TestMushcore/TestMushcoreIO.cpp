@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.12 2004/01/08 16:06:11 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.13 2004/01/08 22:41:10 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.13  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.12  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -53,7 +56,9 @@
  */
 
 #include "TestMushcoreIO.h"
+
 #include "TestMushcoreObject.h"
+#include "TestMushcoreVirtualPointerObject.h"
 
 using namespace Mushware;
 using namespace std;
@@ -63,6 +68,7 @@ MushcoreInstaller TestMushcoreIOInstaller(TestMushcoreIO::Install);
 MushcoreScalar
 TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
+#if 1
     {
         vector<U8> testVector;	
         testVector.push_back(4);
@@ -75,7 +81,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     
         if (testStream.str() != "[4, 8, 1, 2]")
         {
-            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+            throw MushcoreCommandFail("MushcoreIO fault '"+testStream.str()+"'");
         }
     }
     {
@@ -90,7 +96,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     
         if (testStream.str() != "[0, 3, 57, 4]")
         {
-            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+            throw MushcoreCommandFail("MushcoreIO fault '"+testStream.str()+"'");
         }
     }
 
@@ -106,7 +112,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
         if (testStream.str() != "[eight => 8, fifteen => 15, one => 1, twenty five => 25]")
         {
-            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+            throw MushcoreCommandFail("MushcoreIO fault '"+testStream.str()+"'");
         }
     }
 
@@ -137,7 +143,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         {
             ostringstream message;
             message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
-            throw MushcoreLogicFail(message.str());
+            throw MushcoreCommandFail(message.str());
         }
     }
     
@@ -153,7 +159,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         xmlOStream << testData;
         
         MushcoreXMLOStream xmlCout(cout);
-        // xmlCout << testData;
+        xmlCout << testData;
 
         MushcoreData<TestMushcoreObject> readBackData;
         
@@ -162,31 +168,108 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         xmlIStream >> readBackData;
         
+        cout << "++++++++Done it" << endl;
+        
         if (testData != readBackData)
         {
             ostringstream message;
             message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testData << " != " << readBackData;
-            throw MushcoreLogicFail(message.str());
+            throw MushcoreCommandFail(message.str());
         }
         
         MushcoreDataRef<TestMushcoreObject> testObjectRef("obj1", testData);
         
         if (testObjectRef.Get() ==  NULL)
         {
-            throw MushcoreLogicFail("MushcoreIO DataRef not found ");            
+            throw MushcoreCommandFail("MushcoreIO DataRef not found ");            
         }            
         
         if (*testObjectRef.Get() != TestMushcoreObject(1))
         {
-            throw MushcoreLogicFail("MushcoreIO DataRef value fault ");            
+            throw MushcoreCommandFail("MushcoreIO DataRef value fault ");            
         }
         
         testObjectRef.Get()->U8Set(3);
         if (*testObjectRef.Get() == TestMushcoreObject(1))
         {
-            throw MushcoreLogicFail("MushcoreIO DataRef write failure ");            
+            throw MushcoreCommandFail("MushcoreIO DataRef write failure ");            
         }
     }
+    
+    // Test read and write of virtual objects
+    
+    {
+        ostringstream testOStream;
+        MushcoreXMLOStream xmlOStream(testOStream);
+        TestMushcoreVirtualPointerObject testObject;
+        
+        xmlOStream << testObject;
+        
+        TestMushcoreVirtualPointerObject readBackObject;
+        
+        istringstream testIStream(testOStream.str());
+        MushcoreXMLIStream xmlIStream(testIStream);
+        
+        xmlIStream >> readBackObject;
+        
+        if (testObject != readBackObject)
+        {
+            ostringstream message;
+            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            throw MushcoreCommandFail(message.str());
+        }
+    }
+    
+    {
+        ostringstream testOStream;
+        MushcoreXMLOStream xmlOStream(testOStream);
+        TestMushcoreVirtualPointerObject testObject;
+        testObject.PopulateObjects1();
+        
+        xmlOStream << testObject;
+        
+        TestMushcoreVirtualPointerObject readBackObject;
+        
+        istringstream testIStream(testOStream.str());
+        MushcoreXMLIStream xmlIStream(testIStream);
+        
+        xmlIStream >> readBackObject;
+        
+        if (testObject != readBackObject)
+        {
+            ostringstream message;
+            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            throw MushcoreCommandFail(message.str());
+        }
+    }
+#endif
+    {
+        ostringstream testOStream;
+        MushcoreXMLOStream xmlOStream(testOStream);
+        TestMushcoreVirtualPointerObject testObject;
+        testObject.PopulateObjects2();
+        
+        xmlOStream << testObject;
+        
+        cout << testOStream.str();
+        
+        TestMushcoreVirtualPointerObject readBackObject;
+        
+        istringstream testIStream(testOStream.str());
+        MushcoreXMLIStream xmlIStream(testIStream);
+        
+        xmlIStream >> readBackObject;
+
+        if (testObject != readBackObject)
+        {
+            ostringstream message;
+            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            throw MushcoreCommandFail(message.str());
+        }
+    }
+
+    
+
     
     return MushcoreScalar(0);
 }

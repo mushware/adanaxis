@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.21 2004/01/08 22:41:10 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.22 2004/01/10 20:29:35 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.22  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.21  2004/01/08 22:41:10  southa
  * MushModel commands
  *
@@ -100,14 +103,14 @@ public:
     Mushware::U8 ByteGet(void);
     Mushware::U8 ByteTake(void);
     
-    template<class T> void ObjectRead(T *& outpObj);
+    template<class T> void ObjectRead(T *& outpObj);   
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
     template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
     template<class T, class U> void ObjectRead(std::map<T, U *>& inMap);
 
-    void ObjectRead(MushcoreVirtualObject *outpObj);
-    void ObjectRead(MushcoreVirtualObject& outObj);
+    void ObjectReadVirtual(MushcoreVirtualObject *& outpObj);
+    void ObjectReadVirtual(MushcoreVirtualObject& outObj);
 
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
@@ -127,7 +130,11 @@ protected:
     
     void InputFetch(void);
 
-private:    
+private:
+    bool VirtualIs(MushcoreVirtualObject *inpObj) { return true; }
+    bool VirtualIs(void *inpObj) { return false; }
+    MushcoreVirtualObject *AllocateVirtual(void);
+        
     std::istream& m_inStream;
     std::string m_tagName;
     std::string m_contentStr;
@@ -224,18 +231,6 @@ operator>>(MushcoreXMLIStream& ioIn, std::map<T, U *>& outObj)
     ioIn.ObjectRead(outObj);
 }
 
-inline void
-operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject& outObj)
-{
-    ioIn.ObjectRead(outObj);
-}
-
-inline void
-operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& outpObj)
-{
-    ioIn.ObjectRead(outpObj);
-}
-
 template<class T>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, T *& outpObj)
@@ -256,10 +251,37 @@ MushcoreXMLIStream::ObjectRead(T *& outpObj)
     {
         if (outpObj == NULL)
         {
-            outpObj = new T;
+            std::string typeStr;
+            if (VirtualIs(outpObj)) // Function resolves whether MushcoreVirtualObject is a base
+            {
+                outpObj = reinterpret_cast<T *>(AllocateVirtual());
+            }
+            else
+            {
+                outpObj = new T;
+            }
         }
         *this >> *outpObj;
     }
+}
+
+template<>
+inline void
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *& outpObj) // Specialises the above
+{
+    ObjectReadVirtual(outpObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject& outObj)
+{
+    ioIn.ObjectReadVirtual(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& outpObj)
+{
+    ioIn.ObjectReadVirtual(outpObj);
 }
 
 template<class T>
@@ -267,11 +289,7 @@ inline void
 MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
 {
     // Decode the (x,y,z) sequence
-
-    if (ByteTake() != '(')
-    {
-        Throw("Bad first character in vector");
-    }
+    bool hasTag = CompositePrologue();
 
     if (ByteGet() == ')')
     {
@@ -308,6 +326,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
             }
         }
     }
+    CompositeEpilogue(hasTag);
 }
 
 template<class T>
@@ -316,18 +335,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
 {
     // Decode the (x,y,z) sequence
 
-    if (ByteGet() == '<')    
-    {
-        if (DataUntilTake(">") != "<obj>")
-        {
-            Throw("Bad tag in vector");
-        }
-    }
-    
-    if (ByteTake() != '(')
-    {
-        Throw("Bad first character in vector");
-    }
+    bool hasTag = CompositePrologue();
 
     if (ByteGet() == ')')
     {
@@ -356,6 +364,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
             }
         }
     }
+    CompositeEpilogue(hasTag);
 }
 
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } u4KzedBl1+uLt37oBoF4HQ
 /*
- * $Id: MushPiePosicity.h,v 1.3 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePosicity.h,v 1.4 2004/01/10 20:29:35 southa Exp $
  * $Log: MushPiePosicity.h,v $
+ * Revision 1.4  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.3  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -51,9 +54,9 @@ public:
     
 //%classPrototypes {
 public:
-    bool AutoEquals(const MushPiePosicity& inObj) const;
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } Exb5ZZbjxTN8n4F0Gd2QIA
+    virtual bool AutoEquals(const MushPiePosicity& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } nl2t4njcg0+tYk9UUmj1ew
 };
 
 void

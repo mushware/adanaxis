@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.15 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.16 2004/01/08 22:41:10 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.16  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.15  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -69,6 +72,12 @@
 #include "MushcoreUtil.h"
 #include "MushcoreVirtualObject.h"
 
+#if 1
+#define MUSHCOREXMLISTREAM_DEBUG(a) a
+#else
+#define MUSHCOREXMLISTREAM_DEBUG(a)
+#endif
+
 using namespace std;
 using namespace Mushware;
 
@@ -84,8 +93,9 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 }
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
+MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
 {
+    MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Entering" << endl));
     string tagStr;
     do
     {
@@ -100,7 +110,7 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
 
         if (tagStr.substr(0, 1) == "/")
         {
-            // cout << "Break on '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl;
+            MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Break on '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl));
             // This is the end of the outer object
             // m_contentStart = dataStartPos;
             break;
@@ -116,8 +126,10 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
         m_contentStart = dataStartPos;
         // Tag is read and m_contentStart points to the start of the tag data
 
+        string typeStr;
         if (outpObj == NULL)
         {
+            MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr<< "outpObj == NULL" << endl));
             /* Pointer is NULL, so this is a pointer to a polymorphic type
              * which we might need to allocate
             */
@@ -128,38 +140,20 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
             }
             else
             {
-                string typeStr;
-                if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
-                {
-                    // No type specified, so cannot create object
-
-
-                    Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
-                }
-                if (outpObj != NULL)
-                {
-                    delete outpObj;
-                }
-                
-                outpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
-
-                if (outpObj == NULL)
-                {
-                    // Dynamic cast failed
-                    Throw("Object of type "+typeStr+" not virtual enough");
-                }
+                outpObj = AllocateVirtual();
             }
-            
         }
 
         if (outpObj != NULL)
         {
-            // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
+            MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Threading " << tagStr << endl));
+            MUSHCOREXMLISTREAM_DEBUG((m_indentStr += " "));
             if (!outpObj->AutoXMLDataProcess(*this, tagStr))
             {
                 Throw("Unrecognised tag '"+tagStr+"'");
             }
-            // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
+            MUSHCOREXMLISTREAM_DEBUG((m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1)));
+            MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Unthreading " << tagStr << endl));
         }
         
         string closingTagStr;
@@ -170,21 +164,28 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
             // Can be optimised
             InputFetch();
         }
-        // cout << "Skipped '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl;
+        MUSHCOREXMLISTREAM_DEBUG((cout<< m_indentStr  << "Consumed end tag '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl));
         if (closingTagStr != "/"+tagStr)
         {
             Throw("Unmatched tag: Found '"+closingTagStr+"', expected '/"+tagStr+"'");
         }
 
-        m_contentStart = dataStartPos;     
+        m_contentStart = dataStartPos;
+        MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Checking exit critereon \"" << tagStr << "\" == \"obj\"" << endl));
     } while (tagStr != "obj");
+    MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Exiting" << endl));
+    if (m_indentStr == "")
+    {
+        MushcoreUtil::BreakpointFunction();
+    }
 }
 
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& outObj)
+MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject& outObj)
 {
-    ObjectRead(&outObj);
+    MushcoreVirtualObject *pObj = &outObj;
+    ObjectRead(pObj);
 }
 
 void
@@ -374,3 +375,30 @@ MushcoreXMLIStream::Throw(const string& inMessage) const
     message << "XML parsing failure around '" << m_contentStr.substr(m_contentStart) << "' in element ending at line " << m_contentLineNum << ": " << inMessage;
     throw(MushcoreSyntaxFail(message.str()));
 }
+
+MushcoreVirtualObject *
+MushcoreXMLIStream::AllocateVirtual(void)
+{
+    MushcoreVirtualObject *retPtr = NULL;
+
+    string typeStr;
+    
+    if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
+    {
+        Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
+//        ObjectReadVirtual(retPtr);
+    }
+    else
+    {
+        retPtr = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
+        
+        if (retPtr == NULL)
+        {
+            // Dynamic cast failed
+            Throw("Object of type "+typeStr+" not castable to MushcoreVirtualObject");
+        }
+        MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "***** Allocated virtual type '" << typeStr << "'" << endl));
+    }
+    return retPtr;
+}    
+

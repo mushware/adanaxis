@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XWTplRc9rgj8oYPVlTvtrA
 /*
- * $Id: MushcoreUtil.h,v 1.12 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.13 2004/01/04 17:02:30 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.13  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.12  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -98,6 +101,8 @@ public:
     static std::istream *IStringStreamNew(const std::string& inStr);
     template<class T> static std::vector<T> ArrayToVector(const T inArray[], Mushware::U32 inSize);
     template<class T> static void VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue = T());
+    
+    static void BreakpointFunction(void);
 };
 
 template<class T>

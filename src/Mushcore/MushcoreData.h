@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.16 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushcoreData.h,v 1.17 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.17  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.16  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -369,7 +372,7 @@ template<class RefType, class KeyType>
 inline void
 MushcoreData<RefType, KeyType>::XMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut << m_data;    
+    ioOut << m_data;
 }
 
 template<class RefType, class KeyType>
@@ -427,6 +430,7 @@ MushcoreData<RefType, KeyType>::Equals(const MushcoreData<RefType, KeyType>& inO
     }
 }
 
+#if 0
 template<class RefType, class KeyType>
 inline bool
 MushcoreData<RefType, KeyType>::PtrEquals(const MushcoreData<RefType, KeyType>& inObj) const
@@ -437,6 +441,7 @@ MushcoreData<RefType, KeyType>::PtrEquals(const MushcoreData<RefType, KeyType>& 
     // Don't check sequence number
     ;
 }
+#endif
 
 template<class RefType, class KeyType>
 inline bool

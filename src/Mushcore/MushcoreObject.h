@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7u69XXGKDASVrxnEbr389Q
 /*
- * $Id: MushcoreObject.h,v 1.3 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreObject.h,v 1.4 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreObject.h,v $
+ * Revision 1.4  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.3  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -35,8 +38,8 @@
 class MushcoreObject
 {
 public:
-protected:
     MushcoreObject() {} // Don't allow direct creation of this class
+protected:
 };
 //%includeGuardEnd {
 #endif

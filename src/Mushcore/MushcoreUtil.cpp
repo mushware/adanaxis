@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } pmQovnG+eSD9h3QcMJoqMg
 /*
- * $Id: MushcoreUtil.cpp,v 1.13 2003/10/04 12:23:09 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.14 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.14  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/10/04 12:23:09  southa
  * File renaming
  *
@@ -192,4 +195,9 @@ MushcoreUtil::IStringStreamNew(const std::string& inStr)
     return new istringstream(inStr);
 }
 
+void
+MushcoreUtil::BreakpointFunction(void)
+{
+    cerr << "Hit BreakpointFuncton" << endl;
+}
 
