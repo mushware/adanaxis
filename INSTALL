@@ -6,23 +6,18 @@ To compile and install Infernal Contractor II from this distribution:
 Unix/POSIX/Linux/FreeBSD
 ========================
 
-Download and unpack the source and data files thus:
+Download and unpack the source and data files and build thus:
 
-tar xvzf ic2-src-0_0_3.tar.gz
-cd ic2-0.0.3
-tar xvzf ic2-data-0_0_3.tar.gz
-
-Run
-
+tar xvzf ic2-src-0_0_4.tar.gz
+cd ic2-0.0.4
+tar xvzf ic2-data-0_0_4.tar.gz
 ./configure
-(spend a few days getting the libraries which configure asks for)
+# (spend a few days getting the libraries that configure asks for)
 make
 make install
+./ic2
 
 The application will be installed into to ic2data directory, not in the /usr tree.
-It can then be run using
-
-./ic2
 
 MacOS X
 =======

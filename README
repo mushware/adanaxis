@@ -1,18 +1,44 @@
 Infernal Contractor II
 ======================
 
-A video game reflecting the insidious world of the software contractor.
+Take the role of the Software Contractor and raise mayhem in this office
+simulation.
 
 Please report bugs and problems using http://sourceforge.net/projects/ic2/.
 
 Game Manual
 ===========
 
-There's no gameplay as yet, but a few keys will work.
+After a fine performance in your job interview you find yourself on the brink
+of profitable employment.  Yet the company are doubting your fitness for the
+job, and want you to pass a medical before they sign on the line.  With the
+medical staff on sick leave, their only alternative is to time you as you
+run around the office.
+
+They've set up various observation points around the office, which you have
+pass in the order 1-2-3-1-2... and so on.
 
 Arrow keys - move forward, backward, left and right
-Mouse x axis - rotate player
+Mouse - rotate player
 Escape - exit
+
+The complicated profusion of time displays are:
+
+Top right, from the top down:
+  Time remaining
+  Lap record for the current attempt (appears after the first lap)
+  Lap time so far
+
+Top left:
+  Lap count
+  Split time record for this attempt and section (appears after the first lap)
+  Split time so far
+
+Task completion times:
+  Small yellow: Lap time
+  Big yellow:   Difference between lap time and best so far
+  Small yellow: Split time
+  Big yellow:   Difference between split time and best so far
 
 Game options can be altered by changing the configuration file directly,
 named system/start.txt in the installation directory.  Installers will create
@@ -33,14 +59,15 @@ and display quality set to high.
 Diagnostic output
 =================
 
-If things go wrong, diagnosting output is written to the termianl which
-started the application (if there is one), the console (MacOS X), of the
+If things go wrong, diagnostic output is written to the terminal which
+started the application (if there is one), the console (MacOS X), or the
 files stderr.txt and stdout.txt in the ic2 system directory (win32).
 
 Pressing the m key will toggle the collision checking diagnostic overlay.
+Pressing the n key with toggle the frame rate display.
 
 Contract Designer Manual
-=======================
+========================
 
 IC2 contains an in-game cheap and cheerful contract designer (like a level
 designer).  Contracts are edited using copy and paste.
@@ -50,13 +77,15 @@ Key controls
 
 d - enter designer from game
 p - return to game from designer
-F1 - Editing screen for the contract
-F2 - Second copy of the contract
-F3 - Template screen
+F1 - editing screen for the contract
+F2 - second copy of the contract
+F3 - template screen
+F4 - scratch screen
 z - undo
 v - redo
 s - save the contract
 arrow keys - move around
+- and = - zoom
 left mouse button - paste (select in screens F2 upwards)
 middle mouse button - move map around by dragging
 right mouse button - select area by dragging
@@ -88,3 +117,4 @@ selected are will flash.
 5.  Repeat 1-4 as necessary.
 6.  Save the contract by pressing s.
 7.  Press p to return to gameplay to test the contract.
+
