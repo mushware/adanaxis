@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: ic2.Makefile.am,v 1.3 2003/07/16 19:15:57 southa Exp $
+# $Id: ic2.Makefile.am,v 1.4 2003/09/17 20:04:58 southa Exp $
 # $Log: ic2.Makefile.am,v $
+# Revision 1.4  2003/09/17 20:04:58  southa
+# Build changes
+#
 # Revision 1.3  2003/07/16 19:15:57  southa
 # Tweak to x11-release target
 #
@@ -43,6 +46,11 @@ ic2.spec.suse ic2.spec.suse.in \
 ic2.spec.redhat ic2.spec.redhat.in \
 README.linux README.macosx README.win32 \
 core-app.pbproj/project.pbxproj
+
+all:prebuild-script
+
+prebuild-script:
+	$(SHELL) prebuild.sh
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)

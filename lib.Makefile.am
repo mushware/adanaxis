@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: lib.Makefile.am,v 1.3 2003/01/20 15:38:24 southa Exp $
+# $Id: lib.Makefile.am,v 1.4 2003/09/17 20:04:58 southa Exp $
 # $Log: lib.Makefile.am,v $
+# Revision 1.4  2003/09/17 20:04:58  southa
+# Build changes
+#
 # Revision 1.3  2003/01/20 15:38:24  southa
 # Created MushcoreTest
 #
@@ -28,8 +31,12 @@ SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
 EXTRA_DIST = prebuild.sh
 
+all:prebuild-script
+
+prebuild-script:
+	$(SHELL) prebuild.sh
+
 test:
 	$(MAKE) -Csrc test
 
-.PHONY: test
-
+.PHONY: test prebuild-script
