@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.5 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTimer.h,v 1.6 2002/08/19 11:09:56 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.6  2002/08/19 11:09:56  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.5  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -60,7 +63,8 @@ public:
     tMsec SleepTimeGet(void) const;
     void DisplayedFrameAt(tMsec inMsec);
     tVal WindbackValueGet(tMsec inMSec);
-
+    static string MsecToString(tMsec inMsec);
+    static string MsecToLongString(tMsec inMsec);
     
 private:
     void ReportJitter(void);

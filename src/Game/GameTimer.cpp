@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.6 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTimer.cpp,v 1.7 2002/08/19 11:09:56 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.7  2002/08/19 11:09:56  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -238,7 +241,7 @@ GameTimer::WindbackValueGet(tMsec inMSec)
     //if (m_motionMargin < 0) m_motionMargin = 0;
     if (m_motionMargin > 200000)
     {
-        // Give up partial frame compenasation at this point
+        // Give up partial frame compensation at this point
         m_motionMargin = 200000;
         windbackValue=0;
     }
@@ -254,4 +257,62 @@ GameTimer::ReportJitter(void)
         cerr << "Timing jitter detected" << endl;
         m_jitterReported = true;
     }
+}
+
+string
+GameTimer::MsecToString(tMsec inMsec)
+{
+    tVal msec=inMsec;
+    if (msec < 0) msec=-msec;
+
+    double minutes = msec / 60000.0;
+    double seconds = 60*modf(minutes, &minutes);
+    double centiseconds = 100*modf(seconds, &seconds);
+    
+    char buffer[256];
+    if (inMsec < 0.0)
+    {
+        if (minutes > 0.0)
+        {
+            sprintf(buffer, "-%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+        }
+        else
+        {
+            sprintf(buffer, "-%.0f.%02.0f", seconds, centiseconds);
+        }
+    }
+    else
+    {
+        if (minutes > 0.0)
+        {
+            sprintf(buffer, "%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+        }
+        else
+        {
+            sprintf(buffer, "%.0f.%02.0f", seconds, centiseconds);
+        }
+    }        
+    return string(buffer);
+}
+
+string
+GameTimer::MsecToLongString(tMsec inMsec)
+{
+    tVal msec=inMsec;
+    if (msec < 0) msec=-msec;
+
+    double minutes = msec / 60000.0;
+    double seconds = 60*modf(minutes, &minutes);
+    double centiseconds = 100*modf(seconds, &seconds);
+
+    char buffer[256];
+    if (inMsec < 0.0)
+    {
+        sprintf(buffer, "-%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+    }
+    else
+    {
+        sprintf(buffer, "%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+    }
+    return string(buffer);
 }

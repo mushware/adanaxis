@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.2 2002/08/19 09:59:36 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.3 2002/08/19 11:09:56 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.3  2002/08/19 11:09:56  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.2  2002/08/19 09:59:36  southa
  * Removed sound callbacks, used polling
  *
@@ -71,9 +74,7 @@ GameTypeRace::Render(void) const
     }
 
     ostringstream message;
-    double elapsedInt, elapsedFraction;
-    elapsedInt = modf(elapsedTime/1000, &elapsedFraction);
-    message << "Elapsed " << elapsedInt << "." << width(2) << elapsedFraction;
+    message << "Elapsed " << GameTimer::MsecToLongString(elapsedTime);
     GLUtils::OrthoPrologue();
     GLUtils::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;
