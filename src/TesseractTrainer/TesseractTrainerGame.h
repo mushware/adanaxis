@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.2 2005/02/03 21:03:09 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.3 2005/02/10 12:34:20 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.3  2005/02/10 12:34:20  southa
+ * Template fixes
+ *
  * Revision 1.2  2005/02/03 21:03:09  southa
  * Build fixes
  *
@@ -54,6 +57,7 @@ private:
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
     Mushware::tQValPair m_orientaton;
+    std::vector<Mushware::t4GLVal> m_colours;
 
 //%classPrototypes {
 public:

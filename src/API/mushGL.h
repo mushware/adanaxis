@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 9ALpBAAG9yNsjRsW9GGQ3A
 /*
- * $Id: mushGL.h,v 1.26 2004/09/27 22:42:08 southa Exp $
+ * $Id: mushGL.h,v 1.27 2005/02/10 12:33:55 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.27  2005/02/10 12:33:55  southa
+ * Template fixes
+ *
  * Revision 1.26  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *
@@ -119,6 +122,7 @@
 #include "GL/GLStandard.h"
 #include "GL/GLString.h"
 #include "GL/GLTexture.h"
+#include "GL/GLTextureProc.h"
 #include "GL/GLTextureRef.h"
 #include "GL/GLUtils.h"
 #include "GL/GLXMLOperators.h"

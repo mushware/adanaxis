@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.1 2005/02/03 15:46:57 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.2 2005/02/10 12:34:20 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.2  2005/02/10 12:34:20  southa
+ * Template fixes
+ *
  * Revision 1.1  2005/02/03 15:46:57  southa
  * Quaternion work
  *
@@ -92,6 +95,8 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     
     glDisable(GL_MULTISAMPLE);
+    glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
+    
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
     glLineWidth(1.0);
     glPointSize(2.0);
@@ -118,10 +123,22 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13)); // 13
     MushGLV::Sgl().Acquaint();
-    m_hypercube.Create(0);
-    m_hypersphere.Create(0);
+    
+    m_colours.resize(8);
+    tVal alpha=0.2;
+    m_colours[0] = t4GLVal(1.0,0.5,0.5,alpha);
+    m_colours[1] = t4GLVal(0.5,0.5,0.5,alpha);
+    m_colours[2] = t4GLVal(0.5,1.0,0.5,alpha);
+    m_colours[3] = t4GLVal(0.5,0.5,0.5,alpha);
+    m_colours[4] = t4GLVal(0.5,0.5,1.0,alpha);
+    m_colours[5] = t4GLVal(0.5,0.5,0.5,alpha);
+    m_colours[6] = t4GLVal(0.8,0.8,0.5,alpha);
+    m_colours[7] = t4GLVal(0.5,0.5,0.5,alpha);
+    
+    m_hypercube.Create(0, m_colours);
+    m_hypersphere.Create(0, m_colours);
 
-    //cout << MushGLV::Sgl() << endl;
+    cout << MushGLV::Sgl() << endl;
 }
 
 void
@@ -137,7 +154,8 @@ const char *TesseractTrainerGame::AutoNameGet(void) const
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoClone(void) const
 {
-    return new TesseractTrainerGame(*this);
+    //return new TesseractTrainerGame(*this);
+    throw "Computer says no";
 }
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoCreate(void) const

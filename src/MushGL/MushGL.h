@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QEwu7zWUlg50RfLo59G73Q
 /*
- * $Id: MushGL.h,v 1.3 2005/01/29 14:06:12 southa Exp $
+ * $Id: MushGL.h,v 1.4 2005/02/01 13:40:37 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.4  2005/02/01 13:40:37  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.3  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -32,6 +35,7 @@
 #include "MushGLArrays.h"
 #include "MushGLBuffer.h"
 #include "MushGLStandard.h"
+#include "MushGLPixelSource.h"
 #include "MushGLV.h"
 #include "MushGLVertexBuffer.h"
 

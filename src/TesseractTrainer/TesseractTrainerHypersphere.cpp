@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KlSGDEnGkB9koN4E0FK9Tw
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.1 2005/02/03 15:46:59 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.2 2005/02/03 21:03:10 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.2  2005/02/03 21:03:10  southa
+ * Build fixes
+ *
  * Revision 1.1  2005/02/03 15:46:59  southa
  * Quaternion work
  *
@@ -33,64 +36,84 @@ TesseractTrainerHypersphere::TesseractTrainerHypersphere()
 }
 
 void
-TesseractTrainerHypersphere::Create(tVal frame)
+TesseractTrainerHypersphere::Create(tVal frame, const std::vector<Mushware::t4GLVal>& inColours)
 {
-    t4Val scale(0.4,0.4,0.4,0.4);
-
+    t4Val scale(0.2,0.2,0.2,0.2);
+scale *= 0.95;
     m_vertexBuffer.ClearAndResize(kNumVertices);
     m_colourBuffer.ClearAndResize(kNumVertices);
+    m_colourBuffer.MapReadWrite();
     
     for (U32 i=0; i<kNumVertices; ++i)
     {
-        tVertex vec(2,0,0,0);
-        do
+        tVertex vec(0,0,0,0);
+        t4GLVal colour(1,1,1,1);
         {
+            bool accept = true;
+
             do
             {
                 for (U32 j=0; j<4; ++j)
                 {
                     vec.Set(1-2*((double)rand()/RAND_MAX), j);
                 }
-            } while (vec*vec > 1 || vec*vec < 0.01);
-            
-            //MushMeshOps::Normalise(vec);
-            
-        } while (fabs(vec.X()) < 0.15 ||
-                 fabs(vec.Y()) < 0.15 ||
-                 fabs(vec.Z()) < 0.15 ||
-                 fabs(vec.W()) < 0.15, 0
-                 );
+                
+                U32 type = (i*8 / kNumVertices) & ~1;
 
+                if (type < inColours.size())
+                {
+                    colour = inColours[type];
+                }
+                
+                switch (type)
+                {
+                    case 0:
+                        vec.XSet(-1);
+                        break;
+                        
+                    case 1:
+                        vec.XSet(1);
+                        break;
+                        
+                    case 2:
+                        vec.YSet(-1);
+                        break;
+                        
+                    case 3:
+                        vec.YSet(1);
+                        break;
+                        
+                    case 4:
+                        vec.ZSet(-1);
+                        break;
+                        
+                    case 5:
+                        vec.ZSet(1);
+                        break;
+                        
+                    case 6:
+                        vec.WSet(-1);
+                        break;
+                        
+                    case 7:
+                        vec.WSet(1);
+                        break;
+                        
+                    default:
+                        colour = t4GLVal(1,1,1,0.2*((double)rand()/RAND_MAX));
+                        break;
+                }
+            } while (!accept);
+            
+
+        }
+        
+        m_colourBuffer.Set(colour, i);
         m_vertices.push_back(vec);
     }
     
-    t4GLVal colourOffset = t4GLVal(0.5, 0.5, 0.5, 0.5);
-    
-    for (U32 attempts=0;;)
-    {
-        m_colourBuffer.MapReadWrite();
-        for (U32 i=0; i<kNumVertices; ++i)
-        {
-            t4GLVal colour = m_vertices[i]*1 + colourOffset;
-            colour.WSet(0.2+0.8*(double)(rand())/RAND_MAX);
-            if (fabs(m_vertices[i].X()) < 0.5 &&
-                fabs(m_vertices[i].Y()) < 0.5 &&
-                fabs(m_vertices[i].Z()) < 0.5 &&
-                fabs(m_vertices[i].W()) < 0.5)
-            {
-                colour= t4GLVal(1,1,1,1);
-            }
-            else
-            {
-                colour.WSet(0.1);
-            }
-            
-                
-            m_colourBuffer.Set(colour, i);
-        }
-        if (m_colourBuffer.AttemptUnmap()) break;
-        if (attempts++ > 100) throw MushcoreRequestFail("Cannot unmap");
-    }
+    m_colourBuffer.AttemptUnmap();
+
     glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
     
     for (U32 i=0; i<kNumVertices; ++i)
@@ -154,7 +177,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
     glFogf(GL_FOG_START, 3.7);
     glFogf(GL_FOG_END, 4.3);
     glFogi(GL_FOG_MODE, GL_LINEAR);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    GLState::BlendSet(GLState::kBlendTransparent);
     GLState::ColourSet(1,1,1,0.33);
 
     if (1)

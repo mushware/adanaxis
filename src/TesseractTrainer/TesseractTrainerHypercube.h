@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } iZEF1yPrVbDw+vHpY5jCpw
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerHypercube.h,v 1.1 2005/02/03 15:46:58 southa Exp $
+ * $Log: TesseractTrainerHypercube.h,v $
+ * Revision 1.1  2005/02/03 15:46:58  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerStandard.h"
@@ -29,14 +32,18 @@ class TesseractTrainerHypercube
 {
 public:
     typedef Mushware::t4Val tVertex;
+    typedef Mushware::t2Val tTexCoord;
     typedef MushMeshGroup tFacetGroup;
     
     TesseractTrainerHypercube() {}
-    void Create(Mushware::tVal frame);
+    void Create(Mushware::tVal frame, const std::vector<Mushware::t4GLVal>& inColours);
     void Render(Mushware::tVal frame);
     
 private:
     std::vector<tVertex> m_vertices;
+    std::vector<Mushware::t4GLVal> m_colours;
+    std::vector<tTexCoord> m_texCoords;
+    MushcoreDataRef<GLTexture> m_textureRef;
     tFacetGroup m_facetGroup;
 };
 

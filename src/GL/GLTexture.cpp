@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Gkc3xTsTqFNmidPd7p8vOQ
 /*
- * $Id: GLTexture.cpp,v 1.31 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTexture.cpp,v 1.32 2004/01/02 21:13:05 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.32  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.31  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -118,6 +121,8 @@
 using namespace Mushware;
 using namespace std;
 
+MUSHCORE_DATA_INSTANCE(GLTexture);
+
 GLTexture::~GLTexture()
 {
     if (m_bound)
@@ -175,7 +180,7 @@ GLTexture::BindTexture(void) const
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
     GLState::TextureParamsReset();
-    if (1)
+    if (0)
     {
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target
                                     4,             // components

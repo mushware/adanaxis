@@ -12,14 +12,19 @@
  ****************************************************************************/
 //%Header } tvE8OYNg7opzgRevdZ3rwA
 /*
- * $Id: TesseractTrainerHypercube.cpp,v 1.1 2005/02/03 15:46:58 southa Exp $
+ * $Id: TesseractTrainerHypercube.cpp,v 1.2 2005/02/03 21:03:10 southa Exp $
  * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.2  2005/02/03 21:03:10  southa
+ * Build fixes
+ *
  * Revision 1.1  2005/02/03 15:46:58  southa
  * Quaternion work
  *
  */
 
 #include "TesseractTrainerHypercube.h"
+
+#include "TesseractTrainerPixelSource.h"
 
 #include "mushMushcore.h"
 
@@ -29,14 +34,16 @@ using namespace Mushware;
 using namespace std;
 
 void
-TesseractTrainerHypercube::Create(tVal frame)
+TesseractTrainerHypercube::Create(tVal frame, const std::vector<Mushware::t4GLVal>& inColours)
 {
-    t4Val scale(0.2,0.2,0.20,0.2);
+    m_colours = inColours;
+    
+    t4Val scale(0.2,0.2,0.2,0.2);
     tVal move=0.05;
     tVal move_1m = 1-move;
     MushMeshGroup buildGroup;
     std::vector<tVertex> buildVertices;
-
+    std::vector<t2Val> buildTexCoords;
     
     for (U32 face=0; face<8; ++face)
     {
@@ -112,6 +119,14 @@ TesseractTrainerHypercube::Create(tVal frame)
         }
     }
     
+    for (U32 i=0; i<buildVertices.size(); i += 4)
+    {
+        m_texCoords.push_back(t2Val(0,0));
+        m_texCoords.push_back(t2Val(0,1));
+        m_texCoords.push_back(t2Val(1,1));
+        m_texCoords.push_back(t2Val(1,0));
+    }
+    
     MushMeshGroup buildGroup2;
     std::vector<tVertex> buildVertices2;
 
@@ -119,6 +134,8 @@ TesseractTrainerHypercube::Create(tVal frame)
     m_facetGroup = buildGroup;
     //MushMeshDivide::Divide(buildVertices2, buildGroup2, buildVertices, buildGroup, 0.5);
     //MushMeshDivide::Divide(m_vertices, m_facetGroup, buildVertices, buildGroup, 0.5);
+
+
     
 #if 0
     for (U32 i=0; i<m_vertices.size(); i += 4)
@@ -134,6 +151,14 @@ TesseractTrainerHypercube::Create(tVal frame)
         }
     }
 #endif
+    
+    
+    
+    // Create texture
+    TesseractTrainerPixelSource pixelSource;
+    
+    MushcoreData<GLTexture>::Sgl().Give("texproc1", new GLTextureProc(pixelSource));
+    m_textureRef.NameSet("texproc1");
 }
 
 void
@@ -190,8 +215,6 @@ TesseractTrainerHypercube::Render(tVal frame)
         }
     }        
 
-    
-    
     const MushMeshGroup::tSuperGroup& srcOne = m_facetGroup.SuperGroup(1);
  
     glDisable(GL_CULL_FACE);
@@ -201,39 +224,18 @@ TesseractTrainerHypercube::Render(tVal frame)
     glFogf(GL_FOG_START, 3.7);
     glFogf(GL_FOG_END, 4.3);
     glFogi(GL_FOG_MODE, GL_LINEAR);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glShadeModel(GL_SMOOTH);
-
-    tVal colour=0;
+    glEnable(GL_DITHER);
+    
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    GLState::BindTexture(m_textureRef.Get()->BindingNameGet());
+    
+    U32 colourNum=0;
     
     for (MushMeshGroup::tSuperGroupConstItr itrSrcFace = srcOne.begin(); itrSrcFace != srcOne.end(); ++itrSrcFace)
     {
-        colour += 1;
-        
-        tVal red   = 0.5+0.5*(cos(4*M_PI*cos(M_PI*colour*0.117)*sin(frame*0.013)));
-        tVal green = 0.5+0.5*(cos(4*M_PI*cos(M_PI*colour*0.137)*sin(frame*0.017)));
-        tVal blue  = 1 - red;//pow(cos(M_PI*(colour*0.625+frame*0.0157)), 2);
-        tVal alpha  = 0.05+0.95*pow(sin(4*M_PI*cos(M_PI*colour*0.25)*sin(frame*0.01)), 4);
-        
-        red = green = blue = 1;
-        alpha = 0.5;
-        
-        if (colour == 1)
-        {
-            blue = green = 0.5;
-        }
-        else if (colour == 3)
-        {
-            red = blue = 0.5;
-        }
-        else if (colour == 5)
-        {
-            red = green = 0.5;
-        }
-        else
-        {
-            
-        }
+
         // Iterator itrSubFace takes us through each facet index for the face referred to by faceIter.
         // *itrSubFace is a facet index
         for (MushMeshGroup::tGroupConstItr itrSrcFacet = itrSrcFace->begin(); itrSrcFacet != itrSrcFace->end(); ++itrSrcFacet)
@@ -241,7 +243,9 @@ TesseractTrainerHypercube::Render(tVal frame)
             const MushMeshGroup::tGroup& facet = m_facetGroup.GroupAtSuperGroupGroup(0, *itrSrcFacet);
 
 #if 1            
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            GLState::ModulationSet(GLState::kModulationNone);
+            GLState::BlendSet(GLState::kBlendAccumulate);
+            GLState::TextureDisable();
             glEnable(GL_FOG);
             glBegin(GL_LINE_LOOP);
             
@@ -249,29 +253,39 @@ TesseractTrainerHypercube::Render(tVal frame)
             {
                 
                 t3GLVal vert = preMatrix * vertices[*vertIter];
-                tVal scale = 1;
-                GLState::ColourSet(scale*red, scale*green, scale*blue, 1.5*alpha);
+                glColor4fv(&m_colours[colourNum].X());
                 glVertex3fv(&vert.X());
             }
             glEnd(); 
 #endif
 #if 1
             
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-            GLState::ColourSet(red, green, blue, 0.1*alpha);
+            GLState::ModulationSet(GLState::kModulationColour);
+            GLState::BlendSet(GLState::kBlendAccumulate);
             glEnable(GL_FOG);
+            GLState::TextureEnable();
+            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
             glBegin(GL_TRIANGLE_FAN);
             
-            for (MushMeshGroup::tGroupConstItr vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)
+            for (U32 i=0; i<facet.size(); ++i)
             {
-                
-                t3GLVal vert = preMatrix * vertices[*vertIter];
-                tVal scale = 1;
-                GLState::ColourSet(scale*red, scale*green, scale*blue, 0.15*alpha);
+                t3GLVal vert = preMatrix * vertices[facet[i]];
+                t2GLVal texCoord = m_texCoords[i];
+
+                glColor4fv(&m_colours[colourNum].X());
+                glTexCoord2fv(&texCoord.X());
                 glVertex3fv(&vert.X());
             }
             glEnd(); 
-#endif            
+            
+            GLState::TextureDisable();
+
+#endif
+            
+        }
+        if (colourNum+1 < m_colours.size())
+        {
+            ++colourNum;
         }
     }
 #endif

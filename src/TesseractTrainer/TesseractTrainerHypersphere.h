@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } oFI4VexFfs/tkyGLE4giFw
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerHypersphere.h,v 1.1 2005/02/03 15:46:59 southa Exp $
+ * $Log: TesseractTrainerHypersphere.h,v $
+ * Revision 1.1  2005/02/03 15:46:59  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerStandard.h"
@@ -32,7 +35,7 @@ public:
     typedef MushMeshGroup tFacetGroup;
     
     TesseractTrainerHypersphere();
-    void Create(Mushware::tVal frame);
+    void Create(Mushware::tVal frame, const std::vector<Mushware::t4GLVal>& inColours);
     void Render(Mushware::tVal frame);
     
 private:
@@ -41,6 +44,7 @@ private:
         kNumVertices = 30000
     };
     std::vector<tVertex> m_vertices;
+
     MushGLVertexBuffer<Mushware::t3GLVal> m_vertexBuffer;
     MushGLVertexBuffer<Mushware::t4GLVal> m_colourBuffer;
 };

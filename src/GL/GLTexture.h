@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QZbGT6FQOYkZGp6KXs/pew
 /*
- * $Id: GLTexture.h,v 1.19 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLTexture.h,v 1.20 2004/01/06 20:46:49 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.20  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.19  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -141,7 +144,7 @@ protected:
     void AddTextureDef(GLTextureDef& inDef) {m_textureDefs.push_back(inDef);}
     void AddTextureDef(GLTextureDef& inDef, Mushware::U32 inWhere);
     bool TextureDefValid(Mushware::U32 inWhere) const;
-    const GLTextureDef& TextureDefGet(Mushware::U32 inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
+    const GLTextureDef& TextureDefGet(Mushware::U32 inIndex) const {if (inIndex >= m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
     std::vector<GLTextureDef> m_textureDefs;

@@ -17,8 +17,11 @@
 //%Header } 7bhoLWY+hPdqE2Q6eZhSaQ
 
 /*
- * $Id: GLState.h,v 1.12 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLState.h,v 1.13 2004/03/07 12:05:56 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.13  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.12  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -68,7 +71,8 @@ public:
         kBlendNone,
         kBlendTransparent,
         kBlendSolid,
-        kBlendLine
+        kBlendLine,
+        kBlendAccumulate
     };
 
     enum tModulationType
@@ -150,7 +154,12 @@ GLState::BlendSet(tBlendType inValue)
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glEnable(GL_BLEND);
                 break;
-
+                
+            case kBlendAccumulate:
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+                glEnable(GL_BLEND);
+                break;
+                
             case kBlendLine:
             {
                 if (m_displayQuality != kQualityLow)
