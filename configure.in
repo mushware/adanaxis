@@ -16,6 +16,18 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PATH_PROG(ac_prog_find, find)
+AC_PATH_PROG(ac_prog_sdl_config, sdl11-config, "", [$PATH:/usr/local/bin])
+if test "x$ac_prog_sdl_config" = "x"; then
+    AC_PATH_PROG(ac_prog_sdl_config, sdl-config, "", [$PATH:/usr/local/bin])
+fi
+if test "x$ac_prog_sdl_config" = "x"; then
+    AC_MSG_NOTICE([Couldn't find sdl-config command.])
+else
+    CPPFLAGS="$CPPFLAGS `$ac_prog_sdl_config --cflags`"
+    LDFLAGS="$LDFLAGS `$ac_prog_sdl_config --libs`"
+    AC_MSG_NOTICE([sdl-config set CPPFLAGS set to $CPPFLAGS])
+    AC_MSG_NOTICE([sdl-config set LDFLAGS set to $LDFLAGS])
+fi
 
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)
@@ -48,10 +60,28 @@ case "$target" in
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
             AC_MSG_NOTICE([* Using platform pack from src/Platform/X11.])
-            AC_PATH_XTRA
-            AC_CHECK_LIB(gl, main,, AC_CHECK_LIB(GL, main,, AC_MSG_ERROR([Cannot survive without OpenGL])))
-            AC_CHECK_LIB(glu, main,, AC_CHECK_LIB(GLU, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU])))
-            AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT])))
+	    if test "x$LDFLAGS" = "x"; then
+	        LDFLAGS="-L/usr/local/lib"
+	        AC_MSG_NOTICE([LDFLAGS was empty.  Guessing '$LDFLAGS'])
+	    fi
+	    AC_PATH_XTRA
+	    CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+	    LIBS="$LIBS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+	    AC_CHECK_LIB(m,main)
+	    AC_CHECK_LIB(X11,main)
+	    AC_CHECK_LIB(Xext, main)
+
+	    AC_ARG_WITH(mesa, AC_HELP_STRING([--with-mesa             Use MesaGL libs instead of GL LIBS]), [
+dnl Use Mesa
+                AC_CHECK_LIB(MesaGL, main,, AC_MSG_ERROR([Cannot find and link MesaGL]))
+                AC_CHECK_LIB(MesaGLU, main,, AC_MSG_ERROR([Cannot find and link MesaGLU]))
+            ],[
+dnl Uee GL
+                AC_CHECK_LIB(GL, main,, AC_CHECK_LIB(gl, main,, AC_MSG_ERROR([Cannot find and link GL.  Try --with-mesa])))
+                AC_CHECK_LIB(GLU, main,, AC_CHECK_LIB(glu, main,, AC_MSG_ERROR([Cannot find and link GLU])))
+            ])
+
+            AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main,, AC_MSG_ERROR([Cannot find and link GLUT])))
             CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/X11"
         fi
         AC_CHECK_HEADERS(GL/gl.h,, AC_MSG_ERROR([No GL/gl.h header]))
@@ -61,16 +91,16 @@ case "$target" in
 esac
 
 
-AC_CHECK_LIB(PCRE, main,, AC_MSG_ERROR([PCRE library not found - try ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/]))
+AC_CHECK_LIB(PCRE, main,, AC_CHECK_LIB(pcre, main,, AC_MSG_ERROR([PCRE library not found - try ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/])))
 AC_CHECK_LIB(expat, main,, AC_MSG_ERROR([expat library not found - try http://expat.sourceforge.net/]))
 AC_CHECK_LIB(ungif, main,, AC_MSG_ERROR([libungif library not found - try ftp://prtr-13.ucsc.edu/pub/libungif/]))
 AC_CHECK_LIB(tiff, main,, AC_MSG_ERROR([libtiff library not found - try http://www.libtiff.org/]))
+AC_CHECK_LIB(SDL-1.1, main,, AC_CHECK_LIB(SDL, main,, AC_MSG_ERROR([libSDL library not found - try http://www.libsdl.org/])))
 AC_CHECK_LIB(smpeg, main,, AC_MSG_ERROR([libsmpeg library not found - try http://www.lokigames.com/development/]))
-AC_CHECK_LIB(SDL, main,, AC_MSG_ERROR([libSDL library not found - try http://www.libsdl.org/]))
-AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - try http://www.libsdl.org/]))
 AC_CHECK_LIB(ogg, main,, AC_MSG_ERROR([libogg library not found - try http://www.xiph.org/]))
 AC_CHECK_LIB(vorbis, main,, AC_MSG_ERROR([libvorbis library not found - try http://www.xiph.org/]))
 AC_CHECK_LIB(vorbisfile, main,, AC_MSG_ERROR([libvorbisfile library not found - try http://www.xiph.org/]))
+AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - try http://www.libsdl.org/]))
 
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[
