@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatform.cpp,v 1.2 2002/12/13 01:07:26 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.3 2002/12/13 19:03:06 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.3  2002/12/13 19:03:06  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.2  2002/12/13 01:07:26  southa
  * Mustl work
  *
@@ -496,5 +499,25 @@ MustlPlatform::ResolveAddress(MustlAddress& outAddress, const string& inHostName
 unsigned int
 MustlPlatform::DefaultTimer(void)
 {
-    return static_cast<unsigned int>(clock() * (double) 1000.0 / CLOCKS_PER_SEC);
+    static struct timeval firstTime;
+    static bool firstTimeValid=false;
+    struct timeval currentTime;
+    
+    if (gettimeofday(&currentTime, NULL) != 0)
+    {
+        throw(MustlFail("Cannot determine current time"));
+    }
+    
+    if (firstTimeValid)
+    {
+        long uSec = currentTime.tv_usec - firstTime.tv_usec;
+        long sec = currentTime.tv_sec - firstTime.tv_sec;
+        return static_cast<unsigned int>(sec * 1000.0 + uSec / 1000.0);
+    }
+    else
+    {
+        firstTime = currentTime;
+        firstTimeValid=true;
+        return 0;
+    }
 }

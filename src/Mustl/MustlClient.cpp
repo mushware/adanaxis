@@ -1,6 +1,9 @@
 /*
- * $Id: MustlClient.cpp,v 1.4 2002/12/13 19:03:05 southa Exp $
+ * $Id: MustlClient.cpp,v 1.5 2002/12/14 15:04:33 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.5  2002/12/14 15:04:33  southa
+ * Mustl fixes
+ *
  * Revision 1.4  2002/12/13 19:03:05  southa
  * Mustl interface cleanup
  *
@@ -214,6 +217,7 @@ MustlClient::TCPSend(MustlData& ioData)
     U32 sentSize = MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
 
     ioData.ReadPosAdd(sentSize);
+    
     if (MustlLog::Instance().TrafficLogGet())
     {
         MustlLog::Instance().TrafficLog() << "TCPSend to " << m_tcpAddress << ": " << ioData << endl;
@@ -229,25 +233,23 @@ MustlClient::TCPReceive(MustlData& outData)
     }
     MUSTLASSERT(m_tcpSocket != NULL);
 
-    for (U32 i=0; i<256; ++i) // Should be configurable
-    {
-        // Need to test outData for size limit
-        outData.PrepareForWrite();
-        U32 receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+    outData.PrepareForWrite(kEthernetMTU);
+    U32 receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
 
-        if (receiveSize == 0)
-        {
-            break;
-        }
-        else
-        {
-            outData.WritePosAdd(receiveSize);
-            outData.SourceSet(m_tcpAddress);
-            if (MustlLog::Instance().TrafficLogGet())
-            {
-                MustlLog::Instance().TrafficLog() << "TCPReceive from " << m_tcpAddress << ": " << outData << endl;
-            }
-        }
+    if (receiveSize == 0) return;
+
+    do
+    {
+        outData.WritePosAdd(receiveSize);
+        outData.PrepareForWrite();
+        receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+    } while (receiveSize != 0);
+    
+    outData.SourceSet(m_tcpAddress);
+    
+    if (MustlLog::Instance().TrafficLogGet())
+    {
+        MustlLog::Instance().TrafficLog() << "TCPReceive from " << m_tcpAddress << ": " << outData << endl;
     }
 }
 
@@ -260,10 +262,17 @@ MustlClient::UDPSend(MustlData& ioData)
     }
     MUSTLASSERT(m_udpSocket != NULL);
 
-    U32 dataSize = MustlPlatform::UDPSend(m_udpAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
+    U32 receiveSize, sentSize;
     
-    ioData.ReadPosAdd(dataSize);
-
+    do
+    {
+        receiveSize = ioData.ReadSizeGet();
+        sentSize = MustlPlatform::UDPSend(m_udpAddress, m_udpSocket, ioData.ReadPtrGet(), receiveSize);
+        
+        ioData.ReadPosAdd(sentSize);
+        
+    } while (sentSize > 0 && sentSize != receiveSize);
+    
     if (MustlLog::Instance().TrafficLogGet())
     {
         MustlLog::Instance().TrafficLog() << "UDPSend to " << m_udpAddress << ": " << ioData << endl;
@@ -279,19 +288,34 @@ MustlClient::UDPReceive(MustlData& outData)
     }
     MUSTLASSERT(m_udpSocket != NULL);
 
-    // Need to set max packet size here
-    outData.PrepareForWrite();
     MustlAddress receiveAddress;
-    U32 dataSize = MustlPlatform::UDPReceive(receiveAddress, m_udpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+    outData.PrepareForWrite(kEthernetMTU);
+    U32 receiveSize = MustlPlatform::UDPReceive(receiveAddress, m_udpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
 
-    if (dataSize != 0)
+    // Exit quickly if nothing to receive
+    if (receiveSize == 0) return;
+
+    outData.SourceSet(receiveAddress);
+
+    // Multiple reception support.  This is the client end of a link (server ends use
+    // the server port) so we expect every reception to come from the same source
+    do
     {
-        outData.WritePosAdd(dataSize);
-        outData.SourceSet(receiveAddress);
-        if (MustlLog::Instance().TrafficLogGet())
+        outData.WritePosAdd(receiveSize);
+        outData.PrepareForWrite();
+        receiveSize = MustlPlatform::UDPReceive(receiveAddress, m_udpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+
+        if (receiveAddress != outData.SourceGet())
         {
-            MustlLog::Instance().TrafficLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
+            ostringstream message;
+            message << "UDPReceive source address mismatch: " << receiveAddress << " != " << outData.SourceGet();
+            throw(MustlFail(message.str()));
         }
+    } while (receiveSize != 0);
+    
+    if (MustlLog::Instance().TrafficLogGet())
+    {
+        MustlLog::Instance().TrafficLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
     }
 }
 

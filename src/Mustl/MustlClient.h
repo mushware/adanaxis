@@ -1,8 +1,11 @@
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
 /*
- * $Id: MustlClient.h,v 1.4 2002/12/13 19:03:05 southa Exp $
+ * $Id: MustlClient.h,v 1.5 2002/12/14 15:04:33 southa Exp $
  * $Log: MustlClient.h,v $
+ * Revision 1.5  2002/12/14 15:04:33  southa
+ * Mustl fixes
+ *
  * Revision 1.4  2002/12/13 19:03:05  southa
  * Mustl interface cleanup
  *
@@ -84,7 +87,11 @@ public:
     void Print(ostream& ioOut) const;
     
 private:
-
+    enum
+    {
+        kEthernetMTU=1500 // Bytes in Ehternet Maximum Trasfer Unit
+    };
+    
     Mustl::tSocket m_tcpSocket;
     Mustl::tSocket m_udpSocket;
     MustlAddress m_tcpAddress;
