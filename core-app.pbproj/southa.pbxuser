@@ -26,10 +26,8 @@
 	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F5431747020C310101449C4C;
-		activeTarget = F56090AD0217DFEF014AEE46;
+		activeTarget = F547DFD402395BCC01A7C23C;
 		addToTargets = (
-			F56090AD0217DFEF014AEE46,
-			F5463A9C0230EA58011D269C,
 		);
 		breakpoints = (
 			F53F7CBF0230F4FA01633C4B,
@@ -44,10 +42,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {819, 647}}";
 					Split0 = {
-						ActiveTab = 1;
+						ActiveTab = 2;
 						Frame = "{{270, 0}, {549, 647}}";
 						Split0 = {
-							Frame = "{{0, 176}, {549, 471}}";
+							Frame = "{{0, 274}, {549, 373}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -163,6 +161,34 @@
 		);
 		sourceDirectories = (
 		);
+	};
+	F547DFD402395BCC01A7C23C = {
+		activeExec = 0;
+		customExecs = {
+		};
+		targetExecs = {
+			macosx = (
+				F547E00802395BCC01A7C23C,
+			);
+		};
+	};
+	F547E00802395BCC01A7C23C = {
+		activeArgIndex = 0;
+		argumentStrings = (
+			"load script/test1.ava",
+			"",
+		);
+		debuggerPlugin = GDBDebugging;
+		dylibVariantSuffix = _debug;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		isa = PBXExecutable;
+		shlibInfoDictList = (
+		);
+		sourceDirectories = (
+		);
+		startupPath = "/Volumes/work/sandbox/core-app/avarisse";
 	};
 	F56090AD0217DFEF014AEE46 = {
 		activeExec = 0;
