@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.89 2002/11/04 13:11:57 southa Exp $
+ * $Id: GameContract.cpp,v 1.90 2002/11/05 18:15:00 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.90  2002/11/05 18:15:00  southa
+ * Web server
+ *
  * Revision 1.89  2002/11/04 13:11:57  southa
  * Link setup work
  *
@@ -662,6 +665,7 @@ GameContract::Running(void)
     {
         MediaNetServer::Instance().Connect(7121);
         CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
+        PlatformMiscUtils::LaunchURL("http://localhost:7200/");
     }
     else if (ctr > 100)
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.14 2002/10/22 20:42:07 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.15 2002/11/15 11:47:56 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.15  2002/11/15 11:47:56  southa
+ * Web processing and error handling
+ *
  * Revision 1.14  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -233,6 +236,21 @@ PlatformMiscUtils::LaunchFile(const string& inFile)
     {
         FinderLaunch(1, &fileSpec);
     }
+}
+
+// From Apple sample code SimpleDataQueueTool.c
+void
+PlatformMiscUtils::LaunchURL(const string& inURL)
+{
+    CFStringRef destName = CFStringCreateWithCString(NULL, inURL.c_str(), kCFStringEncodingMacRoman);
+    CFURLRef pathRef;
+    pathRef = CFURLCreateWithString(NULL, destName, NULL);
+    if (pathRef)
+    {
+        LSOpenCFURLRef(pathRef, NULL);
+        CFRelease(pathRef);
+    }
+    CFRelease(destName);
 }
 
 // From Apple sample code MoreFilesX.c

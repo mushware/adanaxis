@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.11 2002/10/22 20:42:07 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.12 2002/11/15 11:47:56 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.12  2002/11/15 11:47:56  southa
+ * Web processing and error handling
+ *
  * Revision 1.11  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -44,6 +47,7 @@ public:
     static void MakeDirectory(const string& inName);
     static void UpdateCheck(void);
     static void LaunchFile(const string& inFile);
+    static void LaunchURL(const string& inURL);
     static void ShowUpdateAlert(void);
 };
 #endif
