@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.4 2002/11/08 00:15:31 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.5 2002/11/08 11:29:24 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.5  2002/11/08 11:29:24  southa
+ * Web fixes and debug
+ *
  * Revision 1.4  2002/11/08 00:15:31  southa
  * Fixed errors
  *
@@ -125,18 +128,12 @@ MediaNetWebLink::Send(vector<U8>& inBytes)
         ++m_linkErrors;
     }
 
-    string sendStr;
-    for (U32 i=0; i<inBytes.size(); ++i)
-    {
-sendStr += inBytes[i];
-    }
-MediaNetLog::Instance().Log() << "Sending " << MediaNetUtils::MakePrintable(sendStr) << endl;
+    MediaNetLog::Instance().Log() << "Sending " << MediaNetUtils::MakePrintable(inBytes) << endl;
 }
 
 void
 MediaNetWebLink::Send(const string& inStr)
 {
-MediaNetLog::Instance().Log() << "sending " << MediaNetUtils::MakePrintable(inStr) << endl;
     vector<U8> bytes;
     U32 size=inStr.size();
     bytes.resize(size);
@@ -163,7 +160,6 @@ MediaNetWebLink::Send(istream& ioStream)
 void
 MediaNetWebLink::ReceivedProcess(const string& inStr)
 {
-MediaNetLog::Instance().Log() << "recv=" << MediaNetUtils::MakePrintable(inStr) << endl;
     if (inStr.substr(0,3) == "GET")
     {
         m_requestLine = inStr;
@@ -179,7 +175,6 @@ MediaNetLog::Instance().Log() << "recv=" << MediaNetUtils::MakePrintable(inStr) 
 void
 MediaNetWebLink::GetProcess(void)
 {
-    MediaNetLog::Instance().Log() << "GetProcess" << endl;
     string filename;
     U32 dotCount=0;
     U32 slashCount=0;
