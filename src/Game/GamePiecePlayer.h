@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.2 2002/06/27 12:36:07 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.3 2002/07/06 18:04:19 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.3  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -49,7 +52,10 @@ public:
     tVal XGet(void) {return m_x;}
     tVal YGet(void) {return m_y;}
     tVal AngleGet(void) {return m_angle;}
-    
+
+    static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static void Install(void);
+
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
@@ -58,7 +64,9 @@ protected:
     void XMLDataHandler(CoreXML& inXML);
 
 private:
+    void HandlePlayerStart(CoreXML& inXML);
     void HandlePlayerEnd(CoreXML& inXML);
+    void HandleGraphicStart(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 

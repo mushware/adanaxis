@@ -2585,6 +2585,7 @@
 			children = (
 				F5483A9102D19E6101480ACF,
 				F5483AB402D1BEA701480ACF,
+				F548A84402DC8CAE01D1A877,
 			);
 			isa = PBXGroup;
 			path = "first-day";
@@ -2721,6 +2722,11 @@
 		F548851B022F992901D6DA80 = {
 			isa = PBXFileReference;
 			path = CoreScript.cpp;
+			refType = 4;
+		};
+		F548A84402DC8CAE01D1A877 = {
+			isa = PBXFileReference;
+			path = player.xml;
 			refType = 4;
 		};
 		F54ACE7302B642C401F28026 = {

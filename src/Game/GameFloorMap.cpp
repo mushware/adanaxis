@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.8 2002/07/07 11:16:07 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.9 2002/07/08 14:22:02 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.9  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.8  2002/07/07 11:16:07  southa
  * More designer work
  *
@@ -88,7 +91,7 @@ GameFloorMap::Render(const GameTileMap& inTileMap)
             glPopMatrix();
         }
     }
-
+    gl.MoveTo(0,0);
 }
 
 void
@@ -135,6 +138,7 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
             glPopMatrix();
         }
     }
+    gl.MoveTo(0,0);
 }
 
 U32

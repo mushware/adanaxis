@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.4 2002/06/27 12:36:07 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.5 2002/07/06 18:04:19 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -32,6 +35,9 @@
 #include "GameGraphic.h"
 #include "GameData.h"
 #include "GameController.h"
+#include "GameGraphicSprite.h"
+
+CoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
 
 void
 GamePiecePlayer::Render(void)
@@ -86,9 +92,24 @@ GamePiecePlayer::Move(void)
     m_y+=4*deltaY;
 }
 
+
+void
+GamePiecePlayer::HandlePlayerStart(CoreXML& inXML)
+{
+    m_pickleState=kPickleData;
+}
+
 void
 GamePiecePlayer::HandleNameEnd(CoreXML& inXML)
 {
+}
+
+void
+GamePiecePlayer::HandleGraphicStart(CoreXML& inXML)
+{
+    GameGraphicSprite *pSprite(new GameGraphicSprite);
+    m_graphics.push_back(pSprite);
+    pSprite->Unpickle(inXML);
 }
 
 void
@@ -107,6 +128,12 @@ void
 GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<name>" << "" << "</name>" << endl;
+    for (U32 i=0; i<m_graphics.size(); ++i)
+    {
+        inOut << inPrefix << "<graphic type=\"" << m_graphics[i]->TypeNameGet() << "\">" << endl;
+        m_graphics[i]->Pickle(inOut, inPrefix+"  ");
+        inOut << inPrefix << "</graphic>" << endl;
+    }
 }
 
 void
@@ -115,10 +142,12 @@ GamePiecePlayer::UnpicklePrologue(void)
     GamePiece::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
+    m_startTable[kPickleInit]["player"] = &GamePiecePlayer::HandlePlayerStart;
     m_startTable[kPickleData]["name"] = &GamePiecePlayer::NullHandler;
+    m_startTable[kPickleData]["graphic"] = &GamePiecePlayer::HandleGraphicStart;
     m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
     m_endTable[kPickleData]["player"] = &GamePiecePlayer::HandlePlayerEnd;
-    m_pickleState=kPickleData;
+    m_pickleState=kPickleInit;
     m_baseThreaded=0;
 }
 
@@ -207,4 +236,29 @@ GamePiecePlayer::XMLEndHandler(CoreXML& inXML)
 void
 GamePiecePlayer::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+CoreScalar
+GamePiecePlayer::LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(CommandFail("Usage: loadplayer <name> <filename>"));
+    }
+    string name, filename;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(filename);
+    ifstream inStream(filename.c_str());
+    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    CoreXML xml(inStream, filename);
+    GamePiecePlayer *newPlayer=new GamePiecePlayer;
+    GameData::Instance().PieceDeleteAndCreate("player1", newPlayer);
+    newPlayer->Unpickle(xml);
+    return CoreScalar(0);
+}
+
+void
+GamePiecePlayer::Install(void)
+{
+    CoreApp::Instance().AddHandler("loadplayer", LoadPlayer);
 }

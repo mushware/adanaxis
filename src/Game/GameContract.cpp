@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.23 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameContract.cpp,v 1.24 2002/07/07 11:16:07 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.24  2002/07/07 11:16:07  southa
+ * More designer work
+ *
  * Revision 1.23  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -173,6 +176,20 @@ GameContract::RunningDisplay(void)
 
     m_floorMap->Render(*m_tileMap);
     GLUtils::IdentityEpilogue();
+    
+    GLUtils::IdentityPrologue();
+    GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
+    GLUtils  gl;
+    glMatrixMode(GL_MODELVIEW);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    gl.SetPosition(0,0);
+    GLUtils::SetColour(1,1,1);
+    gl.MoveTo(m_player->XGet(), m_player->YGet());
+    GLUtils::RotateAboutZ(-90-m_player->AngleGet()*180/3.14);
+    GLUtils::Scale(64,64,1);
+    m_player->Render();
+    GLUtils::IdentityEpilogue();
 
     ostringstream message;
     message << "FPS " << m_fps;
@@ -201,11 +218,12 @@ GameContract::Init(void)
     COREASSERT(m_floorMap != NULL);
     m_tileMap->Load();
     GameData::Instance().ControllerGetOrCreate("controller1");
-    m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceDeleteAndCreate("player1", new GamePiecePlayer));
+    m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceGet("player1"));
     COREASSERT(m_player != NULL);
     m_floorDesigner=new GameFloorDesigner; // This is leaked
     m_floorDesigner->Init();
     // GameData::Instance().DumpAll(cout);
+    m_player->Pickle(cout);
 }
 
 void
