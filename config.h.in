@@ -135,6 +135,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define to 1 if you have the <valarray> header file. */
+#undef HAVE_VALARRAY
+
 /* Name of package */
 #undef PACKAGE
 

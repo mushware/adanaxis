@@ -3,6 +3,8 @@ Infernal Contractor II
 
 A video game reflecting the insidious world of the software contractor.
 
+Please report bugs and problems using http://sourceforge.net/projects/ic2/.
+
 Game Manual
 ===========
 
@@ -16,6 +18,8 @@ Diagnostic output
 =================
 
 If things go wrong, diagnosting output is written to the termianl which started the application (if there is one), the console (MacOS X), of the files stderr.txt and stdout.txt in the ic2 system directory (win32).
+
+Pressing the m key will toggle the collision checking diagnostic overlay.
 
 Contract Designer Manual
 =======================

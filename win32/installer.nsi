@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.5 2002/06/27 13:34:05 southa Exp $
+; $Id: installer.nsi,v 1.6 2002/07/16 17:53:48 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.6  2002/07/16 17:53:48  southa
+; Added ReadMe file link
+;
 ; Revision 1.5  2002/06/27 13:34:05  southa
 ; Fixed path to executable
 ;
@@ -18,7 +21,7 @@
 Name "Infernal Contractor II"
 OutFile "IC2-win32-setup-0_0_0.exe"
 
-LicenseText "You must agree to this licence before installing."
+LicenseText "You must at least read the WARRANTY line of this licence before installing."
 LicenseData "..\LICENCE"
 
 ; Some default compiler settings (uncomment and change at will):
@@ -102,35 +105,47 @@ File /r ..\release\*.*
 
 WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II" "" "$INSTDIR"
 WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "DisplayName" "Infernal Contractor II"
-WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "UninstallString" '"$INSTDIR\uninst.exe"'
+WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "UninstallString" '"$INSTDIR\Uninstall IC2.exe"'
 
 SetOutPath "$INSTDIR\system"
 CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateDirectory "$STARTMENU\Programs\Mushware"
-CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 
-CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\uninst.exe"
-CreateShortCut "$STARTMENU\Programs\Mushware\ReadMe (Infernal Contractor II).lnk" "$INSTDIR\README.txt"
+CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
+CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\Uninstall IC2.exe"
+CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk" "$INSTDIR\README.txt"
+CreateShortCut "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk" "$INSTDIR\"
+CreateShortCut "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
+CreateShortCut "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
+CreateShortCut "$STARTMENU\Programs\Mushware\Register IC2 RateWare!.lnk" "http://www.mushware.co.uk/ic2/rateware"
+
+CreateShortCut "$INSTDIR\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
+CreateShortCut "$INSTDIR\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
+CreateShortCut "$INSTDIR\Register IC2 RateWare!.lnk" "http://www.mushware.co.uk/ic2/rateware"
+
 SetOutPath "$INSTDIR"
 
 ; write out uninstaller
-WriteUninstaller "$INSTDIR\uninst.exe"
+WriteUninstaller "$INSTDIR\Uninstall IC2.exe"
 SectionEnd ; end of default section
-
 
 ; begin uninstall settings/section
 UninstallText "This will uninstall Infernal Contractor II from your system"
 
 Section Uninstall
 ; add delete commands to delete whatever files/registry keys/etc you installed here.
-Delete "$INSTDIR\uninst.exe"
+Delete "$INSTDIR\Uninstall IC2.exe"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II"
 RMDir /r "$INSTDIR"
 Delete "$DESKTOP\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk"
-Delete "$STARTMENU\Programs\Mushware\ReadMe (Infernal Contractor II).lnk"
+Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk"
+Delete "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk"
+Delete "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk"
+Delete "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk"
+Delete "$STARTMENU\Programs\Mushware\Register IC2 RateWare!.lnk"
 FindFirst $R1 $R2 "$STARTMENU\Programs\Mushware\*.lnk"
 IfErrors err20 noerr20
 err20:

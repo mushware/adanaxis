@@ -9,6 +9,9 @@ release: install-strip
 mac-release: release
 	(cd $(top_srcdir);$(SHELL) macosx/MakeInstaller.sh @IC_UNDERSCORE_VERSION@)
 
+win32-release: release
+	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh @IC_UNDERSCORE_VERSION@)
+
 databall: install-strip dist
 	rm -f ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
 	rm -f ic2-data-@IC_UNDERSCORE_VERSION@.tar.gz

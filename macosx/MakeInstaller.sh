@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.1 2002/07/01 13:46:12 southa Exp $
+# $Id: MakeInstaller.sh,v 1.2 2002/07/01 15:16:40 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.2  2002/07/01 15:16:40  southa
+# MacOS X installer fixes
+#
 # Revision 1.1  2002/07/01 13:46:12  southa
 # MacOS X installer automation
 #
@@ -31,12 +34,6 @@ fi
 version=$1
 
 echo "Building MacOS X installer for version $version"
-echo '***************************************************************'
-echo '*                                                             *'
-echo '* Remember to create the alias for the application in ic2data *'
-echo '*                before running this script.                  *'
-echo '*                                                             *'
-echo '***************************************************************'
 
 echo 'This scripts expects that the ProjectBuilder application is built and'
 echo 'installed in the ic2data directory, make release has been done, and'
