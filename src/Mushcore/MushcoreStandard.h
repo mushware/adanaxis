@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.16 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.17 2004/09/26 19:42:05 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.17  2004/09/26 19:42:05  southa
+ * Added MushMesh, fixed typenames and release target
+ *
  * Revision 1.16  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -194,6 +197,7 @@
 #include <stack>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <assert.h>

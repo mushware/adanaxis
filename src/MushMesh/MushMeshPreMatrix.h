@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0u0Dmc4oDcZxueU4XtX+Cw
 /*
- * $Id: MushMeshPreMatrix.h,v 1.1 2004/10/31 09:22:51 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.2 2004/10/31 23:34:06 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.2  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  * Revision 1.1  2004/10/31 09:22:51  southa
  * Added MushMeshPreMatrix
  *
@@ -65,6 +68,11 @@ public:
         m_value[3] = in3;
     }
     
+    const T& RCGet(Mushware::U32 inR, Mushware::U32 inC) const
+    {
+        return m_value[inR][inC];
+    }
+    
     void RCSet(const T& inValue, Mushware::U32 inR, Mushware::U32 inC)
     {
         m_value[inR][inC] = inValue;
@@ -92,6 +100,28 @@ operator*(const MushMeshPreMatrix<T, C, R>& a, const MushMeshVector<T, C>& b)
     return retValue;
 }
 
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline bool
+operator==(const MushMeshPreMatrix<T, C, R>& a, const MushMeshPreMatrix<T, C, R>& b)
+{
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        if (a.RowGet(r) != b.RowGet(r))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline bool
+operator!=(const MushMeshPreMatrix<T, C, R>& a, const MushMeshPreMatrix<T, C, R>& b)
+{
+    return !(a == b);
+}
+
 // Stream operators
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
@@ -111,6 +141,12 @@ operator<<(std::ostream& ioOut, const MushMeshPreMatrix<T, C, R>& inMatrix)
     return ioOut;
 }
 
+namespace Mushware
+{
+    typedef MushMeshPreMatrix<Mushware::tVal, 2, 2> t2x2Val;
+    typedef MushMeshPreMatrix<Mushware::tVal, 3, 3> t3x3Val;
+    typedef MushMeshPreMatrix<Mushware::tVal, 4, 4> t4x4Val;
+};
 
 //%includeGuardEnd {
 #endif

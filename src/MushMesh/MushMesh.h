@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.14 2004/10/31 23:34:06 southa Exp $
+ * $Id: MushMesh.h,v 1.15 2004/11/17 23:43:47 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.15  2004/11/17 23:43:47  southa
+ * Added outer product
+ *
  * Revision 1.14  2004/10/31 23:34:06  southa
  * Hypercube rendering test
  *
@@ -69,6 +72,7 @@
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
+#include "MushMeshPostMatrix.h"
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
 // MushMeshSubdivide.h excluded

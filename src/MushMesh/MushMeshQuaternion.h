@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.2 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.3 2004/01/10 20:29:35 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.3  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.2  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -43,13 +46,74 @@ public:
         m_value[3] = in3;
     }
     
-    static MushMeshQuaternion IdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
+    void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
+    void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
+    
+    static MushMeshQuaternion AdditiveIdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
+    static MushMeshQuaternion MultiplicativeIdentityGet(void) { return MushMeshQuaternion(1,0,0,0); }
+    
 };
+
+template <class T>
+inline void
+MushMeshQuaternion<T>::PreMultiplyBy(const MushMeshQuaternion<T>& inQuat)
+{
+    T a = inQuat.X();
+    T b = inQuat.Y();
+    T c = inQuat.Z();
+    T d = inQuat.W();
+    T e = m_value[0];
+    T f = m_value[1];
+    T g = m_value[2];
+    T h = m_value[3];
+    
+    // Apply expansion of (a+bi+cj+dk)(e+fi+gj+hk)
+    
+    m_value[0] = a*e - b*f - c*g - d*h;
+    m_value[1] = a*f + b*e + c*h - d*g;
+    m_value[2] = a*g + c*e - b*h + d*f;
+    m_value[3] = a*h + d*e + b*g - c*f;
+}
+
+template <class T>
+inline void
+MushMeshQuaternion<T>::PostMultiplyBy(const MushMeshQuaternion<T>& inQuat)
+{
+    T a = m_value[0];
+    T b = m_value[1];
+    T c = m_value[2];
+    T d = m_value[3];
+    T e = inQuat.X();
+    T f = inQuat.Y();
+    T g = inQuat.Z();
+    T h = inQuat.W();
+    
+    m_value[0] = a*e - b*f - c*g - d*h;
+    m_value[1] = a*f + b*e + c*h - d*g;
+    m_value[2] = a*g + c*e - b*h + d*f;
+    m_value[3] = a*h + d*e + b*g - c*f;
+}
+
+// Free operators
+
+// Quaternion product
+template <class T>
+inline MushMeshQuaternion<T>
+operator*(const MushMeshQuaternion<T>& a, const MushMeshQuaternion<T>& b)
+{
+    MushMeshQuaternion<T> retValue = a;
+
+    retValue.PostMultiplyBy(b);
+    
+    return retValue;
+}
 
 namespace Mushware
 {
     typedef MushMeshQuaternion<Mushware::tVal> tQVal;
+    typedef std::pair<tQVal, tQVal> tQValPair;
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
