@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.39 2002/08/02 15:20:54 southa Exp $
+ * $Id: GameContract.cpp,v 1.40 2002/08/05 13:37:28 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.40  2002/08/05 13:37:28  southa
+ * Windback work
+ *
  * Revision 1.39  2002/08/02 15:20:54  southa
  * Frame rate timing
  *
@@ -272,8 +275,8 @@ GameContract::RunningDisplay(void)
 
     GameMotionSpec playerSpec(m_player->MotionSpecGet());
 
-    playerSpec.Windback(1.0-m_timer.PartialMotionFrameGet());
-                                        
+    playerSpec.Windback(m_timer.WindbackValueGet(gameAppHandler.MillisecondsGet()));
+    
     GameMapPoint aimingPoint(GLPoint(playerSpec.pos.x / m_floorMap->XStep(),
                                      playerSpec.pos.y / m_floorMap->YStep()));
 

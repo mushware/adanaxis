@@ -1,8 +1,11 @@
 #ifndef GAMETIMER_H
 #define GAMETIMER_H
 /*
- * $Id: GameTimer.h,v 1.1 2002/08/02 15:20:55 southa Exp $
+ * $Id: GameTimer.h,v 1.2 2002/08/05 13:37:29 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.2  2002/08/05 13:37:29  southa
+ * Windback work
+ *
  * Revision 1.1  2002/08/02 15:20:55  southa
  * Frame rate timing
  *
@@ -33,6 +36,7 @@ public:
     void Periodic1sDone(tVal inNum);
     tMsec SleepTimeGet(void) const;
     void DisplayedFrameAt(tMsec inMsec);
+    tVal WindbackValueGet(tMsec inMSec);
 
 private:
     tUsec m_currentTime;
@@ -42,6 +46,9 @@ private:
     tUsec m_motionFrameInterval;
     tUsec m_currentMotionFrame;
     tUsec m_lastRedisplayMotionFrame;
+    tUsec m_lastFrameTime;
+    tUsec m_averageFrameDuration;
+    tUsec m_motionMargin;
     U32 m_lastMsec;
     bool m_timesValid;
 };

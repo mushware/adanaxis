@@ -1,6 +1,9 @@
 /*
- * $Id: GameTimer.cpp,v 1.1 2002/08/02 15:20:55 southa Exp $
+ * $Id: GameTimer.cpp,v 1.2 2002/08/05 13:37:29 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.2  2002/08/05 13:37:29  southa
+ * Windback work
+ *
  * Revision 1.1  2002/08/02 15:20:55  southa
  * Frame rate timing
  *
@@ -10,6 +13,7 @@
 
 GameTimer::GameTimer():
     m_motionFrameInterval(10000),
+    m_averageFrameDuration(0),
     m_timesValid(false)
 {
 
@@ -40,6 +44,9 @@ GameTimer::Reset(void)
     m_periodic1sTime=m_currentTime;
     m_currentMotionFrame=0;
     m_lastRedisplayMotionFrame=m_currentMotionFrame;
+    m_lastFrameTime=m_currentTime;
+    m_averageFrameDuration=0;
+    m_motionMargin=0;
 }
 
 bool
@@ -52,8 +59,11 @@ tVal
 GameTimer::MotionFramesGet(void) const
 {
     // Return the integer part of the frame counter
+    // The state of motion should be between 0 and 1 frames ahead of current
+    // time one completion 
+    
     double frames;
-    modf((m_currentTime - m_motionFrameTime) / m_motionFrameInterval, &frames);
+    modf((m_currentTime - m_motionFrameTime + m_motionMargin) / m_motionFrameInterval, &frames);
     return frames;
 }
 
@@ -70,7 +80,7 @@ void
 GameTimer::MotionFramesDone(tVal inFrames)
 {
     m_motionFrameTime += inFrames * m_motionFrameInterval;
-    COREASSERT(m_motionFrameTime <= m_currentTime);
+    COREASSERT(m_motionFrameTime <= m_currentTime + m_motionMargin);
     m_currentMotionFrame+=inFrames;
 }
 
@@ -85,7 +95,7 @@ GameTimer::PartialMotionFrameGet(void) const
 bool
 GameTimer::RedisplayGet(void) const
 {
-    return (m_lastRedisplayMotionFrame != m_currentMotionFrame);
+    return true;
 }
 
 void
@@ -132,5 +142,59 @@ GameTimer::SleepTimeGet(void) const
 void
 GameTimer::DisplayedFrameAt(tMsec inMsec)
 {
-
+    tVal timeNow = m_currentTime + 1000 * (inMsec - m_lastMsec);
+    tVal frameDuration = timeNow - m_lastFrameTime;
+    // Keep rolling average of frame duration
+    m_averageFrameDuration *=0.9;
+    m_averageFrameDuration += 0.1*frameDuration;
+    m_lastFrameTime = timeNow;
 }
+
+tVal
+GameTimer::WindbackValueGet(tMsec inMSec)
+{
+    // Predict the windback value necessary for a smooth display
+
+    // Abort if we don't have enough information to calculate
+    if (!m_timesValid || m_averageFrameDuration == 0)
+    {
+	return 0;
+    }
+	
+    // First predict the time of the next frame
+    tVal timeNow = m_currentTime + 1000 * (inMSec - m_lastMsec);
+
+    // Get the time elapsed since the last frame was displayed
+    tVal elapsedTime = timeNow - m_lastFrameTime; 
+
+    // Get the number of frames which have elapsed between then and now
+    double elapsedFrames = elapsedTime / m_averageFrameDuration;
+
+    // Round up to an integer
+    modf(elapsedFrames+1.0, &elapsedFrames);
+
+    // Predict a display time - when the next frame will be displayed
+    tVal displayTime = m_lastFrameTime + m_averageFrameDuration*elapsedFrames; 
+    
+    // Calculate the windback value for smooth motion
+    tVal windbackValue = (m_motionFrameTime - displayTime) / m_motionFrameInterval;
+
+    // Adjust the motion frame margin if necessary to keep the windback value
+    // between 0 and 1
+    if (windbackValue > 1.0 || windbackValue < 0.0)
+    {
+	m_motionMargin -= 100.0 * (windbackValue - 0.5);
+    }
+    // Restrict to sensible values
+    if (windbackValue > 1.0) windbackValue = 1.0;
+    if (windbackValue < -1.0) windbackValue = -1.0;
+    
+     
+    // cout << "windbackValue=" << windbackValue << endl;
+    // cout << "motionMargin=" << m_motionMargin << endl;
+ 
+    
+    return windbackValue;
+}
+
+    
