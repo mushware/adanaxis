@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.8 2002/05/28 13:06:59 southa Exp $
+ * $Id: main.cpp,v 1.9 2002/06/11 16:23:56 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.9  2002/06/11 16:23:56  southa
+ * New paths to data files
+ *
  * Revision 1.8  2002/05/28 13:06:59  southa
  * Command parser extensions and TIFF loader
  *
@@ -47,6 +50,10 @@ int main(int argc, char *argv[])
     PlatformMiscUtils::TweakArgs(str);
 
     cout << "Command line was '" << str << "'" << endl;
+    if (str == "")
+    {
+        str="load $SYSTEMPATH+'/start.xml'";
+    }
     try
     {
         CoreApp::Instance().Process(str);
