@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.4 2002/11/14 11:40:28 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.5 2002/11/14 17:29:07 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.5  2002/11/14 17:29:07  southa
+ * Config database
+ *
  * Revision 1.4  2002/11/14 11:40:28  southa
  * Configuration handling
  *
@@ -31,6 +34,7 @@
 
 #include "GameAppHandler.h"
 #include "GameConfig.h"
+#include "GameConfigDef.h"
 
 #include "mushCore.h"
 #include "mushPlatform.h"
@@ -72,18 +76,35 @@ GameWebCommands::DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 
     U32 selectedMode=GameConfig::Instance().DisplayModeGet();
     U32 size=PlatformVideoUtils::Instance().NumModesGet();
-    
-    ioEnv.Out() << "<select name=\"displaymode\">";
+
+    ioEnv.Out() << "<select name=\"displaymode\">" << endl;
     for (U32 i=0; i<size; ++i)
     {
-        ioEnv.Out() << "<option ";
-        if (i == selectedMode) ioEnv.Out() << "selected ";
-
-        ioEnv.Out() << "value=\"" << i << "\">";
-        ioEnv.Out() << PlatformVideoUtils::Instance().ModeDefGet(i).NameGet();
-        ioEnv.Out() << "</option>";
+        ioEnv.Out() << "<option value=\"" << i << "\"";
+        if (i == selectedMode) ioEnv.Out() << " selected";
+        ioEnv.Out() << ">" << PlatformVideoUtils::Instance().ModeDefGet(i).NameGet() << "</option>" << endl;
     }
-    ioEnv.Out() << "</select>";
+    ioEnv.Out() << "</select>" << endl;
+    return CoreScalar(0);
+}
+
+CoreScalar
+GameWebCommands::GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(CommandFail("Usage: gameconfiginputwrite(name)"));
+    }
+    
+    string dataName;
+    ioCommand.PopParam(dataName);
+
+    if (!CoreData<GameConfigDef>::Instance().DataExists(dataName))
+    {
+        throw(CommandFail("Config value '"+dataName+"' does not exist"));
+    }
+    CoreData<GameConfigDef>::Instance().DataGet(dataName)->WebInputPrint(ioEnv.Out(), dataName);
+    
     return CoreScalar(0);
 }
 
@@ -92,4 +113,5 @@ GameWebCommands::Install(void)
 {
     CoreApp::Instance().AddHandler("handlepostvalues", HandlePostValues);
     CoreApp::Instance().AddHandler("displaymodeswrite", DisplayModesWrite);
+    CoreApp::Instance().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
 }

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.3 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameConfig.h,v 1.4 2002/11/14 17:29:08 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.4  2002/11/14 17:29:08  southa
+ * Config database
+ *
  * Revision 1.3  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -40,6 +43,9 @@ public:
     void DisplayModeSet(U32 inMode);
     void DisplayModeSetDefault(void);
 
+    CoreScalar ParameterGet(const string& inName) const;
+    void ParameterSet(const string& inName, const CoreScalar& inValue);
+    
     void PostDataHandle(const string& inData);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;

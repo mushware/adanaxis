@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.3 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameConfig.cpp,v 1.4 2002/11/14 17:29:08 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.4  2002/11/14 17:29:08  southa
+ * Config database
+ *
  * Revision 1.3  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -38,7 +41,22 @@ CoreInstaller GameConfigInstaller(GameConfig::Install);
 GameConfig::GameConfig()
 {
     CoreData<GameConfigDef>::Instance().DataGive("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
-    CoreData<GameConfigDef>::Instance().DataGive("displayquality", new GameConfigDefString("medium"));
+    CoreData<GameConfigDef>::Instance().DataGive("displayquality", new GameConfigDefString(
+        "medium", "low=Low&medium=Medium&high=High"));
+    CoreData<GameConfigDef>::Instance().DataGive("displaylighting", new GameConfigDefString(
+        "dynamic", "none=None&dynamic=Dynamic"));
+    CoreData<GameConfigDef>::Instance().DataGive("networkperms", new GameConfigDefString(
+        "normal", "none=None&normal=Normal&debug=Debug"));
+    CoreData<GameConfigDef>::Instance().DataGive("networkspeed", new GameConfigDefString(
+        "56k", "56k=56k Modem&cable=Cable/DSL&t1=LAN/T1/Infinite"));
+
+    CoreData<GameConfigDef>::Instance().DataGive("httpproxy", new GameConfigDefString(""));
+    
+    CoreData<GameConfigDef>::Instance().DataGive("configperms", new GameConfigDefString(
+        "allowlocal", "allownone=Always Ask&allowlocal=Allow Localhost&allowall=Allow All"));
+    CoreData<GameConfigDef>::Instance().DataGive("configextra", new GameConfigDefString(""));
+    CoreData<GameConfigDef>::Instance().DataGive("configport", new GameConfigDefU32(7200,0,65535));
+    CoreData<GameConfigDef>::Instance().DataGive("multiport", new GameConfigDefU32(7121,0,65535));
 }
 
 U32
@@ -66,6 +84,18 @@ void
 GameConfig::DisplayModeSetDefault(void)
 {
     DisplayModeSet(PlatformVideoUtils::Instance().DefaultModeGet());
+}
+
+CoreScalar
+GameConfig::ParameterGet(const string& inName) const
+{
+    return CoreData<GameConfigDef>::Instance().DataGet(inName)->ValueGet();
+}
+
+void
+GameConfig::ParameterSet(const string& inName, const CoreScalar& inValue)
+{
+    CoreData<GameConfigDef>::Instance().DataGet(inName)->ValueSet(inValue);
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameWebCommands.h,v 1.3 2002/11/14 11:40:28 southa Exp $
+ * $Id: GameWebCommands.h,v 1.4 2002/11/14 17:29:07 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.4  2002/11/14 17:29:07  southa
+ * Config database
+ *
  * Revision 1.3  2002/11/14 11:40:28  southa
  * Configuration handling
  *
@@ -20,5 +23,9 @@ public:
     static void Install(void);
     static CoreScalar HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+
+private:
+
 };
 

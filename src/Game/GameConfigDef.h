@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameConfigDef.h,v 1.1 2002/11/14 17:29:08 southa Exp $
+ * $Log: GameConfigDef.h,v $
+ * Revision 1.1  2002/11/14 17:29:08  southa
+ * Config database
+ *
  */
 
 #include "mushCore.h"
@@ -12,6 +15,13 @@ public:
     virtual const CoreScalar ValueGet(void) const = 0;
     virtual void ValueSet(const CoreScalar& inValue) = 0;
     virtual bool FromPostRetrieve(const string& inName, const string& inData) = 0;
+    virtual void WebInputPrint(ostream& ioOut, const string& inName) = 0;
+
+protected:
+    static void SelectPrologue(ostream& ioOut, const string& inName);
+    static void SelectOption(ostream& ioOut, const string& inName, const string& inValue, bool inSelected);
+    static void SelectOption(ostream& ioOut, const string& inName, U32 inValue, bool inSelected);
+    static void SelectEpilogue(ostream& ioOut);
 };
 
 class GameConfigDefU32 : public GameConfigDef
@@ -23,6 +33,7 @@ public:
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue );
     virtual bool FromPostRetrieve(const string& inName, const string& inData);
+    virtual void WebInputPrint(ostream& ioOut, const string& inName);
 
 private:
     U32 m_value;
@@ -33,15 +44,17 @@ private:
 class GameConfigDefString : public GameConfigDef
 {
 public:
-    GameConfigDefString(const string& inValue);
+    GameConfigDefString(const string& inValue, const string& inMenu="");
 
     virtual ~GameConfigDefString();
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue);
     virtual bool FromPostRetrieve(const string& inName, const string& inData);
+    virtual void WebInputPrint(ostream& ioOut, const string& inName);
 
 private:
     string m_value;
+    string m_menu;
 };
 
 

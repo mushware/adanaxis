@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameConfigDef.cpp,v 1.1 2002/11/14 17:29:08 southa Exp $
+ * $Log: GameConfigDef.cpp,v $
+ * Revision 1.1  2002/11/14 17:29:08  southa
+ * Config database
+ *
  */
 
 #include "GameConfigDef.h"
@@ -67,10 +70,17 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
     return found;
 }
 
+void
+GameConfigDefU32::WebInputPrint(ostream& ioOut, const string& inName)
+{
+    ioOut << "<input name=\"" << inName << "\" type=\"text\" size=\"6\" value=\"" << m_value << "\">" << endl;
+}
+
 // -----
 
-GameConfigDefString::GameConfigDefString(const string& inValue) :
-    m_value(inValue)
+GameConfigDefString::GameConfigDefString(const string& inValue, const string& inMenu="") :
+    m_value(inValue),
+    m_menu(inMenu)
 {
 }
 
@@ -94,7 +104,7 @@ bool
 GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
-    CoreRegExp re("&"+inName+"=([^&$]+)");
+    CoreRegExp re("&"+inName+"=([^&$]*)");
     vector<string> matches;
     if (re.Search(inData, matches))
     {
@@ -104,3 +114,66 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
     }
     return found;
 }
+
+void
+GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
+{
+
+    if (m_menu.size() == 0)
+    {
+        ioOut << "<input name=\"" << inName << "\" type=\"text\" size=\"20\" value=\"" << m_value << "\">" << endl;
+    }
+    else
+    {
+        SelectPrologue(ioOut, inName);
+        U32 endPos=m_menu.size()-1;
+        U32 currentPos=0;
+        while (currentPos < endPos)
+        {
+            U32 equalsPos=m_menu.find('=', currentPos);
+            if (equalsPos == m_menu.npos) break;
+            U32 ampPos=m_menu.find('&', equalsPos);
+            if (ampPos == m_menu.npos) ampPos = endPos+1; // Where the ampersand would be
+            
+            SelectOption(ioOut,
+                         m_menu.substr(equalsPos+1, ampPos - (equalsPos+1)),
+                         m_menu.substr(currentPos, equalsPos - currentPos),
+                        (m_menu.substr(currentPos, equalsPos - currentPos) == m_value));
+            currentPos = ampPos+1;
+        }
+    
+        SelectEpilogue(ioOut);
+    }
+}
+
+void
+GameConfigDef::SelectPrologue(ostream& ioOut, const string& inName)
+{
+    ioOut << "<select name=\"" << inName << "\">" << endl;
+}
+
+void
+GameConfigDef::SelectOption(ostream& ioOut, const string& inName, const string& inValue, bool inSelected)
+{
+    ioOut << "<option ";
+    if (inSelected) ioOut << "selected ";
+    ioOut << "value=\"" << inValue << "\">";
+    ioOut << inName;
+    ioOut << "</option>" << endl;
+}
+
+void
+GameConfigDef::SelectOption(ostream& ioOut, const string& inName, U32 inValue, bool inSelected)
+{
+    ostringstream value;
+    value << inValue;
+    SelectOption(ioOut, inName, value.str(), inSelected);
+}
+
+void
+GameConfigDef::SelectEpilogue(ostream& ioOut)
+{
+    ioOut << "</select>" << endl;
+}
+
+
