@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.1 2002/10/15 14:02:32 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.2 2002/10/15 14:39:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.2  2002/10/15 14:39:21  southa
+ * Include fixes
+ *
  * Revision 1.1  2002/10/15 14:02:32  southa
  * Mode changes
  *
@@ -19,24 +22,21 @@ PlatformVideoUtils::PlatformVideoUtils()
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
 
-    m_modeDefs.push_back(GLModeDef("640x480 no sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncNone));
-    m_modeDefs.push_back(GLModeDef("640x480 soft sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("640x480 hard sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
-    m_modeDefs.push_back(GLModeDef("800x600 soft sync",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("800x600 hard sync",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
-    m_modeDefs.push_back(GLModeDef("1024x768 soft sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1024x768 hard sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
-    m_modeDefs.push_back(GLModeDef("1280x1024 soft sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1280x1024 hard sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
-    m_modeDefs.push_back(GLModeDef("1600x1200 no sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncNone));
-    m_modeDefs.push_back(GLModeDef("1600x1200 soft sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1600x1200 hard sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+
+    m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+
+    m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+
+    m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+;
 }
 
 U32
 PlatformVideoUtils::DefaultModeGet(void) const
 {
-    return 4;
+    return 2;
 }
 
 const GLModeDef&
@@ -57,7 +57,6 @@ PlatformVideoUtils::PreviousModeDef(U32 inNum) const
     if (inNum == 0) return m_modeDefs.size()-1;
     return inNum-1;
 }
-
 
 U32
 PlatformVideoUtils::NextModeDef(U32 inNum) const
@@ -80,36 +79,19 @@ GLUtils::PushMatrix();
     glStr.Render();
 
     gl.MoveTo(0,0);
-    
+
     glStr=GLString(modeDef.NameGet(), GLFontRef("font-mono1", 0.04), 0);
     glStr.Render();
-    gl.MoveTo(0,-0.05);
-    switch (modeDef.SyncGet())
-    {
-        case GLModeDef::kSyncHard:
-            glStr=GLString("Hard sync provides a stable display", GLFontRef("font-mono1", 0.025), 0);
-            glStr.Render();
-            glStr.TextSet("but sometimes with slower frame rates");
-            gl.MoveTo(0,-0.07);
-            glStr.Render();
-            break;
-
-        case GLModeDef::kSyncSoft:
-            glStr=GLString("Soft sync can provide better frame rates", GLFontRef("font-mono1", 0.025), 0);
-            glStr.Render();
-            glStr.TextSet("but with slight visual distortion");
-            gl.MoveTo(0,-0.07);
-            glStr.Render();
-            break;
-            
-        default:
-            break;
-    }
     GLUtils::PopMatrix();
 }
 
 void
 PlatformVideoUtils::VBLWait(void)
+{
+}
+
+void
+PlatformVideoUtils::ForceShowCursor(void)
 {
 }
 

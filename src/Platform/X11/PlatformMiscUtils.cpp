@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.7 2002/09/02 14:48:02 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.8 2002/09/03 10:34:38 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.8  2002/09/03 10:34:38  southa
+ * Converted save path to Unix
+ *
  * Revision 1.7  2002/09/02 14:48:02  southa
  * RPM building
  *
@@ -55,6 +58,10 @@
  */
 
 #include "mushPlatform.h"
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 void
 PlatformMiscUtils::Initialise(void)
@@ -104,5 +111,53 @@ PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
 
 void
 PlatformMiscUtils::TweakArgs(string& ioStr)
+{
+}
+
+bool
+PlatformMiscUtils::DirectoryExists(const string& inName)
+{
+    struct stat statBuf;
+    if (stat(inName.c_str(), &statBuf) == 0)
+    {
+        if (S_ISDIR(statBuf.st_mode))
+	{
+            return true;
+	}
+    }
+    return false;
+}
+
+void
+PlatformMiscUtils::MakeDirectory(const string& inName)
+{
+    errno=0;
+    if (mkdir(inName.c_str(), 0700) != 0)
+    {
+        throw(CommandFail("mkdir "+inName+" failed: "+strerror(errno)));
+    }
+}
+
+void
+PlatformMiscUtils::ErrorBox(const string& inStr)
+{
+}
+
+void
+PlatformMiscUtils::UpdateCheck(void)
+{
+    if (CoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    {
+        ShowUpdateAlert();
+    }
+}
+
+void
+PlatformMiscUtils::ShowUpdateAlert(void)
+{
+}
+
+void
+PlatformMiscUtils::LaunchFile(const string& inFile)
 {
 }

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.4 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.5 2002/08/27 08:56:29 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.5  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -51,6 +54,7 @@
 bool
 PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
 {
+    return true;
 }
 
 void
@@ -64,3 +68,7 @@ PlatformInputUtils::MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& io
 {
 }
 
+void
+PlatformInputUtils::MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta)
+{
+}

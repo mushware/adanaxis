@@ -15,7 +15,7 @@ BuildRoot: /var/tmp/%{name}-buildroot
 Prefix: %{_prefix}
 Requires: XFree86-libs,glut,SDL,SDL_mixer,expat,pcre,libungif
 BuildRequires: gcc-c++,glibc-devel,glut-devel,libstdc++-devel,XFree86-devel,pcre-devel,expat-devel,libungif-devel,libtiff-devel,SDL-devel,smpeg-devel,libogg-devel,libvorbis-devel,SDL_mixer-devel
-Provides: ic2
+Provides: ic2=%{version}-%{release}
 
 %description
 Take on the role of the Infernal Contractor and raise mayhem in this
@@ -47,14 +47,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}
 %{_bindir}
 
+%pre
+echo For a brighter future please report ALL problems with this RPM to rpm@mushware.com
+
 %post
 rm -f %{RUNFILE}
 echo #!/bin/sh > %{RUNFILE}
-echo '[ -d $HOME/.ic2 ] || mkdir $HOME/.ic2' >> %{RUNFILE}
 echo cd %{_datadir}/%{name}/system >> %{RUNFILE}
 echo exec %{_bindir}/ic2binary >> %{RUNFILE}
 chmod 0755 %{RUNFILE}
 
 %changelog
+* Mon Oct 21 2002 Andy Southgate <andy.southgate@mushware.com>
+- Removed creation of .ic2 directory from this file
+
 * Mon Sep  2 2002 Andy Southgate <andy.southgate@mushware.com>
-- Initial Redhat 7.3 RPM.
+- Initial Mandrake 8.2 RPM.
