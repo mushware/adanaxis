@@ -1,12 +1,15 @@
 /*
- * $Id$
- * $Log$
+ * $Id: StreamUtil.cpp,v 1.1 2002/02/26 17:01:40 southa Exp $
+ * $Log: StreamUtil.cpp,v $
+ * Revision 1.1  2002/02/26 17:01:40  southa
+ * Completed Sprite loader
+ *
  */
 
 #include "StreamUtil.hp"
 
 U32
-StreamUtil::BigEndianU32Get(istream& inIn)
+StreamUtil::BigEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(buf, 4);
@@ -18,7 +21,7 @@ StreamUtil::BigEndianU32Get(istream& inIn)
 }
 
 U32
-StreamUtil::LittleEndianU32Get(istream& inIn)
+StreamUtil::LittleEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(buf, 4);
@@ -30,23 +33,23 @@ StreamUtil::LittleEndianU32Get(istream& inIn)
 }
 
 U8
-StreamUtil::U8Get(istream& inIn)
+StreamUtil::U8Get(u8istream& inIn)
 {
-    U8 ch;
+    char ch; // Should be U8
     inIn.get(ch);
     ++m_ctr;
     return ch;
 }
 
 void
-StreamUtil::Ignore(istream& inIn, Size inSize)
+StreamUtil::Ignore(u8istream& inIn, Size inSize)
 {
     inIn.ignore(inSize);
     m_ctr+=inSize;
 }
 
 void
-StreamUtil::Get(istream& inIn, void *outBuffer, Size inSize)
+StreamUtil::Get(u8istream& inIn, U8 *outBuffer, Size inSize)
 {
     inIn.read(outBuffer, inSize);
     m_ctr+=inSize;
@@ -73,7 +76,7 @@ StreamUtil::GetIndex(Size inWhich)
 }
 
 void
-StreamUtil::ConsumeToIndex(istream& inIn, Size inWhich, Size inValue)
+StreamUtil::ConsumeToIndex(u8istream& inIn, Size inWhich, Size inValue)
 {
     int target=inValue-GetIndex(inWhich);
     if (target>0)

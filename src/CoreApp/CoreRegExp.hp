@@ -1,26 +1,28 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreRegExp.hp,v 1.1 2002/03/18 22:21:12 southa Exp $
+ * $Log: CoreRegExp.hp,v $
+ * Revision 1.1  2002/03/18 22:21:12  southa
+ * Initial wrangle command
+ *
  */
 
 #ifndef COREREGEXP_HP
 #define COREREGEXP_HP
 
 #include "pcre.h"
-#include <string>
-#include <vector>
+#include "CoreStandard.hp"
 
 class CoreRegExp
 {
 public:
     CoreRegExp() {m_re = NULL;}
-    CoreRegExp(const string& inPattern) {m_re = NULL;SearchPatternSet(inPattern);}
+    CoreRegExp(const std::string& inPattern) {m_re = NULL;SearchPatternSet(inPattern);}
     ~CoreRegExp() {if (m_re != NULL) pcre_free(m_re);}
-    void SearchPatternSet(const string& inPattern);
-    bool Search(const string& inString);
-    bool Search(const string& inString, vector<string>& outMatches);
-    bool Search(const string& inString, const string& inPattern);
-    bool Search(const string& inString, const string& inPattern, vector<string>& outMatches);
+    void SearchPatternSet(const std::string& inPattern);
+    bool Search(const std::string& inString);
+    bool Search(const std::string& inString, std::vector<std::string>& outMatches);
+    bool Search(const std::string& inString, const std::string& inPattern);
+    bool Search(const std::string& inString, const std::string& inPattern, std::vector<std::string>& outMatches);
 
 private:
     bool HandleRC(int inRC);
@@ -30,17 +32,18 @@ private:
     int m_erroffset;
 };
 
-class CoreRegExpFail: public exception
+class CoreRegExpFail: public std::exception
 {
 public:
-    CoreRegExpFail(const string &inMessage) {m_message=inMessage;}
-    const string& SPrint(void) {return m_message;}
+    CoreRegExpFail(const std::string &inMessage) {m_message=inMessage;}
+    ~CoreRegExpFail() throw() {}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 private:
-    string m_message;
+std::string m_message;
 };
 
-inline ostream& operator<<(ostream &s, CoreRegExpFail f)
+inline std::ostream& operator<<(std::ostream &s, CoreRegExpFail f)
 {
     return s<<f.SPrint();
 }

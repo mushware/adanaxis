@@ -1,12 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreRegExp.cpp,v 1.1 2002/03/18 22:21:12 southa Exp $
+ * $Log: CoreRegExp.cpp,v $
+ * Revision 1.1  2002/03/18 22:21:12  southa
+ * Initial wrangle command
+ *
  */
 
 #include "CoreRegExp.hp"
-#include <strstream>
 
-void CoreRegExp::SearchPatternSet(const string& inPattern)
+void CoreRegExp::SearchPatternSet(const std::string& inPattern)
 {
     if (m_re != NULL) pcre_free(m_re);
     m_re = pcre_compile(
@@ -17,15 +19,13 @@ void CoreRegExp::SearchPatternSet(const string& inPattern)
                       NULL);                    /* use default character tables */
     if (m_re == NULL)
     {
-        char buf[256];
-        buf[sizeof(buf)-1]=0;
-        ostrstream message(buf,sizeof(buf)-1);
+        std::ostringstream message;
         message << "Regular expresion '" << inPattern << "' compilation failed at offset " << m_erroffset << ": " << m_error;
         throw CoreRegExpFail(message.str());
     }
 }
-                               
-bool CoreRegExp::Search(const string& inString)
+
+bool CoreRegExp::Search(const std::string& inString)
 {
     if (m_re == NULL) throw CoreRegExpFail("Search with specifying pattern");
     
@@ -72,8 +72,8 @@ bool CoreRegExp::HandleRC(int inRC)
             return true;
     }
 }
-                   
-bool CoreRegExp::Search(const string& inString, vector<string>& outMatches)
+
+bool CoreRegExp::Search(const std::string& inString, std::vector<std::string>& outMatches)
 {
     if (m_re == NULL) throw CoreRegExpFail("Search with specifying pattern");
 
@@ -91,18 +91,18 @@ bool CoreRegExp::Search(const string& inString, vector<string>& outMatches)
 
     for (int i=1; i<rc; i++)
     {
-        outMatches.push_back(string(inString.data(), ovector[2*i], ovector[2*i+1] - ovector[2*i]));
+        outMatches.push_back(std::string(inString.data(), ovector[2*i], ovector[2*i+1] - ovector[2*i]));
     }
     return HandleRC(rc);
 }
 
-bool CoreRegExp::Search(const string& inString, const string& inPattern)
+bool CoreRegExp::Search(const std::string& inString, const std::string& inPattern)
 {
     SearchPatternSet(inPattern);
     return Search(inString);
 }
 
-bool CoreRegExp::Search(const string& inString, const string& inPattern, vector<string>& outMatches)
+bool CoreRegExp::Search(const std::string& inString, const std::string& inPattern, std::vector<std::string>& outMatches)
 {
     SearchPatternSet(inPattern);
     return Search(inString, outMatches);

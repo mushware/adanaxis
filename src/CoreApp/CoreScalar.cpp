@@ -1,13 +1,16 @@
 /*
- * $Id: CoreScalar.cpp,v 1.1 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.2 2002/03/05 22:44:46 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.2  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.1  2002/03/04 22:30:49  southa
  * Interpreter work
  *
  */
 
 #include "CoreScalar.hp"
-
+#include <strstream>
 void
 CoreScalar::Get(Val& outVal)
 {

@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.hp,v 1.7 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreStandard.hp,v 1.8 2002/03/21 22:07:52 southa Exp $
  * $Log: CoreStandard.hp,v $
+ * Revision 1.8  2002/03/21 22:07:52  southa
+ * Initial wrangle application handler
+ *
  * Revision 1.7  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -30,7 +33,13 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <strstream>
+
+#ifdef HAVE_SSTREAM
+#include <sstream>
+#else
+#include "sstream"
+#endif
+
 #include <vector>
 #include <list>
 #include <map>
@@ -39,10 +48,26 @@
 #include <errno.h>
 #include <assert.h>
 
+using namespace std;
+
 typedef double Val;
 typedef unsigned int U32;
 typedef unsigned char U8;
 typedef size_t Size;
+
+#if 0
+// This didn't work
+typedef std::basic_istream<U8> u8istream;
+typedef std::basic_ostream<U8> u8ostream;
+
+typedef std::basic_ifstream<U8> u8ifstream;
+typedef std::basic_ofstream<U8> u8ofstream;
+#endif
+
+typedef istream u8istream;
+typedef ostream u8ostream;
+typedef ifstream u8ifstream;
+typedef ofstream u8ofstream;
 
 #define Vec vector
 

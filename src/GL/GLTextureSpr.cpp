@@ -1,15 +1,16 @@
 /*
- * $Id: GLTextureSpr.cpp,v 1.1 2002/02/26 17:01:38 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.2 2002/03/07 22:24:34 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.2  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.1  2002/02/26 17:01:38  southa
  * Completed Sprite loader
  *
  */
 
 #include "GLTextureSpr.hp"
-#include "CoreSwitches.hp"
-#include "CoreUtil.hp"
-#include "StreamUtil.hp"
+#include "mushCore.hp"
 
 GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 
@@ -17,7 +18,9 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
 {
     StreamUtil sUtil;
     FilenameSet(inFilename);
-    ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
+
+    u8ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
+
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
     U32 numSprites=sUtil.LittleEndianU32Get(in);
     U32 offsetFirst=sUtil.LittleEndianU32Get(in);

@@ -1,14 +1,18 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id: CoreScalar.hp,v 1.1 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreScalar.hp,v 1.2 2002/03/05 22:44:46 southa Exp $
  * $Log: CoreScalar.hp,v $
+ * Revision 1.2  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.1  2002/03/04 22:30:49  southa
  * Interpreter work
  *
  */
 
 #include "CoreStandard.hp"
+using namespace std;
 
 class CoreScalar
 {

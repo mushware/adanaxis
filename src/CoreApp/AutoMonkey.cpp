@@ -1,6 +1,9 @@
 /*
- * $Id: AutoMonkey.cpp,v 1.3 2002/02/26 17:01:40 southa Exp $
+ * $Id: AutoMonkey.cpp,v 1.4 2002/03/07 22:24:32 southa Exp $
  * $Log: AutoMonkey.cpp,v $
+ * Revision 1.4  2002/03/07 22:24:32  southa
+ * Command interpreter working
+ *
  * Revision 1.3  2002/02/26 17:01:40  southa
  * Completed Sprite loader
  *
@@ -38,7 +41,9 @@ AutoMonkey::AutoMonkey(const AutoMonkey& inMonkey)
 void
 AutoMonkey::Swap(AutoMonkey& inMonkey)
 {
-    swap(m_refCtrPtr, inMonkey.m_refCtrPtr);
+    int *temp=m_refCtrPtr;
+    m_refCtrPtr=inMonkey.m_refCtrPtr;
+    inMonkey.m_refCtrPtr=temp;
 }
 
 AutoMonkey&

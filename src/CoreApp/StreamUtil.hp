@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: StreamUtil.hp,v 1.1 2002/02/26 17:01:40 southa Exp $
+ * $Log: StreamUtil.hp,v $
+ * Revision 1.1  2002/02/26 17:01:40  southa
+ * Completed Sprite loader
+ *
  */
 
 #include "CoreStandard.hp"
@@ -9,14 +12,14 @@ class StreamUtil
 {
 public:
     StreamUtil():m_ctr(0) {}
-    U32 BigEndianU32Get(istream& inIn);
-    U32 LittleEndianU32Get(istream& inIn);
-    U8 U8Get(istream& inIn);
-    void Get(istream& inIn, void *outBuffer, Size inSize);
-    void Ignore(istream &inIn, Size inSize);
+    U32 BigEndianU32Get(u8istream& inIn);
+    U32 LittleEndianU32Get(u8istream& inIn);
+    U8 U8Get(u8istream& inIn);
+    void Get(u8istream& inIn, U8 *outBuffer, Size inSize);
+    void Ignore(u8istream &inIn, Size inSize);
     void ZeroIndex(Size inWhich);
     Size GetIndex(Size inWhich);
-    void ConsumeToIndex(istream& inIn, Size inWhich, Size inValue);
+    void ConsumeToIndex(u8istream& inIn, Size inWhich, Size inValue);
     
 private:
     vector<int> m_zero;

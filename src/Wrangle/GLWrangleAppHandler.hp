@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.hp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Id: GLWrangleAppHandler.hp,v 1.2 2002/05/08 16:31:20 southa Exp $
  * $Log: GLWrangleAppHandler.hp,v $
+ * Revision 1.2  2002/05/08 16:31:20  southa
+ * Created API directory
+ *
  * Revision 1.1  2002/03/21 22:07:54  southa
  * Initial wrangle application handler
  *
