@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlClient.cpp,v 1.9 2003/01/13 16:50:48 southa Exp $
+ * $Id: MustlClient.cpp,v 1.10 2003/01/14 17:38:21 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.10  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.9  2003/01/13 16:50:48  southa
  * win32 support
  *
@@ -101,8 +104,8 @@ using namespace Mustl;
 using namespace std;
 
 MustlClient::MustlClient() :
-    m_tcpSocket(0),
-    m_udpSocket(0),
+    m_tcpSocket(MustlPlatform::InvalidSocketValueGet()),
+    m_udpSocket(MustlPlatform::InvalidSocketValueGet()),
     m_tcpAddress(0,0),
     m_udpAddress(0,0),
     m_tcpConnected(false),
@@ -203,7 +206,7 @@ MustlClient::TCPDisconnect(void)
     if (m_tcpConnected)
     {
         MustlPlatform::SocketClose(m_tcpSocket);
-        m_tcpSocket=0;
+        m_tcpSocket=MustlPlatform::InvalidSocketValueGet();
         m_tcpConnected=false;
     }
 }
@@ -214,7 +217,7 @@ MustlClient::UDPDisconnect(void)
     if (m_udpConnected)
     {
         MustlPlatform::SocketClose(m_udpSocket);
-        m_udpSocket=0;
+        m_udpSocket=MustlPlatform::InvalidSocketValueGet();
         m_udpConnected=false;
     }
 }
@@ -226,7 +229,7 @@ MustlClient::TCPConnectionCompletedHas(void)
     {
         throw(MustlFail("TCPConnectionCompletedHas call on unconnected link"));
     }
-    return MustlPlatform::TCPSocketConnectionCompleted(m_tcpSocket);
+    return MustlPlatform::TCPConnectionCompletedHas(m_tcpSocket);
 }
 
 void
@@ -254,7 +257,7 @@ MustlClient::TCPReceive(MustlData& outData)
     {
         throw(MustlFail("TCP receive on closed socket"));
     }
-    MUSTLASSERT(m_tcpSocket != 0);
+    MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
 
     outData.PrepareForWrite(kEthernetMTU);
     U32 receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
@@ -283,7 +286,7 @@ MustlClient::UDPSend(MustlData& ioData)
     {
         throw(MustlFail("UDP send on closed socket"));
     }
-    MUSTLASSERT(m_udpSocket != 0);
+    MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
 
     U32 receiveSize, sentSize;
     
@@ -309,7 +312,7 @@ MustlClient::UDPReceive(MustlData& outData)
     {
         throw(MustlFail("UDP receive on closed socket"));
     }
-    MUSTLASSERT(m_udpSocket != 0);
+    MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
 
     MustlAddress receiveAddress;
     outData.PrepareForWrite(kEthernetMTU);

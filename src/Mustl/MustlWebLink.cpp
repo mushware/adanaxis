@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.14 2003/01/14 17:38:22 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.15 2003/01/14 20:46:12 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.15  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.14  2003/01/14 17:38:22  southa
  * Mustl web configuration
  *
@@ -111,7 +114,7 @@ string MustlWebLink::m_webPath="";
 
 MustlWebLink::MustlWebLink(tSocket inSocket) :
     m_receiveState(kReceiveInitial),
-    m_tcpSocket(0),
+    m_tcpSocket(MustlPlatform::InvalidSocketValueGet()),
     m_linkErrors(0),
     m_isDead(false)
 {
@@ -148,10 +151,10 @@ MustlWebLink::~MustlWebLink()
 void
 MustlWebLink::Disconnect(void)
 {
-    if (m_tcpSocket != 0)
+    if (m_tcpSocket != MustlPlatform::InvalidSocketValueGet())
     {
         MustlPlatform::SocketClose(m_tcpSocket);
-        m_tcpSocket=0;
+        m_tcpSocket=MustlPlatform::InvalidSocketValueGet();
     }
     m_isDead = true;
 }

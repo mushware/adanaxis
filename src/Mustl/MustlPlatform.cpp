@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.5 2003/01/14 22:02:12 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.6 2003/01/14 23:43:00 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.6  2003/01/14 23:43:00  southa
+ * Fixes for win32
+ *
  * Revision 1.5  2003/01/14 22:02:12  southa
  * Command line build fixes
  *
@@ -94,47 +97,7 @@
 #include "MustlFail.h"
 #include "MustlSTL.h"
 
-#if !defined(WIN32) && defined(_WIN32)
-#define WIN32
-#endif
-
-#if defined(__APPLE__) && !defined(MACOSX)
-#define MACOSX
-#endif
-
-#ifdef WIN32
-// win32 includes
-#include <windows.h>
-#include <iphlpapi.h>
-#else
-#ifdef MACOSX
-// Mac OS X includes
-#include <Carbon/Carbon.h>
-// Remove definitions which are also in the POSIX includes
-#undef TCP_NODELAY
-#undef TCP_MAXSEG
-#define POSIX_OR_MACOSX
-#else
-#define POSIX_NOT_MACOSX
-#endif
-#endif
-
-#ifdef POSIX_OR_MACOSX
-// POSIX includes (including Mac OS X)
-#include <sys/ioctl.h>
-#include <sys/socket.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#include <arpa/inet.h>
-#include <fcntl.h>
-
-#include <net/if.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#endif
+#include "MustlPlatformHeaders.h"
 
 using namespace Mustl;
 using namespace std;
@@ -142,34 +105,10 @@ using namespace std;
 bool MustlPlatform::m_localAddressesValid=false;
 map<U32, bool> MustlPlatform::m_localAddressMap;
 
-#ifdef WIN32
-
-#define MUSTL_ERROR_PREFIX int wsaError
-#define MUSTL_ERROR_RESET
-#define MUSTL_ERROR_FETCH wsaError = WSAGetLastError()
-#define MUSTL_ERROR_VALUE wsaError
-#define MUSTL_ERROR_EAGAIN WSAEWOULDBLOCK
-#define MUSTL_ERROR_EINTR WSAEINTR
-#define MUSTL_ERROR_EWOULDBLOCK WSAEWOULDBLOCK
-#define MUSTL_ERROR_EINPROGRESS WSAEINPROGRESS
-
-#else
-
-#define MUSTL_ERROR_PREFIX
-#define MUSTL_ERROR_RESET errno=0
-#define MUSTL_ERROR_FETCH
-#define MUSTL_ERROR_VALUE errno
-#define MUSTL_ERROR_EAGAIN EAGAIN
-#define MUSTL_ERROR_EINTR EINTR
-#define MUSTL_ERROR_EWOULDBLOCK EWOULDBLOCK
-#define MUSTL_ERROR_EINPROGRESS EINPROGRESS
-
-#endif
-
 void
 MustlPlatform::SocketClose(tSocket inSocket)
 {
-#ifdef WIN32
+#ifdef MUSTL_WIN32
     closesocket(inSocket);
 #else
     close(inSocket);
@@ -182,7 +121,7 @@ MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
 
-#ifdef WIN32
+#ifdef MUSTL_WIN32
     u_long mode = 1;
     int result = ioctlsocket(inSocket, FIONBIO, &mode);
 #else
@@ -207,11 +146,10 @@ MustlPlatform::SocketBlockingSet(tSocket inSocket)
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
 
-#ifdef WIN32
+#ifdef MUSTL_WIN32
     u_long mode = 1;
     int result = ioctlsocket(inSocket, FIONBIO, &mode);
 #else
-    
     int flags = fcntl(inSocket, F_GETFL, 0);
     if (flags < 0) flags = 0;
     int result = fcntl(inSocket, F_SETFL, flags & ~O_NONBLOCK);
@@ -242,13 +180,12 @@ MustlPlatform::SocketReuseAddressSet(tSocket inSocket)
         message << "Failed to set socket address reuse (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
-    
 }
 
 void
 MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
 {
-    int value = 1;
+    int value=1;
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
     
@@ -315,6 +252,7 @@ MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *in
 
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
+    
     int result=sendto(inSocket, reinterpret_cast<const char *>(inBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
 
     if (result < 0)
@@ -336,6 +274,7 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
 
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
+    
     int result = recvfrom(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
 
     outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
@@ -363,10 +302,18 @@ tSocket
 MustlPlatform::TCPUnboundSocketCreate(void)
 {
     tSocket sockHandle;
+
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+
     sockHandle = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockHandle == -1)
+    if (sockHandle == MUSTL_INVALID_SOCKET)
     {
-        throw(MustlFail("Couldn't create TCP socket"));
+        MUSTL_ERROR_FETCH;
+        
+        ostringstream message;
+        message << "Couldn't create TCP socket (" << MUSTL_ERROR_VALUE << ")";
+        throw(MustlFail(message.str()));
     }
     return sockHandle;
 }
@@ -375,12 +322,26 @@ tSocket
 MustlPlatform::UDPUnboundSocketCreate(void)
 {
     tSocket sockHandle;
+    
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+    
     sockHandle = socket(AF_INET, SOCK_DGRAM, 0);
-    if (sockHandle == -1)
+    if (sockHandle == MUSTL_INVALID_SOCKET)
     {
-        throw(MustlFail("Couldn't create UDP socket"));
+        MUSTL_ERROR_FETCH;
+
+        ostringstream message;
+        message << "Couldn't create UDP socket (" << MUSTL_ERROR_VALUE << ")";
+        throw(MustlFail(message.str()));
     }
     return sockHandle;
+}
+
+tSocket
+MustlPlatform::InvalidSocketValueGet(void)
+{
+    return MUSTL_INVALID_SOCKET;
 }
 
 tSocket
@@ -469,6 +430,7 @@ MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
 
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
+    
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
         MUSTL_ERROR_FETCH;
@@ -495,7 +457,7 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
     MUSTL_ERROR_RESET;
     int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddr), &sockAddrLen);
 
-    if (newSocket == -1)
+    if (newSocket == MUSTL_INVALID_SOCKET)
     {
         MUSTL_ERROR_FETCH;
 
@@ -514,7 +476,7 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
 }
 
 bool
-MustlPlatform::TCPSocketConnectionCompleted(tSocket inSocket)
+MustlPlatform::TCPConnectionCompletedHas(tSocket inSocket)
 {
     struct timeval timeVal;
     timeVal.tv_sec = 0;
@@ -623,7 +585,7 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
     return true;
 }
 
-#ifdef WIN32
+#ifdef MUSTL_WIN32
 // Start of win32 block
 void
 MustlPlatform::LocalAddressesRetrieve(void)
@@ -693,11 +655,14 @@ MustlPlatform::LaunchURL(const string& inURL)
 // End of win32 block
 #endif
 
-#ifdef MACOSX
+#ifdef MUSTL_MACOSX
 // Start of Mac OS X only block
 void
 MustlPlatform::LaunchURL(const string& inURL)
 {
+#ifdef MUSTL_NO_CARBON
+    throw(MustlFail("Cannot open URL '"+inURL+"' because Mustl was compiled with MUSTL_NO_CARBON"));
+#else
     CFStringRef destName = CFStringCreateWithCString(NULL, inURL.c_str(), kCFStringEncodingMacRoman);
     if (destName)
     {
@@ -709,17 +674,22 @@ MustlPlatform::LaunchURL(const string& inURL)
         }
         CFRelease(destName);
     }
+#endif
 }
 // End of Mac OS X only block
 #endif
 
-#ifdef POSIX_NOT_MACOSX
+#ifdef MUSTL_POSIX_NOT_MACOSX
 // Start of POSIX only block (not including Mac OS X)
-
+void
+MustlPlatform::LaunchURL(const string& inURL)
+{
+    throw(MustlFail("Cannot automatically open URL '"+inURL+"' on this platform"));
+}    
 // End of POSIX only block
 #endif
 
-#ifdef POSIX_OR_MACOSX
+#ifdef MUSTL_POSIX_OR_MACOSX
 // Start of POSIX or Mac OS X block
 void
 MustlPlatform::LocalAddressesRetrieve(void)
@@ -730,17 +700,18 @@ MustlPlatform::LocalAddressesRetrieve(void)
     U8 ipBuffer[16384];
     ifConf.ifc_buf = reinterpret_cast<char *>(ipBuffer);
     ifConf.ifc_len = sizeof(ipBuffer)-256;
-    int testSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (testSocket == -1)
-    {
-        throw(MustlFail("Socket creation failed"));
-    }
-    errno=0;
+    tSocket testSocket = TCPUnboundSocketCreate();
+
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+
     if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
     {
+        MUSTL_ERROR_FETCH;
+        
         SocketClose(testSocket);
         ostringstream message;
-        message << "ioctl SIOCGIFCONF fail (" << errno << ")";
+        message << "ioctl SIOCGIFCONF fail (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     U8 *dataPtr=ipBuffer;

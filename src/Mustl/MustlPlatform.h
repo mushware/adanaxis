@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.h,v 1.1 2003/01/13 15:52:43 southa Exp $
+ * $Id: MustlPlatform.h,v 1.2 2003/01/14 20:46:12 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.2  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/13 15:52:43  southa
  * Merged MustlPlatform
  *
@@ -81,14 +84,15 @@ public:
 
     static Mustl::tSocket TCPUnboundSocketCreate(void);
     static Mustl::tSocket UDPUnboundSocketCreate(void);
-
+    static Mustl::tSocket InvalidSocketValueGet(void);
+    
     static Mustl::tSocket TCPConnectNonBlocking(const MustlAddress& inAddress);
     static Mustl::tSocket TCPBindNonBlocking(const MustlAddress& inAddress);
     static Mustl::tSocket UDPBindNonBlocking(Mustl::U32 inPortNetworkOrder);
     
     static bool Accept(Mustl::tSocket& outSocket, MustlAddress& outAddress, Mustl::tSocket inSocket);
     static void SocketClose(Mustl::tSocket inSocket);
-    static bool TCPSocketConnectionCompleted(Mustl::tSocket inSocket);
+    static bool TCPConnectionCompletedHas(Mustl::tSocket inSocket);
     static Mustl::U32 HostToNetworkOrderU16(Mustl::U32 inVal);
     static Mustl::U32 NetworkToHostOrderU16(Mustl::U32 inVal);
     static Mustl::U32 HostToNetworkOrderU32(Mustl::U32 inVal);

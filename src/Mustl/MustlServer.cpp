@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.13 2003/01/13 15:01:20 southa Exp $
+ * $Id: MustlServer.cpp,v 1.14 2003/01/13 16:50:48 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.14  2003/01/13 16:50:48  southa
+ * win32 support
+ *
  * Revision 1.13  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -127,8 +130,8 @@ MustlServer::~MustlServer()
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != 0);
-        MUSTLASSERT(m_udpSocket != 0);
+        MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
+        MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
         MustlPlatform::SocketClose(m_tcpSocket);
         MustlPlatform::SocketClose(m_udpSocket);
     }
@@ -167,8 +170,8 @@ MustlServer::Connect(U32 inPort)
             if (portNum > inPort+7) throw;
         }
     }
-    MUSTLASSERT(m_tcpSocket != 0);
-    MUSTLASSERT(m_udpSocket != 0);
+    MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
+    MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
     
     MustlLog::Instance().NetLog() << "Created server on port " << m_serverPortHostOrder << endl;
     m_serving=true;
@@ -179,12 +182,12 @@ MustlServer::Disconnect(void)
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != 0);
-        MUSTLASSERT(m_udpSocket != 0);
+        MUSTLASSERT(m_tcpSocket != MustlPlatform::InvalidSocketValueGet());
+        MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
         MustlPlatform::SocketClose(m_tcpSocket);
         MustlPlatform::SocketClose(m_udpSocket);
-        m_tcpSocket=0;
-        m_udpSocket=0;
+        m_tcpSocket = MustlPlatform::InvalidSocketValueGet();
+        m_udpSocket = MustlPlatform::InvalidSocketValueGet();
     }
     m_serving=false;
     MustlLog::Instance().NetLog() << "Closed server" << endl;
@@ -225,7 +228,7 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
         MustlLog::Instance().NetLog() << "UDPSend (server) to bad address (" << inAddress << ")" << endl;
     }
     
-    MUSTLASSERT(m_udpSocket != 0);
+    MUSTLASSERT(m_udpSocket != MustlPlatform::InvalidSocketValueGet());
 
     U32 dataSize = MustlPlatform::UDPSend(inAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     ioData.ReadPosAdd(dataSize);
