@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlMain.cpp,v 1.2 2003/01/14 17:38:22 southa Exp $
+ * $Id: TestMustlMain.cpp,v 1.3 2003/01/14 20:46:12 southa Exp $
  * $Log: TestMustlMain.cpp,v $
+ * Revision 1.3  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.2  2003/01/14 17:38:22  southa
  * Mustl web configuration
  *
@@ -28,7 +31,6 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-
     try
     {
         cout << "This application must be started from the mustl directory" << endl;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlApp.cpp,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Id: TestMustlApp.cpp,v 1.2 2003/01/14 20:46:12 southa Exp $
  * $Log: TestMustlApp.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -27,15 +30,15 @@ void
 TestMustlApp::Enter(void)
 {
     U32 webPort=7200;
+    ostringstream configURL;
+    configURL << "http://127.0.0.1:" << webPort << "/";
 
     cout << "TestMustl application started" << endl;
-    cout << "Please view URL http://127.0.0.1:" << webPort << " in your web browser," << endl;
+    cout << "Please view URL " << configURL.str() << " in your web browser," << endl;
     cout << "or press control-C to exit." << endl;
 
     MustlWebServer::Instance().Connect(webPort);
 
-    ostringstream configURL;
-    configURL << "http://127.0.0.1:" << webPort << "/";
     MustlPlatform::LaunchURL(configURL.str());
     m_doQuit = false;
 

@@ -45,23 +45,17 @@ AC_MSG_NOTICE([****************************************************************]
 case "$target" in
     powerpc-apple-darwin*)
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
-        AC_MSG_NOTICE([* Using platform pack from src/Platform/MacOSX.])
-        LIBS="$LIBS"
-        CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/MacOSX -I\${srcdir}/Platform -I\${srcdir}/Mustl -fpascal-strings"
+        LIBS="$LIBS -framework Carbon"
+        CPPFLAGS="$CPPFLAGS -fpascal-strings"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
             AC_MSG_NOTICE([* Header windows.h detected.  Assuming target is Windows.])
-            AC_MSG_NOTICE([* Using platform pack from src/Platform/win32.])
             AC_CHECK_LIB(wsock32, main,, AC_MSG_ERROR([Not configured to build without wsock32 library]))
-            CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/win32"
+            CPPFLAGS="$CPPFLAGS"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
-            AC_MSG_NOTICE([* Using platform pack from src/Platform/X11.])
-
-            AC_LANG(C++)
-
-            CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/X11"
+            CPPFLAGS="$CPPFLAGS"
         fi
         ;;
 esac

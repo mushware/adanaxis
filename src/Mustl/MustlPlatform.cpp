@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.3 2003/01/13 23:05:22 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.4 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.4  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.3  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -110,13 +113,16 @@
 #ifdef MACOSX
 // Mac OS X includes
 #include <Carbon/Carbon.h>
+// Remove definitions which are also in the POSIX includes
+#undef TCP_NODELAY
+#undef TCP_MAXSEG
 #define POSIX_OR_MACOSX
 #else
 #define POSIX_NOT_MACOSX
 #endif
 #endif
 
-#ifndef WIN32
+#ifdef POSIX_OR_MACOSX
 // POSIX includes (including Mac OS X)
 #include <sys/ioctl.h>
 #include <sys/socket.h>

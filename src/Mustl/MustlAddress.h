@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.h,v 1.5 2002/12/17 00:58:28 southa Exp $
+ * $Id: MustlAddress.h,v 1.6 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.6  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/12/17 00:58:28  southa
  * Added support for libmustl target
  *
@@ -44,35 +47,38 @@
 class MustlAddress
 {
 public:
+    typedef Mustl::U32 tIPAddr;
+    typedef Mustl::U32 tPort;
+    
     MustlAddress() :
         m_ip(0),
         m_port(0)
     {}
 
-    MustlAddress(Mustl::U32 inHostNetworkOrder, Mustl::U32 inPortNetworkOrder) :
+    MustlAddress(tIPAddr inHostNetworkOrder, tPort inPortNetworkOrder) :
         m_ip(inHostNetworkOrder),
         m_port(inPortNetworkOrder)
     {}
 
-    MustlAddress(const std::string& inName, Mustl::U32 inPortHostOrder)
+    MustlAddress(const std::string& inName, tPort inPortHostOrder)
     {
         ResolveFromHostName(inName, inPortHostOrder);
     }
     
     std::string HostStringGet(void) const;
-    Mustl::U32 HostGetNetworkOrder(void) const { return m_ip; }
-    void HostSetNetworkOrder(Mustl::U32 inIP) { m_ip = inIP; }
-    Mustl::U32 PortGetNetworkOrder(void) const { return m_port; }
-    Mustl::U32 PortGetHostOrder(void) const;
-    void PortSetNetworkOrder(Mustl::U32 inPortNetworkOrder) { m_port = inPortNetworkOrder; }
-    void PortSetHostOrder(Mustl::U32 inPortHostOrder);
+    tIPAddr HostGetNetworkOrder(void) const { return m_ip; }
+    void HostSetNetworkOrder(tIPAddr inIP) { m_ip = inIP; }
+    tPort PortGetNetworkOrder(void) const { return m_port; }
+    tPort PortGetHostOrder(void) const;
+    void PortSetNetworkOrder(tPort inPortNetworkOrder) { m_port = inPortNetworkOrder; }
+    void PortSetHostOrder(tPort inPortHostOrder);
 
-    void ResolveFromIPAddressString(const std::string& inHostName, Mustl::U32 inPortHostOrder);
+    void ResolveFromIPAddressString(const std::string& inHostName, tPort inPortHostOrder);
 
     // This one can block if given a name which needs looking up
-    void ResolveFromHostName(const std::string& inHostName, Mustl::U32 inPortHostOrder);
+    void ResolveFromHostName(const std::string& inHostName, tPort inPortHostOrder);
         
-    // For use by <<
+    // For use by ostream <<
     void Print(std::ostream& ioOut) const;
 
     // For use by the operators == != < > 
@@ -81,8 +87,8 @@ public:
     bool GreaterThan(const MustlAddress& inAddress) const;
     
 private:
-    Mustl::U32 m_ip; // Network order
-    Mustl::U32 m_port; // Network order
+    tIPAddr m_ip; // Network order
+    tPort m_port; // Network order
 };
 
 inline bool

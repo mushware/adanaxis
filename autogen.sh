@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.7 2003/01/13 23:05:19 southa Exp $
+# $Id: autogen.sh,v 1.8 2003/01/13 23:48:38 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.8  2003/01/13 23:48:38  southa
+# Mustl fixes
+#
 # Revision 1.7  2003/01/13 23:05:19  southa
 # Mustl test application
 #
@@ -90,8 +93,8 @@ mustl)
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
     echo 'test_mustl_LDADD = libmustl.la' >> Makefile.am
-        
-    echo 'test_mustl_INCLUDES=-I\$\{srcdir\}/Mustl' >> Makefile.am
+    # Make sure that Mustl is in the include path for the test application    
+    echo 'test_mustl_CXXFLAGS=-I${srcdir}/Mustl $(AM_CXXFLAGS)' >> Makefile.am
 
     cd ..
     echo -n 'EXTRA_DIST=' >> Makefile.am
