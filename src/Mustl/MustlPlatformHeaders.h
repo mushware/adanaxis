@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatformHeaders.h,v 1.9 2003/02/05 16:19:46 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.10 2003/02/05 17:06:38 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.10  2003/02/05 17:06:38  southa
+ * Build fixes
+ *
  * Revision 1.9  2003/02/05 16:19:46  southa
  * Build fixes
  *
@@ -85,19 +88,17 @@
 
 // POSIX includes (including Mac OS X)
 #ifdef MUSTL_POSIX_OR_MACOSX
+#include <sys/types.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
-#include <sys/types.h>
 #include <unistd.h>
-
-#include <arpa/inet.h>
 #include <fcntl.h>
-
 #include <net/if.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <arpa/inet.h>
 #endif
 
 // win32 has a different error handling and different names for some values,
