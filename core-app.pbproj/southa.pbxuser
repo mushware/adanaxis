@@ -112,6 +112,7 @@
 		argumentStrings = (
 			"launch /bin/ls;initGL;",
 			"initGL;loadPixmap test.gif",
+			test3,
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";

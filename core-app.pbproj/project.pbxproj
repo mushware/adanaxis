@@ -247,6 +247,7 @@
 				F5921CFA021876D70127AF47,
 				F56F91A60221A823011355B6,
 				F56F91AA0221AA94011355B6,
+				F56122540227A7020100557C,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -267,6 +268,7 @@
 				F5921D00021876D70127AF47,
 				F56F91A80221A926011355B6,
 				F56F91AC0221AC0F011355B6,
+				F56122520227A6E00100557C,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -400,6 +402,28 @@
 			settings = {
 			};
 		};
+		F56122510227A6DF0100557C = {
+			isa = PBXFileReference;
+			path = AutoMonkey.cpp;
+			refType = 4;
+		};
+		F56122520227A6E00100557C = {
+			fileRef = F56122510227A6DF0100557C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F56122530227A7020100557C = {
+			isa = PBXFileReference;
+			path = AutoMonkey.hp;
+			refType = 4;
+		};
+		F56122540227A7020100557C = {
+			fileRef = F56122530227A7020100557C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F56F91A50221A823011355B6 = {
 			isa = PBXFileReference;
 			path = GLData.hp;
@@ -469,6 +493,8 @@
 				F5921CED021876D70127AF47,
 				F5921CEE021876D70127AF47,
 				F5921CEF021876D70127AF47,
+				F56122510227A6DF0100557C,
+				F56122530227A7020100557C,
 			);
 			isa = PBXGroup;
 			path = CoreApp;
