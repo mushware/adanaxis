@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mushcore.h,v 1.5 2003/01/16 13:11:32 southa Exp $
+ * $Id: Mushcore.h,v 1.6 2003/01/17 13:30:40 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.6  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.5  2003/01/16 13:11:32  southa
  * Install and uninstall MustlPlatform
  *
@@ -32,13 +35,13 @@
 
 #include "MushcoreAppHandler.h"
 #include "MushcoreAppSignal.h"
-#include "MushcoreAutoDelete.h"
 #include "MushcoreAutoMonkey.h"
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
 #include "MushcoreConfig.h"
 #include "MushcoreData.h"
 #include "MushcoreDataRef.h"
+#include "MushcoreDestroySingleton.h"
 #include "MushcoreEnv.h"
 #include "MushcoreEnvOutput.h"
 #include "MushcoreFail.h"
@@ -51,6 +54,7 @@
 #include "MushcoreRegExp.h"
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"
+#include "MushcoreSingleton.h"
 #include "MushcoreStandard.h"
 #include "MushcoreStreamUtil.h"
 #include "MushcoreUninstaller.h"

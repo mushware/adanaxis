@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.h,v 1.3 2003/01/13 23:05:22 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.4 2003/01/17 13:30:40 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.4  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.3  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -82,11 +85,9 @@ class MushcoreConfig
 {
 public:
     virtual ~MushcoreConfig() {}
-    void Set(const std::string& inName, const MushcoreScalar& inValue);
-    void Set(const std::string& inName, const std::string& inStr) { Set(inName, MushcoreScalar(inStr)); }
-    void Set(const std::string& inName, const Mushware::tVal inVal) { Set(inName, MushcoreScalar(inVal)); }
-    void Set(const std::string& inName, const Mushware::U32 inValue) { Set(inName, MushcoreScalar(inValue)); }
-    void Set(const std::string& inName, const Mushware::S32 inValue) { Set(inName, MushcoreScalar(static_cast<Mushware::U32>(inValue))); }
+    MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const MushcoreScalar& inValue);
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const ParamType& inParam);
+
     const MushcoreScalar& Get(const std::string& inName) const;
     bool GetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
     bool Exists(const std::string& inName) const;
@@ -94,4 +95,18 @@ public:
 private:
     std::map<std::string, MushcoreScalar> m_config;
 };
+
+inline void
+MushcoreConfig::Set(const std::string& inName, const MushcoreScalar& inValue)
+{
+    m_config[inName]=inValue;
+}
+
+template<class ParamType>
+inline void
+MushcoreConfig::Set(const std::string& inName, const ParamType& inParam)
+{
+    Set(inName, MushcoreScalar(inParam));
+}
+
 #endif

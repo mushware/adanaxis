@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.19 2003/01/13 14:32:00 southa Exp $
+ * $Id: GameRouter.cpp,v 1.20 2003/01/17 13:30:39 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.20  2003/01/17 13:30:39  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.19  2003/01/13 14:32:00  southa
  * Build frameworks for Mac OS X
  *
@@ -85,7 +88,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreAutoDelete<GameRouter> GameRouter::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(GameRouter);
 
 void
 GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSwitches.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.3 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.3  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -59,6 +62,7 @@
 #else
 #define IFMONKEYTESTING(a)
 #endif
+
 #if FLEXTESTING
 #define IFFLEXTESTING(a) a
 #else

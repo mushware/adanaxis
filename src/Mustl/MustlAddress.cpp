@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.cpp,v 1.5 2002/12/29 20:59:58 southa Exp $
+ * $Id: MustlAddress.cpp,v 1.6 2003/01/16 15:58:01 southa Exp $
  * $Log: MustlAddress.cpp,v $
+ * Revision 1.6  2003/01/16 15:58:01  southa
+ * Mustl exception handling
+ *
  * Revision 1.5  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -46,7 +49,7 @@ using namespace std;
 void
 MustlAddress::Print(ostream& ioOut) const
 {
-    ioOut << MustlUtils::IPAddressToLogString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
+    ioOut << MustlUtils::IPAddressToString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
 }
 
 string

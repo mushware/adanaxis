@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.h,v 1.15 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudio.h,v 1.16 2002/12/29 20:30:55 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.16  2002/12/29 20:30:55  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.15  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -32,10 +35,12 @@
 
 #include "MediaStandard.h"
 
+#include "Mushcore.h"
+
 class MediaSound;
 class MediaSoundStream;
 
-class MediaAudio
+class MediaAudio : public MushcoreSingleton<MediaAudio>
 {
 public:
     virtual ~MediaAudio();
@@ -47,11 +52,7 @@ public:
     virtual void Free(MediaSound& inSound) const = 0;
     virtual void Ticker(void) = 0;
 
-    static void InstanceCreate(void);
-    static MediaAudio& Instance(void);
-
 private:
-    static std::auto_ptr<MediaAudio> m_instance;
 };
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.4 2003/01/17 13:30:40 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.4  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -87,6 +90,7 @@ public:
     void PopConfig(MushcoreConfig& inConfig);
     const MushcoreScalar& VariableGet(const std::string& inName) const;
     bool VariableGetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
+    template<class ParamType> MUSHCORE_DECLARE_INLINE bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const;
     bool VariableExists(const std::string& inName) const;
     void VariableSet(const std::string& inName, const std::string& inValue);
     std::ostream& Out(void) const;
@@ -103,4 +107,17 @@ private:
     std::vector<MushcoreConfig *> m_config;
     static MushcoreEnv *m_instance;
 };
+
+template<class ParamType>
+inline bool
+MushcoreEnv::VariableGetIfExists(ParamType& outParam, const std::string& inName) const
+{
+    const MushcoreScalar *pScalar;
+    if (VariableGetIfExists(pScalar, inName))
+    {
+        pScalar->Get(outParam);
+        return true;
+    }
+    return false;
+}
 #endif

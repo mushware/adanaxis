@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.14 2002/12/29 20:30:55 southa Exp $
+ * $Id: MediaSDL.h,v 1.15 2003/01/11 13:03:16 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.15  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.14  2002/12/29 20:30:55  southa
  * Work for gcc 3.1 build
  *
@@ -84,16 +87,12 @@
 
 #include "Mushcore.h"
 
-class MediaSDL
+class MediaSDL : public MushcoreSingleton<MediaSDL>
 {
 public:
+    MediaSDL();
     ~MediaSDL();
-    static MediaSDL& Instance(void)
-    {
-        if (m_instance.get() != NULL) return *m_instance;
-        m_instance.reset(new MediaSDL);
-        return *m_instance;
-    }
+
     void Init(Mushware::U32 inWhich);
     void QuitIfRequired(Mushware::U32 inWhich);
     void InitVideo(void) { Init(SDL_INIT_VIDEO); }
@@ -101,10 +100,8 @@ public:
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
     
 protected:
-    MediaSDL(): m_inited(0), m_firstInitCalled(false) {}
 
 private:
-    static std::auto_ptr<MediaSDL> m_instance;
     Mushware::U32 m_inited;
     bool m_firstInitCalled;
 };

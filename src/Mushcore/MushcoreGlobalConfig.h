@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -45,16 +48,18 @@
  *
  */
 
-#include "MushcoreConfig.h"
+#include "MushcoreStandard.h"
 
-class MushcoreGlobalConfig : public MushcoreConfig
+#include "MushcoreConfig.h"
+#include "MushcoreSingleton.h"
+
+class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingleton<MushcoreGlobalConfig>
 {
 public:
-    static MushcoreGlobalConfig& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreGlobalConfig:m_instance);}
+    ~MushcoreGlobalConfig() { cerr << "Destroyed MushcoreGlobalConfig" << endl; }
     static void Install(void);
     static void NullFunction(void);
-    
+
 private:
-    static MushcoreGlobalConfig *m_instance;
 };
 #endif

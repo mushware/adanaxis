@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlApp.h,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Id: TestMustlApp.h,v 1.2 2003/01/14 20:46:12 southa Exp $
  * $Log: TestMustlApp.h,v $
+ * Revision 1.2  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -20,26 +23,14 @@
 
 #include "TestMustlStandard.h"
 
-class TestMustlApp
+class TestMustlApp : public MushcoreSingleton<TestMustlApp>
 {
 public:
     void Enter(void);
     void DoQuit(void);
 
-    static inline TestMustlApp& Instance(void);
-
 private:
     bool m_doQuit;
-
-    static std::auto_ptr<TestMustlApp> m_instance;
 };
-
-inline TestMustlApp&
-TestMustlApp::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new TestMustlApp);
-    return *m_instance;
-}
 
 #endif

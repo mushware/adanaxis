@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.h,v 1.9 2003/01/16 15:58:01 southa Exp $
+ * $Id: MustlAddress.h,v 1.10 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.10  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.9  2003/01/16 15:58:01  southa
  * Mustl exception handling
  *
@@ -58,22 +61,11 @@ class MustlAddress
 public:
     typedef Mustl::U32 tIPv4Addr;
     typedef Mustl::U32 tPort;
-    
-    MustlAddress() :
-        m_ip(0),
-        m_port(0)
-    {}
 
-    MustlAddress(tIPv4Addr inHostNetworkOrder, tPort inPortNetworkOrder) :
-        m_ip(inHostNetworkOrder),
-        m_port(inPortNetworkOrder)
-    {}
-
-    MustlAddress(const std::string& inName, tPort inPortHostOrder)
-    {
-        ResolveFromHostName(inName, inPortHostOrder);
-    }
-
+    MUSTL_DECLARE_INLINE MustlAddress();
+    MUSTL_DECLARE_INLINE MustlAddress(tIPv4Addr inHostNetworkOrder, tPort inPortNetworkOrder);
+    MUSTL_DECLARE_INLINE MustlAddress(const std::string& inName, tPort inPortHostOrder);
+        
     std::string StringGet(void) const;
     std::string LogStringGet(void) const;
     std::string HostStringGet(void) const;
@@ -93,14 +85,34 @@ public:
     void Print(std::ostream& ioOut) const;
 
     // For use by the operators == != < > 
-    bool Equals(const MustlAddress& inAddress) const;
-    bool LessThan(const MustlAddress& inAddress) const;
-    bool GreaterThan(const MustlAddress& inAddress) const;
+    MUSTL_DECLARE_INLINE bool Equals(const MustlAddress& inAddress) const;
+    MUSTL_DECLARE_INLINE bool LessThan(const MustlAddress& inAddress) const;
+    MUSTL_DECLARE_INLINE bool GreaterThan(const MustlAddress& inAddress) const;
     
 private:
     tIPv4Addr m_ip; // Network order
     tPort m_port; // Network order
 };
+
+inline
+MustlAddress::MustlAddress() :
+    m_ip(0),
+    m_port(0)
+{
+}
+
+inline
+MustlAddress::MustlAddress(tIPv4Addr inHostNetworkOrder, tPort inPortNetworkOrder) :
+    m_ip(inHostNetworkOrder),
+    m_port(inPortNetworkOrder)
+{
+}
+
+inline
+MustlAddress::MustlAddress(const std::string& inName, tPort inPortHostOrder)
+{
+    ResolveFromHostName(inName, inPortHostOrder);
+}
 
 inline bool
 MustlAddress::Equals(const MustlAddress& inAddress) const
@@ -150,7 +162,7 @@ operator>(const MustlAddress& a, const MustlAddress& b)
 }
 
 inline std::ostream&
-operator<<(std::ostream &ioOut, const MustlAddress& inLink)
+operator<<(std::ostream& ioOut, const MustlAddress& inLink)
 {
     inLink.Print(ioOut);
     return ioOut;

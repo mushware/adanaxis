@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.13 2003/01/17 12:20:40 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.14 2003/01/17 13:30:38 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.14  2003/01/17 13:30:38  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.13  2003/01/17 12:20:40  southa
  * Fixed auto_ptr duplication
  *
@@ -60,7 +63,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreData<GameConfigDef>::tInstance MushcoreData<GameConfigDef>::m_instance;
+MUSHCORE_DATA_INSTANCE(GameConfigDef);
 
 GameConfigDef::~GameConfigDef()
 {

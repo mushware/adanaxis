@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.15 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlLink.cpp,v 1.16 2003/01/17 12:20:40 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.16  2003/01/17 12:20:40  southa
+ * Fixed auto_ptr duplication
+ *
  * Revision 1.15  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -150,7 +153,8 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreData<MustlLink>::tInstance MushcoreData<MustlLink>::m_instance;
+MUSHCORE_DATA_INSTANCE(MustlLink);
+MUSHCORE_DESTROY_DATA_INSTANCE(MustlLink);
 
 U32 MustlLink::m_linkNameNum=1;
 

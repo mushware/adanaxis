@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScript.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreScript.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreScript.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -105,12 +108,10 @@ void
 MushcoreScript::Execute(void) const
 {
     map<string, MushcoreFunction>::const_iterator p = m_functions.find("_global");
-    if (p == m_functions.end())
+    if (p != m_functions.end())
     {
-        cerr << "Warning: Execution of script with no contents" << endl;
-        return;
+        p->second.CoalesceErrorsExecute();
     }
-    p->second.Execute();
 }
 
 void

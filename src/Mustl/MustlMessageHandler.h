@@ -1,3 +1,5 @@
+#ifndef MUSTLMESSAGEHANDLER_H
+#define MUSTLMESSAGEHANDLER_H
 #ifndef MUSTLHANDLER_H
 #define MUSTLHANDLER_H
 /*****************************************************************************
@@ -11,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlHandler.h,v 1.3 2002/12/20 13:17:45 southa Exp $
- * $Log: MustlHandler.h,v $
+ * $Id: MustlMessageHandler.h,v 1.1 2003/01/17 13:30:41 southa Exp $
+ * $Log: MustlMessageHandler.h,v $
+ * Revision 1.1  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -43,4 +48,5 @@ class MustlMessageHandler
 public:
     virtual void MessageHandle(MustlData& ioData, MustlLink& inLink, Mustl::U32 inType) = 0;
 };
+#endif
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.cpp,v 1.3 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreFunction.cpp,v 1.4 2003/01/13 14:32:02 southa Exp $
  * $Log: MushcoreFunction.cpp,v $
+ * Revision 1.4  2003/01/13 14:32:02  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.3  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -70,26 +73,33 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushcoreFunction::Execute(void) const
+MushcoreFunction::ThrowErrorExecute(void) const
 {
+    for (U32 i=0; i<m_commands.size(); ++i)
+    {
+        MushcoreInterpreter::Instance().Execute(m_commands[i]);
+    }
+}
+
+void
+MushcoreFunction::CoalesceErrorsExecute(void) const
+{
+    string failStr;
     for (U32 i=0; i<m_commands.size(); ++i)
     {
         try
         {
             MushcoreInterpreter::Instance().Execute(m_commands[i]);
         }
-        catch (MushcoreCommandFail& e)
+        catch (MushcoreNonFatalFail& e)
         {
-            cerr << "*** Command failed: " << e.what() << endl;
+            failStr += ": ";
+            failStr += e.what();
         }
-        catch (MushcoreDataFail& e)
-        {
-            cerr << "*** Command failed: " << e.what() << endl;
-        }
-        catch (MushcoreFileFail& e)
-        {
-            cerr << "*** Command failed: " << e.what() << endl;
-        }
+    }
+    if (failStr != "")
+    {
+        throw(MushcoreCommandFail("Command(s) failed"+failStr));
     }
 }
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.4 2003/01/17 12:20:40 southa Exp $
+ * $Id: MushcoreData.h,v 1.5 2003/01/17 13:30:40 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.5  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.4  2003/01/17 12:20:40  southa
  * Fixed std::auto_ptr duplication
  *
@@ -81,43 +84,43 @@
 
 #include "MushcoreStandard.h"
 
-#include "MushcoreAutoDelete.h"
 #include "MushcoreFail.h"
+#include "MushcoreSingleton.h"
+#include "MushcoreDestroySingleton.h"
 
-template<class RefType> class MushcoreData
+#define MUSHCORE_DATA_INSTANCE(RefType) MUSHCORE_SINGLETON_INSTANCE(MushcoreData< RefType >)
+#define MUSHCORE_DESTROY_DATA_INSTANCE(RefType) MUSHCORE_DESTROY_SINGLETON_INSTANCE(MushcoreData< RefType >)
+
+template<class RefType> class MushcoreData : public MushcoreSingleton< MushcoreData<RefType> >
 {
 public:
     typedef typename std::map<std::string, RefType *> tMap;
     typedef typename tMap::iterator tMapIterator;
     typedef typename tMap::const_iterator tMapConstIterator;
-    typedef MushcoreAutoDelete< MushcoreData<RefType> > tInstance;
 
-    ~MushcoreData();
-    static MushcoreData& Instance(void);
-    static MushcoreData *PrivateInstanceCreate(void);
+    MUSHCORE_DECLARE_INLINE MushcoreData();
+    MUSHCORE_DECLARE_INLINE ~MushcoreData();
 
-    RefType *Give(const std::string& inName, RefType *inData);
-    RefType *Get(const std::string& inName) const;
-    RefType *GetOrReturnNull(const std::string& inName) const;
-    void Delete(const std::string& inName);
-    void Delete(const tMapIterator& inIterator);
-    bool Exists(const std::string& inName) const;
-    bool GetIfExists(RefType *& outData, const std::string& inName) const;
-    void Clear(void);
-    Mushware::U32 Size(void);
-    void Iterate(void (*inFnPtr)(RefType&));
-    void Dump(std::ostream& ioOut);
-    tMapIterator Begin(void);
-    tMapIterator End(void);
-    Mushware::U32 SequenceNumGet(void) const;
+    MUSHCORE_DECLARE_INLINE RefType *Give(const std::string& inName, RefType *inData);
+    MUSHCORE_DECLARE_INLINE RefType *Get(const std::string& inName) const;
+    MUSHCORE_DECLARE_INLINE RefType *GetOrReturnNull(const std::string& inName) const;
+    MUSHCORE_DECLARE_INLINE bool GetIfExists(RefType *& outData, const std::string& inName) const;
+    MUSHCORE_DECLARE_INLINE void Delete(const std::string& inName);
+    MUSHCORE_DECLARE_INLINE void Delete(const tMapIterator& inIterator);
+    MUSHCORE_DECLARE_INLINE bool Exists(const std::string& inName) const;
+    MUSHCORE_DECLARE_INLINE void Clear(void);
+    MUSHCORE_DECLARE_INLINE Mushware::U32 Size(void);
+    MUSHCORE_DECLARE_INLINE void Iterate(void (*inFnPtr)(RefType&));
+    MUSHCORE_DECLARE_INLINE void Dump(std::ostream& ioOut);
+    MUSHCORE_DECLARE_INLINE tMapIterator Begin(void);
+    MUSHCORE_DECLARE_INLINE tMapIterator End(void);
+    MUSHCORE_DECLARE_INLINE Mushware::U32 SequenceNumGet(void) const;
     
 protected:
-    MushcoreData();
 
 private:
     tMap m_data;
     Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
-    static tInstance m_instance;
 };
 
 template<class RefType>
@@ -134,24 +137,6 @@ MushcoreData<RefType>::~MushcoreData(void)
     {
         delete p->second;
     }
-}
-
-template<class RefType>
-inline class MushcoreData<RefType>&
-MushcoreData<RefType>::Instance(void)
-{
-    if (m_instance.Get() == NULL)
-    {
-        m_instance.Reset(new MushcoreData);
-    }
-    return *m_instance.Get();
-}
-
-template<class RefType>
-inline class MushcoreData<RefType> *
-MushcoreData<RefType>::PrivateInstanceCreate(void)
-{
-    return new MushcoreData;
 }
 
 template<class RefType>
@@ -197,6 +182,19 @@ MushcoreData<RefType>::GetOrReturnNull(const std::string& inName) const
 }
 
 template<class RefType>
+inline bool
+MushcoreData<RefType>::GetIfExists(RefType *& outData, const std::string& inName) const
+{
+    tMapConstIterator p = m_data.find(inName);
+    if (p == m_data.end())
+    {
+        return false;
+    }
+    outData=p->second;
+    return true;
+}
+
+template<class RefType>
 inline void
 MushcoreData<RefType>::Delete(const std::string& inName)
 {
@@ -205,9 +203,7 @@ MushcoreData<RefType>::Delete(const std::string& inName)
     {
         throw(MushcoreReferenceFail("Delete of non-existent data '"+inName+"'"));
     }
-    ++m_sequenceNum;
-    delete p->second;
-    m_data.erase(p);
+    Delete(p);
 }
 
 template<class RefType>
@@ -233,25 +229,12 @@ MushcoreData<RefType>::Exists(const std::string& inName) const
 }
 
 template<class RefType>
-inline bool
-MushcoreData<RefType>::GetIfExists(RefType *& outData, const std::string& inName) const
-{
-    tMapConstIterator p = m_data.find(inName);
-    if (p == m_data.end())
-    {
-        return false;
-    }
-    outData=p->second;
-    return true;
-}
-
-template<class RefType>
 inline void
 MushcoreData<RefType>::Clear(void)
 {
     ++m_sequenceNum;
-    for (tMapIterator p = m_data.begin();
-         p != m_data.end(); ++p)
+    tMapIterator endIter = m_data.end();
+    for (tMapIterator p = m_data.begin(); p != endIter; ++p)
     {
         delete p->second;
     }
@@ -269,8 +252,8 @@ template<class RefType>
 inline void
 MushcoreData<RefType>::Iterate(void (*inFnPtr)(RefType&))
 {
-    for (tMapIterator p = m_data.begin();
-         p != m_data.end(); ++p)
+    tMapIterator endIter = m_data.end();
+    for (tMapIterator p = m_data.begin(); p != endIter; ++p)
     {
         inFnPtr(*p->second);
     }
@@ -280,8 +263,8 @@ template<class RefType>
 inline void
 MushcoreData<RefType>::Dump(std::ostream& ioOut)
 {
-    for (tMapIterator p = m_data.begin();
-         p != m_data.end(); ++p)
+    tMapIterator endIter = m_data.end();
+    for (tMapIterator p = m_data.begin(); p != endIter; ++p)
     {
         ioOut << p->first << ": " << *p->second << endl;
     }

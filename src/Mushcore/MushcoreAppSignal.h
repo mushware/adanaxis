@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppSignal.h,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAppSignal.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreAppSignal.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -47,21 +50,27 @@ public:
     enum MushcoreAppSigNumber
     {
         kMinMushcoreAppSignal=0,
-        kNone,
         kInvalid,
+        kNone,
         kQuit,
         kEscape,
         kMaxMushcoreAppSignal
     };
     
     MushcoreAppSignal(Mushware::U32 inSigNumber): m_sigNumber(inSigNumber) {} // for clients
-    virtual ~MushcoreAppSignal() {}
+    virtual ~MushcoreAppSignal();
     
-    Mushware::U32 SigNumberGet(void) const {return m_sigNumber;}
-    void SigNumberSet(Mushware::U32 inSigNumber) {m_sigNumber=inSigNumber;}
-    bool IsMushcoreAppSignal(void) const {return m_sigNumber > kMinMushcoreAppSignal && m_sigNumber < kMaxMushcoreAppSignal;}
+    Mushware::U32 SigNumberGet(void) const { return m_sigNumber; }
+    void SigNumberSet(Mushware::U32 inSigNumber) { m_sigNumber=inSigNumber; }
+    bool IsMushcoreAppSignal(void) const;
 
 private:
     Mushware::U32 m_sigNumber;
 };
+
+inline bool
+MushcoreAppSignal::IsMushcoreAppSignal(void) const
+{
+    return m_sigNumber > kMinMushcoreAppSignal && m_sigNumber < kMaxMushcoreAppSignal;
+}
 #endif

@@ -1,5 +1,3 @@
-#ifndef MUSHCOREBISONDEFS_H
-#define MUSHCOREBISONDEFS_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -15,16 +13,8 @@
  * $Log$
  */
 
-#include "MushcoreStandard.h"
+#include "MushcoreDestroySingleton.h"
 
-#ifndef YYSTYPE
-#define YYSTYPE int
-#endif
-#define	NUMBER	257
-#define	VARIABLE	258
-#define	IDENTIFIER	259
-#define	STRING	260
-#define	EOS	261
-#define	END_OF_FILE	262
+using namespace Mushware;
+using namespace std;
 
-#endif

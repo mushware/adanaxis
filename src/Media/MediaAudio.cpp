@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.cpp,v 1.16 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.17 2003/01/13 14:32:01 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.17  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.16  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -31,38 +34,21 @@
 #include "MediaAudio.h"
 #include "MediaAudioNull.h"
 #include "MediaAudioSDL.h"
+#include "MediaSound.h"
 #include "MediaSTL.h"
 
 using namespace Mushware;
 using namespace std;
 
-auto_ptr<MediaAudio> MediaAudio::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(MediaAudio);
+MUSHCORE_DESTROY_SINGLETON_INSTANCE(MediaAudio);
 
 MediaAudio::~MediaAudio()
 {
-}
-
-MediaAudio&
-MediaAudio::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    InstanceCreate();
-    return *m_instance;
-}
-
-void
-MediaAudio::InstanceCreate()
-{
-    try
+    // Delete the MediaSound database before removing the audio services
+    // that they're using
+    if (MushcoreData<MediaSound>::SingletonExists())
     {
-        m_instance.reset(new MediaAudioSDL);
-    }
-    catch (exception& e)
-    {
-        cerr << "Exception creating MediaAudioSDL: " << e.what() << endl;
-    }
-    if (m_instance.get() == NULL)
-    {
-        m_instance.reset(new MediaAudioNull);
+        MushcoreData<MediaSound>::SingletonDelete();
     }
 }

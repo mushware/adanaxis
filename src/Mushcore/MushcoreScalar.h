@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -75,81 +78,262 @@
  *
  */
 
+#include "MushcoreFail.h"
 #include "MushcoreStandard.h"
 
 class MushcoreScalar
 {
 public:
-    MushcoreScalar(): m_tag(kNone) {}
-    // MushcoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
-    MushcoreScalar(Mushware::tVal inVal): m_tag(kVal), m_val(inVal) {}
-    // MushcoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
-    MushcoreScalar(const std::string& inStr): m_tag(kString), m_string(inStr) {}
+    MushcoreScalar();
+    explicit MushcoreScalar(Mushware::tLongVal inVal);
+    explicit MushcoreScalar(const std::string& inStr);
+    
+    MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
+    MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
+    MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
+    // Catch-all for numeric types
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void Get(ParamType& outVal) const;
 
-    void Get(Mushware::tVal &outVal) const;
-    void Get(std::string& outStr) const;
-    void Get(bool& outBool) const;
+    MUSHCORE_DECLARE_INLINE std::string StringGet(void) const;
+    MUSHCORE_DECLARE_INLINE Mushware::tLongVal LongValGet(void) const;
+    MUSHCORE_DECLARE_INLINE Mushware::tVal ValGet(void) const;
+    MUSHCORE_DECLARE_INLINE Mushware::U32 U32Get(void) const;
+    MUSHCORE_DECLARE_INLINE Mushware::S32 S32Get(void) const;
+    MUSHCORE_DECLARE_INLINE bool BoolGet(void) const;
 
-    std::string StringGet(void) const {std::string outStr; Get(outStr); return outStr;}
-    Mushware::tVal ValGet(void) const {Mushware::tVal outVal; Get(outVal); return outVal;}
-    Mushware::U32 U32Get(void) const {Mushware::tVal outVal; Get(outVal); return static_cast<Mushware::U32>(outVal);}
-    bool BoolGet(void) const {bool outVal; Get(outVal); return outVal;}
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const std::string& inStr);
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const Mushware::tLongVal inVal);
 
-    inline bool Equals(const MushcoreScalar& inScalar) const
-    {
-        if (m_tag == kVal && inScalar.m_tag ==  kVal)
-        {
-            return m_val == inScalar.m_val;
-        }
-        return SlowEquals(inScalar);        
-    }
+    MUSHCORE_DECLARE_INLINE bool Equals(const MushcoreScalar& inScalar) const;
 
     bool SlowEquals(const MushcoreScalar& inScalar) const;
-
-    MushcoreScalar& operator=(const std::string &inStr)
-    {
-        m_string=inStr;
-        m_tag=kString;
-        return *this;
-    }
-    MushcoreScalar& operator=(Mushware::tVal inVal)
-    {
-        m_val=inVal;
-        m_tag=kVal;
-        return *this;
-    }
-
-    // Conversion operators
-    // operator Mushware::tVal() const { return Val(); }
-    // operator std::string() const { return String(); }
     
-    void ostreamPrint(std::ostream &inOut) const;
-
+    void Print(std::ostream &inOut) const;
+        
 private:
-    enum Tag
+    enum eTypeTag
     {
-        kNone,
-        kVal,
-        kString
+        kTypeTagInvalid,
+        kTypeTagNone,
+        kTypeTagLongVal,
+        kTypeTagString
     };
-    Tag m_tag;
-    Mushware::tVal m_val;
-    std::string m_string;
+
+    void ValAsStringGet(std::string& outStr) const;
+    void StringAsValGet(Mushware::tLongVal& outVal) const;
+    void StringAsBoolGet(bool& outBool) const;
+    
+    eTypeTag m_typeTag;
+    Mushware::tLongVal m_longVal;
+    std::string m_stringVal;
 };
 
-inline bool operator==(const MushcoreScalar& a, const MushcoreScalar& b)
+std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreScalar& inScalar);
+
+inline
+MushcoreScalar::MushcoreScalar() :
+    m_typeTag(kTypeTagNone)
+{
+}
+
+inline
+MushcoreScalar::MushcoreScalar(Mushware::tLongVal inLongVal) :
+    m_typeTag(kTypeTagLongVal),
+    m_longVal(inLongVal)
+{
+}
+
+inline
+MushcoreScalar::MushcoreScalar(const std::string& inStr) :
+    m_typeTag(kTypeTagString),
+    m_stringVal(inStr)
+{
+}
+
+inline void
+MushcoreScalar::Get(Mushware::tLongVal& outVal) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            outVal=m_longVal;
+            break;
+
+        case kTypeTagString:
+            StringAsValGet(outVal);
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+void
+MushcoreScalar::Get(std::string& outStr) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            ValAsStringGet(outStr);
+            break;
+
+        case kTypeTagString:
+            outStr=m_stringVal;
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+void
+MushcoreScalar::Get(bool& outBool) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            outBool=!(!m_longVal);
+            break;
+
+        case kTypeTagString:
+            StringAsBoolGet(outBool);
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+template<class ParamType>
+inline void
+MushcoreScalar::Get(ParamType& outVal) const
+{
+    Mushware::tLongVal longVal;
+    Get(longVal);
+    outVal = static_cast<ParamType>(longVal);
+}
+
+inline std::string
+MushcoreScalar::StringGet(void) const
+{
+    if (m_typeTag == kTypeTagString)
+    {
+        return m_stringVal;
+    }
+    std::string retStr;
+    Get(retStr);
+    return retStr;
+}
+
+inline Mushware::tLongVal
+MushcoreScalar::LongValGet(void) const
+{
+    if (m_typeTag == kTypeTagLongVal)
+    {
+        return m_longVal;
+    }
+    Mushware::tLongVal retVal;
+    Get(retVal);
+    return retVal;
+}
+
+inline Mushware::tVal
+MushcoreScalar::ValGet(void) const
+{
+    if (m_typeTag == kTypeTagLongVal)
+    {
+        return static_cast<Mushware::tVal>(m_longVal);
+    }
+    Mushware::tLongVal retVal;
+    Get(retVal);
+    return static_cast<Mushware::tVal>(retVal);
+}
+
+inline Mushware::U32
+MushcoreScalar::U32Get(void) const
+{
+    if (m_typeTag == kTypeTagLongVal)
+    {
+        return static_cast<Mushware::U32>(m_longVal);
+    }
+    Mushware::tLongVal retVal;
+    Get(retVal);
+    return static_cast<Mushware::U32>(retVal);
+}
+
+inline Mushware::S32
+MushcoreScalar::S32Get(void) const
+{
+    if (m_typeTag == kTypeTagLongVal)
+    {
+        return static_cast<Mushware::S32>(m_longVal);
+    }
+    Mushware::tLongVal retVal;
+    Get(retVal);
+    return static_cast<Mushware::S32>(retVal);
+}
+
+inline bool
+MushcoreScalar::BoolGet(void) const
+{
+    if (m_typeTag == kTypeTagLongVal)
+    {
+        return !(!m_longVal);
+    }
+    bool retVal;
+    Get(retVal);
+    return retVal;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator=(const std::string &inStr)
+{
+    m_stringVal=inStr;
+    m_typeTag=kTypeTagString;
+    return *this;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator=(const Mushware::tLongVal inVal)
+{
+    m_longVal=inVal;
+    m_typeTag=kTypeTagLongVal;
+    return *this;
+}
+
+inline bool
+MushcoreScalar::Equals(const MushcoreScalar& inScalar) const
+{
+    if (m_typeTag == kTypeTagLongVal && inScalar.m_typeTag ==  kTypeTagLongVal)
+    {
+        return m_longVal == inScalar.m_longVal;
+    }
+    return SlowEquals(inScalar);
+}
+
+inline bool
+operator==(const MushcoreScalar& a, const MushcoreScalar& b)
 {
     return a.Equals(b);
 }
 
-inline bool operator!=(const MushcoreScalar& a, const MushcoreScalar& b)
+inline bool
+operator!=(const MushcoreScalar& a, const MushcoreScalar& b)
 {
     return !a.Equals(b);
 }
 
-inline std::ostream& operator<<(std::ostream& inOut, const MushcoreScalar& inScalar)
-{
-    inScalar.ostreamPrint(inOut);
-    return inOut;
-}
 #endif

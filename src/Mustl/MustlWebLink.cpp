@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.18 2003/01/17 12:20:41 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.19 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.19  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.18  2003/01/17 12:20:41  southa
  * Fixed auto_ptr duplication
  *
@@ -118,7 +121,8 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreData<MustlWebLink>::tInstance MushcoreData<MustlWebLink>::m_instance;
+MUSHCORE_DATA_INSTANCE(MustlWebLink);
+MUSHCORE_DESTROY_DATA_INSTANCE(MustlWebLink);
 
 string MustlWebLink::m_webPath="";
 

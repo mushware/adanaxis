@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.3 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.4 2003/01/13 14:32:03 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.4  2003/01/13 14:32:03  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.3  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -171,5 +174,6 @@ namespace Mushware
 
 
 #define MUSHCOREASSERT(exp) assert(exp)
+#define MUSHCORE_DECLARE_INLINE inline
 
 #endif

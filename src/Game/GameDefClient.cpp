@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.26 2003/01/14 17:38:19 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.27 2003/01/17 13:30:38 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.27  2003/01/17 13:30:38  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.26  2003/01/14 17:38:19  southa
  * Mustl web configuration
  *
@@ -120,7 +123,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreData<GameDefClient>::tInstance MushcoreData<GameDefClient>::m_instance;
+MUSHCORE_DATA_INSTANCE(GameDefClient);
 
 GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.23 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameData.h,v 1.24 2003/01/11 13:03:13 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.24  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.23  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -133,7 +136,7 @@ public:
     GameView *ViewGet(const std::string& inName) const;
     GameView *CurrentViewGet(void) const;
 
-    MushcoreData<GamePiecePlayer>& PlayerGet(void) { return *m_playerData; }
+    MushcoreData<GamePiecePlayer>& PlayerGet(void) { return m_playerData; }
     
     GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;
@@ -162,7 +165,7 @@ private:
     std::map<string, GamePiece *> m_pieces;
     std::map<string, GameView *> m_views;
 
-    MushcoreData<GamePiecePlayer> *m_playerData;
+    MushcoreData<GamePiecePlayer> m_playerData;
     
     GameTimer *m_timer;
     GameType *m_gameType;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.cpp,v 1.1 2003/01/09 14:57:08 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -151,11 +154,11 @@ MushcoreXML::GetAttrib(const string& inName)
     map<string, string>::const_iterator p = TopAttrib().find(inName);
     if (p != TopAttrib().end())
     {
-        return p->second;
+        return MushcoreScalar(p->second);
     }
     else
     {
-        return string("");
+        return MushcoreScalar("");
     }
 }
 
@@ -180,7 +183,7 @@ MushcoreXML::GetAttribOrThrow(const string& inName)
         message << "Missing essential attribute '" << inName << "'";
         Throw(message.str());
     }
-    return p->second;
+    return MushcoreScalar(p->second);
 }
 
 void

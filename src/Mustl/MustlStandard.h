@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlStandard.h,v 1.5 2003/01/17 00:41:05 southa Exp $
+ * $Id: MustlStandard.h,v 1.6 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlStandard.h,v $
+ * Revision 1.6  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.5  2003/01/17 00:41:05  southa
  * Configuration updates from POST data
  *
@@ -54,5 +57,7 @@ namespace Mustl
     typedef unsigned char U8;
     typedef double tMsec;
 };
+
+#define MUSTL_DECLARE_INLINE inline
 
 #endif

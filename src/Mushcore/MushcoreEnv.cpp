@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.4 2003/01/17 13:30:40 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.4  2003/01/17 13:30:40  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -179,7 +182,7 @@ MushcoreEnv::OutSet(ostream& inOut)
 {
     if (m_outSet)
     {
-        throw(MushcoreLogicFail("Multiple OutSets"));
+        throw(MushcoreLogicFail("Multiple MushcoreEnv::OutSets"));
     }
     
     m_outStream = &inOut;
@@ -191,7 +194,7 @@ MushcoreEnv::OutReset(void)
 {
     if (!m_outSet)
     {
-        throw(MushcoreLogicFail("OutReset without OutSet"));
+        throw(MushcoreLogicFail("MushcoreEnv::OutReset without OutSet"));
     }
     m_outStream = &cerr;
     m_outSet = false;

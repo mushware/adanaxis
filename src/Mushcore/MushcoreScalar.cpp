@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreScalar.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreScalar.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -59,7 +62,6 @@
  */
 
 #include "MushcoreScalar.h"
-#include "MushcoreFail.h"
 
 #include "MushcoreSTL.h"
 
@@ -67,86 +69,32 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushcoreScalar::Get(tVal& outVal) const
+MushcoreScalar::ValAsStringGet(string& outStr) const
 {
-    switch (m_tag)
-    {
-        case kNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-            
-        case kVal:
-            outVal=m_val;
-            break;
-
-        case kString:
-            outVal=atof(m_string.c_str());
-            break;
-
-        default:
-            throw "MushcoreScalar value fault";
-    }
+    ostringstream valStream;
+    valStream << m_longVal;
+    outStr = valStream.str();
 }
 
 void
-MushcoreScalar::Get(string& outStr) const 
+MushcoreScalar::StringAsValGet(tLongVal& outVal) const
 {
-    switch (m_tag)
+    istringstream strStream(m_stringVal);
+    if (!(strStream >> outVal))
     {
-        case kNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-
-        case kVal:
-        {
-            ostringstream strm;
-            strm << m_val;
-            outStr=strm.str();
-        }
-        break;
-            
-        case kString:
-            outStr=m_string;
-            break;
-            
-        default:
-            throw "MushcoreScalar value fault";
+        throw(MushcoreDataFail("Cannot get numeric value from '"+m_stringVal+"'"));
     }
 }
 
+
 void
-MushcoreScalar::Get(bool& outBool) const
+MushcoreScalar::StringAsBoolGet(bool& outBool) const
 {
-    switch (m_tag)
+    istringstream strStream(m_stringVal);
+    if (!(strStream >> outBool))
     {
-        case kNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-
-        case kVal:
-        {
-            outBool=!(!m_val);
-        }
-            break;
-
-        case kString:
-            if (m_string == "1" || m_string == "true" || m_string == "TRUE")
-            {
-                outBool = true;
-            }
-            else if (m_string == "0" || m_string == "false" || m_string == "FALSE")
-            {
-                outBool = false;
-            }
-            else
-            {
-                throw(MushcoreDataFail("Cannot get boolean value from '"+m_string+"'"));
-            }
-            break;
-
-        default:
-            throw "MushcoreScalar value fault";
-    }
+        throw(MushcoreDataFail("Cannot get boolean value from '"+m_stringVal+"'"));
+    }    
 }
 
 bool
@@ -161,23 +109,30 @@ MushcoreScalar::SlowEquals(const MushcoreScalar& inScalar) const
 }
 
 void
-MushcoreScalar::ostreamPrint(ostream& inOut) const
+MushcoreScalar::Print(ostream& ioOut) const
 {
-    switch (m_tag)
+    switch (m_typeTag)
     {
-        case kNone:
-            inOut << "undefined";
+        case kTypeTagNone:
+            ioOut << "undefined";
             break;
 
-        case kVal:
-            inOut << m_val;
+        case kTypeTagLongVal:
+            ioOut << m_longVal;
             break;
 
-        case kString:
-            inOut << m_string;
+        case kTypeTagString:
+            ioOut << m_stringVal;
             break;
 
         default:
-            throw "MushcoreScalar value fault";
+            throw MushcoreLogicFail("MushcoreScalar value fault");
     }
+}
+
+std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreScalar& inScalar)
+{
+    inScalar.Print(ioOut);
+    return ioOut;
 }

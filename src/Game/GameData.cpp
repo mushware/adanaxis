@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.25 2003/01/12 17:32:53 southa Exp $
+ * $Id: GameData.cpp,v 1.26 2003/01/13 14:31:57 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.26  2003/01/13 14:31:57  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.25  2003/01/12 17:32:53  southa
  * Mushcore work
  *
@@ -109,7 +112,6 @@ using namespace std;
 GameData *GameData::m_instance=NULL;
 
 GameData::GameData():
-    m_playerData(MushcoreData<GamePiecePlayer>::PrivateInstanceCreate()),
     m_timer(NULL),
     m_gameType(NULL),
     m_gameRewards(NULL)
@@ -119,7 +121,6 @@ GameData::GameData():
 GameData::~GameData()
 {
     Clear();
-    delete m_playerData; m_playerData=NULL;
 }
 
 void
@@ -203,7 +204,7 @@ GameData::Clear(void)
     }
     m_currentDialogues.clear();
 
-    m_playerData->Clear();
+    m_playerData.Clear();
 }
 
 GameTileMap *

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppSignal.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAppSignal.cpp,v 1.2 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreAppSignal.cpp,v $
+ * Revision 1.2  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -47,3 +50,7 @@
 using namespace Mushware;
 using namespace std;
 
+MushcoreAppSignal::~MushcoreAppSignal()
+{
+    // Key function
+}

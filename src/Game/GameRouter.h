@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.h,v 1.11 2003/01/11 13:03:14 southa Exp $
+ * $Id: GameRouter.h,v 1.12 2003/01/17 13:30:39 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.12  2003/01/17 13:30:39  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.11  2003/01/11 13:03:14  southa
  * Use Mushcore header
  *
@@ -51,11 +54,9 @@
 #include "Mushcore.h"
 #include "Mustl.h"
 
-class GameRouter : public MustlMessageHandler
+class GameRouter : public MustlMessageHandler, public MushcoreSingleton<GameRouter>
 {
 public:
-    static inline GameRouter& Instance(void);
-
     void MessageHandle(MustlData& ioData, MustlLink& inLink, Mushware::U32 inType);
 
 protected:
@@ -64,16 +65,5 @@ protected:
     void ControlDataHandle(MustlData& ioData, const MustlLink& inLink);
     
 private:
-    static MushcoreAutoDelete<GameRouter> m_instance;
 };
-
-inline GameRouter&
-GameRouter::Instance(void)
-{
-    if (m_instance.Get() == NULL)
-    {
-        m_instance.Reset(new GameRouter);
-    }
-    return *m_instance.Get();
-}
 #endif

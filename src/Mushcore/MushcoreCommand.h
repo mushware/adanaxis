@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.h,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -84,7 +87,7 @@ public:
     void Execute(void);
     const std::string& Name(void) const { return m_name; }
     const MushcoreParamList& ParamListGet(void) const { return m_paramList; }
-    Mushware::U32 NumParams(void) {return m_paramList.NumParams();}
+    Mushware::U32 NumParams(void) { return m_paramList.NumParams(); }
     std::string AllParams(void);
     std::string PopString(void);
     Mushware::tVal PopVal(void);
@@ -92,7 +95,7 @@ public:
     void PopParam(Mushware::tVal& outVal) {m_paramList.PopParam(outVal);}
     void PopParam(Mushware::U32& outU32) {m_paramList.PopParam(outU32);}
 
-    // Callback interface from bison - not public
+    // Callback interface from bison - not intended as public
     MushcoreScalar Despatch(void);
     void PushParam(MushcoreScalar& inParam) {m_paramList.PushParam(inParam);}
     void ClearParams(void) {m_paramList.Clear();}

@@ -9,15 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoDelete.cpp,v 1.1 2003/01/17 12:20:40 southa Exp $
- * $Log: MushcoreAutoDelete.cpp,v $
- * Revision 1.1  2003/01/17 12:20:40  southa
- * Fixed auto_ptr duplication
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushcoreAutoDelete.h"
+#include "MushcoreCommandHandler.h"
 
 using namespace Mushware;
 using namespace std;
-

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.19 2003/01/12 17:32:57 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.20 2003/01/13 14:32:01 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.20  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.19  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -80,8 +83,24 @@ using namespace std;
 
 auto_ptr<MediaSDL> MediaSDL::m_instance;
 
+MediaSDL::MediaSDL() :
+    m_inited(0),
+    m_firstInitCalled(false)
+{
+    if (MushcoreData<MediaSDL>::SingletonExists())
+    {
+        throw(MushcoreLogicFail("Attempt to create a second MediaSDL object"));
+    }
+}
+
 MediaSDL::~MediaSDL()
 {
+    // Delete the MediaAudio object to stop the sounds
+    if (MushcoreData<MediaAudio>::SingletonExists())
+    {
+        MushcoreData<MediaAudio>::SingletonDelete();
+    }
+
     if (m_firstInitCalled)
     {
         SDL_Quit();

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.9 2003/01/16 15:58:01 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.10 2003/01/16 16:38:36 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.10  2003/01/16 16:38:36  southa
+ * Error codes for win32
+ *
  * Revision 1.9  2003/01/16 15:58:01  southa
  * Mustl exception handling
  *
@@ -594,6 +597,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
         ostringstream message;
         message << "GetIpAddrTable failed (" << result << ")";
         MustlPlatformError::Throw(message.str());
+        return;
     }
     DWORD numEntries = ipAddrTable->dwNumEntries;
 
@@ -602,6 +606,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
         ostringstream message;
         message << "Too many entries from GetIpAddrTable (" << numEntries << ")";
         MustlPlatformError::Throw(message.str());
+        return;
     }
 
     for (U32 i=0; i<numEntries; ++i)
@@ -664,7 +669,15 @@ MustlPlatform::LaunchURL(const string& inURL)
             LSOpenCFURLRef(pathRef, NULL);
             CFRelease(pathRef);
         }
+        else
+        {
+            MustlPlatformError::Throw("Cannot open URL '"+inURL+"'");
+        }
         CFRelease(destName);
+    }
+    else
+    {
+        MustlPlatformError::Throw("Cannot open URL '"+inURL+"'");
     }
 #endif
 }

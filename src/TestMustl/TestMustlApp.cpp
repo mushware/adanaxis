@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlApp.cpp,v 1.2 2003/01/14 20:46:12 southa Exp $
+ * $Id: TestMustlApp.cpp,v 1.3 2003/01/14 22:02:12 southa Exp $
  * $Log: TestMustlApp.cpp,v $
+ * Revision 1.3  2003/01/14 22:02:12  southa
+ * Command line build fixes
+ *
  * Revision 1.2  2003/01/14 20:46:12  southa
  * Post data handling
  *
@@ -24,7 +27,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr<TestMustlApp> TestMustlApp::m_instance;
+MUSHCORE_SINGLETON_INSTANCE(TestMustlApp);
 
 void
 TestMustlApp::Enter(void)
@@ -53,4 +56,4 @@ void
 TestMustlApp::DoQuit(void)
 {
     m_doQuit = true;
-}    
+}
