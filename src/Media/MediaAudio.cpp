@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaAudio.cpp,v 1.1 2002/06/10 15:16:59 southa Exp $
+ * $Log: MediaAudio.cpp,v $
+ * Revision 1.1  2002/06/10 15:16:59  southa
+ * Integration of MP3 player
+ *
  */
 
 #include "MediaAudio.h"
@@ -40,5 +43,5 @@ MediaAudio::PlayMusic(const string& inFilename)
     {
         throw(FileFail(inFilename, "Failed to load music: "+string(Mix_GetError())));
     }
-    Mix_PlayMusic(music, 0);    
+    Mix_PlayMusic(music, 10000);    
 }

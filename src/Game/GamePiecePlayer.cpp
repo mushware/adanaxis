@@ -1,6 +1,9 @@
 /*
- * $Id: GamePiecePlayer.cpp,v 1.1 2002/06/05 15:53:26 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.2 2002/06/05 16:29:51 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.2  2002/06/05 16:29:51  southa
+ * Mouse control
+ *
  * Revision 1.1  2002/06/05 15:53:26  southa
  * Player and keyboard control
  *
@@ -31,27 +34,37 @@ GamePiecePlayer::Move(void)
     m_controller->StateGet(controlState);
 
     m_angle+=0.01*controlState.mouseXDelta;
+
+    tVal deltaX=0;
+    tVal deltaY=0;
     
     if (controlState.leftPressed)
     {
-        m_x -= cos(m_angle);
-        m_y += sin(m_angle);
+        deltaX -= cos(m_angle);
+        deltaY += sin(m_angle);
     }
     if (controlState.rightPressed)
     {
-        m_x += cos(m_angle);
-        m_y -= sin(m_angle);
+        deltaX += cos(m_angle);
+        deltaY -= sin(m_angle);
     }
     if (controlState.upPressed)
     {
-        m_x += sin(m_angle);
-        m_y += cos(m_angle);
+        deltaX += sin(m_angle);
+        deltaY += cos(m_angle);
     }
     if (controlState.downPressed)
     {
-        m_x -= sin(m_angle);
-        m_y -= cos(m_angle);
+        deltaX -= sin(m_angle);
+        deltaY -= cos(m_angle);
     }
+    if (deltaX != 0 && deltaY != 0)
+    {
+        deltaX*=0.707;
+        deltaY*=0.707;
+    }
+    m_x+=4*deltaX;
+    m_y+=4*deltaY;
 }
 
 void

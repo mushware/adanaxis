@@ -1,9 +1,12 @@
 /*
- * $Id$
- * $Log$
+ * $Id: PlatformMiscUtils.cpp,v 1.1 2002/06/11 16:25:00 southa Exp $
+ * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.1  2002/06/11 16:25:00  southa
+ * New paths to data files
+ *
  */
 
-#include "PlatformMiscUtils.h"
+#include "mushPlatform.h"
 
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])

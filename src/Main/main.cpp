@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.9 2002/06/11 16:23:56 southa Exp $
+ * $Id: main.cpp,v 1.10 2002/06/11 16:36:13 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.10  2002/06/11 16:36:13  southa
+ * Fixes
+ *
  * Revision 1.9  2002/06/11 16:23:56  southa
  * New paths to data files
  *
@@ -52,7 +55,7 @@ int main(int argc, char *argv[])
     cout << "Command line was '" << str << "'" << endl;
     if (str == "")
     {
-        str="load $SYSTEMPATH+'/start.xml'";
+        str="load($SYSTEMPATH+'/start.txt')";
     }
     try
     {

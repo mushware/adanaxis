@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.11 2002/06/04 20:27:35 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.12 2002/06/10 15:16:59 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.12  2002/06/10 15:16:59  southa
+ * Integration of MP3 player
+ *
  * Revision 1.11  2002/06/04 20:27:35  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -52,19 +55,20 @@ GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
     string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet());
-    GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
-    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
+    GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/spaces");
+    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/pixels");
+    GameGlobalConfig::Instance().Set("CONTRACTPATH", appPath+"/pixels");
 
-MediaAudio::Init();
-MediaAudio::PlayMusic("../game/test.mp3");
+    MediaAudio::Init();
+    MediaAudio::PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
     
-    CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
+    // CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
 
-    m_pGame=GameData::Instance().ContractGet("game1");
+    m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
     
-    GLUtils::StandardInit();
-    //GLUtils::GameInit();
+    //GLUtils::StandardInit();
+    GLUtils::GameInit();
 
     RegisterHandlers();
 

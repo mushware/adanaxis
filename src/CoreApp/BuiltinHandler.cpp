@@ -1,6 +1,9 @@
 /*
- * $Id: BuiltinHandler.cpp,v 1.2 2002/05/10 16:39:38 southa Exp $
+ * $Id: BuiltinHandler.cpp,v 1.3 2002/05/28 22:36:44 southa Exp $
  * $Log: BuiltinHandler.cpp,v $
+ * Revision 1.3  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.2  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -22,10 +25,16 @@ BuiltinHandlerInstaller(BuiltinHandler::Install);
 CoreScalar
 BuiltinHandler::Load(CoreCommand& ioCommand, CoreEnv &ioEnv)
 {
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(CommandFail("Usage: load <filename>"));
+    }
     string filename;
     ioCommand.PopParam(filename);
-    throw(CommandFail("Load not implemented"));
-    // ioEnv.Enter(CoreScript(filename));
+    ifstream inStream(filename.c_str());
+    if (!inStream) throw(LoaderFail(filename, "Could not load file"));
+    CoreScript script(inStream);
+    script.Execute();
     return CoreScalar(0);
 }
 

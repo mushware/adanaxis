@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.8 2002/06/04 20:27:36 southa Exp $
+ * $Id: GameContract.h,v 1.9 2002/06/05 15:53:25 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.9  2002/06/05 15:53:25  southa
+ * Player and keyboard control
+ *
  * Revision 1.8  2002/06/04 20:27:36  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -86,6 +89,8 @@ private:
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
     GamePiecePlayer *m_player;
+    tVal m_fps;
+    U32 m_frames;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

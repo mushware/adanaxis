@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.16 2002/06/05 15:53:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.17 2002/06/10 15:16:59 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.17  2002/06/10 15:16:59  southa
+ * Integration of MP3 player
+ *
  * Revision 1.16  2002/06/05 15:53:25  southa
  * Player and keyboard control
  *
@@ -63,7 +66,7 @@
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
-GameContract::GameContract(): m_gameState(kInit)
+GameContract::GameContract(): m_gameState(kInit), m_fps(0), m_frames(0)
 {
 }
 
@@ -135,7 +138,7 @@ GameContract::RunningDisplay(void)
     U32 xsize=m_floorMap->XSize();
     U32 ysize=m_floorMap->YSize();
     gl.SetPosition(0,0);
-    
+    GLUtils::SetColour(1,1,1);    
     for (U32 x=0; x<xsize; x++)
     {
         for (U32 y=0; y<ysize; y++)
@@ -149,7 +152,17 @@ GameContract::RunningDisplay(void)
         }
     }
     GLUtils::IdentityEpilogue();
+
+
+    ostringstream message;
+    message << "FPS " << m_fps;
+    GLUtils::OrthoPrologue();
+    GLUtils::SetColour(0.5,0.5,0.5);
+    GLUtils::RasterPos(8,8);
+    GLUtils::BitmapText(message.str());
+    GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
+    ++m_frames;
 }
 
 void
@@ -163,33 +176,24 @@ GameContract::Init(void)
     GameData::Instance().ControllerGetOrCreate("controller1");
     m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceDeleteAndCreate("player1", new GamePiecePlayer));
     COREASSERT(m_player != NULL);
-    GameData::Instance().DumpAll(cout);
+    // GameData::Instance().DumpAll(cout);
 }
 
 void
 GameContract::Running(void)
 {
-    if (dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance()).KeyStateGet(GLKeys('a')))
-    {
-        cerr << 'a' << endl;
-    }
-    if (dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance()).KeyStateGet(GLKeys(GLKeys::kKeyRight)))
-    {
-        cerr << "(right)" << endl;
-    }
     GLUtils::PostRedisplay();
     {
-        static U32 frames=0;
         static U32 lastPrint=0;
-        ++frames;
         U32 timeNow=glutGet(GLUT_ELAPSED_TIME);
         //srand(timeNow);
         if (timeNow > lastPrint && timeNow - lastPrint > 5000)
         {
             // Print FPS every 5 seconds
-            cout << "FPS " << (((double) frames * 1000) / (timeNow - lastPrint)) << endl;
+            m_fps=(((double) m_frames * 1000) / (timeNow - lastPrint));
+            cout << "FPS " << m_fps << endl;
             lastPrint=timeNow;
-            frames=0;
+            m_frames=0;
         }
     }
 }
