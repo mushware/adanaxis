@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: ic2.Makefile.am,v 1.1 2003/01/11 17:12:09 southa Exp $
+# $Id: ic2.Makefile.am,v 1.2 2003/07/16 18:50:35 southa Exp $
 # $Log: ic2.Makefile.am,v $
+# Revision 1.2  2003/07/16 18:50:35  southa
+# Fixed EXTRA_DIST
+#
 # Revision 1.1  2003/01/11 17:12:09  southa
 # Created
 #
@@ -55,7 +58,7 @@ makefiles-withoutdata:
 	sed -e 's/_dist_/_nodist_/' $(DATAMAKEFILE) > tempMakefile
 	mv -f tempMakefile $(DATAMAKEFILE)
 
-x11-release $(GZIPFILE): ic2.spec makefiles-withoutdata dist
+x11-release $(GZIPFILE): makefiles-withoutdata dist
 	rm -f ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
 	rm -f ic2-data-@IC_UNDERSCORE_VERSION@.tar.gz
 	cp -p COPYING ic2data/COPYING
