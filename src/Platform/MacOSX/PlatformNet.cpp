@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.9 2002/11/22 18:02:43 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.10 2002/11/23 14:39:07 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.10  2002/11/23 14:39:07  southa
+ * Store ports in network order
+ *
  * Revision 1.9  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -70,7 +73,7 @@ PlatformNet::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, 
     if (result < 0 || static_cast<U32>(result) != inSize)
     {
         ostringstream message;
-        message << "UDP send to port " << inPort << " failed (" << errno << ")";
+        message << "UDP send to port " << PlatformNet::NetworkToHostOrderU16(inPort) << " failed (" << errno << ")";
         throw(NetworkFail(message.str()));
     }
 }

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameStationDef.h,v 1.1 2002/11/21 18:06:17 southa Exp $
+ * $Log: GameStationDef.h,v $
+ * Revision 1.1  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  */
 
 #include "mushCore.h"
@@ -19,7 +22,7 @@ public:
     bool IsServer(void) const { return m_isServer; }
     void IPSet(U32 inIP) { m_ip=inIP; }
     U32 IPGet(void) const { return m_ip; }
-    void PortSet(U32 inPort) { m_port=inPort; }
+    void PortSetHostOrder(U32 inPort) { m_port=inPort; }
     U32 PortGet(void) const { return m_port; }
     
 private:
