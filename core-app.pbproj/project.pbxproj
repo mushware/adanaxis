@@ -168,6 +168,7 @@
 			buildSettings = {
 				HEADER_SEARCH_PATHS = src/CoreApp;
 				LIBRARY_SEARCH_PATHS = "/Volumes/work/expat/lib /usr/lib/gcc/darwin/2.95.2 /Volumes/work/libungif/lib /Volumes/work/PCRE/lib \"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
