@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.10 2002/07/16 18:01:23 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.11 2002/07/16 19:30:08 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.11  2002/07/16 19:30:08  southa
+ * Simplistic collision checking
+ *
  * Revision 1.10  2002/07/16 18:01:23  southa
  * Fixed errors
  *
@@ -210,8 +213,8 @@ GameFloorDesigner::Move(void)
     tVal deltaY=0;
     if (tertiaryState)
     {
-	    deltaX=-controlState.mouseXDelta;
-        deltaY=-controlState.mouseYDelta;
+	    deltaX=-controlState.mouseXDelta*m_width;
+        deltaY=-controlState.mouseYDelta*m_width;
     }
 
     tVal stepSize=m_floorMaps[0]->XStep();
