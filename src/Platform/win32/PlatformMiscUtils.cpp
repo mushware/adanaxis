@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.15 2002/10/15 19:04:09 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.16 2002/10/20 20:48:07 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.16  2002/10/20 20:48:07  southa
+ * win32 work
+ *
  * Revision 1.15  2002/10/15 19:04:09  southa
  * Windows error box
  *
@@ -207,8 +210,17 @@ PlatformMiscUtils::LaunchFile(const string& inFile)
     int retVal = (int)ShellExecute(NULL, NULL, inFile.c_str(), NULL, NULL, SW_SHOWNORMAL);
     if (retVal < 32)
     {
+        string newName=inFile;
+        for (U32 i=0; i<newName.size(); ++i)
+	{
+	    if (newName[i] == '/') newName[i]='\\';
+	}
+        retVal = (int)ShellExecute(NULL, NULL, newName.c_str(), NULL, NULL, SW_SHOWNORMAL);
+    }
+    if (retVal < 32)
+    {
 	ostringstream message;
-	message << "Launch failed: " << retVal;
+	message << "Launch failed for '" << inFile << "': " << retVal;
 	throw(CommandFail(message.str()));
     }
 }
