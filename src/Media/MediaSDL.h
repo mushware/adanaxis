@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MEDIASDL_H
 #define MEDIASDL_H
+//%includeGuardStart } CItEkt7MJUT9WuobW/ZI/g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Media/MediaSDL.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } dA6BN3tid9qaMpFR4izz8Q
 /*
- * $Id: MediaSDL.h,v 1.18 2003/01/20 10:45:28 southa Exp $
+ * $Id: MediaSDL.h,v 1.19 2003/08/21 23:09:01 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.19  2003/08/21 23:09:01  southa
+ * Fixed file headers
+ *
  * Revision 1.18  2003/01/20 10:45:28  southa
  * Singleton tidying
  *
@@ -117,4 +123,6 @@ private:
     bool m_firstInitCalled;
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

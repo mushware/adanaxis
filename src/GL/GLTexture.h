@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLTEXTURE_H
 #define GLTEXTURE_H
+//%includeGuardStart } Vklsdh1o2zaZOVz+l73KYw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLTexture.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } A9YFTqFWXbrkbfBlHPZiuQ
 /*
- * $Id: GLTexture.h,v 1.16 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLTexture.h,v 1.17 2003/08/21 23:08:30 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.17  2003/08/21 23:08:30  southa
+ * Fixed file headers
+ *
  * Revision 1.16  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -143,4 +149,6 @@ inline std::ostream& operator<<(std::ostream &inOut, const GLTexture& inTex)
     return inTex.ostreamPrint(inOut);
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

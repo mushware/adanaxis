@@ -1,21 +1,29 @@
+//%includeGuardStart {
 #ifndef MUSTLTIMER_H
 #define MUSTLTIMER_H
-
+//%includeGuardStart } TVxWdrQ0ln2K/vcPFiAzcQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlTimer.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
+//%Header } gHzGjr8JyQ19nPyoX1N5wg
 
 /*
- * $Id: MustlTimer.h,v 1.5 2003/01/20 10:45:31 southa Exp $
+ * $Id: MustlTimer.h,v 1.6 2003/08/21 23:09:32 southa Exp $
  * $Log: MustlTimer.h,v $
+ * Revision 1.6  2003/08/21 23:09:32  southa
+ * Fixed file headers
+ *
  * Revision 1.5  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -70,4 +78,6 @@ MustlTimer::CurrentMsecGet(void)
     return m_currentMsec;
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCOREXML_H
 #define MUSHCOREXML_H
+//%includeGuardStart } FG9UxxwHIoPuD15z+L32yA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreXML.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } jEhIST2l2IblkoNm+RJ32Q
 /*
- * $Id: MushcoreXML.h,v 1.4 2003/01/20 12:23:24 southa Exp $
+ * $Id: MushcoreXML.h,v 1.5 2003/08/21 23:09:19 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.5  2003/08/21 23:09:19  southa
+ * Fixed file headers
+ *
  * Revision 1.4  2003/01/20 12:23:24  southa
  * Code and interface tidying
  *
@@ -147,4 +153,6 @@ private:
     bool m_threaded;
     Mushware::U32 m_line;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,6 +1,22 @@
+//%Header {
+/*****************************************************************************
+ *
+ * File: src/TestMushcore/TestMushcoreIO.cpp
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+//%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreIO.cpp,v 1.1 2003/09/17 19:10:17 southa Exp $
+ * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.1  2003/09/17 19:10:17  southa
+ * Created
+ *
  */
 
 #include "TestMushcoreIO.h"

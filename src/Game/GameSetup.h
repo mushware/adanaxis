@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMESETUP_H
 #define GAMESETUP_H
+//%includeGuardStart } WY8ETZV6ZIrY2yqsFnXy7g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameSetup.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } NA9BifWoVf7sxGTwGk9ITw
 /*
- * $Id: GameSetup.h,v 1.11 2003/03/10 21:57:11 southa Exp $
+ * $Id: GameSetup.h,v 1.12 2003/08/21 23:08:54 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.12  2003/08/21 23:08:54  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/03/10 21:57:11  southa
  * ic2 revisions
  *
@@ -92,4 +98,6 @@ private:
     Mushware::U32 m_lastTickerMsec;
     bool m_windowClicked;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

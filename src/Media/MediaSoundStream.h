@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MEDIASOUNDSTREAM_H
 #define MEDIASOUNDSTREAM_H
+//%includeGuardStart } EHnPuJwJVEK7S22kMzkJ0g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Media/MediaSoundStream.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } amcF1bQNvXqK90IVT549Gw
 /*
- * $Id: MediaSoundStream.h,v 1.7 2003/01/11 13:03:16 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.8 2003/08/21 23:09:02 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.8  2003/08/21 23:09:02  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -55,4 +61,6 @@ public:
 private:
     std::string m_filename;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLTEST_H
 #define GLTEST_H
+//%includeGuardStart } Tj1DP7o5YoPtQFkh0lu/jA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLTest.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } yftTJ1OG7Pj5rJReEgvl/g
 /*
- * $Id: GLTest.h,v 1.8 2002/12/29 20:30:52 southa Exp $
+ * $Id: GLTest.h,v 1.9 2003/08/21 23:08:29 southa Exp $
  * $Log: GLTest.h,v $
+ * Revision 1.9  2003/08/21 23:08:29  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -51,4 +57,6 @@ class GLTest
 public:
     static void Test1(const std::string& inStr);
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

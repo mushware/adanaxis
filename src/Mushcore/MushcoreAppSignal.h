@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCOREAPPSIGNAL_H
 #define MUSHCOREAPPSIGNAL_H
+//%includeGuardStart } sxQ+5UlqoMWb/uAPaQW/yw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreAppSignal.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } PD529BuA10fJeRH9MOo4GQ
 /*
- * $Id: MushcoreAppSignal.h,v 1.3 2003/01/18 13:33:57 southa Exp $
+ * $Id: MushcoreAppSignal.h,v 1.4 2003/08/21 23:09:04 southa Exp $
  * $Log: MushcoreAppSignal.h,v $
+ * Revision 1.4  2003/08/21 23:09:04  southa
+ * Fixed file headers
+ *
  * Revision 1.3  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -78,4 +84,6 @@ MushcoreAppSignal::IsMushcoreAppSignal(void) const
 {
     return m_sigNumber > kMinMushcoreAppSignal && m_sigNumber < kMaxMushcoreAppSignal;
 }
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEEVENT_H
 #define GAMEEVENT_H
+//%includeGuardStart } UEcZVIFbR3skg9cYgm/VwQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameEvent.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } wtaCfE3Bg2cWSVhLCRxLsA
 /*
- * $Id: GameEvent.h,v 1.7 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameEvent.h,v 1.8 2003/08/21 23:08:43 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.8  2003/08/21 23:08:43  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -61,4 +67,6 @@ class GameEventSequenceAdvance : public GameEvent
 {
 public:
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

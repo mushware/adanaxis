@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMETRAITS_H
 #define GAMETRAITS_H
+//%includeGuardStart } mUlzHm9RAXeWN9ISGkFUyw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameTraits.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } bEeNmU1BeRIN83FHz6/7EA
 /*
- * $Id: GameTraits.h,v 1.18 2003/02/05 17:06:37 southa Exp $
+ * $Id: GameTraits.h,v 1.19 2003/08/21 23:08:58 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.19  2003/08/21 23:08:58  southa
+ * Fixed file headers
+ *
  * Revision 1.18  2003/02/05 17:06:37  southa
  * Build fixes
  *
@@ -143,4 +149,6 @@ inline std::ostream& operator<<(std::ostream &inOut, const GameTraits& inObj)
 }
 
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

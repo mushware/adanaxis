@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreScalar.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } FMQv2QD5rAEb9Ady4AGEpQ
 /*
- * $Id: MushcoreScalar.cpp,v 1.5 2003/02/05 17:06:37 southa Exp $
+ * $Id: MushcoreScalar.cpp,v 1.6 2003/08/21 23:09:16 southa Exp $
  * $Log: MushcoreScalar.cpp,v $
+ * Revision 1.6  2003/08/21 23:09:16  southa
+ * Fixed file headers
+ *
  * Revision 1.5  2003/02/05 17:06:37  southa
  * Build fixes
  *

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEGRAPHIC_H
 #define GAMEGRAPHIC_H
+//%includeGuardStart } mSvX5xP5Zam4WQhfpheceQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameGraphic.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } N1do3YlM6A//t700iWEcMw
 /*
- * $Id: GameGraphic.h,v 1.13 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameGraphic.h,v 1.14 2003/08/21 23:08:46 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.14  2003/08/21 23:08:46  southa
+ * Fixed file headers
+ *
  * Revision 1.13  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -82,4 +88,6 @@ inline std::ostream& operator<<(std::ostream &inOut, const GameGraphic& inObj)
     return inOut;
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

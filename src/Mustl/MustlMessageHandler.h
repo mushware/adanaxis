@@ -1,22 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLMESSAGEHANDLER_H
 #define MUSTLMESSAGEHANDLER_H
-#ifndef MUSTLHANDLER_H
-#define MUSTLHANDLER_H
+//%includeGuardStart } eoVFM54gveFyGhSDCR2BDA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlMessageHandler.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } hryMESmg7/B4F5GNtVbRfw
 /*
- * $Id: MustlMessageHandler.h,v 1.2 2003/01/18 13:33:59 southa Exp $
+ * $Id: MustlMessageHandler.h,v 1.3 2003/08/21 23:09:27 southa Exp $
  * $Log: MustlMessageHandler.h,v $
+ * Revision 1.3  2003/08/21 23:09:27  southa
+ * Fixed file headers
+ *
  * Revision 1.2  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -53,5 +59,6 @@ class MustlMessageHandler
 public:
     virtual void MessageHandle(MustlData& ioData, MustlLink& inLink, Mustl::U32 inType) = 0;
 };
+//%includeGuardEnd {
 #endif
-#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

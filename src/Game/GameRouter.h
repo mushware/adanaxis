@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEROUTER_H
 #define GAMEROUTER_H
+//%includeGuardStart } IAInd09ZuYgsv6UH6RoDZQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameRouter.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } imUV5dibLOI+wT8/pSHJqw
 /*
- * $Id: GameRouter.h,v 1.15 2003/01/20 10:45:27 southa Exp $
+ * $Id: GameRouter.h,v 1.16 2003/08/21 23:08:53 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.16  2003/08/21 23:08:53  southa
+ * Fixed file headers
+ *
  * Revision 1.15  2003/01/20 10:45:27  southa
  * Singleton tidying
  *
@@ -77,4 +83,6 @@ protected:
     
 private:
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

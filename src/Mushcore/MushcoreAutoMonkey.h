@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCOREAUTOMONKEY_H
 #define MUSHCOREAUTOMONKEY_H
+//%includeGuardStart } 7kJ6RZCh9NH2JfHT3G29Fg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreAutoMonkey.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } uRXPAVYrQJFNdTUvriQF8w
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.4 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.5 2003/08/21 23:09:04 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.5  2003/08/21 23:09:04  southa
+ * Fixed file headers
+ *
  * Revision 1.4  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -97,4 +103,6 @@ private:
     void Swap(MushcoreAutoMonkey& inMonkey);
     Mushware::S32 *m_refCtrPtr;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

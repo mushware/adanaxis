@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLROUTER_H
 #define MUSTLROUTER_H
+//%includeGuardStart } NCMc0DuMKKIjbmXlqA1/Hg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlRouter.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } 5unRjB3k5szAv3W7/iSDyw
 /*
- * $Id: MustlRouter.h,v 1.9 2003/02/05 18:49:52 southa Exp $
+ * $Id: MustlRouter.h,v 1.10 2003/08/21 23:09:30 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.10  2003/08/21 23:09:30  southa
+ * Fixed file headers
+ *
  * Revision 1.9  2003/02/05 18:49:52  southa
  * Build fixes
  *
@@ -94,4 +102,6 @@ private:
 
 }; 
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

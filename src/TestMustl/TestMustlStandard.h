@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef TESTMUSTLSTANDARD_H
 #define TESTMUSTLSTANDARD_H
+//%includeGuardStart } 3eZYJcCuEjLA1xgox18STA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/TestMustl/TestMustlStandard.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } fOd+zqmx5mhzTvwuIeBb7g
 /*
- * $Id: TestMustlStandard.h,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Id: TestMustlStandard.h,v 1.2 2003/08/21 23:09:40 southa Exp $
  * $Log: TestMustlStandard.h,v $
+ * Revision 1.2  2003/08/21 23:09:40  southa
+ * Fixed file headers
+ *
  * Revision 1.1  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -70,4 +76,6 @@
 #include "Mustl.h"
 #endif
 #endif
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

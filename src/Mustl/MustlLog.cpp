@@ -1,18 +1,24 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlLog.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } BYZb/i9tviqYw9R1Z1W3zw
 /*
- * $Id: MustlLog.cpp,v 1.10 2003/02/04 19:07:12 southa Exp $
+ * $Id: MustlLog.cpp,v 1.11 2003/08/21 23:09:27 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.11  2003/08/21 23:09:27  southa
+ * Fixed file headers
+ *
  * Revision 1.10  2003/02/04 19:07:12  southa
  * Build fixes
  *

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id$
-# $Log$
+# $Id: SourceConditioner.pl,v 1.1 2003/09/17 19:12:13 southa Exp $
+# $Log: SourceConditioner.pl,v $
+# Revision 1.1  2003/09/17 19:12:13  southa
+# Created
+#
 
 use SourceProcess;
 
@@ -313,7 +316,7 @@ sub OldHeaderStrip($)
     
     if ($headerPresent && $started && $ended)
     {
-        splice @$arrayRef, $headerStart, $headerEnd-$headerStart+1;
+        splice @$arrayRef, $headerStart, $headerEnd-$headerStart;
     }
 }
 

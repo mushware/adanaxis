@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCORE_H
 #define MUSHCORE_H
+//%includeGuardStart } SuMFSOC9JQAWIDpeVa9NFg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/Mushcore.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } l5tY/TDG7oXfdjv1zFKmuQ
 /*
- * $Id: Mushcore.h,v 1.9 2003/01/20 10:45:28 southa Exp $
+ * $Id: Mushcore.h,v 1.10 2003/08/21 23:09:03 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.10  2003/08/21 23:09:03  southa
+ * Fixed file headers
+ *
  * Revision 1.9  2003/01/20 10:45:28  southa
  * Singleton tidying
  *
@@ -72,4 +78,6 @@
 #include "MushcoreUtil.h"
 #include "MushcoreXML.h"
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

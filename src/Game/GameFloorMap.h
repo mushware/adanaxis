@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEFLOORMAP_H
 #define GAMEFLOORMAP_H
+//%includeGuardStart } tzC0nUV0r/aCeV6jtd7KkQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameFloorMap.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } iCr8b5CY0DFSEQP8VVrKwg
 /*
- * $Id: GameFloorMap.h,v 1.29 2003/02/05 17:06:36 southa Exp $
+ * $Id: GameFloorMap.h,v 1.30 2003/08/21 23:08:45 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.30  2003/08/21 23:08:45  southa
+ * Fixed file headers
+ *
  * Revision 1.29  2003/02/05 17:06:36  southa
  * Build fixes
  *
@@ -223,4 +229,6 @@ inline std::ostream& operator<<(std::ostream &inOut, const GameFloorMap& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

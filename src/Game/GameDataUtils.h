@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEDATAUTILS_H
 #define GAMEDATAUTILS_H
+//%includeGuardStart } rJ11GWpIyovpV8ANQnm8Sw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameDataUtils.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } DoSOWNXzAjXUpkwQiOeCdQ
 /*
- * $Id: GameDataUtils.h,v 1.6 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameDataUtils.h,v 1.7 2003/08/21 23:08:42 southa Exp $
  * $Log: GameDataUtils.h,v $
+ * Revision 1.7  2003/08/21 23:08:42  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -42,4 +48,6 @@ class GameDataUtils
 public:
     static void NamedDialoguesAdd(const std::string& inStr); // Takes regular expression
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

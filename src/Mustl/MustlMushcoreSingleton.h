@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLMUSHCORESINGLETON_H
 #define MUSTLMUSHCORESINGLETON_H
+//%includeGuardStart } flYXKRCcGzn8LqLrF+jzMw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlMushcoreSingleton.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } gpDWbcNApa0N5ysrtcCsDQ
 /*
- * $Id: MustlMushcoreSingleton.h,v 1.3 2003/02/05 17:36:36 southa Exp $
+ * $Id: MustlMushcoreSingleton.h,v 1.4 2003/08/21 23:09:28 southa Exp $
  * $Log: MustlMushcoreSingleton.h,v $
+ * Revision 1.4  2003/08/21 23:09:28  southa
+ * Fixed file headers
+ *
  * Revision 1.3  2003/02/05 17:36:36  southa
  * Build fixes
  *
@@ -38,4 +46,6 @@
 #include "MushcoreSingleton.h"
 #endif
 #endif
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/TestMushcore/TestMushcoreApp.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } cEeXPzl0swnaPiqfvEsabQ
 /*
- * $Id: TestMushcoreApp.cpp,v 1.2 2003/01/20 17:03:22 southa Exp $
+ * $Id: TestMushcoreApp.cpp,v 1.3 2003/08/21 23:09:36 southa Exp $
  * $Log: TestMushcoreApp.cpp,v $
+ * Revision 1.3  2003/08/21 23:09:36  southa
+ * Fixed file headers
+ *
  * Revision 1.2  2003/01/20 17:03:22  southa
  * Command line expression evaluator enhancements
  *
@@ -51,6 +55,7 @@ TestMushcoreApp::EnterInstance(void)
     cout << "Starting tests" << endl;
     RunTest("testauto", "Automonkey");
     RunTest("testcommand", "Command interpreter");
+    RunTest("testio", "Input/output");
 }
 
 void

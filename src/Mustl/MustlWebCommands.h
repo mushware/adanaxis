@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLWEBCOMMANDS_H
 #define MUSTLWEBCOMMANDS_H
+//%includeGuardStart } 8zTsToM8Bq6hufrlWy88rg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlWebCommands.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } wz15nvj8K+F1Lo+CDiVupg
 /*
- * $Id: MustlWebCommands.h,v 1.5 2003/05/21 19:01:41 southa Exp $
+ * $Id: MustlWebCommands.h,v 1.6 2003/08/21 23:09:32 southa Exp $
  * $Log: MustlWebCommands.h,v $
+ * Revision 1.6  2003/08/21 23:09:32  southa
+ * Fixed file headers
+ *
  * Revision 1.5  2003/05/21 19:01:41  southa
  * Prerelease tweaks
  *
@@ -51,4 +59,6 @@ public:
     static void NullFunction(void);
     static void Install(void);
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

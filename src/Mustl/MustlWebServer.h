@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLWEBSERVER_H
 #define MUSTLWEBSERVER_H
+//%includeGuardStart } UGjFcNOZGQARbjvBlq1cfQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlWebServer.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } Oa02ZK3m2MRzJLx74yJsIQ
 /*
- * $Id: MustlWebServer.h,v 1.7 2003/01/20 10:45:31 southa Exp $
+ * $Id: MustlWebServer.h,v 1.8 2003/08/21 23:09:33 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.8  2003/08/21 23:09:33  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -103,4 +111,6 @@ private:
     bool m_serving;
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

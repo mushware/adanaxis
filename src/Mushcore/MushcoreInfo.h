@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCOREINFO_H
 #define MUSHCOREINFO_H
+//%includeGuardStart } Ez8pYYNhqaFZHrLyeQoTFA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreInfo.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 6yU/4gP+XdbTHO03uLLL/g
 /*
- * $Id: MushcoreInfo.h,v 1.6 2003/04/06 12:35:23 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.7 2003/08/21 23:09:14 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.7  2003/08/21 23:09:14  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2003/04/06 12:35:23  southa
  * Fixes for release
  *
@@ -61,4 +67,6 @@ public:
     virtual std::string PackageIDGet(void);
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

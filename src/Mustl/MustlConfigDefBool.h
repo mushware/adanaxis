@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLCONFIGDEFBOOL_H
 #define MUSTLCONFIGDEFBOOL_H
+//%includeGuardStart } w36f6rY+ZnfHVf9NbtxwRQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlConfigDefBool.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } uzNkDpmMmUbP2efBth/2fg
 /*
- * $Id: MustlConfigDefBool.h,v 1.2 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefBool.h,v 1.3 2003/08/21 23:09:22 southa Exp $
  * $Log: MustlConfigDefBool.h,v $
+ * Revision 1.3  2003/08/21 23:09:22  southa
+ * Fixed file headers
+ *
  * Revision 1.2  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -49,4 +57,6 @@ public:
 private:
         bool m_value;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

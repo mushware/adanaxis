@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLPLATFORMHEADERS_H
 #define MUSTLPLATFORMHEADERS_H
+//%includeGuardStart } y7EFdhSkcPaops1CuTlFAA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlPlatformHeaders.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } Nk20aO/Y6Dx4yIUdKkHfnQ
 /*
- * $Id: MustlPlatformHeaders.h,v 1.12 2003/08/21 23:09:29 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.13 2003/08/21 23:23:06 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.13  2003/08/21 23:23:06  southa
+ * Replaced changes inadvertently lost
+ *
  * Revision 1.12  2003/08/21 23:09:29  southa
  * Fixed file headers
  *
@@ -84,15 +92,14 @@
 // Mac OS X includes
 #ifdef MUSTL_MACOSX
 
-// Mac OS X Carbon section
-#ifndef MUSTL_NO_CARBON
 #include <Carbon/Carbon.h>
+
+// Mac OS X Carbon section
 // Remove definitions which are also in the POSIX includes
 #undef TCP_NODELAY
 #undef TCP_MAXSEG
 #endif
 
-#endif
 
 // POSIX includes (including Mac OS X)
 #ifdef MUSTL_POSIX_OR_MACOSX
@@ -212,4 +219,6 @@
 #define MUSTL_HAVE_SOCKADDR_SA_LEN 1
 #endif
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

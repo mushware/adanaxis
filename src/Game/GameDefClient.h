@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEDEFCLIENT_H
 #define GAMEDEFCLIENT_H
+//%includeGuardStart } UROfZ65pgd/ScBeU8C/Rrw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameDefClient.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } DM7BwhgUOa9BxJv/mO4rWA
 /*
- * $Id: GameDefClient.h,v 1.17 2003/02/05 17:06:36 southa Exp $
+ * $Id: GameDefClient.h,v 1.18 2003/08/21 23:08:42 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.18  2003/08/21 23:08:42  southa
+ * Fixed file headers
+ *
  * Revision 1.17  2003/02/05 17:06:36  southa
  * Build fixes
  *
@@ -149,4 +155,6 @@ private:
     bool m_joined;
     bool m_linkGood;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

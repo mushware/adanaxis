@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLFontRef.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } p+0H/fxegE2NtNkMztSSng
 /*
- * $Id: GLFontRef.cpp,v 1.8 2003/01/20 10:45:23 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.9 2003/08/21 23:08:21 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.9  2003/08/21 23:08:21  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2003/01/20 10:45:23  southa
  * Singleton tidying
  *

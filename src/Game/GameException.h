@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMEEXCEPTION_H
 #define GAMEEXCEPTION_H
+//%includeGuardStart } TTpbuvFrG1hUXsIMkVJGvA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameException.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } kFBHkZfYMwvwo44EWWcSBA
 /*
- * $Id: GameException.h,v 1.4 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameException.h,v 1.5 2003/08/21 23:08:44 southa Exp $
  * $Log: GameException.h,v $
+ * Revision 1.5  2003/08/21 23:08:44  southa
+ * Fixed file headers
+ *
  * Revision 1.4  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -47,4 +53,6 @@ NetworkFail::NetworkFail(const std::string& inMessage) :
 
 
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

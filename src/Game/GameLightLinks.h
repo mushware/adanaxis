@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMELIGHTLINKS_H
 #define GAMELIGHTLINKS_H
+//%includeGuardStart } rTYaS0Nx0OFy4ePEJjwa4g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameLightLinks.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } BGi5R51vTB7sIKMhtMvcrw
 /*
- * $Id: GameLightLinks.h,v 1.6 2003/01/12 17:32:55 southa Exp $
+ * $Id: GameLightLinks.h,v 1.7 2003/08/21 23:08:47 southa Exp $
  * $Log: GameLightLinks.h,v $
+ * Revision 1.7  2003/08/21 23:08:47  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -107,4 +113,6 @@ inline bool operator!=(const GameLightLinks& a, const GameLightLinks& b)
     }
     return false;
 }
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

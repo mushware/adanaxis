@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLCONFIGDEFSTRING_H
 #define MUSTLCONFIGDEFSTRING_H
+//%includeGuardStart } RAV4SQQySW8dGVJWN0x0oA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlConfigDefString.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } f9af2qq6MP1feHd08tm8fg
 /*
- * $Id: MustlConfigDefString.h,v 1.2 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefString.h,v 1.3 2003/08/21 23:09:23 southa Exp $
  * $Log: MustlConfigDefString.h,v $
+ * Revision 1.3  2003/08/21 23:09:23  southa
+ * Fixed file headers
+ *
  * Revision 1.2  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -50,4 +58,6 @@ private:
 std::string m_value;
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

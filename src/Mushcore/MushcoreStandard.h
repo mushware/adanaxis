@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCORESTANDARD_H
 #define MUSHCORESTANDARD_H
+//%includeGuardStart } n2v+Z7ZU0WF8ezNx14AESA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreStandard.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 7aw6V/9lK++dZ0qJ8aUG7g
 /*
- * $Id: MushcoreStandard.h,v 1.9 2003/02/05 18:49:52 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.10 2003/08/21 23:09:17 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.10  2003/08/21 23:09:17  southa
+ * Fixed file headers
+ *
  * Revision 1.9  2003/02/05 18:49:52  southa
  * Build fixes
  *
@@ -170,9 +176,6 @@ namespace Mushware
     typedef unsigned short U16;
     typedef signed char S8;
     typedef unsigned char U8;
-#ifndef M_PI
-    const double M_PI=3.14159265358979;
-#endif
 };
 
 #ifdef HAVE_VALARRAY
@@ -192,4 +195,6 @@ namespace Mushware
 #define MUSHCORE_TYPENAME typename
 #endif
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

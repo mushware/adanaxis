@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMETILESPEC_H
 #define GAMETILESPEC_H
+//%includeGuardStart } 0Sl8/0lP0kMcrNPv3AKVyw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameTileSpec.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 4G3zPv40hPUDHxPKiD13lQ
 /*
- * $Id: GameTileSpec.h,v 1.7 2003/02/05 18:49:51 southa Exp $
+ * $Id: GameTileSpec.h,v 1.8 2003/08/21 23:08:56 southa Exp $
  * $Log: GameTileSpec.h,v $
+ * Revision 1.8  2003/08/21 23:08:56  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2003/02/05 18:49:51  southa
  * Build fixes
  *
@@ -93,4 +99,6 @@ GameTileSpec::RenderEpilogue(void) const
 
 std::ostream&
 operator<<(std::ostream &inOut, const GameTileSpec& inSpec);
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

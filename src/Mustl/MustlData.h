@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLDATA_H
 #define MUSTLDATA_H
+//%includeGuardStart } +GO4zwxU9dZUymS9AaNtWQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlData.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } vgCSoa5Q/87QVURYWGsNMw
 /*
- * $Id: MustlData.h,v 1.6 2003/01/07 17:13:44 southa Exp $
+ * $Id: MustlData.h,v 1.7 2003/08/21 23:09:24 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.7  2003/08/21 23:09:24  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2003/01/07 17:13:44  southa
  * Fixes for gcc 3.1
  *
@@ -340,4 +348,6 @@ MustlData::PrepareForWrite(Mustl::U32 inSize)
     }
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

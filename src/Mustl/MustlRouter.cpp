@@ -1,18 +1,24 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlRouter.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } UzOsonyM1qk57Bbewxy4LQ
 /*
- * $Id: MustlRouter.cpp,v 1.15 2003/02/04 14:54:52 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.16 2003/08/21 23:09:30 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.16  2003/08/21 23:09:30  southa
+ * Fixed file headers
+ *
  * Revision 1.15  2003/02/04 14:54:52  southa
  * Build fixes
  *

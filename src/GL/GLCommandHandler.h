@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLCOMMANDHANDLER_H
 #define GLCOMMANDHANDLER_H
+//%includeGuardStart } gJO88MJSAt/MwJK6xZTl0g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLCommandHandler.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } Y36idSociBVXjB2u01wN6w
 /*
- * $Id: GLCommandHandler.h,v 1.11 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.12 2003/08/21 23:08:19 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.12  2003/08/21 23:08:19  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -70,4 +76,6 @@ public:
     static MushcoreScalar Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

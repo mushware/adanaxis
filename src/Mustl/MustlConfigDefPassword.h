@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLCONFIGDEFPASSWORD_H
 #define MUSTLCONFIGDEFPASSWORD_H
+//%includeGuardStart } Yt9Q0GvDgG4ttZ4LjOM3iA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlConfigDefPassword.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } jCJlm5wbzbRaUz/2I4FeRQ
 /*
- * $Id: MustlConfigDefPassword.h,v 1.2 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefPassword.h,v 1.3 2003/08/21 23:09:23 southa Exp $
  * $Log: MustlConfigDefPassword.h,v $
+ * Revision 1.3  2003/08/21 23:09:23  southa
+ * Fixed file headers
+ *
  * Revision 1.2  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -45,6 +53,11 @@ public:
     static void NullFunction(void);
 
 private:
+//%classPrototypes {
+public:
+//%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

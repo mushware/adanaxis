@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef PLATFORMVIDEOUTILS_H
 #define PLATFORMVIDEOUTILS_H
+//%includeGuardStart } AEK+Al+NrqhKC+Q5B1/9Bg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/PlatformVideoUtils.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } fB1pDiCpnlEZRwSPca6UqQ
 /*
- * $Id: PlatformVideoUtils.h,v 1.10 2003/04/13 08:39:18 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.11 2003/08/21 23:09:34 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.11  2003/08/21 23:09:34  southa
+ * Fixed file headers
+ *
  * Revision 1.10  2003/04/13 08:39:18  southa
  * Bring window to foreground on mode change
  *
@@ -75,4 +81,6 @@ private:
     bool m_threadAttached;
     unsigned long m_fgThreadID;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

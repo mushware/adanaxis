@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLFAIL_H
 #define MUSTLFAIL_H
+//%includeGuardStart } sHgBgEU8yDHBSP7QzKWU8w
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlFail.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } sPc94WevUhmO9uyFU8xaVA
 /*
- * $Id: MustlFail.h,v 1.7 2003/02/04 14:54:51 southa Exp $
+ * $Id: MustlFail.h,v 1.8 2003/08/21 23:09:25 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.8  2003/08/21 23:09:25  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2003/02/04 14:54:51  southa
  * Build fixes
  *
@@ -110,4 +118,6 @@ public:
     MustlSocketOrUDPFail(const std::string& inMessage);
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

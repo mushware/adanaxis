@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef PLATFORMINPUTUTILS_H
 #define PLATFORMINPUTUTILS_H
+//%includeGuardStart } Xtv80/F44sw65b2ia1nkQg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/PlatformInputUtils.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 9l+dpiP/w1wCp/WmYoNTGA
 /*
- * $Id: PlatformInputUtils.h,v 1.11 2003/01/11 13:03:18 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.12 2003/08/21 23:09:33 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.12  2003/08/21 23:09:33  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/01/11 13:03:18  southa
  * Use Mushcore header
  *
@@ -67,5 +73,7 @@ public:
     static void MouseDeltaOverrideGet(Mushware::S32& ioXDelta, Mushware::S32& ioYDelta);
 };
 
-#endif
 
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

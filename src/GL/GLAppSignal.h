@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLAPPSIGNAL_H
 #define GLAPPSIGNAL_H
+//%includeGuardStart } CvdEEBCrta1/dmo/cPMNvA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLAppSignal.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } vQ2UEPvvcZY1QyRzx08+Jw
 /*
- * $Id: GLAppSignal.h,v 1.11 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLAppSignal.h,v 1.12 2003/08/21 23:08:18 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.12  2003/08/21 23:08:18  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -81,4 +87,6 @@ public:
     Mushware::tVal mouseX;
     Mushware::tVal mouseY;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

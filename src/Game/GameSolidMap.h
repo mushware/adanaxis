@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMESOLIDMAP_H
 #define GAMESOLIDMAP_H
+//%includeGuardStart } heNm9S1L4rUmP6AATAwrqg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameSolidMap.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 5oywI2unfh2FGlpqagpr6g
 /*
- * $Id: GameSolidMap.h,v 1.14 2003/01/13 14:32:00 southa Exp $
+ * $Id: GameSolidMap.h,v 1.15 2003/08/21 23:08:55 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.15  2003/08/21 23:08:55  southa
+ * Fixed file headers
+ *
  * Revision 1.14  2003/01/13 14:32:00  southa
  * Build frameworks for Mac OS X
  *
@@ -115,4 +121,6 @@ private:
     MushwareValarray<Mushware::tVal> m_solidMap;
     MushwareValarray<Mushware::tVal> m_adhesionMap;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

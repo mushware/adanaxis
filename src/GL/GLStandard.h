@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLSTANDARD_H
 #define GLSTANDARD_H
+//%includeGuardStart } 52yady1NYSEbLWZGeNtMgw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLStandard.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } UyVhKIxLmWPxUn/+gvv8zQ
 /*
- * $Id: GLStandard.h,v 1.14 2003/01/13 14:31:55 southa Exp $
+ * $Id: GLStandard.h,v 1.15 2003/08/21 23:08:29 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.15  2003/08/21 23:08:29  southa
+ * Fixed file headers
+ *
  * Revision 1.14  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -125,4 +131,6 @@
 #define IFTEXTESTING(a)
 #endif
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

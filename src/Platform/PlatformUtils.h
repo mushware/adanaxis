@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef PLATFORMUTILS_H
 #define PLATFORMUTILS_H
+//%includeGuardStart } krtj29nk/bdiS/5xjSoJOg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/PlatformUtils.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } fixCbzkAT566tQsr8OEajg
 /*
- * $Id: PlatformUtils.h,v 1.8 2002/12/20 13:17:47 southa Exp $
+ * $Id: PlatformUtils.h,v 1.9 2003/08/21 23:09:34 southa Exp $
  * $Log: PlatformUtils.h,v $
+ * Revision 1.9  2003/08/21 23:09:34  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -46,4 +52,6 @@
 
 #include "PlatformInputUtils.h"
 #include "PlatformMiscUtils.h"
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

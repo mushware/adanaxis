@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCORESTREAMUTIL_H
 #define MUSHCORESTREAMUTIL_H
+//%includeGuardStart } r7wM6Gh/tuQSO/Ut3wio6Q
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreStreamUtil.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } LuQYw4ve35C6bxluJ/hfBw
 /*
- * $Id: MushcoreStreamUtil.h,v 1.4 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreStreamUtil.h,v 1.5 2003/08/21 23:09:18 southa Exp $
  * $Log: MushcoreStreamUtil.h,v $
+ * Revision 1.5  2003/08/21 23:09:18  southa
+ * Fixed file headers
+ *
  * Revision 1.4  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -81,4 +87,6 @@ private:
     std::vector<int> m_zero;
     Mushware::S32 m_ctr;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

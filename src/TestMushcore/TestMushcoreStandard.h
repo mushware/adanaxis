@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef TESTMUSHCORESTANDARD_H
 #define TESTMUSHCORESTANDARD_H
+//%includeGuardStart } KajMHda8B99p147d9sr7AQ
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/TestMushcore/TestMushcoreStandard.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } EutwFSvbg92G6gEaBCOcig
 /*
- * $Id: TestMushcoreStandard.h,v 1.1 2003/01/20 15:38:28 southa Exp $
+ * $Id: TestMushcoreStandard.h,v 1.2 2003/08/21 23:09:38 southa Exp $
  * $Log: TestMushcoreStandard.h,v $
+ * Revision 1.2  2003/08/21 23:09:38  southa
+ * Fixed file headers
+ *
  * Revision 1.1  2003/01/20 15:38:28  southa
  * Created MushcoreTest
  *
@@ -60,4 +66,6 @@
 #include <cstdlib>
 #include <ctime>
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

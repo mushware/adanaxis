@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLIDNULL_H
 #define MUSTLIDNULL_H
+//%includeGuardStart } Kb4yOVq0bljErBTtDHuRNA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlIDNull.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } hi04E6KvpWFB+cwpEpbCrw
 /*
- * $Id: MustlIDNull.h,v 1.3 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlIDNull.h,v 1.4 2003/08/21 23:09:26 southa Exp $
  * $Log: MustlIDNull.h,v $
+ * Revision 1.4  2003/08/21 23:09:26  southa
+ * Fixed file headers
+ *
  * Revision 1.3  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,4 +52,6 @@ public:
 
 private:
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

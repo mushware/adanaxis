@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef PLATFORMNET_H
 #define PLATFORMNET_H
+//%includeGuardStart } Odfje/3RJgX7tc8CJGBrEg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/PlatformNet.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } CbJ3kdCBxmlEW1NOUDLFFg
 /*
- * $Id: PlatformNet.h,v 1.9 2002/12/20 13:17:47 southa Exp $
+ * $Id: PlatformNet.h,v 1.10 2003/08/21 23:09:33 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.10  2003/08/21 23:09:33  southa
+ * Fixed file headers
+ *
  * Revision 1.9  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -82,4 +88,6 @@ private:
     static bool m_localAddressesValid;
     static std::map<U32, bool> m_localAddressMap;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLFONT_H
 #define GLFONT_H
+//%includeGuardStart } ccyhK1cX2OJx5rLJQ4RL2g
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLFont.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } N7iPl0bRnj4r8i7A/Iukbw
 /*
- * $Id: GLFont.h,v 1.9 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLFont.h,v 1.10 2003/08/21 23:08:20 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.10  2003/08/21 23:08:20  southa
+ * Fixed file headers
+ *
  * Revision 1.9  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -72,4 +78,6 @@ private:
     Mushware::U32 m_xNum; // Must be integer types
     Mushware::U32 m_yNum;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreCommandHandler.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } t3guoXECPSSonwRuXn8XTQ
 /*
- * $Id: MushcoreCommandHandler.cpp,v 1.1 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreCommandHandler.cpp,v 1.2 2003/08/21 23:09:08 southa Exp $
  * $Log: MushcoreCommandHandler.cpp,v $
+ * Revision 1.2  2003/08/21 23:09:08  southa
+ * Fixed file headers
+ *
  * Revision 1.1  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *

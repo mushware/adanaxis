@@ -1,18 +1,24 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlData.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } E/LSOMbIYSPVJ5+iPwoyZA
 /*
- * $Id: MustlData.cpp,v 1.6 2002/12/29 20:59:58 southa Exp $
+ * $Id: MustlData.cpp,v 1.7 2003/08/21 23:09:24 southa Exp $
  * $Log: MustlData.cpp,v $
+ * Revision 1.7  2003/08/21 23:09:24  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2002/12/29 20:59:58  southa
  * More build fixes
  *

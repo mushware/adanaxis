@@ -1,17 +1,20 @@
+//%includeGuardStart {
 #ifndef SDLMAIN_H
 #define SDLMAIN_H
+//%includeGuardStart } AwhoLa8Az+eSFpNQjZVpnw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/MacOSX/SDLMain.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } ilrSTWtX7nsJoern3uWzgg
 /* WARNING:  This file was automatically generated!
  * Original: ./src/main/macosx/SDLMain.h
  */
@@ -26,4 +29,6 @@
 
 @interface SDLMain : NSObject
 @end
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

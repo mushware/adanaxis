@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLCOLOUR_H
 #define GLCOLOUR_H
+//%includeGuardStart } MYzbFxu3DP+5yIuQQQRoPg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLColour.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } izCCi2dND384lK1+fIgw9Q
 /*
- * $Id: GLColour.h,v 1.12 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLColour.h,v 1.13 2003/08/21 23:08:19 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.13  2003/08/21 23:08:19  southa
+ * Fixed file headers
+ *
  * Revision 1.12  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -117,4 +123,6 @@ inline const GLColour operator*(Mushware::tVal a, const GLColour& b)
     return retCol*=a;
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

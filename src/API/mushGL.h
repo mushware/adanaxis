@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHGL_H
 #define MUSHGL_H
+//%includeGuardStart } sZMkMkP9fHs6SjzxXh/O8Q
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/API/mushGL.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } kT9DPozBpWIettG3pMDlHQ
 /*
- * $Id: mushGL.h,v 1.20 2002/12/20 13:17:30 southa Exp $
+ * $Id: mushGL.h,v 1.21 2003/08/21 23:08:16 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.21  2003/08/21 23:08:16  southa
+ * Fixed file headers
+ *
  * Revision 1.20  2002/12/20 13:17:30  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -102,4 +108,6 @@
 #include "GL/GLUtils.h"
 #include "GL/SDLAppHandler.h"
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

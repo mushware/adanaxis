@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameCommandHandler.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } 7Ncqiw4lqHW+MAghyFVZNg
 /*
- * $Id: GameCommandHandler.cpp,v 1.19 2003/02/05 17:06:35 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.20 2003/08/21 23:08:35 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.20  2003/08/21 23:08:35  southa
+ * Fixed file headers
+ *
  * Revision 1.19  2003/02/05 17:06:35  southa
  * Build fixes
  *

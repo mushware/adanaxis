@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMERECORDS_H
 #define GAMERECORDS_H
+//%includeGuardStart } SUT8MQPOsiKcepqAIXksCw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameRecords.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } zz9sxjYwiLC/+U5klXlNsg
 /*
- * $Id: GameRecords.h,v 1.11 2003/02/05 17:06:37 southa Exp $
+ * $Id: GameRecords.h,v 1.12 2003/08/21 23:08:53 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.12  2003/08/21 23:08:53  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/02/05 17:06:37  southa
  * Build fixes
  *
@@ -112,4 +118,6 @@ private:
     GameTimer::tMsec m_raceTime;
     bool m_raceTimeValid;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

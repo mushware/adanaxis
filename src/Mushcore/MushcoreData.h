@@ -1,21 +1,27 @@
+//%includeGuardStart {
 #ifndef MUSHCOREDATA_H
 #define MUSHCOREDATA_H
-
+//%includeGuardStart } 5xx3QcLnHc7l0jqnvH7Hiw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreData.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
+//%Header } iE0DDXMs2zzounm83gvEEg
 
 /*
- * $Id: MushcoreData.h,v 1.10 2003/02/05 17:06:37 southa Exp $
+ * $Id: MushcoreData.h,v 1.11 2003/08/21 23:09:09 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.11  2003/08/21 23:09:09  southa
+ * Fixed file headers
+ *
  * Revision 1.10  2003/02/05 17:06:37  southa
  * Build fixes
  *
@@ -307,4 +313,6 @@ MushcoreData<RefType>::SequenceNumGet(void) const
     return m_sequenceNum;
 }
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

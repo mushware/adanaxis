@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef MUSHCORESCRIPT_H
 #define MUSHCORESCRIPT_H
+//%includeGuardStart } urKsJWO1SYzAJonRAuxV6w
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mushcore/MushcoreScript.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } lEcqitwPDWw9FASOi7Q5RA
 /*
- * $Id: MushcoreScript.h,v 1.3 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreScript.h,v 1.4 2003/08/21 23:09:17 southa Exp $
  * $Log: MushcoreScript.h,v $
+ * Revision 1.4  2003/08/21 23:09:17  southa
+ * Fixed file headers
+ *
  * Revision 1.3  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -94,4 +100,6 @@ operator<<(std::ostream &ioOut, const MushcoreScript& inMushcoreScript)
     inMushcoreScript.Print(ioOut);
     return ioOut;
 }
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

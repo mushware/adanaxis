@@ -1,18 +1,22 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Platform/MacOSX/PlatformVideoUtils.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } HwoG+/8AysZhzI7ltbBEnA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.13 2003/04/13 08:39:18 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.14 2003/08/21 23:09:35 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.14  2003/08/21 23:09:35  southa
+ * Fixed file headers
+ *
  * Revision 1.13  2003/04/13 08:39:18  southa
  * Bring window to foreground on mode change
  *

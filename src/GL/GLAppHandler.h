@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GLAPPHANDLER_H
 #define GLAPPHANDLER_H
+//%includeGuardStart } 1msgI15TWmC3n6mkLWTBUg
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/GL/GLAppHandler.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } Y7XO64hVbBGnNnTReCg6CQ
 /*
- * $Id: GLAppHandler.h,v 1.25 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLAppHandler.h,v 1.26 2003/08/21 23:08:17 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.26  2003/08/21 23:08:17  southa
+ * Fixed file headers
+ *
  * Revision 1.25  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -133,4 +139,6 @@ public:
     virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues) = 0;
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMESWITCHES_H
 #define GAMESWITCHES_H
+//%includeGuardStart } okcOyE9KWaQDg9MnsjCRVA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameSwitches.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } tTsHzl+vX5w2gN9X8bJ7eg
 /*
- * $Id: GameSwitches.h,v 1.7 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameSwitches.h,v 1.8 2003/08/21 23:08:55 southa Exp $
  * $Log: GameSwitches.h,v $
+ * Revision 1.8  2003/08/21 23:08:55  southa
+ * Fixed file headers
+ *
  * Revision 1.7  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -45,4 +51,6 @@
 #else
 #define IFCACHETESTING(a)
 #endif
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLPROTOCOL_H
 #define MUSTLPROTOCOL_H
+//%includeGuardStart } 1s1+w5hUT8AWziTGSz4RqA
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlProtocol.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } OTV4RgyRyHJW83rg9OWhnw
 /*
- * $Id: MustlProtocol.h,v 1.4 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlProtocol.h,v 1.5 2003/08/21 23:09:30 southa Exp $
  * $Log: MustlProtocol.h,v $
+ * Revision 1.5  2003/08/21 23:09:30  southa
+ * Fixed file headers
+ *
  * Revision 1.4  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -142,4 +150,6 @@ private:
         kUnpackStateMessageReady
     };
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

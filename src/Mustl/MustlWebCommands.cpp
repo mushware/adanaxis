@@ -1,18 +1,24 @@
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlWebCommands.cpp
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } PF+PAqyHNlPUZ0q33Xn5Lw
 /*
- * $Id: MustlWebCommands.cpp,v 1.8 2003/05/21 19:01:40 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.9 2003/08/21 23:09:32 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.9  2003/08/21 23:09:32  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2003/05/21 19:01:40  southa
  * Prerelease tweaks
  *

@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMENETUTILS_H
 #define GAMENETUTILS_H
+//%includeGuardStart } JnczPeo4C04imsnHiRE/9Q
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameNetUtils.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } /Gej6Y/YSjpkLrUzzByQvQ
 /*
- * $Id: GameNetUtils.h,v 1.11 2003/01/11 13:03:14 southa Exp $
+ * $Id: GameNetUtils.h,v 1.12 2003/08/21 23:08:50 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.12  2003/08/21 23:08:50  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/01/11 13:03:14  southa
  * Use Mushcore header
  *
@@ -81,4 +87,6 @@ private:
     static void KillServersByType(bool inImageIs);
     static void KillClientsByType(bool inImageIs);
 };
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

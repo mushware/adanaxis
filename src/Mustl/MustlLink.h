@@ -1,20 +1,28 @@
+//%includeGuardStart {
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
+//%includeGuardStart } jcAqAtFCtAVox4RcT6+bhw
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Mustl/MustlLink.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * Copyright Andy Southgate 2002-2003
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
  * information, please contact the author via http://www.mushware.com/.
  *
+ * This software carries NO WARRANTY of any kind.
+ *
  ****************************************************************************/
-
+//%Header } aVbirM1fsqqSi3Ef+KfUzg
 /*
- * $Id: MustlLink.h,v 1.8 2003/01/07 17:13:45 southa Exp $
+ * $Id: MustlLink.h,v 1.9 2003/08/21 23:09:27 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.9  2003/08/21 23:09:27  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2003/01/07 17:13:45  southa
  * Fixes for gcc 3.1
  *
@@ -270,4 +278,6 @@ operator<<(std::ostream &ioOut, const MustlLink& inLink)
     inLink.Print(ioOut);
     return ioOut;
 }
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,6 +1,16 @@
-
-/*  A Bison parser, made from MushcoreBison.y
-    by GNU Bison version 1.28  */
+//%Header {
+/*****************************************************************************
+ *
+ * File: src/Mushcore/MushcoreBison.cpp
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+//%Header } ZvJilNxYFmkThPBt9AbIKQ
 
 #define YYBISON 1  /* Identify Bison output.  */
 
@@ -19,22 +29,12 @@
 #define	END_OF_FILE	262
 #define	NEG	263
 
-
-/*****************************************************************************
- *
- * (Mushware file header version 1.3)
- *
- * Copyrighted work by Andy Southgate 2003
- *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
- *
- ****************************************************************************/
-    
  /*
- * $Id: MushcoreBison.y,v 1.8 2003/02/04 00:11:04 southa Exp $
- * $Log: MushcoreBison.y,v $
+ * $Id: MushcoreBison.cpp,v 1.10 2003/08/21 23:09:05 southa Exp $
+ * $Log: MushcoreBison.cpp,v $
+ * Revision 1.10  2003/08/21 23:09:05  southa
+ * Fixed file headers
+ *
  * Revision 1.8  2003/02/04 00:11:04  southa
  * Build fixes
  *

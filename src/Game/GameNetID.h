@@ -1,20 +1,26 @@
+//%includeGuardStart {
 #ifndef GAMENETID_H
 #define GAMENETID_H
+//%includeGuardStart } HZhOxdY04PoP3S2uOYAY2A
+//%Header {
 /*****************************************************************************
  *
- * (Mushware file header version 1.3)
+ * File: src/Game/GameNetID.h
  *
- * Copyrighted work by Andy Southgate 2003
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com/.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002-2003.
  *
- * This file may be redistributed and/or modified under the terms of the
- * Mushware licence which you should have received with this file.  For
- * information, please contact the author via http://www.mushware.com/.
+ * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-
+//%Header } vzoQZGcmMzMJMgoZfNuZDA
 /*
- * $Id: GameNetID.h,v 1.6 2003/01/11 13:03:14 southa Exp $
+ * $Id: GameNetID.h,v 1.7 2003/08/21 23:08:50 southa Exp $
  * $Log: GameNetID.h,v $
+ * Revision 1.7  2003/08/21 23:08:50  southa
+ * Fixed file headers
+ *
  * Revision 1.6  2003/01/11 13:03:14  southa
  * Use Mushcore header
  *
@@ -58,4 +64,6 @@ private:
     MushcoreDataRef<GameDefClient> m_clientRef;
 };
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
