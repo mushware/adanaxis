@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.4 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.5 2002/07/07 11:16:07 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.5  2002/07/07 11:16:07  southa
+ * More designer work
+ *
  * Revision 1.4  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -31,7 +34,6 @@
 
 #include "mushGL.h"
 #include "GameData.h"
-#include "GameFloorMap.h"
 #include "GameController.h"
 
 GameFloorDesigner::GameFloorDesigner():
@@ -48,7 +50,8 @@ GameFloorDesigner::Init(void)
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floormap-template"));
-    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
+    m_floorMaps.push_back(&m_scratchArea);
+    m_scratchArea=*m_floorMaps[0];
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMaps[0] != NULL);
     GameData::Instance().ControllerGetOrCreate(m_controllerName);

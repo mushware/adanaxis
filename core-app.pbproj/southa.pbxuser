@@ -1089,7 +1089,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 177";
 		rLen = 21;
-		rLoc = 5730;
+		rLoc = 5712;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 4500;
@@ -13642,7 +13642,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: outPoint";
 		rLen = 0;
-		rLoc = 7652;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 1382;
@@ -13652,7 +13652,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 45";
 		rLen = 0;
-		rLoc = 1116;
+		rLoc = 1123;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 0;
@@ -13672,7 +13672,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Display";
 		rLen = 0;
-		rLoc = 2353;
+		rLoc = 2335;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 983;
@@ -13702,7 +13702,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 173";
 		rLen = 1681;
-		rLoc = 5705;
+		rLoc = 5687;
 		rType = 0;
 		vrLen = 892;
 		vrLoc = 4114;
@@ -13722,7 +13722,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 5428;
+		rLoc = 5410;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 4114;
@@ -13732,7 +13732,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 47";
 		rLen = 0;
-		rLoc = 1112;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 0;
@@ -15318,7 +15318,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 76";
 		rLen = 0;
-		rLoc = 1931;
+		rLoc = 1938;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 874;
@@ -15328,7 +15328,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 6111;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 5290;
@@ -15348,7 +15348,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: GameFloorDesigner";
 		rLen = 0;
-		rLoc = 1715;
+		rLoc = 1697;
 		rType = 0;
 		vrLen = 1663;
 		vrLoc = 1133;
@@ -15358,7 +15358,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 73";
 		rLen = 0;
-		rLoc = 1931;
+		rLoc = 1938;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 833;
@@ -15368,7 +15368,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 6111;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 5290;
@@ -15378,7 +15378,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 76";
 		rLen = 0;
-		rLoc = 1931;
+		rLoc = 1938;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 874;
@@ -15388,7 +15388,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 70";
 		rLen = 0;
-		rLoc = 2201;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 7589;
@@ -15398,7 +15398,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 239";
 		rLen = 0;
-		rLoc = 7076;
+		rLoc = 7058;
 		rType = 0;
 		vrLen = 320;
 		vrLoc = 5659;
@@ -15415,7 +15415,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 239";
 		rLen = 0;
-		rLoc = 7076;
+		rLoc = 7058;
 		rType = 0;
 		vrLen = 320;
 		vrLoc = 5659;
@@ -15577,7 +15577,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: TranslateWindowToMap";
 		rLen = 0;
-		rLoc = 7118;
+		rLoc = 7100;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 4522;
@@ -15727,7 +15727,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Paste";
 		rLen = 0;
-		rLoc = 6641;
+		rLoc = 6623;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 4506;
@@ -15787,7 +15787,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: TranslateWindowToMap";
 		rLen = 0;
-		rLoc = 7695;
+		rLoc = 7677;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 5005;
@@ -15807,7 +15807,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 245";
 		rLen = 0;
-		rLoc = 9666;
+		rLoc = 9648;
 		rType = 0;
 		vrLen = 1613;
 		vrLoc = 5600;
@@ -15827,7 +15827,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 4500;
+		rLoc = 4482;
 		rType = 0;
 		vrLen = 1665;
 		vrLoc = 2971;
@@ -15837,7 +15837,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 46";
 		rLen = 0;
-		rLoc = 1268;
+		rLoc = 1275;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 0;
@@ -15847,7 +15847,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 238";
 		rLen = 0;
-		rLoc = 9021;
+		rLoc = 9003;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 5652;
@@ -15887,7 +15887,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 238";
 		rLen = 0;
-		rLoc = 8795;
+		rLoc = 8777;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 4834;
@@ -15927,7 +15927,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 238";
 		rLen = 0;
-		rLoc = 8795;
+		rLoc = 8777;
 		rType = 0;
 		vrLen = 1395;
 		vrLoc = 4834;
@@ -15947,7 +15947,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Init";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2251;
 		rType = 0;
 		vrLen = 1655;
 		vrLoc = 1036;
@@ -15957,7 +15957,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 63";
 		rLen = 0;
-		rLoc = 1755;
+		rLoc = 1762;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 527;
@@ -15967,7 +15967,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 4364;
+		rLoc = 4346;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 3471;
@@ -16037,7 +16037,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: undoKeyState";
 		rLen = 0;
-		rLoc = 5268;
+		rLoc = 5250;
 		rType = 0;
 		vrLen = 281;
 		vrLoc = 4219;
@@ -16057,7 +16057,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: srcPoint";
 		rLen = 58;
-		rLoc = 6395;
+		rLoc = 6377;
 		rType = 0;
 		vrLen = 515;
 		vrLoc = 5004;
@@ -16077,7 +16077,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Paste";
 		rLen = 0;
-		rLoc = 7151;
+		rLoc = 7133;
 		rType = 0;
 		vrLen = 339;
 		vrLoc = 5576;
@@ -16097,7 +16097,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: srcPoint";
 		rLen = 0;
-		rLoc = 6452;
+		rLoc = 6434;
 		rType = 0;
 		vrLen = 515;
 		vrLoc = 5180;
@@ -20783,7 +20783,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDesigner.cpp: 11";
 		rLen = 0;
-		rLoc = 1443;
+		rLoc = 1417;
 		rType = 0;
 		vrLen = 324;
 		vrLoc = 0;
@@ -20813,7 +20813,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 11";
 		rLen = 0;
-		rLoc = 1443;
+		rLoc = 1417;
 		rType = 0;
 		vrLen = 324;
 		vrLoc = 0;
@@ -20833,7 +20833,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 26";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2428;
 		rType = 0;
 		vrLen = 339;
 		vrLoc = 0;
@@ -20853,7 +20853,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 26";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2428;
 		rType = 0;
 		vrLen = 339;
 		vrLoc = 0;
@@ -20903,7 +20903,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 26";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2428;
 		rType = 0;
 		vrLen = 339;
 		vrLoc = 0;
@@ -21043,7 +21043,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 38";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2428;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -21103,7 +21103,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.h: 30";
 		rLen = 0;
-		rLoc = 999;
+		rLoc = 1003;
 		rType = 0;
 		vrLen = 573;
 		vrLoc = 0;
@@ -21163,7 +21163,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 26";
 		rLen = 0;
-		rLoc = 1191;
+		rLoc = 1165;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 193;
@@ -21223,7 +21223,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Display";
 		rLen = 0;
-		rLoc = 1663;
+		rLoc = 1637;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 193;
@@ -21263,7 +21263,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 30";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1356;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 193;
@@ -21283,7 +21283,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 30";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1356;
 		rType = 0;
 		vrLen = 1351;
 		vrLoc = 189;
@@ -21343,7 +21343,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 78";
 		rLen = 0;
-		rLoc = 7469;
+		rLoc = 7451;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 323;
@@ -21363,7 +21363,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 78";
 		rLen = 0;
-		rLoc = 4904;
+		rLoc = 4886;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 901;
@@ -21403,7 +21403,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Move";
 		rLen = 0;
-		rLoc = 3335;
+		rLoc = 3317;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 901;
@@ -21423,7 +21423,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 78";
 		rLen = 0;
-		rLoc = 3450;
+		rLoc = 3432;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 1291;
@@ -21533,7 +21533,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: Init";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1356;
 		rType = 0;
 		vrLen = 1621;
 		vrLoc = 246;
@@ -21573,7 +21573,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorDesigner.cpp: 134";
 		rLen = 0;
-		rLoc = 7652;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 1611;
 		vrLoc = 1430;

@@ -12,7 +12,48 @@ Arrow keys - move forward, backward, left and right
 Mouse x axis - rotate player
 Escape - exit
 
-Level Designer Manual
-=====================
+Diagnostic output
+=================
 
-IC2 contains an in-game level designer.  Design is done through copy and paste.
+If things go wrong, diagnosting output is written to the termianl which started the application (if there is one), the console (MacOS X), of the files stderr.txt and stdout.txt in the ic2 system directory (win32).
+
+Contract Designer Manual
+=======================
+
+IC2 contains an in-game cheap and cheerful contract designer (like a level designer).  Contracts are edited using copy and paste.
+
+Key controls
+------------
+
+d - enter designer from game
+p - return to game from designer
+F1 - Editing screen for the contract
+F2 - Second copy of the contract
+F3 - Template screen
+z - undo
+v - redo
+s - save the contract
+arrow keys - move around
+left mouse button - paste (select in screens F2 upwards)
+middle mouse button - move map around by dragging
+right mouse button - select area by dragging
+
+For Mac users, alt-click does the middle button and command-click does the right button.  There are 8 levels of undo/redo, and things will wrap around harmlessly if you go beyond that.
+
+Preparing a contract for editing
+--------------------------------
+
+Take a look at the contract.xml file for the level to be edited.  Read the comments; various things may need uncommenting in the script section before the designer can be used.  To create a new level, copy an existing one.  The file should refer to the tile and map files used by the contract.  A few things, like the size of the map, need editing by hand in the map file.
+
+Editing
+-------
+
+Goes like this:
+
+1.  Find the element you want to copy on any of the screens.  Navigate around using the arrow keys or by dragging with the middle button.
+2.  Select the area by dragging a box with the right mouse button.  The selected are will flash.
+3.  Return to the editing screen using F1, if you're not already there.
+4.  Left-click on the bottom left corner of the area you want to paste to.
+5.  Repeat 1-4 as necessary.
+6.  Save the contract by pressing s.
+7.  Press p to return to gameplay to test the contract.

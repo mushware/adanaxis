@@ -2575,6 +2575,7 @@
 		F5483A8F02D19E6101480ACF = {
 			children = (
 				F5483A9002D19E6101480ACF,
+				F570DF8902D873B601CE3369,
 			);
 			isa = PBXGroup;
 			path = contracts;
@@ -3095,6 +3096,19 @@
 		F570DF8802D84F0B01CE3369 = {
 			isa = PBXFileReference;
 			path = "floormap-template.xml";
+			refType = 4;
+		};
+		F570DF8902D873B601CE3369 = {
+			children = (
+				F570DF8A02D873B601CE3369,
+			);
+			isa = PBXGroup;
+			path = "template-design";
+			refType = 4;
+		};
+		F570DF8A02D873B601CE3369 = {
+			isa = PBXFileReference;
+			path = contract.xml;
 			refType = 4;
 		};
 		F57B3120028C51470195BBD7 = {

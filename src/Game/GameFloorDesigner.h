@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.h,v 1.3 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.4 2002/07/07 11:16:07 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.4  2002/07/07 11:16:07  southa
+ * More designer work
+ *
  * Revision 1.3  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -29,7 +32,8 @@
 #include "mushCore.h"
 #include "mushGL.h"
 
-class GameFloorMap;
+#include "GameFloorMap.h"
+
 class GameTileMap;
 class GameController;
 
@@ -75,5 +79,6 @@ private:
     vector<GameFloorMap> m_undoBuffer;
     U32 m_currentUndoBuffer;
     U32 m_lastUndoBuffer;
+    GameFloorMap m_scratchArea;
 };
 #endif
