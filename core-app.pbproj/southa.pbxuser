@@ -15,23 +15,23 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {965, 595}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{245, 0}, {720, 595}}";
 						Split0 = {
-							Frame = "{{0, 216}, {720, 379}}";
+							Frame = "{{0, 176}, {720, 419}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {739, 322}}";
+								Frame = "{{0, 0}, {691, 322}}";
 								Split0 = {
-									Frame = "{{0, 164}, {739, 158}}";
+									Frame = "{{0, 164}, {691, 158}}";
 									Split0 = {
-										Frame = "{{0, 0}, {359, 158}}";
+										Frame = "{{0, 0}, {334, 158}}";
 									};
 									Split1 = {
-										Frame = "{{368, 0}, {371, 158}}";
+										Frame = "{{343, 0}, {348, 158}}";
 									};
 									SplitCount = 2;
 								};
@@ -40,18 +40,18 @@
 									Frame = "{{0, 0}, {739, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {739, 140}}";
+									Frame = "{{0, 0}, {691, 140}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {739, 322}}";
+							Frame = "{{0, 0}, {691, 322}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {720, 117}}";
+							Frame = "{{0, 0}, {720, 152}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {720, 117}}";
+								Frame = "{{0, 0}, {720, 152}}";
 							};
 						};
 						Tab2 = {
@@ -88,7 +88,7 @@
 						SplitCount = 2;
 					};
 					Tab4 = {
-						Frame = "{{0, 0}, {250, 618}}";
+						Frame = "{{0, 0}, {250, 595}}";
 					};
 					TabCount = 5;
 				};
@@ -96,6 +96,11 @@
 		};
 		wantsIndex = 1;
 		wantsSCM = -1;
+	};
+	F545A7D7022C0ED70152A3B7 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{102, 244}, {750, 502}}";
+		};
 	};
 	F56090AD0217DFEF014AEE46 = {
 		activeExec = 0;

@@ -130,6 +130,7 @@
 				F56065780216D2C3015AFBD9,
 				F5431766020C372901449C4C,
 				F5909DAE022822A9013B17EF,
+				F545A7D8022C4F440152A3B7,
 			);
 			isa = PBXGroup;
 			refType = 4;
@@ -197,6 +198,39 @@
 			name = PCRE;
 			path = "";
 			refType = 4;
+		};
+		F545A7D7022C0ED70152A3B7 = {
+			isa = PBXFileReference;
+			name = basicToC.pl;
+			path = riscos/basicToC.pl;
+			refType = 4;
+		};
+		F545A7D8022C4F440152A3B7 = {
+			children = (
+				F545A7D7022C0ED70152A3B7,
+				F545A7D9022C4F440152A3B7,
+			);
+			isa = PBXGroup;
+			name = riscos;
+			refType = 4;
+		};
+		F545A7D9022C4F440152A3B7 = {
+			isa = PBXFileReference;
+			name = BasText.txt;
+			path = riscos/BasText.txt;
+			refType = 4;
+		};
+		F545A7DA022C4F440152A3B7 = {
+			fileRef = F545A7D7022C0ED70152A3B7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F545A7DB022C4F440152A3B7 = {
+			fileRef = F545A7D9022C4F440152A3B7;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F56065640216B517015AFBD9 = {
 			children = (
@@ -325,6 +359,8 @@
 				F540BCB5022B8A1301C02155,
 				F540BCB8022B8B4301C02155,
 				F540BCBE022BAEFE01C02155,
+				F545A7DA022C4F440152A3B7,
+				F545A7DB022C4F440152A3B7,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
