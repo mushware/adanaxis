@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.6 2003/01/20 10:45:29 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.7 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.7  2003/01/20 17:03:21  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.6  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -97,15 +100,29 @@ public:
     void PopConfig(MushcoreConfig& inConfig);
     const MushcoreScalar& VariableGet(const std::string& inName) const;
     bool VariableGetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
-    template<class ParamType> MUSHCORE_DECLARE_INLINE bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const;
     bool VariableExists(const std::string& inName) const;
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void VariableSet(const std::string& inName, const ParamType& inValue);
     std::ostream& Out(void) const;
     void OutSet(std::ostream& inOut);
     void OutReset(void);
 
+	template<class ParamType> MUSHCORE_DECLARE_INLINE bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const
+	{
+		const MushcoreScalar *pScalar;
+		if (VariableGetIfExists(pScalar, inName))
+		{
+			pScalar->Get(outParam);
+			return true;
+		}
+		return false;
+	}
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void VariableSet(const std::string& inName, const ParamType& inValue)
+    {
+	    MUSHCOREASSERT(m_config.size() > 0);
+	    m_config.back()->Set(inName, inValue);
+    }
+
     static void NullFunction(void);
-    
+
 private:
     MushcoreEnv();
 
@@ -114,26 +131,5 @@ private:
     std::vector<MushcoreConfig *> m_config;
     static MushcoreEnv *m_instance;
 };
-
-template<class ParamType>
-inline bool
-MushcoreEnv::VariableGetIfExists(ParamType& outParam, const std::string& inName) const
-{
-    const MushcoreScalar *pScalar;
-    if (VariableGetIfExists(pScalar, inName))
-    {
-        pScalar->Get(outParam);
-        return true;
-    }
-    return false;
-}
-
-template<class ParamType>
-inline void
-MushcoreEnv::VariableSet(const string& inName, const ParamType& inValue)
-{
-    MUSHCOREASSERT(m_config.size() > 0);
-    m_config.back()->Set(inName, inValue);
-}
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.5 2003/01/18 13:33:59 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.6 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.6  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.5  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -172,5 +175,11 @@ namespace Mushware
 
 #define MUSHCOREASSERT(exp) assert(exp)
 #define MUSHCORE_DECLARE_INLINE inline
+
+#ifdef _MSC_VER
+#define MUSHCORE_TYPENAME
+#else
+#define MUSHCORE_TYPENAME typename
+#endif
 
 #endif

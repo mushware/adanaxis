@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreParamList.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreParamList.cpp,v 1.3 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreParamList.cpp,v $
+ * Revision 1.3  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.2  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -58,20 +61,6 @@
 
 using namespace Mushware;
 using namespace std;
-
-void
-MushcoreParamList::PopParam(MushcoreScalar& outScalar)
-{
-    if (m_params.empty())
-    {
-        throw(MushcoreSyntaxFail("Parameter missing"));
-    }
-    else
-    {
-        outScalar = m_params.front();
-        m_params.pop_front();
-    }
-}
 
 void
 MushcoreParamList::Print(ostream& ioOut) const

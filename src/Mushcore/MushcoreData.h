@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.7 2003/01/18 17:05:47 southa Exp $
+ * $Id: MushcoreData.h,v 1.8 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.8  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.7  2003/01/18 17:05:47  southa
  * Singleton work
  *
@@ -99,9 +102,9 @@
 template<class RefType> class MushcoreData : public MushcoreSingleton< MushcoreData<RefType> >
 {
 public:
-    typedef typename std::map<std::string, RefType *> tMap;
-    typedef typename tMap::iterator tMapIterator;
-    typedef typename tMap::const_iterator tMapConstIterator;
+    typedef MUSHCORE_TYPENAME std::map<std::string, RefType *> tMap;
+    typedef MUSHCORE_TYPENAME tMap::iterator tMapIterator;
+    typedef MUSHCORE_TYPENAME tMap::const_iterator tMapConstIterator;
 
     MUSHCORE_DECLARE_INLINE MushcoreData();
     MUSHCORE_DECLARE_INLINE ~MushcoreData();
@@ -276,14 +279,14 @@ MushcoreData<RefType>::Dump(std::ostream& ioOut)
 }
 
 template<class RefType>
-inline typename MushcoreData<RefType>::tMapIterator
+inline MUSHCORE_TYPENAME MushcoreData<RefType>::tMapIterator
 MushcoreData<RefType>::Begin(void)
 {
     return m_data.begin();
 }
 
 template<class RefType>
-inline typename MushcoreData<RefType>::tMapIterator
+inline MUSHCORE_TYPENAME MushcoreData<RefType>::tMapIterator
 MushcoreData<RefType>::End(void)
 {
     return m_data.end();

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.5 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.6 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.6  2003/01/20 17:03:21  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.5  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -91,7 +94,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreEnv::MushcoreEnv *MushcoreEnv::m_instance=NULL;
+MushcoreEnv *MushcoreEnv::m_instance=NULL;
 
 MushcoreEnv::MushcoreEnv() :
     m_outStream(&cerr),

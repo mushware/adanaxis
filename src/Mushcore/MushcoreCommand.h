@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.h,v 1.3 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.4 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.4  2003/01/20 17:03:21  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.3  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -95,7 +98,10 @@ public:
     std::string PopString(void);
     Mushware::tVal PopVal(void);
 
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam);
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam)
+	{
+		m_paramList.PopParam(outParam);
+	}
 
     // Callback interface from bison - not intended as public
     MushcoreScalar Despatch(void);
@@ -110,12 +116,7 @@ private:
     MushcoreParamList m_paramList;
 };
 
-template<class ParamType>
-inline void
-MushcoreCommand::PopParam(ParamType& outScalar)
-{
-    m_paramList.PopParam(outScalar);
-}
+
 
 
 #endif

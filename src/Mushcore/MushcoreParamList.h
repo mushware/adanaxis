@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreParamList.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreParamList.h,v 1.3 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreParamList.h,v $
+ * Revision 1.3  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -74,31 +77,29 @@ public:
     typedef tParams::const_iterator tParamsConstIterator;
     
     void PushParam(const MushcoreScalar& inScalar) { m_params.push_back(inScalar); }
-    void PopParam(MushcoreScalar& outScalar);
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam);
+ 
     Mushware::U32 NumParams(void) { return m_params.size(); }
     void Clear(void) { m_params.clear(); };
     bool Empty(void) { return m_params.empty(); }
     void Print(std::ostream& ioOut) const;
-    
+
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam)
+	{
+		if (m_params.empty())
+		{
+			throw(MushcoreSyntaxFail("Parameter missing"));
+		}
+		else
+		{
+			m_params.front().Get(outParam);
+			m_params.pop_front();
+		}
+	}
+	
+
 private:
     tParams m_params;
 };
-
-template<class ParamType>
-inline void
-MushcoreParamList::PopParam(ParamType& outParam)
-{
-    if (m_params.empty())
-    {
-        throw(MushcoreSyntaxFail("Parameter missing"));
-    }
-    else
-    {
-        m_params.front().Get(outParam);
-        m_params.pop_front();
-    }
-}
 
 inline std::ostream&
 operator<<(std::ostream &ioOut, const MushcoreParamList inParamList)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.h,v 1.4 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.5 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.5  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -85,28 +88,18 @@ class MushcoreConfig
 {
 public:
     virtual ~MushcoreConfig() {}
-    MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const MushcoreScalar& inValue);
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const ParamType& inParam);
 
     const MushcoreScalar& Get(const std::string& inName) const;
     bool GetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
     bool Exists(const std::string& inName) const;
 
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const ParamType& inParam)
+	{
+		m_config[inName] = MushcoreScalar(inParam);
+	}
+
 private:
     std::map<std::string, MushcoreScalar> m_config;
 };
-
-inline void
-MushcoreConfig::Set(const std::string& inName, const MushcoreScalar& inValue)
-{
-    m_config[inName]=inValue;
-}
-
-template<class ParamType>
-inline void
-MushcoreConfig::Set(const std::string& inName, const ParamType& inParam)
-{
-    Set(inName, MushcoreScalar(inParam));
-}
 
 #endif

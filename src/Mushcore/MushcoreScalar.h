@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.4 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.5 2003/01/20 17:03:22 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.5  2003/01/20 17:03:22  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.4  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -94,11 +97,6 @@ public:
     explicit MushcoreScalar(Mushware::tLongVal inVal);
     explicit MushcoreScalar(const std::string& inStr);
     
-    MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
-    MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
-    MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
-    // Catch-all for numeric types
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void Get(ParamType& outVal) const;
 
     MUSHCORE_DECLARE_INLINE std::string StringGet(void) const;
     MUSHCORE_DECLARE_INLINE Mushware::tLongVal LongValGet(void) const;
@@ -118,6 +116,18 @@ public:
     
     void Print(std::ostream &ioOut) const;
         
+    // Catch-all for numeric types
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void Get(ParamType& outVal) const
+	{
+        Mushware::tLongVal longVal;
+        Get(longVal);
+        outVal = static_cast<ParamType>(longVal);
+	}
+
+    template<> MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
+    template<> MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
+    template<> MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
+
 private:
     enum eTypeTag
     {
@@ -221,15 +231,6 @@ MushcoreScalar::Get(bool& outBool) const
         default:
             throw(MushcoreLogicFail("MushcoreScalar value fault"));
     }
-}
-
-template<class ParamType>
-inline void
-MushcoreScalar::Get(ParamType& outVal) const
-{
-    Mushware::tLongVal longVal;
-    Get(longVal);
-    outVal = static_cast<ParamType>(longVal);
 }
 
 inline std::string
