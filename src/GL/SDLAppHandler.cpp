@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.11 2002/07/31 16:27:16 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.13 2002/08/02 15:20:54 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.13  2002/08/02 15:20:54  southa
+ * Frame rate timing
+ *
  * Revision 1.11  2002/07/31 16:27:16  southa
  * Collision checking work
  *
@@ -177,7 +180,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
     m_height=480;
     m_bpp=32;
     m_showCursor=false;
-    
+    U32 sdlFlags=0;
     switch (inType)
     {
         case kFullScreen:
@@ -185,7 +188,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
             CoreEnv::Instance().VariableGetIfExists(m_height, "FULLSCREEN_DISPLAY_HEIGHT");
             CoreEnv::Instance().VariableGetIfExists(m_bpp, "FULLSCREEN_DISPLAY_BPP");
             CoreEnv::Instance().VariableGetIfExists(m_showCursor, "FULLSCREEN_DISPLAY_SHOW_CURSOR");
-            SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL|SDL_FULLSCREEN);
+            sdlFlags=SDL_OPENGL|SDL_FULLSCREEN;
             break;
 
         case kWindow:
@@ -193,14 +196,28 @@ SDLAppHandler::EnterScreen(tInitType inType)
             CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOW_DISPLAY_HEIGHT");
             CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOW_DISPLAY_BPP");
             CoreEnv::Instance().VariableGetIfExists(m_showCursor, "WINDOW_DISPLAY_SHOW_CURSOR");
-            SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL);
+            sdlFlags=SDL_OPENGL;
             break;
 
         default:
             throw(LogicFail("Bad value to SDLAppHandler::EnterScreen"));
     }
 
+    SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
 
+    if (surface == NULL)
+    {
+        cerr << "SDL video mode failed - trying without alpha" << endl;
+        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
+        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+    }
+    if (surface == NULL)
+    {
+        cerr << "SDL video mode failed again - trying for any mode" << endl;
+        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
+    }
+    if (surface == NULL) throw(DeviceFail("Could not select a video mode"));
+    
     int alphaSize;
     SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &alphaSize);
     if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
