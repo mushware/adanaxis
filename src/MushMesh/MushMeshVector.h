@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.13 2004/09/26 20:43:19 southa Exp $
+ * $Id: MushMeshVector.h,v 1.14 2004/10/31 09:22:51 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.14  2004/10/31 09:22:51  southa
+ * Added MushMeshPreMatrix
+ *
  * Revision 1.13  2004/09/26 20:43:19  southa
  * TestMustl fixes
  *
@@ -104,10 +107,12 @@ public:
     const T& X(void) const { return Get(0); }
     const T& Y(void) const { return Get(1); }
     const T& Z(void) const { return Get(2); }
-
+    const T& W(void) const { return Get(3); }
+    
     void XSet(const T& inValue) { Set(inValue, 0); }
     void YSet(const T& inValue) { Set(inValue, 1); }
     void ZSet(const T& inValue) { Set(inValue, 2); }
+    void WSet(const T& inValue) { Set(inValue, 3); }
 
     static Mushware::U32 SizeGet(void) { return D; }
     bool EqualIs(const tThis& b) const;

@@ -12,8 +12,11 @@
 ****************************************************************************/
 //%Header } dnkP76FJ2EDluhnPYobJxw
 /*
- * $Id: MaurheenWorm.cpp,v 1.2 2004/03/07 20:33:54 southa Exp $
- * $Log: MaurheenWorm.cpp,v $
+ * $Id: MaurheenHypercube.cpp,v 1.1 2004/10/31 23:34:06 southa Exp $
+ * $Log: MaurheenHypercube.cpp,v $
+ * Revision 1.1  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  *
  */
 
@@ -37,7 +40,7 @@ MaurheenHypercube::Create(tVal frame)
     
     for (U32 i=0; i<6; ++i)
     {
-        MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*0.5*sin(frame/0.5));
+        MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
         for (U32 j=0; j<16; ++j)
         {
             m_vertices[j] = rotate * m_vertices[j];
@@ -85,23 +88,57 @@ MaurheenHypercube::Render(tVal frame)
             }
             if (diffCount == 3)
             {
-                if (m_definition[i].X() > 0 && m_definition[j].X() > 0 &&
-                    m_definition[i].Y() > 0 && m_definition[j].Y() > 0)
+                tVal red=0.0, green=0.0, blue=0.0;
+                U32 switchVal = int(frame/4) % 8;
+                switch (switchVal)
                 {
-                    GLState::ColourSet(0.0,1.0,0.0,1.0);
+                    case 0:
+                    case 1:
+                        
+                        if (m_definition[i].X() > 0 && m_definition[j].X() > 0)
+                        {
+                            red=1.0;
+                        }
+                        if (switchVal != 1) break;
+                        
+                    case 2:
+                    case 3:
+                        if (m_definition[i].Y() > 0 && m_definition[j].Y() > 0)
+                        {
+                            green=1.0;
+                        }
+                        if (switchVal != 3) break;
+                        
+                    case 4:
+                    case 5:
+                        if (m_definition[i].Z() <= 0 && m_definition[j].Z() <= 0)
+                        {
+                            blue = 1.0;
+                        }
+                        if (switchVal != 5) break;
+                        
+                    case 6:
+                    case 7:
+                        if (m_definition[i].W() <= 0 && m_definition[j].W() <= 0)
+                        {
+                            red = 1.0;
+                            green = 1.0;
+                            blue = 0.0;
+                        }
+                        if (switchVal != 7) break;
+                        if (m_definition[i].X() > 0 && m_definition[j].X() > 0)
+                        {
+                            red=1.0;
+                        }
+                            break;
                 }
-                else if (m_definition[i].X() > 0 && m_definition[j].X() > 0)
+                if (red+green+blue == 0)
                 {
-                    GLState::ColourSet(1.0,0.0,0.0,1.0);
+                    red=0.3;
+                    green=0.3;
+                    blue=0.3;
                 }
-                else if (m_definition[i].Y() > 0 && m_definition[j].Y() > 0)
-                {
-                    GLState::ColourSet(0.0,0.0,1.0,1.0);
-                }
-                else
-                {
-                    GLState::ColourSet(1.0,1.0,1.0,0.3);
-                }
+                GLState::ColourSet(red, green, blue, 1.0);
                 glBegin(GL_LINES);
 
                 t3GLVal start = preMatrix * m_vertices[i];

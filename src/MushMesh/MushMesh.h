@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.13 2004/10/31 09:22:51 southa Exp $
+ * $Id: MushMesh.h,v 1.14 2004/10/31 23:34:06 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.14  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  * Revision 1.13  2004/10/31 09:22:51  southa
  * Added MushMeshPreMatrix
  *
@@ -62,6 +65,7 @@
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
 #include "MushMeshConnector.h"
+#include "MushMeshOps.h"
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
