@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.20 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.21 2002/08/18 12:20:41 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.21  2002/08/18 12:20:41  southa
+ * Movement tweaks
+ *
  * Revision 1.20  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -164,6 +167,32 @@ GameSolidMap::PermeabilityGet(const GameMapPoint& inPoint) const
     U32 y=static_cast<U32>(inPoint.y+0.5);
     if (x >= m_xsize || y>= m_ysize) return 0;
     return m_solidMap[m_xsize * y + x];
+}
+
+void
+GameSolidMap::AdhesionSet(tVal inValue, U32 inX, U32 inY)
+{
+    COREASSERT(inX < m_xsize);
+    COREASSERT(inY < m_ysize);
+    m_adhesionMap[m_xsize * inY + inX] = inValue;
+}
+
+tVal
+GameSolidMap::AdhesionGet(const GameSpacePoint& inPoint) const
+{
+    GameMapPoint mapPoint(SpaceToMap(inPoint));
+    return PermeabilityGet(mapPoint);
+}
+
+tVal
+GameSolidMap::AdhesionGet(const GameMapPoint& inPoint) const
+{
+    // Permeability is always 0 outside of the map
+    if (inPoint.x < 0 || inPoint.y < 0) return 1.0;
+    U32 x=static_cast<U32>(inPoint.x+0.5);
+    U32 y=static_cast<U32>(inPoint.y+0.5);
+    if (x >= m_xsize || y>= m_ysize) return 1.0;
+    return m_adhesionMap[m_xsize * y + x];
 }
 
 void
