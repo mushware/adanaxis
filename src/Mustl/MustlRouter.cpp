@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.10 2003/01/09 14:57:08 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.11 2003/01/11 17:58:15 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.11  2003/01/11 17:58:15  southa
+ * Mustl fixes
+ *
  * Revision 1.10  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -79,7 +82,7 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
-#include "Mushcore.h"
+#include "MustlMushcore.h"
 
 using namespace Mustl;
 using namespace std;

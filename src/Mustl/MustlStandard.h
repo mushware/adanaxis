@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlStandard.h,v 1.2 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlStandard.h,v 1.3 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlStandard.h,v $
+ * Revision 1.3  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -20,6 +23,10 @@
  * Mustl separation
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include <iosfwd>
 #include <map>

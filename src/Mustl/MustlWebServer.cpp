@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.8 2003/01/09 14:57:08 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.9 2003/01/11 17:58:16 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.9  2003/01/11 17:58:16  southa
+ * Mustl fixes
+ *
  * Revision 1.8  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -67,7 +70,7 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
-#include "Mushcore.h"
+#include "MustlMushcore.h"
 
 using namespace Mustl;
 using namespace std;
