@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.1 2002/02/18 22:03:50 southa Exp $
+ * $Id: GLTexture.cpp,v 1.2 2002/02/18 22:43:11 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.2  2002/02/18 22:43:11  southa
+ * First stage GIF loader
+ *
  * Revision 1.1  2002/02/18 22:03:50  southa
  * Initial texture loading
  *
@@ -24,16 +27,76 @@ GLTexture::GLTexture(const string& inFilename)
         // PrintGifError();
         ThrowGifError(inFilename, GifLastError());
     }
-        
-    m_xSize=100;
-    m_ySize=100;
-    m_hBytes=m_xSize*4;
-    m_data=new U8[m_ySize * m_hBytes];
-    U8 col=0;
-    for (Size i=0; i<sizeof(U32) * m_ySize * m_hBytes; i++)
+
+    if (DGifSlurp(gif) != GIF_OK)
     {
-        m_data[i] = col++;
+        ThrowGifError(inFilename, GifLastError());
     }
+
+    for (int imageNum=0; imageNum < gif->ImageCount; ++imageNum)
+    {
+        struct SavedImage *image = &gif->SavedImages[imageNum];
+        ColorMapObject *colorMap = image->ImageDesc.ColorMap;
+        if (colorMap == NULL) colorMap=gif->SColorMap;
+
+        if (colorMap == NULL)
+        {
+            throw("GIF with no colorMap");
+        }        
+        
+        cerr << "Image " << imageNum << endl;
+        cerr << "Left="<< image->ImageDesc.Left;
+        cerr << " Top="<< image->ImageDesc.Top;
+        cerr << " Width="<< image->ImageDesc.Width;
+        cerr << " Height="<< image->ImageDesc.Height;
+        cerr << " Interlace="<< image->ImageDesc.Interlace;
+        cerr << endl;
+        
+        cerr << "Colormap colors=" << colorMap->ColorCount << " bpp=" << colorMap->BitsPerPixel << endl;
+        for (int i=0; i<colorMap->ColorCount; ++i)
+        {
+            cerr << "R=" << (int)colorMap->Colors[i].Red;
+            cerr << " G=" << (int)colorMap->Colors[i].Green;
+            cerr << " B=" << (int)colorMap->Colors[i].Blue;
+            cerr << endl;
+        }
+
+        GifColorType *colors=colorMap->Colors;
+        int colIndexLimit=1 << colorMap->BitsPerPixel;
+        Size memSize=3*image->ImageDesc.Width*image->ImageDesc.Height;
+
+        m_textureDefs.push_back(TextureDef(new U8[memSize]));
+        TextureDef& def=m_textureDefs.back();
+        def.width=image->ImageDesc.Width;
+        def.height=image->ImageDesc.Height;
+        def.pixelFormat=GL_RGB;
+        def.pixelType=GL_UNSIGNED_BYTE;
+
+        char *inputPtr=image->RasterBits;
+        U8 *outputPtr=def.dataPtr;
+        
+        for (int y=0; y<image->ImageDesc.Height; ++y)
+        {
+            for (int x=0; x<image->ImageDesc.Width; ++x)
+            {
+                U8 colIndex=*inputPtr++;
+                if (colIndex > colIndexLimit)
+                {
+                    throw(LoaderFail(inFilename, "GIF color index out of range"));
+                }
+                // Pack data into output buffer in RGB order
+                *outputPtr++ = colors[colIndex].Red;
+                *outputPtr++ = colors[colIndex].Green;
+                *outputPtr++ = colors[colIndex].Blue;
+            }   
+        }
+        if (def.dataPtr + memSize != outputPtr)
+        {
+            throw(LoaderFail(inFilename, "Pointer mismatch"));
+        }
+    }
+    
+    DGifCloseFile(gif);
 }
 
 void

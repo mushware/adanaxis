@@ -1,13 +1,15 @@
 /*
- * $Id: GLData.hp,v 1.1 2002/02/18 22:04:37 southa Exp $
+ * $Id: GLData.hp,v 1.2 2002/02/18 22:43:53 southa Exp $
  * $Log: GLData.hp,v $
+ * Revision 1.2  2002/02/18 22:43:53  southa
+ * First stage GIF loader
+ *
  * Revision 1.1  2002/02/18 22:04:37  southa
  * Initial texture loading
  *
  */
 
 #include "GLStandard.hp"
-
 #include "GLTexture.hp"
 
 class GLData

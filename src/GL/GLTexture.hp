@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.hp,v 1.1 2002/02/18 22:04:37 southa Exp $
+ * $Id: GLTexture.hp,v 1.2 2002/02/18 22:43:53 southa Exp $
  * $Log: GLTexture.hp,v $
+ * Revision 1.2  2002/02/18 22:43:53  southa
+ * First stage GIF loader
+ *
  * Revision 1.1  2002/02/18 22:04:37  southa
  * Initial texture loading
  *
@@ -33,15 +36,33 @@ class GLTexture
 {
 public:
     GLTexture(const string& inFilename);
-    ~GLTexture() {if (m_data != NULL) delete[] m_data;}
-
+    ~GLTexture() { cerr << "GLTexture Dest" << endl;}
+protected:
+    class TextureDef
+    {
+    public:
+        TextureDef(U8 *inDataPtr):dataPtr(inDataPtr),refCountPtr(new int(1)){cerr << "Con refctr=" << *refCountPtr << endl;}
+        ~TextureDef() {cerr << "Dest refCount=" << *refCountPtr << endl;  if (--*refCountPtr==0){delete[]dataPtr;delete refCountPtr; cerr << "Deleted" << endl;}}
+        TextureDef(const TextureDef& inDef) {
+            width=inDef.width;
+            height=inDef.height;
+            pixelFormat=inDef.pixelFormat;
+            pixelType=inDef.pixelType;
+            dataPtr=inDef.dataPtr;
+            refCountPtr=inDef.refCountPtr;
+            ++*refCountPtr;
+            cerr << "Copied refCount=" << *refCountPtr << endl;
+            }
+        Size width;
+        Size height;
+        GLenum pixelFormat;
+        GLenum pixelType;
+        U8 *dataPtr;
+        int *refCountPtr;
+    };
+    
 private:
     void ThrowGifError(const string& inFilename, int inRC);
-        
-    Size m_xSize;
-    Size m_ySize;
-    Size m_hBytes;
-    int m_pixelType;
-    U8 *m_data;
+    vector<TextureDef> m_textureDefs;    
 };
 #endif
