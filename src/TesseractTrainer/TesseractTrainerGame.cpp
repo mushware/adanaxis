@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.4 2005/02/26 17:53:44 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.5 2005/02/27 01:01:32 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.5  2005/02/27 01:01:32  southa
+ * Eigenplane markers
+ *
  * Revision 1.4  2005/02/26 17:53:44  southa
  * Plane sets and pairs
  *
@@ -38,7 +41,11 @@
 using namespace Mushware;
 using namespace std;
 
-TesseractTrainerGame::TesseractTrainerGame()
+TesseractTrainerGame::TesseractTrainerGame() :
+    m_orientations(2),
+    m_angVels(2),
+    m_current(0),
+    m_previous(1)
 {
 }
 
@@ -108,22 +115,36 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     glPointSize(2.0);
     
     GLState::TextureDisable();
-    //GLTextureRef texRef("font-system1");
-    
-    //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
 
-
-    if (msecNow > m_lastChangeMsec + 30000 || m_lastChangeMsec == 0)
+    if (msecNow > m_lastChangeMsec + 20000 || m_lastChangeMsec == 0)
     {
         Reorientate();
         m_lastChangeMsec = msecNow;
     }
     
-    m_orientation.OuterMultiplyBy(m_angVel);
+    tVal proportion = (msecNow - m_lastChangeMsec) / 5000;
+    if (proportion > 1) proportion = 1;
     
-    m_hypercube.OrientationSet(m_orientation);
-    m_hypersphere.OrientationSet(m_orientation);
-    m_planepair.OrientationSet(m_orientation);
+    proportion = pow(sin(proportion * M_PI/2), 4);
+    
+    tQValPair orientation =
+        MushMeshOps::SlerpNormalised(m_orientations[m_previous],
+                                     m_orientations[m_current],
+                                     proportion);
+    tQValPair angVel =
+        MushMeshOps::SlerpNormalised(m_angVels[m_previous],
+                                     m_angVels[m_current],
+                                     proportion);
+    
+    m_orientations[m_previous] = orientation;
+    m_angVels[m_previous] = angVel;
+
+    m_orientations[m_previous].OuterMultiplyBy(m_angVels[m_previous]);
+    m_orientations[m_current].OuterMultiplyBy(m_angVels[m_current]);
+    
+    m_hypercube.OrientationSet(orientation);
+    m_hypersphere.OrientationSet(orientation);
+    m_planepair.OrientationSet(orientation);
     
     m_hypersphere.Render(0);
     m_hypercube.Render(0);
@@ -138,17 +159,19 @@ TesseractTrainerGame::Reorientate(void)
 {
     tQValPair orientation = MushMeshTools::RandomOrientation();
     
-    m_orientation = tQValPair::RotationIdentityGet();
-    m_angVel = tQValPair::RotationIdentityGet();
+    std::swap(m_current, m_previous);
     
-    m_angVel.OuterMultiplyBy(orientation);
+    m_orientations[m_current] = tQValPair::RotationIdentityGet();
+    m_angVels[m_current] = tQValPair::RotationIdentityGet();
     
-    m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+    m_angVels[m_current].OuterMultiplyBy(orientation);
+    
+    m_angVels[m_current].OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                              (0, MushMeshTools::Random(-0.03, 0.03)));
-    m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+    m_angVels[m_current].OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                              (1, MushMeshTools::Random(-0.03, 0.03)));
     
-    m_angVel.OuterMultiplyBy(orientation.ConjugateGet());
+    m_angVels[m_current].OuterMultiplyBy(orientation.ConjugateGet());
     
     m_planepair.Create(0, m_colours);
     m_planepair.Rotate(orientation.ConjugateGet());
@@ -180,8 +203,12 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     m_hypersphere.Create(0, m_colours);
     m_planepair.Create(0, m_colours);
 
-    m_orientation = tQValPair::RotationIdentityGet();
-    m_angVel = tQValPair::RotationIdentityGet();
+    for (U32 i=0; i<2; ++i)
+    {
+        m_orientations[i] = tQValPair::RotationIdentityGet();
+        m_angVels[i] = tQValPair::RotationIdentityGet();
+    }
+    
     m_lastChangeMsec = 0;
     
     cout << MushGLV::Sgl() << endl;
@@ -224,8 +251,10 @@ void
 TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "orientation=" << m_orientation << ", ";
-    ioOut << "angVel=" << m_angVel << ", ";
+    ioOut << "orientations=" << m_orientations << ", ";
+    ioOut << "angVels=" << m_angVels << ", ";
+    ioOut << "current=" << m_current << ", ";
+    ioOut << "previous=" << m_previous << ", ";
     ioOut << "colours=" << m_colours << ", ";
     ioOut << "lastChangeMsec=" << m_lastChangeMsec;
     ioOut << "]";
@@ -237,13 +266,21 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> *this;
     }
-    else if (inTagStr == "orientation")
+    else if (inTagStr == "orientations")
     {
-        ioIn >> m_orientation;
+        ioIn >> m_orientations;
     }
-    else if (inTagStr == "angVel")
+    else if (inTagStr == "angVels")
     {
-        ioIn >> m_angVel;
+        ioIn >> m_angVels;
+    }
+    else if (inTagStr == "current")
+    {
+        ioIn >> m_current;
+    }
+    else if (inTagStr == "previous")
+    {
+        ioIn >> m_previous;
     }
     else if (inTagStr == "colours")
     {
@@ -262,13 +299,17 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("orientation");
-    ioOut << m_orientation;
-    ioOut.TagSet("angVel");
-    ioOut << m_angVel;
+    ioOut.TagSet("orientations");
+    ioOut << m_orientations;
+    ioOut.TagSet("angVels");
+    ioOut << m_angVels;
+    ioOut.TagSet("current");
+    ioOut << m_current;
+    ioOut.TagSet("previous");
+    ioOut << m_previous;
     ioOut.TagSet("colours");
     ioOut << m_colours;
     ioOut.TagSet("lastChangeMsec");
     ioOut << m_lastChangeMsec;
 }
-//%outOfLineFunctions } flMJJ+2BTjbhl1h6X9U9lw
+//%outOfLineFunctions } Kdcd8IiGRdkksp7r4S6EOA

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.6 2005/02/03 21:03:01 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.7 2005/02/27 01:01:31 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.7  2005/02/27 01:01:31  southa
+ * Eigenplane markers
+ *
  * Revision 1.6  2005/02/03 21:03:01  southa
  * Build fixes
  *
@@ -63,7 +66,7 @@ public:
     MushMeshQuaternion<T> ConjugateGet(void) const;
     void PreMultiplyVector(tBase& ioVec) const;
     void PostMultiplyVector(tBase& ioVec) const;
-
+    
     static MushMeshQuaternion AdditiveIdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
     static MushMeshQuaternion MultiplicativeIdentityGet(void) { return MushMeshQuaternion(1,0,0,0); }
     

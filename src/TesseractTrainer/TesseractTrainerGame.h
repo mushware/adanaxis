@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.5 2005/02/26 17:53:45 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.6 2005/02/27 01:01:32 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.6  2005/02/27 01:01:32  southa
+ * Eigenplane markers
+ *
  * Revision 1.5  2005/02/26 17:53:45  southa
  * Plane sets and pairs
  *
@@ -65,8 +68,10 @@ private:
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
     TesseractTrainerPlanePair m_planepair; //:ignore
-    Mushware::tQValPair m_orientation;
-    Mushware::tQValPair m_angVel;
+    std::vector<Mushware::tQValPair> m_orientations;
+    std::vector<Mushware::tQValPair> m_angVels;
+    Mushware::U32 m_current;
+    Mushware::U32 m_previous;
     std::vector<Mushware::t4GLVal> m_colours;
     Mushware::tVal m_lastChangeMsec;
 

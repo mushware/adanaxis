@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7ZSBQbATpwtej064t1GYDw
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.2 2005/02/10 12:34:06 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.3 2005/02/27 01:01:31 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.3  2005/02/27 01:01:31  southa
+ * Eigenplane markers
+ *
  * Revision 1.2  2005/02/10 12:34:06  southa
  * Template fixes
  *
@@ -45,7 +48,7 @@ public:
     void OuterMultiplyBy(const MushMeshQuaternionPair& inVal);
     
     void InPlaceRotate(Mushware::t4Val& ioVec) const;
-    void Normalise();
+    void InPlaceNormalise(void);
     
     MushMeshQuaternionPair<T> ConjugateGet(void) const;
         
@@ -107,10 +110,10 @@ MushMeshQuaternionPair<T>::InPlaceRotate(Mushware::t4Val& ioVec) const
 
 template<class T>
 inline void
-MushMeshQuaternionPair<T>::Normalise()
+MushMeshQuaternionPair<T>::InPlaceNormalise()
 {
-    m_first.Normalise();
-    m_second.Normalise();
+    m_first.InPlaceNormalise();
+    m_second.InPlaceNormalise();
 }
 
 template<class T>

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } wlPtQd6U0W6j0N7Jl/9Z5Q
 /*
- * $Id: MushMeshOps.h,v 1.3 2004/12/12 10:55:37 southa Exp $
+ * $Id: MushMeshOps.h,v 1.4 2005/02/03 21:03:00 southa Exp $
  * $Log: MushMeshOps.h,v $
+ * Revision 1.4  2005/02/03 21:03:00  southa
+ * Build fixes
+ *
  * Revision 1.3  2004/12/12 10:55:37  southa
  * Quaternion conversions
  *
@@ -53,6 +56,8 @@ public:
     template <class T, Mushware::U32 D> static void Normalise(MushMeshVector<T, D>& ioVector);
     template <class T, Mushware::U32 D> static MushMeshVector<T, D> Lerp(const MushMeshVector<T, D>& inA, const MushMeshVector<T, D>& inB, const Mushware::tVal inProp);
     template <class T, Mushware::U32 D> static MushMeshVector<T, D> SlerpNormalised(const MushMeshVector<T, D>& inA, const MushMeshVector<T, D>& inB, const Mushware::tVal inProp);
+    template <class T> static MushMeshQuaternionPair<T> SlerpNormalised(const MushMeshQuaternionPair<T>& inA, const MushMeshQuaternionPair<T>& inB, const Mushware::tVal inProp);
+
 };
 
 
@@ -105,9 +110,13 @@ MushMeshOps::SlerpNormalised(const MushMeshVector<T, D>& inA, const MushMeshVect
 {
     bool normalise = false;
     Mushware::tVal inner = inA * inB;
-    
+
     // Resolve colinear vectors
     if (std::fabs(inner) < 1e-6) inner = 1e-6;
+
+    // Resolve normalisation errors leading to inner > 1
+    if (inner > 1) inner = 1;
+    if (inner < -1) inner = -1;
     
     Mushware::tVal omega = std::acos(inner);
     
@@ -128,7 +137,7 @@ MushMeshOps::SlerpNormalised(const MushMeshVector<T, D>& inA, const MushMeshVect
     
     // Renormalise vector if omega ~= pi
     normalise = (std::fabs(sinOmega) < 1e-3);
-    
+
     Mushware::tVal aFactor = std::sin((1-inProp) * omega) / sinOmega;
     Mushware::tVal bFactor = std::sin(inProp * omega) / sinOmega;
     
@@ -168,6 +177,19 @@ MushMeshOps::SlerpNormalised(const MushMeshVector<T, D>& inA, const MushMeshVect
     {
         return inA * aFactor + inB * bFactor;
     }
+}
+
+template <class T>
+inline MushMeshQuaternionPair<T>
+MushMeshOps::SlerpNormalised(const MushMeshQuaternionPair<T>& inA,
+    const MushMeshQuaternionPair<T>& inB, const Mushware::tVal inProp)
+{
+    Mushware::tQValPair retVal;
+    
+    retVal.FirstSet(Mushware::tQVal(SlerpNormalised(inA.First(), inB.First(), inProp)));
+    retVal.SecondSet(Mushware::tQVal(SlerpNormalised(inA.Second(), inB.Second(), inProp)));
+    
+    return retVal;
 }
 
 //%includeGuardEnd {
