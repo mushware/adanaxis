@@ -28,6 +28,7 @@
 		activeBuildStyle = F5431747020C310101449C4C;
 		activeTarget = F547DFD402395BCC01A7C23C;
 		addToTargets = (
+			F547DFD402395BCC01A7C23C,
 		);
 		breakpoints = (
 			F53F7CBF0230F4FA01633C4B,
@@ -42,23 +43,23 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {819, 647}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{270, 0}, {549, 647}}";
 						Split0 = {
-							Frame = "{{0, 274}, {549, 373}}";
+							Frame = "{{0, 176}, {549, 471}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {549, 322}}";
+								Frame = "{{0, 0}, {595, 322}}";
 								Split0 = {
-									Frame = "{{0, 164}, {549, 158}}";
+									Frame = "{{0, 164}, {595, 158}}";
 									Split0 = {
-										Frame = "{{0, 0}, {263, 158}}";
+										Frame = "{{0, 0}, {285, 158}}";
 									};
 									Split1 = {
-										Frame = "{{272, 0}, {277, 158}}";
+										Frame = "{{294, 0}, {301, 158}}";
 									};
 									SplitCount = 2;
 								};
@@ -67,11 +68,11 @@
 									Frame = "{{0, 0}, {739, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {549, 140}}";
+									Frame = "{{0, 0}, {595, 140}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {549, 322}}";
+							Frame = "{{0, 0}, {595, 322}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
@@ -173,10 +174,11 @@
 		};
 	};
 	F547E00802395BCC01A7C23C = {
-		activeArgIndex = 0;
+		activeArgIndex = 1;
 		argumentStrings = (
 			"load script/test1.ava",
-			"",
+			"wrangle test/graph1.gif",
+			wrangle,
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = _debug;
