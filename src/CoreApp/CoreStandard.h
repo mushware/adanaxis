@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.6 2002/05/28 22:36:44 southa Exp $
+ * $Id: CoreStandard.h,v 1.7 2002/06/11 16:23:56 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.7  2002/06/11 16:23:56  southa
+ * New paths to data files
+ *
  * Revision 1.6  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -76,6 +79,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
+#include <math.h>
 
 using namespace std;
 
