@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.17 2002/10/20 23:14:48 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.18 2002/10/22 20:42:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.18  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.17  2002/10/20 23:14:48  southa
  * Fixed path for win98
  *
@@ -158,9 +161,57 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
         throw(CommandFail(message.str()));
     }
 }
-	
+
+void
+PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inDirName)
+{
+    WIN32_FIND_DATA fileData;
+    string findStr = inDirName+"/*";
+    HANDLE hList = FindFirstFile(findStr.c_str(), &fileData);
+
+    if (hList == INVALID_HANDLE_VALUE)
+    {
+        throw(CommandFail("No files in drectory '" + inDirName + "'"));
+    }
+    
+    for (U32 i=0; i<10000; ++i)
+    {
+        if (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+	{
+            string name=fileData.cFileName;		
+            if (name != "." && name != ".." && name != "CVS")
+            {
+                outFilenames.push_back(name);
+            }
+            if (!FindNextFile(hList, &fileData))
+            {
+                if (GetLastError() == ERROR_NO_MORE_FILES)
+	        {
+	            break;
+	        }
+                FindClose(hList);
+	        ostringstream message;
+	        message << "Directory error (" << GetLastError() << ")";
+	        throw(CommandFail(message.str()));
+	    }
+	}
+        COREASSERT(i<9999);
+    }
+
+    FindClose(hList);   
+}
+
 void
 PlatformMiscUtils::ErrorBox(const string& inStr)
+{
+    if (!MessageBox(NULL, inStr.c_str(), NULL, MB_OK|MB_ICONERROR))
+    {
+        cerr << "Dialog box failed: " << GetLastError() << endl;
+    }
+}
+
+void
+PlatformMiscUtils::MinorErrorBox(const string& inStr)
 {
     if (!MessageBox(NULL, inStr.c_str(), NULL, MB_OK|MB_ICONERROR))
     {
@@ -207,7 +258,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
 void
 PlatformMiscUtils::LaunchFile(const string& inFile)
 {
-    int retVal = (int)ShellExecute(NULL, NULL, inFile.c_str(), NULL, NULL, SW_SHOWNORMAL);
+    int retVal = reinterpret_cast<int>(ShellExecute(NULL, NULL, inFile.c_str(), NULL, NULL, SW_SHOWNORMAL));
     if (retVal < 32)
     {
         string newName=inFile;
@@ -215,12 +266,24 @@ PlatformMiscUtils::LaunchFile(const string& inFile)
 	{
 	    if (newName[i] == '/') newName[i]='\\';
 	}
-        retVal = (int)ShellExecute(NULL, NULL, newName.c_str(), NULL, NULL, SW_SHOWNORMAL);
+        retVal = reinterpret_cast<int>(ShellExecute(NULL, NULL, newName.c_str(), NULL, NULL, SW_SHOWNORMAL));
     }
     if (retVal < 32)
     {
 	ostringstream message;
 	message << "Launch failed for '" << inFile << "': " << retVal;
+	throw(CommandFail(message.str()));
+    }
+}
+
+void
+PlatformMiscUtils::LaunchURL(const string& inURL)
+{
+    int status=reinterpret_cast<int>(ShellExecute(NULL, "open", inURL.c_str(), NULL, NULL, SW_SHOWDEFAULT));
+    if (status < 32)
+    {
+	ostringstream message;
+	message << "URL launch failed for '" << inURL << "': " << status;
 	throw(CommandFail(message.str()));
     }
 }
