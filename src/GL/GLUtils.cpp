@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.18 2002/07/19 16:25:21 southa Exp $
+ * $Id: GLUtils.cpp,v 1.19 2002/07/19 17:51:10 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.19  2002/07/19 17:51:10  southa
+ * Texture tweaks
+ *
  * Revision 1.18  2002/07/19 16:25:21  southa
  * Texture tweaks
  *
@@ -97,13 +100,11 @@ GLUtils::IdentityPrologue(void)
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    glPushAttrib(GL_ENABLE_BIT);
 }
 
 void
 GLUtils::IdentityEpilogue(void)
 {
-    glPopAttrib();
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
@@ -332,7 +333,6 @@ GLUtils::BlendSet(tBlendType inValue)
             case kBlendTransparent:
                 glDisable(GL_POLYGON_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
                 glEnable(GL_BLEND);
                 break;
 
