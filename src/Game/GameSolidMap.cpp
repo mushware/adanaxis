@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.16 2002/08/08 18:32:27 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.17 2002/08/08 18:33:45 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.17  2002/08/08 18:33:45  southa
+ * Motion escape tweaks
+ *
  * Revision 1.16  2002/08/08 18:32:27  southa
  * Corrected for new scaling
  *
@@ -177,7 +180,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
         perm=MotionSpecPermeabilityGet(trialSpec);
     }
     
-    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.01 && !deltaAngleSignificant)
+    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.001 && !deltaAngleSignificant)
     {
         // Try some angle tweaks to move us into gaps
         for (tVal deltaAngle=0.005; deltaAngle<=0.01; deltaAngle *= 2)
