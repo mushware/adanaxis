@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: AutoMonkey.hp,v 1.1 2002/02/23 11:43:34 southa Exp $
+ * $Log: AutoMonkey.hp,v $
+ * Revision 1.1  2002/02/23 11:43:34  southa
+ * Added AutoMonkey
+ *
  */
 
 class AutoMonkey
@@ -11,8 +14,9 @@ public:
     AutoMonkey(const AutoMonkey& inMonkey);
     bool FreeInDestructor(void) const; // Call in destructor, free shared area if returns true
     int ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
+    AutoMonkey& operator=(const AutoMonkey&);
     
 private:
-    void operator=(const AutoMonkey&); // No assignment support
+    void Swap(AutoMonkey& inMonkey);
     int *m_refCtrPtr;
 };

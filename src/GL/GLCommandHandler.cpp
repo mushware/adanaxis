@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.2 2002/02/18 22:04:37 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.3 2002/02/18 22:43:53 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.3  2002/02/18 22:43:53  southa
+ * First stage GIF loader
+ *
  * Revision 1.2  2002/02/18 22:04:37  southa
  * Initial texture loading
  *
@@ -11,10 +14,12 @@
 
 #include "GLCommandHandler.hp"
 #include "CoreApp.hp"
+#include "CoreTest.hp"
 #include "Installer.hp"
 #include "GLAppHandler.hp"
 #include "GLData.hp"
 #include "GLTexture.hp"
+#include "GLTest.hp"
 
 GLCommandHandler *GLCommandHandler::m_instance = NULL;
 
@@ -23,10 +28,17 @@ Installer GLCommandHandlerInstaller(GLCommandHandler::Install);
 bool
 GLCommandHandler::HandleCommand(const string& inStr)
 {
-    if (inStr.substr(0,6) == "initGL") InitGL(inStr.substr(6));
-    else if (inStr.substr(0,10) == "loadPixmap") LoadPixmap(inStr.substr(10));
+    try
+    {
+        if (inStr.substr(0,6) == "initGL") InitGL(inStr.substr(6));
+        else if (inStr.substr(0,10) == "loadPixmap") LoadPixmap(inStr.substr(10));
+        else if (inStr == "glTest1") GLTest::Test1(inStr);
         else return false;
-
+    }
+    catch (TestFail& f)
+    {
+        cerr << "Test failed: " << f;
+    }
     return true;
 }
 

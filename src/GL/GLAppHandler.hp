@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLAppHandler.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: GLAppHandler.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "CoreAppHandler.hp"
@@ -8,10 +11,10 @@
 class GLAppHandler : public CoreAppHandler
 {
 public:
-    void Initialise(void);
-    void Idle(bool& outQuit, int& outUSleepFor);    
-    void MainLoop(void);
-    void Display(void);
+    virtual void Initialise(void);
+    virtual void Idle(bool& outQuit, int& outUSleepFor);    
+    virtual void MainLoop(void);
+    virtual void Display(void);
     
 protected:
 private:

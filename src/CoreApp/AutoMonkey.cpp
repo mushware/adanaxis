@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: AutoMonkey.cpp,v 1.1 2002/02/23 11:43:34 southa Exp $
+ * $Log: AutoMonkey.cpp,v $
+ * Revision 1.1  2002/02/23 11:43:34  southa
+ * Added AutoMonkey
+ *
  */
 
 #include "AutoMonkey.hp"
@@ -23,6 +26,20 @@ AutoMonkey::AutoMonkey(const AutoMonkey& inMonkey)
     m_refCtrPtr=inMonkey.m_refCtrPtr;
     ++*m_refCtrPtr;
     CORETESTING(cerr << "Automonkey copied, refcount to " << ReferenceCountGet() << endl);
+}
+
+void
+AutoMonkey::Swap(AutoMonkey& inMonkey)
+{
+    swap(m_refCtrPtr, inMonkey.m_refCtrPtr);
+}
+
+AutoMonkey&
+AutoMonkey::operator=(const AutoMonkey& inMonkey)
+{
+    AutoMonkey temp(inMonkey);
+    Swap(temp);
+    return *this;
 }
 
 bool

@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: Test.cpp,v 1.2 2002/02/23 11:43:36 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.2  2002/02/23 11:43:36  southa
+ * Added AutoMonkey
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
@@ -87,41 +90,149 @@ Test::Test3(void)
     AutoMonkey& monkey1=*new AutoMonkey;
     if (monkey1.ReferenceCountGet() != 1)
     {
-        TestFail("AutoMonkey fault 1");
+        throw TestFail("AutoMonkey fault 1");
     }
 
     if (!monkey1.FreeInDestructor())
     {
-        TestFail("AutoMonkey fault 2");
+        throw TestFail("AutoMonkey fault 2");
     }
     AutoMonkey& monkey2=*new AutoMonkey(monkey1);
     if (monkey1.ReferenceCountGet() != 2)
     {
-        TestFail("AutoMonkey fault 3");
+        throw TestFail("AutoMonkey fault 3");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        TestFail("AutoMonkey fault 4");
+        throw TestFail("AutoMonkey fault 4");
     }
     if (monkey1.FreeInDestructor())
     {
-        TestFail("AutoMonkey fault 5");
+        throw TestFail("AutoMonkey fault 5");
     }
     if (monkey2.FreeInDestructor())
     {
-        TestFail("AutoMonkey fault 6");
+        throw TestFail("AutoMonkey fault 6");
     }
-    // Next line should not compile
-    // monkey1=monkey2;
-    
+    monkey1=monkey1;
+    if (monkey1.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 7");
+    }
+    if (monkey2.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 8");
+    }
+    if (monkey1.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 9");
+    }
+    if (monkey2.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 10");
+    }
+    monkey1=monkey2;
+    if (monkey1.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 11");
+    }
+    if (monkey2.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 12");
+    }
+    if (monkey1.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 13");
+    }
+    if (monkey2.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 14");
+    }
+    AutoMonkey& monkey3=*new AutoMonkey;
+    AutoMonkey& monkey4=*new AutoMonkey(monkey3);
+    if (monkey3.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 40");
+    }
+    if (monkey4.ReferenceCountGet() != 2)
+    {
+        throw TestFail("AutoMonkey fault 41");
+    }
+    if (monkey3.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 42");
+    }
+    if (monkey4.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 43");
+    }
+    monkey3=monkey2;
+    if (monkey4.ReferenceCountGet() != 1)
+    {
+        throw TestFail("AutoMonkey fault 44");
+    }
+    if (!monkey4.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 45");
+    }
+    if (monkey3.ReferenceCountGet() != 3)
+    {
+        throw TestFail("AutoMonkey fault 46");
+    }
+    if (monkey2.ReferenceCountGet() != 3)
+    {
+        throw TestFail("AutoMonkey fault 47");
+    }
+    if (monkey1.ReferenceCountGet() != 3)
+    {
+        throw TestFail("AutoMonkey fault 48");
+    }
+    if (monkey1.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 49");
+    }
+    if (monkey2.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 50");
+    }
+    if (monkey3.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 51");
+    }
     delete &monkey1;
-    if (monkey2.ReferenceCountGet() != 1)
+    if (monkey2.ReferenceCountGet() != 2)
     {
-        TestFail("AutoMonkey fault 7");
+        throw TestFail("AutoMonkey fault 80");
     }
-    if (!monkey2.FreeInDestructor())
+    if (monkey3.ReferenceCountGet() != 2)
     {
-        TestFail("AutoMonkey fault 8");
+        throw TestFail("AutoMonkey fault 81");
+    }
+    if (monkey2.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 82");
+    }
+    if (monkey3.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 83");
     }
     delete &monkey2;
+    if (monkey3.ReferenceCountGet() != 1)
+    {
+        throw TestFail("AutoMonkey fault 84");
+    }
+    if (!monkey3.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 85");
+    }
+    delete &monkey3;
+    if (monkey4.ReferenceCountGet() != 1)
+    {
+        throw TestFail("AutoMonkey fault 86");
+    }
+    if (!monkey4.FreeInDestructor())
+    {
+        throw TestFail("AutoMonkey fault 87");
+    }
+    delete &monkey4;
 }

@@ -1,12 +1,16 @@
 /*
- * $Id: Test.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: Test.hp,v 1.2 2002/02/23 11:43:36 southa Exp $
  * $Log: Test.hp,v $
+ * Revision 1.2  2002/02/23 11:43:36  southa
+ * Added AutoMonkey
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
  */
 
 #include "CoreStandard.hp"
+#include "CoreTest.hp"
 
 class Test
 {
@@ -17,19 +21,3 @@ public:
 
 private:
 };
-
-class TestFail: public exception
-{
-public:
-    TestFail(const string &inMessage) {m_message=inMessage;}
-    const string& SPrint(void) {return m_message;}
-    const char* what() const throw() {return m_message.c_str();}
-
-private:
-    string m_message;
-};
-
-inline ostream& operator<<(ostream &s, TestFail f)
-{
-    return s<<f.SPrint();
-}

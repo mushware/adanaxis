@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.2 2002/02/18 22:43:11 southa Exp $
+ * $Id: GLTexture.cpp,v 1.3 2002/02/20 22:57:57 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.3  2002/02/20 22:57:57  southa
+ * Loading GIF data, texture memory handling
+ *
  * Revision 1.2  2002/02/18 22:43:11  southa
  * First stage GIF loader
  *
@@ -63,21 +66,21 @@ GLTexture::GLTexture(const string& inFilename)
 
         GifColorType *colors=colorMap->Colors;
         int colIndexLimit=1 << colorMap->BitsPerPixel;
-        Size memSize=3*image->ImageDesc.Width*image->ImageDesc.Height;
+        Size memSize=4*image->ImageDesc.Width*image->ImageDesc.Height;
 
         m_textureDefs.push_back(TextureDef(new U8[memSize]));
         TextureDef& def=m_textureDefs.back();
         def.width=image->ImageDesc.Width;
         def.height=image->ImageDesc.Height;
-        def.pixelFormat=GL_RGB;
+        def.pixelFormat=GL_RGBA;
         def.pixelType=GL_UNSIGNED_BYTE;
 
-        char *inputPtr=image->RasterBits;
         U8 *outputPtr=def.dataPtr;
         
-        for (int y=0; y<image->ImageDesc.Height; ++y)
+        for (int y=0; y<def.height; ++y)
         {
-            for (int x=0; x<image->ImageDesc.Width; ++x)
+            char *inputPtr=&image->RasterBits[(def.height-1-y)*def.width];
+            for (int x=0; x<def.width; ++x)
             {
                 U8 colIndex=*inputPtr++;
                 if (colIndex > colIndexLimit)
@@ -88,6 +91,7 @@ GLTexture::GLTexture(const string& inFilename)
                 *outputPtr++ = colors[colIndex].Red;
                 *outputPtr++ = colors[colIndex].Green;
                 *outputPtr++ = colors[colIndex].Blue;
+                *outputPtr++ = 255; // Alpha                
             }   
         }
         if (def.dataPtr + memSize != outputPtr)
@@ -97,6 +101,24 @@ GLTexture::GLTexture(const string& inFilename)
     }
     
     DGifCloseFile(gif);
+//    m_inFilename=inFilename;
+}
+
+ostream&
+GLTexture::ostreamPrint(ostream& inOut) const
+{
+    inOut << "source GIF '" << /*m_inFilename << */"'";
+    inOut << " images=" << m_textureDefs.size();
+    for (Size i=0; i<m_textureDefs.size(); ++i)
+    {
+        inOut << "[image " << i << ":";
+        inOut << " width=" << Width(i);
+        inOut << " height=" << Height(i);
+        inOut << " pixelFormat=" << PixelFormat(i);
+        inOut << " pixelType=" << PixelType(i);
+        inOut << " dataPtr=" << DataPtr(i) << "] ";
+    }
+    return inOut;
 }
 
 void

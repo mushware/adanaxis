@@ -1,0 +1,18 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "GLAppHandler.hp"
+
+class GLTest1AppHandler : public GLAppHandler
+{
+public:
+    virtual void Initialise(void);
+    virtual void Display(void);
+    
+protected:
+private:
+    static void IdleHandler(void);
+    static void DisplayHandler(void) {Instance().Display();}
+};
