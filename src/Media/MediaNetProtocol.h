@@ -1,8 +1,11 @@
 #ifndef MEDIANETPROTOCOL_H
 #define MEDIANETPROTOCOL_H
 /*
- * $Id: MediaNetProtocol.h,v 1.4 2002/11/04 13:11:58 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.5 2002/11/04 19:34:47 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.5  2002/11/04 19:34:47  southa
+ * Network link maintenance
+ *
  * Revision 1.4  2002/11/04 13:11:58  southa
  * Link setup work
  *
@@ -33,7 +36,10 @@ public:
         kMessageTypeUDPLinkCheck,
         kMessageTypeUDPLinkCheckReply,
         kMessageTypeKillLink,
-        kMessageTypeMaxLinkLayer
+        kMessageTypeLongApp,
+        kMessageTypeShortApp,
+        kMessageTypeMaxLinkLayer,
+        kMessageTypeNextLayerStart='a'
     };
 
     enum tReasonCode
@@ -54,6 +60,10 @@ public:
     static void UDPLinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
     static void KillLinkCreate(MediaNetData& outData, tReasonCode inReason);
 
+    static void LongAppMessageCreate(MediaNetData& ioData, U32 inType, const string& inStr);
+    static void LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType);
+    static void LongAppMessageFinish(MediaNetData& ioData);
+    
     static void Unpack(MediaNetData& ioData);
     static bool MessageTake(MediaNetData& ioData);
     static bool MessageTypeIsLinkLayer(U32 inType);

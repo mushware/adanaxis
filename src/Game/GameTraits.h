@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.9 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTraits.h,v 1.10 2002/11/24 23:54:36 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.10  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  * Revision 1.9  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -67,7 +70,6 @@ protected:
     void XMLDataHandler(CoreXML& inXML);    
     
 private:
-
     void NullHandler(CoreXML& inXML);
     void HandleBaseEnd(CoreXML& inXML);
     void HandleTraitsEnd(CoreXML& inXML);

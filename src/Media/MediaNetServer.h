@@ -1,8 +1,11 @@
 #ifndef MEDIANETSERVER_H
 #define MEDIANETSERVER_H
 /*
- * $Id: MediaNetServer.h,v 1.9 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetServer.h,v 1.10 2002/11/23 14:45:34 southa Exp $
  * $Log: MediaNetServer.h,v $
+ * Revision 1.10  2002/11/23 14:45:34  southa
+ * Replaced access to server port
+ *
  * Revision 1.9  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -43,7 +46,7 @@ class MediaNetServer
 public:
     ~MediaNetServer();
 
-    static MediaNetServer& Instance(void);
+    static inline MediaNetServer& Instance(void);
 
     void Connect(U32 inPort);
     void Disconnect(void);

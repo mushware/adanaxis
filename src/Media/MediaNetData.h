@@ -1,8 +1,11 @@
 #ifndef MEDIANETDATA_H
 #define MEDIANETDATA_H
 /*
- * $Id: MediaNetData.h,v 1.5 2002/11/12 17:05:01 southa Exp $
+ * $Id: MediaNetData.h,v 1.6 2002/11/22 15:00:32 southa Exp $
  * $Log: MediaNetData.h,v $
+ * Revision 1.6  2002/11/22 15:00:32  southa
+ * Network connection handling
+ *
  * Revision 1.5  2002/11/12 17:05:01  southa
  * Tidied localweb server
  *
@@ -26,7 +29,7 @@ class MediaNetData
 {
 public:
     MediaNetData();
-    MediaNetData(const string& inStr);
+    explicit MediaNetData(const string& inStr);
 
     U32 ReadPosGet(void) const;
     U32 ReadSizeGet(void) const;
@@ -44,6 +47,8 @@ public:
     U32 MessageSizeGet(void) const;
     U8 *MessagePtrGet(void);
 
+    void LengthPosSet(U32 inPos);
+
     U32 UnpackStateGet(void) const;
     void UnpackStateSet(U32 inState);
 
@@ -56,10 +61,11 @@ public:
     U8 BytePop(void);
     U8 MessageBytePop(void);
     void BytePush(U8 inByte); // Slow operation
+    void LengthBytePush(U8 inByte);
 
     void PrepareForWrite(void);
     void PrepareForWrite(U32 inSize);
-    
+
     void Print(ostream& ioOut) const;
     
 private:
@@ -71,6 +77,7 @@ private:
     U32 m_readPos;
     U32 m_writePos;
     U32 m_messagePos;
+    U32 m_lengthPos;
     U32 m_unpackState;
     U32 m_sourceHost;
     U32 m_sourcePort;
@@ -85,6 +92,7 @@ MediaNetData::MediaNetData() :
     m_readPos(0),
     m_writePos(0),
     m_messagePos(0),
+    m_lengthPos(0),
     m_unpackState(0),
     m_sourceValid(false)
 {
@@ -95,14 +103,11 @@ MediaNetData::MediaNetData(const string& inStr) :
     m_readPos(0),
     m_writePos(0),
     m_messagePos(0),
+    m_lengthPos(0),
     m_unpackState(0),
     m_sourceValid(false)
 {
-    U32 size=inStr.size();
-    for (U32 i=0; i<size; ++i)
-    {
-        BytePush(inStr[i]);
-    }
+    Write(inStr);
 }
 
 inline U32
@@ -198,6 +203,13 @@ MediaNetData::MessagePtrGet(void)
     return &m_data[m_messagePos];
 }
 
+inline void
+MediaNetData::LengthPosSet(U32 inPos)
+{
+    COREASSERT(inPos <= m_data.size());
+    m_lengthPos=inPos;
+}
+
 inline U32
 MediaNetData::UnpackStateGet(void) const
 {
@@ -262,6 +274,15 @@ MediaNetData::BytePush(U8 inByte)
 }
 
 inline void
+MediaNetData::LengthBytePush(U8 inByte)
+{
+    PrepareForWrite(m_lengthPos+3);
+
+    COREASSERT(m_lengthPos < m_data.size());
+    m_data[m_lengthPos++]=inByte;
+}
+
+inline void
 MediaNetData::PrepareForWrite(void)
 {
     if (m_writePos == m_readPos)
@@ -269,6 +290,7 @@ MediaNetData::PrepareForWrite(void)
         m_writePos=0;
         m_readPos=0;
     }
+    // Always leave at least kChunkSize/2 writable bytes
     if (m_writePos + kChunkSize/2 > m_data.size())
     {
         m_data.resize(m_writePos + kChunkSize);

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.6 2002/11/04 19:34:47 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.7 2002/11/22 11:42:06 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.7  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.6  2002/11/04 19:34:47  southa
  * Network link maintenance
  *
@@ -189,4 +192,31 @@ bool
 MediaNetProtocol::MessageTypeIsLinkLayer(U32 inType)
 {
     return inType < kMessageTypeMaxLinkLayer;
+}
+
+void
+MediaNetProtocol::LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType)
+{
+    ioData.BytePush(kSyncByte1);
+    ioData.BytePush(kSyncByte2);
+    ioData.BytePush(kMessageTypeLongApp);
+    ioData.LengthPosSet(ioData.WritePosGet());
+    ioData.BytePush(0); // Length byte MSB
+    ioData.BytePush(0); // Length byte LSB    
+}
+
+void
+MediaNetProtocol::LongAppMessageFinish(MediaNetData& ioData)
+{
+    U32 size=ioData.ReadSizeGet();
+    ioData.LengthBytePush(size >> 8);
+    ioData.LengthBytePush(size);
+}
+
+void
+MediaNetProtocol::LongAppMessageCreate(MediaNetData& ioData, U32 inType, const string& inStr)
+{
+    LongAppMessageHeaderCreate(ioData, inType);
+    ioData.Write(inStr);
+    LongAppMessageFinish(ioData);
 }

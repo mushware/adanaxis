@@ -1,8 +1,11 @@
 #ifndef MEDIANETLOG_H
 #define MEDIANETLOG_H
 /*
- * $Id: MediaNetLog.h,v 1.4 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetLog.h,v 1.5 2002/11/22 11:42:06 southa Exp $
  * $Log: MediaNetLog.h,v $
+ * Revision 1.5  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.4  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -25,6 +28,8 @@ public:
     MediaNetLog();
     ~MediaNetLog();
 
+    static inline MediaNetLog& Instance(void);
+
     ostream& WebLog(void);
     ostream& NetLog(void);
     ostream& VerboseLog(void);
@@ -38,7 +43,6 @@ public:
     void OpenFile(const string& inName);
     void CloseFile(void);
     
-    static MediaNetLog& Instance(void);
     
 protected:
     ostream& Log(void);
@@ -50,5 +54,13 @@ private:
     bool m_webLog;
     bool m_verboseLog;
     bool m_logFullIP;
+
+    static MediaNetLog m_gMediaNetLogInstance;
 };
+
+inline MediaNetLog&
+MediaNetLog::Instance(void)
+{
+    return m_gMediaNetLogInstance;
+}
 #endif

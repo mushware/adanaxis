@@ -1,8 +1,11 @@
 #ifndef MEDIANET_H
 #define MEDIANET_H
 /*
- * $Id: MediaNet.h,v 1.3 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNet.h,v 1.4 2002/11/21 18:06:17 southa Exp $
  * $Log: MediaNet.h,v $
+ * Revision 1.4  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.3  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -19,7 +22,7 @@
 class MediaNet
 {
 public:
-    static MediaNet& Instance(void);
+    static inline MediaNet& Instance(void);
     ~MediaNet();
 
 protected:

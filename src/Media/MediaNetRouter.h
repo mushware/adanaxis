@@ -1,8 +1,11 @@
 #ifndef MEDIANETROUTER_H
 #define MEDIANETROUTER_H
 /*
- * $Id: MediaNetRouter.h,v 1.3 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetRouter.h,v 1.4 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetRouter.h,v $
+ * Revision 1.4  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.3  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -22,7 +25,7 @@ class MediaNetLink;
 class MediaNetRouter
 {
 public:
-    static MediaNetRouter& Instance(void);
+    static inline MediaNetRouter& Instance(void);
     void ReceiveAll(void);
 
 protected:

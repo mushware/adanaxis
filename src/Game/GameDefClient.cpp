@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.6 2002/11/24 23:18:16 southa Exp $
- * $Log: GameDef.cpp,v $
+ * $Id: GameDefClient.cpp,v 1.1 2002/11/24 23:54:36 southa Exp $
+ * $Log: GameDefClient.cpp,v $
+ * Revision 1.1  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  * Revision 1.6  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -51,7 +54,9 @@ GameDefClient::Ticker(void)
         COREASSERT(netLink != NULL);
         if (m_lastRegistrationMsec + kRegistrationMsec < m_currentMsec)
         {
-GameProtocol::SendObject(*netLink, *this, "client-ghost");
+            MediaNetData netData;
+            GameProtocol::CreateObjectCreate(netData, *this, "client-ghost");
+            // netLink->ReliableSend(netData);
             m_lastRegistrationMsec = m_currentMsec;
         }
     }

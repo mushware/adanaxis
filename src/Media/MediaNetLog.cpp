@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLog.cpp,v 1.3 2002/11/08 11:54:40 southa Exp $
+ * $Id: MediaNetLog.cpp,v 1.4 2002/11/22 11:42:06 southa Exp $
  * $Log: MediaNetLog.cpp,v $
+ * Revision 1.4  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.3  2002/11/08 11:54:40  southa
  * Web fixes
  *
@@ -16,13 +19,7 @@
 
 #include "MediaSDL.h"
 
-static MediaNetLog m_gMediaNetLogInstance;
-
-MediaNetLog&
-MediaNetLog::Instance(void)
-{
-    return m_gMediaNetLogInstance;
-}
+MediaNetLog MediaNetLog::m_gMediaNetLogInstance;
 
 MediaNetLog::MediaNetLog() :
     m_outStream(NULL),

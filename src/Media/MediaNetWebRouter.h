@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebRouter.h,v 1.1 2002/11/06 14:16:57 southa Exp $
+ * $Id: MediaNetWebRouter.h,v 1.2 2002/11/23 17:23:45 southa Exp $
  * $Log: MediaNetWebRouter.h,v $
+ * Revision 1.2  2002/11/23 17:23:45  southa
+ * Sleep in setup
+ *
  * Revision 1.1  2002/11/06 14:16:57  southa
  * Basic web server
  *
@@ -13,7 +16,7 @@ class MediaNetLink;
 class MediaNetWebRouter
 {
 public:
-    static MediaNetWebRouter& Instance(void);
+    static inline MediaNetWebRouter& Instance(void);
     void ReceiveAll(void);
 
 protected:

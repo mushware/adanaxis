@@ -4258,6 +4258,8 @@
 				F5AA63C9031193CA01442A89,
 				F53E490A031257DD01989694,
 				F53E490B031257DD01989694,
+				F5B36CFB039229BF01A80164,
+				F5B36CFA039229BF01A80164,
 				F5A8F281038560DB01A80164,
 				F5A8F280038560DB01A80164,
 				F54689F302E3048501CF937A,
@@ -4529,6 +4531,7 @@
 				F5B3598803918CD501A80164,
 				F5B3598C039197E801A80164,
 				F5B35990039197FB01A80164,
+				F5B36CFC039229BF01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4680,6 +4683,7 @@
 				F5B3598903918CD501A80164,
 				F5B3598D039197E801A80164,
 				F5B35991039197FB01A80164,
+				F5B36CFD039229BF01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6037,6 +6041,30 @@
 		};
 		F5B35991039197FB01A80164 = {
 			fileRef = F5B3598F039197FB01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B36CFA039229BF01A80164 = {
+			isa = PBXFileReference;
+			name = GameRouter.h;
+			path = Game/GameRouter.h;
+			refType = 4;
+		};
+		F5B36CFB039229BF01A80164 = {
+			isa = PBXFileReference;
+			name = GameRouter.cpp;
+			path = Game/GameRouter.cpp;
+			refType = 4;
+		};
+		F5B36CFC039229BF01A80164 = {
+			fileRef = F5B36CFA039229BF01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B36CFD039229BF01A80164 = {
+			fileRef = F5B36CFB039229BF01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

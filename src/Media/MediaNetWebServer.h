@@ -1,8 +1,11 @@
 #ifndef MEDIANETWEBSERVER_H
 #define MEDIANETWEBSERVER_H
 /*
- * $Id: MediaNetWebServer.h,v 1.4 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetWebServer.h,v 1.5 2002/11/24 12:57:02 southa Exp $
  * $Log: MediaNetWebServer.h,v $
+ * Revision 1.5  2002/11/24 12:57:02  southa
+ * Added configuration host protection
+ *
  * Revision 1.4  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -36,7 +39,7 @@ public:
 
     ~MediaNetWebServer();
 
-    static MediaNetWebServer& Instance(void);
+    static inline MediaNetWebServer& Instance(void);
 
     void Connect(U32 inPort);
     void Disconnect(void);
