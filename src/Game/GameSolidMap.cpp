@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameSolidMap.cpp,v 1.25 2002/08/27 08:56:26 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.26 2002/10/08 17:13:18 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.26  2002/10/08 17:13:18  southa
+ * Tiered maps
+ *
  * Revision 1.25  2002/08/27 08:56:26  southa
  * Source conditioning
  *
@@ -492,8 +495,8 @@ GameSolidMap::Render(const GameMapArea& inArea) const
     maxPoint.MakeInteger();
 
     GLPoint point;
-    GLUtils::BlendSet(GLUtils::kBlendLine);
-    GLUtils::ModulationSet(GLUtils::kModulationColour);
+    GLState::BlendSet(GLState::kBlendLine);
+    GLState::ModulationSet(GLState::kModulationColour);
     
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {
@@ -506,14 +509,14 @@ GameSolidMap::Render(const GameMapArea& inArea) const
 
                 tVal value;
                 value=PermeabilityGet(GameMapPoint(point));
-                GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                GLState::ColourSet(0.5+0.5*cos(value*M_PI),
                                    0.5-0.5*cos(value*M_PI),
                                    (value>1)?1:0, 0.33);
                 line.Render();
                 line.RotateAboutCentre(M_PI/2);
 #if 0
                 value=AdhesionGet(GameMapPoint(point));
-                GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                GLState::ColourSet(0.5+0.5*cos(value*M_PI),
                                    0.5-0.5*cos(value*M_PI),
                                    (value>1)?1:0, 0.33);
 #endif

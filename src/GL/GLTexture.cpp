@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTexture.cpp,v 1.19 2002/08/24 14:37:27 southa Exp $
+ * $Id: GLTexture.cpp,v 1.20 2002/08/27 08:56:20 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.20  2002/08/27 08:56:20  southa
+ * Source conditioning
+ *
  * Revision 1.19  2002/08/24 14:37:27  southa
  * Use gluBuild2DMipmaps for more robust texture generation
  *
@@ -77,6 +80,7 @@
 
 #include "GLTexture.h"
 #include "GLUtils.h"
+#include "GLState.h"
 
 GLTexture::~GLTexture()
 {
@@ -134,7 +138,7 @@ GLTexture::BindTexture(void) const
     COREASSERT(!m_bound);
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
-    GLUtils::TextureParamsReset();
+    GLState::TextureParamsReset();
     if (1)
     {
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target

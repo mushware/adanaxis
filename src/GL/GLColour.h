@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLColour.h,v 1.5 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLColour.h,v 1.6 2002/10/10 22:47:57 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.6  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.5  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -34,7 +37,7 @@
  */
 
 #include "mushCore.h"
-#include "GLUtils.h"
+#include "GLState.h"
 
 class GLColour
 {
@@ -47,7 +50,7 @@ public:
         m_col[2]=inBlue;
         m_col[3]=inAlpha;
     }
-    void Apply(void) const { GLUtils::ColourSet(m_col[0], m_col[1], m_col[2], m_col[3]); }
+    void Apply(void) const { GLState::ColourSet(m_col[0], m_col[1], m_col[2], m_col[3]); }
     tVal RedGet(void) const { return m_col[0]; }
     tVal GreenGet(void) const { return m_col[1]; }
     tVal BlueGet(void) const { return m_col[2]; }

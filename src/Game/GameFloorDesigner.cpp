@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.21 2002/10/08 21:44:10 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.22 2002/10/11 14:01:12 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.22  2002/10/11 14:01:12  southa
+ * Lighting work
+ *
  * Revision 1.21  2002/10/08 21:44:10  southa
  * 3D maps
  *
@@ -150,7 +153,7 @@ GameFloorDesigner::Display(void)
 
     GameMapPoint aimingPoint(GLPoint(lookAtSpec.pos / floorMap->StepGet()));
 
-    GLUtils::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+    GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
     GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
     GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
 //GLData::Instance().LightsGet()->InvalidateAll();
@@ -187,13 +190,13 @@ GameFloorDesigner::Display(void)
     GLUtils::Scale(m_masterScale, m_masterScale, 1);
     glMatrixMode(GL_MODELVIEW);
     
-    GLUtils::BlendSet(GLUtils::kBlendLine);
+    GLState::BlendSet(GLState::kBlendLine);
     GameData::Instance().CurrentViewGet()->OverPlotGet().Render();
     GameData::Instance().CurrentViewGet()->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
 
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(1.0,1.0,0.7,0.8);
+    GLState::ColourSet(1.0,1.0,0.7,0.8);
     GLUtils orthoGL;
 
     orthoGL.MoveToEdge(1,1);

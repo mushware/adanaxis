@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.31 2002/10/11 14:01:12 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.32 2002/10/11 20:10:14 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.32  2002/10/11 20:10:14  southa
+ * Various fixes and new files
+ *
  * Revision 1.31  2002/10/11 14:01:12  southa
  * Lighting work
  *
@@ -187,7 +190,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
 
     gl.SetPosition(0,0);
     GLUtils::Scale(m_xstep, m_ystep, 1);
-    GLUtils::ColourSet(1,1,1);
+    GLState::ColourSet(1,1,1);
     GLPoint minPoint=inArea.MinPointGet();
     GLPoint maxPoint=inArea.MaxPointGet();
 
@@ -201,7 +204,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     bool isHighlight = !inHighlight.IsEmpty();
 
     bool highlightOn=false;
-    GLUtils::ModulationSet(GLUtils::kModulationLighting);
+    GLState::ModulationSet(GLState::kModulationLighting);
 
     U32 areaXSize=maxPoint.U32XGet() - minPoint.U32XGet();
     U32 areaXMin=minPoint.U32XGet();
@@ -237,11 +240,11 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
         {
             if (inTierHighlight[tier])
             {
-                GLUtils::AmbientLightSet(1.0);
+                GLState::AmbientLightSet(1.0);
             }
             else
             {
-                GLUtils::AmbientLightSet(0.2);
+                GLState::AmbientLightSet(0.2);
             }
         }
         for (U32 x=areaXMin; x<areaXMax; ++x)
@@ -267,13 +270,13 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                                 tVal greenBri=0.4+0.35*sin(clockNow/201.0);
                                 tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
-                                GLUtils::ColourSet(redBri, greenBri, blueBri);
-                                GLUtils::ModulationSet(GLUtils::kModulationColour);
+                                GLState::ColourSet(redBri, greenBri, blueBri);
+                                GLState::ModulationSet(GLState::kModulationColour);
                                 highlightOn=true;
                             }
                             else if (highlightOn)
                             {
-                                GLUtils::ModulationSet(GLUtils::kModulationLighting);
+                                GLState::ModulationSet(GLState::kModulationLighting);
                                 highlightOn=false;
                             }
                         }
@@ -602,9 +605,9 @@ GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
     maxPoint.MakeInteger();
 
     GLPoint point;
-    GLUtils::BlendSet(GLUtils::kBlendLine);
-    GLUtils::ModulationSet(GLUtils::kModulationColour);
-    GLUtils::ColourSet(1, 1, 1, 0.2);
+    GLState::BlendSet(GLState::kBlendLine);
+    GLState::ModulationSet(GLState::kModulationColour);
+    GLState::ColourSet(1, 1, 1, 0.2);
     
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {

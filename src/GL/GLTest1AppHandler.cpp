@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.17 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.18 2002/08/27 08:56:20 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.18  2002/08/27 08:56:20  southa
+ * Source conditioning
+ *
  * Revision 1.17  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -100,43 +103,43 @@ GLTest1AppHandler::Display(void)
     line2.RotateAboutCentre(ticker);
     if (line1.IsIntersecting(line2))
     {
-        GLUtils::ColourSet(0,1,0);
+        GLState::ColourSet(0,1,0);
     }
     else
     {
-        GLUtils::ColourSet(0.5,0.5,0.5);
+        GLState::ColourSet(0.5,0.5,0.5);
     }
     glTranslatef(200,200,0);
-    GLUtils::ColourSet(0.5,0.5,0.5);
+    GLState::ColourSet(0.5,0.5,0.5);
     line2.Render();
     if (line1.IsIntersecting(line2))
     {
-GLUtils::ColourSet(0,1,0);
+GLState::ColourSet(0,1,0);
     }
     else
     {
-GLUtils::ColourSet(0.5,0.5,0.5);
+GLState::ColourSet(0.5,0.5,0.5);
     }    
     line1.Render();
 #if 1
     if (line3.IsIntersecting(line2))
     {
-GLUtils::ColourSet(0,1,0);
+GLState::ColourSet(0,1,0);
     }
     else
     {
-GLUtils::ColourSet(0.5,0.5,0.5);
+GLState::ColourSet(0.5,0.5,0.5);
     }
     line3.Render();
 #endif
 #if 1
     if (rect1.IsIntersecting(line2))
     {
-GLUtils::ColourSet(0,1,0);
+GLState::ColourSet(0,1,0);
     }
     else
     {
-GLUtils::ColourSet(0.5,0.5,0.5);
+GLState::ColourSet(0.5,0.5,0.5);
     }
     rect1.Render();
 #endif

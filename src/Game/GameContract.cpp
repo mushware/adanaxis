@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.72 2002/10/11 14:01:11 southa Exp $
+ * $Id: GameContract.cpp,v 1.73 2002/10/11 20:10:14 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.73  2002/10/11 20:10:14  southa
+ * Various fixes and new files
+ *
  * Revision 1.72  2002/10/11 14:01:11  southa
  * Lighting work
  *
@@ -364,7 +367,7 @@ GameContract::InitDisplay(void)
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
     GLUtils::RasterPos(100,100);
-    GLUtils::ColourSet(1,1,1);
+    GLState::ColourSet(1,1,1);
     GLUtils::BitmapText("Loading...");
     GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
@@ -446,7 +449,7 @@ GameContract::RunningDisplay(void)
     GLUtils::PushMatrix();
 
     
-    GLUtils::DepthSet(GLUtils::kDepthTest);
+    GLState::DepthSet(GLState::kDepthTest);
     
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
@@ -468,7 +471,7 @@ GameContract::RunningDisplay(void)
     GLUtils::PushMatrix();
 
     m_floorMap->SetLightingFor(GameSpacePoint(lookAtPoint.pos));
-    GLUtils::ModulationSet(GLUtils::kModulationLighting);
+    GLState::DepthSet(GLState::kDepthTest);
     GLUtils gl;
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
@@ -476,12 +479,12 @@ GameContract::RunningDisplay(void)
     GLUtils::Scale(2,2,1);
     m_player->Render();
 
-    GLUtils::DepthSet(GLUtils::kDepthNone);
+    GLState::DepthSet(GLState::kDepthNone);
 
     GLUtils::PopMatrix();
 
     COREASSERT(m_currentView != NULL);
-    GLUtils::BlendSet(GLUtils::kBlendLine);
+    GLState::BlendSet(GLState::kBlendLine);
     m_currentView->OverPlotGet().Render();
     m_currentView->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
@@ -509,7 +512,7 @@ GameContract::RenderFastDiagnostics(void) const
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(0.0,0.0,1.0,0.5);
+    GLState::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;
     orthoGL.MoveToEdge(-1,-1);
     orthoGL.MoveRelative(0.02,0.02);
@@ -635,7 +638,7 @@ GameContract::GlobalKeyControl(void)
             gameAppHandler.SetCursorState(false);
             m_gameState=kRunning;
         }
-        GLUtils::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+        GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
         GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
         GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
     }

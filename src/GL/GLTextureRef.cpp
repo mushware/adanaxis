@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTextureRef.cpp,v 1.6 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.7 2002/08/27 08:56:21 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.7  2002/08/27 08:56:21  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -38,19 +41,10 @@
 
 #include "GLTextureRef.h"
 #include "GLData.h"
-
-GLTexture *
-GLTextureRef::TextureGet(void) const
-{
-    if (m_texPtr == NULL)
-    {
-        GetReference();
-    }
-    return m_texPtr;
-}
+#include "GLTexture.h"
 
 void
-GLTextureRef::GetReference(void) const
+GLTextureRef::TextureFetch(void) const
 {
     m_texPtr=GLData::Instance().TextureFind(m_name);
     if (m_texPtr == NULL)
@@ -63,4 +57,10 @@ bool
 GLTextureRef::Exists(void) const
 {
     return (m_texPtr != NULL || GLData::Instance().TextureFind(m_name) != NULL);
+}
+
+void
+GLTextureRef::BindingNameFetch(void) const
+{
+    m_bindingName=TextureGet()->BindingNameGet();
 }

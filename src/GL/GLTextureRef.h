@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLTextureRef.h,v 1.6 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLTextureRef.h,v 1.7 2002/08/27 08:56:21 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.7  2002/08/27 08:56:21  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -39,23 +42,43 @@
  */
 
 #include "mushCore.h"
+#include "GLStandard.h"
 
 class GLTexture;
 
 class GLTextureRef
 {
 public:
-    GLTextureRef(): m_texPtr(NULL) {}
+    GLTextureRef(): m_texPtr(NULL), m_bindingName(0) {}
     GLTextureRef(const string& inName): m_name(inName), m_texPtr(NULL) {}
     void NameSet(const string& inName) {m_name=inName;m_texPtr=NULL;}
     const string& NameGet(void) const {return m_name;}
     GLTexture *TextureGet(void) const;
+    GLuint BindingNameGet(void) const;
     bool Exists(void) const;
     
 private:
-    void GetReference(void) const;
+    void TextureFetch(void) const;
+    void BindingNameFetch(void) const;
 
     string m_name;
     mutable GLTexture *m_texPtr;
+    mutable GLuint m_bindingName;
 };
+
+inline GLTexture *
+GLTextureRef::TextureGet(void) const
+{
+    if (m_texPtr != NULL) return m_texPtr;
+    TextureFetch();
+    return m_texPtr;
+}
+
+inline GLuint
+GLTextureRef::BindingNameGet(void) const
+{
+    if (m_bindingName != 0) return m_bindingName;
+    BindingNameFetch();
+    return m_bindingName;
+}
 #endif

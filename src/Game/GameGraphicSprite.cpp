@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.9 2002/08/27 08:56:24 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.10 2002/10/08 21:44:10 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.10  2002/10/08 21:44:10  southa
+ * 3D maps
+ *
  * Revision 1.9  2002/08/27 08:56:24  southa
  * Source conditioning
  *
@@ -60,11 +63,11 @@ GameGraphicSprite::Render(void)
         GLUtils::Translate(m_offset);
         if (m_texRef.TextureGet()->NeedsAlpha())
         {
-            GLUtils::BlendSet(GLUtils::kBlendTransparent);
+            GLState::BlendSet(GLState::kBlendTransparent);
         }
         else
         {
-            GLUtils::BlendSet(GLUtils::kBlendSolid);
+            GLState::BlendSet(GLState::kBlendSolid);
         }
         GLUtils::DrawSprite(*m_texRef.TextureGet(), m_rectangle);
         GLUtils::PopMatrix();

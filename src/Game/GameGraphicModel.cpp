@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: GameGraphicModel.cpp,v 1.1 2002/10/12 11:22:21 southa Exp $
+ * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.1  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  */
 
 #include "GameGraphicModel.h"
@@ -20,21 +23,26 @@
 void
 GameGraphicModel::Render(void)
 {
-    if (m_currentTexRef.Exists())
+    U32 facetSize=m_facets.size();
+    for (U32 i=0; i<facetSize; ++i)
     {
-        GLUtils::PushMatrix();
-
-        //GLUtils::Translate(m_offset);
-        if (m_currentTexRef.TextureGet()->NeedsAlpha())
+        FacetDef& facetDef=m_facets[i];
+        U32 arraySize=facetDef.vertices.SizeGet();
+        if (facetDef.texRef.Exists())
+        
+        if (facetDef.texRef.TextureGet()->NeedsAlpha())
         {
-            GLUtils::BlendSet(GLUtils::kBlendTransparent);
+            GLState::BlendSet(GLState::kBlendTransparent);
         }
         else
         {
-            GLUtils::BlendSet(GLUtils::kBlendSolid);
+            GLState::BlendSet(GLState::kBlendSolid);
         }
-        // GLUtils::DrawSprite(*m_texRef.TextureGet(), m_rectangle);
-        GLUtils::PopMatrix();
+        GLState::BindTexture(facetDef.texRef.BindingNameGet());
+        GLState::TextureEnable();
+        GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
+        GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
+        GLRender::VertexTextureArrayQuads(arraySize);
     }    
 }
 
@@ -50,12 +58,14 @@ GameGraphicModel::HandleFacetsStart(CoreXML& inXML)
     m_pickleState = kPickleFacets;
 
     m_facets.push_back(FacetDef());
-    m_facets.back().texRef=m_currentTexRef;
 }
 
 void
 GameGraphicModel::HandleFacetsEnd(CoreXML& inXML)
 {
+    m_facets.back().texRef=m_currentTexRef;
+    m_facets.back().vertices.Build();
+    m_facets.back().texCoords.Build();
     m_pickleState = kPickleData;
 }
 
@@ -92,7 +102,6 @@ GameGraphicModel::HandleVertexEnd(CoreXML& inXML)
     vertex += m_positionOffset;
     texCoord += m_texCoordOffset;   
     m_facets.back().vertices.Push(vertex);
-    m_facets.back().vertices.Build(vertex); // working here
     m_facets.back().texCoords.Push(texCoord);    
 };
 

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.29 2002/10/08 21:44:09 southa Exp $
+ * $Id: GLUtils.h,v 1.30 2002/10/11 14:01:11 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.30  2002/10/11 14:01:11  southa
+ * Lighting work
+ *
  * Revision 1.29  2002/10/08 21:44:09  southa
  * 3D maps
  *
@@ -117,38 +120,7 @@ class GLRectangle;
 class GLUtils
 {
 public:
-    enum tBlendType
-    {
-        kBlendInvalid,
-        kBlendNone,
-        kBlendTransparent,
-        kBlendSolid,
-        kBlendLine
-    };
-    
-    enum tModulationType
-    {
-        kModulationInvalid,
-        kModulationNone,
-        kModulationColour,
-        kModulationLighting
-    };
 
-    enum tDepthType
-    {
-        kDepthInvalid,
-        kDepthNone,
-        kDepthTest
-    };
-    
-    enum tDisplayQuality
-    {
-        kQualityInvalid,
-        kQualityNotSet,
-        kQualityLow,
-        kQualityMedium,
-        kQualityHigh
-    };
 
     GLUtils(): m_x(0), m_y(0) {}
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
@@ -173,11 +145,7 @@ public:
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);
-    static void ColourSet(float inRed, float inGreen, float inBlue);
-    static void ColourSet(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha)
-    {
-        glColor4f(inRed, inGreen, inBlue, inAlpha);
-    }
+
     static void DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2);
     static void DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3);
     static void RasterPos(tVal inX, tVal inY);
@@ -189,15 +157,7 @@ public:
     static void PostRedisplay(void);
     static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
     static void RotateAboutZ(tVal inAngle);
-    static void BlendSet(tBlendType inType);
-    static void AmbientLightSet(tVal inAmbient);
-    static void ModulationSet(tModulationType inType);
-    static void DepthSet(tDepthType inType);
-    static void Reset(void);
-    static void TextureParamsReset(void);
-    static tDisplayQuality DisplayQualityGet(void);
-    static void PolygonSmoothingSet(bool inValue);
-    static void UseLightingSet(bool inValue);
+
     static void PushMatrix(void) { glPushMatrix(); }
     static void PopMatrix(void) { glPopMatrix(); }
     static void Translate(const GLVector& inVec) { glTranslatef(inVec.x, inVec.y, inVec.z); }
@@ -207,12 +167,8 @@ private:
     tVal m_x;
     tVal m_y;
 
-    static tBlendType m_blendState;
-    static tModulationType m_modulateState;
-    static tDepthType m_depthState;
-    static tDisplayQuality m_displayQuality;
-    static bool m_polygonSmoothing;
-    static bool m_useLighting;
+
+
     static tVal m_eyeDistance;
     static tVal m_screenScale;
 };

@@ -13,8 +13,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.2 2002/10/08 21:44:09 southa Exp $
+ * $Id: GLVector.h,v 1.3 2002/10/12 11:22:21 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.3  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  * Revision 1.2  2002/10/08 21:44:09  southa
  * 3D maps
  *
@@ -24,6 +27,7 @@
  */
 
 #include "mushCore.h"
+#include "GLStandard.h"
 #include "GLRenderable.h"
 
 class GLVector : public GLRenderable
@@ -80,8 +84,14 @@ public:
         modf(z, &temp);
         z=temp;
     }
-    void Print(ostream& inOstream) const { inOstream << "(" << x << "," << y << "," << z << ")"; }
 
+    void ConvertTo(GLfloat outArray[3])
+    {
+        outArray[0]=x;
+        outArray[1]=y;
+        outArray[2]=z;
+    };
+    
     const GLVector& operator+=(const GLVector& inVector) {x+=inVector.x; y+=inVector.y; z+=inVector.z; return *this;}
     const GLVector& operator-=(const GLVector& inVector) {x-=inVector.x; y-=inVector.y; z-=inVector.z; return *this;}
     const GLVector& operator*=(const GLVector& inVector) {x*=inVector.x; y*=inVector.y; z*=inVector.z; return *this;}
@@ -142,7 +152,7 @@ inline bool operator!=(const GLVector& a, const GLVector& b)
 
 inline ostream& operator<<(ostream &s, const GLVector& inVector)
 {
-    inVector.Print(s);
+    inVector.Pickle(s);
     return s;
 }
 #endif

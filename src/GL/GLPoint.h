@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLPoint.h,v 1.12 2002/10/10 13:51:16 southa Exp $
+ * $Id: GLPoint.h,v 1.13 2002/10/12 11:22:21 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.13  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  * Revision 1.12  2002/10/10 13:51:16  southa
  * Speed fixes and various others
  *
@@ -56,6 +59,7 @@
  */
 
 #include "mushCore.h"
+#include "GLStandard.h"
 #include "GLRenderable.h"
 
 class GLPoint : public GLRenderable
@@ -108,7 +112,12 @@ public:
         modf(y, &temp);
         y=temp;
     }
-    
+
+    void ConvertTo(GLfloat outArray[2])
+    {
+        outArray[0]=x;
+        outArray[1]=y;
+    };
     const GLPoint& operator+=(const GLPoint& inPoint) {x+=inPoint.x; y+=inPoint.y; return *this;}
     const GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
     const GLPoint& operator*=(const GLPoint& inPoint) {x*=inPoint.x; y*=inPoint.y; return *this;}

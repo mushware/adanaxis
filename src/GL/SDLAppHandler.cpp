@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.18.4.1 2002/09/04 10:18:04 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.21 2002/10/06 22:09:59 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.21  2002/10/06 22:09:59  southa
+ * Initial lighting test
+ *
  * Revision 1.20  2002/09/02 14:48:02  southa
  * RPM building
  *
@@ -81,6 +84,7 @@
 
 #include "GLStandard.h"
 #include "GLUtils.h"
+#include "GLState.h"
 #include "GLAppSignal.h"
 
 #include "mushPlatform.h"
@@ -191,7 +195,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-    if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
+    if (GLState::DisplayQualityGet() == GLState::kQualityHigh)
     {
         SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
     }
@@ -254,21 +258,21 @@ SDLAppHandler::EnterScreen(tInitType inType)
     
     int alphaSize;
     SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &alphaSize);
-    if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
+    if (GLState::DisplayQualityGet() == GLState::kQualityHigh)
     {
         if (alphaSize > 0)
         {
-            GLUtils::PolygonSmoothingSet(true);
+            GLState::PolygonSmoothingSet(true);
         }
         else
         {
-            GLUtils::PolygonSmoothingSet(false);
+            GLState::PolygonSmoothingSet(false);
             cerr << "Disabling polygon smoothing (no alpha buffer)" << endl;
         }
     }
     else
     {
-        GLUtils::PolygonSmoothingSet(false);
+        GLState::PolygonSmoothingSet(false);
     }
     // Got video mode
     if (m_width > m_height)
@@ -279,7 +283,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
     {
         m_greatestDimension=m_height;
     }
-    GLUtils::Reset();
+    GLState::Reset();
 }
 
 void

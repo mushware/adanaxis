@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.14 2002/10/06 22:09:58 southa Exp $
+ * $Id: mushGL.h,v 1.15 2002/10/12 11:22:20 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.15  2002/10/12 11:22:20  southa
+ * GraphicModel work
+ *
  * Revision 1.14  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -75,6 +78,7 @@
 #include "GL/GLQuad.h"
 #include "GL/GLPoint.h"
 #include "GL/GLRectangle.h"
+#include "GL/GLRender.h"
 #include "GL/GLRenderable.h"
 #include "GL/GLStandard.h"
 #include "GL/GLString.h"

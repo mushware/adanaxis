@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.24 2002/08/26 12:44:37 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.25 2002/08/27 08:56:28 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.25  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.24  2002/08/26 12:44:37  southa
  * Timed rewards and sound tweaks
  *
@@ -381,14 +384,14 @@ void
 GameTypeRace::RenderTimes(void) const
 {
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(1.0,1.0,1.0,0.75);
+    GLState::ColourSet(1.0,1.0,1.0,0.75);
     GLUtils orthoGL;
     orthoGL.MoveToEdge(1,1);
     orthoGL.MoveRelative(-0.03,-0.03);
     GLString remainingStr(GameTimer::MsecToLongString(m_dispRemaining),
                           GLFontRef("font-mono1", 0.03), 1.0);
     remainingStr.Render();
-    GLUtils::ColourSet(1.0,1.0,0.0,0.75);
+    GLState::ColourSet(1.0,1.0,0.0,0.75);
     if (m_records.LapTimeValid())
     {
         orthoGL.MoveRelative(0, -0.025);
@@ -404,7 +407,7 @@ GameTypeRace::RenderTimes(void) const
         lapTimeStr.Render();
     }
 
-    GLUtils::ColourSet(1.0,1.0,1.0,0.75);
+    GLState::ColourSet(1.0,1.0,1.0,0.75);
     orthoGL.MoveToEdge(-1,1);
     orthoGL.MoveRelative(0.03,-0.03);
 
@@ -414,7 +417,7 @@ GameTypeRace::RenderTimes(void) const
                     GLFontRef("font-mono1", 0.02), -1.0);
     lapStr.Render();
 
-    GLUtils::ColourSet(0.0,1.0,1.0,0.75);
+    GLState::ColourSet(0.0,1.0,1.0,0.75);
 
     U32 prevSequence = m_sequence;
     if (prevSequence == 0) prevSequence = m_chequePoints.size();
@@ -448,7 +451,7 @@ GameTypeRace::RenderResult(void) const
     const tVal column3=0.4;
      
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(1.0,1.0,1.0,m_resultAlpha);
+    GLState::ColourSet(1.0,1.0,1.0,m_resultAlpha);
     GLUtils orthoGL;
     {
         orthoGL.MoveTo(column3,row1-rowSpacing);
@@ -480,7 +483,7 @@ GameTypeRace::RenderResult(void) const
         recordStr.Render();
     }
 
-    GLUtils::ColourSet(1.0,1.0,0.0,m_resultAlpha);
+    GLState::ColourSet(1.0,1.0,0.0,m_resultAlpha);
 
     if (m_records.LapTimeValid())
     {
@@ -498,7 +501,7 @@ GameTypeRace::RenderResult(void) const
         }
     }
     
-    GLUtils::ColourSet(0.0,1.0,1.0,m_resultAlpha);
+    GLState::ColourSet(0.0,1.0,1.0,m_resultAlpha);
     
     for (U32 i=0; i<m_chequePoints.size(); ++i)
     {

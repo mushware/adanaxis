@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLArray.h,v 1.1 2002/10/12 11:22:21 southa Exp $
+ * $Log: GLArray.h,v $
+ * Revision 1.1  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  */
 
 #include "mushCore.h"
@@ -15,8 +18,9 @@ public:
 
     void Push(const tSrc& inValue) { m_vector.push_back(inValue); }
     void Build(void);
-    const tDest *ArrayGet(void) { COREASSERT(m_pArray != NULL); return m_pArray; }
-
+    const tDest *ArrayGet(void) const { COREASSERT(m_pArray != NULL); return m_pArray; }
+    U32 SizeGet(void) const { return m_vector.size(); }
+    
 private:
     vector<tSrc> m_vector;
     tDest *m_pArray;

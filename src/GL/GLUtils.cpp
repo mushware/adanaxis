@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.37 2002/10/11 14:01:10 southa Exp $
+ * $Id: GLUtils.cpp,v 1.38 2002/10/11 20:10:14 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.38  2002/10/11 20:10:14  southa
+ * Various fixes and new files
+ *
  * Revision 1.37  2002/10/11 14:01:10  southa
  * Lighting work
  *
@@ -137,14 +140,9 @@
 #include "GLAppHandler.h"
 #include "GLPoint.h"
 #include "GLRectangle.h"
+#include "GLState.h"
 #include "mushPlatform.h"
 
-GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
-GLUtils::tModulationType GLUtils::m_modulateState=GLUtils::kModulationInvalid;
-GLUtils::tDepthType GLUtils::m_depthState=GLUtils::kDepthInvalid;
-GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
-bool GLUtils::m_polygonSmoothing=false;
-bool GLUtils::m_useLighting=true;
 tVal GLUtils::m_eyeDistance=60; // Controls how much perspective there is
 tVal GLUtils::m_screenScale=20;  // m_screenScale axis units cover the longest screen axis
 
@@ -313,12 +311,6 @@ GLUtils::ClearScreen(void)
 }
 
 void
-GLUtils::ColourSet(float inRed, float inGreen, float inBlue)
-{
-    glColor3f(inRed, inGreen, inBlue);
-}
-
-void
 GLUtils::DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2)
 {
     glBegin(GL_QUADS);
@@ -361,8 +353,8 @@ GLUtils::DrawSprite(const GLTexture& inTex)
 {
     tVal width2=inTex.Width()/2;
     tVal height2=inTex.Height()/2;
-    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
-    glEnable(GL_TEXTURE_2D);
+    GLState::BindTexture(inTex.BindingNameGet());
+    GLState::TextureEnable();
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(-width2,-height2);
@@ -373,14 +365,14 @@ GLUtils::DrawSprite(const GLTexture& inTex)
     glTexCoord2f(1,0);
     glVertex2f(width2,-height2);
     glEnd();
-    glDisable(GL_TEXTURE_2D);
+    GLState::TextureDisable();
 }
 
 void
 GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
 {
-    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
-    glEnable(GL_TEXTURE_2D);
+    GLState::BindTexture(inTex.BindingNameGet());
+    GLState::TextureEnable();
     glPushMatrix();
     {
         static tVal ctr=0;
@@ -397,7 +389,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
     glTexCoord2f(inRectangle.xmax,inRectangle.ymin);
     glVertex2f(0.5,-0.5);
     glEnd();
-    glDisable(GL_TEXTURE_2D);
+    GLState::TextureDisable();
     glPopMatrix();
 }
 
@@ -406,8 +398,8 @@ GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
 {
     tVal width=inTex.Width();
     tVal height=inTex.Height();
-    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
-    glEnable(GL_TEXTURE_2D);
+    GLState::BindTexture(inTex.BindingNameGet());
+    GLState::TextureEnable();
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(inX,inY);
@@ -418,7 +410,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
     glTexCoord2f(1,0);
     glVertex2f(inX+height,inY);
     glEnd();
-    glDisable(GL_TEXTURE_2D);
+    GLState::TextureDisable();
 }
 
 void
@@ -426,8 +418,8 @@ GLUtils::DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAn
 {
     tVal width=inTex.Width();
     tVal height=inTex.Height();
-    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
-    glEnable(GL_TEXTURE_2D);
+    GLState::BindTexture(inTex.BindingNameGet());
+    GLState::TextureEnable();
     glPushMatrix();
     tVal xCentre=inX+width/2;
     tVal yCentre=inY+height/2;
@@ -445,7 +437,7 @@ GLUtils::DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAn
     glVertex2f(inX+height,inY);
     glEnd();
     glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
+    GLState::TextureDisable();
 }
 
 // Slow version
@@ -479,235 +471,7 @@ GLUtils::RotateAboutZ(tVal inAngle)
     glRotated(inAngle, 0, 0, 1);
 }
 
-void
-GLUtils::BlendSet(tBlendType inValue)
-{
-    if (m_blendState != inValue)
-    {
-        switch (inValue)
-        {
-            case kBlendTransparent:
-                glDisable(GL_POLYGON_SMOOTH);
-                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                glEnable(GL_BLEND);
-                break;
 
-            case kBlendLine:
-            {
-                glDisable(GL_POLYGON_SMOOTH);
-                if (m_displayQuality != kQualityLow)
-                {
-                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                    glEnable(GL_BLEND);
-                }
-                else
-                {
-                    glDisable(GL_BLEND);
-                }
-            }
-            break;
-
-            case kBlendNone:
-                glDisable(GL_POLYGON_SMOOTH);
-                glDisable(GL_BLEND);
-                break;
-
-            case kBlendSolid:
-                if (m_polygonSmoothing)
-                {
-                    // Set up polygon anti-aliasing
-                    glEnable(GL_POLYGON_SMOOTH);
-                    glBlendFunc(GL_SRC_ALPHA_SATURATE, GL_ONE);
-                    glEnable(GL_BLEND);
-                }
-                else
-                {
-                    glDisable(GL_BLEND);
-                }
-                break;
-
-            default:
-                throw(LogicFail("Invalid value to GLUtils::BlendSet"));
-                break;
-        }
-        m_blendState = inValue;
-    }
-}
-
-void
-GLUtils::AmbientLightSet(tVal inAmbient)
-{
-    GLfloat ambient[4]={inAmbient, inAmbient, inAmbient, 1};
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
-    glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
-    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
-}
-
-void
-GLUtils::ModulationSet(tModulationType inValue)
-{
-    if (m_modulateState != inValue)
-    {
-        switch (inValue)
-        {
-            case kModulationNone:
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-                glDisable(GL_LIGHTING);
-                break;
-
-            case kModulationColour:
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                glDisable(GL_LIGHTING);
-                break;
-
-            case kModulationLighting:
-                if (m_useLighting)
-                {
-                    GLfloat ambient[4]={1.0,1.0,1.0,1};
-                    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-
-                    GLfloat specular[4]={1.0,1.0,1.0,1};
-                    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-
-                    GLfloat diffuse[4]={0.1,0.1,0.1,1};
-                    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-
-                    glMaterialf(GL_FRONT, GL_SHININESS, 128);
-
-                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-                    glEnable(GL_LIGHTING);
-                    glNormal3f(0,0,1);
-                }
-                else
-                {
-                    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-                    glDisable(GL_LIGHTING);
-                    ColourSet(1,1,1,1);
-                }
-                break;
-
-            default:
-                throw(LogicFail("Invalid value to GLUtils::ModulationSet"));
-                break;
-        }
-        m_modulateState=inValue;
-    }
-}
-
-void
-GLUtils::DepthSet(tDepthType inValue)
-{
-    if (m_depthState != inValue)
-    {
-        switch (inValue)
-        {
-            case kDepthNone:
-                glDisable(GL_DEPTH_TEST);
-                break;
-
-            case kDepthTest:
-                glDepthFunc(GL_LEQUAL);
-                glEnable(GL_DEPTH_TEST);
-                break;
-
-            default:
-                throw(LogicFail("Invalid value to GLUtils::DepthSet"));
-                break;
-        }
-        m_depthState=inValue;
-    }
-}
-
-GLUtils::tDisplayQuality
-GLUtils::DisplayQualityGet(void)
-{
-    if (m_displayQuality == kQualityNotSet)
-    {
-        string displayQuality("low");
-        CoreEnv::Instance().VariableGetIfExists(displayQuality, "DISPLAY_QUALITY");
-        if (displayQuality == "low")
-        {
-            m_displayQuality = kQualityLow;
-        }
-        else if (displayQuality == "medium")
-        {
-            m_displayQuality = kQualityMedium;
-        }
-        else if (displayQuality == "high")
-        {
-            m_displayQuality = kQualityHigh;
-        }
-        else
-        {
-            throw(CommandFail("Bad value for DISPLAY_QUALITY: should be low, medium or high"));
-        }
-    }
-    return m_displayQuality;
-}
-
-void
-GLUtils::TextureParamsReset(void)
-{
-    switch (DisplayQualityGet())
-    {
-        case kQualityLow:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-            break;
-
-        case kQualityMedium:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            break;
-
-        case kQualityHigh:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            break;
-
-        default:
-            throw(LogicFail("Bad value for m_displayQuality"));
-    }
-}
-
-void
-GLUtils::Reset(void)
-{
-    TextureParamsReset();
-    
-    switch (DisplayQualityGet())
-    {
-        case kQualityLow:
-            break;
-            
-        case kQualityMedium:    
-            break;
-
-        case kQualityHigh:
-            glEnable(GL_POINT_SMOOTH);
-            glEnable(GL_LINE_SMOOTH);
-            break;
-
-        default:
-            throw(LogicFail("Bad value for m_displayQuality"));
-    }
-    m_depthState=kDepthInvalid;
-    DepthSet(kDepthNone);
-    m_modulateState=kModulationInvalid;
-    ModulationSet(kModulationNone);
-}
-
-void
-GLUtils::PolygonSmoothingSet(bool inValue)
-{
-    m_polygonSmoothing=inValue;
-}
-    
-void
-GLUtils::UseLightingSet(bool inValue)
-{
-    m_useLighting=inValue;
-}
     
 void
 GLUtils::CheckGLError(void)

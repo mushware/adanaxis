@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.6 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLFont.cpp,v 1.7 2002/10/06 22:09:58 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.7  2002/10/06 22:09:58  southa
+ * Initial lighting test
+ *
  * Revision 1.6  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -39,6 +42,7 @@
 #include "GLTexture.h"
 #include "GLRectangle.h"
 #include "GLUtils.h"
+#include "GLState.h"
 
 CoreInstaller GLFontInstaller(GLFont::Install);
 
@@ -82,8 +86,8 @@ GLFont::RenderCharacter(U32 inChar) const
     tVal xPos=((inChar-32) % m_xNum)*xstep;
     tVal yPos=1-((inChar-32) / m_xNum)*ystep;
     GLRectangle rect=GLRectangle(xPos, yPos-ystep, xPos+xstep, yPos);
-    GLUtils::BlendSet(GLUtils::kBlendTransparent);
-    GLUtils::ModulationSet(GLUtils::kModulationColour);
+    GLState::BlendSet(GLState::kBlendTransparent);
+    GLState::ModulationSet(GLState::kModulationColour);
     GLUtils::DrawSprite(*m_texRef.TextureGet(), rect);
 }
 
