@@ -12,8 +12,11 @@
 ****************************************************************************/
 //%Header } dnkP76FJ2EDluhnPYobJxw
 /*
- * $Id: MaurheenHypercube.cpp,v 1.1 2004/10/31 23:34:06 southa Exp $
+ * $Id: MaurheenHypercube.cpp,v 1.2 2004/11/17 23:43:47 southa Exp $
  * $Log: MaurheenHypercube.cpp,v $
+ * Revision 1.2  2004/11/17 23:43:47  southa
+ * Added outer product
+ *
  * Revision 1.1  2004/10/31 23:34:06  southa
  * Hypercube rendering test
  *
@@ -22,26 +25,96 @@
 
 #include "MaurheenHypercube.h"
 
+#include "mushMushcore.h"
+
 using namespace Mushware;
 using namespace std;
 
 void
 MaurheenHypercube::Create(tVal frame)
 {
-    tVal scale=0.2;
-    for (U32 i=0; i<16; ++i)
+    t4Val scale(0.2,0.2,0.20,0.2);
+    tVal move=0.05;
+    tVal move_1m = 1-move;
+    
+    for (U32 face=0; face<8; ++face)
     {
-        m_vertices.push_back(t4GLVal(scale*(i%2)-(scale/2),
-                                     scale*((i/2)%2)-(scale/2),
-                                     scale*((i/4)%2)-(scale/2),
-                                     scale*((i/8)%2)-(scale/2)));
-        m_definition.push_back(t4U32(i%2, (i/2)%2, (i/4)%2, (i/8)%2));
+        t4Val vert;
+        vert.Set((face%2)?1:-1, face/2);
+
+        for (U32 facet=0; facet<8; ++facet)
+        {
+            if (face / 2 != facet / 2)
+            {
+                vert.Set((facet%2)?1:-1, facet/2);
+
+                for (U32 square=0; square<8; ++square)
+                {
+                    if (face / 2 != square / 2 &&
+                        facet / 2 != square / 2)
+                    {
+                        vert.Set((square%2)?1:-1, square/2);
+                        
+                        for (U32 line=square; line<8; ++line)
+                        {
+                            if (face / 2 != line / 2 &&
+                                facet / 2 != line / 2 &&
+                                square / 2 != line / 2)
+                            {
+                                vert.Set((line%2?1:-1), line/2);
+                                m_vertices.push_back(t4Val(vert[0]*scale[0], vert[1]*scale[1], vert[2]*scale[2], vert[3]*scale[3]));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // File the zero order group (vertices in facets)
+    m_facetGroup.OrderPush();
+    for (U32 face=0; face<8; ++face)
+    {
+        t4Val centroid(0,0,0,0);
+        for (U32 k=0; k<24; ++k)
+        {
+            centroid += m_vertices[face*24+k];
+        }
+        centroid /= 24;
+        
+        for (U32 facet=0; facet<6; ++facet)
+        {
+            m_facetGroup.GroupPush();
+            
+            U32 base=face*24+facet*4;
+            m_facetGroup.IndexPush(base);
+            m_facetGroup.IndexPush(base+1);
+            m_facetGroup.IndexPush(base+3);
+            m_facetGroup.IndexPush(base+2);
+            
+            for (U32 k=0; k<4; ++k)
+            {
+                m_vertices[base+k] *= move_1m;
+                m_vertices[base+k] += move * centroid;
+            }
+        }
+    }
+    
+    // fill the first order group (facets in facets)
+    m_facetGroup.OrderPush();
+    for (U32 face=0; face<8; ++face)
+    {
+        m_facetGroup.GroupPush();
+        for (U32 facet=0; facet<6; ++facet)
+        {
+            m_facetGroup.IndexPush(face*6 + facet);
+        }
     }
     
     for (U32 i=0; i<6; ++i)
     {
         MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
-        for (U32 j=0; j<16; ++j)
+        for (U32 j=0; j<m_vertices.size(); ++j)
         {
             m_vertices[j] = rotate * m_vertices[j];
         }
@@ -72,84 +145,77 @@ MaurheenHypercube::Render(tVal frame)
         vec0, vec1, vec2
     );
     
+    
+    // orderOne iterator (which we don't iterate through) points to the face order grouping
+    // This is a vector of vectors of indices.  Indices index into the orderZero array.
+    // Each individual vector represents a face
+    tFacetGroup::tOrderReverseIterator orderOne = m_facetGroup.OrderRBegin();
+    
+    
+    // This iterator (which we don't iterate through) points to the facet order grouping
+    // This is a vector of vectors of indices.  Indices index into the vertex array.
+    // Each individual vector represents a facet
+    tFacetGroup::tOrderIterator orderZero = m_facetGroup.OrderBegin();
 
-        
-    for (U32 i=0; i<16; ++i)
+    glDisable(GL_CULL_FACE);
+    float black[4] = {0,0,0,0};
+    glEnable(GL_FOG);
+    glFogfv(GL_FOG_COLOR, black);
+    glFogf(GL_FOG_START,3.5);
+    glFogf(GL_FOG_END,4.5);
+    glFogi(GL_FOG_MODE,GL_LINEAR);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    glShadeModel(GL_SMOOTH);
+
+    tVal colour=100*sin(frame*0.001);
+    
+    // Iterator itrFace takes us through each face one by one.  *faceIter is a vector of facet indices
+    for (tFacetGroup::tSuperGroupIterator itrFace = orderOne->begin(); itrFace != orderOne->end(); ++itrFace)
     {
-        for (U32 j=i+1; j<16; ++j)
+        colour += sin(frame*0.0037);
+        
+        tVal red   = 0.5+0.5*cos(M_PI*(colour*1.03+frame*0.0071));
+        tVal green = 0.5+0.5*cos(M_PI*(colour*1.07+frame*0.0113));
+        tVal blue  = 0.5+0.5*cos(M_PI*(colour*1.11+frame*0.0157));
+        tVal alpha  = 0.05+0.95*pow(0.5+0.5*sin(colour*3.31+frame*0.0093), 4);
+        
+        // Iterator itrSubFace takes us through each facet index for the face referred to by faceIter.
+        // *itrSubFace is a facet index
+        for (tFacetGroup::tGroupIterator itrSubFace = itrFace->begin(); itrSubFace != itrFace->end(); ++itrSubFace)
         {
-            U32 diffCount = 0;
-            for (U32 k=0; k<4; ++k)
+            tFacetGroup::tGroup& facet = (*orderZero)[*itrSubFace];
+#if 1
+            
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            GLState::ColourSet(red, green, blue, 0.1*alpha);
+            glDisable(GL_FOG);
+            glBegin(GL_TRIANGLE_FAN);
+            
+            for (tFacetGroup::tGroupIterator vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)
             {
-                if (m_definition[i][k] == m_definition[j][k])
-                {
-                    ++diffCount;
-                }
+
+                t3GLVal vert = preMatrix * m_vertices[*vertIter];
+                tVal scale = 1;
+                GLState::ColourSet(scale*red, scale*green, scale*blue, 0.15*alpha);
+                glVertex3fv(&vert.X());
             }
-            if (diffCount == 3)
+            glEnd(); 
+#endif            
+#if 1            
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            glEnable(GL_FOG);
+            glBegin(GL_LINE_LOOP);
+            
+            for (tFacetGroup::tGroupIterator vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)
             {
-                tVal red=0.0, green=0.0, blue=0.0;
-                U32 switchVal = int(frame/4) % 8;
-                switch (switchVal)
-                {
-                    case 0:
-                    case 1:
-                        
-                        if (m_definition[i].X() > 0 && m_definition[j].X() > 0)
-                        {
-                            red=1.0;
-                        }
-                        if (switchVal != 1) break;
-                        
-                    case 2:
-                    case 3:
-                        if (m_definition[i].Y() > 0 && m_definition[j].Y() > 0)
-                        {
-                            green=1.0;
-                        }
-                        if (switchVal != 3) break;
-                        
-                    case 4:
-                    case 5:
-                        if (m_definition[i].Z() <= 0 && m_definition[j].Z() <= 0)
-                        {
-                            blue = 1.0;
-                        }
-                        if (switchVal != 5) break;
-                        
-                    case 6:
-                    case 7:
-                        if (m_definition[i].W() <= 0 && m_definition[j].W() <= 0)
-                        {
-                            red = 1.0;
-                            green = 1.0;
-                            blue = 0.0;
-                        }
-                        if (switchVal != 7) break;
-                        if (m_definition[i].X() > 0 && m_definition[j].X() > 0)
-                        {
-                            red=1.0;
-                        }
-                            break;
-                }
-                if (red+green+blue == 0)
-                {
-                    red=0.3;
-                    green=0.3;
-                    blue=0.3;
-                }
-                GLState::ColourSet(red, green, blue, 1.0);
-                glBegin(GL_LINES);
-
-                t3GLVal start = preMatrix * m_vertices[i];
-                t3GLVal end = preMatrix * m_vertices[j];
-                    
-                glVertex3fv(&start.X());
-                glVertex3fv(&end.X());
-
-                glEnd(); 
-                //cout << start << ", " << end << endl;
+                
+                t3GLVal vert = preMatrix * m_vertices[*vertIter];
+                tVal scale = 1;
+                GLState::ColourSet(scale*red, scale*green, scale*blue, 1.5*alpha);
+                glVertex3fv(&vert.X());
             }
+            glEnd(); 
+#endif
         }
     }
 }

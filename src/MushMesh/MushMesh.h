@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.15 2004/11/17 23:43:47 southa Exp $
+ * $Id: MushMesh.h,v 1.16 2004/12/06 20:44:17 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.16  2004/12/06 20:44:17  southa
+ * Quaternion and matrix operations
+ *
  * Revision 1.15  2004/11/17 23:43:47  southa
  * Added outer product
  *
@@ -68,6 +71,8 @@
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
 #include "MushMeshConnector.h"
+#include "MushMeshGroup.h"
+#include "MushMeshMesh.h"
 #include "MushMeshOps.h"
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"

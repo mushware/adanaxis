@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YgKXUj/EEsggmRKVn+PRWA
 /*
- * $Id: SDLAppHandler.cpp,v 1.37 2003/09/17 19:40:30 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.38 2004/01/02 21:13:06 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.38  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.37  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -247,6 +250,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
     m_width=inDef.WidthGet();
     m_height=inDef.HeightGet();

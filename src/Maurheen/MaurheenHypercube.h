@@ -16,26 +16,31 @@
  ****************************************************************************/
 //%Header } FU79ttZJMqjIVWpj0CtP6A
 /*
- * $Id: MaurheenWorm.h,v 1.2 2004/03/07 20:33:54 southa Exp $
- * $Log: MaurheenWorm.h,v $
+ * $Id: MaurheenHypercube.h,v 1.1 2004/10/31 23:34:06 southa Exp $
+ * $Log: MaurheenHypercube.h,v $
+ * Revision 1.1  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  */
 
 #include "MaurheenStandard.h"
 
 #include "mushMushGL.h"
+#include "mushMushMesh.h"
 
 class MaurheenHypercube
 {
 public:
+    typedef Mushware::t4Val tVertex;
+    typedef MushMeshGroup tFacetGroup;
+    
     MaurheenHypercube() {}
     void Create(Mushware::tVal frame);
     void Render(Mushware::tVal frame);
     
 private:
-    std::vector<Mushware::t4GLVal> m_vertices;
-    std::vector<Mushware::t4U32> m_definition;
-    std::vector<Mushware::t3GLVal> m_normals;
-    std::vector<Mushware::t2GLVal> m_texCoords;
+    std::vector<tVertex> m_vertices;
+    tFacetGroup m_facetGroup;
     Mushware::U32 m_length;
     Mushware::U32 m_order;
 };

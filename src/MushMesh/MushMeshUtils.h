@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0wfuXnSBCMb2QK1DMdaKSw
 /*
- * $Id: MushMeshUtils.h,v 1.7 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.8 2004/12/13 11:09:11 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.8  2004/12/13 11:09:11  southa
+ * Quaternion and vector tweaks
+ *
  * Revision 1.7  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -50,6 +53,8 @@ class MushMeshUtils
 public:
     static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
     static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
+    static void BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
+
     static Mushware::tVal SubdivisionAlphaGet(Mushware::U32 inN);
     static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN);
     static Mushware::U32 TriangleLimitGet(Mushware::U32 inX, Mushware::U32 inOrder);
@@ -64,6 +69,15 @@ private:
 
     static const Mushware::tVal m_alphaTable[kMaxValence];
 };
+
+inline void
+MushMeshUtils::BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
+{
+    if (inValue > inLimit)
+    {
+        BoundaryThrow(inValue, inLimit);
+    }
+}
 
 inline Mushware::tVal
 MushMeshUtils::SubdivisionAlphaGet(Mushware::U32 inN)

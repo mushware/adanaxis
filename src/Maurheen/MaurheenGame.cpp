@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.4 2004/09/20 21:50:47 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.5 2004/10/31 23:34:06 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.5  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  * Revision 1.4  2004/09/20 21:50:47  southa
  * Added GLV
  *
@@ -102,8 +105,13 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     GLState::UseLightingSet(false);
     GLState::BlendSet(GLState::kBlendLine);
     GLState::ModulationSet(GLState::kModulationNone);
-    glEnable(GL_POINT_SMOOTH);
+
     glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+    
+    glDisable(GL_MULTISAMPLE);
+    glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+    glLineWidth(1.0);
     
     GLState::TextureDisable();
     //GLTextureRef texRef("font-system1");
@@ -126,7 +134,7 @@ void
 MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13));
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13)); // 13
     MushGLV glv;
     glv.Acquaint();
 }
