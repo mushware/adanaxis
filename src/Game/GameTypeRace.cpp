@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.18 2002/08/24 10:52:47 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.19 2002/08/24 15:27:07 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.19  2002/08/24 15:27:07  southa
+ * Race restart
+ *
  * Revision 1.18  2002/08/24 10:52:47  southa
  * World records
  *
@@ -253,6 +256,12 @@ GameTypeRace::RaceFinished(void)
     newRecords.RecordsPropose(m_records);
     
     SaveRecords(newRecords);
+}
+
+bool
+GameTypeRace::IsGameOver(void) const
+{
+    return m_raceState == kResult;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameType.h,v 1.3 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameType.h,v 1.4 2002/08/22 10:11:11 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.4  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.3  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -27,6 +30,7 @@ public:
     virtual void EventHandler(const GameEvent& inEvent) = 0;
     virtual void Render(void) const = 0;
     virtual void Initialise(void) = 0;
+    virtual bool IsGameOver(void) const = 0;
     
 protected:
     void UnpicklePrologue(void) {}

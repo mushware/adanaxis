@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.10 2002/08/22 10:11:12 southa Exp $
+ * $Id: GameTypeRace.h,v 1.11 2002/08/24 10:52:47 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.11  2002/08/24 10:52:47  southa
+ * World records
+ *
  * Revision 1.10  2002/08/22 10:11:12  southa
  * Save records, spacebar dialogues
  *
@@ -57,6 +60,7 @@ public:
     virtual void EventHandler(const GameEvent& inEvent);
     virtual void Render(void) const;
     virtual void Initialise(void);
+    virtual bool IsGameOver(void) const;
         
 protected:
     void UnpicklePrologue(void);

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.58 2002/08/22 10:11:11 southa Exp $
+ * $Id: GameContract.cpp,v 1.59 2002/08/24 15:27:07 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.59  2002/08/24 15:27:07  southa
+ * Race restart
+ *
  * Revision 1.58  2002/08/22 10:11:11  southa
  * Save records, spacebar dialogues
  *
@@ -281,6 +284,8 @@ GameContract::Init(void)
 {
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
+    GameData::Instance().TimerGet().Reset();
+    
     m_tileMap=GameData::Instance().TileMapGet("tiles");
     m_floorMap=GameData::Instance().FloorMapGet("floor");
     COREASSERT(m_tileMap != NULL);
@@ -360,7 +365,10 @@ GameContract::RunningMove(void)
     }
 
     GameData::Instance().TypeGet().Move();
-    
+    if (GameData::Instance().TypeGet().IsGameOver())
+    {
+        if (m_gameState == kRunning) m_gameState = kOver;
+    }
     m_masterScale+=(0.05 - m_masterScale)/30;
 
 #if 0
