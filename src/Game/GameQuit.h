@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameQuit.h,v 1.1 2002/11/18 18:55:58 southa Exp $
+ * $Log: GameQuit.h,v $
+ * Revision 1.1  2002/11/18 18:55:58  southa
+ * Game resume and quit
+ *
  */
 
 #include "mushCore.h"
@@ -11,11 +14,11 @@ class GameQuit : public GameBase
 {
 public:
     GameQuit();
-    virtual void Process(void);
-    virtual void Display(void);
-    virtual void ScriptFunction(const string& inName) const;
-    virtual void SwapIn(void);
-    virtual void SwapOut(void);
+    virtual void Process(GameAppHandler& inAppHandler);
+    virtual void Display(GameAppHandler& inAppHandler);
+    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void SwapIn(GameAppHandler& inAppHandler);
+    virtual void SwapOut(GameAppHandler& inAppHandler);
 
 protected:
     

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.18 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameData.cpp,v 1.19 2002/11/18 18:55:57 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.19  2002/11/18 18:55:57  southa
+ * Game resume and quit
+ *
  * Revision 1.18  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -76,6 +79,7 @@
 #include "GameTraits.h"
 #include "GameController.h"
 #include "GamePiece.h"
+#include "GamePiecePlayer.h"
 #include "GameDialogue.h"
 #include "GameView.h"
 #include "GameTimer.h"
@@ -85,6 +89,7 @@
 GameData *GameData::m_instance=NULL;
 
 GameData::GameData():
+    m_playerData(CoreData<GamePiecePlayer>::PrivateInstanceCreate()),
     m_timer(NULL),
     m_gameType(NULL),
     m_gameRewards(NULL)
@@ -94,6 +99,7 @@ GameData::GameData():
 GameData::~GameData()
 {
     Clear();
+    delete m_playerData; m_playerData=NULL;
 }
 
 void
@@ -134,12 +140,12 @@ GameData::Clear(void)
     }
     m_controllers.clear();
 
-    for (map<string, GamePiece *>::iterator p = m_pieces.begin();
-         p != m_pieces.end(); ++p)
+    for (map<string, GamePiece *>::iterator p = m_templates.begin();
+         p != m_templates.end(); ++p)
     {
         delete p->second;
     }
-    m_pieces.clear();
+    m_templates.clear();
 
     for (map<string, GameDialogue *>::iterator p = m_dialogues.begin();
          p != m_dialogues.end(); ++p)
@@ -176,6 +182,8 @@ GameData::Clear(void)
         delete p->second;
     }
     m_currentDialogues.clear();
+
+    m_playerData->Clear();
 }
 
 GameTileMap *
@@ -331,29 +339,29 @@ GameData::ControllerGet(const string& inName) const
     return p->second;
 }
 
-GamePiece *
-GameData::PieceDeleteAndCreate(const string& inName, GamePiece *inPiece)
+const GamePiece *
+GameData::TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece)
 {
-    map<string, GamePiece *>::iterator p = m_pieces.find(inName);
-    if (p != m_pieces.end())
+    map<string, GamePiece *>::iterator p = m_templates.find(inName);
+    if (p != m_templates.end())
     {
         delete p->second;
         p->second=inPiece;
     }
     else
     {
-        m_pieces[inName]=inPiece;
+        m_templates[inName]=inPiece;
     }
     return inPiece;
 }
 
-GamePiece *
-GameData::PieceGet(const string& inName) const
+const GamePiece *
+GameData::TemplateGet(const string& inName) const
 {
-    map<string, GamePiece *>::const_iterator p = m_pieces.find(inName);
-    if (p == m_pieces.end())
+    map<string, GamePiece *>::const_iterator p = m_templates.find(inName);
+    if (p == m_templates.end())
     {
-        throw(GameDataNotPresent("Access to non-existent piece '"+inName+"'"));
+        throw(GameDataNotPresent("Access to non-existent template '"+inName+"'"));
     }
     return p->second;
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.14 2002/10/22 20:42:02 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.15 2002/11/18 18:55:56 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.15  2002/11/18 18:55:56  southa
+ * Game resume and quit
+ *
  * Revision 1.14  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -137,12 +140,11 @@ GLUTAppHandler::MousePositionGet(tVal& outX, tVal& outY) const
 }
 
 void
-GLUTAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
+GLUTAppHandler::UnboundedMousePositionGet(S32& outX, S32& outY) const
 {
-    outXDelta=m_mouseXDelta/m_width;
-    outYDelta=m_mouseYDelta/m_width; 
-    m_mouseXDelta=0;
-    m_mouseYDelta=0;
+    // Not tested
+    outX=m_mouseXDelta;
+    outY=m_mouseYDelta; 
 }
 
 void
@@ -274,6 +276,7 @@ GLUTAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
 void
 GLUTAppHandler::PassiveMotionHandler(int inX, int inY)
 {
+    // Not tested
     S32 deltaX=0;
     S32 deltaY=0;
     
@@ -283,11 +286,6 @@ GLUTAppHandler::PassiveMotionHandler(int inX, int inY)
         m_lastMouseY=inY;
     }
     
-    if (PlatformInputUtils::MouseDeltaPrologue(inX, inY, m_lastMouseX, m_lastMouseY))
-    {
-    	PlatformInputUtils::GetMouseDeltas(deltaX, deltaY, inX, inY, m_lastMouseX, m_lastMouseY);
-    	PlatformInputUtils::MouseDeltaEpilogue(inX, inY, m_lastMouseX, m_lastMouseY);
-    }
     if (m_lastMouseValid)
     {
         m_mouseXDelta+=deltaX;
@@ -360,9 +358,27 @@ GLUTAppHandler::MainLoop(void)
 }
 
 void
+GLUTAppHandler::PollForControlEvents(void)
+{
+    // Can't do it
+}
+
+void
 GLUTAppHandler::AppQuit(void)
 {
     exit(0);
+}
+
+void
+GLUTAppHandler::KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues)
+{
+    COREASSERT(false);
+}
+
+void
+GLUTAppHandler::ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec)
+{
+    COREASSERT(false);
 }
 
 GLKeys

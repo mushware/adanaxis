@@ -1,6 +1,9 @@
 /*
- * $Id: GameQuit.cpp,v 1.1 2002/11/18 18:55:58 southa Exp $
+ * $Id: GameQuit.cpp,v 1.2 2002/11/22 11:42:06 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.2  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.1  2002/11/18 18:55:58  southa
  * Game resume and quit
  *
@@ -10,6 +13,7 @@
 
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
+#include "GameNetUtils.h"
 
 #include "mushMedia.h"
 #include "mushGL.h"
@@ -21,7 +25,7 @@ GameQuit::GameQuit() :
 }
 
 void
-GameQuit::Process(void)
+GameQuit::Process(GameAppHandler& inAppHandler)
 {
     switch (m_gameState)
     {
@@ -40,7 +44,7 @@ GameQuit::Process(void)
 }
 
 void
-GameQuit::Display(void)
+GameQuit::Display(GameAppHandler& inAppHandler)
 {
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -84,6 +88,8 @@ GameQuit::Init(void)
 
     MediaNetLog::Instance().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
+    GameNetUtils::KillServers();
+    GameNetUtils::KillClients();
 }    
 
 void
@@ -113,16 +119,16 @@ GameQuit::Timing(void)
 }
 
 void
-GameQuit::ScriptFunction(const string& inName) const
+GameQuit::ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const
 {
 }
 
 void
-GameQuit::SwapIn(void)
+GameQuit::SwapIn(GameAppHandler& inAppHandler)
 {
 }
 
 void
-GameQuit::SwapOut(void)
+GameQuit::SwapOut(GameAppHandler& inAppHandler)
 {
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.9 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameController.cpp,v 1.10 2002/10/22 20:42:03 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.10  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -46,31 +49,47 @@
 #include "GameAppHandler.h"
 
 GameController::GameController():
-    m_leftKey(GLKeys::kKeyLeft),
-    m_rightKey(GLKeys::kKeyRight),
-    m_upKey(GLKeys::kKeyUp),
-    m_downKey(GLKeys::kKeyDown),
+    m_keyState(4),
     m_lastMouseValid(false)
 {
-
-
+    m_keysOfInterest.push_back(GLKeys::kKeyLeft);
+    m_keysOfInterest.push_back(GLKeys::kKeyRight);
+    m_keysOfInterest.push_back(GLKeys::kKeyUp);
+    m_keysOfInterest.push_back(GLKeys::kKeyDown);
 }
 
 void
-GameController::StateGet(GameControllerState& outState)
+GameController::StateGet(GameControllerState& outState, U32 inAtMsec)
 {
-    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    
+    gameAppHandler.KeysOfInterestSet(m_keysOfInterest);
+    S32 unboundedMouseX, unboundedMouseY;
 
-    outState.leftPressed=gameHandler.KeyStateGet(m_leftKey);
-    outState.rightPressed=gameHandler.KeyStateGet(m_rightKey);
-    outState.upPressed=gameHandler.KeyStateGet(m_upKey);
-    outState.downPressed=gameHandler.KeyStateGet(m_downKey);
+    gameAppHandler.ReadHistoricControlState(unboundedMouseX, unboundedMouseY, m_keyState, inAtMsec);
+ 
+    COREASSERT(m_keyState.size() == 4);
+    outState.leftPressed=m_keyState[0];
+    outState.rightPressed=m_keyState[1];
+    outState.upPressed=m_keyState[2];
+    outState.downPressed=m_keyState[3];
+    
     tVal mouseX, mouseY;
-    tVal mouseXDelta, mouseYDelta;
-    gameHandler.MousePositionGet(mouseX, mouseY);
-    gameHandler.MouseDeltaTake(mouseXDelta, mouseYDelta);
+    gameAppHandler.MousePositionGet(mouseX, mouseY);
+
     outState.mouseX=mouseX;
     outState.mouseY=mouseY;
-    outState.mouseXDelta=mouseXDelta;
-    outState.mouseYDelta=mouseYDelta;
+    if (m_lastMouseValid)
+    {
+        outState.mouseXDelta = unboundedMouseX - m_lastUnboundedMouseX;
+        outState.mouseYDelta = unboundedMouseY - m_lastUnboundedMouseY;
+    }
+    else
+    {
+        outState.mouseXDelta = 0;
+        outState.mouseYDelta = 0;
+        m_lastMouseValid = true;
+    }
+    m_lastUnboundedMouseX = unboundedMouseX;
+    m_lastUnboundedMouseY = unboundedMouseY;
 }

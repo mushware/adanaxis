@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.14 2002/11/18 11:31:13 southa Exp $
+ * $Id: GameAppHandler.h,v 1.15 2002/11/18 18:55:57 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.15  2002/11/18 18:55:57  southa
+ * Game resume and quit
+ *
  * Revision 1.14  2002/11/18 11:31:13  southa
  * Return to game mode
  *
@@ -77,6 +80,10 @@ public:
     void GameModeEnter(bool inResume);
     void QuitModeEnter(void);
     void CurrentGameEnd(void);
+
+    bool ServerPresent(void) const { return m_gameType == kGameTypeServer; }
+    bool NetworkActive(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
+    bool MultiplayerIs(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
     
 protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
@@ -92,10 +99,21 @@ private:
         kAppStateGame,
         kAppStateQuit
     };
-    
+
+    enum tGameType
+    {
+        kGameTypeInvalid,
+        kGameTypeServer,
+        kGameTypeClient,
+        kGameTypeSingle
+    };
+
+    void GameTypeDetermine(void);
+        
     GameBase *m_pSetup;
     GameBase *m_pGame;
     GameBase *m_pCurrent;
     tAppState m_appState;
+    tGameType m_gameType;
 };
 #endif

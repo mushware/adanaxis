@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.h,v 1.20 2002/10/22 20:41:59 southa Exp $
+ * $Id: GLAppHandler.h,v 1.21 2002/11/18 18:55:56 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.21  2002/11/18 18:55:56  southa
+ * Game resume and quit
+ *
  * Revision 1.20  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -104,7 +107,7 @@ public:
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
     virtual void MousePositionGet(tVal& outX, tVal& outY) const = 0;
-    virtual void MouseDeltaTake(tVal& outX, tVal& outY) = 0;
+    virtual void UnboundedMousePositionGet(S32& outX, S32& outY) const = 0;
     virtual void EnterScreen(const GLModeDef& inDef) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;
@@ -113,6 +116,9 @@ public:
     virtual U32 MillisecondsGet(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
+    virtual void PollForControlEvents(void) = 0;
     virtual void AppQuit(void) = 0;
+    virtual void KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues) = 0;
+    virtual void ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec) = 0;
 };
 #endif

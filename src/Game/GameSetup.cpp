@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.16 2002/11/28 16:19:25 southa Exp $
+ * $Id: GameSetup.cpp,v 1.17 2002/11/28 18:05:36 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.17  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.16  2002/11/28 16:19:25  southa
  * Fix delete object messaging
  *
@@ -72,7 +75,7 @@ GameSetup::GameSetup() :
 }
 
 void
-GameSetup::Process(void)
+GameSetup::Process(GameAppHandler& inAppHandler)
 {
     switch (m_gameState)
     {
@@ -91,7 +94,7 @@ GameSetup::Process(void)
 }
 
 void
-GameSetup::Display(void)
+GameSetup::Display(GameAppHandler& inAppHandler)
 {
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -334,18 +337,18 @@ GameSetup::KeyControl(void)
 }
 
 void
-GameSetup::ScriptFunction(const string& inName) const
+GameSetup::ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const
 {
 }
 
 void
-GameSetup::SwapIn(void)
+GameSetup::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(0));
 }
 
 void
-GameSetup::SwapOut(void)
+GameSetup::SwapOut(GameAppHandler& inAppHandler)
 {
 }

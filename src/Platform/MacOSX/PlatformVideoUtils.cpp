@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.5 2002/10/22 20:42:08 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.6 2002/11/12 11:49:22 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.6  2002/11/12 11:49:22  southa
+ * Initial MHTML processing
+ *
  * Revision 1.5  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -34,6 +37,7 @@
 #include "mushGL.h"
 
 #include <ApplicationServices/ApplicationServices.h>
+#include <Carbon/Carbon.h>
 
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
@@ -177,3 +181,16 @@ PlatformVideoUtils::ForceShowCursor(void)
     ShowCursor();
 }
 
+void
+PlatformVideoUtils::AppActivate(void)
+{
+#if 0
+    // Doesn't work
+    WindowRef ourWindow = FrontWindow();
+    cerr << "ourWindow=" << ourWindow << endl;
+    if (ourWindow != NULL)
+    {
+        SelectWindow(ourWindow);
+    }
+#endif
+}

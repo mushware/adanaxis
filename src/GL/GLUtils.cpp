@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.cpp,v 1.44 2002/10/15 14:02:30 southa Exp $
+ * $Id: GLUtils.cpp,v 1.45 2002/10/22 20:42:02 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.45  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.44  2002/10/15 14:02:30  southa
  * Mode changes
  *
@@ -250,7 +253,7 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
 
 }
 
-void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
+void GLUtils::PerspectiveLookAt(const GLPoint& inPoint, tVal inAngle)
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -272,6 +275,32 @@ void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
     
     GLUtils::CheckGLError();
 }
+
+void
+GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, tVal inAngle)
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+    tVal nearClip=1.0;
+    tVal scale=m_screenScale/m_eyeDistance*nearClip;
+    glFrustum(-screenRatios.x*scale,screenRatios.x*scale,
+              -screenRatios.y*scale,screenRatios.y*scale,
+              nearClip, // zNear clipping plane distance from viewer
+              m_eyeDistance*2 // zFar clipping plane distance from viewer
+              );
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(inCamera.x, inCamera.y, inCamera.z, // eye position
+              inLookAt.x, inLookAt.y, inLookAt.z, // reference for -z axis
+              sin(inAngle),cos(inAngle),0 // direction of up
+              );
+
+    GLUtils::CheckGLError();
+}
+
+
 
 const GLPoint
 GLUtils::ScreenSizeGet(void)

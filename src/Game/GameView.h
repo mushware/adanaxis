@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameView.h,v 1.4 2002/10/08 11:58:53 southa Exp $
+ * $Id: GameView.h,v 1.5 2002/10/22 20:42:07 southa Exp $
  * $Log: GameView.h,v $
+ * Revision 1.5  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/08 11:58:53  southa
  * Light cache
  *
@@ -31,6 +34,7 @@
 
 #include "mushCore.h"
 #include "mushGL.h"
+
 #include "GameOverPlot.h"
 
 class GameView
@@ -46,12 +50,18 @@ public:
     void LightingFactorSet(tVal inFactor) { m_lightingFactor = inFactor; }
     tVal AmbientLightingGet(void) { return m_ambientLighting; }
     void AmbientLightingSet(tVal inAmbient) { m_ambientLighting = inAmbient; }
+    const GLVector& CameraPosGet(void) const { return m_cameraPos; }
+    const GLVector& LookAtPosGet(void) const { return m_lookAtPos; }
+    tVal CameraAngleGet(void) const { return m_cameraAngle; }
+    void MoveCameraToPlayer(const GLVector& inPos, tVal inAngle);
     
 private:
     GLRectangle m_dimensions;
     GameOverPlot m_overPlot;
     tVal m_lightingFactor;
     tVal m_ambientLighting;
-    
+    GLVector m_cameraPos;
+    GLVector m_lookAtPos;
+    tVal m_cameraAngle;
 };
 #endif

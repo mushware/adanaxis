@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.7 2002/10/06 22:10:00 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.8 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/06 22:10:00  southa
  * Initial lighting test
  *
@@ -52,32 +55,11 @@
 
 #include <ApplicationServices/ApplicationServices.h>
 
-bool
-PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    return true;
-}
-
 void
-PlatformInputUtils::GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    CGMouseDelta xDelta, yDelta;
-    CGGetLastMouseDelta(&xDelta, &yDelta);
-    outXDelta=xDelta;
-    outYDelta=yDelta;
-}
-
-void
-PlatformInputUtils::MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-}
-
-void
-PlatformInputUtils::MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta)
+PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
     CGMouseDelta xDelta, yDelta;
     CGGetLastMouseDelta(&xDelta, &yDelta);
     ioXDelta=xDelta;
     ioYDelta=yDelta;
 }
-

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.12 2002/11/24 00:29:08 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.13 2002/11/28 12:05:46 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.13  2002/11/28 12:05:46  southa
+ * Server name work
+ *
  * Revision 1.12  2002/11/24 00:29:08  southa
  * Serve web pages to local addresses only
  *
@@ -40,6 +43,10 @@
  *************************/
 
 #include "mushPlatform.h"
+
+// Remove these, which are hardcoded in SDL_net.h
+#undef INADDR_ANY
+#undef INADDR_NONE
 
 #include <sys/types.h>
 #include <sys/time.h>

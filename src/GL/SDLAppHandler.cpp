@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.26 2002/10/22 20:42:02 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.27 2002/11/18 18:55:56 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.27  2002/11/18 18:55:56  southa
+ * Game resume and quit
+ *
  * Revision 1.26  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -111,8 +114,9 @@ SDLAppHandler::SDLAppHandler():
     m_latchedKeyState(GLKeys::kNumberOfKeys, false),
     m_mouseX(0),
     m_mouseY(0),
-    m_mouseXDelta(0),
-    m_mouseYDelta(0),
+    m_unboundedMouseX(0),
+    m_unboundedMouseY(0),
+    m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
     m_firstDelta(true)
 {}
 
@@ -121,8 +125,8 @@ SDLAppHandler::Initialise(void)
 {
     m_mouseX=0;
     m_mouseY=0;
-    m_mouseXDelta=0;
-    m_mouseYDelta=0;
+    m_unboundedMouseX=0;
+    m_unboundedMouseY=0;
     m_firstDelta=true;
 }
 
@@ -140,15 +144,18 @@ SDLAppHandler::Display(void)
 void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
+    U32 keyValue = inSignal.keyValue.ValueGet();
+    COREASSERT(keyValue < m_keyState.size());
 
-    COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
-    m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
+    AddToControlBuffer(keyValue, inSignal.keyDown);
+    
+    m_keyState[keyValue]=inSignal.keyDown;
     if (inSignal.keyDown)
     {
-        m_latchedKeyState[inSignal.keyValue.ValueGet()]=true;
+        m_latchedKeyState[keyValue]=true;
     }
 
-    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    if (keyValue == 27 && inSignal.keyDown)
     {
         // Escape key pressed
         CoreAppHandler::Instance().Signal(CoreAppSignal(CoreAppSignal::kEscape));
@@ -184,22 +191,10 @@ SDLAppHandler::MousePositionGet(tVal& outX, tVal& outY) const
 }
 
 void
-SDLAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
+SDLAppHandler::UnboundedMousePositionGet(S32& outX, S32& outY) const
 {
-    if (m_firstDelta)
-    {
-        outXDelta=0;
-        outYDelta=0;
-        m_firstDelta=false;
-    }
-    else
-    {
-        // Normalise based on 640x480 screen
-        outXDelta=m_mouseXDelta/640;
-        outYDelta=-m_mouseYDelta/640;
-    }
-    m_mouseXDelta=0;
-    m_mouseYDelta=0;
+    outX=m_unboundedMouseX;
+    outY=-m_unboundedMouseY;
 }
 
 void
@@ -260,8 +255,9 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     }
     SetCursorState(m_showCursor);
     GLState::Reset();
-    m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false),
+    m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false);
     m_modeDef=inDef;
+    PlatformVideoUtils::AppActivate();
 }
 
 const GLModeDef&
@@ -344,59 +340,153 @@ SDLAppHandler::MainLoop(void)
     m_doQuit=false;
     while (!m_doQuit)
     {
-        SDL_Event event;
-        bool isEvent=SDL_PollEvent(&event);
-        if (isEvent)
+        PollForControlEvents();
+        if (m_redisplay)
         {
-            switch(event.type)
+            m_redisplay=false;
+            Display();
+        }
+        Idle();
+    }
+}
+
+void
+SDLAppHandler::AddToControlBuffer(U32 inKeyValue, bool inKeyDirection)
+{
+    COREASSERT(m_controlBufferIndex < m_controlBuffer.size());
+    
+    SDLControlEntry& controlEntry = m_controlBuffer[m_controlBufferIndex];
+    controlEntry.timestamp = MillisecondsGet();
+    controlEntry.keyValue = inKeyValue;
+    controlEntry.keyDirection = inKeyDirection;
+    controlEntry.unboundedMouseX = m_unboundedMouseX;
+    controlEntry.unboundedMouseY = m_unboundedMouseY;
+
+    ++m_controlBufferIndex;
+    if (m_controlBufferIndex >= m_controlBuffer.size())
+    {
+        m_controlBufferIndex=0;
+    }
+}
+
+void
+SDLAppHandler::PollForControlEvents(void)
+{
+    U32 loopCtr=0;
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch(event.type)
+        {
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), TranslateKey(&event.key), m_mouseX, m_mouseY));
+                break;
+
+            case SDL_MOUSEMOTION:
             {
-                case SDL_KEYDOWN:
-                case SDL_KEYUP:
-                    Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), TranslateKey(&event.key), m_mouseX, m_mouseY));
-                    break;
+                // We log what the mouse position _was_ in the history, so as we track backwards
+                // regenerating the control state we'll see the change at the right time
+                AddToControlBuffer(0, 0);
+                m_mouseX=event.motion.x;
+                m_mouseY=event.motion.y;
+                S32 mouseDeltaX = event.motion.xrel;
+                S32 mouseDeltaY = event.motion.yrel;
+                PlatformInputUtils::MouseDeltaOverrideGet(mouseDeltaX, mouseDeltaY);
+                m_unboundedMouseX += mouseDeltaX;
+                m_unboundedMouseY += mouseDeltaY;
 
-                case SDL_MOUSEMOTION:
-                    m_mouseX=event.motion.x;
-                    m_mouseY=event.motion.y;
-                    m_mouseXDelta+=event.motion.xrel;
-                    m_mouseYDelta+=event.motion.yrel;
-                    PlatformInputUtils::MouseDeltaOverrideGet(m_mouseXDelta, m_mouseYDelta);
-                    break;
+            }
+            break;
 
-                case SDL_MOUSEBUTTONDOWN:
-                case SDL_MOUSEBUTTONUP:
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+            {
+                U32 button=event.button.button-1;
+                if (event.button.button < 1 ||
+                    button > (GLKeys::kKeyMouse5 - GLKeys::kKeyMouse1))
                 {
-                    U32 button=event.button.button-1;
-                    if (event.button.button < 1 ||
-                        button > (GLKeys::kKeyMouse5 - GLKeys::kKeyMouse1))
+                    cerr << "Button index " << button << " ignored" << endl;
+                    break;
+                }
+                m_mouseX=event.button.x;
+                m_mouseY=event.button.y;
+                Signal(GLKeyboardSignal((event.button.state == SDL_PRESSED),
+                                        GLKeys(GLKeys::kKeyMouse1+button),
+                                        event.button.x, event.button.y));
+            }
+            break;
+
+            case SDL_QUIT:
+                m_doQuit=true;
+                break;
+        }
+        
+        if (++loopCtr > 100) break;
+    }    
+}
+
+void
+SDLAppHandler::KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues)
+{
+    m_keysOfInterest = inKeyValues;
+}
+
+void
+SDLAppHandler::ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inAtMsec)
+{
+    if (outKeys.size() < m_keysOfInterest.size())
+    {
+        outKeys.resize(m_keysOfInterest.size());
+    }
+    U32 keysOfInterestSize = m_keysOfInterest.size();
+    for (U32 i=0; i<keysOfInterestSize; ++i)
+    {
+        U32 keyValue = m_keysOfInterest[i];
+        COREASSERT(keyValue < m_keyState.size());
+        outKeys[i] = m_keyState[keyValue];
+    }
+
+    outUnboundedMouseX = m_unboundedMouseX;
+    outUnboundedMouseY = m_unboundedMouseY;
+
+    // Wind the control state back in time
+
+    U32 bufferIndex = m_controlBufferIndex;
+    U32 bufferSize = m_controlBuffer.size();
+    do
+    {
+        if (bufferIndex == 0)
+        {
+            bufferIndex = bufferSize;
+        }
+        --bufferIndex;
+        SDLControlEntry& bufferEntry = m_controlBuffer[bufferIndex];
+        if (bufferEntry.timestamp > inAtMsec)
+        {
+            // Unwind this entry from the returned state
+            outUnboundedMouseX = bufferEntry.unboundedMouseX;
+            outUnboundedMouseY = bufferEntry.unboundedMouseY;
+            if (bufferEntry.keyValue != 0)
+            {
+                for (U32 i=0; i<keysOfInterestSize; ++i)
+                {
+                    U32 keyValue = m_keysOfInterest[i];
+                    if (bufferEntry.keyValue == keyValue)
                     {
-                        cerr << "Button index " << button << " ignored" << endl;
+                        // Negated because we are _removing_ this entry from the current state
+                        outKeys[i] = !bufferEntry.keyDirection;
                         break;
                     }
-                    m_mouseX=event.button.x;
-                    m_mouseY=event.button.y;
-                    Signal(GLKeyboardSignal((event.button.state == SDL_PRESSED),
-                                       GLKeys(GLKeys::kKeyMouse1+button),
-                                       event.button.x, event.button.y));
                 }
-                break;
-                    
-                case SDL_QUIT:
-                    m_doQuit=true;
-                    break;
             }
         }
-
-        if (!isEvent)
+        else
         {
-            if (m_redisplay)
-            {
-                m_redisplay=false;
-                Display();
-            }
-            Idle();
+            // Timestamp are now older than we need to go
+            break;
         }
-    }
+    } while (bufferIndex != m_controlBufferIndex);
 }
 
 void

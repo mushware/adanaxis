@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.h,v 1.33 2002/10/15 14:02:30 southa Exp $
+ * $Id: GLUtils.h,v 1.34 2002/10/22 20:42:02 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.34  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.33  2002/10/15 14:02:30  southa
  * Mode changes
  *
@@ -144,9 +147,11 @@ public:
     static const GLPoint ScreenSizeGet(void);
     static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
     static tVal ScreenScaleGet(void);
+    static tVal EyeDistanceGet(void) { return m_eyeDistance; }
     static tVal LongestScreenAxis(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
-    static void PerspectiveLookAt(GLPoint inPoint, tVal inAngle);
+    static void PerspectiveLookAt(const GLPoint& inPoint, tVal inAngle);
+    static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, tVal inAngle);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);

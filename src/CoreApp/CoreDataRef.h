@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreDataRef.h,v 1.2 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreDataRef.h,v 1.3 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreDataRef.h,v $
+ * Revision 1.3  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -33,18 +36,75 @@
 template<class RefType> class CoreDataRef
 {
 public:
-    CoreDataRef(): m_dataPtr(NULL) {}
-    explicit CoreDataRef(const string& inName): m_name(inName), m_dataPtr(NULL) {}
-    void NameSet(const string& inName) {m_name=inName; m_dataPtr=NULL;}
-    const string& NameGet(void) const {return m_name;}
-    inline RefType *DataGet(void) const;
-    inline bool Exists(void) const;
+    CoreDataRef();
+    explicit CoreDataRef(CoreData<RefType> *inInstance);
+    explicit CoreDataRef(const string& inName);
+    CoreDataRef(const string& inName, CoreData<RefType> *inInstance);
+    
+    void NameSet(const string& inName) { m_name=inName; m_dataPtr=NULL; }
+    const string& NameGet(void) const { return m_name; }
+    RefType *DataGet(void) const;
+    bool Exists(void) const;
 
 private:
-    inline void GetReference(void) const;
+    void ReferenceGet(void) const;
+    void DefaultDataPtrGet(void);
+    
     string m_name;
+    CoreData<RefType> *m_dataInstance;
     mutable RefType *m_dataPtr;
 };
+
+template<class RefType>
+inline
+CoreDataRef<RefType>::CoreDataRef() :
+    m_dataPtr(NULL)
+{
+    DefaultDataPtrGet();
+}
+
+template<class RefType>
+inline
+CoreDataRef<RefType>::CoreDataRef(CoreData<RefType> *inInstance) :
+    m_dataInstance(inInstance),
+    m_dataPtr(NULL)
+{
+}
+
+template<class RefType>
+inline
+CoreDataRef<RefType>::CoreDataRef(const string& inName) :
+    m_name(inName),
+    m_dataPtr(NULL)
+{
+    DefaultDataPtrGet();
+}
+
+
+template<class RefType>
+inline
+CoreDataRef<RefType>::CoreDataRef(const string& inName, CoreData<RefType> *inInstance) :
+    m_name(inName),
+    m_dataInstance(inInstance),
+    m_dataPtr(NULL)
+{
+}
+
+template<class RefType>
+inline void
+CoreDataRef<RefType>::DefaultDataPtrGet(void)
+{
+    m_dataInstance = &CoreData<RefType>::Instance();
+}
+
+template<class RefType>
+inline void
+CoreDataRef<RefType>::ReferenceGet(void) const
+{
+    COREASSERT(m_dataInstance != NULL);
+    
+    m_dataPtr=m_dataInstance->DataGet(m_name);
+}
 
 template<class RefType>
 inline RefType *
@@ -52,20 +112,13 @@ CoreDataRef<RefType>::DataGet(void) const
 {
     if (m_dataPtr == NULL)
     {
-        GetReference();
+        ReferenceGet();
+        if (m_dataPtr == NULL)
+        {
+            throw(ReferenceFail("Attempt to access non-existent data '"+m_name+"'"));
+        }
     }
     return m_dataPtr;
-}
-
-template<class RefType>
-inline void
-CoreDataRef<RefType>::GetReference(void) const
-{
-    m_dataPtr=CoreData<RefType>::Instance().DataGet(m_name);
-    if (m_dataPtr == NULL)
-    {
-        throw(ReferenceFail("Attempt to access non-existent data '"+m_name+"'"));
-    }
 }
 
 template<class RefType>
@@ -73,7 +126,7 @@ inline bool
 CoreDataRef<RefType>::Exists(void) const
 {
     if (m_dataPtr != NULL) return true;
-    m_dataPtr=CoreData<RefType>::Instance().DataGet(m_name);
+    ReferenceGet();
     return (m_dataPtr != NULL);
 }
 

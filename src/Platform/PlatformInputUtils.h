@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.h,v 1.7 2002/10/14 18:13:18 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.8 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.8  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -52,10 +55,7 @@
 class PlatformInputUtils
 {
 public:
-    static bool MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);    
-    static void GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);
-    static void MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);
-    static void MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta);
+    static void MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta);
 };
 
 #endif

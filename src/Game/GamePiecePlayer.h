@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.17 2002/10/22 20:42:05 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.18 2002/11/24 23:18:24 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.18  2002/11/24 23:18:24  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.17  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -85,7 +88,7 @@ public:
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual void MoveGet(GameMotionSpec& inSpec) const;
+    virtual void MoveGet(GameMotionSpec& inSpec, U32 inWindbackMsec) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
     virtual void Render(void);

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.h,v 1.7 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameController.h,v 1.8 2002/10/22 20:42:03 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.8  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -45,7 +48,7 @@ class GameControllerState
 {
 public:
     GLPoint MouseGet(void) { return GLPoint(mouseX, mouseY); }
-    GLPoint MouseDeltaGet(void) { return GLPoint(mouseXDelta, mouseYDelta); }
+    GLPoint MouseDeltaGet(void) { return GLPoint(mouseXDelta, mouseYDelta); } // Fix scaling
     
     bool leftPressed;
     bool rightPressed;
@@ -53,24 +56,23 @@ public:
     bool downPressed;
     tVal mouseX;
     tVal mouseY;
-    tVal mouseXDelta;
-    tVal mouseYDelta;
+    S32 mouseXDelta;
+    S32 mouseYDelta;
 };
 
-// Will be subclassed and pickleable
 class GameController
 {
 public:
     GameController();
-    void StateGet(GameControllerState& outState);
+    void StateGet(GameControllerState& outState, U32 inAtMsec);
 
 private:
-    GLKeys m_leftKey;
-    GLKeys m_rightKey;
-    GLKeys m_upKey;
-    GLKeys m_downKey;
+    vector<GLKeys::tKeyValue> m_keysOfInterest;
+    vector<bool> m_keyState;
     tVal m_lastMouseX;
     tVal m_lastMouseY;
+    S32 m_lastUnboundedMouseX;
+    S32 m_lastUnboundedMouseY;
     bool m_lastMouseValid;
 };
 #endif

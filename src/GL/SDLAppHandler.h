@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.h,v 1.15 2002/10/22 20:42:02 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.16 2002/11/18 18:55:57 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.16  2002/11/18 18:55:57  southa
+ * Game resume and quit
+ *
  * Revision 1.15  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -66,6 +69,17 @@
 
 class GLKeyboardSignal;
 
+class SDLControlEntry
+{
+public:
+    explicit SDLControlEntry(U32 inValue) : timestamp(inValue), unboundedMouseX(0), unboundedMouseY(0), keyValue(0), keyDirection(false) {}
+    U32 timestamp;
+    S32 unboundedMouseX;
+    S32 unboundedMouseY;
+    U32 keyValue;
+    bool keyDirection;
+};
+
 class SDLAppHandler : public GLAppHandler
 {
 public:
@@ -74,7 +88,7 @@ public:
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
     virtual void MousePositionGet(tVal& outX, tVal& outY) const;
-    virtual void MouseDeltaTake(tVal& outX, tVal& outY);
+    virtual void UnboundedMousePositionGet(S32& outX, S32& outY) const;
     virtual void EnterScreen(const GLModeDef& inDef);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);
@@ -83,7 +97,10 @@ public:
     virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
+    virtual void PollForControlEvents(void);
     virtual void AppQuit(void);
+    virtual void KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues);
+    virtual void ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec);
     
 protected:
     virtual void Initialise(void);
@@ -96,6 +113,13 @@ protected:
     GLKeys TranslateKey(/* SDL_KeyboardEvent */ void *inKeyEvent) const;
     
 private:
+    enum
+    {
+        kControlBufferSize=100
+    };
+
+    void AddToControlBuffer(U32 inKeyValue, bool inKeyDirection);
+    
     U32 m_width;
     U32 m_height;
     U32 m_bpp;
@@ -106,11 +130,14 @@ private:
     vector<bool> m_latchedKeyState;
     tVal m_mouseX;
     tVal m_mouseY;
-    tVal m_mouseXDelta;
-    tVal m_mouseYDelta;
-    bool m_firstDelta;
+    S32 m_unboundedMouseX;
+    S32 m_unboundedMouseY;
     tVal m_greatestDimension;
     GLModeDef m_modeDef;
+    vector<SDLControlEntry> m_controlBuffer;
+    U32 m_controlBufferIndex;
+    vector<GLKeys::tKeyValue> m_keysOfInterest;
+    bool m_firstDelta;
     bool m_doQuit;
 };
 #endif

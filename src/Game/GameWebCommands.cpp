@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.15 2002/11/28 16:19:25 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.16 2002/11/28 18:05:36 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.16  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.15  2002/11/28 16:19:25  southa
  * Fix delete object messaging
  *
@@ -88,6 +91,7 @@
 #include "GameConfigDef.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameNetUtils.h"
 
 #include "mushCore.h"
 #include "mushMedia.h"
@@ -119,6 +123,15 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         GameConfig::Instance().Update();
     }
     else if (matches[1] == "singleplayer")
+    {
+        GameConfig::Instance().PostDataHandle(values);
+        GameNetUtils::KillServers();
+        GameNetUtils::KillClients();
+
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        gameHandler.GameModeEnter(false);
+    }
+    else if (matches[1] == "mpentergame")
     {
         GameConfig::Instance().PostDataHandle(values);
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
@@ -169,64 +182,19 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     else if (matches[1] == "linkcleardown")
     {
-        CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
-
-        for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin(); p != endValue; ++p)
-        {
-            p->second->Disconnect(MediaNetProtocol::kReasonCodeUserDisconnect);
-        }
+        GameNetUtils::KillLinks();
     }
     else if (matches[1] == "hostcleardown")
     {
         // Kill server first so that it can tell anything with a client image that it's going
-        {
-            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
-    
-            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
-            {
-                if (!p->second->IsImage())
-                {
-                    p->second->Kill();
-                }
-            }
-        }
-        {
-            CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
-    
-            for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
-            {
-                if (p->second->IsImage())
-                {
-                    p->second->Kill();
-                }
-            }
-        }
+        GameNetUtils::KillServers();
+        GameNetUtils::KillClientImages();
     }
     else if (matches[1] == "joincleardown")
     {
         // Kill clients first so that they can tell the servers with images that they're going
-        {
-            CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
-    
-            for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
-            {
-                if (!p->second->IsImage())
-                {
-                    p->second->Kill();
-                }
-            }
-        }
-        {
-            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
-
-            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
-            {
-                if (p->second->IsImage())
-                {
-                    p->second->Kill();
-                }
-            }
-        }
+        GameNetUtils::KillClients();
+        GameNetUtils::KillServerImages();
     }
     else if (matches[1] == "quit")
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.37 2002/11/18 11:31:14 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.38 2002/11/24 23:18:16 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.38  2002/11/24 23:18:16  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.37  2002/11/18 11:31:14  southa
  * Return to game mode
  *
@@ -248,6 +251,8 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     U32 tierHighlightSize=inTierHighlight.size();
     for (U32 tier=0; tier<m_numTiers; ++tier)
     {
+        // Don't miss control events
+        glAppHandler.PollForControlEvents();
         if (tier < tierHighlightSize)
         {
             if (inTierHighlight[tier])

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.9 2002/10/22 20:42:05 southa Exp $
+ * $Id: GamePiece.h,v 1.10 2002/11/24 23:18:23 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.10  2002/11/24 23:18:23  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.9  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -59,7 +62,7 @@ public:
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
-    virtual void MoveGet(GameMotionSpec& outSpec) const = 0;
+    virtual void MoveGet(GameMotionSpec& outSpec, U32 inWindbackMsec) const = 0;
     virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
     virtual char *TypeNameGet(void) const = 0;
     

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.32 2002/11/16 12:43:22 southa Exp $
+ * $Id: GameContract.h,v 1.33 2002/11/24 23:18:07 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.33  2002/11/24 23:18:07  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.32  2002/11/16 12:43:22  southa
  * GameApp mode switching
  *
@@ -116,6 +119,7 @@
 #include "GameBase.h"
 #include "GameTimer.h"
 
+class GameDefClient;
 class GameFloorMap;
 class GameTileMap;
 class GamePiecePlayer;
@@ -127,11 +131,11 @@ class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 public:
     GameContract();
     virtual ~GameContract();
-    virtual void Process(void);
-    virtual void Display(void);
-    virtual void ScriptFunction(const string& inName) const;
-    virtual void SwapIn(void);
-    virtual void SwapOut(void);
+    virtual void Process(GameAppHandler& inAppHandler);
+    virtual void Display(GameAppHandler& inAppHandler);
+    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void SwapIn(GameAppHandler& inAppHandler);
+    virtual void SwapOut(GameAppHandler& inAppHandler);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -151,8 +155,8 @@ protected:
         kGameStateOver
     };
 
-    virtual void Init(void);
-    virtual void Running(void);
+    virtual void Init(GameAppHandler& inAppHandler);
+    virtual void Running(GameAppHandler& inAppHandler);
     virtual void Paused(void);
     virtual void Designing(void);
     virtual void Over(void);
@@ -162,7 +166,11 @@ protected:
     virtual void RenderFastDiagnostics(void) const;
     virtual void DesigningDisplay(void);
     virtual void GlobalKeyControl(void);
-    virtual void RunningMove(void);
+    virtual void RunningMove(U32 inAtMsec);
+    bool VerifyOrCreateForClientDef(const string& inName, GameDefClient& inClientDef);
+    bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
+    void ManagePlayers(GameAppHandler& inAppHandler);
+    
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
@@ -204,7 +212,6 @@ private:
     tGameState m_gameState;
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
-    GamePiecePlayer *m_player;
     tVal m_fps;
     U32 m_frames;
     GameFloorDesigner *m_floorDesigner;

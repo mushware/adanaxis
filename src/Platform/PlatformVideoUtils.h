@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.4 2002/10/22 20:42:07 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.5 2002/11/12 11:49:22 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.5  2002/11/12 11:49:22  southa
+ * Initial MHTML processing
+ *
  * Revision 1.4  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -46,6 +49,7 @@ public:
     void RenderModeInfo(U32 inNum) const;
     static void VBLWait(void);
     static void ForceShowCursor(void);
+    static void AppActivate(void);
     
 private:
     vector<GLModeDef> m_modeDefs;

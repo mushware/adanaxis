@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.26 2002/10/22 20:42:05 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.27 2002/11/24 23:18:23 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.27  2002/11/24 23:18:23  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.26  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -125,7 +128,7 @@ GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
 }
 
 void
-GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
+GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, U32 inWindbackMsec) const
 {
     outSpec = m_motion.MotionSpecGet();
     // Retard the current motion
@@ -144,9 +147,9 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
         m_controller=GameData::Instance().ControllerGet(m_controllerName);
     }
     GameControllerState controlState;
-    m_controller->StateGet(controlState);
+    m_controller->StateGet(controlState, inWindbackMsec);
     
-    outSpec.deltaAngle += m_adhesion * M_PI * controlState.mouseXDelta;
+    outSpec.deltaAngle += m_adhesion * M_PI * controlState.mouseXDelta / 500; // Fix scaling
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);
@@ -400,7 +403,7 @@ GamePiecePlayer::LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv)
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
     CoreXML xml(inStream, filename);
     GamePiecePlayer *newPlayer=new GamePiecePlayer;
-    GameData::Instance().PieceDeleteAndCreate("player1", newPlayer);
+    GameData::Instance().TemplateDeleteAndCreate("player1", newPlayer);
     newPlayer->Unpickle(xml);
     return CoreScalar(0);
 }

@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.10 2002/11/21 18:06:17 southa Exp $
+ * $Id: CoreData.h,v 1.11 2002/11/28 11:10:29 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.11  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.10  2002/11/21 18:06:17  southa
  * Non-blocking network connection
  *
@@ -60,6 +63,7 @@ public:
     
     ~CoreData();
     static CoreData& Instance(void);
+    static CoreData *PrivateInstanceCreate(void);
 
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
@@ -99,6 +103,13 @@ CoreData<RefType>::Instance(void)
     if (m_instance.get() != NULL) return *m_instance;
     m_instance.reset(new CoreData);
     return *m_instance;
+}
+
+template<class RefType>
+inline class CoreData<RefType> *
+CoreData<RefType>::PrivateInstanceCreate(void)
+{
+    return new CoreData;
 }
 
 template<class RefType>

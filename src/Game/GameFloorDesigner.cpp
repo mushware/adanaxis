@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.25 2002/10/17 15:50:59 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.26 2002/10/22 20:42:03 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.26  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.25  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -251,7 +254,7 @@ GameFloorDesigner::Move(void)
         m_controller=GameData::Instance().ControllerGet(m_controllerName);
     }
     GameControllerState controlState;
-    m_controller->StateGet(controlState);
+    m_controller->StateGet(controlState, 0);
 
     for (U32 i=0; i<m_floorMaps.size() && i<12 ; ++i)
     {

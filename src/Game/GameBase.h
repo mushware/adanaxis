@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameBase.h,v 1.11 2002/11/15 18:58:33 southa Exp $
+ * $Id: GameBase.h,v 1.12 2002/11/16 12:43:21 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.12  2002/11/16 12:43:21  southa
+ * GameApp mode switching
+ *
  * Revision 1.11  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -52,15 +55,17 @@
 
 #include "mushCore.h"
 
+class GameAppHandler;
+
 class GameBase
 {
 public:
     virtual ~GameBase() {}
-    virtual void Process(void) = 0;
-    virtual void Display(void) = 0;
-    virtual void ScriptFunction(const string& inName) const = 0;
-    virtual void SwapIn(void) = 0;
-    virtual void SwapOut(void) = 0;
+    virtual void Process(GameAppHandler& inHandler) = 0;
+    virtual void Display(GameAppHandler& inHandler) = 0;
+    virtual void ScriptFunction(const string& inName, GameAppHandler& inHandler) const = 0;
+    virtual void SwapIn(GameAppHandler& inHandler) = 0;
+    virtual void SwapOut(GameAppHandler& inHandler) = 0;
 
 private:
 

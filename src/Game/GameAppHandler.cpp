@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.36 2002/11/18 18:55:57 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.37 2002/11/20 22:35:25 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.37  2002/11/20 22:35:25  southa
+ * Multiplayer setup
+ *
  * Revision 1.36  2002/11/18 18:55:57  southa
  * Game resume and quit
  *
@@ -132,6 +135,8 @@
 #include "GameConfig.h"
 #include "GameContract.h"
 #include "GameData.h"
+#include "GameDefClient.h"
+#include "GameDefServer.h"
 #include "GameFloorMap.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
@@ -143,7 +148,8 @@ GameAppHandler::GameAppHandler() :
     m_pSetup(NULL),
     m_pGame(NULL),
     m_pCurrent(NULL),
-    m_appState(kAppStateStartup)
+    m_appState(kAppStateStartup),
+    m_gameType(kGameTypeInvalid)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
 }
@@ -166,7 +172,7 @@ GameAppHandler::Display(void)
 {
     if (m_pCurrent != NULL)
     {
-        m_pCurrent->Display();
+        m_pCurrent->Display(*this);
     }
 }
 
@@ -181,7 +187,7 @@ GameAppHandler::Idle(void)
         }
         else
         {
-            m_pCurrent->Process();
+            m_pCurrent->Process(*this);
         }
     }
     catch (exception& e)
@@ -200,11 +206,11 @@ GameAppHandler::SetupModeEnter(void)
     {
         if (m_pCurrent != NULL)
         {
-            m_pCurrent->SwapOut();
+            m_pCurrent->SwapOut(*this);
         }
         if (m_pSetup == NULL) m_pSetup = new GameSetup;
         m_pCurrent=m_pSetup;
-        m_pCurrent->SwapIn();
+        m_pCurrent->SwapIn(*this);
         m_appState=kAppStateSetup;
     }   
 }
@@ -216,7 +222,7 @@ GameAppHandler::GameModeEnter(bool inResume)
     {
         if (m_pCurrent != NULL)
         {
-            m_pCurrent->SwapOut();
+            m_pCurrent->SwapOut(*this);
         }
 
         if (!inResume || !GameData::Instance().ContractExists("contract1"))
@@ -227,7 +233,7 @@ GameAppHandler::GameModeEnter(bool inResume)
 
         COREASSERT(m_pGame != NULL);
         m_pCurrent=m_pGame;
-        m_pCurrent->SwapIn();
+        m_pCurrent->SwapIn(*this);
         m_appState=kAppStateGame;
     }
 }
@@ -242,19 +248,69 @@ GameAppHandler::QuitModeEnter(void)
 }
 
 void
+GameAppHandler::GameTypeDetermine(void)
+{
+    m_gameType = kGameTypeInvalid;
+    
+    CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+
+    for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    {
+        if (!p->second->IsImage())
+        {
+            m_gameType = kGameTypeServer;
+        }
+    }
+
+    if (m_gameType == kGameTypeInvalid)
+    {
+        CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
+
+        for (CoreData<GameDefClient>::tMapIterator p = CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        {
+            if (!p->second->IsImage())
+            {
+                m_gameType = kGameTypeClient;
+            }
+        }
+    }
+
+    if (m_gameType == kGameTypeInvalid)
+    {
+        m_gameType = kGameTypeSingle;
+    }
+}
+
+void
 GameAppHandler::PrepareNewGame(void)
 {
+    m_pGame = NULL; // We're about to delete this
+    
+    // Work out what the game type is
+    GameTypeDetermine();
+
+    // Delete the old contract and all of its data
     GameData::Instance().Clear();
-    // Needs to be done in GameContract
+
+    // Create the contract path
     string contractRoot=CoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
-    string contractName=GameConfig::Instance().ParameterGet("spcontractname").StringGet();
+    string contractName;
+    if (MultiplayerIs())
+    {
+        contractName=GameConfig::Instance().ParameterGet("mpcontractname").StringGet();
+    }
+    else
+    {
+        contractName=GameConfig::Instance().ParameterGet("spcontractname").StringGet();
+    }
     string contractPath=contractRoot+"/"+contractName;
     CoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
 
     CoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
     command.Execute();
+    
+    // Get a pointer to the newly created contract
     m_pGame=GameData::Instance().ContractGet("contract1");
-    m_pGame->ScriptFunction("load");
 }
 
 void

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.11 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTimer.h,v 1.12 2002/11/20 22:35:27 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.12  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.11  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -81,6 +84,7 @@ public:
     void DisplayedFrameAt(tMsec inMsec);
     tVal WindbackValueGet(tMsec inMSec);
     tVal FrameRateGet(void);
+    tMsec MotionFrameIntervalGet(void) const { return m_motionFrameInterval / 1000; }
     static string MsecToString(tMsec inMsec);
     static string MsecDifferenceToString(tMsec inMsec);
     static string MsecToLongString(tMsec inMsec);

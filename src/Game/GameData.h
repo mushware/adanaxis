@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.17 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameData.h,v 1.18 2002/11/18 18:55:58 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.18  2002/11/18 18:55:58  southa
+ * Game resume and quit
+ *
  * Revision 1.17  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -76,6 +79,7 @@ class GameContract;
 class GameTraits;
 class GameController;
 class GamePiece;
+class GamePiecePlayer;
 class GameDialogue;
 class GameView;
 class GameTimer;
@@ -105,6 +109,8 @@ public:
     GameTraits *TraitsGet(const string& inName) const;
     GameController *ControllerGetOrCreate(const string& inName);
     GameController *ControllerGet(const string& inName) const;
+    const GamePiece *TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece);
+    const GamePiece *TemplateGet(const string& inName) const;
     GamePiece *PieceDeleteAndCreate(const string& inName, GamePiece *inPiece);
     GamePiece *PieceGet(const string& inName) const;
     GameDialogue *DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue);
@@ -113,6 +119,9 @@ public:
     GameView *ViewGetOrCreate(const string& inName);
     GameView *ViewGet(const string& inName) const;
     GameView *CurrentViewGet(void) const;
+
+    CoreData<GamePiecePlayer>& PlayerDataGet(void) { return *m_playerData; }
+    
     GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;
     void TypeSet(GameType *inType);
@@ -136,9 +145,12 @@ private:
     map<string, GameTraits *> m_traits;
     map<string, GameController *> m_controllers;
     DialogueMap m_dialogues;
+    map<string, GamePiece *> m_templates;
     map<string, GamePiece *> m_pieces;
     map<string, GameView *> m_views;
 
+    CoreData<GamePiecePlayer> *m_playerData;
+    
     GameTimer *m_timer;
     GameType *m_gameType;
     GameRewards *m_gameRewards;

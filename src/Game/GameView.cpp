@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameView.cpp,v 1.4 2002/10/08 11:58:53 southa Exp $
+ * $Id: GameView.cpp,v 1.5 2002/10/22 20:42:07 southa Exp $
  * $Log: GameView.cpp,v $
+ * Revision 1.5  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/08 11:58:53  southa
  * Light cache
  *
@@ -32,6 +35,20 @@
 GameView::GameView():
     m_dimensions(GLRectangle(0,0,0,0)),
     m_lightingFactor(1.0),
-    m_ambientLighting(0.3)
+    m_ambientLighting(0.3),
+    m_cameraPos(GLVector(0,0,1)),
+    m_lookAtPos(GLVector(0,0,0)),
+    m_cameraAngle(0)
 {
+    m_cameraPos.z = GLUtils::EyeDistanceGet();
+}
+
+void
+GameView::MoveCameraToPlayer(const GLVector& inPos, tVal inAngle)
+{
+    m_cameraPos = inPos;
+    m_cameraPos.z = GLUtils::EyeDistanceGet();
+
+    m_lookAtPos = inPos;
+    m_cameraAngle = inAngle;
 }

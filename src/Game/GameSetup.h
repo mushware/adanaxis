@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.h,v 1.4 2002/11/28 15:51:21 southa Exp $
+ * $Id: GameSetup.h,v 1.5 2002/11/28 18:05:36 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.5  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.4  2002/11/28 15:51:21  southa
  * Kill image defs as well
  *
@@ -23,11 +26,11 @@ class GameSetup : public GameBase
 {
 public:
     GameSetup();
-    virtual void Process(void);
-    virtual void Display(void);
-    virtual void ScriptFunction(const string& inName) const;
-    virtual void SwapIn(void);
-    virtual void SwapOut(void);
+    virtual void Process(GameAppHandler& inAppHandler);
+    virtual void Display(GameAppHandler& inAppHandler);
+    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void SwapIn(GameAppHandler& inAppHandler);
+    virtual void SwapOut(GameAppHandler& inAppHandler);
 
 protected:
     void ConfigInit(void);
