@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.6 2002/11/22 18:12:57 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.7 2002/11/23 15:08:08 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.7  2002/11/23 15:08:08  southa
+ * Store ports in network order
+ *
  * Revision 1.6  2002/11/22 18:12:57  southa
  * Added TCPConnectionCompleted
  *
@@ -21,6 +24,10 @@
 #include "mushPlatform.h"
 
 #include <windows.h>
+#include <iphlpapi.h>
+
+bool PlatformNet::m_localAddressesValid=false;
+map<U32, bool> PlatformNet::m_localAddressMap;
 
 void
 PlatformNet::SocketNonBlockingSet(tSocket inSocket)
@@ -187,3 +194,47 @@ PlatformNet::NetworkToHostOrderU16(U32 inVal)
 {
     return ntohs(inVal);
 }
+
+void
+PlatformNet::LocalAddressesRetrieve(void)
+{
+    m_localAddressMap.clear();
+
+    U8 ipBuffer[16384];
+    PMIB_IPADDRTABLE ipAddrTable = reinterpret_cast<PMIB_IPADDRTABLE>(ipBuffer);
+    ULONG bufSize=sizeof(ipBuffer)-256;
+    DWORD result = GetIpAddrTable(ipAddrTable, &bufSize, 0);
+
+    if (result != NO_ERROR)
+    {
+        ostringstream message;
+        message << "GetIpAddrTable failed (" << result << ")";
+        throw(NetworkFail(message.str()));
+    }
+    DWORD numEntries = ipAddrTable->dwNumEntries;
+    
+    if (numEntries > 256)
+    {
+        ostringstream message;
+        message << "Too many entries from GetIpAddrTable (" << numEntries << ")";
+        throw(NetworkFail(message.str()));
+    }
+    
+    for (U32 i=0; i<numEntries; ++i)
+    {
+        MIB_IPADDRROW *ipAddrRow = &ipAddrTable->table[i];
+        m_localAddressMap[ipAddrRow->dwAddr]=true;
+    }
+    m_localAddressesValid=true;
+}
+
+bool
+PlatformNet::IsLocalAddress(U32 inIPNetworkOrder)
+{
+    if (!m_localAddressesValid)
+    {
+        LocalAddressesRetrieve();
+    }
+    return m_localAddressMap.find(inIPNetworkOrder) != m_localAddressMap.end();
+}
+
