@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.h,v 1.2 2003/01/14 20:46:12 southa Exp $
+ * $Id: MustlPlatform.h,v 1.3 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.3  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.2  2003/01/14 20:46:12  southa
  * Post data handling
  *
@@ -106,6 +109,10 @@ public:
     
     // Only call this if the local IP address(es) might have changed
     static void LocalAddressesRetrieve(void);
+
+    static void Install();
+    static void Uninstall();
+    static void NullFunction(void);
     
 private:
     static bool m_localAddressesValid;

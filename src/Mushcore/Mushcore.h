@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mushcore.h,v 1.3 2003/01/12 17:32:58 southa Exp $
+ * $Id: Mushcore.h,v 1.4 2003/01/13 14:32:02 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.4  2003/01/13 14:32:02  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.3  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -24,29 +27,30 @@
  *
  */
 
-#include "Mushcore/MushcoreAppHandler.h"
-#include "Mushcore/MushcoreAppSignal.h"
-#include "Mushcore/MushcoreAutoMonkey.h"
-#include "Mushcore/MushcoreCommand.h"
-#include "Mushcore/MushcoreCommandHandler.h"
-#include "Mushcore/MushcoreConfig.h"
-#include "Mushcore/MushcoreData.h"
-#include "Mushcore/MushcoreDataRef.h"
-#include "Mushcore/MushcoreEnv.h"
-#include "Mushcore/MushcoreEnvOutput.h"
-#include "Mushcore/MushcoreFail.h"
-#include "Mushcore/MushcoreGlobalConfig.h"
-#include "Mushcore/MushcoreHistory.h"
-#include "Mushcore/MushcoreInfo.h"
-#include "Mushcore/MushcoreInstaller.h"
-#include "Mushcore/MushcoreInterpreter.h"
-#include "Mushcore/MushcorePickle.h"
-#include "Mushcore/MushcoreRegExp.h"
-#include "Mushcore/MushcoreScalar.h"
-#include "Mushcore/MushcoreScript.h"
-#include "Mushcore/MushcoreStandard.h"
-#include "Mushcore/MushcoreStreamUtil.h"
-#include "Mushcore/MushcoreUtil.h"
-#include "Mushcore/MushcoreXML.h"
+#include "MushcoreAppHandler.h"
+#include "MushcoreAppSignal.h"
+#include "MushcoreAutoMonkey.h"
+#include "MushcoreCommand.h"
+#include "MushcoreCommandHandler.h"
+#include "MushcoreConfig.h"
+#include "MushcoreData.h"
+#include "MushcoreDataRef.h"
+#include "MushcoreEnv.h"
+#include "MushcoreEnvOutput.h"
+#include "MushcoreFail.h"
+#include "MushcoreGlobalConfig.h"
+#include "MushcoreHistory.h"
+#include "MushcoreInfo.h"
+#include "MushcoreInstaller.h"
+#include "MushcoreInterpreter.h"
+#include "MushcorePickle.h"
+#include "MushcoreRegExp.h"
+#include "MushcoreScalar.h"
+#include "MushcoreScript.h"
+#include "MushcoreStandard.h"
+#include "MushcoreStreamUtil.h"
+#include "MushcoreUninstaller.h"
+#include "MushcoreUtil.h"
+#include "MushcoreXML.h"
 
 #endif

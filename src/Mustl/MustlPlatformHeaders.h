@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MustlPlatformHeaders.h,v 1.1 2003/01/16 12:03:55 southa Exp $
+ * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.1  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  */
 
 // This file #defines the following values for platform selection
@@ -62,7 +65,7 @@
 // so they are #defined here
 #ifdef MUSTL_WIN32
 
-#define MUSTL_ERROR_PREFIX int wsaError
+#define MUSTL_ERROR_PROLOGUE int wsaError
 #define MUSTL_ERROR_RESET
 #define MUSTL_ERROR_FETCH wsaError = WSAGetLastError()
 #define MUSTL_ERROR_VALUE wsaError
@@ -74,7 +77,7 @@
 
 #else
 
-#define MUSTL_ERROR_PREFIX
+#define MUSTL_ERROR_PROLOGUE
 #define MUSTL_ERROR_RESET errno=0
 #define MUSTL_ERROR_FETCH
 #define MUSTL_ERROR_VALUE errno

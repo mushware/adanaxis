@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.6 2003/01/14 23:43:00 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.7 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.7  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.6  2003/01/14 23:43:00  southa
  * Fixes for win32
  *
@@ -97,6 +100,7 @@
 #include "MustlFail.h"
 #include "MustlSTL.h"
 
+#include "MustlMushcore.h"
 #include "MustlPlatformHeaders.h"
 
 using namespace Mustl;
@@ -104,6 +108,9 @@ using namespace std;
 
 bool MustlPlatform::m_localAddressesValid=false;
 map<U32, bool> MustlPlatform::m_localAddressMap;
+
+MushcoreInstaller MustlPlatformInstaller(MustlPlatform::Install);
+MushcoreUninstaller MustlPlatformUninstaller(MustlPlatform::Uninstall);
 
 void
 MustlPlatform::SocketClose(tSocket inSocket)
@@ -118,7 +125,7 @@ MustlPlatform::SocketClose(tSocket inSocket)
 void
 MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
 {
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
 #ifdef MUSTL_WIN32
@@ -143,7 +150,7 @@ MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
 void
 MustlPlatform::SocketBlockingSet(tSocket inSocket)
 {
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
 #ifdef MUSTL_WIN32
@@ -169,7 +176,7 @@ void
 MustlPlatform::SocketReuseAddressSet(tSocket inSocket)
 {
     int value=1;
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     if (setsockopt(inSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
@@ -186,7 +193,7 @@ void
 MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
 {
     int value=1;
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     if (setsockopt(inSocket, IPPROTO_TCP, TCP_NODELAY, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
@@ -202,7 +209,7 @@ MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
 U32
 MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 {
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     int result = send(inSocket, reinterpret_cast<const char *>(inBuffer), inSize, 0);
 
@@ -219,7 +226,7 @@ MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 U32
 MustlPlatform::TCPReceive(tSocket inSocket, void *outBuffer, U32 inSize)
 {
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
     int result = recv(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0);
@@ -250,7 +257,7 @@ MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *in
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
     sockAddr.sin_family = AF_INET;
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     int result=sendto(inSocket, reinterpret_cast<const char *>(inBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
@@ -272,7 +279,7 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
     struct sockaddr_in sockAddr;
     int sockAddrSize=sizeof(sockAddr);
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     int result = recvfrom(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
@@ -303,7 +310,7 @@ MustlPlatform::TCPUnboundSocketCreate(void)
 {
     tSocket sockHandle;
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
     sockHandle = socket(AF_INET, SOCK_STREAM, 0);
@@ -323,7 +330,7 @@ MustlPlatform::UDPUnboundSocketCreate(void)
 {
     tSocket sockHandle;
     
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     sockHandle = socket(AF_INET, SOCK_DGRAM, 0);
@@ -356,7 +363,7 @@ MustlPlatform::TCPConnectNonBlocking(const MustlAddress& inAddress)
     sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
     if (connect(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
@@ -390,7 +397,7 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
     sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
@@ -428,7 +435,7 @@ MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
     sockAddr.sin_addr.s_addr = 0; // Not used
     sockAddr.sin_port = inPortNetworkOrder;
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
@@ -453,7 +460,7 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
     struct sockaddr_in sockAddr;
     int sockAddrLen = sizeof(sockAddr);
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
     int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddr), &sockAddrLen);
 
@@ -702,7 +709,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
     ifConf.ifc_len = sizeof(ipBuffer)-256;
     tSocket testSocket = TCPUnboundSocketCreate();
 
-    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
 
     if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
@@ -769,3 +776,40 @@ MustlPlatform::DefaultTimer(void)
 }
 // End of POSIX or Mac OS X block
 #endif
+
+void
+MustlPlatform::Install(void)
+{
+    cerr << "Installing MustlPlatform" << endl;
+#ifdef MUSTL_WIN32
+    WORD wVersionRequested = MAKEWORD(2,2);
+    WSADATA wsaData;
+    int result = WSAStartup(wVersionRequested, wsaData);
+    if (result != 0)
+    {
+        cerr << "WSAStartup failed (" << result << ")";
+    }
+#endif
+}
+
+void
+MustlPlatform::Uninstall(void)
+{
+    cerr << "Uninstalling MustlPlatform" << endl;
+#ifdef MUSTL_WIN32
+    MUSTL_ERROR_PROLOGUE;
+    MUSTL_ERROR_RESET;
+
+    if (WSACleanup() != 0)
+    {
+        MUSTL_ERROR_FETCH;
+        cerr << "WSACleanup failed (" << MUSTL_ERROR_VALUE << ")";
+    }
+#endif
+}
+
+void
+MustlPlatform::NullFunction(void)
+{
+
+}

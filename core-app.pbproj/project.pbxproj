@@ -67,6 +67,8 @@
 				7A05C3F503CB43AC00A80164,
 				7A05C3F603CB43AC00A80164,
 				7A05C3F703CB43AC00A80164,
+				7AB0B30503D6E3A800A80164,
+				7AB0B30603D6E3A800A80164,
 				7A05C3F803CB43AC00A80164,
 				7A05C3F903CB43AC00A80164,
 				7A05C3FA03CB43AC00A80164,
@@ -909,6 +911,30 @@
 			settings = {
 			};
 		};
+		7AB0B30503D6E3A800A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MushcoreUninstaller.cpp;
+			refType = 4;
+		};
+		7AB0B30603D6E3A800A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MushcoreUninstaller.h;
+			refType = 4;
+		};
+		7AB0B30703D6E3A800A80164 = {
+			fileRef = 7AB0B30503D6E3A800A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB0B30803D6E3A800A80164 = {
+			fileRef = 7AB0B30603D6E3A800A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB3A76803D4A2D400A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1733,9 +1759,8 @@
 		7AB68B0303D0728B00A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			name = Mushcore.h;
-			path = src/Mushcore/Mushcore.h;
-			refType = 2;
+			path = Mushcore.h;
+			refType = 4;
 		};
 		7AB8558A03D2EC7300A80164 = {
 			isa = PBXFileReference;
@@ -2025,6 +2050,7 @@
 				7AEACB1503D1B91A00A80164,
 				7AB562B403D1C97100A80164,
 				7AB562B603D1C97400A80164,
+				7AB0B30803D6E3A800A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2068,6 +2094,7 @@
 				7AEACB1403D1B91900A80164,
 				7AB562BA03D1C9F700A80164,
 				7AB0143C03D57D6000A80164,
+				7AB0B30703D6E3A800A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

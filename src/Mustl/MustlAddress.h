@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.h,v 1.6 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlAddress.h,v 1.7 2003/01/14 22:02:12 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.7  2003/01/14 22:02:12  southa
+ * Command line build fixes
+ *
  * Revision 1.6  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -47,7 +50,7 @@
 class MustlAddress
 {
 public:
-    typedef Mustl::U32 tIPAddr;
+    typedef Mustl::U32 tIPv4Addr;
     typedef Mustl::U32 tPort;
     
     MustlAddress() :
@@ -55,7 +58,7 @@ public:
         m_port(0)
     {}
 
-    MustlAddress(tIPAddr inHostNetworkOrder, tPort inPortNetworkOrder) :
+    MustlAddress(tIPv4Addr inHostNetworkOrder, tPort inPortNetworkOrder) :
         m_ip(inHostNetworkOrder),
         m_port(inPortNetworkOrder)
     {}
@@ -66,8 +69,8 @@ public:
     }
     
     std::string HostStringGet(void) const;
-    tIPAddr HostGetNetworkOrder(void) const { return m_ip; }
-    void HostSetNetworkOrder(tIPAddr inIP) { m_ip = inIP; }
+    tIPv4Addr HostGetNetworkOrder(void) const { return m_ip; }
+    void HostSetNetworkOrder(tIPv4Addr inIP) { m_ip = inIP; }
     tPort PortGetNetworkOrder(void) const { return m_port; }
     tPort PortGetHostOrder(void) const;
     void PortSetNetworkOrder(tPort inPortNetworkOrder) { m_port = inPortNetworkOrder; }
@@ -87,7 +90,7 @@ public:
     bool GreaterThan(const MustlAddress& inAddress) const;
     
 private:
-    tIPAddr m_ip; // Network order
+    tIPv4Addr m_ip; // Network order
     tPort m_port; // Network order
 };
 

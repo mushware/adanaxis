@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInstaller.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreInstaller.h,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MushcoreInstaller.h,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -53,9 +56,8 @@
 
 #include "MushcoreStandard.h"
 
-// Some linkers discard the MushcoreInstaller module and all of the modules
-// using it.  This code is needs to prevent that happening
-
+// Functions passed to MushcoreUninstaller are called with the global
+// constructors at application startup
 class MushcoreInstaller
 {
 public:
