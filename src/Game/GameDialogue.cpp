@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQoHFnQLMF2y8QhfOFHB/A
 /*
- * $Id: GameDialogue.cpp,v 1.27 2005/03/25 19:13:48 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.28 2005/03/25 22:04:48 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.28  2005/03/25 22:04:48  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.27  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
@@ -29,6 +32,12 @@ using namespace std;
 MushcoreInstaller GameDialogueInstaller(GameDialogue::Install);
 
 MUSHCORE_DATA_INSTANCE(GameDialogue);
+
+GameDialogue::GameDialogue() :
+    m_age(0),
+    m_expired(false)
+{
+}
 
 void
 GameDialogue::Render(void) const
@@ -122,7 +131,10 @@ GameDialogue::Move(void)
         }
     }
     
-    m_expired=expired;
+    if (expired)
+    {
+        m_expired = true;
+    }
     m_age++;
 }
 
@@ -166,6 +178,8 @@ GameDialogue::ExpireNow(void)
         GameSoundStreamSpec& specRef = m_soundStreams[latestIndex];
         MediaAudio::Sgl().Play(*specRef.SoundStreamRef().Get());
     }
+    
+    m_expired = true;
 }
 
 MushcoreScalar

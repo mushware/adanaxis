@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } lXlUcR6hArOlUOSzmITEkA
 /*
- * $Id: GameDialogue.h,v 1.21 2005/03/25 19:13:49 southa Exp $
+ * $Id: GameDialogue.h,v 1.22 2005/03/25 22:04:49 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.22  2005/03/25 22:04:49  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.21  2005/03/25 19:13:49  southa
  * GameDialogue work
  *
@@ -37,6 +40,7 @@
 class GameDialogue : public MushcoreVirtualObject
 {
 public:
+    GameDialogue();
     virtual ~GameDialogue() {}
     virtual void Render(void) const;
     virtual void Move(void);

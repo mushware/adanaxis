@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.8 2005/03/25 19:13:51 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.9 2005/03/25 22:04:50 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.9  2005/03/25 22:04:50  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.8  2005/03/25 19:13:51  southa
  * GameDialogue work
  *
@@ -102,6 +105,21 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
         m_ttRenderStereo = !m_ttRenderStereo;
     }
     
+    if (gameAppHandler.LatchedKeyStateTake(' '))
+    {
+        for (MushcoreData<GameDialogue>::tIterator p =
+             m_dialogues.Begin();
+             p != m_dialogues.End(); ++p)
+        {
+            p->second->ExpireNow();
+        }
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('k'))
+    {
+        NamedDialoguesAdd("^keyhelp");
+    }    
+    
     GLUtils::PostRedisplay();
 }
 
@@ -113,7 +131,7 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     
     if (msecNow > m_lastChangeMsec + m_ttRotationChangeMsec ||
         m_lastChangeMsec == 0 ||
-        gameAppHandler.LatchedKeyStateTake(' '))
+        gameAppHandler.LatchedKeyStateTake('\013'))
     {
         Reorientate();
         m_lastChangeMsec = msecNow;
@@ -159,13 +177,26 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     
     GLUtils::OrthoPrologue();
     
-    for (MushcoreData<GameDialogue>::tConstIterator p = MushcoreData<GameDialogue>::Sgl().Begin();
-         p != MushcoreData<GameDialogue>::Sgl().End(); ++p)
+    std::vector<MushcoreData<GameDialogue>::tIterator> expiredDialogues;
+    
+    for (MushcoreData<GameDialogue>::tIterator p = m_dialogues.Begin();
+            p != m_dialogues.End(); ++p)
     {
+        p->second->Move();
         GLUtils::PushMatrix();
         p->second->Render();
         GLUtils::PopMatrix();
+        if (p->second->ExpiredGet())
+        {
+            expiredDialogues.push_back(p);
+        }
     }
+    
+    for (U32 i=0; i<expiredDialogues.size(); ++i)
+    {
+        m_dialogues.Delete(expiredDialogues[i]);
+    }
+
     GLUtils::OrthoEpilogue();
     
     GLUtils::DisplayEpilogue();
@@ -276,7 +307,7 @@ void
 TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0)); // 14
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 14
     MushGLV::Sgl().Acquaint();
     
     m_colours.resize(8);
@@ -338,14 +369,26 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
         std::cout << MushGLV::Sgl() << endl;
     }
     
-    MushcoreXMLOStream xmlOut(std::cout);
-
-    xmlOut << MushcoreData<GameDialogue>::Sgl();
+    NamedDialoguesAdd("^start");
 }
 
 void
 TesseractTrainerGame::SwapOut(GameAppHandler& inAppHandler)
 {}
+
+void
+TesseractTrainerGame::NamedDialoguesAdd(const std::string& inRegExp)
+{
+    MushcoreRegExp regExp(inRegExp);
+    for (MushcoreData<GameDialogue>::tIterator p = MushcoreData<GameDialogue>::Sgl().Begin();
+         p != MushcoreData<GameDialogue>::Sgl().End(); ++p)
+    {
+        if (regExp.Search(p->first))
+        {
+            m_dialogues.Give(p->first, new GameDialogue(*p->second));
+        }
+    }   
+}
 
 //%outOfLineFunctions {
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.8 2005/03/13 00:34:48 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.9 2005/03/25 22:04:50 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.9  2005/03/25 22:04:50  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.8  2005/03/13 00:34:48  southa
  * Build fixes, key support and stereo
  *
@@ -71,6 +74,7 @@ public:
 protected:
     void Reorientate(void);
     void RenderView(GameAppHandler& inAppHandler, Mushware::tVal inStereo);
+    void NamedDialoguesAdd(const std::string& inRegExp);
     
 private:
     TesseractTrainerHypercube m_hypercube; //:ignore
