@@ -1,6 +1,9 @@
 /*
- * $Id: MediaSound.cpp,v 1.3 2002/08/16 21:13:52 southa Exp $
+ * $Id: MediaSound.cpp,v 1.4 2002/08/19 09:59:36 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.4  2002/08/19 09:59:36  southa
+ * Removed sound callbacks, used polling
+ *
  * Revision 1.3  2002/08/16 21:13:52  southa
  * Added MediaSoundStream
  *
@@ -34,17 +37,7 @@ MediaSound::~MediaSound()
 void
 MediaSound::Load(void)
 {
-    MediaAudio::Instance(); // Construct the audio
-    SDL_RWops *src=SDL_RWFromFile(m_filename.c_str(), "rb");
-    if (src == NULL)
-    {
-        throw(FileFail(m_filename, "Failed to open sound file: "+string(SDL_GetError())));
-    }
-    m_chunk = Mix_LoadWAV_RW(src, false); // Don't free after play
-    if (m_chunk == NULL)
-    {
-        throw(FileFail(m_filename, "Failed to load sound: "+string(Mix_GetError())));
-    }
+    MediaAudio::Instance().Load(*this);
 }
 
 void
@@ -54,8 +47,8 @@ MediaSound::Free(void)
     {
         // cerr << "Freeing sound '" << m_filename << "'" << endl;
         MediaAudio::Instance().SoundHalt(*this);
-        Mix_FreeChunk(m_chunk);
-        cerr << "Freed sound '" << m_filename << "'" << endl;
+        MediaAudio::Instance().Free(*this);
+        // cerr << "Freed sound '" << m_filename << "'" << endl;
         m_chunk=NULL;
     }
 }    
@@ -67,16 +60,6 @@ MediaSound::EndHandler(void)
     {
         Free();
     }
-}
-
-Mix_Chunk *
-MediaSound::MixChunkGet(void)
-{
-    if (m_chunk == NULL)
-    {
-        Load();
-    }
-    return m_chunk;
 }
 
 CoreScalar
