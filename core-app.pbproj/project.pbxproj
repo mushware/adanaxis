@@ -38,6 +38,78 @@
 			settings = {
 			};
 		};
+		F540BCB3022B8A1301C02155 = {
+			isa = PBXFileReference;
+			path = GLTextureSpr.cpp;
+			refType = 4;
+		};
+		F540BCB4022B8A1301C02155 = {
+			isa = PBXFileReference;
+			path = GLTextureSpr.hp;
+			refType = 4;
+		};
+		F540BCB5022B8A1301C02155 = {
+			fileRef = F540BCB4022B8A1301C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F540BCB6022B8A1301C02155 = {
+			fileRef = F540BCB3022B8A1301C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F540BCB7022B8B4301C02155 = {
+			isa = PBXFileReference;
+			path = CoreUtil.hp;
+			refType = 4;
+		};
+		F540BCB8022B8B4301C02155 = {
+			fileRef = F540BCB7022B8B4301C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F540BCB9022B8B9C01C02155 = {
+			isa = PBXFileReference;
+			path = CoreUtil.cpp;
+			refType = 4;
+		};
+		F540BCBA022B8B9C01C02155 = {
+			fileRef = F540BCB9022B8B9C01C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F540BCBB022B934001C02155 = {
+			isa = PBXFileReference;
+			name = test.spr;
+			path = test/test.spr;
+			refType = 4;
+		};
+		F540BCBC022BAEFD01C02155 = {
+			isa = PBXFileReference;
+			path = StreamUtil.cpp;
+			refType = 4;
+		};
+		F540BCBD022BAEFD01C02155 = {
+			isa = PBXFileReference;
+			path = StreamUtil.hp;
+			refType = 4;
+		};
+		F540BCBE022BAEFE01C02155 = {
+			fileRef = F540BCBD022BAEFD01C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F540BCBF022BAEFE01C02155 = {
+			fileRef = F540BCBC022BAEFD01C02155;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5431745020C310101449C4C = {
 			buildStyles = (
 				F5431747020C310101449C4C,
@@ -250,6 +322,9 @@
 				F56122580227BA790100557C,
 				F5175CBA0227D55C01F76013,
 				F56353FF022AE34E015CEA2E,
+				F540BCB5022B8A1301C02155,
+				F540BCB8022B8B4301C02155,
+				F540BCBE022BAEFE01C02155,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -274,6 +349,9 @@
 				F5175CB70227D48F01F76013,
 				F5175CBB0227D55C01F76013,
 				F56353FD022AE330015CEA2E,
+				F540BCB6022B8A1301C02155,
+				F540BCBA022B8B9C01C02155,
+				F540BCBF022BAEFE01C02155,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -550,6 +628,7 @@
 		F5909DAE022822A9013B17EF = {
 			children = (
 				F5909DAF022822A9013B17EF,
+				F540BCBB022B934001C02155,
 			);
 			isa = PBXGroup;
 			name = test;
@@ -583,6 +662,10 @@
 				F5921CE8021876D70127AF47,
 				F5921CEF021876D70127AF47,
 				F5921CE9021876D70127AF47,
+				F540BCB9022B8B9C01C02155,
+				F540BCB7022B8B4301C02155,
+				F540BCBC022BAEFD01C02155,
+				F540BCBD022BAEFD01C02155,
 			);
 			isa = PBXGroup;
 			path = CoreApp;
@@ -803,6 +886,8 @@
 				F56F91A90221AA94011355B6,
 				F56353FC022AE32F015CEA2E,
 				F56353FE022AE34E015CEA2E,
+				F540BCB3022B8A1301C02155,
+				F540BCB4022B8A1301C02155,
 			);
 			isa = PBXGroup;
 			path = GL;

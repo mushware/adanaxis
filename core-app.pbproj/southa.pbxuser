@@ -1,29 +1,5 @@
 // !$*UTF8*$!
 {
-	F5175CBC0227E6F401F76013 = {
-		fileReference = F5175CB80227D55C01F76013;
-		isa = PBXFileBreakpoint;
-		lineNumber = 17;
-		state = 2;
-	};
-	F5175CBD0227E81701F76013 = {
-		fileReference = F56F91AB0221AC0F011355B6;
-		isa = PBXFileBreakpoint;
-		lineNumber = 71;
-		state = 2;
-	};
-	F5175CBE0227E8E601F76013 = {
-		fileReference = F56F91AB0221AC0F011355B6;
-		isa = PBXFileBreakpoint;
-		lineNumber = 104;
-		state = 1;
-	};
-	F5175CBF0227E94701F76013 = {
-		fileReference = F56122510227A6DF0100557C;
-		isa = PBXFileBreakpoint;
-		lineNumber = 48;
-		state = 1;
-	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F5431747020C310101449C4C;
 		activeTarget = F56090AD0217DFEF014AEE46;
@@ -31,22 +7,18 @@
 			F56090AD0217DFEF014AEE46,
 		);
 		breakpoints = (
-			F5175CBC0227E6F401F76013,
-			F5175CBD0227E81701F76013,
-			F5175CBE0227E8E601F76013,
-			F5175CBF0227E94701F76013,
 		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
 				ContentSize = "{965, 618}";
 				LeftSlideOut = {
-					ActiveTab = 3;
+					ActiveTab = 0;
 					Frame = "{{0, 23}, {965, 595}}";
 					Split0 = {
-						ActiveTab = 1;
-						Frame = "{{224, 0}, {741, 595}}";
+						ActiveTab = 2;
+						Frame = "{{245, 0}, {720, 595}}";
 						Split0 = {
-							Frame = "{{0, 232}, {741, 363}}";
+							Frame = "{{0, 216}, {720, 379}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -76,16 +48,16 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {741, 208}}";
+							Frame = "{{0, 0}, {720, 117}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {741, 208}}";
+								Frame = "{{0, 0}, {720, 117}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {743, 108}}";
-							BuildTranscriptFrame = "{{0, 117}, {743, 77}}";
-							Frame = "{{0, 0}, {741, 192}}";
+							BuildMessageFrame = "{{0, 0}, {722, 108}}";
+							BuildTranscriptFrame = "{{0, 117}, {722, 77}}";
+							Frame = "{{0, 0}, {720, 192}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {612, 295}}";
@@ -139,7 +111,7 @@
 		activeArgIndex = 3;
 		argumentStrings = (
 			"launch /bin/ls;initGL;",
-			"initGL;loadPixmap test.gif",
+			"loadPixmap ../test/test.spr",
 			test3,
 			glTest1,
 		);
@@ -153,5 +125,10 @@
 		);
 		sourceDirectories = (
 		);
+	};
+	F56353FC022AE32F015CEA2E = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
 	};
 }
