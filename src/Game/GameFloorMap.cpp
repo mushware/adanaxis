@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.12 2002/07/16 19:30:09 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.13 2002/07/19 15:44:41 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.13  2002/07/19 15:44:41  southa
+ * Graphic optimisations
+ *
  * Revision 1.12  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *
@@ -119,18 +122,16 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
                     tVal greenBri=0.4+0.35*sin(clockNow/201.0);
                     tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
-                        GLUtils::SetColour(redBri, greenBri, blueBri);
+                    GLUtils::SetColour(redBri, greenBri, blueBri);
+                    GLUtils::ModulateSet(true);
                     highlightOn=true;
                 }
-                else
+                else if (highlightOn)
                 {
-                    if (highlightOn)
-                    {
-                        GLUtils::SetColour(1,1,1);
-                    }
+                    GLUtils::ModulateSet(false);
                     highlightOn=false;
                 }
-
+                
                 gl.MoveTo(point.x, point.y);
                 U32 mapVal=ElementGet(point);
                 glPushMatrix();

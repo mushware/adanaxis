@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.1 2002/07/16 17:48:08 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.2 2002/07/16 19:30:09 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.2  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.1  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *
@@ -84,6 +87,7 @@ GameSolidMap::Render(const GameMapArea& inArea, const GLPoint& inSteps) const
     maxPoint.MakeInteger();
 
     GLPoint point;
+    GLUtils::BlendSet(GLUtils::kBlendNone);
 
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {

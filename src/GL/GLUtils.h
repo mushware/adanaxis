@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.15 2002/07/19 15:44:40 southa Exp $
+ * $Id: GLUtils.h,v 1.16 2002/07/19 16:25:21 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.16  2002/07/19 16:25:21  southa
+ * Texture tweaks
+ *
  * Revision 1.15  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *
@@ -118,6 +121,7 @@ public:
     static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
     static void RotateAboutZ(tVal inAngle);
     static void BlendSet(tBlendType inType);
+    static void ModulateSet(bool inType);
     static void Reset(void);
     static void TextureParamsReset(void);
     static tDisplayQuality DisplayQualityGet(void);
@@ -129,6 +133,7 @@ private:
     tVal m_y;
 
     static tBlendType m_blendState;
+    static bool m_modulateState;
     static tDisplayQuality m_displayQuality;
     static bool m_polygonSmoothing;
 };

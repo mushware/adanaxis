@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.17 2002/07/19 15:44:40 southa Exp $
+ * $Id: GLUtils.cpp,v 1.18 2002/07/19 16:25:21 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.18  2002/07/19 16:25:21  southa
+ * Texture tweaks
+ *
  * Revision 1.17  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *
@@ -73,6 +76,7 @@
 #include "GLRectangle.h"
 
 GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
+bool GLUtils::m_modulateState=false;
 GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
 bool GLUtils::m_polygonSmoothing=false;
 
@@ -328,6 +332,7 @@ GLUtils::BlendSet(tBlendType inValue)
             case kBlendTransparent:
                 glDisable(GL_POLYGON_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
                 glEnable(GL_BLEND);
                 break;
 
@@ -355,6 +360,23 @@ GLUtils::BlendSet(tBlendType inValue)
                 break;
         }
         m_blendState = inValue;
+    }
+}
+
+void
+GLUtils::ModulateSet(bool inValue)
+{
+    if (m_modulateState != inValue)
+    {
+        if (inValue)
+        {
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        }
+        else
+        {
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        }
+        m_modulateState=inValue;
     }
 }
 
@@ -432,6 +454,8 @@ GLUtils::Reset(void)
             throw(LogicFail("Bad value for m_displayQuality"));
     }
     glDisable(GL_DEPTH_TEST);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    m_modulateState=false;
 }
 
 void
