@@ -200,16 +200,6 @@
 		vrLen = 816;
 		vrLoc = 0;
 	};
-	F510CFDF0365F6FD01A80164 = {
-		fRef = F510CFEC0365F6FE01A80164;
-		isa = PBXTextBookmark;
-		name = "configure.in: 200";
-		rLen = 0;
-		rLoc = 8231;
-		rType = 0;
-		vrLen = 721;
-		vrLoc = 7510;
-	};
 	F510CFE10365F6FD01A80164 = {
 		fRef = F52B3C01028C26530179D0A8;
 		isa = PBXTextBookmark;
@@ -220,102 +210,16 @@
 		vrLen = 828;
 		vrLoc = 0;
 	};
-	F510CFE20365F6FD01A80164 = {
-		fRef = F510CFE80365F6FE01A80164;
-		isa = PBXTextBookmark;
-		name = "MakeInstaller.sh: 3";
-		rLen = 517;
-		rLoc = 11;
-		rType = 0;
-		vrLen = 823;
-		vrLoc = 0;
-	};
-	F510CFE30365F6FD01A80164 = {
-		fRef = F510CFEB0365F6FE01A80164;
-		isa = PBXTextBookmark;
-		name = "MakeRelease.sh: 2";
-		rLen = 437;
-		rLoc = 10;
-		rType = 0;
-		vrLen = 816;
-		vrLoc = 0;
-	};
-	F510CFE40365F6FD01A80164 = {
-		fRef = F510CFEA0365F6FE01A80164;
-		isa = PBXTextBookmark;
-		name = "configure.in: 200";
-		rLen = 0;
-		rLoc = 8231;
-		rType = 0;
-		vrLen = 721;
-		vrLoc = 7510;
-	};
-	F510CFE50365F6FD01A80164 = {
-		fRef = F510CFED0365F6FE01A80164;
-		isa = PBXTextBookmark;
-		name = "Makefile.am: 18";
-		rLen = 0;
-		rLoc = 529;
-		rType = 0;
-		vrLen = 666;
-		vrLoc = 447;
-	};
 	F510CFE60365F6FD01A80164 = {
 		isa = PBXFileReference;
 		name = MakeRelease.sh;
 		path = "/Users/southa/core-app/MakeRelease.sh";
 		refType = 0;
 	};
-	F510CFE80365F6FE01A80164 = {
-		isa = PBXFileReference;
-		name = MakeInstaller.sh;
-		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
-		refType = 0;
-	};
 	F510CFE90365F6FE01A80164 = {
 		isa = PBXFileReference;
 		name = MakeInstaller.sh;
 		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
-		refType = 0;
-	};
-	F510CFEA0365F6FE01A80164 = {
-		isa = PBXFileReference;
-		name = configure.in;
-		path = "/Users/southa/core-app/configure.in";
-		refType = 0;
-	};
-	F510CFEB0365F6FE01A80164 = {
-		isa = PBXFileReference;
-		name = MakeRelease.sh;
-		path = "/Users/southa/core-app/MakeRelease.sh";
-		refType = 0;
-	};
-	F510CFEC0365F6FE01A80164 = {
-		isa = PBXFileReference;
-		name = configure.in;
-		path = "/Users/southa/core-app/configure.in";
-		refType = 0;
-	};
-	F510CFED0365F6FE01A80164 = {
-		isa = PBXFileReference;
-		name = Makefile.am;
-		path = "/Users/southa/core-app/Makefile.am";
-		refType = 0;
-	};
-	F510CFF60365F92201A80164 = {
-		fRef = F510CFF70365F92301A80164;
-		isa = PBXTextBookmark;
-		name = "Makefile.am: 18";
-		rLen = 0;
-		rLoc = 529;
-		rType = 0;
-		vrLen = 666;
-		vrLoc = 447;
-	};
-	F510CFF70365F92301A80164 = {
-		isa = PBXFileReference;
-		name = Makefile.am;
-		path = "/Users/southa/core-app/Makefile.am";
 		refType = 0;
 	};
 	F5167B0702A28A98019F6D6A = {
@@ -8588,138 +8492,14 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 57018192;
-			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
-				ContentSize = "{685, 434}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {685, 411}}";
-					Split0 = {
-						ActiveTab = 2;
-						Collapsed = NO;
-						Frame = "{{0, 0}, {685, 411}}";
-						Split0 = {
-							Frame = "{{0, 221}, {685, 190}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {952, 321}}";
-								Split0 = {
-									Frame = "{{0, 24}, {952, 297}}";
-									Split0 = {
-										Frame = "{{0, 0}, {468, 297}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											126.803,
-											Value,
-											150.074,
-											Summary,
-											172.123,
-										);
-										Frame = "{{477, 0}, {475, 297}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {952, 321}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {781, 452}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {781, 452}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {687, 149}}";
-							BuildTranscriptFrame = "{{0, 158}, {687, 59}}";
-							Frame = "{{0, 0}, {685, 215}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {300, 533}}";
-						GroupTreeTableConfiguration = (
-							SCMStatusColumn,
-							22,
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							245,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 100}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				StatusViewVisible = YES;
-				Template = F5314676015831810DCA290F;
-				ToolbarVisible = YES;
-				WindowLocation = "{335, 346}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 57675407;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F510CFF60365F92201A80164;
+									bookmark = F5F5DBEA0367101801A80164;
 									history = (
 										F57BD7CC028AF27C01AD87C4,
 										F57B3132028C66AB0195BBD7,
@@ -8918,7 +8698,6 @@
 										F59560FA0355FD6D01A80166,
 										F59560FF0355FD6D01A80166,
 										F595FA160356F3AC01A80166,
-										F595FA1B0356F3AC01A80166,
 										F595FA1D0356F3AC01A80166,
 										F595FA1E0356F3AC01A80166,
 										F595FA230356F3AC01A80166,
@@ -9033,7 +8812,6 @@
 										F584290A035F1F8601A80164,
 										F584290B035F1F8601A80164,
 										F59573290362D3BE01A80164,
-										F595732A0362D3BE01A80164,
 										F595732D0362D3BE01A80164,
 										F595732E0362D3BE01A80164,
 										F595732F0362D3BE01A80164,
@@ -9046,20 +8824,17 @@
 										F59159070363268601A80164,
 										F59159080363268601A80164,
 										F599EBB00365C60201A80164,
-										F5432C560365C9C201A80164,
 										F595954B0365E4B601A80164,
 										F595955C0365EB4801A80164,
 										F595955D0365EB4801A80164,
 										F510CFDC0365F6FD01A80164,
 										F510CFDD0365F6FD01A80164,
 										F510CFDE0365F6FD01A80164,
-										F510CFDF0365F6FD01A80164,
-										F510CFE50365F6FD01A80164,
-									);
-									nextStack = (
-										F510CFE20365F6FD01A80164,
-										F510CFE30365F6FD01A80164,
-										F510CFE40365F6FD01A80164,
+										F595AB0803660A6D01A80164,
+										F59240160366B66701A80164,
+										F59240170366B66701A80164,
+										F5F5DBE80367101801A80164,
+										F595FA1B0356F3AC01A80166,
 									);
 									prevStack = (
 										F57BD7D1028AF27C01AD87C4,
@@ -14390,6 +14165,10 @@
 										F595955E0365EB4801A80164,
 										F595955F0365EB4801A80164,
 										F510CFE10365F6FD01A80164,
+										F595AB0903660A6D01A80164,
+										F59240180366B66701A80164,
+										F59240190366B66701A80164,
+										F5F5DBE90367101801A80164,
 									);
 								};
 								NavCount = 1;
@@ -14709,7 +14488,7 @@
 					WindowLocation = "{335, 346}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 57018192;
+			PBXWorkspaceStateSaveDate = 57675407;
 		};
 		perUserProjectItems = {
 			F50F4E4D02B50AB1014A78CB = F50F4E4D02B50AB1014A78CB;
@@ -14732,13 +14511,7 @@
 			F510CFDC0365F6FD01A80164 = F510CFDC0365F6FD01A80164;
 			F510CFDD0365F6FD01A80164 = F510CFDD0365F6FD01A80164;
 			F510CFDE0365F6FD01A80164 = F510CFDE0365F6FD01A80164;
-			F510CFDF0365F6FD01A80164 = F510CFDF0365F6FD01A80164;
 			F510CFE10365F6FD01A80164 = F510CFE10365F6FD01A80164;
-			F510CFE20365F6FD01A80164 = F510CFE20365F6FD01A80164;
-			F510CFE30365F6FD01A80164 = F510CFE30365F6FD01A80164;
-			F510CFE40365F6FD01A80164 = F510CFE40365F6FD01A80164;
-			F510CFE50365F6FD01A80164 = F510CFE50365F6FD01A80164;
-			F510CFF60365F92201A80164 = F510CFF60365F92201A80164;
 			F5167B0702A28A98019F6D6A = F5167B0702A28A98019F6D6A;
 			F5167B0802A28A98019F6D6A = F5167B0802A28A98019F6D6A;
 			F5167B0902A28A98019F6D6A = F5167B0902A28A98019F6D6A;
@@ -15558,7 +15331,6 @@
 			F54221A802F9D3F401C02B71 = F54221A802F9D3F401C02B71;
 			F54221A902F9D3F401C02B71 = F54221A902F9D3F401C02B71;
 			F54221AA02F9D3F401C02B71 = F54221AA02F9D3F401C02B71;
-			F5432C560365C9C201A80164 = F5432C560365C9C201A80164;
 			F5432C580365C9C201A80164 = F5432C580365C9C201A80164;
 			F54339FC0311243E011AF7B3 = F54339FC0311243E011AF7B3;
 			F5433A080311243E011AF7B3 = F5433A080311243E011AF7B3;
@@ -18601,6 +18373,10 @@
 			F59159080363268601A80164 = F59159080363268601A80164;
 			F59159090363268601A80164 = F59159090363268601A80164;
 			F591590A0363268601A80164 = F591590A0363268601A80164;
+			F59240160366B66701A80164 = F59240160366B66701A80164;
+			F59240170366B66701A80164 = F59240170366B66701A80164;
+			F59240180366B66701A80164 = F59240180366B66701A80164;
+			F59240190366B66701A80164 = F59240190366B66701A80164;
 			F59258FF0352FFD301A80166 = F59258FF0352FFD301A80166;
 			F59259080352FFD301A80166 = F59259080352FFD301A80166;
 			F59259090352FFD301A80166 = F59259090352FFD301A80166;
@@ -19217,7 +18993,6 @@
 			F595644E03538CC801A80166 = F595644E03538CC801A80166;
 			F595644F03538CC801A80166 = F595644F03538CC801A80166;
 			F59573290362D3BE01A80164 = F59573290362D3BE01A80164;
-			F595732A0362D3BE01A80164 = F595732A0362D3BE01A80164;
 			F595732D0362D3BE01A80164 = F595732D0362D3BE01A80164;
 			F595732E0362D3BE01A80164 = F595732E0362D3BE01A80164;
 			F595732F0362D3BE01A80164 = F595732F0362D3BE01A80164;
@@ -19473,6 +19248,8 @@
 			F595A987035B407D01A80166 = F595A987035B407D01A80166;
 			F595A988035B407D01A80166 = F595A988035B407D01A80166;
 			F595A989035B407D01A80166 = F595A989035B407D01A80166;
+			F595AB0803660A6D01A80164 = F595AB0803660A6D01A80164;
+			F595AB0903660A6D01A80164 = F595AB0903660A6D01A80164;
 			F595C5730352007F01A80166 = F595C5730352007F01A80166;
 			F595C5780352007F01A80166 = F595C5780352007F01A80166;
 			F595C5850352007F01A80166 = F595C5850352007F01A80166;
@@ -20365,6 +20142,9 @@
 			F5F2C75002A43D4501CB7A62 = F5F2C75002A43D4501CB7A62;
 			F5F2C75102A43D4501CB7A62 = F5F2C75102A43D4501CB7A62;
 			F5F2C75202A43D4501CB7A62 = F5F2C75202A43D4501CB7A62;
+			F5F5DBE80367101801A80164 = F5F5DBE80367101801A80164;
+			F5F5DBE90367101801A80164 = F5F5DBE90367101801A80164;
+			F5F5DBEA0367101801A80164 = F5F5DBEA0367101801A80164;
 			F5FAFCFA035C6FDE01A80166 = F5FAFCFA035C6FDE01A80166;
 			F5FAFCFD035C6FDE01A80166 = F5FAFCFD035C6FDE01A80166;
 			F5FAFCFE035C6FDE01A80166 = F5FAFCFE035C6FDE01A80166;
@@ -20383,16 +20163,6 @@
 		};
 		wantsIndex = 1;
 		wantsSCM = -1;
-	};
-	F5432C560365C9C201A80164 = {
-		fRef = F546F59502C206E801173785;
-		isa = PBXTextBookmark;
-		name = "MediaSDL.cpp: 61";
-		rLen = 0;
-		rLoc = 1439;
-		rType = 0;
-		vrLen = 354;
-		vrLoc = 1213;
 	};
 	F5432C580365C9C201A80164 = {
 		fRef = F546F59502C206E801173785;
@@ -50845,6 +50615,58 @@
 		vrLen = 729;
 		vrLoc = 5097;
 	};
+	F59240160366B66701A80164 = {
+		fRef = F546F59502C206E801173785;
+		isa = PBXTextBookmark;
+		name = "MediaSDL.cpp: 101";
+		rLen = 0;
+		rLoc = 2343;
+		rType = 0;
+		vrLen = 540;
+		vrLoc = 1629;
+	};
+	F59240170366B66701A80164 = {
+		fRef = F592401B0366B66801A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 13";
+		rLen = 0;
+		rLoc = 369;
+		rType = 0;
+		vrLen = 632;
+		vrLoc = 0;
+	};
+	F59240180366B66701A80164 = {
+		fRef = F546F59502C206E801173785;
+		isa = PBXTextBookmark;
+		name = "MediaSDL.cpp: 101";
+		rLen = 0;
+		rLoc = 2343;
+		rType = 0;
+		vrLen = 540;
+		vrLoc = 1629;
+	};
+	F59240190366B66701A80164 = {
+		fRef = F592401C0366B66901A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 13";
+		rLen = 0;
+		rLoc = 369;
+		rType = 0;
+		vrLen = 632;
+		vrLoc = 0;
+	};
+	F592401B0366B66801A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
+	F592401C0366B66901A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
 	F59258FF0352FFD301A80166 = {
 		fRef = F5F06F0F02AE554301B05200;
 		isa = PBXTextBookmark;
@@ -57063,10 +56885,6 @@
 		vrLen = 928;
 		vrLoc = 1286;
 	};
-	F595732A0362D3BE01A80164 = {
-		isa = PBXTargetBookmark;
-		trg = F59396D5028C0CA6016230BF;
-	};
 	F595732D0362D3BE01A80164 = {
 		fRef = F59573490362D3BF01A80164;
 		isa = PBXTextBookmark;
@@ -59576,7 +59394,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSDL.cpp: 98";
 		rLen = 0;
-		rLoc = 1985;
+		rLoc = 2031;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 1148;
@@ -59596,7 +59414,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSDL.cpp: 92";
 		rLen = 0;
-		rLoc = 1955;
+		rLoc = 2001;
 		rType = 0;
 		vrLen = 979;
 		vrLoc = 1074;
@@ -59730,6 +59548,38 @@
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 0;
+	};
+	F595AB0803660A6D01A80164 = {
+		fRef = F595AB0C03660A6F01A80164;
+		isa = PBXTextBookmark;
+		name = "Makefile.am: 18";
+		rLen = 0;
+		rLoc = 529;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 447;
+	};
+	F595AB0903660A6D01A80164 = {
+		fRef = F595AB0B03660A6F01A80164;
+		isa = PBXTextBookmark;
+		name = "Makefile.am: 18";
+		rLen = 0;
+		rLoc = 529;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 447;
+	};
+	F595AB0B03660A6F01A80164 = {
+		isa = PBXFileReference;
+		name = Makefile.am;
+		path = "/Users/southa/core-app/Makefile.am";
+		refType = 0;
+	};
+	F595AB0C03660A6F01A80164 = {
+		isa = PBXFileReference;
+		name = Makefile.am;
+		path = "/Users/southa/core-app/Makefile.am";
+		refType = 0;
 	};
 	F595C5730352007F01A80166 = {
 		fRef = F50F4E1602B4EA9C014A78CB;
@@ -63325,6 +63175,12 @@
 		vrLen = 1201;
 		vrLoc = 333;
 	};
+	F5B82F820362DD0A01A80164 = {
+		isa = PBXFileReference;
+		name = "contract-append.xml";
+		path = "/Users/southa/core-app/macosx/contract-append.xml";
+		refType = 0;
+	};
 	F5B82F830362E7DC01A80164 = {
 		fRef = F5B82FAA0362E7DE01A80164;
 		isa = PBXTextBookmark;
@@ -63370,7 +63226,7 @@
 		isa = PBXTextBookmark;
 		name = "configure.in: 200";
 		rLen = 0;
-		rLoc = 8231;
+		rLoc = 8434;
 		rType = 0;
 		vrLen = 721;
 		vrLoc = 7510;
@@ -68914,6 +68770,24 @@
 		rType = 0;
 		vrLen = 224;
 		vrLoc = 0;
+	};
+	F5F5DBE80367101801A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+	};
+	F5F5DBE90367101801A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+	};
+	F5F5DBEA0367101801A80164 = {
+		fRef = F59560DE0355CA2301A80166;
+		isa = PBXTextBookmark;
+		name = "GameMap.h: 44";
+		rLen = 0;
+		rLoc = 1205;
+		rType = 0;
+		vrLen = 517;
+		vrLoc = 769;
 	};
 	F5FAFCFA035C6FDE01A80166 = {
 		fRef = F5957EC3035982EC01A80166;

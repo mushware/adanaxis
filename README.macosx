@@ -135,3 +135,13 @@ cp ../SDL-1.2/ltmain.sh .
 make -i
 sudo make -i install
 
+# Download http://www.libsdl.org/projects/SDL_net/release/SDL_net-1.2.4.tar.gz
+tar xvzf SDL_net-1.2.4.tar.gz
+cd SDL_net-1.2.4
+# Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
+cp ../SDL-1.2/libtool .
+cp ../SDL-1.2/ltconfig .
+cp ../SDL-1.2/ltmain.sh .
+./configure
+make
+sudo make install

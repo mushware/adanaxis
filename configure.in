@@ -6,7 +6,7 @@ AC_CANONICAL_TARGET
 
 IC_MAJOR_VERSION=0
 IC_MINOR_VERSION=1
-IC_MICRO_VERSION=0
+IC_MICRO_VERSION=1
 IC_VERSION=$IC_MAJOR_VERSION.$IC_MINOR_VERSION.$IC_MICRO_VERSION
 IC_UNDERSCORE_VERSION=${IC_MAJOR_VERSION}_${IC_MINOR_VERSION}_${IC_MICRO_VERSION}
 
@@ -131,6 +131,8 @@ AC_CHECK_LIB(ogg, main,, AC_MSG_ERROR([libogg library not found - home is http:/
 AC_CHECK_LIB(vorbis, main,, AC_MSG_ERROR([libvorbis library not found - home is http://www.xiph.org/]))
 AC_CHECK_LIB(vorbisfile, main,, AC_MSG_ERROR([libvorbisfile library not found - home is http://www.xiph.org/]))
 AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - home is http://www.libsdl.org/]))
+AC_CHECK_LIB(SDL_net, main,, AC_MSG_ERROR([libSDL_net library not found - home is http://www.libsdl.org/]))
+AC_CHECK_LIB(curl, main,, AC_MSG_ERROR([libcurl library not found - home is http://curl.haxx.se/]))
 
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[
@@ -151,7 +153,9 @@ AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot f
 AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
 AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
 AC_CHECK_HEADERS(SDL_mixer.h,, [AC_CHECK_HEADERS(SDL/SDL_mixer.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
+AC_CHECK_HEADERS(SDL_net.h,, [AC_CHECK_HEADERS(SDL/SDL_net.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
 AC_CHECK_HEADERS(SDL_main.h,, [AC_CHECK_HEADERS(SDL/SDL_main.h,, AC_MSG_ERROR([Cannot find SDL_main.h header]))])
+AC_CHECK_HEADERS(curl.h,, [AC_CHECK_HEADERS(curl/curl.h,, AC_MSG_ERROR([Cannot find curl.h header]))])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
