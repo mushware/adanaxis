@@ -1,9 +1,13 @@
+# -*-makefile-*-
 SUBDIRS = @TOP_SUBDIRS@
 
 EXTRA_DIST=core-app.pbproj/project.pbxproj LICENCE ic2 MakeRelease.sh
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
+
+mac-release: release
+	(cd $(top_srcdir);$(SHELL) macosx/MakeInstaller.sh @IC_UNDERSCORE_VERSION@)
 
 databall: install-strip dist
 	rm -f ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
