@@ -1,1 +1,1 @@
-SUBDIRS = src
+SUBDIRS = @TOP_SUBDIRS@

@@ -6,6 +6,9 @@
 /* Define to 1 if you have the <GL/glut.h> header file. */
 #undef HAVE_GL_GLUT_H
 
+/* Define to 1 if you have the <GL/glu.h> header file. */
+#undef HAVE_GL_GLU_H
+
 /* Define to 1 if you have the <GL/gl.h> header file. */
 #undef HAVE_GL_GL_H
 
@@ -30,6 +33,9 @@
 /* Define to 1 if you have the `glut32' library (-lglut32). */
 #undef HAVE_LIBGLUT32
 
+/* Define to 1 if you have the `ogg' library (-logg). */
+#undef HAVE_LIBOGG
+
 /* Define to 1 if you have the `opengl32' library (-lopengl32). */
 #undef HAVE_LIBOPENGL32
 
@@ -50,6 +56,12 @@
 
 /* Define to 1 if you have the `ungif' library (-lungif). */
 #undef HAVE_LIBUNGIF
+
+/* Define to 1 if you have the `vorbis' library (-lvorbis). */
+#undef HAVE_LIBVORBIS
+
+/* Define to 1 if you have the `vorbisfile' library (-lvorbisfile). */
+#undef HAVE_LIBVORBISFILE
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H

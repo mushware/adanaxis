@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.1 2002/06/11 16:25:00 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.2 2002/06/11 16:36:13 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.2  2002/06/11 16:36:13  southa
+ * Fixes
+ *
  * Revision 1.1  2002/06/11 16:25:00  southa
  * New paths to data files
  *
@@ -8,11 +11,15 @@
 
 #include "mushPlatform.h"
 
+#include <windows.h>
+
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])
 {
     string appPath;
     char *pBuffer=new char[MAXPATHLEN];
+    GetCurrentDirectory(MAXPATHLEN, pBuffer);
+    cerr << "Windows path is " << pBuffer << endl;
     if (getcwd(pBuffer, MAXPATHLEN) &&
         strlen(pBuffer) > 1)
     {
