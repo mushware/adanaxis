@@ -1,5 +1,5 @@
-#ifndef MUSTLMUSHCORESINGLETON_H
-#define MUSTLMUSHCORESINGLETON_H
+#ifndef GAMESTL_H
+#define GAMESTL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -11,26 +11,24 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlMushcoreSingleton.h,v 1.2 2003/01/20 12:23:24 southa Exp $
- * $Log: MustlMushcoreSingleton.h,v $
- * Revision 1.2  2003/01/20 12:23:24  southa
- * Code and interface tidying
- *
- * Revision 1.1  2003/01/20 10:45:30  southa
- * Singleton tidying
+ * $Id: GameSTL.h,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Log: GameSTL.h,v $
+ * Revision 1.1  2003/01/13 23:05:22  southa
+ * Mustl test application
  *
  */
 
-#include "MustlStandard.h"
-
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreSingleton.h>
+#include <Mushcore/MushcoreSTL.h>
 #else
 #if defined(HAVE_MUSHCORE_H)
-#include <MushcoreSingleton.h>
+#include <MushcoreSTL.h>
 #else
-#include "MushcoreSingleton.h"
+#include "MushcoreSTL.h"
 #endif
 #endif
 #endif

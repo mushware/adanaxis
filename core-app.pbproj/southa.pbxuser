@@ -937,7 +937,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 808";
 		rLen = 0;
-		rLoc = 20610;
+		rLoc = 20623;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 2740;
@@ -967,7 +967,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 808";
 		rLen = 0;
-		rLoc = 20610;
+		rLoc = 20623;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 7693;
@@ -1007,7 +1007,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 808";
 		rLen = 0;
-		rLoc = 20610;
+		rLoc = 20623;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 13152;
@@ -2209,7 +2209,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: Install";
 		rLen = 0;
-		rLoc = 19852;
+		rLoc = 19865;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 19663;
@@ -3861,7 +3861,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 775";
 		rLen = 0;
-		rLoc = 20372;
+		rLoc = 20385;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 16200;
@@ -3881,7 +3881,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 775";
 		rLen = 0;
-		rLoc = 20372;
+		rLoc = 20385;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 2391;
@@ -3931,7 +3931,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 795";
 		rLen = 0;
-		rLoc = 20203;
+		rLoc = 20216;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 19452;
@@ -4401,7 +4401,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 457";
 		rLen = 0;
-		rLoc = 10988;
+		rLoc = 11129;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 3800;
@@ -4921,7 +4921,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 457";
 		rLen = 0;
-		rLoc = 10988;
+		rLoc = 11129;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 3800;
@@ -5901,7 +5901,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 796";
 		rLen = 0;
-		rLoc = 19548;
+		rLoc = 19561;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 18618;
@@ -6101,7 +6101,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: DefaultTimer";
 		rLen = 0;
-		rLoc = 19548;
+		rLoc = 19561;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 18562;
@@ -7663,7 +7663,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: NullFunction";
 		rLen = 0;
-		rLoc = 20610;
+		rLoc = 20623;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 19664;
@@ -7889,7 +7889,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: NullFunction";
 		rLen = 0;
-		rLoc = 20610;
+		rLoc = 20623;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 19664;
@@ -7999,7 +7999,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 327";
 		rLen = 0;
-		rLoc = 10489;
+		rLoc = 10630;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6829;
@@ -8059,7 +8059,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 170";
 		rLen = 0;
-		rLoc = 4519;
+		rLoc = 4570;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 4346;
@@ -8079,7 +8079,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 229";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6915;
@@ -8099,7 +8099,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 223";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 5235;
@@ -8119,7 +8119,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 214";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 4815;
@@ -8713,7 +8713,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 5344;
@@ -8743,7 +8743,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 5548;
@@ -9263,7 +9263,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5548;
@@ -9890,7 +9890,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatform.cpp: 738";
 		rLen = 0;
-		rLoc = 19437;
+		rLoc = 19450;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 2253;
@@ -15976,7 +15976,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 227";
 		rLen = 0;
-		rLoc = 4706;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 3554;
@@ -16146,7 +16146,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 339";
 		rLen = 0;
-		rLoc = 10573;
+		rLoc = 10714;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 7166;
@@ -17674,7 +17674,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 348";
 		rLen = 0;
-		rLoc = 8575;
+		rLoc = 8716;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 8006;
@@ -18542,7 +18542,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 412";
 		rLen = 0;
-		rLoc = 10027;
+		rLoc = 10168;
 		rType = 0;
 		vrLen = 502;
 		vrLoc = 10005;
@@ -21642,7 +21642,7 @@
 		activeExecutable = F59396D7028C0CA6016230BF;
 		activeTarget = F59396D5028C0CA6016230BF;
 		addToTargets = (
-			7AF8B14F03DC3B1800A80164,
+			F59396D5028C0CA6016230BF,
 		);
 		breakpoints = (
 		);

@@ -1008,6 +1008,30 @@
 			settings = {
 			};
 		};
+		7AB40C6303F1828100A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GameSTL.cpp;
+			refType = 4;
+		};
+		7AB40C6403F1828100A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = GameSTL.h;
+			refType = 4;
+		};
+		7AB40C6503F1828100A80164 = {
+			fileRef = 7AB40C6303F1828100A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB40C6603F1828100A80164 = {
+			fileRef = 7AB40C6403F1828100A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB41EF903D4253200A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -2257,7 +2281,6 @@
 				FRAMEWORK_VERSION = A;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "-DMUSHCORE_FLEXTESTING";
 				OTHER_LDFLAGS = "-seg1addr 0x2a000000";
 				OTHER_LIBTOOL_FLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -2915,6 +2938,8 @@
 				7AF8B0C703DC39E700A80164,
 				7AF8B0C803DC39E700A80164,
 				7AF8B0C903DC39E700A80164,
+				7AB40C6303F1828100A80164,
+				7AB40C6403F1828100A80164,
 				7AF8B0CA03DC39E700A80164,
 				7AF8B0CB03DC39E700A80164,
 				7AF8B0CC03DC39E700A80164,
@@ -6637,6 +6662,7 @@
 				7AF8B14803DC39E800A80164,
 				7AF8B14A03DC39E800A80164,
 				7AF8B14C03DC39E800A80164,
+				7AB40C6603F1828100A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6752,6 +6778,7 @@
 				7AF8B14703DC39E800A80164,
 				7AF8B14903DC39E800A80164,
 				7AF8B14B03DC39E800A80164,
+				7AB40C6503F1828100A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
