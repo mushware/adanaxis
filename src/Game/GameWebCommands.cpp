@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.4 2002/11/21 18:06:17 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.5 2002/11/22 11:42:06 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.5  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.4  2002/11/21 18:06:17  southa
  * Non-blocking network connection
  *
@@ -167,7 +170,7 @@ GameWebCommands::GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<br>Server: ";
     if (MediaNetServer::Instance().IsServing())
     {
-        ioEnv.Out() << "Serving on port " << MediaNetServer::Instance().ServerPortGet();
+        ioEnv.Out() << "Serving on port " << MediaNetServer::Instance().ServerPortHostOrderGet();
     }
     else
     {
