@@ -85,7 +85,7 @@ dnl Uee GL
             ])
 
             AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main,, AC_MSG_ERROR([Cannot find and link GLUT])))
-            CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/X11"
+            IC_CPPFLAGS="$IC_CPPFLAGS -I\${srcdir}/Platform/X11"
         fi
         AC_CHECK_HEADERS(GL/gl.h,, AC_MSG_ERROR([No GL/gl.h header]))
         AC_CHECK_HEADERS(GL/glu.h,, AC_MSG_ERROR([No GL/glu.h header]))
