@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mB7tJSwUOE22xsO0P0146A
 /*
- * $Id: TestMushMeshVector.cpp,v 1.2 2003/10/15 07:08:30 southa Exp $
+ * $Id: TestMushMeshVector.cpp,v 1.3 2003/10/15 11:54:55 southa Exp $
  * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.3  2003/10/15 11:54:55  southa
+ * MushMeshArray neighbour testing and subdivision
+ *
  * Revision 1.2  2003/10/15 07:08:30  southa
  * MushMeshArray creation
  *
