@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.47 2002/08/10 12:34:47 southa Exp $
+ * $Id: GameContract.cpp,v 1.48 2002/08/13 17:50:20 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.48  2002/08/13 17:50:20  southa
+ * Added playsound command
+ *
  * Revision 1.47  2002/08/10 12:34:47  southa
  * Added current dialogues
  *
@@ -159,6 +162,7 @@
 
 #include "mushCore.h"
 #include "mushGL.h"
+#include "mushMedia.h"
 
 #include "GameFloorMap.h"
 #include "GameData.h"
@@ -257,6 +261,11 @@ GameContract::Init(void)
     m_masterScale=0.5;
 
     GameDataUtils::NamedDialoguesAdd("^start");
+
+    // Test code
+    CoreData<MediaSound>::Instance().DataGive("sound1", new MediaSound);
+    CoreDataRef<MediaSound> soundRef("sound1");
+    cerr << "exists=" << soundRef.Exists() << endl;
 }
 
 void

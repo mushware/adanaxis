@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: mushCore.h,v 1.7 2002/07/06 18:04:14 southa Exp $
+ * $Id: mushCore.h,v 1.8 2002/08/07 13:36:43 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.8  2002/08/07 13:36:43  southa
+ * Conditioned source
+ *
  * Revision 1.7  2002/07/06 18:04:14  southa
  * More designer work
  *
@@ -66,6 +69,12 @@
 
 // Configuration handler
 #include "CoreApp/CoreConfig.h"
+
+// Data storage
+#include "CoreApp/CoreData.h"
+
+// Data reference
+#include "CoreApp/CoreDataRef.h"
 
 // Exception classes to be thrown
 #include "CoreApp/CoreException.h"

@@ -1251,6 +1251,18 @@
 			settings = {
 			};
 		};
+		F53E7137030BBFBE012C3D24 = {
+			isa = PBXFileReference;
+			name = MediaDataRef.cpp;
+			path = Media/MediaDataRef.cpp;
+			refType = 4;
+		};
+		F53E7138030BBFBE012C3D24 = {
+			isa = PBXFileReference;
+			name = MediaDataRef.h;
+			path = Media/MediaDataRef.h;
+			refType = 4;
+		};
 		F53F7CC602311A0801633C4B = {
 			isa = PBXFileReference;
 			path = CoreFlex.cpp;
@@ -3228,15 +3240,101 @@
 			settings = {
 			};
 		};
+		F54E9EA8030BC23501D67831 = {
+			isa = PBXFileReference;
+			name = MediaData.cpp;
+			path = Media/MediaData.cpp;
+			refType = 4;
+		};
+		F54E9EA9030BC23501D67831 = {
+			isa = PBXFileReference;
+			name = MediaData.h;
+			path = Media/MediaData.h;
+			refType = 4;
+		};
+		F54E9EAE030BCA8901D67831 = {
+			isa = PBXFileReference;
+			name = MediaSound.cpp;
+			path = Media/MediaSound.cpp;
+			refType = 4;
+		};
+		F54E9EAF030BCA8901D67831 = {
+			isa = PBXFileReference;
+			name = MediaSound.h;
+			path = Media/MediaSound.h;
+			refType = 4;
+		};
+		F54E9EB0030BCA8901D67831 = {
+			fileRef = F54E9EAE030BCA8901D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54E9EB1030BCA8901D67831 = {
+			fileRef = F54E9EAF030BCA8901D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54E9EB2030BD58E01D67831 = {
+			isa = PBXFileReference;
+			path = CoreData.h;
+			refType = 4;
+		};
+		F54E9EB3030BD58E01D67831 = {
+			fileRef = F54E9EB2030BD58E01D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54E9EB4030BD59A01D67831 = {
+			isa = PBXFileReference;
+			path = CoreDataRef.h;
+			refType = 4;
+		};
+		F54E9EB5030BD59A01D67831 = {
+			fileRef = F54E9EB4030BD59A01D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54E9EB6030BD71401D67831 = {
+			isa = PBXFileReference;
+			path = CoreDataRef.cpp;
+			refType = 4;
+		};
+		F54E9EB7030BD71401D67831 = {
+			fileRef = F54E9EB6030BD71401D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54E9EB8030BD72A01D67831 = {
+			isa = PBXFileReference;
+			path = CoreData.cpp;
+			refType = 4;
+		};
+		F54E9EB9030BD72A01D67831 = {
+			fileRef = F54E9EB8030BD72A01D67831;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5539E2A02B4CD53010AB4A9 = {
 			children = (
 				F5539E2B02B4CDA0010AB4A9,
 				F5539E2C02B4CDA0010AB4A9,
 				F5483AB002D1B9E501480ACF,
 				F5483AB102D1B9E501480ACF,
+				F54E9EA8030BC23501D67831,
+				F54E9EA9030BC23501D67831,
+				F53E7137030BBFBE012C3D24,
+				F53E7138030BBFBE012C3D24,
 				F5539E3102B4CDCF010AB4A9,
 				F546F59502C206E801173785,
 				F5539E3302B4CE24010AB4A9,
+				F54E9EAE030BCA8901D67831,
+				F54E9EAF030BCA8901D67831,
 			);
 			isa = PBXGroup;
 			name = Media;
@@ -3703,6 +3801,10 @@
 				F52B3C09028C26530179D0A8,
 				F5580896029E5A2B01DA4293,
 				F5580897029E5A2B01DA4293,
+				F54E9EB8030BD72A01D67831,
+				F54E9EB2030BD58E01D67831,
+				F54E9EB6030BD71401D67831,
+				F54E9EB4030BD59A01D67831,
 				F546138B0238134A01507C92,
 				F52B3C0A028C26530179D0A8,
 				F52B3C0B028C26530179D0A8,
@@ -4023,6 +4125,9 @@
 				F548CF57030291D7011728CE,
 				F5412BCE0303E7D701F8C327,
 				F548C8E103052D3A01B83DAD,
+				F54E9EB1030BCA8901D67831,
+				F54E9EB3030BD58E01D67831,
+				F54E9EB5030BD59A01D67831,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -4123,6 +4228,9 @@
 				F548CF56030291D7011728CE,
 				F5412BCD0303E7D701F8C327,
 				F548C8E003052D3A01B83DAD,
+				F54E9EB0030BCA8901D67831,
+				F54E9EB7030BD71401D67831,
+				F54E9EB9030BD72A01D67831,
 			);
 			isa = PBXSourcesBuildPhase;
 		};

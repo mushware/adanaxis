@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: mushMedia.h,v 1.4 2002/07/06 18:04:14 southa Exp $
+ * $Id: mushMedia.h,v 1.5 2002/08/07 13:36:43 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.5  2002/08/07 13:36:43  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:14  southa
  * More designer work
  *
@@ -32,10 +35,9 @@
 #ifndef MUSHMEDIA_H
 #define MUSHMEDIA_H
 
-// Utility for memory management
-#include "Media/MediaAudio.h"
 
-// SDL
+#include "Media/MediaAudio.h"
+#include "Media/MediaSound.h"
 #include "Media/MediaSDL.h"
 
 #endif

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.2 2002/08/10 12:34:48 southa Exp $
+ * $Id: GameDialogue.h,v 1.3 2002/08/13 18:29:04 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.3  2002/08/13 18:29:04  southa
+ * Tidied GameDialogue code
+ *
  * Revision 1.2  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
@@ -11,6 +14,7 @@
 
 #include "mushCore.h"
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "GameMotion.h"
 
 class GameDialogue : public GLRenderable, public CorePickle, protected CoreXMLHandler
@@ -32,7 +36,6 @@ protected:
     void XMLDataHandler(CoreXML& inXML);
 
 private:
-
     void NullHandler(CoreXML& inXML);
     void HandleTextEnd(CoreXML& inXML);
     void HandleStartColourEnd(CoreXML& inXML);
@@ -75,10 +78,24 @@ private:
         tVal endSize;
     };
 
+    class FunctionSpec
+    {
+    public:
+        string name;
+        tVal startTime;
+    };
+
+//    class SoundSpec
+//    {
+//        MediaSoundRef soundRef;
+//        tVal startTime;
+//    };
+    
     StringSpec m_currentSpec;
     vector<StringSpec> m_specs;
     GLFontRef m_fontRef;
     GameMotion m_motion;
     tVal m_age;
     bool m_expired;
+//    CoreScript m_script;
 };
