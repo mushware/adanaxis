@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } NtLx0g7XNKUnuVuHPWS7KQ
 /*
- * $Id: GLUTAppHandler.cpp,v 1.24 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.25 2004/01/02 21:13:06 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.25  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.24  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -96,6 +99,8 @@
 
 using namespace Mushware;
 using namespace std;
+
+#if 0
 
 S32 GLUTAppHandler::m_mouseX=0;
 S32 GLUTAppHandler::m_mouseY=0;
@@ -487,3 +492,6 @@ GLUTAppHandler::TranslateSpecialKey(int inKey)
             return 0;
     }
 }
+
+#endif
+

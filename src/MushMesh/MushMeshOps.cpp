@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } ZOIfzk0ChCSMw9uZrC+PiA
 /*
- * $Id: MushMeshOps.cpp,v 1.2 2004/12/12 10:55:37 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.3 2004/12/13 11:09:11 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.3  2004/12/13 11:09:11  southa
+ * Quaternion and vector tweaks
+ *
  * Revision 1.2  2004/12/12 10:55:37  southa
  * Quaternion conversions
  *
@@ -89,14 +92,14 @@ MushMeshOps::PostQuaternionToMatrix(const Mushware::tQVal& inQuat)
 void
 MushMeshOps::QuaternionPairToRotationMatrix(Mushware::t4x4Val& outMatrix, const Mushware::tQValPair& inPair)
 {
-    tVal a = inPair.first.X();
-    tVal b = inPair.first.Y();
-    tVal c = inPair.first.Z();
-    tVal d = inPair.first.W();
-    tVal e = inPair.second.X();
-    tVal f = inPair.second.Y();
-    tVal g = inPair.second.Z();
-    tVal h = inPair.second.W();
+    tVal a = inPair.First().X();
+    tVal b = inPair.First().Y();
+    tVal c = inPair.First().Z();
+    tVal d = inPair.First().W();
+    tVal e = inPair.Second().X();
+    tVal f = inPair.Second().Y();
+    tVal g = inPair.Second().Z();
+    tVal h = inPair.Second().W();
     
     outMatrix = t4x4Val(
         t4Val(a*e-b*f-c*g-d*h, -a*f-b*e+c*h-d*g, -a*g-b*h-c*e+d*f, -a*h+b*g-c*f-d*e),
@@ -209,6 +212,6 @@ Q3LARGEST:
     }
     
     tQVal qP = tQVal(q0, q1, q2, q3);
-    outPair.first = qS * qP;
-    outPair.second = qP.ConjugateGet();
+    outPair.FirstSet(qS * qP);
+    outPair.SecondSet(qP.ConjugateGet());
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xxX+iSBjqDjjRTp/Knkivw
 /*
- * $Id: MaurheenHypersphere.cpp,v 1.3 2005/01/29 18:27:31 southa Exp $
+ * $Id: MaurheenHypersphere.cpp,v 1.4 2005/02/01 13:40:37 southa Exp $
  * $Log: MaurheenHypersphere.cpp,v $
+ * Revision 1.4  2005/02/01 13:40:37  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.3  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -77,7 +80,6 @@ MaurheenHypersphere::Create(tVal frame)
         m_colourBuffer.MapReadWrite();
         for (U32 i=0; i<kNumVertices; ++i)
         {
-            tVal length = sqrt(m_vertices[i]*m_vertices[i]);
             t4GLVal colour = m_vertices[i]*1 + colourOffset;
             colour.WSet(0.2+0.8*(double)(rand())/RAND_MAX);
             if (fabs(m_vertices[i].X()) < 0.5 &&
@@ -134,7 +136,7 @@ MaurheenHypersphere::Render(tVal frame)
     
     for (U32 i=0; i<6; ++i)
     {
-        rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
+        rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
     }
     
     if (1)
@@ -152,7 +154,6 @@ MaurheenHypersphere::Render(tVal frame)
     
 
     tVal distance = 4;
-    tVal extent = 0.5;
 
     t3GLVal vertOffset = t3GLVal(0,0,0*distance);
     

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rcXSfc3f9ci5xhawZesB7Q
 /*
- * $Id: InfernalContract.h,v 1.6 2004/01/06 20:46:50 southa Exp $
+ * $Id: InfernalContract.h,v 1.7 2004/09/27 22:42:09 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.7  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.6  2004/01/06 20:46:50  southa
  * Build fixes
  *
@@ -163,6 +166,8 @@
  * InfernalContract and global configs added
  *
  */
+
+#include "InfernalStandard.h"
 
 #include "mushMushcore.h"
 #include "mushGame.h"

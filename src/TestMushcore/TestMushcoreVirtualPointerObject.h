@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } YBw5+nlofmmkMYnll0Z0xg
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreVirtualPointerObject.h,v 1.1 2004/01/18 18:25:30 southa Exp $
+ * $Log: TestMushcoreVirtualPointerObject.h,v $
+ * Revision 1.1  2004/01/18 18:25:30  southa
+ * XML stream upgrades
+ *
  */
 
 #include "TestMushcoreStandard.h"
@@ -50,7 +53,7 @@ private:
     TestMushcoreObjectSubSub *m_subSubPtr;
 //%classPrototypes {
 public:
-    const Mushware::U32& VirtualPointerObjectValueGet(void) const { return m_virtualPointerObjectValue; }
+    const Mushware::U32& VirtualPointerObjectValue(void) const { return m_virtualPointerObjectValue; }
     void VirtualPointerObjectValueSet(const Mushware::U32& inValue) { m_virtualPointerObjectValue=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual TestMushcoreVirtualPointerObject *AutoClone(void) const;
@@ -60,7 +63,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } dzeAXUSygPVnW8nXU5X7wg
+//%classPrototypes } oIJhcGk3h+FUqHqwFaQIKw
 };
 //%inlineHeader {
 inline bool

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4oyuaAIZhw3W7rwbERri6A
 /*
- * $Id: GLXMLOperators.h,v 1.1 2004/01/10 20:29:34 southa Exp $
+ * $Id: GLXMLOperators.h,v 1.2 2004/09/27 22:42:08 southa Exp $
  * $Log: GLXMLOperators.h,v $
+ * Revision 1.2  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.1  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
@@ -25,7 +28,6 @@
 
 #include "GLStandard.h"
 
-#if 0
 inline void
 operator>>(MushcoreXMLIStream& ioIn, GLenum& outObj)
 {
@@ -33,7 +35,6 @@ operator>>(MushcoreXMLIStream& ioIn, GLenum& outObj)
     ioIn.ObjectRead(xmlVal);
     outObj = static_cast<GLenum>(xmlVal);
 }
-#endif
 
 //%includeGuardEnd {
 #endif

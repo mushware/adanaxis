@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Y0heUUMv/8rG89Ya6G1wZg
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.2 2004/12/12 10:55:37 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.3 2005/02/03 15:47:03 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.3  2005/02/03 15:47:03  southa
+ * Quaternion work
+ *
  * Revision 1.2  2004/12/12 10:55:37  southa
  * Quaternion conversions
  *
@@ -33,12 +36,12 @@ void
 TestMushMeshQuaternion::PseudoRandomRotationGet(t4x4Val& outMatrix, tVal inSeed)
 {
     t4x4Val aMatrix =
-        t4x4Val(t4Val( cos(2*inSeed), -sin(2*inSeed),              0,             0),
-                t4Val( sin(2*inSeed),  cos(2*inSeed),              0,             0),
-                t4Val(             0,              0,       cos(5*inSeed), -sin(5*inSeed)),
-                t4Val(             0,              0,       sin(5*inSeed),  cos(5*inSeed))
-                );
-  
+    t4x4Val(t4Val( cos(2*inSeed), -sin(2*inSeed),              0,             0),
+            t4Val( sin(2*inSeed),  cos(2*inSeed),              0,             0),
+            t4Val(             0,              0,       cos(5*inSeed), -sin(5*inSeed)),
+            t4Val(             0,              0,       sin(5*inSeed),  cos(5*inSeed))
+            );
+    
     t4x4Val bMatrix =
         t4x4Val(t4Val( cos(3*inSeed), 0,              -sin(3*inSeed),             0),
                 t4Val(             0,  cos(7*inSeed),              0, -sin(7*inSeed)),
@@ -47,6 +50,15 @@ TestMushMeshQuaternion::PseudoRandomRotationGet(t4x4Val& outMatrix, tVal inSeed)
                 );
     
     outMatrix = aMatrix * bMatrix;                
+}
+
+void
+TestMushMeshQuaternion::PseudoRandomVectorGet(t4Val& outVector, tVal inSeed)
+{
+    outVector = t4Val(1.37*cos(0.72 + 2.32*inSeed),
+                      5.21*cos(0.86 + 1.24*inSeed),
+                      2.38*cos(0.98 + 3.02*inSeed),
+                      3.76*cos(1.32 + 0.54*inSeed));
 }
 
 MushcoreScalar
@@ -104,6 +116,28 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
         throw MushcoreCommandFail(message.str());
     }
     
+    tQVal::tBase cVec = bQuat;
+    aQuat.PreMultiplyVector(cVec);
+    
+    if (tQVal(cVec) != resultQuat)
+    {
+        ostringstream message;
+        message << "Quat.PreMultiplyVector failed : " << bQuat << ".PreMultiplyVector(" << aQuat << ") == " << cVec;
+        message << " (expected " << resultQuat << ")";
+        throw MushcoreCommandFail(message.str());
+    }
+ 
+    cVec = aQuat;
+    bQuat.PostMultiplyVector(cVec);
+    
+    if (tQVal(cVec) != resultQuat)
+    {
+        ostringstream message;
+        message << "Quat.PostMultiplyVector failed : " << aQuat << ".PostMultiplyVector(" << bQuat << ") == " << cVec;
+        message << " (expected " << resultQuat << ")";
+        throw MushcoreCommandFail(message.str());
+    }
+    
     tQValPair aQuatPair;
     t4x4Val aMatrix, bMatrix;
     
@@ -118,7 +152,7 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
         {
             ostringstream message;
             message << "QuatPair/Matrix conversion failed : " << aMatrix << " != " << bMatrix;
-            message << " (quaternions were " << aQuatPair.first << ", " << aQuatPair.second << ")";
+            message << " (quaternions were " << aQuatPair.First() << ", " << aQuatPair.Second() << ")";
             throw MushcoreCommandFail(message.str());
         }
     }
@@ -136,12 +170,62 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
             if (!MushMeshOps::ApproxEquals(aMatrix, bMatrix))
             {
                 ostringstream message;
-                message << "QuatPair/Matrix conversion failed (angle=" << angle << ", axis=" << axis << ") : " << aMatrix << " != " << bMatrix;
-                message << " (quaternions were " << aQuatPair.first << ", " << aQuatPair.second << ")";
+                message << "xxxRotateInAxis failed (angle=" << angle << ", axis=" << axis << ") : " << aMatrix << " != " << bMatrix;
+                message << " (quaternions were " << aQuatPair.First() << ", " << aQuatPair.Second() << ")";
                 throw MushcoreCommandFail(message.str());
+            }
+            
+            for (U32 nextAxis=0; nextAxis < 6; ++nextAxis)
+            {
+                tQValPair qNextPair = MushMeshTools::QuaternionRotateInAxis(nextAxis, 1+angle);
+                
+                qPair.OuterMultiplyBy(qNextPair);
+                
+                MushMeshOps::QuaternionPairToRotationMatrix(aMatrix, qPair);
+                
+                bMatrix = MushMeshTools::MatrixRotateInAxis(nextAxis, 1+angle) * bMatrix;
+                
+                if (!MushMeshOps::ApproxEquals(aMatrix, bMatrix))
+                {
+                    ostringstream message;
+                    message << "OuterMultiplyBy failed (nextAngle=" << 1+angle << ", nextAxis=" << nextAxis << ") : " << aMatrix << " != " << bMatrix;
+                    message << " (quaternions were " << aQuatPair.First() << ", " << aQuatPair.Second() << ")";
+                    throw MushcoreCommandFail(message.str());
+                }
             }
         }
     }
+    
+    for (tVal seed=0; seed<100; seed += 0.34)
+    {
+        t4Val aVec, bVec;
+        PseudoRandomVectorGet(aVec, seed);
+        bVec = aVec;
+        
+        for (U32 i=0; i<6; ++i)
+        {
+            MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+seed/30.0))*4*sin(seed/4));
+
+            bVec = rotate * bVec;
+        }
+
+        tQValPair orient(tQValPair::RotationIdentityGet());
+        
+        for (U32 i=0; i<6; ++i)
+        {
+            orient.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i, cos((i+1)*(1.0+seed/30.0))*4*sin(seed/4)));
+        }
+        
+        orient.InPlaceRotate(aVec);
+        
+        if (!MushMeshOps::ApproxEquals(aVec, bVec))
+        {
+            ostringstream message;
+            message << "InPlaceRotate failed : " << aQuat << " != " << bQuat;
+            throw MushcoreCommandFail(message.str());
+        }
+    }  
+    
     return MushcoreScalar(0);
 }
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Sz6r4LjP+pJHGm8/heQ+DQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreObjectBase.h,v 1.1 2004/01/18 18:25:29 southa Exp $
+ * $Log: TestMushcoreObjectBase.h,v $
+ * Revision 1.1  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  */
 
 #include "TestMushcoreStandard.h"
@@ -33,7 +36,7 @@ private:
     Mushware::U32 m_baseObjectValue; //:readwrite
 //%classPrototypes {
 public:
-    const Mushware::U32& BaseObjectValueGet(void) const { return m_baseObjectValue; }
+    const Mushware::U32& BaseObjectValue(void) const { return m_baseObjectValue; }
     void BaseObjectValueSet(const Mushware::U32& inValue) { m_baseObjectValue=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual TestMushcoreObjectBase *AutoClone(void) const;
@@ -43,7 +46,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } lEP7Jw4plExf1o4kcqRg4w
+//%classPrototypes } QWGStK4DSDujT1IwHCKV/Q
 };
 //%inlineHeader {
 inline bool

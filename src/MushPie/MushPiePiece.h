@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.8 2004/01/06 20:46:52 southa Exp $
+ * $Id: MushPiePiece.h,v 1.9 2004/09/27 22:42:10 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.9  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.8  2004/01/06 20:46:52  southa
  * Build fixes
  *
@@ -72,9 +75,9 @@ private:
     
 //%classPrototypes {
 public:
-    const tSleepState& SleepStateGet(void) const { return m_sleepState; }
+    const tSleepState& SleepState(void) const { return m_sleepState; }
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
-    const MushPieForm::tDataRef& FormRefGet(void) const { return m_formRef; }
+    const MushPieForm::tDataRef& FormRef(void) const { return m_formRef; }
     void FormRefSet(const MushPieForm::tDataRef& inValue) { m_formRef=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePiece *AutoClone(void) const;
@@ -84,7 +87,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } hYvstfd7uNgNN8cmNkB64g
+//%classPrototypes } rWhxag/dJjXjsvY2LpJIvA
 };
 //%inlineHeader {
 inline bool

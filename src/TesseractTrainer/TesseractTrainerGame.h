@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerGame.h,v 1.1 2005/02/03 15:46:58 southa Exp $
+ * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.1  2005/02/03 15:46:58  southa
+ * Quaternion work
+ *
  */
 
 #include "mushMushcore.h"
@@ -47,6 +50,7 @@ protected:
 private:
     TesseractTrainerHypercube m_hypercube;
     TesseractTrainerHypersphere m_hypersphere;
+    Mushware::tQValPair m_orientaton;
 
 //%classPrototypes {
 public:

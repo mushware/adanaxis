@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } +yOg9P9RkziFVgQl5vriGg
 /*
- * $Id: InfernalForm.cpp,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.2 2004/01/10 20:29:34 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.2  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.1  2004/01/07 18:01:18  southa
  * MushModel and Infernal work
  *
@@ -43,7 +46,7 @@ InfernalForm::SignalHandle(const MushPieSignal& inSignal)
     const MushPieSignalNumeric *pSignalNumeric = dynamic_cast<const MushPieSignalNumeric *>(&inSignal);
     if (pSignalNumeric != NULL)
     {
-        switch (pSignalNumeric->EventNumberGet())
+        switch (pSignalNumeric->EventNumber())
         {
             case kSignalRender:
                 Render();
@@ -72,9 +75,9 @@ InfernalForm::Render(void)
     MushModelMultiFacet::tConstIterator pFacetsEnd = m_modelRef.RefGet().FacetsEnd();
     for (MushModelMultiFacet::tConstIterator pFacet = m_modelRef.RefGet().FacetsBegin(); pFacet != pFacetsEnd; ++pFacet)
     {
-        if (pFacet->MaterialRefGet().Exists())
+        if (pFacet->MaterialRef().Exists())
         {
-            const MushModelMaterial& newMaterialRef = pFacet->MaterialRefGet().RefGet();
+            const MushModelMaterial& newMaterialRef = pFacet->MaterialRef().RefGet();
             
             if (pLastMaterial != &newMaterialRef)
             {
@@ -85,14 +88,14 @@ InfernalForm::Render(void)
                     // Creating a new context
                     m_facetContexts.resize(m_facetContextIndex + 1);
                     InfernalFacetContext& contextRef = m_facetContexts[m_facetContextIndex];
-                    contextRef.TextureRefSet(GLTextureRef(newMaterialRef.TextureNameGet()));
-                    contextRef.ArraySizeSet(3*pFacet->VerticesGet().size());
-                    contextRef.RenderTypeImport(pFacet->RenderTypeGet());
-                    contextRef.VerticesImport(pFacet->VerticesGet());
+                    contextRef.TextureRefSet(GLTextureRef(newMaterialRef.TextureName()));
+                    contextRef.ArraySizeSet(3*pFacet->Vertices().size());
+                    contextRef.RenderTypeImport(pFacet->RenderType());
+                    contextRef.VerticesImport(pFacet->Vertices());
                 }
                 InfernalFacetContext& contextRef = m_facetContexts[m_facetContextIndex];
                 
-                const GLTextureRef& texRef = contextRef.TextureRefGet();
+                const GLTextureRef& texRef = contextRef.TextureRef();
                 if (texRef.TextureGet()->NeedsAlpha())
                 {
                     GLState::BlendSet(GLState::kBlendTransparent);
@@ -104,21 +107,21 @@ InfernalForm::Render(void)
                 GLState::BindTexture(texRef.BindingNameGet());
                 GLState::TextureEnable();
                 
-                if (contextRef.ListContextNumGet() == GLUtils::ListContextGet())
+                if (contextRef.ListContextNum() == GLUtils::ListContextGet())
                 {
-                    MUSHCOREASSERT(glIsList(contextRef.ListNameGet()));
-                    glCallList(contextRef.ListNameGet());
+                    MUSHCOREASSERT(glIsList(contextRef.ListName()));
+                    glCallList(contextRef.ListName());
                 }
                 else
                 {
                     contextRef.ListNameSet(glGenLists(1));
-                    GLRender::VertexArraySet(&contextRef.VerticesGet()[0]);
-                    GLRender::TexCoordArraySet(&contextRef.TexCoordsGet()[0]);
-                    GLRender::NormalArraySet(&contextRef.NormalsGet()[0]);
-                    glNewList(contextRef.ListNameGet(), GL_COMPILE);
-                    GLRender::DrawArrays(contextRef.RenderTypeGet(), contextRef.ArraySizeGet());
+                    GLRender::VertexArraySet(&contextRef.Vertices()[0]);
+                    GLRender::TexCoordArraySet(&contextRef.TexCoords()[0]);
+                    GLRender::NormalArraySet(&contextRef.Normals()[0]);
+                    glNewList(contextRef.ListName(), GL_COMPILE);
+                    GLRender::DrawArrays(contextRef.RenderType(), contextRef.ArraySize());
                     glEndList();
-                    glCallList(contextRef.ListNameGet());
+                    glCallList(contextRef.ListName());
                     contextRef.ListContextNumSet(GLUtils::ListContextGet());
                 }
             }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VxPQKKFlOK3QVRP/hQqigA
 /*
- * $Id: InfernalForm.h,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Id: InfernalForm.h,v 1.2 2004/01/10 20:29:34 southa Exp $
  * $Log: InfernalForm.h,v $
+ * Revision 1.2  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.1  2004/01/07 18:01:18  southa
  * MushModel and Infernal work
  *
@@ -61,7 +64,7 @@ private:
     
 //%classPrototypes {
 public:
-    const MushcoreDataRef<MushModelMultiFacet>& ModelRefGet(void) const { return m_modelRef; }
+    const MushcoreDataRef<MushModelMultiFacet>& ModelRef(void) const { return m_modelRef; }
     void ModelRefSet(const MushcoreDataRef<MushModelMultiFacet>& inValue) { m_modelRef=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual InfernalForm *AutoClone(void) const;
@@ -70,7 +73,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } WldB++z0V4eACWKo6VE/Wg
+//%classPrototypes } t4sWWasWD82eyVeWHDv2aw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P4EBRx8qMYZcSEDE1oUinw
 /*
- * $Id: MeshMoverAppHandler.cpp,v 1.2 2004/01/02 21:13:10 southa Exp $
+ * $Id: MeshMoverAppHandler.cpp,v 1.3 2004/01/06 20:46:51 southa Exp $
  * $Log: MeshMoverAppHandler.cpp,v $
+ * Revision 1.3  2004/01/06 20:46:51  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -47,14 +50,15 @@ MeshMoverAppHandler::~MeshMoverAppHandler()
 void
 MeshMoverAppHandler::GameModeEnter(bool inResume)
 {
-    if (StateGameIs())
+    if (!StateGameIs())
     {
         CurrentSwapOut();
-
-        m_pGame=NULL;
-
-        MUSHCOREASSERT(m_pGame != NULL);
-        CurrentSwapIn(m_pGame);
+        
+        if (!inResume || !MushcoreData<GameBase>::Sgl().Exists("meshmover"))
+        {
+            PrepareNewGame();
+        }
+        CurrentSwapIn("meshmover");
         StateGameSet();
     }
 }
@@ -62,15 +66,12 @@ MeshMoverAppHandler::GameModeEnter(bool inResume)
 void
 MeshMoverAppHandler::PrepareNewGame(void)
 {
-    m_pGame = NULL; // We're about to delete this
-
-    // Work out what the game type is
-    GameTypeDetermine();
+    //MushcoreData<GameBase>::Sgl().Give("meshmover", new MeshMoverGame);
 }
 
 void
 MeshMoverAppHandler::CurrentGameEnd(void)
 {
     SetupModeEnter();
-    m_pGame=NULL;
+    MushcoreData<GameBase>::Sgl().Delete("meshmover");
 }

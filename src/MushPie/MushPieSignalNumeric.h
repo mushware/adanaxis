@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } FOmNozUEFEVBx83/GMJVjA
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieSignalNumeric.h,v 1.1 2004/01/10 20:29:35 southa Exp $
+ * $Log: MushPieSignalNumeric.h,v $
+ * Revision 1.1  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  */
 
 #include "MushPieStandard.h"
@@ -36,7 +39,7 @@ private:
     Mushware::U32 m_eventNumber; //:read
 //%classPrototypes {
 public:
-    const Mushware::U32& EventNumberGet(void) const { return m_eventNumber; }
+    const Mushware::U32& EventNumber(void) const { return m_eventNumber; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPieSignalNumeric *AutoClone(void) const;
     virtual MushPieSignalNumeric *AutoCreate(void) const;
@@ -44,7 +47,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +OHlIcZ/5Cm2KeCxiMlt8w
+//%classPrototypes } IzCQ0YOxia+FsktR1dBohw
 };
 //%inlineHeader {
 inline std::ostream&

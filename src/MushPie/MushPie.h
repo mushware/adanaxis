@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 2wneGznSkHlrbgW3tFNYKA
 /*
- * $Id: MushPie.h,v 1.4 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPie.h,v 1.5 2004/01/10 20:29:35 southa Exp $
  * $Log: MushPie.h,v $
+ * Revision 1.5  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.4  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -32,6 +35,7 @@
  *
  */
 
+#include "MushPieForm.h"
 #include "MushPiePiece.h"
 #include "MushPiePieceMobile.h"
 #include "MushPiePieceSimple.h"

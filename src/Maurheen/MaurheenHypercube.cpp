@@ -12,8 +12,11 @@
 ****************************************************************************/
 //%Header } dnkP76FJ2EDluhnPYobJxw
 /*
- * $Id: MaurheenHypercube.cpp,v 1.4 2005/01/27 21:00:39 southa Exp $
+ * $Id: MaurheenHypercube.cpp,v 1.5 2005/02/01 13:40:36 southa Exp $
  * $Log: MaurheenHypercube.cpp,v $
+ * Revision 1.5  2005/02/01 13:40:36  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.4  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -176,7 +179,7 @@ MaurheenHypercube::Render(tVal frame)
     
     for (U32 i=0; i<6; ++i)
     {
-        MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
+        MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
         for (U32 j=0; j<vertices.size(); ++j)
         {
             vertices[j] = rotate * vertices[j];

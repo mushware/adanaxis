@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } UaBPyJihXb0nBhSdiIa4/Q
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalFacetContext.h,v 1.1 2004/01/10 20:29:34 southa Exp $
+ * $Log: InfernalFacetContext.h,v $
+ * Revision 1.1  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  */
 
 #include "InfernalStandard.h"
@@ -46,20 +49,20 @@ private:
     bool m_contextValid; //:readwrite
 //%classPrototypes {
 public:
-    const GLTextureRef& TextureRefGet(void) const { return m_textureRef; }
+    const GLTextureRef& TextureRef(void) const { return m_textureRef; }
     void TextureRefSet(const GLTextureRef& inValue) { m_textureRef=inValue; }
-    const Mushware::U32& ListContextNumGet(void) const { return m_listContextNum; }
+    const Mushware::U32& ListContextNum(void) const { return m_listContextNum; }
     void ListContextNumSet(const Mushware::U32& inValue) { m_listContextNum=inValue; }
-    const GLuint& ListNameGet(void) const { return m_listName; }
+    const GLuint& ListName(void) const { return m_listName; }
     void ListNameSet(const GLuint& inValue) { m_listName=inValue; }
-    const GLenum& RenderTypeGet(void) const { return m_renderType; }
+    const GLenum& RenderType(void) const { return m_renderType; }
     void RenderTypeSet(const GLenum& inValue) { m_renderType=inValue; }
-    const Mushware::U32& ArraySizeGet(void) const { return m_arraySize; }
+    const Mushware::U32& ArraySize(void) const { return m_arraySize; }
     void ArraySizeSet(const Mushware::U32& inValue) { m_arraySize=inValue; }
-    const std::vector<GLfloat>& VerticesGet(void) const { return m_vertices; }
-    const std::vector<GLfloat>& TexCoordsGet(void) const { return m_texCoords; }
-    const std::vector<GLfloat>& NormalsGet(void) const { return m_normals; }
-    const bool& ContextValidGet(void) const { return m_contextValid; }
+    const std::vector<GLfloat>& Vertices(void) const { return m_vertices; }
+    const std::vector<GLfloat>& TexCoords(void) const { return m_texCoords; }
+    const std::vector<GLfloat>& Normals(void) const { return m_normals; }
+    const bool& ContextValid(void) const { return m_contextValid; }
     void ContextValidSet(const bool& inValue) { m_contextValid=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual InfernalFacetContext *AutoClone(void) const;
@@ -68,7 +71,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gRue4TFnUjlvcXYHwj2dww
+//%classPrototypes } NgdAtPbDceN3DvjhduPnqw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } wlPtQd6U0W6j0N7Jl/9Z5Q
 /*
- * $Id: MushMeshOps.h,v 1.2 2004/11/30 00:18:06 southa Exp $
+ * $Id: MushMeshOps.h,v 1.3 2004/12/12 10:55:37 southa Exp $
  * $Log: MushMeshOps.h,v $
+ * Revision 1.3  2004/12/12 10:55:37  southa
+ * Quaternion conversions
+ *
  * Revision 1.2  2004/11/30 00:18:06  southa
  * Additional vector operations
  *
@@ -31,6 +34,7 @@
 #include "MushMeshVector.h"
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
+#include "MushMeshQuaternionPair.h"
 
 class MushMeshOps
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vgNHjnCCayhlm093vD2VmA
 /*
- * $Id: MushPiePieceSimple.h,v 1.3 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePieceSimple.h,v 1.4 2004/09/27 22:42:10 southa Exp $
  * $Log: MushPiePieceSimple.h,v $
+ * Revision 1.4  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.3  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -46,7 +49,7 @@ private:
     MushPiePosition m_pos; //:readwrite
 //%classPrototypes {
 public:
-    const MushPiePosition& PosGet(void) const { return m_pos; }
+    const MushPiePosition& Pos(void) const { return m_pos; }
     void PosSet(const MushPiePosition& inValue) { m_pos=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePieceSimple *AutoClone(void) const;
@@ -55,7 +58,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } JniBjRAZGacnOSK83+06rw
+//%classPrototypes } zBnn8Tbjb/40xlkz4t1G2w
 };
 //%inlineHeader {
 inline std::ostream&

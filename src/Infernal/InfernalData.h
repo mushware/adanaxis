@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } d+1PYEKlqM49DPZUlGG7BQ
 /*
- * $Id: InfernalData.h,v 1.6 2004/01/06 20:46:50 southa Exp $
+ * $Id: InfernalData.h,v 1.7 2004/01/10 20:29:34 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.7  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.6  2004/01/06 20:46:50  southa
  * Build fixes
  *
@@ -126,6 +129,8 @@
  */
 
 #include "mushMushcore.h"
+
+#include "mushPie.h"
 
 class InfernalTileMap;
 class InfernalFloorMap;

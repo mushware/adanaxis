@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.28 2005/01/29 14:06:11 southa Exp $
+# $Id: SourceConditioner.pl,v 1.29 2005/01/29 18:27:30 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.29  2005/01/29 18:27:30  southa
+# Vertex buffer stuff
+#
 # Revision 1.28  2005/01/29 14:06:11  southa
 # OpenGL buffers and extensions
 #
@@ -434,7 +437,7 @@ sub AccessPrototypeGenerate($$)
             
             if ($comment =~ /(:read\b|:readwrite)\b/)
             {
-                push @$outputRef, "$gConfig{INDENT}const $type& ${capitalisedAttr}Get(void) const { return $attr; }";
+                push @$outputRef, "$gConfig{INDENT}const $type& ${capitalisedAttr}(void) const { return $attr; }";
             }
             if ($comment =~ /(:write\b|:readwrite)\b/)
             {

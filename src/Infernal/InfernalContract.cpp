@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.10 2004/09/27 22:42:09 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.11 2004/09/28 23:05:54 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.11  2004/09/28 23:05:54  southa
+ * MSVC build of ic2
+ *
  * Revision 1.10  2004/09/27 22:42:09  southa
  * MSVC compilation fixes
  *
@@ -710,7 +713,8 @@ InfernalContract::RunningDisplay(void)
     for (InfernalData::tProjectileDataConstIterator p = InfernalData::Sgl().ProjectileDataGet().Begin();
          p != pEnd; ++p)
     {
-        p->second->FormRefGet().RefGet().SignalHandle(MushPieSignalNumeric(InfernalForm::kSignalRender));
+        // FIXME
+        // p->second->FormRefGet().RefGet().SignalHandle(MushPieSignalNumeric(InfernalForm::kSignalRender));
     }
     
     GLUtils::PopMatrix();
@@ -1061,8 +1065,8 @@ InfernalContract::GlobalKeyControl(void)
             pPiece->NewPosSet(MushPiePosicity(
                 t3Val(playerSpec.pos.x, playerSpec.pos.y, 0),
                 t3Val(0, 0, 0),
-                tQVal::IdentityGet(),
-                tQVal::IdentityGet()));
+                tQVal::MultiplicativeIdentityGet(),
+                tQVal::MultiplicativeIdentityGet()));
 
             pPiece->PosSwap();
             

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } tvE8OYNg7opzgRevdZ3rwA
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerHypercube.cpp,v 1.1 2005/02/03 15:46:58 southa Exp $
+ * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.1  2005/02/03 15:46:58  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerHypercube.h"
@@ -161,15 +164,31 @@ TesseractTrainerHypercube::Render(tVal frame)
     
     std::vector<tVertex> vertices(m_vertices);
     
-    for (U32 i=0; i<6; ++i)
+    if ((U32)frame % 2 < 1)
     {
-        MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
-        for (U32 j=0; j<vertices.size(); ++j)
+        for (U32 i=0; i<6; ++i)
         {
-            vertices[j] = rotate * vertices[j];
+            MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
+            for (U32 j=0; j<vertices.size(); ++j)
+            {
+                vertices[j] = rotate * vertices[j];
+            }
         }
     }
-    
+    else
+    {
+        tQValPair orient(tQValPair::RotationIdentityGet());
+        
+        for (U32 i=0; i<6; ++i)
+        {
+            orient.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)));
+        }
+        
+        for (U32 j=0; j<vertices.size(); ++j)
+        {
+            orient.InPlaceRotate(vertices[j]);
+        }
+    }        
 
     
     

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KlSGDEnGkB9koN4E0FK9Tw
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.1 2005/02/03 15:46:59 southa Exp $
+ * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.1  2005/02/03 15:46:59  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerHypersphere.h"
@@ -68,7 +71,6 @@ TesseractTrainerHypersphere::Create(tVal frame)
         m_colourBuffer.MapReadWrite();
         for (U32 i=0; i<kNumVertices; ++i)
         {
-            tVal length = sqrt(m_vertices[i]*m_vertices[i]);
             t4GLVal colour = m_vertices[i]*1 + colourOffset;
             colour.WSet(0.2+0.8*(double)(rand())/RAND_MAX);
             if (fabs(m_vertices[i].X()) < 0.5 &&
@@ -125,7 +127,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
     
     for (U32 i=0; i<6; ++i)
     {
-        rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
+        rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
     }
     
     if (1)
@@ -143,7 +145,6 @@ TesseractTrainerHypersphere::Render(tVal frame)
     
 
     tVal distance = 4;
-    tVal extent = 0.5;
 
     t3GLVal vertOffset = t3GLVal(0,0,0*distance);
     

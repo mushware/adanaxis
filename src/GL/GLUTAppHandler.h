@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } K22sbPiQEBIl3PBNZIK/dg
 /*
- * $Id: GLUTAppHandler.h,v 1.23 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.24 2004/09/27 22:42:08 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.24  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.23  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -104,6 +107,8 @@
 
 class GLKeyboardSignal;
 
+#if 0
+
 class GLUTAppHandler : public GLAppHandler
 {
 public:
@@ -164,6 +169,9 @@ private:
     static Mushware::S32 m_mouseYDelta;
     static bool m_lastMouseValid;
 };
+
+#endif
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

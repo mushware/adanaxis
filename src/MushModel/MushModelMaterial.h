@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NPCsJXr5ecNdynBZmJZGJg
 /*
- * $Id: MushModelMaterial.h,v 1.2 2004/01/08 22:41:10 southa Exp $
+ * $Id: MushModelMaterial.h,v 1.3 2004/09/27 22:42:09 southa Exp $
  * $Log: MushModelMaterial.h,v $
+ * Revision 1.3  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.2  2004/01/08 22:41:10  southa
  * MushModel commands
  *
@@ -45,7 +48,7 @@ private:
     std::string m_textureName; //:readwrite
 //%classPrototypes {
 public:
-    const std::string& TextureNameGet(void) const { return m_textureName; }
+    const std::string& TextureName(void) const { return m_textureName; }
     void TextureNameSet(const std::string& inValue) { m_textureName=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushModelMaterial *AutoClone(void) const;
@@ -54,7 +57,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } X7kArZKGzw4eLk2klpV5hw
+//%classPrototypes } 6CsW+eA7VnBQiQtLIoBL9w
 };
 //%inlineHeader {
 inline std::ostream&

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.18 2005/01/27 21:00:39 southa Exp $
+ * $Id: MushMesh.h,v 1.19 2005/02/03 15:46:51 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.19  2005/02/03 15:46:51  southa
+ * Quaternion work
+ *
  * Revision 1.18  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -86,6 +89,7 @@
 #include "MushMeshPostMatrix.h"
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
+#include "MushMeshQuaternionPair.h"
 // MushMeshSubdivide.h excluded
 #include "MushMeshTools.h"
 #include "MushMeshTriangularArray.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.4 2004/12/06 20:44:17 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.5 2004/12/12 10:55:37 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.5  2004/12/12 10:55:37  southa
+ * Quaternion conversions
+ *
  * Revision 1.4  2004/12/06 20:44:17  southa
  * Quaternion and matrix operations
  *
@@ -40,8 +43,10 @@ template<class T>
 class MushMeshQuaternion : public MushMeshVector<T, 4>
 {
 public:
+    typedef MushMeshVector<T, 4> tBase;
+    
     MushMeshQuaternion() {}
-    MushMeshQuaternion(const MushMeshVector<T, 4>& inVec);
+    explicit MushMeshQuaternion(const MushMeshVector<T, 4>& inVec);
     MushMeshQuaternion(const T& in0, const T& in1, const T& in2, const T& in3)
     {
         m_value[0] = in0;
@@ -53,7 +58,9 @@ public:
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     MushMeshQuaternion<T> ConjugateGet(void);
-    
+    void PreMultiplyVector(tBase& ioVec) const;
+    void PostMultiplyVector(tBase& ioVec) const;
+
     static MushMeshQuaternion AdditiveIdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
     static MushMeshQuaternion MultiplicativeIdentityGet(void) { return MushMeshQuaternion(1,0,0,0); }
     
@@ -109,6 +116,47 @@ MushMeshQuaternion<T>::PostMultiplyBy(const MushMeshQuaternion<T>& inQuat)
     m_value[3] = a*h + d*e + b*g - c*f;
 }
 
+
+template <class T>
+inline void
+MushMeshQuaternion<T>::PreMultiplyVector(tBase& ioVec) const
+{
+    T a = m_value[0];
+    T b = m_value[1];
+    T c = m_value[2];
+    T d = m_value[3];
+    T e = ioVec.X();
+    T f = ioVec.Y();
+    T g = ioVec.Z();
+    T h = ioVec.W();
+    
+    ioVec.XSet(a*e - b*f - c*g - d*h);
+    ioVec.YSet(a*f + b*e + c*h - d*g);
+    ioVec.ZSet(a*g + c*e - b*h + d*f);
+    ioVec.WSet(a*h + d*e + b*g - c*f);
+}
+
+template <class T>
+inline void
+MushMeshQuaternion<T>::PostMultiplyVector(tBase& ioVec) const
+{
+    T a = ioVec.X();
+    T b = ioVec.Y();
+    T c = ioVec.Z();
+    T d = ioVec.W();
+    T e = m_value[0];
+    T f = m_value[1];
+    T g = m_value[2];
+    T h = m_value[3];
+    
+    // Apply expansion of (a+bi+cj+dk)(e+fi+gj+hk)
+    
+    ioVec.XSet(a*e - b*f - c*g - d*h);
+    ioVec.YSet(a*f + b*e + c*h - d*g);
+    ioVec.ZSet(a*g + c*e - b*h + d*f);
+    ioVec.WSet(a*h + d*e + b*g - c*f);
+}
+
 template <class T>
 inline MushMeshQuaternion<T>
 MushMeshQuaternion<T>::ConjugateGet(void)
@@ -133,7 +181,6 @@ operator*(const MushMeshQuaternion<T>& a, const MushMeshQuaternion<T>& b)
 namespace Mushware
 {
     typedef MushMeshQuaternion<Mushware::tVal> tQVal;
-    typedef std::pair<tQVal, tQVal> tQValPair;
 };
 
 //%includeGuardEnd {

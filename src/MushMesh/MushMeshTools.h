@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } R8PJKwqR61qEAsXpbOlPGQ
 /*
- * $Id: MushMeshTools.h,v 1.1 2004/10/31 23:34:07 southa Exp $
+ * $Id: MushMeshTools.h,v 1.2 2005/02/03 15:46:53 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.2  2005/02/03 15:46:53  southa
+ * Quaternion work
+ *
  * Revision 1.1  2004/10/31 23:34:07  southa
  * Hypercube rendering test
  *
@@ -26,6 +29,7 @@
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
 #include "MushMeshQuaternion.h"
+#include "MushMeshQuaternionPair.h"
 #include "MushMeshPreMatrix.h"
 
 class MushMeshTools
