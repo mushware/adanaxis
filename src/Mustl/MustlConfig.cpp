@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.2 2002/12/29 20:59:58 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.3 2003/01/13 23:05:22 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.3  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.2  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -67,7 +70,7 @@ MustlConfig::Get(const string& inName) const
 }
 
 bool
-MustlConfig::GetIfExists(const MushcoreScalar** outScalar, const string& inName) const
+MustlConfig::GetIfExists(const MushcoreScalar **outScalar, const string& inName) const
 {
     return m_config->GetIfExists(outScalar, inName);
 }
@@ -77,3 +80,5 @@ MustlConfig::Exists(const std::string& inName) const
 {
     return m_config->Exists(inName);
 }
+
+

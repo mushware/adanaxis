@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.12 2003/01/11 17:58:15 southa Exp $
+ * $Id: MustlLink.cpp,v 1.13 2003/01/13 15:01:19 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.13  2003/01/13 15:01:19  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.12  2003/01/11 17:58:15  southa
  * Mustl fixes
  *
@@ -140,7 +143,6 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::MushcoreData;
 
 auto_ptr< MushcoreData<MustlLink> > MushcoreData<MustlLink>::m_instance;
 

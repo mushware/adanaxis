@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.h,v 1.1 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlConfig.h,v 1.2 2003/01/13 23:05:22 southa Exp $
  * $Log: MustlConfig.h,v $
+ * Revision 1.2  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.1  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -32,7 +35,7 @@ public:
     void Set(const std::string& inName, const Mustl::U32& inValue);
     
     const MushcoreScalar& Get(const std::string& inName) const;
-    bool GetIfExists(const MushcoreScalar** outScalar, const std::string& inName) const;
+    bool GetIfExists(const MushcoreScalar **outScalar, const std::string& inName) const;
     bool Exists(const std::string& inName) const;
     
     static MustlConfig& Instance(void);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.h,v 1.4 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlUtils.h,v 1.5 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.5  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -78,6 +81,7 @@ public:
     static std::string MakeXMLSafe(const std::string& inStr);
     static std::string MakeWebSafe(const std::string& inStr);
     static Mustl::U32 MakeWebSafe(Mustl::U32 inValue) { return inValue; }
+    static Mustl::tVal MakeWebSafe(Mustl::tVal inValue) { return inValue; }
     static std::string RemoveMeta(const std::string& inStr);
     static void TruncateLogSet(bool inTruncate) { m_truncateLog=inTruncate; }
     
