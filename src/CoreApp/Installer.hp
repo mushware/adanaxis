@@ -1,0 +1,10 @@
+/*
+ * $Id$
+ * $Log$
+ */
+ 
+class Installer
+{
+public:
+    Installer(void (*fn)()) {fn();}
+};

@@ -1,0 +1,7 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include <GLUT/glut.h>
+#include "gif_lib.h"

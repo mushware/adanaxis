@@ -1,0 +1,20 @@
+/*
+ * $Id$
+ * $Log$
+ */
+ 
+#include "CommandHandler.hp"
+ 
+class TestCommandHandler : public CommandHandler
+{
+public:
+    bool HandleCommand(const string& str);
+    static void Install(void);
+    static TestCommandHandler& Instance(void) {return *((m_instance==NULL)?m_instance=new TestCommandHandler:m_instance);} 
+    
+protected:    
+    TestCommandHandler() {} // Prevent construction by client
+
+private:
+    static TestCommandHandler *m_instance;
+};
