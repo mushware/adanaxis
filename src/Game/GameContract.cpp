@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.25 2002/07/10 16:16:30 southa Exp $
+ * $Id: GameContract.cpp,v 1.26 2002/07/10 16:37:39 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.26  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.25  2002/07/10 16:16:30  southa
  * Player graphic
  *
@@ -226,7 +229,6 @@ GameContract::Init(void)
     m_floorDesigner=new GameFloorDesigner; // This is leaked
     m_floorDesigner->Init();
     // GameData::Instance().DumpAll(cout);
-    m_player->Pickle(cout);
 }
 
 void
