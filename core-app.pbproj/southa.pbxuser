@@ -4,7 +4,7 @@
 		fileReference = F5921CEB021876D70127AF47;
 		isa = PBXFileBreakpoint;
 		lineNumber = 21;
-		state = 1;
+		state = 2;
 	};
 	F53F7CC00230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
@@ -26,7 +26,7 @@
 	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F5431747020C310101449C4C;
-		activeTarget = F56090AD0217DFEF014AEE46;
+		activeTarget = F5463A9C0230EA58011D269C;
 		addToTargets = (
 			F56090AD0217DFEF014AEE46,
 			F5463A9C0230EA58011D269C,
@@ -41,26 +41,26 @@
 			PBXWorkspaceConfiguration = {
 				ContentSize = "{819, 633}";
 				LeftSlideOut = {
-					ActiveTab = 3;
+					ActiveTab = 0;
 					Frame = "{{0, 23}, {819, 610}}";
 					Split0 = {
 						ActiveTab = 2;
-						Frame = "{{224, 0}, {595, 610}}";
+						Frame = "{{270, 0}, {549, 610}}";
 						Split0 = {
-							Frame = "{{0, 216}, {595, 394}}";
+							Frame = "{{0, 216}, {549, 394}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {691, 322}}";
+								Frame = "{{0, 0}, {549, 322}}";
 								Split0 = {
-									Frame = "{{0, 164}, {691, 158}}";
+									Frame = "{{0, 164}, {549, 158}}";
 									Split0 = {
-										Frame = "{{0, 0}, {334, 158}}";
+										Frame = "{{0, 0}, {263, 158}}";
 									};
 									Split1 = {
-										Frame = "{{343, 0}, {348, 158}}";
+										Frame = "{{272, 0}, {277, 158}}";
 									};
 									SplitCount = 2;
 								};
@@ -69,11 +69,11 @@
 									Frame = "{{0, 0}, {739, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {691, 140}}";
+									Frame = "{{0, 0}, {549, 140}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {691, 322}}";
+							Frame = "{{0, 0}, {549, 322}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
@@ -84,12 +84,12 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {597, 108}}";
-							BuildTranscriptFrame = "{{0, 117}, {597, 77}}";
-							Frame = "{{0, 0}, {595, 192}}";
+							BuildMessageFrame = "{{0, 0}, {551, 108}}";
+							BuildTranscriptFrame = "{{0, 117}, {551, 77}}";
+							Frame = "{{0, 0}, {549, 192}}";
 						};
 						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
+							Frame = "{{0, 0}, {549, 295}}";
 						};
 						TabCount = 4;
 					};
@@ -104,7 +104,7 @@
 						OptionsSetName = "Hierarchy, all classes";
 					};
 					Tab2 = {
-						Frame = "{{0, 0}, {200, 595}}";
+						Frame = "{{0, 0}, {200, 610}}";
 					};
 					Tab3 = {
 						Frame = "{{0, 0}, {200, 610}}";
@@ -149,7 +149,7 @@
 	F5463AC30230EA58011D269C = {
 		activeArgIndex = 0;
 		argumentStrings = (
-			"test1;test2;test3",
+			"test1;test2 \\\"hello!\\\";test3",
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";
