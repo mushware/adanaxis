@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.9 2002/08/02 09:56:04 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.10 2002/08/02 10:02:28 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.10  2002/08/02 10:02:28  southa
+ * Added more angle tweaks
+ *
  * Revision 1.9  2002/08/02 09:56:04  southa
  * Added angle tweaks
  *
@@ -126,7 +129,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 {
     tVal perm;
     GameMotionSpec trialSpec;
-
+    bool deltaAngleSignificant = (fabs(inSpec.deltaAngle) > 0.01);
     trialSpec=inSpec;
     perm=MotionSpecPermeabilityGet(trialSpec);
 
@@ -143,82 +146,11 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
         trialSpec.deltaPos.y=0;
         perm=MotionSpecPermeabilityGet(trialSpec);
     }
-
-    if (perm <= 0)
+    
+    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.1 && !deltaAngleSignificant)
     {
-        trialSpec=inSpec;
-        trialSpec.deltaPos.x=0;
-        trialSpec.deltaPos.y=0;
-        perm=MotionSpecPermeabilityGet(trialSpec);
-    }
-
-    if (perm <= 0 && inSpec.deltaAngle != 0)
-    {
-        // Rotation with no movement is blocked, so try to find a suitable deltaPos which
-        // will allow the player to turn
-        for (tVal deltaX=1; deltaX<5; deltaX *= 2)
-        {
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=deltaX;
-            trialSpec.deltaPos.y=0;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=-deltaX;
-            trialSpec.deltaPos.y=0;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-        }
-    }
-
-    if (perm <= 0 && inSpec.deltaAngle != 0)
-    {
-        // Same for y
-        for (tVal deltaY=1; deltaY<5; deltaY *= 2)
-        {
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=0;
-            trialSpec.deltaPos.y=deltaY;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-            trialSpec=inSpec;
-            trialSpec.deltaPos.x=0;
-            trialSpec.deltaPos.y=-deltaY;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-            if (perm > 0) break;
-        }
-    }
-
-    if (perm <= 0 && inSpec.deltaAngle != 0)
-    {
-        trialSpec=inSpec;
-        trialSpec.deltaPos.x=-2;
-        trialSpec.deltaPos.y=-2;
-        perm=MotionSpecPermeabilityGet(trialSpec);
-        if (perm <= 0)
-        {
-            trialSpec.deltaPos.x=2;
-            trialSpec.deltaPos.y=-2;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-        }
-        if (perm <= 0)
-        {
-            trialSpec.deltaPos.x=-2;
-            trialSpec.deltaPos.y=2;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-        }
-        if (perm <= 0)
-        {
-            trialSpec.deltaPos.x=2;
-            trialSpec.deltaPos.y=2;
-            perm=MotionSpecPermeabilityGet(trialSpec);
-        }
-    }
-
-    if (perm <= 0 && inSpec.deltaPos != GLPoint(0,0))
-    {
-        // Try some angle tweaks
-        for (tVal deltaAngle=0.01; deltaAngle<0.1; deltaAngle *= 2)
+        // Try some angle tweaks to move us into gaps
+        for (tVal deltaAngle=0.005; deltaAngle<=0.01; deltaAngle *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaAngle=deltaAngle;
@@ -246,8 +178,81 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
             perm=MotionSpecPermeabilityGet(trialSpec);
             if (perm > 0) break;
         }
-    }    
+    }
+	
+    if (perm <= 0 && deltaAngleSignificant)
+    {
+	// Turn where we are if we can
+        trialSpec=inSpec;
+        trialSpec.deltaPos.x=0;
+        trialSpec.deltaPos.y=0;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+    }
+
+    if (perm <= 0 && deltaAngleSignificant)
+    {
+        // Rotation with no movement is blocked, so try to find a suitable deltaPos which
+        // will allow the player to turn
+        for (tVal deltaX=1; deltaX<=2; deltaX *= 2)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=deltaX;
+            trialSpec.deltaPos.y=0;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=-deltaX;
+            trialSpec.deltaPos.y=0;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+        }
+    }
+
+    if (perm <= 0 && deltaAngleSignificant)
+    {
+        // Same for y
+        for (tVal deltaY=1; deltaY<=2; deltaY *= 2)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=0;
+            trialSpec.deltaPos.y=deltaY;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=0;
+            trialSpec.deltaPos.y=-deltaY;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+        }
+    }
     
+    if (perm <= 0 && deltaAngleSignificant)
+    {
+	// Escape from a corner where x and y need to change
+        trialSpec=inSpec;
+        trialSpec.deltaPos.x=-1;
+        trialSpec.deltaPos.y=-1;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=1;
+            trialSpec.deltaPos.y=-1;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=-1;
+            trialSpec.deltaPos.y=1;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=1;
+            trialSpec.deltaPos.y=1;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+    }
+
     if (perm <= 0)
     {
         trialSpec=inSpec;
