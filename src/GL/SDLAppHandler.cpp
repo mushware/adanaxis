@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.4 2002/07/02 18:36:56 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.5 2002/07/06 18:04:18 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.4  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -123,16 +126,23 @@ SDLAppHandler::EnterScreen(tInitType inType)
     switch (inType)
     {
         case kGame:
+            CoreEnv::Instance().VariableGetIfExists(m_width, "GAMEDISPLAYWIDTH");
+            CoreEnv::Instance().VariableGetIfExists(m_height, "GAMEDISPLAYHEIGHT");
+            CoreEnv::Instance().VariableGetIfExists(m_bpp, "GAMEDISPLAYBPP");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL|SDL_FULLSCREEN);
             break;
 
         case kWindow:
+            CoreEnv::Instance().VariableGetIfExists(m_width, "WINDOWDISPLAYWIDTH");
+            CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOWDISPLAYHEIGHT");
+            CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOWDISPLAYBPP");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL);
             break;
 
         default:
             throw(LogicFail("Bad value to SDLAppHandler::EnterScreen"));
     }
+   
 }
 
 void

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: CoreEnv.cpp,v 1.8 2002/07/02 14:27:12 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.9 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.9  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.8  2002/07/02 14:27:12  southa
  * First floor map designer build
  *
@@ -110,6 +113,40 @@ CoreEnv::VariableGetIfExists(string &outValue, const string& inName) const
             return true;
         }
         
+    }
+    return false;
+}
+
+bool
+CoreEnv::VariableGetIfExists(U32 &outValue, const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        const CoreScalar *pScalar;
+        if ((*p)->GetIfExists(&pScalar, inName))
+        {
+            outValue=pScalar->U32Get();
+            return true;
+        }
+
+    }
+    return false;
+}
+
+bool
+CoreEnv::VariableGetIfExists(tVal &outValue, const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        const CoreScalar *pScalar;
+        if ((*p)->GetIfExists(&pScalar, inName))
+        {
+            outValue=pScalar->ValGet();
+            return true;
+        }
+
     }
     return false;
 }

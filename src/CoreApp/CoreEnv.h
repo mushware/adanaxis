@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreEnv.h,v 1.5 2002/07/02 14:27:12 southa Exp $
+ * $Id: CoreEnv.h,v 1.6 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.6  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.5  2002/07/02 14:27:12  southa
  * First floor map designer build
  *
@@ -55,6 +58,8 @@ public:
     const CoreScalar& VariableGet(const string& inName) const;
     bool VariableGetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool VariableGetIfExists(string& outValue, const string& inName) const;
+    bool VariableGetIfExists(tVal& outValue, const string& inName) const;
+    bool VariableGetIfExists(U32& outValue, const string& inName) const;
     bool VariableExists(const string& inName) const;
     void VariableSet(const string& inName, const string& inValue);
     
