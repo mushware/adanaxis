@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.9 2002/07/16 17:58:53 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.10 2002/07/16 18:01:23 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.10  2002/07/16 18:01:23  southa
+ * Fixed errors
+ *
  * Revision 1.9  2002/07/16 17:58:53  southa
  * Fixed error
  *
@@ -118,7 +121,7 @@ GameFloorDesigner::Display(void)
     {
         highlightArea.RectangleAdd(m_highlight);
     }
-    
+    m_floorMaps[m_currentMap]->AttachTileMap(m_tileMap);
     m_floorMaps[m_currentMap]->Render(visibleArea, highlightArea);
 
     GLUtils::IdentityEpilogue();

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.6 2002/07/10 16:16:31 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.7 2002/07/16 17:48:08 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.7  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
  * Revision 1.6  2002/07/10 16:16:31  southa
  * Player graphic
  *
@@ -133,6 +136,19 @@ GamePiecePlayer::HandlePlayerEnd(CoreXML& inXML)
 }
 
 void
+GamePiecePlayer::HandlePositionEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for position.  Should be <position>64,96,45</position>";
+    char comma;
+    if (!(data >> m_x)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> m_y)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> m_angle)) inXML.Throw(failMessage);
+}
+
+void
 GamePiecePlayer::NullHandler(CoreXML& inXML)
 {
 }
@@ -147,6 +163,7 @@ GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
         m_graphics[i]->Pickle(inOut, inPrefix+"  ");
         inOut << inPrefix << "</graphic>" << endl;
     }
+    inOut << inPrefix << "<position>" << m_x << "," << m_y << "," << m_angle << "</position>" << endl;
 }
 
 void
@@ -158,8 +175,10 @@ GamePiecePlayer::UnpicklePrologue(void)
     m_startTable[kPickleInit]["player"] = &GamePiecePlayer::HandlePlayerStart;
     m_startTable[kPickleData]["name"] = &GamePiecePlayer::NullHandler;
     m_startTable[kPickleData]["graphic"] = &GamePiecePlayer::HandleGraphicStart;
+    m_startTable[kPickleData]["position"] = &GamePiecePlayer::NullHandler;
     m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
     m_endTable[kPickleData]["player"] = &GamePiecePlayer::HandlePlayerEnd;
+    m_endTable[kPickleData]["position"] = &GamePiecePlayer::HandlePositionEnd;
     m_pickleState=kPickleInit;
     m_baseThreaded=0;
 }

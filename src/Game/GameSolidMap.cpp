@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameSolidMap.cpp,v 1.1 2002/07/16 17:48:08 southa Exp $
+ * $Log: GameSolidMap.cpp,v $
+ * Revision 1.1  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
  */
 
 #include "GameSolidMap.h"
@@ -39,14 +42,14 @@ GameSolidMap::PermeabilityGet(const GLPoint& inPoint) const
 {
     // Permeability is always 0 outside of the map
     if (inPoint.x < 0 || inPoint.y < 0) return 0;
-    U32 x=inPoint.U32XGet();
-    U32 y=inPoint.U32YGet();
+    U32 x=static_cast<U32>(inPoint.x+0.5);
+    U32 y=static_cast<U32>(inPoint.y+0.5);
     if (x >= m_xsize || y>= m_ysize) return 0;
     return m_solidMap[m_xsize * y + x];
 }
 
 void
-GameSolidMap::TrimVector(GLPoint& ioVec, const GLPoint& inStart)
+GameSolidMap::TrimVector(GLPoint& ioVec, const GLPoint& inStart) const
 {
     GLPoint destPoint=inStart+ioVec;
     if (PermeabilityGet(destPoint) == 0)

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.27 2002/07/11 10:17:18 southa Exp $
+ * $Id: GameContract.cpp,v 1.28 2002/07/16 17:48:07 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.28  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.27  2002/07/11 10:17:18  southa
  * Removed debug code
  *
@@ -184,15 +187,19 @@ GameContract::RunningDisplay(void)
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
+    GLPoint aimingPoint=GLPoint(m_player->XGet() / m_floorMap->XStep(),
+                                m_player->YGet() / m_floorMap->YStep());
     {
         GLPoint point;
+        GLPoint scale(m_floorMap->XStep(), m_floorMap->YStep());
         tVal angle;
         m_player->MoveGet(point, angle);
+        point /= scale;
+        m_floorMap->SolidMapGet().TrimVector(point, aimingPoint);
+        point *= scale;
         m_player->MoveAdd(point, angle);
     }
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
-    GLPoint aimingPoint=GLPoint(m_player->XGet() / m_floorMap->XStep(),
-                                m_player->YGet() / m_floorMap->YStep());
     GameMapArea visibleArea;
     tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMap->XStep();
     tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMap->YStep();
@@ -203,7 +210,7 @@ GameContract::RunningDisplay(void)
     
     m_floorMap->Render(visibleArea, highlightArea);
 
-    if (gameHandler.KeyStateGet('s'))
+    if (gameHandler.KeyStateGet('m'))
     {
         m_floorMap->RenderSolidMap(visibleArea);
     }

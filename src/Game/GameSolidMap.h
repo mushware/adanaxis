@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameSolidMap.h,v 1.1 2002/07/16 17:48:09 southa Exp $
+ * $Log: GameSolidMap.h,v $
+ * Revision 1.1  2002/07/16 17:48:09  southa
+ * Collision and optimisation work
+ *
  */
 
 #include "mushCore.h"
@@ -15,7 +18,7 @@ public:
     void PermeabilitySet(tVal inValue, U32 inX, U32 inY);
     tVal PermeabilityGet(U32 inX, U32 inY) const;
     tVal PermeabilityGet(const GLPoint& inPoint) const;
-    void TrimVector(GLPoint& ioVec, const GLPoint& inStart);
+    void TrimVector(GLPoint& ioVec, const GLPoint& inStart) const;
     void RenderCollisionSet(const GLRectangle& inRect, tVal inAngle);
     void Render(const GameMapArea& inArea, const GLPoint& inSteps) const;
     

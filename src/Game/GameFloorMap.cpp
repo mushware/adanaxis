@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.10 2002/07/10 16:16:30 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.11 2002/07/16 17:48:08 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.11  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
  * Revision 1.10  2002/07/10 16:16:30  southa
  * Player graphic
  *
@@ -186,6 +189,16 @@ GameFloorMap::PermeabilityGet(const GLPoint &inPoint) const
         RebuildSolidMap();
     }
     return m_solidMap.PermeabilityGet(inPoint);
+}
+
+const GameSolidMap&
+GameFloorMap::SolidMapGet(void) const
+{
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    return m_solidMap;
 }
 
 void

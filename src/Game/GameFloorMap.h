@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.7 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameFloorMap.h,v 1.8 2002/07/16 17:48:08 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.8  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
  * Revision 1.7  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -79,7 +82,7 @@ public:
     void ElementSet(const GLPoint &inPoint, U32 inValue);
     tVal PermeabilityGet(const GLPoint &inPoint) const;
     void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
-    
+    const GameSolidMap& SolidMapGet(void) const;
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

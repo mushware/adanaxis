@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.7 2002/07/08 14:22:03 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.8 2002/07/16 17:48:09 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.8  2002/07/16 17:48:09  southa
+ * Collision and optimisation work
+ *
  * Revision 1.7  2002/07/08 14:22:03  southa
  * Rotated desks
  *
@@ -64,32 +67,36 @@ GameTileTraits::Render(void)
 bool
 GameTileTraits::PermeabilityGet(tVal& outPermeability) const
 {
+    outPermeability=1;
+    bool foundPerm=false;
     if (m_hasPermeability)
     {
         outPermeability=m_permeability;
-        return true;
+        foundPerm=true;
     }
-    else
+
+    for (U32 i=0; i<NumberOfTraitsGet(); ++i)
     {
-        for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+        tVal newPerm;
+        GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
+        if (traits.PermeabilityGet(newPerm))
         {
-            GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
-            if (traits.PermeabilityGet(outPermeability))
+            if (!foundPerm || newPerm < outPermeability)
             {
-                return true;
+                outPermeability=newPerm;
+                foundPerm=true;
             }
         }
     }
     
     static bool notWarnedYet=true;
-    if (notWarnedYet)
+    if (!foundPerm && notWarnedYet)
     {
         cerr << "Warning: GameTileTrait with unknown permeability:" << endl;
         Pickle(cerr);
         notWarnedYet=false;
     }
-    outPermeability=1.001;
-    return false;
+    return foundPerm;
 }
 
 void

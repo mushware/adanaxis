@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.4 2002/07/10 16:16:31 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.5 2002/07/16 17:48:08 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.5  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
  * Revision 1.4  2002/07/10 16:16:31  southa
  * Player graphic
  *
@@ -72,8 +75,9 @@ private:
     void HandlePlayerEnd(CoreXML& inXML);
     void HandleGraphicStart(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
+    void HandlePositionEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
-
+    
     enum PickleState
     {
         kPickleInit,
