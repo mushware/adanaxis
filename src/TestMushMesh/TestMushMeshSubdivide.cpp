@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.4 2003/10/17 19:33:11 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.5 2003/10/18 12:58:39 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.5  2003/10/18 12:58:39  southa
+ * Subdivision implementation
+ *
  * Revision 1.4  2003/10/17 19:33:11  southa
  * Mesh patches
  *
@@ -88,23 +91,23 @@ TestMushMeshSubdivide::VerifySingle1(const MushMeshArray<tVal>& inArray, const t
         {
             tVal expected;
 
-            if (x + 2 < inCentre.X() ||
-                x > inCentre.X() + 2 ||
-                y + 2 < inCentre.Y() ||
-                y > inCentre.Y() + 2)
+            if (x + 4 < inCentre.X() ||
+                x > inCentre.X() + 0 ||
+                y + 4 < inCentre.Y() ||
+                y > inCentre.Y() + 0)
             {
                 expected = 0;
             }
             else
             {
-                MUSHCOREASSERT(x + 2 - inCentre.X() < 5);
-                MUSHCOREASSERT(y + 2 - inCentre.Y() < 5);
-                expected = inProp * Single1Prop1[x + 2 - inCentre.X()][2 + inCentre.Y() - y] +
-                    (1 - inProp) * Single1Prop0[x + 2 - inCentre.X()][2 + inCentre.Y() - y];
+                MUSHCOREASSERT(x + 4 - inCentre.X() < 5);
+                MUSHCOREASSERT(y + 4 - inCentre.Y() < 5);
+                expected = inProp * Single1Prop1[x + 4 - inCentre.X()][inCentre.Y() - y] +
+                    (1 - inProp) * Single1Prop0[x + 4 - inCentre.X()][inCentre.Y() - y];
             }
             if (fabs(inArray.Get(x, y) - expected) > 0.0001)
             {
-                cout << "Fault at (" << x << ", " << y << ") : expected " << expected << ", got " << inArray.Get(x, y) << endl;
+                cout << "Centre " << inCentre << " fault at (" << x << ", " << y << ") : expected " << expected << ", got " << inArray.Get(x, y) << endl;
                 success = false;
             }
         }
@@ -112,8 +115,9 @@ TestMushMeshSubdivide::VerifySingle1(const MushMeshArray<tVal>& inArray, const t
     return success;
 }
 
-MushcoreScalar
-TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+
+void
+TestMushMeshSubdivide::SubdivideSingle1(U32 inX, U32 inY)
 {
     enum
     {
@@ -129,31 +133,68 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
             meshArray.Set(0, x, y);
         }
     }
-    meshArray.Set(1, 2, 2);
+    meshArray.Set(1, inX, inY);
 
     MushMeshArray<tVal> subbedArray;
     t2BoxU32 activeBox(1,1,4,4);
+
     MushMeshSubdivide<tVal>::RectangularSubdivide(subbedArray, meshArray, activeBox, 0);
 
-    if (!VerifySingle1(subbedArray, t2U32(3, 3), 0))
+    if (!VerifySingle1(subbedArray, t2U32(inX*2+1, inY*2+1), 0))
     {
+        cout << "Orig mesh = " << endl;
+        ArrayPrint(meshArray);
+        cout << "Moved mesh = " << endl;
+        ArrayPrint(subbedArray);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 
-    MushMeshSubdivide<tVal>::RectangularSubdivide(subbedArray, meshArray, activeBox, 1);
+    MushMeshSubdivide<tVal>::RectangularSubdivide(subbedArray, meshArray, activeBox, 1.0);
     
-    cout << "Orig mesh = " << endl;
-    ArrayPrint(meshArray);
-    cout << "Moved mesh = " << endl;
-    ArrayPrint(subbedArray);
 
-    if (!VerifySingle1(subbedArray, t2U32(3, 3), 1))
+    if (!VerifySingle1(subbedArray, t2U32(inX*2+1, inY*2+1), 1.0))
     {
+        cout << "Orig mesh = " << endl;
+        ArrayPrint(meshArray);
+        cout << "Moved mesh = " << endl;
+        ArrayPrint(subbedArray);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
+}
+
+MushcoreScalar
+TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    for (U32 x=0; x<5; ++x)
+    {
+        for (U32 y=0; y<5; ++y)
+        {
+            SubdivideSingle1(x, y);
+        }
+    }
+    cout << endl;
+    cout << "Timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
+#if 0
+    ValueTimeTest<char>("Single char  ");
+    ValueTimeTest<unsigned char>("Single uchar ");
+    ValueTimeTest<short>("Single short ");
+    ValueTimeTest<int>("Single int   ");
+    ValueTimeTest<unsigned int>("Single uint  ");
+    ValueTimeTest<long>("  long long  ");
+    ValueTimeTest<unsigned long long>(" ulong long  ");
+#endif
+    ValueTimeTest<float>("(dummy) float  ");
+    ValueTimeTest<float>("Single float ");
+    ValueTimeTest<double>("Single double");
+    VectorTimeTest< MushMeshVector<tVal, 1> >("1D vector    ");
+    VectorTimeTest< MushMeshVector<tVal, 2> >("2D vector    ");
+    VectorTimeTest< MushMeshVector<tVal, 4> >("4D vector    ");
+    VectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
+    VectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
 
     return MushcoreScalar(0);
 }
+
 
 void
 TestMushMeshSubdivide::Install(void)

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.4 2003/10/17 19:33:10 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.5 2003/10/18 12:58:38 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.5  2003/10/18 12:58:38  southa
+ * Subdivision implementation
+ *
  * Revision 1.4  2003/10/17 19:33:10  southa
  * Mesh patches
  *
@@ -136,6 +139,58 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
             const T& n_z0p1 = inArray.Get(x,   y+1);
             const T& n_p1p1 = inArray.Get(x+1, y+1);
 
+#define MUSHMESH_INTERLEAVE
+#ifdef MUSHMESH_INTERLEAVE
+            // Value0 is special as it is the original vertex and follows a different algorithm
+            T value0 = n_z0z0;
+            T value1 = n_z0z0;
+            T value2 = n_z0z0;
+            T value3 = n_z0z0;
+
+            value0 *= alpha;
+            value1 += n_p1z0;
+            value2 += n_z0p1;
+            value3 += n_p1p1;
+
+            value0 += n_m1m1;
+            value1 *= 3;
+            value2 *= 3;
+            value3 *= 3;
+            
+            value0 += n_z0m1;
+            value1 += n_z0m1;
+            value2 += n_m1z0;
+            value3 += n_p1z0;
+            
+            value0 += n_m1z0;
+            value1 += n_p1p1;
+            value2 += n_p1p1;
+            value3 += n_z0p1;
+
+            value0 += n_p1z0;
+            value1 *= propOver4;
+            value2 *= propOver4;
+            value3 *= propOver4;
+
+            value0 += n_z0p1;
+            value1 += (n_z0z0 + n_p1z0) * inverseProp;
+            value0 += n_p1p1;
+            value2 += (n_z0z0 + n_z0p1) * inverseProp;
+            value0 /= alphaPlusNumVerts;
+            value3 += (n_z0z0 + n_p1p1) * inverseProp;
+            value0 *= inProp;
+
+            value1 /= 2;
+            value2 /= 2;
+            value3 /= 2;
+ 
+            value0 += n_z0z0 * inverseProp;
+
+            outArray.Set(value1, outX+1, outY);
+            outArray.Set(value2, outX, outY+1);
+            outArray.Set(value3, outX+1, outY+1);
+            outArray.Set(value0, outX, outY);
+#else
             // Value0 is special as it is the original vertex and follows a different algorithm
             T value0 = n_z0z0;
 
@@ -186,7 +241,8 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
             value3 += (n_z0z0 + n_p1p1) * inverseProp;
             value3 /= 2;
 
-            outArray.Set(value3, outY+1, outX+1);
+            outArray.Set(value3, outX+1, outY+1);
+#endif
 
         }
     }

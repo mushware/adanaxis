@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } bU5rjQoYufJcBBZI9OgFaA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshWorkspace.h,v 1.1 2003/10/17 19:38:25 southa Exp $
+ * $Log: MushMeshWorkspace.h,v $
+ * Revision 1.1  2003/10/17 19:38:25  southa
+ * Created
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -27,6 +30,8 @@ class MushMeshWorkspace
 {
 public:
     MushMeshWorkspace();
+    const T& CurrentGet(void) const;
+    const T& PreviousGet(void) const;
     T& CurrentWRefGet(void);
     T& PreviousWRefGet(void);
     void Swap(void);
@@ -44,6 +49,20 @@ MushMeshWorkspace<T>::MushMeshWorkspace() :
     m_workspace(2),
     m_current(0)
 {
+}
+
+template<class T>
+inline const T&
+MushMeshWorkspace<T>::CurrentGet(void) const
+{
+    return m_workspace[m_current];
+}
+
+template<class T>
+inline const T&
+MushMeshWorkspace<T>::PreviousGet(void) const
+{
+    return m_workspace[1 - m_current];
 }
 
 template<class T>

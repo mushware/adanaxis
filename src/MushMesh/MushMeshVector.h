@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JlxNvBXL6uC0NayW/SROGA
 /*
- * $Id: MushMeshVector.h,v 1.5 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushMeshVector.h,v 1.6 2003/10/17 12:27:19 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.6  2003/10/17 12:27:19  southa
+ * Line end fixes and more mesh work
+ *
  * Revision 1.5  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -53,17 +56,18 @@ public:
         m_value[1] = in1;
     }
 
-    const T& ValueGet(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
-    void ValueSet(const T& inValue, Mushware::U32 inIndex) { BoundsCheck(inIndex); m_value[inIndex] = inValue; }
+    const T& Get(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
+    void Set(const T& inValue, Mushware::U32 inIndex) { BoundsCheck(inIndex); m_value[inIndex] = inValue; }
     
-    const T& X(void) const { return ValueGet(0); }
-    const T& Y(void) const { return ValueGet(1); }
-    const T& Z(void) const { return ValueGet(2); }
+    const T& X(void) const { return Get(0); }
+    const T& Y(void) const { return Get(1); }
+    const T& Z(void) const { return Get(2); }
 
-    void XSet(const T& inValue) { ValueSet(inValue, 0); }
-    void YSet(const T& inValue) { ValueSet(inValue, 1); }
-    void ZSet(const T& inValue) { ValueSet(inValue, 2); }
+    void XSet(const T& inValue) { Set(inValue, 0); }
+    void YSet(const T& inValue) { Set(inValue, 1); }
+    void ZSet(const T& inValue) { Set(inValue, 2); }
 
+    static Mushware::U32 SizeGet(void) { return D; }
     bool EqualIs(const tThis& b) const;
 
 protected:
@@ -302,7 +306,7 @@ operator<<(std::ostream& ioOut, const MushMeshVector<T, D>& inVec)
     ioOut << '[';
     for (Mushware::U32 i=0; i<D; ++i)
     {
-        ioOut << inVec.ValueGet(i);
+        ioOut << inVec.Get(i);
         if (i+1 < D)
         {
             ioOut << ", ";

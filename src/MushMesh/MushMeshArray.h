@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.5 2003/10/17 19:33:10 southa Exp $
+ * $Id: MushMeshArray.h,v 1.6 2003/10/18 12:58:38 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.6  2003/10/18 12:58:38  southa
+ * Subdivision implementation
+ *
  * Revision 1.5  2003/10/17 19:33:10  southa
  * Mesh patches
  *
@@ -148,6 +151,8 @@ MushMeshArray<T>::SizeSet(const Mushware::t2U32& inSize)
 {
     if (Mushware::t2U32(m_xSize, m_ySize) != inSize)
     {
+        //  This is a destructive resize.  No previous elements are copied
+        m_values.resize(0); 
         m_xSize = inSize.X();
         m_ySize = inSize.Y();
         m_values.resize(m_xSize * m_ySize);
