@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.60 2002/08/24 15:42:24 southa Exp $
+ * $Id: GameContract.cpp,v 1.61 2002/08/24 15:57:35 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.61  2002/08/24 15:57:35  southa
+ * Reset player position
+ *
  * Revision 1.60  2002/08/24 15:42:24  southa
  * Race state change
  *
@@ -223,6 +226,7 @@ CoreInstaller GameContractInstaller(GameContract::Install);
 
 GameContract::GameContract() :
     m_gameState(kInit),
+    m_tileMap(NULL),
     m_player(NULL),
     m_fps(0),
     m_frames(0),
@@ -290,13 +294,15 @@ GameContract::Init(void)
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
     GameData::Instance().TimerGet().Reset();
-    
+    if (m_tileMap == NULL)
+    {
     m_tileMap=GameData::Instance().TileMapGet("tiles");
     m_floorMap=GameData::Instance().FloorMapGet("floor");
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
     m_floorMap->AttachTileMap(m_tileMap);
     m_tileMap->Load();
+    }
     GameData::Instance().ControllerGetOrCreate("controller1");
     if (m_player != NULL) delete m_player;
     GamePiecePlayer *templatePlayer=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceGet("player1"));
