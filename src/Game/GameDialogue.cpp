@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.4 2002/08/13 18:29:04 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.5 2002/08/16 21:13:52 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.5  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.4  2002/08/13 18:29:04  southa
  * Tidied GameDialogue code
  *
@@ -129,6 +132,16 @@ GameDialogue::Move(void)
     
     m_expired=expired;
     m_age++;
+}
+
+void
+GameDialogue::TextSet(U32 inWhich, const string& inStr)
+{
+    if (inWhich >= m_strings.size())
+    {
+        throw(ReferenceFail("TextSet index too high for this Dialogue"));
+    }
+    m_strings[inWhich].string.TextSet(inStr);
 }
 
 void

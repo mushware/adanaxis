@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.4 2002/08/19 12:54:54 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.5 2002/08/19 21:42:38 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.5  2002/08/19 21:42:38  southa
+ * Display of records and lap/split times
+ *
  * Revision 1.4  2002/08/19 12:54:54  southa
  * Added time format
  *
@@ -23,6 +26,7 @@
 #include "GameEvent.h"
 #include "GameAppHandler.h"
 #include "GameData.h"
+#include "GameDialogue.h"
 
 #include <typeinfo>
 
@@ -74,14 +78,32 @@ GameTypeRace::SequenceAdvance(void)
         // Just passed the lap start
         if (m_lapStartTimeValid)
         {
-            m_records.LapTimePropose(gameTime - m_lapStartTime);
+            GameTimer::tMsec lapTime = gameTime-m_lapStartTime;
+            if (m_records.LapTimeValid())
+            {
+                GameTimer::tMsec oldLapTime = m_records.LapTimeGet();
+                GameDialogue *lapDialogue =
+                    GameData::Instance().CurrentDialogueAdd("lapdisplay",
+                        *GameData::Instance().DialogueGet("lapdisplay"));
+                lapDialogue->TextSet(0, GameTimer::MsecToString(lapTime - oldLapTime));
+            }
+            m_records.LapTimePropose(lapTime);
         }
         m_lapStartTime = gameTime;
         m_lapStartTimeValid = true;
     }
     if (m_chequePointTimeValid)
     {
-        m_records.SplitTimePropose(m_sequence, gameTime - m_chequePointTime);
+        GameTimer::tMsec splitTime = gameTime - m_chequePointTime;
+        if (m_records.SplitTimeValid(m_sequence))
+        {
+            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(m_sequence);
+            GameDialogue *splitDialogue =
+                GameData::Instance().CurrentDialogueAdd("splitdisplay",
+                                        *GameData::Instance().DialogueGet("splitdisplay"));
+            splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime - oldSplitTime));
+        }
+        m_records.SplitTimePropose(m_sequence, splitTime);
     }
     m_chequePointTime = gameTime;
     m_chequePointTimeValid = true;    
@@ -124,18 +146,22 @@ GameTypeRace::Render(void) const
     }
 
     orthoGL.MoveToEdge(-1,1);
-    orthoGL.MoveRelative(-0.03,-0.03);
-    if (m_records.SplitTimeValid(m_sequence))
+    orthoGL.MoveRelative(0.03,-0.03);
+    U32 nextSequence = m_sequence;
+    if (nextSequence >= m_chequePoints.size()) nextSequence = 0;
+
+    if (m_records.SplitTimeValid(nextSequence))
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitRecordStr("Split record "+GameTimer::MsecToLongString(m_records.SplitTimeGet(m_sequence)),
+        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(nextSequence))+"Split record",
                               GLFontRef("font-mono1", 0.02), -1.0);
         splitRecordStr.Render();
     }
+    
     if (m_chequePointTimeValid)
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitTimeStr("Split time "+GameTimer::MsecToLongString(gameTime - m_chequePointTime),
+        GLString splitTimeStr(GameTimer::MsecToString(gameTime - m_chequePointTime)+"Split time",
                             GLFontRef("font-mono1", 0.02), -1.0);
         splitTimeStr.Render();
     }

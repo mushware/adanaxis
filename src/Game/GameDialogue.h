@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.4 2002/08/15 13:39:31 southa Exp $
+ * $Id: GameDialogue.h,v 1.5 2002/08/16 21:13:52 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.5  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.4  2002/08/15 13:39:31  southa
  * CoreData and CoreDatRef
  *
@@ -30,6 +33,7 @@ public:
     virtual void Move(void);
     virtual GLRenderable *Clone(void) const { return new GameDialogue(*this); }
     virtual bool ExpiredGet(void) { return m_expired; }
+    virtual void TextSet(U32 inWhich, const string& inStr);
     
 protected:
     void UnpicklePrologue(void);

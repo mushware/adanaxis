@@ -1,6 +1,9 @@
 /*
- * $Id: GLFont.cpp,v 1.2 2002/08/08 18:20:29 southa Exp $
+ * $Id: GLFont.cpp,v 1.3 2002/08/09 17:09:02 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.3  2002/08/09 17:09:02  southa
+ * GameDialogue added
+ *
  * Revision 1.2  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
  *
@@ -72,9 +75,8 @@ GLFont::RenderString(const string& inStr, tVal inAlign=-1.0) const
     U32 size=inStr.size();
     for (U32 i=0; i<size; ++i)
     {
-        // Characters are rendered with their centre at the position given,
-        // hence the +0.5
-        gl.MoveTo(i+0.5-offset, 0);
+        // Characters are rendered with their centre at the position given
+        gl.MoveTo(i-offset, 0);
         RenderCharacter(inStr[i]);
     }
     gl.MoveTo(0,0);
