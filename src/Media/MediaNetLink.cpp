@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.7 2002/11/04 15:50:31 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.8 2002/11/04 19:34:46 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.8  2002/11/04 19:34:46  southa
+ * Network link maintenance
+ *
  * Revision 1.7  2002/11/04 15:50:31  southa
  * Network log
  *
@@ -81,14 +84,6 @@ MediaNetLink::Initialise(void)
 
 MediaNetLink::~MediaNetLink()
 {
-    try
-    {
-        Disconnect(MediaNetProtocol::kReasonCodeDisconnect);
-    }
-    catch (exception& e)
-    {
-        MediaNetLog::Instance().Log() << "~MediaNetLink exception: " << e.what() << endl;
-    }
 }
 
 void

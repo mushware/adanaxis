@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.4 2002/11/04 01:02:38 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.5 2002/11/04 13:11:58 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.5  2002/11/04 13:11:58  southa
+ * Link setup work
+ *
  * Revision 1.4  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -15,7 +18,7 @@
  *
  *************************/
 
-#include "PlatformNet.h"
+#include "mushPlatform.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.2 2002/11/06 14:16:57 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.3 2002/11/15 18:58:34 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.3  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  * Revision 1.2  2002/11/06 14:16:57  southa
  * Basic web server
  *
@@ -71,10 +74,11 @@ MediaNetWebServer::Disconnect(void)
         
 MediaNetWebServer::~MediaNetWebServer()
 {
-    MediaNetLog::Instance().Log() << "Closing web server" << endl;
-    // Close all of the links first
-    CoreData<MediaNetWebLink>::Instance().Clear();
-    SDLNet_TCP_Close(m_tcpSocket);
+    if (m_serving)
+    {
+        COREASSERT(m_tcpSocket != NULL);
+        SDLNet_TCP_Close(m_tcpSocket);
+    }
     MediaNetLog::Instance().Log() << "Closed web server" << endl;
 }
 
