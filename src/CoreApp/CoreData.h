@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.5 2002/11/01 16:15:26 southa Exp $
+ * $Id: CoreData.h,v 1.6 2002/11/04 01:02:37 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.6  2002/11/04 01:02:37  southa
+ * Link checks
+ *
  * Revision 1.5  2002/11/01 16:15:26  southa
  * Network send and receive
  *
@@ -48,6 +51,7 @@ public:
 
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
+    inline void DataDelete(const string& inName);
     inline void Clear(void);
     inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(ostream& ioOut);
@@ -108,6 +112,19 @@ CoreData<RefType>::DataGet(const string& inName) const
         throw(ReferenceFail("Access to non-existent data '"+inName+"'"));
     }
     return p->second;
+}
+
+template<class RefType>
+inline void
+CoreData<RefType>::DataDelete(const string& inName)
+{
+    map<string, RefType *>::iterator p = m_data.find(inName);
+    if (p == m_data.end())
+    {
+        throw(ReferenceFail("Delete of non-existent data '"+inName+"'"));
+    }
+    delete p->second;
+    m_data.erase(p);
 }
 
 template<class RefType>

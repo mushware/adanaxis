@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.6 2002/11/04 13:11:58 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.7 2002/11/04 15:50:31 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.7  2002/11/04 15:50:31  southa
+ * Network log
+ *
  * Revision 1.6  2002/11/04 13:11:58  southa
  * Link setup work
  *
@@ -35,6 +38,7 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     // I am the client end of the link
     Initialise();
     m_udpUseServerPort=false;
+    MediaNetLog::Instance().Log() << "Connecting to " << inServer << ":" << inPort << endl;
     TCPConnect(inServer, inPort);
     UDPConnect(inPort);
     m_client.UDPRemotePortSet(inPort);
@@ -48,17 +52,29 @@ MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
     m_udpUseServerPort=true;
     TCPSocketTake(inSocket);
     m_client.UDPRemotePortSet(0); // We don't know yet
-
 }
 
 void
 MediaNetLink::Initialise(void)
 {
+    m_tcpState.linkCheckTime=0;
     m_tcpState.linkState=kLinkStateUntested;
     m_tcpState.linkCheckState=kLinkCheckStateIdle;
+    m_tcpState.linkPingTime=0;
+    m_tcpState.linkErrorsSinceGood=0;
+    m_tcpState.linkErrorTotal=0;
+    m_tcpState.linkSendCtr=0;
+    m_tcpState.linkReceiveCtr=0;
     m_tcpState.linkCheckSeqNum='A';
+
+    m_udpState.linkCheckTime=0;
     m_udpState.linkState=kLinkStateUntested;
     m_udpState.linkCheckState=kLinkCheckStateIdle;
+    m_udpState.linkPingTime=0;
+    m_udpState.linkErrorsSinceGood=0;
+    m_udpState.linkErrorTotal=0;
+    m_udpState.linkSendCtr=0;
+    m_udpState.linkReceiveCtr=0;
     m_udpState.linkCheckSeqNum='M';
     m_loggedLinkInfo=false;
 }
@@ -67,7 +83,7 @@ MediaNetLink::~MediaNetLink()
 {
     try
     {
-        Disconnect();
+        Disconnect(MediaNetProtocol::kReasonCodeDisconnect);
     }
     catch (exception& e)
     {
@@ -96,11 +112,47 @@ MediaNetLink::UDPConnect(U32 inPort)
 }
 
 void
-MediaNetLink::Disconnect(void)
+MediaNetLink::Disconnect(MediaNetProtocol::tReasonCode inCode)
 {
-    MediaNetLog::Instance().Log() << "Closed link " << *this << endl;
+    if (m_tcpState.linkState != kLinkStateDead ||
+        m_udpState.linkState != kLinkStateDead)
+    {
+        MediaNetLog::Instance().Log() << "Link closing reasonCode=" << inCode << ": " << *this << endl;
+    }
+    
+    try
+    {
+        if (m_tcpState.linkState != kLinkStateDead)
+        {
+            MediaNetData data;
+            MediaNetProtocol::KillLinkCreate(data, inCode);
+            TCPSend(data);
+        }
+    }
+    catch (exception& e)
+    {
+        MediaNetLog::Instance().Log() << "TCP link disconnect exception: " << e.what() << endl;
+    }
+    
+    try
+    {
+        if (m_udpState.linkState != kLinkStateDead)
+        {
+            MediaNetData data;
+            MediaNetProtocol::KillLinkCreate(data, inCode);
+            UDPSend(data);
+        }
+    }
+    catch (exception& e)
+    {
+        MediaNetLog::Instance().Log() << "UDP link disconnect exception: " << e.what() << endl;
+    }
+    
     m_client.TCPDisconnect();
     m_client.UDPDisconnect();
+    
+    m_tcpState.linkState=kLinkStateDead;
+    m_udpState.linkState=kLinkStateDead;
 }
 
 bool
@@ -112,8 +164,9 @@ MediaNetLink::LinkIsUp(tLinkState inState)
         case kLinkStateNotMade:
         case kLinkStateDead:
             return false;
-            
+
         case kLinkStateUntested:
+        case kLinkStateTesting:
         case kLinkStateIdle:
             return true;
     }
@@ -132,6 +185,7 @@ void
 MediaNetLink::TCPLinkCheckSend(void)
 {
     m_currentMsec=SDL_GetTicks();
+    if (m_currentMsec > m_tcpState.linkCheckTime + kLinkCheckDeadTime)
     {
         MediaNetData data;
         m_tcpState.linkCheckSeqNum++;
@@ -146,6 +200,7 @@ void
 MediaNetLink::UDPLinkCheckSend(void)
 {
     m_currentMsec=SDL_GetTicks();
+    if (m_currentMsec > m_udpState.linkCheckTime + kLinkCheckDeadTime)
     {
         MediaNetData data;
         m_udpState.linkCheckSeqNum++;
@@ -157,62 +212,180 @@ MediaNetLink::UDPLinkCheckSend(void)
 }    
 
 void
+MediaNetLink::Tick(void)
+{
+    m_currentMsec=SDL_GetTicks();
+
+    U32 tcpLinkCheckPeriod=kTCPFastLinkCheckPeriod;
+    if (m_tcpState.linkState == kLinkStateIdle && m_tcpState.linkErrorsSinceGood == 0)
+    {
+        tcpLinkCheckPeriod=kTCPSlowLinkCheckPeriod;
+    }
+
+    if (LinkIsUp(m_tcpState.linkState) &&
+        m_currentMsec > m_tcpState.linkCheckTime + tcpLinkCheckPeriod)
+    {
+        m_tcpState.linkState = kLinkStateTesting;
+
+        if (m_tcpState.linkCheckState == kLinkCheckStateAwaitingReply)
+        {
+            ++m_tcpState.linkErrorTotal;
+            ++m_tcpState.linkErrorsSinceGood;
+            if (LinkDeathCheck(m_tcpState)) Disconnect(MediaNetProtocol::kReasonCodeTCPLinkCheckFail);
+
+            if (LinkIsUp(m_tcpState.linkState))
+            {
+                TCPLinkCheckSend();
+            }
+            MediaNetLog::Instance().Log() << "TCP link check failed" << endl;
+        }
+        else
+        {
+            TCPLinkCheckSend();
+        }
+    }
+
+    if (LinkDeathCheck(m_tcpState)) Disconnect(MediaNetProtocol::kReasonCodeTCPBadLink);
+    
+    U32 udpLinkCheckPeriod=kUDPFastLinkCheckPeriod;
+    if (m_udpState.linkState == kLinkStateIdle && m_udpState.linkErrorsSinceGood == 0)
+    {
+        udpLinkCheckPeriod=kUDPSlowLinkCheckPeriod;
+    }
+
+    if (LinkIsUp(m_udpState.linkState) &&
+        m_currentMsec > m_udpState.linkCheckTime + udpLinkCheckPeriod)
+    {
+        m_udpState.linkState = kLinkStateTesting;
+        
+        if (m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
+        {
+            ++m_udpState.linkErrorTotal;
+            ++m_udpState.linkErrorsSinceGood;
+            if (LinkDeathCheck(m_udpState)) Disconnect(MediaNetProtocol::kReasonCodeUDPLinkCheckFail);
+            
+            if (LinkIsUp(m_udpState.linkState))
+            {
+                UDPLinkCheckSend();
+            }
+            MediaNetLog::Instance().Log() << "UDP link check failed" << endl;
+        }
+        else
+        {
+            UDPLinkCheckSend();
+        }
+    }
+
+    if (LinkDeathCheck(m_udpState)) Disconnect(MediaNetProtocol::kReasonCodeUDPBadLink);
+}
+
+bool
+MediaNetLink::LinkDeathCheck(LinkState& ioLinkState)
+{
+    return (ioLinkState.linkErrorTotal >= kErrorTotalLimit ||
+            ioLinkState.linkErrorsSinceGood >= kErrorsSinceGoodLimit);
+}
+
+bool
+MediaNetLink::IsDead(void)
+{
+    return m_tcpState.linkState == kLinkStateDead ||
+        m_udpState.linkState == kLinkStateDead;
+}
+
+void
 MediaNetLink::TCPSend(MediaNetData& ioData)
 {
-    if (!LinkIsUp(m_tcpState.linkState))
+    try
     {
-        // TCPLinkMake();
-        COREASSERT(false);
+        if (!LinkIsUp(m_tcpState.linkState))
+        {
+            throw(NetworkFail("TCPSend on dead link"));
+        }
+        m_client.TCPSend(ioData);
+        ++m_tcpState.linkSendCtr;
     }
-    m_client.TCPSend(ioData);
+    catch (NetworkFail& e)
+    {
+        MediaNetLog::Instance().Log() << "TCPSend exception: " << e.what() << endl;
+        ++m_tcpState.linkErrorTotal;
+        ++m_tcpState.linkErrorsSinceGood;
+    }
 }
 
 void
 MediaNetLink::TCPReceive(MediaNetData& outData)
 {
-    if (!LinkIsUp(m_tcpState.linkState))
+    try
     {
-        // TCPLinkMake();
-        COREASSERT(false);
+        if (!LinkIsUp(m_tcpState.linkState))
+        {
+            throw(NetworkFail("TCPReceive on dead link"));
+        }
+        m_client.TCPReceive(outData);
+        ++m_tcpState.linkReceiveCtr;
     }
-    m_client.TCPReceive(outData);
+    catch (NetworkFail& e)
+    {
+        MediaNetLog::Instance().Log() << "TCPReceive exception: " << e.what() << endl;
+        ++m_tcpState.linkErrorTotal;
+        ++m_tcpState.linkErrorsSinceGood;
+    }
 }
 
 void
 MediaNetLink::UDPSend(MediaNetData& ioData)
 {
-    if (!LinkIsUp(m_udpState.linkState))
+    try
     {
-        // UDPLinkMake();
-        COREASSERT(false);
+        if (!LinkIsUp(m_udpState.linkState))
+        {
+            throw(NetworkFail("UDPSend on dead link"));
+        }
+        if (m_udpUseServerPort)
+        {
+            MediaNetServer::Instance().UDPSend(m_client.UDPRemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
+        }
+        else
+        {
+            m_client.UDPSend(ioData);
+            ++m_udpState.linkSendCtr;
+        }
     }
-    if (m_udpUseServerPort)
+    catch (NetworkFail& e)
     {
-        MediaNetServer::Instance().UDPSend(m_client.UDPRemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
-    }
-    else
-    {
-        m_client.UDPSend(ioData);
+        MediaNetLog::Instance().Log() << "UDPSend exception: " << e.what() << endl;
+        ++m_udpState.linkErrorTotal;
+        ++m_udpState.linkErrorsSinceGood;
     }
 }
 
 void
 MediaNetLink::UDPReceive(MediaNetData& outData)
 {
-    if (!LinkIsUp(m_udpState.linkState))
+    try
     {
-        // UDPLinkMake();
-        COREASSERT(false);
+        if (!LinkIsUp(m_udpState.linkState))
+        {
+            throw(NetworkFail("UDPReceive on dead link"));
+        }
+        if (m_udpUseServerPort)
+        {
+            U32 host, port;
+            MediaNetServer::Instance().UDPReceive(host, port, outData);
+            outData.SourceSet(host, port);
+        }
+        else
+        {
+            m_client.UDPReceive(outData);
+            ++m_udpState.linkReceiveCtr;
+        }
     }
-    if (m_udpUseServerPort)
+    catch (NetworkFail& e)
     {
-        U32 host, port;
-        MediaNetServer::Instance().UDPReceive(host, port, outData);
-        outData.SourceSet(host, port);
-    }
-    else
-    {
-        m_client.UDPReceive(outData);
+        MediaNetLog::Instance().Log() << "UDPReceive exception: " << e.what() << endl;
+        ++m_udpState.linkErrorTotal;
+        ++m_udpState.linkErrorsSinceGood;
     }
 }
 
@@ -299,6 +472,10 @@ MediaNetLink::MessageHandle(U32 inType, MediaNetData& ioData)
             MessageUDPLinkCheckReplyHandle(ioData);
             break;
 
+        case MediaNetProtocol::kMessageTypeKillLink:
+            MessageKillLinkHandle(ioData);
+            break;
+
         default:
             break;
     }
@@ -329,12 +506,15 @@ MediaNetLink::MessageTCPLinkCheckReplyHandle(MediaNetData& ioData)
         m_tcpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
         m_tcpState.linkPingTime=m_currentMsec - m_tcpState.linkCheckTime;
-        if (m_tcpState.linkState == kLinkStateUntested)
+        if (m_tcpState.linkState == kLinkStateUntested ||
+            m_tcpState.linkState == kLinkStateTesting)
         {
             m_tcpState.linkState = kLinkStateIdle;
             if (m_udpState.linkState == kLinkStateIdle) LinkInfoLog();
         }
         m_tcpState.linkCheckState = kLinkCheckStateIdle;
+        m_tcpState.linkErrorsSinceGood=0;
+        MediaNetLog::Instance().Log() << "TCP link check good" << endl;
     }
 }
 
@@ -373,12 +553,26 @@ MediaNetLink::MessageUDPLinkCheckReplyHandle(MediaNetData& ioData)
         m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
         m_udpState.linkPingTime=m_currentMsec - m_udpState.linkCheckTime;
-        if (m_udpState.linkState == kLinkStateUntested)
+        if (m_udpState.linkState == kLinkStateUntested ||
+            m_udpState.linkState == kLinkStateTesting)
         {
             m_udpState.linkState = kLinkStateIdle;
             if (m_tcpState.linkState == kLinkStateIdle) LinkInfoLog();
         }
         m_udpState.linkCheckState = kLinkCheckStateIdle;
+        m_udpState.linkErrorsSinceGood=0;
+        MediaNetLog::Instance().Log() << "UDP link check good" << endl;
+    }
+}
+
+void
+MediaNetLink::MessageKillLinkHandle(MediaNetData& ioData)
+{
+    U32 reasonCode = ioData.MessageBytePop();
+    MediaNetLog::Instance().Log() << "Link kill received (" << reasonCode << ")" << endl;
+    if (reasonCode != MediaNetProtocol::kReasonCodePeerDisconnected)
+    {
+        Disconnect(MediaNetProtocol::kReasonCodePeerDisconnected);
     }
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.h,v 1.6 2002/11/04 13:11:58 southa Exp $
+ * $Id: MediaNetLink.h,v 1.7 2002/11/04 15:50:31 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.7  2002/11/04 15:50:31  southa
+ * Network log
+ *
  * Revision 1.6  2002/11/04 13:11:58  southa
  * Link setup work
  *
@@ -26,8 +29,7 @@
 #include "MediaSDL.h"
 #include "MediaNetClient.h"
 #include "MediaNetData.h"
-
-class MediaNetData;
+#include "MediaNetProtocol.h"
 
 class MediaNetLink
 {
@@ -39,20 +41,24 @@ public:
     void FastSend(MediaNetData& ioData);
     void ReliableSend(MediaNetData& ioData);
     bool Receive(MediaNetData * & outData);
-    
+    void Tick(void);
+    bool IsDead(void);
+    void Disconnect(MediaNetProtocol::tReasonCode inCode);
+        
     void LinkChecksSend(void);
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
-    
+
 private:
     enum tLinkState
     {
         kLinkStateInvalid,
         kLinkStateNotMade,
         kLinkStateUntested,
+        kLinkStateTesting,
         kLinkStateIdle,
         kLinkStateDead
     };
@@ -64,6 +70,17 @@ private:
         kLinkCheckStateAwaitingReply
     };
 
+    enum
+    {
+        kTCPFastLinkCheckPeriod=5000, // Times in msec
+        kTCPSlowLinkCheckPeriod=31020,
+        kUDPFastLinkCheckPeriod=1000, // Times in msec
+        kUDPSlowLinkCheckPeriod=30000,
+        kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
+        kErrorTotalLimit=100,
+        kErrorsSinceGoodLimit=4
+    };
+    
     class LinkState
     {
     public:
@@ -71,6 +88,10 @@ private:
         tLinkState linkState;
         tLinkCheckState linkCheckState;
         U32 linkPingTime;
+        U32 linkErrorsSinceGood;
+        U32 linkErrorTotal;
+        U32 linkSendCtr;
+        U32 linkReceiveCtr;
         MediaNetData linkData;
         U8 linkCheckSeqNum;
     };
@@ -79,7 +100,6 @@ private:
     void TCPConnect(const string& inServer, U32 inPort);
     void UDPConnect(U32 inPort);
     void TCPSocketTake(TCPsocket inSocket);
-    void Disconnect(void);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
     bool LinkIsUp(tLinkState inState);
@@ -93,7 +113,10 @@ private:
     void MessageTCPLinkCheckReplyHandle(MediaNetData& ioData);
     void MessageUDPLinkCheckHandle(MediaNetData& ioData);
     void MessageUDPLinkCheckReplyHandle(MediaNetData& ioData);
+    void MessageKillLinkHandle(MediaNetData& ioData);
     
+    static bool LinkDeathCheck(LinkState& ioLinkState);
+
     LinkState m_tcpState;
     LinkState m_udpState;
     MediaNetClient m_client;
@@ -116,6 +139,11 @@ operator<<(ostream &ioOut, const MediaNetLink::LinkState& inLinkState)
     ioOut << "[linkCheckTime=" << inLinkState.linkCheckTime << ", ";
     ioOut << "linkState=" << inLinkState.linkState << ", ";
     ioOut << "linkCheckState=" << inLinkState.linkCheckState << ", ";
+    ioOut << "linkPingTime=" << inLinkState.linkPingTime << ", ";
+    ioOut << "linkErrorsSinceGood=" << inLinkState.linkErrorsSinceGood << ", ";
+    ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
+    ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";
+    ioOut << "linkReceiveCtr=" << inLinkState.linkReceiveCtr << ", ";
     ioOut << "linkCheckSeqNum=" << static_cast<U32>(inLinkState.linkCheckSeqNum) << "]";
     return ioOut;
 }

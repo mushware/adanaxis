@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.4 2002/11/04 13:11:58 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.5 2002/11/04 15:50:32 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.5  2002/11/04 15:50:32  southa
+ * Network log
+ *
  * Revision 1.4  2002/11/04 13:11:58  southa
  * Link setup work
  *
@@ -30,6 +33,7 @@
 #include "MediaNetProtocol.h"
 #include "MediaNetData.h"
 #include "MediaNetLog.h"
+#include "MediaNetUtils.h"
 
 void
 MediaNetProtocol::TCPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber)
@@ -65,6 +69,15 @@ MediaNetProtocol::UDPLinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceN
     outData.BytePush(kSyncByte2);
     outData.BytePush(kMessageTypeUDPLinkCheckReply);
     outData.BytePush(static_cast<U8>(inSequenceNumber & 0xff));
+}
+
+void
+MediaNetProtocol::KillLinkCreate(MediaNetData& outData, tReasonCode inReason)
+{
+    outData.BytePush(kSyncByte1);
+    outData.BytePush(kSyncByte2);
+    outData.BytePush(kMessageTypeKillLink);
+    outData.BytePush(static_cast<U8>(inReason & 0xff));
 }
 
 void
@@ -108,10 +121,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 break;
 
             case kUnpackStateMessageType:
-                if (byte == kMessageTypeTCPLinkCheck ||
-                    byte == kMessageTypeTCPLinkCheckReply ||
-                    byte == kMessageTypeUDPLinkCheck ||
-                    byte == kMessageTypeUDPLinkCheckReply)
+                if (byte >= kMessageTypeMinLinkLayer && byte < kMessageTypeMaxLinkLayer)
                 {
                     messageLength=1;
                     unpackState=kUnpackStateMessageDone;
@@ -123,7 +133,8 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 break;
 
             case kUnpackStateLengthMSB:
-                COREASSERT(false);
+                MediaNetLog::Instance().Log() << "Protocol error";
+                skippedStr += byte;
                 break;
 
             case kUnpackStateMessageDone:
@@ -156,7 +167,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
     // Error logging
     if (skippedStr.size() > 0)
     {
-        MediaNetLog::Instance().Log() << "NetProtocol skipped '" << skippedStr << "'" << endl;
+        MediaNetLog::Instance().Log() << "NetProtocol skipped '" << MediaNetUtils::MakePrintable(skippedStr) << "'" << endl;
     }
 }
 
