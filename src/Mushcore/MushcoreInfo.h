@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -35,9 +38,25 @@
 class MushcoreInfo
 {
 public:
-    static std::string ApplicationNameGet(void) { return "Infernal Contractor II"; }
-    static std::string PackageNameGet(void) { return "ic2"; }
-    static std::string PackageVersionGet(void) { return "0.1.0"; }
-    static std::string PackageIDGet(void) { return "ic2-macosx-0.1.0"; }
+    static MushcoreInfo& Instance(void);
+    static void Mutate(MushcoreInfo *inInfo);
+
+    virtual std::string ApplicationNameGet(void);
+    virtual std::string PackageNameGet(void);
+    virtual std::string PackageVersionGet(void);
+    virtual std::string PackageIDGet(void);
+
+private:
+    static MushcoreInfo *m_instance;
 };
+
+inline MushcoreInfo&
+MushcoreInfo::Instance(void)
+{
+    if (m_instance == NULL)
+    {
+        m_instance = new MushcoreInfo;
+    }
+    return *m_instance;
+}
 #endif

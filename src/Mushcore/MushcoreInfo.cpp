@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.cpp,v 1.3 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreInfo.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreInfo.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.3  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -24,5 +27,46 @@
 
 #include "MushcoreInfo.h"
 
+#ifndef PACKAGE
+#define PACKAGE "mushcore"
+#endif
+
+#ifndef VERSION
+#define VERSION "0.0.0"
+#endif
+
 using namespace Mushware;
 using namespace std;
+
+MushcoreInfo *MushcoreInfo::m_instance = NULL;
+
+void
+MushcoreInfo::Mutate(MushcoreInfo *inInfo)
+{
+    delete(m_instance);
+    m_instance = inInfo;
+}
+
+string
+MushcoreInfo::ApplicationNameGet(void)
+{
+    return PackageNameGet()+" "+PackageVersionGet();
+}
+
+string
+MushcoreInfo::PackageNameGet(void)
+{
+    return PACKAGE;
+}
+
+string
+MushcoreInfo::PackageVersionGet(void)
+{
+    return VERSION;
+}
+
+string
+MushcoreInfo::PackageIDGet(void)
+{
+    return PackageNameGet()+"-"+PackageVersionGet();
+}

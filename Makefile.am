@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: lib.Makefile.am,v 1.1 2003/01/11 17:12:09 southa Exp $
+# $Log: lib.Makefile.am,v $
+# Revision 1.1  2003/01/11 17:12:09  southa
+# Created
+#
 #
 
 AUTOMAKE_OPTIONS=1.6

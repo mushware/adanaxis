@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.27 2003/01/09 14:57:08 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.28 2003/01/11 17:07:53 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.28  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.27  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -251,7 +254,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
     AlertStdAlertParamRec param;
     SInt16			alertType=kAlertNoteAlert;
     Str255			title;
-    CopyCStringToPascal(MushcoreInfo::ApplicationNameGet().c_str(), title);
+    CopyCStringToPascal(MushcoreInfo::Instance().ApplicationNameGet().c_str(), title);
     Str255          desc;
     CopyCStringToPascal(inStr.c_str(), desc);    
     SInt16			itemHit;

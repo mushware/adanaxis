@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.2  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -57,7 +60,6 @@
 
 #include "MushcoreBuiltinHandler.h"
 
-#include "MushcoreApp.h"
 #include "MushcoreCommand.h"
 #include "MushcoreEnv.h"
 #include "MushcoreException.h"

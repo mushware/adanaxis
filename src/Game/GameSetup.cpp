@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.25 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameSetup.cpp,v 1.26 2003/01/09 14:57:03 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.26  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.25  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -149,14 +152,14 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Instance().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::PackageVersionGet()+"  ID: "+MushcoreInfo::PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Instance().PackageVersionGet()+"  ID: "+MushcoreInfo::Instance().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
         glStr.Render();
     }
     

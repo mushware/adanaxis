@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAppHandler.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreAppHandler.cpp,v $
+ * Revision 1.2  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -54,7 +57,6 @@
 
 #include "MushcoreAppHandler.h"
 
-#include "MushcoreApp.h"
 #include "MushcoreAppSignal.h"
 
 using namespace Mushware;
