@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.12 2002/10/06 22:10:00 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.13 2002/10/08 22:27:00 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.13  2002/10/08 22:27:00  southa
+ * Fixed for win32
+ *
  * Revision 1.12  2002/10/06 22:10:00  southa
  * Initial lighting test
  *
@@ -119,8 +122,4 @@ PlatformMiscUtils::TweakArgs(string& ioStr)
 {
 }
 
-void
-PlatformMiscUtils::VBLWait(void)
-{
-}
 
