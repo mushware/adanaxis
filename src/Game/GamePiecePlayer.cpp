@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.20 2002/08/20 15:00:56 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.21 2002/08/27 08:56:25 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.21  2002/08/27 08:56:25  southa
+ * Source conditioning
+ *
  * Revision 1.20  2002/08/20 15:00:56  southa
  * Reward tweaks
  *
@@ -130,7 +133,7 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     GameControllerState controlState;
     m_controller->StateGet(controlState);
     
-    outSpec.deltaAngle+=m_adhesion * M_PI * controlState.mouseXDelta;
+    outSpec.deltaAngle += m_adhesion * M_PI * controlState.mouseXDelta;
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);

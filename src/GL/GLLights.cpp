@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLLights.cpp,v 1.1 2002/10/06 22:09:58 southa Exp $
+ * $Log: GLLights.cpp,v $
+ * Revision 1.1  2002/10/06 22:09:58  southa
+ * Initial lighting test
+ *
  */
 
 #include "GLLights.h"
@@ -37,27 +40,27 @@ GLLights::LightEnable(U32 inNum)
     }
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glLoadIdentity();
-    GLfloat white[4]={1,1,1,1};
-    GLfloat black[4]={0,0,0,1};
+    // glLoadIdentity();
+    GLfloat diffuse[4]={1.0,1.0,1.0,1};
+    GLfloat specular[4]={1.0,1.0,1.0,1};
     GLfloat transparent[4]={0,0,0,0};
-    GLfloat position[4]={0,0,0,1};
-    glTranslatef(1.5,0.5,-1);
+    GLfloat position[4]={30,10,-1,1};
     GLenum lightEnum=GL_LIGHT0+inNum;
     glLightfv(lightEnum, GL_AMBIENT, transparent);
-    glLightfv(lightEnum, GL_DIFFUSE, white);
-    glLightfv(lightEnum, GL_SPECULAR, white);
+    glLightfv(lightEnum, GL_DIFFUSE, diffuse);
+    glLightfv(lightEnum, GL_SPECULAR, specular);
     glLightfv(lightEnum, GL_POSITION, position);
     glLighti(lightEnum, GL_SPOT_CUTOFF, 180);
     GLfloat direction[3]={0,0,1};
     glLightfv(lightEnum, GL_SPOT_DIRECTION, direction);
-    glLightf(lightEnum, GL_SPOT_EXPONENT, 128);
+    glLightf(lightEnum, GL_SPOT_EXPONENT, 4);
     glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.01);
     glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
-    glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 1.0);
+    glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 0.4);
     
     glEnable(GL_LIGHT0+inNum);
     glPopMatrix();
+    
     m_lightEnabled[inNum]=true;
     GLUtils::CheckGLError();
 }    

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.63 2002/08/27 08:56:22 southa Exp $
+ * $Id: GameContract.cpp,v 1.64 2002/10/06 22:09:59 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.64  2002/10/06 22:09:59  southa
+ * Initial lighting test
+ *
  * Revision 1.63  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -328,8 +331,6 @@ GameContract::Init(void)
 
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
-    m_lights.LightAdd(0, GLLightDef());
-    m_lights.LightEnable(0);
 }
 
 void
@@ -391,7 +392,7 @@ GameContract::RunningMove(void)
     {
         if (m_gameState == kRunning) m_gameState = kOver;
     }
-    m_masterScale+=(0.05 - m_masterScale)/30;
+    m_masterScale+=(0.5 - m_masterScale)/30;
 
 #if 0
     // Sound test
@@ -428,16 +429,23 @@ GameContract::RunningDisplay(void)
     lookAtPoint.pos=GLPoint(playerSpec.pos*m_masterScale);
     lookAtPoint.angle=playerSpec.angle;
     
-    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    GLUtils::PerspectiveLookAt(lookAtPoint.pos, lookAtPoint.angle);
     // m_masterScale is the proportion of the longest axis of the screen
     // taken up by one map piece
+    GLUtils::PushMatrix();
+
     GLUtils::Scale(m_masterScale, m_masterScale, 1);
+
+
+    
+    m_lights.LightAdd(0, GLLightDef());
+    m_lights.LightEnable(0);
     
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
     GLPoint screenRatios(GLUtils::ScreenRatiosGet());
     GLPoint screenRadius((screenRatios / 2) / m_floorMap->StepGet());
-    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale;
+    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale*10;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea; // Empty area
@@ -448,25 +456,21 @@ GameContract::RunningDisplay(void)
     {
         m_floorMap->RenderSolidMap(visibleArea);
     }
-    GLUtils::IdentityEpilogue();
 
-    GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    GLUtils::PopMatrix();
+    GLUtils::PushMatrix();
 
     GLUtils gl;
-    glMatrixMode(GL_MODELVIEW);
     gl.SetPosition(0,0);
-    GLUtils::ModulationSet(GLUtils::kModulationNone);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-    GLUtils::Scale(m_masterScale*2, m_masterScale*2, 1);
+    GLUtils::Scale(2*m_masterScale, 2*m_masterScale, 1);
     m_player->Render();
-    GLUtils::IdentityEpilogue();
 
-    GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    GLUtils::PopMatrix();
+
     GLUtils::Scale(m_masterScale, m_masterScale, 1);
-    glMatrixMode(GL_MODELVIEW);
+
     COREASSERT(m_currentView != NULL);
     GLUtils::BlendSet(GLUtils::kBlendLine);
     m_currentView->OverPlotGet().Render();

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.24 2002/08/27 08:56:22 southa Exp $
+ * $Id: GLUtils.h,v 1.25 2002/10/06 22:09:58 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.25  2002/10/06 22:09:58  southa
+ * Initial lighting test
+ *
  * Revision 1.24  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -143,6 +146,7 @@ public:
     static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
     static tVal LongestScreenAxis(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
+    static void PerspectiveLookAt(GLPoint inPoint, tVal inAngle);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);

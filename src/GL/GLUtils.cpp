@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.27.4.1 2002/09/04 10:18:04 southa Exp $
+ * $Id: GLUtils.cpp,v 1.28 2002/10/06 22:09:58 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.28  2002/10/06 22:09:58  southa
+ * Initial lighting test
+ *
  * Revision 1.27.4.1  2002/09/04 10:18:04  southa
  * Fixed for MacOS X 10.2
  *
@@ -186,13 +189,36 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
 {
 
     glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
     gluOrtho2D(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y);
-    gluLookAt(inX, inY, 0.1, // eye position
-              inX, inY, 0, // point we're looking at
+    gluLookAt(inX, inY, -1.0, // eye position
+              inX, inY, -2.0, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
               );
     glMatrixMode(GL_MODELVIEW);
+}
+
+void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+    tVal nearClip=1.0;
+    glFrustum(screenRatios.x*nearClip,-screenRatios.x*nearClip,
+              -screenRatios.y*nearClip,screenRatios.y*nearClip,
+                   nearClip, // zNear clipping plane distance from viewer
+                   20.0 // zFar clipping plane distance from viewer
+                   );
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(inPoint.x, inPoint.y, -10.0, // eye position
+              inPoint.x, inPoint.y, 0.0, // reference for -z axis
+              sin(inAngle),cos(inAngle),0 // direction of up
+              );
+    
+    GLUtils::CheckGLError();
 }
 
 const GLPoint
@@ -313,6 +339,12 @@ GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
 {
     glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
     glEnable(GL_TEXTURE_2D);
+    glPushMatrix();
+    {
+        static tVal ctr=0;
+
+        glTranslatef(0,0,0.0*sin((ctr++) / 100000.0));
+    }
     glBegin(GL_QUADS);
     glTexCoord2f(inRectangle.xmin,inRectangle.ymin);
     glVertex2f(-0.5,-0.5);
@@ -324,6 +356,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
     glVertex2f(0.5,-0.5);
     glEnd();
     glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
 }
 
 void
@@ -479,16 +512,19 @@ GLUtils::ModulationSet(tModulationType inValue)
             case kModulationLighting:
             if (m_useLighting)
             {
-                GLfloat black[4]={0.2,0.2,0.2,1};
-                glLightModelfv(GL_LIGHT_MODEL_AMBIENT, black);
-                glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 0);
+                GLfloat ambient[4]={0.3,0.3,0.3,1};
+                glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+                glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
                 glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
-
-                GLfloat specular[4]={0.8,0.8,0.8,1};
+                glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+                
+                GLfloat specular[4]={1.0,1.0,1.0,1};
                 glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-                GLfloat diffuse[4]={0.0,0.0,0.8,1};
+
+                GLfloat diffuse[4]={0.0,0.0,0.0,1};
                 glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-                glMaterialf(GL_FRONT, GL_SHININESS, 0);
+
+                glMaterialf(GL_FRONT, GL_SHININESS, 20);
                 
                 glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glEnable(GL_LIGHTING);
