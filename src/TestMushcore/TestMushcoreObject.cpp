@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.14 2003/10/01 23:18:28 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.15 2003/10/02 23:33:39 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.15  2003/10/02 23:33:39  southa
+ * XML polymorphic objects
+ *
  * Revision 1.14  2003/10/01 23:18:28  southa
  * XML object handling
  *
@@ -115,6 +118,8 @@ void
 TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "vectorPolymorph=" << m_vectorPolymorph << ", ";
+    ioOut << "vectorTestObject=" << m_vectorTestObject << ", ";
     ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
     ioOut << "u32=" << m_u32 << ", ";
     ioOut << "string=" << m_string << ", ";
@@ -176,6 +181,14 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     if (inTagStr == "obj")
     {
         ioIn >> *this;
+    }
+    else if (inTagStr == "vectorPolymorph")
+    {
+        ioIn >> m_vectorPolymorph;
+    }
+    else if (inTagStr == "vectorTestObject")
+    {
+        ioIn >> m_vectorTestObject;
     }
     else if (inTagStr == "u8")
     {
@@ -257,41 +270,45 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("vectorPolymorph");
+    ioOut << m_vectorPolymorph;
+    ioOut.TagSet("vectorTestObject");
+    ioOut << m_vectorTestObject;
     ioOut.TagSet("u8");
-    ioOut << m_u8 << "\n";
+    ioOut << m_u8;
     ioOut.TagSet("u32");
-    ioOut << m_u32 << "\n";
+    ioOut << m_u32;
     ioOut.TagSet("string");
-    ioOut << m_string << "\n";
+    ioOut << m_string;
     ioOut.TagSet("u8Vector");
-    ioOut << m_u8Vector << "\n";
+    ioOut << m_u8Vector;
     ioOut.TagSet("u32Vector");
-    ioOut << m_u32Vector << "\n";
+    ioOut << m_u32Vector;
     ioOut.TagSet("stringVector");
-    ioOut << m_stringVector << "\n";
+    ioOut << m_stringVector;
     ioOut.TagSet("u8EmptyVector");
-    ioOut << m_u8EmptyVector << "\n";
+    ioOut << m_u8EmptyVector;
     ioOut.TagSet("uEmpty32Vector");
-    ioOut << m_uEmpty32Vector << "\n";
+    ioOut << m_uEmpty32Vector;
     ioOut.TagSet("stringEmptyVector");
-    ioOut << m_stringEmptyVector << "\n";
+    ioOut << m_stringEmptyVector;
     ioOut.TagSet("vectorVector");
-    ioOut << m_vectorVector << "\n";
+    ioOut << m_vectorVector;
     ioOut.TagSet("mapVector");
-    ioOut << m_mapVector << "\n";
+    ioOut << m_mapVector;
     ioOut.TagSet("vectorMap");
-    ioOut << m_vectorMap << "\n";
+    ioOut << m_vectorMap;
     ioOut.TagSet("pU32");
-    ioOut << m_pU32 << "\n";
+    ioOut << m_pU32;
     ioOut.TagSet("pVectorU32");
-    ioOut << m_pVectorU32 << "\n";
+    ioOut << m_pVectorU32;
     ioOut.TagSet("vectorpU32");
-    ioOut << m_vectorpU32 << "\n";
+    ioOut << m_vectorpU32;
     ioOut.TagSet("pNull");
-    ioOut << m_pNull << "\n";
+    ioOut << m_pNull;
     ioOut.TagSet("testObject");
-    ioOut << m_testObject << "\n";
+    ioOut << m_testObject;
     ioOut.TagSet("polymorph");
-    ioOut << m_polymorph << "\n";
+    ioOut << m_polymorph;
 }
-//%outOfLineFunctions } 0x+McV4h7y7E2B1iO+HlnA
+//%outOfLineFunctions } vayv9myCUxl1godourAPEg

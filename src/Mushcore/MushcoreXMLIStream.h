@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.11 2003/09/30 22:11:30 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.12 2003/10/02 23:33:39 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.12  2003/10/02 23:33:39  southa
+ * XML polymorphic objects
+ *
  * Revision 1.11  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -176,7 +179,7 @@ MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
             inVector.push_back();
             try
             {
-                ObjectRead(inVector.back());
+                *this >> inVector.back();
             }
             catch (...)
             {
@@ -222,7 +225,7 @@ MushcoreXMLIStream::ObjectRead(vector<T *>& inVector)
         for (;;)
         {
             T *newPtr = NULL;
-            ObjectRead(newPtr);
+            *this >> newPtr;
             inVector.push_back(newPtr);
 
             Mushware::U8 nextByte = ByteTake();

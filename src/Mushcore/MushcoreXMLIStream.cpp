@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.9 2003/09/30 22:11:30 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.10 2003/10/02 23:33:39 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.10  2003/10/02 23:33:39  southa
+ * XML polymorphic objects
+ *
  * Revision 1.9  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -66,7 +69,7 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 }
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
 {
     string tagStr;
     do
@@ -88,15 +91,59 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
             break;
         }
         // Store tag data for attributes
-        m_tagData = tagStr;
+        if (tagStr.find(' ') != string::npos)
+        {
+            // Not sure about this - preserves types from way back
+            m_tagData = tagStr;
+        }
         tagStr = tagStr.substr(0, tagStr.find(' '));
         
         m_contentStart = dataStartPos;
+        // Tag is read and m_contentStart points to the start of the tag data
 
-        // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
-        inObj.AutoXMLDataProcess(*this, tagStr);
-        // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
+        if (inpObj == NULL)
+        {
+            /* Pointer is NULL, so this is a pointer to a polymorphic type
+             * which we might need to allocate
+            */
+            if (m_contentStr.substr(m_contentStart, 4) == "NULL")
+            {
+                inpObj = NULL;
+                m_contentStart += 4;;
+            }
+            else
+            {
+                string typeStr;
+                if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
+                {
+                    // No type specified, so cannot create object
 
+
+                    Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
+                }
+                if (inpObj != NULL)
+                {
+                    delete inpObj;
+                }
+                
+                inpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
+
+                if (inpObj == NULL)
+                {
+                    // Dynamic cast failed
+                    Throw("Object of type "+typeStr+" not virtual enough");
+                }
+            }
+            
+        }
+
+        if (inpObj != NULL)
+        {
+            // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
+            inpObj->AutoXMLDataProcess(*this, tagStr);
+            // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
+        }
+        
         string closingTagStr;
         // Consume and check the trailing tag
         while (dataStartPos = TagGet(closingTagStr, m_contentStr, m_contentStart),
@@ -115,6 +162,14 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
     } while (tagStr != "obj");
 }
 
+
+void
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
+{
+    ObjectRead(&inObj);
+}
+
+#if 0
 void
 MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
 {
@@ -128,6 +183,9 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
         string typeStr;
         if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
         {
+            // No type specified, so cannot create object
+
+            
             Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
         }
         if (inpObj != NULL)
@@ -138,6 +196,7 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
         *this >> *inpObj;
     }
 }
+#endif
 
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)

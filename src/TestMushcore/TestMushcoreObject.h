@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.13 2003/09/30 22:11:30 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.14 2003/10/02 23:33:39 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.14  2003/10/02 23:33:39  southa
+ * XML polymorphic objects
+ *
  * Revision 1.13  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -118,7 +121,8 @@ public:
 
             m_testObject = new TestMushcoreObject;
             m_polymorph = new TestMushcoreObject;
-            // m_testObjectVector.push_back(new TestMushcoreObject(0));
+            m_vectorTestObject.push_back(new TestMushcoreObject);
+            m_vectorPolymorph.push_back(new TestMushcoreObject);
     }
 
     TestMushcoreObject() :
@@ -135,6 +139,9 @@ public:
     virtual ~TestMushcoreObject() {}
     
 private:
+    std::vector<MushcoreVirtualObject *> m_vectorPolymorph; // nobasic;
+    std::vector<TestMushcoreObject *> m_vectorTestObject; // nobasic;
+    
     Mushware::U8 m_u8;
     Mushware::U32 m_u32;
     std::string m_string;
@@ -158,7 +165,6 @@ private:
 
     TestMushcoreObject *m_testObject;
     MushcoreVirtualObject *m_polymorph; // nobasic
-    //vector<TestMushcoreObject *> m_testObjectVector;
     
 //%classPrototypes {
 public:

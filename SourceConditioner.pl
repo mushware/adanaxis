@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.14 2003/10/01 23:18:24 southa Exp $
+# $Id: SourceConditioner.pl,v 1.15 2003/10/02 23:33:35 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.15  2003/10/02 23:33:35  southa
+# XML polymorphic objects
+#
 # Revision 1.14  2003/10/01 23:18:24  southa
 # XML object handling
 #
@@ -645,12 +648,12 @@ sub XMLOStreamWriteFunctionGenerate($$)
             if ($indirection > 0)
             {
                 push @$outputRef,
-"    ioOut << ".VarBaseNameGet($attr)." << \"\\n\";";
+"    ioOut << ".VarBaseNameGet($attr).";";
             }
             else
             {
                 push @$outputRef,
-"    ioOut << ".$attr." << \"\\n\";";
+"    ioOut << ".$attr.";";
             }
         }
     }
