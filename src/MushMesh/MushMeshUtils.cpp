@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 3XzxqUPWd6V+FRewD4IMHw
 /*
- * $Id: MushMeshUtils.cpp,v 1.7 2004/12/13 11:09:11 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.8 2005/01/27 21:00:39 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.8  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.7  2004/12/13 11:09:11  southa
  * Quaternion and vector tweaks
  *
@@ -90,10 +93,6 @@ void
 MushMeshUtils::SimpleDivide4Mesh(MushMeshGroup& outGroup, const MushMeshGroup& inGroup, const tVal inScale)
 {
     outGroup.OrderResize(2);
-    
-    U32 destFace = 0;
-    U32 destFacet = 0;
-    U32 destVertex = 0;
     
     for (U32 i=0; i < inGroup.SuperGroupSize(1); ++i)
     {

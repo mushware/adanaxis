@@ -12,25 +12,32 @@
  ****************************************************************************/
 //%Header } dHih2TKo/swBPrS9/535mQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieSignalNumeric.cpp,v 1.1 2004/01/10 20:29:35 southa Exp $
+ * $Log: MushPieSignalNumeric.cpp,v $
+ * Revision 1.1  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  */
 
 #include "MushPieSignalNumeric.h"
 
 //%outOfLineFunctions {
+
 const char *MushPieSignalNumeric::AutoNameGet(void) const
 {
     return "MushPieSignalNumeric";
 }
-MushPieSignalNumeric *MushPieSignalNumeric::AutoClone(void) const
+
+MushcoreVirtualObject *MushPieSignalNumeric::AutoClone(void) const
 {
     return new MushPieSignalNumeric(*this);
 }
-MushPieSignalNumeric *MushPieSignalNumeric::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPieSignalNumeric::AutoCreate(void) const
 {
     return new MushPieSignalNumeric;
 }
+
 MushcoreVirtualObject *MushPieSignalNumeric::AutoVirtualFactory(void)
 {
     return new MushPieSignalNumeric;
@@ -73,4 +80,4 @@ MushPieSignalNumeric::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("eventNumber");
     ioOut << m_eventNumber;
 }
-//%outOfLineFunctions } wluUyz7SKiIdJnkhh60/uA
+//%outOfLineFunctions } LU817k75K5S+Sfs1bLUkiw

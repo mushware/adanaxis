@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } ZakQe8n4v2EUcmOXTokzrw
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.1 2004/01/18 18:25:30 southa Exp $
+ * $Log: TestMushcoreVirtualPointerObject.cpp,v $
+ * Revision 1.1  2004/01/18 18:25:30  southa
+ * XML stream upgrades
+ *
  */
 
 #include "TestMushcoreVirtualPointerObject.h"
@@ -46,18 +49,22 @@ TestMushcoreVirtualPointerObject::DeleteObjects(void)
 }
 
 //%outOfLineFunctions {
+
 const char *TestMushcoreVirtualPointerObject::AutoNameGet(void) const
 {
     return "TestMushcoreVirtualPointerObject";
 }
-TestMushcoreVirtualPointerObject *TestMushcoreVirtualPointerObject::AutoClone(void) const
+
+MushcoreVirtualObject *TestMushcoreVirtualPointerObject::AutoClone(void) const
 {
     return new TestMushcoreVirtualPointerObject(*this);
 }
-TestMushcoreVirtualPointerObject *TestMushcoreVirtualPointerObject::AutoCreate(void) const
+
+MushcoreVirtualObject *TestMushcoreVirtualPointerObject::AutoCreate(void) const
 {
     return new TestMushcoreVirtualPointerObject;
 }
+
 MushcoreVirtualObject *TestMushcoreVirtualPointerObject::AutoVirtualFactory(void)
 {
     return new TestMushcoreVirtualPointerObject;
@@ -152,4 +159,4 @@ TestMushcoreVirtualPointerObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subSubPtr");
     ioOut << m_subSubPtr;
 }
-//%outOfLineFunctions } 9TVi77nBDKgswZZDHl7uKw
+//%outOfLineFunctions } zSfwSdmNgaEsqCr8lEDI2w

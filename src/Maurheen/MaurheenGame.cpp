@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.9 2005/01/29 18:27:30 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.10 2005/02/01 13:40:36 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.10  2005/02/01 13:40:36  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.9  2005/01/29 18:27:30  southa
  * Vertex buffer stuff
  *
@@ -158,18 +161,22 @@ MaurheenGame::SwapOut(GameAppHandler& inAppHandler)
 {}
 
 //%outOfLineFunctions {
+
 const char *MaurheenGame::AutoNameGet(void) const
 {
     return "MaurheenGame";
 }
-MaurheenGame *MaurheenGame::AutoClone(void) const
+
+MushcoreVirtualObject *MaurheenGame::AutoClone(void) const
 {
-    return new MaurheenGame();
+    return new MaurheenGame(*this);
 }
-MaurheenGame *MaurheenGame::AutoCreate(void) const
+
+MushcoreVirtualObject *MaurheenGame::AutoCreate(void) const
 {
     return new MaurheenGame;
 }
+
 MushcoreVirtualObject *MaurheenGame::AutoVirtualFactory(void)
 {
     return new MaurheenGame;
@@ -186,7 +193,6 @@ void
 MaurheenGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    //ioOut << "hypercube=" << m_hypercube;
     ioOut << "]";
 }
 bool
@@ -195,10 +201,6 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     if (inTagStr == "obj")
     {
         ioIn >> *this;
-    }
-    else if (inTagStr == "hypercube")
-    {
-        //ioIn >> m_hypercube;
     }
     else
     {
@@ -209,7 +211,5 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MaurheenGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("hypercube");
-    //ioOut << m_hypercube;
 }
-//%outOfLineFunctions } lr1PSjWBxotxvzFu2xyvwA
+//%outOfLineFunctions } FKoS/qlb96vSXXqTOsWo7w

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fNBxnWioPfFaM/uScT3/eA
 /*
- * $Id: MushPiePieceMobile.h,v 1.3 2004/09/27 22:42:10 southa Exp $
+ * $Id: MushPiePieceMobile.h,v 1.4 2005/02/01 13:40:37 southa Exp $
  * $Log: MushPiePieceMobile.h,v $
+ * Revision 1.4  2005/02/01 13:40:37  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.3  2004/09/27 22:42:10  southa
  * MSVC compilation fixes
  *
@@ -35,7 +38,7 @@
 #include "MushPiePosicity.h"
 
 //:xml1base MushPiePiece
-//:generate ostream xml1 standard
+//:generate virtual ostream xml1 standard
 class MushPiePieceMobile : public MushPiePiece
 {
 public:
@@ -57,13 +60,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual MushPiePieceMobile *AutoClone(void) const;
-    virtual MushPiePieceMobile *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } VSoFRv3Jz+5+30S9kKhoaQ
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 
 inline void

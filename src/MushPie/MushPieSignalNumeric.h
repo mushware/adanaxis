@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } FOmNozUEFEVBx83/GMJVjA
 /*
- * $Id: MushPieSignalNumeric.h,v 1.1 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushPieSignalNumeric.h,v 1.2 2005/02/03 21:03:06 southa Exp $
  * $Log: MushPieSignalNumeric.h,v $
+ * Revision 1.2  2005/02/03 21:03:06  southa
+ * Build fixes
+ *
  * Revision 1.1  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -27,7 +30,7 @@
 
 #include "MushPieSignal.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushPieSignalNumeric : public MushPieSignal
 {
 public:
@@ -41,13 +44,13 @@ private:
 public:
     const Mushware::U32& EventNumber(void) const { return m_eventNumber; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushPieSignalNumeric *AutoClone(void) const;
-    virtual MushPieSignalNumeric *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } IzCQ0YOxia+FsktR1dBohw
+//%classPrototypes } smhgIr1jYTAQsL5IlQhiuQ
 };
 //%inlineHeader {
 inline std::ostream&

@@ -12,25 +12,32 @@
  ****************************************************************************/
 //%Header } 2/hOq2YO5tgIn4JHoD/exQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreObjectBase.cpp,v 1.1 2004/01/18 18:25:29 southa Exp $
+ * $Log: TestMushcoreObjectBase.cpp,v $
+ * Revision 1.1  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  */
 
 #include "TestMushcoreObjectBase.h"
 
 //%outOfLineFunctions {
+
 const char *TestMushcoreObjectBase::AutoNameGet(void) const
 {
     return "TestMushcoreObjectBase";
 }
-TestMushcoreObjectBase *TestMushcoreObjectBase::AutoClone(void) const
+
+MushcoreVirtualObject *TestMushcoreObjectBase::AutoClone(void) const
 {
     return new TestMushcoreObjectBase(*this);
 }
-TestMushcoreObjectBase *TestMushcoreObjectBase::AutoCreate(void) const
+
+MushcoreVirtualObject *TestMushcoreObjectBase::AutoCreate(void) const
 {
     return new TestMushcoreObjectBase;
 }
+
 MushcoreVirtualObject *TestMushcoreObjectBase::AutoVirtualFactory(void)
 {
     return new TestMushcoreObjectBase;
@@ -80,4 +87,4 @@ TestMushcoreObjectBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("baseObjectValue");
     ioOut << m_baseObjectValue;
 }
-//%outOfLineFunctions } 7vSCuTsYV8RlAKglbrb6bw
+//%outOfLineFunctions } ACldnHdFk7OaVTSAxuU6bQ

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Sm2dksqO3j2Rsr1/+cPdyw
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalFacetContext.cpp,v 1.1 2004/01/10 20:29:34 southa Exp $
+ * $Log: InfernalFacetContext.cpp,v $
+ * Revision 1.1  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  */
 
 #include "InfernalFacetContext.h"
@@ -89,18 +92,22 @@ InfernalFacetContext::VerticesImport(const std::vector<Mushware::t3Val>& inVerti
     MUSHCOREASSERT(p == m_vertices.end());
 }
 //%outOfLineFunctions {
+
 const char *InfernalFacetContext::AutoNameGet(void) const
 {
     return "InfernalFacetContext";
 }
-InfernalFacetContext *InfernalFacetContext::AutoClone(void) const
+
+MushcoreVirtualObject *InfernalFacetContext::AutoClone(void) const
 {
     return new InfernalFacetContext(*this);
 }
-InfernalFacetContext *InfernalFacetContext::AutoCreate(void) const
+
+MushcoreVirtualObject *InfernalFacetContext::AutoCreate(void) const
 {
     return new InfernalFacetContext;
 }
+
 MushcoreVirtualObject *InfernalFacetContext::AutoVirtualFactory(void)
 {
     return new InfernalFacetContext;
@@ -199,4 +206,4 @@ InfernalFacetContext::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("contextValid");
     ioOut << m_contextValid;
 }
-//%outOfLineFunctions } QkpskxCU72KaOE66Mvm2iQ
+//%outOfLineFunctions } ZjEBBfa8cx9qwqlyIFiFwg

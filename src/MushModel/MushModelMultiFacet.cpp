@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } nzBRybN+TNZbotLpZcw3Eg
 /*
- * $Id: MushModelMultiFacet.cpp,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushModelMultiFacet.cpp,v 1.2 2004/01/08 22:41:10 southa Exp $
  * $Log: MushModelMultiFacet.cpp,v $
+ * Revision 1.2  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.1  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -108,18 +111,22 @@ MushModelMultiFacet::NullFunction(void)
 }
 
 //%outOfLineFunctions {
+
 const char *MushModelMultiFacet::AutoNameGet(void) const
 {
     return "MushModelMultiFacet";
 }
-MushModelMultiFacet *MushModelMultiFacet::AutoClone(void) const
+
+MushcoreVirtualObject *MushModelMultiFacet::AutoClone(void) const
 {
     return new MushModelMultiFacet(*this);
 }
-MushModelMultiFacet *MushModelMultiFacet::AutoCreate(void) const
+
+MushcoreVirtualObject *MushModelMultiFacet::AutoCreate(void) const
 {
     return new MushModelMultiFacet;
 }
+
 MushcoreVirtualObject *MushModelMultiFacet::AutoVirtualFactory(void)
 {
     return new MushModelMultiFacet;
@@ -162,4 +169,4 @@ MushModelMultiFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facets");
     ioOut << m_facets;
 }
-//%outOfLineFunctions } NqaydEnsjyuNScPmkLzWeA
+//%outOfLineFunctions } LEUhvRLj/Y4UT0+CKANgUA

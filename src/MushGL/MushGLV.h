@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } uiXTBqRVrI+qFoX2dUuamg
 /*
- * $Id: MushGLV.h,v 1.3 2005/01/29 14:06:12 southa Exp $
+ * $Id: MushGLV.h,v 1.4 2005/01/29 18:27:31 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.4  2005/01/29 18:27:31  southa
+ * Vertex buffer stuff
+ *
  * Revision 1.3  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -81,8 +84,8 @@ private:
     
 //%classPrototypes {
 public:
-    virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
 };
 
 //%inlineHeader {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } UaBPyJihXb0nBhSdiIa4/Q
 /*
- * $Id: InfernalFacetContext.h,v 1.1 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalFacetContext.h,v 1.2 2005/02/03 21:02:54 southa Exp $
  * $Log: InfernalFacetContext.h,v $
+ * Revision 1.2  2005/02/03 21:02:54  southa
+ * Build fixes
+ *
  * Revision 1.1  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
@@ -27,7 +30,7 @@
 
 #include "mushGL.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class InfernalFacetContext : public MushcoreVirtualObject
 {
 public:
@@ -65,13 +68,13 @@ public:
     const bool& ContextValid(void) const { return m_contextValid; }
     void ContextValidSet(const bool& inValue) { m_contextValid=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual InfernalFacetContext *AutoClone(void) const;
-    virtual InfernalFacetContext *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } NgdAtPbDceN3DvjhduPnqw
+//%classPrototypes } BUoQRzqlZySgL91dpGVkSg
 };
 //%inlineHeader {
 inline std::ostream&

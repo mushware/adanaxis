@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PPS/HIYTNx/xF3BnuxBKdQ
 /*
- * $Id: MaurheenGame.h,v 1.2 2004/03/07 12:05:56 southa Exp $
+ * $Id: MaurheenGame.h,v 1.3 2005/01/27 21:00:39 southa Exp $
  * $Log: MaurheenGame.h,v $
+ * Revision 1.3  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.2  2004/03/07 12:05:56  southa
  * Rendering work
  *
@@ -33,7 +36,7 @@
 #include "MaurheenHypercube.h"
 #include "MaurheenHypersphere.h"
 
-//:generate standard xml1 ostream
+//:generate virtual standard xml1 ostream
 class MaurheenGame : public GameBase
 {
 public:
@@ -51,19 +54,19 @@ public:
 protected:
     
 private:
-    MaurheenHypercube m_hypercube;
-    MaurheenHypersphere m_hypersphere;
+    MaurheenHypercube m_hypercube; //:ignore
+    MaurheenHypersphere m_hypersphere; //:ignore
 
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual MaurheenGame *AutoClone(void) const;
-    virtual MaurheenGame *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } uwtJ7cbGh16AtQbbRliYrg
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2bfNYCnBe7Dts6IyFoxENQ
 /*
- * $Id: MushPiePieceSimple.cpp,v 1.3 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePieceSimple.cpp,v 1.4 2004/09/27 22:42:10 southa Exp $
  * $Log: MushPiePieceSimple.cpp,v $
+ * Revision 1.4  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.3  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -28,18 +31,22 @@
 #include "MushPiePieceSimple.h"
 
 //%outOfLineFunctions {
+
 const char *MushPiePieceSimple::AutoNameGet(void) const
 {
     return "MushPiePieceSimple";
 }
-MushPiePieceSimple *MushPiePieceSimple::AutoClone(void) const
+
+MushcoreVirtualObject *MushPiePieceSimple::AutoClone(void) const
 {
     return new MushPiePieceSimple(*this);
 }
-MushPiePieceSimple *MushPiePieceSimple::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPiePieceSimple::AutoCreate(void) const
 {
     return new MushPiePieceSimple;
 }
+
 MushcoreVirtualObject *MushPiePieceSimple::AutoVirtualFactory(void)
 {
     return new MushPiePieceSimple;
@@ -88,4 +95,4 @@ MushPiePieceSimple::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pos");
     ioOut << m_pos;
 }
-//%outOfLineFunctions } X+Z7GYtm7JHy8MizkHHlWQ
+//%outOfLineFunctions } CMAqB0foit4lFBNG5M3IDw

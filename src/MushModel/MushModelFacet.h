@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } KMRuFiR9Rvu+S944rUHZ1g
 /*
- * $Id: MushModelFacet.h,v 1.3 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushModelFacet.h,v 1.4 2005/02/03 21:03:03 southa Exp $
  * $Log: MushModelFacet.h,v $
+ * Revision 1.4  2005/02/03 21:03:03  southa
+ * Build fixes
+ *
  * Revision 1.3  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -35,7 +38,7 @@
 
 #include "MushModelMaterial.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushModelFacet : public MushcoreVirtualObject
 {
 public:
@@ -61,13 +64,13 @@ public:
     const std::vector<Mushware::t3Val>& Normals(void) const { return m_normals; }
     void NormalsSet(const std::vector<Mushware::t3Val>& inValue) { m_normals=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushModelFacet *AutoClone(void) const;
-    virtual MushModelFacet *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 4RuU6lzH/VFGQv3VIQUMzg
+//%classPrototypes } 52pb6TXzqoPnUA09USnWcw
 };
 //%inlineHeader {
 inline std::ostream&

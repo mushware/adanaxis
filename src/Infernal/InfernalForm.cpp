@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } +yOg9P9RkziFVgQl5vriGg
 /*
- * $Id: InfernalForm.cpp,v 1.2 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.3 2005/02/03 21:02:55 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.3  2005/02/03 21:02:55  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
@@ -205,18 +208,22 @@ namespace { MushcoreInstaller Installer(InfernalForm::Install); }
 
 
 //%outOfLineFunctions {
+
 const char *InfernalForm::AutoNameGet(void) const
 {
     return "InfernalForm";
 }
-InfernalForm *InfernalForm::AutoClone(void) const
+
+MushcoreVirtualObject *InfernalForm::AutoClone(void) const
 {
     return new InfernalForm(*this);
 }
-InfernalForm *InfernalForm::AutoCreate(void) const
+
+MushcoreVirtualObject *InfernalForm::AutoCreate(void) const
 {
     return new InfernalForm;
 }
+
 MushcoreVirtualObject *InfernalForm::AutoVirtualFactory(void)
 {
     return new InfernalForm;
@@ -279,4 +286,4 @@ InfernalForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facetContextIndex");
     ioOut << m_facetContextIndex;
 }
-//%outOfLineFunctions } ohTnClcaSBD0nwOgdTQXyw
+//%outOfLineFunctions } och7Rj5tPyTqnq9I36IBnA

@@ -12,25 +12,32 @@
  ****************************************************************************/
 //%Header } zkVIx1LMcueJssUA2krrMw
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieSignal.cpp,v 1.1 2004/01/10 20:29:35 southa Exp $
+ * $Log: MushPieSignal.cpp,v $
+ * Revision 1.1  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  */
 
 #include "MushPieSignal.h"
 
 //%outOfLineFunctions {
+
 const char *MushPieSignal::AutoNameGet(void) const
 {
     return "MushPieSignal";
 }
-MushPieSignal *MushPieSignal::AutoClone(void) const
+
+MushcoreVirtualObject *MushPieSignal::AutoClone(void) const
 {
     return new MushPieSignal(*this);
 }
-MushPieSignal *MushPieSignal::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPieSignal::AutoCreate(void) const
 {
     return new MushPieSignal;
 }
+
 MushcoreVirtualObject *MushPieSignal::AutoVirtualFactory(void)
 {
     return new MushPieSignal;
@@ -66,4 +73,4 @@ void
 MushPieSignal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } ZsxmO4rYXIJZawX7xQrkeA
+//%outOfLineFunctions } 4ENMPWYAGfmdW/VbDEko+w

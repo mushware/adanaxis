@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } tesy6QLZmmL1LfgGY632YQ
 /*
- * $Id: GameSetup.h,v 1.16 2004/03/06 13:13:42 southa Exp $
+ * $Id: GameSetup.h,v 1.17 2004/03/06 13:59:59 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.17  2004/03/06 13:59:59  southa
+ * Fixes
+ *
  * Revision 1.16  2004/03/06 13:13:42  southa
  * Maurheen created
  *
@@ -72,7 +75,7 @@
 
 #include "GameBase.h"
 
-//:generate standard ostream xml1 
+//:generate virtual standard ostream xml1 
 class GameSetup : public GameBase
 {
 public:
@@ -114,13 +117,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual GameSetup *AutoClone(void) const;
-    virtual GameSetup *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } WBqDS7smYMsHw5gGr348fw
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&

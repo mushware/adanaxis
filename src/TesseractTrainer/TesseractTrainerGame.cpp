@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerGame.cpp,v 1.1 2005/02/03 15:46:57 southa Exp $
+ * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.1  2005/02/03 15:46:57  southa
+ * Quaternion work
+ *
  */
 
 #include "TesseractTrainerGame.h"
@@ -126,18 +129,22 @@ TesseractTrainerGame::SwapOut(GameAppHandler& inAppHandler)
 {}
 
 //%outOfLineFunctions {
+
 const char *TesseractTrainerGame::AutoNameGet(void) const
 {
     return "TesseractTrainerGame";
 }
-TesseractTrainerGame *TesseractTrainerGame::AutoClone(void) const
+
+MushcoreVirtualObject *TesseractTrainerGame::AutoClone(void) const
 {
-    return new TesseractTrainerGame();
+    return new TesseractTrainerGame(*this);
 }
-TesseractTrainerGame *TesseractTrainerGame::AutoCreate(void) const
+
+MushcoreVirtualObject *TesseractTrainerGame::AutoCreate(void) const
 {
     return new TesseractTrainerGame;
 }
+
 MushcoreVirtualObject *TesseractTrainerGame::AutoVirtualFactory(void)
 {
     return new TesseractTrainerGame;
@@ -154,7 +161,7 @@ void
 TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    //ioOut << "hypercube=" << m_hypercube;
+    ioOut << "orientaton=" << m_orientaton;
     ioOut << "]";
 }
 bool
@@ -164,9 +171,9 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> *this;
     }
-    else if (inTagStr == "hypercube")
+    else if (inTagStr == "orientaton")
     {
-        //ioIn >> m_hypercube;
+        ioIn >> m_orientaton;
     }
     else
     {
@@ -177,7 +184,7 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("hypercube");
-    //ioOut << m_hypercube;
+    ioOut.TagSet("orientaton");
+    ioOut << m_orientaton;
 }
-//%outOfLineFunctions } lr1PSjWBxotxvzFu2xyvwA
+//%outOfLineFunctions } v5I1TuhtD8GxT/oY4NLeXw

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LQSTCy0TkFLyIzkXR+k2qA
 /*
- * $Id: TestMushcoreObject.cpp,v 1.18 2004/01/08 16:06:11 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.19 2004/01/18 18:25:29 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.19  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.18  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -78,18 +81,22 @@ using namespace Mushware;
 MUSHCORE_DATA_INSTANCE(TestMushcoreObject);
 
 //%outOfLineFunctions {
+
 const char *TestMushcoreObject::AutoNameGet(void) const
 {
     return "TestMushcoreObject";
 }
-TestMushcoreObject *TestMushcoreObject::AutoClone(void) const
+
+MushcoreVirtualObject *TestMushcoreObject::AutoClone(void) const
 {
     return new TestMushcoreObject(*this);
 }
-TestMushcoreObject *TestMushcoreObject::AutoCreate(void) const
+
+MushcoreVirtualObject *TestMushcoreObject::AutoCreate(void) const
 {
     return new TestMushcoreObject;
 }
+
 MushcoreVirtualObject *TestMushcoreObject::AutoVirtualFactory(void)
 {
     return new TestMushcoreObject;
@@ -322,4 +329,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } 0IrYj6k5iv+3Y6OlqPZp9w
+//%outOfLineFunctions } P6iqVh8psOvzOMRnhb3nBA

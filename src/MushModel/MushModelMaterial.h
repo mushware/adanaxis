@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NPCsJXr5ecNdynBZmJZGJg
 /*
- * $Id: MushModelMaterial.h,v 1.3 2004/09/27 22:42:09 southa Exp $
+ * $Id: MushModelMaterial.h,v 1.4 2005/02/03 21:03:03 southa Exp $
  * $Log: MushModelMaterial.h,v $
+ * Revision 1.4  2005/02/03 21:03:03  southa
+ * Build fixes
+ *
  * Revision 1.3  2004/09/27 22:42:09  southa
  * MSVC compilation fixes
  *
@@ -31,7 +34,7 @@
 
 #include "MushModelStandard.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushModelMaterial : public MushcoreVirtualObject
 {
 public:
@@ -51,13 +54,13 @@ public:
     const std::string& TextureName(void) const { return m_textureName; }
     void TextureNameSet(const std::string& inValue) { m_textureName=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushModelMaterial *AutoClone(void) const;
-    virtual MushModelMaterial *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6CsW+eA7VnBQiQtLIoBL9w
+//%classPrototypes } pcn6vWA1w99VA8+fQWh9qQ
 };
 //%inlineHeader {
 inline std::ostream&

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } TX3nuuL5kxBkNIyARfQDOA
 /*
- * $Id: MushModelMultiFacet.h,v 1.3 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushModelMultiFacet.h,v 1.4 2005/02/03 21:03:04 southa Exp $
  * $Log: MushModelMultiFacet.h,v $
+ * Revision 1.4  2005/02/03 21:03:04  southa
+ * Build fixes
+ *
  * Revision 1.3  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -33,7 +36,7 @@
 
 #include "MushModelFacet.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushModelMultiFacet : public MushcoreVirtualObject
 {
 public:
@@ -62,13 +65,13 @@ public:
     const tContainer& Facets(void) const { return m_facets; }
     void FacetsSet(const tContainer& inValue) { m_facets=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushModelMultiFacet *AutoClone(void) const;
-    virtual MushModelMultiFacet *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } KjRlG+dHosGv1Vlzx3VsOQ
+//%classPrototypes } LkrigpigQgsqXr4Qjn7V1g
 };
 //%inlineHeader {
 inline std::ostream&

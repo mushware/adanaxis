@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } vqABr3CLkwVzCFoXq7BXTQ
 /*
- * $Id: MushPieForm.cpp,v 1.1 2004/01/06 10:08:51 southa Exp $
+ * $Id: MushPieForm.cpp,v 1.2 2004/01/10 20:29:35 southa Exp $
  * $Log: MushPieForm.cpp,v $
+ * Revision 1.2  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.1  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -46,18 +49,22 @@ MushPieForm::WriteableSignalHandle(MushPieSignal& inSignal)
 }
 
 //%outOfLineFunctions {
+
 const char *MushPieForm::AutoNameGet(void) const
 {
     return "MushPieForm";
 }
-MushPieForm *MushPieForm::AutoClone(void) const
+
+MushcoreVirtualObject *MushPieForm::AutoClone(void) const
 {
     return new MushPieForm(*this);
 }
-MushPieForm *MushPieForm::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPieForm::AutoCreate(void) const
 {
     return new MushPieForm;
 }
+
 MushcoreVirtualObject *MushPieForm::AutoVirtualFactory(void)
 {
     return new MushPieForm;
@@ -93,4 +100,4 @@ void
 MushPieForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } rbAMOT7836I5GAKf9zYSSw
+//%outOfLineFunctions } zI+WKptQ7zg51ndrsTOIJw

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } WU9+ik61ykJexHMHA/3vVw
 /*
- * $Id: GLTextureRef.h,v 1.17 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLTextureRef.h,v 1.18 2004/01/10 20:29:34 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.18  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.17  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -77,7 +80,7 @@
 
 class GLTexture;
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class GLTextureRef : public MushcoreVirtualObject
 {
 public:
@@ -101,13 +104,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual GLTextureRef *AutoClone(void) const;
-    virtual GLTextureRef *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 5uGMeEVimNSV/fWBJixiRA
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 
 inline GLTexture *

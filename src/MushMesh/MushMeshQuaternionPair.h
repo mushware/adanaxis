@@ -16,15 +16,18 @@
  ****************************************************************************/
 //%Header } 7ZSBQbATpwtej064t1GYDw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshQuaternionPair.h,v 1.1 2005/02/03 21:03:01 southa Exp $
+ * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.1  2005/02/03 21:03:01  southa
+ * Build fixes
+ *
  */
 
 #include "MushMeshStandard.h"
 
 #include "MushMeshQuaternion.h"
 
-//:generate
+//:generate inline ostream basic
 template<class T>
 class MushMeshQuaternionPair
 {
@@ -55,6 +58,8 @@ public:
         return MultiplicativeIdentityGet();
     }
     
+    void ObjectRead(MushcoreXMLIStream& ioIn);
+    
 private:
     MushMeshQuaternion<T> m_first; // :readwrite
     MushMeshQuaternion<T> m_second; // :readwrite
@@ -65,7 +70,9 @@ public:
     void FirstSet(const MushMeshQuaternion<T>& inValue) { m_first=inValue; }
     const MushMeshQuaternion<T>& Second(void) const { return m_second; }
     void SecondSet(const MushMeshQuaternion<T>& inValue) { m_second=inValue; }
-//%classPrototypes } 8oNfFalnrQLgtQYcgRkIsQ
+    bool AutoEquals(const MushMeshQuaternionPair& inObj) const;
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } 4abaurIVgYYyfv8JFiCIsw
 };
 
 template<class T>
@@ -92,10 +99,86 @@ MushMeshQuaternionPair<T>::InPlaceRotate(Mushware::t4Val& ioVec) const
     m_second.PostMultiplyVector(ioVec);
 }
 
+// Stream operators
+
+template <class T>
+inline void
+MushMeshQuaternionPair<T>::ObjectRead(MushcoreXMLIStream& ioIn)
+{
+    if (ioIn.ByteTake() != '(') ioIn.Throw("Expecting '('");
+    ioIn >> m_first;
+    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
+    ioIn >> m_second;
+    if (ioIn.ByteTake() != ')') ioIn.Throw("Expecting ')'");
+}
+
+template <class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushMeshQuaternionPair<T>& outObj)
+{
+    outObj.ObjectRead(ioIn);
+}
+
+template <class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushMeshQuaternionPair<T>& inObj)
+{
+    std::string localTag = ioOut.OpeningTagWrite();
+    
+    ioOut.OStreamGet() << '(';
+    ioOut << inObj.First();
+    ioOut.OStreamGet() << ',';
+    ioOut << inObj.Second();
+    ioOut.OStreamGet() << ')';
+    
+    ioOut.ClosingTagWrite(localTag);
+    
+    return ioOut;
+}
+
 namespace Mushware
 {
     typedef MushMeshQuaternionPair<Mushware::tVal> tQValPair;
 };
+//%inlineHeader {
+template<class T>
+inline bool
+operator==(const MushMeshQuaternionPair<T>& inA, const MushMeshQuaternionPair<T>& inB)
+{
+    return inA.AutoEquals(inB);
+}
+template<class T>
+inline bool
+operator!=(const MushMeshQuaternionPair<T>& inA, const MushMeshQuaternionPair<T>& inB)
+{
+    return !inA.AutoEquals(inB);
+}
+template<class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushMeshQuaternionPair<T>& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+template<class T>
+inline bool
+MushMeshQuaternionPair<T>::AutoEquals(const MushMeshQuaternionPair& inObj) const
+{
+    return 1
+        && (m_first == inObj.m_first)
+        && (m_second == inObj.m_second)
+    ;
+}
+template<class T>
+inline void
+MushMeshQuaternionPair<T>::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "first=" << m_first << ", ";
+    ioOut << "second=" << m_second;
+    ioOut << "]";
+}
+//%inlineHeader } nX6MX/jBxb00ANRGRFi5Iw
 
 //%includeGuardEnd {
 #endif

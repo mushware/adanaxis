@@ -16,13 +16,16 @@
  ****************************************************************************/
 //%Header } WIDxM2ESAcY9zeM8fx9m/A
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieSignal.h,v 1.1 2004/01/10 20:29:35 southa Exp $
+ * $Log: MushPieSignal.h,v $
+ * Revision 1.1  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  */
 
 #include "MushPieStandard.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushPieSignal : public MushcoreVirtualObject
 {
 public:
@@ -34,13 +37,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual MushPieSignal *AutoClone(void) const;
-    virtual MushPieSignal *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ILLrDRrOEn4vLolyop8qhg
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&

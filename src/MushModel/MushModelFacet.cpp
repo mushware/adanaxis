@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TFlui4Tvtcpr+T5oISSwRA
 /*
- * $Id: MushModelFacet.cpp,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Id: MushModelFacet.cpp,v 1.2 2004/01/10 20:29:35 southa Exp $
  * $Log: MushModelFacet.cpp,v $
+ * Revision 1.2  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.1  2004/01/07 18:01:18  southa
  * MushModel and Infernal work
  *
@@ -24,18 +27,22 @@
 #include "MushModelIO.h"
 
 //%outOfLineFunctions {
+
 const char *MushModelFacet::AutoNameGet(void) const
 {
     return "MushModelFacet";
 }
-MushModelFacet *MushModelFacet::AutoClone(void) const
+
+MushcoreVirtualObject *MushModelFacet::AutoClone(void) const
 {
     return new MushModelFacet(*this);
 }
-MushModelFacet *MushModelFacet::AutoCreate(void) const
+
+MushcoreVirtualObject *MushModelFacet::AutoCreate(void) const
 {
     return new MushModelFacet;
 }
+
 MushcoreVirtualObject *MushModelFacet::AutoVirtualFactory(void)
 {
     return new MushModelFacet;
@@ -106,4 +113,4 @@ MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("normals");
     ioOut << m_normals;
 }
-//%outOfLineFunctions } FjBUA6XZAlFzinQacIRISw
+//%outOfLineFunctions } 0dG/ACymQk84v7Mhm1UaVA

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.9 2004/09/27 22:42:10 southa Exp $
+ * $Id: MushPiePiece.h,v 1.10 2005/02/03 21:03:05 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.10  2005/02/03 21:03:05  southa
+ * Build fixes
+ *
  * Revision 1.9  2004/09/27 22:42:10  southa
  * MSVC compilation fixes
  *
@@ -53,7 +56,7 @@
 
 // Concrete base class for pieces containing only the mandatory elements
 
-//:generate standard ostream xml1 basic
+//:generate virtual standard ostream xml1 basic
 class MushPiePiece : public MushcoreVirtualObject
 {
 public:
@@ -80,21 +83,23 @@ public:
     const MushPieForm::tDataRef& FormRef(void) const { return m_formRef; }
     void FormRefSet(const MushPieForm::tDataRef& inValue) { m_formRef=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushPiePiece *AutoClone(void) const;
-    virtual MushPiePiece *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual bool AutoEquals(const MushPiePiece& inObj) const;
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } rWhxag/dJjXjsvY2LpJIvA
+//%classPrototypes } aMR9AexWbjfwnyQ9e1iI/Q
 };
 //%inlineHeader {
+
 inline bool
 operator==(const MushPiePiece& inA, const MushPiePiece& inB)
 {
     return inA.AutoEquals(inB);
 }
+
 inline bool
 operator!=(const MushPiePiece& inA, const MushPiePiece& inB)
 {

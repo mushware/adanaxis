@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } YBw5+nlofmmkMYnll0Z0xg
 /*
- * $Id: TestMushcoreVirtualPointerObject.h,v 1.1 2004/01/18 18:25:30 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.h,v 1.2 2005/02/03 21:03:14 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.h,v $
+ * Revision 1.2  2005/02/03 21:03:14  southa
+ * Build fixes
+ *
  * Revision 1.1  2004/01/18 18:25:30  southa
  * XML stream upgrades
  *
@@ -29,7 +32,7 @@
 #include "TestMushcoreObjectSub.h"
 #include "TestMushcoreObjectSubSub.h"
 
-//:generate standard basic ostream xml1
+//:generate virtual standard basic ostream xml1
 class TestMushcoreVirtualPointerObject : public MushcoreVirtualObject
 {
 public:
@@ -56,21 +59,23 @@ public:
     const Mushware::U32& VirtualPointerObjectValue(void) const { return m_virtualPointerObjectValue; }
     void VirtualPointerObjectValueSet(const Mushware::U32& inValue) { m_virtualPointerObjectValue=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual TestMushcoreVirtualPointerObject *AutoClone(void) const;
-    virtual TestMushcoreVirtualPointerObject *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual bool AutoEquals(const TestMushcoreVirtualPointerObject& inObj) const;
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oIJhcGk3h+FUqHqwFaQIKw
+//%classPrototypes } szVKtSZdY3zVkay2rikqKA
 };
 //%inlineHeader {
+
 inline bool
 operator==(const TestMushcoreVirtualPointerObject& inA, const TestMushcoreVirtualPointerObject& inB)
 {
     return inA.AutoEquals(inB);
 }
+
 inline bool
 operator!=(const TestMushcoreVirtualPointerObject& inA, const TestMushcoreVirtualPointerObject& inB)
 {

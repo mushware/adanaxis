@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.11 2004/09/28 23:05:54 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.12 2005/02/03 21:02:53 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.12  2005/02/03 21:02:53  southa
+ * Build fixes
+ *
  * Revision 1.11  2004/09/28 23:05:54  southa
  * MSVC build of ic2
  *
@@ -1252,18 +1255,22 @@ InfernalContract::Install(void)
     MushcoreInterpreter::Sgl().HandlerAdd("loadcontract", LoadContract);
 }
 //%outOfLineFunctions {
+
 const char *InfernalContract::AutoNameGet(void) const
 {
     return "InfernalContract";
 }
-InfernalContract *InfernalContract::AutoClone(void) const
+
+MushcoreVirtualObject *InfernalContract::AutoClone(void) const
 {
     return new InfernalContract(*this);
 }
-InfernalContract *InfernalContract::AutoCreate(void) const
+
+MushcoreVirtualObject *InfernalContract::AutoCreate(void) const
 {
     return new InfernalContract;
 }
+
 MushcoreVirtualObject *InfernalContract::AutoVirtualFactory(void)
 {
     return new InfernalContract;
@@ -1341,4 +1348,4 @@ InfernalContract::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("fastDiagnostics");
     ioOut << m_fastDiagnostics;
 }
-//%outOfLineFunctions } A7k3IxGNqg35blwhdF6e0w
+//%outOfLineFunctions } T1e0wW7mtVcSuqXwz0tXwg

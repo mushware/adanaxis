@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Ga1VHTuO8JZwOaZYl4bW2g
 /*
- * $Id: TestMushPiePieces.cpp,v 1.2 2004/01/06 10:08:51 southa Exp $
+ * $Id: TestMushPiePieces.cpp,v 1.3 2004/09/27 22:42:11 southa Exp $
  * $Log: TestMushPiePieces.cpp,v $
+ * Revision 1.3  2004/09/27 22:42:11  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.2  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -31,10 +34,13 @@ MushPiePosicity
 TestMushPiePieces::TestPosMake(tVal inKey)
 {
     MushPiePosicity pos;
-    pos.pos = t3Val(inKey, inKey+1, inKey+2);
-    pos.vel = t3Val(inKey+3, inKey+4, inKey+5);
-    pos.angPos = tQVal(inKey+6, inKey+7, inKey+8, inKey+9);
-    pos.angVel = tQVal(inKey+10, inKey+11, inKey+12, inKey+13);
+    pos.pos = t4Val(inKey, inKey+1, inKey+2, inKey+3);
+    pos.vel = t4Val(inKey+4, inKey+5, inKey+6, inKey+7);
+    pos.angPos = tQValPair(tQVal(inKey+8, inKey+9, inKey+10, inKey+11),
+                           tQVal(inKey+12, inKey+13, inKey+14, inKey+15));
+    pos.angVel = tQValPair(tQVal(inKey+16, inKey+17, inKey+18, inKey+19),
+                           tQVal(inKey+20, inKey+21, inKey+22, inKey+23));
+
     return pos;
 }
 
@@ -55,9 +61,8 @@ TestMushPiePieces::TestPieces(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         xmlOStream << testObject;
         
-        MushcoreXMLOStream xmlCout(cout);
-
-        xmlCout << testObject;
+        // MushcoreXMLOStream xmlCout(cout);
+        // xmlCout << testObject;
 
         MushPiePieceMobile readBackObject;
         istringstream testIStream(testOStream.str());

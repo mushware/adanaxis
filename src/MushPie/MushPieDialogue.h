@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIEPIECESIMPLE_H
-#define MUSHPIEPIECESIMPLE_H
-//%includeGuardStart } UQRURsq8rb9WaUKq14D6MA
+#ifndef MUSHPIEDIALOGUE_H
+#define MUSHPIEDIALOGUE_H
+//%includeGuardStart } vZTTqgEIY46zaNcoDf7cFw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPiePieceSimple.h
+ * File: src/MushPie/MushPieDialogue.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,46 +14,44 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vgNHjnCCayhlm093vD2VmA
+//%Header } aHyqXcDF+4/kUf/93xjJ9w
 /*
- * $Id: MushPiePieceSimple.h,v 1.5 2005/02/03 21:03:05 southa Exp $
- * $Log: MushPiePieceSimple.h,v $
- * Revision 1.5  2005/02/03 21:03:05  southa
- * Build fixes
- *
- * Revision 1.4  2004/09/27 22:42:10  southa
- * MSVC compilation fixes
- *
- * Revision 1.3  2004/01/04 17:02:30  southa
- * MushPie extras and MushcoreIO fixes
- *
- * Revision 1.2  2004/01/04 14:36:37  southa
- * Handle 'inline' in source conditioner
- *
- * Revision 1.1  2004/01/02 21:13:11  southa
- * Source conditioning
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushPieStandard.h"
 
 #include "MushPiePiece.h"
-#include "MushPiePosition.h"
+#include "MushPiePosicity.h"
+
+#include "mushMushcore.h"
+#include "mushGL.h"
 
 //:xml1base MushPiePiece
-//:generate virtual ostream xml1 standard
-class MushPiePieceSimple : public MushPiePiece
+//:generate virtual standard ostream xml1
+class MushPieDialogue : public MushPiePiece
 {
 public:
-    MushPiePieceSimple() {}
-    virtual ~MushPiePieceSimple() {}
+    virtual ~MushPieDialogue();
+    virtual void Render(void) const;
+    virtual void Move(void);
+    virtual bool ExpiredGet(void) { return m_expired; }
+    virtual void TextSet(Mushware::U32 inWhich, const std::string& inStr);
+    virtual void ExpireNow();
 
-private:
-    MushPiePosition m_pos; //:readwrite
+    
+protected:
+    //StringSpec m_currentSpec;
+    //std::vector<StringSpec> m_strings;
+    //std::vector<SoundSpec> m_sounds;
+    //std::vector<SoundStreamSpec> m_soundStreams;
+    //GLFontRef m_fontRef;
+    Mushware::tVal m_age;
+    bool m_expired;
+    //    MushcoreScript m_script;
 //%classPrototypes {
 public:
-    const MushPiePosition& Pos(void) const { return m_pos; }
-    void PosSet(const MushPiePosition& inValue) { m_pos=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,16 +59,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } TWcI/rkUL/e8qTwqXdVZOA
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushPiePieceSimple& inObj)
+operator<<(std::ostream& ioOut, const MushPieDialogue& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } T9GT/MzgcTsiiKLuRmDhGg
+//%inlineHeader } klUNqanL9CtMOSNY60GWEg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

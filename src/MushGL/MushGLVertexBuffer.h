@@ -1,7 +1,7 @@
 //%includeGuardStart {
-#ifndef MushGLVertexBuffer_H
-#define MushGLVertexBuffer_H
-//%includeGuardStart } 14ndRogKV1m4L55fic/KUw
+#ifndef MUSHGLVERTEXBUFFER_H
+#define MUSHGLVERTEXBUFFER_H
+//%includeGuardStart } PX4eb7EQhquluaJJ52g+cA
 //%Header {
 /*****************************************************************************
  *
@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 8xLMG4RN55BtVXvugHCuFA
 /*
- * $Id: MushGLVertexBuffer.h,v 1.2 2005/01/29 18:27:31 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.1 2005/02/01 13:40:37 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.1  2005/02/01 13:40:37  southa
+ * Rotating spheres and hypercube
+ *
  */
 
 #include "MushGLStandard.h"

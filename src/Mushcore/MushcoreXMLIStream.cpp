@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.17 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.18 2004/09/26 19:42:05 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.18  2004/09/26 19:42:05  southa
+ * Added MushMesh, fixed typenames and release target
+ *
  * Revision 1.17  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -75,7 +78,7 @@
 #include "MushcoreUtil.h"
 #include "MushcoreVirtualObject.h"
 
-#if 1
+#if MUSHCORE_XMLITESTING
 #define MUSHCOREXMLISTREAM_DEBUG(a) a
 #else
 #define MUSHCOREXMLISTREAM_DEBUG(a)
@@ -179,10 +182,9 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
     MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Exiting" << endl));
     if (m_indentStr == "")
     {
-        MushcoreUtil::BreakpointFunction();
+        MUSHCOREXMLISTREAM_DEBUG((MushcoreUtil::BreakpointFunction()));
     }
 }
-
 
 void
 MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject& outObj)

@@ -1,4 +1,5 @@
 //%includeGuardStart {
+// Edited to avoid clash with MushGL/MushGL.h
 #ifndef API_MUSHGL_H
 #define API_MUSHGL_H
 //%includeGuardStart } sZMkMkP9fHs6SjzxXh/O8Q
@@ -16,8 +17,11 @@
  ****************************************************************************/
 //%Header } 9ALpBAAG9yNsjRsW9GGQ3A
 /*
- * $Id: mushGL.h,v 1.25 2004/03/07 12:05:56 southa Exp $
+ * $Id: mushGL.h,v 1.26 2004/09/27 22:42:08 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.26  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.25  2004/03/07 12:05:56  southa
  * Rendering work
  *

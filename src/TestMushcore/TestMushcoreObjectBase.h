@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Sz6r4LjP+pJHGm8/heQ+DQ
 /*
- * $Id: TestMushcoreObjectBase.h,v 1.1 2004/01/18 18:25:29 southa Exp $
+ * $Id: TestMushcoreObjectBase.h,v 1.2 2005/02/03 21:03:13 southa Exp $
  * $Log: TestMushcoreObjectBase.h,v $
+ * Revision 1.2  2005/02/03 21:03:13  southa
+ * Build fixes
+ *
  * Revision 1.1  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -25,7 +28,7 @@
 
 #include "TestMushcoreStandard.h"
 
-//:generate standard basic ostream xml1
+//:generate virtual standard basic ostream xml1
 class TestMushcoreObjectBase : public MushcoreVirtualObject
 {
 public:
@@ -39,21 +42,23 @@ public:
     const Mushware::U32& BaseObjectValue(void) const { return m_baseObjectValue; }
     void BaseObjectValueSet(const Mushware::U32& inValue) { m_baseObjectValue=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual TestMushcoreObjectBase *AutoClone(void) const;
-    virtual TestMushcoreObjectBase *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual bool AutoEquals(const TestMushcoreObjectBase& inObj) const;
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } QWGStK4DSDujT1IwHCKV/Q
+//%classPrototypes } modtjWJ5ga5ax0yJwW2t2Q
 };
 //%inlineHeader {
+
 inline bool
 operator==(const TestMushcoreObjectBase& inA, const TestMushcoreObjectBase& inB)
 {
     return inA.AutoEquals(inB);
 }
+
 inline bool
 operator!=(const TestMushcoreObjectBase& inA, const TestMushcoreObjectBase& inB)
 {

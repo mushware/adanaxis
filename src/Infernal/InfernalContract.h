@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rcXSfc3f9ci5xhawZesB7Q
 /*
- * $Id: InfernalContract.h,v 1.7 2004/09/27 22:42:09 southa Exp $
+ * $Id: InfernalContract.h,v 1.8 2005/02/03 21:02:53 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.8  2005/02/03 21:02:53  southa
+ * Build fixes
+ *
  * Revision 1.7  2004/09/27 22:42:09  southa
  * MSVC compilation fixes
  *
@@ -181,7 +184,7 @@ class InfernalPiecePlayer;
 class InfernalFloorDesigner;
 class InfernalView;
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class InfernalContract : public GameBase, public MushcorePickle, private MushcoreXMLHandler
 {
 public:
@@ -283,13 +286,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual InfernalContract *AutoClone(void) const;
-    virtual InfernalContract *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ArqPdX+ygxsx35BBGLTQTw
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 
 //%inlineHeader {

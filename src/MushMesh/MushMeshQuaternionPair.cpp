@@ -12,9 +12,11 @@
  ****************************************************************************/
 //%Header } YhjTnuaIjK9r6DS7pKUIsQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshQuaternionPair.cpp,v 1.1 2005/02/03 21:03:01 southa Exp $
+ * $Log: MushMeshQuaternionPair.cpp,v $
+ * Revision 1.1  2005/02/03 21:03:01  southa
+ * Build fixes
+ *
  */
 
 #include "MushMeshQuaternionPair.h"
-

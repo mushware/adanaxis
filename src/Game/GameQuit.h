@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vWBeosVH87okVVejo5ZQ8Q
 /*
- * $Id: GameQuit.h,v 1.10 2004/03/06 13:13:42 southa Exp $
+ * $Id: GameQuit.h,v 1.11 2004/03/06 13:59:59 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.11  2004/03/06 13:59:59  southa
+ * Fixes
+ *
  * Revision 1.10  2004/03/06 13:13:42  southa
  * Maurheen created
  *
@@ -54,7 +57,7 @@
 
 #include "GameBase.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class GameQuit : public GameBase
 {
 public:
@@ -89,13 +92,13 @@ private:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual GameQuit *AutoClone(void) const;
-    virtual GameQuit *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } rXybxo5CBx52i/GTLBAzYw
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&

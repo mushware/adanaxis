@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.7 2004/01/06 10:08:51 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.8 2004/09/27 22:42:09 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.8  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.7  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -50,18 +53,22 @@ operator>>(MushcoreXMLIStream& ioIn, MushPiePiece::tSleepState& outObj)
 }
 
 //%outOfLineFunctions {
+
 const char *MushPiePiece::AutoNameGet(void) const
 {
     return "MushPiePiece";
 }
-MushPiePiece *MushPiePiece::AutoClone(void) const
+
+MushcoreVirtualObject *MushPiePiece::AutoClone(void) const
 {
     return new MushPiePiece(*this);
 }
-MushPiePiece *MushPiePiece::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPiePiece::AutoCreate(void) const
 {
     return new MushPiePiece;
 }
+
 MushcoreVirtualObject *MushPiePiece::AutoVirtualFactory(void)
 {
     return new MushPiePiece;
@@ -119,4 +126,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("formRef");
     ioOut << m_formRef;
 }
-//%outOfLineFunctions } 3TNjcZOug6JpAVmJR8LORw
+//%outOfLineFunctions } X8Z+1Gv6lFKM3UgytEBt1g

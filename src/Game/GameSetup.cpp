@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.40 2004/03/06 13:59:59 southa Exp $
+ * $Id: GameSetup.cpp,v 1.41 2004/09/27 22:42:08 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.41  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.40  2004/03/06 13:59:59  southa
  * Fixes
  *
@@ -360,18 +363,22 @@ operator>>(MushcoreXMLIStream& ioIn, GameSetup::tGameState& inValue)
 }
 
 //%outOfLineFunctions {
+
 const char *GameSetup::AutoNameGet(void) const
 {
     return "GameSetup";
 }
-GameSetup *GameSetup::AutoClone(void) const
+
+MushcoreVirtualObject *GameSetup::AutoClone(void) const
 {
     return new GameSetup(*this);
 }
-GameSetup *GameSetup::AutoCreate(void) const
+
+MushcoreVirtualObject *GameSetup::AutoCreate(void) const
 {
     return new GameSetup;
 }
+
 MushcoreVirtualObject *GameSetup::AutoVirtualFactory(void)
 {
     return new GameSetup;
@@ -442,4 +449,4 @@ GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("windowClicked");
     ioOut << m_windowClicked;
 }
-//%outOfLineFunctions } 1JCKVdS7I9v9yAuburtcaA
+//%outOfLineFunctions } PMr12HgvmeSl2XTctCjcTw

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.29 2005/01/29 18:27:30 southa Exp $
+# $Id: SourceConditioner.pl,v 1.30 2005/02/03 21:02:47 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.30  2005/02/03 21:02:47  southa
+# Build fixes
+#
 # Revision 1.29  2005/01/29 18:27:30  southa
 # Vertex buffer stuff
 #
@@ -185,9 +188,43 @@ sub XMLBaseGenerate($)
     }
 }
 
-sub TemplateDataGenerate($)
+sub TemplateDataGenerate($$)
 {
-    my ($templateLine) = @_;
+    my ($infoRef, $templateLine) = @_;
+    
+    if ($templateLine eq "")
+    {
+        $infoRef->{OUTER_CLASSNAME} = $infoRef->{CLASSNAME};
+        $infoRef->{TEMPLATE_PREFIX} = "";
+    }
+    else
+    {
+        $infoRef->{TEMPLATE_PREFIX} = $templateLine;
+        
+        die "Malformed template directive" unless ($templateLine =~ /<(.*)>/);
+
+        my $typedSuffix = $1;
+        my $untypedSuffix = "<";
+        
+        while ($typedSuffix =~ s/,?\s*\w+\s+(\w+)//)
+        {
+            if ($untypedSuffix ne "<")
+            {
+                $untypedSuffix .= ", ";
+            }
+            $untypedSuffix .= $1;
+        }
+        $untypedSuffix .= ">";
+        
+        if ($untypedSuffix eq "<>")
+        {
+            die "Cannot decode template directive '$typedSuffix'";
+        }
+        
+        $infoRef->{TEMPLATE_SUFFIX} = $untypedSuffix;  
+        $infoRef->{OUTER_CLASSNAME} = $infoRef->{CLASSNAME}.$infoRef->{TEMPLATE_SUFFIX};
+        $infoRef->{INLINE} = 1;
+    }
 }
 
 sub HeaderInfoCreate($$)
@@ -200,6 +237,8 @@ sub HeaderInfoCreate($$)
     foreach my $lineRef (@$contentRef)
     {
         my $line = "$lineRef";
+        chomp $line;
+        
         # remove comments
         my $comments = "";
         if ($line =~ s#//(.*)##)
@@ -223,7 +262,6 @@ sub HeaderInfoCreate($$)
                 else
                 {
                     $$infoRef{CLASS_TEMPLATE} = $line;
-                    $$infoRef{CLASS_TEMPLATE} =~ s/^template\s*//;
                 }
             }
             elsif ($line =~ /^class/)
@@ -279,7 +317,7 @@ sub HeaderInfoCreate($$)
     $$infoRef{ARRAY_ELEMENTS} = scalar @$contentRef;
 
     XMLBaseGenerate($infoRef);
-    TemplateDataGenerate($$infoRef{CLASS_TEMPLATE});
+    TemplateDataGenerate($infoRef, $$infoRef{CLASS_TEMPLATE});
 }
 
 sub ClassLineRead($$)
@@ -459,12 +497,13 @@ sub StandardPrototypeGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for standard functions" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}virtual const char *$gConfig{AUTO_PREFIX}NameGet(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Create(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}const char *$gConfig{AUTO_PREFIX}NameGet(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Create(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}static MushcoreVirtualObject *$gConfig{AUTO_PREFIX}VirtualFactory(void);"; 
 }
 
@@ -473,29 +512,35 @@ sub StandardFunctionGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for standard functions" unless defined ($className);
     
     die "Cannot generate 'standard' inline " if $$infoRef{INLINE};
     
     push @$outputRef,
+$templatePrefix,
 "const char *".
-"${className}::$gConfig{AUTO_PREFIX}NameGet(void) const",
+"${outerClassName}::$gConfig{AUTO_PREFIX}NameGet(void) const",
 "{",
 "    return \"$className\";",
 "}",
-"$className *".
-"${className}::$gConfig{AUTO_PREFIX}Clone(void) const",
+$templatePrefix,
+"MushcoreVirtualObject *".
+"${outerClassName}::$gConfig{AUTO_PREFIX}Clone(void) const",
 "{",
 "    return new $className(*this);",
 "}",
-"$className *".
-"${className}::$gConfig{AUTO_PREFIX}Create(void) const",
+$templatePrefix,
+"MushcoreVirtualObject *".
+"${outerClassName}::$gConfig{AUTO_PREFIX}Create(void) const",
 "{",
 "    return new $className;",
 "}",
+$templatePrefix,
 "MushcoreVirtualObject *".
-"${className}::$gConfig{AUTO_PREFIX}VirtualFactory(void)",
+"${outerClassName}::$gConfig{AUTO_PREFIX}VirtualFactory(void)",
 "{",
 "    return new $className;",
 "}",
@@ -503,7 +548,7 @@ sub StandardFunctionGenerate($$)
 "{",
 "void $gConfig{AUTO_PREFIX}Install(void)",
 "{",
-"    MushcoreFactory::Sgl().FactoryAdd(\"${className}\", ${className}::$gConfig{AUTO_PREFIX}VirtualFactory);",
+"    MushcoreFactory::Sgl().FactoryAdd(\"${outerClassName}\", ${className}::$gConfig{AUTO_PREFIX}VirtualFactory);",
 "}",
 "MushcoreInstaller $gConfig{AUTO_PREFIX}Installer($gConfig{AUTO_PREFIX}Install);",
 "} // end anonymous namespace";
@@ -520,10 +565,11 @@ sub OstreamWritePrototypeGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for ostream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}virtual void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;"; 
 }
 
 sub OstreamWriteFunctionGenerate($$)
@@ -531,11 +577,19 @@ sub OstreamWriteFunctionGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for ostream writer" unless defined ($className);
+
+    if ($templatePrefix ne "")
+    {
+        push @$outputRef, $templatePrefix;
+    }
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
+
     push @$outputRef, "${decPrefix}void";
-    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const";
+    push @$outputRef, "${outerClassName}::$gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const";
     push @$outputRef, "{";
     push @$outputRef, "    ioOut << \"[\";";
     my $xmlBases = $$infoRef{XML_BASES};
@@ -596,11 +650,17 @@ sub OstreamOperatorGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for ostream operator" unless defined ($className);
     
+    if ($templatePrefix ne "")
+    {
+        push @$outputRef, $templatePrefix;
+    }
     push @$outputRef, "inline std::ostream&";
-    push @$outputRef, "operator<<(std::ostream& ioOut, const $className& inObj)";
+    push @$outputRef, "operator<<(std::ostream& ioOut, const $outerClassName& inObj)";
     push @$outputRef,
 "{",
 "    inObj.$gConfig{AUTO_PREFIX}Print(ioOut);",
@@ -618,10 +678,11 @@ sub BasicOperatorsPrototypeGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for BasicOperators writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}virtual bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
 }
 
 sub BasicOperatorsFunctionGenerate($$)
@@ -629,14 +690,20 @@ sub BasicOperatorsFunctionGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for BasicOperators writer" unless defined ($className);
 
+    if ($templatePrefix ne "")
+    {
+        push @$outputRef, $templatePrefix;
+    }
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
         
     push @$outputRef,
 "${decPrefix}bool",
-"${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
+"${outerClassName}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
 "{",
 "    return 1";
     
@@ -683,17 +750,21 @@ sub BasicOperatorsInlineGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for BasicOperators writer" unless defined ($className);
 
     push @$outputRef,
+$templatePrefix,
 "inline bool",
-"operator==(const $className& inA, const $className& inB)",
+"operator==(const $outerClassName& inA, const $outerClassName& inB)",
 "{",
 "    return inA.$gConfig{AUTO_PREFIX}Equals(inB);",
 "}",
+$templatePrefix,
 "inline bool",
-"operator!=(const $className& inA, const $className& inB)",
+"operator!=(const $outerClassName& inA, const $outerClassName& inB)",
 "{",
 "    return !inA.$gConfig{AUTO_PREFIX}Equals(inB);",
 "}";
@@ -710,10 +781,11 @@ sub XMLIStreamWritePrototypeGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}virtual bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -721,14 +793,20 @@ sub XMLIStreamWriteFunctionGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
+    if ($templatePrefix ne "")
+    {
+        push @$outputRef, $templatePrefix;
+    }
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
    
     push @$outputRef,
 "${decPrefix}bool",
-"${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
+"${outerClassName}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
 "{",
 "    if (inTagStr == \"obj\")",
 "    {",
@@ -796,10 +874,11 @@ sub XMLOStreamWritePrototypeGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for XMLOStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}virtual void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
 }
 
 sub XMLOStreamWriteFunctionGenerate($$)
@@ -807,13 +886,20 @@ sub XMLOStreamWriteFunctionGenerate($$)
     my ($outputRef, $infoRef) = @_;
 
     my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for XMLOStream writer" unless defined ($className);
+    
+    if ($templatePrefix ne "")
+    {
+        push @$outputRef, $templatePrefix;
+    }
     
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
     
     push @$outputRef, "${decPrefix}void";
-    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
+    push @$outputRef, "${outerClassName}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
     push @$outputRef,
 "{";
     my $xmlBases = $$infoRef{XML_BASES};
@@ -1068,6 +1154,7 @@ sub ProcessHeader($$)
     {
         push @ classPrototypes, "public:";
         $headerInfo{INLINE} = 0;
+        $headerInfo{VIRTUAL} = "";
         
         # Member accessors and modifers
         AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
@@ -1076,7 +1163,9 @@ sub ProcessHeader($$)
         {
             $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
-
+            $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
+            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
+            
             # Standard functions
             if ($$commandsRef[$i] =~ /\bgenerate.*\bstandard\b/)
             {            
@@ -1159,6 +1248,7 @@ sub ProcessCPP($$)
     my @outOfLineCode;
     my $commandsRef = $headerInfo{COMMANDS};
     $headerInfo{INLINE} = 0;
+    $headerInfo{VIRTUAL} = "";
     
     if (defined($commandsRef))
     {
@@ -1166,6 +1256,8 @@ sub ProcessCPP($$)
         {
             $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
+            $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
+            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
             
             unless ($headerInfo{INLINE})
             {

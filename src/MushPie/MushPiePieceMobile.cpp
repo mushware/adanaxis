@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yQV718sdUzJEMF7KFdA6Ew
 /*
- * $Id: MushPiePieceMobile.cpp,v 1.3 2004/09/27 22:42:10 southa Exp $
+ * $Id: MushPiePieceMobile.cpp,v 1.4 2005/02/01 13:40:37 southa Exp $
  * $Log: MushPiePieceMobile.cpp,v $
+ * Revision 1.4  2005/02/01 13:40:37  southa
+ * Rotating spheres and hypercube
+ *
  * Revision 1.3  2004/09/27 22:42:10  southa
  * MSVC compilation fixes
  *
@@ -36,18 +39,22 @@ MushPiePieceMobile::MushPiePieceMobile() :
 
 
 //%outOfLineFunctions {
+
 const char *MushPiePieceMobile::AutoNameGet(void) const
 {
     return "MushPiePieceMobile";
 }
-MushPiePieceMobile *MushPiePieceMobile::AutoClone(void) const
+
+MushcoreVirtualObject *MushPiePieceMobile::AutoClone(void) const
 {
     return new MushPiePieceMobile(*this);
 }
-MushPiePieceMobile *MushPiePieceMobile::AutoCreate(void) const
+
+MushcoreVirtualObject *MushPiePieceMobile::AutoCreate(void) const
 {
     return new MushPiePieceMobile;
 }
+
 MushcoreVirtualObject *MushPiePieceMobile::AutoVirtualFactory(void)
 {
     return new MushPiePieceMobile;
@@ -117,4 +124,4 @@ MushPiePieceMobile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("newPosIndex");
     ioOut << m_newPosIndex;
 }
-//%outOfLineFunctions } HDUdFSbPyN5+Jgnu5VLCqg
+//%outOfLineFunctions } qq52mgjwReQpZLCl4JoYDQ

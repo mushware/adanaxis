@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xwoN2sWoAdBULKAdLGUNBQ
 /*
- * $Id: GLTextureRef.cpp,v 1.17 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.18 2004/01/10 20:29:34 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.18  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.17  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -98,18 +101,22 @@ GLTextureRef::BindingNameFetch(void) const
     m_bindingName=TextureGet()->BindingNameGet();
 }
 //%outOfLineFunctions {
+
 const char *GLTextureRef::AutoNameGet(void) const
 {
     return "GLTextureRef";
 }
-GLTextureRef *GLTextureRef::AutoClone(void) const
+
+MushcoreVirtualObject *GLTextureRef::AutoClone(void) const
 {
     return new GLTextureRef(*this);
 }
-GLTextureRef *GLTextureRef::AutoCreate(void) const
+
+MushcoreVirtualObject *GLTextureRef::AutoCreate(void) const
 {
     return new GLTextureRef;
 }
+
 MushcoreVirtualObject *GLTextureRef::AutoVirtualFactory(void)
 {
     return new GLTextureRef;
@@ -152,4 +159,4 @@ GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("name");
     ioOut << m_name;
 }
-//%outOfLineFunctions } cEkL42fiYr9LubH92/tmVg
+//%outOfLineFunctions } iJv9AW5q5USnzdu48t2C9Q

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VxPQKKFlOK3QVRP/hQqigA
 /*
- * $Id: InfernalForm.h,v 1.2 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalForm.h,v 1.3 2005/02/03 21:02:55 southa Exp $
  * $Log: InfernalForm.h,v $
+ * Revision 1.3  2005/02/03 21:02:55  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
@@ -33,7 +36,7 @@
 #include "mushGL.h"
 
 //:xml1base MushPieForm
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class InfernalForm : public MushPieForm
 {
 public:
@@ -67,13 +70,13 @@ public:
     const MushcoreDataRef<MushModelMultiFacet>& ModelRef(void) const { return m_modelRef; }
     void ModelRefSet(const MushcoreDataRef<MushModelMultiFacet>& inValue) { m_modelRef=inValue; }
     virtual const char *AutoNameGet(void) const;
-    virtual InfernalForm *AutoClone(void) const;
-    virtual InfernalForm *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } t4sWWasWD82eyVeWHDv2aw
+//%classPrototypes } FNWoO0wm7YuOJm09XR2ZCw
 };
 //%inlineHeader {
 inline std::ostream&

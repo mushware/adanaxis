@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.1 2005/02/03 15:46:58 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.2 2005/02/03 21:03:09 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.2  2005/02/03 21:03:09  southa
+ * Build fixes
+ *
  * Revision 1.1  2005/02/03 15:46:58  southa
  * Quaternion work
  *
@@ -30,7 +33,7 @@
 #include "TesseractTrainerHypercube.h"
 #include "TesseractTrainerHypersphere.h"
 
-//:generate standard xml1 ostream
+//:generate virtual standard ostream xml1
 class TesseractTrainerGame : public GameBase
 {
 public:
@@ -48,20 +51,20 @@ public:
 protected:
     
 private:
-    TesseractTrainerHypercube m_hypercube;
-    TesseractTrainerHypersphere m_hypersphere;
+    TesseractTrainerHypercube m_hypercube; //:ignore
+    TesseractTrainerHypersphere m_hypersphere; //:ignore
     Mushware::tQValPair m_orientaton;
 
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual TesseractTrainerGame *AutoClone(void) const;
-    virtual TesseractTrainerGame *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } uwtJ7cbGh16AtQbbRliYrg
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&
@@ -70,7 +73,7 @@ operator<<(std::ostream& ioOut, const TesseractTrainerGame& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } J9a4pcj4v7Z1RrYy6lz3BQ
+//%inlineHeader } Ne7gA9Ns8W1PJVMieMH/9A
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

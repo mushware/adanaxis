@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } GYyeLc+epGQUElec/y5hZA
 /*
- * $Id: MushPieForm.h,v 1.1 2004/01/06 10:08:51 southa Exp $
+ * $Id: MushPieForm.h,v 1.2 2004/01/10 20:29:35 southa Exp $
  * $Log: MushPieForm.h,v $
+ * Revision 1.2  2004/01/10 20:29:35  southa
+ * Form and rendering work
+ *
  * Revision 1.1  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -27,7 +30,7 @@
 
 class MushPieSignal;
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushPieForm : public MushcoreVirtualObject
 {
 public:
@@ -43,13 +46,13 @@ public:
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual MushPieForm *AutoClone(void) const;
-    virtual MushPieForm *AutoCreate(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Gx6JkL8VRSyR1ELcL4awiQ
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 //%inlineHeader {
 inline std::ostream&
