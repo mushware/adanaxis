@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } OK79NjKAFVFPIyTLS5wV9g
 /*
- * $Id: InfernalAppHandler.cpp,v 1.3 2004/01/01 23:04:02 southa Exp $
+ * $Id: InfernalAppHandler.cpp,v 1.4 2004/01/06 20:46:50 southa Exp $
  * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.4  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.3  2004/01/01 23:04:02  southa
  * XCode fixes
  *
@@ -64,7 +67,7 @@ InfernalAppHandler::Initialise(void)
 void
 InfernalAppHandler::GameModeEnter(bool inResume)
 {
-    if (StateGameIs())
+    if (!StateGameIs())
     {
         CurrentSwapOut();
 

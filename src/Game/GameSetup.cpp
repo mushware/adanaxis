@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.37 2003/10/06 23:06:31 southa Exp $
+ * $Id: GameSetup.cpp,v 1.38 2004/01/02 21:13:07 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.38  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.37  2003/10/06 23:06:31  southa
  * Include fixes
  *
@@ -340,3 +343,103 @@ GameSetup::MustlPermissionFunction(const std::string& inAddress)
 {
     return PlatformMiscUtils::PermissionBox("A connection is being attempted from address "+inAddress+".  Would you like to allow this?", false);
 }
+
+
+void
+operator>>(MushcoreXMLIStream& ioIn, GameSetup::tGameState& inValue)
+{
+    Mushware::tXMLVal value;
+    ioIn >> value;
+    inValue = static_cast<GameSetup::tGameState>(value);
+}
+
+//%outOfLineFunctions {
+const char *GameSetup::AutoNameGet(void) const
+{
+    return "GameSetup";
+}
+GameSetup *GameSetup::AutoClone(void) const
+{
+    return new GameSetup(*this);
+}
+GameSetup *GameSetup::AutoCreate(void) const
+{
+    return new GameSetup;
+}
+MushcoreVirtualObject *GameSetup::AutoVirtualFactory(void)
+{
+    return new GameSetup;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GameSetup", GameSetup::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+GameSetup::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    GameBase::AutoPrint(ioOut);
+    ioOut << "gameState=" << m_gameState << ", ";
+    ioOut << "configURL=" << m_configURL << ", ";
+    ioOut << "currentMsec=" << m_currentMsec << ", ";
+    ioOut << "lastTickerMsec=" << m_lastTickerMsec << ", ";
+    ioOut << "windowClicked=" << m_windowClicked;
+    ioOut << "]";
+}
+bool
+GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "gameState")
+    {
+        ioIn >> m_gameState;
+    }
+    else if (inTagStr == "configURL")
+    {
+        ioIn >> m_configURL;
+    }
+    else if (inTagStr == "currentMsec")
+    {
+        ioIn >> m_currentMsec;
+    }
+    else if (inTagStr == "lastTickerMsec")
+    {
+        ioIn >> m_lastTickerMsec;
+    }
+    else if (inTagStr == "windowClicked")
+    {
+        ioIn >> m_windowClicked;
+    }
+    else if (GameBase::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    GameBase::AutoXMLPrint(ioOut);
+    ioOut.TagSet("gameState");
+    ioOut << m_gameState;
+    ioOut.TagSet("configURL");
+    ioOut << m_configURL;
+    ioOut.TagSet("currentMsec");
+    ioOut << m_currentMsec;
+    ioOut.TagSet("lastTickerMsec");
+    ioOut << m_lastTickerMsec;
+    ioOut.TagSet("windowClicked");
+    ioOut << m_windowClicked;
+}
+//%outOfLineFunctions } mn9W6hyHYK0CO6V0eX7XIw

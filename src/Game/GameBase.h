@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } er0793/i2x5C77SKjyr/Ag
 /*
- * $Id: GameBase.h,v 1.20 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameBase.h,v 1.21 2004/01/06 20:46:49 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.21  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.20  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -84,7 +87,8 @@
 
 class GameAppHandler;
 
-class GameBase
+//:generate
+class GameBase : public MushcoreVirtualObject
 {
 public:
     virtual ~GameBase() {}
@@ -96,6 +100,9 @@ public:
 
 private:
 
+//%classPrototypes {
+public:
+//%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
 };
 //%includeGuardEnd {
 #endif

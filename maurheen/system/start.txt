@@ -1,0 +1,100 @@
+##############################################################################
+#
+# This is the Maurheen configuration file, and may be edited to
+# control game options.  If damaged, a backup can be found in the same
+# directory, named start_backup.txt.
+#
+##############################################################################
+
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.co.uk.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2002.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id: start.txt,v 1.47 2004/01/10 20:29:33 southa Exp $
+# $Log: start.txt,v $
+
+# Change the paths here if you detach the application from its data directory
+
+# On entry APPLPATH is set to the directory above the one the executable is in
+# configset("APPLPATH","/usr/local/bin/maurheen")
+
+configset("CONTRACT_ROOT",$APPLPATH+"/contracts")
+configset("GLOBAL_SPACES_PATH",$APPLPATH+"/spaces") 
+configset("GLOBAL_PIXELS_PATH",$APPLPATH+"/pixels") 
+configset("GLOBAL_WAVES_PATH",$APPLPATH+"/waves") 
+configset("SYSTEM_PATH",$APPLPATH+"/system") 
+configset("MUSTL_WEB_PATH",$APPLPATH+"/localweb") 
+ 
+# Find somewhere to save our files
+setsavepath(".maurheen", $HOME, $SYSTEM_PATH, "/tmp")
+updatecheck
+
+# Set configuration file path
+configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/config.xml")
+
+# Options for DISPLAY_QUALITY are low, medium or high
+configset("DISPLAY_QUALITY", "medium")
+
+# Network setup
+configset('NET_DEFAULT_PORT', 9144)
+configset('WEB_DEFAULT_PORT', 7200)
+
+# Mutate the application into infernal
+maurheen
+
+# Read the contracts directory
+# readdirectorytomenu('SP_CONTRACT_MENU', $CONTRACT_ROOT, '^(?!dev-)')
+# readdirectorytomenu('MP_CONTRACT_MENU', $CONTRACT_ROOT, '^mp-')
+
+# Add config elements
+configvalueadd('displaymode', 0, 0, 0)
+configstringadd('displayquality','medium', 'low=Low&medium=Medium&high=High')
+configstringadd('displaylighting', 'dynamic', 'none=None&dynamic=Dynamic')
+configstringadd('networkperms', 'normal', 'none=None&normal=Normal&debug=Debug')
+configstringadd('networkspeed', '56k', '56k=56k Modem&cable=Cable/DSL&t1=LAN/T1/Infinite')
+configstringadd('httpproxy', '')
+configstringadd('configperms', 'local', 'local=Allow Localhost&all=Allow All')
+configstringadd('configextra', '')
+configvalueadd('configport', $WEB_DEFAULT_PORT, 512, 65536)
+configvalueadd('multiport', $NET_DEFAULT_PORT, 0, 65536)
+configbooladd('savepasswords', 1)
+
+# Add log control elements
+mustlconfigbool('mustlnetlog', 0)
+mustlconfigbool('mustlweblog', 0)
+mustlconfigbool('mustlverboselog', 0)
+mustlconfigbool('mustltrafficlog', 0)
+mustlconfigbool('mustlcommandlog', 0)
+mustlconfigbool('mustllogfullip', 0)
+
+# Add MP window elements
+configstringadd('mpplayername', 'localplayer')
+configpasswordadd('mpplayerpassword', '')
+configstringadd('mpjoinserver', 'localhost')
+configstringadd('mpservername', 'Anonymous server')
+configstringadd('mpservermessage', '')
+configvalueadd('mpjoinport', $NET_DEFAULT_PORT, 0, 65536)
+configvalueadd('mpplayerlimit', 4, 1, 16)
+ 
+# Add level choice elements
+# configstringadd('spcontractname', '', $SP_CONTRACT_MENU)
+# configstringadd('mpcontractname', '', $MP_CONTRACT_MENU)
+
+# Tweak the config values
+gameconfigspecial
+
+# Load up the config
+# configload($CONFIG_FILENAME)
+
+# Load the system font
+loadfontmap('font-system1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
+
+
+
+

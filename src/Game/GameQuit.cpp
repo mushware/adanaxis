@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8z6frlELi6JgItG1tdJiyw
 /*
- * $Id: GameQuit.cpp,v 1.15 2003/10/06 23:06:31 southa Exp $
+ * $Id: GameQuit.cpp,v 1.16 2004/01/02 21:13:07 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.16  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/10/06 23:06:31  southa
  * Include fixes
  *
@@ -188,3 +191,81 @@ void
 GameQuit::SwapOut(GameAppHandler& inAppHandler)
 {
 }
+
+void
+operator>>(MushcoreXMLIStream& ioIn, GameQuit::tGameState& inValue)
+{
+    Mushware::tXMLVal value;
+    ioIn >> value;
+    inValue = static_cast<GameQuit::tGameState>(value);
+}
+
+//%outOfLineFunctions {
+const char *GameQuit::AutoNameGet(void) const
+{
+    return "GameQuit";
+}
+GameQuit *GameQuit::AutoClone(void) const
+{
+    return new GameQuit(*this);
+}
+GameQuit *GameQuit::AutoCreate(void) const
+{
+    return new GameQuit;
+}
+MushcoreVirtualObject *GameQuit::AutoVirtualFactory(void)
+{
+    return new GameQuit;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GameQuit", GameQuit::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+GameQuit::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    GameBase::AutoPrint(ioOut);
+    ioOut << "gameState=" << m_gameState << ", ";
+    ioOut << "startMsec=" << m_startMsec;
+    ioOut << "]";
+}
+bool
+GameQuit::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "gameState")
+    {
+        ioIn >> m_gameState;
+    }
+    else if (inTagStr == "startMsec")
+    {
+        ioIn >> m_startMsec;
+    }
+    else if (GameBase::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+GameQuit::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    GameBase::AutoXMLPrint(ioOut);
+    ioOut.TagSet("gameState");
+    ioOut << m_gameState;
+    ioOut.TagSet("startMsec");
+    ioOut << m_startMsec;
+}
+//%outOfLineFunctions } OA02MJyGgAQQJM7kZqgQTQ

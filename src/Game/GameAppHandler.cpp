@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qWfrD/KaPbGcPpGRqeqJKA
 /*
- * $Id: GameAppHandler.cpp,v 1.55 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.56 2004/01/06 20:46:49 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.56  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.55  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -200,8 +203,6 @@ using namespace Mushware;
 using namespace std;
 
 GameAppHandler::GameAppHandler() :
-    m_pSetup(NULL),
-    m_pCurrent(NULL),
     m_appState(kAppStateStartup),
     m_gameType(kGameTypeInvalid)
 {
@@ -211,7 +212,6 @@ GameAppHandler::GameAppHandler() :
 GameAppHandler::~GameAppHandler()
 {
     MushcoreEnv::Sgl().PopConfig(GameGlobalConfig::Sgl());
-    if (m_pSetup != NULL) delete m_pSetup;
 }
 
 void
@@ -223,9 +223,9 @@ GameAppHandler::Initialise(void)
 void
 GameAppHandler::Display(void)
 {
-    if (m_pCurrent != NULL)
+    if (m_currentRef.Exists())
     {
-        m_pCurrent->Display(*this);
+        m_currentRef.RefGet().Display(*this);
     }
 }
 
@@ -234,13 +234,13 @@ GameAppHandler::Idle(void)
 {
     try
     {
-        if (m_pCurrent == NULL)
+        if (m_currentRef.Exists())
         {
-            SetupModeEnter();
+            m_currentRef.RefGet().Process(*this);
         }
         else
         {
-            m_pCurrent->Process(*this);
+            SetupModeEnter();
         }
     }
     catch (exception& e)
@@ -257,13 +257,17 @@ GameAppHandler::SetupModeEnter(void)
 {
     if (m_appState != kAppStateSetup)
     {
-        if (m_pCurrent != NULL)
+        if (m_currentRef.Exists())
         {
-            m_pCurrent->SwapOut(*this);
+            m_currentRef.RefGet().SwapOut(*this);
         }
-        if (m_pSetup == NULL) m_pSetup = new GameSetup;
-        m_pCurrent=m_pSetup;
-        m_pCurrent->SwapIn(*this);
+        if (!m_setupRef.Exists())
+        {
+            MushcoreData<GameBase>::Sgl().Give("setup", new GameSetup);
+            m_setupRef.NameSet("setup");
+        }
+        m_currentRef = m_setupRef;
+        m_currentRef.RefGet().SwapIn(*this);
         m_appState=kAppStateSetup;
     }   
 }
@@ -273,7 +277,8 @@ GameAppHandler::QuitModeEnter(void)
 {
     if (m_appState != kAppStateQuit)
     {
-        m_pCurrent=new GameQuit;  // leaked
+        MushcoreData<GameBase>::Sgl().Give("quit", new GameQuit);
+        m_currentRef.NameSet("quit");
     }
 }
 
@@ -316,17 +321,17 @@ GameAppHandler::GameTypeDetermine(void)
 void
 GameAppHandler::CurrentSwapOut(void)
 {
-    if (m_pCurrent != NULL)
+    if (m_currentRef.Exists())
     {
-        m_pCurrent->SwapOut(*this);
+        m_currentRef.Get()->SwapOut(*this);
     }
 }
 
 void
-GameAppHandler::CurrentSwapIn(GameBase *inpGame)
+GameAppHandler::CurrentSwapIn(const std::string& inName)
 {
-    m_pCurrent=inpGame;
-    m_pCurrent->SwapIn(*this);
+    m_currentRef.NameSet(inName);
+    m_currentRef.RefGet().SwapIn(*this);
 }
 
 void

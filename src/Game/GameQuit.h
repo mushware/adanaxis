@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vWBeosVH87okVVejo5ZQ8Q
 /*
- * $Id: GameQuit.h,v 1.8 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameQuit.h,v 1.9 2004/01/06 20:46:50 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.9  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.8  2004/01/02 21:13:07  southa
  * Source conditioning
  *
@@ -48,9 +51,18 @@
 
 #include "GameBase.h"
 
+//:xml1base GameBase
+//:generate standard ostream xml1
 class GameQuit : public GameBase
 {
 public:
+    enum tGameState
+    {
+        kGameStateInvalid,
+        kGameStateInit,
+        kGameStateTiming
+    };
+
     GameQuit();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
@@ -63,13 +75,6 @@ protected:
 private:
     void Init(void);
     void Timing(void);
-        
-    enum tGameState
-    {
-        kGameStateInvalid,
-        kGameStateInit,
-        kGameStateTiming
-    };
 
     enum
     {
@@ -79,7 +84,25 @@ private:
 
     tGameState m_gameState;
     Mushware::U32 m_startMsec;
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual GameQuit *AutoClone(void) const;
+    virtual GameQuit *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } rXybxo5CBx52i/GTLBAzYw
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GameQuit& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } m+yKhbiWkoR/Rp6PBe02HQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

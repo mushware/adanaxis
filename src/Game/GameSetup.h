@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } tesy6QLZmmL1LfgGY632YQ
 /*
- * $Id: GameSetup.h,v 1.14 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameSetup.h,v 1.15 2004/01/06 20:46:50 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.15  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.14  2004/01/02 21:13:07  southa
  * Source conditioning
  *
@@ -66,9 +69,18 @@
 
 #include "GameBase.h"
 
+//:xml1base GameBase
+//:generate standard ostream xml1 
 class GameSetup : public GameBase
 {
 public:
+    enum tGameState
+    {
+        kGameStateInvalid,
+        kGameStateConfigInit,
+        kGameStateConfig
+    };
+    
     GameSetup();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
@@ -91,19 +103,32 @@ private:
         kFastSleepMsec=1,
         kTickerMsec=100
     };
-    enum tGameState
-    {
-        kGameStateInvalid,
-        kGameStateConfigInit,
-        kGameStateConfig
-    };
 
     tGameState m_gameState;
     std::string m_configURL;
     Mushware::U32 m_currentMsec;
     Mushware::U32 m_lastTickerMsec;
     bool m_windowClicked;
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual GameSetup *AutoClone(void) const;
+    virtual GameSetup *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } WBqDS7smYMsHw5gGr348fw
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GameSetup& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } Kk07ttNWtpNW/5FfY53DHQ
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

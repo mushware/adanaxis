@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e/LapI2qrrgtx7qn9+5OUQ
 /*
- * $Id: GameBase.cpp,v 1.5 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameBase.cpp,v 1.6 2004/01/02 21:13:06 southa Exp $
  * $Log: GameBase.cpp,v $
+ * Revision 1.6  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -36,3 +39,4 @@
 using namespace Mushware;
 using namespace std;
 
+MUSHCORE_DATA_INSTANCE(GameBase);

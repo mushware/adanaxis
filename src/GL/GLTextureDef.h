@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } A/CNrT+Qg4gpGy329MDcbA
 /*
- * $Id: GLTextureDef.h,v 1.10 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureDef.h,v 1.11 2004/01/06 20:46:49 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.11  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.10  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -58,7 +61,7 @@ class GLTextureDef
 public:
     GLTextureDef(): m_needsAlphaValid(false), m_dataPtr(NULL) {}
     GLTextureDef(Mushware::U32 *inDataPtr): m_needsAlphaValid(false), m_dataPtr(inDataPtr) {}
-    ~GLTextureDef() {if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete[]m_dataPtr;}
+    ~GLTextureDef() {if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete[] m_dataPtr;}
     void WidthSet(GLsizei inWidth) {m_width=inWidth;}
     void HeightSet(GLsizei inHeight) {m_height=inHeight;}
     void PixelFormatSet(GLenum inPixelFormat) {m_pixelFormat=inPixelFormat;}

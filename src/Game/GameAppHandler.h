@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5wVaQrecIxMy9gNkVg+RNw
 /*
- * $Id: GameAppHandler.h,v 1.23 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameAppHandler.h,v 1.24 2004/01/06 20:46:49 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.24  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.23  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -117,10 +120,10 @@ protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
     virtual void PrepareNewGame(void) = 0;
     
-    bool StateGameIs(void) const { return (m_appState != kAppStateGame); }
+    bool StateGameIs(void) const { return (m_appState == kAppStateGame); }
     void StateGameSet(void) { m_appState=kAppStateGame; }
     void CurrentSwapOut(void);
-    void CurrentSwapIn(GameBase *inpGame);
+    void CurrentSwapIn(const std::string& inName);
     void GameTypeDetermine(void); // Not sure about exporting this
         
 private:
@@ -141,8 +144,8 @@ private:
         kGameTypeSingle
     };
         
-    GameBase *m_pSetup;
-    GameBase *m_pCurrent;
+    MushcoreDataRef<GameBase> m_setupRef;
+    MushcoreDataRef<GameBase> m_currentRef;
     tAppState m_appState;
     tGameType m_gameType;
 };
