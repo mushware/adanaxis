@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.10 2002/11/14 11:40:28 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.11 2002/11/15 11:47:56 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.11  2002/11/15 11:47:56  southa
+ * Web processing and error handling
+ *
  * Revision 1.10  2002/11/14 11:40:28  southa
  * Configuration handling
  *
@@ -109,7 +112,7 @@ MediaNetWebLink::IsDead(void)
     {
         return true;
     }
-    return (false);
+    return false;
 }
 
 bool
@@ -131,6 +134,8 @@ MediaNetWebLink::Receive(string& outStr)
         }
     } while (result > 0);
 
+    // MediaNetLog::Instance().Log() << "Received " << MediaNetUtils::MakePrintable(outStr) << endl;
+
     return (outStr.size() != 0);
 }
 
@@ -142,9 +147,9 @@ MediaNetWebLink::Send(MediaNetData& ioData)
         throw(NetworkFail("Attempt to send on dead WebLink"));
     }
     int result=SDLNet_TCP_Send(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
-    if (result >= 0 && static_cast<U32>(result) != ioData.ReadSizeGet())
+    if (result < 0 || static_cast<U32>(result) != ioData.ReadSizeGet())
     {
-        MediaNetLog::Instance().Log() << "Failed to send data on WebLink: " << SDLNet_GetError();
+        MediaNetLog::Instance().Log() << "Failed to send data on WebLink (" << result << "): " << SDLNet_GetError() << endl;
         ++m_linkErrors;
     }
     else
@@ -200,20 +205,28 @@ MediaNetWebLink::ReceivedProcess(const string& inStr)
 
         case kReceiveHeaders:
         {
+	    bool lineEnd=false;
             if (inStr.size() > 0 &&
              (inStr[0] == 0xd || inStr[0] == 0xa))
             {
-                m_receiveState=kReceiveBody;
+                lineEnd=true;
             }
             
             switch (m_requestType)
             {
                 case kRequestGet:
-                    GetProcess(m_requestLine.substr(4));
-                    m_receiveState = kReceiveInitial;
+		    if (lineEnd)
+		    {
+                        GetProcess(m_requestLine.substr(4));
+                        m_receiveState = kReceiveInitial;
+		    }
                     break;
 
                 case kRequestPost:
+		    if (lineEnd)
+		    {
+		        m_receiveState = kReceiveBody;
+		    }
                     break;	
 
                 default:

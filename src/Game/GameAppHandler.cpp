@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.33 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.34 2002/11/18 11:31:13 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.34  2002/11/18 11:31:13  southa
+ * Return to game mode
+ *
  * Revision 1.33  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -146,6 +149,7 @@ void
 GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
+    Idle();
 }
 
 void
