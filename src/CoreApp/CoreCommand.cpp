@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.5 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.6 2002/05/10 16:39:39 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.6  2002/05/10 16:39:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -67,10 +70,10 @@ CoreCommand::PopString(void)
     return retStr;
 }
 
-Val
+tVal
 CoreCommand::PopVal(void)
 {
-    Val retVal;
+    tVal retVal;
     m_paramList.PopParam(retVal);
     return retVal;
 }

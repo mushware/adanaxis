@@ -1,6 +1,9 @@
 /*
- * $Id: Dataset.h,v 1.2 2002/03/18 22:21:12 southa Exp $
+ * $Id: Dataset.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.2  2002/03/18 22:21:12  southa
  * Initial wrangle command
  *
@@ -19,8 +22,8 @@ public:
     Dataset();
     void Load(istream& in);
     void Save(ostream& out);
-    void Resize(Size entries);
-    void AppendElement(const Vec<Val>& data, const Vec<bool>& valid);
+    void Resize(tSize entries);
+    void AppendElement(const Vec<tVal>& data, const Vec<bool>& valid);
     void Clear(void);
     void Testset(void);
     
@@ -29,7 +32,7 @@ private:
     static void endElement(void *userData, const char *name);
     static void characterDataHandler(void *userData, const XML_Char *s, int len);
 
-    Vec< Vec<Val> > m_data;
+    Vec< Vec<tVal> > m_data;
     Vec< Vec<bool> > m_valid;
 
     CoreRegExp m_regexp;

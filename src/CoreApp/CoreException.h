@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.4 2002/05/09 17:10:38 southa Exp $
+ * $Id: CoreException.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.4  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -37,7 +40,22 @@ inline ostream& operator<<(ostream &s, FileFail f)
     return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
 }
 
+class ConfigFail: public exception
+{
+public:
+    ConfigFail(const string &inMessage) {m_message=inMessage;}
+    ~ConfigFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
 
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, ConfigFail f)
+{
+    return s << f.StringGet();
+}
 
 class CommandFail: public exception
 {

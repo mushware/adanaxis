@@ -1,6 +1,9 @@
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.3 2002/03/07 22:24:34 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.4 2002/05/10 16:39:37 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.4  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -48,8 +51,8 @@ LaunchCommandHandler::Launch(CoreCommand& ioCommand, CoreEnv &ioEnv)
         char *args=new char[funcName.size()+3];
         char inQuotes='\0';
         char lastFuncName=' ';
-        Size j=0;
-        for (Size i=0; i<funcName.size(); i++)
+        tSize j=0;
+        for (tSize i=0; i<funcName.size(); i++)
         {
             if (inQuotes != '\0')
             {
@@ -96,7 +99,7 @@ LaunchCommandHandler::Launch(CoreCommand& ioCommand, CoreEnv &ioEnv)
         }
         char **argv=new (char *)[argvector.size()];
         
-        for (Size i=0; i<argvector.size(); i++)
+        for (tSize i=0; i<argvector.size(); i++)
         {
             argv[i] = argvector[i];
         }

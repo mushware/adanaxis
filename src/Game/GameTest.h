@@ -1,6 +1,9 @@
 /*
- * $Id: GameTest.h,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameTest.h,v 1.3 2002/05/10 22:38:22 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.3  2002/05/10 22:38:22  southa
+ * Checkpoint
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -33,11 +36,11 @@ protected:
 
 private:
     State m_state;
-    Val m_playerx;
-    Val m_playerxv;
-    Val m_playery;
-    Val m_playeryv;
+    tVal m_playerx;
+    tVal m_playerxv;
+    tVal m_playery;
+    tVal m_playeryv;
     
-    Val m_leftlim;
-    Val m_rightlim;
+    tVal m_leftlim;
+    tVal m_rightlim;
 };

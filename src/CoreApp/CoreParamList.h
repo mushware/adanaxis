@@ -1,8 +1,11 @@
 #ifndef COREPARAMLIST_HP
 #define COREPARAMLIST_HP
 /*
- * $Id: CoreParamList.h,v 1.1 2002/03/05 22:44:46 southa Exp $
+ * $Id: CoreParamList.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/03/05 22:44:46  southa
  * Changes to command handling
  *
@@ -16,7 +19,7 @@ class CoreParamList
 public:
     void PushParam(const CoreScalar& inScalar)
         {m_params.push_back(inScalar);}
-    void PopParam(Val& outVal);
+    void PopParam(tVal& outVal);
     void PopParam(string& outStr);
     void Clear(void) {m_params.clear();};
     bool Empty(void) {return m_params.empty();}

@@ -1,6 +1,9 @@
 /*
- * $Id: GraphWrangler.cpp,v 1.1 2002/05/09 17:08:07 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.2 2002/05/10 16:40:39 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.2  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:07  southa
  * Fixed for gcc 3.0
  *
@@ -59,7 +62,7 @@ GraphWrangler::FindVertAxis(void)
      */
     bool first=true;
     U32 predomCol=0;
-    for (Size x=m_width-8; x-->0;)
+    for (tSize x=m_width-8; x-->0;)
     {
         U32 col=PredominantColumnColour(x);
         if (first)
@@ -87,10 +90,10 @@ GraphWrangler::FindHorizAxis(void)
 }
 
 U32
-GraphWrangler::PredominantColumnColour(Size inX)
+GraphWrangler::PredominantColumnColour(tSize inX)
 {
     map<U32, U32> colMap;
-    for (Size y=0; y<m_height; y++)
+    for (tSize y=0; y<m_height; y++)
     {
         U32 col=Pixel(inX, y);
         colMap[col]=colMap[col]+1;
@@ -114,9 +117,9 @@ GraphWrangler::PredominantColumnColour(Size inX)
 }
 
 void
-GraphWrangler::ReplaceInColumn(Size inX, U32 inSrcCol, U32 inDestCol)
+GraphWrangler::ReplaceInColumn(tSize inX, U32 inSrcCol, U32 inDestCol)
 {
-    for (Size y=0; y<m_height; ++y)
+    for (tSize y=0; y<m_height; ++y)
     {
         if (Pixel(inX, y) == inSrcCol)
         {
@@ -126,7 +129,7 @@ GraphWrangler::ReplaceInColumn(Size inX, U32 inSrcCol, U32 inDestCol)
 }
 
 U32
-GraphWrangler::Pixel(Size inX, Size inY)
+GraphWrangler::Pixel(tSize inX, tSize inY)
 {
     COREASSERT(inX < m_width);
     COREASSERT(inY < m_height);
@@ -135,7 +138,7 @@ GraphWrangler::Pixel(Size inX, Size inY)
 }
 
 void
-GraphWrangler::SetPixel(Size inX, Size inY, U32 inCol)
+GraphWrangler::SetPixel(tSize inX, tSize inY, U32 inCol)
 {
     COREASSERT(inX < m_width);
     COREASSERT(inY < m_height);

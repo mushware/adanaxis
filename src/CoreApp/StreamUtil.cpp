@@ -1,6 +1,9 @@
 /*
- * $Id: StreamUtil.cpp,v 1.2 2002/05/09 17:10:38 southa Exp $
+ * $Id: StreamUtil.cpp,v 1.3 2002/05/10 16:39:37 southa Exp $
  * $Log: StreamUtil.cpp,v $
+ * Revision 1.3  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.2  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -45,21 +48,21 @@ StreamUtil::U8Get(u8istream& inIn)
 }
 
 void
-StreamUtil::Ignore(u8istream& inIn, Size inSize)
+StreamUtil::Ignore(u8istream& inIn, tSize inSize)
 {
     inIn.ignore(inSize);
     m_ctr+=inSize;
 }
 
 void
-StreamUtil::Get(u8istream& inIn, U8 *outBuffer, Size inSize)
+StreamUtil::Get(u8istream& inIn, U8 *outBuffer, tSize inSize)
 {
     inIn.read(outBuffer, inSize);
     m_ctr+=inSize;
 }
 
 void
-StreamUtil::ZeroIndex(Size inWhich)
+StreamUtil::ZeroIndex(tSize inWhich)
 {
     if (inWhich >= m_zero.size())
     {
@@ -68,8 +71,8 @@ StreamUtil::ZeroIndex(Size inWhich)
     m_zero[inWhich]=m_ctr;
 }
 
-Size
-StreamUtil::GetIndex(Size inWhich)
+tSize
+StreamUtil::GetIndex(tSize inWhich)
 {
     if (inWhich >= m_zero.size())
     {
@@ -79,7 +82,7 @@ StreamUtil::GetIndex(Size inWhich)
 }
 
 void
-StreamUtil::ConsumeToIndex(u8istream& inIn, Size inWhich, Size inValue)
+StreamUtil::ConsumeToIndex(u8istream& inIn, tSize inWhich, tSize inValue)
 {
     int target=inValue-GetIndex(inWhich);
     if (target>0)

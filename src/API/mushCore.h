@@ -1,6 +1,9 @@
 /*
- * $Id: mushCore.h,v 1.4 2002/05/09 18:01:39 southa Exp $
+ * $Id: mushCore.h,v 1.1 2002/05/10 16:39:34 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.1  2002/05/10 16:39:34  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.4  2002/05/09 18:01:39  southa
  * Rebuild under cygwin
  *
@@ -28,6 +31,9 @@
 
 // Command handler to be subclassed to provide new commands
 #include "CoreApp/CoreCommandHandler.h"
+
+// Configuration handler
+#include "CoreApp/CoreConfig.h"
 
 // Exception classes to be thrown
 #include "CoreApp/CoreException.h"

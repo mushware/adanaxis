@@ -1,6 +1,9 @@
 /*
- * $Id: GraphWrangler.h,v 1.1 2002/05/09 17:08:08 southa Exp $
+ * $Id: GraphWrangler.h,v 1.1 2002/05/10 16:40:39 southa Exp $
  * $Log: GraphWrangler.h,v $
+ * Revision 1.1  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:08  southa
  * Fixed for gcc 3.0
  *
@@ -39,19 +42,19 @@ protected:
     void FindVertAxis(void);
     void FindHorizAxis(void);
 
-    U32 PredominantColumnColour(Size inX);
-    void ReplaceInColumn(Size inX, U32 inSrcCol, U32 inDestCol);
+    U32 PredominantColumnColour(tSize inX);
+    void ReplaceInColumn(tSize inX, U32 inSrcCol, U32 inDestCol);
 
-    U32 Pixel(Size inX, Size inY);
-    void SetPixel(Size inX, Size inY, U32 inCol);
+    U32 Pixel(tSize inX, tSize inY);
+    void SetPixel(tSize inX, tSize inY, U32 inCol);
 
 private:        
     State m_state;
     GLTexture& m_tex;
-    Size m_width;
-    Size m_height;
-    Size m_hbytes;
+    tSize m_width;
+    tSize m_height;
+    tSize m_hbytes;
     U32 *m_dataPtr;
-    Size m_vertAxis;
-    Size m_horizAxis;
+    tSize m_vertAxis;
+    tSize m_horizAxis;
 };

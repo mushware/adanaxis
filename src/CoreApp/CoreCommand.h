@@ -1,8 +1,11 @@
 #ifndef CORECOMMAND_HP
 #define CORECOMMAND_HP
 /*
- * $Id: CoreCommand.h,v 1.5 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreCommand.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -36,9 +39,9 @@ public:
     const string& Name(void) {return m_name;}
     string AllParams(void);
     string PopString(void);
-    Val PopVal(void);
+    tVal PopVal(void);
     void PopParam(string& outStr) {m_paramList.PopParam(outStr);}
-    void PopParam(Val& outVal) {m_paramList.PopParam(outVal);}
+    void PopParam(tVal& outVal) {m_paramList.PopParam(outVal);}
     
     // Callback interface from bison - not public
     CoreScalar Despatch(void);

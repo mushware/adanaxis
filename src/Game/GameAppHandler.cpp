@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.3 2002/05/10 22:38:22 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.3  2002/05/10 22:38:22  southa
+ * Checkpoint
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -15,21 +18,11 @@
 #include "mushGL.h"
 
 #include "GameTest.h"
-#include <Carbon/Carbon.h>
-#include <Quicktime/Movies.h>
+
 void
 GameAppHandler::Initialise(void)
 {
     m_pGame = new GameTest;
-
-    Ptr restoreState;
-    short desiredWidth=640;
-    short desiredHeight=480;
-    
-    BeginFullScreen(&restoreState, 0,
-                    &desiredWidth,
-                    &desiredHeight,
-                    0, 0, 0);
     
     GLUtils::GameInit();
 

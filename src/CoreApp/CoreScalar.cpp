@@ -1,6 +1,9 @@
 /*
- * $Id: CoreScalar.cpp,v 1.3 2002/05/09 17:10:38 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.4 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.4  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -15,7 +18,7 @@
 #include "CoreScalar.h"
 #include <strstream>
 void
-CoreScalar::Get(Val& outVal)
+CoreScalar::Get(tVal& outVal) const
 {
     switch (m_tag)
     {
@@ -33,7 +36,7 @@ CoreScalar::Get(Val& outVal)
 }
 
 void
-CoreScalar::Get(string& outStr)
+CoreScalar::Get(string& outStr) const 
 {
     switch (m_tag)
     {
@@ -54,6 +57,17 @@ CoreScalar::Get(string& outStr)
         default:
             throw "CoreScalar value fault";
     }
+}
+
+bool
+CoreScalar::SlowEquals(const CoreScalar& inScalar) const
+{
+    string str1;
+    string str2;
+
+    Get(str1);
+    inScalar.Get(str2);
+    return str1 == str2;
 }
 
 void

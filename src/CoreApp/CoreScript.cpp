@@ -1,6 +1,9 @@
 /*
- * $Id: CoreScript.cpp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Id: CoreScript.cpp,v 1.2 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.2  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/03/01 12:21:25  southa
  * Added first CoreScript code
  *
@@ -35,11 +38,11 @@ CoreScript::ReadFromStream(istream& inIn)
 void
 CoreScript::ostreamPrint(ostream& inOut) const
 {
-    for (Size i=0; i<m_functions.size(); ++i)
+    for (tSize i=0; i<m_functions.size(); ++i)
     {
         const CoreFunction& func=m_functions[i];
         inOut << "Function " << func.Name() << ":" << endl;
-        for (Size j=0; j<func.SizeGet(); ++j)
+        for (tSize j=0; j<func.SizeGet(); ++j)
         {
             inOut << func.Command(j) << endl;
         }
