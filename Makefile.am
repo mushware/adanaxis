@@ -1,10 +1,17 @@
 # -*-makefile-*-
 SUBDIRS = @TOP_SUBDIRS@
+DIST_SUBDIRS = @TOP_SUBDIRS@
 RUNFILE=${bindir}/ic2
+GZIPFILE=ic2-@IC_VERSION@.tar.gz
+BZIPFILE=ic2-@IC_VERSION@.tar.bz2
 
 DATAMAKEFILE=ic2data/Makefile.am
 
-EXTRA_DIST=core-app.pbproj/project.pbxproj ic2 MakeRelease.sh ic2.spec
+EXTRA_DIST=core-app.pbproj/project.pbxproj ic2 MakeRelease.sh \
+ic2.spec.mdk ic2.spec.mdk.in \
+ic2.spec.suse ic2.spec.suse.in \
+ic2.spec.redhat ic2.spec.redhat.in \
+ic2.spec
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
@@ -23,7 +30,7 @@ makefiles-withoutdata:
 	sed -e 's/_dist_/_nodist_/' $(DATAMAKEFILE) > tempMakefile
 	mv -f tempMakefile $(DATAMAKEFILE)
 
-x11-release: makefiles-withoutdata dist
+x11-release $(GZIPFILE): ic2.spec makefiles-withoutdata dist
 	rm -f ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
 	rm -f ic2-data-@IC_UNDERSCORE_VERSION@.tar.gz
 	cp -p COPYING ic2data/COPYING
@@ -40,9 +47,24 @@ x11-release: makefiles-withoutdata dist
 	cp -p ic2-@IC_VERSION@.tar.gz ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
 	$(MAKE) makefiles-withdata dist
 
-rpm: x11-release
-	gunzip -c ic2-@IC_VERSION@.tar.gz | bzip2 --best > ic2-@IC_VERSION@.tar.bz2
-	rpm -ta ic2-@IC_VERSION@.tar.bz2
+$(BZIPFILE):$(GZIPFILE)
+	rm -f $(BZIPFILE)
+	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
+
+mdk-rpm:
+	cp -f ic2.spec.mdk ic2.spec
+	make $(BZIPFILE)
+	rpm -ta $(BZIPFILE)
+
+redhat-rpm:$(BZIPFILE)
+	cp -f ic2.spec.redhat ic2.spec
+	make $(BZIPFILE)
+	rpm -ta $(BZIPFILE)
+
+suse-rpm:$(BZIPFILE)
+	cp -f ic2.spec.suse ic2.spec
+	make $(BZIPFILE)
+	rpm -ta $(BZIPFILE)
 
 install-exec-hook:
 	rm -f $(RUNFILE)
