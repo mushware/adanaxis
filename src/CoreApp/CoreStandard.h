@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.11 2002/07/07 11:16:07 southa Exp $
+ * $Id: CoreStandard.h,v 1.12 2002/07/16 17:48:07 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.12  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.11  2002/07/07 11:16:07  southa
  * More designer work
  *
@@ -123,6 +126,9 @@ typedef unsigned int U32;
 typedef unsigned char U8;
 typedef unsigned int tSize;
 
+#ifndef M_PI
+#define M_PI 3.14159265358979
+#endif
 
 #if 0
 // This didn't work
