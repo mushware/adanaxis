@@ -40,13 +40,13 @@
 			PBXWorkspaceConfiguration = {
 				ContentSize = "{965, 618}";
 				LeftSlideOut = {
-					ActiveTab = 0;
+					ActiveTab = 3;
 					Frame = "{{0, 23}, {965, 595}}";
 					Split0 = {
 						ActiveTab = 1;
-						Frame = "{{243, 0}, {722, 595}}";
+						Frame = "{{224, 0}, {741, 595}}";
 						Split0 = {
-							Frame = "{{0, 232}, {722, 363}}";
+							Frame = "{{0, 232}, {741, 363}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -76,10 +76,10 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {722, 208}}";
+							Frame = "{{0, 0}, {741, 208}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {722, 208}}";
+								Frame = "{{0, 0}, {741, 208}}";
 							};
 						};
 						Tab2 = {
@@ -94,7 +94,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {219, 595}}";
+						Frame = "{{0, 0}, {221, 595}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {203, 360}}";

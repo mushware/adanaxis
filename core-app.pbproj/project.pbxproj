@@ -249,6 +249,7 @@
 				F56122560227B8710100557C,
 				F56122580227BA790100557C,
 				F5175CBA0227D55C01F76013,
+				F56353FF022AE34E015CEA2E,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -272,6 +273,7 @@
 				F56122520227A6E00100557C,
 				F5175CB70227D48F01F76013,
 				F5175CBB0227D55C01F76013,
+				F56353FD022AE330015CEA2E,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -403,6 +405,28 @@
 		};
 		F56122580227BA790100557C = {
 			fileRef = F56122570227BA790100557C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F56353FC022AE32F015CEA2E = {
+			isa = PBXFileReference;
+			path = GLTextureGIF.cpp;
+			refType = 4;
+		};
+		F56353FD022AE330015CEA2E = {
+			fileRef = F56353FC022AE32F015CEA2E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F56353FE022AE34E015CEA2E = {
+			isa = PBXFileReference;
+			path = GLTextureGIF.hp;
+			refType = 4;
+		};
+		F56353FF022AE34E015CEA2E = {
+			fileRef = F56353FE022AE34E015CEA2E;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -777,6 +801,8 @@
 				F5175CB90227D55C01F76013,
 				F56F91AB0221AC0F011355B6,
 				F56F91A90221AA94011355B6,
+				F56353FC022AE32F015CEA2E,
+				F56353FE022AE34E015CEA2E,
 			);
 			isa = PBXGroup;
 			path = GL;
