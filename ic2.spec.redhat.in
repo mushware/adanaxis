@@ -30,7 +30,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %build
 %configure --program-transform-name=""
-%make
+make
 
 %install
 %makeinstall
