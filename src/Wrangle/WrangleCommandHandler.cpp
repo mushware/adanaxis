@@ -1,6 +1,9 @@
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.1 2002/05/09 17:08:08 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.2 2002/05/10 16:40:39 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.2  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:08  southa
  * Fixed for gcc 3.0
  *
@@ -28,12 +31,13 @@ WrangleCommandHandler::Wrangle(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     string filename;
     filename=ioCommand.PopString();
-    string loadCommand("loadpixmap ");
+    string loadCommand("loadpixmap 0 ");
     loadCommand.append(filename);
     loadCommand.append(";");
     CoreApp::Instance().Process(loadCommand);
 
-    const GLTexture& tex=GLData::Instance().GetTexture(0);
+    GLTextureRef texRef("0");
+    GLTexture& tex=*texRef.TextureGet();
 
     cout << "# Wrangling image " << filename << endl;
     cout << "# " << tex << endl;

@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.11 2002/05/10 16:41:42 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.12 2002/05/28 13:07:00 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.12  2002/05/28 13:07:00  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.11  2002/05/10 16:41:42  southa
  * Changed .hp files to .h
  *
@@ -43,6 +46,8 @@
 #include "GLTextureSpr.h"
 #include "GLTextureGIF.h"
 #include "GLTextureTIFF.h"
+#include "GLTextureClip.h"
+#include "GLTextureRef.h"
 #include "GLTest.h"
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
@@ -69,15 +74,15 @@ GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     CoreRegExp re;
     if (re.Search(filename, "(spr|SPR)$"))
     {
-        GLData::Instance().AddTexture(GLTextureSpr(filename));
+        GLData::Instance().TextureAdd(name, GLTextureSpr(filename));
     }
     else if (re.Search(filename, "(gif|GIF)$"))
     {
-        GLData::Instance().AddTexture(GLTextureGIF(filename));
+        GLData::Instance().TextureAdd(name, GLTextureGIF(filename));
     }
     else if (re.Search(filename, "(tif|tiff|TIF|TIFF)$"))
     {
-        GLData::Instance().AddTexture(GLTextureTIFF(filename));
+        GLData::Instance().TextureAdd(name, GLTextureTIFF(filename));
     }
     else
     {
@@ -90,9 +95,61 @@ GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
 CoreScalar
 GLCommandHandler::Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
-    // Format of command is decompose <pixmapname> <xsize> <ysize> <xstart> <ystart> <xnum> <ynum>
-}
+    if (ioCommand.NumParams() < 4)
+    {
+        throw(CommandFail("Usage: decompose <src> <dest>[@] [<xsize> <ysize> [<xstart> <ystart> [<xnum> <ynum>]]]"));
+    }
+    string srcName, destName;
+    ioCommand.PopParam(srcName);
+    GLTextureRef srcTexRef(srcName);
+    if (!srcTexRef.Exists())
+    {
+        throw(CommandFail("Pixel map '"+srcName+"' could not be found"));
+    }
+    ioCommand.PopParam(destName);    
 
+    GLTexture& srcTex=*srcTexRef.TextureGet();
+    U32 width=srcTex.Width();
+    U32 height=srcTex.Height();
+    U32 xsize=width;
+    U32 ysize=height;
+    U32 xstart=0;
+    U32 ystart=0;
+    ioCommand.PopParam(xsize);
+    ioCommand.PopParam(ysize);
+    ioCommand.PopParam(xstart);
+    ioCommand.PopParam(ystart);    
+
+    if (xsize == 0 || ysize == 0)
+    {
+        throw(CommandFail("xsize and ysize must be non-zero"));
+    }
+    if (xstart >= width || ystart >= height)
+    {
+        throw(CommandFail("xstart and ystart must be within the texture"));
+    }
+    U32 xnum=(width-xstart)/xsize;
+    U32 ynum=(height-ystart)/ysize;
+
+    ioCommand.PopParam(xnum);
+    ioCommand.PopParam(ynum);    
+
+    for (U32 xctr=0; xctr<xnum; ++xctr)
+    {
+        for (U32 yctr=0; yctr<ynum; ++yctr)
+        {
+            ostringstream postFix;
+            postFix << xctr << "_" << yctr;
+            string name(destName);
+            name.replace(name.find("@"), 1, postFix.str());
+            U32 xbase=xstart+xctr*xsize;
+            U32 ybase=ystart+yctr*ysize;
+            
+            GLData::Instance().TextureAdd(name, GLTextureClip(srcTex, xbase, ybase, xbase+xsize, ybase+ysize));
+        }
+    }
+    return CoreScalar(0);
+}
 
 void
 GLCommandHandler::Install(void)

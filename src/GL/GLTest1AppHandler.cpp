@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.9 2002/05/10 22:38:23 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.10 2002/05/28 13:07:00 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.10  2002/05/28 13:07:00  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.9  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -35,6 +38,7 @@
 #include "GLStandard.h"
 #include "mushCore.h"
 #include "GLTexture.h"
+#include "GLTextureRef.h"
 #include "GLData.h"
 #include "GLUtils.h"
 
@@ -44,7 +48,7 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadpixmap ../test/test.tiff;");
+    CoreApp::Instance().Process("loadpixmap 0 ../test/test.tiff;");
 
     GLUtils::StandardInit();
     glutDisplayFunc(DisplayHandler);
@@ -59,15 +63,16 @@ GLTest1AppHandler::Display(void)
 
     glLineWidth(5);
     static double ticker=0;
-    static TextureRef texNum=0;
-
+    static U32 texNum=0;
+    static GLTextureRef texRef("0");
+    
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
     GLUtils::RasterPos(0, 0);
     glBitmap(0,0,0,0,20+20*sin(ticker), 20+20*cos(ticker),NULL);
-    const GLTexture& tex=GLData::Instance().GetTexture(0);
+    const GLTexture& tex=*texRef.TextureGet();
     static int printCtr=0;
 
     if (printCtr==0)
@@ -88,7 +93,7 @@ GLTest1AppHandler::Display(void)
         for (int i=0; i<256; ++i)
         {    
             texNum++;
-            if (texNum >= GLData::Instance().GetTexture(0).NumberOf()) texNum=0;
+            if (texNum >= texRef.TextureGet()->NumberOf()) texNum=0;
             if (tex.Valid(texNum)) break;
         }
     }

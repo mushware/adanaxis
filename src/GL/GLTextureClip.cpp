@@ -1,0 +1,86 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "GLTextureClip.h"
+
+GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX2, U32 inY2)
+{
+    FilenameSet(inTex.FilenameGet()+" [clip]");
+
+    // Needs extending for multi image clips
+    for (int imageNum=0; imageNum < 1; ++imageNum)
+    {
+        S32 xinc, yinc;
+        U32 xsize, ysize;
+        if (inX1>inX2)
+        {
+            xinc=-1;
+            xsize=inX1-inX2;
+        }
+        else
+        {
+            xinc=1;
+            xsize=inX2-inX1;
+        }
+        if (inY1>inY2)
+        {
+            yinc=-1;
+            ysize=inY1-inY2;
+        }
+        else
+        {
+            yinc=1;
+            ysize=inY2-inY1;
+        }
+        // Overflow check
+        COREASSERT(xsize < 0x80000000 && ysize < 0x80000000);
+
+        cerr << "inX1=" << inX1 << " inY1=" << inY1 << " inX2=" << inX2 << " inY2=" << inY2 << endl;
+        cerr << "xinc=" << xinc << " yinc=" << yinc << " xsize=" << xsize << " ysize=" << ysize << endl;
+        
+        tSize numPixels=xsize*ysize;
+        tSize u32Size=numPixels;
+
+        // TextureDef takes ownership of the block
+        TextureDef def(new U32[u32Size]);
+
+        def.WidthSet(xsize);
+        def.HeightSet(ysize);
+        def.PixelFormatSet(GL_RGBA);
+        def.PixelTypeSet(GL_UNSIGNED_BYTE);
+
+        U32 *srcBase=inTex.DataPtr();
+        U32 srcWidth=inTex.Width();
+        U32 srcHeight=inTex.Height();
+        U32 *srcPtrLim=srcBase+srcWidth*srcHeight;
+        U32 *destPtr=def.DataPtr();
+        U32 *destPtrLim=def.DataPtr()+u32Size;
+
+        for (U32 yLoop = inY1; yLoop != inY2; yLoop += yinc)
+        {
+            U32 y=yLoop;
+            if (y>=srcHeight) y = y % srcHeight;
+            
+            for (U32 xLoop = inX1; xLoop != inX2; xLoop += xinc)
+            {
+                U32 x=xLoop;
+                if (x>=srcWidth) x = x % srcWidth;
+
+                U32 *srcPtr=srcBase + x + y*srcWidth;
+                *destPtr++=*srcPtr;
+                COREASSERT(srcPtr < srcPtrLim);
+                COREASSERT(destPtr <= destPtrLim);
+            }
+        }
+        COREASSERT(destPtr == destPtrLim);
+        AddTextureDef(def);
+    }
+}
+
+const char *
+GLTextureClip::FiletypeName(void) const
+{
+    return "Clip";
+}

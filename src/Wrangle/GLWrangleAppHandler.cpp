@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.2 2002/05/10 16:40:39 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.3 2002/05/10 22:38:23 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.3  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  * Revision 1.2  2002/05/10 16:40:39  southa
  * Changed .hp files to .h
  *
@@ -25,7 +28,8 @@
 void
 GLWrangleAppHandler::Initialise(void)
 {
-    GLTexture& tex=GLData::Instance().GetTexture(0);
+    GLTextureRef texRef("0");
+    GLTexture& tex=*texRef.TextureGet();
 
     m_pWrangler = new GraphWrangler(tex);
     
@@ -42,7 +46,8 @@ GLWrangleAppHandler::Initialise(void)
 void
 GLWrangleAppHandler::Display(void)
 {
-    const GLTexture& tex=GLData::Instance().GetTexture(0);
+    GLTextureRef texRef("0");
+    GLTexture& tex=*texRef.TextureGet();
     
     glDrawBuffer(GL_BACK);
     glClearColor(0.2, 0.2, 0.2, 0.0);

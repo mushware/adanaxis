@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureSpr.cpp,v 1.5 2002/05/24 18:10:43 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.6 2002/05/25 17:16:14 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.6  2002/05/25 17:16:14  southa
+ * CoreXML implementation
+ *
  * Revision 1.5  2002/05/24 18:10:43  southa
  * CoreXML and game map
  *
@@ -92,11 +95,11 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         sUtil.Get(in, inputData, inputSize);
         
         tSize pixelMult=mode.PixelDouble()?2:1;
-        tSize memSize=4*width*height;
+        tSize u32Size=width*height;
 
-        if (mode.PixelDouble()) memSize *= pixelMult*pixelMult;
+        if (mode.PixelDouble()) u32Size *= pixelMult*pixelMult;
         
-        TextureDef def(new U8[memSize]);
+        TextureDef def(new U32[u32Size]);
 
         def.WidthSet(width*pixelMult);
         def.HeightSet(height*pixelMult);
@@ -107,10 +110,10 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         
         for (int y=0; y<def.Height(); ++y)
         {
-            U8 *outputPtr;
+            U32 *outputPtr;
             U8 *inputPtr;
             inputPtr=&inputData[((def.Height()-1-y)/pixelMult) * def.Width()/pixelMult];
-            outputPtr=&def.DataPtr()[y*def.Width()*4];
+            outputPtr=&def.DataPtr()[y*def.Width()];
 
             for (tSize x=0; x<width; ++x)
             {
@@ -118,13 +121,14 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
                 for (tSize outputCtr=0; outputCtr<pixelMult; ++outputCtr)
                 {
                     // Pack data into output buffer in RGB order
-                    *outputPtr++ = m_palette[colIndex].red;
-                    *outputPtr++ = m_palette[colIndex].green;
-                    *outputPtr++ = m_palette[colIndex].blue;
-                    *outputPtr++ = m_palette[colIndex].alpha;
+                    *outputPtr++ =
+                        m_palette[colIndex].red << 24 |
+                        m_palette[colIndex].green << 16 |
+                        m_palette[colIndex].blue << 8 |
+                        m_palette[colIndex].alpha;
                 }
             }
-            if (outputPtr > def.DataPtr() + memSize)
+            if (outputPtr > def.DataPtr() + u32Size)
             {
                 throw(LoaderFail(inFilename, "Pointer error"));
             }

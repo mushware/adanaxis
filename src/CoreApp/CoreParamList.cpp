@@ -1,6 +1,9 @@
 /*
- * $Id: CoreParamList.cpp,v 1.2 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreParamList.cpp,v 1.3 2002/05/24 16:23:09 southa Exp $
  * $Log: CoreParamList.cpp,v $
+ * Revision 1.3  2002/05/24 16:23:09  southa
+ * Config and typenames
+ *
  * Revision 1.2  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -14,15 +17,33 @@
 void
 CoreParamList::PopParam(tVal& outVal)
 {
-    m_params.front().Get(outVal);
-    m_params.pop_front();
+    if (!m_params.empty())
+    {
+        m_params.front().Get(outVal);
+        m_params.pop_front();
+    }
 }
 
 void
 CoreParamList::PopParam(string& outStr)
 {
-    m_params.front().Get(outStr);
-    m_params.pop_front();
+    if (!m_params.empty())
+    {
+        m_params.front().Get(outStr);
+        m_params.pop_front();
+    }
+}
+
+void
+CoreParamList::PopParam(U32 &outU32)
+{
+    if (!m_params.empty())
+    {
+        tVal val;
+        m_params.front().Get(val);
+        m_params.pop_front();
+        outU32=static_cast<U32>(val);
+    }
 }
 
 void

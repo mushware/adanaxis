@@ -1,6 +1,9 @@
 /*
- * $Id: mushGL.h,v 1.1 2002/05/10 16:39:34 southa Exp $
+ * $Id: mushGL.h,v 1.2 2002/05/10 22:38:23 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.2  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  * Revision 1.1  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -13,6 +16,7 @@
 
 #include "GL/GLStandard.h"
 #include "GL/GLTexture.h"
+#include "GL/GLTextureRef.h"
 #include "GL/GLData.h"
 #include "GL/GLAppHandler.h"
 #include "GL/GLUtils.h"

@@ -1,8 +1,11 @@
 #ifndef COREPARAMLIST_HP
 #define COREPARAMLIST_HP
 /*
- * $Id: CoreParamList.h,v 1.2 2002/05/24 16:23:08 southa Exp $
+ * $Id: CoreParamList.h,v 1.3 2002/05/28 13:07:04 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.3  2002/05/28 13:07:04  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.2  2002/05/24 16:23:08  southa
  * Config and typenames
  *
@@ -24,6 +27,7 @@ public:
         {m_params.push_back(inScalar);}
     void PopParam(tVal& outVal);
     void PopParam(string& outStr);
+    void PopParam(U32& outU32);
     tSize NumParams(void) {return m_params.size();}
     void Clear(void) {m_params.clear();};
     bool Empty(void) {return m_params.empty();}

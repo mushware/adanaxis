@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.h,v 1.6 2002/03/21 22:07:54 southa Exp $
+ * $Id: GLData.h,v 1.1 2002/05/10 16:41:43 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.1  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.6  2002/03/21 22:07:54  southa
  * Initial wrangle application handler
  *
@@ -29,11 +32,11 @@ class GLData
 public:
     ~GLData();
     static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
-    TextureRef AddTexture(const GLTexture& inTexture);
-    GLTexture& GetTexture(const TextureRef& inRef);
+    void TextureAdd(const string& inName, const GLTexture& inTexture);
+    GLTexture *TextureFind(const string& inName);
+    void DumpTextures(ostream& inOut);
     
 private:
-    vector<GLTexture *> m_textures;
-
+    map<string, GLTexture *> m_textures;
     static GLData *m_instance;
 };

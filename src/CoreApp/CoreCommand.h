@@ -1,8 +1,11 @@
 #ifndef CORECOMMAND_HP
 #define CORECOMMAND_HP
 /*
- * $Id: CoreCommand.h,v 1.2 2002/05/24 16:23:10 southa Exp $
+ * $Id: CoreCommand.h,v 1.3 2002/05/28 13:07:03 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.3  2002/05/28 13:07:03  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.2  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -46,6 +49,7 @@ public:
     tVal PopVal(void);
     void PopParam(string& outStr) {m_paramList.PopParam(outStr);}
     void PopParam(tVal& outVal) {m_paramList.PopParam(outVal);}
+    void PopParam(U32& outU32) {m_paramList.PopParam(outU32);}
     
     // Callback interface from bison - not public
     CoreScalar Despatch(void);

@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.1 2002/05/27 12:58:43 southa Exp $
+ * $Id: GameContract.cpp,v 1.2 2002/05/28 13:05:55 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.2  2002/05/28 13:05:55  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.1  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -106,7 +109,8 @@ GameContract::Init(void)
     // Load and decompose the pixel maps
     filename=GameGlobalConfig::Instance().Get("IMAGEPATH").String() + "/gra1.tiff";
     CoreApp::Instance().Process("loadpixmap gra1 "+filename);
-    CoreApp::Instance().Process("decompose gra1 0 0 32 32 4 4");
+    CoreApp::Instance().Process("decompose gra1 gra1-@ 32 32");
+    GLData::Instance().DumpTextures(cerr);
     
     // Load the game map
     m_gameMap=new GameMap;

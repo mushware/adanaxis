@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.3 2002/05/24 16:23:08 southa Exp $
+ * $Id: CoreStandard.h,v 1.4 2002/05/25 17:17:18 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.4  2002/05/25 17:17:18  southa
+ * CoreXML implementation
+ *
  * Revision 1.3  2002/05/24 16:23:08  southa
  * Config and typenames
  *
@@ -64,6 +67,7 @@
 using namespace std;
 
 typedef double tVal;
+typedef signed int S32;
 typedef unsigned int U32;
 typedef unsigned char U8;
 typedef unsigned int tSize;

@@ -1,6 +1,9 @@
 /*
- * $Id: GLStandard.h,v 1.1 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLStandard.h,v 1.2 2002/05/24 18:10:43 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.2  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.1  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -52,7 +55,5 @@
 #endif
 
 #include "mushCore.h"
-
-typedef tSize TextureRef;
 
 #define GLTESTING(a) a

@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.cpp,v 1.7 2002/05/10 16:41:42 southa Exp $
+ * $Id: GLData.cpp,v 1.8 2002/05/24 18:10:43 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.8  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.7  2002/05/10 16:41:42  southa
  * Changed .hp files to .h
  *
@@ -30,22 +33,45 @@ GLData *GLData::m_instance=NULL;
 
 GLData::~GLData()
 {
-    for (tSize i=0; i<m_textures.size(); ++i)
+    for (map<string, GLTexture *>::iterator p = m_textures.begin();
+        p != m_textures.end(); ++p)
     {
-        delete m_textures[i];
+        delete p->second;
     }
 }
 
-TextureRef
-GLData::AddTexture(const GLTexture& inTexture)
+void
+GLData::TextureAdd(const string& inName, const GLTexture& inTexture)
 {
-    TextureRef ref=m_textures.size();
-    m_textures.push_back(inTexture.Clone());
-    return ref;
+    if (m_textures.find(inName) != m_textures.end())
+    {
+        delete m_textures[inName];
+    }
+    m_textures[inName]=inTexture.Clone();
 }
 
-GLTexture&
-GLData::GetTexture(const TextureRef& inRef)
+GLTexture * 
+GLData::TextureFind(const string& inName)
 {
-    return *m_textures[inRef];
+    map<string, GLTexture*>::iterator p = m_textures.find(inName);
+    if (p != m_textures.end())
+    {
+        return p->second;
+    }
+    else
+    {
+        return NULL;
+    }
 }
+
+void
+GLData::DumpTextures(ostream& inOut)
+{
+    for (map<string, GLTexture*>::iterator p = m_textures.begin();
+         p != m_textures.end(); ++p)
+    {
+        inOut << p->first << ": " << *p->second << endl;
+    }
+}
+    
+    

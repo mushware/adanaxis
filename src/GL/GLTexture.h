@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.h,v 1.1 2002/05/10 16:40:38 southa Exp $
+ * $Id: GLTexture.h,v 1.2 2002/05/24 18:10:43 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.2  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.1  2002/05/10 16:40:38  southa
  * Changed .hp files to .h
  *
@@ -49,21 +52,22 @@ class GLTexture
 public:
     virtual ~GLTexture() {}
     virtual GLTexture *Clone(void) const = 0;
-    virtual GLsizei Width(const TextureRef& inRef=0) const {return TextureDefGet(inRef).Width();}
-    virtual GLsizei Height(const TextureRef& inRef=0) const {return TextureDefGet(inRef).Height();}
-    virtual GLenum PixelFormat(const TextureRef& inRef=0) const {return TextureDefGet(inRef).PixelFormat();}
-    virtual GLenum PixelType(const TextureRef& inRef=0) const {return TextureDefGet(inRef).PixelType();}
-    virtual void *DataPtr(const TextureRef& inRef=0) const {return TextureDefGet(inRef).DataPtr();}
-    virtual bool Valid(const TextureRef& inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
+    virtual GLsizei Width(U32 inRef=0) const {return TextureDefGet(inRef).Width();}
+    virtual GLsizei Height(U32 inRef=0) const {return TextureDefGet(inRef).Height();}
+    virtual GLenum PixelFormat(U32 inRef=0) const {return TextureDefGet(inRef).PixelFormat();}
+    virtual GLenum PixelType(U32 inRef=0) const {return TextureDefGet(inRef).PixelType();}
+    virtual U32 *DataPtr(U32 inRef=0) const {return TextureDefGet(inRef).DataPtr();}
+    virtual bool Valid(U32 inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
     virtual tSize NumberOf(void) const {return m_textureDefs.size();}
     virtual ostream& ostreamPrint(ostream& inOut) const;
-    
+    const string& FilenameGet(void) const {return m_inFilename;}
+        
 protected:
     class TextureDef
     {
     public:
         TextureDef(): m_dataPtr(NULL) {}
-        TextureDef(U8 *inDataPtr): m_dataPtr(inDataPtr) {}
+        TextureDef(U32 *inDataPtr): m_dataPtr(inDataPtr) {}
         ~TextureDef() {if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete[]m_dataPtr;}
         void WidthSet(GLsizei inWidth) {m_width=inWidth;}
         void HeightSet(GLsizei inHeight) {m_height=inHeight;}
@@ -74,20 +78,19 @@ protected:
         GLsizei Height(void) const {return m_height;}
         GLenum PixelFormat(void) const {return m_pixelFormat;}
         GLenum PixelType(void) const {return m_pixelType;}
-        U8 *DataPtr(void) const {return m_dataPtr;}
+        U32 *DataPtr(void) const {return m_dataPtr;}
         
     private:
         GLsizei m_width;
         GLsizei m_height;
         GLenum m_pixelFormat;
         GLenum m_pixelType;
-        U8 *m_dataPtr;
+        U32 *m_dataPtr;
         AutoMonkey m_autoMonkey;
     };
 
     virtual const char *FiletypeName(void) const = 0;
     void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
-    const string& Filename(void) const {return m_inFilename;}
     void AddTextureDef(TextureDef& inDef) {m_textureDefs.push_back(inDef);}
     void AddTextureDef(TextureDef& inDef, tSize inWhere);
     bool TextureDefValid(tSize inWhere) const;

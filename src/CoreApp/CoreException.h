@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.4 2002/05/27 12:58:42 southa Exp $
+ * $Id: CoreException.h,v 1.5 2002/05/28 13:07:03 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.5  2002/05/28 13:07:03  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.4  2002/05/27 12:58:42  southa
  * GameContract and global configs added
  *
@@ -47,6 +50,23 @@ private:
 inline ostream& operator<<(ostream &s, FileFail f)
 {
     return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
+
+class LogicFail: public exception
+{
+public:
+    LogicFail(const string &inMessage) {m_message=inMessage;}
+    ~LogicFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, LogicFail f)
+{
+    return s << f.StringGet();
 }
 
 class ConfigFail: public exception

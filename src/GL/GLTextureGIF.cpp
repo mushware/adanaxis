@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureGIF.cpp,v 1.2 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.3 2002/05/24 18:10:43 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.3  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.2  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -52,9 +55,9 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
 
             GifColorType *colors=colorMap->Colors;
             int colIndexLimit=1 << colorMap->BitsPerPixel;
-            tSize memSize=4*image->ImageDesc.Width*image->ImageDesc.Height;
+            tSize u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
 
-            TextureDef def(new U8[memSize]);
+            TextureDef def(new U32[u32Size]);
 
             def.WidthSet(image->ImageDesc.Width);
             def.HeightSet(image->ImageDesc.Height);
@@ -63,19 +66,19 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
 
             for (int y=0; y<def.Height(); ++y)
             {
-                U8 *outputPtr;
+                U32 *outputPtr;
                 char *inputPtr;
                 if (image->ImageDesc.Interlace)
                 {
                     // Not implemeted
                     throw(LoaderFail(inFilename, "Cannot load interlaced GIF"));
                     inputPtr=&image->RasterBits[(def.Height()-1-y)*def.Width()];
-                    outputPtr=&def.DataPtr()[y*def.Width()*4];
+                    outputPtr=&def.DataPtr()[y*def.Width()];
                 }
                 else
                 {
                     inputPtr=&image->RasterBits[(def.Height()-1-y)*def.Width()];
-                    outputPtr=&def.DataPtr()[y*def.Width()*4];
+                    outputPtr=&def.DataPtr()[y*def.Width()];
                 }
                 for (int x=0; x<def.Width(); ++x)
                 {
@@ -85,12 +88,13 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                         throw(LoaderFail(inFilename, "GIF color index out of range"));
                     }
                     // Pack data into output buffer in RGB order
-                    *outputPtr++ = colors[colIndex].Red;
-                    *outputPtr++ = colors[colIndex].Green;
-                    *outputPtr++ = colors[colIndex].Blue;
-                    *outputPtr++ = 255; // Alpha
+                    *outputPtr++ =
+                        colors[colIndex].Red << 24 |
+                        colors[colIndex].Green << 16 |
+                        colors[colIndex].Blue << 8 |
+                        255; // Alpha
                 }
-                if (outputPtr > def.DataPtr() + memSize)
+                if (outputPtr > def.DataPtr() + u32Size)
                 {
                     throw(LoaderFail(inFilename, "Pointer mismatch"));
                 }

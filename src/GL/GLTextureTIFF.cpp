@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureTIFF.cpp,v 1.1 2002/05/28 13:07:00 southa Exp $
+ * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.1  2002/05/28 13:07:00  southa
+ * Command parser extensions and TIFF loader
+ *
  */
 
 #include "GLTextureTIFF.h"
@@ -28,11 +31,11 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             TIFFGetField(pTiff, TIFFTAG_IMAGELENGTH, &height);
 
             tSize numPixels=width*height;
-            tSize memSize=4*numPixels;
+            tSize u32Size=numPixels;
             tiffData=reinterpret_cast<uint32 *>(_TIFFmalloc(sizeof(uint32)*width*height));
 
             // TextureDef takes ownership of the block
-            TextureDef def(new U8[memSize]);
+            TextureDef def(new U32[u32Size]);
            
             def.WidthSet(width);
             def.HeightSet(height);
@@ -42,20 +45,21 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             TIFFReadRGBAImage(pTiff, width, height, tiffData, 0);
 
             uint32 *srcData=tiffData;
-            U8 *destData=def.DataPtr();
+            U32 *destData=def.DataPtr();
             COREASSERT(srcData != NULL);
             COREASSERT(destData != NULL);
             // Convert from ABGR (from tifflib) into RGBA
             for (U32 i=0; i<numPixels; i++)
             {
                 U32 col=*srcData++;
-                *destData++=col;
-                *destData++=col>>8;
-                *destData++=col>>16;
-                *destData++=col>>24;
+                *destData++=
+                    (col & 0xff) << 24 |
+                    (col & 0xff00) << 8 |
+                    (col & 0xff0000) >> 8 |
+                    (col & 0xff000000)>> 24;
             }
             COREASSERT(srcData == tiffData+width*height);
-            COREASSERT(destData == def.DataPtr()+4*width*height);
+            COREASSERT(destData == def.DataPtr()+width*height);
             _TIFFfree(tiffData);
             tiffData=NULL;
             AddTextureDef(def);

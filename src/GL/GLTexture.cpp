@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.9 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTexture.cpp,v 1.10 2002/05/24 18:10:43 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.10  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.9  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -35,9 +38,9 @@
 ostream&
 GLTexture::ostreamPrint(ostream& inOut) const
 {
-    inOut << "source " << FiletypeName() << " '" << Filename() << "'";
+    inOut << "source " << FiletypeName() << " '" << FilenameGet() << "'";
     inOut << " images=" << NumberOf() << " ";
-    for (TextureRef i=0; i<NumberOf(); ++i)
+    for (U32 i=0; i<NumberOf(); ++i)
     {
         if (Valid(i))
         {
