@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.4 2002/06/26 15:52:27 southa Exp $
+; $Id: installer.nsi,v 1.5 2002/06/27 13:34:05 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.5  2002/06/27 13:34:05  southa
+; Fixed path to executable
+;
 ; Revision 1.4  2002/06/26 15:52:27  southa
 ; Licence fixes
 ;
@@ -95,7 +98,6 @@ err10:
 File /oname=$OUTDIR\system\zlib.dll win32libs\zlib.dll
 noerr10:
 
-File /oname=$OUTDIR\system\COPYING ..\COPYING
 File /r ..\release\*.*
 
 WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II" "" "$INSTDIR"
@@ -108,6 +110,7 @@ CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTD
 CreateDirectory "$STARTMENU\Programs\Mushware"
 CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 
 CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\uninst.exe"
+CreateShortCut "$STARTMENU\Programs\Mushware\ReadMe (Infernal Contractor II).lnk" "$INSTDIR\README.txt"
 SetOutPath "$INSTDIR"
 
 ; write out uninstaller
@@ -127,6 +130,7 @@ RMDir /r "$INSTDIR"
 Delete "$DESKTOP\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk"
+Delete "$STARTMENU\Programs\Mushware\ReadMe (Infernal Contractor II).lnk"
 FindFirst $R1 $R2 "$STARTMENU\Programs\Mushware\*.lnk"
 IfErrors err20 noerr20
 err20:
