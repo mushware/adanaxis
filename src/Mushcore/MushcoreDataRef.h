@@ -9,16 +9,19 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } B+qLU1j2lu3vz5npfJ8Dfw
+//%Header } PnzbnMrxb1qHtbgCO/gBtw
 
 /*
- * $Id: MushcoreDataRef.h,v 1.7 2003/08/21 23:09:10 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.8 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.8  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:10  southa
  * Fixed file headers
  *
@@ -69,8 +72,11 @@
 #include "MushcoreData.h"
 #include "MushcoreFail.h"
 #include "MushcoreStandard.h"
+#include "MushcoreXMLIStream.h"
+#include "MushcoreXMLOStream.h"
 
-template<class RefType> class MushcoreDataRef
+template<class RefType>
+class MushcoreDataRef
 {
 public:
     inline MushcoreDataRef();
@@ -92,6 +98,10 @@ private:
     MushcoreData<RefType> *m_dataInstance;
     mutable RefType *m_dataPtr;
     mutable Mushware::U32 m_sequenceNum;
+// classPrototypes { Modified
+public:
+    void AutoPrint(std::ostream& ioOut) const;
+// classPrototypes }
 };
 
 template<class RefType>
@@ -190,6 +200,50 @@ MushcoreDataRef<RefType>::Exists(void) const
     return (m_dataPtr != NULL);
 }
 
+// inlineHeader { Modified
+template<class RefType>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreDataRef<RefType>& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+// inlineHeader }
+
+// outOfLineFunctions { Modified
+template<class RefType>
+inline void
+MushcoreDataRef<RefType>::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "name=" << m_name << ", ";
+    if (m_dataInstance == NULL)
+    {
+        ioOut << "dataInstance=NULL" ;
+    }
+    else
+    {
+        ioOut << "dataInstance=" << m_dataInstance; // Modified not to print the entire dataset
+    }
+    ioOut << "]";
+}
+//%outOfLineFunctions }
+
+// XML operators treat this object as a single string
+template<class RefType>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreDataRef<RefType>& inObj)
+{
+    ioOut << inObj.NameGet();
+    return ioOut;
+}
+
+template<class RefType>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreDataRef<RefType>& outObj)
+{
+    ioIn >> outObj;
+}
 
 //%includeGuardEnd {
 #endif

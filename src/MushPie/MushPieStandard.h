@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rYJRsdhM+/o+yEinlvmmIg
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieStandard.h,v 1.1 2004/01/02 11:57:47 southa Exp $
+ * $Log: MushPieStandard.h,v $
+ * Revision 1.1  2004/01/02 11:57:47  southa
+ * Created
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -25,18 +28,15 @@
 #endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreStandard.h>
+#include <Mushcore/Mushcore.h>
 #include <Mushcore/MushcoreIO.h>
-#include <Mushcore/MushcoreFail.h>
 #else
 #if defined(HAVE_MUSHCORE_H)
-#include <MushcoreStandard.h>
+#include <Mushcore.h>
 #include <MushcoreIO.h>
-#include <MushcoreFail.h>
 #else
-#include "MushcoreStandard.h"
+#include "Mushcore.h"
 #include "MushcoreIO.h"
-#include "MushcoreFail.h"
 #endif
 #endif
 //%includeGuardEnd {

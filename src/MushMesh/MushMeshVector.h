@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.8 2003/10/20 13:02:54 southa Exp $
+ * $Id: MushMeshVector.h,v 1.9 2004/01/02 11:56:59 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.9  2004/01/02 11:56:59  southa
+ * MushPie created
+ *
  * Revision 1.8  2003/10/20 13:02:54  southa
  * Patch fixes and testing
  *
@@ -359,13 +362,45 @@ operator<<(std::ostream& ioOut, const MushMeshVector<T, D>& inVec)
     return ioOut;
 }
 
+template <class T, Mushware::U32 D>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushMeshVector<T, D>& outObj)
+{
+    std::vector<T> valueVec;
+    ioIn >> valueVec;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        if (i < valueVec.size())
+        {
+            outObj.Set(valueVec[i], i);
+        }
+        else
+        {
+            outObj.Set(0, i);
+        }
+    }
+}
+
+template <class T, Mushware::U32 D>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushMeshVector<T, D>& inObj)
+{
+    std::vector<T> valueVec(D);
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        valueVec[i] = inObj.Get(i);
+    }
+    ioOut << valueVec;
+    return ioOut;
+}
+
 // Convenient types
 namespace Mushware
 {
     typedef MushMeshVector<Mushware::U32, 2> t2U32;
     typedef MushMeshVector<Mushware::U32, 3> t3U32;
     typedef MushMeshVector<Mushware::U32, 4> t4U32;
-
+    
     typedef MushMeshVector<Mushware::tVal, 2> t2Val;
     typedef MushMeshVector<Mushware::tVal, 3> t3Val;
     typedef MushMeshVector<Mushware::tVal, 4> t4Val;

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YEOo+pXU/aO2Yxoi77dW6A
+//%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.10 2003/10/02 23:33:39 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.11 2003/10/03 23:39:34 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.11  2003/10/03 23:39:34  southa
+ * XML polymorphs
+ *
  * Revision 1.10  2003/10/02 23:33:39  southa
  * XML polymorphic objects
  *
@@ -69,7 +72,7 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 }
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
 {
     string tagStr;
     do
@@ -101,14 +104,14 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
         m_contentStart = dataStartPos;
         // Tag is read and m_contentStart points to the start of the tag data
 
-        if (inpObj == NULL)
+        if (outpObj == NULL)
         {
             /* Pointer is NULL, so this is a pointer to a polymorphic type
              * which we might need to allocate
             */
             if (m_contentStr.substr(m_contentStart, 4) == "NULL")
             {
-                inpObj = NULL;
+                outpObj = NULL;
                 m_contentStart += 4;;
             }
             else
@@ -121,14 +124,14 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
 
                     Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
                 }
-                if (inpObj != NULL)
+                if (outpObj != NULL)
                 {
-                    delete inpObj;
+                    delete outpObj;
                 }
                 
-                inpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
+                outpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
 
-                if (inpObj == NULL)
+                if (outpObj == NULL)
                 {
                     // Dynamic cast failed
                     Throw("Object of type "+typeStr+" not virtual enough");
@@ -137,10 +140,10 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
             
         }
 
-        if (inpObj != NULL)
+        if (outpObj != NULL)
         {
             // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
-            inpObj->AutoXMLDataProcess(*this, tagStr);
+            outpObj->AutoXMLDataProcess(*this, tagStr);
             // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
         }
         
@@ -164,39 +167,10 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
 
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& outObj)
 {
-    ObjectRead(&inObj);
+    ObjectRead(&outObj);
 }
-
-#if 0
-void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
-{
-    if (m_contentStr.substr(m_contentStart, 4) == "NULL")
-    {
-        inpObj = NULL;
-        m_contentStart += 4;;
-    }
-    else
-    {
-        string typeStr;
-        if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
-        {
-            // No type specified, so cannot create object
-
-            
-            Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
-        }
-        if (inpObj != NULL)
-        {
-            delete inpObj;
-        }
-        inpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
-        *this >> *inpObj;
-    }
-}
-#endif
 
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)
@@ -206,6 +180,17 @@ MushcoreXMLIStream::ObjectRead(U32& outU32)
     if (!(dataStream >> outU32))
     {
         Throw("Read unsigned failed");
+    }
+}    
+
+void
+MushcoreXMLIStream::ObjectRead(tVal& outObj)
+{
+    string dataStr = DataUntilTake(",)=<");
+    istringstream dataStream(dataStr);
+    if (!(dataStream >> outObj))
+    {
+        Throw("Read tVal failed");
     }
 }    
 

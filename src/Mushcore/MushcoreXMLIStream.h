@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.15 2003/10/14 10:46:05 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.16 2003/10/15 12:26:59 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.16  2003/10/15 12:26:59  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.15  2003/10/14 10:46:05  southa
  * MeshMover creation
  *
@@ -80,16 +83,17 @@ public:
     std::string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
 
-    template<class T> void ObjectRead(T *& inpObj);
+    template<class T> void ObjectRead(T *& outpObj);
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
     template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
 
-    void ObjectRead(MushcoreVirtualObject *inpObj);
-    void ObjectRead(MushcoreVirtualObject& inObj);
+    void ObjectRead(MushcoreVirtualObject *outpObj);
+    void ObjectRead(MushcoreVirtualObject& outObj);
 
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
+    void ObjectRead(Mushware::tVal& outObj);
     void ObjectRead(std::string& outStr);
 
     void Throw(const std::string& inMessage) const;
@@ -133,35 +137,80 @@ MushcoreXMLIStream::ByteTake(void)
     return m_contentStr[m_contentStart++];
 }
 
-template<class T>
 inline void
-operator>>(MushcoreXMLIStream& ioIn, T& inObj)
+operator>>(MushcoreXMLIStream& ioIn, Mushware::U32& outObj)
 {
-    ioIn.ObjectRead(inObj);
+    ioIn.ObjectRead(outObj);
 }
 
 inline void
-operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& inObj)
+operator>>(MushcoreXMLIStream& ioIn, Mushware::U8& outObj)
 {
-    ioIn.ObjectRead(inObj);
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, Mushware::tVal& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::string& outObj)
+{
+    ioIn.ObjectRead(outObj);
 }
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(T *& inpObj)
+operator>>(MushcoreXMLIStream& ioIn, std::vector<T>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::vector<T *>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+template<class T, class U>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::map<T, U>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, T *& outpObj)
+{
+    ioIn.ObjectRead(outpObj);
+}
+
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(T *& outpObj)
 {
     if (m_contentStr.substr(m_contentStart, 4) == "NULL")
     {
-        inpObj = NULL;
+        outpObj = NULL;
         m_contentStart += 4;;
     }
     else
     {
-        if (inpObj == NULL)
+        if (outpObj == NULL)
         {
-            inpObj = new T;
+            outpObj = new T;
         }
-        *this >> *inpObj;
+        *this >> *outpObj;
     }
 }
 
@@ -307,3 +356,4 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
+

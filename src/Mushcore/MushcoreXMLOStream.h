@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } f2F46K8LXdioFTimaPJHmQ
+//%Header } pOEqFQn/JjDtnwtX47X7WQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.15 2003/10/11 10:39:19 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.16 2003/10/15 12:26:59 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.16  2003/10/15 12:26:59  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.15  2003/10/11 10:39:19  southa
  * gcc3.3 fixes
  *
@@ -126,11 +129,12 @@ operator<<(MushcoreXMLOStream& ioOut, const char *inChar)
     return ioOut;
 }
 
+// Numeric operator uses largest numerical type
 inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const Mushware::U32& inU32)
+operator<<(MushcoreXMLOStream& ioOut, const double& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite();
-    ioOut.OStreamGet() << inU32;
+    ioOut.OStreamGet() << inObj;
     ioOut.ClosingTagWrite(localTag);
     return ioOut;
 }
