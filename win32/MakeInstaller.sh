@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: MakeInstaller.sh,v 1.1 2002/08/07 12:36:14 southa Exp $
+# $Log: MakeInstaller.sh,v $
+# Revision 1.1  2002/08/07 12:36:14  southa
+# Created
+#
 
 # Script for generating the win32 installer.
 
@@ -30,6 +33,8 @@ echo "Building win32 installer for version $version"
 cp -p win32/ic2_app.ico release/system
 echo 'Converting text and XML file to DOS line endings'
 find release \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
+echo 'Converting LICENCE file to DOS line endings'
+unix2dos win32/LICENCE
 echo 'Building win32 installer'
 cd win32
 makensis installer.nsi
