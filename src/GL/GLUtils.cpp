@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.9 2002/06/04 17:02:24 southa Exp $
+ * $Id: GLUtils.cpp,v 1.10 2002/06/05 12:28:05 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.10  2002/06/05 12:28:05  southa
+ * Map rendered using traits
+ *
  * Revision 1.9  2002/06/04 17:02:24  southa
  * More work
  *
@@ -84,13 +87,11 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
     tVal width=glutGet(GLUT_WINDOW_WIDTH);
     tVal height=glutGet(GLUT_WINDOW_HEIGHT);
     gluOrtho2D(-width/2, width/2, -height/2, height/2);
-    
-#if 1
+
     gluLookAt(inX, inY, 0.1, // eye position
               inX, inY, 0, // point we're looking at
               sin(inAngle),cos(inAngle),0 // direction of up
               );
-#endif
 }    
 
 void
@@ -320,7 +321,7 @@ GLUtils::GameInit(void)
     glDisable(GL_LINE_SMOOTH);
     // This kills glut on cygwin
     // glutDisplayFunc(SafetyHandler);
-    glutGameModeString("640x480:16@60");
+    glutGameModeString("1024x768:32@85");
     glutEnterGameMode();
     glutDisplayFunc(SafetyHandler);
     CheckGLError();
