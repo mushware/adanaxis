@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.5 2002/05/10 16:41:42 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.6 2002/05/10 22:38:23 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.6  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  * Revision 1.5  2002/05/10 16:41:42  southa
  * Changed .hp files to .h
  *
@@ -100,7 +103,7 @@ GLAppHandler::Display(void)
 
     glScalef(0.5*lineWidth, 0.5*lineWidth, 0.5*lineWidth);
     glColor3f(lineWidth,lineWidth,lineWidth);
-    for (Size i=0; i < str.size(); i++)
+    for (tSize i=0; i < str.size(); i++)
     {
         glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i]);
         if (str[i] == ' ')

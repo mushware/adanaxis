@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreException.h,v 1.2 2002/05/24 16:23:09 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.2  2002/05/24 16:23:09  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -79,7 +82,7 @@ class TestFail: public exception
 public:
     TestFail(const string &inMessage) {m_message=inMessage;}
     ~TestFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
@@ -87,6 +90,24 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, TestFail f)
+{
+    return s << f.StringGet();
+}
+
+
+class XMLFail: public exception
+{
+public:
+    XMLFail(const string &inMessage) {m_message=inMessage;}
+    ~XMLFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, XMLFail f)
 {
     return s<<f.SPrint();
 }

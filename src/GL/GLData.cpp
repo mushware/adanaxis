@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.cpp,v 1.6 2002/03/21 22:07:54 southa Exp $
+ * $Id: GLData.cpp,v 1.7 2002/05/10 16:41:42 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.7  2002/05/10 16:41:42  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.6  2002/03/21 22:07:54  southa
  * Initial wrangle application handler
  *
@@ -20,14 +23,14 @@
  * Initial texture loading
  *
  */
-
+  
 #include "GLData.h"
 
 GLData *GLData::m_instance=NULL;
 
 GLData::~GLData()
 {
-    for (Size i=0; i<m_textures.size(); ++i)
+    for (tSize i=0; i<m_textures.size(); ++i)
     {
         delete m_textures[i];
     }

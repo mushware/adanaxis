@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureGIF.cpp,v 1.1 2002/02/25 23:03:51 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.2 2002/05/10 16:41:43 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.2  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/02/25 23:03:51  southa
  * Subclassed GLTexture
  *
@@ -49,7 +52,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
 
             GifColorType *colors=colorMap->Colors;
             int colIndexLimit=1 << colorMap->BitsPerPixel;
-            Size memSize=4*image->ImageDesc.Width*image->ImageDesc.Height;
+            tSize memSize=4*image->ImageDesc.Width*image->ImageDesc.Height;
 
             TextureDef def(new U8[memSize]);
 

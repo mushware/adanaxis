@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.h,v 1.11 2002/05/09 17:08:07 southa Exp $
+ * $Id: GLTexture.h,v 1.1 2002/05/10 16:40:38 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.1  2002/05/10 16:40:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.11  2002/05/09 17:08:07  southa
  * Fixed for gcc 3.0
  *
@@ -52,7 +55,7 @@ public:
     virtual GLenum PixelType(const TextureRef& inRef=0) const {return TextureDefGet(inRef).PixelType();}
     virtual void *DataPtr(const TextureRef& inRef=0) const {return TextureDefGet(inRef).DataPtr();}
     virtual bool Valid(const TextureRef& inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
-    virtual Size NumberOf(void) const {return m_textureDefs.size();}
+    virtual tSize NumberOf(void) const {return m_textureDefs.size();}
     virtual ostream& ostreamPrint(ostream& inOut) const;
     
 protected:
@@ -86,9 +89,9 @@ protected:
     void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
     const string& Filename(void) const {return m_inFilename;}
     void AddTextureDef(TextureDef& inDef) {m_textureDefs.push_back(inDef);}
-    void AddTextureDef(TextureDef& inDef, Size inWhere);
-    bool TextureDefValid(Size inWhere) const;
-    const TextureDef& TextureDefGet(Size inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
+    void AddTextureDef(TextureDef& inDef, tSize inWhere);
+    bool TextureDefValid(tSize inWhere) const;
+    const TextureDef& TextureDefGet(tSize inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
     vector<TextureDef> m_textureDefs;

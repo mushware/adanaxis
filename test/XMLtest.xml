@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Test XML file -->
+<testdata>
+<data values="3">123,234,345</data>
+<data values="4">1,2,3,4</data>
+</testdata>

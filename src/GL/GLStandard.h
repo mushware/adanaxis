@@ -1,6 +1,9 @@
 /*
- * $Id: GLStandard.h,v 1.9 2002/05/08 16:31:21 southa Exp $
+ * $Id: GLStandard.h,v 1.1 2002/05/10 16:41:43 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.1  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.9  2002/05/08 16:31:21  southa
  * Created API directory
  *
@@ -50,6 +53,6 @@
 
 #include "mushCore.h"
 
-typedef Size TextureRef;
+typedef tSize TextureRef;
 
 #define GLTESTING(a) a

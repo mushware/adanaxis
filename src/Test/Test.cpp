@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.5 2002/05/09 18:01:39 southa Exp $
+ * $Id: Test.cpp,v 1.6 2002/05/10 16:39:35 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.6  2002/05/10 16:39:35  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/05/09 18:01:39  southa
  * Rebuild under cygwin
  *
@@ -253,3 +256,54 @@ Test::Test3(void)
     }
     delete &monkey5;
 }
+
+void
+Test::Test4(void)
+{
+    CoreConfig config;
+
+    config.Set("elem1", CoreScalar("elem1value"));
+    config.Set("elem2", CoreScalar(1.456));
+    config.Set("elem3", CoreScalar(1));
+
+    if (config.Get("elem1").String() != string("elem1value"))
+    {
+        throw TestFail("Config fault 1");
+    }
+    if (config.Get("elem1") != CoreScalar("elem1value"))
+    {
+        throw TestFail("Config fault 2");
+    }
+    if (config.Get("elem2").Val() != 1.456)
+    {
+        throw TestFail("Config fault 3");
+    }
+    if (config.Get("elem2") != CoreScalar(1.456))
+    {
+        throw TestFail("Config fault 4");
+    }
+    if (config.Get("elem3") != CoreScalar(1))
+    {
+        throw TestFail("Config fault 5");
+    }
+
+    config.Set("elem3", CoreScalar(2));
+    
+    if (config.Get("elem3") != 2)
+    {
+        throw TestFail("Config fault 6");
+    }
+}
+
+void
+Test::Test5(void)
+{
+    string inFilename("../test/XMLtest.xml");
+    ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
+    if (!in) throw(LoaderFail(inFilename, "Could not open file"));
+
+    CoreXML parser;
+    parser.ParseStream(in);
+    
+}
+

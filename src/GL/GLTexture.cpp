@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.8 2002/02/26 17:01:38 southa Exp $
+ * $Id: GLTexture.cpp,v 1.9 2002/05/10 16:41:43 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.9  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.8  2002/02/26 17:01:38  southa
  * Completed Sprite loader
  *
@@ -54,7 +57,7 @@ GLTexture::ostreamPrint(ostream& inOut) const
 }
 
 void
-GLTexture::AddTextureDef(TextureDef& inDef, Size inWhere)
+GLTexture::AddTextureDef(TextureDef& inDef, tSize inWhere)
 {
     if (m_textureDefs.size() < inWhere+1)
     {
@@ -64,7 +67,7 @@ GLTexture::AddTextureDef(TextureDef& inDef, Size inWhere)
 }
 
 bool
-GLTexture::TextureDefValid(Size inWhere) const
+GLTexture::TextureDefValid(tSize inWhere) const
 {
     if (inWhere >= m_textureDefs.size()) return false;
     return m_textureDefs[inWhere].Valid();

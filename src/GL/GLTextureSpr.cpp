@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureSpr.cpp,v 1.3 2002/05/09 17:08:07 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.4 2002/05/10 16:41:43 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.4  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/05/09 17:08:07  southa
  * Fixed for gcc 3.0
  *
@@ -37,7 +40,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
     
     if (numSprites > 0xffff) throw (LoaderFail(inFilename, "Corrupt sprite file - first word insane"));
 
-    for (Size spriteCtr=0; spriteCtr<numSprites; ++spriteCtr)
+    for (tSize spriteCtr=0; spriteCtr<numSprites; ++spriteCtr)
     {
         sUtil.ZeroIndex(0);
         U32 offsetNext=sUtil.LittleEndianU32Get(in);
@@ -78,15 +81,15 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         IFTEXTESTING(cerr << "bitsPerPixel=" << mode.BitsPerPixel() << ", ");
         IFTEXTESTING(cerr << "pixelDouble=" << mode.PixelDouble() << "]" << endl);
 
-        Size inputSize=(height*width*mode.BitsPerPixel()+7)/8;
+        tSize inputSize=(height*width*mode.BitsPerPixel()+7)/8;
 
         U8 inputData[inputSize];
         
         sUtil.ConsumeToIndex(in, 0, dataOffset);
         sUtil.Get(in, inputData, inputSize);
         
-        Size pixelMult=mode.PixelDouble()?2:1;
-        Size memSize=4*width*height;
+        tSize pixelMult=mode.PixelDouble()?2:1;
+        tSize memSize=4*width*height;
 
         if (mode.PixelDouble()) memSize *= pixelMult*pixelMult;
         
@@ -106,10 +109,10 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
             inputPtr=&inputData[((def.Height()-1-y)/pixelMult) * def.Width()/pixelMult];
             outputPtr=&def.DataPtr()[y*def.Width()*4];
 
-            for (Size x=0; x<width; ++x)
+            for (tSize x=0; x<width; ++x)
             {
                 U8 colIndex=*inputPtr++;
-                for (Size outputCtr=0; outputCtr<pixelMult; ++outputCtr)
+                for (tSize outputCtr=0; outputCtr<pixelMult; ++outputCtr)
                 {
                     // Pack data into output buffer in RGB order
                     *outputPtr++ = m_palette[colIndex].red;
@@ -151,7 +154,7 @@ GLTextureSpr::GeneratePalette(void)
 {
     assert(m_palette==NULL);
     m_palette=new Palette[256];
-    for (Size i=0; i<256; i++)
+    for (tSize i=0; i<256; i++)
     {
         m_palette[i].red   = 0x11 * (((i>>1) & 8) | (i&7));
         m_palette[i].green = 0x11 * (((i>>3) & 0xC) | (i&3));

@@ -1,6 +1,9 @@
 /*
- * $Id: TestCommandHandler.cpp,v 1.4 2002/05/09 18:01:39 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.5 2002/05/10 16:39:35 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.5  2002/05/10 16:39:35  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.4  2002/05/09 18:01:39  southa
  * Rebuild under cygwin
  *
@@ -33,7 +36,13 @@ TestCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv& ioEnv)
         if (str == "1") Test::Test1();
         else if (str == "2") Test::Test2();
         else if (str == "3") Test::Test3();
-        else return false;
+        else if (str == "4") Test::Test4();
+        else if (str == "5") Test::Test5();
+        else
+        {
+            cerr << "Unknown test " << str << endl;
+            return false;
+        }
     }
     catch (TestFail& f)
     {

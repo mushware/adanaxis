@@ -1,6 +1,9 @@
 /*
- * $Id: Test.h,v 1.4 2002/05/09 18:01:39 southa Exp $
+ * $Id: Test.h,v 1.1 2002/05/10 16:39:35 southa Exp $
  * $Log: Test.h,v $
+ * Revision 1.1  2002/05/10 16:39:35  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.4  2002/05/09 18:01:39  southa
  * Rebuild under cygwin
  *
@@ -23,6 +26,8 @@ public:
     static void Test1(void);
     static void Test2(void);
     static void Test3(void);
+    static void Test4(void);
+    static void Test5(void);
 
 private:
 };
