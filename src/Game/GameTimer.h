@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.17 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameTimer.h,v 1.18 2002/12/29 20:30:54 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.18  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.17  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -66,7 +69,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameFrameTimer.h"
 

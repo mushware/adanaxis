@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMessageControlData.h,v 1.3 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameMessageControlData.h,v 1.4 2002/12/20 13:17:41 southa Exp $
  * $Log: GameMessageControlData.h,v $
+ * Revision 1.4  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -24,7 +27,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameControlFrameDef.h"
 

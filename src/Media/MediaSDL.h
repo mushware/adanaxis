@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.13 2002/12/20 13:17:45 southa Exp $
+ * $Id: MediaSDL.h,v 1.14 2002/12/29 20:30:55 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.14  2002/12/29 20:30:55  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.13  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -79,7 +82,7 @@
 #endif
 #endif
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class MediaSDL
 {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.h,v 1.9 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameRouter.h,v 1.10 2002/12/29 20:30:54 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.10  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.9  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -42,7 +45,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "mushMedia.h"
 

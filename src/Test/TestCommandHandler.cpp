@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.13 2002/12/29 21:00:01 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.14 2003/01/09 14:57:09 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.14  2003/01/09 14:57:09  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 21:00:01  southa
  * More build fixes
  *
@@ -53,7 +56,7 @@
  */
  
 #include "TestCommandHandler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "Test.h"
 

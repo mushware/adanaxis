@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.h,v 1.10 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.11 2003/01/09 14:57:00 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.11  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -45,7 +48,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameCommandHandler
 {

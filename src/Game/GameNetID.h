@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetID.h,v 1.4 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameNetID.h,v 1.5 2003/01/09 14:57:02 southa Exp $
  * $Log: GameNetID.h,v $
+ * Revision 1.5  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.4  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -27,7 +30,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushMedia.h"
 
 #include "GameDefClient.h"

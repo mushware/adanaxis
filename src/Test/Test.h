@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Test.h,v 1.8 2002/12/20 13:17:48 southa Exp $
+ * $Id: Test.h,v 1.9 2003/01/09 14:57:09 southa Exp $
  * $Log: Test.h,v $
+ * Revision 1.9  2003/01/09 14:57:09  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -51,7 +54,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class Test
 {

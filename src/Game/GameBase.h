@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameBase.h,v 1.14 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameBase.h,v 1.15 2002/12/29 20:30:53 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.15  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.14  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -57,7 +60,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameAppHandler;
 

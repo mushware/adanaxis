@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.h,v 1.5 2002/12/29 20:30:55 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.6 2003/01/09 14:57:05 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.6  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.5  2002/12/29 20:30:55  southa
  * Work for gcc 3.1 build
  *
@@ -30,7 +33,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "MediaSDL.h"
 

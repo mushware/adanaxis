@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.h,v 1.14 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameDefClient.h,v 1.15 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.15  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -57,7 +60,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameDef.h"
 #include "GamePiecePlayer.h"

@@ -1,7 +1,5 @@
 #ifndef MUSHCOREAPPHANDLER_H
 #define MUSHCOREAPPHANDLER_H
-#ifndef COREAPPHANDLER_H
-#define COREAPPHANDLER_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.h,v 1.9 2002/12/20 13:17:31 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -69,5 +70,4 @@ protected:
 private:
     static MushcoreAppHandler *m_instance;
 };
-#endif
 #endif

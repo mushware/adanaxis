@@ -1,7 +1,5 @@
 #ifndef MUSHCOREPOSIX_H
 #define MUSHCOREPOSIX_H
-#ifndef COREPOSIX_H
-#define COREPOSIX_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcorePOSIX.h,v 1.10 2002/12/20 13:17:33 southa Exp $
+ * $Id: MushcorePOSIX.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcorePOSIX.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/20 13:17:33  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -77,5 +78,4 @@
 #include <unistd.h>
 #endif
 
-#endif
 #endif

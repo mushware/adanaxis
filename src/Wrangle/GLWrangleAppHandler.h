@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLWrangleAppHandler.h,v 1.8 2002/10/22 20:42:08 southa Exp $
+ * $Id: GLWrangleAppHandler.h,v 1.9 2002/12/20 13:17:49 southa Exp $
  * $Log: GLWrangleAppHandler.h,v $
+ * Revision 1.9  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -49,7 +52,7 @@
  */
 
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class Wrangler;

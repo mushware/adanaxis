@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.6 2002/12/03 20:28:18 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.7 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.7  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/03 20:28:18  southa
  * Network, player and control work
  *
@@ -33,7 +36,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLModeDef;
 

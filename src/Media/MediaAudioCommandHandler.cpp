@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.11 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.12 2003/01/09 14:57:04 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.12  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -49,7 +52,7 @@
 #include "MediaAudioCommandHandler.h"
 
 #include "MediaAudio.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 using namespace Mushware;
 using namespace std;

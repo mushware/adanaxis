@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.h,v 1.10 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.11 2003/01/09 14:56:58 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.11  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -56,7 +59,7 @@
 
 #include "GLUTAppHandler.h"
 #include "SDLAppHandler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLTest1AppHandler : public SDLAppHandler
 {

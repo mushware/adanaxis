@@ -1,7 +1,5 @@
 #ifndef MUSHCORECOMMANDHANDLER_H
 #define MUSHCORECOMMANDHANDLER_H
-#ifndef CORECOMMANDHANDLER_H
-#define CORECOMMANDHANDLER_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommandHandler.h,v 1.7 2002/12/20 13:17:31 southa Exp $
+ * $Id: MushcoreCommandHandler.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreCommandHandler.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -59,5 +60,4 @@
 
 typedef 
 MushcoreScalar (*MushcoreCommandHandler)(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
-#endif
 #endif

@@ -1,7 +1,5 @@
 #ifndef MUSHCOREINTERPRETER_H
 #define MUSHCOREINTERPRETER_H
-#ifndef COREINTERPRETER_H
-#define COREINTERPRETER_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.10 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -82,5 +83,4 @@ private:
     
     static MushcoreInterpreter *m_instance;
 };
-#endif
 #endif

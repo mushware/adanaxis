@@ -1,7 +1,5 @@
 #ifndef MUSHCOREDATA_H
 #define MUSHCOREDATA_H
-#ifndef COREDATA_H
-#define COREDATA_H
 
 /*****************************************************************************
  *
@@ -14,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.17 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreData.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -294,5 +295,4 @@ MushcoreData<RefType>::SequenceNumGet(void) const
     return m_sequenceNum;
 }
 
-#endif
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.25 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameFloorMap.h,v 1.26 2003/01/09 14:57:02 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.26  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.25  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -108,7 +111,7 @@
 #include "GameLightLinks.h"
 #include "GameMap.h"
 #include "GameSolidMap.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameTileMap;

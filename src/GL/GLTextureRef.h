@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureRef.h,v 1.11 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureRef.h,v 1.12 2002/12/29 20:30:53 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.12  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.11  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -50,7 +53,7 @@
 
 #include "GLStandard.h"
 #include "GLUtils.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLTexture;
 

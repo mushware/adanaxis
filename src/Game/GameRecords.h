@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.h,v 1.8 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameRecords.h,v 1.9 2003/01/09 14:57:03 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.9  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -40,7 +43,7 @@
  */
 
 #include "GameTimer.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameRecords : public MushcorePickle, protected MushcoreXMLHandler
 {

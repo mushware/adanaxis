@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.16 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.17 2003/01/09 14:56:59 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.17  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.16  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -62,7 +65,7 @@
  */
 
 #include "GLTextureSpr.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 using namespace Mushware;
 using namespace std;

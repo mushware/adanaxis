@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameControlFrameDef.h,v 1.3 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameControlFrameDef.h,v 1.4 2002/12/20 13:17:38 southa Exp $
  * $Log: GameControlFrameDef.h,v $
+ * Revision 1.4  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -24,7 +27,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameControlFrameDef
 {

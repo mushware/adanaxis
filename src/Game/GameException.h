@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameException.h,v 1.2 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameException.h,v 1.3 2002/12/29 20:30:53 southa Exp $
  * $Log: GameException.h,v $
+ * Revision 1.3  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.2  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -21,7 +24,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "Mustl.h"
 

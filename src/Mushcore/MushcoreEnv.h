@@ -1,7 +1,5 @@
 #ifndef MUSHCOREENV_H
 #define MUSHCOREENV_H
-#ifndef COREENV_H
-#define COREENV_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.14 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -98,5 +99,4 @@ private:
     std::vector<MushcoreConfig *> m_config;
     static MushcoreEnv *m_instance;
 };
-#endif
 #endif

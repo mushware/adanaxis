@@ -1,9 +1,5 @@
 #ifndef MUSHCORESTREAMUTIL_H
 #define MUSHCORESTREAMUTIL_H
-#ifndef CORESTREAMUTIL_H
-#define CORESTREAMUTIL_H
-#ifndef STREAMUTIL_H
-#define STREAMUTIL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -15,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.h,v 1.6 2002/12/20 13:17:34 southa Exp $
+ * $Id: MushcoreStreamUtil.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreStreamUtil.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -71,6 +70,4 @@ private:
     std::vector<int> m_zero;
     int m_ctr;
 };
-#endif
-#endif
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.h,v 1.17 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameTypeRace.h,v 1.18 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.18  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -72,7 +75,7 @@
 #include "GameRecords.h"
 #include "GameTimer.h"
 #include "GameType.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameChequePoint;
 class GameEvent;

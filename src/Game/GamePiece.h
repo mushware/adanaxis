@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.14 2002/12/29 20:30:54 southa Exp $
+ * $Id: GamePiece.h,v 1.15 2003/01/09 14:57:03 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.15  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -57,7 +60,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLPoint;
 class GameControlFrameDef;

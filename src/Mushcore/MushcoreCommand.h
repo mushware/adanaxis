@@ -1,7 +1,5 @@
 #ifndef MUSHCORECOMMAND_H
 #define MUSHCORECOMMAND_H
-#ifndef CORECOMMAND_H
-#define CORECOMMAND_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.h,v 1.12 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -103,5 +104,4 @@ private:
     std::string m_string;
     MushcoreParamList m_paramList;
 };
-#endif
 #endif

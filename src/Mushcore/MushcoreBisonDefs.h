@@ -1,7 +1,5 @@
 #ifndef MUSHCOREBISONDEFS_H
 #define MUSHCOREBISONDEFS_H
-#ifndef COREBISONDEFS_H
-#define COREBISONDEFS_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -22,5 +20,4 @@
 #define	EOS	261
 #define	END_OF_FILE	262
 
-#endif
 #endif

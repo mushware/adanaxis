@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.24 2002/12/29 20:59:58 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.25 2003/01/09 14:57:04 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.25  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.24  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -115,7 +118,7 @@
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"
 

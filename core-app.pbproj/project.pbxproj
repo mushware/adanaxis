@@ -1249,6 +1249,25 @@
 			settings = {
 			};
 		};
+		7A12D61603D0493900A80164 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			name = Mushcore.h;
+			path = API/Mushcore.h;
+			refType = 4;
+		};
+		7A12D61703D0493900A80164 = {
+			fileRef = 7A12D61603D0493900A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A12D61803D0493900A80164 = {
+			fileRef = 7A12D61603D0493900A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 //7A0
 //7A1
 //7A2
@@ -1826,13 +1845,6 @@
 			path = /System/Library/Frameworks/QuickTime.framework;
 			refType = 0;
 		};
-		F52B3BF8028C25CF0179D0A8 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			name = mushCore.h;
-			path = API/mushCore.h;
-			refType = 4;
-		};
 		F52B3BF9028C25CF0179D0A8 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -1840,20 +1852,8 @@
 			path = API/mushGL.h;
 			refType = 4;
 		};
-		F52B3BFA028C25CF0179D0A8 = {
-			fileRef = F52B3BF8028C25CF0179D0A8;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F52B3BFB028C25CF0179D0A8 = {
 			fileRef = F52B3BF9028C25CF0179D0A8;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F52B3BFC028C25CF0179D0A8 = {
-			fileRef = F52B3BF8028C25CF0179D0A8;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2659,8 +2659,8 @@
 		};
 		F5456B4D0289845101446FAA = {
 			children = (
-				F52B3BF8028C25CF0179D0A8,
 				F52B3BF9028C25CF0179D0A8,
+				7A12D61603D0493900A80164,
 				F5539E3502B4D0A6010AB4A9,
 				F5457B9602AF8D8501E3BBF3,
 				F5AAD5F903AF495B01A80164,
@@ -3569,7 +3569,6 @@
 		F547DFD502395BCC01A7C23C = {
 			buildActionMask = 2147483647;
 			files = (
-				F52B3BFC028C25CF0179D0A8,
 				F52B3BFD028C25CF0179D0A8,
 				F52B3C64028C267B0179D0A8,
 				F52B3C65028C267B0179D0A8,
@@ -4760,7 +4759,6 @@
 				F593972B028C0D57016230BF,
 				F593972C028C0D58016230BF,
 				F593972E028C0D5B016230BF,
-				F52B3BFA028C25CF0179D0A8,
 				F52B3BFB028C25CF0179D0A8,
 				F52B3C5B028C267B0179D0A8,
 				F52B3C5C028C267B0179D0A8,
@@ -4968,6 +4966,7 @@
 				7A05C43A03CB43AC00A80164,
 				7A05C43C03CB43AC00A80164,
 				7A05C43E03CB43AC00A80164,
+				7A12D61703D0493900A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6645,6 +6644,7 @@
 				7A05C47C03CB43AC00A80164,
 				7A05C47E03CB43AC00A80164,
 				7A05C48003CB43AC00A80164,
+				7A12D61803D0493900A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
-* $Id: GLFontRef.h,v 1.5 2002/12/20 13:17:35 southa Exp $
+* $Id: GLFontRef.h,v 1.6 2002/12/29 20:30:52 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.6  2002/12/29 20:30:52  southa
+* Work for gcc 3.1 build
+*
 * Revision 1.5  2002/12/20 13:17:35  southa
 * Namespace changes, licence changes and source conditioning
 *
@@ -30,7 +33,7 @@
 *
 */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLFont;
 

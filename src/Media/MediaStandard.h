@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaStandard.h,v 1.6 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaStandard.h,v 1.7 2002/12/20 13:17:45 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.7  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -33,5 +36,5 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #endif

@@ -1,7 +1,5 @@
 #ifndef MUSHCOREBUILTINHANDLER_H
 #define MUSHCOREBUILTINHANDLER_H
-#ifndef COREBUILTINHANDLER_H
-#define COREBUILTINHANDLER_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.h,v 1.6 2002/12/20 13:17:31 southa Exp $
+ * $Id: MushcoreBuiltinHandler.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreBuiltinHandler.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -56,5 +57,4 @@ protected:
 
 private:
 };
-#endif
 #endif

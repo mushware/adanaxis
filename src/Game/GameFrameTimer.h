@@ -11,14 +11,17 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFrameTimer.h,v 1.1 2002/12/10 19:00:17 southa Exp $
+ * $Id: GameFrameTimer.h,v 1.2 2002/12/20 13:17:40 southa Exp $
  * $Log: GameFrameTimer.h,v $
+ * Revision 1.2  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameFrameTimer
 {

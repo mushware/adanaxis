@@ -1,7 +1,5 @@
 #ifndef MUSHCOREXML_H
 #define MUSHCOREXML_H
-#ifndef COREXML_H
-#define COREXML_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.h,v 1.15 2003/01/07 17:13:40 southa Exp $
+ * $Id: MushcoreXML.h,v 1.1 2003/01/09 14:57:08 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.1  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.15  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -135,5 +136,4 @@ private:
     bool m_threaded;
     Mushware::U32 m_line;
 };
-#endif
 #endif

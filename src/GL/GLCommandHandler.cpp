@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.22 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.23 2003/01/09 14:56:58 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.23  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.22  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -88,7 +91,7 @@
 #include "GLTextureSpr.h"
 #include "GLTextureTIFF.h"
 #include "GLUTAppHandler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 using namespace Mushware;
 using namespace std;

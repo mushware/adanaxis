@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLModeDef.h,v 1.4 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLModeDef.h,v 1.5 2002/12/29 20:30:52 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.5  2002/12/29 20:30:52  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -28,7 +31,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLModeDef
 {

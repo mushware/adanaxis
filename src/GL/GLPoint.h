@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.17 2002/12/29 20:30:52 southa Exp $
+ * $Id: GLPoint.h,v 1.18 2003/01/09 14:56:58 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.18  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -68,7 +71,7 @@
 
 #include "GLRenderable.h"
 #include "GLStandard.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLPoint : public GLRenderable
 {

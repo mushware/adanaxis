@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLights.h,v 1.5 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLLights.h,v 1.6 2002/12/20 13:17:35 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.6  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -31,7 +34,7 @@
 */
 
 #include "GLStandard.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GLLightDef.h"
 

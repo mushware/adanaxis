@@ -1,7 +1,5 @@
 #ifndef MUSHCOREGLOBALCONFIG_H
 #define MUSHCOREGLOBALCONFIG_H
-#ifndef COREGLOBALCONFIG_H
-#define COREGLOBALCONFIG_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.8 2002/12/20 13:17:33 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/20 13:17:33  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -52,5 +53,4 @@ public:
 private:
     static MushcoreGlobalConfig *m_instance;
 };
-#endif
 #endif

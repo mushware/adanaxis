@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileSpec.h,v 1.3 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTileSpec.h,v 1.4 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTileSpec.h,v $
+ * Revision 1.4  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -24,7 +27,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameTileTraits;

@@ -1,7 +1,5 @@
 #ifndef MUSHCORESCRIPT_H
 #define MUSHCORESCRIPT_H
-#ifndef CORESCRIPT_H
-#define CORESCRIPT_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScript.h,v 1.10 2002/12/29 20:30:52 southa Exp $
+ * $Id: MushcoreScript.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreScript.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -79,5 +80,4 @@ inline std::ostream& operator<<(std::ostream &inOut, const MushcoreScript& inMus
     inMushcoreScript.ostreamPrint(inOut);
     return inOut;
 }
-#endif
 #endif

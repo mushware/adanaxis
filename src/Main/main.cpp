@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.23 2002/12/29 20:59:58 southa Exp $
+ * $Id: main.cpp,v 1.24 2003/01/09 14:57:04 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.24  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.23  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -82,7 +85,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushPlatform.h"
 
 #ifdef HAVE_CONFIG_H

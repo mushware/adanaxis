@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.h,v 1.7 2002/12/29 20:30:52 southa Exp $
+ * $Id: GLFont.h,v 1.8 2003/01/09 14:56:58 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.8  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -36,7 +39,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GLTextureRef.h"
 

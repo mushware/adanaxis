@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.h,v 1.9 2002/12/03 20:28:17 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.10 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.10  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -51,7 +54,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class PlatformInputUtils
 {

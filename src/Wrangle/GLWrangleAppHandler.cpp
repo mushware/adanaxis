@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.13 2002/12/20 13:17:49 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.14 2002/12/29 21:00:01 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.14  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.13  2002/12/20 13:17:49  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -60,7 +63,7 @@
 
 #include "GLWrangleAppHandler.h"
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 #include "GraphWrangler.h"

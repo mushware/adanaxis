@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.h,v 1.8 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameMotion.h,v 1.9 2003/01/09 14:57:02 southa Exp $
  * $Log: GameMotion.h,v $
+ * Revision 1.9  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -39,7 +42,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 #include "GameMotionSpec.h"

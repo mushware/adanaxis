@@ -1,7 +1,5 @@
 #ifndef MUSHCOREENVOUTPUT_H
 #define MUSHCOREENVOUTPUT_H
-#ifndef COREENVOUTPUT_H
-#define COREENVOUTPUT_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnvOutput.h,v 1.2 2002/12/20 13:17:32 southa Exp $
+ * $Id: MushcoreEnvOutput.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreEnvOutput.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.2  2002/12/20 13:17:32  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -36,5 +37,4 @@ public:
 private:
     MushcoreEnv& m_envRef;
 };
-#endif
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGlobalConfig.h,v 1.7 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameGlobalConfig.h,v 1.8 2003/01/09 14:57:02 southa Exp $
  * $Log: GameGlobalConfig.h,v $
+ * Revision 1.8  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -36,7 +39,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameGlobalConfig : public MushcoreConfig
 {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.h,v 1.11 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameProtocol.h,v 1.12 2003/01/09 14:57:03 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.12  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -48,7 +51,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameControlFrameDef.h"
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.13 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameTraits.h,v 1.14 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.14  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -54,7 +57,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameTraits : public MushcorePickle, protected MushcoreXMLHandler
 {

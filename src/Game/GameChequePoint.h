@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.8 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameChequePoint.h,v 1.9 2003/01/09 14:56:59 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.9  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -39,7 +42,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameEventStandingOn;
 

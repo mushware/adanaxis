@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.8 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.9 2003/01/09 14:57:04 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.9  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -39,7 +42,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class MediaAudioCommandHandler
 {

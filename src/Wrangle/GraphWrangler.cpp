@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GraphWrangler.cpp,v 1.11 2002/12/20 13:17:49 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.12 2002/12/29 21:00:01 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.12  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.11  2002/12/20 13:17:49  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -56,7 +59,7 @@
  */
 
 #include "GraphWrangler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 using namespace Mushware;

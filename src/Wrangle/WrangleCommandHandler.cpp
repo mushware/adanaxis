@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.10 2002/12/29 21:00:01 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.11 2003/01/09 14:57:09 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.11  2003/01/09 14:57:09  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/29 21:00:01  southa
  * More build fixes
  *
@@ -53,7 +56,7 @@
  */
 
 #include "WrangleCommandHandler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 #include "GLWrangleAppHandler.h"

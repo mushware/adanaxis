@@ -1,7 +1,5 @@
 #ifndef MUSHCOREBISON_H
 #define MUSHCOREBISON_H
-#ifndef COREBISON_H
-#define COREBISON_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBison.h,v 1.9 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreBison.h,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreBison.h,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -78,5 +79,4 @@ private:
     MushcoreFlex m_flex;
     MushcoreCommand *m_command;
 };
-#endif
 #endif

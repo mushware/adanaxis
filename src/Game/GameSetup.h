@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.h,v 1.8 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameSetup.h,v 1.9 2002/12/29 20:30:54 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.9  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.8  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -39,7 +42,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameBase.h"
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameView.h,v 1.6 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameView.h,v 1.7 2002/12/20 13:17:44 southa Exp $
  * $Log: GameView.h,v $
+ * Revision 1.7  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -33,7 +36,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 #include "GameOverPlot.h"

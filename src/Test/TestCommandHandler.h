@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.h,v 1.7 2002/12/20 13:17:49 southa Exp $
+ * $Id: TestCommandHandler.h,v 1.8 2003/01/09 14:57:09 southa Exp $
  * $Log: TestCommandHandler.h,v $
+ * Revision 1.8  2003/01/09 14:57:09  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/20 13:17:49  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -45,7 +48,7 @@
  *
  */
  
-#include "mushCore.h"
+#include "Mushcore.h"
  
 class TestCommandHandler
 {

@@ -1,7 +1,5 @@
 #ifndef MUSHCOREUTIL_H
 #define MUSHCOREUTIL_H
-#ifndef COREUTIL_H
-#define COREUTIL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreUtil.h,v 1.9 2002/12/29 20:30:52 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.1 2003/01/09 14:57:08 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.1  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -59,5 +60,4 @@ public:
     static std::string TranslateFilename(const std::string& inStr) {return inStr;}
     static std::string AppDirFilename(const std::string& inStr);
 };
-#endif
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.h,v 1.9 2002/12/29 20:30:52 southa Exp $
+ * $Id: GLLightDef.h,v 1.10 2003/01/09 14:56:58 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.10  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -47,7 +50,7 @@
 #include "GLPoint.h"
 #include "GLStandard.h"
 #include "GLVector.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLLightDef : public MushcorePickle, protected MushcoreXMLHandler
 {

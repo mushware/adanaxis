@@ -1,7 +1,5 @@
 #ifndef MUSHCOREFLEX_H
 #define MUSHCOREFLEX_H
-#ifndef COREFLEX_H
-#define COREFLEX_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFlex.h,v 1.9 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreFlex.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreFlex.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -65,5 +66,4 @@ private:
     MushcoreScalar m_scalar;
     bool m_eofFound;
 };
-#endif
 #endif

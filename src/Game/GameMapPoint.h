@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMapPoint.h,v 1.5 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMapPoint.h,v 1.6 2002/12/20 13:17:40 southa Exp $
  * $Log: GameMapPoint.h,v $
+ * Revision 1.6  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -30,7 +33,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameSpacePoint;

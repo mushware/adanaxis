@@ -1,7 +1,5 @@
 #ifndef MUSHCOREDATAREF_H
 #define MUSHCOREDATAREF_H
-#ifndef COREDATAREF_H
-#define COREDATAREF_H
 
 /*****************************************************************************
  *
@@ -14,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreDataRef.h,v 1.8 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -168,4 +169,3 @@ MushcoreDataRef<RefType>::Exists(void) const
 
 #endif
 
-#endif

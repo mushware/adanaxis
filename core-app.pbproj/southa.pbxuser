@@ -3,20 +3,6 @@
 	7A41084803CDC4A300A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F59396D5028C0CA6016230BF;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {551, 233}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
-			TOCViewSelectedItems = (
-				PBXTargetSummarySettingsModule,
-			);
-		};
 	};
 	7A41084903CDC4A300A80164 = {
 		fRef = 7A05C3EB03CB43AC00A80164;
@@ -78,20 +64,6 @@
 	7A41084F03CDC4A300A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F59396D5028C0CA6016230BF;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {551, 233}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
-			TOCViewSelectedItems = (
-				PBXTargetSummarySettingsModule,
-			);
-		};
 	};
 	7A41085003CDC4A300A80164 = {
 		fRef = F52B3BF8028C25CF0179D0A8;
@@ -1901,6 +1873,13 @@
 		rType = 0;
 		vrLen = 1036;
 		vrLoc = 551;
+	};
+	F52B3BF8028C25CF0179D0A8 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = mushCore.h;
+		path = "/Users/southa/core-app/src/API/mushCore.h";
+		refType = 0;
 	};
 	F52B3C19028C26530179D0A8 = {
 		fileEncoding = 30;
@@ -9362,7 +9341,135 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 63815790;
+			PBXPerProjectTemplateStateSaveDate = 63981469;
+			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
+				ContentSize = "{594, 303}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {594, 280}}";
+					Split0 = {
+						ActiveTab = 1;
+						ActiveTabName = PBXRunSessionModule;
+						Collapsed = YES;
+						Frame = "{{0, 0}, {594, 280}}";
+						Split0 = {
+							Frame = "{{1e+06, 1e+06}, {594, 0}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {804, 321}}";
+						};
+						Tab1 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {594, 274}}";
+								Split0 = {
+									Frame = "{{0, 24}, {594, 250}}";
+									Split0 = {
+										Frame = "{{0, 0}, {290, 250}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											62.123,
+										);
+										Frame = "{{299, 0}, {295, 250}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {594, 274}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {594, 274}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {594, 274}}";
+							};
+						};
+						Tab3 = {
+							BuildMessageFrame = "{{0, 0}, {614, 262}}";
+							BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
+							BuildTranscriptFrameExpanded = YES;
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						Tab4 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 386}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 386}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				NavBarShownByDefault = YES;
+				StatusViewVisible = YES;
+				Template = F5534CB2020F3F8A0DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{4, 633}";
+			};
 			"PBXTemplateGeometry-F5CA7EC9015C08ED0DCA290F" = {
 				ContentSize = "{665, 594}";
 				LeftSlideOut = {
@@ -17137,7 +17244,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 63815790;
+			PBXWorkspaceStateSaveDate = 63981469;
 		};
 		perUserProjectItems = {
 			7A41084803CDC4A300A80164 = 7A41084803CDC4A300A80164;
@@ -31907,7 +32014,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.h: 48";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1466;
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 164;
@@ -48328,7 +48435,7 @@
 		fRef = F5939693028C067F016230BF;
 		isa = PBXTextBookmark;
 		name = "GameTest.cpp: 66";
-		rLen = 15;
+		rLen = 14;
 		rLoc = 1227;
 		rType = 0;
 		vrLen = 858;
@@ -51197,7 +51304,7 @@
 		isa = PBXTextBookmark;
 		name = "GLLights.h: 40";
 		rLen = 0;
-		rLoc = 1001;
+		rLoc = 997;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 0;
@@ -57603,7 +57710,7 @@
 		fRef = F5939693028C067F016230BF;
 		isa = PBXTextBookmark;
 		name = "GameTest.cpp: 66";
-		rLen = 15;
+		rLen = 14;
 		rLoc = 1227;
 		rType = 0;
 		vrLen = 721;
@@ -57643,7 +57750,7 @@
 		fRef = F5939693028C067F016230BF;
 		isa = PBXTextBookmark;
 		name = "GameTest.cpp: 66";
-		rLen = 15;
+		rLen = 14;
 		rLoc = 1227;
 		rType = 0;
 		vrLen = 721;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTest.cpp,v 1.9 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTest.cpp,v 1.10 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTest.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -41,7 +44,7 @@
  */
 
 #include "GameTest.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 using namespace Mushware;

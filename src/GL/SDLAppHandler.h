@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.h,v 1.18 2002/12/20 13:17:37 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.19 2003/01/09 14:56:59 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.19  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.18  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -69,7 +72,7 @@
 #include "GLAppHandler.h"
 #include "GLKeys.h"
 #include "GLModeDef.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLKeyboardSignal;
 

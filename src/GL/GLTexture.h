@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.h,v 1.14 2002/12/29 20:30:53 southa Exp $
+ * $Id: GLTexture.h,v 1.15 2003/01/09 14:56:58 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.15  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -92,7 +95,7 @@
 
 #include "GLStandard.h"
 #include "GLTextureDef.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLTexture
 {

@@ -1,7 +1,5 @@
 #ifndef MUSHCOREAPPSIGNAL_H
 #define MUSHCOREAPPSIGNAL_H
-#ifndef COREAPPSIGNAL_H
-#define COREAPPSIGNAL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppSignal.h,v 1.7 2002/12/20 13:17:31 southa Exp $
+ * $Id: MushcoreAppSignal.h,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAppSignal.h,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -63,5 +64,4 @@ public:
 private:
     Mushware::U32 m_sigNumber;
 };
-#endif
 #endif

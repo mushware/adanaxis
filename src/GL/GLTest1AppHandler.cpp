@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.23 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.24 2003/01/09 14:56:58 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.24  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.23  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -84,7 +87,7 @@
 
 #include "GLTest1AppHandler.h"
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 using namespace Mushware;

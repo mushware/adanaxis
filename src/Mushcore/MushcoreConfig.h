@@ -1,7 +1,5 @@
 #ifndef MUSHCORECONFIG_H
 #define MUSHCORECONFIG_H
-#ifndef CORECONFIG_H
-#define CORECONFIG_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.h,v 1.17 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -85,5 +86,4 @@ public:
 private:
     std::map<std::string, MushcoreScalar> m_config;
 };
-#endif
 #endif

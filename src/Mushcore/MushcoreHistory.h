@@ -1,7 +1,5 @@
 #ifndef MUSHCOREHISTORY_H
 #define MUSHCOREHISTORY_H
-#ifndef COREHISTORY_H
-#define COREHISTORY_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreHistory.h,v 1.4 2002/12/20 13:17:33 southa Exp $
+ * $Id: MushcoreHistory.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreHistory.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.4  2002/12/20 13:17:33  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -305,5 +306,4 @@ MushcoreHistory<IndexType, StoreType>::ForwardMove(Mushware::U32& ioIndex) const
     
     return ioIndex < m_invalidIndex && ioIndex != m_bufferIndex;
 }
-#endif
 #endif

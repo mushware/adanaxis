@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameEvent.h,v 1.5 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameEvent.h,v 1.6 2002/12/20 13:17:39 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.6  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -30,7 +33,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameFloorMap.h"
 

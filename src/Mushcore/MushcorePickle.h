@@ -1,7 +1,5 @@
 #ifndef MUSHCOREPICKLE_H
 #define MUSHCOREPICKLE_H
-#ifndef COREPICKLE_H
-#define COREPICKLE_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcorePickle.h,v 1.13 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcorePickle.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcorePickle.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -69,5 +70,4 @@ public:
     virtual char *TypeNameGet(void) const = 0;
     void Unpickle(const std::string& inFilename);
 };
-#endif
 #endif

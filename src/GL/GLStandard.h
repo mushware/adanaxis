@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLStandard.h,v 1.10 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLStandard.h,v 1.11 2003/01/09 14:56:58 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.11  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -99,7 +102,7 @@
 #endif
 
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #define GLTESTING(a) a
 #endif

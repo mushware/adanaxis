@@ -1,7 +1,5 @@
 #ifndef MUSHCOREAPP_H
 #define MUSHCOREAPP_H
-#ifndef COREAPP_H
-#define COREAPP_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreApp.h,v 1.10 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreApp.h,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreApp.h,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -83,6 +84,4 @@ private:
     std::list<MushcoreChildRecord> m_children;
 };
 
-    
-#endif
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.h,v 1.8 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMotionSpec.h,v 1.9 2002/12/20 13:17:41 southa Exp $
  * $Log: GameMotionSpec.h,v $
+ * Revision 1.9  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -39,7 +42,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameMotionSpec

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.h,v 1.9 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.10 2003/01/09 14:56:58 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.10  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -51,7 +54,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLCommandHandler
 {

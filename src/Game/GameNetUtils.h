@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.h,v 1.9 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameNetUtils.h,v 1.10 2003/01/09 14:57:03 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.10  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -42,7 +45,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class MustlAddress;
 class MustlData;

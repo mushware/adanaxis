@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.110 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameContract.cpp,v 1.111 2003/01/09 14:57:00 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.111  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.110  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -342,7 +345,7 @@
 
 #include "GameContract.h"
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMap.h,v 1.10 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameMap.h,v 1.11 2003/01/07 17:13:43 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.11  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.10  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -27,7 +30,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 template<class T> class GameMap

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTest.h,v 1.9 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTest.h,v 1.10 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.10  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -42,7 +45,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GameBase.h"
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLArray.h,v 1.4 2002/10/22 20:41:59 southa Exp $
+ * $Id: GLArray.h,v 1.5 2002/12/20 13:17:34 southa Exp $
  * $Log: GLArray.h,v $
+ * Revision 1.5  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -28,7 +31,7 @@
  */
 
 #include "GLVector.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 template<class tSrc, class tDest>
 class GLArray

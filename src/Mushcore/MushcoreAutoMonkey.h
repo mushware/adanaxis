@@ -1,7 +1,5 @@
 #ifndef MUSHCOREAUTOMONKEY_H
 #define MUSHCOREAUTOMONKEY_H
-#ifndef COREAUTOMONKEY_H
-#define COREAUTOMONKEY_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.6 2002/12/20 13:17:31 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -64,5 +65,4 @@ private:
     void Swap(MushcoreAutoMonkey& inMonkey);
     int *m_refCtrPtr;
 };
-#endif
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.17 2002/12/05 13:20:10 southa Exp $
+ * $Id: GameAppHandler.h,v 1.18 2002/12/20 13:17:37 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.18  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.17  2002/12/05 13:20:10  southa
  * Client link handling
  *
@@ -66,7 +69,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameBase;

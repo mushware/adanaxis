@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.22 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameData.h,v 1.23 2003/01/09 14:57:01 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.23  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.22  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -81,7 +84,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameTileMap;
 class GameFloorMap;

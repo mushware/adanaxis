@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Wrangler.h,v 1.7 2002/10/22 20:42:08 southa Exp $
+ * $Id: Wrangler.h,v 1.8 2002/12/20 13:17:49 southa Exp $
  * $Log: Wrangler.h,v $
+ * Revision 1.8  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -48,7 +51,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class Wrangler
 {

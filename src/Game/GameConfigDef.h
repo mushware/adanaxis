@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.h,v 1.6 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameConfigDef.h,v 1.7 2003/01/09 14:57:00 southa Exp $
  * $Log: GameConfigDef.h,v $
+ * Revision 1.7  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -33,7 +36,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GameConfigDef
 {

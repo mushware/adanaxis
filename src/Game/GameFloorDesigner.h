@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.h,v 1.11 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.12 2002/12/29 20:30:53 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.12  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.11  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -48,7 +51,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 #include "GameFloorMap.h"

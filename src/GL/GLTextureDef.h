@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureDef.h,v 1.5 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureDef.h,v 1.6 2003/01/09 14:56:59 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.6  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.5  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -31,7 +34,7 @@
  */
 
 #include "GLStandard.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 
 class GLTextureDef
 {

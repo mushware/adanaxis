@@ -1,7 +1,5 @@
 #ifndef MUSHCORENAMESPACE_H
 #define MUSHCORENAMESPACE_H
-#ifndef CORENAMESPACE_H
-#define CORENAMESPACE_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreNamespace.h,v 1.3 2002/12/20 13:17:33 southa Exp $
+ * $Id: MushcoreNamespace.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreNamespace.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.3  2002/12/20 13:17:33  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -30,5 +31,4 @@
 
 using namespace std;
 using namespace Mushware;
-#endif
 #endif

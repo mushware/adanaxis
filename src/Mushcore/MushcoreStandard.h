@@ -1,7 +1,5 @@
 #ifndef MUSHCORESTANDARD_H
 #define MUSHCORESTANDARD_H
-#ifndef CORESTANDARD_H
-#define CORESTANDARD_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.25 2002/12/29 20:30:52 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.25  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -182,5 +183,4 @@ namespace Mushware
 
 #define COREASSERT(exp) assert(exp)
 
-#endif
 #endif

@@ -1,7 +1,5 @@
 #ifndef MUSHCORESCALAR_H
 #define MUSHCORESCALAR_H
-#ifndef CORESCALAR_H
-#define CORESCALAR_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.16 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.16  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -151,5 +152,4 @@ inline std::ostream& operator<<(std::ostream& inOut, const MushcoreScalar& inSca
     inScalar.ostreamPrint(inOut);
     return inOut;
 }
-#endif
 #endif

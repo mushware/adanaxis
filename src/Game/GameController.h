@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.h,v 1.10 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameController.h,v 1.11 2002/12/20 13:17:38 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.11  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -45,7 +48,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameControlFrameDef;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.11 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.12 2003/01/09 14:56:59 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.12  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -49,7 +52,7 @@
 #include "GameCommandHandler.h"
 
 #include "GameAppHandler.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

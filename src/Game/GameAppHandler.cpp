@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.41 2002/12/29 20:59:53 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.42 2003/01/09 14:56:59 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.42  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.41  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -138,7 +141,7 @@
 
 #include "GameAppHandler.h"
 
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 #include "mushPlatform.h"
 

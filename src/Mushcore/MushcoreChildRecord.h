@@ -1,7 +1,5 @@
 #ifndef MUSHCORECHILDRECORD_H
 #define MUSHCORECHILDRECORD_H
-#ifndef CORECHILDRECORD_H
-#define CORECHILDRECORD_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreChildRecord.h,v 1.7 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreChildRecord.h,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreChildRecord.h,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -88,5 +89,4 @@ private:
     int m_inPipe;
     int m_outPipe;
 };
-#endif
 #endif

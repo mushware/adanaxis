@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.h,v 1.13 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameDialogue.h,v 1.14 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.14  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -55,7 +58,7 @@
  */
 
 #include "GameMotion.h"
-#include "mushCore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 #include "mushMedia.h"
 

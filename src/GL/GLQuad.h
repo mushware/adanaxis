@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLQuad.h,v 1.7 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLQuad.h,v 1.8 2002/12/20 13:17:35 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.8  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -36,7 +39,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GLPoint.h"
 #include "GLRenderable.h"

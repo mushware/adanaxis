@@ -1,7 +1,5 @@
 #ifndef MUSHCOREFUNCTION_H
 #define MUSHCOREFUNCTION_H
-#ifndef COREFUNCTION_H
-#define COREFUNCTION_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.h,v 1.11 2002/12/29 20:30:51 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreFunction.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:30:51  southa
  * Work for gcc 3.1 build
  *
@@ -84,5 +85,4 @@ inline std::ostream& operator<<(std::ostream &inOut, const MushcoreFunction& inF
     return inOut;
 }
 
-#endif
 #endif

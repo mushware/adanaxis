@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreRegExp.h,v 1.8 2002/12/20 13:17:33 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/20 13:17:33  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,9 +47,6 @@
  * Initial wrangle command
  *
  */
-
-#ifndef COREREGEXP_H
-#define COREREGEXP_H
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -100,5 +100,4 @@ inline std::ostream& operator<<(std::ostream &s, MushcoreRegExpFail f)
     return s<<f.SPrint();
 }
 
-#endif
 #endif

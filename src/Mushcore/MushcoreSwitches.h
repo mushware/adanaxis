@@ -1,7 +1,5 @@
 #ifndef MUSHCORESWITCHES_H
 #define MUSHCORESWITCHES_H
-#ifndef CORESWITCHES_H
-#define CORESWITCHES_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -13,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSwitches.h,v 1.7 2002/12/20 13:17:34 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -67,5 +68,4 @@
 #define IFFLEXTESTING(a)
 #endif
 
-#endif
 #endif

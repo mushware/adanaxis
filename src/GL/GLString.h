@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLString.h,v 1.7 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLString.h,v 1.8 2002/12/29 20:30:52 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.8  2002/12/29 20:30:52  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.7  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -36,7 +39,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "Mushcore.h"
 
 #include "GLFontRef.h"
 #include "GLRenderable.h"
