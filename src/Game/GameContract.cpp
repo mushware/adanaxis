@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.70 2002/10/10 18:25:14 southa Exp $
+ * $Id: GameContract.cpp,v 1.71 2002/10/10 22:47:57 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.71  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.70  2002/10/10 18:25:14  southa
  * Light links and test lights
  *
@@ -249,6 +252,7 @@
 #include "GameTypeRace.h"
 #include "GameEvent.h"
 #include "GameRewards.h"
+#include "GameSpacePoint.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -460,6 +464,9 @@ GameContract::RunningDisplay(void)
     GLUtils::PopMatrix();
     GLUtils::PushMatrix();
 
+    m_floorMap->SetLightingFor(GameSpacePoint(lookAtPoint.pos));
+    GLUtils::ModulationSet(GLUtils::kModulationLighting);
+    
     GLUtils gl;
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);

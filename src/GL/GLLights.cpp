@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.6 2002/10/10 18:25:13 southa Exp $
+ * $Id: GLLights.cpp,v 1.7 2002/10/10 22:47:57 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.7  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.6  2002/10/10 18:25:13  southa
  * Light links and test lights
  *
@@ -125,7 +128,7 @@ GLLights::LightEnable(U32 inNum)
         glLightf(lightEnum, GL_LINEAR_ATTENUATION, def.LinearGet());
         glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, def.QuadraticGet());
         m_cache[slot].modified=false;
-        cerr << "Wrote data for light " << inNum << " to slot " << slot << endl;
+        // cerr << "Wrote data for light " << inNum << " to slot " << slot << endl;
     }        
 
     const GLVector& pos = def.PositionGet();
@@ -186,7 +189,7 @@ GLLights::LightCache(U32 inNum)
     m_cache[slot].modified=true;
     COREASSERT(!m_cache[slot].enabled);
     m_cacheTime++;
-    cerr << "Took light cache slot " << slot << " for light " << inNum << endl;
+    // cerr << "Took light cache slot " << slot << " for light " << inNum << endl;
     return slot;
 }
 

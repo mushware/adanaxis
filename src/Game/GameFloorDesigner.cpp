@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.20 2002/10/08 17:13:17 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.21 2002/10/08 21:44:10 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.21  2002/10/08 21:44:10  southa
+ * 3D maps
+ *
  * Revision 1.20  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -142,7 +145,7 @@ GameFloorDesigner::Display(void)
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
-
+    glEnable(GL_NORMALIZE);
     GameMotionSpec lookAtSpec(m_pos[m_currentMap], 0);
 
     GameMapPoint aimingPoint(GLPoint(lookAtSpec.pos / floorMap->StepGet()));
@@ -150,15 +153,17 @@ GameFloorDesigner::Display(void)
     GLUtils::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
     GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
     GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
-    
+//GLData::Instance().LightsGet()->InvalidateAll();
     GameMotionSpec lookAtPoint;
-    lookAtPoint.pos=GLPoint(lookAtSpec.pos*m_masterScale);
+    lookAtPoint.pos=GLPoint(lookAtSpec.pos);
     lookAtPoint.angle=lookAtSpec.angle;
 
     GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
     // m_masterScale is the proportion of the longest axis of the screen
     // taken up by one map piece
+    glMatrixMode(GL_PROJECTION);
     GLUtils::Scale(m_masterScale, m_masterScale, 1);
+    glMatrixMode(GL_MODELVIEW);
 
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
@@ -360,6 +365,13 @@ GameFloorDesigner::Move(void)
         }
         Paste(GLPoint(controlState.mouseX, controlState.mouseY));
     }
+    else
+    {
+        if (m_primaryButtonState)
+        {
+            m_floorMaps[m_currentMap]->LightMapInvalidate();
+        }
+    }        
     m_primaryButtonState = primaryState;
     m_secondaryButtonState = secondaryState;
 

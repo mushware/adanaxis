@@ -13,8 +13,11 @@
 ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: GameMap.h,v 1.7 2002/10/10 18:25:15 southa Exp $
+ * $Log: GameMap.h,v $
+ * Revision 1.7  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  */
 
 #include "mushCore.h"
@@ -65,6 +68,10 @@ template<class T>
 inline const T&
 GameMap<T>::ElementGet(U32 inX, U32 inY) const
 {
+    if (inX >= m_xSize)
+    {
+        cerr << "inX=" << inX << ", m_xSize=" << m_xSize << endl;
+    }
     COREASSERT(inX < m_xSize);
     COREASSERT(inY < m_ySize);
     return m_map[inY * m_xSize + inX];

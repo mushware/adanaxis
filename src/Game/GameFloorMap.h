@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.17 2002/10/08 17:13:18 southa Exp $
+ * $Id: GameFloorMap.h,v 1.18 2002/10/10 18:25:15 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.18  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  * Revision 1.17  2002/10/08 17:13:18  southa
  * Tiered maps
  *
@@ -103,7 +106,7 @@ public:
     typedef U32 tMapValue;
     typedef vector<tMapValue> tMapVector;
     
-    GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL) {}
+    GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL), m_lightMapValid(false) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     const tMapVector& At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
@@ -117,7 +120,8 @@ public:
     const GameMapPoint SpaceToMap(const GameSpacePoint inPoint) const;
     const GameMapPoint SpaceToMapFractional(const GameSpacePoint inPoint) const;
     const GameSpacePoint MapToSpace(const GameMapPoint inPoint) const;
-    
+    bool IsInMap(const GameMapPoint inPoint) const;
+
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
     void RenderLightMap(const GameMapArea& inArea) const;
@@ -129,9 +133,12 @@ public:
     tVal PermeabilityGet(const GameMapPoint &inPoint) const;
     tVal AdhesionGet(const GameSpacePoint &inPoint) const;
     tVal AdhesionGet(const GameMapPoint &inPoint) const;
+    void SetLightingFor(const GameSpacePoint &inPoint) const;
+    void SetLightingFor(const GameMapPoint &inPoint) const;
     void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
     const GameSolidMap& SolidMapGet(void) const;
     void SolidMapInvalidate(void) { m_solidMapValid=false; }
+    void LightMapInvalidate(void) { m_lightMapValid=false; }
    
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.28 2002/10/08 17:13:17 southa Exp $
+ * $Id: GLUtils.h,v 1.29 2002/10/08 21:44:09 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.29  2002/10/08 21:44:09  southa
+ * 3D maps
+ *
  * Revision 1.28  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -211,5 +214,6 @@ private:
     static bool m_polygonSmoothing;
     static bool m_useLighting;
     static tVal m_eyeDistance;
+    static tVal m_screenScale;
 };
 #endif

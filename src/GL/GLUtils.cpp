@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.35 2002/10/10 18:25:13 southa Exp $
+ * $Id: GLUtils.cpp,v 1.36 2002/10/10 22:47:57 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.36  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.35  2002/10/10 18:25:13  southa
  * Light links and test lights
  *
@@ -139,7 +142,8 @@ GLUtils::tDepthType GLUtils::m_depthState=GLUtils::kDepthInvalid;
 GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
 bool GLUtils::m_polygonSmoothing=false;
 bool GLUtils::m_useLighting=true;
-tVal GLUtils::m_eyeDistance=20;
+tVal GLUtils::m_eyeDistance=60; // Controls how much perspective there is
+tVal GLUtils::m_screenScale=20;  // m_screenScale axis units cover the longest screen axis
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -215,11 +219,15 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
     glOrtho(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y,-100,100);
-    gluLookAt(inX, inY, -1.0, // eye position
-              inX, inY, -2.0, // reference for -z axis
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    gluLookAt(inX, inY, m_eyeDistance, // eye position
+              inX, inY, 0, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
               );
-    glMatrixMode(GL_MODELVIEW);
+
 }
 
 void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
@@ -228,8 +236,9 @@ void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
     tVal nearClip=1.0;
-    glFrustum(-screenRatios.x*nearClip,screenRatios.x*nearClip,
-              -screenRatios.y*nearClip,screenRatios.y*nearClip,
+    tVal scale=m_screenScale/m_eyeDistance*nearClip;
+    glFrustum(-screenRatios.x*scale,screenRatios.x*scale,
+              -screenRatios.y*scale,screenRatios.y*scale,
                    nearClip, // zNear clipping plane distance from viewer
                    m_eyeDistance+1.0 // zFar clipping plane distance from viewer
                    );
@@ -260,7 +269,7 @@ GLUtils::ScreenRatiosGet(void)
 tVal
 GLUtils::ScreenScaleGet(void)
 {
-    return m_eyeDistance;
+    return m_screenScale;
 }
 
 tVal
@@ -282,7 +291,7 @@ GLUtils::DisplayPrologue(void)
 {
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     glFinish();
-PlatformMiscUtils::VBLWait();
+    PlatformMiscUtils::VBLWait();
     glHandler.SwapBuffers();
     glDrawBuffer(GL_BACK);
 }
@@ -557,10 +566,10 @@ GLUtils::ModulationSet(tModulationType inValue)
                     GLfloat specular[4]={1.0,1.0,1.0,1};
                     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
-                    GLfloat diffuse[4]={0.2,0.2,0.2,1};
+                    GLfloat diffuse[4]={0.1,0.1,0.1,1};
                     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 
-                    glMaterialf(GL_FRONT, GL_SHININESS, 30);
+                    glMaterialf(GL_FRONT, GL_SHININESS, 128);
 
                     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                     glEnable(GL_LIGHTING);

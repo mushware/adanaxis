@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.29 2002/10/10 18:25:15 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.30 2002/10/10 22:47:57 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.30  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.29  2002/10/10 18:25:15  southa
  * Light links and test lights
  *
@@ -154,6 +157,12 @@ GameFloorMap::MapToSpace(const GameMapPoint inPoint) const
     return GameSpacePoint(inPoint * GLPoint(m_xstep, m_ystep));
 }
 
+bool
+GameFloorMap::IsInMap(const GameMapPoint inPoint) const
+{
+    return inPoint.x > 0 && inPoint.x < m_xsize && inPoint.y > 0 && inPoint.y < m_ysize;
+}
+
 void
 GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight)
 {
@@ -185,10 +194,8 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
 
     minPoint.MakeInteger();
     maxPoint.MakeInteger();
-    
-    GLPoint point;
 
-    bool isHighlight = inHighlight.IsEmpty();
+    bool isHighlight = !inHighlight.IsEmpty();
 
     bool highlightOn=false;
     GLUtils::ModulationSet(GLUtils::kModulationLighting);
@@ -215,6 +222,9 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     }
 
     GLLights *pLights=GLData::Instance().LightsGet();
+    pLights->DisableAll();
+    GameLightLinks lastLinks;
+    U32 lightChangeCtr=0;
     
     U32 m_numTiers=5;
     U32 tierHighlightSize=inTierHighlight.size();
@@ -247,9 +257,9 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                     {
                         if (isHighlight)
                         {
-                            if (inHighlight.IsWithin(point))
+                            if (inHighlight.IsWithin(GLPoint(x,y)))
                             {
-                                tVal clockNow=timeNow+point.x*xv+point.y*yv;
+                                tVal clockNow=timeNow+x*xv+y*yv;
                                 tVal redBri=0.4+0.35*sin(clockNow/200.0);
                                 tVal greenBri=0.4+0.35*sin(clockNow/201.0);
                                 tVal blueBri=0.4+0.35*sin(clockNow/202.0);
@@ -270,25 +280,33 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                             (*m_tileMap->TraitsPtrGet(mapVector[tier]));
 
                         const GameLightLinks& links=m_lightMap.ElementGet(x,y);
-                        for (U32 link=0; link<links.SizeGet(); ++link)
-                        {
-                            gl.MoveTo(0,0);                            
-                            pLights->LightEnable(links.LinkGet(link));
-                        }
 
+                        if (links != lastLinks)
+                        {
+                            U32 lastLinksSize=lastLinks.SizeGet();
+                            for (U32 link=0; link<lastLinksSize && lastLinks.ValidGet(link); ++link)
+                            {
+                                pLights->LightDisable(lastLinks.LinkGet(link));
+                            }
+                            U32 linksSize=links.SizeGet();
+                            for (U32 link=0; link<linksSize && links.ValidGet(link); ++link)
+                            {
+                                gl.MoveTo(0,0);
+                                pLights->LightEnable(links.LinkGet(link));
+                            }
+                            lastLinks=links;
+                            lightChangeCtr++;
+                        }
+                            
                         gl.MoveTo(x, y);
                         tileTraits.Render();
-
-                        for (U32 link=0; link<links.SizeGet(); ++link)
-                        {
-                            pLights->LightDisable(links.LinkGet(link));
-                        }
                     }
                 }
             }
         }
     }
     glPopMatrix();
+    // cerr << "Light changes=" << lightChangeCtr << endl;
 }
 
 void
@@ -376,6 +394,33 @@ GameFloorMap::AdhesionGet(const GameSpacePoint &inPoint) const
     }
     return m_solidMap.AdhesionGet(inPoint);
 }
+
+void
+GameFloorMap::SetLightingFor(const GameSpacePoint& inPoint) const
+{
+    GameMapPoint mapPoint(SpaceToMap(inPoint));
+    return SetLightingFor(mapPoint);
+}
+
+void
+GameFloorMap::SetLightingFor(const GameMapPoint &inPoint) const
+{
+    GLLights *pLights=GLData::Instance().LightsGet();
+    pLights->DisableAll();
+    if (IsInMap(inPoint))
+    {
+        if (!m_lightMapValid)
+        {
+            RebuildLightMap();
+        }
+        const GameLightLinks& links=m_lightMap.ElementGet(inPoint.x,inPoint.y);
+        U32 linksSize=links.SizeGet();
+        for (U32 link=0; link<linksSize && links.ValidGet(link); ++link)
+        {
+            pLights->LightEnable(links.LinkGet(link));
+        }
+    }
+}    
 
 const GameSolidMap&
 GameFloorMap::SolidMapGet(void) const
@@ -492,14 +537,22 @@ GameFloorMap::RebuildLightMap(void) const
                 tVal distance = (here - lightDefs[light].PositionGet()).Magnitude();
 
                 bool slotFound=false;
-                bool linkSlot=0;
+                U32 linkSlot=0;
                 tVal linkDistance;
                 
                 for (U32 link=0; link<linksSize; ++link)
                 {
                     // Looping over each light link slot for this map position
-                    if (!lightLinks.ValidGet(link) ||
-                        distance < lightLinks.DistanceGet(link))
+                    if (!lightLinks.ValidGet(link))
+                    {
+                        // Empty slot, so fill immediately
+                        slotFound=true;
+                        linkSlot=link;
+                        linkDistance=distance;
+                        break;
+                    }
+                    
+                    if (distance < lightLinks.DistanceGet(link))
                     {
                         // If we could replace this link because we're closer...
                         if (!slotFound ||
@@ -519,6 +572,7 @@ GameFloorMap::RebuildLightMap(void) const
                     lightLinks.ValidSet(linkSlot, true);
                 }
             }
+            lightLinks.Sort();
             m_lightMap.ElementSet(lightLinks, x, y);
         }
     }

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameLightLinks.h,v 1.1 2002/10/10 18:25:15 southa Exp $
+ * $Log: GameLightLinks.h,v $
+ * Revision 1.1  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  */
 
 #include "mushCore.h"
@@ -10,7 +13,7 @@ class GameLightLinks
 public:
     enum
     {
-        kNumLinks=2
+        kNumLinks=4
     };
     class tLink
     {
@@ -29,9 +32,49 @@ public:
     void ValidSet(U32 inNum, bool inValid) { COREASSERT(inNum < kNumLinks); m_links[inNum].valid = inValid; }
     bool ValidGet(U32 inNum) const { COREASSERT(inNum < kNumLinks); return m_links[inNum].valid; }
     U32 SizeGet(void) const { return kNumLinks; }
-    
+    void Sort(void);
+
 private:
     tLink m_links[kNumLinks];
 };
 
+inline ostream& operator<<(ostream &inOut, const GameLightLinks& inLinks)
+{
+    inOut << "(";
+    for (U32 i=0; i<GameLightLinks::kNumLinks; ++i)
+    {
+        if (inLinks.ValidGet(i))
+        {
+            inOut << inLinks.LinkGet(i);
+        }
+        if (i+1 != GameLightLinks::kNumLinks) inOut << ",";
+    }
+    inOut << ")";
+    return inOut;
+}
 
+
+inline bool operator==(const GameLightLinks& a, const GameLightLinks& b)
+{
+    // This is a rough comparision (doesn't check valid flags) and may err on the
+    // side of false negatives only
+    for (U32 i=0; i<GameLightLinks::kNumLinks; ++i)
+    {
+        if (a.LinkGet(i) != b.LinkGet(i)) return false;
+    }
+    return true;
+}
+
+inline bool operator!=(const GameLightLinks& a, const GameLightLinks& b)
+{
+    // This is a rough comparision (doesn't check valid flags) and may err on the
+    // side of false positives only i.e. say they're not equal when they are
+    for (U32 i=0; i<GameLightLinks::kNumLinks; ++i)
+    {
+        if (a.LinkGet(i) != b.LinkGet(i))
+        {
+            return true;
+        }
+    }
+    return false;
+}
