@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.10 2002/07/18 11:40:34 southa Exp $
+ * $Id: mushGL.h,v 1.11 2002/08/07 13:36:43 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.11  2002/08/07 13:36:43  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -61,6 +64,7 @@
 #include "GL/GLRectangle.h"
 #include "GL/GLRenderable.h"
 #include "GL/GLStandard.h"
+#include "GL/GLString.h"
 #include "GL/GLTexture.h"
 #include "GL/GLTextureRef.h"
 #include "GL/GLUtils.h"

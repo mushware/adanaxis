@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLData.cpp,v 1.12 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLData.cpp,v 1.13 2002/08/07 13:36:46 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.13  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.12  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *
@@ -54,6 +57,8 @@
  */
   
 #include "GLData.h"
+#include "GLTexture.h"
+#include "GLFont.h"
 
 GLData *GLData::m_instance=NULL;
 
@@ -61,6 +66,12 @@ GLData::~GLData()
 {
     for (map<string, GLTexture *>::iterator p = m_textures.begin();
         p != m_textures.end(); ++p)
+    {
+        delete p->second;
+    }
+    
+    for (map<string, GLFont *>::iterator p = m_fonts.begin();
+         p != m_fonts.end(); ++p)
     {
         delete p->second;
     }
@@ -88,6 +99,33 @@ GLData::TextureFind(const string& inName)
     {
         return NULL;
     }
+}
+
+GLFont *
+GLData::FontGive(const string& inName, GLFont *inFont)
+{
+    map<string, GLFont *>::iterator p = m_fonts.find(inName);
+    if (p != m_fonts.end())
+    {
+        delete p->second;
+        p->second=inFont;
+    }
+    else
+    {
+        m_fonts[inName]=inFont;
+    }
+    return inFont;
+}
+
+GLFont *
+GLData::FontGet(const string& inName) const
+{
+    map<string, GLFont *>::const_iterator p = m_fonts.find(inName);
+    if (p == m_fonts.end())
+    {
+        throw(ReferenceFail("Access to non-existent font '"+inName+"'"));
+    }
+    return p->second;
 }
 
 void

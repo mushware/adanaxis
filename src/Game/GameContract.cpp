@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.42 2002/08/05 16:14:18 southa Exp $
+ * $Id: GameContract.cpp,v 1.43 2002/08/07 13:36:49 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.43  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.42  2002/08/05 16:14:18  southa
  * Windback at low frame rates
  *
@@ -329,9 +332,13 @@ GameContract::RunningDisplay(void)
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(0.5,0.5,0.5);
-    GLUtils::RasterPos(8,8);
-    GLUtils::BitmapText(message.str());
+    GLUtils::ColourSet(1.0,0.5,0.5);
+    GLUtils orthoGL;
+    orthoGL.MoveTo(32,32);
+    GLUtils::Scale(32,32,1);
+
+    GLString fpsStr("font-mono1",message.str());
+    fpsStr.Render();
     GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
 

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLData.h,v 1.4 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLData.h,v 1.5 2002/08/07 13:36:46 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.5  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -50,7 +53,9 @@
  */
 
 #include "GLStandard.h"
-#include "GLTexture.h"
+
+class GLTexture;
+class GLFont;
 
 class GLData
 {
@@ -59,10 +64,13 @@ public:
     static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
     void TextureAdd(const string& inName, const GLTexture& inTexture);
     GLTexture *TextureFind(const string& inName);
+    GLFont *FontGive(const string& inName, GLFont *inFont);
+    GLFont *FontGet(const string& inName) const;
     void DumpTextures(ostream& inOut);
     
 private:
     map<string, GLTexture *> m_textures;
+    map<string, GLFont *> m_fonts;
     static GLData *m_instance;
 };
 #endif
