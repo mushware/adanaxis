@@ -2691,7 +2691,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4299;
+		rLoc = 4324;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 3814;
@@ -2901,7 +2901,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4299;
+		rLoc = 4324;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 3814;
@@ -2931,7 +2931,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4299;
+		rLoc = 4324;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 3814;
@@ -2961,7 +2961,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 140";
 		rLen = 0;
-		rLoc = 4939;
+		rLoc = 4942;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 1411;
@@ -60784,7 +60784,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4348;
+		rLoc = 4373;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 1049;
@@ -60874,7 +60874,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 6566;
+		rLoc = 7044;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 6208;
@@ -60894,7 +60894,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 6566;
+		rLoc = 7044;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 6171;
@@ -61004,7 +61004,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 6566;
+		rLoc = 7044;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 4609;
@@ -61094,7 +61094,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 6566;
+		rLoc = 7044;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 3900;
@@ -76374,7 +76374,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 4721;
@@ -76404,7 +76404,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 7123;
+		rLoc = 7601;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 3912;
@@ -76424,7 +76424,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 3912;
@@ -76434,7 +76434,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.h: 51";
 		rLen = 0;
-		rLoc = 1028;
+		rLoc = 1076;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -76444,7 +76444,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 3634;
+		rLoc = 3659;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 2630;
@@ -76534,7 +76534,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 3722;
+		rLoc = 3747;
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 2784;
@@ -78868,7 +78868,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 3996;
+		rLoc = 4021;
 		rType = 0;
 		vrLen = 949;
 		vrLoc = 3;
@@ -78888,7 +78888,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 3996;
+		rLoc = 4021;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 3471;
@@ -81742,7 +81742,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 3996;
+		rLoc = 4021;
 		rType = 0;
 		vrLen = 737;
 		vrLoc = 3057;
@@ -83084,7 +83084,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 21;
-		rLoc = 5107;
+		rLoc = 5110;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 2729;
@@ -83124,7 +83124,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4419;
+		rLoc = 4422;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 1505;
@@ -83144,7 +83144,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4419;
+		rLoc = 4422;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 1505;
@@ -83284,7 +83284,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 3746;
@@ -83304,7 +83304,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 7083;
+		rLoc = 7561;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 4360;
@@ -84739,8 +84739,8 @@
 		fRef = F5A8F281038560DB01A80164;
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
-		rLen = 165;
-		rLoc = 7821;
+		rLen = 52;
+		rLoc = 8299;
 		rType = 0;
 		vrLen = 830;
 		vrLoc = 0;
@@ -84790,7 +84790,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 7642;
+		rLoc = 8120;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 3348;
@@ -85640,7 +85640,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4468;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 2463;
@@ -85720,7 +85720,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4468;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 2463;
@@ -86550,7 +86550,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 7167;
+		rLoc = 7645;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 4322;
@@ -86600,7 +86600,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 7167;
+		rLoc = 7645;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 4322;
@@ -86920,7 +86920,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 3705;
@@ -86940,7 +86940,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 476;
@@ -86990,7 +86990,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 2842;
@@ -87730,7 +87730,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 116";
 		rLen = 0;
-		rLoc = 6704;
+		rLoc = 6707;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 2092;
@@ -87960,7 +87960,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 157";
 		rLen = 0;
-		rLoc = 5941;
+		rLoc = 5944;
 		rType = 0;
 		vrLen = 1354;
 		vrLoc = 2817;
@@ -88009,7 +88009,7 @@
 		fRef = F5B3598B039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 83";
-		rLen = 4112;
+		rLen = 4115;
 		rLoc = 2592;
 		rType = 0;
 		vrLen = 1089;
@@ -88040,7 +88040,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.h: 51";
 		rLen = 0;
-		rLoc = 1028;
+		rLoc = 1076;
 		rType = 0;
 		vrLen = 971;
 		vrLoc = 0;
@@ -88510,7 +88510,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 2934;
@@ -88660,7 +88660,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4790;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 2934;
@@ -90870,7 +90870,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 8003;
+		rLoc = 8351;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 3077;
@@ -90900,7 +90900,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 0;
-		rLoc = 8003;
+		rLoc = 8351;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 3021;
@@ -91060,7 +91060,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4468;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 0;
@@ -91180,7 +91180,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSetup.cpp: ConfigInit";
 		rLen = 188;
-		rLoc = 4555;
+		rLoc = 4580;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 3967;
@@ -91270,7 +91270,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4439;
+		rLoc = 4442;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 1118;
@@ -91290,7 +91290,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4439;
+		rLoc = 4442;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 1118;

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.20 2002/11/27 16:35:09 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.21 2002/11/27 20:17:27 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.21  2002/11/27 20:17:27  southa
+ * Basic network cleardown
+ *
  * Revision 1.20  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -790,6 +793,15 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
 }
 
 void
+MediaNetLink::WebStatusHeaderPrint(ostream& ioOut)
+{
+    ioOut << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";
+    ioOut << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
+    ioOut << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
+    ioOut << "<td class=\"bold\">Age</td></tr>" << endl;
+}
+
+void
 MediaNetLink::WebStatusPrint(ostream& ioOut) const
 {
     ioOut << "<td>" << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet());
@@ -809,6 +821,9 @@ MediaNetLink::WebStatusPrint(ostream& ioOut) const
     ioOut << LinkStateToBG(m_udpState);
     ioOut << "\">UDP:" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet()) << "</font></td><td>" << m_udpState.linkPingTime;
     ioOut << "ms</td>";
+
+    m_currentMsec=SDL_GetTicks();
+    ioOut << "<td>" << MediaNetUtils::MsecDurationToString(m_currentMsec - m_creationMsec) << "</td>";
     ioOut << endl;
 }
 

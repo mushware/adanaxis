@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.10 2002/11/28 15:33:31 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.11 2002/11/28 16:19:25 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.11  2002/11/28 16:19:25  southa
+ * Fix delete object messaging
+ *
  * Revision 1.10  2002/11/28 15:33:31  southa
  * Pass GameDef status over link
  *
@@ -122,6 +125,7 @@ GameDefClient::UpdateServer(MediaNetLink& ioLink)
         // Update the client image on the remote station
         GameProtocol::CreateObjectCreate(netData, *this, NameGet());
     }
+    
     try
     {
         ioLink.ReliableSend(netData);

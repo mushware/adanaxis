@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.8 2002/11/28 15:33:31 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.9 2002/11/28 16:19:25 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.9  2002/11/28 16:19:25  southa
+ * Fix delete object messaging
+ *
  * Revision 1.8  2002/11/28 15:33:31  southa
  * Pass GameDef status over link
  *
@@ -43,7 +46,7 @@ GameDefServer::GameDefServer(const string& inName) :
     m_lastUpdateMsec(0),
     m_killed(false)
 {
-        StatusSet(GameDef::kStatusOK); // Change this
+    StatusSet(GameDef::kStatusInvalid);
 }
 
 void
@@ -51,6 +54,7 @@ GameDefServer::HostGame(const string& inContract, U32 inPlayerLimit)
 {
     m_contractName = inContract;
     m_playerLimit = inPlayerLimit;
+    StatusSet(GameDef::kStatusOK);
 }
 
 void
@@ -59,7 +63,7 @@ GameDefServer::Ticker(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
-    if (m_lastUpdateMsec + kUpdateMsec < m_currentMsec)
+    if (m_currentMsec > m_lastUpdateMsec + kUpdateMsec)
     {
         UpdateClients();
         m_lastUpdateMsec = m_currentMsec;

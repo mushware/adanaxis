@@ -1,8 +1,11 @@
 #ifndef MEDIANETUTILS_H
 #define MEDIANETUTILS_H
 /*
- * $Id: MediaNetUtils.h,v 1.8 2002/11/25 18:02:57 southa Exp $
+ * $Id: MediaNetUtils.h,v 1.9 2002/11/27 13:23:27 southa Exp $
  * $Log: MediaNetUtils.h,v $
+ * Revision 1.9  2002/11/27 13:23:27  southa
+ * Server and client data exchange
+ *
  * Revision 1.8  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -41,6 +44,7 @@ public:
     static bool FindLinkToStation(MediaNetLink *& outLink, const MediaNetAddress& inAddress);
     static string IPAddressToString(U32 inAddress);
     static string IPAddressToLogString(U32 inAddress);
+    static string MsecDurationToString(U32 inMsec);
     static string MakePrintable(const string& inStr);
     static string MakePrintable(const vector<U8> inBytes);
     static string MakeXMLSafe(const string& inStr);

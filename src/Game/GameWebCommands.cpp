@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.14 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.15 2002/11/28 16:19:25 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.15  2002/11/28 16:19:25  southa
+ * Fix delete object messaging
+ *
  * Revision 1.14  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -408,11 +411,9 @@ GameWebCommands::GameLinkStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     // Link status
     ioEnv.Out() << "<font class=\"boldtitle\">Link Status</font>" << endl;
 
-    ioEnv.Out() << "<br><br><table class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
-    ioEnv.Out() << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";
-    ioEnv.Out() << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
-    ioEnv.Out() << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
-    ioEnv.Out() << "</tr>" << endl;
+    ioEnv.Out() << "<br><br><table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
+
+    MediaNetLink::WebStatusHeaderPrint(ioEnv.Out());
 
     CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
 

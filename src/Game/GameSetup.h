@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.h,v 1.3 2002/11/23 17:23:44 southa Exp $
+ * $Id: GameSetup.h,v 1.4 2002/11/28 15:51:21 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.4  2002/11/28 15:51:21  southa
+ * Kill image defs as well
+ *
  * Revision 1.3  2002/11/23 17:23:44  southa
  * Sleep in setup
  *
@@ -29,6 +32,7 @@ public:
 protected:
     void ConfigInit(void);
     void Config(void);
+    void Ticker(void);
     void KeyControl(void);
     
 private:
@@ -36,7 +40,8 @@ private:
     {
         kSlowSleepMsec=10,
         kFastSleepMsec=1,
-        kImageLifetimeMsec=33000
+        kImageLifetimeMsec=33000,
+        kTickerMsec=100
     };
     enum tGameState
     {
@@ -48,5 +53,6 @@ private:
     tGameState m_gameState;
     string m_configURL;
     U32 m_currentMsec;
+    U32 m_lastTickerMsec;
     bool m_windowClicked;
 };

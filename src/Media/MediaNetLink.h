@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.15 2002/11/27 16:35:10 southa Exp $
+ * $Id: MediaNetLink.h,v 1.16 2002/11/28 15:14:14 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.16  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.15  2002/11/27 16:35:10  southa
  * Client and server image handling
  *
@@ -92,6 +95,7 @@ public:
     void Print(ostream& ioOut) const;
     void WebStatusPrint(ostream& ioOut) const;
 
+    static void WebStatusHeaderPrint(ostream& ioOut);
     static string NextLinkNameTake(void);
     
 private:
@@ -168,7 +172,6 @@ private:
     LinkState m_tcpState;
     LinkState m_udpState;
     MediaNetClient m_client;
-    U32 m_currentMsec;
     U32 m_creationMsec;
     U32 m_lastActivityMsec;
     
@@ -176,6 +179,8 @@ private:
 
     bool m_targetIsServer;
     bool m_udpUseServerPort;
+
+    mutable U32 m_currentMsec;
     mutable bool m_loggedLinkInfo;
 
     static U32 m_linkNameNum;

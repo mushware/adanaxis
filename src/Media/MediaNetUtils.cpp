@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.10 2002/11/25 18:02:57 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.11 2002/11/27 13:23:27 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.11  2002/11/27 13:23:27  southa
+ * Server and client data exchange
+ *
  * Revision 1.10  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -102,6 +105,26 @@ MediaNetUtils::IPAddressToLogString(U32 inAddress)
     {
         return IPAddressToString(inAddress);
     }
+}
+
+string
+MediaNetUtils::MsecDurationToString(U32 inMsec)
+{
+    U32 cumSec = inMsec;
+    U32 hourNum=cumSec / 3600000;
+    cumSec -= hourNum * 3600000;
+    U32 minNum=cumSec / 60000;
+    cumSec -= minNum * 60000;
+    U32 secNum=cumSec / 1000;
+    cumSec -= secNum * 1000;
+    U32 deciSecNum=cumSec / 100;
+
+    ostringstream retStream;
+    retStream << setfill('0');
+    if (hourNum > 0) retStream << hourNum << ":" << setw(2);
+    retStream << minNum << ":" << setw(2);
+    retStream << secNum << "." << setw(1) << deciSecNum;
+    return retStream.str();
 }
 
 string

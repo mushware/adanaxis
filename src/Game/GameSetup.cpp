@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.15 2002/11/28 15:51:21 southa Exp $
+ * $Id: GameSetup.cpp,v 1.16 2002/11/28 16:19:25 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.16  2002/11/28 16:19:25  southa
+ * Fix delete object messaging
+ *
  * Revision 1.15  2002/11/28 15:51:21  southa
  * Kill image defs as well
  *
@@ -63,6 +66,7 @@
 
 GameSetup::GameSetup() :
     m_gameState(kGameStateConfigInit),
+    m_lastTickerMsec(0),
     m_windowClicked(false)
 {
 }
@@ -190,8 +194,30 @@ GameSetup::Config(void)
         MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }
 
+    if (m_currentMsec > m_lastTickerMsec + kTickerMsec)
+    {
+        m_lastTickerMsec = m_currentMsec;
+        Ticker();
+    }
     
+    KeyControl();
+    GLUtils::PostRedisplay();
+    MediaAudio::Instance().Ticker();
+    if (m_windowClicked)
+    {
+        PlatformMiscUtils::SleepMsec(kSlowSleepMsec);
+    }
+    else
+    {
+        // Running window animation
+        PlatformMiscUtils::SleepMsec(kFastSleepMsec);
+    }
+    
+}
 
+void
+GameSetup::Ticker(void)
+{
     {
         CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
         CoreData<GameDefClient>::tMapIterator killValue = CoreData<GameDefClient>::Instance().End();
@@ -281,19 +307,6 @@ GameSetup::Config(void)
         {
             MediaNetServer::Instance().Disconnect();
         }
-    }
-    
-    KeyControl();
-    GLUtils::PostRedisplay();
-    MediaAudio::Instance().Ticker();
-    if (m_windowClicked)
-    {
-        PlatformMiscUtils::SleepMsec(kSlowSleepMsec);
-    }
-    else
-    {
-        // Running window animation
-        PlatformMiscUtils::SleepMsec(kFastSleepMsec);
     }
 }
 

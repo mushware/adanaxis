@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.h,v 1.4 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameDefServer.h,v 1.5 2002/11/28 15:14:14 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.5  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.4  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -74,7 +77,7 @@ private:
 
     enum
     {
-        kUpdateMsec=10000
+        kUpdateMsec=5000
     };
 
     void UpdateClients(void);
