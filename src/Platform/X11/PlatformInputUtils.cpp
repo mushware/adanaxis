@@ -1,21 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: PlatformInputUtils.cpp,v 1.5 2002/08/27 08:56:29 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.6 2002/10/21 10:54:33 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.6  2002/10/21 10:54:33  southa
+ * X11 build updates
+ *
  * Revision 1.5  2002/08/27 08:56:29  southa
  * Source conditioning
  *

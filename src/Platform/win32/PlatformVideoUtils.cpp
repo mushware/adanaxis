@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.1)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.3 2002/10/20 20:48:07 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.4 2002/10/20 22:31:06 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.4  2002/10/20 22:31:06  southa
+ * Fixed win32 release build
+ *
  * Revision 1.3  2002/10/20 20:48:07  southa
  * win32 work
  *

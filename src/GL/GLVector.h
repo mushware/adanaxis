@@ -1,20 +1,23 @@
 #ifndef GLVECTOR_H
 #define GLVECTOR_H
 /*****************************************************************************
-*
-* (Mushware file header version 1.0)
-*
-* This file contains original work by Andy Southgate.  Contact details can be
-* found at http://www.mushware.co.uk.  This file was placed in the Public
-* Domain by Andy Southgate and Mushware Limited in 2002.
-*
-* This software carries NO WARRANTY of any kind.
-*
-****************************************************************************/
+ *
+ * (Mushware file header version 1.1)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.3 2002/10/12 11:22:21 southa Exp $
+ * $Id: GLVector.h,v 1.4 2002/10/12 15:25:11 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.4  2002/10/12 15:25:11  southa
+ * Facet renderer
+ *
  * Revision 1.3  2002/10/12 11:22:21  southa
  * GraphicModel work
  *

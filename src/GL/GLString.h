@@ -2,10 +2,10 @@
 #define GLSTRING_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLString.h,v 1.4 2002/08/19 22:18:36 southa Exp $
+ * $Id: GLString.h,v 1.5 2002/08/27 08:56:20 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.5  2002/08/27 08:56:20  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/19 22:18:36  southa
  * Display of time differences
  *

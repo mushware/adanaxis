@@ -1,21 +1,23 @@
 #ifndef GLRENDER_H
 #define GLRENDER_H
 /*****************************************************************************
-*
-* (Mushware file header version 1.0)
-*
-* This file contains original work by Andy Southgate.  Contact details can be
-* found at http://www.mushware.co.uk.  This file was placed in the Public
-* Domain by Andy Southgate and Mushware Limited in 2002.
-*
-* This software carries NO WARRANTY of any kind.
-*
-****************************************************************************/
-
+ *
+ * (Mushware file header version 1.1)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
 
 /*
- * $Id: GLRender.h,v 1.2 2002/10/12 17:34:20 southa Exp $
+ * $Id: GLRender.h,v 1.3 2002/10/14 13:03:00 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.3  2002/10/14 13:03:00  southa
+ * Display list test
+ *
  * Revision 1.2  2002/10/12 17:34:20  southa
  * Wall edges
  *

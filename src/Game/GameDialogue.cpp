@@ -1,9 +1,9 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.10 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.11 2002/10/10 13:51:16 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.11  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.10  2002/08/27 08:56:23  southa
  * Source conditioning
  *

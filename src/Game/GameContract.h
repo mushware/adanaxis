@@ -2,22 +2,22 @@
 #define GAMECONTRACT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: GameContract.h,v 1.28 2002/10/15 14:02:31 southa Exp $
+ * $Id: GameContract.h,v 1.29 2002/10/17 15:50:59 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.29  2002/10/17 15:50:59  southa
+ * Config saving, pause and quit
+ *
  * Revision 1.28  2002/10/15 14:02:31  southa
  * Mode changes
  *

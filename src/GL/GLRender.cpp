@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.1)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLRender.cpp,v 1.1 2002/10/12 15:24:58 southa Exp $
+ * $Id: GLRender.cpp,v 1.2 2002/10/14 13:03:00 southa Exp $
  * $Log: GLRender.cpp,v $
+ * Revision 1.2  2002/10/14 13:03:00  southa
+ * Display list test
+ *
  * Revision 1.1  2002/10/12 15:24:58  southa
  * Facet renderer
  *

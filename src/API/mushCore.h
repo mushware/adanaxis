@@ -1,21 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: mushCore.h,v 1.9 2002/08/15 13:39:30 southa Exp $
+ * $Id: mushCore.h,v 1.10 2002/08/27 08:56:15 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.10  2002/08/27 08:56:15  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/15 13:39:30  southa
  * CoreData and CoreDatRef
  *

@@ -1,21 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: GamePiecePlayer.cpp,v 1.24 2002/10/08 11:58:53 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.25 2002/10/12 11:22:21 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.25  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  * Revision 1.24  2002/10/08 11:58:53  southa
  * Light cache
  *

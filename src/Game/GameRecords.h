@@ -2,10 +2,10 @@
 #define GAMERECORDS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.h,v 1.3 2002/08/24 10:52:47 southa Exp $
+ * $Id: GameRecords.h,v 1.4 2002/08/27 08:56:25 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.4  2002/08/27 08:56:25  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/24 10:52:47  southa
  * World records
  *

@@ -1,21 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: GLTextureRef.cpp,v 1.7 2002/08/27 08:56:21 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.8 2002/10/12 15:25:09 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.8  2002/10/12 15:25:09  southa
+ * Facet renderer
+ *
  * Revision 1.7  2002/08/27 08:56:21  southa
  * Source conditioning
  *

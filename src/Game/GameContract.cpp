@@ -1,21 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: GameContract.cpp,v 1.78 2002/10/17 15:50:58 southa Exp $
+ * $Id: GameContract.cpp,v 1.79 2002/10/17 16:41:20 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.79  2002/10/17 16:41:20  southa
+ * Initialisation fix and player facet
+ *
  * Revision 1.78  2002/10/17 15:50:58  southa
  * Config saving, pause and quit
  *

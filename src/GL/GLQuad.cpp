@@ -1,19 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
 /*
- * $Id: GLQuad.cpp,v 1.6 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLQuad.cpp,v 1.7 2002/10/17 15:50:58 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.7  2002/10/17 15:50:58  southa
+ * Config saving, pause and quit
+ *
  * Revision 1.6  2002/08/27 08:56:19  southa
  * Source conditioning
  *

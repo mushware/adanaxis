@@ -2,22 +2,22 @@
 #define COREXML_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
-
-
 /*
- * $Id: CoreXML.h,v 1.9 2002/08/27 08:56:18 southa Exp $
+ * $Id: CoreXML.h,v 1.10 2002/09/01 16:29:18 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.10  2002/09/01 16:29:18  southa
+ * Support Redhat paths for include files
+ *
  * Revision 1.9  2002/08/27 08:56:18  southa
  * Source conditioning
  *

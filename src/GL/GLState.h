@@ -1,9 +1,24 @@
 #ifndef GLSTATE_H
 #define GLSTATE_H
 
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.1)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.com.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLState.h,v 1.4 2002/10/14 13:03:00 southa Exp $
+ * $Id: GLState.h,v 1.5 2002/10/17 15:50:58 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.5  2002/10/17 15:50:58  southa
+ * Config saving, pause and quit
+ *
  * Revision 1.4  2002/10/14 13:03:00  southa
  * Display list test
  *

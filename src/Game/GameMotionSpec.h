@@ -2,20 +2,22 @@
 #define GAMEMOTIONSPEC_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
 
-
 /*
- * $Id: GameMotionSpec.h,v 1.6 2002/08/27 08:56:24 southa Exp $
+ * $Id: GameMotionSpec.h,v 1.7 2002/10/17 16:41:21 southa Exp $
  * $Log: GameMotionSpec.h,v $
+ * Revision 1.7  2002/10/17 16:41:21  southa
+ * Initialisation fix and player facet
+ *
  * Revision 1.6  2002/08/27 08:56:24  southa
  * Source conditioning
  *

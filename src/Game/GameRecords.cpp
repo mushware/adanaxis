@@ -1,9 +1,9 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.0)
+ * (Mushware file header version 1.1)
  *
  * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * found at http://www.mushware.com.  This file was placed in the Public
  * Domain by Andy Southgate and Mushware Limited in 2002.
  *
  * This software carries NO WARRANTY of any kind.
@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.5 2002/08/24 17:08:32 southa Exp $
+ * $Id: GameRecords.cpp,v 1.6 2002/08/27 08:56:25 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:25  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/24 17:08:32  southa
  * Split time fixes
  *
