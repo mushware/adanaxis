@@ -1,20 +1,28 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTileTraits.cpp,v 1.1 2002/06/04 14:12:25 southa Exp $
+ * $Log: GameTileTraits.cpp,v $
+ * Revision 1.1  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  */
 
 #include "GameTileTraits.h"
+#include "GameGraphicSprite.h"
+
+GameTileTraits::~GameTileTraits()
+{
+    for (U32 i=0; i<m_graphics.size(); ++i)
+    {
+        delete m_graphics[i];
+    }
+}
 
 void
 GameTileTraits::HandleGraphicStart(CoreXML& inXML)
 {
-    cerr << "Graphics start" << endl;
-}
-
-void
-GameTileTraits::HandleGraphicEnd(CoreXML& inXML)
-{
-    cerr << "Graphics end" << endl;
+    GameGraphicSprite *pSprite(new GameGraphicSprite);
+    m_graphics.push_back(pSprite);
+    pSprite->Unpickle(inXML);
 }
 
 void
@@ -37,7 +45,6 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["graphic"] = &GameTileTraits::HandleGraphicStart;
-    m_endTable[kPickleData]["graphic"] = &GameTileTraits::HandleGraphicEnd;
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
@@ -65,7 +72,7 @@ GameTileTraits::XMLStartHandler(CoreXML& inXML)
         else
         {
             ostringstream message;
-            message << "Unexpected tag <" << inXML.TopTag() << ">.  Potential matches are";
+            message << "Unexpected tag <" << inXML.TopTag() << "> in TileTraits.  Potential matches are";
             ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
             while (p != m_startTable[m_pickleState].end())
             {
@@ -100,7 +107,7 @@ GameTileTraits::XMLEndHandler(CoreXML& inXML)
         else
         {
             ostringstream message;
-            message << "Unexpected end of tag </" << inXML.TopTag() << ">.  Potential matches are";
+            message << "Unexpected end of tag </" << inXML.TopTag() << "> in TileTraits.  Potential matches are";
             ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
             while (p != m_endTable[m_pickleState].end())
             {

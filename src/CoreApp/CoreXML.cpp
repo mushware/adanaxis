@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.cpp,v 1.5 2002/05/28 22:36:44 southa Exp $
+ * $Id: CoreXML.cpp,v 1.6 2002/06/04 14:11:21 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.6  2002/06/04 14:11:21  southa
+ * Traits loader first stage
+ *
  * Revision 1.5  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -202,6 +205,7 @@ CoreXML::ParseStream(CoreXMLHandler& inHandler)
 
 void CoreXML::StopHandler(void)
 {
+    if (!m_handlers.empty()) m_handlers.pop();
     if (m_handlers.empty())
     {
         // Should set a null handler really
@@ -210,6 +214,5 @@ void CoreXML::StopHandler(void)
     else
     {
         m_currentHandler=m_handlers.top();
-        m_handlers.pop();
     }
 }

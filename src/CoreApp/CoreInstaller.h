@@ -1,6 +1,11 @@
+#ifndef COREINSTALLER_H
+#define COREINSTALLER_H
 /*
- * $Id: CoreInstaller.h,v 1.1 2002/03/07 22:24:33 southa Exp $
+ * $Id: CoreInstaller.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreInstaller.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/03/07 22:24:33  southa
  * Command interpreter working
  *
@@ -8,9 +13,10 @@
  * Created
  *
  */
- 
+
 class CoreInstaller
 {
 public:
     CoreInstaller(void (*fn)()) {fn();}
 };
+#endif

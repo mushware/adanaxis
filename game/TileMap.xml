@@ -87,7 +87,9 @@ adjustmap($THISX,$THISY,13)
 
 <traits type="tile">
   <base>tiledfloor,slippery</base>
-  <graphic></graphic>
+  <graphic>
+    <name>floor_0_1</name>
+  </graphic>
 </traits>
 
 <map>10 floor_0_1</map>

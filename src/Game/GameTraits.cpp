@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTraits.cpp,v 1.1 2002/06/04 14:12:25 southa Exp $
+ * $Log: GameTraits.cpp,v $
+ * Revision 1.1  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  */
 
 #include "GameTraits.h"
@@ -74,7 +77,7 @@ GameTraits::HandleBaseStart(CoreXML& inXML)
 void
 GameTraits::HandleBaseEnd(CoreXML& inXML)
 {
-    inXML.StopHandler();
+    // inXML.StopHandler();
 }
 
 void
@@ -130,7 +133,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag()
     else
     {
         ostringstream message;
-        message << "Unexpected tag <" << inXML.TopTag() << ">.  Potential matches are";
+        message << "Unexpected tag <" << inXML.TopTag() << "> in Traits.  Potential matches are";
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
         while (p != m_startTable[m_pickleState].end())
         {
@@ -153,7 +156,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
     else
     {
         ostringstream message;
-        message << "Unexpected end of tag </" << inXML.TopTag() << ">.  Potential matches are";
+        message << "Unexpected end of tag </" << inXML.TopTag() << "> in Traits.  Potential matches are";
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
         while (p != m_endTable[m_pickleState].end())
         {

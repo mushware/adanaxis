@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.11 2002/06/02 16:41:18 southa Exp $
+ * $Id: GameContract.cpp,v 1.12 2002/06/04 14:12:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.12  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  * Revision 1.11  2002/06/02 16:41:18  southa
  * Rotated sprite plotting
  *
@@ -104,6 +107,7 @@ GameContract::InitDisplay(void)
 void
 GameContract::RunningDisplay(void)
 {
+    GLUtils  gl;
     static tVal angle=0;
     angle+=0.05;
     COREASSERT(m_tileMap != NULL);
@@ -114,6 +118,8 @@ GameContract::RunningDisplay(void)
 
     U32 xsize=m_floorMap->XSize();
     U32 ysize=m_floorMap->YSize();
+    gl.SetPosition(0,0);
+    
     for (U32 x=0; x<xsize; x++)
     {
         for (U32 y=0; y<ysize; y++)
@@ -121,13 +127,8 @@ GameContract::RunningDisplay(void)
             U32 mapVal=m_floorMap->At(x,y);
             S32 basex=32*x;
             S32 basey=32*y;
-            //basex+=(double(rand())/RAND_MAX)*4;
-            //basey+=(double(rand())/RAND_MAX)*4;
-            GLTextureRef texRef(m_tileMap->NameGet(mapVal));
-            if (texRef.Exists())
-            {
-                GLUtils::DrawRotatedSprite(*texRef.TextureGet(), basex, basey,angle);
-            }
+            gl.MoveTo(basex,basey);
+            // Plot it
         }
     }
     GLUtils::OrthoEpilogue();

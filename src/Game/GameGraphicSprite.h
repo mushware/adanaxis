@@ -1,31 +1,30 @@
 /*
- * $Id: GameTileTraits.h,v 1.1 2002/06/04 14:12:25 southa Exp $
- * $Log: GameTileTraits.h,v $
- * Revision 1.1  2002/06/04 14:12:25  southa
- * Traits loader first stage
- *
+ * $Id$
+ * $Log$
  */
 
-#include "GameTraits.h"
 #include "GameGraphic.h"
+#include "mushGL.h"
 
-class GameTileTraits : public GameTraits
+class GameGraphicSprite: public GameGraphic
 {
 public:
-    virtual ~GameTileTraits();
-    void Render(void) {}
 
+    virtual void Render(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
 protected:
+    void UnpicklePrologue(void);
+    void UnpickleEpilogue(void);
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
 
 private:
-    void HandleGraphicStart(CoreXML& inXML);
-    void HandleTraitsEnd(CoreXML& inXML);
+    void HandleGraphicEnd(CoreXML& inXML);
+    void HandleNameEnd(CoreXML& inXML);
+    void NullHandler(CoreXML& inXML);
 
     enum PickleState
     {
@@ -35,11 +34,11 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameTileTraits::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef map<string, void (GameGraphicSprite::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
-    U32 m_baseThreaded;
+    bool m_baseThreaded;
     
-    vector <GameGraphic *> m_graphics;
+    GLTextureRef m_texRef;
 };

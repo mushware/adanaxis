@@ -82,6 +82,7 @@ GameTileMap::HandleTraitsStart(CoreXML& inXML)
 void
 GameTileMap::HandleTraitsEnd(CoreXML& inXML)
 {
+    // Never gets called
     cerr << "Traits end handler" << endl;
 }
 
@@ -139,7 +140,7 @@ GameTileMap::XMLStartHandler(CoreXML& inXML)
     else
     {
         ostringstream message;
-        message << "Unexpected tag <" << inXML.TopTag() << ">.  Potential matches are";
+        message << "Unexpected tag <" << inXML.TopTag() << "> in TileMap.  Potential matches are";
         ElementFunctionMap::iterator p = m_startTable[m_state].begin();
         while (p != m_startTable[m_state].end())
         {
@@ -162,7 +163,7 @@ GameTileMap::XMLEndHandler(CoreXML& inXML)
     else
     {
         ostringstream message;
-        message << "Unexpected end of tag </" << inXML.TopTag() << ">.  Potential matches are";
+        message << "Unexpected end of tag </" << inXML.TopTag() << "> in TileMap.  Potential matches are";
         ElementFunctionMap::iterator p = m_endTable[m_state].begin();
         while (p != m_endTable[m_state].end())
         {

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureRef.cpp,v 1.1 2002/05/28 16:37:39 southa Exp $
+ * $Log: GLTextureRef.cpp,v $
+ * Revision 1.1  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  */
 
 #include "GLTextureRef.h"
@@ -19,7 +22,6 @@ GLTextureRef::TextureGet(void)
 void
 GLTextureRef::GetReference(void)
 {
-
     m_texPtr=GLData::Instance().TextureFind(m_name);
     if (m_texPtr == NULL)
     {

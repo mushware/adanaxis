@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.5 2002/05/31 15:18:16 southa Exp $
+ * $Id: GLUtils.h,v 1.6 2002/06/02 16:41:18 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.6  2002/06/02 16:41:18  southa
+ * Rotated sprite plotting
+ *
  * Revision 1.5  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -25,6 +28,9 @@ class GLTexture;
 class GLUtils
 {
 public:
+    void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
+    void MoveTo(tVal inX, tVal inY);
+    
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
     static void CheckGLError(void);
@@ -39,9 +45,12 @@ public:
     static void RasterPos(tVal inX, tVal inY);
     static void BitmapText(const string& inStr);
     static void DrawSprite(const GLTexture& inTex, tVal inX, tVal inY);
+    static void DrawSprite(const GLTexture& inTex);
     static void DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAngle);
     static void PostRedisplay(void);
     
 private:
     static void SafetyHandler(void);
+    tVal m_x;
+    tVal m_y;
 };

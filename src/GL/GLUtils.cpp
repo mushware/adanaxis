@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.7 2002/06/02 15:18:52 southa Exp $
+ * $Id: GLUtils.cpp,v 1.8 2002/06/02 16:41:18 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.8  2002/06/02 16:41:18  southa
+ * Rotated sprite plotting
+ *
  * Revision 1.7  2002/06/02 15:18:52  southa
  * Texture bitmap renderer
  *
@@ -26,6 +29,14 @@
 
 #include "GLUtils.h"
 #include "GLTexture.h"
+
+void
+GLUtils::MoveTo(tVal inX, tVal inY)
+{
+    glTranslatef(inX-m_x,inY-m_y,0);
+    m_x=inX;
+    m_y=inY;
+}
 
 void
 GLUtils::OrthoPrologue(void)
@@ -112,6 +123,26 @@ GLUtils::BitmapText(const string& inStr)
     }
 }
 
+
+void
+GLUtils::DrawSprite(const GLTexture& inTex)
+{
+    tVal width2=inTex.Width()/2;
+    tVal height2=inTex.Height()/2;
+    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0,0);
+    glVertex2f(-width2,-height2);
+    glTexCoord2f(0,1);
+    glVertex2f(-width2,height2);
+    glTexCoord2f(1,1);
+    glVertex2f(width2,height2);
+    glTexCoord2f(1,0);
+    glVertex2f(width2,-height2);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+}
 
 void
 GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
