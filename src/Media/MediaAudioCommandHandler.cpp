@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.4 2002/07/11 10:19:01 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.5 2002/08/07 13:36:51 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.5  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/11 10:19:01  southa
  * Removed debug code
  *
@@ -55,8 +58,29 @@ MediaAudioCommandHandler::PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+MediaAudioCommandHandler::PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(CommandFail("Usage: playsound(filename)"));
+    }
+    string filename;
+    ioCommand.PopParam(filename);
+    try
+    {
+        MediaAudio::Instance().PlaySound(filename);
+    }
+    catch (DeviceFail& e)
+    {
+        throw(CommandFail(string("Command failed: ")+e.what()));
+    }
+    return CoreScalar(0);
+}
+
 void
 MediaAudioCommandHandler::Install(void)
 {
     CoreApp::Instance().AddHandler("playmusic", PlayMusic);
+    CoreApp::Instance().AddHandler("playsound", PlaySound);
 }

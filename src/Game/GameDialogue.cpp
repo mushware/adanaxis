@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.1 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.2 2002/08/10 12:34:48 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.2  2002/08/10 12:34:48  southa
+ * Added current dialogues
+ *
  * Revision 1.1  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -112,7 +115,7 @@ GameDialogue::HandleTextEnd(CoreXML& inXML)
     m_fadeTimes.push_back(m_currentFadeTime);
 
     GameMotionSpec motionSpec=m_currentMotion.MotionSpecGet();
-    motionSpec.pos.y -= m_currentFontRef.SizeGet();
+    motionSpec.pos.y -= m_currentFontRef.SizeGet()*m_currentMidSize;
     m_currentMotion.MotionSpecSet(motionSpec);
 }
 

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudio.cpp,v 1.6 2002/07/06 18:04:20 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.7 2002/08/07 13:36:51 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.7  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/07/06 18:04:20  southa
  * More designer work
  *
@@ -73,4 +76,24 @@ MediaAudio::PlayMusic(const string& inFilename)
         throw(FileFail(inFilename, "Failed to load music: "+string(Mix_GetError())));
     }
     Mix_PlayMusic(music, 10000);    
+}
+
+void
+MediaAudio::PlaySound(const string& inFilename)
+{
+    SDL_RWops *src=SDL_RWFromFile(inFilename.c_str(), "rb");
+    if (src == NULL)
+    {
+        throw(FileFail(inFilename, "Failed to open sound file: "+string(SDL_GetError())));
+    }
+    Mix_Chunk *sound = Mix_LoadWAV_RW(src, true);
+    if (sound == NULL)
+    {
+        throw(FileFail(inFilename, "Failed to load sound: "+string(Mix_GetError())));
+    }
+    if (Mix_PlayChannel(-1, sound, 0) == -1)
+    {
+        throw(FileFail(inFilename, "Failed to play sound: "+string(Mix_GetError())));
+    }
+    
 }

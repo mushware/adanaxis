@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.23 2002/08/07 13:36:48 southa Exp $
+ * $Id: GLUtils.cpp,v 1.24 2002/08/08 18:20:29 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.24  2002/08/08 18:20:29  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.23  2002/08/07 13:36:48  southa
  * Conditioned source
  *
@@ -154,6 +157,7 @@ GLUtils::OrthoPrologue(void)
     glMatrixMode(GL_PROJECTION);
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
     gluOrtho2D(-screenRatios.x,screenRatios.x,-screenRatios.y,screenRatios.y);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void
@@ -173,6 +177,7 @@ GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
               inX, inY, 0, // point we're looking at
               sin(inAngle),cos(inAngle),0 // direction of up
               );
+    glMatrixMode(GL_MODELVIEW);
 }
 
 const GLPoint

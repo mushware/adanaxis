@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.46 2002/08/09 17:09:03 southa Exp $
+ * $Id: GameContract.cpp,v 1.47 2002/08/10 12:34:47 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.47  2002/08/10 12:34:47  southa
+ * Added current dialogues
+ *
  * Revision 1.46  2002/08/09 17:09:03  southa
  * GameDialogue added
  *
@@ -340,7 +343,7 @@ GameContract::RunningDisplay(void)
     GameMapArea visibleArea;
     GLPoint screenRatios(GLUtils::ScreenRatiosGet());
     GLPoint screenRadius((screenRatios.x / 2) / m_floorMap->XStep(), (screenRatios.x / 2) / m_floorMap->YStep());
-    tVal circleRadius=-1+screenRadius.Magnitude()/m_masterScale;
+    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea; // Empty area
