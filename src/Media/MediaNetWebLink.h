@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.h,v 1.2 2002/11/06 14:16:57 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.3 2002/11/07 00:53:37 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.3  2002/11/07 00:53:37  southa
+ * localweb work
+ *
  * Revision 1.2  2002/11/06 14:16:57  southa
  * Basic web server
  *
@@ -47,13 +50,15 @@ private:
         kTimeoutIdle=30000,
     };
 
+    void GetProcess(void);
+    
+    string m_requestLine;
     tLinkState m_linkState;
     TCPsocket m_tcpSocket;
     U32 m_currentMsec;
     U32 m_lastAccessMsec;
     U32 m_linkErrors;
     bool m_isDead;
-
 
     static string m_webPath;
 };

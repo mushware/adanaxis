@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.3 2002/11/07 00:53:37 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.4 2002/11/08 00:15:31 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.4  2002/11/08 00:15:31  southa
+ * Fixed errors
+ *
  * Revision 1.3  2002/11/07 00:53:37  southa
  * localweb work
  *
@@ -100,11 +103,8 @@ MediaNetWebLink::Receive(string& outStr)
 
         if (result == 1)
         {
+            outStr += byte;
             if (byte == 0xa) break;
-            if (byte >= 32)
-            {
-                outStr += byte;
-            }
         }
     } while (result > 0);
 
@@ -124,6 +124,13 @@ MediaNetWebLink::Send(vector<U8>& inBytes)
         MediaNetLog::Instance().Log() << "Failed to send data on WebLink: " << SDLNet_GetError();
         ++m_linkErrors;
     }
+
+    string sendStr;
+    for (U32 i=0; i<inBytes.size(); ++i)
+    {
+sendStr += inBytes[i];
+    }
+MediaNetLog::Instance().Log() << "Sending " << MediaNetUtils::MakePrintable(sendStr) << endl;
 }
 
 void
@@ -156,18 +163,32 @@ MediaNetWebLink::Send(istream& ioStream)
 void
 MediaNetWebLink::ReceivedProcess(const string& inStr)
 {
-    if (inStr.substr(0,3) != "GET")
+MediaNetLog::Instance().Log() << "recv=" << MediaNetUtils::MakePrintable(inStr) << endl;
+    if (inStr.substr(0,3) == "GET")
     {
-        return;
+        m_requestLine = inStr;
     }
+    else if (inStr.size() > 0 &&
+             (inStr[0] == 0xd || inStr[0] == 0xa))
+    {
+        // Blank line received
+        GetProcess();
+    }
+}
+
+void
+MediaNetWebLink::GetProcess(void)
+{
+    MediaNetLog::Instance().Log() << "GetProcess" << endl;
     string filename;
     U32 dotCount=0;
     U32 slashCount=0;
+    
     try
     {
-        for (U32 i=4; i<inStr.size(); ++i)
+        for (U32 i=4; i<m_requestLine.size(); ++i)
         {
-            U8 byte=inStr[i];
+            U8 byte=m_requestLine[i];
             if (byte == '.')
             {
                 if (dotCount > 0)
@@ -262,6 +283,7 @@ MediaNetWebLink::SendFile(const string& inFilename)
     }
         
     http.Endl();
+    Send(http.ContentGet().str());
     Send(fileStream);
     Disconnect();
 }
