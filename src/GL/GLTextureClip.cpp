@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureClip.cpp,v 1.1 2002/05/28 16:37:40 southa Exp $
+ * $Log: GLTextureClip.cpp,v $
+ * Revision 1.1  2002/05/28 16:37:40  southa
+ * Texture references and decomposer
+ *
  */
 
 #include "GLTextureClip.h"
@@ -37,8 +40,8 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
         // Overflow check
         COREASSERT(xsize < 0x80000000 && ysize < 0x80000000);
 
-        cerr << "inX1=" << inX1 << " inY1=" << inY1 << " inX2=" << inX2 << " inY2=" << inY2 << endl;
-        cerr << "xinc=" << xinc << " yinc=" << yinc << " xsize=" << xsize << " ysize=" << ysize << endl;
+        // cerr << "inX1=" << inX1 << " inY1=" << inY1 << " inX2=" << inX2 << " inY2=" << inY2 << endl;
+        // cerr << "xinc=" << xinc << " yinc=" << yinc << " xsize=" << xsize << " ysize=" << ysize << endl;
         
         tSize numPixels=xsize*ysize;
         tSize u32Size=numPixels;

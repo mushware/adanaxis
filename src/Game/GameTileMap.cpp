@@ -1,9 +1,28 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTileMap.cpp,v 1.1 2002/05/28 22:36:44 southa Exp $
+ * $Log: GameTileMap.cpp,v $
+ * Revision 1.1  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  */
 
 #include "GameTileMap.h"
+
+const string&
+GameTileMap::NameGet(U32 inNum) const
+{
+    map<U32, string>::const_iterator p = m_map.find(inNum);
+
+    if (p != m_map.end())
+    {
+        return p->second;
+    }
+    else
+    {
+        static const string unknown("_unknown");
+        return unknown;
+    }
+}
 
 void
 GameTileMap::Load(void)
@@ -54,6 +73,15 @@ GameTileMap::HandleMapEnd(CoreXML& inXML)
 void
 GameTileMap::Pickle(ostream& inOut) const
 {
+    inOut << "<tilemap version=\"0.0\">" << endl;
+    inOut << "<script type=\"text/core\">" << endl;
+    inOut << m_loaderScript;
+    inOut << "</script>" << endl;
+    for (map<U32, string>::const_iterator p = m_map.begin(); p != m_map.end(); ++p)
+    {
+        inOut << "<map>" << p->first << " " << p->second << "</map>" << endl;
+    }
+    inOut << "</tilemap>";
 }
 
 void

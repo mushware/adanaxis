@@ -1,8 +1,11 @@
 #ifndef GAMETILEMAP_H
 #define GAMETILEMAP_H
 /*
- * $Id$
- * $Log$
+ * $Id: GameTileMap.h,v 1.1 2002/05/28 22:36:44 southa Exp $
+ * $Log: GameTileMap.h,v $
+ * Revision 1.1  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  */
 
 #include "mushCore.h"
@@ -14,6 +17,7 @@ public:
     virtual void Pickle(ostream& inOut) const;
     virtual void Unpickle(CoreXML& inXML);
     void Load(void);
+    const string& NameGet(U32 inNum) const;
     
 protected:
     void XMLStartHandler(CoreXML& inXML);
@@ -43,4 +47,11 @@ private:
     map<U32, string> m_map;
     CoreScript m_loaderScript;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameTileMap& inMap)
+{
+    inMap.Pickle(inOut);
+    return inOut;
+}
+
 #endif

@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.2 2002/05/27 12:58:43 southa Exp $
+ * $Id: GLUtils.cpp,v 1.3 2002/05/28 13:07:01 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.3  2002/05/28 13:07:01  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.2  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -10,6 +13,7 @@
  */
 
 #include "GLUtils.h"
+#include "GLTexture.h"
 
 void
 GLUtils::OrthoPrologue(void)
@@ -94,6 +98,15 @@ GLUtils::BitmapText(const string& inStr)
     {
         glutBitmapCharacter(GLUT_BITMAP_8_BY_13, inStr[i]);
     }
+}
+
+void
+GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
+{
+    GLUtils::RasterPos(0, 0);
+    glBitmap(0,0,0,0,inX,inY,NULL);
+    glDrawPixels(inTex.Width(), inTex.Height(), inTex.PixelFormat(),
+             inTex.PixelType(), inTex.DataPtr());
 }
 
 void

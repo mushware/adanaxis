@@ -1,6 +1,9 @@
 /*
- * $Id: CoreScript.cpp,v 1.3 2002/05/24 16:23:10 southa Exp $
+ * $Id: CoreScript.cpp,v 1.4 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.4  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.3  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -74,11 +77,14 @@ CoreScript::ostreamPrint(ostream& inOut) const
     for (map<string, CoreFunction>::const_iterator p = m_functions.begin();
          p != m_functions.end(); ++p)
     {
-        inOut << "Function " << p->second.Name() << ":" << endl;
-        for (tSize j=0; j<p->second.SizeGet(); ++j)
+        if (p->second.Name() == "_global")
         {
-            inOut << p->second.Command(j) << endl;
+            inOut << p->second;
         }
-        inOut << endl;
+        else
+        {
+            inOut << "function " << p->second.Name() << endl;
+            inOut << "{" << endl << p->second << "}" << endl;
+        }
     }
 }

@@ -1,8 +1,11 @@
 #ifndef COREFUNCTION_HP
 #define COREFUNCTION_HP
 /*
- * $Id: CoreFunction.h,v 1.2 2002/05/24 16:23:10 southa Exp $
+ * $Id: CoreFunction.h,v 1.3 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreFunction.h,v $
+ * Revision 1.3  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.2  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -27,15 +30,22 @@ class CoreFunction
 public:
     // CoreFunction() {}
     CoreFunction(const string& inStr): m_name(inStr) {}
-    void AddCommand(const string& inStr) {m_commands.push_back(inStr);}
+    void AddCommand(const string& inStr) {if (inStr != "") m_commands.push_back(inStr);}
     const string& Name(void) const {return m_name;}
     const string& Command(tSize inIndex) const {return m_commands[inIndex];}
     tSize SizeGet(void) const {return m_commands.size();}
     const string& Line(tSize inNum) const {return m_commands[inNum];}
     void Execute(void) const;
-    
+    void Print(ostream &inOut) const;
 private:
     string m_name;
     vector<string> m_commands;
 };
+
+inline ostream& operator<<(ostream &inOut, const CoreFunction& inFunction)
+{
+    inFunction.Print(inOut);
+    return inOut;
+}
+
 #endif

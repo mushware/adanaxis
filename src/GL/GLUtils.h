@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.2 2002/05/27 12:58:43 southa Exp $
+ * $Id: GLUtils.h,v 1.3 2002/05/28 13:07:01 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.3  2002/05/28 13:07:01  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.2  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -10,6 +13,8 @@
  */
 
 #include "GLStandard.h"
+
+class GLTexture;
 
 class GLUtils
 {
@@ -27,7 +32,8 @@ public:
     static void DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3);
     static void RasterPos(tVal inX, tVal inY);
     static void BitmapText(const string& inStr);
-
+    static void DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY);
+    
 private:
     static void SafetyHandler(void);
 };

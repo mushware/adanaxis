@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Tile map -->
+<tilemap version="0.0">
+<script type="text/core">
+loadpixmap gra ../../game/gra1.tiff
+<!-- decompose options are src, dest, xsize, ysize, xstart, ystart, xnum, ynum -->
+decompose gra gra_@ 32 32
+</script>
+<map>1 gra_0_0</map>
+<map>2 gra_1_0</map>
+<map>3 gra_2_0</map>
+<map>4 gra_3_0</map>
+<map>5 gra_0_1</map>
+<map>6 gra_1_1</map>
+<map>7 gra_2_1</map>
+<map>8 gra_3_1</map>
+<map>9 gra_0_2</map>
+<map>10 gra_1_2</map>
+<map>11 gra_2_2</map>
+<map>12 gra_3_2</map>
+<map>13 gra_0_3</map>
+<map>14 gra_1_3</map>
+<map>15 gra_2_3</map>
+<map>16 gra_3_3</map>
+</tilemap>

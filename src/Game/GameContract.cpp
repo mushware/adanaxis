@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.3 2002/05/28 16:37:36 southa Exp $
+ * $Id: GameContract.cpp,v 1.4 2002/05/28 22:36:44 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.4  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.3  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *
@@ -40,6 +43,7 @@ GameContract::Process(bool &outDoQuit, bool &outRedraw)
         case kInit:
             Init();
             m_state=kRunning;
+            outRedraw=true;
             break;
 
         case kRunning:
@@ -93,10 +97,15 @@ GameContract::RunningDisplay(void)
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=m_gameMap->At(x,y);
-            GLUtils::SetColour(mapVal, 0, 1-mapVal);
-            tVal basex=32*x;
-            tVal basey=32*y;
-            GLUtils::DrawRectangle(basex, basey, basex+31, basey+31);
+            //GLUtils::SetColour(mapVal, 0, 1-mapVal);
+            S32 basex=32*x;
+            S32 basey=32*y;
+            //GLUtils::DrawRectangle(basex, basey, basex+31, basey+31);
+            GLTextureRef texRef(m_tileMap->NameGet(mapVal));
+            if (texRef.Exists())
+            {
+                GLUtils::DrawBitmap(*texRef.TextureGet(), basex, basey);
+            }
         }
     }
     GLUtils::OrthoEpilogue();
@@ -115,7 +124,6 @@ GameContract::Init(void)
         if (!inStream) throw(LoaderFail(filename, "Could not open file"));
         CoreXML xml(inStream, filename);
         m_tileMap->Unpickle(xml);
-        m_tileMap->Pickle(cout);
     }
     
     // Load the game map
@@ -126,10 +134,10 @@ GameContract::Init(void)
         if (!inStream) throw(LoaderFail(filename, "Could not open file"));
         CoreXML xml(inStream, filename);
         m_gameMap->Unpickle(xml);
-        m_gameMap->Pickle(cout);
     }
 
     m_tileMap->Load();
+    cerr << *m_tileMap;
 }
 
 void
