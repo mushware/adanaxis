@@ -12,22 +12,14 @@
  *
  ****************************************************************************/
 
-*
-* (Mushware file header version 1.0)
-*
-* This file contains original work by Andy Southgate.  Contact details can be
-* found at http://www.mushware.co.uk.  This file was placed in the Public
-* Domain by Andy Southgate and Mushware Limited in 2002.
-*
-* This software carries NO WARRANTY of any kind.
-*
-****************************************************************************/
-
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.2 2002/08/26 12:44:37 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.3 2002/08/27 08:56:28 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.3  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/26 12:44:37  southa
  * Timed rewards and sound tweaks
  *
