@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHMESHUTILS_H
+#define MUSHMESHUTILS_H
+//%includeGuardStart } AdaxOlJ6M6/mPT5NXjubxQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshVector.cpp
+ * File: src/MushMesh/MushMeshUtils.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,16 +14,19 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PBhDZ+hOKu6i0ZNet7R2vA
+//%Header } E6hzk2Z9M26wAK6ICXOBXw
 /*
- * $Id: MushMeshVector.cpp,v 1.1 2003/10/14 10:46:05 southa Exp $
- * $Log: MushMeshVector.cpp,v $
- * Revision 1.1  2003/10/14 10:46:05  southa
- * MeshMover creation
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshVector.h"
+#include "MushMeshStandard.h"
 
-using namespace Mushware;
-using namespace std;
+class MushMeshUtils
+{
+public:
+    static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
+};
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

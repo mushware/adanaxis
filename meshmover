@@ -1,0 +1,15 @@
+#!/bin/sh
+if [ ! meshmoverdata/system/meshmover -nt src/meshmoverbinary ]
+then
+echo Installing src/meshmoverbinary to meshmoverdata/system/meshmover
+/bin/cp -R src/meshmoverbinary meshmoverdata/system/meshmover
+fi
+
+if [ ! meshmoverdata/system/meshmover.exe -nt src/meshmoverbinary.exe ]
+then
+echo Installing src/meshmoverbinary.exe to meshmoverdata/system/meshmover.exe
+/bin/cp -R src/meshmoverbinary.exe meshmoverdata/system/meshmover.exe
+fi
+
+cd meshmoverdata/system
+./meshmover

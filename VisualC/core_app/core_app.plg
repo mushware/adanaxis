@@ -6,9 +6,6 @@ C:\CYGWIN\HOME\MUSHWARE\CORE-APP\VISUALC\core_app>C:
 C:\CYGWIN\HOME\MUSHWARE\CORE-APP\VISUALC\core_app>chdir .. 
 
 C:\cygwin\home\mushware\core-app\VisualC>C:\cygwin\bin\bash -l -c 'cd ~/core-app;make' 
-/usr/share/texmf/web2c/texmf.cnf: Permission denied
-/usr/share/texmf/web2c/texmf.cnf: Permission denied
-/usr/share/texmf/web2c/texmf.cnf: Permission denied
 /bin/sh prebuild.sh
 Executing prebuild script
 SourceProcess::ProcessDirectory() called too early to check prototype at SourceProcess.pm line 112.
@@ -17,30 +14,18 @@ make  all-recursive
 make[1]: Entering directory `/home/mushware/core-app'
 Making all in src
 make[2]: Entering directory `/home/mushware/core-app/src'
-if /bin/sh ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..     -g -O2 -MT MushMeshVector.lo -MD -MP -MF ".deps/MushMeshVector.Tpo" \
-  -c -o MushMeshVector.lo `test -f './MushMesh/MushMeshVector.cpp' || echo './'`./MushMesh/MushMeshVector.cpp; \
-then mv -f ".deps/MushMeshVector.Tpo" ".deps/MushMeshVector.Plo"; \
-else rm -f ".deps/MushMeshVector.Tpo"; exit 1; \
+if g++ -DHAVE_CONFIG_H -I. -I. -I..    -I./MushMesh  -g -O2 -MT test_mushmesh-TestMushMeshVector.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshVector.Tpo" \
+  -c -o test_mushmesh-TestMushMeshVector.o `test -f './TestMushMesh/TestMushMeshVector.cpp' || echo './'`./TestMushMesh/TestMushMeshVector.cpp; \
+then mv -f ".deps/test_mushmesh-TestMushMeshVector.Tpo" ".deps/test_mushmesh-TestMushMeshVector.Po"; \
+else rm -f ".deps/test_mushmesh-TestMushMeshVector.Tpo"; exit 1; \
 fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -O2 -MT MushMeshVector.lo -MD -MP -MF .deps/MushMeshVector.Tpo -c ./MushMesh/MushMeshVector.cpp -o MushMeshVector.o
-echo timestamp > MushMeshVector.lo
-/bin/sh ../libtool --mode=link g++  -g -O2   -o libmushmesh.la -rpath C:/MinGW/lib  MushMeshVector.lo  
-libtool: link: warning: undefined symbols not allowed in i686-pc-cygwin shared libraries
-rm -fr .libs/libmushmesh.la .libs/libmushmesh.* .libs/libmushmesh.*
-ar cru .libs/libmushmesh.a  MushMeshVector.o 
-ranlib .libs/libmushmesh.a
-creating libmushmesh.la
-(cd .libs && rm -f libmushmesh.la && ln -s ../libmushmesh.la libmushmesh.la)
-/bin/sh ../libtool --mode=link gcc  -g -O2   -o test_mushmesh.exe   libmushmesh.la -lmushcore -lexpat -lpcre 
-gcc -g -O2 -o test_mushmesh.exe  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
-c:/MingW/bin/../lib/gcc-lib/mingw32/3.2.3/../../../libmingw32.a(main.o)(.text+0x97):main.c: undefined reference to `WinMain@16'
-make[2]: *** [test_mushmesh.exe] Error 1
+/bin/sh ../libtool --mode=link g++  -g -O2   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
+g++ -g -O2 -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
 make[2]: Leaving directory `/home/mushware/core-app/src'
-make[1]: *** [all-recursive] Error 1
+make[2]: Entering directory `/home/mushware/core-app'
+make[2]: Leaving directory `/home/mushware/core-app'
 make[1]: Leaving directory `/home/mushware/core-app'
-make: *** [all] Error 2
-Error executing c:\windows\system32\cmd.exe.
 
 
 
-core_app.exe - 3 error(s), 1 warning(s)
+core_app.exe - 0 error(s), 0 warning(s)

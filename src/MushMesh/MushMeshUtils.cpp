@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshVector.cpp
+ * File: src/MushMesh/MushMeshUtils.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,16 +10,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PBhDZ+hOKu6i0ZNet7R2vA
+//%Header } 32mFSsTNLHJgXJZJxCfxrQ
 /*
- * $Id: MushMeshVector.cpp,v 1.1 2003/10/14 10:46:05 southa Exp $
- * $Log: MushMeshVector.cpp,v $
- * Revision 1.1  2003/10/14 10:46:05  southa
- * MeshMover creation
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshVector.h"
+#include "MushMeshUtils.h"
+
+#include "MushMeshSTL.h"
 
 using namespace Mushware;
 using namespace std;
+
+void
+MushMeshUtils::BoundaryThrow(U32 inValue, U32 inLimit)
+{
+    ostringstream message;
+    message << "Access out of bounds (" << inValue << " >= " << inLimit << ')';
+    throw MushcoreLogicFail(message.str()) ;
+}

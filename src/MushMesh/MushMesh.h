@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHMESH_H
+#define MUSHMESH_H
+//%includeGuardStart } ThUO79ZBnDYvVIfZtUlf4Q
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshVector.cpp
+ * File: src/MushMesh/MushMesh.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,16 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PBhDZ+hOKu6i0ZNet7R2vA
+//%Header } xFo+XPP1GOS/msMIb9Dkcg
 /*
- * $Id: MushMeshVector.cpp,v 1.1 2003/10/14 10:46:05 southa Exp $
- * $Log: MushMeshVector.cpp,v $
- * Revision 1.1  2003/10/14 10:46:05  southa
- * MeshMover creation
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushMeshVector.h"
-
-using namespace Mushware;
-using namespace std;
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
