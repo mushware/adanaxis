@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.2 2002/05/10 22:38:23 southa Exp $
+ * $Id: CoreStandard.h,v 1.3 2002/05/24 16:23:08 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.3  2002/05/24 16:23:08  southa
+ * Config and typenames
+ *
  * Revision 1.2  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -52,6 +55,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <stack>
 #include <stdexcept>
 #include <stdlib.h>
 #include <errno.h>

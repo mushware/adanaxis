@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.6 2002/05/10 16:39:35 southa Exp $
+ * $Id: Test.cpp,v 1.7 2002/05/24 18:09:39 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.7  2002/05/24 18:09:39  southa
+ * CoreXML and game map
+ *
  * Revision 1.6  2002/05/10 16:39:35  southa
  * Changed .hp files to .h
  *
@@ -302,8 +305,7 @@ Test::Test5(void)
     ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
 
-    CoreXML parser;
-    parser.ParseStream(in);
-    
+//    CoreXML parser;
+//    parser.ParseStream(in);
 }
 

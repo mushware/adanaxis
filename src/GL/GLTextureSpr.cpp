@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureSpr.cpp,v 1.4 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.5 2002/05/24 18:10:43 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.5  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.4  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -29,8 +32,8 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
 
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
     U32 numSprites=sUtil.LittleEndianU32Get(in);
-    U32 offsetFirst=sUtil.LittleEndianU32Get(in);
-    U32 offsetFree=sUtil.LittleEndianU32Get(in);
+    IFTEXTESTING(U32 offsetFirst=sUtil.LittleEndianU32Get(in);)
+    IFTEXTESTING(U32 offsetFree=sUtil.LittleEndianU32Get(in);)
 
     IFTEXTESTING(cerr << "(hex)" << hex << endl);
     IFTEXTESTING(cerr << "numSprites=" << numSprites << ", ");
@@ -56,10 +59,10 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         }
         U32 wordWidth=sUtil.LittleEndianU32Get(in)+1;
         U32 height=sUtil.LittleEndianU32Get(in)+1;
-        U32 firstPixel=sUtil.LittleEndianU32Get(in);
+        IFTEXTESTING(U32 firstPixel=sUtil.LittleEndianU32Get(in);)
         U32 lastPixel=sUtil.LittleEndianU32Get(in);
         U32 dataOffset=sUtil.LittleEndianU32Get(in);
-        U32 maskOffset=sUtil.LittleEndianU32Get(in);
+        IFTEXTESTING(U32 maskOffset=sUtil.LittleEndianU32Get(in);)
         GLSpriteModeRO mode(sUtil.LittleEndianU32Get(in));
 
         IFTEXTESTING(cerr << "name='" << name << "', ");

@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: CoreConfig.cpp,v 1.1 2002/05/24 16:23:09 southa Exp $
  * $%Log$
  */
 
@@ -33,9 +33,9 @@ CoreConfig::ConfigExists(const std::string& inName) const
 }
 
 void
-CoreConfig::Pickle(istream& inOut) const
+CoreConfig::Pickle(ostream& inOut) const
 {}
 
 void
-CoreConfig::Unpickle(ostream& inIn)
+CoreConfig::Unpickle(istream& inIn)
 {}

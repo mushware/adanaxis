@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreXML.h,v 1.2 2002/05/24 18:08:35 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.2  2002/05/24 18:08:35  southa
+ * CoreXML and game map
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -23,12 +26,30 @@ extern "C"
 class CoreXML
 {
 public:
-    void ParseStream(istream& inIn);
-    void Stop(void);
-private:
-    static void startElement(void *userData, const char *name, const char **atts);
-    static void endElement(void *userData, const char *name);
-    static void characterDataHandler(void *userData, const XML_Char *s, int len);
+    virtual ~CoreXML() {}
 
+protected:
+    virtual void XMLStartElement(void);
+    virtual void XMLEndElement(void);
+    virtual void XMLCharacterData(void);
+
+    void XMLParseStream(istream& inIn);
+    void XMLStop(void);
+    const string& XMLTopTag(void) {return m_tagStack.top();}
+    const string& XMLTopData(void) {return m_dataStack.top();}
+    const map<string, string>& XMLTopAttrib(void) {return m_attribStack.top();}
+    void XMLDumpTops(ostream& inOut);
+    
+private:
+    void ProcessStartElement(const char *inName, const char **inAttribs);
+    void ProcessEndElement(const char *inName);
+    void ProcessCharacterData(const char *inData, tSize inLen);
+    static void StartElementHandler(void *inUserData, const char *inName, const char **inAttribs);
+    static void EndElementHandler(void *inUserData, const char *inName);
+    static void CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen);
+        
     bool m_continue;
+    stack< map<string, string> > m_attribStack;
+    stack<string> m_dataStack;
+    stack<string> m_tagStack;
 };
