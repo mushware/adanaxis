@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.5 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.6 2002/08/27 08:56:22 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -42,10 +45,14 @@ GameChequePoint::StandingOnHandler(const GameEventStandingOn& inEvent)
     U32 size=m_mapValues.size();
     for (U32 i=0; i<size; ++i)
     {
-        if (inEvent.mapValue == m_mapValues[i])
+        U32 size=inEvent.mapValues.size();
+        for (U32 j=0; j<size; ++j)
         {
-            Triggered();
-            break;
+            if (inEvent.mapValues[j] == m_mapValues[i])
+            {
+                Triggered();
+                return;
+            }
         }
     }
 }

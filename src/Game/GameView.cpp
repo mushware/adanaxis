@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameView.cpp,v 1.2 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameView.cpp,v 1.3 2002/08/27 08:56:28 southa Exp $
  * $Log: GameView.cpp,v $
+ * Revision 1.3  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -23,3 +26,10 @@
  */
 
 #include "GameView.h"
+
+GameView::GameView():
+    m_dimensions(GLRectangle(0,0,0,0)),
+    m_lightingFactor(1.0),
+    m_ambientLighting(0.3)
+{
+}

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameEvent.h,v 1.2 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameEvent.h,v 1.3 2002/08/27 08:56:23 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.3  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -24,6 +27,8 @@
  */
 
 #include "mushCore.h"
+
+#include "GameFloorMap.h"
 
 class GameEvent
 {
@@ -36,8 +41,8 @@ protected:
 class GameEventStandingOn : public GameEvent
 {
 public:
-    explicit GameEventStandingOn(U32 inValue) { mapValue = inValue; }
-    U32 mapValue;
+    explicit GameEventStandingOn(const GameFloorMap::tMapVector& inValues) { mapValues = inValues; }
+    GameFloorMap::tMapVector mapValues;
 };
 
 class GameEventSequenceAdvance : public GameEvent

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.14 2002/08/18 20:44:35 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.15 2002/08/27 08:56:25 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.15  2002/08/27 08:56:25  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/08/18 20:44:35  southa
  * Initial chequepoint work
  *
@@ -64,6 +67,7 @@
 
 #include "GamePiece.h"
 #include "GameMotion.h"
+#include "GameFloorMap.h"
 
 class GameGraphic;
 class GameController;
@@ -89,7 +93,7 @@ public:
     const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
     tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
     const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
-    U32 StandingOnGet(void) { return m_standingOn; }
+    const GameFloorMap::tMapVector& StandingOnGet(void) { return m_standingOn; }
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 
@@ -131,7 +135,7 @@ private:
     mutable GameController *m_controller; // in GameData
     tVal m_speedLim;
     tVal m_acceleration;
-    U32 m_standingOn;
+    GameFloorMap::tMapVector m_standingOn;
 };
 
 inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)

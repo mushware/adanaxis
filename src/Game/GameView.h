@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameView.h,v 1.2 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameView.h,v 1.3 2002/08/27 08:56:28 southa Exp $
  * $Log: GameView.h,v $
+ * Revision 1.3  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -31,15 +34,22 @@
 class GameView
 {
 public:
-    GameView() : m_dimensions(GLRectangle(0,0,0,0)) {}
+    GameView();
     const GLRectangle& DimensionsGet(void) const { return m_dimensions; }
     tVal WidthGet(void) const { return m_dimensions.XSize(); }
     tVal HeightGet(void) const { return m_dimensions.YSize(); }
     void RectangleSet(const GLRectangle& inRectangle) { m_dimensions=inRectangle; }
     GameOverPlot& OverPlotGet(void) { return m_overPlot; }
+    tVal LightingFactorGet(void) { return m_lightingFactor; }
+    void LightingFactorSet(tVal inFactor) { m_lightingFactor = inFactor; }
+    tVal AmbientLightingGet(void) { return m_ambientLighting; }
+    void AmbientLightingSet(tVal inAmbient) { m_ambientLighting = inAmbient; }
     
 private:
     GLRectangle m_dimensions;
     GameOverPlot m_overPlot;
+    tVal m_lightingFactor;
+    tVal m_ambientLighting;
+    
 };
 #endif

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: CoreException.h,v 1.13 2002/08/07 13:36:45 southa Exp $
+ * $Id: CoreException.h,v 1.14 2002/08/27 08:56:16 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.14  2002/08/27 08:56:16  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/08/07 13:36:45  southa
  * Conditioned source
  *
@@ -280,6 +283,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, DeviceFail f)
+{
+    return s<<f.SPrint();
+}
+
+class ResourceFail: public exception
+{
+public:
+    ResourceFail(const string &inMessage) {m_message=inMessage;}
+    ~ResourceFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, ResourceFail f)
 {
     return s<<f.SPrint();
 }

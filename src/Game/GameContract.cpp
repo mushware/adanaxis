@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.65 2002/10/07 12:15:37 southa Exp $
+ * $Id: GameContract.cpp,v 1.66 2002/10/07 17:49:45 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.66  2002/10/07 17:49:45  southa
+ * Multiple values per map element
+ *
  * Revision 1.65  2002/10/07 12:15:37  southa
  * First specular lighting
  *
@@ -333,6 +336,8 @@ GameContract::Init(void)
 
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
+
+        m_lights.LightAdd(0, GLLightDef(GLVector(30,10,1)));
 }
 
 void
@@ -423,7 +428,7 @@ GameContract::RunningDisplay(void)
 
     GLUtils::PushMatrix();
     
-    m_lights.LightAdd(0, GLLightDef());
+
     m_lights.LightEnable(0);
     
     // Work out how many map pieces we can see in our view
