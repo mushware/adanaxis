@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMap.h,v 1.12 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameMap.h,v 1.13 2003/01/12 17:32:55 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.13  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.12  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -48,7 +51,7 @@ public:
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
-    tValarray<T> m_map;
+    MushwareValarray<T> m_map;
 };
 
 template<class T>

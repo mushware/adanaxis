@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.18 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.19 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.19  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.18  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -69,6 +72,8 @@
 
 #include "GLTextureSpr.h"
 #include "Mushcore.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

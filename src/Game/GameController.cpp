@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.14 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameController.cpp,v 1.15 2003/01/09 14:57:00 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.15  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -59,6 +62,7 @@
 
 #include "GameAppHandler.h"
 #include "GameControlFrameDef.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

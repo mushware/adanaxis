@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.cpp,v 1.19 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.20 2003/01/09 14:56:57 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.20  2003/01/09 14:56:57  southa
+ * Created Mushcore
+ *
  * Revision 1.19  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -72,6 +75,8 @@
 
 #include "GLAppHandler.h"
 #include "GLStandard.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

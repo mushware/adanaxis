@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.25 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.26 2003/01/11 17:07:51 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.26  2003/01/11 17:07:51  southa
+ * Mushcore library separation
+ *
  * Revision 1.25  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -92,6 +95,8 @@
 
 #include "Mushcore.h"
 #include "mushGL.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

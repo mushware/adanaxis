@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.cpp,v 1.10 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameMotion.cpp,v 1.11 2003/01/09 14:57:02 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.11  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -44,6 +47,8 @@
  */
 
 #include "GameMotion.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.10 2003/01/09 14:57:04 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.11 2003/01/12 17:32:57 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.11  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.10  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -78,13 +81,12 @@
 
 #include "MediaAudioSDL.h"
 #include "MediaSDL.h"
+#include "MediaSTL.h"
 #include "MediaSound.h"
 #include "MediaSoundStream.h"
 
 using namespace Mushware;
 using namespace std;
-
-
 
 MediaAudioSDL::MediaAudioSDL():
     m_music(NULL),

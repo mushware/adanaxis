@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.33 2003/01/09 14:57:04 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.34 2003/01/12 17:32:57 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.34  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.33  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -116,6 +119,7 @@
  */
 
 #include "GameTypeRace.h"
+
 #include "GameAppHandler.h"
 #include "GameChequePoint.h"
 #include "GameData.h"
@@ -123,8 +127,7 @@
 #include "GameDialogue.h"
 #include "GameEvent.h"
 #include "GameRewards.h"
-
-#include <typeinfo>
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

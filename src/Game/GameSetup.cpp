@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.27 2003/01/11 17:44:27 southa Exp $
+ * $Id: GameSetup.cpp,v 1.28 2003/01/12 17:32:56 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.28  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.27  2003/01/11 17:44:27  southa
  * Mushcore fixes
  *
@@ -103,6 +106,7 @@
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 #include "GameRouter.h"
+#include "GameSTL.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"

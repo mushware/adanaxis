@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameView.cpp,v 1.7 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameView.cpp,v 1.8 2002/12/29 20:59:58 southa Exp $
  * $Log: GameView.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -35,6 +38,8 @@
  */
 
 #include "GameView.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

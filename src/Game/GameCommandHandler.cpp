@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.14 2003/01/11 17:07:51 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.15 2003/01/12 17:32:52 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.15  2003/01/12 17:32:52  southa
+ * Mushcore work
+ *
  * Revision 1.14  2003/01/11 17:07:51  southa
  * Mushcore library separation
  *
@@ -58,6 +61,8 @@
 #include "GameCommandHandler.h"
 
 #include "GameAppHandler.h"
+#include "GameSTL.h"
+
 #include "Mushcore.h"
 #include "mushPlatform.h"
 

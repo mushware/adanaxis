@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDataUtils.cpp,v 1.6 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameDataUtils.cpp,v 1.7 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDataUtils.cpp,v $
+ * Revision 1.7  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -34,6 +37,7 @@
 #include "GameDataUtils.h"
 
 #include "GameData.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

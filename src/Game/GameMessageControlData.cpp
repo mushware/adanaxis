@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMessageControlData.cpp,v 1.5 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.6 2003/01/12 17:32:55 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.6  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.5  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -31,6 +34,7 @@
 #include "GameMessageControlData.h"
 
 #include "GameProtocol.h"
+#include "GameSTL.h"
 
 #include "mushMedia.h"
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.10 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.11 2003/01/12 17:32:52 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.11  2003/01/12 17:32:52  southa
+ * Mushcore work
+ *
  * Revision 1.10  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -44,6 +47,7 @@
  */
 
 #include "GameConfigDef.h"
+#include "GameSTL.h"
 
 #include "mushMedia.h"
 

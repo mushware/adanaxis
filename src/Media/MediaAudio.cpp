@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.cpp,v 1.15 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.16 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.16  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.15  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -28,6 +31,7 @@
 #include "MediaAudio.h"
 #include "MediaAudioNull.h"
 #include "MediaAudioSDL.h"
+#include "MediaSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.3 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.3  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -127,14 +130,14 @@
 #include "config.h"
 #endif
 
-#include <memory>
-#include <vector>
-#include <string>
-#include <list>
-#include <stack>
-#include <map>
 #include <iosfwd>
+#include <list>
+#include <map>
+#include <memory>
+#include <stack>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 #include <assert.h>
 
@@ -153,7 +156,19 @@ namespace Mushware
     typedef std::ostream u8ostream;
     typedef std::ifstream u8ifstream;
     typedef std::ofstream u8ofstream;
+#ifndef M_PI
+    const double M_PI=3.14159265358979;
+#endif
 };
+
+#ifdef HAVE_VALARRAY
+#include <valarray>
+#define MushwareValarray valarray
+#else
+// Mimic valarray using vector
+#define MushwareValarray vector
+#endif
+
 
 #define MUSHCOREASSERT(exp) assert(exp)
 

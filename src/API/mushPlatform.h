@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushPlatform.h,v 1.11 2002/12/12 18:38:57 southa Exp $
+ * $Id: mushPlatform.h,v 1.12 2002/12/20 13:17:31 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.12  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -56,6 +59,9 @@
 
 // Network
 #include "Platform/MustlPlatform.h"
+
+// STL
+#include "Platform/PlatformSTL.h"
 
 // Video utilities
 #include "Platform/PlatformVideoUtils.h"

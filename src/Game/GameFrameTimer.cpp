@@ -19,6 +19,7 @@
 
 #include "GameFrameTimer.h"
 
+#include "GameSTL.h"
 #include "GameTimer.h"
 
 using namespace Mushware;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.h,v 1.12 2003/01/11 13:03:14 southa Exp $
+ * $Id: GameSolidMap.h,v 1.13 2003/01/11 17:07:52 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.13  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.12  2003/01/11 13:03:14  southa
  * Use Mushcore header
  *
@@ -104,7 +107,7 @@ private:
     Mushware::U32 m_ysize;
     Mushware::tVal m_xstep;
     Mushware::tVal m_ystep;
-    tValarray<Mushware::tVal> m_solidMap;
-    tValarray<Mushware::tVal> m_adhesionMap;
+    MushwareValarray<Mushware::tVal> m_solidMap;
+    MushwareValarray<Mushware::tVal> m_adhesionMap;
 };
 #endif

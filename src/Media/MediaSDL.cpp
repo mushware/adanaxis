@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.18 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.19 2003/01/12 17:32:57 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.19  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.18  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -70,6 +73,7 @@
 #include "MediaSDL.h"
 
 #include "MediaAudio.h"
+#include "MediaSTL.h"
 
 using namespace Mushware;
 using namespace std;

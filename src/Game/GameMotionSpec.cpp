@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.10 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,7 +47,9 @@
  */
 
 #include "GameMotionSpec.h"
+
 #include "GameData.h"
+#include "GameSTL.h"
 #include "GameView.h"
 
 using namespace Mushware;

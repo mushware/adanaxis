@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.cpp,v 1.9 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameGraphic.cpp,v 1.10 2003/01/12 17:32:55 southa Exp $
  * $Log: GameGraphic.cpp,v $
+ * Revision 1.10  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.9  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -41,8 +44,10 @@
  */
 
 #include "GameGraphic.h"
+
 #include "GameGraphicModel.h"
 #include "GameGraphicSprite.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

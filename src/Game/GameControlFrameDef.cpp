@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameControlFrameDef.cpp,v 1.3 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameControlFrameDef.cpp,v 1.4 2002/12/29 20:59:54 southa Exp $
  * $Log: GameControlFrameDef.cpp,v $
+ * Revision 1.4  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -23,6 +26,8 @@
  */
 
 #include "GameControlFrameDef.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

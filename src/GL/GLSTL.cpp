@@ -9,14 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSTL.cpp,v 1.1 2003/01/12 17:33:00 southa Exp $
- * $Log: MushcoreSTL.cpp,v $
- * Revision 1.1  2003/01/12 17:33:00  southa
- * Mushcore work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushcoreSTL.h"
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

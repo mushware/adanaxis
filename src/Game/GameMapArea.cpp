@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMapArea.cpp,v 1.6 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameMapArea.cpp,v 1.7 2002/12/29 20:59:56 southa Exp $
  * $Log: GameMapArea.cpp,v $
+ * Revision 1.7  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -32,6 +35,8 @@
  */
 
 #include "GameMapArea.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

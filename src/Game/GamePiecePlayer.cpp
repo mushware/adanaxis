@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.39 2003/01/11 17:07:52 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.40 2003/01/12 17:32:55 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.40  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.39  2003/01/11 17:07:52  southa
  * Mushcore library separation
  *
@@ -137,6 +140,7 @@
 #include "GameFloorMap.h"
 #include "GameGraphic.h"
 #include "GameGraphicSprite.h"
+#include "GameSTL.h"
 #include "GameSpacePoint.h"
 #include "GameView.h"
 

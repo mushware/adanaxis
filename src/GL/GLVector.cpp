@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.8 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLVector.cpp,v 1.9 2003/01/12 17:32:51 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.9  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.8  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -39,6 +42,8 @@
 
 #include "GLVector.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.27 2003/01/11 17:07:52 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.28 2003/01/12 17:32:57 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.28  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.27  2003/01/11 17:07:52  southa
  * Mushcore library separation
  *
@@ -123,6 +126,7 @@
 #include "GameDefClient.h"
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
+#include "GameSTL.h"
 
 #include "Mushcore.h"
 #include "mushMedia.h"

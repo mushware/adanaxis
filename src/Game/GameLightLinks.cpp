@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameLightLinks.cpp,v 1.5 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameLightLinks.cpp,v 1.6 2003/01/12 17:32:55 southa Exp $
  * $Log: GameLightLinks.cpp,v $
+ * Revision 1.6  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.5  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -29,6 +32,8 @@
  */
 
 #include "GameLightLinks.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

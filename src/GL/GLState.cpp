@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.7 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLState.cpp,v 1.8 2003/01/12 17:32:50 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.8  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.7  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -35,6 +38,8 @@
  */
 
 #include "GLState.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

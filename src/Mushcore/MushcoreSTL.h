@@ -1,6 +1,21 @@
+#ifndef MUSHCORESTL_H
+#define MUSHCORESTL_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreSTL.h,v 1.1 2003/01/12 17:33:00 southa Exp $
+ * $Log: MushcoreSTL.h,v $
+ * Revision 1.1  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -18,22 +33,10 @@
 
 #include <typeinfo>
 
+#include <cerrno>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
 #include <ctime>
-#include <errno.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-#ifdef HAVE_VALARRAY
-#include <valarray>
-#define tValarray valarray
-#else
-// Mimic valarray using vector
-#define tValarray vector
 #endif
-
-#ifndef M_PI
-#define M_PI 3.14159265358979
-#endif
-
-

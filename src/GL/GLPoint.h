@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.19 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLPoint.h,v 1.20 2003/01/11 17:07:50 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.20  2003/01/11 17:07:50  southa
+ * Mushcore library separation
+ *
  * Revision 1.19  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -121,9 +124,9 @@ public:
     void MakeInteger(void)
     {
         double temp;
-        modf(x, &temp);
+        std::modf(x, &temp);
         x=temp;
-        modf(y, &temp);
+        std::modf(y, &temp);
         y=temp;
     }
 

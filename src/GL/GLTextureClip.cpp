@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureClip.cpp,v 1.10 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.11 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.11  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.10  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -44,6 +47,8 @@
  */
 
 #include "GLTextureClip.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

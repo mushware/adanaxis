@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileSpec.cpp,v 1.3 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileSpec.cpp,v 1.4 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTileSpec.cpp,v $
+ * Revision 1.4  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -23,6 +26,8 @@
  */
 
 #include "GameTileSpec.h"
+
+#include "GameSTL.h"
 #include "GameTileTraits.h"
 
 using namespace Mushware;

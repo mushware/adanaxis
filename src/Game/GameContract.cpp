@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.113 2003/01/11 17:07:51 southa Exp $
+ * $Id: GameContract.cpp,v 1.114 2003/01/12 17:32:52 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.114  2003/01/12 17:32:52  southa
+ * Mushcore work
+ *
  * Revision 1.113  2003/01/11 17:07:51  southa
  * Mushcore library separation
  *
@@ -377,6 +380,7 @@
 #include "GamePlayerUtils.h"
 #include "GameRewards.h"
 #include "GameRouter.h"
+#include "GameSTL.h"
 #include "GameSpacePoint.h"
 #include "GameTileMap.h"
 #include "GameTileTraits.h"

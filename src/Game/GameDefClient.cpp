@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.23 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.24 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.24  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.23  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -104,6 +107,7 @@
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 #include "GameProtocol.h"
+#include "GameSTL.h"
 
 #include "mushPlatform.h"
 

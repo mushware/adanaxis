@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.12 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameRecords.cpp,v 1.13 2003/01/12 17:32:56 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.13  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.12  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -50,6 +53,8 @@
  */
 
 #include "GameRecords.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

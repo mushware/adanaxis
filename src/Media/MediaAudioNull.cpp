@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioNull.cpp,v 1.6 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.7 2003/01/07 17:13:44 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.7  2003/01/07 17:13:44  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.6  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -32,6 +35,8 @@
  */
 
 #include "MediaAudioNull.h"
+
+#include "MediaSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLine.cpp,v 1.9 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLLine.cpp,v 1.10 2002/12/29 20:59:52 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -45,6 +48,8 @@
 #include "GLStandard.h"
 #include "GLState.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

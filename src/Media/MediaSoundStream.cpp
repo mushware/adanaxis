@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.9 2003/01/11 17:07:53 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.10 2003/01/12 17:32:58 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.10  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.9  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -43,6 +46,7 @@
 #include "MediaSoundStream.h"
 
 #include "MediaAudio.h"
+#include "MediaSTL.h"
 
 using namespace Mushware;
 using namespace std;

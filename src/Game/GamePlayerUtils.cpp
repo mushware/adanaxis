@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.cpp,v 1.11 2003/01/09 14:57:03 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.12 2003/01/12 17:32:55 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.12  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.11  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -58,6 +61,7 @@
 #include "GameMessageControlData.h"
 #include "GamePiecePlayer.h"
 #include "GameProtocol.h"
+#include "GameSTL.h"
 #include "GameTimer.h"
 #include "GameType.h"
 

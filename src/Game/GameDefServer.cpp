@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.18 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.19 2003/01/12 17:32:53 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.19  2003/01/12 17:32:53  southa
+ * Mushcore work
+ *
  * Revision 1.18  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -72,6 +75,7 @@
 #include "GameAppHandler.h"
 #include "GameDefClient.h"
 #include "GameProtocol.h"
+#include "GameSTL.h"
 
 #include "mushPlatform.h"
 

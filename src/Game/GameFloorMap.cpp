@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.44 2003/01/11 17:07:51 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.45 2003/01/12 17:32:54 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.45  2003/01/12 17:32:54  southa
+ * Mushcore work
+ *
  * Revision 1.44  2003/01/11 17:07:51  southa
  * Mushcore library separation
  *
@@ -164,6 +167,7 @@
 #include "GameData.h"
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
+#include "GameSTL.h"
 #include "GameSpacePoint.h"
 #include "GameTileMap.h"
 #include "GameTileTraits.h"
@@ -247,7 +251,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     U32 areaYMin=minPoint.U32YGet();
     U32 areaYMax=maxPoint.U32YGet();
 
-    tValarray<bool> areaFlags(areaXSize*areaYSize);
+    MushwareValarray<bool> areaFlags(areaXSize*areaYSize);
     
     for (U32 x=areaXMin; x<areaXMax; ++x)
     {

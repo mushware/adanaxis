@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameOverPlot.cpp,v 1.6 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameOverPlot.cpp,v 1.7 2003/01/12 17:32:55 southa Exp $
  * $Log: GameOverPlot.cpp,v $
+ * Revision 1.7  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.6  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -32,6 +35,8 @@
  */
 
 #include "GameOverPlot.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

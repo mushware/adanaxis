@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.19 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.20 2003/01/12 17:32:53 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.20  2003/01/12 17:32:53  southa
+ * Mushcore work
+ *
  * Revision 1.19  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -75,6 +78,7 @@
 #include "GameData.h"
 #include "GameDataUtils.h"
 #include "GameMotion.h"
+#include "GameSTL.h"
 #include "GameTimer.h"
 
 using namespace Mushware;

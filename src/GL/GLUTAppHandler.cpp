@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.19 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.20 2003/01/12 17:32:51 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.20  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.19  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -73,6 +76,8 @@
 #include "GLUtils.h"
 
 #include "mushPlatform.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.19 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameTimer.cpp,v 1.20 2003/01/12 17:32:56 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.20  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.19  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -71,6 +74,8 @@
  */
 
 #include "GameTimer.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

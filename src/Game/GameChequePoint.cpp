@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.12 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.13 2003/01/09 14:56:59 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.13  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -53,6 +56,7 @@
 #include "GameData.h"
 #include "GameDataUtils.h"
 #include "GameEvent.h"
+#include "GameSTL.h"
 #include "GameType.h"
 
 using namespace Mushware;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.15 2003/01/09 14:57:04 southa Exp $
+ * $Id: GameTraits.cpp,v 1.16 2003/01/12 17:32:57 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.16  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.15  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -59,7 +62,9 @@
  */
 
 #include "GameTraits.h"
+
 #include "GameData.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

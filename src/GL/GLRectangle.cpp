@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.15 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.16 2003/01/12 17:32:50 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.16  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.15  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -62,6 +65,8 @@
 #include "GLLine.h"
 #include "GLState.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

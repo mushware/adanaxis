@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetID.cpp,v 1.3 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameNetID.cpp,v 1.4 2002/12/29 20:59:56 southa Exp $
  * $Log: GameNetID.cpp,v $
+ * Revision 1.4  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -23,6 +26,8 @@
  */
 
 #include "GameNetID.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

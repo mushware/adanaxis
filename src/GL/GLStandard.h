@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLStandard.h,v 1.12 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLStandard.h,v 1.13 2003/01/12 17:32:50 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.13  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.12  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -106,6 +109,7 @@
 
 
 #include "Mushcore.h"
+#include <cmath>
 
 #define GLTESTING(a) a
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.cpp,v 1.19 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameDef.cpp,v 1.20 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.20  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.19  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -71,6 +74,7 @@
 
 #include "GameAppHandler.h"
 #include "GameProtocol.h"
+#include "GameSTL.h"
 
 #include "Mustl.h"
 #include "mushPlatform.h"

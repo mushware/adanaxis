@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreBuiltinHandler.h,v 1.3 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreBuiltinHandler.h,v $
+ * Revision 1.3  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -48,8 +51,8 @@
  *
  */
 
-#include "MushcoreStandard.h"
 #include "MushcoreCommandHandler.h"
+#include "MushcoreStandard.h"
 
 class MushcoreBuiltinHandler
 {

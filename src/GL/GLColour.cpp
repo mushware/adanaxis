@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLColour.cpp,v 1.9 2003/01/07 17:13:40 southa Exp $
+ * $Id: GLColour.cpp,v 1.10 2003/01/09 14:56:57 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.10  2003/01/09 14:56:57  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -41,6 +44,8 @@
  */
 
 #include "GLColour.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

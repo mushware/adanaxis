@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.cpp,v 1.22 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLData.cpp,v 1.23 2003/01/12 17:32:49 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.23  2003/01/12 17:32:49  southa
+ * Mushcore work
+ *
  * Revision 1.22  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -83,6 +86,8 @@
 #include "GLFont.h"
 #include "GLLights.h"
 #include "GLTexture.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

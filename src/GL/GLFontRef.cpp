@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFontRef.cpp,v 1.5 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.6 2003/01/12 17:32:50 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.6  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.5  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -30,6 +33,8 @@
 
 #include "GLFontRef.h"
 #include "GLData.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.13 2003/01/09 14:57:02 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.14 2003/01/12 17:32:55 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.14  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.13  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -53,6 +56,8 @@
  */
 
 #include "GameGraphicModel.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

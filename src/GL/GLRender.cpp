@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRender.cpp,v 1.4 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLRender.cpp,v 1.5 2002/12/29 20:59:52 southa Exp $
  * $Log: GLRender.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -26,6 +29,8 @@
  */
 
 #include "GLRender.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

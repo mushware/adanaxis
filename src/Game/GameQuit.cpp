@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.cpp,v 1.8 2003/01/11 17:44:26 southa Exp $
+ * $Id: GameQuit.cpp,v 1.9 2003/01/12 17:32:56 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.9  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.8  2003/01/11 17:44:26  southa
  * Mushcore fixes
  *
@@ -42,6 +45,7 @@
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
 #include "GameNetUtils.h"
+#include "GameSTL.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"

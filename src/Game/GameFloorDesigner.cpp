@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.31 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.32 2003/01/12 17:32:53 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.32  2003/01/12 17:32:53  southa
+ * Mushcore work
+ *
  * Revision 1.31  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -115,6 +118,7 @@
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
 #include "GameMotionSpec.h"
+#include "GameSTL.h"
 #include "GameView.h"
 
 #include "mushGL.h"

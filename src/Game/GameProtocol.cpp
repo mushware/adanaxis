@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.cpp,v 1.12 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.13 2003/01/09 14:57:03 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.13  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -50,6 +53,8 @@
  */
 
 #include "GameProtocol.h"
+
+#include "GameSTL.h"
 
 #include "mushMedia.h"
 

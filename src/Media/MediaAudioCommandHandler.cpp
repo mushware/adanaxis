@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.14 2003/01/11 17:07:53 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.15 2003/01/12 17:32:57 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.15  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.14  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -58,6 +61,8 @@
 #include "MediaAudioCommandHandler.h"
 
 #include "MediaAudio.h"
+#include "MediaSTL.h"
+
 #include "Mushcore.h"
 
 using namespace Mushware;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLString.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLString.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -31,6 +34,8 @@
 #include "GLString.h"
 #include "GLFont.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

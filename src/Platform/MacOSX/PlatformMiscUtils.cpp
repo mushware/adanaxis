@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.29 2003/01/11 17:44:27 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.30 2003/01/12 17:33:01 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.30  2003/01/12 17:33:01  southa
+ * Mushcore work
+ *
  * Revision 1.29  2003/01/11 17:44:27  southa
  * Mushcore fixes
  *
@@ -110,9 +113,9 @@
 
 #include "PlatformBoxes.h"
 
+#include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <sys/param.h>
 #include <unistd.h>
 
 #include <dirent.h>

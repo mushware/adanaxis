@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.14 2003/01/11 17:07:50 southa Exp $
+ * $Id: GLFont.cpp,v 1.15 2003/01/12 17:32:50 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.15  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.14  2003/01/11 17:07:50  southa
  * Mushcore library separation
  *
@@ -62,6 +65,8 @@
 #include "GLState.h"
 #include "GLTexture.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

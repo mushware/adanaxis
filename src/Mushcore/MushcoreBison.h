@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBison.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreBison.h,v 1.3 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreBison.h,v $
+ * Revision 1.3  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -57,8 +60,8 @@
  *
  */
 
-#include "MushcoreStandard.h"
 #include "MushcoreFlex.h"
+#include "MushcoreStandard.h"
 
 class MushcoreCommand;
 class MushcoreScalar;

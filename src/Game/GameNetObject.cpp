@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.16 2003/01/09 14:57:02 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.17 2003/01/12 17:32:55 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.17  2003/01/12 17:32:55  southa
+ * Mushcore work
+ *
  * Revision 1.16  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -62,6 +65,7 @@
 
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameSTL.h"
 
 #include "mushMedia.h"
 

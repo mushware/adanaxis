@@ -1,3 +1,5 @@
+#ifndef PLATFORMSTL_H
+#define PLATFORMSTL_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -9,15 +11,21 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSTL.cpp,v 1.1 2003/01/12 17:33:00 southa Exp $
- * $Log: MushcoreSTL.cpp,v $
- * Revision 1.1  2003/01/12 17:33:00  southa
- * Mushcore work
- *
+ * $Id$
+ * $Log$
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#if defined(HAVE_MUSHCORE_MUSHCORESTL_H)
+#include <Mushcore/MushcoreSTL.h>
+#else
+#if defined(HAVE_MUSHCORESTL_H)
+#include <MushcoreSTL.h>
+#else
 #include "MushcoreSTL.h"
-
-using namespace Mushware;
-using namespace std;
-
+#endif
+#endif
+#endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.h,v 1.11 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.12 2003/01/11 13:03:11 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.12  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.11  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -58,8 +61,8 @@
  */
 
 #include "GLUTAppHandler.h"
-#include "SDLAppHandler.h"
 #include "Mushcore.h"
+#include "SDLAppHandler.h"
 
 class GLTest1AppHandler : public SDLAppHandler
 {

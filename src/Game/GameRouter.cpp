@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.17 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameRouter.cpp,v 1.18 2003/01/12 17:32:56 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.18  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.17  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -74,6 +77,7 @@
 #include "GameNetUtils.h"
 #include "GamePiecePlayer.h"
 #include "GameProtocol.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

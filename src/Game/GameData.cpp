@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.24 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameData.cpp,v 1.25 2003/01/12 17:32:53 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.25  2003/01/12 17:32:53  southa
+ * Mushcore work
+ *
  * Revision 1.24  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -93,6 +96,7 @@
 #include "GamePiece.h"
 #include "GamePiecePlayer.h"
 #include "GameRewards.h"
+#include "GameSTL.h"
 #include "GameTileMap.h"
 #include "GameTimer.h"
 #include "GameTraits.h"

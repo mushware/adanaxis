@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTest.cpp,v 1.10 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameTest.cpp,v 1.11 2003/01/11 13:03:14 southa Exp $
  * $Log: GameTest.cpp,v $
+ * Revision 1.11  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.10  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -44,6 +47,9 @@
  */
 
 #include "GameTest.h"
+
+#include "GameSTL.h"
+
 #include "Mushcore.h"
 #include "mushGL.h"
 

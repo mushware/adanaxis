@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.31 2003/01/09 14:56:59 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.32 2003/01/12 17:32:51 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.32  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.31  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -115,6 +118,8 @@
 
 #include "mushMedia.h"
 #include "mushPlatform.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

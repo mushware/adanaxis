@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureDef.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTextureDef.cpp,v 1.7 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTextureDef.cpp,v $
+ * Revision 1.7  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.6  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -32,6 +35,8 @@
  */
 
 #include "GLTextureDef.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

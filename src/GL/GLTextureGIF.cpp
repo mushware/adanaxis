@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureGIF.cpp,v 1.13 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.14 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.14  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.13  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -60,10 +63,13 @@ extern "C"
 #define DrawTextA gif_lib_DrawTextA
 #include "gif_lib.h"
 
-using namespace Mushware;
-using namespace std;
 #undef DrawTextA
 }
+
+#include "GLSTL.h"
+
+using namespace Mushware;
+using namespace std;
 
 GLTextureGIF::GLTextureGIF(const string& inFilename)
 {

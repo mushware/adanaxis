@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLights.cpp,v 1.12 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLLights.cpp,v 1.13 2003/01/12 17:32:50 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.13  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.12  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -53,6 +56,8 @@
 
 #include "GLLightDef.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

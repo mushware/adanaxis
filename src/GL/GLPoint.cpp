@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.10 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLPoint.cpp,v 1.11 2003/01/12 17:32:50 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.11  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.10  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -46,6 +49,8 @@
 #include "GLPoint.h"
 #include "GLState.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

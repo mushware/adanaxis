@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.cpp,v 1.48 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLUtils.cpp,v 1.49 2003/01/09 14:56:59 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.49  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.48  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -168,7 +171,10 @@
 #include "GLRectangle.h"
 #include "GLState.h"
 #include "GLTexture.h"
+
 #include "mushPlatform.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

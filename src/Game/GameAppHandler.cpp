@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.43 2003/01/11 13:03:12 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.44 2003/01/12 17:32:52 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.44  2003/01/12 17:32:52  southa
+ * Mushcore work
+ *
  * Revision 1.43  2003/01/11 13:03:12  southa
  * Use Mushcore header
  *
@@ -156,6 +159,7 @@
 #include "GameFloorMap.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
+#include "GameSTL.h"
 #include "GameSetup.h"
 
 #include "mushMedia.h"

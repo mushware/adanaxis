@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.21 2003/01/11 17:07:52 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.22 2003/01/12 17:32:56 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.22  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.21  2003/01/11 17:07:52  southa
  * Mushcore library separation
  *
@@ -74,7 +77,9 @@
  */
 
 #include "GameTileMap.h"
+
 #include "GameData.h"
+#include "GameSTL.h"
 #include "GameSwitches.h"
 #include "GameTileTraits.h"
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLQuad.cpp,v 1.10 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLQuad.cpp,v 1.11 2003/01/12 17:32:50 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.11  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.10  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -47,6 +50,8 @@
 #include "GLRectangle.h"
 #include "GLStandard.h"
 #include "GLState.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.cpp,v 1.26 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLTexture.cpp,v 1.27 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.27  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.26  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -94,6 +97,8 @@
 #include "GLTexture.h"
 #include "GLState.h"
 #include "GLUtils.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

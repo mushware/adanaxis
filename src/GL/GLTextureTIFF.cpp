@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureTIFF.cpp,v 1.12 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.13 2003/01/12 17:32:51 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.13  2003/01/12 17:32:51  southa
+ * Mushcore work
+ *
  * Revision 1.12  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -49,6 +52,8 @@
 #include "GLTextureTIFF.h"
 
 #include "tiffio.h"
+
+#include "GLSTL.h"
 
 using namespace Mushware;
 using namespace std;

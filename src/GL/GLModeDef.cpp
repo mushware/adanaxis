@@ -19,6 +19,8 @@
 
 #include "GLModeDef.h"
 
+#include "GLSTL.h"
+
 using namespace Mushware;
 using namespace std;
 

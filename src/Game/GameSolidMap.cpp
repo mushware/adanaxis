@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.31 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.32 2003/01/12 17:32:56 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.32  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.31  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -111,6 +114,7 @@
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
 #include "GameMotionSpec.h"
+#include "GameSTL.h"
 #include "GameSpacePoint.h"
 #include "GameView.h"
 

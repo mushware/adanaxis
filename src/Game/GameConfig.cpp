@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.22 2003/01/11 17:44:26 southa Exp $
+ * $Id: GameConfig.cpp,v 1.23 2003/01/12 17:32:52 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.23  2003/01/12 17:32:52  southa
+ * Mushcore work
+ *
  * Revision 1.22  2003/01/11 17:44:26  southa
  * Mushcore fixes
  *
@@ -82,6 +85,7 @@
 #include "GameConfig.h"
 
 #include "GameConfigDef.h"
+#include "GameSTL.h"
 
 #include "Mustl.h"
 #include "mushPlatform.h"

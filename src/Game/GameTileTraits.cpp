@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.24 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.25 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.25  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.24  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -86,7 +89,9 @@
  */
 
 #include "GameTileTraits.h"
+
 #include "GameGraphicSprite.h"
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;

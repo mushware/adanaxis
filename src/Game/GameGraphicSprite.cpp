@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.16 2003/01/07 17:13:42 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.17 2003/01/09 14:57:02 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.17  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.16  2003/01/07 17:13:42  southa
  * Fixes for gcc 3.1
  *
@@ -62,6 +65,8 @@
  */
 
 #include "GameGraphicSprite.h"
+
+#include "GameSTL.h"
 
 using namespace Mushware;
 using namespace std;
