@@ -602,6 +602,7 @@
 				7A6CE1FC05A5930A00777D9B,
 				7A6CE21D05A5935800777D9B,
 				7A3E8BF005A5E63C00AC6E8A,
+				7A651D3E05A85C230026CBAE,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,6 +856,7 @@
 				7A6CE1FD05A5930A00777D9B,
 				7A6CE21E05A5935800777D9B,
 				7A3E8BF105A5E63C00AC6E8A,
+				7A651D3F05A85C230026CBAE,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4076,6 +4078,8 @@
 				7A5FA8CA05A4CC1F00AA22E5,
 				7A6CE13505A5899B00777D9B,
 				7A6CE13405A5899B00777D9B,
+				7A651D3D05A85C230026CBAE,
+				7A651D3C05A85C230026CBAE,
 				7A3E8BEF05A5E63C00AC6E8A,
 				7A3E8BEE05A5E63B00AC6E8A,
 				7A6CE1FB05A5930A00777D9B,
@@ -8449,6 +8453,34 @@
 		};
 		7A62BB1505A49D06002A5F1C = {
 			fileRef = 7A62B91D05A49D05002A5F1C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A651D3C05A85C230026CBAE = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushPieceMobile.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A651D3D05A85C230026CBAE = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushPieceMobile.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A651D3E05A85C230026CBAE = {
+			fileRef = 7A651D3C05A85C230026CBAE;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A651D3F05A85C230026CBAE = {
+			fileRef = 7A651D3D05A85C230026CBAE;
 			isa = PBXBuildFile;
 			settings = {
 			};

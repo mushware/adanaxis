@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.2 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -63,8 +66,8 @@ void
 MushPiePiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "position=" << m_position << ", ";
-    ioOut << "velocity=" << m_velocity << ", ";
+    ioOut << "pos=" << m_pos << ", ";
+    ioOut << "vel=" << m_vel << ", ";
     ioOut << "sleepState=" << m_sleepState;
     ioOut << "]";
 }
@@ -75,13 +78,13 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> *this;
     }
-    else if (inTagStr == "position")
+    else if (inTagStr == "pos")
     {
-        ioIn >> m_position;
+        ioIn >> m_pos;
     }
-    else if (inTagStr == "velocity")
+    else if (inTagStr == "vel")
     {
-        ioIn >> m_velocity;
+        ioIn >> m_vel;
     }
     else if (inTagStr == "sleepState")
     {
@@ -96,11 +99,11 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("position");
-    ioOut << m_position;
-    ioOut.TagSet("velocity");
-    ioOut << m_velocity;
+    ioOut.TagSet("pos");
+    ioOut << m_pos;
+    ioOut.TagSet("vel");
+    ioOut << m_vel;
     ioOut.TagSet("sleepState");
     ioOut << m_sleepState;
 }
-//%outOfLineFunctions } HOhXjQ5bq8jYvuUgm1TPWg
+//%outOfLineFunctions } /c/PsEjrbOIVomYYhyKRJw

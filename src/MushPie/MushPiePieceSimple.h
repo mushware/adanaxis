@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vgNHjnCCayhlm093vD2VmA
 /*
- * $Id$
- * $Log$
+ * $Id: MushPiePieceSimple.h,v 1.1 2004/01/02 21:13:11 southa Exp $
+ * $Log: MushPiePieceSimple.h,v $
+ * Revision 1.1  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  */
 
 #include "MushPieStandard.h"
@@ -25,7 +28,8 @@
 #include "MushPiePiece.h"
 
 //:xml1base MushPiePiece
-//:generate standard ostream xml1
+//:notinline generate ostream xml1
+//:notinline generate standard
 class MushPiePieceSimple : public MushPiePiece
 {
 public:
@@ -33,22 +37,22 @@ public:
     virtual ~MushPiePieceSimple() {}
 
 private:
-    Mushware::t3Val m_angle; //:readwrite
-    Mushware::t3Val m_angularVel; //:readwrite
+    Mushware::t3Val m_angPos; //:readwrite
+    Mushware::t3Val m_angVel; //:readwrite
 //%classPrototypes {
 public:
-    const Mushware::t3Val& AngleGet(void) const { return m_angle; }
-    void AngleSet(const Mushware::t3Val& inValue) { m_angle=inValue; }
-    const Mushware::t3Val& AngularVelGet(void) const { return m_angularVel; }
-    void AngularVelSet(const Mushware::t3Val& inValue) { m_angularVel=inValue; }
+    const Mushware::t3Val& AngPosGet(void) const { return m_angPos; }
+    void AngPosSet(const Mushware::t3Val& inValue) { m_angPos=inValue; }
+    const Mushware::t3Val& AngVelGet(void) const { return m_angVel; }
+    void AngVelSet(const Mushware::t3Val& inValue) { m_angVel=inValue; }
+    void AutoPrint(std::ostream& ioOut) const;
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePieceSimple *AutoClone(void) const;
     virtual MushPiePieceSimple *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } sn0sSjUmvIl//lU0eSJD7g
+//%classPrototypes } R0udf6xrpSnBTdoVgo0CeA
 };
 //%inlineHeader {
 inline std::ostream&

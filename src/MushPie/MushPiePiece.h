@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.2 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushPiePiece.h,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -49,17 +52,17 @@ public:
 protected:
         
 private:
-    Mushware::t3Val m_position; //:readwrite
-    Mushware::t3Val m_velocity; //:readwrite
+    Mushware::t3Val m_pos; //:readwrite
+    Mushware::t3Val m_vel; //:readwrite
     tSleepState m_sleepState; //:readwrite
     //MushcoreDataRef<Mushware::U32> m_templateRef; //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::t3Val& PositionGet(void) const { return m_position; }
-    void PositionSet(const Mushware::t3Val& inValue) { m_position=inValue; }
-    const Mushware::t3Val& VelocityGet(void) const { return m_velocity; }
-    void VelocitySet(const Mushware::t3Val& inValue) { m_velocity=inValue; }
+    const Mushware::t3Val& PosGet(void) const { return m_pos; }
+    void PosSet(const Mushware::t3Val& inValue) { m_pos=inValue; }
+    const Mushware::t3Val& VelGet(void) const { return m_vel; }
+    void VelSet(const Mushware::t3Val& inValue) { m_vel=inValue; }
     const tSleepState& SleepStateGet(void) const { return m_sleepState; }
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
     virtual const char *AutoNameGet(void) const;
@@ -69,7 +72,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } LsyWnIQF8lDUXAr1DlurRQ
+//%classPrototypes } OluR/oNEUAIT3kZAkE577w
 };
 //%inlineHeader {
 inline std::ostream&

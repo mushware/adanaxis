@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.21 2004/01/02 11:56:58 southa Exp $
+# $Id: SourceConditioner.pl,v 1.22 2004/01/02 21:13:04 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.22  2004/01/02 21:13:04  southa
+# Source conditioning
+#
 # Revision 1.21  2004/01/02 11:56:58  southa
 # MushPie created
 #
@@ -161,6 +164,11 @@ sub XMLBaseGenerate($)
     }
 }
 
+sub TemplateDataGenerate($)
+{
+    my ($templateLine) = @_;
+}
+
 sub HeaderInfoCreate($$)
 {
     my ($infoRef, $contentRef) = @_;
@@ -184,12 +192,26 @@ sub HeaderInfoCreate($$)
                 
         if ($state == HS_SCAN_FOR_CLASS)
         {
-            if ($line =~ /^class/)
+            if ($line =~ /^template/)
+            {
+# Class definition or declaration line
+                if ($line =~ /;\s*$/)
+                {
+# Declaration only - ignore
+                }
+                else
+                {
+                    $$infoRef{CLASS_TEMPLATE} = $line;
+                    $$infoRef{CLASS_TEMPLATE} =~ s/^template\s*//;
+                }
+            }
+            elsif ($line =~ /^class/)
             {
                 # Class definition or declaration line
                 if ($line =~ /;\s*$/)
                 {
                     # Declaration only - ignore
+                    $$infoRef{CLASS_TEMPLATE} = "";
                 }
                 else
                 {
@@ -197,6 +219,12 @@ sub HeaderInfoCreate($$)
                     $state = HS_SCAN_FOR_MEMBERS;
                 }
             }
+            else
+            {
+                # Ignore template lines unless they're directly above the class line
+                $$infoRef{CLASS_TEMPLATE} = "";
+            }
+
             if ($comments =~ /^\s*:(.*)$/)
             {
                 CommandsAdd($infoRef, $1);
@@ -230,6 +258,7 @@ sub HeaderInfoCreate($$)
     $$infoRef{ARRAY_ELEMENTS} = scalar @$contentRef;
 
     XMLBaseGenerate($infoRef);
+    TemplateDataGenerate($$infoRef{CLASS_TEMPLATE});
 }
 
 sub ClassLineRead($$)
@@ -425,6 +454,8 @@ sub StandardFunctionGenerate($$)
 
     die "No class found for standard functions" unless defined ($className);
     
+    die "Cannot generate 'standard' inline " if $$infoRef{INLINE};
+    
     push @$outputRef,
 "const char *".
 "${className}::$gConfig{AUTO_PREFIX}NameGet(void) const",
@@ -480,8 +511,8 @@ sub OstreamWriteFunctionGenerate($$)
     my $className = $$infoRef{CLASSNAME};
 
     die "No class found for ostream writer" unless defined ($className);
-    
-    push @$outputRef, "void";
+    my $decPrefix = $$infoRef{INLINE}?"inline ":"";
+    push @$outputRef, "${decPrefix}void";
     push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const";
     push @$outputRef, "{";
     push @$outputRef, "    ioOut << \"[\";";
@@ -571,9 +602,11 @@ sub BasicOperatorsFunctionGenerate($$)
     my $className = $$infoRef{CLASSNAME};
 
     die "No class found for BasicOperators writer" unless defined ($className);
-    
+
+    my $decPrefix = $$infoRef{INLINE}?"inline ":"";
+        
     push @$outputRef,
-"bool",
+"${decPrefix}bool",
 "${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
 "{",
 "    return 1";
@@ -651,8 +684,10 @@ sub XMLIStreamWriteFunctionGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
+    my $decPrefix = $$infoRef{INLINE}?"inline ":"";
+   
     push @$outputRef,
-"bool",
+"${decPrefix}bool",
 "${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
 "{",
 "    if (inTagStr == \"obj\")",
@@ -733,7 +768,9 @@ sub XMLOStreamWriteFunctionGenerate($$)
 
     die "No class found for XMLOStream writer" unless defined ($className);
     
-    push @$outputRef, "void";
+    my $decPrefix = $$infoRef{INLINE}?"inline ":"";
+    
+    push @$outputRef, "${decPrefix}void";
     push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
     push @$outputRef,
 "{";
@@ -942,6 +979,33 @@ sub ProcessTouchCFile($$)
     }
 }
 
+sub DefinitionsWrite($$$)
+{
+    my ($outputRef, $infoRef, $command) = @_;
+    
+    # Standard
+    if ($command =~ /\bgenerate.*\bstandard\b/)
+    {            
+        StandardFunctionGenerate($outputRef, $infoRef);
+    }
+    # BasicOperators
+    if ($command =~ /\bgenerate.*\bbasic(.*)\b/)
+    {            
+        BasicOperatorsFunctionGenerate($outputRef, $infoRef);
+    }
+    # std::ostream
+    if ($command =~ /\bgenerate.*\bostream\b/)
+    {
+        OstreamWriteFunctionGenerate($outputRef, $infoRef);
+    }
+    # MushcoreXMLOstream
+    if ($command =~ /\bgenerate.*\bxml1(.*)\b/)
+    {
+        XMLIStreamWriteFunctionGenerate($outputRef, $infoRef);
+        XMLOStreamWriteFunctionGenerate($outputRef, $infoRef);
+    }
+}
+
 sub ProcessHeader($$)
 {
     my ($contentRef, $filename) = @_;
@@ -959,32 +1023,36 @@ sub ProcessHeader($$)
     if (defined($commandsRef))
     {
         push @ classPrototypes, "public:";
+        $headerInfo{INLINE} = 0;
         
         # Member accessors and modifers
         AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
 
         for (my $i=0; $i < @$commandsRef; $i += 1)
-        {            
+        {
+            $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
+            $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
+
             # Standard functions
-            if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
+            if ($$commandsRef[$i] =~ /\bgenerate.*\bstandard\b/)
             {            
                 StandardPrototypeGenerate(\@classPrototypes, \%headerInfo);
             }
             # BasicOperators
-            if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
+            if ($$commandsRef[$i] =~ /\bgenerate.*\bbasic(.*)\b/)
             {            
                 BasicOperatorsPrototypeGenerate(\@classPrototypes, \%headerInfo);
                 BasicOperatorsInlineGenerate(\@inlineHeader, \%headerInfo);
             }
             # std::ostream
-            if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
+            if ($$commandsRef[$i] =~ /\bgenerate.*\bostream\b/)
             {
                 OstreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 OstreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
  
             # MushcoreXMLOstream
-            if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
+            if ($$commandsRef[$i] =~ /\bgenerate.*\bxml1(.*)\b/)
             {
                 XMLIStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 # XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
@@ -992,13 +1060,16 @@ sub ProcessHeader($$)
                 # XMLOStreamOperatorGenerate(\@inlineheader, \%headerInfo);
             }
             
-
+            if ($headerInfo{INLINE})
+            {
+                DefinitionsWrite(\@inlineHeader, \%headerInfo, $$commandsRef[$i]);
+            }
         }
     }
     
     if (scalar @inlineNamespaced > 0)
     {
-        # Add the namesapce shell
+        # Add the namespace shell
         splice @inlineNamespaced, 0, 0, ("namespace $gConfig{NAMESPACE}", "{", ""); 
         push @inlineNamespaced, "", "} // end namespace $gConfig{NAMESPACE}";
     }
@@ -1043,31 +1114,18 @@ sub ProcessCPP($$)
     
     my @outOfLineCode;
     my $commandsRef = $headerInfo{COMMANDS};
+    $headerInfo{INLINE} = 0;
     
     if (defined($commandsRef))
     {
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
-            # Standard
-            if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
-            {            
-                StandardFunctionGenerate(\@outOfLineCode, \%headerInfo);
-            }
-            # BasicOperators
-            if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
-            {            
-                BasicOperatorsFunctionGenerate(\@outOfLineCode, \%headerInfo);
-            }
-            # std::ostream
-            if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
+            $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
+            $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
+            
+            unless ($headerInfo{INLINE})
             {
-                OstreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
-            }
-            # MushcoreXMLOstream
-            if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
-            {
-                XMLIStreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
-                XMLOStreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
+                DefinitionsWrite(\@outOfLineCode, \%headerInfo, $$commandsRef[$i]);
             }
         }
     }
