@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.20 2002/12/09 16:18:00 southa Exp $
+ * $Id: MediaNetLink.h,v 1.21 2002/12/09 23:59:59 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.21  2002/12/09 23:59:59  southa
+ * Network control
+ *
  * Revision 1.20  2002/12/09 16:18:00  southa
  * Link ID transfer
  *
@@ -84,6 +87,7 @@ public:
     explicit MediaNetLink(TCPsocket inSocket, U32 inPort);
     ~MediaNetLink();
 
+    void TouchLink(void);
     void FastSend(MediaNetData& ioData);
     void ReliableSend(MediaNetData& ioData);
     bool UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioData);

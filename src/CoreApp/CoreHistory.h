@@ -1,6 +1,9 @@
 /*
- * $Id: CoreHistory.h,v 1.1 2002/12/04 12:54:40 southa Exp $
+ * $Id: CoreHistory.h,v 1.2 2002/12/04 15:39:57 southa Exp $
  * $Log: CoreHistory.h,v $
+ * Revision 1.2  2002/12/04 15:39:57  southa
+ * Multiplayer work
+ *
  * Revision 1.1  2002/12/04 12:54:40  southa
  * Network control work
  *
@@ -36,11 +39,12 @@ public:
     void Add(const StoreType& inStore, IndexType inIndex);
     bool PreviousGet(const StoreType *& outStore, IndexType inIndex) const;
     CoreHistoryIterator<IndexType, StoreType> IteratorPreviousGet(IndexType inIndex) const;
+    CoreHistoryIterator<IndexType, StoreType> Back(void) const;
     bool IndexValidIs(U32 inIndex) const;
     const IndexType& IndexGet(U32 inIndex) const;
     const StoreType& StoreGet(U32 inIndex) const;
-    bool BackMove(U32& ioIndex) const;
-    bool ForwardMove(U32& ioIndex) const;
+    bool BackMove(U32& ioIndex) const; // For use by iterator
+    bool ForwardMove(U32& ioIndex) const; // For use by iterator
     
 protected:
 
@@ -217,6 +221,21 @@ CoreHistory<IndexType, StoreType>::IteratorPreviousGet(IndexType inIndex) const
     }
     return CoreHistoryIterator<IndexType, StoreType>();
 }
+
+template<class IndexType, class StoreType>
+inline CoreHistoryIterator<IndexType, StoreType>
+CoreHistory<IndexType, StoreType>::Back(void) const
+{
+    U32 bufferIndex = m_bufferIndex;
+
+    if (bufferIndex == 0)
+    {
+        bufferIndex = m_bufferSize;
+    }
+    --bufferIndex;
+    
+    return CoreHistoryIterator<IndexType, StoreType>(*this, bufferIndex);
+}    
 
 template<class IndexType, class StoreType>
 inline bool

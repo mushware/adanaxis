@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.9 2002/12/07 18:32:16 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.10 2002/12/09 23:59:59 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.10  2002/12/09 23:59:59  southa
+ * Network control
+ *
  * Revision 1.9  2002/12/07 18:32:16  southa
  * Network ID stuff
  *
@@ -82,7 +85,7 @@ MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
             {
                 // Make data look like it came from the TCP address in all cases
                 // netData->SourcePortSet(p->second->TCPTargetPortGet());
-                
+                p->second->TouchLink(); // Reset inactivity timer
                 MediaNetProtocol::RemoveLength(*netData, messageType);
                 U32 appMessageType = MediaNetProtocol::LinkToAppType(messageType);
                 inHandler.MessageHandle(*netData, *p->second, appMessageType);
@@ -99,7 +102,7 @@ MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
     }
     if (killValue != CoreData<MediaNetLink>::Instance().End())
     {
-        CoreData<MediaNetLink>::Instance().Delete(killValue->first);
+        CoreData<MediaNetLink>::Instance().Delete(killValue);
     }
 }
 
@@ -125,6 +128,7 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& 
                 }
                 else
                 {
+                    p->second->TouchLink(); // Reset inactivity timer
                     MediaNetProtocol::RemoveLength(ioData, messageType);
                     U32 appMessageType = MediaNetProtocol::LinkToAppType(messageType);
                     inHandler.MessageHandle(ioData, *p->second, appMessageType);

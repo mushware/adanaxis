@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.21 2002/12/04 12:54:41 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.22 2002/12/04 15:39:58 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.22  2002/12/04 15:39:58  southa
+ * Multiplayer work
+ *
  * Revision 1.21  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -114,6 +117,7 @@ public:
     bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum);
     CoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(U32 inFrameNum) const;
     void ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum);
+    U32 LastValidControlFrameGet(void) const;
     
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.31 2002/12/04 15:39:58 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.32 2002/12/09 23:59:58 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.32  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.31  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -236,6 +239,12 @@ GamePiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFram
     // Function expects data to be added in frame order
     m_frameDefHistory.Add(inDef, inFrameNum);
     // cerr << "Added frame " << inFrameNum << ":" << inDef << endl;
+}
+
+U32
+GamePiecePlayer::LastValidControlFrameGet(void) const
+{
+    return m_frameDefHistory.Back().IndexGet();
 }
 
 void

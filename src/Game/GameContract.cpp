@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.105 2002/12/05 23:52:50 southa Exp $
+ * $Id: GameContract.cpp,v 1.106 2002/12/10 19:00:16 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.106  2002/12/10 19:00:16  southa
+ * Split timer into client and server
+ *
  * Revision 1.105  2002/12/05 23:52:50  southa
  * Network management and status
  *
@@ -366,7 +369,8 @@ CoreInstaller GameContractInstaller(GameContract::Install);
 
 GameContract::GameContract() :
     m_gameState(kGameStateInit),
-    m_tileMap(NULL),    m_fps(0),
+    m_tileMap(NULL),
+    m_fps(0),
     m_frames(0),
     m_floorDesigner(),
     m_currentView(NULL),
@@ -519,49 +523,6 @@ GameContract::InitDisplay(void)
 void
 GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 {
-    COREASSERT(m_floorMap != NULL);
-    U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
-    
-    CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
-
-    for (U32 i=0; i<inNumFrames; ++i)
-    {
-        U32 frameNum = startFrameNum + i; // Add control delay here
-        
-        for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
-                p != endValue; ++p)
-        {
-            GamePiecePlayer& playerRef=*p->second;
-            
-            playerRef.EnvironmentRead(*m_floorMap);
-            GameEventStandingOn standingOn(playerRef.StandingOnGet());
-    
-            GameData::Instance().TypeGet().EventHandler(standingOn);
-
-            const GameControlFrameDef *frameDef = NULL;
-            if (playerRef.ControlFrameDefGet(frameDef, frameNum))
-            {
-                COREASSERT(frameDef != NULL);
-    
-                GameMotionSpec motion;
-                playerRef.MoveGet(motion, *frameDef);
-                
-                if (m_renderDiagnostics == kDiagnosticCollision)
-                {
-                    GLState::DepthSet(GLState::kDepthNone);
-                    GLState::ModulationSet(GLState::kModulationColour);
-                    GLState::BlendSet(GLState::kBlendLine);
-                    m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
-                }
-                m_floorMap->SolidMapGet().TrimMotion(motion);
-                playerRef.MoveConfirm(motion);
-                if (m_renderDiagnostics == kDiagnosticCollision)
-                {
-                    motion.Render();
-                }
-            }
-        }
-    }
     
     const GameData::DialogueMap& currentDialogues(GameData::Instance().CurrentDialogueMapGet());
     string killName;
@@ -800,33 +761,51 @@ GameContract::Running(GameAppHandler& inAppHandler)
 
     if (timer.JudgementValid())
     {
-        U32 numMotionFrames=timer.ClientGet().IntegerElapsedFramesGet();
+        U32 numClientFrames=timer.ClientGet().IntegerElapsedFramesGet();
         if (inAppHandler.MultiplayerIs())
         {
             // Can't skip frames in a network game, but this avoids a total hang
-            if (numMotionFrames > 100) numMotionFrames=100;
+            if (numClientFrames > 100) numClientFrames=100;
         }
         else
         {
-            if (numMotionFrames > 6) numMotionFrames=6;
+            if (numClientFrames > 6) numClientFrames=6;
         }
 
-        GamePlayerUtils::FillControlQueues(timer, numMotionFrames);
+        GamePlayerUtils::FillControlQueues(timer, numClientFrames);
 
         if (inAppHandler.MultiplayerIs())
         {
-            GamePlayerUtils::SendControlQueues(timer, numMotionFrames);
+            GamePlayerUtils::SendControlQueues(timer, numClientFrames);
             GameNetUtils::NetReceive();
         }
+        COREASSERT(m_floorMap != NULL);
         
-        RunningMove(timer, numMotionFrames);
 
-        timer.ClientGet().FramesDone(numMotionFrames);
+        U32 lastCompleteFrameNum=GamePlayerUtils::CompleteControlFrameFind();
+
+        U32 numServerFrames=0;
+        if (lastCompleteFrameNum > timer.ServerGet().FrameNumGet())
+        {
+            numServerFrames = lastCompleteFrameNum - timer.ServerGet().FrameNumGet();
+            if (numServerFrames > 100) numServerFrames=100;
+        }
+        
+        GamePlayerUtils::ClientMove(*m_floorMap, timer, numClientFrames);
+        if (numServerFrames > 0)
+        {
+            GamePlayerUtils::ServerMove(*m_floorMap, timer, numServerFrames);
+        }        
+        RunningMove(timer, numClientFrames);
+
+        timer.ClientGet().FramesDone(numClientFrames);
+        timer.ServerGet().FramesDone(numServerFrames);
         
         // Discard any motion frames we haven't caught up with
         if (!inAppHandler.MultiplayerIs())
         {
             timer.ClientGet().FramesDiscard();
+            timer.ServerGet().FramesDiscard();
         }
         
         if (timer.ClientGet().RedisplayGet())

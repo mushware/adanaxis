@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.25 2002/12/09 16:18:00 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.26 2002/12/09 23:59:59 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.26  2002/12/09 23:59:59  southa
+ * Network control
+ *
  * Revision 1.25  2002/12/09 16:18:00  southa
  * Link ID transfer
  *
@@ -576,6 +579,12 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
 }
 
 void
+MediaNetLink::TouchLink(void)
+{
+    m_lastActivityMsec = SDL_GetTicks();
+}
+
+void
 MediaNetLink::FastSend(MediaNetData& ioData)
 {
     if (LinkIsUpForSend(m_udpState.linkState))
@@ -590,7 +599,7 @@ MediaNetLink::FastSend(MediaNetData& ioData)
     {
         throw(NetworkFail("Send on dead link"));
     }
-    m_lastActivityMsec = SDL_GetTicks();
+    TouchLink();
 }
 
 void
@@ -608,7 +617,7 @@ MediaNetLink::ReliableSend(MediaNetData& ioData)
     {
         throw(NetworkFail("Send on dead link"));
     }
-    m_lastActivityMsec = SDL_GetTicks();
+    TouchLink();
 }
 
 bool

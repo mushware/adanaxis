@@ -1,6 +1,9 @@
 /*
- * $Id: GamePlayerUtils.cpp,v 1.4 2002/12/07 18:32:15 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.5 2002/12/10 19:00:17 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.5  2002/12/10 19:00:17  southa
+ * Split timer into client and server
+ *
  * Revision 1.4  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -22,10 +25,13 @@
 #include "GameData.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameEvent.h"
+#include "GameFloorMap.h"
 #include "GameMessageControlData.h"
 #include "GamePiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameTimer.h"
+#include "GameType.h"
 
 void
 GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
@@ -213,3 +219,128 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     }
 }
 
+void
+GamePlayerUtils::ClientMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 inNumFrames)
+{
+    U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
+
+    CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+
+    for (U32 i=0; i<inNumFrames; ++i)
+    {
+        U32 frameNum = startFrameNum + i; // Add control delay here
+
+        for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+             p != endValue; ++p)
+        {
+            GamePiecePlayer& playerRef=*p->second;
+
+            if (!playerRef.ImageIs())
+            {
+                playerRef.EnvironmentRead(inFloorMap);
+                GameEventStandingOn standingOn(playerRef.StandingOnGet()); // Maybe
+    
+                GameData::Instance().TypeGet().EventHandler(standingOn); // Maybe
+    
+                const GameControlFrameDef *frameDef = NULL;
+                if (playerRef.ControlFrameDefGet(frameDef, frameNum))
+                {
+                    COREASSERT(frameDef != NULL);
+    
+                    GameMotionSpec motion;
+                    playerRef.MoveGet(motion, *frameDef);
+    #if 0
+                    if (m_renderDiagnostics == kDiagnosticCollision)
+                    {
+                        GLState::DepthSet(GLState::kDepthNone);
+                        GLState::ModulationSet(GLState::kModulationColour);
+                        GLState::BlendSet(GLState::kBlendLine);
+                        m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
+                    }
+    #endif
+                    inFloorMap.SolidMapGet().TrimMotion(motion);
+                    playerRef.MoveConfirm(motion);
+    #if 0
+                    if (m_renderDiagnostics == kDiagnosticCollision)
+                    {
+                        motion.Render();
+                    }
+    #endif
+                }
+            }
+        }
+    }    
+}
+
+void
+GamePlayerUtils::ServerMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 inNumFrames)
+{
+    U32 startFrameNum = inTimer.ServerGet().FrameNumGet();
+
+    CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+
+    for (U32 i=0; i<inNumFrames; ++i)
+    {
+        U32 frameNum = startFrameNum + i; // Add control delay here
+
+        for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+             p != endValue; ++p)
+        {
+            GamePiecePlayer& playerRef=*p->second;
+
+            if (playerRef.ImageIs())
+            {
+                playerRef.EnvironmentRead(inFloorMap);
+                GameEventStandingOn standingOn(playerRef.StandingOnGet());
+
+                GameData::Instance().TypeGet().EventHandler(standingOn);
+
+                const GameControlFrameDef *frameDef = NULL;
+                if (playerRef.ControlFrameDefGet(frameDef, frameNum))
+                {
+                    COREASSERT(frameDef != NULL);
+
+                    GameMotionSpec motion;
+                    playerRef.MoveGet(motion, *frameDef);
+#if 0
+                    if (m_renderDiagnostics == kDiagnosticCollision)
+                    {
+                        GLState::DepthSet(GLState::kDepthNone);
+                        GLState::ModulationSet(GLState::kModulationColour);
+                        GLState::BlendSet(GLState::kBlendLine);
+                        inFloorMap.SolidMapGet().OverPlotCollisionSet(motion);
+                    }
+#endif
+                    inFloorMap.SolidMapGet().TrimMotion(motion);
+                    playerRef.MoveConfirm(motion);
+#if 0
+                    if (m_renderDiagnostics == kDiagnosticCollision)
+                    {
+                        motion.Render();
+                    }
+#endif
+                }
+            }
+        }
+    }
+}
+
+U32
+GamePlayerUtils::CompleteControlFrameFind(void)
+{
+    U32 retFrame=0;
+
+    CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
+        
+    for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
+         p != endValue; ++p)
+    {
+        GamePiecePlayer& playerRef=*p->second;
+        if (playerRef.ImageIs())
+        {
+            U32 lastFrame = playerRef.LastValidControlFrameGet();
+            if (lastFrame > retFrame) retFrame = lastFrame;
+        }
+    }
+    return retFrame;
+}
