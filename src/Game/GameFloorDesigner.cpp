@@ -1,6 +1,9 @@
 /*
- * $Id: GameFloorDesigner.cpp,v 1.1 2002/07/02 14:27:09 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.2 2002/07/02 18:36:56 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.2  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.1  2002/07/02 14:27:09  southa
  * First floor map designer build
  *
@@ -66,12 +69,12 @@ GameFloorDesigner::Move(void)
     m_controller->StateGet(controlState);
 
     bool primaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse1));
-    bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2) ||
-                            glHandler.KeyStateGet(GLKeys::kKeyMouse3));
+    bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse3));
+    bool tertiaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2));
 
-    if (m_primaryButtonState != primaryState)
+    if (m_secondaryButtonState != secondaryState)
     {
-        if (primaryState)
+        if (secondaryState)
         {
             m_downPoint=GLPoint(controlState.mouseX, controlState.mouseY);
         }
@@ -79,7 +82,7 @@ GameFloorDesigner::Move(void)
     m_primaryButtonState = primaryState;
     m_secondaryButtonState = secondaryState;
 
-    if (primaryState)
+    if (secondaryState)
     {
         GLPoint start(m_downPoint);
         GLPoint end(controlState.mouseX, controlState.mouseY);
@@ -97,6 +100,12 @@ GameFloorDesigner::Move(void)
 
     tVal deltaX=0;
     tVal deltaY=0;
+    if (tertiaryState)
+    {
+	deltaX=-controlState.mouseXDelta;
+        deltaY=controlState.mouseYDelta;
+    }
+
     tVal stepSize=m_floorMaps[0]->XStep();
     
     if (controlState.leftPressed)

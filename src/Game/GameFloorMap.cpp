@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.4 2002/07/02 14:27:10 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.5 2002/07/02 18:36:56 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.5  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.4  2002/07/02 14:27:10  southa
  * First floor map designer build
  *
@@ -79,8 +82,8 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
 
     U32 timeNow=glAppHandler.GetMilliseconds();
-    tVal brightness=0.4+0.4*sin(timeNow/250.0);
-    glMatrixMode(GL_MODELVIEW);
+    tVal xv=50*cos(timeNow/450.0);
+    tVal yv=50*sin(timeNow/450.0);
     U32 xsize=XSize();
     U32 ysize=YSize();
     gl.SetPosition(0,0);
@@ -96,7 +99,12 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
             if (x>=inHighlight.xmin && x < inHighlight.xmax &&
                 y>=inHighlight.ymin && y < inHighlight.ymax)
             {
-                GLUtils::SetColour(brightness, brightness, brightness);
+		tVal clockNow=timeNow+x*xv+y*yv;
+	    	tVal redBri=0.4+0.35*sin(clockNow/200.0);
+    		tVal greenBri=0.4+0.35*sin(clockNow/201.0);
+    		tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+
+                GLUtils::SetColour(redBri, greenBri, blueBri);
             }
             else
             {
