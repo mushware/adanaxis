@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreXMLOstream.cpp
+ * File: src/Mushcore/MushcoreXMLOStream.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nJdVJ8jiSMikKV4dE2rJkw
+//%Header } SW5J6spEp5jvZeyT03E1UA
 /*
- * $Id: MushcoreXMLOstream.cpp,v 1.1 2003/09/21 09:51:09 southa Exp $
- * $Log: MushcoreXMLOstream.cpp,v $
+ * $Id: MushcoreXMLOStream.cpp,v 1.3 2003/09/21 09:56:39 southa Exp $
+ * $Log: MushcoreXMLOStream.cpp,v $
+ * Revision 1.3  2003/09/21 09:56:39  southa
+ * Re-added
+ *
  * Revision 1.1  2003/09/21 09:51:09  southa
  * Stream autogenerators
  *

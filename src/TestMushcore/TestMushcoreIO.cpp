@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.2 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.3 2003/09/21 09:51:10 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.3  2003/09/21 09:51:10  southa
+ * Stream autogenerators
+ *
  * Revision 1.2  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -86,13 +89,21 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         TestMushcoreObject testObject;
 
         Mushcore::Pickle(xmlOStream, testObject, "testobject");
-        ostringstream testStream;
-        testStream << xmlOStream;
+        ostringstream testOutStream;
+        testOutStream << xmlOStream;
 
-        if (testStream.str() != "")
+        if (testOutStream.str() != "")
         {
-            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+            // throw MushcoreLogicFail("MushcoreIO fault '"+testOutStream.str()+"'");
         }
+
+        TestMushcoreObject readBackObject(0);
+
+        istringstream testInStream(testOutStream.str());
+        MushcoreXMLIStream xmlIStream(&testInStream);
+
+        Mushcore::Unpickle(xmlIStream, readBackObject);
+        cout << readBackObject << endl;
     } 
     
     return MushcoreScalar(0);

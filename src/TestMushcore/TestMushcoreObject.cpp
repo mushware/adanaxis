@@ -12,15 +12,39 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreObject.cpp,v 1.1 2003/09/21 09:51:10 southa Exp $
+ * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.1  2003/09/21 09:51:10  southa
+ * Stream autogenerators
+ *
  */
 
 #include "TestMushcoreObject.h"
 
+void
+TestMushcoreObject::AutoXMLRead(MushcoreXMLIStream& ioIn)
+{
+    std::string name;
 
+    while (ioIn.LineAvailable())
+    {
+        std::string line;
+        line = ioIn.LineTake();
+
+        cout << "Found line "+line+"\n";
+    }
+}
 
 //%outOfLineFunctions {
+void
+TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
+    ioOut << "u32=" << m_u32;
+    ioOut << "]";
+}
+
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
 {
@@ -30,8 +54,9 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
         ioOut << " name=\"" << inName << "\"";
     }
     ioOut << ">\n";
-    ioOut << "<m_u8>" << static_cast<Mushware::U32>(m_u8) << "</m_u8>\n";
-    ioOut << "<m_u32>" << m_u32 << "</m_u32>\n";
+    ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
+    ioOut << "<u32>" << m_u32 << "</u32>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } 2SqXS4OPDxLKjDKyEnzRqg
+//%outOfLineFunctions } NfPFVErs7nlMep7H2sGyqw
+ 

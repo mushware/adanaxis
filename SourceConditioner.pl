@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.2 2003/09/17 19:40:26 southa Exp $
+# $Id: SourceConditioner.pl,v 1.3 2003/09/21 09:50:50 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.3  2003/09/21 09:50:50  southa
+# Stream autogenerators
+#
 # Revision 1.2  2003/09/17 19:40:26  southa
 # Source conditioning upgrades
 #
@@ -31,7 +34,8 @@ my $gVerbose = 0;
 
 my %gConfig = (
 AUTO_PREFIX => 'Auto',
-INDENT => '    '
+INDENT => '    ',
+NAMESPACE => 'Mushcore'
 );
 
 use constant HS_SCAN_FOR_CLASS => 0;
@@ -237,6 +241,13 @@ sub TypeSpecial($$)
     }
 }
 
+sub VarNameTrim($)
+{
+    my ($name) = @_;
+    $name =~ s/^m_//;
+    return $name;
+}
+
 sub OstreamWritePrototypeGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
@@ -265,7 +276,10 @@ sub OstreamWriteFunctionGenerate($$)
     {
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
-            my $line = "    ioOut << \"$$attributesRef[$i+1]=\" << $$attributesRef[$i+1]";
+            my $type = $$attributesRef[$i];
+            my $attr = $$attributesRef[$i+1];
+            my $trimmedAttr = VarNameTrim($attr);
+            my $line = "    ioOut << \"$trimmedAttr=\" << ".TypeSpecial($type, $attr);
             $line .= " << \", \"" unless ($i+3 == @$attributesRef);
             $line .= ";";
             push @$outputRef, $line;
@@ -291,6 +305,61 @@ sub OstreamOperatorGenerate($$)
 "    return ioOut;",
 "}";
 }
+
+##########################################################
+#
+#    XML input
+#
+##########################################################
+
+sub XMLIStreamWritePrototypeGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLIStream writer" unless defined ($className);
+    
+    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLRead(MushcoreXMLIStream& ioIn);"; 
+}
+
+sub XMLIStreamWriteFunctionGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLIStream writer" unless defined ($className);
+    
+    push @$outputRef, "void";
+    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLRead(MushcoreXMLIStream& ioIn)";
+    push @$outputRef,
+"{"
+;
+    push @$outputRef, "}";  
+}
+
+sub XMLIStreamOperatorGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLIStream operator" unless defined ($className);
+    
+    push @$outputRef,
+"inline void",
+"Unpickle(MushcoreXMLIStream& ioIn, $className& inObj)",
+"{",
+"    inObj.$gConfig{AUTO_PREFIX}XMLRead(ioIn);",
+"}";
+}
+
+##########################################################
+#
+#    XML output
+#
+##########################################################
 
 sub XMLOStreamWritePrototypeGenerate($$)
 {
@@ -329,7 +398,8 @@ sub XMLOStreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
-            my $line = "    ioOut << \"<$attr>\" << ".TypeSpecial($type, $attr)." << \"</$attr>\\n\";";
+            my $trimmedAttr = VarNameTrim($attr);
+            my $line = "    ioOut << \"<$trimmedAttr>\" << ".TypeSpecial($type, $attr)." << \"</$trimmedAttr>\\n\";";
             push @$outputRef, $line;
         }
     }
@@ -346,16 +416,11 @@ sub XMLOStreamOperatorGenerate($$)
     die "No class found for XMLOStream operator" unless defined ($className);
     
     push @$outputRef,
-"namespace Mushcore",
-"{",
-"",
 "inline void",
 "Pickle(MushcoreXMLOStream& ioOut, const $className& inObj, const std::string& inName=\"\")",
 "{",
 "    inObj.$gConfig{AUTO_PREFIX}XMLPrint(ioOut, inName);",
-"}",
-"",
-"} // end namespace Mushcore";
+"}";
 }
 
 sub OldBlocksStrip($$)
@@ -522,6 +587,7 @@ sub ProcessHeader($$)
     
     my @classPrototypes;
     my @inlineHeader;
+    my @inlineNamespaced;
     
     my $commandsRef = $headerInfo{COMMANDS};
 
@@ -541,21 +607,30 @@ sub ProcessHeader($$)
             # MushcoreXMLOstream
             if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
             {
+                XMLIStreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
+                XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
                 XMLOStreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
-                XMLOStreamOperatorGenerate(\@inlineHeader, \%headerInfo)
+                XMLOStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
             }
-
         }
+    }
+    
+    if (scalar @inlineNamespaced > 0)
+    {
+        # Add the namesapce shell
+        splice @inlineNamespaced, 0, 0, ("namespace $gConfig{NAMESPACE}", "{", ""); 
+        push @inlineNamespaced, "", "} // end namespace $gConfig{NAMESPACE}";
     }
     
     # Replacements should be from the bottom up so that the
     # line numbers remain valid
     my $lastLine = $headerInfo{LAST_LINE};
     SourceProcess::BlockReplace(\@$contentRef, \@inlineHeader, 'inlineHeader', $lastLine);
-    
 
-        my $closingLine = $headerInfo{CLOSING_LINE};
-        SourceProcess::BlockReplace(\@$contentRef, \@classPrototypes, 'classPrototypes', $closingLine);
+    SourceProcess::BlockReplace(\@$contentRef, \@inlineNamespaced, 'inlineNamespaced', $lastLine);
+    
+    my $closingLine = $headerInfo{CLOSING_LINE};
+    SourceProcess::BlockReplace(\@$contentRef, \@classPrototypes, 'classPrototypes', $closingLine);
 
 }
 
@@ -600,6 +675,7 @@ sub ProcessCPP($$)
             # MushcoreXMLOstream
             if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
             {
+                XMLIStreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
                 XMLOStreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
             }
         }
