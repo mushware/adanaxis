@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.5 2003/01/11 17:07:48 southa Exp $
+# $Id: autogen.sh,v 1.6 2003/01/11 17:12:09 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.6  2003/01/11 17:12:09  southa
+# Created
+#
 # Revision 1.5  2003/01/11 17:07:48  southa
 # Mushcore library separation
 #
@@ -72,14 +75,20 @@ mustl)
     echo Building Makefile.am in `pwd`
     echo 'lib_LTLIBRARIES=libmustl.la' > Makefile.am
     echo -n 'libmustl_la_SOURCES=' >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'Mustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'Mustl*.h' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    find . -name 'Mustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'Mustl*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
-    echo INCLUDES=-I\$\{srcdir\}/API >> Makefile.am
+    
+    echo 'bin_PROGRAMS=testmustl' >> Makefile.am
+    echo -n 'testmustl_SOURCES=' >> Makefile.am
+    find . -name 'TestMustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'TestMustl*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+        
+    echo INCLUDES=-I\$\{srcdir\}/Mustl >> Makefile.am
     echo -n 'EXTRA_DIST=' >> Makefile.am
-    find . -path './Platform/*/*' -a -name '*.h' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -a -name '*.cpp' -exec echo -n " " {} \;  >> Makefile.am
     echo '' >> Makefile.am
     cd ..
 

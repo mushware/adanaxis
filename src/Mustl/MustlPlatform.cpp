@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.1 2003/01/13 15:52:43 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.2 2003/01/13 16:50:48 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.2  2003/01/13 16:50:48  southa
+ * win32 support
+ *
  * Revision 1.1  2003/01/13 15:52:43  southa
  * Merged MustlPlatform
  *
@@ -90,8 +93,8 @@
 
 #ifdef WIN32
 // win32 includes
-#include <windows.h>
 #include <iphlpapi.h>
+#include <windows.h>
 
 #else
 // POSIX includes

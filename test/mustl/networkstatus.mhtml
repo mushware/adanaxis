@@ -1,0 +1,19 @@
+<html>
+<head>
+<link rel="StyleSheet" href="/style.css" type="text/css">
+<meta http-equiv="Refresh" content="2">
+<title>Mustl test application - Network status</title>
+</head>
+<body>
+<font class="bigtitlebold">Status</font>
+<br>
+<br>
+ <?mush gamestatuswrite(); ?>
+ <br><br>
+ <?mush gameserverstatuswrite(); ?>
+ <br><br>
+ <?mush gameclientstatuswrite(); ?>
+ <br><br>
+ <?mush gamelinkstatuswrite(); ?>
+</body>
+</html>

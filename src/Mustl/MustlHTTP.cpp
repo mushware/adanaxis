@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlHTTP.cpp,v 1.3 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlHTTP.cpp,v 1.4 2002/12/29 20:59:58 southa Exp $
  * $Log: MustlHTTP.cpp,v $
+ * Revision 1.4  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.3  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -90,6 +93,7 @@ MustlHTTP::Header(void)
 {
     *m_content << "<html>" << m_endl;
     *m_content << "<head>" << m_endl;
+    // Need optional stylesheet here
     *m_content << "<link rel=\"StyleSheet\" href=\"/style.css\" type=\"text/css\">" << m_endl;
     *m_content << "<title>" << m_title << "</title>" << m_endl;
     if (m_refresh != 0)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mustl.h,v 1.2 2002/12/12 18:38:24 southa Exp $
+ * $Id: Mustl.h,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -37,6 +40,7 @@
  */
 
 #include "MustlAddress.h"
+#include "MustlConfig.h"
 #include "MustlData.h"
 #include "MustlFail.h"
 #include "MustlHandler.h"

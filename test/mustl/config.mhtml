@@ -1,0 +1,81 @@
+<html>
+<head>
+<link rel="StyleSheet" href="/style.css" type="text/css">
+<title>Mushware localweb - Infernal Contractor II</title>
+</head>
+<body>
+
+<font class="bigtitlebold">Configuration</font>
+<br><font class="tiny">Settings will take effect only when the Save Settings button is pressed</font>
+
+<form method="post" action="config.mhtml">
+<input type="hidden" name="type" value="mustlconfig">
+<table width="100%" class="bgblue" border="0" cellspacing="2" cellpadding="2">
+<tr>
+<td align="center" class="bglightblue"><button name="update" value="Update" type="submit">Save Settings</button></td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Command log</font><br>
+ <?mush gameconfiginputwrite('devcommandlog'); ?>
+</td>
+<td>
+ <font class="titlebold">Command Log</font>
+ <br><font class="tiny">This option, when checked, will log all executed commands to stderr.</font>
+</td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Net log</font><br>
+ <?mush gameconfiginputwrite('devnetlog'); ?>
+</td>
+<td>
+ <font class="titlebold">Network Log</font>
+ <br><font class="tiny">This option, when checked, will log multiplayer game network activity to the network log.</font>
+</td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Web log</font><br>
+ <?mush gameconfiginputwrite('devweblog'); ?>
+</td>
+<td>
+ <font class="titlebold">Web Log</font>
+ <br><font class="tiny">This option, when checked, will log all access to the localweb server in the network log.</font>
+</td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Verbose network log</font><br>
+ <?mush gameconfiginputwrite('devverboselog'); ?>
+</td>
+<td>
+ <font class="titlebold">Verbose Network Log</font>
+ <br><font class="tiny">This option, when checked, will log additional information to network log.</font>
+</td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Network traffic log</font><br>
+ <?mush gameconfiginputwrite('devtrafficlog'); ?>
+</td>
+<td>
+ <font class="titlebold">Network Traffic Log</font>
+ <br><font class="tiny">This option, when checked, will log all network traffic.</font>
+</td>
+</tr><tr>
+
+<td align="center" class="bglightblue">
+ <font class="tinyblue">Log full IP address</font><br>
+ <?mush gameconfiginputwrite('devlogfullip'); ?>
+</td>
+<td>
+ <font class="titlebold">Log Full IP Address</font>
+ <br><font class="tiny">This option, when checked, will log full IP addresses and network names to network log, instead of the truncated form usually used to maintain privacy.</font>
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>

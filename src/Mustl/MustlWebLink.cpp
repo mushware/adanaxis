@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.11 2003/01/13 15:01:20 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.12 2003/01/13 16:50:50 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.12  2003/01/13 16:50:50  southa
+ * win32 support
+ *
  * Revision 1.11  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -358,11 +361,15 @@ MustlWebLink::GetProcess(const string& inFilename)
         {
             if (m_webPath == "")
             {
-                MushcoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
+                const MushcoreScalar *pScalar;
+                if (MustlConfig::Instance().GetIfExists(&pScalar, "MUSTL_WEB_PATH"))
+                {
+                    m_webPath = pScalar->StringGet();
+                }
             }
             if (m_webPath == "")
             {
-                throw(MustlFail("Path to web files (LOCALWEB_PATH) not set"));
+                throw(MustlFail("Path to web files (MUSTL_WEB_PATH) not set"));
             }
             localFilename = m_webPath+"/"+localFilename;
             SendFile(localFilename);
@@ -490,7 +497,7 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
             }
 
             string content=dataStr.substr(startPos+6, endPos - startPos - 6);
-            // MustlLog::Instance().Log() << "Found mush command '" << content << "'" << endl;        
+            MustlLog::Instance().WebLog() << "Found mush command '" << content << "'" << endl;        
 
             try
             {
@@ -500,7 +507,7 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
                 command.Execute();
                 dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
             }
-            catch (exception& e)
+            catch (MushcoreNonFatalFail& e)
             {
                 ostringstream errorOutput;
                 errorOutput << "<pre>Command '" << content << "' failed: " << e.what() << "</pre>" << endl;
@@ -538,7 +545,7 @@ MustlWebLink::SendErrorPage(const string& inText)
     http.ContentTypeHTML();
     http.Endl();
     http.Header();
-    http.Out() << "<p><font class=\"bigboldtitle\">Error from Mushware localweb server</font></p>";
+    http.Out() << "<h1>Error from Mustl web server</h1>";
     http.Out() << "<p>" << inText << "</p>";
     http.Out() << "<p><a target=\"_top\" href=\"/index.html\">Back to main page</a></p>";
 

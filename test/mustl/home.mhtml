@@ -1,0 +1,19 @@
+<html>
+<head>
+<link rel="StyleSheet" href="/style.css" type="text/css">
+<title>Mustl test application</title>
+</head>
+<body>
+<font class="bigtitlebold">Mustl test application</font>
+<br>
+<br>Welcome to the Mustl test application.
+<br>
+<br><font class="titlebold">Tests</font>
+<br>
+<br>Tests are organised into classes as shown above.
+<br>
+<br>
+<font class="tinybold"><a target="_self" href="developer.mhtml"><font class="tinybold">&copy;</font></a> Mushware Limited 2003</font>
+<br>
+</body>
+</html>

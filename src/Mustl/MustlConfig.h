@@ -11,22 +11,39 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfig.h,v 1.1 2002/12/29 20:30:56 southa Exp $
+ * $Log: MustlConfig.h,v $
+ * Revision 1.1  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  */
 
 #include "MustlStandard.h"
 
+class MushcoreConfig;
+class MushcoreScalar;
+
 class MustlConfig
 {
 public:
+    ~MustlConfig();
+    void Set(const std::string& inName, const MushcoreScalar& inValue);
+    void Set(const std::string& inName, const std::string& inStr);
+    void Set(const std::string& inName, const Mustl::U32& inValue);
+    
+    const MushcoreScalar& Get(const std::string& inName) const;
+    bool GetIfExists(const MushcoreScalar** outScalar, const std::string& inName) const;
+    bool Exists(const std::string& inName) const;
+    
     static MustlConfig& Instance(void);
     static void Install(void);
 
 protected:
-    MustlConfig() {}
+    MustlConfig();
     
 private:
+    MushcoreConfig *m_config;
+    
     static std::auto_ptr<MustlConfig> m_instance;
 };
 

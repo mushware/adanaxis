@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.25 2003/01/11 13:03:15 southa Exp $
+ * $Id: main.cpp,v 1.26 2003/01/11 17:07:53 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.26  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.25  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -95,7 +98,7 @@
 #include "config.h"
 #endif
 
-// SDL test
+// SDL_main.h #defines main so must be included
 #if 1
 
 #if defined(HAVE_SDL_SDL_MAIN_H)
@@ -105,13 +108,13 @@
 #include <SDL_main.h>
 #else
 #include "SDL_main.h"
+#endif
+#endif
+
+#endif
 
 using namespace Mushware;
 using namespace std;
-#endif
-#endif
-
-#endif
 
 int main(int argc, char *argv[])
 {

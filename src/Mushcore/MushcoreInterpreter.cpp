@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.3 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.3  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -97,18 +100,13 @@ MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
     MushcoreScalar retScalar(0);
     if (m_handlers.find(ioCommand.Name()) != m_handlers.end())
     {
-        try
-        {
-            retScalar=m_handlers[ioCommand.Name()](ioCommand, MushcoreEnv::Instance());
-        }
-        catch (MushcoreFileFail& f)
-        {
-            cerr << "File operation failed: " << f.what() << endl;
-        }
+        retScalar=m_handlers[ioCommand.Name()](ioCommand, MushcoreEnv::Instance());
     }
     else
     {
-        cerr << "Unknown command '" << ioCommand.Name() << "'" << endl;
+        ostringstream message;
+        message << "Unknown command '" << ioCommand.Name() << "'";
+        throw(MushcoreCommandFail(message.str()));
     }
     return retScalar;
 }

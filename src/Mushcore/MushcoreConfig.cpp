@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreConfig.cpp,v 1.2 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreConfig.cpp,v $
+ * Revision 1.2  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -73,9 +76,9 @@ MushcoreConfig::Get(const string& inName) const
     
     if (p == m_config.end())
     {
-        ostringstream out;
-        out << "Config element '" << inName << "' not found";
-        throw (MushcoreDataFail(out.str()));
+        ostringstream message;
+        message << "Config element '" << inName << "' not found";
+        throw (MushcoreDataFail(message.str()));
     }
     return p->second;
 }

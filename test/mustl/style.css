@@ -1,0 +1,27 @@
+FONT            {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+TD              {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+BODY            {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+P               {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+DIV             {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+INPUT           {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+TEXTAREA        {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+FORM            {FONT-FAMILY: Verdana,Helvetica; FONT-SIZE: 12px}
+A:link          {COLOR: #000000; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: underline}
+A:active        {COLOR: #000000; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: underline}
+A:visited       {COLOR: #000000; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: underline}
+A:hover         {COLOR: #800000; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: underline}
+.content 	    {COLOR: #000000; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Helvetica}
+.boldcontent 	{COLOR: #000000; FONT-SIZE: 12px; FONT-WEIGHT: bold; FONT-FAMILY: Verdana, Helvetica}
+.tiny		    {COLOR: #000000; FONT-SIZE: 9px; FONT-WEIGHT: normal; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: none}
+.tinybold		{COLOR: #000000; FONT-SIZE: 9px; FONT-WEIGHT: bold; FONT-FAMILY: Verdana, Helvetica; TEXT-DECORATION: none}
+.title	        {COLOR: #000000; FONT-SIZE: 14px; FONT-WEIGHT: normal; FONT-FAMILY: Verdana,Helvetica,san-serif}
+.titlebold 	    {COLOR: #000000; FONT-SIZE: 14px; FONT-WEIGHT: bold; FONT-FAMILY: Verdana,Helvetica,san-serif}
+.bigtitlebold 	{COLOR: #000000; FONT-SIZE: 18px; FONT-WEIGHT: bold; FONT-FAMILY: Verdana,Helvetica,san-serif}
+.bglightred	    {BACKGROUND: #FFCCCC}
+.bglightgreen	{BACKGROUND: #CCFFCC}
+.bglightblue	{BACKGROUND: #CCCCFF}
+.bglightyellow	{BACKGROUND: #FFFFCC}
+.bgred		    {BACKGROUND: #FF8888}
+.bggreen	    {BACKGROUND: #88FF88}
+.bgblue		    {BACKGROUND: #8888FF}
+.bgyellow	    {BACKGROUND: #FFFF88}

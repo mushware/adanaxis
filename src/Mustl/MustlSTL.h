@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlSTL.h,v 1.1 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlSTL.h,v 1.2 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlSTL.h,v $
+ * Revision 1.2  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -22,11 +25,9 @@
 
 #include "MustlAssert.h"
 
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <memory>
-#include <string>
+#include <list>
+#include <stack>
+#include <stdexcept>
 
 #ifdef HAVE_SSTREAM
 #include <sstream>
@@ -34,19 +35,15 @@
 #include "sstream"
 #endif
 
-#include <list>
-#include <map>
-#include <stack>
-#include <vector>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
 
 #include <typeinfo>
 
+#include <cerrno>
+#include <cmath>
+#include <cstdlib>
 #include <ctime>
-#include <errno.h>
-#include <math.h>
-#include <stdexcept>
-#include <stdlib.h>
-
-using namespace std;
 
 #endif

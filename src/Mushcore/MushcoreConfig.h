@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.h,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -79,6 +82,7 @@ public:
     void Set(const std::string& inName, const MushcoreScalar& inValue);
     void Set(const std::string& inName, const std::string& inStr) { Set(inName, MushcoreScalar(inStr)); }
     void Set(const std::string& inName, const Mushware::tVal inVal) { Set(inName, MushcoreScalar(inVal)); }
+    void Set(const std::string& inName, const Mushware::U32 inValue) { Set(inName, MushcoreScalar(inValue)); }
     const MushcoreScalar& Get(const std::string& inName) const;
     bool GetIfExists(const MushcoreScalar** outScalar, const std::string& inName) const;
     bool Exists(const std::string& inName) const;
