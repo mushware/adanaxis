@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.9 2002/11/25 12:06:18 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.10 2002/12/05 13:20:13 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.10  2002/12/05 13:20:13  southa
+ * Client link handling
+ *
  * Revision 1.9  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -44,6 +47,7 @@
 
 #include "MediaNetProtocol.h"
 #include "MediaNetData.h"
+#include "MediaNetID.h"
 #include "MediaNetLog.h"
 #include "MediaNetUtils.h"
 
@@ -93,6 +97,22 @@ MediaNetProtocol::KillLinkCreate(MediaNetData& outData, tReasonCode inReason)
 }
 
 void
+MediaNetProtocol::IDRequestCreate(MediaNetData& outData)
+{
+    outData.BytePush(kSyncByte1);
+    outData.BytePush(kSyncByte2);
+    outData.BytePush(kMessageTypeIDRequest);
+}
+
+void
+MediaNetProtocol::IDTransferCreate(MediaNetData& ioData, const MediaNetID& inID)
+{
+    LongAppMessageHeaderCreate(ioData, kMessageTypeIDTransfer);
+    inID.Pack(ioData);
+    LongAppMessageFinish(ioData);
+}
+
+void
 MediaNetProtocol::Unpack(MediaNetData& ioData)
 {
     U32 messageLength=0; // Content length after the message type (and length)
@@ -133,7 +153,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 break;
 
             case kUnpackStateMessageType:
-                if (byte >= kMessageTypeMinLinkLayer && byte < kMessageTypeMaxLinkLayer)
+                if (byte >= kMessageTypeMinLinkLayer && byte < kMessageTypeMaxFixedLength)
                 {
                     messageLength=1;
                     unpackState=kUnpackStateMessageDone;
@@ -257,7 +277,7 @@ MediaNetProtocol::MessageTypeIsLinkLayer(U32 inType)
 void
 MediaNetProtocol::LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType)
 {
-    U32 messageType=kMessageTypeLongAppStart+inType;
+    U32 messageType=kMessageTypeLongAppStart + inType;
     COREASSERT(messageType < kMessageTypeLongAppEnd);
     ioData.BytePush(kSyncByte1);
     ioData.BytePush(kSyncByte2);

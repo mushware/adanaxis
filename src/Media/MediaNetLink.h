@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.17 2002/11/28 18:05:36 southa Exp $
+ * $Id: MediaNetLink.h,v 1.18 2002/12/05 13:20:13 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.18  2002/12/05 13:20:13  southa
+ * Client link handling
+ *
  * Revision 1.17  2002/11/28 18:05:36  southa
  * Print link ages
  *
@@ -65,12 +68,13 @@
 #include "MediaSDL.h"
 
 class MediaNetAddress;
+class MediaNetID;
 
 class MediaNetLink
 {
 public:
-    MediaNetLink(const string& inServer, U32 inPort);
-    explicit MediaNetLink(const MediaNetAddress& inAddress);
+    MediaNetLink(const MediaNetID& inID, const string& inServer, U32 inPort);
+    explicit MediaNetLink(const MediaNetID& inID, const MediaNetAddress& inAddress);
     explicit MediaNetLink(TCPsocket inSocket, U32 inPort);
     ~MediaNetLink();
 
@@ -87,6 +91,8 @@ public:
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
+    void NetIDSet(const MediaNetID& inID);
+    
     const string& TargetNameGet(void) const { return m_targetName; }
     U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
     U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
@@ -180,7 +186,8 @@ private:
     U32 m_lastActivityMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
-
+    MediaNetID *m_netID;
+    
     bool m_targetIsServer;
     bool m_udpUseServerPort;
 

@@ -1,8 +1,11 @@
 #ifndef MEDIANETCLIENT_H
 #define MEDIANETCLIENT_H
 /*
- * $Id: MediaNetClient.h,v 1.9 2002/11/22 18:02:43 southa Exp $
+ * $Id: MediaNetClient.h,v 1.10 2002/11/23 14:39:05 southa Exp $
  * $Log: MediaNetClient.h,v $
+ * Revision 1.10  2002/11/23 14:39:05  southa
+ * Store ports in network order
+ *
  * Revision 1.9  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -58,6 +61,7 @@ public:
     U32 TCPRemotePortGet(void) const { return m_tcpRemotePort; }
 
     bool TCPConnectionCompleted(void);
+    void ResolveTargetName(void);
     bool UDPConnectedGet(void) const { return m_udpConnected; }
     U32 UDPRemotePortGet(void) const { return m_udpRemotePort; }
     void UDPRemotePortNetworkOrderSet(U32 inPort);
@@ -65,7 +69,6 @@ public:
     void Print(ostream& ioOut) const;
     
 private:
-    void ResolveTargetName(void);
 
     TCPsocket m_tcpSocket;
     UDPsocket m_udpSocket;

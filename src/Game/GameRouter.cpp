@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.8 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameRouter.cpp,v 1.9 2002/12/05 13:20:12 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.9  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.8  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -29,16 +32,23 @@
 
 #include "GameRouter.h"
 
+#include "GameData.h"
 #include "GameNetObject.h"
+#include "GameNetUtils.h"
+#include "GamePiecePlayer.h"
 #include "GameProtocol.h"
 
 auto_ptr<GameRouter> GameRouter::m_instance;
 
 void
-GameRouter::MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 inType)
+GameRouter::MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType)
 {
     switch (inType)
     {
+        case GameProtocol::kMessageTypeIDTransfer:
+            IDTransferHandle(ioData, inLink);
+            break;
+            
         case GameProtocol::kMessageTypeCreateObject:
         case GameProtocol::kMessageTypeDeleteObject:
             NetObjectHandle(ioData, inLink);
@@ -52,6 +62,12 @@ GameRouter::MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 
             MediaNetLog::Instance().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
+}
+
+void
+GameRouter::IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink)
+{
+    inLink.NetIDSet(MediaNetIDString(ioData));
 }
 
 void
@@ -79,6 +95,24 @@ GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 {
     // Find object that relates to this control data
 
+    // Slow lookup of ClientDef for this link
+    string clientName;
+    if (!GameNetUtils::FindClientDefForLink(clientName, &inLink))
+    {
+        MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Discarding data for unknown ClientDef" << endl;
+        return;
+    }
+
+    CoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
+
+    if (playerData.Exists(clientName))
+    {
+        MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
+    }
+    else
+    {
+       MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
+    }
     // Apply or store the data
 
     // Resend object's MotionSpec to the clients as necessary

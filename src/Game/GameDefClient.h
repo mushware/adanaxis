@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.8 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameDefClient.h,v 1.9 2002/12/05 23:52:51 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.9  2002/12/05 23:52:51  southa
+ * Network management and status
+ *
  * Revision 1.8  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -37,12 +40,14 @@ class GameDefClient : public GameDef
 {
 public:
     explicit GameDefClient(const string& inName);
-    virtual void Ticker(void);
+    virtual void Ticker(const string& inName);
     virtual void WebPrint(ostream& ioOut) const;
     
     void JoinGame(const string& inServer, U32 inPort);
     void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
     const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
+    bool LinkMatch(const MediaNetLink *inLink) const;
+    
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
     void UpdateStatus(void);

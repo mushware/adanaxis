@@ -1,8 +1,11 @@
 #ifndef MEDIANETPROTOCOL_H
 #define MEDIANETPROTOCOL_H
 /*
- * $Id: MediaNetProtocol.h,v 1.9 2002/11/27 20:17:27 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.10 2002/12/05 13:20:13 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.10  2002/12/05 13:20:13  southa
+ * Client link handling
+ *
  * Revision 1.9  2002/11/27 20:17:27  southa
  * Basic network cleardown
  *
@@ -35,6 +38,7 @@
 #include "mushCore.h"
 
 class MediaNetData;
+class MediaNetID;
 
 class MediaNetProtocol
 {
@@ -48,8 +52,11 @@ public:
         kMessageTypeUDPLinkCheck,
         kMessageTypeUDPLinkCheckReply,
         kMessageTypeKillLink,
+        kMessageTypeIDRequest,
+        kMessageTypeMaxFixedLength,
         kMessageTypeMaxLinkLayer, // Subsequent messages are for the application
         kMessageTypeLongAppStart=128,
+        kMessageTypeIDTransfer=kMessageTypeLongAppStart,
         kMessageTypeLongAppEnd=191,
         kMessageTypeShortAppStart=192,
         kMessageTypeShortAppEnd=224,
@@ -74,6 +81,9 @@ public:
     static void UDPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);
     static void UDPLinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
     static void KillLinkCreate(MediaNetData& outData, tReasonCode inReason);
+    static void IDRequestCreate(MediaNetData& outData);
+
+    static void IDTransferCreate(MediaNetData& outData, const MediaNetID& inID);
 
     static void LongAppMessageCreate(MediaNetData& ioData, U32 inType, const string& inStr);
     static void LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType);

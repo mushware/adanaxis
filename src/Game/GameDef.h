@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.11 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameDef.h,v 1.12 2002/12/05 23:52:51 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.12  2002/12/05 23:52:51  southa
+ * Network management and status
+ *
  * Revision 1.11  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -55,7 +58,7 @@ public:
     
     explicit GameDef(const string& inName);
     virtual ~GameDef() {}
-    virtual void Ticker(void) = 0;
+    virtual void Ticker(const string& inName) = 0;
     virtual void WebPrint(ostream& ioOut) const = 0;
 
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;

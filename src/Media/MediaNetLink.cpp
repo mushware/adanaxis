@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.22 2002/11/28 18:05:36 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.23 2002/12/05 13:20:13 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.23  2002/12/05 13:20:13  southa
+ * Client link handling
+ *
  * Revision 1.22  2002/11/28 18:05:36  southa
  * Print link ages
  *
@@ -71,6 +74,7 @@
 
 #include "MediaNetLink.h"
 
+#include "MediaNetID.h"
 #include "MediaNetLog.h"
 #include "MediaNetProtocol.h"
 #include "MediaNetServer.h"
@@ -82,9 +86,10 @@ auto_ptr< CoreData<MediaNetLink> > CoreData<MediaNetLink>::m_instance;
 
 U32 MediaNetLink::m_linkNameNum=1;
 
-MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
+MediaNetLink::MediaNetLink(const MediaNetID& inID, const string& inServer, U32 inPort)
 {
     // I am the client end of the link
+    m_netID = inID.Clone();
     Initialise();
     m_udpUseServerPort=false;
     MediaNetLog::Instance().NetLog() << "Connecting to " << inServer << ":" << inPort << endl;
@@ -97,9 +102,10 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     m_targetName=inServer;
 }
 
-MediaNetLink::MediaNetLink(const MediaNetAddress& inAddress)
+MediaNetLink::MediaNetLink(const MediaNetID& inID, const MediaNetAddress& inAddress)
 {
     // I am the client end of the link
+    m_netID = inID.Clone();
     Initialise();
     m_udpUseServerPort=false;
     string serverName=inAddress.HostStringGet();
@@ -117,6 +123,7 @@ MediaNetLog::Instance().NetLog() << "Connecting to " << serverName << ":" << por
 MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
 {
     // I am the server end of the link
+    m_netID = NULL;
     Initialise();
     m_udpState.linkState=kLinkStateWaitingForPort;
     m_udpUseServerPort=true;
@@ -154,6 +161,10 @@ MediaNetLink::Initialise(void)
 
 MediaNetLink::~MediaNetLink()
 {
+    if (m_netID != NULL)
+    {
+        delete m_netID;
+    }
 }
 
 void
@@ -631,6 +642,16 @@ MediaNetLink::Receive(MediaNetData * & outData)
 }
 
 void
+MediaNetLink::NetIDSet(const MediaNetID& inID)
+{
+    if (m_netID != NULL)
+    {
+        delete m_netID;
+    }
+    m_netID = inID.Clone();
+}
+
+void
 MediaNetLink::MessageHandle(U32 inType, MediaNetData& ioData)
 {
     switch (inType)
@@ -768,8 +789,19 @@ MediaNetLink::LinkInfoLog(void) const
 void
 MediaNetLink::Print(ostream& ioOut) const
 {
-    ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState << ", targetIsServer=" << m_targetIsServer;
-    ioOut << ", currentMsec=" << m_currentMsec << ", udpUseServerPort=" << m_udpUseServerPort;
+    ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState;
+    ioOut << ", creationMsec =" << m_creationMsec << ", lastActivityMsec=" << m_lastActivityMsec;
+    ioOut << ", currentMsec=" << m_currentMsec << ", targetName=" << m_targetName << ", netID";
+    if (m_netID == NULL)
+    {
+        ioOut << " is NULL";
+    }
+    else
+    {
+        ioOut << "=" << *m_netID;
+    }
+    ioOut << ", targetIsServer=" << m_targetIsServer;
+    ioOut << ", udpUseServerPort=" << m_udpUseServerPort;
     ioOut << ", client=" << m_client << "]";
 }
 
@@ -807,32 +839,44 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
 void
 MediaNetLink::WebStatusHeaderPrint(ostream& ioOut)
 {
-    ioOut << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";
-    ioOut << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
-    ioOut << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
+    ioOut << "<tr class=\"bgred\">";
+    ioOut << "<td class=\"bold\">Owner</td>";
+    ioOut << "<td class=\"bold\">IP:TCP port/UDP port:type</td>";
+    ioOut << "<td class=\"bold\">TCP</td>" << endl;
+    ioOut << "<td class=\"bold\">UDP</td>" << endl;
     ioOut << "<td class=\"bold\">Age</td></tr>" << endl;
 }
 
 void
 MediaNetLink::WebStatusPrint(ostream& ioOut) const
 {
-    ioOut << "<td>" << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet());
-    if (m_targetIsServer)
+    ioOut << "<td>";
+    if (m_netID == NULL)
     {
-        ioOut << " client";
+        ioOut << "(Unknown)";
     }
     else
     {
-        ioOut << " server";
+        ioOut << *m_netID;
+    }
+    ioOut << "</td><td>" << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet());
+    ioOut << ":" << PlatformNet::NetworkToHostOrderU16(m_client.TCPRemotePortGet());
+    ioOut << "/" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet());
+    if (m_targetIsServer)
+    {
+        ioOut << ":client";
+    }
+    else
+    {
+        ioOut << ":server";
     }
     ioOut << "</td>";
     ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_tcpState);
-    ioOut << "\">TCP:" << PlatformNet::NetworkToHostOrderU16(m_client.TCPRemotePortGet()) << "</font></td><td>" << m_tcpState.linkPingTime;
-    ioOut << "ms</td><td><font class=\"";
+    ioOut << "\">" << m_tcpState.linkPingTime << "ms</font></td>";
+ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_udpState);
-    ioOut << "\">UDP:" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet()) << "</font></td><td>" << m_udpState.linkPingTime;
-    ioOut << "ms</td>";
+    ioOut << "\">" << m_udpState.linkPingTime << "ms</font></td>";
 
     m_currentMsec=SDL_GetTicks();
     ioOut << "<td>" << MediaNetUtils::MsecDurationToString(m_currentMsec - m_creationMsec) << "</td>";

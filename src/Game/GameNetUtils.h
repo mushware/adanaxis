@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.h,v 1.3 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameNetUtils.h,v 1.4 2002/12/05 23:52:52 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.4  2002/12/05 23:52:52  southa
+ * Network management and status
+ *
  * Revision 1.3  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -27,13 +30,14 @@ public:
     static void KillClientImages(void);
     static void KillLinks(void);
 
-    static bool MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const MediaNetAddress& inAddress, U32 inLinkNum);
-    static void CreateLink(CoreDataRef<MediaNetLink>& outLink, const MediaNetAddress& inAddress);
+    static bool MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const string& inClientName, const MediaNetAddress& inAddress, U32 inLinkNum);
+    static void CreateLink(CoreDataRef<MediaNetLink>& outLink, const string& inClientName, const MediaNetAddress& inAddress);
     static void ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData);
     static void FastSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData);
     static void NetTicker(void);
     static void WebReceive(void);
     static void NetReceive(void);
+    static bool FindClientDefForLink(string& outName, const MediaNetLink *inLink);
     
 private:
     enum

@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.h,v 1.5 2002/12/06 11:11:16 southa Exp $
+ * $Id: GameProtocol.h,v 1.6 2002/12/06 17:38:01 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.6  2002/12/06 17:38:01  southa
+ * ControlData message unpacking
+ *
  * Revision 1.5  2002/12/06 11:11:16  southa
  * Send control information
  *
@@ -31,7 +34,7 @@ class GameProtocol
 public:
     enum tMessageType
     {
-        kMessageTypeInvalid,
+        kMessageTypeIDTransfer,
         kMessageTypeCreateObject,
         kMessageTypeDeleteObject,
         kMessageTypeControlData

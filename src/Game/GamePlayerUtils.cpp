@@ -1,6 +1,9 @@
 /*
- * $Id: GamePlayerUtils.cpp,v 1.2 2002/12/06 11:11:16 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.3 2002/12/06 17:38:00 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.3  2002/12/06 17:38:00  southa
+ * ControlData message unpacking
+ *
  * Revision 1.2  2002/12/06 11:11:16  southa
  * Send control information
  *
@@ -73,17 +76,12 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
         U32 entryFrameNum=p.IndexGet();
 
         S32 frameOffset = entryFrameNum - startFrameNum;
-        if (frameOffset < 0 || frameOffset > 255)
+        if (frameOffset >= 0 && frameOffset < 256)
         {
-            // Can't generate a frame offset for this
-            COREASSERT(frameOffset >= 0);
-            break;
+            controlMessage.DataEntryPush(frameOffset, p.StoreGet());
+            if (++entryCtr >= GameMessageControlData::kEntryLimit) break;
         }
-
-        controlMessage.DataEntryPush(frameOffset, p.StoreGet());
- 
         p.ForwardMove();
-        if (++entryCtr >= GameMessageControlData::kEntryLimit) break;
     }
     
     MediaNetData netData;

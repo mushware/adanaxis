@@ -1855,8 +1855,8 @@
 			children = (
 				F52B3BF8028C25CF0179D0A8,
 				F52B3BF9028C25CF0179D0A8,
-				F5457B9602AF8D8501E3BBF3,
 				F5539E3502B4D0A6010AB4A9,
+				F5457B9602AF8D8501E3BBF3,
 			);
 			isa = PBXGroup;
 			name = API;
@@ -3492,6 +3492,12 @@
 				F5B36CFE0392427601A80164,
 				F512BC60037973D101A80164,
 				F512BC5F037973D101A80164,
+				F5A7B49503A21B0001A80164,
+				F5A7B49403A21B0001A80164,
+				F5AA38B503A23A3801A80164,
+				F5AA38B403A23A3801A80164,
+				F5AA38B903A23A4D01A80164,
+				F5AA38B803A23A4D01A80164,
 				F5AB165E0371B43601A80164,
 				F5AB165D0371B43601A80164,
 				F5C6B43B0376BD6B01A80164,
@@ -4566,6 +4572,9 @@
 				F5A79471039E19E601A80164,
 				F5AA9AD7039E93F001A80164,
 				F5AAE43703A1122B01A80164,
+				F5A7B49603A21B0001A80164,
+				F5AA38B603A23A3801A80164,
+				F5AA38BA03A23A4D01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4725,6 +4734,9 @@
 				F5AA9AD4039E935801A80164,
 				F5AA9AD8039E93F001A80164,
 				F5AAE43803A1122B01A80164,
+				F5A7B49703A21B0001A80164,
+				F5AA38B703A23A3801A80164,
+				F5AA38BB03A23A4D01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5604,6 +5616,30 @@
 			settings = {
 			};
 		};
+		F5A7B49403A21B0001A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetID.h;
+			path = Media/MediaNetID.h;
+			refType = 4;
+		};
+		F5A7B49503A21B0001A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetID.cpp;
+			path = Media/MediaNetID.cpp;
+			refType = 4;
+		};
+		F5A7B49603A21B0001A80164 = {
+			fileRef = F5A7B49403A21B0001A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A7B49703A21B0001A80164 = {
+			fileRef = F5A7B49503A21B0001A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5A8A072039CE39901A80164 = {
 			isa = PBXFileReference;
 			name = GameNetUtils.h;
@@ -5648,6 +5684,54 @@
 		};
 		F5A8F283038560DB01A80164 = {
 			fileRef = F5A8F281038560DB01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AA38B403A23A3801A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetIDNull.h;
+			path = Media/MediaNetIDNull.h;
+			refType = 4;
+		};
+		F5AA38B503A23A3801A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetIDNull.cpp;
+			path = Media/MediaNetIDNull.cpp;
+			refType = 4;
+		};
+		F5AA38B603A23A3801A80164 = {
+			fileRef = F5AA38B403A23A3801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AA38B703A23A3801A80164 = {
+			fileRef = F5AA38B503A23A3801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AA38B803A23A4D01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetIDString.h;
+			path = Media/MediaNetIDString.h;
+			refType = 4;
+		};
+		F5AA38B903A23A4D01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetIDString.cpp;
+			path = Media/MediaNetIDString.cpp;
+			refType = 4;
+		};
+		F5AA38BA03A23A4D01A80164 = {
+			fileRef = F5AA38B803A23A4D01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AA38BB03A23A4D01A80164 = {
+			fileRef = F5AA38B903A23A4D01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.cpp,v 1.3 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.4 2002/12/05 23:52:51 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.4  2002/12/05 23:52:51  southa
+ * Network management and status
+ *
  * Revision 1.3  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -87,7 +90,7 @@ GameNetUtils::KillClientsByType(bool inImageIs)
 }
 
 bool
-GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const MediaNetAddress& inAddress, U32 inLinkNum)
+GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const string& inClientName, const MediaNetAddress& inAddress, U32 inLinkNum)
 {
     bool linkGood=false;
     U32 size = inLinks.size();
@@ -101,7 +104,7 @@ GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const 
             COREASSERT(linkPtr != NULL);
             if (linkPtr->IsDead())
             {
-                CreateLink(inLinks[i], inAddress);
+                CreateLink(inLinks[i], inClientName, inAddress);
             }
             else
             {
@@ -110,19 +113,19 @@ GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const 
         }
         else
         {
-            CreateLink(inLinks[i], inAddress);
+            CreateLink(inLinks[i], inClientName, inAddress);
         }
     }
     return linkGood;
 }
 
 void
-GameNetUtils::CreateLink(CoreDataRef<MediaNetLink>& outLink, const MediaNetAddress& inAddress)
+GameNetUtils::CreateLink(CoreDataRef<MediaNetLink>& outLink, const string& inClientName, const MediaNetAddress& inAddress)
 {
     try
     {
         string linkName=MediaNetLink::NextLinkNameTake();
-        CoreData<MediaNetLink>::Instance().Give(linkName, new MediaNetLink(inAddress));
+        CoreData<MediaNetLink>::Instance().Give(linkName, new MediaNetLink(MediaNetIDString(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
     catch (NetworkFail& e)
@@ -196,7 +199,7 @@ GameNetUtils::NetTicker(void)
             }
             else
             {
-                p->second->Ticker();
+                p->second->Ticker(p->first);
             }
             if (p->second->IsDead())
             {
@@ -227,7 +230,7 @@ GameNetUtils::NetTicker(void)
             }
             else
             {
-                p->second->Ticker();
+                p->second->Ticker(p->first);
                 serverNeeded=true;
             }
             if (p->second->IsDead())
@@ -298,4 +301,24 @@ GameNetUtils::NetReceive(void)
     {
         MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }
+}
+
+bool
+GameNetUtils::FindClientDefForLink(string& outName, const MediaNetLink *inLink)
+{
+    CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+
+    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        if (p->second->ImageIs())
+        {
+            if (p->second->LinkMatch(inLink))
+            {
+                outName = p->first;
+                return true;
+            }
+        }
+    }
+    return false;    
 }

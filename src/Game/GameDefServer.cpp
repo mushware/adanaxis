@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.10 2002/11/28 18:05:35 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.11 2002/12/04 12:54:41 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.11  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.10  2002/11/28 18:05:35  southa
  * Print link ages
  *
@@ -61,7 +64,7 @@ GameDefServer::HostGame(const string& inContract, U32 inPlayerLimit)
 }
 
 void
-GameDefServer::Ticker(void)
+GameDefServer::Ticker(const string& inName)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();

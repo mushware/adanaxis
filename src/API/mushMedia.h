@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.19 2002/11/25 12:06:17 southa Exp $
+ * $Id: mushMedia.h,v 1.20 2002/11/27 13:23:26 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.20  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.19  2002/11/25 12:06:17  southa
  * Received net message routing
  *
@@ -80,6 +83,9 @@
 #include "Media/MediaNetAddress.h"
 #include "Media/MediaNetData.h"
 #include "Media/MediaNetHandler.h"
+#include "Media/MediaNetID.h"
+#include "Media/MediaNetIDNull.h"
+#include "Media/MediaNetIDString.h"
 #include "Media/MediaNetLink.h"
 #include "Media/MediaNetLog.h"
 #include "Media/MediaNetProtocol.h"

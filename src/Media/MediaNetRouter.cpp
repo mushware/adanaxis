@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.7 2002/11/27 16:35:10 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.8 2002/12/05 13:20:13 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.8  2002/12/05 13:20:13  southa
+ * Client link handling
+ *
  * Revision 1.7  2002/11/27 16:35:10  southa
  * Client and server image handling
  *
@@ -117,9 +120,6 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& 
                 }
                 else
                 {
-                    // Make data look like it came from the TCP address in all cases
-                    //ioData.SourcePortSet(p->second->TCPTargetPortGet());
-
                     MediaNetProtocol::RemoveLength(ioData, messageType);
                     U32 appMessageType = MediaNetProtocol::LinkToAppType(messageType);
                     inHandler.MessageHandle(ioData, *p->second, appMessageType);

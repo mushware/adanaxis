@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.14 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.15 2002/12/05 23:52:51 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.15  2002/12/05 23:52:51  southa
+ * Network management and status
+ *
  * Revision 1.14  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -96,7 +99,7 @@ GameDefClient::JoinGame(const string& inServer, U32 inPort)
 }
 
 void
-GameDefClient::Ticker(void)
+GameDefClient::Ticker(const string& inName)
 {
     // Needs calling at least once per second
     if (!m_joined) return;
@@ -111,7 +114,7 @@ GameDefClient::Ticker(void)
         m_numLinks=kNumSetupModeLinks;
     }
     
-    m_linkGood = GameNetUtils::MaintainLinks(m_netLinks, m_netAddress, m_numLinks);
+    m_linkGood = GameNetUtils::MaintainLinks(m_netLinks, inName, m_netAddress, m_numLinks);
     
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
@@ -189,7 +192,7 @@ GameDefClient::UpdateStatus(void)
     }
     if (oldStatus != StatusGet())
     {
-        // Change of sttaus, so infor the server
+        // Change of status, so inform the server
         UpdateServer();
     }
 }
@@ -208,6 +211,24 @@ GameDefClient::FastSendToServer(MediaNetData& ioData)
     GameNetUtils::FastSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
 }
 
+bool
+GameDefClient::LinkMatch(const MediaNetLink *inLink) const
+{
+    // Can check the link address itself rather than the IP address
+    COREASSERT(m_numLinks <= m_netLinks.size());
+    for (U32 i=0; i<m_numLinks; ++i)
+    {
+        MediaNetLink *linkPtr = NULL;
+        if (m_netLinks[i].GetIfExists(linkPtr))
+        {
+            if (linkPtr == inLink)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 void
 GameDefClient::WebHeaderPrint(ostream& ioOut)

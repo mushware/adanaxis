@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.h,v 1.5 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameRouter.h,v 1.6 2002/12/04 00:37:11 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.6  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  * Revision 1.5  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -27,9 +30,10 @@ class GameRouter : public MediaNetHandler
 public:
     static inline GameRouter& Instance(void);
 
-    void MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 inType);
+    void MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType);
 
 protected:
+    void IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink);
     void NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink);
     void ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink);
     
@@ -37,7 +41,7 @@ private:
     static auto_ptr<GameRouter> m_instance;
 };
 
-inline  GameRouter&
+inline GameRouter&
 GameRouter::Instance(void)
 {
     if (m_instance.get() != NULL) return *m_instance;

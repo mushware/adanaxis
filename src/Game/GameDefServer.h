@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.h,v 1.5 2002/11/28 15:14:14 southa Exp $
+ * $Id: GameDefServer.h,v 1.6 2002/11/28 18:05:35 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.6  2002/11/28 18:05:35  southa
+ * Print link ages
+ *
  * Revision 1.5  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -30,7 +33,7 @@ class GameDefServer : public GameDef
 {
 public:
     GameDefServer(const string& inName);
-    virtual void Ticker(void);
+    virtual void Ticker(const string& inName);
     virtual void WebPrint(ostream& ioOut) const;
 
     void HostGame(const string& inContract, U32 inPlayerLimit);
