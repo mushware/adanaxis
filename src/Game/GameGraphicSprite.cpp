@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DrgZeyyyqa0NzNz0YO96hg
+//%Header } 09k5MwmT2lBri0WYsSc9PA
 /*
- * $Id: GameGraphicSprite.cpp,v 1.21 2003/10/04 12:23:00 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.22 2004/01/01 23:04:02 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.22  2004/01/01 23:04:02  southa
+ * XCode fixes
+ *
  * Revision 1.21  2003/10/04 12:23:00  southa
  * File renaming
  *

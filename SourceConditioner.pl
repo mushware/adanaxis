@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.19 2003/10/17 12:27:17 southa Exp $
+# $Id: SourceConditioner.pl,v 1.20 2004/01/01 23:03:58 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.20  2004/01/01 23:03:58  southa
+# XCode fixes
+#
 # Revision 1.19  2003/10/17 12:27:17  southa
 # Line end fixes and more mesh work
 #
@@ -330,6 +333,44 @@ sub VarBaseNameGet($)
     $name =~ s/^\*+//;
     return $name;
 }
+
+##########################################################
+#
+#    Access functions
+#
+##########################################################
+
+sub AccessPrototypeGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+    
+    my $className = $$infoRef{CLASSNAME};
+    
+    die "No class found for standard functions" unless defined ($className);
+    
+    my $attributesRef = $$infoRef{ATTRIBUTES};
+    if (defined($attributesRef))
+    {
+        for (my $i=0; $i < @$attributesRef; $i += 3)
+        {
+            my $type = $$attributesRef[$i];
+            my $attr = $$attributesRef[$i+1];
+            my $comment = $$attributesRef[$i+2];
+            my $trimmedAttr = VarNameTrim($attr);
+            my $capitalisedAttr = uc(substr($trimmedAttr,0,1)).substr($trimmedAttr,1);
+            
+            if ($comment =~ /(:read\b|:readwrite)\b/)
+            {
+                push @$outputRef, "$gConfig{INDENT}const $type& ${capitalisedAttr}Get(void) const { return $attr; }";
+            }
+            if ($comment =~ /(:write\b|:readwrite)\b/)
+            {
+                push @$outputRef, "$gConfig{INDENT}void ${capitalisedAttr}Set(const $type& inValue) { $attr=inValue; }";
+            }
+        }
+    }
+}
+
 
 ##########################################################
 #
@@ -851,6 +892,9 @@ sub ProcessHeader($$)
         
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # Member accessors and modifers
+            AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
+            
             # Standard functions
             if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
             {            

@@ -3,7 +3,7 @@
  *
  * File: src/MustlGame/MustlGameServer.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } B0fN063dcb0mX9SnWV0uAw
+//%Header } 0LAeg+K5tzult0QOCYvQgQ
 /*
- * $Id: MustlGameServer.cpp,v 1.2 2003/10/06 22:42:04 southa Exp $
+ * $Id: MustlGameServer.cpp,v 1.3 2004/01/01 23:04:02 southa Exp $
  * $Log: MustlGameServer.cpp,v $
+ * Revision 1.3  2004/01/01 23:04:02  southa
+ * XCode fixes
+ *
  * Revision 1.2  2003/10/06 22:42:04  southa
  * Include fixes
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JlxNvBXL6uC0NayW/SROGA
+//%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.7 2003/10/18 20:28:38 southa Exp $
+ * $Id: MushMeshVector.h,v 1.8 2003/10/20 13:02:54 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.8  2003/10/20 13:02:54  southa
+ * Patch fixes and testing
+ *
  * Revision 1.7  2003/10/18 20:28:38  southa
  * Subdivision speed tests
  *
@@ -361,9 +364,11 @@ namespace Mushware
 {
     typedef MushMeshVector<Mushware::U32, 2> t2U32;
     typedef MushMeshVector<Mushware::U32, 3> t3U32;
+    typedef MushMeshVector<Mushware::U32, 4> t4U32;
 
     typedef MushMeshVector<Mushware::tVal, 2> t2Val;
     typedef MushMeshVector<Mushware::tVal, 3> t3Val;
+    typedef MushMeshVector<Mushware::tVal, 4> t4Val;
 };
 
 //%includeGuardEnd {

@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceProcess.pm,v 1.1 2003/09/17 19:12:13 southa Exp $
+# $Id: SourceProcess.pm,v 1.2 2003/10/15 12:20:07 southa Exp $
 # $Log: SourceProcess.pm,v $
+# Revision 1.2  2003/10/15 12:20:07  southa
+# Now strips alien line endings
+#
 # Revision 1.1  2003/09/17 19:12:13  southa
 # Created
 #
@@ -89,6 +92,8 @@ sub GetContext()
     $context;
 }
 
+
+sub ProcessDirectory($);
 sub ProcessDirectory($)
 {
     my $prefix=shift;
