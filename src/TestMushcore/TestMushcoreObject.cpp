@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.8 2003/09/24 19:03:23 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.9 2003/09/25 20:02:25 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.9  2003/09/25 20:02:25  southa
+ * XML pointer work
+ *
  * Revision 1.8  2003/09/24 19:03:23  southa
  * XML map IO
  *
@@ -47,6 +50,26 @@ using namespace Mushware;
 
 
 //%outOfLineFunctions {
+bool
+TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
+{
+    return (m_u8 == inObj.m_u8) &&
+           (m_u32 == inObj.m_u32) &&
+           (m_string == inObj.m_string) &&
+           (m_u8Vector == inObj.m_u8Vector) &&
+           (m_u32Vector == inObj.m_u32Vector) &&
+           (m_stringVector == inObj.m_stringVector) &&
+           (m_u8EmptyVector == inObj.m_u8EmptyVector) &&
+           (m_uEmpty32Vector == inObj.m_uEmpty32Vector) &&
+           (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
+           (m_vectorVector == inObj.m_vectorVector) &&
+           (m_mapVector == inObj.m_mapVector) &&
+           (m_vectorMap == inObj.m_vectorMap) &&
+           (m_pU32 == inObj.m_pU32 || (m_pU32 != NULL && inObj.m_pU32 != NULL && *m_pU32 == *inObj.m_pU32)) &&
+           (m_pVectorU32 == inObj.m_pVectorU32 || (m_pVectorU32 != NULL && inObj.m_pVectorU32 != NULL && *m_pVectorU32 == *inObj.m_pVectorU32)) &&
+           (m_vectorpU32 == inObj.m_vectorpU32) &&
+           (m_pNull == inObj.m_pNull || (m_pNull != NULL && inObj.m_pNull != NULL && *m_pNull == *inObj.m_pNull));
+}
 void
 TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
 {
@@ -63,9 +86,31 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "vectorVector=" << m_vectorVector << ", ";
     ioOut << "mapVector=" << m_mapVector << ", ";
     ioOut << "vectorMap=" << m_vectorMap << ", ";
-    ioOut << "pU32=" << *m_pU32 << ", ";
-    ioOut << "pVectorU32=" << *m_pVectorU32 << ", ";
-    ioOut << "vectorpU32=" << m_vectorpU32;
+    if (m_pU32 == NULL)
+    {
+        ioOut << "pU32=NULL";
+    }
+    else
+    {
+        ioOut << "pU32=" << *m_pU32 << ", ";
+    }
+    if (m_pVectorU32 == NULL)
+    {
+        ioOut << "pVectorU32=NULL";
+    }
+    else
+    {
+        ioOut << "pVectorU32=" << *m_pVectorU32 << ", ";
+    }
+    ioOut << "vectorpU32=" << m_vectorpU32 << ", ";
+    if (m_pNull == NULL)
+    {
+        ioOut << "pNull=NULL";
+    }
+    else
+    {
+        ioOut << "pNull=" << *m_pNull;
+    }
     ioOut << "]";
 }
 void
@@ -143,6 +188,14 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_vectorpU32;
     }
+    else if (ioIn.TagNameGet() == "pNull")
+    {
+        if (m_pNull == NULL)
+        {
+            m_pNull = new Mushware::U32;
+        }
+        ioIn >> *m_pNull;
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
@@ -165,9 +218,31 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<vectorVector>" << m_vectorVector << "</vectorVector>\n";
     ioOut << "<mapVector>" << m_mapVector << "</mapVector>\n";
     ioOut << "<vectorMap>" << m_vectorMap << "</vectorMap>\n";
-    ioOut << "<pU32>" << *m_pU32 << "</pU32>\n";
-    ioOut << "<pVectorU32>" << *m_pVectorU32 << "</pVectorU32>\n";
+    if (m_pU32 == NULL)
+    {
+        ioOut << "<pU32>NULL</pU32>\n";
+    }
+    else
+    {
+        ioOut << "<pU32>" << *m_pU32 << "</pU32>\n";
+    }
+    if (m_pVectorU32 == NULL)
+    {
+        ioOut << "<pVectorU32>NULL</pVectorU32>\n";
+    }
+    else
+    {
+        ioOut << "<pVectorU32>" << *m_pVectorU32 << "</pVectorU32>\n";
+    }
     ioOut << "<vectorpU32>" << m_vectorpU32 << "</vectorpU32>\n";
+    if (m_pNull == NULL)
+    {
+        ioOut << "<pNull>NULL</pNull>\n";
+    }
+    else
+    {
+        ioOut << "<pNull>" << *m_pNull << "</pNull>\n";
+    }
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } 831K6VcUwQGh0MdhVu5cbw
+//%outOfLineFunctions } nnrNN2qxVKxLgY1u49JWyg

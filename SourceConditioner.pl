@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.8 2003/09/24 19:03:19 southa Exp $
+# $Id: SourceConditioner.pl,v 1.9 2003/09/25 20:02:22 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.9  2003/09/25 20:02:22  southa
+# XML pointer work
+#
 # Revision 1.8  2003/09/24 19:03:19  southa
 # XML map IO
 #
@@ -282,12 +285,18 @@ sub VarNameTrim($)
     return $name;
 }
 
-sub VarNameBaseGet($)
+sub VarBaseNameGet($)
 {
     my ($name) = @_;
     $name =~ s/^\*+//;
     return $name;
 }
+
+##########################################################
+#
+#    std::ostream output
+#
+##########################################################
 
 sub OstreamWritePrototypeGenerate($$)
 {
@@ -320,10 +329,29 @@ sub OstreamWriteFunctionGenerate($$)
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
             my $trimmedAttr = VarNameTrim($attr);
+            my $indirection = IndirectionGet($attr);
+            
             my $line = "    ioOut << \"$trimmedAttr=\" << ".TypeSpecial($type, $attr);
+            
             $line .= " << \", \"" unless ($i+3 == @$attributesRef);
             $line .= ";";
-            push @$outputRef, $line;
+            
+            if ($indirection > 0)
+            {
+                push @$outputRef,
+"    if (".VarBaseNameGet($attr)." == NULL)",
+"    {",
+"        ioOut << \"$trimmedAttr=NULL\";",
+"    }",
+"    else",
+"    {",
+"    ".$line,
+"    }";
+            }
+            else
+            {
+                push @$outputRef, $line;
+            }
         }
     }
     push @$outputRef, "    ioOut << \"]\";";
@@ -363,7 +391,7 @@ sub BasicOperatorsPrototypeGenerate($$)
     push @$outputRef, "$gConfig{INDENT}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
 }
 
-sub BasicOperatorsInlineGenerate($$)
+sub BasicOperatorsFunctionGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
 
@@ -372,7 +400,7 @@ sub BasicOperatorsInlineGenerate($$)
     die "No class found for BasicOperators writer" unless defined ($className);
     
     push @$outputRef,
-"inline bool",
+"bool",
 "${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
 "{";
     my $attributesRef = $$infoRef{ATTRIBUTES};
@@ -381,6 +409,8 @@ sub BasicOperatorsInlineGenerate($$)
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
             my $attr = $$attributesRef[$i+1];
+            my $indirection = IndirectionGet($attr);
+
             my $line;
             if ($i == 0)
             {
@@ -390,7 +420,15 @@ sub BasicOperatorsInlineGenerate($$)
             {
                 $line = "           ";
             }
-            $line .= "($attr == inObj.$attr)";
+            if ($indirection > 0)
+            {
+                my $baseName = VarBaseNameGet($attr);
+                $line .= "($baseName == inObj.$baseName || ($baseName != NULL && inObj.$baseName != NULL && *$baseName == *inObj.$baseName))";
+            }
+            else
+            {
+                $line .= "($attr == inObj.$attr)";
+            }
             if ($i + 3 < @$attributesRef)
             {
                 $line .= " &&";
@@ -404,6 +442,15 @@ sub BasicOperatorsInlineGenerate($$)
     }
     push @$outputRef,
 "}";
+}
+
+sub BasicOperatorsInlineGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for BasicOperators writer" unless defined ($className);
 
     push @$outputRef,
 "inline bool",
@@ -454,7 +501,7 @@ sub XMLIStreamWriteFunctionGenerate($$)
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
-            my $baseAttr = VarNameBaseGet($attr);
+            my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
 "    else if (ioIn.TagNameGet() == \"$trimmedAttr\")",
@@ -535,8 +582,24 @@ sub XMLOStreamWriteFunctionGenerate($$)
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
             my $trimmedAttr = VarNameTrim($attr);
-            my $line = "    ioOut << \"<$trimmedAttr>\" << ".TypeSpecial($type, $attr)." << \"</$trimmedAttr>\\n\";";
-            push @$outputRef, $line;
+            my $indirection = IndirectionGet($attr);
+            my $line = "    ioOut << \"<$trimmedAttr>\" << ".TypeSpecial($type, $attr)." << \"</$trimmedAttr>\\n\";";            
+            if ($indirection > 0)
+            {
+                push @$outputRef,
+"    if (".VarBaseNameGet($attr)." == NULL)",
+"    {",
+"        ioOut << \"<$trimmedAttr>NULL</$trimmedAttr>\\n\";",
+"    }",
+"    else",
+"    {",
+"    ".$line,
+"    }";
+            }
+            else
+            {
+                push @$outputRef, $line;
+            }
         }
     }
     push @$outputRef, "    ioOut << \"</$className>\\n\";";
@@ -811,7 +874,12 @@ sub ProcessCPP($$)
     {
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
-            # std::ostream
+            # BasicOperators
+            if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
+            {            
+                BasicOperatorsFunctionGenerate(\@outOfLineCode, \%headerInfo);
+            }
+                        # std::ostream
             if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
             {
                 OstreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);

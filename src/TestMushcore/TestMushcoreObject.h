@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.8 2003/09/24 19:03:23 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.9 2003/09/25 20:02:25 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.9  2003/09/25 20:02:25  southa
+ * XML pointer work
+ *
  * Revision 1.8  2003/09/24 19:03:23  southa
  * XML map IO
  *
@@ -53,7 +56,8 @@ public:
     TestMushcoreObject() :
         m_u8(1),
         m_u32(2),
-        m_string("&<>&lt;ab&am,p;cde\"f</string>&,&")
+        m_string("&<>&lt;ab&am,p;cde\"f</string>&,&"),
+        m_pNull(NULL)
     {
             m_u8Vector.push_back(4);
             m_u8Vector.push_back(16);
@@ -110,7 +114,8 @@ public:
     m_u32(0),
     m_string("z"),
     m_pU32(NULL),
-    m_pVectorU32(NULL)
+    m_pVectorU32(NULL),
+    m_pNull(NULL)
     {
     }
 
@@ -133,9 +138,11 @@ private:
 
     Mushware::U32 *m_pU32;
     std::vector<Mushware::U32> *m_pVectorU32;
-
     std::vector<Mushware::U32 *> m_vectorpU32;
 
+    Mushware::U32 *m_pNull;
+
+    
     // TestMushcoreObject *m_testObject;
     
 //%classPrototypes {
@@ -160,23 +167,6 @@ Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::st
 //%inlineNamespaced } +Fjvv2DYljqARHYMR/7PLA
 //%inlineHeader {
 inline bool
-TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
-{
-    return (m_u8 == inObj.m_u8) &&
-           (m_u32 == inObj.m_u32) &&
-           (m_string == inObj.m_string) &&
-           (m_u8Vector == inObj.m_u8Vector) &&
-           (m_u32Vector == inObj.m_u32Vector) &&
-           (m_stringVector == inObj.m_stringVector) &&
-           (m_u8EmptyVector == inObj.m_u8EmptyVector) &&
-           (m_uEmpty32Vector == inObj.m_uEmpty32Vector) &&
-           (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
-           (m_vectorVector == inObj.m_vectorVector) &&
-           (m_mapVector == inObj.m_mapVector) &&
-           (m_vectorMap == inObj.m_vectorMap) &&
-           (*m_pU32 == *inObj.m_pU32);
-}
-inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
 {
     return inA.AutoEquals(inB);
@@ -187,8 +177,7 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } rci8rfVD3HIDloMw2pktXg
-
+//%inlineHeader } ikvElCmBt/z6dJAPO9xNgw
 
 
 //%includeGuardEnd {
