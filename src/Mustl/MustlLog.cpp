@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.cpp,v 1.5 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlLog.cpp,v 1.6 2002/12/29 20:59:59 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:59  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -49,10 +52,14 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
+#include "MustlMushcore.h"
+
 using namespace Mustl;
 using namespace std;
 
 MustlLog MustlLog::m_gMustlLogInstance;
+
+MushcoreInstaller MustlLogInstaller(MustlLog::Install);
 
 MustlLog::MustlLog() :
     m_outStream(NULL),
@@ -63,6 +70,7 @@ MustlLog::MustlLog() :
     m_logFullIP(false)
 {
     m_nullStream = new ostringstream;
+    MustlConfig::Instance().UpdateHandlerAdd(UpdateHandler);
 }
 
 MustlLog::~MustlLog()
@@ -156,3 +164,53 @@ MustlLog::CloseFile(void)
     m_outStream=NULL;
 }
 
+void
+MustlLog::UpdateHandler(void)
+{
+    cerr << "MustlLog::UpdateHandler" << endl;
+    MushcoreScalar configValue;
+    if (MustlConfig::Instance().GetIfExists(configValue, "mustlnetlog"))
+    {
+        Instance().NetLogSet(configValue.U32Get());
+    }
+    if (MustlConfig::Instance().GetIfExists(configValue, "mustlweblog"))
+    {
+        Instance().WebLogSet(configValue.U32Get());
+    }
+    if (MustlConfig::Instance().GetIfExists(configValue, "mustlverboselog"))
+    {
+        Instance().VerboseLogSet(configValue.U32Get());
+    }
+    if (MustlConfig::Instance().GetIfExists(configValue, "mustltrafficlog"))
+    {
+        Instance().TrafficLogSet(configValue.U32Get());
+    }
+    if (MustlConfig::Instance().GetIfExists(configValue, "mustlcommandlog"))
+    {
+        if (configValue.U32Get())
+        {
+            MushcoreInterpreter::Instance().LogFunctionSet(LogString);
+        }
+        else
+        {
+            MushcoreInterpreter::Instance().LogFunctionSet(NULL);
+        }      
+    }
+}
+
+void
+MustlLog::LogString(const string& inStr)
+{
+    Instance().Log() << inStr << endl;
+}
+
+void
+MustlLog::Install(void)
+{
+    MustlConfig::Instance().UpdateHandlerAdd(UpdateHandler);
+}
+
+void
+MustlLog::NullFunction(void)
+{
+}

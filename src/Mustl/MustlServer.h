@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.h,v 1.5 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlServer.h,v 1.6 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.6  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.5  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -75,6 +78,7 @@ public:
 
     static MustlServer& Instance(void);
 
+    void Connect(void);
     void Connect(Mustl::U32 inPort);
     void Disconnect(void);
     void Accept(void);

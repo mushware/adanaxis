@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.14 2003/01/13 16:50:48 southa Exp $
+ * $Id: MustlServer.cpp,v 1.15 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.15  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.14  2003/01/13 16:50:48  southa
  * win32 support
  *
@@ -136,6 +139,14 @@ MustlServer::~MustlServer()
         MustlPlatform::SocketClose(m_udpSocket);
     }
 }
+
+void
+MustlServer::Connect(void)
+{
+    U32 portNum = MustlConfig::Instance().Get("mustlnetport").U32Get();
+    Connect(portNum);
+}
+
 void
 MustlServer::Connect(U32 inPort)
 {

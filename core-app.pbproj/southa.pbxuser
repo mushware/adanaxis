@@ -742,6 +742,66 @@
 		vrLen = 1630;
 		vrLoc = 855;
 	};
+	7A47562503D71C3700A80164 = {
+		fRef = F5AAB69103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.cpp: 698";
+		rLen = 0;
+		rLoc = 17489;
+		rType = 0;
+		vrLen = 1478;
+		vrLoc = 19429;
+	};
+	7A47562703D71C3700A80164 = {
+		fRef = 7A7DCAC403D6FE6900A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformError.cpp: Throw";
+		rLen = 0;
+		rLoc = 4035;
+		rType = 0;
+		vrLen = 1942;
+		vrLoc = 3401;
+	};
+	7A47562803D71C3700A80164 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: MUSTL_INVALID_SOCKET";
+		rLen = 0;
+		rLoc = 4928;
+		rType = 0;
+		vrLen = 1871;
+		vrLoc = 3096;
+	};
+	7A47562903D71C3700A80164 = {
+		fRef = F5AAB68303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlClient.cpp: 83";
+		rLen = 0;
+		rLoc = 2211;
+		rType = 0;
+		vrLen = 1647;
+		vrLoc = 7416;
+	};
+	7A47562A03D71C3700A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 50";
+		rLen = 0;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1031;
+		vrLoc = 776;
+	};
+	7A47562B03D71C3700A80164 = {
+		fRef = F5AAB69103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.cpp: 698";
+		rLen = 0;
+		rLoc = 17489;
+		rType = 0;
+		vrLen = 1478;
+		vrLoc = 19429;
+	};
 	7A78006A03D4823B00A80164 = {
 		fRef = F5AAB69C03A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -802,26 +862,6 @@
 		vrLen = 424;
 		vrLoc = 0;
 	};
-	7A78007403D4823B00A80164 = {
-		fRef = 7AA5A6F303D44D4100A80164;
-		isa = PBXTextBookmark;
-		name = "mustlstart.txt: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1561;
-		vrLoc = 0;
-	};
-	7A78007603D4823B00A80164 = {
-		fRef = F593D55F035C11BE01A80166;
-		isa = PBXTextBookmark;
-		name = "GameConfig.cpp: GameConfig";
-		rLen = 600;
-		rLoc = 3581;
-		rType = 0;
-		vrLen = 1175;
-		vrLoc = 3345;
-	};
 	7A78007703D4823B00A80164 = {
 		fRef = 7A05C3F403CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -831,16 +871,6 @@
 		rType = 0;
 		vrLen = 917;
 		vrLoc = 3338;
-	};
-	7A78007803D4823B00A80164 = {
-		fRef = F5AAB69A03A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlServer.h: 97";
-		rLen = 45;
-		rLoc = 2451;
-		rType = 0;
-		vrLen = 1128;
-		vrLoc = 1556;
 	};
 	7A78007903D4823B00A80164 = {
 		fRef = F5AAB6CB03A8D18001A80164;
@@ -1237,7 +1267,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 70";
 		rLen = 0;
-		rLoc = 1726;
+		rLoc = 2250;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 797;
@@ -1497,7 +1527,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 1726;
+		rLoc = 2250;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 867;
@@ -1796,16 +1826,6 @@
 		vrLen = 1381;
 		vrLoc = 8479;
 	};
-	7A7DCACC03D70DB700A80164 = {
-		fRef = F5AAB69103A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlLink.cpp: 142";
-		rLen = 165;
-		rLoc = 3506;
-		rType = 0;
-		vrLen = 1262;
-		vrLoc = 3010;
-	};
 	7A7DCACD03D70DB700A80164 = {
 		fRef = F5AAB68103A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -1846,16 +1866,6 @@
 		vrLen = 1956;
 		vrLoc = 1914;
 	};
-	7A7DCAD103D70DB700A80164 = {
-		fRef = 7AB0B2FB03D6D22B00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EAGAIN";
-		rLen = 0;
-		rLoc = 2307;
-		rType = 0;
-		vrLen = 2897;
-		vrLoc = 1829;
-	};
 	7A7DCAD203D70DB700A80164 = {
 		fRef = 7A7DCAC503D6FE6900A80164;
 		isa = PBXTextBookmark;
@@ -1875,26 +1885,6 @@
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 1160;
-	};
-	7A7DCAD403D70DB700A80164 = {
-		fRef = F5A934E003A8E96001A80164;
-		isa = PBXTextBookmark;
-		name = "MustlFail.cpp: MustlPermanentFail";
-		rLen = 0;
-		rLoc = 1369;
-		rType = 0;
-		vrLen = 1037;
-		vrLoc = 611;
-	};
-	7A7DCAD503D70DB700A80164 = {
-		fRef = 7A7DCAC403D6FE6900A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformError.cpp: 49";
-		rLen = 0;
-		rLoc = 972;
-		rType = 0;
-		vrLen = 1577;
-		vrLoc = 521;
 	};
 	7A7DCAD603D70DB700A80164 = {
 		fRef = 7AB68B0303D0728B00A80164;
@@ -2041,7 +2031,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EADDRNOTAVAIL";
 		rLen = 0;
-		rLoc = 3527;
+		rLoc = 2704;
 		rType = 0;
 		vrLen = 2644;
 		vrLoc = 2100;
@@ -2060,8 +2050,8 @@
 		fRef = 7AB0B2FB03D6D22B00A80164;
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 94";
-		rLen = 2463;
-		rLoc = 2229;
+		rLen = 1360;
+		rLoc = 2053;
 		rType = 0;
 		vrLen = 2784;
 		vrLoc = 1960;
@@ -2071,7 +2061,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_ETIMEDOUT";
 		rLen = 0;
-		rLoc = 4378;
+		rLoc = 3173;
 		rType = 0;
 		vrLen = 2775;
 		vrLoc = 1874;
@@ -2281,7 +2271,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EAGAIN";
 		rLen = 0;
-		rLoc = 2307;
+		rLoc = 2090;
 		rType = 0;
 		vrLen = 2904;
 		vrLoc = 1829;
@@ -2301,7 +2291,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EAGAIN";
 		rLen = 0;
-		rLoc = 2307;
+		rLoc = 2090;
 		rType = 0;
 		vrLen = 2897;
 		vrLoc = 1829;
@@ -2345,123 +2335,6 @@
 		rType = 0;
 		vrLen = 1037;
 		vrLoc = 611;
-	};
-	7A7DCB0303D70DB700A80164 = {
-		fRef = 7A7DCAC403D6FE6900A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformError.cpp: Throw";
-		rLen = 0;
-		rLoc = 2158;
-		rType = 0;
-		vrLen = 2158;
-		vrLoc = 1321;
-	};
-	7A7DCB0403D70DB700A80164 = {
-		fRef = F5A934DF03A8E96001A80164;
-		isa = PBXTextBookmark;
-		name = "MustlFail.h: 94";
-		rLen = 0;
-		rLoc = 2703;
-		rType = 0;
-		vrLen = 436;
-		vrLoc = 1952;
-	};
-	7A7DCB0503D70DB700A80164 = {
-		fRef = 7AB0B2FB03D6D22B00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformHeaders.h: MUSTL_ERROR_ENETRESET";
-		rLen = 0;
-		rLoc = 3841;
-		rType = 0;
-		vrLen = 923;
-		vrLoc = 3451;
-	};
-	7A7DCB0603D70DB700A80164 = {
-		fRef = 7AF139FD03D310B500A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatform.cpp: DefaultTimer";
-		rLen = 0;
-		rLoc = 19281;
-		rType = 0;
-		vrLen = 467;
-		vrLoc = 19049;
-	};
-	7A7DCB0703D70DB700A80164 = {
-		fRef = 7A7DCAC403D6FE6900A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformError.cpp: Throw";
-		rLen = 98;
-		rLoc = 1703;
-		rType = 0;
-		vrLen = 587;
-		vrLoc = 1466;
-	};
-	7A7DCB0803D70DB700A80164 = {
-		fRef = F5A934E003A8E96001A80164;
-		isa = PBXTextBookmark;
-		rLen = 1;
-		rLoc = 59;
-		rType = 1;
-	};
-	7A7DCB0903D70DB700A80164 = {
-		fRef = F5A934DF03A8E96001A80164;
-		isa = PBXTextBookmark;
-		name = "MustlFail.h: 94";
-		rLen = 0;
-		rLoc = 2703;
-		rType = 0;
-		vrLen = 436;
-		vrLoc = 1952;
-	};
-	7A7DCB0A03D70DB700A80164 = {
-		fRef = F5A934E003A8E96001A80164;
-		isa = PBXTextBookmark;
-		name = "MustlFail.cpp: MustlAddressFail";
-		rLen = 0;
-		rLoc = 1664;
-		rType = 0;
-		vrLen = 210;
-		vrLoc = 1370;
-	};
-	7A7DCB0B03D70DB700A80164 = {
-		fRef = 7AB0B2FB03D6D22B00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformHeaders.h: MUSTL_ERROR_ENETRESET";
-		rLen = 0;
-		rLoc = 3841;
-		rType = 0;
-		vrLen = 923;
-		vrLoc = 3451;
-	};
-	7A7DCB0C03D70DB700A80164 = {
-		fRef = 7AF139FD03D310B500A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatform.cpp: DefaultTimer";
-		rLen = 0;
-		rLoc = 19281;
-		rType = 0;
-		vrLen = 467;
-		vrLoc = 19049;
-	};
-	7A7DCB0D03D70DB700A80164 = {
-		fRef = 7A7DCAC403D6FE6900A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformError.cpp: Throw";
-		rLen = 98;
-		rLoc = 1703;
-		rType = 0;
-		vrLen = 587;
-		vrLoc = 1466;
-	};
-	7A7DCB0E03D70DB700A80164 = {
-		fRef = F5A934E003A8E96001A80164;
-		isa = PBXTextBookmark;
-		name = "MustlFail.cpp: MustlTemporaryFail";
-		rLen = 0;
-		rLoc = 1391;
-		rType = 0;
-		vrLen = 307;
-		vrLoc = 1265;
 	};
 	7A85AD8C03BF9B2300A80164 = {
 		bstl = F57BD755028ADAEF01AD87C4;
@@ -2559,16 +2432,6 @@
 		vrLen = 1324;
 		vrLoc = 82;
 	};
-	7AB0144703D5C0D800A80164 = {
-		fRef = 7AB45DAD03D35F1D00A80164;
-		isa = PBXTextBookmark;
-		name = "TestMustlMain.cpp: 32";
-		rLen = 0;
-		rLoc = 837;
-		rType = 0;
-		vrLen = 1379;
-		vrLoc = 380;
-	};
 	7AB0144803D5C0D800A80164 = {
 		fRef = 7AB45DAC03D35F1D00A80164;
 		isa = PBXTextBookmark;
@@ -2607,16 +2470,6 @@
 		rLoc = 878;
 		rType = 0;
 		vrLen = 1349;
-		vrLoc = 0;
-	};
-	7AB0144C03D5C0D800A80164 = {
-		fRef = 7AB3A76903D4A2D400A80164;
-		isa = PBXTextBookmark;
-		name = "TestMustlPostHandler.cpp: PostHandler";
-		rLen = 0;
-		rLoc = 788;
-		rType = 0;
-		vrLen = 1047;
 		vrLoc = 0;
 	};
 	7AB0145003D5C0D800A80164 = {
@@ -2719,16 +2572,6 @@
 		vrLen = 1509;
 		vrLoc = 0;
 	};
-	7AB0145B03D5C0D800A80164 = {
-		fRef = 7AB41F1203D438AD00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
-		rLen = 0;
-		rLoc = 2862;
-		rType = 0;
-		vrLen = 1439;
-		vrLoc = 1448;
-	};
 	7AB0145C03D5C0D800A80164 = {
 		fRef = 7AB41F0A03D4389800A80164;
 		isa = PBXTextBookmark;
@@ -2769,16 +2612,6 @@
 		vrLen = 1363;
 		vrLoc = 1758;
 	};
-	7AB0146003D5C0D800A80164 = {
-		fRef = F5AAB6A103A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlWebServer.cpp: Accept";
-		rLen = 0;
-		rLoc = 7099;
-		rType = 0;
-		vrLen = 1391;
-		vrLoc = 5523;
-	};
 	7AB0146103D5C0D800A80164 = {
 		fRef = F5AAB6A203A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -2788,36 +2621,6 @@
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 1408;
-	};
-	7AB0146203D5C0D800A80164 = {
-		fRef = F57B1B6103B37C0F01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlConfig.h: 46";
-		rLen = 36;
-		rLoc = 1138;
-		rType = 0;
-		vrLen = 1064;
-		vrLoc = 424;
-	};
-	7AB0146303D5C0D800A80164 = {
-		fRef = F57B1B6203B37C0F01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlConfig.cpp: 50";
-		rLen = 0;
-		rLoc = 1224;
-		rType = 0;
-		vrLen = 986;
-		vrLoc = 815;
-	};
-	7AB0146403D5C0D800A80164 = {
-		fRef = 7AB41EF903D4253200A80164;
-		isa = PBXTextBookmark;
-		name = "MustlConfigDef.h: 36";
-		rLen = 0;
-		rLoc = 1078;
-		rType = 0;
-		vrLen = 1553;
-		vrLoc = 0;
 	};
 	7AB0146503D5C0D800A80164 = {
 		fRef = 7AB41EFA03D4253200A80164;
@@ -2838,26 +2641,6 @@
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 2217;
-	};
-	7AB0146703D5C0D800A80164 = {
-		fRef = 7A05C3E403CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreInterpreter.cpp: Despatch";
-		rLen = 0;
-		rLoc = 3228;
-		rType = 0;
-		vrLen = 1151;
-		vrLoc = 2077;
-	};
-	7AB0146803D5C0D800A80164 = {
-		fRef = 7A05C3E503CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreInterpreter.h: NullFunction";
-		rLen = 0;
-		rLoc = 2450;
-		rType = 0;
-		vrLen = 1281;
-		vrLoc = 1350;
 	};
 	7AB0146903D5C0D800A80164 = {
 		fRef = 7A05C3DE03CB43AC00A80164;
@@ -3034,7 +2817,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: PostHandler";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 978;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 0;
@@ -3104,7 +2887,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: Instance";
 		rLen = 0;
-		rLoc = 2146;
+		rLoc = 2211;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 1373;
@@ -3234,7 +3017,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.h: 46";
 		rLen = 36;
-		rLoc = 1138;
+		rLoc = 1282;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 424;
@@ -3244,7 +3027,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 51";
 		rLen = 0;
-		rLoc = 1224;
+		rLoc = 1222;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 1386;
@@ -3264,7 +3047,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2594;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 1386;
@@ -3524,7 +3307,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.h: 46";
 		rLen = 36;
-		rLoc = 1138;
+		rLoc = 1282;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 424;
@@ -3534,7 +3317,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2594;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1229;
 		vrLoc = 1391;
@@ -3564,7 +3347,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.h: 46";
 		rLen = 36;
-		rLoc = 1138;
+		rLoc = 1282;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 424;
@@ -3574,7 +3357,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 50";
 		rLen = 0;
-		rLoc = 1224;
+		rLoc = 1222;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 815;
@@ -3624,7 +3407,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: 90";
 		rLen = 0;
-		rLoc = 2450;
+		rLoc = 2515;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 1350;
@@ -3634,7 +3417,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.cpp: Despatch";
 		rLen = 0;
-		rLoc = 3228;
+		rLoc = 3276;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2077;
@@ -3654,7 +3437,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: NullFunction";
 		rLen = 0;
-		rLoc = 2450;
+		rLoc = 2515;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 1350;
@@ -3664,7 +3447,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.cpp: Despatch";
 		rLen = 0;
-		rLoc = 3228;
+		rLoc = 3276;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2077;
@@ -3674,7 +3457,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: NullFunction";
 		rLen = 0;
-		rLoc = 2450;
+		rLoc = 2515;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 1350;
@@ -3807,16 +3590,6 @@
 		rLoc = 750;
 		rType = 0;
 		vrLen = 833;
-		vrLoc = 0;
-	};
-	7AB0B30C03D6E4F400A80164 = {
-		fRef = 7A78FB8703D4711F00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlWebCommands.cpp: MustlWebCommandsInstaller";
-		rLen = 72;
-		rLoc = 508;
-		rType = 0;
-		vrLen = 1302;
 		vrLoc = 0;
 	};
 	7AB0B31003D6E4F400A80164 = {
@@ -4329,6 +4102,733 @@
 		vrLen = 278;
 		vrLoc = 0;
 	};
+	7AB36C5903D7880300A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXTextBookmark;
+		name = "GameConfig.cpp: 140";
+		rLen = 0;
+		rLoc = 3288;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 2871;
+	};
+	7AB36C5A03D7880300A80164 = {
+		fRef = 7A05C3CE03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreConfig.h: GetIfExists";
+		rLen = 59;
+		rLoc = 2699;
+		rType = 0;
+		vrLen = 1519;
+		vrLoc = 1370;
+	};
+	7AB36C5B03D7880300A80164 = {
+		fRef = 7A05C3E403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.cpp: Despatch";
+		rLen = 0;
+		rLoc = 2888;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 2057;
+	};
+	7AB36C5C03D7880300A80164 = {
+		fRef = 7A05C3E503CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.h: 99";
+		rLen = 0;
+		rLoc = 2734;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 1537;
+	};
+	7AB36C5D03D7880300A80164 = {
+		fRef = 7AB41F1203D438AD00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
+		rLen = 0;
+		rLoc = 1788;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 1044;
+	};
+	7AB36C5E03D7880300A80164 = {
+		fRef = F5AAB69F03A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebRouter.cpp: 41";
+		rLen = 0;
+		rLoc = 1168;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 1845;
+	};
+	7AB36C5F03D7880300A80164 = {
+		fRef = F5AAB6A103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebServer.cpp: Accept";
+		rLen = 0;
+		rLoc = 7099;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 5856;
+	};
+	7AB36C6003D7880300A80164 = {
+		fRef = 7A78FB8703D4711F00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebCommands.cpp: MustlPostValues";
+		rLen = 0;
+		rLoc = 1250;
+		rType = 0;
+		vrLen = 1377;
+		vrLoc = 2455;
+	};
+	7AB36C6103D7880300A80164 = {
+		fRef = F5AAB68603A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlData.h: 284";
+		rLen = 0;
+		rLoc = 6063;
+		rType = 0;
+		vrLen = 1275;
+		vrLoc = 965;
+	};
+	7AB36C6203D7880300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetLdLinkerSettingsModule,
+			);
+		};
+	};
+	7AB36C6303D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: Install";
+		rLen = 0;
+		rLoc = 4206;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 754;
+	};
+	7AB36C6403D7880300A80164 = {
+		fRef = F5AAB69403A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.h: 85";
+		rLen = 0;
+		rLoc = 2398;
+		rType = 0;
+		vrLen = 1370;
+		vrLoc = 1297;
+	};
+	7AB36C6503D7880300A80164 = {
+		fRef = 7AB36C9F03D7880300A80164;
+		isa = PBXTextBookmark;
+		name = "myfile: 54";
+		rLen = 0;
+		rLoc = 1870;
+		rType = 0;
+		vrLen = 1836;
+		vrLoc = 0;
+	};
+	7AB36C6603D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 48";
+		rLen = 0;
+		rLoc = 1208;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 472;
+	};
+	7AB36C6703D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 73";
+		rLen = 0;
+		rLoc = 1798;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 813;
+	};
+	7AB36C6803D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 71;
+		rLoc = 1579;
+		rType = 0;
+		vrLen = 1004;
+		vrLoc = 992;
+	};
+	7AB36C6903D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 49";
+		rLen = 11;
+		rLoc = 1208;
+		rType = 0;
+		vrLen = 1214;
+		vrLoc = 424;
+	};
+	7AB36C6A03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 0;
+		rLoc = 2666;
+		rType = 0;
+		vrLen = 1168;
+		vrLoc = 2225;
+	};
+	7AB36C6B03D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 51";
+		rLen = 26;
+		rLoc = 1358;
+		rType = 0;
+		vrLen = 1214;
+		vrLoc = 424;
+	};
+	7AB36C6C03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 20;
+		rLoc = 2938;
+		rType = 0;
+		vrLen = 1186;
+		vrLoc = 2225;
+	};
+	7AB36C6D03D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: 187";
+		rLen = 0;
+		rLoc = 3842;
+		rType = 0;
+		vrLen = 1101;
+		vrLoc = 2641;
+	};
+	7AB36C6E03D7880300A80164 = {
+		fRef = 7A05C3E403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.cpp: Despatch";
+		rLen = 0;
+		rLoc = 2816;
+		rType = 0;
+		vrLen = 1077;
+		vrLoc = 2057;
+	};
+	7AB36C6F03D7880300A80164 = {
+		fRef = 7A05C3E503CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.h: 98";
+		rLen = 0;
+		rLoc = 2785;
+		rType = 0;
+		vrLen = 1286;
+		vrLoc = 1501;
+	};
+	7AB36C7003D7880300A80164 = {
+		fRef = 7A05C3E403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.cpp: Despatch";
+		rLen = 0;
+		rLoc = 2888;
+		rType = 0;
+		vrLen = 1119;
+		vrLoc = 2057;
+	};
+	7AB36C7103D7880300A80164 = {
+		fRef = 7A05C3E503CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.h: 99";
+		rLen = 0;
+		rLoc = 2734;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 1537;
+	};
+	7AB36C7203D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: 198";
+		rLen = 45;
+		rLoc = 4025;
+		rType = 0;
+		vrLen = 1221;
+		vrLoc = 2789;
+	};
+	7AB36C7303D7880300A80164 = {
+		fRef = F5AAB69403A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.h: 86";
+		rLen = 0;
+		rLoc = 2434;
+		rType = 0;
+		vrLen = 1370;
+		vrLoc = 1300;
+	};
+	7AB36C7403D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: configValue";
+		rLen = 0;
+		rLoc = 3106;
+		rType = 0;
+		vrLen = 1260;
+		vrLoc = 2699;
+	};
+	7AB36C7503D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 20;
+		rLoc = 2938;
+		rType = 0;
+		vrLen = 1048;
+		vrLoc = 2091;
+	};
+	7AB36C7603D7880300A80164 = {
+		fRef = 7AB41F1203D438AD00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
+		rLen = 0;
+		rLoc = 1788;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 1044;
+	};
+	7AB36C7703D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 20;
+		rLoc = 2938;
+		rType = 0;
+		vrLen = 1143;
+		vrLoc = 1996;
+	};
+	7AB36C7803D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: 62";
+		rLen = 0;
+		rLoc = 1494;
+		rType = 0;
+		vrLen = 950;
+		vrLoc = 950;
+	};
+	7AB36C7903D7880300A80164 = {
+		fRef = F5AAB69403A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.h: 85";
+		rLen = 0;
+		rLoc = 2398;
+		rType = 0;
+		vrLen = 1370;
+		vrLoc = 1297;
+	};
+	7AB36C7A03D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: Install";
+		rLen = 0;
+		rLoc = 4206;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 3023;
+	};
+	7AB36C7B03D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 51";
+		rLen = 0;
+		rLoc = 1385;
+		rType = 0;
+		vrLen = 1214;
+		vrLoc = 424;
+	};
+	7AB36C7C03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 0;
+		rLoc = 2922;
+		rType = 0;
+		vrLen = 1184;
+		vrLoc = 2388;
+	};
+	7AB36C7D03D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 51";
+		rLen = 0;
+		rLoc = 1385;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 782;
+	};
+	7AB36C7E03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 0;
+		rLoc = 3241;
+		rType = 0;
+		vrLen = 1278;
+		vrLoc = 2388;
+	};
+	7AB36C7F03D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 78";
+		rLen = 0;
+		rLoc = 1839;
+		rType = 0;
+		vrLen = 1048;
+		vrLoc = 816;
+	};
+	7AB36C8003D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 59";
+		rLen = 0;
+		rLoc = 1393;
+		rType = 0;
+		vrLen = 1079;
+		vrLoc = 996;
+	};
+	7AB36C8103D7880300A80164 = {
+		fRef = 7A78FB8703D4711F00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebCommands.cpp: MustlPostValues";
+		rLen = 0;
+		rLoc = 1250;
+		rType = 0;
+		vrLen = 1377;
+		vrLoc = 2455;
+	};
+	7AB36C8203D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 59";
+		rLen = 0;
+		rLoc = 1393;
+		rType = 0;
+		vrLen = 1072;
+		vrLoc = 996;
+	};
+	7AB36C8303D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 78";
+		rLen = 0;
+		rLoc = 1839;
+		rType = 0;
+		vrLen = 1051;
+		vrLoc = 813;
+	};
+	7AB36C8403D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 59";
+		rLen = 0;
+		rLoc = 1393;
+		rType = 0;
+		vrLen = 1072;
+		vrLoc = 996;
+	};
+	7AB36C8503D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 65";
+		rLen = 0;
+		rLoc = 1673;
+		rType = 0;
+		vrLen = 1048;
+		vrLoc = 816;
+	};
+	7AB36C8603D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 48";
+		rLen = 0;
+		rLoc = 1209;
+		rType = 0;
+		vrLen = 1011;
+		vrLoc = 552;
+	};
+	7AB36C8703D7880300A80164 = {
+		fRef = F5AAB68603A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlData.h: 284";
+		rLen = 0;
+		rLoc = 6063;
+		rType = 0;
+		vrLen = 1275;
+		vrLoc = 965;
+	};
+	7AB36C8803D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 50";
+		rLen = 0;
+		rLoc = 1272;
+		rType = 0;
+		vrLen = 1067;
+		vrLoc = 773;
+	};
+	7AB36C8903D7880300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetLdLinkerSettingsModule,
+			);
+		};
+	};
+	7AB36C8A03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 43";
+		rLen = 0;
+		rLoc = 1118;
+		rType = 0;
+		vrLen = 971;
+		vrLoc = 597;
+	};
+	7AB36C8B03D7880300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetLdLinkerSettingsModule,
+			);
+		};
+	};
+	7AB36C8C03D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: Install";
+		rLen = 0;
+		rLoc = 4206;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 754;
+	};
+	7AB36C8D03D7880300A80164 = {
+		fRef = F5AAB69403A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.h: 85";
+		rLen = 0;
+		rLoc = 2398;
+		rType = 0;
+		vrLen = 1370;
+		vrLoc = 1297;
+	};
+	7AB36C8E03D7880300A80164 = {
+		fRef = 7AB36CA003D7880300A80164;
+		isa = PBXTextBookmark;
+		name = "myfile: 54";
+		rLen = 0;
+		rLoc = 1870;
+		rType = 0;
+		vrLen = 1836;
+		vrLoc = 0;
+	};
+	7AB36C8F03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 49";
+		rLen = 0;
+		rLoc = 1210;
+		rType = 0;
+		vrLen = 1276;
+		vrLoc = 0;
+	};
+	7AB36C9003D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 65";
+		rLen = 0;
+		rLoc = 1673;
+		rType = 0;
+		vrLen = 1051;
+		vrLoc = 813;
+	};
+	7AB36C9103D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 48";
+		rLen = 0;
+		rLoc = 1208;
+		rType = 0;
+		vrLen = 1007;
+		vrLoc = 472;
+	};
+	7AB36C9203D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 73";
+		rLen = 0;
+		rLoc = 1798;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 813;
+	};
+	7AB36C9303D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 48";
+		rLen = 0;
+		rLoc = 1208;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 472;
+	};
+	7AB36C9403D7880300A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 65";
+		rLen = 0;
+		rLoc = 1662;
+		rType = 0;
+		vrLen = 1026;
+		vrLoc = 813;
+	};
+	7AB36C9503D7880300A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: portNum";
+		rLen = 72;
+		rLoc = 3469;
+		rType = 0;
+		vrLen = 229;
+		vrLoc = 3377;
+	};
+	7AB36C9603D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: UpdateHandler";
+		rLen = 0;
+		rLoc = 3237;
+		rType = 0;
+		vrLen = 282;
+		vrLoc = 2892;
+	};
+	7AB36C9703D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 0;
+		rLoc = 2958;
+		rType = 0;
+		vrLen = 326;
+		vrLoc = 2544;
+	};
+	7AB36C9803D7880300A80164 = {
+		fRef = 7A05C3E403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 104;
+		rType = 1;
+	};
+	7AB36C9903D7880300A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: portNum";
+		rLen = 72;
+		rLoc = 3469;
+		rType = 0;
+		vrLen = 229;
+		vrLoc = 3377;
+	};
+	7AB36C9A03D7880300A80164 = {
+		fRef = F5AAB69303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLog.cpp: UpdateHandler";
+		rLen = 0;
+		rLoc = 3237;
+		rType = 0;
+		vrLen = 282;
+		vrLoc = 2892;
+	};
+	7AB36C9B03D7880300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: Get";
+		rLen = 0;
+		rLoc = 2958;
+		rType = 0;
+		vrLen = 326;
+		vrLoc = 2544;
+	};
+	7AB36C9C03D7880300A80164 = {
+		fRef = 7A05C3E403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.cpp: Despatch";
+		rLen = 0;
+		rLoc = 2685;
+		rType = 0;
+		vrLen = 382;
+		vrLoc = 2486;
+	};
+	7AB36C9D03D7880300A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXBookmark;
+	};
+	7AB36C9E03D7880300A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXTextBookmark;
+		name = "GameConfig.cpp: 210";
+		rLen = 13;
+		rLoc = 5105;
+		rType = 0;
+		vrLen = 1455;
+		vrLoc = 4550;
+	};
+	7AB36C9F03D7880300A80164 = {
+		isa = PBXFileReference;
+		name = myfile;
+		path = "/Users/southa/core-app/build/core-app.build/Mustl.build/Objects-normal/ppc/myfile";
+		refType = 0;
+	};
+	7AB36CA003D7880300A80164 = {
+		isa = PBXFileReference;
+		name = myfile;
+		path = "/Users/southa/core-app/build/core-app.build/Mustl.build/Objects-normal/ppc/myfile";
+		refType = 0;
+	};
 	7AB3AC4D03D4E7C700A80164 = {
 		fRef = 7A05C3C403CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -4348,16 +4848,6 @@
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 782;
-	};
-	7AB3AC5803D4E7C700A80164 = {
-		fRef = F59C48E1037A815D01A80164;
-		isa = PBXTextBookmark;
-		name = "GameWebCommands.cpp: 148";
-		rLen = 172;
-		rLoc = 3801;
-		rType = 0;
-		vrLen = 1675;
-		vrLoc = 3513;
 	};
 	7AB3AC5903D4E7C700A80164 = {
 		fRef = 7AB3A76803D4A2D400A80164;
@@ -4569,16 +5059,6 @@
 		vrLen = 1001;
 		vrLoc = 2283;
 	};
-	7AB3AC7103D4E7C700A80164 = {
-		fRef = F5AAB69F03A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlWebRouter.cpp: 41";
-		rLen = 0;
-		rLoc = 1168;
-		rType = 0;
-		vrLen = 1454;
-		vrLoc = 1847;
-	};
 	7AB3AC7303D4E7C700A80164 = {
 		fRef = F5AAB6CC03A8D18001A80164;
 		isa = PBXTextBookmark;
@@ -4694,7 +5174,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 1726;
+		rLoc = 2250;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 847;
@@ -4714,7 +5194,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 1726;
+		rLoc = 2250;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 942;
@@ -4824,7 +5304,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2443;
+		rLoc = 3400;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 1158;
@@ -4864,7 +5344,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2174;
+		rLoc = 3026;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 1191;
@@ -4904,7 +5384,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: 8";
 		rLen = 0;
-		rLoc = 884;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 60;
 		vrLoc = 0;
@@ -4934,7 +5414,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: 16";
 		rLen = 0;
-		rLoc = 884;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 293;
 		vrLoc = 0;
@@ -4954,7 +5434,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: 23";
 		rLen = 0;
-		rLoc = 884;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 405;
 		vrLoc = 0;
@@ -5144,7 +5624,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: PostHandler";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 978;
 		rType = 0;
 		vrLen = 884;
 		vrLoc = 0;
@@ -5524,7 +6004,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: PostHandler";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 978;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 0;
@@ -5544,7 +6024,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMustlPostHandler.cpp: PostHandler";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 978;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 0;
@@ -6791,6 +7271,566 @@
 		path = "/Users/southa/core-app/autogen.sh";
 		refType = 0;
 	};
+	7AB43D8003D73B2500A80164 = {
+		fRef = F5AAB68303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlClient.cpp: 350";
+		rLen = 0;
+		rLoc = 8734;
+		rType = 0;
+		vrLen = 1672;
+		vrLoc = 7391;
+	};
+	7AB43D8103D73B2500A80164 = {
+		fRef = 7A7DCAC403D6FE6900A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformError.cpp: Throw";
+		rLen = 0;
+		rLoc = 4035;
+		rType = 0;
+		vrLen = 1955;
+		vrLoc = 3388;
+	};
+	7AB43D8203D73B2500A80164 = {
+		fRef = F5AAB69503A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlProtocol.cpp: 45";
+		rLen = 0;
+		rLoc = 1271;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 1212;
+	};
+	7AB43D8403D73B2500A80164 = {
+		fRef = 7AB45DAD03D35F1D00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlMain.cpp: 27";
+		rLen = 0;
+		rLoc = 837;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 380;
+	};
+	7AB43D8503D73B2500A80164 = {
+		fRef = F59C48E1037A815D01A80164;
+		isa = PBXTextBookmark;
+		name = "GameWebCommands.cpp: 220";
+		rLen = 82;
+		rLoc = 6499;
+		rType = 0;
+		vrLen = 1547;
+		vrLoc = 3438;
+	};
+	7AB43D8603D73B2500A80164 = {
+		fRef = 7AA5A6F303D44D4100A80164;
+		isa = PBXTextBookmark;
+		name = "mustlstart.txt: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1706;
+		vrLoc = 0;
+	};
+	7AB43D8703D73B2500A80164 = {
+		fRef = F5AAB69A03A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.h: Connect";
+		rLen = 0;
+		rLoc = 1939;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 1556;
+	};
+	7AB43D8903D73B2500A80164 = {
+		fRef = 7A05C3CD03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreConfig.cpp: Set";
+		rLen = 0;
+		rLoc = 2569;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 1509;
+	};
+	7AB43D8A03D73B2500A80164 = {
+		fRef = 7A05C3EF03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreScalar.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1214;
+		vrLoc = 523;
+	};
+	7AB43D8C03D73B2500A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: portNum";
+		rLen = 0;
+		rLoc = 3492;
+		rType = 0;
+		vrLen = 977;
+		vrLoc = 2654;
+	};
+	7AB43D8D03D73B2500A80164 = {
+		fRef = 7AB41EF903D4253200A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfigDef.h: 38";
+		rLen = 0;
+		rLoc = 1078;
+		rType = 0;
+		vrLen = 1626;
+		vrLoc = 0;
+	};
+	7AB43D8E03D73B2500A80164 = {
+		fRef = 7AB3A76903D4A2D400A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlPostHandler.cpp: PostHandler";
+		rLen = 0;
+		rLoc = 954;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 3;
+	};
+	7AB43D9003D73B2500A80164 = {
+		fRef = F5AAB69603A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlProtocol.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1427;
+		vrLoc = 0;
+	};
+	7AB43D9103D73B2500A80164 = {
+		fRef = F5AAB69703A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.cpp: 66";
+		rLen = 0;
+		rLoc = 1755;
+		rType = 0;
+		vrLen = 1394;
+		vrLoc = 2327;
+	};
+	7AB43D9203D73B2500A80164 = {
+		fRef = 7AB0B2FC03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.cpp: 3";
+		rLen = 0;
+		rLoc = 19;
+		rType = 0;
+		vrLen = 60;
+		vrLoc = 0;
+	};
+	7AB43D9303D73B2500A80164 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 40";
+		rLen = 0;
+		rLoc = 1019;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	7AB43D9403D73B2500A80164 = {
+		fRef = F5AAB68503A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlData.cpp: 41";
+		rLen = 0;
+		rLoc = 1155;
+		rType = 0;
+		vrLen = 1311;
+		vrLoc = 0;
+	};
+	7AB43D9503D73B2500A80164 = {
+		fRef = F5A934E003A8E96001A80164;
+		isa = PBXTextBookmark;
+		name = "MustlFail.cpp: MustlTemporaryFail";
+		rLen = 0;
+		rLoc = 1369;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 589;
+	};
+	7AB43D9703D73B2500A80164 = {
+		fRef = F5AAB68303A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlClient.cpp: 350";
+		rLen = 0;
+		rLoc = 8734;
+		rType = 0;
+		vrLen = 1672;
+		vrLoc = 7391;
+	};
+	7AB43D9803D73B2500A80164 = {
+		fRef = 7AB3A76903D4A2D400A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlPostHandler.cpp: PostHandler";
+		rLen = 0;
+		rLoc = 978;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 0;
+	};
+	7AB43D9903D73B2500A80164 = {
+		fRef = 7A78FB8703D4711F00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebCommands.cpp: MustlWebCommandsInstaller";
+		rLen = 72;
+		rLoc = 508;
+		rType = 0;
+		vrLen = 1393;
+		vrLoc = 486;
+	};
+	7AB43D9A03D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 50";
+		rLen = 0;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1031;
+		vrLoc = 850;
+	};
+	7AB43D9B03D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 45";
+		rLen = 0;
+		rLoc = 1285;
+		rType = 0;
+		vrLen = 979;
+		vrLoc = 589;
+	};
+	7AB43D9C03D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 50";
+		rLen = 0;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 978;
+		vrLoc = 996;
+	};
+	7AB43D9D03D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 54";
+		rLen = 0;
+		rLoc = 1446;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 512;
+	};
+	7AB43D9E03D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 50";
+		rLen = 0;
+		rLoc = 1222;
+		rType = 0;
+		vrLen = 1229;
+		vrLoc = 1445;
+	};
+	7AB43D9F03D73B2500A80164 = {
+		fRef = 7A7DCAC403D6FE6900A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformError.cpp: Throw";
+		rLen = 0;
+		rLoc = 4035;
+		rType = 0;
+		vrLen = 1955;
+		vrLoc = 3388;
+	};
+	7AB43DA003D73B2500A80164 = {
+		fRef = F5AAB69503A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlProtocol.cpp: 45";
+		rLen = 0;
+		rLoc = 1271;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 1212;
+	};
+	7AB43DA103D73B2500A80164 = {
+		fRef = 7A78FB8703D4711F00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebCommands.cpp: MustlWebCommandsInstaller";
+		rLen = 72;
+		rLoc = 508;
+		rType = 0;
+		vrLen = 1393;
+		vrLoc = 486;
+	};
+	7AB43DA203D73B2500A80164 = {
+		fRef = 7AB45DAD03D35F1D00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlMain.cpp: 27";
+		rLen = 0;
+		rLoc = 837;
+		rType = 0;
+		vrLen = 1410;
+		vrLoc = 380;
+	};
+	7AB43DA303D73B2500A80164 = {
+		fRef = 7AB3A76903D4A2D400A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlPostHandler.cpp: PostHandler";
+		rLen = 0;
+		rLoc = 1237;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 0;
+	};
+	7AB43DA403D73B2500A80164 = {
+		fRef = F59C48E1037A815D01A80164;
+		isa = PBXTextBookmark;
+		name = "GameWebCommands.cpp: 220";
+		rLen = 82;
+		rLoc = 6499;
+		rType = 0;
+		vrLen = 1547;
+		vrLoc = 3438;
+	};
+	7AB43DA503D73B2500A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: Connect";
+		rLen = 0;
+		rLoc = 3562;
+		rType = 0;
+		vrLen = 986;
+		vrLoc = 2654;
+	};
+	7AB43DA603D73B2500A80164 = {
+		fRef = F5AAB69A03A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.h: Connect";
+		rLen = 0;
+		rLoc = 1939;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 1556;
+	};
+	7AB43DA703D73B2500A80164 = {
+		fRef = 7AB3A76903D4A2D400A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlPostHandler.cpp: PostHandler";
+		rLen = 0;
+		rLoc = 833;
+		rType = 0;
+		vrLen = 1141;
+		vrLoc = 0;
+	};
+	7AB43DA803D73B2500A80164 = {
+		fRef = 7A05C3CE03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreConfig.h: Set";
+		rLen = 0;
+		rLoc = 2544;
+		rType = 0;
+		vrLen = 1474;
+		vrLoc = 1415;
+	};
+	7AB43DA903D73B2500A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: portNum";
+		rLen = 0;
+		rLoc = 3528;
+		rType = 0;
+		vrLen = 986;
+		vrLoc = 2654;
+	};
+	7AB43DAA03D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 46";
+		rLen = 0;
+		rLoc = 1286;
+		rType = 0;
+		vrLen = 1089;
+		vrLoc = 485;
+	};
+	7AB43DAB03D73B2500A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXTextBookmark;
+		name = "GameConfig.cpp: 134";
+		rLen = 148;
+		rLoc = 3135;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 2871;
+	};
+	7AB43DAC03D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 46";
+		rLen = 0;
+		rLoc = 1286;
+		rType = 0;
+		vrLen = 1082;
+		vrLoc = 485;
+	};
+	7AB43DAD03D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 61";
+		rLen = 0;
+		rLoc = 1447;
+		rType = 0;
+		vrLen = 993;
+		vrLoc = 697;
+	};
+	7AB43DAE03D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 46";
+		rLen = 0;
+		rLoc = 1152;
+		rType = 0;
+		vrLen = 1088;
+		vrLoc = 485;
+	};
+	7AB43DAF03D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: found";
+		rLen = 0;
+		rLoc = 1507;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 996;
+	};
+	7AB43DB003D73B2500A80164 = {
+		fRef = F5AAB69903A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlServer.cpp: portNum";
+		rLen = 0;
+		rLoc = 3492;
+		rType = 0;
+		vrLen = 977;
+		vrLoc = 2654;
+	};
+	7AB43DB103D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 45";
+		rLen = 0;
+		rLoc = 1113;
+		rType = 0;
+		vrLen = 1105;
+		vrLoc = 485;
+	};
+	7AB43DB203D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 60";
+		rLen = 0;
+		rLoc = 1419;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 996;
+	};
+	7AB43DB303D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 45";
+		rLen = 0;
+		rLoc = 1094;
+		rType = 0;
+		vrLen = 1101;
+		vrLoc = 485;
+	};
+	7AB43DB403D73B2500A80164 = {
+		fRef = 7AB3A76903D4A2D400A80164;
+		isa = PBXTextBookmark;
+		name = "TestMustlPostHandler.cpp: PostHandler";
+		rLen = 0;
+		rLoc = 954;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 3;
+	};
+	7AB43DB503D73B2500A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 60";
+		rLen = 0;
+		rLoc = 1419;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 996;
+	};
+	7AB43DB603D73B2500A80164 = {
+		fRef = F57B1B6103B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.h: 45";
+		rLen = 0;
+		rLoc = 1094;
+		rType = 0;
+		vrLen = 1101;
+		vrLoc = 485;
+	};
+	7AB43DB703D73B2500A80164 = {
+		fRef = F5AAB69603A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlProtocol.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1427;
+		vrLoc = 0;
+	};
+	7AB43DB803D73B2500A80164 = {
+		fRef = F5AAB69703A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.cpp: 66";
+		rLen = 0;
+		rLoc = 1755;
+		rType = 0;
+		vrLen = 1394;
+		vrLoc = 2327;
+	};
+	7AB43DB903D73B2500A80164 = {
+		fRef = 7AB0B2FC03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.cpp: 3";
+		rLen = 0;
+		rLoc = 19;
+		rType = 0;
+		vrLen = 60;
+		vrLoc = 0;
+	};
+	7AB43DBA03D73B2500A80164 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 40";
+		rLen = 0;
+		rLoc = 1019;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	7AB43DBB03D73B2500A80164 = {
+		fRef = F5AAB68503A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlData.cpp: 41";
+		rLen = 0;
+		rLoc = 1155;
+		rType = 0;
+		vrLen = 1311;
+		vrLoc = 0;
+	};
+	7AB43DBC03D73B2500A80164 = {
+		fRef = F5A934E003A8E96001A80164;
+		isa = PBXTextBookmark;
+		name = "MustlFail.cpp: MustlTemporaryFail";
+		rLen = 0;
+		rLoc = 1369;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 589;
+	};
 	7AB45DB503D3610100A80164 = {
 		activeExec = 0;
 		executables = (
@@ -6878,10 +7918,6 @@
 		vrLen = 1100;
 		vrLoc = 2224;
 	};
-	7AB45DD803D387F000A80164 = {
-		isa = PBXTargetBookmark;
-		trg = 7AB8559703D2FD4F00A80164;
-	};
 	7AB45DDA03D387F000A80164 = {
 		fRef = F5A934D803A8E82B01A80164;
 		isa = PBXTextBookmark;
@@ -6901,16 +7937,6 @@
 		rType = 0;
 		vrLen = 1023;
 		vrLoc = 0;
-	};
-	7AB45DDC03D387F000A80164 = {
-		fRef = F5AAB69403A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlLog.h: 72";
-		rLen = 0;
-		rLoc = 1839;
-		rType = 0;
-		vrLen = 1126;
-		vrLoc = 569;
 	};
 	7AB45DDE03D387F000A80164 = {
 		fRef = 7A0B334603D308BC00A80164;
@@ -7000,16 +8026,6 @@
 		vrLen = 1243;
 		vrLoc = 0;
 	};
-	7AB45DEC03D387F000A80164 = {
-		fRef = 7A05C3CE03CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreConfig.h: GetIfExists";
-		rLen = 0;
-		rLoc = 2544;
-		rType = 0;
-		vrLen = 1534;
-		vrLoc = 1271;
-	};
 	7AB45DF503D387F000A80164 = {
 		fRef = F5AAB67F03A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -7019,16 +8035,6 @@
 		rType = 0;
 		vrLen = 910;
 		vrLoc = 0;
-	};
-	7AB45DF603D387F000A80164 = {
-		fRef = 7A05C3CD03CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreConfig.cpp: Set";
-		rLen = 0;
-		rLoc = 2569;
-		rType = 0;
-		vrLen = 1037;
-		vrLoc = 1532;
 	};
 	7AB45DFE03D387F000A80164 = {
 		isa = PBXTargetBookmark;
@@ -7845,7 +8851,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.h: 44";
 		rLen = 0;
-		rLoc = 1190;
+		rLoc = 1334;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 0;
@@ -8115,7 +9121,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.h: 97";
 		rLen = 45;
-		rLoc = 2451;
+		rLoc = 2475;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 1556;
@@ -8667,7 +9673,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.cpp: Despatch";
 		rLen = 0;
-		rLoc = 2675;
+		rLoc = 2730;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 1842;
@@ -11624,16 +12630,6 @@
 		vrLen = 1151;
 		vrLoc = 1182;
 	};
-	7AB68B3503D0924400A80164 = {
-		fRef = F5AAB68603A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlData.h: 284";
-		rLen = 0;
-		rLoc = 6063;
-		rType = 0;
-		vrLen = 1275;
-		vrLoc = 965;
-	};
 	7AB68B3603D0924400A80164 = {
 		fRef = F5AAB68803A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -11979,7 +12975,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: LogCommandsSet";
 		rLen = 0;
-		rLoc = 2139;
+		rLoc = 2204;
 		rType = 0;
 		vrLen = 1339;
 		vrLoc = 1201;
@@ -12039,7 +13035,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: 93";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2645;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 1223;
@@ -12099,7 +13095,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: 93";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2645;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 1223;
@@ -12149,7 +13145,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: 93";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2645;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 1223;
@@ -12189,7 +13185,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: 80";
 		rLen = 0;
-		rLoc = 2146;
+		rLoc = 2211;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 1223;
@@ -12209,7 +13205,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: Execute";
 		rLen = 0;
-		rLoc = 2107;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 1223;
@@ -12259,7 +13255,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInterpreter.h: Execute";
 		rLen = 0;
-		rLoc = 2146;
+		rLoc = 2211;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 1223;
@@ -20112,268 +21108,14 @@
 			7AB45DB703D3610100A80164,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 64414982;
-			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
-				ContentSize = "{685, 434}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {685, 411}}";
-					Split0 = {
-						ActiveTab = 2;
-						ActiveTabName = PBXBuildResultsModule;
-						Collapsed = NO;
-						Frame = "{{0, 0}, {685, 411}}";
-						Split0 = {
-							Frame = "{{0, 204}, {685, 207}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Frame = "{{0, 0}, {952, 321}}";
-						};
-						Tab1 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {781, 452}}";
-								Split0 = {
-									Frame = "{{0, 24}, {781, 428}}";
-									Split0 = {
-										Frame = "{{0, 0}, {383, 428}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											155.123,
-										);
-										Frame = "{{392, 0}, {389, 428}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {781, 452}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab2 = {
-							Frame = "{{0, 0}, {685, 215}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {685, 215}}";
-							};
-						};
-						Tab3 = {
-							BuildMessageFrame = "{{0, 0}, {687, 145}}";
-							BuildTranscriptFrame = "{{0, 154}, {687, 22}}";
-							BuildTranscriptFrameExpanded = YES;
-							Frame = "{{0, 0}, {685, 198}}";
-						};
-						Tab4 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 5;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {300, 533}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							267,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 100}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				NavBarShownByDefault = YES;
-				StatusViewVisible = YES;
-				Template = F5314676015831810DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{45, 546}";
-			};
-			"PBXTemplateGeometry-F5CA7ECB015C094F0DCA290F" = {
-				ContentSize = "{668, 621}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 0}, {668, 621}}";
-					Split0 = {
-						Collapsed = NO;
-						Frame = "{{0, 0}, {668, 621}}";
-						Split0 = {
-							Frame = "{{0, 0}, {668, 621}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Frame = "{{0, 0}, {484, 208}}";
-						};
-						Tab1 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {664, 208}}";
-								Split0 = {
-									Frame = "{{0, 24}, {664, 184}}";
-									Split0 = {
-										Frame = "{{0, 0}, {325, 184}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											96.123,
-										);
-										Frame = "{{334, 0}, {330, 184}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab2 = {
-							Frame = "{{0, 0}, {664, 50}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 50}}";
-							};
-						};
-						Tab3 = {
-							BuildMessageFrame = "{{0, 0}, {614, 262}}";
-							BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
-							BuildTranscriptFrameExpanded = YES;
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						Tab4 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 5;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							280,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				NavBarShownByDefault = YES;
-				StatusViewVisible = NO;
-				Template = F5CA7ECB015C094F0DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{320, 114}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 64450846;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7A7DCB0303D70DB700A80164;
+									bookmark = 7AB36C9403D7880300A80164;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -20547,7 +21289,6 @@
 										F5AAB6DA03A8E62301A80164,
 										F5AAB6DF03A8E62301A80164,
 										F5AAB6E003A8E62301A80164,
-										F5AAB6E303A8E62301A80164,
 										F5AAE94503AB7FC001A80164,
 										F5AAE94C03AB7FC001A80164,
 										F5AAD5FE03AF55A201A80164,
@@ -20556,17 +21297,11 @@
 										F5AAA6CB03B34F8A01A80164,
 										F5AAA6E103B34F8A01A80164,
 										F5AAA6E403B34F8A01A80164,
-										F5AAA6E603B34F8A01A80164,
-										F5AAA6E703B34F8A01A80164,
 										F5AAA6E903B34F8A01A80164,
 										F5AAA6EB03B34F8A01A80164,
 										F5AAA6EC03B34F8A01A80164,
 										F5AAA6ED03B34F8A01A80164,
-										F5AAA6EF03B34F8A01A80164,
-										F5AAA6F003B34F8A01A80164,
-										F5AAA6F103B34F8A01A80164,
 										F5AAA6F603B34F8A01A80164,
-										F57B1B6D03B37F6E01A80164,
 										7A85AD8C03BF9B2300A80164,
 										7A85AD8D03BF9B2300A80164,
 										7A9CB3A403CB418B00A80164,
@@ -20590,7 +21325,6 @@
 										7AB68B2E03D0924400A80164,
 										7AB68B3103D0924400A80164,
 										7AB68B3303D0924400A80164,
-										7AB68B3503D0924400A80164,
 										7AB68B3603D0924400A80164,
 										7AB68B3903D0924400A80164,
 										7AB562FA03D1E9EB00A80164,
@@ -20711,10 +21445,8 @@
 										7AB45DD503D387F000A80164,
 										7AB45DD603D387F000A80164,
 										7AB45DD703D387F000A80164,
-										7AB45DD803D387F000A80164,
 										7AB45DDA03D387F000A80164,
 										7AB45DDB03D387F000A80164,
-										7AB45DDC03D387F000A80164,
 										7AB45DDE03D387F000A80164,
 										7AB45DDF03D387F000A80164,
 										7AB45DE003D387F000A80164,
@@ -20725,9 +21457,7 @@
 										7AB45DE503D387F000A80164,
 										7AB45DE703D387F000A80164,
 										7AB45DE803D387F000A80164,
-										7AB45DEC03D387F000A80164,
 										7AB45DF503D387F000A80164,
-										7AB45DF603D387F000A80164,
 										7AB45DFE03D387F000A80164,
 										7AB45DFF03D387F000A80164,
 										7AB45E0003D387F000A80164,
@@ -20758,17 +21488,13 @@
 										7A78007103D4823B00A80164,
 										7A78007203D4823B00A80164,
 										7A78007303D4823B00A80164,
-										7A78007403D4823B00A80164,
-										7A78007603D4823B00A80164,
 										7A78007703D4823B00A80164,
-										7A78007803D4823B00A80164,
 										7A78007903D4823B00A80164,
 										7A78007A03D4823B00A80164,
 										7A78007D03D4823B00A80164,
 										7A78007E03D4823B00A80164,
 										7AB3AC4D03D4E7C700A80164,
 										7AB3AC4E03D4E7C700A80164,
-										7AB3AC5803D4E7C700A80164,
 										7AB3AC5903D4E7C700A80164,
 										7AB3AC5B03D4E7C700A80164,
 										7AB3AC5C03D4E7C700A80164,
@@ -20790,7 +21516,6 @@
 										7AB3AC6C03D4E7C700A80164,
 										7AB3AC6D03D4E7C700A80164,
 										7AB3AC6F03D4E7C700A80164,
-										7AB3AC7103D4E7C700A80164,
 										7AB3AC7303D4E7C700A80164,
 										7AB3AC7403D4E7C700A80164,
 										7AB3AC7503D4E7C700A80164,
@@ -20800,12 +21525,10 @@
 										7AB0144103D5C0D800A80164,
 										7AB0144403D5C0D800A80164,
 										7AB0144603D5C0D800A80164,
-										7AB0144703D5C0D800A80164,
 										7AB0144803D5C0D800A80164,
 										7AB0144903D5C0D800A80164,
 										7AB0144A03D5C0D800A80164,
 										7AB0144B03D5C0D800A80164,
-										7AB0144C03D5C0D800A80164,
 										7AB0145003D5C0D800A80164,
 										7AB0145103D5C0D800A80164,
 										7AB0145303D5C0D800A80164,
@@ -20816,26 +21539,18 @@
 										7AB0145803D5C0D800A80164,
 										7AB0145903D5C0D800A80164,
 										7AB0145A03D5C0D800A80164,
-										7AB0145B03D5C0D800A80164,
 										7AB0145C03D5C0D800A80164,
 										7AB0145D03D5C0D800A80164,
 										7AB0145E03D5C0D800A80164,
 										7AB0145F03D5C0D800A80164,
-										7AB0146003D5C0D800A80164,
 										7AB0146103D5C0D800A80164,
-										7AB0146203D5C0D800A80164,
-										7AB0146303D5C0D800A80164,
-										7AB0146403D5C0D800A80164,
 										7AB0146503D5C0D800A80164,
 										7AB0146603D5C0D800A80164,
-										7AB0146703D5C0D800A80164,
-										7AB0146803D5C0D800A80164,
 										7AB0146903D5C0D800A80164,
 										7AB0146A03D5C0D800A80164,
 										7AB0146B03D5C0D800A80164,
 										7AB0B30903D6E4F400A80164,
 										7AB0B30B03D6E4F400A80164,
-										7AB0B30C03D6E4F400A80164,
 										7AB0B31003D6E4F400A80164,
 										7AB0B31103D6E4F400A80164,
 										7AB0B31203D6E4F400A80164,
@@ -20846,16 +21561,46 @@
 										7A7DCAC903D70DB700A80164,
 										7A7DCACA03D70DB700A80164,
 										7A7DCACB03D70DB700A80164,
-										7A7DCACC03D70DB700A80164,
 										7A7DCACD03D70DB700A80164,
 										7A7DCACE03D70DB700A80164,
 										7A7DCACF03D70DB700A80164,
 										7A7DCAD003D70DB700A80164,
-										7A7DCAD103D70DB700A80164,
 										7A7DCAD203D70DB700A80164,
 										7A7DCAD303D70DB700A80164,
-										7A7DCAD403D70DB700A80164,
-										7A7DCAD503D70DB700A80164,
+										7A47562503D71C3700A80164,
+										7AB43D8003D73B2500A80164,
+										7AB43D8103D73B2500A80164,
+										7AB43D8203D73B2500A80164,
+										7AB43D8403D73B2500A80164,
+										7AB43D8503D73B2500A80164,
+										7AB43D8603D73B2500A80164,
+										7AB43D8703D73B2500A80164,
+										7AB43D8903D73B2500A80164,
+										7AB43D8A03D73B2500A80164,
+										7AB43D8C03D73B2500A80164,
+										7AB43D8D03D73B2500A80164,
+										7AB43D8E03D73B2500A80164,
+										7AB43D9003D73B2500A80164,
+										7AB43D9103D73B2500A80164,
+										7AB43D9203D73B2500A80164,
+										7AB43D9303D73B2500A80164,
+										7AB43D9403D73B2500A80164,
+										7AB43D9503D73B2500A80164,
+										7AB36C5903D7880300A80164,
+										7AB36C5A03D7880300A80164,
+										7AB36C5B03D7880300A80164,
+										7AB36C5C03D7880300A80164,
+										7AB36C5D03D7880300A80164,
+										7AB36C5E03D7880300A80164,
+										7AB36C5F03D7880300A80164,
+										7AB36C6003D7880300A80164,
+										7AB36C6103D7880300A80164,
+										7AB36C6203D7880300A80164,
+										7AB36C6303D7880300A80164,
+										7AB36C6403D7880300A80164,
+										7AB36C6503D7880300A80164,
+										7AB36C6603D7880300A80164,
+										7AB36C6703D7880300A80164,
 									);
 									prevStack = (
 										F57BD7D5028AF27C01AD87C4,
@@ -27996,11 +28741,148 @@
 										7A7DCB0003D70DB700A80164,
 										7A7DCB0103D70DB700A80164,
 										7A7DCB0203D70DB700A80164,
+										7A47562703D71C3700A80164,
+										7A47562803D71C3700A80164,
+										7A47562903D71C3700A80164,
+										7A47562A03D71C3700A80164,
+										7A47562B03D71C3700A80164,
+										7AB43D9703D73B2500A80164,
+										7AB43D9803D73B2500A80164,
+										7AB43D9903D73B2500A80164,
+										7AB43D9A03D73B2500A80164,
+										7AB43D9B03D73B2500A80164,
+										7AB43D9C03D73B2500A80164,
+										7AB43D9D03D73B2500A80164,
+										7AB43D9E03D73B2500A80164,
+										7AB43D9F03D73B2500A80164,
+										7AB43DA003D73B2500A80164,
+										7AB43DA103D73B2500A80164,
+										7AB43DA203D73B2500A80164,
+										7AB43DA303D73B2500A80164,
+										7AB43DA403D73B2500A80164,
+										7AB43DA503D73B2500A80164,
+										7AB43DA603D73B2500A80164,
+										7AB43DA703D73B2500A80164,
+										7AB43DA803D73B2500A80164,
+										7AB43DA903D73B2500A80164,
+										7AB43DAA03D73B2500A80164,
+										7AB43DAB03D73B2500A80164,
+										7AB43DAC03D73B2500A80164,
+										7AB43DAD03D73B2500A80164,
+										7AB43DAE03D73B2500A80164,
+										7AB43DAF03D73B2500A80164,
+										7AB43DB003D73B2500A80164,
+										7AB43DB103D73B2500A80164,
+										7AB43DB203D73B2500A80164,
+										7AB43DB303D73B2500A80164,
+										7AB43DB403D73B2500A80164,
+										7AB43DB503D73B2500A80164,
+										7AB43DB603D73B2500A80164,
+										7AB43DB703D73B2500A80164,
+										7AB43DB803D73B2500A80164,
+										7AB43DB903D73B2500A80164,
+										7AB43DBA03D73B2500A80164,
+										7AB43DBB03D73B2500A80164,
+										7AB43DBC03D73B2500A80164,
+										7AB36C6803D7880300A80164,
+										7AB36C6903D7880300A80164,
+										7AB36C6A03D7880300A80164,
+										7AB36C6B03D7880300A80164,
+										7AB36C6C03D7880300A80164,
+										7AB36C6D03D7880300A80164,
+										7AB36C6E03D7880300A80164,
+										7AB36C6F03D7880300A80164,
+										7AB36C7003D7880300A80164,
+										7AB36C7103D7880300A80164,
+										7AB36C7203D7880300A80164,
+										7AB36C7303D7880300A80164,
+										7AB36C7403D7880300A80164,
+										7AB36C7503D7880300A80164,
+										7AB36C7603D7880300A80164,
+										7AB36C7703D7880300A80164,
+										7AB36C7803D7880300A80164,
+										7AB36C7903D7880300A80164,
+										7AB36C7A03D7880300A80164,
+										7AB36C7B03D7880300A80164,
+										7AB36C7C03D7880300A80164,
+										7AB36C7D03D7880300A80164,
+										7AB36C7E03D7880300A80164,
+										7AB36C7F03D7880300A80164,
+										7AB36C8003D7880300A80164,
+										7AB36C8103D7880300A80164,
+										7AB36C8203D7880300A80164,
+										7AB36C8303D7880300A80164,
+										7AB36C8403D7880300A80164,
+										7AB36C8503D7880300A80164,
+										7AB36C8603D7880300A80164,
+										7AB36C8703D7880300A80164,
+										7AB36C8803D7880300A80164,
+										7AB36C8903D7880300A80164,
+										7AB36C8A03D7880300A80164,
+										7AB36C8B03D7880300A80164,
+										7AB36C8C03D7880300A80164,
+										7AB36C8D03D7880300A80164,
+										7AB36C8E03D7880300A80164,
+										7AB36C8F03D7880300A80164,
+										7AB36C9003D7880300A80164,
+										7AB36C9103D7880300A80164,
+										7AB36C9203D7880300A80164,
+										7AB36C9303D7880300A80164,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
 									Frame = "{{0, 0}, {752, 726}}";
+									NavBarVisible = YES;
+								};
+								NavSplitVertical = NO;
+							};
+							SplitCount = 1;
+							Tab1 = {
+								Debugger = {
+									Split0 = {
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									TabCount = 2;
+								};
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								LauncherConfigVersion = 3;
+								Runner = {
+								};
+							};
+							TabCount = 5;
+						};
+						SplitCount = 1;
+						Tab1 = {
+							OptionsSetName = "Hierarchy, all classes";
+						};
+						TabCount = 5;
+					};
+				},
+				{
+					LeftSlideOut = {
+						Split0 = {
+							Split0 = {
+								NavContent0 = {
+									bookmark = 7AB36C9C03D7880300A80164;
+									history = (
+										7AB36C9503D7880300A80164,
+										7AB36C9603D7880300A80164,
+										7AB36C9703D7880300A80164,
+										7AB36C9803D7880300A80164,
+									);
+									prevStack = (
+										7AB36C9903D7880300A80164,
+										7AB36C9A03D7880300A80164,
+										7AB36C9B03D7880300A80164,
+									);
+								};
+								NavCount = 1;
+								NavGeometry0 = {
+									Frame = "{{0, 0}, {685, 183}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -28071,25 +28953,50 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7A7DCB0E03D70DB700A80164;
+									bookmark = 7AB36C9E03D7880300A80164;
 									history = (
-										7A7DCB0403D70DB700A80164,
-										7A7DCB0503D70DB700A80164,
-										7A7DCB0603D70DB700A80164,
-										7A7DCB0703D70DB700A80164,
-										7A7DCB0803D70DB700A80164,
-									);
-									prevStack = (
-										7A7DCB0903D70DB700A80164,
-										7A7DCB0A03D70DB700A80164,
-										7A7DCB0B03D70DB700A80164,
-										7A7DCB0C03D70DB700A80164,
-										7A7DCB0D03D70DB700A80164,
+										7AB36C9D03D7880300A80164,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {685, 207}}";
+									Frame = "{{0, 0}, {668, 621}}";
+									NavBarVisible = YES;
+								};
+								NavSplitVertical = NO;
+							};
+							SplitCount = 1;
+							Tab1 = {
+								Debugger = {
+									Split0 = {
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									TabCount = 2;
+								};
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								LauncherConfigVersion = 3;
+								Runner = {
+								};
+							};
+							TabCount = 5;
+						};
+						SplitCount = 1;
+						Tab1 = {
+							OptionsSetName = "Hierarchy, all classes";
+						};
+						TabCount = 5;
+					};
+				},
+				{
+					LeftSlideOut = {
+						Split0 = {
+							Split0 = {
+								NavCount = 1;
+								NavGeometry0 = {
+									Frame = "{{0, 0}, {665, 293}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -28249,7 +29156,135 @@
 					StatusViewVisible = YES;
 					Template = 64ABBB4501FA494900185B06;
 					ToolbarVisible = YES;
-					WindowLocation = "{65, 151}";
+					WindowLocation = "{95, 141}";
+				},
+				{
+					ContentSize = "{685, 434}";
+					LeftSlideOut = {
+						Collapsed = NO;
+						Frame = "{{0, 23}, {685, 411}}";
+						Split0 = {
+							ActiveTab = 2;
+							ActiveTabName = PBXBuildResultsModule;
+							Collapsed = NO;
+							Frame = "{{0, 0}, {685, 411}}";
+							Split0 = {
+								Frame = "{{0, 228}, {685, 183}}";
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Frame = "{{0, 0}, {952, 321}}";
+							};
+							Tab1 = {
+								Debugger = {
+									Collapsed = NO;
+									Frame = "{{0, 0}, {781, 452}}";
+									Split0 = {
+										Frame = "{{0, 24}, {781, 428}}";
+										Split0 = {
+											Frame = "{{0, 0}, {383, 428}}";
+										};
+										Split1 = {
+											DebugVariablesTableConfiguration = (
+												Name,
+												123,
+												Value,
+												85,
+												Summary,
+												155.123,
+											);
+											Frame = "{{392, 0}, {389, 428}}";
+										};
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									Tab0 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									Tab1 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									TabCount = 2;
+									TabsVisible = YES;
+								};
+								Frame = "{{0, 0}, {781, 452}}";
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								Frame = "{{0, 0}, {685, 215}}";
+								LauncherConfigVersion = 3;
+								Runner = {
+									Frame = "{{0, 0}, {685, 215}}";
+								};
+							};
+							Tab3 = {
+								BuildMessageFrame = "{{0, 0}, {687, 125}}";
+								BuildTranscriptFrame = "{{0, 134}, {687, 66}}";
+								BuildTranscriptFrameExpanded = YES;
+								Frame = "{{0, 0}, {685, 222}}";
+							};
+							Tab4 = {
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							TabCount = 5;
+							TabsVisible = NO;
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {300, 533}}";
+							GroupTreeTableConfiguration = (
+								TargetStatusColumn,
+								18,
+								MainColumn,
+								267,
+							);
+						};
+						Tab1 = {
+							ClassesFrame = "{{0, 0}, {280, 398}}";
+							ClassesTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXClassColumnIdentifier,
+								237,
+							);
+							Frame = "{{0, 0}, {278, 659}}";
+							MembersFrame = "{{0, 407}, {280, 252}}";
+							MembersTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXMethodColumnIdentifier,
+								236,
+							);
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {200, 100}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {200, 100}}";
+							TargetTableConfiguration = (
+								ActiveObject,
+								16,
+								ObjectNames,
+								202.296,
+							);
+						};
+						Tab4 = {
+							BreakpointsTreeTableConfiguration = (
+								breakpointColumn,
+								197,
+								enabledColumn,
+								31,
+							);
+							Frame = "{{0, 0}, {250, 100}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					NavBarShownByDefault = YES;
+					StatusViewVisible = YES;
+					Template = F5314676015831810DCA290F;
+					ToolbarVisible = NO;
+					WindowLocation = "{45, 546}";
 				},
 				{
 					ContentSize = "{594, 303}";
@@ -28380,30 +29415,28 @@
 					WindowLocation = "{4, 633}";
 				},
 				{
-					ContentSize = "{685, 434}";
+					ContentSize = "{668, 621}";
 					LeftSlideOut = {
 						Collapsed = NO;
-						Frame = "{{0, 23}, {685, 411}}";
+						Frame = "{{0, 0}, {668, 621}}";
 						Split0 = {
-							ActiveTab = 2;
-							ActiveTabName = PBXBuildResultsModule;
 							Collapsed = NO;
-							Frame = "{{0, 0}, {685, 411}}";
+							Frame = "{{0, 0}, {668, 621}}";
 							Split0 = {
-								Frame = "{{0, 204}, {685, 207}}";
+								Frame = "{{0, 0}, {668, 621}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
-								Frame = "{{0, 0}, {952, 321}}";
+								Frame = "{{0, 0}, {484, 208}}";
 							};
 							Tab1 = {
 								Debugger = {
 									Collapsed = NO;
-									Frame = "{{0, 0}, {781, 452}}";
+									Frame = "{{0, 0}, {664, 208}}";
 									Split0 = {
-										Frame = "{{0, 24}, {781, 428}}";
+										Frame = "{{0, 24}, {664, 184}}";
 										Split0 = {
-											Frame = "{{0, 0}, {383, 428}}";
+											Frame = "{{0, 0}, {325, 184}}";
 										};
 										Split1 = {
 											DebugVariablesTableConfiguration = (
@@ -28412,9 +29445,9 @@
 												Value,
 												85,
 												Summary,
-												155.123,
+												96.123,
 											);
-											Frame = "{{392, 0}, {389, 428}}";
+											Frame = "{{334, 0}, {330, 184}}";
 										};
 										SplitCount = 2;
 									};
@@ -28428,21 +29461,21 @@
 									TabCount = 2;
 									TabsVisible = YES;
 								};
-								Frame = "{{0, 0}, {781, 452}}";
+								Frame = "{{0, 0}, {664, 208}}";
 								LauncherConfigVersion = 7;
 							};
 							Tab2 = {
-								Frame = "{{0, 0}, {685, 215}}";
+								Frame = "{{0, 0}, {664, 50}}";
 								LauncherConfigVersion = 3;
 								Runner = {
-									Frame = "{{0, 0}, {685, 215}}";
+									Frame = "{{0, 0}, {664, 50}}";
 								};
 							};
 							Tab3 = {
-								BuildMessageFrame = "{{0, 0}, {687, 145}}";
-								BuildTranscriptFrame = "{{0, 154}, {687, 22}}";
+								BuildMessageFrame = "{{0, 0}, {614, 262}}";
+								BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
 								BuildTranscriptFrameExpanded = YES;
-								Frame = "{{0, 0}, {685, 198}}";
+								Frame = "{{0, 0}, {612, 295}}";
 							};
 							Tab4 = {
 								Frame = "{{0, 0}, {612, 295}}";
@@ -28452,12 +29485,12 @@
 						};
 						SplitCount = 1;
 						Tab0 = {
-							Frame = "{{0, 0}, {300, 533}}";
+							Frame = "{{0, 0}, {313, 531}}";
 							GroupTreeTableConfiguration = (
 								TargetStatusColumn,
 								18,
 								MainColumn,
-								267,
+								280,
 							);
 						};
 						Tab1 = {
@@ -28481,7 +29514,7 @@
 							Frame = "{{0, 0}, {200, 100}}";
 						};
 						Tab3 = {
-							Frame = "{{0, 0}, {200, 100}}";
+							Frame = "{{0, 0}, {200, 557}}";
 							TargetTableConfiguration = (
 								ActiveObject,
 								16,
@@ -28502,13 +29535,141 @@
 						TabsVisible = NO;
 					};
 					NavBarShownByDefault = YES;
-					StatusViewVisible = YES;
-					Template = F5314676015831810DCA290F;
+					StatusViewVisible = NO;
+					Template = F5CA7ECB015C094F0DCA290F;
 					ToolbarVisible = NO;
-					WindowLocation = "{45, 546}";
+					WindowLocation = "{48, 349}";
+				},
+				{
+					ContentSize = "{665, 594}";
+					LeftSlideOut = {
+						Collapsed = NO;
+						Frame = "{{0, 0}, {665, 594}}";
+						Split0 = {
+							ActiveTab = 3;
+							ActiveTabName = PBXProjectFindModule;
+							Collapsed = NO;
+							Frame = "{{0, 0}, {665, 594}}";
+							Split0 = {
+								Frame = "{{0, 301}, {665, 293}}";
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Frame = "{{0, 0}, {484, 208}}";
+							};
+							Tab1 = {
+								Debugger = {
+									Collapsed = NO;
+									Frame = "{{0, 0}, {664, 208}}";
+									Split0 = {
+										Frame = "{{0, 24}, {664, 184}}";
+										Split0 = {
+											Frame = "{{0, 0}, {325, 184}}";
+										};
+										Split1 = {
+											DebugVariablesTableConfiguration = (
+												Name,
+												123,
+												Value,
+												85,
+												Summary,
+												96.123,
+											);
+											Frame = "{{334, 0}, {330, 184}}";
+										};
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									Tab0 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									Tab1 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									TabCount = 2;
+									TabsVisible = YES;
+								};
+								Frame = "{{0, 0}, {664, 208}}";
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								Frame = "{{0, 0}, {664, 50}}";
+								LauncherConfigVersion = 3;
+								Runner = {
+									Frame = "{{0, 0}, {664, 50}}";
+								};
+							};
+							Tab3 = {
+								BuildMessageFrame = "{{0, 0}, {667, 265}}";
+								BuildTranscriptFrame = "{{0, 274}, {667, 2}}";
+								BuildTranscriptFrameExpanded = YES;
+								Frame = "{{0, 0}, {665, 298}}";
+							};
+							Tab4 = {
+								Frame = "{{0, 0}, {665, 295}}";
+							};
+							TabCount = 5;
+							TabsVisible = NO;
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {313, 531}}";
+							GroupTreeTableConfiguration = (
+								TargetStatusColumn,
+								18,
+								MainColumn,
+								280,
+							);
+						};
+						Tab1 = {
+							ClassesFrame = "{{0, 0}, {280, 398}}";
+							ClassesTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXClassColumnIdentifier,
+								237,
+							);
+							Frame = "{{0, 0}, {278, 659}}";
+							MembersFrame = "{{0, 407}, {280, 252}}";
+							MembersTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXMethodColumnIdentifier,
+								236,
+							);
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {200, 100}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {200, 557}}";
+							TargetTableConfiguration = (
+								ActiveObject,
+								16,
+								ObjectNames,
+								202.296,
+							);
+						};
+						Tab4 = {
+							BreakpointsTreeTableConfiguration = (
+								breakpointColumn,
+								197,
+								enabledColumn,
+								31,
+							);
+							Frame = "{{0, 0}, {250, 100}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					NavBarShownByDefault = YES;
+					StatusViewVisible = NO;
+					Template = F5CA7EC9015C08ED0DCA290F;
+					ToolbarVisible = NO;
+					WindowLocation = "{69, 372}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 64414982;
+			PBXWorkspaceStateSaveDate = 64450846;
 		};
 		perUserProjectItems = {
 			7A0B335203D30BB600A80164 = 7A0B335203D30BB600A80164;
@@ -28554,16 +29715,19 @@
 			7A41085203CDC4A300A80164 = 7A41085203CDC4A300A80164;
 			7A41085303CDC4A300A80164 = 7A41085303CDC4A300A80164;
 			7A41085403CDC4A300A80164 = 7A41085403CDC4A300A80164;
+			7A47562503D71C3700A80164 = 7A47562503D71C3700A80164;
+			7A47562703D71C3700A80164 = 7A47562703D71C3700A80164;
+			7A47562803D71C3700A80164 = 7A47562803D71C3700A80164;
+			7A47562903D71C3700A80164 = 7A47562903D71C3700A80164;
+			7A47562A03D71C3700A80164 = 7A47562A03D71C3700A80164;
+			7A47562B03D71C3700A80164 = 7A47562B03D71C3700A80164;
 			7A78006A03D4823B00A80164 = 7A78006A03D4823B00A80164;
 			7A78006B03D4823B00A80164 = 7A78006B03D4823B00A80164;
 			7A78007003D4823B00A80164 = 7A78007003D4823B00A80164;
 			7A78007103D4823B00A80164 = 7A78007103D4823B00A80164;
 			7A78007203D4823B00A80164 = 7A78007203D4823B00A80164;
 			7A78007303D4823B00A80164 = 7A78007303D4823B00A80164;
-			7A78007403D4823B00A80164 = 7A78007403D4823B00A80164;
-			7A78007603D4823B00A80164 = 7A78007603D4823B00A80164;
 			7A78007703D4823B00A80164 = 7A78007703D4823B00A80164;
-			7A78007803D4823B00A80164 = 7A78007803D4823B00A80164;
 			7A78007903D4823B00A80164 = 7A78007903D4823B00A80164;
 			7A78007A03D4823B00A80164 = 7A78007A03D4823B00A80164;
 			7A78007D03D4823B00A80164 = 7A78007D03D4823B00A80164;
@@ -28661,16 +29825,12 @@
 			7A7DCAC903D70DB700A80164 = 7A7DCAC903D70DB700A80164;
 			7A7DCACA03D70DB700A80164 = 7A7DCACA03D70DB700A80164;
 			7A7DCACB03D70DB700A80164 = 7A7DCACB03D70DB700A80164;
-			7A7DCACC03D70DB700A80164 = 7A7DCACC03D70DB700A80164;
 			7A7DCACD03D70DB700A80164 = 7A7DCACD03D70DB700A80164;
 			7A7DCACE03D70DB700A80164 = 7A7DCACE03D70DB700A80164;
 			7A7DCACF03D70DB700A80164 = 7A7DCACF03D70DB700A80164;
 			7A7DCAD003D70DB700A80164 = 7A7DCAD003D70DB700A80164;
-			7A7DCAD103D70DB700A80164 = 7A7DCAD103D70DB700A80164;
 			7A7DCAD203D70DB700A80164 = 7A7DCAD203D70DB700A80164;
 			7A7DCAD303D70DB700A80164 = 7A7DCAD303D70DB700A80164;
-			7A7DCAD403D70DB700A80164 = 7A7DCAD403D70DB700A80164;
-			7A7DCAD503D70DB700A80164 = 7A7DCAD503D70DB700A80164;
 			7A7DCAD603D70DB700A80164 = 7A7DCAD603D70DB700A80164;
 			7A7DCAD703D70DB700A80164 = 7A7DCAD703D70DB700A80164;
 			7A7DCAD803D70DB700A80164 = 7A7DCAD803D70DB700A80164;
@@ -28716,18 +29876,6 @@
 			7A7DCB0003D70DB700A80164 = 7A7DCB0003D70DB700A80164;
 			7A7DCB0103D70DB700A80164 = 7A7DCB0103D70DB700A80164;
 			7A7DCB0203D70DB700A80164 = 7A7DCB0203D70DB700A80164;
-			7A7DCB0303D70DB700A80164 = 7A7DCB0303D70DB700A80164;
-			7A7DCB0403D70DB700A80164 = 7A7DCB0403D70DB700A80164;
-			7A7DCB0503D70DB700A80164 = 7A7DCB0503D70DB700A80164;
-			7A7DCB0603D70DB700A80164 = 7A7DCB0603D70DB700A80164;
-			7A7DCB0703D70DB700A80164 = 7A7DCB0703D70DB700A80164;
-			7A7DCB0803D70DB700A80164 = 7A7DCB0803D70DB700A80164;
-			7A7DCB0903D70DB700A80164 = 7A7DCB0903D70DB700A80164;
-			7A7DCB0A03D70DB700A80164 = 7A7DCB0A03D70DB700A80164;
-			7A7DCB0B03D70DB700A80164 = 7A7DCB0B03D70DB700A80164;
-			7A7DCB0C03D70DB700A80164 = 7A7DCB0C03D70DB700A80164;
-			7A7DCB0D03D70DB700A80164 = 7A7DCB0D03D70DB700A80164;
-			7A7DCB0E03D70DB700A80164 = 7A7DCB0E03D70DB700A80164;
 			7A85AD8C03BF9B2300A80164 = 7A85AD8C03BF9B2300A80164;
 			7A85AD8D03BF9B2300A80164 = 7A85AD8D03BF9B2300A80164;
 			7A85AD9403BF9B2300A80164 = 7A85AD9403BF9B2300A80164;
@@ -28740,12 +29888,10 @@
 			7AB0144103D5C0D800A80164 = 7AB0144103D5C0D800A80164;
 			7AB0144403D5C0D800A80164 = 7AB0144403D5C0D800A80164;
 			7AB0144603D5C0D800A80164 = 7AB0144603D5C0D800A80164;
-			7AB0144703D5C0D800A80164 = 7AB0144703D5C0D800A80164;
 			7AB0144803D5C0D800A80164 = 7AB0144803D5C0D800A80164;
 			7AB0144903D5C0D800A80164 = 7AB0144903D5C0D800A80164;
 			7AB0144A03D5C0D800A80164 = 7AB0144A03D5C0D800A80164;
 			7AB0144B03D5C0D800A80164 = 7AB0144B03D5C0D800A80164;
-			7AB0144C03D5C0D800A80164 = 7AB0144C03D5C0D800A80164;
 			7AB0145003D5C0D800A80164 = 7AB0145003D5C0D800A80164;
 			7AB0145103D5C0D800A80164 = 7AB0145103D5C0D800A80164;
 			7AB0145303D5C0D800A80164 = 7AB0145303D5C0D800A80164;
@@ -28756,20 +29902,13 @@
 			7AB0145803D5C0D800A80164 = 7AB0145803D5C0D800A80164;
 			7AB0145903D5C0D800A80164 = 7AB0145903D5C0D800A80164;
 			7AB0145A03D5C0D800A80164 = 7AB0145A03D5C0D800A80164;
-			7AB0145B03D5C0D800A80164 = 7AB0145B03D5C0D800A80164;
 			7AB0145C03D5C0D800A80164 = 7AB0145C03D5C0D800A80164;
 			7AB0145D03D5C0D800A80164 = 7AB0145D03D5C0D800A80164;
 			7AB0145E03D5C0D800A80164 = 7AB0145E03D5C0D800A80164;
 			7AB0145F03D5C0D800A80164 = 7AB0145F03D5C0D800A80164;
-			7AB0146003D5C0D800A80164 = 7AB0146003D5C0D800A80164;
 			7AB0146103D5C0D800A80164 = 7AB0146103D5C0D800A80164;
-			7AB0146203D5C0D800A80164 = 7AB0146203D5C0D800A80164;
-			7AB0146303D5C0D800A80164 = 7AB0146303D5C0D800A80164;
-			7AB0146403D5C0D800A80164 = 7AB0146403D5C0D800A80164;
 			7AB0146503D5C0D800A80164 = 7AB0146503D5C0D800A80164;
 			7AB0146603D5C0D800A80164 = 7AB0146603D5C0D800A80164;
-			7AB0146703D5C0D800A80164 = 7AB0146703D5C0D800A80164;
-			7AB0146803D5C0D800A80164 = 7AB0146803D5C0D800A80164;
 			7AB0146903D5C0D800A80164 = 7AB0146903D5C0D800A80164;
 			7AB0146A03D5C0D800A80164 = 7AB0146A03D5C0D800A80164;
 			7AB0146B03D5C0D800A80164 = 7AB0146B03D5C0D800A80164;
@@ -28859,7 +29998,6 @@
 			7AB014C003D5C0D800A80164 = 7AB014C003D5C0D800A80164;
 			7AB0B30903D6E4F400A80164 = 7AB0B30903D6E4F400A80164;
 			7AB0B30B03D6E4F400A80164 = 7AB0B30B03D6E4F400A80164;
-			7AB0B30C03D6E4F400A80164 = 7AB0B30C03D6E4F400A80164;
 			7AB0B31003D6E4F400A80164 = 7AB0B31003D6E4F400A80164;
 			7AB0B31103D6E4F400A80164 = 7AB0B31103D6E4F400A80164;
 			7AB0B31203D6E4F400A80164 = 7AB0B31203D6E4F400A80164;
@@ -28911,9 +30049,78 @@
 			7AB0B34303D6E4F400A80164 = 7AB0B34303D6E4F400A80164;
 			7AB0B34403D6E4F400A80164 = 7AB0B34403D6E4F400A80164;
 			7AB0B34503D6E4F400A80164 = 7AB0B34503D6E4F400A80164;
+			7AB36C5903D7880300A80164 = 7AB36C5903D7880300A80164;
+			7AB36C5A03D7880300A80164 = 7AB36C5A03D7880300A80164;
+			7AB36C5B03D7880300A80164 = 7AB36C5B03D7880300A80164;
+			7AB36C5C03D7880300A80164 = 7AB36C5C03D7880300A80164;
+			7AB36C5D03D7880300A80164 = 7AB36C5D03D7880300A80164;
+			7AB36C5E03D7880300A80164 = 7AB36C5E03D7880300A80164;
+			7AB36C5F03D7880300A80164 = 7AB36C5F03D7880300A80164;
+			7AB36C6003D7880300A80164 = 7AB36C6003D7880300A80164;
+			7AB36C6103D7880300A80164 = 7AB36C6103D7880300A80164;
+			7AB36C6203D7880300A80164 = 7AB36C6203D7880300A80164;
+			7AB36C6303D7880300A80164 = 7AB36C6303D7880300A80164;
+			7AB36C6403D7880300A80164 = 7AB36C6403D7880300A80164;
+			7AB36C6503D7880300A80164 = 7AB36C6503D7880300A80164;
+			7AB36C6603D7880300A80164 = 7AB36C6603D7880300A80164;
+			7AB36C6703D7880300A80164 = 7AB36C6703D7880300A80164;
+			7AB36C6803D7880300A80164 = 7AB36C6803D7880300A80164;
+			7AB36C6903D7880300A80164 = 7AB36C6903D7880300A80164;
+			7AB36C6A03D7880300A80164 = 7AB36C6A03D7880300A80164;
+			7AB36C6B03D7880300A80164 = 7AB36C6B03D7880300A80164;
+			7AB36C6C03D7880300A80164 = 7AB36C6C03D7880300A80164;
+			7AB36C6D03D7880300A80164 = 7AB36C6D03D7880300A80164;
+			7AB36C6E03D7880300A80164 = 7AB36C6E03D7880300A80164;
+			7AB36C6F03D7880300A80164 = 7AB36C6F03D7880300A80164;
+			7AB36C7003D7880300A80164 = 7AB36C7003D7880300A80164;
+			7AB36C7103D7880300A80164 = 7AB36C7103D7880300A80164;
+			7AB36C7203D7880300A80164 = 7AB36C7203D7880300A80164;
+			7AB36C7303D7880300A80164 = 7AB36C7303D7880300A80164;
+			7AB36C7403D7880300A80164 = 7AB36C7403D7880300A80164;
+			7AB36C7503D7880300A80164 = 7AB36C7503D7880300A80164;
+			7AB36C7603D7880300A80164 = 7AB36C7603D7880300A80164;
+			7AB36C7703D7880300A80164 = 7AB36C7703D7880300A80164;
+			7AB36C7803D7880300A80164 = 7AB36C7803D7880300A80164;
+			7AB36C7903D7880300A80164 = 7AB36C7903D7880300A80164;
+			7AB36C7A03D7880300A80164 = 7AB36C7A03D7880300A80164;
+			7AB36C7B03D7880300A80164 = 7AB36C7B03D7880300A80164;
+			7AB36C7C03D7880300A80164 = 7AB36C7C03D7880300A80164;
+			7AB36C7D03D7880300A80164 = 7AB36C7D03D7880300A80164;
+			7AB36C7E03D7880300A80164 = 7AB36C7E03D7880300A80164;
+			7AB36C7F03D7880300A80164 = 7AB36C7F03D7880300A80164;
+			7AB36C8003D7880300A80164 = 7AB36C8003D7880300A80164;
+			7AB36C8103D7880300A80164 = 7AB36C8103D7880300A80164;
+			7AB36C8203D7880300A80164 = 7AB36C8203D7880300A80164;
+			7AB36C8303D7880300A80164 = 7AB36C8303D7880300A80164;
+			7AB36C8403D7880300A80164 = 7AB36C8403D7880300A80164;
+			7AB36C8503D7880300A80164 = 7AB36C8503D7880300A80164;
+			7AB36C8603D7880300A80164 = 7AB36C8603D7880300A80164;
+			7AB36C8703D7880300A80164 = 7AB36C8703D7880300A80164;
+			7AB36C8803D7880300A80164 = 7AB36C8803D7880300A80164;
+			7AB36C8903D7880300A80164 = 7AB36C8903D7880300A80164;
+			7AB36C8A03D7880300A80164 = 7AB36C8A03D7880300A80164;
+			7AB36C8B03D7880300A80164 = 7AB36C8B03D7880300A80164;
+			7AB36C8C03D7880300A80164 = 7AB36C8C03D7880300A80164;
+			7AB36C8D03D7880300A80164 = 7AB36C8D03D7880300A80164;
+			7AB36C8E03D7880300A80164 = 7AB36C8E03D7880300A80164;
+			7AB36C8F03D7880300A80164 = 7AB36C8F03D7880300A80164;
+			7AB36C9003D7880300A80164 = 7AB36C9003D7880300A80164;
+			7AB36C9103D7880300A80164 = 7AB36C9103D7880300A80164;
+			7AB36C9203D7880300A80164 = 7AB36C9203D7880300A80164;
+			7AB36C9303D7880300A80164 = 7AB36C9303D7880300A80164;
+			7AB36C9403D7880300A80164 = 7AB36C9403D7880300A80164;
+			7AB36C9503D7880300A80164 = 7AB36C9503D7880300A80164;
+			7AB36C9603D7880300A80164 = 7AB36C9603D7880300A80164;
+			7AB36C9703D7880300A80164 = 7AB36C9703D7880300A80164;
+			7AB36C9803D7880300A80164 = 7AB36C9803D7880300A80164;
+			7AB36C9903D7880300A80164 = 7AB36C9903D7880300A80164;
+			7AB36C9A03D7880300A80164 = 7AB36C9A03D7880300A80164;
+			7AB36C9B03D7880300A80164 = 7AB36C9B03D7880300A80164;
+			7AB36C9C03D7880300A80164 = 7AB36C9C03D7880300A80164;
+			7AB36C9D03D7880300A80164 = 7AB36C9D03D7880300A80164;
+			7AB36C9E03D7880300A80164 = 7AB36C9E03D7880300A80164;
 			7AB3AC4D03D4E7C700A80164 = 7AB3AC4D03D4E7C700A80164;
 			7AB3AC4E03D4E7C700A80164 = 7AB3AC4E03D4E7C700A80164;
-			7AB3AC5803D4E7C700A80164 = 7AB3AC5803D4E7C700A80164;
 			7AB3AC5903D4E7C700A80164 = 7AB3AC5903D4E7C700A80164;
 			7AB3AC5B03D4E7C700A80164 = 7AB3AC5B03D4E7C700A80164;
 			7AB3AC5C03D4E7C700A80164 = 7AB3AC5C03D4E7C700A80164;
@@ -28935,7 +30142,6 @@
 			7AB3AC6C03D4E7C700A80164 = 7AB3AC6C03D4E7C700A80164;
 			7AB3AC6D03D4E7C700A80164 = 7AB3AC6D03D4E7C700A80164;
 			7AB3AC6F03D4E7C700A80164 = 7AB3AC6F03D4E7C700A80164;
-			7AB3AC7103D4E7C700A80164 = 7AB3AC7103D4E7C700A80164;
 			7AB3AC7303D4E7C700A80164 = 7AB3AC7303D4E7C700A80164;
 			7AB3AC7403D4E7C700A80164 = 7AB3AC7403D4E7C700A80164;
 			7AB3AC7503D4E7C700A80164 = 7AB3AC7503D4E7C700A80164;
@@ -29138,14 +30344,68 @@
 			7AB41F8903D44A1400A80164 = 7AB41F8903D44A1400A80164;
 			7AB41F8A03D44A1400A80164 = 7AB41F8A03D44A1400A80164;
 			7AB41F8B03D44A1400A80164 = 7AB41F8B03D44A1400A80164;
+			7AB43D8003D73B2500A80164 = 7AB43D8003D73B2500A80164;
+			7AB43D8103D73B2500A80164 = 7AB43D8103D73B2500A80164;
+			7AB43D8203D73B2500A80164 = 7AB43D8203D73B2500A80164;
+			7AB43D8403D73B2500A80164 = 7AB43D8403D73B2500A80164;
+			7AB43D8503D73B2500A80164 = 7AB43D8503D73B2500A80164;
+			7AB43D8603D73B2500A80164 = 7AB43D8603D73B2500A80164;
+			7AB43D8703D73B2500A80164 = 7AB43D8703D73B2500A80164;
+			7AB43D8903D73B2500A80164 = 7AB43D8903D73B2500A80164;
+			7AB43D8A03D73B2500A80164 = 7AB43D8A03D73B2500A80164;
+			7AB43D8C03D73B2500A80164 = 7AB43D8C03D73B2500A80164;
+			7AB43D8D03D73B2500A80164 = 7AB43D8D03D73B2500A80164;
+			7AB43D8E03D73B2500A80164 = 7AB43D8E03D73B2500A80164;
+			7AB43D9003D73B2500A80164 = 7AB43D9003D73B2500A80164;
+			7AB43D9103D73B2500A80164 = 7AB43D9103D73B2500A80164;
+			7AB43D9203D73B2500A80164 = 7AB43D9203D73B2500A80164;
+			7AB43D9303D73B2500A80164 = 7AB43D9303D73B2500A80164;
+			7AB43D9403D73B2500A80164 = 7AB43D9403D73B2500A80164;
+			7AB43D9503D73B2500A80164 = 7AB43D9503D73B2500A80164;
+			7AB43D9703D73B2500A80164 = 7AB43D9703D73B2500A80164;
+			7AB43D9803D73B2500A80164 = 7AB43D9803D73B2500A80164;
+			7AB43D9903D73B2500A80164 = 7AB43D9903D73B2500A80164;
+			7AB43D9A03D73B2500A80164 = 7AB43D9A03D73B2500A80164;
+			7AB43D9B03D73B2500A80164 = 7AB43D9B03D73B2500A80164;
+			7AB43D9C03D73B2500A80164 = 7AB43D9C03D73B2500A80164;
+			7AB43D9D03D73B2500A80164 = 7AB43D9D03D73B2500A80164;
+			7AB43D9E03D73B2500A80164 = 7AB43D9E03D73B2500A80164;
+			7AB43D9F03D73B2500A80164 = 7AB43D9F03D73B2500A80164;
+			7AB43DA003D73B2500A80164 = 7AB43DA003D73B2500A80164;
+			7AB43DA103D73B2500A80164 = 7AB43DA103D73B2500A80164;
+			7AB43DA203D73B2500A80164 = 7AB43DA203D73B2500A80164;
+			7AB43DA303D73B2500A80164 = 7AB43DA303D73B2500A80164;
+			7AB43DA403D73B2500A80164 = 7AB43DA403D73B2500A80164;
+			7AB43DA503D73B2500A80164 = 7AB43DA503D73B2500A80164;
+			7AB43DA603D73B2500A80164 = 7AB43DA603D73B2500A80164;
+			7AB43DA703D73B2500A80164 = 7AB43DA703D73B2500A80164;
+			7AB43DA803D73B2500A80164 = 7AB43DA803D73B2500A80164;
+			7AB43DA903D73B2500A80164 = 7AB43DA903D73B2500A80164;
+			7AB43DAA03D73B2500A80164 = 7AB43DAA03D73B2500A80164;
+			7AB43DAB03D73B2500A80164 = 7AB43DAB03D73B2500A80164;
+			7AB43DAC03D73B2500A80164 = 7AB43DAC03D73B2500A80164;
+			7AB43DAD03D73B2500A80164 = 7AB43DAD03D73B2500A80164;
+			7AB43DAE03D73B2500A80164 = 7AB43DAE03D73B2500A80164;
+			7AB43DAF03D73B2500A80164 = 7AB43DAF03D73B2500A80164;
+			7AB43DB003D73B2500A80164 = 7AB43DB003D73B2500A80164;
+			7AB43DB103D73B2500A80164 = 7AB43DB103D73B2500A80164;
+			7AB43DB203D73B2500A80164 = 7AB43DB203D73B2500A80164;
+			7AB43DB303D73B2500A80164 = 7AB43DB303D73B2500A80164;
+			7AB43DB403D73B2500A80164 = 7AB43DB403D73B2500A80164;
+			7AB43DB503D73B2500A80164 = 7AB43DB503D73B2500A80164;
+			7AB43DB603D73B2500A80164 = 7AB43DB603D73B2500A80164;
+			7AB43DB703D73B2500A80164 = 7AB43DB703D73B2500A80164;
+			7AB43DB803D73B2500A80164 = 7AB43DB803D73B2500A80164;
+			7AB43DB903D73B2500A80164 = 7AB43DB903D73B2500A80164;
+			7AB43DBA03D73B2500A80164 = 7AB43DBA03D73B2500A80164;
+			7AB43DBB03D73B2500A80164 = 7AB43DBB03D73B2500A80164;
+			7AB43DBC03D73B2500A80164 = 7AB43DBC03D73B2500A80164;
 			7AB45DD403D387F000A80164 = 7AB45DD403D387F000A80164;
 			7AB45DD503D387F000A80164 = 7AB45DD503D387F000A80164;
 			7AB45DD603D387F000A80164 = 7AB45DD603D387F000A80164;
 			7AB45DD703D387F000A80164 = 7AB45DD703D387F000A80164;
-			7AB45DD803D387F000A80164 = 7AB45DD803D387F000A80164;
 			7AB45DDA03D387F000A80164 = 7AB45DDA03D387F000A80164;
 			7AB45DDB03D387F000A80164 = 7AB45DDB03D387F000A80164;
-			7AB45DDC03D387F000A80164 = 7AB45DDC03D387F000A80164;
 			7AB45DDE03D387F000A80164 = 7AB45DDE03D387F000A80164;
 			7AB45DDF03D387F000A80164 = 7AB45DDF03D387F000A80164;
 			7AB45DE003D387F000A80164 = 7AB45DE003D387F000A80164;
@@ -29156,9 +30416,7 @@
 			7AB45DE503D387F000A80164 = 7AB45DE503D387F000A80164;
 			7AB45DE703D387F000A80164 = 7AB45DE703D387F000A80164;
 			7AB45DE803D387F000A80164 = 7AB45DE803D387F000A80164;
-			7AB45DEC03D387F000A80164 = 7AB45DEC03D387F000A80164;
 			7AB45DF503D387F000A80164 = 7AB45DF503D387F000A80164;
-			7AB45DF603D387F000A80164 = 7AB45DF603D387F000A80164;
 			7AB45DFE03D387F000A80164 = 7AB45DFE03D387F000A80164;
 			7AB45DFF03D387F000A80164 = 7AB45DFF03D387F000A80164;
 			7AB45E0003D387F000A80164 = 7AB45E0003D387F000A80164;
@@ -29625,7 +30883,6 @@
 			7AB68B2E03D0924400A80164 = 7AB68B2E03D0924400A80164;
 			7AB68B3103D0924400A80164 = 7AB68B3103D0924400A80164;
 			7AB68B3303D0924400A80164 = 7AB68B3303D0924400A80164;
-			7AB68B3503D0924400A80164 = 7AB68B3503D0924400A80164;
 			7AB68B3603D0924400A80164 = 7AB68B3603D0924400A80164;
 			7AB68B3903D0924400A80164 = 7AB68B3903D0924400A80164;
 			7AB68B3F03D0924400A80164 = 7AB68B3F03D0924400A80164;
@@ -32554,7 +33811,6 @@
 			F570DFCD02D87CB801CE3369 = F570DFCD02D87CB801CE3369;
 			F570DFD002D87CB801CE3369 = F570DFD002D87CB801CE3369;
 			F570DFD202D87CB801CE3369 = F570DFD202D87CB801CE3369;
-			F57B1B6D03B37F6E01A80164 = F57B1B6D03B37F6E01A80164;
 			F57B1B7A03B37F6E01A80164 = F57B1B7A03B37F6E01A80164;
 			F57B1B7B03B37F6E01A80164 = F57B1B7B03B37F6E01A80164;
 			F57B1B7C03B37F6E01A80164 = F57B1B7C03B37F6E01A80164;
@@ -34286,15 +35542,10 @@
 			F5AAA6CB03B34F8A01A80164 = F5AAA6CB03B34F8A01A80164;
 			F5AAA6E103B34F8A01A80164 = F5AAA6E103B34F8A01A80164;
 			F5AAA6E403B34F8A01A80164 = F5AAA6E403B34F8A01A80164;
-			F5AAA6E603B34F8A01A80164 = F5AAA6E603B34F8A01A80164;
-			F5AAA6E703B34F8A01A80164 = F5AAA6E703B34F8A01A80164;
 			F5AAA6E903B34F8A01A80164 = F5AAA6E903B34F8A01A80164;
 			F5AAA6EB03B34F8A01A80164 = F5AAA6EB03B34F8A01A80164;
 			F5AAA6EC03B34F8A01A80164 = F5AAA6EC03B34F8A01A80164;
 			F5AAA6ED03B34F8A01A80164 = F5AAA6ED03B34F8A01A80164;
-			F5AAA6EF03B34F8A01A80164 = F5AAA6EF03B34F8A01A80164;
-			F5AAA6F003B34F8A01A80164 = F5AAA6F003B34F8A01A80164;
-			F5AAA6F103B34F8A01A80164 = F5AAA6F103B34F8A01A80164;
 			F5AAA6F603B34F8A01A80164 = F5AAA6F603B34F8A01A80164;
 			F5AAA6FF03B34F8B01A80164 = F5AAA6FF03B34F8B01A80164;
 			F5AAA70003B34F8B01A80164 = F5AAA70003B34F8B01A80164;
@@ -34337,7 +35588,6 @@
 			F5AAB6DA03A8E62301A80164 = F5AAB6DA03A8E62301A80164;
 			F5AAB6DF03A8E62301A80164 = F5AAB6DF03A8E62301A80164;
 			F5AAB6E003A8E62301A80164 = F5AAB6E003A8E62301A80164;
-			F5AAB6E303A8E62301A80164 = F5AAB6E303A8E62301A80164;
 			F5AAB70403A8E62301A80164 = F5AAB70403A8E62301A80164;
 			F5AAB70603A8E62301A80164 = F5AAB70603A8E62301A80164;
 			F5AAB70703A8E62301A80164 = F5AAB70703A8E62301A80164;
@@ -57023,16 +58273,6 @@
 		settings = {
 		};
 	};
-	F57B1B6D03B37F6E01A80164 = {
-		fRef = F5AAB69903A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlServer.cpp: 93";
-		rLen = 0;
-		rLoc = 2322;
-		rType = 0;
-		vrLen = 973;
-		vrLoc = 1892;
-	};
 	F57B1B7A03B37F6E01A80164 = {
 		fRef = F59C48E1037A815D01A80164;
 		isa = PBXTextBookmark;
@@ -73279,7 +74519,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.cpp: remoteAddress";
 		rLen = 3;
-		rLoc = 3580;
+		rLoc = 3712;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 2864;
@@ -74554,26 +75794,6 @@
 		vrLen = 595;
 		vrLoc = 0;
 	};
-	F5AAA6E603B34F8A01A80164 = {
-		fRef = F5AAB68303A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlClient.cpp: 90";
-		rLen = 0;
-		rLoc = 2211;
-		rType = 0;
-		vrLen = 1054;
-		vrLoc = 1358;
-	};
-	F5AAA6E703B34F8A01A80164 = {
-		fRef = F5AAB68503A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlData.cpp: 46";
-		rLen = 0;
-		rLoc = 1155;
-		rType = 0;
-		vrLen = 1263;
-		vrLoc = 0;
-	};
 	F5AAA6E903B34F8A01A80164 = {
 		fRef = F5AAB68703A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -74613,36 +75833,6 @@
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 0;
-	};
-	F5AAA6EF03B34F8A01A80164 = {
-		fRef = F5AAB69303A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlLog.cpp: 48";
-		rLen = 0;
-		rLoc = 1157;
-		rType = 0;
-		vrLen = 1008;
-		vrLoc = 376;
-	};
-	F5AAA6F003B34F8A01A80164 = {
-		fRef = F5AAB69503A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlProtocol.cpp: 47";
-		rLen = 0;
-		rLoc = 1271;
-		rType = 0;
-		vrLen = 1166;
-		vrLoc = 1249;
-	};
-	F5AAA6F103B34F8A01A80164 = {
-		fRef = F5AAB69703A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlRouter.cpp: 73";
-		rLen = 0;
-		rLoc = 1755;
-		rType = 0;
-		vrLen = 1165;
-		vrLoc = 1243;
 	};
 	F5AAA6F603B34F8A01A80164 = {
 		fRef = F5AAB69B03A8C8CC01A80164;
@@ -75062,16 +76252,6 @@
 		rLoc = 48;
 		rType = 0;
 		vrLen = 634;
-		vrLoc = 0;
-	};
-	F5AAB6E303A8E62301A80164 = {
-		fRef = F5AAB69603A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlProtocol.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1090;
 		vrLoc = 0;
 	};
 	F5AAB70403A8E62301A80164 = {
@@ -76505,7 +77685,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.cpp: Accept";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4240;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 3077;
@@ -76541,7 +77721,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.h: 89";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2077;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 855;
@@ -77251,7 +78431,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.h: 89";
 		rLen = 0;
-		rLoc = 2053;
+		rLoc = 2077;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 855;
@@ -77261,7 +78441,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.cpp: Accept";
 		rLen = 0;
-		rLoc = 5700;
+		rLoc = 5832;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 4003;
@@ -77741,7 +78921,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: 123";
 		rLen = 0;
-		rLoc = 1961;
+		rLoc = 2046;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 1460;
@@ -78011,7 +79191,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.cpp: Accept";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4240;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 3091;

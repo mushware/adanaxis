@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.3 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.4 2003/01/15 13:27:32 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.4  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.3  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -75,6 +78,8 @@ class MushcoreScalar;
 class MushcoreInterpreter
 {
 public:
+    typedef void (*tLogFunction)(const std::string& inStr);
+    
     MushcoreInterpreter();
     virtual ~MushcoreInterpreter() {}
 
@@ -85,13 +90,15 @@ public:
     virtual MushcoreScalar Despatch(MushcoreCommand& ioCommand);
     virtual void AddHandler(const std::string& inName, MushcoreCommandHandler inHandler);
 
-    void LogCommandsSet(bool inLog) { m_logCommands = inLog; }
+    void LogFunctionSet(tLogFunction inFunction) { m_logFunction = inFunction; }
 
     static void NullFunction(void);
     
 private:
-    std::map<std::string, MushcoreCommandHandler> m_handlers;
-    bool m_logCommands;
+    typedef std::map<std::string, MushcoreCommandHandler> tHandlerMap;
+    
+    tHandlerMap m_handlers;
+    tLogFunction m_logFunction;
     
     static MushcoreInterpreter *m_instance;
 };

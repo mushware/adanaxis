@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlStandard.h,v 1.3 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlStandard.h,v 1.4 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlStandard.h,v $
+ * Revision 1.4  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.3  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -33,6 +36,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <list>
 
 namespace Mustl
 {

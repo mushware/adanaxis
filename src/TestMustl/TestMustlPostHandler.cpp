@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: TestMustlPostHandler.cpp,v 1.1 2003/01/14 20:46:12 southa Exp $
+ * $Log: TestMustlPostHandler.cpp,v $
+ * Revision 1.1  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  */
 
 #include "TestMustlPostHandler.h"
@@ -27,6 +30,14 @@ TestMustlPostHandler::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     if (typeStr == "quit")
     {
         TestMustlApp::Instance().DoQuit();
+    }
+    else if (typeStr == "startserver")
+    {
+        MustlServer::Instance().Connect();
+    }
+    else if (typeStr == "stopserver")
+    {
+        MustlServer::Instance().Disconnect();
     }
     else
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.5 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlLog.h,v 1.6 2003/01/07 17:13:45 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.6  2003/01/07 17:13:45  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.5  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -76,6 +79,11 @@ public:
     
     void OpenFile(const std::string& inName);
     void CloseFile(void);
+
+    static void LogString(const string& inStr);
+    static void UpdateHandler(void);
+    static void Install(void);
+    static void NullFunction(void);
     
 protected:
     std::ostream& Log(void);

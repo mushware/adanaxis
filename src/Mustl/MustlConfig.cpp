@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.6 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.7 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.7  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.6  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -42,16 +45,36 @@
 using namespace Mustl;
 using namespace std;
 
-auto_ptr<MustlConfig> MustlConfig::m_instance;
+MustlConfig *MustlConfig::m_instance = NULL;
 
 MushcoreInstaller MustlConfigInstaller(MustlConfig::Install);
 
 MustlConfig::MustlConfig()
 {
+    cerr << "Cons MustlConfig" << endl;
 }
 
 MustlConfig::~MustlConfig()
 {
+    cerr << "Dest MustlConfig" << endl;
+}
+
+MushcoreScalar
+MustlConfig::Get(const string& inName) const
+{
+    return MushcoreData<MustlConfigDef>::Instance().Get(inName)->ValueGet();
+}
+
+bool
+MustlConfig::GetIfExists(MushcoreScalar& outScalar, const std::string& inName) const
+{
+    MustlConfigDef *pConfigDef;
+    if (MushcoreData<MustlConfigDef>::Instance().GetIfExists(pConfigDef, inName))
+    {
+        outScalar = pConfigDef->ValueGet();
+        return true;
+    }
+    return false;
 }
 
 void
@@ -80,12 +103,34 @@ MustlConfig::PostDataHandle(const string& inData)
 
     if (found)
     {
-        // SaveToFile();
+        UpdateHandlersCall();
     }
     if (failStr != "")
     {
         throw(MustlFail("Bad parameters:"+failStr));
     }
+}
+
+void
+MustlConfig::UpdateHandlerAdd(tUpdateHandler inHandler)
+{
+    cerr << "Adding handler" << endl;
+    m_updateHandlers.push_back(inHandler);
+    cerr << "Handler size=" << m_updateHandlers.size() << endl;
+}
+
+void
+MustlConfig::UpdateHandlersCall(void) const
+{
+    cerr << "Calling handlers" << endl;
+
+    list<tUpdateHandler>::const_iterator endValue = m_updateHandlers.end();
+    for (list<tUpdateHandler>::const_iterator p = m_updateHandlers.begin(); p != endValue; ++p)
+    {
+        cerr << "Calling handler" << endl;
+        (*p)();
+    }
+    cerr << "Handler size=" << m_updateHandlers.size() << endl;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatformError.cpp,v 1.1 2003/01/16 15:58:02 southa Exp $
+ * $Id: MustlPlatformError.cpp,v 1.2 2003/01/16 16:38:37 southa Exp $
  * $Log: MustlPlatformError.cpp,v $
+ * Revision 1.2  2003/01/16 16:38:37  southa
+ * Error codes for win32
+ *
  * Revision 1.1  2003/01/16 15:58:02  southa
  * Mustl exception handling
  *
@@ -88,7 +91,7 @@ MustlPlatformError::Throw(tErrorCode inSystemCode, const string& inPrefix)
         case MUSTL_ERROR_ENOTSUP:
 #endif
         case MUSTL_ERROR_EOPNOTSUPP:
-            throw(MustlPermanentFail(prefixStr+"ENOTSUP/EOPNOTSUPP: Not supported"));
+            throw(MustlPermanentFail(prefixStr+"EOPNOTSUPP/ENOTSUP: Not supported"));
             
         case MUSTL_ERROR_EADDRINUSE:
             throw(MustlAddressFail(prefixStr+"EADDRINUSE: Address is already in use"));

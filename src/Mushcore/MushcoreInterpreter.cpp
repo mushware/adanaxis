@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.4 2003/01/13 23:05:22 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.5 2003/01/15 13:27:32 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.5  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.4  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -81,7 +84,7 @@ using namespace std;
 MushcoreInterpreter *MushcoreInterpreter::m_instance = NULL;
 
 MushcoreInterpreter::MushcoreInterpreter() :
-    m_logCommands(true)
+    m_logFunction(NULL)
 {
 }
 
@@ -95,22 +98,22 @@ MushcoreInterpreter::Execute(const string& inStr)
 MushcoreScalar
 MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
 {
-    if (m_logCommands)
+    if (m_logFunction != NULL)
     {
-        cerr << "Command was " << ioCommand.Name() << "(";
-        cerr << ioCommand.ParamListGet() << ")" << endl;
+        ostringstream message;
+        message << "Command: " << ioCommand.Name() << "(" << ioCommand.ParamListGet() << ")";
+        m_logFunction(message.str());
     }
     
     MushcoreScalar retScalar(0);
-    if (m_handlers.find(ioCommand.Name()) != m_handlers.end())
+    tHandlerMap::const_iterator handlerFunction = m_handlers.find(ioCommand.Name());
+    if (handlerFunction != m_handlers.end())
     {
-        retScalar=m_handlers[ioCommand.Name()](ioCommand, MushcoreEnv::Instance());
+        retScalar = handlerFunction->second(ioCommand, MushcoreEnv::Instance());
     }
     else
     {
-        ostringstream message;
-        message << "Unknown command '" << ioCommand.Name() << "'";
-        throw(MushcoreCommandFail(message.str()));
+        throw(MushcoreCommandFail("Unknown command '"+ioCommand.Name()+"'"));
     }
     return retScalar;
 }
