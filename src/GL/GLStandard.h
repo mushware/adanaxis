@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UyVhKIxLmWPxUn/+gvv8zQ
+//%Header } 5G48h21GSab1hBFmr8Licg
 /*
- * $Id: GLStandard.h,v 1.16 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLStandard.h,v 1.17 2003/10/04 12:22:58 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.17  2003/10/04 12:22:58  southa
+ * File renaming
+ *
  * Revision 1.16  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *

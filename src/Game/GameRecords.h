@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zz9sxjYwiLC/+U5klXlNsg
+//%Header } 4G+EBC2zDuc8WFEDtSpA3g
 /*
- * $Id: GameRecords.h,v 1.14 2003/10/04 12:23:02 southa Exp $
+ * $Id: GameRecords.h,v 1.16 2003/10/04 18:12:13 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.16  2003/10/04 18:12:13  southa
+ * Readded
+ *
  * Revision 1.14  2003/10/04 12:23:02  southa
  * File renaming
  *

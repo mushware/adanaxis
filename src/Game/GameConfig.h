@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Xz82m+9htReogtq/ryjJJA
+//%Header } kFANUReADczQHwmekNEH5Q
 /*
- * $Id: GameConfig.h,v 1.16 2003/08/21 23:08:35 southa Exp $
+ * $Id: GameConfig.h,v 1.17 2003/09/17 19:40:31 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.17  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.16  2003/08/21 23:08:35  southa
  * Fixed file headers
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5TzenU1PD5np2OEjChEsQg
+//%Header } 2qxesHY4k76mxahSkeFBFg
 /*
- * $Id: MushcoreConfig.cpp,v 1.7 2003/08/21 23:09:09 southa Exp $
+ * $Id: MushcoreConfig.cpp,v 1.8 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreConfig.cpp,v $
+ * Revision 1.8  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:09  southa
  * Fixed file headers
  *

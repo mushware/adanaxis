@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlIDString.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HLC71ALihIryGsZvJd7Gog
+//%Header } gRB9nlSMgczwipxYb9PNnQ
 /*
- * $Id: MustlIDString.h,v 1.5 2003/08/21 23:09:26 southa Exp $
+ * $Id: MustlIDString.h,v 1.6 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlIDString.h,v $
+ * Revision 1.6  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.5  2003/08/21 23:09:26  southa
  * Fixed file headers
  *

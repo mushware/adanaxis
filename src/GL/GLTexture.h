@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } A9YFTqFWXbrkbfBlHPZiuQ
+//%Header } QZbGT6FQOYkZGp6KXs/pew
 /*
- * $Id: GLTexture.h,v 1.17 2003/08/21 23:08:30 southa Exp $
+ * $Id: GLTexture.h,v 1.18 2003/09/17 19:40:30 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.18  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:30  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } AfTGGCMhIobpGUVn+ZuXtw
+//%Header } jvyI9s5e3PH32wk9MiBJ4A
 /*
- * $Id: GLLine.h,v 1.10 2003/08/21 23:08:23 southa Exp $
+ * $Id: GLLine.h,v 1.11 2003/09/17 19:40:29 southa Exp $
  * $Log: GLLine.h,v $
+ * Revision 1.11  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:08:23  southa
  * Fixed file headers
  *

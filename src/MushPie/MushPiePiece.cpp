@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.1 2004/01/02 11:57:47 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.2 2004/01/02 17:31:48 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.2  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.1  2004/01/02 11:57:47  southa
  * Created
  *
@@ -62,11 +65,10 @@ MushPiePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "position=" << m_position << ", ";
     ioOut << "velocity=" << m_velocity << ", ";
-    ioOut << "sleepState=" << m_sleepState << ", ";
-    ioOut << "templateRef=" << m_templateRef;
+    ioOut << "sleepState=" << m_sleepState;
     ioOut << "]";
 }
-void
+bool
 MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
@@ -85,14 +87,11 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_sleepState;
     }
-    else if (inTagStr == "templateRef")
-    {
-        ioIn >> m_templateRef;
-    }
     else
     {
-        ioIn.Throw("Unrecognised tag '"+inTagStr+"'");
+        return false;
     }
+    return true;
 }
 void
 MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
@@ -103,7 +102,5 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_velocity;
     ioOut.TagSet("sleepState");
     ioOut << m_sleepState;
-    ioOut.TagSet("templateRef");
-    ioOut << m_templateRef;
 }
-//%outOfLineFunctions } Oa3RP8cuKnW//vNLvPENFg
+//%outOfLineFunctions } HOhXjQ5bq8jYvuUgm1TPWg

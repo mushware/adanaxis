@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlServer.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } d6eSMNI5HSSCE7ZrmmnKgA
+//%Header } HN+k5YRi5pfYGRKapikhaQ
 /*
- * $Id: MustlServer.cpp,v 1.18 2003/08/21 23:09:31 southa Exp $
+ * $Id: MustlServer.cpp,v 1.19 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.19  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.18  2003/08/21 23:09:31  southa
  * Fixed file headers
  *

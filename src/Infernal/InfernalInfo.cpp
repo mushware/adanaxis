@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } e3W1FfVgqdAMpRyS3JQ/oQ
+//%Header } 5zJGPs3Q4Kr0fA/Rcp9t6g
 /*
- * $Id: InfernalInfo.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalInfo.cpp,v 1.3 2004/01/01 21:15:46 southa Exp $
  * $Log: InfernalInfo.cpp,v $
+ * Revision 1.3  2004/01/01 21:15:46  southa
+ * Created XCode project
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *

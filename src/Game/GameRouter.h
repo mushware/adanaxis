@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } imUV5dibLOI+wT8/pSHJqw
+//%Header } o3cRggzDaChnt+D4tHwV0Q
 /*
- * $Id: GameRouter.h,v 1.17 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameRouter.h,v 1.18 2003/10/04 15:32:09 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.18  2003/10/04 15:32:09  southa
+ * Module split
+ *
  * Revision 1.17  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.11 2003/10/03 23:39:34 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.12 2004/01/02 17:31:48 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.12  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.11  2003/10/03 23:39:34  southa
  * XML polymorphs
  *
@@ -143,7 +146,10 @@ MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *outpObj)
         if (outpObj != NULL)
         {
             // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
-            outpObj->AutoXMLDataProcess(*this, tagStr);
+            if (!outpObj->AutoXMLDataProcess(*this, tagStr))
+            {
+                Throw("Unrecognised tag '"+tagStr+"'");
+            }
             // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
         }
         

@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceProcess.pm,v 1.2 2003/10/15 12:20:07 southa Exp $
+# $Id: SourceProcess.pm,v 1.3 2004/01/02 11:56:58 southa Exp $
 # $Log: SourceProcess.pm,v $
+# Revision 1.3  2004/01/02 11:56:58  southa
+# MushPie created
+#
 # Revision 1.2  2003/10/15 12:20:07  southa
 # Now strips alien line endings
 #
@@ -66,6 +69,8 @@ my @gProcessors = (
 my $gReal=1;
 my $gVerbose=0;
 my %gEntries = ();
+my @gExtraFiles = ();
+my %gProcessedFiles = ();
 
 GetOptions(
 'real=i' => \$gReal,
@@ -92,6 +97,57 @@ sub GetContext()
     $context;
 }
 
+sub ProcessFile($)
+{
+    my $filename=shift;
+    
+    if (exists $gProcessedFiles{$filename})
+    {
+        # Don't process files twice
+        return;
+    }
+    $gProcessedFiles{$filename} = 1;
+    
+    my $processed = 0;
+    my @contents;
+    my @origContents;
+    
+    for (my $i=0; $i < @gProcessors; $i += 2)
+    {
+        if ($filename =~ /$gProcessors[$i]/)
+        {
+            unless ($processed)
+        {
+                ReadFile(\@contents, $filename);
+                foreach (@contents)
+                {
+                    push @origContents, $_;
+                    s/\012//g;
+                        s/\015//g;        
+                }
+        }
+            $gProcessors[$i+1](\@contents, $filename);
+            $processed = 1;
+        }
+    }
+    if ($processed)
+    {
+        unless (CompareArrays(\@contents, \@origContents))
+        {
+            WriteFile(\@contents, $filename);
+        }
+        else
+        {
+            print "No modifications to $filename\n" if $gVerbose;
+        }
+        my $timestamp = FileTimestampGet($filename);
+        FileEntrySet($filename, $timestamp);
+    }
+    else
+    {
+        print "Ignoring file $filename\n" if ($gVerbose);
+    }
+}
 
 sub ProcessDirectory($);
 sub ProcessDirectory($)
@@ -132,49 +188,22 @@ sub ProcessDirectory($)
             }
             else
             {
-                my $processed = 0;
-                my @contents;
-                my @origContents;
-                       
-                for (my $i=0; $i < @gProcessors; $i += 2)
-                {
-                    if ($filename =~ /$gProcessors[$i]/)
-                    {
-                        unless ($processed)
-                        {
-                            ReadFile(\@contents, $filename);
-                            foreach (@contents)
-                            {
-                                push @origContents, $_;
-                                s/\012//g;
-                                s/\015//g;        
-                            }
-                        }
-                        $gProcessors[$i+1](\@contents, $filename);
-                        $processed = 1;
-                    }
-                }
-                if ($processed)
-                {
-                    unless (CompareArrays(\@contents, \@origContents))
-                    {
-                        WriteFile(\@contents, $filename);
-                    }
-                    else
-                    {
-                        print "No modifications to $filename\n" if $gVerbose;
-                    }
-                    $timestamp = FileTimestampGet($filename);
-                    FileEntrySet($filename, $timestamp);
-                }
-                else
-                {
-                    print "Ignoring file $filename\n" if ($gVerbose);
-                }
+                ProcessFile($filename);
             }
         }
     }
+    foreach my $filename (@gExtraFiles)
+    {
+        print "Processing extra file $filename\n" if ($gVerbose);
+        ProcessFile($filename);
+    }
+    @gExtraFiles=();
     print "Leaving directory $prefix\n" if ($gVerbose);
+}
+
+sub ExtraFile($)
+{
+    push @gExtraFiles, shift;
 }
 
 sub Process($)

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } R50LoW9d2MyCM0eN10Ob1A
+//%Header } 6lpS4MFH82R1bNT8G/ThKA
 /*
- * $Id: MushcoreSTL.h,v 1.5 2003/10/06 22:50:02 southa Exp $
+ * $Id: MushcoreSTL.h,v 1.6 2004/01/01 21:15:46 southa Exp $
  * $Log: MushcoreSTL.h,v $
+ * Revision 1.6  2004/01/01 21:15:46  southa
+ * Created XCode project
+ *
  * Revision 1.5  2003/10/06 22:50:02  southa
  * Added M_PI
  *

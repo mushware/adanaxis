@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } J5QAbMDwhk2XZsa+TiAN7w
+//%Header } mhlC8c6D/Irf0X0HlU+XHg
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.19 2003/08/21 23:09:00 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.20 2003/09/17 19:40:34 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.20  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.19  2003/08/21 23:09:00  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wtaCfE3Bg2cWSVhLCRxLsA
+//%Header } yDMnpO6dBYVbvQbZBWfOWw
 /*
- * $Id: GameEvent.h,v 1.11 2003/10/04 15:32:09 southa Exp $
+ * $Id: GameEvent.h,v 1.12 2003/10/07 22:40:05 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.12  2003/10/07 22:40:05  southa
+ * Created MeshMover
+ *
  * Revision 1.11  2003/10/04 15:32:09  southa
  * Module split
  *

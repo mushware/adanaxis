@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LLjLxpagoVgJW/eRYPI7QQ
+//%Header } PlnS42gkKu6Jk7XBx4Wu3w
 /*
- * $Id: GameCommandHandler.h,v 1.14 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.15 2003/10/04 15:32:08 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.15  2003/10/04 15:32:08  southa
+ * Module split
+ *
  * Revision 1.14  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *

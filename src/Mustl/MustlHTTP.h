@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlHTTP.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } R+v0YMX3gsZOwM7wcO8DVw
+//%Header } asO3UtXyfose9GCSu/VQsA
 /*
- * $Id: MustlHTTP.h,v 1.5 2003/08/21 23:09:25 southa Exp $
+ * $Id: MustlHTTP.h,v 1.6 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlHTTP.h,v $
+ * Revision 1.6  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.5  2003/08/21 23:09:25  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } W3kyDNAJV5Y8c9Vy1zFOEQ
+//%Header } UdYCV2swb/hVQlbjFH7NEA
 /*
- * $Id: MushMeshStitchable.h,v 1.2 2003/10/19 15:59:34 southa Exp $
+ * $Id: MushMeshStitchable.h,v 1.3 2003/10/20 13:02:54 southa Exp $
  * $Log: MushMeshStitchable.h,v $
+ * Revision 1.3  2003/10/20 13:02:54  southa
+ * Patch fixes and testing
+ *
  * Revision 1.2  2003/10/19 15:59:34  southa
  * Edge manipulation
  *

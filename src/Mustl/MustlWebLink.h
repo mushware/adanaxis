@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlWebLink.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cOJ0YnSgCprNsBxG/Bg3gQ
+//%Header } 2sFJql7hRE50IT+BNOdSEw
 /*
- * $Id: MustlWebLink.h,v 1.7 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlWebLink.h,v 1.8 2003/10/06 22:23:45 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.8  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.7  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } st4acf/Qb4/sh4mshhSJwQ
+//%Header } 61vgDQLU2BW2SFeZx1RGIA
 /*
- * $Id: GLQuad.h,v 1.11 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLQuad.h,v 1.12 2003/10/04 12:22:58 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.12  2003/10/04 12:22:58  southa
+ * File renaming
+ *
  * Revision 1.11  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tpuhpnXBb5/qIMNIIy39Bg
+//%Header } IPxhaU6jNA6p7HsUuHCwSg
 /*
- * $Id: GLRectangle.cpp,v 1.19 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.20 2003/10/04 12:22:58 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.20  2003/10/04 12:22:58  southa
+ * File renaming
+ *
  * Revision 1.19  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *

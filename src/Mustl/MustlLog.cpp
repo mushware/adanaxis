@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlLog.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } BYZb/i9tviqYw9R1Z1W3zw
+//%Header } QJ8jVWUHiCIdM33PoHVeAg
 /*
- * $Id: MustlLog.cpp,v 1.11 2003/08/21 23:09:27 southa Exp $
+ * $Id: MustlLog.cpp,v 1.12 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.12  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.11  2003/08/21 23:09:27  southa
  * Fixed file headers
  *

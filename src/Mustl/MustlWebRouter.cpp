@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlWebRouter.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } P3zEKTXF2fa3fLv2sN67PQ
+//%Header } uPXLjlJ7ZC3oOfFs+HUq9A
 /*
- * $Id: MustlWebRouter.cpp,v 1.13 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.14 2003/10/06 22:23:45 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.14  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.13  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *

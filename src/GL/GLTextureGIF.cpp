@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } KXOLnBup+jHRz6M6+9ERFg
+//%Header } vU84uA8b91SlwnymKt2NIA
 /*
- * $Id: GLTextureGIF.cpp,v 1.18 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.19 2004/01/01 21:15:45 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.19  2004/01/01 21:15:45  southa
+ * Created XCode project
+ *
  * Revision 1.18  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *

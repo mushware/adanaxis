@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ArNN26gY6DQPZ70a6nlDuQ
+//%Header } l7l96BOR/U94jSh7uenDpg
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.30 2003/08/21 23:08:30 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.31 2003/09/17 19:40:30 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.31  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.30  2003/08/21 23:08:30  southa
  * Fixed file headers
  *

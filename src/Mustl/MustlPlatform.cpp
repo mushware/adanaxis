@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlPlatform.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HdAJW/GZ8tLqcYDrNuDWpQ
+//%Header } pTSUWjfJs8FWebTW2swngw
 /*
- * $Id: MustlPlatform.cpp,v 1.16 2003/08/21 23:09:28 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.17 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.17  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.16  2003/08/21 23:09:28  southa
  * Fixed file headers
  *

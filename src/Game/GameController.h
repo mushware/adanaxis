@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } b5n07Tqotx4MonHENJayVQ
+//%Header } gF1oxYCHhFVzdpX4CcegEQ
 /*
- * $Id: GameController.h,v 1.13 2003/08/21 23:08:37 southa Exp $
+ * $Id: GameController.h,v 1.14 2003/09/17 19:40:31 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.14  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.13  2003/08/21 23:08:37  southa
  * Fixed file headers
  *

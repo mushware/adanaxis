@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /YbOR7fEuxdPYGjidC3wiA
+//%Header } WkAkPEatlzETkXVMDjMhyA
 /*
- * $Id: InfernalDataUtils.h,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalDataUtils.h,v 1.2 2003/10/04 12:44:34 southa Exp $
  * $Log: InfernalDataUtils.h,v $
+ * Revision 1.2  2003/10/04 12:44:34  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *

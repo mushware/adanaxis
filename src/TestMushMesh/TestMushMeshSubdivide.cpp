@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } raybvYJ6HiKtjntHFaNDHg
+//%Header } SFPsgjlDzWIJxo/MBcs9fA
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.13 2003/10/25 18:26:03 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.14 2003/11/13 23:25:32 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.14  2003/11/13 23:25:32  southa
+ * gcc 2.95 mods
+ *
  * Revision 1.13  2003/10/25 18:26:03  southa
  * Patch connection rework
  *

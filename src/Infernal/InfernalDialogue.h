@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pude4iauGa09mdv14bs4Yg
+//%Header } NTlBsF8zSsqlWwKY37gwHQ
 /*
- * $Id: InfernalDialogue.h,v 1.19 2003/10/04 12:22:59 southa Exp $
+ * $Id: InfernalDialogue.h,v 1.1 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalDialogue.h,v $
+ * Revision 1.1  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.19  2003/10/04 12:22:59  southa
  * File renaming
  *

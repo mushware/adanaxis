@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 4YtnF+/qxzOf8b2BtMu7/Q
+//%Header } 7u69XXGKDASVrxnEbr389Q
 /*
- * $Id: MushcoreObject.h,v 1.1 2003/09/21 09:51:09 southa Exp $
+ * $Id: MushcoreObject.h,v 1.2 2003/10/02 23:33:38 southa Exp $
  * $Log: MushcoreObject.h,v $
+ * Revision 1.2  2003/10/02 23:33:38  southa
+ * XML polymorphic objects
+ *
  * Revision 1.1  2003/09/21 09:51:09  southa
  * Stream autogenerators
  *

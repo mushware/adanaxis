@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } dYV1K4UpVbt8U388kT347w
+//%Header } aTSEw63LKX3T/DKXT8IarQ
 /*
- * $Id: GameRewards.h,v 1.12 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameRewards.h,v 1.14 2003/10/04 18:12:13 southa Exp $
  * $Log: GameRewards.h,v $
+ * Revision 1.14  2003/10/04 18:12:13  southa
+ * Readded
+ *
  * Revision 1.12  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *

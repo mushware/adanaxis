@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1cSZtn21xIwWgGdrqC6Vrg
+//%Header } 47mOGP5nAmOd8TIW01bJ6Q
 /*
- * $Id: InfernalTileMap.h,v 1.2 2003/10/04 12:44:36 southa Exp $
+ * $Id: InfernalTileMap.h,v 1.3 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalTileMap.h,v $
+ * Revision 1.3  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:36  southa
  * File renaming
  *

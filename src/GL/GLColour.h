@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } izCCi2dND384lK1+fIgw9Q
+//%Header } hyiZ+b2uNlo5j7vQ5mVf9w
 /*
- * $Id: GLColour.h,v 1.14 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLColour.h,v 1.15 2003/10/04 15:32:08 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.15  2003/10/04 15:32:08  southa
+ * Module split
+ *
  * Revision 1.14  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *

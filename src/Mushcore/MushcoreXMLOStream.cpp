@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SW5J6spEp5jvZeyT03E1UA
+//%Header } q7icXMIMK467hzyqR+RUTg
 /*
- * $Id: MushcoreXMLOStream.cpp,v 1.5 2003/09/22 19:40:36 southa Exp $
+ * $Id: MushcoreXMLOStream.cpp,v 1.6 2003/10/01 23:18:27 southa Exp $
  * $Log: MushcoreXMLOStream.cpp,v $
+ * Revision 1.6  2003/10/01 23:18:27  southa
+ * XML object handling
+ *
  * Revision 1.5  2003/09/22 19:40:36  southa
  * XML I/O work
  *

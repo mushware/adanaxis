@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xrfzR12dM4JYonDbCWyJdA
+//%Header } eXShKCfvGChN/sQCT/uVMw
 /*
- * $Id: InfernalMotion.h,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalMotion.h,v 1.3 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalMotion.h,v $
+ * Revision 1.3  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *

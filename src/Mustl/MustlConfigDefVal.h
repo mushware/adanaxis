@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlConfigDefVal.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 37TLwPtMjFjqzaby0HFkeQ
+//%Header } aVCWAn/3X5SmQJj2QK+Qrg
 /*
- * $Id: MustlConfigDefVal.h,v 1.3 2003/08/21 23:09:24 southa Exp $
+ * $Id: MustlConfigDefVal.h,v 1.4 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlConfigDefVal.h,v $
+ * Revision 1.4  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.3  2003/08/21 23:09:24  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } N7iPl0bRnj4r8i7A/Iukbw
+//%Header } EhlKJwR5jYOFzt2/bmv21g
 /*
- * $Id: GLFont.h,v 1.11 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLFont.h,v 1.12 2003/10/04 15:32:08 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.12  2003/10/04 15:32:08  southa
+ * Module split
+ *
  * Revision 1.11  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *

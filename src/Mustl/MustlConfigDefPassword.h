@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlConfigDefPassword.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jCJlm5wbzbRaUz/2I4FeRQ
+//%Header } WuTaXpGuulfyudsH9E2MLg
 /*
- * $Id: MustlConfigDefPassword.h,v 1.4 2003/09/17 19:40:37 southa Exp $
+ * $Id: MustlConfigDefPassword.h,v 1.5 2003/10/04 12:44:36 southa Exp $
  * $Log: MustlConfigDefPassword.h,v $
+ * Revision 1.5  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.4  2003/09/17 19:40:37  southa
  * Source conditioning upgrades
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } AE6fh4OKVYRKEno4yT42xQ
+//%Header } 3j0G6ZKdulvYZGbhotTRhQ
 /*
- * $Id: InfernalSpacePoint.h,v 1.1 2003/10/04 12:23:06 southa Exp $
+ * $Id: InfernalSpacePoint.h,v 1.2 2003/10/04 12:44:36 southa Exp $
  * $Log: InfernalSpacePoint.h,v $
+ * Revision 1.2  2003/10/04 12:44:36  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:06  southa
  * File renaming
  *

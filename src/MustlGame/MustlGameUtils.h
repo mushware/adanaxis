@@ -7,7 +7,7 @@
  *
  * File: src/MustlGame/MustlGameUtils.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qD4OTm8n1biEyJaE95Utrw
+//%Header } yBYMvzybGJRs7U0hSSW74w
 /*
- * $Id: MustlGameUtils.h,v 1.13 2003/09/17 19:40:32 southa Exp $
+ * $Id: MustlGameUtils.h,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameUtils.h,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.13  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

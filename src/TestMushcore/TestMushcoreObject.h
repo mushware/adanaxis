@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6Pvz7HiimjBXCxXQxlnIcA
+//%Header } F+NlKkNqHxJmGlhIZkKE4g
 /*
- * $Id: TestMushcoreObject.h,v 1.15 2003/10/03 23:39:34 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.16 2003/10/14 10:46:05 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.16  2003/10/14 10:46:05  southa
+ * MeshMover creation
+ *
  * Revision 1.15  2003/10/03 23:39:34  southa
  * XML polymorphs
  *
@@ -177,9 +180,9 @@ public:
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     bool AutoEquals(const TestMushcoreObject& inObj) const;
     void AutoPrint(std::ostream& ioOut) const;
-    void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } YSHPgSH9K/DHw4ruWzt3mw
+//%classPrototypes } 3ZK713N5be0A8cPbOSDlfA
 };
 //%inlineHeader {
 inline bool

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } aN1UZCrWmgRxSG4S3+dPvQ
+//%Header } HJ6KtynbiaC2oOYTL1uiSg
 /*
- * $Id: TestMushMeshBox.cpp,v 1.1 2003/10/17 12:27:20 southa Exp $
+ * $Id: TestMushMeshBox.cpp,v 1.2 2003/10/17 19:33:11 southa Exp $
  * $Log: TestMushMeshBox.cpp,v $
+ * Revision 1.2  2003/10/17 19:33:11  southa
+ * Mesh patches
+ *
  * Revision 1.1  2003/10/17 12:27:20  southa
  * Line end fixes and more mesh work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlData.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vgCSoa5Q/87QVURYWGsNMw
+//%Header } 4BtU5wMfOU8YYOqXOouT8w
 /*
- * $Id: MustlData.h,v 1.7 2003/08/21 23:09:24 southa Exp $
+ * $Id: MustlData.h,v 1.8 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.8  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:24  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7SH5UvLNxDfdKwMQ7Xi9/A
+//%Header } TgqB2YP3Vk8HqZiiUvKGCQ
 /*
- * $Id: MushcoreFlex.h,v 1.3 2003/08/21 23:09:12 southa Exp $
+ * $Id: MushcoreFlex.h,v 1.4 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreFlex.h,v $
+ * Revision 1.4  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.3  2003/08/21 23:09:12  southa
  * Fixed file headers
  *

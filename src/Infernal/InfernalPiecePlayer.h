@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JtZQnntRKq9o0IGhePKVyg
+//%Header } b7Xc1ZmC/w7sQvBg7dNyig
 /*
- * $Id: InfernalPiecePlayer.h,v 1.1 2003/10/04 12:44:36 southa Exp $
+ * $Id: InfernalPiecePlayer.h,v 1.2 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalPiecePlayer.h,v $
+ * Revision 1.2  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:44:36  southa
  * File renaming
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } dJu9HxOEI2vOWDX3HYUKUA
+//%Header } 3KglLGf6ivndMTaRbHXsgw
 /*
- * $Id: GameSTL.cpp,v 1.2 2003/08/21 23:08:54 southa Exp $
+ * $Id: GameSTL.cpp,v 1.3 2003/09/17 19:40:33 southa Exp $
  * $Log: GameSTL.cpp,v $
+ * Revision 1.3  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.2  2003/08/21 23:08:54  southa
  * Fixed file headers
  *

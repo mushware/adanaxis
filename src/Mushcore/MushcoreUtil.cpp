@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } r1qdr/CPxCNbhC2AuKdGEA
+//%Header } pmQovnG+eSD9h3QcMJoqMg
 /*
- * $Id: MushcoreUtil.cpp,v 1.12 2003/10/02 23:33:38 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.13 2003/10/04 12:23:09 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.13  2003/10/04 12:23:09  southa
+ * File renaming
+ *
  * Revision 1.12  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tnPrj/F2b1sK/tn4g1+1Cg
+//%Header } w043ydgSglW3nMbwSA1Ebg
 /*
- * $Id: GameTimer.h,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Id: GameTimer.h,v 1.23 2003/10/04 15:32:09 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.23  2003/10/04 15:32:09  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:23:07  southa
  * File renaming
  *

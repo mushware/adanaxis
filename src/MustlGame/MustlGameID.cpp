@@ -3,7 +3,7 @@
  *
  * File: src/MustlGame/MustlGameID.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gX/hSaBezfywWwRSLJVYZw
+//%Header } BJ1HyubBOO2he8vzsyhCsA
 /*
- * $Id: MustlGameID.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
+ * $Id: MustlGameID.cpp,v 1.2 2003/10/06 22:42:04 southa Exp $
  * $Log: MustlGameID.cpp,v $
+ * Revision 1.2  2003/10/06 22:42:04  southa
+ * Include fixes
+ *
  * Revision 1.1  2003/10/06 22:22:38  southa
  * Moved from Game to MustlGame
  *

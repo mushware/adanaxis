@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xZttvudy36KFB+QD1H0nmA
+//%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.7 2003/09/23 22:57:57 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.8 2003/09/30 22:11:30 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.8  2003/09/30 22:11:30  southa
+ * XML objects within objects
+ *
  * Revision 1.7  2003/09/23 22:57:57  southa
  * XML vector handling
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NW+MP6Qv33jpY98S45VDWw
+//%Header } 7pL8NZmUTdiVVqAI7d6PfA
 /*
- * $Id: PlatformInputUtils.cpp,v 1.12 2003/08/21 23:09:35 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.13 2003/09/17 19:40:39 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.13  2003/09/17 19:40:39  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:09:35  southa
  * Fixed file headers
  *

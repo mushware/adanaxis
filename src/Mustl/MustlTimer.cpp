@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlTimer.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } WzUI3TfF4uD9YFlW+myPOg
+//%Header } U726Wnlx+380091mCSSn8w
 /*
- * $Id: MustlTimer.cpp,v 1.6 2003/08/21 23:09:31 southa Exp $
+ * $Id: MustlTimer.cpp,v 1.7 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlTimer.cpp,v $
+ * Revision 1.7  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.6  2003/08/21 23:09:31  southa
  * Fixed file headers
  *

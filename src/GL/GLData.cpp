@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 45mAqSjui4mE3IQaI4Eh3Q
+//%Header } /l3th/v5paSvxuj8gljPZQ
 /*
- * $Id: GLData.cpp,v 1.26 2003/08/21 23:08:20 southa Exp $
+ * $Id: GLData.cpp,v 1.27 2003/09/17 19:40:29 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.27  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.26  2003/08/21 23:08:20  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gEh/hbSKsNzMvyNOGorB3w
+//%Header } ULcld2q1/9CHp8iLY+i0/A
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreVirtualObject.h,v 1.1 2003/10/02 23:33:38 southa Exp $
+ * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.1  2003/10/02 23:33:38  southa
+ * XML polymorphic objects
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -37,7 +40,7 @@ public:
     virtual MushcoreVirtualObject *AutoCreate(void) const = 0;
 
     virtual void AutoPrint(std::ostream& ioOut) const = 0;
-    virtual void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr) = 0;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr) = 0;
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const = 0;
 };
 

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LyVmf1k4NKHROl6cXD33Sg
+//%Header } HQs7IqNvuM/raKQ9Or5Yvg
 /*
- * $Id: MediaSound.h,v 1.11 2003/08/21 23:09:02 southa Exp $
+ * $Id: MediaSound.h,v 1.12 2003/09/17 19:40:34 southa Exp $
  * $Log: MediaSound.h,v $
+ * Revision 1.12  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.11  2003/08/21 23:09:02  southa
  * Fixed file headers
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wEGV1dv23L0/XdO/oScH6A
+//%Header } eldhcVkDtxHEibO1s1n+ng
 /*
- * $Id: GameRouter.cpp,v 1.28 2003/10/06 22:23:44 southa Exp $
+ * $Id: GameRouter.cpp,v 1.29 2003/10/06 23:06:31 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.29  2003/10/06 23:06:31  southa
+ * Include fixes
+ *
  * Revision 1.28  2003/10/06 22:23:44  southa
  * Game to GameMustl move
  *

@@ -5,15 +5,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } M902pzdqb1vaK4Wbqkv1jA
+//%Header } /t7NicMa8R+QJjJx0KpO7w
 /*
- * $Id: InfernalFloorDesigner.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
+ * $Id: InfernalFloorDesigner.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalFloorDesigner.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:34  southa
  * File renaming
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Y36idSociBVXjB2u01wN6w
+//%Header } iDPNfbMZ7BZLg/2HjUP/7A
 /*
- * $Id: GLCommandHandler.h,v 1.12 2003/08/21 23:08:19 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.13 2003/09/17 19:40:29 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.13  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:19  southa
  * Fixed file headers
  *

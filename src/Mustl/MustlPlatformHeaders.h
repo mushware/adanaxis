@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlPlatformHeaders.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Nk20aO/Y6Dx4yIUdKkHfnQ
+//%Header } HlGDol1/QiMEd4PCMuvG1A
 /*
- * $Id: MustlPlatformHeaders.h,v 1.13 2003/08/21 23:23:06 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.14 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.14  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.13  2003/08/21 23:23:06  southa
  * Replaced changes inadvertently lost
  *

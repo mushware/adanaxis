@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } G6LV1gUdQUNJH5V1BpylWQ
+//%Header } X7+028vaXXXQGbUppiPRWw
 /*
- * $Id: GameFrameTimer.h,v 1.4 2003/08/21 23:08:45 southa Exp $
+ * $Id: GameFrameTimer.h,v 1.5 2003/09/17 19:40:32 southa Exp $
  * $Log: GameFrameTimer.h,v $
+ * Revision 1.5  2003/09/17 19:40:32  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.4  2003/08/21 23:08:45  southa
  * Fixed file headers
  *

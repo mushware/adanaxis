@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HU4NhFLQ2laR8JEiClGoXA
+//%Header } /nYbX6dMQIzdhaCzwQSAWg
 /*
- * $Id: TestMushMeshStandard.h,v 1.1 2003/10/14 13:07:26 southa Exp $
+ * $Id: TestMushMeshStandard.h,v 1.2 2003/10/15 12:23:10 southa Exp $
  * $Log: TestMushMeshStandard.h,v $
+ * Revision 1.2  2003/10/15 12:23:10  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.1  2003/10/14 13:07:26  southa
  * MushMesh vector creation
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vQ2UEPvvcZY1QyRzx08+Jw
+//%Header } ekm6SBZbMj0IRVRPvvu2RQ
 /*
- * $Id: GLAppSignal.h,v 1.12 2003/08/21 23:08:18 southa Exp $
+ * $Id: GLAppSignal.h,v 1.13 2003/09/17 19:40:29 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.13  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:18  southa
  * Fixed file headers
  *

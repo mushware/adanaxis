@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } AiPuccWpk2L6jUDaFHRs0g
+//%Header } QFrO3qrIh2RJLhY2NRioEQ
 /*
- * $Id: InfernalLightLinks.h,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalLightLinks.h,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalLightLinks.h,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.1 2004/01/02 11:57:47 southa Exp $
+ * $Id: MushPiePiece.h,v 1.2 2004/01/02 17:31:48 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.2  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.1  2004/01/02 11:57:47  southa
  * Created
  *
@@ -49,7 +52,7 @@ private:
     Mushware::t3Val m_position; //:readwrite
     Mushware::t3Val m_velocity; //:readwrite
     tSleepState m_sleepState; //:readwrite
-    MushcoreDataRef<Mushware::U32> m_templateRef; //:readwrite
+    //MushcoreDataRef<Mushware::U32> m_templateRef; //:readwrite
     
 //%classPrototypes {
 public:
@@ -59,16 +62,14 @@ public:
     void VelocitySet(const Mushware::t3Val& inValue) { m_velocity=inValue; }
     const tSleepState& SleepStateGet(void) const { return m_sleepState; }
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
-    const MushcoreDataRef<Mushware::U32>& TemplateRefGet(void) const { return m_templateRef; }
-    void TemplateRefSet(const MushcoreDataRef<Mushware::U32>& inValue) { m_templateRef=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePiece *AutoClone(void) const;
     virtual MushPiePiece *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     void AutoPrint(std::ostream& ioOut) const;
-    void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } fSB++Z1YwICUdAjl1SHYzA
+//%classPrototypes } LsyWnIQF8lDUXAr1DlurRQ
 };
 //%inlineHeader {
 inline std::ostream&

@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlFail.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8kcpP7d8CjZwKwlI8CfzXA
+//%Header } +Uu08kLAJNfFsGeQQAzVrQ
 /*
- * $Id: MustlFail.cpp,v 1.7 2003/08/21 23:09:24 southa Exp $
+ * $Id: MustlFail.cpp,v 1.8 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlFail.cpp,v $
+ * Revision 1.8  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:24  southa
  * Fixed file headers
  *

@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } k0No7lYD7eN99xHKZPXcDg
+//%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.16 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.17 2004/01/02 17:31:48 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.17  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.16  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *

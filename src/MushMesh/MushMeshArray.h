@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } EEaZ1vjndQRXjGZYADcVMQ
+//%Header } PK+ZCe4Bf9/jI7UGYOtvRA
 /*
- * $Id: MushMeshArray.h,v 1.10 2003/10/23 20:03:57 southa Exp $
+ * $Id: MushMeshArray.h,v 1.11 2004/01/01 21:15:46 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.11  2004/01/01 21:15:46  southa
+ * Created XCode project
+ *
  * Revision 1.10  2003/10/23 20:03:57  southa
  * End mesh work
  *
@@ -218,7 +221,7 @@ MushMeshArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "ySize=" << m_ySize << ", ";
-// FIXME!    ioOut << "values=" << m_values;
+    ioOut << "values=" << m_values;
     ioOut << "]";
 }
 

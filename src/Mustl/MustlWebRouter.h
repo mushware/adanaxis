@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlWebRouter.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qXzblr2nKXtPmyLKOH3KdA
+//%Header } MctE4hzTzbF6lbeSYcdLFg
 /*
- * $Id: MustlWebRouter.h,v 1.7 2003/08/21 23:09:33 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.8 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.8  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:33  southa
  * Fixed file headers
  *

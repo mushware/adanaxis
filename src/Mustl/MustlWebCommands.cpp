@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlWebCommands.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PF+PAqyHNlPUZ0q33Xn5Lw
+//%Header } mthGZaUJKdXpa23yP0nSLA
 /*
- * $Id: MustlWebCommands.cpp,v 1.9 2003/08/21 23:09:32 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.10 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.10  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.9  2003/08/21 23:09:32  southa
  * Fixed file headers
  *

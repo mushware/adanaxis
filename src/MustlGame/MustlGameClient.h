@@ -7,7 +7,7 @@
  *
  * File: src/MustlGame/MustlGameClient.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gtoOimOV8fD8ZDjA/5QqpQ
+//%Header } bWQZsYE08i3wCn8IaZjh8w
 /*
- * $Id: MustlGameClient.h,v 1.2 2003/10/06 22:42:04 southa Exp $
+ * $Id: MustlGameClient.h,v 1.3 2003/10/07 22:40:06 southa Exp $
  * $Log: MustlGameClient.h,v $
+ * Revision 1.3  2003/10/07 22:40:06  southa
+ * Created MeshMover
+ *
  * Revision 1.2  2003/10/06 22:42:04  southa
  * Include fixes
  *

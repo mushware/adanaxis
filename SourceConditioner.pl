@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.20 2004/01/01 23:03:58 southa Exp $
+# $Id: SourceConditioner.pl,v 1.21 2004/01/02 11:56:58 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.21  2004/01/02 11:56:58  southa
+# MushPie created
+#
 # Revision 1.20  2004/01/01 23:03:58  southa
 # XCode fixes
 #
@@ -134,9 +137,29 @@ SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessIncludeGuard);
+SourceProcess::AddArrayProcessor('\.h$', \&ProcessTouchCFile);
 
 SourceProcess::Process('src');
 
+sub XMLBaseGenerate($)
+{
+    my ($infoRef) = @_;
+    $$infoRef{XML_BASES} = [];
+    
+    my $commandsRef = $$infoRef{COMMANDS};
+    my $xmlBasesRef = $$infoRef{XML_BASES};
+    foreach my $command (@$commandsRef)
+    {
+        if ($command =~ /^xml1base\s+(.*)$/)
+        {
+            foreach my $class (split(',', $1))
+            {
+                $class =~ s/\s//g; # remove whitespace
+                push @$xmlBasesRef, $class;
+            }
+        }
+    }
+}
 
 sub HeaderInfoCreate($$)
 {
@@ -205,6 +228,8 @@ sub HeaderInfoCreate($$)
     }
     $$infoRef{EOF_LINE} = $lineNum;
     $$infoRef{ARRAY_ELEMENTS} = scalar @$contentRef;
+
+    XMLBaseGenerate($infoRef);
 }
 
 sub ClassLineRead($$)
@@ -460,6 +485,14 @@ sub OstreamWriteFunctionGenerate($$)
     push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const";
     push @$outputRef, "{";
     push @$outputRef, "    ioOut << \"[\";";
+    my $xmlBases = $$infoRef{XML_BASES};
+    if (defined($xmlBases))
+    {
+        foreach my $base (@$xmlBases)
+        {
+            push @$outputRef, "    ${base}::$gConfig{AUTO_PREFIX}Print(ioOut);";
+        }
+    }
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -607,7 +640,7 @@ sub XMLIStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
+    push @$outputRef, "$gConfig{INDENT}bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -619,13 +652,14 @@ sub XMLIStreamWriteFunctionGenerate($$)
     die "No class found for XMLIStream writer" unless defined ($className);
     
     push @$outputRef,
-"void",
+"bool",
 "${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
 "{",
 "    if (inTagStr == \"obj\")",
 "    {",
 "        ioIn >> *this;",
 "    }";
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -643,11 +677,24 @@ sub XMLIStreamWriteFunctionGenerate($$)
 
         }
     }
+    my $xmlBases = $$infoRef{XML_BASES};
+    if (defined($xmlBases))
+    {
+        foreach my $base (@$xmlBases)
+        {
+            push @$outputRef,
+"    else if (${base}::$gConfig{AUTO_PREFIX}XMLDataProcess(ioIn, inTagStr))",
+"    {",
+"        // Tag consumed by base class",
+"    }";
+        }
+    }
     push @$outputRef,
 "    else",
 "    {",
-"        ioIn.Throw(\"Unrecognised tag '\"+inTagStr+\"'\");",
+"        return false;",
 "    }",
+"    return true;",        
 "}";
 }
 
@@ -690,6 +737,14 @@ sub XMLOStreamWriteFunctionGenerate($$)
     push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
     push @$outputRef,
 "{";
+    my $xmlBases = $$infoRef{XML_BASES};
+    if (defined($xmlBases))
+    {
+        foreach my $base (@$xmlBases)
+        {
+            push @$outputRef, "    ${base}::$gConfig{AUTO_PREFIX}XMLPrint(ioOut);";
+        }
+    }
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -872,6 +927,21 @@ sub ProcessIncludeGuard($$)
     IncludeGuardGenerate(\@$contentRef, $filename);
 }
 
+sub ProcessTouchCFile($$)
+{
+    my ($contentRef, $filename) = @_;
+    my $counterpart = $filename;
+    $counterpart =~ s/\.h$/\.cpp/;
+    if ( -f $counterpart )
+    {
+        SourceProcess::ExtraFile($counterpart);
+    }
+    else
+    {
+        print "Header $filename has no counterpart $counterpart\n";
+    }
+}
+
 sub ProcessHeader($$)
 {
     my ($contentRef, $filename) = @_;
@@ -890,11 +960,11 @@ sub ProcessHeader($$)
     {
         push @ classPrototypes, "public:";
         
+        # Member accessors and modifers
+        AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
+
         for (my $i=0; $i < @$commandsRef; $i += 1)
-        {
-            # Member accessors and modifers
-            AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
-            
+        {            
             # Standard functions
             if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
             {            

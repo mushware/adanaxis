@@ -9,15 +9,18 @@
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Domain by Andy Southgate and Mushware Limited in 2002-2004.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Xy+fzSH8daL6jemhQN4e2A
+//%Header } AqRkhzf74kOxwRFo7CMCSw
 /*
- * $Id: MushcoreIO.h,v 1.5 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushcoreIO.h,v 1.6 2003/10/17 12:27:19 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.6  2003/10/17 12:27:19  southa
+ * Line end fixes and more mesh work
+ *
  * Revision 1.5  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -80,7 +83,7 @@ operator<<(std::ostream& ioOut, const std::vector<T>& inObj)
     return ioOut;
 }
 
-#ifdef HAVE_VALARRAY
+#ifndef MIMIC_VALARRAY
 // valarray output
 template <class T>
 inline std::ostream&

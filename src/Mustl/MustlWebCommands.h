@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlWebCommands.h
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -16,10 +16,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wz15nvj8K+F1Lo+CDiVupg
+//%Header } tSqRrCFzSoPoX5lDiKThWA
 /*
- * $Id: MustlWebCommands.h,v 1.6 2003/08/21 23:09:32 southa Exp $
+ * $Id: MustlWebCommands.h,v 1.7 2003/09/17 19:40:38 southa Exp $
  * $Log: MustlWebCommands.h,v $
+ * Revision 1.7  2003/09/17 19:40:38  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.6  2003/08/21 23:09:32  southa
  * Fixed file headers
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlWebLink.cpp
  *
- * Copyright Andy Southgate 2002-2003
+ * Copyright Andy Southgate 2002-2004
  *
  * This file may be redistributed and/or modified under the terms of the
  * Mushware licence which you should have received with this file.  For
@@ -12,10 +12,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } daCXMv+Y5SoIY5jtzphSpA
+//%Header } 9z0X5Nz7BBik209q4454nw
 /*
- * $Id: MustlWebLink.cpp,v 1.24 2003/10/06 22:23:45 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.25 2004/01/01 21:15:46 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.25  2004/01/01 21:15:46  southa
+ * Created XCode project
+ *
  * Revision 1.24  2003/10/06 22:23:45  southa
  * Game to GameMustl move
  *
