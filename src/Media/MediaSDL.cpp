@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: MediaSDL.cpp,v 1.9 2002/08/27 08:56:28 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.10 2002/10/14 18:13:18 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.10  2002/10/14 18:13:18  southa
+ * GLModeDef work
+ *
  * Revision 1.9  2002/08/27 08:56:28  southa
  * Source conditioning
  *
@@ -55,11 +58,7 @@ MediaSDL::~MediaSDL()
 {
     if (m_inited != 0)
     {
-#if !defined(__APPLE__) && !defined(MACOSX)
-        // Curiously this crashes with a malloc problem on MacOS X
-        cerr << "Quitting SDL" << endl;
         SDL_Quit();
-#endif
     }
 }
 
