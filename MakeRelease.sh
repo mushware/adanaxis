@@ -9,4 +9,5 @@ echo Making directories in $DEST
 find . -path '*CVS' -prune -o -type d -exec mkdir -p $DEST/{} \;
 echo Copying from . to $DEST
 find . -path '*CVS' -prune -o -name '._ASP500.csv' -o -name '.DS_Store' -prune -o -type f -exec cp -p {} $DEST/{} \;
+chmod -R g+w $DEST
 echo Done
