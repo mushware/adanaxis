@@ -1,16 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GLRenderable.cpp,v 1.6 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLRenderable.cpp,v 1.7 2003/01/13 14:31:55 southa Exp $
  * $Log: GLRenderable.cpp,v $
+ * Revision 1.7  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.6  2002/12/29 20:59:52  southa
  * More build fixes
  *

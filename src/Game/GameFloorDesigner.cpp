@@ -1,16 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.34 2003/01/17 13:30:38 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.35 2003/01/20 10:45:26 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.35  2003/01/20 10:45:26  southa
+ * Singleton tidying
+ *
  * Revision 1.34  2003/01/17 13:30:38  southa
  * Source conditioning and build fixes
  *

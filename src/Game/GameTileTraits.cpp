@@ -1,16 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.25 2003/01/09 14:57:04 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.26 2003/01/13 14:32:00 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.26  2003/01/13 14:32:00  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.25  2003/01/09 14:57:04  southa
  * Created Mushcore
  *

@@ -2,17 +2,22 @@
 #define GAMEBASE_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameBase.h,v 1.15 2002/12/29 20:30:53 southa Exp $
+ * $Id: GameBase.h,v 1.16 2003/01/11 13:03:12 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.16  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.15  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *

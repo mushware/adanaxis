@@ -2,17 +2,22 @@
 #define MEDIASOUNDSTREAM_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.h,v 1.6 2003/01/09 14:57:05 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.7 2003/01/11 13:03:16 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.7  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.6  2003/01/09 14:57:05  southa
  * Created Mushcore
  *

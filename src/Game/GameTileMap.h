@@ -2,17 +2,22 @@
 #define GAMETILEMAP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.19 2003/01/11 17:07:52 southa Exp $
+ * $Id: GameTileMap.h,v 1.20 2003/02/05 17:06:37 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.20  2003/02/05 17:06:37  southa
+ * Build fixes
+ *
  * Revision 1.19  2003/01/11 17:07:52  southa
  * Mushcore library separation
  *

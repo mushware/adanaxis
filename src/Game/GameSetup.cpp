@@ -1,16 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.32 2003/02/06 18:55:27 southa Exp $
+ * $Id: GameSetup.cpp,v 1.33 2003/03/10 21:57:11 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.33  2003/03/10 21:57:11  southa
+ * ic2 revisions
+ *
  * Revision 1.32  2003/02/06 18:55:27  southa
  * Linux build fixes
  *

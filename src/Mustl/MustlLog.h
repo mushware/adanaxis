@@ -2,17 +2,22 @@
 #define MUSTLLOG_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.8 2003/01/17 13:30:41 southa Exp $
+ * $Id: MustlLog.h,v 1.9 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.9  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.8  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *

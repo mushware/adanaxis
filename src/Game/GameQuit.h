@@ -2,17 +2,22 @@
 #define GAMEQUIT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.h,v 1.4 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameQuit.h,v 1.5 2003/01/11 13:03:14 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.5  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.4  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *

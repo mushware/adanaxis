@@ -3,17 +3,22 @@
 
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: GLState.h,v 1.8 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLState.h,v 1.9 2003/01/12 17:32:50 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.9  2003/01/12 17:32:50  southa
+ * Mushcore work
+ *
  * Revision 1.8  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *

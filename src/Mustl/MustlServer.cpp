@@ -1,16 +1,21 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.2)
+ * (Mushware file header version 1.3)
  *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
+ * Copyrighted work by Andy Southgate 2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.16 2003/01/17 00:41:05 southa Exp $
+ * $Id: MustlServer.cpp,v 1.17 2003/01/20 10:45:31 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.17  2003/01/20 10:45:31  southa
+ * Singleton tidying
+ *
  * Revision 1.16  2003/01/17 00:41:05  southa
  * Configuration updates from POST data
  *
