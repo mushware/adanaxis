@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.5 2002/06/20 11:06:15 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.6 2002/06/24 16:41:14 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.6  2002/06/24 16:41:14  southa
+ * Fixed for mingw32
+ *
  * Revision 1.5  2002/06/20 11:06:15  southa
  * Updated for cygwin
  *
@@ -32,6 +35,7 @@ PlatformMiscUtils::GetApplPath(int argc, char *argv[])
     string systemPath=GetSystemPath(argc, argv);
     string::size_type pos=string::npos;
     pos = systemPath.rfind('/', pos-1);
+    if (pos==string::npos) pos = systemPath.rfind('\\', pos-1);
     if (pos==string::npos || pos == 0)
     {
         cerr << "Couldn't decode application path from '" << systemPath << "'" << endl;
