@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.14 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameConfig.cpp,v 1.15 2002/12/13 01:07:25 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.15  2002/12/13 01:07:25  southa
+ * Mustl work
+ *
  * Revision 1.14  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -170,6 +173,10 @@ GameConfig::Update(void)
     if (ParameterExists("devverboselog"))
     {
         MustlLog::Instance().VerboseLogSet(ParameterGet("devverboselog").U32Get());
+    }
+    if (ParameterExists("devtrafficlog"))
+    {
+        MustlLog::Instance().TrafficLogSet(ParameterGet("devtrafficlog").U32Get());
     }
     if (ParameterExists("devcommandlog"))
     {

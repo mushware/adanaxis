@@ -1,8 +1,11 @@
 #ifndef MUSTLROUTER_H
 #define MUSTLROUTER_H
 /*
- * $Id: MustlRouter.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlRouter.h,v 1.2 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.2  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -49,6 +52,8 @@ private:
         kTickPeriod=100,
         kUDPReceivePacketLimit=100
     };
+
+    void ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlHandler& inHandler);
     
     Mustl::tMsec m_lastTickMsec;
     

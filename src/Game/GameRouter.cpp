@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.12 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameRouter.cpp,v 1.13 2002/12/13 01:07:25 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.13  2002/12/13 01:07:25  southa
+ * Mustl work
+ *
  * Revision 1.12  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -94,7 +97,7 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
 {
     GameNetObject netObject;
 
-    netObject.AddressSet(inLink.TCPTargetAddressGet());
+    netObject.AddressSet(inLink.TCPAddressGet());
     
     string dataStr(reinterpret_cast<char *>(ioData.MessagePtrGet()), ioData.MessageSizeGet());
     istringstream data(dataStr);

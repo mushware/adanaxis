@@ -1,6 +1,9 @@
 /*
- * $Id: MustlData.cpp,v 1.2 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlData.cpp,v 1.3 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlData.cpp,v $
+ * Revision 1.3  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.2  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -53,7 +56,7 @@ MustlData::Print(ostream& ioOut) const
     U32 size=m_data.size();
     for (U32 i=0; i < size && i < m_writePos; ++i)
     {
-        if (isprint(m_data[i]))
+        if (isprint(m_data[i]) && m_data[i] != '[')
         {
             ioOut << static_cast<char>(m_data[i]);
         }

@@ -1,8 +1,11 @@
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
 /*
- * $Id: MustlClient.h,v 1.3 2002/12/13 01:06:53 southa Exp $
+ * $Id: MustlClient.h,v 1.4 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlClient.h,v $
+ * Revision 1.4  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:53  southa
  * Mustl work
  *
@@ -69,13 +72,15 @@ public:
     void UDPSend(MustlData& inData);
     void UDPReceive(MustlData& outData);
 
-    bool TCPConnectionCompleted(void);
-    // void ResolveTargetName(void);
-    bool UDPConnectedGet(void) const { return m_udpConnected; }
-    void UDPRemotePortSetHostOrder(Mustl::U32 inPortHostOrder);
+    bool TCPConnectionCompletedHas(void);
+    bool UDPConnectedIs(void) const { return m_udpConnected; }
+
     const MustlAddress& TCPAddressGet(void) const { return m_tcpAddress; }
     const MustlAddress& UDPAddressGet(void) const { return m_udpAddress; }
+
+    void UDPRemotePortSetHostOrder(Mustl::U32 inPortHostOrder);
     void UDPAddressSet(const MustlAddress& inAddress) { m_udpAddress = inAddress; }
+
     void Print(ostream& ioOut) const;
     
 private:
@@ -86,7 +91,6 @@ private:
     MustlAddress m_udpAddress;
     bool m_tcpConnected;
     bool m_udpConnected;
-    bool m_logTraffic;
 };
 
 inline ostream&

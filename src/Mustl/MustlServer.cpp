@@ -1,6 +1,9 @@
 /*
- * $Id: MustlServer.cpp,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlServer.cpp,v 1.4 2002/12/13 19:03:06 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.4  2002/12/13 19:03:06  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -75,11 +78,20 @@ auto_ptr<MustlServer> MustlServer::m_instance;
 
 MustlServer::MustlServer() :
     m_linkCtr(0),
-    m_serving(false),
-    m_logTraffic(false)
+    m_serving(false)
 {
 }
 
+MustlServer::~MustlServer()
+{
+    if (m_serving)
+    {
+        MUSTLASSERT(m_tcpSocket != NULL);
+        MUSTLASSERT(m_udpSocket != NULL);
+        MustlPlatform::SocketClose(m_tcpSocket);
+        MustlPlatform::SocketClose(m_udpSocket);
+    }
+}
 void
 MustlServer::Connect(U32 inPort)
 {
@@ -137,17 +149,6 @@ MustlServer::Disconnect(void)
     MustlLog::Instance().NetLog() << "Closed server" << endl;
 }
 
-MustlServer::~MustlServer()
-{
-    if (m_serving)
-    {
-        MUSTLASSERT(m_tcpSocket != NULL);
-        MUSTLASSERT(m_udpSocket != NULL);
-        MustlPlatform::SocketClose(m_tcpSocket);
-        MustlPlatform::SocketClose(m_udpSocket);
-    }    
-}
-
 void
 MustlServer::Accept(void)
 {
@@ -188,9 +189,9 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
     U32 dataSize = MustlPlatform::UDPSend(inAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     ioData.ReadPosAdd(dataSize);
 
-    if (m_logTraffic)
+    if (MustlLog::Instance().TrafficLogGet())
     {
-        MustlLog::Instance().VerboseLog() << "UDPSend (server) to " << inAddress << ": " << ioData << endl;
+        MustlLog::Instance().TrafficLog() << "UDPSend (server) to " << inAddress << ": " << ioData << endl;
     }
 }
 
@@ -207,9 +208,9 @@ MustlServer::UDPReceive(MustlData& ioData)
         {
             ioData.WritePosAdd(dataSize);
             ioData.SourceSet(sourceAddress);
-            if (m_logTraffic)
+            if (MustlLog::Instance().TrafficLogGet())
             {
-                MustlLog::Instance().VerboseLog() << "UDPReceive (server) received " << ioData << endl;
+                MustlLog::Instance().TrafficLog() << "UDPReceive (server) received " << ioData << endl;
             }
         }
     }

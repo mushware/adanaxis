@@ -1,8 +1,11 @@
 #ifndef MUSTLLOG_H
 #define MUSTLLOG_H
 /*
- * $Id: MustlLog.h,v 1.6 2002/11/25 10:43:28 southa Exp $
+ * $Id: MustlLog.h,v 1.1 2002/12/12 14:00:26 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.1  2002/12/12 14:00:26  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -36,16 +39,21 @@ public:
     ostream& WebLog(void);
     ostream& NetLog(void);
     ostream& VerboseLog(void);
+    ostream& TrafficLog(void);
     bool LogFullIPGet(void) const { return m_logFullIP; }
 
+    bool NetLogGet(void) const { return m_netLog; }
     void NetLogSet(bool inLog) { m_netLog = inLog; }
+    bool WebLogGet(void) const { return m_webLog; }
     void WebLogSet(bool inLog) { m_webLog = inLog; }
+    bool VerboseLogGet(void) const { return m_verboseLog; }
     void VerboseLogSet(bool inLog) { m_verboseLog = inLog; }
+    bool TrafficLogGet(void) const { return m_trafficLog; }
+    void TrafficLogSet(bool inLog) { m_trafficLog = inLog; }
     void LogFullIPSet(bool inFullIP) { m_logFullIP = inFullIP; }
     
     void OpenFile(const string& inName);
     void CloseFile(void);
-    
     
 protected:
     ostream& Log(void);
@@ -56,6 +64,7 @@ private:
     bool m_netLog;
     bool m_webLog;
     bool m_verboseLog;
+    bool m_trafficLog;
     bool m_logFullIP;
 
     static MustlLog m_gMustlLogInstance;

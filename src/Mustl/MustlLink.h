@@ -1,8 +1,11 @@
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
 /*
- * $Id: MustlLink.h,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlLink.h,v 1.4 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.4  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -95,10 +98,12 @@ public:
     MustlLink(Mustl::tSocket inSocket, const MustlAddress& inAddress);
     ~MustlLink();
 
-    void TouchLink(void);
+    void InactivityTimerReset(void);
     void FastSend(MustlData& ioData);
     void ReliableSend(MustlData& ioData);
-    bool UDPIfAddressMatchReceive(bool& outTakeMessage, MustlData& ioData);
+    bool UDPAddressMatchDoes(const MustlData& ioData) const;
+    bool UDPHostMatchDoes(const MustlData& ioData) const;
+
     bool Receive(MustlData *& outData);
     void Tick(void);
     bool IsDead(void);
@@ -149,7 +154,6 @@ private:
         kUDPFastLinkCheckPeriod=1000, // Times in msec
         kUDPSlowLinkCheckPeriod=30000,
         kIDRequestPeriod=1000, // Time between requests for ID transfer
-        kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
         kLinkInitTimeoutMsec=6000, // Timeout to kill link if not up for send
         kLinkIdleTimeoutMsec=35000, // Timeout to disconnect if no activity
         kErrorTotalLimit=10,
@@ -177,7 +181,9 @@ private:
     void TCPSocketTake(Mustl::tSocket inSocket, const MustlAddress& inAddress);
     void LinkChecksSend(void);
     void TCPLinkCheckSend(void);
+    void TCPLinkCheckAppend(MustlData& ioData);
     void UDPLinkCheckSend(void);
+    void UDPLinkCheckAppend(MustlData& ioData);
     void IDRequestSend(void);
     bool LinkIsUpForSend(tLinkState inState);
     bool LinkIsUpForReceive(tLinkState inState);
@@ -220,25 +226,22 @@ private:
     static Mustl::U32 m_linkNameNum;
 };
 
+inline bool
+MustlLink::UDPAddressMatchDoes(const MustlData& ioData) const
+{
+    return ioData.SourceGet() == UDPAddressGet();
+}
+
+inline bool
+MustlLink::UDPHostMatchDoes(const MustlData& ioData) const
+{
+    return ioData.SourceGet().HostGetNetworkOrder() == UDPAddressGet().HostGetNetworkOrder();
+}
+
 inline ostream&
 operator<<(ostream &ioOut, const MustlLink& inLink)
 {
     inLink.Print(ioOut);
-    return ioOut;
-}
-
-inline ostream&
-operator<<(ostream &ioOut, const MustlLink::LinkState& inLinkState)
-{
-    ioOut << "[linkCheckMsec=" << inLinkState.linkCheckMsec << ", ";
-    ioOut << "linkState=" << inLinkState.linkState << ", ";
-    ioOut << "linkCheckState=" << inLinkState.linkCheckState << ", ";
-    ioOut << "linkPingMsec=" << inLinkState.linkPingMsec << ", ";
-    ioOut << "linkErrorsSinceGood=" << inLinkState.linkErrorsSinceGood << ", ";
-    ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
-    ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";
-    ioOut << "linkReceiveCtr=" << inLinkState.linkReceiveCtr << ", ";
-    ioOut << "linkCheckSeqNum=" << static_cast<Mustl::U32>(inLinkState.linkCheckSeqNum) << "]";
     return ioOut;
 }
 #endif

@@ -1,8 +1,11 @@
 #ifndef MUSTLADDRESS_H
 #define MUSTLADDRESS_H
 /*
- * $Id: MustlAddress.h,v 1.2 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlAddress.h,v 1.3 2002/12/13 19:03:04 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.3  2002/12/13 19:03:04  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.2  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -35,6 +38,11 @@ public:
         m_port(inPortNetworkOrder)
     {}
 
+    MustlAddress(const std::string& inName, Mustl::U32 inPortHostOrder)
+    {
+        ResolveFrom(inName, inPortHostOrder);
+    }
+    
     std::string HostStringGet(void) const;
     Mustl::U32 HostGetNetworkOrder(void) const { return m_ip; }
     void HostSetNetworkOrder(Mustl::U32 inIP) { m_ip = inIP; }
@@ -43,10 +51,13 @@ public:
     void PortSetNetworkOrder(Mustl::U32 inPortNetworkOrder) { m_port = inPortNetworkOrder; }
     void PortSetHostOrder(Mustl::U32 inPortHostOrder);
 
+    // This one can block if given a name which needs looking up
     void ResolveFrom(const std::string& inHostName, Mustl::U32 inPortHostOrder);
-    
+
+    // For use by <<
     void Print(ostream& ioOut) const;
 
+    // For use by the operators == != < > 
     bool Equals(const MustlAddress& inAddress) const;
     bool LessThan(const MustlAddress& inAddress) const;
     bool GreaterThan(const MustlAddress& inAddress) const;

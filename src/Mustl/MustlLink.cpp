@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLink.cpp,v 1.3 2002/12/13 01:06:53 southa Exp $
+ * $Id: MustlLink.cpp,v 1.4 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.4  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:53  southa
  * Mustl work
  *
@@ -105,6 +108,22 @@ auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
 
 U32 MustlLink::m_linkNameNum=1;
 
+// Output for the private LinkState class
+ostream&
+operator<<(ostream &ioOut, const MustlLink::LinkState& inLinkState)
+{
+    ioOut << "linkCheckMsec=" << inLinkState.linkCheckMsec << ", ";
+    ioOut << "linkState=" << inLinkState.linkState << ", ";
+    ioOut << "linkCheckState=" << inLinkState.linkCheckState << ", ";
+    ioOut << "linkPingMsec=" << inLinkState.linkPingMsec << ", ";
+    ioOut << "linkErrorsSinceGood=" << inLinkState.linkErrorsSinceGood << ", ";
+    ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
+    ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";
+    ioOut << "linkReceiveCtr=" << inLinkState.linkReceiveCtr << ", ";
+    ioOut << "linkCheckSeqNum=" << static_cast<U32>(inLinkState.linkCheckSeqNum);
+    return ioOut;
+}
+
 MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
 {
     // I am the client end of the link
@@ -114,7 +133,6 @@ MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
 
     Initialise();
     m_udpUseServerPort=false;
-
 
     TCPConnect(inAddress);
     m_tcpState.linkState=kLinkStateConnecting;
@@ -134,8 +152,8 @@ MustlLink::MustlLink(tSocket inSocket, const MustlAddress& inAddress)
 
     TCPSocketTake(inSocket, inAddress);
     MustlAddress udpAddress = inAddress;
-    udpAddress.PortSetNetworkOrder(0);
-    m_client.UDPAddressSet(udpAddress); // We don't know yet
+    udpAddress.PortSetNetworkOrder(0); // We don't know the remote UDP port yet
+    m_client.UDPAddressSet(udpAddress);
 }
 
 void
@@ -195,31 +213,7 @@ MustlLink::TCPSocketTake(tSocket inSocket, const MustlAddress& inAddress)
 void
 MustlLink::UDPConnect(const MustlAddress& inAddress)
 {
-    MustlAddress localAddress = inAddress;
-    U32 failCtr=0;
-    do
-    {
-        try
-        {
-            // Think about unbound UDP socket?
-            m_client.UDPConnect(localAddress);
-            break;
-        }
-        catch (MustlFail& e)
-        {
-            if (++failCtr > 8)
-            {
-                throw;
-            }
-
-            localAddress.PortSetHostOrder(localAddress.PortGetHostOrder() + 1);
-        }
-    } while(1);
-
-    if (failCtr > 0)
-    {
-        MustlLog::Instance().NetLog() << "Selected local UDP port " << localAddress.PortGetHostOrder() << endl;
-    }
+    m_client.UDPConnect(inAddress);
 }
 
 void
@@ -318,32 +312,36 @@ MustlLink::LinkChecksSend(void)
 void
 MustlLink::TCPLinkCheckSend(void)
 {
-    if (m_currentMsec > m_tcpState.linkCheckMsec + kLinkCheckDeadTime ||
-        m_currentMsec == 0)
-    {
-        MustlData data;
-        m_tcpState.linkCheckSeqNum++;
-        MustlProtocol::TCPLinkCheckCreate(data, m_tcpState.linkCheckSeqNum);
-        m_tcpState.linkCheckState = kLinkCheckStateAwaitingReply;
-        m_tcpState.linkCheckMsec = m_currentMsec;
-        TCPSend(data);
-    }
+    MustlData data;
+    TCPLinkCheckAppend(data);
+    TCPSend(data);
+}
+
+void
+MustlLink::TCPLinkCheckAppend(MustlData& ioData)
+{
+    m_tcpState.linkCheckSeqNum++;
+    MustlProtocol::TCPLinkCheckCreate(ioData, m_tcpState.linkCheckSeqNum);
+    m_tcpState.linkCheckState = kLinkCheckStateAwaitingReply;
+    m_tcpState.linkCheckMsec = m_currentMsec;
 }
 
 void
 MustlLink::UDPLinkCheckSend(void)
 {
-    if (m_currentMsec > m_udpState.linkCheckMsec + kLinkCheckDeadTime ||
-        m_currentMsec == 0)
-    {
-        MustlData data;
-        m_udpState.linkCheckSeqNum++;
-        MustlProtocol::UDPLinkCheckCreate(data, m_udpState.linkCheckSeqNum);
-        m_udpState.linkCheckState = kLinkCheckStateAwaitingReply;
-        m_udpState.linkCheckMsec = m_currentMsec;
-        UDPSend(data);
-    }
+    MustlData data;
+    UDPLinkCheckAppend(data);
+    UDPSend(data);
 }    
+
+void
+MustlLink::UDPLinkCheckAppend(MustlData& ioData)
+{
+    m_udpState.linkCheckSeqNum++;
+    MustlProtocol::UDPLinkCheckCreate(ioData, m_udpState.linkCheckSeqNum);
+    m_udpState.linkCheckState = kLinkCheckStateAwaitingReply;
+    m_udpState.linkCheckMsec = m_currentMsec;
+}
 
 void
 MustlLink::IDRequestSend(void)
@@ -359,7 +357,7 @@ MustlLink::TCPConnectingCheck(void)
 {
     if (m_tcpState.linkState == kLinkStateConnecting)
     {
-        if (m_client.TCPConnectionCompleted())
+        if (m_client.TCPConnectionCompletedHas())
         {
             m_tcpState.linkState = kLinkStateUntested;
             TCPLinkCheckSend();
@@ -632,7 +630,7 @@ MustlLink::UDPReceive(MustlData& outData)
 }
 
 void
-MustlLink::TouchLink(void)
+MustlLink::InactivityTimerReset(void)
 {
     m_lastActivityMsec = MustlTimer::Instance().CurrentMsecGet();
 ;
@@ -653,7 +651,7 @@ MustlLink::FastSend(MustlData& ioData)
     {
         throw(MustlFail("Send on dead link"));
     }
-    TouchLink();
+    InactivityTimerReset();
 }
 
 void
@@ -671,57 +669,24 @@ MustlLink::ReliableSend(MustlData& ioData)
     {
         throw(MustlFail("Send on dead link"));
     }
-    TouchLink();
-}
-
-bool
-MustlLink::UDPIfAddressMatchReceive(bool& outTakeMessage, MustlData& ioData)
-{
-    if (ioData.SourceGet().HostGetNetworkOrder() == UDPAddressGet().HostGetNetworkOrder() &&
-        (UDPAddressGet().HostGetNetworkOrder() == 0 ||
-         ioData.SourceGet().PortGetNetworkOrder() == UDPAddressGet().PortGetNetworkOrder())
-        )
-    {
-        // We receive if port and IP match.  Also if IP matches and our target port is 0,
-        // as this allows us to receive the initial link check which tells the server which
-        // port to talk back the the client on.
-        
-        // This function should append the data to m_udpState to handled fragmentation, but doesn't yet
-        MustlProtocol::Unpack(ioData);
-        outTakeMessage=MustlProtocol::MessageTake(ioData);
-        return true;
-    }
-    else
-    {
-        outTakeMessage=false;
-        return false;
-    }
+    InactivityTimerReset();
 }
 
 bool
 MustlLink::Receive(MustlData * & outData)
 {
-
     UDPReceive(m_udpState.linkData);
     if (!m_udpState.linkData.IsEmptyForRead())
     {
-        MustlProtocol::Unpack(m_udpState.linkData);
-        if (MustlProtocol::MessageTake(m_udpState.linkData))
-        {
-            outData = &m_udpState.linkData;
-            return true;
-        }
+        outData = &m_udpState.linkData;
+        return true;
     }
     
     TCPReceive(m_tcpState.linkData);
     if (!m_tcpState.linkData.IsEmptyForRead())
     {
-        MustlProtocol::Unpack(m_tcpState.linkData);
-        if (MustlProtocol::MessageTake(m_tcpState.linkData))
-        {
-            outData = &m_tcpState.linkData;
-            return true;
-        }
+        outData = &m_tcpState.linkData;
+        return true;
     }
     
     return false;
@@ -825,8 +790,10 @@ MustlLink::MessageTCPLinkCheckReplyHandle(MustlData& ioData)
 void
 MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
 {
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+
     U8 seqNum = ioData.MessageBytePop();
-    if (!m_udpUseServerPort && !m_client.UDPConnectedGet())
+    if (!m_udpUseServerPort && !m_client.UDPConnectedIs())
     {
         UDPConnect(ioData.SourceGet());
         m_udpState.linkState=kLinkStateUntested;
@@ -839,12 +806,15 @@ MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
     }
     MustlData replyData;
     MustlProtocol::UDPLinkCheckReplyCreate(replyData, seqNum);
-    UDPSend(replyData);
 
-    if (m_udpState.linkState == kLinkStateUntested)
+    if (m_udpState.linkState == kLinkStateUntested &&
+        m_udpState.linkCheckState == kLinkCheckStateIdle)
     {
-        UDPLinkCheckSend();
+        // Append our own link check request to the reply
+        UDPLinkCheckAppend(replyData);
     }
+    
+    UDPSend(replyData);
 }
 
 void
@@ -856,7 +826,7 @@ MustlLink::MessageUDPLinkCheckReplyHandle(MustlData& ioData)
     if (seqNum == m_udpState.linkCheckSeqNum &&
         m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        m_udpState.linkPingMsec=m_currentMsec - m_udpState.linkCheckMsec;
+        m_udpState.linkPingMsec = m_currentMsec - m_udpState.linkCheckMsec;
         if (m_udpState.linkState == kLinkStateUntested ||
             m_udpState.linkState == kLinkStateTesting)
         {
@@ -911,8 +881,8 @@ MustlLink::LinkInfoLog(void) const
 void
 MustlLink::Print(ostream& ioOut) const
 {
-    ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState;
-    ioOut << ", currentMsec=" << m_currentMsec << ", creationMsec =" << m_creationMsec;
+    ioOut << "tcpState=[" << m_tcpState << "], udpState=[" << m_udpState;
+    ioOut << "], currentMsec=" << m_currentMsec << ", creationMsec=" << m_creationMsec;
     ioOut  << ", lastActivityMsec=" << m_lastActivityMsec << ", lastIDRequestMsec=" << m_lastIDRequestMsec;
     ioOut << ", netID";
     if (m_netID == NULL)
@@ -926,7 +896,7 @@ MustlLink::Print(ostream& ioOut) const
     ioOut << ", syncedID=" << m_syncedID;
     ioOut << ", targetIsServer=" << m_targetIsServer;
     ioOut << ", udpUseServerPort=" << m_udpUseServerPort;
-    ioOut << ", client=" << m_client << "]";
+    ioOut << ", client=[" << m_client << "]";
 }
 
 string
@@ -1008,8 +978,8 @@ ioOut << "<td><font class=\"";
 string
 MustlLink::NextLinkNameTake(void)
 {
-    ostringstream nameStream("link");
-    nameStream << m_linkNameNum;
+    ostringstream nameStream;
+    nameStream << "client" << m_linkNameNum;
     ++m_linkNameNum;
     return nameStream.str();
 }

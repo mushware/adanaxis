@@ -1,6 +1,9 @@
 /*
- * $Id: MustlRouter.cpp,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.4 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.4  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -58,6 +61,35 @@ MustlRouter::MustlRouter() :
 }
 
 void
+MustlRouter::ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlHandler& inHandler)
+{
+    do
+    {
+        MustlProtocol::Unpack(ioData);
+        if (MustlProtocol::MessageTake(ioData))
+        {
+            U32 messageType = ioData.MessageBytePop();
+            if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
+            {
+                ioLink.MessageHandle(messageType, ioData);
+            }
+            else
+            {
+                ioLink.InactivityTimerReset(); // Reset inactivity timer
+                MustlProtocol::RemoveLength(ioData, messageType);
+                U32 appMessageType = MustlProtocol::LinkToAppType(messageType);
+                inHandler.MessageHandle(ioData, ioLink, appMessageType);
+            }
+        }
+        else
+        {
+            // No message to take
+            break;
+        }
+    } while (ioData.ReadSizeGet() > 0);
+}
+
+void
 MustlRouter::ReceiveAll(MustlHandler& inHandler)
 {
     tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
@@ -100,22 +132,14 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
         MustlLink& linkRef = *p->second;
 
         MustlData *netData=NULL;
-        if (linkRef.Receive(netData))
+        while (linkRef.Receive(netData))
         {
+            if (MustlLog::Instance().TrafficLogGet())
+            {
+                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
+            }
             MUSTLASSERT(netData != NULL);
-            // cerr << "Received on " << p->first << ": " << *netData << endl;
-            U32 messageType = netData->MessageBytePop();
-            if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
-            {
-                linkRef.MessageHandle(messageType, *netData);
-            }
-            else
-            {
-                linkRef.TouchLink(); // Reset inactivity timer
-                MustlProtocol::RemoveLength(*netData, messageType);
-                U32 appMessageType = MustlProtocol::LinkToAppType(messageType);
-                inHandler.MessageHandle(*netData, linkRef, appMessageType);
-            }
+            ProcessMessage(*netData, linkRef, inHandler);
         }
     }
 }
@@ -125,36 +149,43 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
 {
     CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
 
+    // Check for an exact address match
     for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
         MustlLink& linkRef = *p->second;
-        bool outTakeMessage;
-        if (linkRef.UDPIfAddressMatchReceive(outTakeMessage, ioData))
+        if (linkRef.UDPAddressMatchDoes(ioData))
         {
-            // cerr << "Received on " << p->first << ": " << ioData << endl;
-
-            if (outTakeMessage)
+            if (MustlLog::Instance().TrafficLogGet())
             {
-                U32 messageType = ioData.MessageBytePop();
-                if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
-                {
-                    linkRef.MessageHandle(messageType, ioData);
-                }
-                else
-                {
-                    linkRef.TouchLink(); // Reset inactivity timer
-                    MustlProtocol::RemoveLength(ioData, messageType);
-                    U32 appMessageType = MustlProtocol::LinkToAppType(messageType);
-                    inHandler.MessageHandle(ioData, linkRef, appMessageType);
-                }
+                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
             }
-            // Message handled so return
+            ProcessMessage(ioData, linkRef, inHandler);
             return;
         }
     }
-    MustlLog::Instance().VerboseLog() << "Discarding message from " << ioData.SourceGet() << endl;
+
+    // Check for a host match where the port number is zero.  This caters for link
+    // establishment messages where the port number of the remote end is not yet known
+    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        MUSTLASSERT(p->second != NULL);
+        MustlLink& linkRef = *p->second;
+        if (linkRef.UDPAddressGet().PortGetNetworkOrder() == 0 &&
+            linkRef.UDPHostMatchDoes(ioData))
+        {
+            if (MustlLog::Instance().TrafficLogGet())
+            {
+                MustlLog::Instance().TrafficLog() << "received on link " << p->first << endl;
+            }
+            ProcessMessage(ioData, linkRef, inHandler);
+            return;
+        }
+    }
+
+    MustlLog::Instance().VerboseLog() << "Unrecognised message source; discarding " << ioData.SourceGet() << endl;
 }
 
 void

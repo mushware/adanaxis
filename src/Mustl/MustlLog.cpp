@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLog.cpp,v 1.1 2002/12/12 14:00:26 southa Exp $
+ * $Id: MustlLog.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:26  southa
  * Created Mustl
  *
@@ -35,7 +38,8 @@ MustlLog::MustlLog() :
     m_outStream(NULL),
     m_netLog(true),
     m_webLog(true),
-    m_verboseLog(true),
+    m_verboseLog(false),
+    m_trafficLog(false),
     m_logFullIP(false)
 {
 }
@@ -93,6 +97,20 @@ ostream&
 MustlLog::VerboseLog(void)
 {
     if (m_verboseLog)
+    {
+        return Log();
+    }
+    else
+    {
+        m_nullStream.clear();
+        return m_nullStream;
+    }
+}
+
+ostream&
+MustlLog::TrafficLog(void)
+{
+    if (m_trafficLog)
     {
         return Log();
     }

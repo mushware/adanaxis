@@ -1,6 +1,9 @@
 /*
- * $Id: MustlClient.cpp,v 1.3 2002/12/13 01:06:52 southa Exp $
+ * $Id: MustlClient.cpp,v 1.4 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.4  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:52  southa
  * Mustl work
  *
@@ -77,8 +80,7 @@ MustlClient::MustlClient() :
     m_tcpAddress(0,0),
     m_udpAddress(0,0),
     m_tcpConnected(false),
-    m_udpConnected(false),
-    m_logTraffic(false)
+    m_udpConnected(false)
 {
 }
 
@@ -126,16 +128,40 @@ MustlClient::TCPSocketTake(tSocket inSocket, const MustlAddress& inAddress)
 
 void
 MustlClient::UDPConnect(const MustlAddress& inAddress)
-{    
+{
+    // Caveat:  The incoming address is the remote IP address but the local port number
     if (m_udpConnected)
     {
         UDPDisconnect();
     }
 
-    m_udpSocket = MustlPlatform::UDPBindNonBlocking(inAddress.PortGetHostOrder());
+    // The client chooses a UDP port to bind locally
+    
+    U32 localPort=inAddress.PortGetHostOrder(); // Should be configurable
+    U32 failCtr=0;
+    do
+    {
+        try
+        {
+            m_udpSocket = MustlPlatform::UDPBindNonBlocking(localPort);
+            break;
+        }
+        catch (MustlFail& e)
+        {
+            ++localPort;
+            if (++failCtr > 8) // Should be configurable
+            {
+                throw;
+            }
+        }
+    } while(1);
+
+    if (failCtr > 0)
+    {
+        MustlLog::Instance().NetLog() << "Selected local UDP port " << localPort << endl;
+    }
 
     m_udpAddress = inAddress;
-    m_udpAddress.PortSetNetworkOrder(0); // Don't know the remote port number
     m_udpConnected=true;
 }
 
@@ -150,9 +176,8 @@ MustlClient::TCPDisconnect(void)
 {
     if (m_tcpConnected)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
         MustlPlatform::SocketClose(m_tcpSocket);
-        m_tcpSocket=NULL;
+        m_tcpSocket=0;
         m_tcpConnected=false;
     }
 }
@@ -162,21 +187,19 @@ MustlClient::UDPDisconnect(void)
 {
     if (m_udpConnected)
     {
-        MUSTLASSERT(m_udpSocket != NULL);
         MustlPlatform::SocketClose(m_udpSocket);
-        m_udpSocket=NULL;
+        m_udpSocket=0;
         m_udpConnected=false;
     }
 }
 
 bool
-MustlClient::TCPConnectionCompleted(void)
+MustlClient::TCPConnectionCompletedHas(void)
 {
     if (!m_tcpConnected)
     {
-        throw(MustlFail("CommnectionCompleted call on unconnected link"));
+        throw(MustlFail("TCPConnectionCompletedHas call on unconnected link"));
     }
-    MUSTLASSERT(m_tcpSocket != NULL);
     return MustlPlatform::TCPSocketConnectionCompleted(m_tcpSocket);
 }
 
@@ -187,11 +210,14 @@ MustlClient::TCPSend(MustlData& ioData)
     {
         throw(MustlFail("TCP send on closed socket"));
     }
-    MUSTLASSERT(m_tcpSocket != NULL);
     
     U32 sentSize = MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
 
     ioData.ReadPosAdd(sentSize);
+    if (MustlLog::Instance().TrafficLogGet())
+    {
+        MustlLog::Instance().TrafficLog() << "TCPSend to " << m_tcpAddress << ": " << ioData << endl;
+    }
 }
 
 void
@@ -203,7 +229,7 @@ MustlClient::TCPReceive(MustlData& outData)
     }
     MUSTLASSERT(m_tcpSocket != NULL);
 
-    for (U32 i=0; i<256; ++i)
+    for (U32 i=0; i<256; ++i) // Should be configurable
     {
         // Need to test outData for size limit
         outData.PrepareForWrite();
@@ -217,6 +243,10 @@ MustlClient::TCPReceive(MustlData& outData)
         {
             outData.WritePosAdd(receiveSize);
             outData.SourceSet(m_tcpAddress);
+            if (MustlLog::Instance().TrafficLogGet())
+            {
+                MustlLog::Instance().TrafficLog() << "TCPReceive from " << m_tcpAddress << ": " << outData << endl;
+            }
         }
     }
 }
@@ -234,9 +264,9 @@ MustlClient::UDPSend(MustlData& ioData)
     
     ioData.ReadPosAdd(dataSize);
 
-    if (m_logTraffic)
+    if (MustlLog::Instance().TrafficLogGet())
     {
-        MustlLog::Instance().VerboseLog() << "UDPSend to " << m_udpAddress << ": " << ioData << endl;
+        MustlLog::Instance().TrafficLog() << "UDPSend to " << m_udpAddress << ": " << ioData << endl;
     }
 }
 
@@ -258,9 +288,9 @@ MustlClient::UDPReceive(MustlData& outData)
     {
         outData.WritePosAdd(dataSize);
         outData.SourceSet(receiveAddress);
-        if (m_logTraffic)
+        if (MustlLog::Instance().TrafficLogGet())
         {
-            MustlLog::Instance().VerboseLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
+            MustlLog::Instance().TrafficLog() << "UDPReceive from " << receiveAddress << ": " << outData << endl;
         }
     }
 }
@@ -274,5 +304,4 @@ MustlClient::Print(ostream& ioOut) const
     ioOut << ", udpAddress=" << m_udpAddress;
     ioOut << ", tcpConnected=" << m_tcpConnected;
     ioOut << ", udpConnected=" << m_udpConnected;
-    ioOut << ", logTraffic=" << m_logTraffic;
 }
