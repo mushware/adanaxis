@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.cpp,v 1.4 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameQuit.cpp,v 1.5 2002/12/20 13:17:42 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -36,6 +39,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameQuit::GameQuit() :
     m_gameState(kGameStateInit)

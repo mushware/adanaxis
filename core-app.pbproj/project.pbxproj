@@ -4995,7 +4995,7 @@
 			);
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = 2.x;
 				HEADER_SEARCH_PATHS = "src src/API";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O0";

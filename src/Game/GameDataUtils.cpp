@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDataUtils.cpp,v 1.4 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameDataUtils.cpp,v 1.5 2002/12/20 13:17:38 southa Exp $
  * $Log: GameDataUtils.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -30,6 +33,7 @@
 #include "GameData.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameDataUtils::NamedDialoguesAdd(const string& inStr)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.4 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.5 2002/12/29 20:30:57 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.5  2002/12/29 20:30:57  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -74,6 +77,7 @@
 #include "mustlCore.h"
 
 using namespace Mustl;
+using namespace std;
 //using Mushware::CoreCommand;
 //using Mushware::CoreData;
 //using Mushware::CoreEnv;

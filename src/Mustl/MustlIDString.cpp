@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlIDString.cpp,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlIDString.cpp,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlIDString.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -32,6 +35,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 MustlIDString::MustlIDString(MustlData& ioData)
 {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.16 2002/12/14 15:04:33 southa Exp $
+ * $Id: GameConfig.cpp,v 1.17 2002/12/20 13:17:37 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.17  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -69,6 +72,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameConfig *GameConfig::m_instance=NULL;
 

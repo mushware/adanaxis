@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.15 2002/12/10 19:00:17 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.16 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.16  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
@@ -66,6 +69,7 @@
 #include "GameTimer.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameDialogue::Render(void) const

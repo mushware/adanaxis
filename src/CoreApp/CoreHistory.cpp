@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreHistory.cpp,v 1.2 2002/12/04 15:39:57 southa Exp $
+ * $Id: CoreHistory.cpp,v 1.3 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreHistory.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/04 15:39:57  southa
  * Multiplayer work
  *
@@ -19,4 +22,5 @@
 #include "CoreHistory.h"
 
 using namespace Mushware;
+using namespace std;
 

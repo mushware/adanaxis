@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest.cpp,v 1.9 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTest.cpp,v 1.10 2002/12/20 13:17:35 southa Exp $
  * $Log: GLTest.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -46,4 +49,5 @@
 #include "GLTest1AppHandler.h"
 
 using namespace Mushware;
+using namespace std;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLine.cpp,v 1.8 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLLine.cpp,v 1.9 2002/12/20 13:17:35 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -44,6 +47,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLLine::GLLine(const GLPoint& inStart, const GLPoint& inEnd):
     m_start(inStart),

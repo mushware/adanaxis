@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.28 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.29 2002/12/20 13:17:39 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.29  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.28  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -111,6 +114,7 @@
 #include "mushGL.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),

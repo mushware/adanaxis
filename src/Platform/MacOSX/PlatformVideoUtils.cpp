@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.7 2002/12/03 20:28:18 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.8 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/12/03 20:28:18  southa
  * Network, player and control work
  *
@@ -41,6 +44,7 @@
 #include <Carbon/Carbon.h>
 
 using namespace Mushware;
+using namespace std;
 
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreBuiltinHandler.cpp,v 1.6 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreBuiltinHandler.cpp,v 1.7 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreBuiltinHandler.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -54,6 +57,7 @@
 #include "CoreScript.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller
 CoreBuiltinHandlerInstaller(CoreBuiltinHandler::Install);

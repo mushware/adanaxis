@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureGIF.cpp,v 1.10 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.11 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -52,6 +55,7 @@ extern "C"
 #include "gif_lib.h"
 
 using namespace Mushware;
+using namespace std;
 #undef DrawTextA
 }
 

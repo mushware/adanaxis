@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreXML.h,v 1.12 2002/12/20 13:17:34 southa Exp $
+ * $Id: CoreXML.h,v 1.13 2002/12/29 20:30:52 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.13  2002/12/29 20:30:52  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.12  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -113,11 +116,11 @@ private:
     static void CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen);
 
     CoreXMLHandler *m_currentHandler;
-    stack<CoreXMLHandler *> m_handlers;
+    std::stack<CoreXMLHandler *> m_handlers;
     XML_Parser m_parser;
-    stack< std::map<string, string> > m_attribStack;
-    stack<string> m_dataStack;
-    stack<string> m_tagStack;
+    std::stack< std::map<string, string> > m_attribStack;
+    std::stack<string> m_dataStack;
+    std::stack<string> m_tagStack;
     std::istream *m_inStream;
     std::string m_name;
     bool m_continue;

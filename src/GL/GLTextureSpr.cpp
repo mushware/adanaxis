@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.14 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.15 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -59,6 +62,7 @@
 #include "mushCore.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 

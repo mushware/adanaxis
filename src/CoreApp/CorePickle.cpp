@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CorePickle.cpp,v 1.7 2002/10/22 20:41:59 southa Exp $
+ * $Id: CorePickle.cpp,v 1.8 2002/12/20 13:17:33 southa Exp $
  * $Log: CorePickle.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -40,6 +43,7 @@
 #include "CoreXML.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CorePickle::Unpickle(const string& inFilename)

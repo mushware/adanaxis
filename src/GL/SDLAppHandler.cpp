@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.28 2002/12/03 20:28:15 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.29 2002/12/20 13:17:37 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.29  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.28  2002/12/03 20:28:15  southa
  * Network, player and control work
  *
@@ -108,6 +111,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 
 SDLAppHandler::SDLAppHandler():

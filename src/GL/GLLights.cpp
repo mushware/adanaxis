@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLights.cpp,v 1.10 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLLights.cpp,v 1.11 2002/12/20 13:17:35 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -49,6 +52,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLLights::GLLights() :
     m_lightingFactor(1.0),

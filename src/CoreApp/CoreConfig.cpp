@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.cpp,v 1.14 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.15 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -47,6 +50,7 @@
 #include "CoreException.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CoreConfig::Set(const string& inName, const CoreScalar& inValue)

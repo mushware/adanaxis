@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlTimer.cpp,v 1.2 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlTimer.cpp,v 1.3 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlTimer.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -26,6 +29,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 auto_ptr<MustlTimer> MustlTimer::m_instance;
 

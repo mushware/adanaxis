@@ -22,6 +22,7 @@
 #include "GameTimer.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameFrameTimer::GameFrameTimer(GameTimer::tUsec inInterval):
     m_averageFrameUsec(0),

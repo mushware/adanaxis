@@ -30,8 +30,11 @@
 
 
 /*
- * $Id: CoreBison.cpp,v 1.14 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreBison.cpp,v 1.15 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreBison.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -250,6 +253,7 @@ static const short yycheck[] = {     0,
 #include <malloc.h>
 
 using namespace Mushware;
+using namespace std;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)

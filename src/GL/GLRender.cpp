@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRender.cpp,v 1.3 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLRender.cpp,v 1.4 2002/12/20 13:17:35 southa Exp $
  * $Log: GLRender.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -25,6 +28,7 @@
 #include "GLRender.h"
 
 using namespace Mushware;
+using namespace std;
 
 const GLfloat (*GLRender::m_vertexArray)[3] = NULL;
 const GLfloat (*GLRender::m_texCoordArray)[2] = NULL;

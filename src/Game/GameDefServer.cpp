@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.14 2002/12/12 18:38:57 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.15 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -64,6 +67,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr< CoreData<GameDefServer> > CoreData<GameDefServer>::m_instance;
 

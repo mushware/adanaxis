@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.cpp,v 1.23 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTexture.cpp,v 1.24 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.24  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.23  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -87,6 +90,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLTexture::~GLTexture()
 {

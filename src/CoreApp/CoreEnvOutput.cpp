@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnvOutput.cpp,v 1.1 2002/11/07 11:59:02 southa Exp $
+ * $Id: CoreEnvOutput.cpp,v 1.2 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreEnvOutput.cpp,v $
+ * Revision 1.2  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/11/07 11:59:02  southa
  * Web commands
  *
@@ -21,6 +24,7 @@
 #include "CoreEnv.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreEnvOutput::CoreEnvOutput(CoreEnv& inEnv, ostream& inOut) :
     m_envRef(inEnv)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.16 2002/12/03 20:28:14 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.17 2002/12/20 13:17:36 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.17  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -66,6 +69,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 S32 GLUTAppHandler::m_mouseX=0;
 S32 GLUTAppHandler::m_mouseY=0;

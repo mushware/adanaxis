@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.cpp,v 1.7 2002/12/12 14:00:40 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.8 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -50,6 +53,7 @@
 #include "GameType.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)

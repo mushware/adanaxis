@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreInterpreter.cpp,v 1.11 2002/11/22 11:42:06 southa Exp $
+ * $Id: CoreInterpreter.cpp,v 1.12 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -52,6 +55,7 @@
 #include "CoreException.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInterpreter *CoreInterpreter::m_instance = NULL;
 

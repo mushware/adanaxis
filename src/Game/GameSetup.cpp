@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.23 2002/12/12 18:38:58 southa Exp $
+ * $Id: GameSetup.cpp,v 1.24 2002/12/20 13:17:42 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.24  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.23  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -97,6 +100,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameSetup::GameSetup() :
     m_gameState(kGameStateConfigInit),

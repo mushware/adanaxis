@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.cpp,v 1.4 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlLog.cpp,v 1.5 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -47,6 +50,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 MustlLog MustlLog::m_gMustlLogInstance;
 

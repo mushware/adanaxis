@@ -1,7 +1,10 @@
 %{
 /*
- * $Id: CoreBison.y,v 1.8 2002/05/30 14:41:13 southa Exp $
+ * $Id: CoreBison.y,v 1.9 2002/06/04 22:50:02 southa Exp $
  * $Log: CoreBison.y,v $
+ * Revision 1.9  2002/06/04 22:50:02  southa
+ * Fixes to mac project
+ *
  * Revision 1.8  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *
@@ -17,6 +20,8 @@
 #define CoreBison_lex INBISON->Lex
 #define YYDEBUG 1
 #define YYERROR_VERBOSE 1
+
+using namespace std;
     
 int yyerror( char *s);
 %}

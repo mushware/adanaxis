@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.cpp,v 1.10 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.11 2002/12/20 13:17:41 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -48,6 +51,7 @@
 #include "mushMedia.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameProtocol::CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName)

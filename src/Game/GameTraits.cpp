@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.11 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameTraits.cpp,v 1.12 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -50,6 +53,7 @@
 #include "GameData.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameTraits::Verify(void)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreScript.cpp,v 1.10 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreScript.cpp,v 1.11 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -47,6 +50,7 @@
 #include "CoreException.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreScript::CoreScript()
 {

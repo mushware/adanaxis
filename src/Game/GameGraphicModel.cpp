@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.9 2002/11/24 23:18:23 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.10 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -43,6 +46,7 @@
 #include "GameGraphicModel.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameGraphicModel::~GameGraphicModel()
 {

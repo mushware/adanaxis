@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlProtocol.cpp,v 1.3 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlProtocol.cpp,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlProtocol.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -77,6 +80,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 void
 MustlProtocol::TCPLinkCheckCreate(MustlData& outData, U32 inSequenceNumber)

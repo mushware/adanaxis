@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlClient.cpp,v 1.6 2002/12/15 00:26:20 southa Exp $
+ * $Id: MustlClient.cpp,v 1.7 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/15 00:26:20  southa
  * Send, receive and timer work
  *
@@ -89,6 +92,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 MustlClient::MustlClient() :
     m_tcpSocket(NULL),

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.cpp,v 1.14 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.15 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -27,6 +30,7 @@
 #include "MediaAudioSDL.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr<MediaAudio> MediaAudio::m_instance;
 

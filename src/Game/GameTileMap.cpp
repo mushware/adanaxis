@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.16 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.17 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.17  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -64,6 +67,7 @@
 #include "GameTileTraits.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 

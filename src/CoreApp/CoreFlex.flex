@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.9 2002/07/02 14:27:12 southa Exp $
+ // $Id: CoreFlex.flex,v 1.10 2002/11/14 20:24:43 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.9 2002/07/02 14:27:12 southa Exp $
+ * $Id: CoreFlex.flex,v 1.10 2002/11/14 20:24:43 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.10  2002/11/14 20:24:43  southa
+ * Configurable config elements
+ *
  * Revision 1.9  2002/07/02 14:27:12  southa
  * First floor map designer build
  *
@@ -38,6 +41,8 @@
 #include "CoreSwitches.h"
 #include "CoreBisonDefs.h"
 #include "CoreScalar.h"
+
+using namespace std;
 
 #define YY_DECL int CoreFlex::Lex(CoreScalar *outScalar, void *inPtr)
 %}

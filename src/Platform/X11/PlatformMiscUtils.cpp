@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.11 2002/11/21 18:06:18 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.12 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -68,6 +71,7 @@
 #include <unistd.h>
 
 using namespace Mushware;
+using namespace std;
 
 void
 PlatformMiscUtils::Initialise(void)

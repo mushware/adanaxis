@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.22 2002/12/12 18:38:58 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.23 2002/12/20 13:17:44 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.23  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.22  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -114,6 +117,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GameWebCommandsInstaller(GameWebCommands::Install);
 

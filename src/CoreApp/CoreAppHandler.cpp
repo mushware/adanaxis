@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreAppHandler.cpp,v 1.10 2002/11/18 11:31:13 southa Exp $
+ * $Id: CoreAppHandler.cpp,v 1.11 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/11/18 11:31:13  southa
  * Return to game mode
  *
@@ -48,6 +51,7 @@
 #include "CorePOSIX.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreAppHandler *CoreAppHandler::m_instance = NULL;
 

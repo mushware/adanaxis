@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLString.cpp,v 1.4 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLString.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -30,6 +33,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLString::GLString(const string& inValue, const GLFontRef& inFont, tVal inAlign):
     m_fontRef(inFont),

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.cpp,v 1.4 2002/11/24 23:18:03 southa Exp $
+ * $Id: GLLightDef.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
  * $Log: GLLightDef.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/11/24 23:18:03  southa
  * Added type name accessor to CorePickle
  *
@@ -28,6 +31,7 @@
 #include "GLLightDef.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GLLightDef::BasePositionSet(const GLVector& inVec)

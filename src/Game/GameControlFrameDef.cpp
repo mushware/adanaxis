@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameControlFrameDef.cpp,v 1.2 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameControlFrameDef.cpp,v 1.3 2002/12/20 13:17:38 southa Exp $
  * $Log: GameControlFrameDef.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -22,6 +25,7 @@
 #include "GameControlFrameDef.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameControlFrameDef::Print(ostream& ioOut) const

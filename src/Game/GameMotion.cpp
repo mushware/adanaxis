@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.cpp,v 1.7 2002/11/24 23:18:23 southa Exp $
+ * $Id: GameMotion.cpp,v 1.8 2002/12/20 13:17:41 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -37,6 +40,7 @@
 #include "GameMotion.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameMotion::HandleRectEnd(CoreXML& inXML)

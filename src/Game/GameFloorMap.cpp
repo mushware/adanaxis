@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.39 2002/12/03 20:28:16 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.40 2002/12/20 13:17:40 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.40  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.39  2002/12/03 20:28:16  southa
  * Network, player and control work
  *
@@ -154,6 +157,7 @@
 #include "GameTileTraits.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioNull.cpp,v 1.4 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.5 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -28,6 +31,7 @@
 #include "MediaAudioNull.h"
 
 using namespace Mushware;
+using namespace std;
 
 MediaAudioNull::MediaAudioNull()
 {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFontRef.cpp,v 1.3 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.4 2002/12/20 13:17:35 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -26,6 +29,7 @@
 #include "GLData.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLFont *
 GLFontRef::FontGet(void) const

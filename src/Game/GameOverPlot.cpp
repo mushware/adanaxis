@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameOverPlot.cpp,v 1.4 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameOverPlot.cpp,v 1.5 2002/12/20 13:17:41 southa Exp $
  * $Log: GameOverPlot.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -28,6 +31,7 @@
 #include "GameOverPlot.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameOverPlot::RenderableAdd(const GLRenderable& inRenderable, const GLColour& inColour)

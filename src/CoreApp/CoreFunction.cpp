@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreFunction.cpp,v 1.11 2002/11/17 13:38:30 southa Exp $
+ * $Id: CoreFunction.cpp,v 1.12 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreFunction.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -48,6 +51,7 @@
 #include "CoreException.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CoreFunction::Execute(void) const

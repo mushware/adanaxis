@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformUtils.cpp,v 1.11 2002/12/12 18:38:58 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.12 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -55,3 +58,4 @@
 #include "PlatformVideoUtils.cpp"
 
 using namespace Mushware;
+using namespace std;

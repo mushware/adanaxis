@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.6 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.7 2002/12/20 13:17:38 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -36,6 +39,7 @@
 #include "mushMedia.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr< CoreData<GameConfigDef> > CoreData<GameConfigDef>::m_instance;
 

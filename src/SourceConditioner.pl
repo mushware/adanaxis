@@ -304,7 +304,7 @@ sub ReorderIncludeFiles
 sub AddHeaderNamespace
 {
     my $arrayref=shift;
-    my @stdnames = ("ostream", "istream", "vector", "list", "map", "string", "auto_ptr");
+    my @stdnames = ("ostream", "istream", "vector", "list", "map", "string", "auto_ptr", "stack");
     my @mushnames = ("U32", "S32", "U16", "S16", "U8", "S8", "tVal", "u8istream");
     foreach my $line (@$arrayref)
     {
@@ -327,7 +327,8 @@ sub AddUsingNamespace
     my $filename=shift;
     
     my $line=0;
-    my $usingLine = 0;
+    my $usingMushLine = 0;
+    my $usingStdLine = 0;
     my $lastIncludeLine = 0;
 
     foreach (@$arrayref)
@@ -337,15 +338,33 @@ sub AddUsingNamespace
         {
             $lastIncludeLine = $line;
         }
-        if (/^\s*using\s+namespace/)
+        if (/^\s*using\s+namespace\s+(Mushware|Mustl)/)
         {
-            $usingLine = $line;
+            $usingMushLine = $line;
+        }
+        if (/^\s*using\s+namespace\s+std/)
+        {
+            $usingStdLine = $line;
         }
     }
-    if ($usingLine == 0 && $lastIncludeLine != 0)
+    if ($lastIncludeLine != 0)
     {
-        splice @$arrayref, $lastIncludeLine, 0, ("", "using namespace Mushware;");
- 
-        print "Added using namespace Mushware\n" if ($verbose);
+        if ($usingStdLine == 0)
+        {
+            if ($usingMushLine == 0)
+            {
+                splice @$arrayref, $lastIncludeLine, 0, ("using namespace std;");
+            }
+            else
+            {
+                splice @$arrayref, $usingMushLine, 0, ("using namespace std;");
+            }            
+        }
+        if ($usingMushLine == 0)
+        {
+            splice @$arrayref, $lastIncludeLine, 0, ("", "using namespace Mushware;");
+        }
+        print "Added using namespace lines\n" if ($verbose);
     }
 }
+

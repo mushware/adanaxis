@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.8 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlServer.cpp,v 1.9 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.9  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.8  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -97,6 +100,7 @@
 #include "mustlCore.h"
 
 using namespace Mustl;
+using namespace std;
 //using Mushware::CoreData;
 
 auto_ptr<MustlServer> MustlServer::m_instance;

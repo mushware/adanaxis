@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlData.cpp,v 1.4 2002/12/14 15:04:33 southa Exp $
+ * $Id: MustlData.cpp,v 1.5 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlData.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -44,6 +47,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 ostream& operator<<(ostream &inOut, const MustlData& inData)
 {

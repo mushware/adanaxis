@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.8 2002/10/22 20:42:08 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.9 2002/12/20 13:17:49 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -53,6 +56,7 @@
 #include "GLWrangleAppHandler.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller WrangleCommandHandlerInstaller(WrangleCommandHandler::Install);
 

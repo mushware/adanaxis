@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameLightLinks.cpp,v 1.3 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameLightLinks.cpp,v 1.4 2002/12/20 13:17:40 southa Exp $
  * $Log: GameLightLinks.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -25,6 +28,7 @@
 #include "GameLightLinks.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameLightLinks::GameLightLinks()
 {

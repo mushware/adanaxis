@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.9 2002/11/24 23:18:05 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.10 2002/12/20 13:17:37 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/24 23:18:05  southa
  * Added type name accessor to CorePickle
  *
@@ -47,6 +50,7 @@
 #include "GameType.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameChequePoint::StandingOnHandler(const GameEventStandingOn& inEvent)

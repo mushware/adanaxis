@@ -9,11 +9,15 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfig.cpp,v 1.1 2002/12/29 20:30:56 southa Exp $
+ * $Log: MustlConfig.cpp,v $
+ * Revision 1.1  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  */
 
 #include "MustlConfig.h"
 
 using namespace Mustl;
+using namespace std;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreNamespace.cpp,v 1.1 2002/12/12 18:38:57 southa Exp $
+ * $Id: CoreNamespace.cpp,v 1.2 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreNamespace.cpp,v $
+ * Revision 1.2  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -19,4 +22,5 @@
 #include "CoreNamespace.h"
 
 using namespace Mushware;
+using namespace std;
 

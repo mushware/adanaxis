@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformNet.cpp,v 1.8 2002/11/24 11:16:37 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.9 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/11/24 11:16:37  southa
  * Added local IP address detection
  *
@@ -40,6 +43,7 @@
 #include <windows.h>
 
 using namespace Mushware;
+using namespace std;
 
 bool PlatformNet::m_localAddressesValid=false;
 map<U32, bool> PlatformNet::m_localAddressMap;

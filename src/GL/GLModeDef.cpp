@@ -20,6 +20,7 @@
 #include "GLModeDef.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLModeDef::GLModeDef()
 {

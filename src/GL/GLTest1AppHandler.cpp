@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.21 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.22 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.22  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -82,6 +85,7 @@
 #include "mushGL.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);

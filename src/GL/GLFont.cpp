@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.9 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLFont.cpp,v 1.10 2002/12/20 13:17:34 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -49,6 +52,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GLFontInstaller(GLFont::Install);
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.4 2002/10/22 20:42:02 southa Exp $
+ * $Id: GLVector.cpp,v 1.5 2002/12/20 13:17:37 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -29,6 +32,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GLVector::Render(void) const

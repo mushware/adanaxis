@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureClip.cpp,v 1.8 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.9 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -40,6 +43,7 @@
 #include "GLTextureClip.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX2, U32 inY2)
 {

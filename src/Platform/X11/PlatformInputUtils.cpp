@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.7 2002/10/22 20:42:08 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.8 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -52,6 +55,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 
 bool

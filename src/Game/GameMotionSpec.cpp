@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.9 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.10 2002/12/20 13:17:41 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -45,6 +48,7 @@
 #include "GameView.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameMotionSpec::GameMotionSpec(const GLPoint& inPoint, tVal inAngle) :
     pos(inPoint),

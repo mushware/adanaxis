@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.12 2002/10/22 20:42:08 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.13 2002/12/20 13:17:49 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.13  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -63,6 +66,7 @@
 #include "GraphWrangler.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GLWrangleAppHandler::Initialise(void)

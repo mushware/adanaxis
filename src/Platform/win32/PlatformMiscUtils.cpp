@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.21 2002/11/27 17:45:25 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.22 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.22  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/11/27 17:45:25  southa
  * Added PermissionBox
  *
@@ -82,6 +85,7 @@
 #include <windows.h>
 
 using namespace Mushware;
+using namespace std;
 
 #ifndef MAXPATHLEN
 #define MAXPATHLEN 4096

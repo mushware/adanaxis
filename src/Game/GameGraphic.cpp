@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.cpp,v 1.7 2002/10/22 20:42:04 southa Exp $
+ * $Id: GameGraphic.cpp,v 1.8 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGraphic.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:04  southa
  * Source conditioning
  *
@@ -39,6 +42,7 @@
 #include "GameGraphicSprite.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameGraphic&
 GameGraphic::NewFromType(const string& inName)

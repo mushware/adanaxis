@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformNet.cpp,v 1.14 2002/12/03 20:28:18 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.15 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/03 20:28:18  southa
  * Network, player and control work
  *
@@ -72,6 +75,7 @@
 #include <sys/types.h>
 
 using namespace Mushware;
+using namespace std;
 
 bool PlatformNet::m_localAddressesValid=false;
 map<U32, bool> PlatformNet::m_localAddressMap;

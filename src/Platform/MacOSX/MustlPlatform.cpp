@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.6 2002/12/20 13:17:47 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.7 2002/12/29 20:30:57 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.7  2002/12/29 20:30:57  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.6  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -94,6 +97,7 @@
 #include <netinet/tcp.h>
 
 using namespace Mustl;
+using namespace std;
 
 bool MustlPlatform::m_localAddressesValid=false;
 map<U32, bool> MustlPlatform::m_localAddressMap;

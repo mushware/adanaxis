@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: DataSet.cpp,v 1.9 2002/12/04 00:37:10 southa Exp $
+ * $Id: DataSet.cpp,v 1.10 2002/12/20 13:17:34 southa Exp $
  * $Log: DataSet.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/12/04 00:37:10  southa
  * ControlFrameDef work
  *
@@ -43,6 +46,7 @@
 #include "Dataset.h"
 
 using namespace Mushware;
+using namespace std;
 
 Dataset::Dataset()
 {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.21 2002/10/22 20:42:07 southa Exp $
+ * $Id: main.cpp,v 1.22 2002/12/20 13:17:44 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.22  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -95,6 +98,7 @@
 #include "SDL_main.h"
 
 using namespace Mushware;
+using namespace std;
 #endif
 #endif
 

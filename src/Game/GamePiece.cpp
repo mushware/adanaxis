@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.cpp,v 1.6 2002/10/22 20:42:05 southa Exp $
+ * $Id: GamePiece.cpp,v 1.7 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePiece.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -34,4 +37,5 @@
 #include "GamePiece.h"
 
 using namespace Mushware;
+using namespace std;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlHTTP.cpp,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlHTTP.cpp,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlHTTP.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -37,6 +40,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 const char MustlHTTP::m_endl[3]={0x0d, 0x0a, 0};
 

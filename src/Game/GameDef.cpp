@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.cpp,v 1.16 2002/12/13 01:07:25 southa Exp $
+ * $Id: GameDef.cpp,v 1.17 2002/12/20 13:17:38 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.17  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/13 01:07:25  southa
  * Mustl work
  *
@@ -67,6 +70,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameDef::GameDef(const string& inName) :
     m_name(inName),

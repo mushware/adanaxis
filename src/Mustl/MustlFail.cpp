@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.cpp,v 1.1 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlFail.cpp,v 1.2 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlFail.cpp,v $
+ * Revision 1.2  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -21,6 +24,7 @@
 #include "MustlSTL.h"
 
 using namespace Mustl;
+using namespace std;
 
 MustlFail::~MustlFail() throw()
 {

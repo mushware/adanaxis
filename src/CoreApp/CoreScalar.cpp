@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreScalar.cpp,v 1.12 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.13 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.13  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -53,6 +56,7 @@
 #include "CoreException.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CoreScalar::Get(tVal& outVal) const

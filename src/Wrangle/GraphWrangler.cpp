@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GraphWrangler.cpp,v 1.10 2002/10/22 20:42:08 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.11 2002/12/20 13:17:49 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.11  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -57,6 +60,7 @@
 #include "mushGL.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GraphWrangler::Process(bool &outRedraw)

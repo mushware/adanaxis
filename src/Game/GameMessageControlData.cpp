@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMessageControlData.cpp,v 1.3 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.4 2002/12/20 13:17:41 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -29,6 +32,7 @@
 #include "mushMedia.h"
 
 using namespace Mushware;
+using namespace std;
 
 const GameMessageControlData::DataEntry&
 GameMessageControlData::DataEntryGet(U32 inEntryNum) const

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStreamUtil.cpp,v 1.5 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreStreamUtil.cpp,v 1.6 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreStreamUtil.cpp,v $
+ * Revision 1.6  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -46,6 +49,7 @@
 #include "CoreStreamUtil.h"
 
 using namespace Mushware;
+using namespace std;
 
 U32
 CoreStreamUtil::BigEndianU32Get(u8istream& inIn)

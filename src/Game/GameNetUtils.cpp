@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.cpp,v 1.9 2002/12/13 01:07:25 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.10 2002/12/20 13:17:41 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/12/13 01:07:25  southa
  * Mustl work
  *
@@ -54,6 +57,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameNetUtils::KillServers(void)

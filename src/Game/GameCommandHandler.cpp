@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.9 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.10 2002/12/20 13:17:37 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -47,6 +50,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.9 2002/12/03 20:28:18 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.10 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/12/03 20:28:18  southa
  * Network, player and control work
  *
@@ -57,6 +60,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 
 using namespace Mushware;
+using namespace std;
 
 void
 PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)

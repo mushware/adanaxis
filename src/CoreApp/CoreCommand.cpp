@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreCommand.cpp,v 1.15 2002/11/22 11:42:05 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.16 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.16  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/11/22 11:42:05  southa
  * Added developer controls
  *
@@ -66,6 +69,7 @@
 #include "CoreInterpreter.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CoreCommand::Execute(void)

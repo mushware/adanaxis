@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.cpp,v 1.3 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreData.cpp,v 1.4 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreData.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -25,3 +28,4 @@
 #include "CoreData.h"
 
 using namespace Mushware;
+using namespace std;

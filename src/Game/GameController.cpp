@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.12 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameController.cpp,v 1.13 2002/12/20 13:17:38 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.13  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -55,6 +58,7 @@
 #include "GameControlFrameDef.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameController::GameController():
     m_keyState(4),

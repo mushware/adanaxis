@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.14 2002/12/14 15:04:33 southa Exp $
+ * $Id: GameRouter.cpp,v 1.15 2002/12/20 13:17:42 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.15  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -67,6 +70,7 @@
 #include "GameProtocol.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr<GameRouter> GameRouter::m_instance;
 

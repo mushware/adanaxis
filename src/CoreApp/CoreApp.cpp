@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.cpp,v 1.11 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreApp.cpp,v 1.12 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.12  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -54,6 +57,7 @@
 #include "CorePOSIX.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreApp *CoreApp::m_instance = NULL;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.cpp,v 1.5 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameRewards.cpp,v 1.6 2002/12/20 13:17:42 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.6  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -32,6 +35,7 @@
 #include "GameDataUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 bool
 GameRewards::JudgementPass(tVal inRatio)

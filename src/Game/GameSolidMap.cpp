@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.29 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.30 2002/12/20 13:17:42 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.30  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.29  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -109,6 +112,7 @@
 #include "GameView.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameSolidMap::GameSolidMap():
     m_xsize(0),

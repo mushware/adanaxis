@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.7 2002/12/10 10:54:28 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.8 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/12/10 10:54:28  southa
  * AppActivate and input cleanup
  *
@@ -41,6 +44,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.cpp,v 1.46 2002/12/03 20:28:14 southa Exp $
+ * $Id: GLUtils.cpp,v 1.47 2002/12/20 13:17:36 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.47  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.46  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -165,6 +168,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 tVal GLUtils::m_eyeDistance=60; // Controls how much perspective there is
 tVal GLUtils::m_screenScale=20;  // m_screenScale axis units cover the longest screen axis

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.20 2002/12/17 00:58:28 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.21 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.21  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.20  2002/12/17 00:58:28  southa
  * Added support for libmustl target
  *
@@ -99,6 +102,7 @@
 #include "mushPlatform.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr< CoreData<GameDefClient> > CoreData<GameDefClient>::m_instance;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreParamList.cpp,v 1.9 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreParamList.cpp,v 1.10 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreParamList.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -43,6 +46,7 @@
 #include "CoreParamList.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 CoreParamList::PopParam(tVal& outVal)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLQuad.cpp,v 1.8 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLQuad.cpp,v 1.9 2002/12/20 13:17:35 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -43,6 +46,7 @@
 #include "GLState.h"
 
 using namespace Mushware;
+using namespace std;
 
 
 GLQuad::GLQuad(const GLRectangle& inRectangle)

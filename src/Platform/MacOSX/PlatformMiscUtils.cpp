@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.24 2002/11/27 17:44:20 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.25 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.25  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.24  2002/11/27 17:44:20  southa
  * Network fixes
  *
@@ -101,6 +104,7 @@
 #include <sys/types.h>
 
 using namespace Mushware;
+using namespace std;
 
 OSStatus FSPathMakeFSSpec(const UInt8 *path, FSSpec *spec, Boolean *isDirectory);
 OSErr FinderLaunch(long nTargets, FSSpec *targetList);

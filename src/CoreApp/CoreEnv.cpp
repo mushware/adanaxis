@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.cpp,v 1.15 2002/11/07 11:59:02 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.16 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.16  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/11/07 11:59:02  southa
  * Web commands
  *
@@ -64,6 +67,7 @@
 #include "CoreScalar.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreEnv::CoreEnv *CoreEnv::m_instance=NULL;
 

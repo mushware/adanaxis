@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.17 2002/12/10 19:00:17 southa Exp $
+ * $Id: GameTimer.cpp,v 1.18 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.18  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.17  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
@@ -67,6 +70,7 @@
 #include "GameTimer.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameTimer::GameTimer():
     m_clientFrameTimer(10000),

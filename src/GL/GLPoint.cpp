@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.6 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLPoint.cpp,v 1.7 2002/12/20 13:17:35 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -36,6 +39,7 @@
 #include "GLUtils.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GLPoint::Render(void) const

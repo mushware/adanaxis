@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.cpp,v 1.17 2002/10/22 20:41:59 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.18 2002/12/20 13:17:34 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.18  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.17  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -68,3 +71,4 @@
 #include "GLStandard.h"
 
 using namespace Mushware;
+using namespace std;

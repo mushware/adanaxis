@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.8 2002/12/05 13:20:13 southa Exp $
+ * $Id: MediaSound.cpp,v 1.9 2002/12/20 13:17:45 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -42,6 +45,7 @@
 #include "MediaAudio.h"
 
 using namespace Mushware;
+using namespace std;
 
 auto_ptr< CoreData<MediaSound> > CoreData<MediaSound>::m_instance;
 

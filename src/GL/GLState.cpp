@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.4 2002/12/04 15:39:57 southa Exp $
+ * $Id: GLState.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.5  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/12/04 15:39:57  southa
  * Multiplayer work
  *
@@ -28,6 +31,7 @@
 #include "GLState.h"
 
 using namespace Mushware;
+using namespace std;
 
 GLState::tBlendType GLState::m_blendState=GLState::kBlendInvalid;
 tVal GLState::m_lightingAlpha = 1.0;

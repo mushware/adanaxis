@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMap.cpp,v 1.8 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMap.cpp,v 1.9 2002/12/20 13:17:40 southa Exp $
  * $Log: GameMap.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -22,4 +25,5 @@
 #include "GameMap.h"
 
 using namespace Mushware;
+using namespace std;
 

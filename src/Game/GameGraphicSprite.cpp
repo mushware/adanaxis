@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.13 2002/11/24 23:18:23 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.14 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.14  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.13  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -55,6 +58,7 @@
 #include "GameGraphicSprite.h"
 
 using namespace Mushware;
+using namespace std;
 
 void
 GameGraphicSprite::Render(void)

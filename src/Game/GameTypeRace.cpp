@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.29 2002/12/10 19:00:17 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.30 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.30  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.29  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
@@ -115,6 +118,7 @@
 #include <typeinfo>
 
 using namespace Mushware;
+using namespace std;
 
 GameTypeRace::GameTypeRace():
     m_lapStartTimeValid(false),

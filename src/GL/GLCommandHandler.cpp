@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.20 2002/10/22 20:41:59 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.21 2002/12/20 13:17:34 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.21  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.20  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -85,6 +88,7 @@
 #include "mushCore.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
 

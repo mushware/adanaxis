@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.12 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.13 2002/12/20 13:17:41 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.13  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -54,6 +57,7 @@
 #include "mushMedia.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameNetObject::~GameNetObject()
 {

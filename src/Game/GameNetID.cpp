@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetID.cpp,v 1.2 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameNetID.cpp,v 1.3 2002/12/20 13:17:41 southa Exp $
  * $Log: GameNetID.cpp,v $
+ * Revision 1.3  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -22,6 +25,7 @@
 #include "GameNetID.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameNetID::GameNetID(const string& inStr) :
     m_clientRef(inStr)

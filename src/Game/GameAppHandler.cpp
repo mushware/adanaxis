@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.39 2002/12/04 12:54:40 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.40 2002/12/20 13:17:37 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.40  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.39  2002/12/04 12:54:40  southa
  * Network control work
  *
@@ -149,6 +152,7 @@
 #include "mushMedia.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameAppHandler::GameAppHandler() :
     m_pSetup(NULL),

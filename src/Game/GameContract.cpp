@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.107 2002/12/10 20:38:05 southa Exp $
+ * $Id: GameContract.cpp,v 1.108 2002/12/20 13:17:38 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.108  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.107  2002/12/10 20:38:05  southa
  * Server timing
  *
@@ -367,6 +370,7 @@
 #include "GameView.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.21 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.22 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.22  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -80,6 +83,7 @@
 #include "GameGraphicSprite.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameTileTraits::~GameTileTraits()
 {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameBase.cpp,v 1.1 2002/12/05 13:20:11 southa Exp $
+ * $Id: GameBase.cpp,v 1.2 2002/12/20 13:17:37 southa Exp $
  * $Log: GameBase.cpp,v $
+ * Revision 1.2  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/05 13:20:11  southa
  * Client link handling
  *
@@ -19,4 +22,5 @@
 #include "GameBase.h"
 
 using namespace Mushware;
+using namespace std;
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreGlobalConfig.cpp,v 1.7 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreGlobalConfig.cpp,v 1.8 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreGlobalConfig.cpp,v $
+ * Revision 1.8  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -39,6 +42,7 @@
 #include "CoreInstaller.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreGlobalConfig *CoreGlobalConfig::m_instance=NULL;
 

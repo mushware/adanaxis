@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.21 2002/12/09 23:59:57 southa Exp $
+ * $Id: GameData.cpp,v 1.22 2002/12/20 13:17:38 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.22  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/12/09 23:59:57  southa
  * Network control
  *
@@ -91,6 +94,7 @@
 #include "GameView.h"
 
 using namespace Mushware;
+using namespace std;
 
 GameData *GameData::m_instance=NULL;
 

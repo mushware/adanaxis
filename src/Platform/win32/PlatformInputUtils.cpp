@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.8 2002/12/10 10:54:28 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.9 2002/12/20 13:17:48 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.9  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/12/10 10:54:28  southa
  * AppActivate and input cleanup
  *
@@ -54,6 +57,7 @@
 #include <windows.h>
 
 using namespace Mushware;
+using namespace std;
 
 void
 PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)

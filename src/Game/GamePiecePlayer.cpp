@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.34 2002/12/12 14:00:40 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.35 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.35  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.34  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -128,6 +131,7 @@
 #include "mushGL.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
 

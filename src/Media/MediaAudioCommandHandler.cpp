@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.9 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.10 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.10  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -46,6 +49,7 @@
 #include "mushCore.h"
 
 using namespace Mushware;
+using namespace std;
 
 CoreInstaller MediaAudioCommandHandlerInstaller(MediaAudioCommandHandler::Install);
 
