@@ -235,6 +235,22 @@ SOURCE=..\..\src\MushMesh\MushMeshVector.cpp
 
 SOURCE=..\..\src\MushMesh\MushMeshVector.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshWorkspace.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshWorkspace.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshWorkspaceBased.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshWorkspaceBased.h
+# End Source File
 # End Group
 # Begin Group "Mushcore"
 

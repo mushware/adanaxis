@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } zg4dYJ2vck3XL9zB+0VZHQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshBox.h,v 1.1 2003/10/17 12:27:19 southa Exp $
+ * $Log: MushMeshBox.h,v $
+ * Revision 1.1  2003/10/17 12:27:19  southa
+ * Line end fixes and more mesh work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -29,6 +32,8 @@ class MushMeshBox
 {
 public:
     typedef MushMeshVector<T, 2> tPoint;
+
+    MushMeshBox();
     MushMeshBox(const tPoint& inStart, const tPoint& inEnd);
     MushMeshBox(const T& inStartX, const T& inStartY, const T& inEndX, const T& inEndY);
 
@@ -38,6 +43,7 @@ public:
     void EndSet(const tPoint& inPoint) { m_end = inPoint; }
     const tPoint SizeGet(void) const { return m_end - m_start; }
 
+    bool RegularIs(void);
     void RegularMake(void);
 
 private:
@@ -63,6 +69,14 @@ MushMeshBox<T>::MushMeshBox(const T& inStartX, const T& inStartY, const T& inEnd
     m_start(tPoint(inStartX, inStartY)),
     m_end(tPoint(inEndX, inEndY))
 {
+}
+
+template <class T>
+inline bool
+MushMeshBox<T>::RegularIs(void)
+{
+    return m_start.X() <= m_end.X() &&
+           m_start.Y() <= m_end.Y();
 }
 
 template <class T>
@@ -128,6 +142,12 @@ operator<<(std::ostream& ioOut, const MushMeshBox<T>& inObj)
     return ioOut;
 }
 
+// Convenient types
+namespace Mushware
+{
+    typedef MushMeshBox<Mushware::U32> t2BoxU32;
+    typedef MushMeshBox<Mushware::tVal> t2BoxVal;
+}
 
 //%includeGuardEnd {
 #endif

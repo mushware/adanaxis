@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fToIyQQx8JGxur8jZBbZlg
 /*
- * $Id: TestMushMeshArray.h,v 1.2 2003/10/15 11:54:54 southa Exp $
+ * $Id: TestMushMeshArray.h,v 1.3 2003/10/15 12:23:10 southa Exp $
  * $Log: TestMushMeshArray.h,v $
+ * Revision 1.3  2003/10/15 12:23:10  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.2  2003/10/15 11:54:54  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -35,23 +38,7 @@ public:
     static void Install(void);
 
 private:
-    struct tNeighbourPoint
-    {
-        Mushware::U32 nx;
-        Mushware::U32 ny;
-    };
-
-    struct tNeighbourSpec
-    {
-        Mushware::U32 x;
-        Mushware::U32 y;
-        Mushware::U32 numNeighbours;
-        tNeighbourPoint neighbours[6];
-    };
-
     static Mushware::U32 ValueFunction(Mushware::U32 inX, Mushware::U32 inY);
-    static void CheckNeighbours(const tNeighbourSpec& inSpec, const MushwareValarray<const Mushware::U32 *>& inVerts,
-                                Mushware::U32 inNumVerts, Mushware::U32 inNumTest);
 };
 //%includeGuardEnd {
 #endif

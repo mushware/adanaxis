@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.2 2003/10/15 12:27:00 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.3 2003/10/17 12:27:20 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.3  2003/10/17 12:27:20  southa
+ * Line end fixes and more mesh work
+ *
  * Revision 1.2  2003/10/15 12:27:00  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -31,6 +34,7 @@ MushcoreInstaller TestMushMeshSubdivideInstaller(TestMushMeshSubdivide::Install)
 MushcoreScalar
 TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
+#if 0
     enum
     {
         kXMax = 3,
@@ -62,7 +66,7 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     
     cout << "Orig mesh = " << meshArray << endl;
     cout << "Moved mesh = " << subbedArray << endl;
-
+#endif
     return MushcoreScalar(0);
 }
 

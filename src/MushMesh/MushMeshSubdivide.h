@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.2 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.3 2003/10/17 12:27:19 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.3  2003/10/17 12:27:19  southa
+ * Line end fixes and more mesh work
+ *
  * Revision 1.2  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -28,87 +31,140 @@
 
 #include "MushMeshStandard.h"
 #include "MushMeshArray.h"
+#include "MushMeshBox.h"
 
 template <class T>
 class MushMeshSubdivide
 {
 public:
-    static void Subdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp);
-    static void Move(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp);
+    static void RectangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
+                                    Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp);
 };
 
 template <class T>
 inline void
-MushMeshSubdivide<T>::Move(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp)
+MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
+                                           Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp)
 {
-    MushwareValarray<const T *> verts(MushMeshArray<T>::kMaxVerts);
-    Mushware::U32 numVerts;
-
-    outArray.SizeSet(inArray.SizeGet());
-
-    for (Mushware::U32 x=0; x < inArray.XSizeGet(); ++x)
-    {
-        for (Mushware::U32 y=0; y < inArray.YSizeGet(); ++y)
-        {
-            inArray.VertexNeighboursGet(verts, numVerts, x, y);
-
-            T value = inArray.Get(x, y);
-            
-            Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(numVerts);
-
-            value *= alpha;
-
-            for (Mushware::U32 v=0; v < numVerts; ++v)
-            {
-                 value += *verts[v];
-            }
-
-            value /= alpha + numVerts;
-
-            value *= inProp;
-            value += inArray.Get(x, y) * (1 - inProp);
-
-            outArray.Set(value, x, y);
-        }
-    }
-}
-
-template <class T>
-inline void
-MushMeshSubdivide<T>::Subdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp)
-{
-    MushwareValarray<const T *> verts(MushMeshArray<T>::kMaxVerts);
-    Mushware::U32 numVerts;
+    // class T is usually some flavour of MushMeshVector, not a simple arithmetic type
 
     outArray.SizeSet(2 * inArray.SizeGet());
 
-    for (Mushware::U32 x=0; x < inArray.XSizeGet(); ++x)
+    MUSHCOREASSERT(inActiveBox.RegularIs());
+    
+    Mushware::t2U32 startPoint(inActiveBox.StartGet() - Mushware::t2U32(1, 1));
+    Mushware::t2U32 endPoint(inActiveBox.EndGet() + Mushware::t2U32(1, 1));
+
+    // All of our points have a valence of 6
+    Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(6);
+    Mushware::tVal alphaPlusNumVerts = alpha + 6;
+    // Precalculate a few things
+    Mushware::tVal inverseProp = 1 - inProp;
+    Mushware::tVal inversePropOver2 = inverseProp / 2;
+    Mushware::tVal propOver4 = inProp/4;
+
+
+    /* Iterate through points in the source array, writing points in
+     * the destination array four at a time
+     *
+     * m1p1   z0p1   p1p1
+     * +------2------3
+     * |     /|     /|
+     * |    / |    / |
+     * |   /  |   /  |
+     * |  /   |  /   |
+     * | /    | /    |
+     * |/     |/     |
+     * +------0------1
+     * |m1z0 /|z0z0 /| p1z0
+     * |    / |    / |
+     * |   /  |   /  |
+     * |  /   |  /   |
+     * | /    | /    |
+     * |/     |/     |
+     * +------+------+
+     * m1m1   z0m1   p1m1
+     * Point zero is a point in the original array.  Operations are interelaved
+     * to avoid stalling the floating point units, and each operation aims to be
+     * a single SIMD instruction.
+     *
+     * New vertices are generated at the mid points of lines 0->1, 0->2 and 0->3.
+     * See Loop's algorithm for which points contribute where
+     */
+    for (Mushware::U32 x=startPoint.X(); x < endPoint.X(); ++x)
     {
-        for (Mushware::U32 y=0; y < inArray.YSizeGet(); ++y)
+        for (Mushware::U32 y=startPoint.Y(); y < endPoint.Y(); ++y)
         {
-            inArray.VertexNeighboursGet(verts, numVerts, x, y);
+            // Will be reordered
 
-            T value = inArray.Get(x, y);
+            /* Get references to the nine positions above.  m1m1 implies minus 1, minus 1,
+             * i.e. x-1, y-1
+             */
+            const T& n_m1m1 = inArray.Get(x-1, y-1);
+            const T& n_z0m1 = inArray.Get(x,   y-1);
+            // n_p1m1 not used
+            const T& n_m1z0 = inArray.Get(x-1, y);
+            const T& n_z0z0 = inArray.Get(x,   y);
+            const T& n_p1z0 = inArray.Get(x+1, y);
+            // n_m1p1 not used
+            const T& n_z0p1 = inArray.Get(x,   y+1);
+            const T& n_p1p1 = inArray.Get(x+1, y+1);
+
+            // Value0 is special as it is the original vertex and follows as different algorithm
+            T value0 = n_z0z0;
+
+            value0 *= alpha;
             
-            Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(numVerts);
+            value0 += n_m1m1;
+            value0 += n_z0m1;
+            value0 += n_m1z0;
+            value0 += n_p1z0;
+            value0 += n_z0p1;
+            value0 += n_p1p1;
 
-            value *= alpha;
+            value0 /= alphaPlusNumVerts;
 
-            for (Mushware::U32 v=0; v < numVerts; ++v)
-            {
-                 value += *verts[v];
-            }
+            value0 *= inProp;
+            value0 += n_z0z0 * inverseProp;
 
-            value /= alpha + numVerts;
+            outArray.Set(value0, 2*x, 2*y);
+             
+            T value1 = n_z0z0;
+            value1 += n_p1z0;
+            value1 *= 3;
+            value1 += n_z0m1;
+            value1 += n_p1p1;
+            value1 *= propOver4;
+            value1 += (n_z0z0 + n_p1z0) * inversePropOver2;
+            value1 /= 2;
 
-            value *= inProp;
-            value += inArray.Get(x, y) * (1 - inProp);
+            outArray.Set(value1, 2*x+1, 2*y);
 
-            outArray.Set(value, 2*x, 2*y);
+            T value2 = n_z0z0;
+            value2 += n_z0p1;
+            value2 *= 3;
+            value2 += n_m1z0;
+            value2 += n_p1p1;
+            value2 *= propOver4;
+            value2 += (n_z0z0 + n_z0p1) * inversePropOver2;
+            value2 /= 2;
+
+            outArray.Set(value2, 2*x, 2*y+1);
+
+            T value3 = n_z0z0;
+            value3 += n_p1p1;
+            value3 *= 3;
+            value3 += n_p1z0;
+            value3 += n_z0p1;
+            value3 *= propOver4;
+            value3 += (n_z0z0 + n_p1p1) * inversePropOver2;
+            value3 /= 2;
+
+            outArray.Set(value3, 2*x+1, 2*y+1);
+
         }
     }
 }
-
 
 //%includeGuardEnd {
 #endif

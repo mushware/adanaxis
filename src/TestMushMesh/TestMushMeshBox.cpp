@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aN1UZCrWmgRxSG4S3+dPvQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshBox.cpp,v 1.1 2003/10/17 12:27:20 southa Exp $
+ * $Log: TestMushMeshBox.cpp,v $
+ * Revision 1.1  2003/10/17 12:27:20  southa
+ * Line end fixes and more mesh work
+ *
  */
 
 #include "TestMushMeshBox.h"
@@ -31,12 +34,26 @@ TestMushMeshBox::TestBox(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
     tTestBox testBox(4,5,2,8);
 
+    if (testBox.RegularIs())
+    {
+        ostringstream message;
+        message << "RegularIs failed: " << testBox << " not regular";
+        throw(MushcoreLogicFail(message.str()));
+    }
+
     testBox.RegularMake();
 
     if (testBox != tTestBox(2,5,4,8))
     {
         ostringstream message;
         message << "RegularMake failed: " << testBox << " != " << tTestBox(2,5,4,8);
+        throw(MushcoreLogicFail(message.str()));
+    }
+
+    if (!testBox.RegularIs())
+    {
+        ostringstream message;
+        message << "RegularIs failed: " << testBox << " is regular";
         throw(MushcoreLogicFail(message.str()));
     }
 
@@ -58,7 +75,7 @@ TestMushMeshBox::TestBox(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         throw(MushcoreLogicFail(message.str()));
     }
 
-    if (testBox.SizeGet() != tPoint(3, 2))
+    if (testBox.SizeGet() != tPoint(3, 1))
     {
         ostringstream message;
         message << "SizeGet failed: " << testBox.SizeGet() << " != " << tPoint(3, 1);

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.3 2003/10/15 12:26:58 southa Exp $
+ * $Id: MushMeshArray.h,v 1.4 2003/10/17 12:27:18 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.4  2003/10/17 12:27:18  southa
+ * Line end fixes and more mesh work
+ *
  * Revision 1.3  2003/10/15 12:26:58  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -41,7 +44,7 @@ public:
     {
         kMaxVerts = 6
     };
-    
+    MushMeshArray();
     MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
     const T& RefGet(Mushware::U32 inX, Mushware::U32 inY) const;
@@ -51,8 +54,6 @@ public:
     Mushware::U32 XSizeGet(void) const { return m_xSize; }
     Mushware::U32 YSizeGet(void) const { return m_ySize; }
 
-    void VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY) const;
-
     bool EqualIs(const MushMeshArray<T>& inObj) const;
 
     void Print(std::ostream& ioOut) const;
@@ -60,22 +61,20 @@ public:
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
-    Mushware::U32 m_xSizeSub1;
-    Mushware::U32 m_ySizeSub1;
-    bool m_xCyclic;
-    bool m_yCyclic;
     MushwareValarray<T> m_values;
 };
 
+template <class T>
+MushMeshArray<T>::MushMeshArray() :
+    m_xSize(0),
+    m_ySize(0)
+{
+}
 
 template <class T>
 MushMeshArray<T>::MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize) :
     m_xSize(inXSize),
     m_ySize(inYSize),
-    m_xSizeSub1(inXSize-1),
-    m_ySizeSub1(inYSize-1),
-    m_xCyclic(false),
-    m_yCyclic(false),
     m_values(inXSize*inYSize)
 {
     MUSHCOREASSERT(inXSize > 0 && inYSize > 0);
@@ -118,148 +117,7 @@ MushMeshArray<T>::SizeSet(const Mushware::t2U32& inSize)
         m_values.resize(m_xSize * m_ySize);
         m_xSize = inSize.X();
         m_ySize = inSize.Y();
-        m_xSizeSub1 = inSize.X()-1;
-        m_ySizeSub1 = inSize.Y()-1;
         MUSHCOREASSERT(m_xSize > 0 && m_ySize > 0);
-    }
-}
-
-template <class T>
-inline void
-MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY) const
-{
-    MUSHCOREASSERT(outVerts.size() >= kMaxVerts);
-    const T **pVertex = &outVerts[0];
-
-    if (inX != 0 && inY != 0 && inX < m_xSizeSub1 && inY < m_ySizeSub1)
-    {
-        // Optimised case
-        *pVertex = &RefGet(inX-1, inY-1);
-        *(++pVertex) = &RefGet(inX, inY-1);
-        *(++pVertex) = &RefGet(inX-1, inY);
-        *(++pVertex) = &RefGet(inX+1, inY);
-        *(++pVertex) = &RefGet(inX, inY+1);
-        *(++pVertex) = &RefGet(inX+1, inY+1);
-        outSize = 6;
-    }
-    else
-    {
-        // General case
-        Mushware::U32 xSub1;
-        Mushware::U32 xPlus1;
-        Mushware::U32 ySub1;
-        Mushware::U32 yPlus1;
-        bool generateXSub1;
-        bool generateXPlus1;
-        bool generateYSub1;
-        bool generateYPlus1;
-
-        // Test cycle and clip X values
-        if (inX == 0)
-        {
-            if (m_xCyclic)
-            {
-                xSub1 = m_xSize - 1;
-                generateXSub1 = true;
-            }
-            else
-            {
-                generateXSub1 = false;
-            }
-            xPlus1 = inX + 1;
-            generateXPlus1 = true;
-        }
-        else
-        {
-            xSub1 = inX - 1;
-            generateXSub1 = true;
- 
-            if (inX < m_xSizeSub1)
-            {
-                xPlus1 = inX + 1;
-                generateXPlus1 = true;
-            }
-            else
-            {
-                if (m_xCyclic)
-                {
-                    xPlus1 = 0;
-                    generateXPlus1 = true;
-                }
-                else    
-                {
-                    generateXPlus1 = false;
-                }
-            }
-        }
-
-        // Y values
-        if (inY == 0)
-        {
-            if (m_yCyclic)
-            {
-                ySub1 = m_ySize - 1;
-                generateYSub1 = true;
-            }
-            else
-            {
-                generateYSub1 = false;
-            }
-            yPlus1 = inY + 1;
-            generateYPlus1 = true;
-        }
-        else
-        {
-            ySub1 = inY - 1;
-            generateYSub1 = true;
-
-            if (inY < m_ySizeSub1)
-            {
-                yPlus1 = inY + 1;
-                generateYPlus1 = true;
-            }
-            else
-            {
-                if (m_yCyclic)
-                {
-                    yPlus1 = 0;
-                    generateYPlus1 = true;
-                }
-                else
-                {
-                    generateYPlus1 = false;
-                }
-            }
-        }
-
-        if (generateYSub1)
-        {
-            if (generateXSub1)
-            {
-                *pVertex++ = &RefGet(xSub1, ySub1);
-            }
-            *pVertex++ = &RefGet(inX, ySub1);
-        }
-
-        if (generateXSub1)
-        {
-            *pVertex++ = &RefGet(xSub1, inY);
-        }
-
-        if (generateXPlus1)
-        {
-            *pVertex++ = &RefGet(xPlus1, inY);
-        }
-
-        if (generateYPlus1)
-        {
-            *pVertex++ = &RefGet(inX, yPlus1);
-            if (generateXPlus1)
-            {
-                *pVertex++ = &RefGet(xPlus1, yPlus1);
-            }
-        }
-        outSize = pVertex - &outVerts[0];
     }
 }
 
@@ -269,9 +127,7 @@ MushMeshArray<T>::EqualIs(const MushMeshArray<T>& inObj) const
 {
     return (m_xSize == inObj.m_xSize) &&
            (m_ySize == inObj.m_ySize) &&
-           MushMeshUtils::EqualIs(m_values, inObj.m_values) && // Workaround for STL problem
-           (m_xCyclic == inObj.m_xCyclic) &&
-           (m_yCyclic == inObj.m_yCyclic);
+           MushMeshUtils::EqualIs(m_values, inObj.m_values); // Workaround for STL problem
 }
 
 template <class T>
@@ -281,10 +137,6 @@ MushMeshArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "ySize=" << m_ySize << ", ";
-    ioOut << "xSizeSub1=" << m_xSizeSub1 << ", ";
-    ioOut << "ySizeSub1=" << m_ySizeSub1 << ", ";
-    ioOut << "xCyclic=" << m_xCyclic << ", ";
-    ioOut << "yCyclic=" << m_yCyclic << ", ";
     ioOut << "values=" << m_values;
     ioOut << "]";
 }
