@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: IC2-macosx-setup-0_0_1.post_upgrade,v 1.1 2002/06/30 18:30:05 southa Exp $
+# $Log: IC2-macosx-setup-0_0_1.post_upgrade,v $
+# Revision 1.1  2002/06/30 18:30:05  southa
+# Created
+#
 
 # This script installs the libraries the application needs in /usr/local/lib.
 # It tests to see if anything is there first so won't overwrite anything.
@@ -30,3 +33,5 @@ then
 /bin/cp -R $filename /usr/local/lib/
 fi
 done
+# Leave the application directory +w so that user can delete it 
+chmod g+w "$2"
