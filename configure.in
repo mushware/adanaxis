@@ -26,6 +26,7 @@ SDL_EXTRA_LIBS=""
 dnl Checks for programs.
 AC_PROG_MAKE_SET
 AC_PROG_CXX
+AC_LANG(C++)
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PATH_PROG(ac_prog_find, find)
