@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.14 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.15 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.15  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.14  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -60,12 +63,8 @@
 
 #include "GLTest1AppHandler.h"
 
-#include "GLStandard.h"
 #include "mushCore.h"
-#include "GLTexture.h"
-#include "GLTextureRef.h"
-#include "GLData.h"
-#include "GLUtils.h"
+#include "mushGL.h"
 
 CoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
@@ -73,8 +72,6 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadpixmap 0 ../test/test.tiff;");
-
     EnterScreen(kWindow);
     GLUtils::CheckGLError();
 }
@@ -82,44 +79,67 @@ GLTest1AppHandler::Initialise(void)
 void
 GLTest1AppHandler::Display(void)
 {
-    string str("Hello from Test1");
-
-    glLineWidth(5);
     static double ticker=0;
-    static U32 texNum=0;
-    static GLTextureRef texRef("0");
-    
+    ticker+=0.01;
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    GLUtils::RasterPos(0, 0);
-    glBitmap(0,0,0,0,20+20*sin(ticker), 20+20*cos(ticker),NULL);
-    const GLTexture& tex=*texRef.TextureGet();
-    static int printCtr=0;
-
-    if (printCtr==0)
+    GLLine line1(GLPoint(-50,-100), GLPoint(-50,100));
+    GLLine line3(GLPoint(-100,50), GLPoint(100,50));
+    GLRectangle rect1(-100,-100,-30,-50);
+    GLLine line2(GLPoint(-30,-100), GLPoint(170,100));
+    line2.RotateAboutCentre(ticker);
+    if (line1.IsIntersecting(line2))
     {
-        printCtr=1;
-        cerr << tex << endl;
+        GLUtils::ColourSet(0,1,0);
     }
-    glDrawPixels(tex.Width(texNum), tex.Height(texNum), tex.PixelFormat(texNum),
-                     tex.PixelType(texNum), tex.DataPtr(texNum));
-    
-
-    GLUtils::OrthoEpilogue();
+    else
+    {
+        GLUtils::ColourSet(0.5,0.5,0.5);
+    }
+    glTranslatef(200,200,0);
+    GLUtils::ColourSet(0.5,0.5,0.5);
+    line2.Render();
+    if (line1.IsIntersecting(line2))
+    {
+GLUtils::ColourSet(0,1,0);
+    }
+    else
+    {
+GLUtils::ColourSet(0.5,0.5,0.5);
+    }    
+    line1.Render();
+#if 1
+    if (line3.IsIntersecting(line2))
+    {
+GLUtils::ColourSet(0,1,0);
+    }
+    else
+    {
+GLUtils::ColourSet(0.5,0.5,0.5);
+    }
+    line3.Render();
+#endif
+#if 1
+    if (rect1.IsIntersecting(line2))
+    {
+GLUtils::ColourSet(0,1,0);
+    }
+    else
+    {
+GLUtils::ColourSet(0.5,0.5,0.5);
+    }
+    rect1.Render();
+#endif
+GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
-    double oldTicker=ticker;
-    ticker+=0.10;
-    if ((int) ticker != (int) oldTicker)
-    {
-        for (int i=0; i<256; ++i)
-        {    
-            texNum++;
-            if (texNum >= texRef.TextureGet()->NumberOf()) texNum=0;
-            if (tex.Valid(texNum)) break;
-        }
-    }
+}
+
+void
+GLTest1AppHandler::Idle(void)
+{
+    GLUtils::PostRedisplay();
 }
 
 CoreScalar

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.20 2002/07/19 18:35:02 southa Exp $
+ * $Id: GLUtils.cpp,v 1.21 2002/07/31 16:27:15 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.21  2002/07/31 16:27:15  southa
+ * Collision checking work
+ *
  * Revision 1.20  2002/07/19 18:35:02  southa
  * More texture tweaks
  *
@@ -167,7 +170,7 @@ GLUtils::ClearScreen(void)
 }
 
 void
-GLUtils::SetColour(float inRed, float inGreen, float inBlue)
+GLUtils::ColourSet(float inRed, float inGreen, float inBlue)
 {
     glColor3f(inRed, inGreen, inBlue);
 }

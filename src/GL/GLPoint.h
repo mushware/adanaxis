@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.6 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLPoint.h,v 1.7 2002/07/31 16:27:15 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.7  2002/07/31 16:27:15  southa
+ * Collision checking work
+ *
  * Revision 1.6  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *
@@ -90,6 +93,7 @@ public:
     const GLPoint& operator/=(const GLPoint& inPoint) {x/=inPoint.x; y/=inPoint.y; return *this;}
     const GLPoint& operator*=(const tVal inOper) {x*=inOper; y*=inOper; return *this;}
     const GLPoint& operator/=(const tVal inOper) {x/=inOper; y/=inOper; return *this;}
+
     tVal x;
     tVal y;
 };
@@ -128,6 +132,16 @@ inline const GLPoint operator/(const GLPoint& a, tVal inOper)
 {
     GLPoint retPoint(a);
     return retPoint/=inOper;
+}
+
+inline bool operator==(const GLPoint& a, const GLPoint& b)
+{
+    return a.x == b.x && a.y == b.y;
+}
+
+inline bool operator!=(const GLPoint& a, const GLPoint& b)
+{
+    return a.x != b.x || a.y != b.y;
 }
 
 inline ostream& operator<<(ostream &s, const GLPoint& inPoint)

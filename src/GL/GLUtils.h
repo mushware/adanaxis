@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.17 2002/07/19 17:51:10 southa Exp $
+ * $Id: GLUtils.h,v 1.18 2002/07/31 16:27:15 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.18  2002/07/31 16:27:15  southa
+ * Collision checking work
+ *
  * Revision 1.17  2002/07/19 17:51:10  southa
  * Texture tweaks
  *
@@ -108,8 +111,8 @@ public:
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);
-    static void SetColour(float inRed, float inGreen, float inBlue);
-    static void SetColour(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha)
+    static void ColourSet(float inRed, float inGreen, float inBlue);
+    static void ColourSet(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha)
     {
         glColor4f(inRed, inGreen, inBlue, inAlpha);
     }

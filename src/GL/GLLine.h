@@ -1,6 +1,9 @@
 /*
- * $Id: GLLine.h,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLLine.h,v 1.2 2002/07/18 11:40:34 southa Exp $
  * $Log: GLLine.h,v $
+ * Revision 1.2  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.1  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -23,7 +26,8 @@ public:
     void RotateAboutCentre(tVal inAngle);
     const GLPoint& GetStart(void) const;
     const GLPoint& GetEnd(void) const;
-
+    bool IsIntersecting(const GLLine& inLine) const;
+    
 private:
     GLPoint m_start;
     GLPoint m_end;

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.h,v 1.4 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLRectangle.h,v 1.5 2002/07/23 14:10:46 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.5  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.4  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -34,6 +37,8 @@
 #include "GLPoint.h"
 #include "GLRenderable.h"
 
+class GLLine;
+
 class GLRectangle : public GLRenderable
 {
 public:
@@ -46,14 +51,18 @@ public:
     void Clip(const GLRectangle& inClip);
     void ConstrainPoint(GLPoint& ioPoint) const;
     bool IsWithin(const GLPoint& inPoint) const;
+    bool IsIntersecting(const GLLine& inLine) const;
     tVal XSize(void) const;
     tVal YSize(void) const;
     GLPoint Size(void) const;
     GLPoint MinPoint(void) const { return GLPoint(xmin, ymin); }
     void FixUp(void);
-    
+    void MakeInteger(void);
+    void Expand(tVal inExpansion);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+
+    const GLRectangle& operator+=(const GLPoint& inPoint);
     
     tVal xmin;
     tVal ymin;

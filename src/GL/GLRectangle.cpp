@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.4 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.5 2002/07/23 14:10:46 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.5  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.4  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -28,6 +31,7 @@
  */
 
 #include "GLRectangle.h"
+#include "GLLine.h"
 #include "GLUtils.h"
 
 GLRectangle::GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0):
@@ -75,6 +79,16 @@ GLRectangle::IsWithin(const GLPoint& inPoint) const
             inPoint.y < ymax);
 }
 
+bool
+GLRectangle::IsIntersecting(const GLLine& inLine) const
+{
+    if (inLine.IsIntersecting(GLLine(GLPoint(xmin,ymin), GLPoint(xmax,ymin))) ||
+        inLine.IsIntersecting(GLLine(GLPoint(xmax,ymin), GLPoint(xmax,ymax))) ||
+        inLine.IsIntersecting(GLLine(GLPoint(xmax,ymax), GLPoint(xmin,ymax))) ||
+        inLine.IsIntersecting(GLLine(GLPoint(xmin,ymax), GLPoint(xmin,ymin)))) return true;
+    return false;
+}    
+
 tVal
 GLRectangle::XSize(void) const
 {
@@ -102,6 +116,40 @@ GLRectangle::FixUp(void)
     if (xmin > xmax) swap(xmin, xmax);
     if (ymin > ymax) swap(ymin, ymax);
 }
+
+void
+GLRectangle::MakeInteger(void)
+{
+    double temp;
+    modf(xmin, &temp);
+    xmin=temp;
+    modf(ymin, &temp);
+    ymin=temp;
+    modf(xmax, &temp);
+    xmax=temp;
+    modf(ymax, &temp);
+    ymax=temp;
+}
+
+void
+GLRectangle::Expand(tVal inExpansion)
+{
+    xmin-=inExpansion;
+    ymin-=inExpansion;
+    xmax+=inExpansion;
+    ymax+=inExpansion;
+}
+
+const GLRectangle&
+GLRectangle::operator+=(const GLPoint& inPoint)
+{
+    xmin+=inPoint.x;
+    ymin+=inPoint.y;
+    xmax+=inPoint.x;
+    ymax+=inPoint.y;
+    return *this;
+}
+
 
 void
 GLRectangle::Pickle(ostream& inOut, const string& inPrefix="") const

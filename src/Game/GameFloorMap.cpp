@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.14 2002/07/19 17:51:11 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.15 2002/07/31 16:27:16 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.15  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.14  2002/07/19 17:51:11  southa
  * Texture tweaks
  *
@@ -98,7 +101,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
 
     gl.SetPosition(0,0);
     GLUtils::Scale(m_xstep, m_ystep, 1);
-    GLUtils::SetColour(1,1,1);
+    GLUtils::ColourSet(1,1,1);
     GLPoint minPoint=inArea.MinPointGet();
     GLPoint maxPoint=inArea.MaxPointGet();
 
@@ -126,7 +129,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
                     tVal greenBri=0.4+0.35*sin(clockNow/201.0);
                     tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
-                    GLUtils::SetColour(redBri, greenBri, blueBri);
+                    GLUtils::ColourSet(redBri, greenBri, blueBri);
                     GLUtils::ModulateSet(true);
                     highlightOn=true;
                 }

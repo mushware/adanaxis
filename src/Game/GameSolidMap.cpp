@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.4 2002/07/23 14:10:47 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.5 2002/07/31 16:27:16 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.5  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.4  2002/07/23 14:10:47  southa
  * Added GameMotion
  *
@@ -50,6 +53,28 @@ GameSolidMap::StepSet(tVal inXStep, tVal inYStep)
     m_ystep=inYStep;
 }
 
+const GameMapPoint
+GameSolidMap::SpaceToMapFractional(const GameSpacePoint inPoint) const
+{
+    GameMapPoint retVal(inPoint / GLPoint(m_xstep, m_ystep));
+    return retVal;
+}
+
+const GameMapPoint
+GameSolidMap::SpaceToMap(const GameSpacePoint inPoint) const
+{
+    GameMapPoint retVal(inPoint / GLPoint(m_xstep, m_ystep));
+    retVal += GLPoint(0.5,0.5);
+    retVal.MakeInteger();
+    return retVal;
+}
+
+const GameSpacePoint
+GameSolidMap::MapToSpace(const GameMapPoint inPoint) const
+{
+    return GameSpacePoint(inPoint * GLPoint(m_xstep, m_ystep));
+}
+
 void
 GameSolidMap::PermeabilitySet(tVal inValue, U32 inX, U32 inY)
 {
@@ -69,7 +94,7 @@ GameSolidMap::PermeabilityGet(U32 inX, U32 inY) const
 tVal
 GameSolidMap::PermeabilityGet(const GameSpacePoint& inPoint) const
 {
-    GameMapPoint mapPoint(inPoint / GLPoint(m_xstep, m_ystep));
+    GameMapPoint mapPoint(SpaceToMap(inPoint));
     return PermeabilityGet(mapPoint);
 }
 
@@ -87,20 +112,105 @@ GameSolidMap::PermeabilityGet(const GameMapPoint& inPoint) const
 void
 GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 {
-    GameSpacePoint destPoint(inSpec.pos+inSpec.deltaPos);
-    if (PermeabilityGet(destPoint) == 0)
+    tCollisionSet colSet;
+    CollisionSetAdd(colSet, inSpec);
+    for (U32 i=0; i<colSet.size(); ++i)
     {
-        inSpec.deltaPos=GLPoint(0,0);
+        if (PermeabilityGet(colSet[i]) == 0)
+        {
+            inSpec.deltaPos=GLPoint(0,0);
+            inSpec.deltaAngle=0;
+        }
     }
 }
 
 void
-GameSolidMap::RenderCollisionSet(const GLRectangle& inRect, tVal inAngle)
+GameSolidMap::OverPlotCollisionSet(const GameMotionSpec& inSpec) const
 {
-    GLQuad quad(inRect);
-    quad.RotateAboutCentre(inAngle);
+    tCollisionSet colSet;
+    CollisionSetAdd(colSet, inSpec);
+    for (U32 i=0; i<colSet.size(); ++i)
+    {
+        OverPlotBox(colSet[i]);
+    }
+}
+
+void
+GameSolidMap::OverPlotBox(const GameMapPoint& inPoint) const
+{
+    GameSpacePoint spacePoint(MapToSpace(inPoint));
+
+    GLPoint rectOffset(m_xstep/2 - 1, m_ystep/2 - 1);
+    
+    GLRectangle rect(spacePoint-rectOffset,
+                     spacePoint+rectOffset);
+
     GameData::Instance().CurrentViewGet()->OverPlotGet().
-        RenderableAdd(quad, GLColour(0,0,1));
+        RenderableAdd(rect, GLColour(1,0.5,0));
+}
+
+void
+GameSolidMap::CollisionSetAdd(tCollisionSet& outSet, const GameMotionSpec& inSpec) const
+{
+    // GameSpacePoint spacePoint(inSpec.pos+inSpec.deltaPos);
+    // GameMapPoint mapPoint(SpaceToMap(spacePoint));
+
+    // Get the projection of the MotionSpec rectangle in GameSpace into newQuad
+    GLQuad newQuad(inSpec.shape);
+    GLPoint newPos = inSpec.pos+inSpec.deltaPos;
+    tVal newAngle = inSpec.angle+inSpec.deltaAngle;
+    newQuad.RotateAboutCentre(newAngle);
+    newQuad += newPos;
+
+    // Translate the quad to map space
+    GLQuad mapQuad;
+    for (U32 i=0; i<4; ++i)
+    {
+        mapQuad.PointSet(i, SpaceToMapFractional(GameSpacePoint(newQuad.PointGet(i))));
+    }
+    
+    // Find the map area which encloses newQuad
+    GLRectangle mapRect;
+    mapQuad.BoundingRectangleGet(mapRect);
+    mapRect+=GLPoint(0.5,0.5);
+    mapRect.MakeInteger();
+    mapRect.Clip(GLRectangle(0, 0, m_xsize-1, m_ysize-1));
+    GameMapPoint mapPoint;
+    for (mapPoint.x=mapRect.xmin; mapPoint.x<=mapRect.xmax; ++mapPoint.x)
+    {
+        for (mapPoint.y=mapRect.ymin; mapPoint.y<=mapRect.ymax; ++mapPoint.y)
+        {
+            // Map position x,y is a potential collision set member
+            if (CollisionElementCheck(mapPoint, mapQuad))
+            {
+                outSet.push_back(mapPoint);
+            }
+        }
+    }
+}
+
+bool
+GameSolidMap::CollisionElementCheck(const GameMapPoint& inPoint, const GLQuad& inQuad) const
+{
+    for (U32 i=0; i<4; ++i)
+    {
+        // if (inQuad.PointGet(i) == inPoint) return true;
+    }
+
+    // Build set of test lines and test rectangle
+    GLRectangle mapRect(inPoint-GLPoint(0.5, 0.5), inPoint+GLPoint(0.5, 0.5));
+
+    for (U32 i=0; i<4; ++i)
+    {
+        if (mapRect.IsIntersecting(
+               GLLine(inQuad.PointGet(i),
+                      inQuad.PointGet((i+1) % 4)
+                      )
+                                   )
+            ) return true;
+    }
+    
+    return false;
 }
 
 void
@@ -131,7 +241,7 @@ GameSolidMap::Render(const GameMapArea& inArea) const
             if (inArea.IsWithin(point))
             {
                 tVal perm=PermeabilityGet(point.U32XGet(), point.U32YGet());
-                GLUtils::SetColour(0.5+0.5*cos(perm*M_PI),
+                GLUtils::ColourSet(0.5+0.5*cos(perm*M_PI),
                                    0.5-0.5*cos(perm*M_PI),
                                    (perm>1)?1:0);
                 GLLine line((point-GLPoint(0.4, 0.4)),
@@ -145,5 +255,3 @@ GameSolidMap::Render(const GameMapArea& inArea) const
     }
     glPopMatrix();
 }
-
-    

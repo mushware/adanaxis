@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.34 2002/07/23 14:10:46 southa Exp $
+ * $Id: GameContract.cpp,v 1.35 2002/07/31 16:27:16 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.35  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.34  2002/07/23 14:10:46  southa
  * Added GameMotion
  *
@@ -194,7 +197,7 @@ GameContract::InitDisplay(void)
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
     GLUtils::RasterPos(100,100);
-    GLUtils::SetColour(1,1,1);
+    GLUtils::ColourSet(1,1,1);
     GLUtils::BitmapText("Loading...");
     GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
@@ -216,6 +219,7 @@ GameContract::RunningDisplay(void)
     {
         GameMotionSpec motion;
         m_player->MoveGet(motion);
+        m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
         m_floorMap->SolidMapGet().TrimMotion(motion);
         m_player->MoveConfirm(motion);
         motion.Render();
@@ -262,7 +266,7 @@ GameContract::RunningDisplay(void)
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
-    GLUtils::SetColour(0.5,0.5,0.5);
+    GLUtils::ColourSet(0.5,0.5,0.5);
     GLUtils::RasterPos(8,8);
     GLUtils::BitmapText(message.str());
     GLUtils::OrthoEpilogue();

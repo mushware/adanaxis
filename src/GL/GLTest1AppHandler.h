@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTest1AppHandler.h,v 1.4 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.5 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.5  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -40,13 +43,15 @@
  */
 
 #include "GLUTAppHandler.h"
+#include "SDLAppHandler.h"
 #include "mushCore.h"
 
-class GLTest1AppHandler : public GLUTAppHandler
+class GLTest1AppHandler : public SDLAppHandler
 {
 public:
     virtual void Initialise(void);
     virtual void Display(void);
+    virtual void Idle(void);
     static CoreScalar GLTest1(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GLLine.cpp,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLLine.cpp,v 1.2 2002/07/18 11:40:34 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.2  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.1  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -43,6 +46,31 @@ const GLPoint&
 GLLine::GetEnd(void) const
 {
     return m_end;
+}
+
+bool
+GLLine::IsIntersecting(const GLLine& inLine) const
+{
+    GLPoint a(m_start);
+    GLPoint b(m_end);
+    GLPoint c(inLine.GetStart());
+    GLPoint d(inLine.GetEnd());
+
+    b-=a;
+    d-=c;
+    
+    tVal f = b.x*d.y - b.y*d.x;
+
+    tVal m = d.y*(c.x-a.x)+d.x*(a.y-c.y);
+    tVal n = b.y*(c.x-a.x)+b.x*(a.y-c.y);
+    if (f < 0)
+    {
+        return m<=0 && m>f && n<=0 && n>f;
+    }
+    else
+    {
+        return m>=0 && m<f && n>=0 && n<f;
+    }
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GLQuad.cpp,v 1.2 2002/07/23 14:10:46 southa Exp $
+ * $Id: GLQuad.cpp,v 1.3 2002/07/23 14:22:52 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.3  2002/07/23 14:22:52  southa
+ * Rotation fix
+ *
  * Revision 1.2  2002/07/23 14:10:46  southa
  * Added GameMotion
  *
@@ -68,10 +71,30 @@ GLQuad::RotateAboutCentre(tVal inAngle)
 }
 
 const GLPoint&
-GLQuad::GetPoint(U32 inWhich) const
+GLQuad::PointGet(U32 inWhich) const
 {
     COREASSERT(inWhich < 4);
     return m_points[inWhich];
+}
+
+void
+GLQuad::PointSet(U32 inWhich, const GLPoint &inPoint)
+{
+    COREASSERT(inWhich < 4);
+    m_points[inWhich] = inPoint;
+}
+
+void
+GLQuad::BoundingRectangleGet(GLRectangle& outRect) const
+{
+    outRect=GLRectangle(m_points[0], m_points[0]);
+    for (U32 i=1; i<4; ++i)
+    {
+        if (m_points[i].x < outRect.xmin) outRect.xmin=m_points[i].x;
+        if (m_points[i].y < outRect.ymin) outRect.ymin=m_points[i].y;
+        if (m_points[i].x > outRect.xmax) outRect.xmax=m_points[i].x;
+        if (m_points[i].y > outRect.ymax) outRect.ymax=m_points[i].y;
+    }
 }
 
 void

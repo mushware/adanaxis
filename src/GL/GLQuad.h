@@ -1,6 +1,9 @@
 /*
- * $Id: GLQuad.h,v 1.2 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLQuad.h,v 1.3 2002/07/23 14:10:46 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.3  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.2  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -19,6 +22,7 @@ class GLRectangle;
 class GLQuad : public GLRenderable
 {
 public:
+    GLQuad() {}
     GLQuad(const GLRectangle& inRectangle);
     
     virtual GLQuad *Clone(void) const { return new GLQuad(*this); }
@@ -26,8 +30,10 @@ public:
     
     void CentreGet(GLPoint& outPoint) const;
     void RotateAboutCentre(tVal inAngle);
-    const GLPoint& GetPoint(U32 inWhich) const;
-
+    const GLPoint& PointGet(U32 inWhich) const;
+    void PointSet(U32 inWhich, const GLPoint &inPoint);
+    void BoundingRectangleGet(GLRectangle& outRect) const;
+    
     const GLQuad& operator+=(const GLPoint& inPoint);
 
 private:
