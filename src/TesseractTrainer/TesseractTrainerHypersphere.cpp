@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KlSGDEnGkB9koN4E0FK9Tw
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.2 2005/02/03 21:03:10 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.3  2005/02/13 22:44:08  southa
+ * Tesseract stuff
+ *
  * Revision 1.2  2005/02/03 21:03:10  southa
  * Build fixes
  *
@@ -118,10 +121,7 @@ scale *= 0.95;
     
     for (U32 i=0; i<kNumVertices; ++i)
     {
-        for (U32 j=0; j<4; ++j)
-        {
-            m_vertices[i].Set(m_vertices[i][j]*scale[j], j);
-        }
+        m_vertices[i].InPlaceElementwiseMultiply(scale);
     }
 }
 
@@ -144,22 +144,13 @@ TesseractTrainerHypersphere::Render(tVal frame)
         vec2 = MushMeshVector<tVal, 4>(0,0,0,1);
     }        
     
-    static std::vector<tVertex> vertices(m_vertices.size());
+    std::vector<tVertex> vertices(m_vertices);
     
-    t4x4Val rotate(t4x4Val::Identity());
-    
-    for (U32 i=0; i<6; ++i)
+    for (U32 j=0; j<vertices.size(); ++j)
     {
-        rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
+        m_orientation.InPlaceRotate(vertices[j]);
     }
     
-    if (1)
-    {
-        for (U32 j=0; j<vertices.size(); ++j)
-        {
-            vertices[j] = rotate * m_vertices[j];
-        }
-    }
     
     MushMeshPreMatrix<tVal, 4, 3> preMatrix
         (

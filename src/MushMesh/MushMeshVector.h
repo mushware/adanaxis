@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.15 2004/11/17 23:43:47 southa Exp $
+ * $Id: MushMeshVector.h,v 1.16 2004/12/13 11:09:11 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.16  2004/12/13 11:09:11  southa
+ * Quaternion and vector tweaks
+ *
  * Revision 1.15  2004/11/17 23:43:47  southa
  * Added outer product
  *
@@ -119,6 +122,9 @@ public:
     static Mushware::U32 SizeGet(void) { return D; }
     bool EqualIs(const tThis& b) const;
 
+    void InPlaceElementwiseMultiply(const tThis& inB);
+    tThis ElementwiseProduct(const tThis& inB) const;
+    
     // Unchecked array operators
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
 
@@ -352,38 +358,43 @@ operator-(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
     return retValue;
 }
 
-#if 0
-template <class T, Mushware::U32 D>
-inline MushMeshVector<T, D>
-operator*(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
-{
-    MushMeshVector<T, D> retValue(a);
-    retValue *= b;
-    return retValue;
-}
-
-template <class T, Mushware::U32 D>
-inline MushMeshVector<T, D>
-operator/(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
-{
-    MushMeshVector<T, D> retValue(a);
-    retValue /= b;
-    return retValue;
-}
-#endif
-
 // Inner product
 template <class T, Mushware::U32 D>
 inline T
 operator*(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
 {
     T retValue = a[0]*b[0]; // Avoid using 0
-    for (Mushware::U32 i=1; i<D; ++i)
+    for (Mushware::U32 i=1; i<D; ++i) // Start at 1
     {
         retValue += a[i]*b[i];
     }
     return retValue;
 }
+
+// Functions which do the same thing as operators
+
+template <class T, Mushware::U32 D>
+inline void
+MushMeshVector<T, D>::InPlaceElementwiseMultiply(const tThis& inB)
+{
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        m_value[i] *= inB[i];
+    }
+}
+
+template <class T, Mushware::U32 D>
+inline typename MushMeshVector<T, D>::tThis
+MushMeshVector<T, D>::ElementwiseProduct(const tThis& inB) const
+{
+    tThis retVal;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retVal.Set(m_value[i] * inB[i], i);
+    }
+    return retVal;;
+}
+
 
 // Stream operators
 

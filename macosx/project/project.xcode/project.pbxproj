@@ -14296,6 +14296,10 @@
 				7AAE6BA707AFC36C0085C60F,
 				7A62BCFE07BE2FC100C05896,
 				7A62BCFD07BE2FC100C05896,
+				7AB627CB07D0D4D00035D7F1,
+				7AB627CA07D0D4D00035D7F1,
+				7AB6288007D0EB6A0035D7F1,
+				7AB6287F07D0EB6A0035D7F1,
 				7AAE6BA807AFC36C0085C60F,
 				7AAE6BA907AFC36C0085C60F,
 				7AAE6BAA07AFC36C0085C60F,
@@ -14689,6 +14693,8 @@
 				7A62BCF507BE2C9D00C05896,
 				7A62BD0107BE2FC100C05896,
 				7A62BD0907BE355100C05896,
+				7AB627CC07D0D4D00035D7F1,
+				7AB6288107D0EB6A0035D7F1,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15704,6 +15710,8 @@
 				7A62BCF607BE2C9D00C05896,
 				7A62BD0207BE2FC100C05896,
 				7A62BD0A07BE355100C05896,
+				7AB627CD07D0D4D00035D7F1,
+				7AB6288207D0EB6A0035D7F1,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16463,6 +16471,62 @@
 		};
 		7AAE6D2607AFC5990085C60F = {
 			fileRef = 7AAE6BAB07AFC36C0085C60F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB627CA07D0D4D00035D7F1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TesseractTrainerPlanePair.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AB627CB07D0D4D00035D7F1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TesseractTrainerPlanePair.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AB627CC07D0D4D00035D7F1 = {
+			fileRef = 7AB627CA07D0D4D00035D7F1;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB627CD07D0D4D00035D7F1 = {
+			fileRef = 7AB627CB07D0D4D00035D7F1;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB6287F07D0EB6A0035D7F1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TesseractTrainerPlaneSet.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AB6288007D0EB6A0035D7F1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TesseractTrainerPlaneSet.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AB6288107D0EB6A0035D7F1 = {
+			fileRef = 7AB6287F07D0EB6A0035D7F1;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB6288207D0EB6A0035D7F1 = {
+			fileRef = 7AB6288007D0EB6A0035D7F1;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.3 2005/02/10 12:34:20 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.4 2005/02/13 22:44:08 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.4  2005/02/13 22:44:08  southa
+ * Tesseract stuff
+ *
  * Revision 1.3  2005/02/10 12:34:20  southa
  * Template fixes
  *
@@ -35,6 +38,7 @@
 
 #include "TesseractTrainerHypercube.h"
 #include "TesseractTrainerHypersphere.h"
+#include "TesseractTrainerPlanePair.h"
 
 //:generate virtual standard ostream xml1
 class TesseractTrainerGame : public GameBase
@@ -56,8 +60,11 @@ protected:
 private:
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
-    Mushware::tQValPair m_orientaton;
+    TesseractTrainerPlanePair m_planepair; //:ignore
+    Mushware::tQValPair m_orientation;
+    Mushware::tQValPair m_angVel;
     std::vector<Mushware::t4GLVal> m_colours;
+    Mushware::tVal m_lastChangeMsec;
 
 //%classPrototypes {
 public:

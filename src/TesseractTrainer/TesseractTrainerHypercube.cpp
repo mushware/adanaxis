@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } tvE8OYNg7opzgRevdZ3rwA
 /*
- * $Id: TesseractTrainerHypercube.cpp,v 1.2 2005/02/03 21:03:10 southa Exp $
+ * $Id: TesseractTrainerHypercube.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
  * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.3  2005/02/13 22:44:08  southa
+ * Tesseract stuff
+ *
  * Revision 1.2  2005/02/03 21:03:10  southa
  * Build fixes
  *
@@ -70,7 +73,7 @@ TesseractTrainerHypercube::Create(tVal frame, const std::vector<Mushware::t4GLVa
                                 square / 2 != line / 2)
                             {
                                 vert.Set((line%2?1:-1), line/2);
-                                buildVertices.push_back(t4Val(vert[0]*scale[0], vert[1]*scale[1], vert[2]*scale[2], vert[3]*scale[3]));
+                                buildVertices.push_back(vert.ElementwiseProduct(scale));
                             }
                         }
                     }
@@ -189,32 +192,11 @@ TesseractTrainerHypercube::Render(tVal frame)
     
     std::vector<tVertex> vertices(m_vertices);
     
-    if ((U32)frame % 2 < 1)
+    for (U32 j=0; j<vertices.size(); ++j)
     {
-        for (U32 i=0; i<6; ++i)
-        {
-            MushMeshPreMatrix<tVal, 4, 4> rotate = MushMeshTools::MatrixRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4));
-            for (U32 j=0; j<vertices.size(); ++j)
-            {
-                vertices[j] = rotate * vertices[j];
-            }
-        }
+        m_orientation.InPlaceRotate(vertices[j]);
     }
-    else
-    {
-        tQValPair orient(tQValPair::RotationIdentityGet());
-        
-        for (U32 i=0; i<6; ++i)
-        {
-            orient.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)));
-        }
-        
-        for (U32 j=0; j<vertices.size(); ++j)
-        {
-            orient.InPlaceRotate(vertices[j]);
-        }
-    }        
-
+    
     const MushMeshGroup::tSuperGroup& srcOne = m_facetGroup.SuperGroup(1);
  
     glDisable(GL_CULL_FACE);

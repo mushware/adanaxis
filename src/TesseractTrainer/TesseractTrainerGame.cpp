@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.2 2005/02/10 12:34:20 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.3  2005/02/13 22:44:08  southa
+ * Tesseract stuff
+ *
  * Revision 1.2  2005/02/10 12:34:20  southa
  * Template fixes
  *
@@ -105,9 +108,36 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     //GLTextureRef texRef("font-system1");
     
     //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
+
+
+    if (msecNow > m_lastChangeMsec + 30000 || m_lastChangeMsec == 0)
+    {
+        m_lastChangeMsec = msecNow;
+        tVal frame = msecNow / 2000;
+
+        m_angVel = tQValPair::RotationIdentityGet();
     
-    m_hypersphere.Render(msecNow / 2000);
-    m_hypercube.Render(msecNow / 2000);
+        for (U32 i=0; i<6; ++i)
+        {
+            m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i,
+                cos((i+1)*(1.0+frame/30.0))*0.02*sin((frame+0.02)/4)));
+        }
+        
+        // Need to find invariant planes
+        
+        //m_planepair.Create(0, m_colours);
+        //m_planepair.Rotate(m_angVel);
+    }
+    
+    m_orientation.OuterMultiplyBy(m_angVel);
+    
+    m_hypercube.OrientationSet(m_orientation);
+    m_hypersphere.OrientationSet(m_orientation);
+    m_planepair.OrientationSet(m_orientation);
+    
+    m_hypersphere.Render(0);
+    m_hypercube.Render(0);
+    m_planepair.Render(0);
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
@@ -137,7 +167,12 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     
     m_hypercube.Create(0, m_colours);
     m_hypersphere.Create(0, m_colours);
+    m_planepair.Create(0, m_colours);
 
+    m_orientation = tQValPair::RotationIdentityGet();
+    m_angVel = tQValPair::RotationIdentityGet();
+    m_lastChangeMsec = 0;
+    
     cout << MushGLV::Sgl() << endl;
 }
 
@@ -154,8 +189,7 @@ const char *TesseractTrainerGame::AutoNameGet(void) const
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoClone(void) const
 {
-    //return new TesseractTrainerGame(*this);
-    throw "Computer says no";
+    return new TesseractTrainerGame(*this);
 }
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoCreate(void) const
@@ -179,7 +213,10 @@ void
 TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "orientaton=" << m_orientaton;
+    ioOut << "orientation=" << m_orientation << ", ";
+    ioOut << "angVel=" << m_angVel << ", ";
+    ioOut << "colours=" << m_colours << ", ";
+    ioOut << "lastChangeMsec=" << m_lastChangeMsec;
     ioOut << "]";
 }
 bool
@@ -189,9 +226,21 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> *this;
     }
-    else if (inTagStr == "orientaton")
+    else if (inTagStr == "orientation")
     {
-        ioIn >> m_orientaton;
+        ioIn >> m_orientation;
+    }
+    else if (inTagStr == "angVel")
+    {
+        ioIn >> m_angVel;
+    }
+    else if (inTagStr == "colours")
+    {
+        ioIn >> m_colours;
+    }
+    else if (inTagStr == "lastChangeMsec")
+    {
+        ioIn >> m_lastChangeMsec;
     }
     else
     {
@@ -202,7 +251,13 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("orientaton");
-    ioOut << m_orientaton;
+    ioOut.TagSet("orientation");
+    ioOut << m_orientation;
+    ioOut.TagSet("angVel");
+    ioOut << m_angVel;
+    ioOut.TagSet("colours");
+    ioOut << m_colours;
+    ioOut.TagSet("lastChangeMsec");
+    ioOut << m_lastChangeMsec;
 }
-//%outOfLineFunctions } v5I1TuhtD8GxT/oY4NLeXw
+//%outOfLineFunctions } flMJJ+2BTjbhl1h6X9U9lw

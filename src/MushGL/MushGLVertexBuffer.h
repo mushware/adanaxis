@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 8xLMG4RN55BtVXvugHCuFA
 /*
- * $Id: MushGLVertexBuffer.h,v 1.1 2005/02/01 13:40:37 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.2 2005/02/10 12:34:04 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.2  2005/02/10 12:34:04  southa
+ * Template fixes
+ *
  * Revision 1.1  2005/02/01 13:40:37  southa
  * Rotating spheres and hypercube
  *
@@ -35,6 +38,9 @@ public:
     
     MushGLVertexBuffer();
     explicit MushGLVertexBuffer(const Mushware::tSize inSize);
+    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy contructor"); }
+    const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }
+    
     virtual ~MushGLVertexBuffer();
     
     void Bind(void);
@@ -49,9 +55,7 @@ public:
     
     GLuint GLName() const { return m_handle; }
     
-private:
-    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy contructor"); }
-    const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }    
+private:  
     
     void Allocate(const Mushware::tSize inSize);
     void Deallocate();
