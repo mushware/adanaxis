@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } BpjMJ+EMJ1RMIN6aiXGruQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshPatch.h,v 1.1 2003/10/20 13:05:57 southa Exp $
+ * $Log: TestMushMeshPatch.h,v $
+ * Revision 1.1  2003/10/20 13:05:57  southa
+ * Created
+ *
  */
 
 
@@ -32,8 +35,8 @@ public:
 private:
     enum
     {
-        kXMax = 5,
-        kYMax = 6
+        kXMax = 6,
+        kYMax = 7
     };
 
     static void GeometryPrint(const Mushware::tGeometryArray& inArray);

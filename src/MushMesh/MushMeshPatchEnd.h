@@ -53,8 +53,6 @@ protected:
     virtual void NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeSelector inEdge);
 
 private:
-    void EdgeDefsGenerate(void);
-
     MushMeshWorkspaceBased<Mushware::tGeometryArray> m_geometry;
     
     MushMeshWorkspaceBased<Mushware::tTexCoordArrayVector> m_texCoords;

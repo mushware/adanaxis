@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xFo+XPP1GOS/msMIb9Dkcg
 /*
- * $Id: MushMesh.h,v 1.8 2003/10/23 20:03:57 southa Exp $
+ * $Id: MushMesh.h,v 1.9 2003/10/25 11:08:17 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.9  2003/10/25 11:08:17  southa
+ * Triangular mesh work
+ *
  * Revision 1.8  2003/10/23 20:03:57  southa
  * End mesh work
  *
@@ -48,6 +51,7 @@
 #include "MushMeshBox.h"
 #include "MushMeshConnector.h"
 #include "MushMeshPatch.h"
+#include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
 // #include "MushMeshSubdivide.h"
 #include "MushMeshTriangularArray.h"
