@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.3 2002/05/28 13:07:01 southa Exp $
+ * $Id: GLUtils.cpp,v 1.4 2002/05/29 08:56:16 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.4  2002/05/29 08:56:16  southa
+ * Tile display
+ *
  * Revision 1.3  2002/05/28 13:07:01  southa
  * Command parser extensions and TIFF loader
  *
@@ -166,7 +169,8 @@ GLUtils::StandardInit(void)
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     glDisable(GL_LINE_SMOOTH);
-    glutDisplayFunc(SafetyHandler);
+    // This kills glut on cygwin
+    // glutDisplayFunc(SafetyHandler);
     glutInitWindowSize(640,480);
     glutCreateWindow("Game");
     glutDisplayFunc(SafetyHandler);
@@ -186,7 +190,8 @@ GLUtils::GameInit(void)
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     glDisable(GL_LINE_SMOOTH);
-    glutDisplayFunc(SafetyHandler);
+    // This kills glut on cygwin
+    // glutDisplayFunc(SafetyHandler);
     glutGameModeString("640x480:16@60");
     glutEnterGameMode();
     glutDisplayFunc(SafetyHandler);
