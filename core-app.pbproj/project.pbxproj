@@ -2074,7 +2074,7 @@
 			neededFileNames = (
 			);
 			shellPath = /bin/sh;
-			shellScript = "rm -rf contractor/system/contractor.app\ncp -pR build/contractor.app contractor/system/contractor.app\nrm -f contractor/contractor.app\nln -s system/contractor.app contractor/contractor.app\n";
+			shellScript = "rm -rf ic2data/system/contractor.app\ncp -pR build/contractor.app ic2data/system/contractor.app\nrm -f ic2data/contractor.app\nln -s ic2data/system/contractor.app ic2data/contractor.app\n";
 		};
 		F54631EB02ACC53801A7DA6B = {
 			isa = PBXFileReference;
@@ -3556,7 +3556,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "src src/API";
-				INSTALL_PATH = "/Volumes/work/core-app/contractor/system";
+				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
@@ -3570,7 +3570,7 @@
 			);
 			isa = PBXApplicationTarget;
 			name = all;
-			productInstallPath = "/Volumes/work/core-app/contractor/system";
+			productInstallPath = "/Volumes/work/core-app/ic2data/system";
 			productName = all;
 			productReference = F59396D6028C0CA6016230BF;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>

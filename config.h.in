@@ -75,9 +75,6 @@
 /* Define to 1 if you have the `vorbisfile' library (-lvorbisfile). */
 #undef HAVE_LIBVORBISFILE
 
-/* Define to 1 if you have the `X11' library (-lX11). */
-#undef HAVE_LIBX11
-
 /* Define to 1 if you have the `Xext' library (-lXext). */
 #undef HAVE_LIBXEXT
 

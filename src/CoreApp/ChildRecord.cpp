@@ -1,6 +1,9 @@
 /*
- * $Id: ChildRecord.cpp,v 1.2 2002/05/10 16:39:38 southa Exp $
+ * $Id: ChildRecord.cpp,v 1.3 2002/06/24 16:41:13 southa Exp $
  * $Log: ChildRecord.cpp,v $
+ * Revision 1.3  2002/06/24 16:41:13  southa
+ * Fixed for mingw32
+ *
  * Revision 1.2  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -33,6 +36,7 @@ ChildRecord::StatusGet(ChildStatus &outStatus)
 bool
 ChildRecord::OutputAppend(string &outStr)
 {
+#ifdef HAVE_POSIX
     int result;
     bool wasOutput=false;
     char buf[256];
@@ -47,4 +51,5 @@ ChildRecord::OutputAppend(string &outStr)
         cerr << "Read from pipe failed: " << strerror(errno) << endl;
     }
     return wasOutput;
+#endif
 }
