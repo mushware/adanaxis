@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetWebServer.cpp,v 1.1 2002/11/05 18:15:18 southa Exp $
+ * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.1  2002/11/05 18:15:18  southa
+ * Web server
+ *
  */
 
 #include "MediaNetWebServer.h"
@@ -49,8 +52,11 @@ MediaNetWebServer::Connect(U32 inPort)
 
 MediaNetWebServer::~MediaNetWebServer()
 {
-    MediaNetLog::Instance().Log() << "Closed web server" << endl;
+    MediaNetLog::Instance().Log() << "Closing web server" << endl;
+    // Close all of the links first
+    CoreData<MediaNetWebLink>::Instance().Clear();
     SDLNet_TCP_Close(m_tcpSocket);
+    MediaNetLog::Instance().Log() << "Closed web server" << endl;
 }
 
 void
