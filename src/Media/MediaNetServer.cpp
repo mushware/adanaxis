@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.10 2002/11/18 21:02:39 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.11 2002/11/20 22:35:28 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.11  2002/11/20 22:35:28  southa
+ * Multiplayer setup
+ *
  * Revision 1.10  2002/11/18 21:02:39  southa
  * Prevent crash on exit
  *
@@ -122,15 +125,18 @@ MediaNetServer::~MediaNetServer()
 void
 MediaNetServer::Accept(void)
 {
-    TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
-    if (newSocket != NULL)
+    if (m_serving)
     {
-        ostringstream name;
-        name << "server" << m_linkCtr;
-        CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
-        m_linkCtr++;
-
-        MediaNetLog::Instance().Log() << "Accepted connection for " << name.str() << endl;
+        TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
+        if (newSocket != NULL)
+        {
+            ostringstream name;
+            name << "server" << m_linkCtr;
+            CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
+            m_linkCtr++;
+    
+            MediaNetLog::Instance().Log() << "Accepted connection for " << name.str() << endl;
+        }
     }
 }
 
