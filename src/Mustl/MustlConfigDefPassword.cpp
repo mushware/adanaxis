@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefPassword.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Id: MustlConfigDefPassword.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfigDefPassword.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 12:40:10  southa
  * Moved ConfigDefs into Mustl
  *
@@ -86,6 +89,11 @@ MustlConfigDefPassword::MustlConfigPassword(MushcoreCommand& ioCommand, Mushcore
 void
 MustlConfigDefPassword::Install(void)
 {
-MushcoreInterpreter::Instance().AddHandler("mustlconfigpassword", MustlConfigPassword);
+    MushcoreInterpreter::Instance().AddHandler("mustlconfigpassword", MustlConfigPassword);
+}
+
+void
+MustlConfigDefPassword::NullFunction(void)
+{
 }
 

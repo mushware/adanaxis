@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.3 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.4 2003/01/13 23:05:22 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.4  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.3  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -64,6 +67,7 @@
 
 #include "MushcoreInterpreter.h"
 
+#include "MushcoreBuiltinHandler.h"
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
 #include "MushcoreEnv.h"
@@ -115,4 +119,11 @@ void
 MushcoreInterpreter::AddHandler(const string& inName, MushcoreCommandHandler inHandler)
 {
     m_handlers[inName]=inHandler;
+}
+
+void
+MushcoreInterpreter::NullFunction(void)
+{
+    // Ensure that the builtin handler is linked in
+    MushcoreBuiltinHandler::NullFunction();
 }

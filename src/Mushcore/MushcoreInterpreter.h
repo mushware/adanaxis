@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.3 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.3  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -83,6 +86,8 @@ public:
     virtual void AddHandler(const std::string& inName, MushcoreCommandHandler inHandler);
 
     void LogCommandsSet(bool inLog) { m_logCommands = inLog; }
+
+    static void NullFunction(void);
     
 private:
     std::map<std::string, MushcoreCommandHandler> m_handlers;

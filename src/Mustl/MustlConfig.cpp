@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.5 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.6 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.6  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.5  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -98,4 +101,10 @@ MustlConfig::Install(void)
     // POST data from HTML forms where the value of the type field doesn't
     // start with the string mustlonly
     MushcoreGlobalConfig::Instance().Set("MUSTL_POST_HANDLER", "posthandler");
+}
+
+void
+MustlConfig::NullFunction(void)
+{
+    MustlConfigDef::NullFunction();
 }

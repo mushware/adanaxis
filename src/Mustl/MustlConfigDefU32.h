@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefU32.h,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Log: MustlConfigDefU32.h,v $
+ * Revision 1.1  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDef.h"
@@ -36,6 +39,7 @@ public:
 
     static MushcoreScalar MustlConfigUnsigned(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+    static void NullFunction(void);
 
 private:
     Mustl::U32 m_value;

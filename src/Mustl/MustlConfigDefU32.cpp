@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefU32.cpp,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Id: MustlConfigDefU32.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfigDefU32.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 12:40:11  southa
  * Moved ConfigDefs into Mustl
  *
@@ -107,4 +110,9 @@ void
 MustlConfigDefU32::Install(void)
 {
     MushcoreInterpreter::Instance().AddHandler("mustlconfigunsigned", MustlConfigUnsigned);
+}
+
+void
+MustlConfigDefU32::NullFunction(void)
+{
 }

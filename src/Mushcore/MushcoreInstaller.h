@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInstaller.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreInstaller.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreInstaller.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -48,9 +51,19 @@
  *
  */
 
+#include "MushcoreStandard.h"
+
+// Some linkers discard the MushcoreInstaller module and all of the modules
+// using it.  This code is needs to prevent that happening
+
 class MushcoreInstaller
 {
 public:
-    MushcoreInstaller(void (*fn)()) {fn();}
+    MushcoreInstaller(void (*inFuncPtr)(void));
+    void NullFunction(void) const;
+
+    static Mushware::U32 NumInstalledModulesGet(void);
+private:
+    static Mushware::U32 m_installedModules;
 };
 #endif

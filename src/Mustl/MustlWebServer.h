@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.h,v 1.4 2002/12/20 13:17:47 southa Exp $
+ * $Id: MustlWebServer.h,v 1.5 2002/12/29 20:30:57 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.5  2002/12/29 20:30:57  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -74,6 +77,8 @@ public:
     void ExtraAllowedAddrSet(const std::string& inAddr);
     void PermissionFunctionSet(tPermissionFunction inFunction); 
 
+    static void NullFunction(void);
+    
 protected:
     MustlWebServer();
     bool CheckIPAddressAllowed(Mustl::U32 inIPNetworkOrder);

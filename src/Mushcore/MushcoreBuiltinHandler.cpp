@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.4 2003/01/12 17:32:58 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.5 2003/01/15 11:19:39 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.5  2003/01/15 11:19:39  southa
+ * Fixed library linking
+ *
  * Revision 1.4  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -116,7 +119,11 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
 void
 MushcoreBuiltinHandler::Install(void)
 {
-    cerr << "Called MushcoreBuiltinHandler::Install" << endl;
     MushcoreInterpreter::Instance().AddHandler("load", Load);
     MushcoreInterpreter::Instance().AddHandler("configset", ConfigSet);
+}
+
+void
+MushcoreBuiltinHandler::NullFunction(void)
+{
 }

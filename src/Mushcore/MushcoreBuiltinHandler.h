@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.h,v 1.3 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreBuiltinHandler.h,v 1.4 2003/01/13 14:32:02 southa Exp $
  * $Log: MushcoreBuiltinHandler.h,v $
+ * Revision 1.4  2003/01/13 14:32:02  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.3  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -60,6 +63,7 @@ public:
     static MushcoreScalar Load(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static MushcoreScalar ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static void Install(void);
+    static void NullFunction(void);
 protected:
 
 private:

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDef.h,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDef.h,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlStandard.h"
@@ -30,7 +33,9 @@ public:
     virtual void ValueSet(const MushcoreScalar& inValue) = 0;
     virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData) = 0;
     virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName) = 0;
-        
+
+    static void NullFunction(void);
+    
 protected:
     // Utility functions for subclasses
     static void SelectPrologue(std::ostream& ioOut, const std::string& inName);

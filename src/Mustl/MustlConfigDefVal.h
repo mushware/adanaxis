@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefVal.h,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Log: MustlConfigDefVal.h,v $
+ * Revision 1.1  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDef.h"
@@ -36,11 +39,12 @@ public:
 
     static MushcoreScalar MustlConfigFloat(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+    static void NullFunction(void);
 
 private:
-Mustl::tVal m_value;
-Mustl::tVal m_lowLimit;
-Mustl::tVal m_highLimit;
+    Mustl::tVal m_value;
+    Mustl::tVal m_lowLimit;
+    Mustl::tVal m_highLimit;
 };
 
 #endif

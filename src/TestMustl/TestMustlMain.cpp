@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlMain.cpp,v 1.3 2003/01/14 20:46:12 southa Exp $
+ * $Id: TestMustlMain.cpp,v 1.4 2003/01/14 22:02:12 southa Exp $
  * $Log: TestMustlMain.cpp,v $
+ * Revision 1.4  2003/01/14 22:02:12  southa
+ * Command line build fixes
+ *
  * Revision 1.3  2003/01/14 20:46:12  southa
  * Post data handling
  *
@@ -34,6 +37,7 @@ int main(int argc, char *argv[])
     try
     {
         cout << "This application must be started from the mustl directory" << endl;
+        cout << "Number of installed modules=" << MushcoreInstaller::NumInstalledModulesGet() << endl;
         MushcoreGlobalConfig::Instance().Set("MUSTL_WEB_PATH", "test/mustl");
         MushcoreGlobalConfig::Instance().Set("MUSTL_START_FILE", "test/mustl/mustlstart.txt");
 

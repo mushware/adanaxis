@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefMenuString.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Id: MustlConfigDefMenuString.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfigDefMenuString.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 12:40:10  southa
  * Moved ConfigDefs into Mustl
  *
@@ -83,4 +86,9 @@ void
 MustlConfigDefMenuString::Install(void)
 {
     MushcoreInterpreter::Instance().AddHandler("mustlconfigmenustring", MustlConfigMenuString);
+}
+
+void
+MustlConfigDefMenuString::NullFunction(void)
+{
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.h,v 1.4 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlConfig.h,v 1.5 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfig.h,v $
+ * Revision 1.5  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.4  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -40,6 +43,7 @@ public:
     
     static MustlConfig& Instance(void);
     static void Install(void);
+    static void NullFunction(void);
     
 protected:
     MustlConfig();

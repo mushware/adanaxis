@@ -47,7 +47,6 @@ case "$target" in
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         LIBS="$LIBS -framework Carbon"
         CPPFLAGS="$CPPFLAGS -fpascal-strings"
-        LDFLAGS="$LDFLAGS"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebCommands.cpp,v 1.1 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.2 2003/01/14 20:46:12 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:12  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -128,3 +131,9 @@ MustlWebCommands::Install(void)
     MushcoreInterpreter::Instance().AddHandler("mustlserverstatuswrite", MustlServerStatusWrite);
     MushcoreInterpreter::Instance().AddHandler("mustllinkstatuswrite", MustlLinkStatusWrite);
 }
+
+void
+MustlWebCommands::NullFunction(void)
+{
+}
+

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.11 2003/01/13 16:50:50 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.12 2003/01/14 17:38:22 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.12  2003/01/14 17:38:22  southa
+ * Mustl web configuration
+ *
  * Revision 1.11  2003/01/13 16:50:50  southa
  * win32 support
  *
@@ -77,6 +80,8 @@
 #include "MustlSTL.h"
 
 #include "MustlMushcore.h"
+
+#include "MustlWebCommands.h"
 
 using namespace Mustl;
 using namespace std;
@@ -261,4 +266,11 @@ MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
         }
     }
     return retVal;
+}
+
+void MustlWebServer::NullFunction(void)
+{
+    // Make sure that the config and web commands are linked in if the server is
+    MustlConfig::NullFunction();
+    MustlWebCommands::NullFunction();
 }

@@ -469,7 +469,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 92";
 		rLen = 0;
-		rLoc = 2947;
+		rLoc = 2614;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 1919;
@@ -629,7 +629,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 99";
 		rLen = 0;
-		rLoc = 3127;
+		rLoc = 2794;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -2553,7 +2553,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 96";
 		rLen = 0;
-		rLoc = 3377;
+		rLoc = 3401;
 		rType = 0;
 		vrLen = 1923;
 		vrLoc = 2057;
@@ -2572,8 +2572,8 @@
 		fRef = 7AB3AD1003D4E7C800A80164;
 		isa = PBXTextBookmark;
 		name = "mushcore.configure.in: 39";
-		rLen = 266;
-		rLoc = 930;
+		rLen = 270;
+		rLoc = 910;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 408;
@@ -2583,7 +2583,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 50";
 		rLen = 0;
-		rLoc = 1503;
+		rLoc = 1484;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 1521;
@@ -3623,7 +3623,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 62";
 		rLen = 0;
-		rLoc = 1954;
+		rLoc = 1930;
 		rType = 0;
 		vrLen = 1590;
 		vrLoc = 436;
@@ -3663,7 +3663,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 96";
 		rLen = 0;
-		rLoc = 3377;
+		rLoc = 3401;
 		rType = 0;
 		vrLen = 1923;
 		vrLoc = 2057;
@@ -3682,8 +3682,8 @@
 		fRef = 7AB3AD0C03D4E7C800A80164;
 		isa = PBXTextBookmark;
 		name = "mushcore.configure.in: 39";
-		rLen = 266;
-		rLoc = 930;
+		rLen = 270;
+		rLoc = 910;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 408;
@@ -3693,7 +3693,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 67";
 		rLen = 0;
-		rLoc = 2245;
+		rLoc = 2164;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 1510;
@@ -4283,7 +4283,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 147";
 		rLen = 0;
-		rLoc = 4859;
+		rLoc = 4964;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 1616;
@@ -7380,7 +7380,7 @@
 		isa = PBXTextBookmark;
 		name = "mustl.configure.in: 99";
 		rLen = 0;
-		rLoc = 3127;
+		rLoc = 2794;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -10312,7 +10312,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 110";
 		rLen = 0;
-		rLoc = 4449;
+		rLoc = 4554;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2791;
@@ -10932,7 +10932,7 @@
 		isa = PBXTextBookmark;
 		name = "mushcore.configure.in: 37";
 		rLen = 0;
-		rLoc = 930;
+		rLoc = 910;
 		rType = 0;
 		vrLen = 1475;
 		vrLoc = 409;
@@ -18746,6 +18746,8 @@
 		activeExecutable = 7AB45DB703D3610100A80164;
 		activeTarget = 7AB45DB503D3610100A80164;
 		addToTargets = (
+			7AEACAD603D1B87F00A80164,
+			F59396D5028C0CA6016230BF,
 		);
 		breakpoints = (
 		);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDef.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Id: MustlConfigDef.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfigDef.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 12:40:10  southa
  * Moved ConfigDefs into Mustl
  *
@@ -24,9 +27,18 @@
 
 #include "MustlMushcore.h"
 
+// Include the subclasses for installation purposes
+#include "MustlConfigDefBool.h"
+#include "MustlConfigDefMenuString.h"
+#include "MustlConfigDefPassword.h"
+#include "MustlConfigDefString.h"
+#include "MustlConfigDefU32.h"
+#include "MustlConfigDefVal.h"
+
 using namespace Mustl;
 using namespace std;
 
+// Instantiate the MustlConfigDef database
 auto_ptr< MushcoreData<MustlConfigDef> > MushcoreData<MustlConfigDef>::m_instance;
 
 MustlConfigDef::~MustlConfigDef()
@@ -61,4 +73,15 @@ void
 MustlConfigDef::SelectEpilogue(ostream& ioOut)
 {
     ioOut << "</select>" << endl;
+}
+
+void
+MustlConfigDef::NullFunction(void)
+{
+    MustlConfigDefBool::NullFunction();
+    MustlConfigDefMenuString::NullFunction();
+    MustlConfigDefPassword::NullFunction();
+    MustlConfigDefString::NullFunction();
+    MustlConfigDefU32::NullFunction();
+    MustlConfigDefVal::NullFunction();
 }

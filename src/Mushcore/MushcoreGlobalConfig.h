@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -49,6 +52,7 @@ class MushcoreGlobalConfig : public MushcoreConfig
 public:
     static MushcoreGlobalConfig& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreGlobalConfig:m_instance);}
     static void Install(void);
+    static void NullFunction(void);
     
 private:
     static MushcoreGlobalConfig *m_instance;

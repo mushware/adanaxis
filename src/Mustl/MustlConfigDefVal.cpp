@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefVal.cpp,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Id: MustlConfigDefVal.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
  * $Log: MustlConfigDefVal.cpp,v $
+ * Revision 1.2  2003/01/14 20:46:11  southa
+ * Post data handling
+ *
  * Revision 1.1  2003/01/14 12:40:11  southa
  * Moved ConfigDefs into Mustl
  *
@@ -106,5 +109,10 @@ MustlConfigDefVal::MustlConfigFloat(MushcoreCommand& ioCommand, MushcoreEnv& ioE
 void
 MustlConfigDefVal::Install(void)
 {
-MushcoreInterpreter::Instance().AddHandler("mustlconfigfloat", MustlConfigFloat);
+    MushcoreInterpreter::Instance().AddHandler("mustlconfigfloat", MustlConfigFloat);
+}
+
+void
+MustlConfigDefVal::NullFunction(void)
+{
 }

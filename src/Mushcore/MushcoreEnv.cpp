@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.2 2003/01/12 17:32:59 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.2  2003/01/12 17:32:59  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -73,6 +76,8 @@
 #include "MushcoreScalar.h"
 
 #include "MushcoreSTL.h"
+
+#include "MushcoreGlobalConfig.h"
 
 using namespace Mushware;
 using namespace std;
@@ -252,4 +257,11 @@ MushcoreEnv::OutReset(void)
     }
     m_outStream = &cerr;
     m_outSet = false;
+}
+
+void
+MushcoreEnv::NullFunction(void)
+{
+    // Make sure that the global config is linked in if Env is
+    MushcoreGlobalConfig::NullFunction();
 }

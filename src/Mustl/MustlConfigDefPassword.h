@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefPassword.h,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDefPassword.h,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDef.h"
@@ -34,6 +37,7 @@ public:
 
     static MushcoreScalar MustlConfigPassword(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+    static void NullFunction(void);
 
 private:
 };

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefMenuString.h,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDefMenuString.h,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDef.h"
@@ -33,6 +36,7 @@ public:
 
     static MushcoreScalar MustlConfigMenuString(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+    static void NullFunction(void);
 
 private:
 std::string m_menu;

@@ -46,6 +46,7 @@
 				7A05C3E003CB43AC00A80164,
 				7A05C3E103CB43AC00A80164,
 				7A05C3E203CB43AC00A80164,
+				7AB0143B03D57D6000A80164,
 				7A05C3E303CB43AC00A80164,
 				7A05C3E403CB43AC00A80164,
 				7A05C3E503CB43AC00A80164,
@@ -865,6 +866,24 @@
 			isa = PBXFileReference;
 			path = mustlstart.txt;
 			refType = 4;
+		};
+		7AB0143B03D57D6000A80164 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = MushcoreInstaller.cpp;
+			refType = 4;
+		};
+		7AB0143C03D57D6000A80164 = {
+			fileRef = 7AB0143B03D57D6000A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB0143D03D57D6000A80164 = {
+			fileRef = 7AB0143B03D57D6000A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB3A76803D4A2D400A80164 = {
 			fileEncoding = 4;
@@ -2022,6 +2041,7 @@
 				7AEACB1203D1B91800A80164,
 				7AEACB1403D1B91900A80164,
 				7AB562BA03D1C9F700A80164,
+				7AB0143C03D57D6000A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5644,6 +5664,7 @@
 				7AB562EF03D1E49800A80164,
 				7AB562F503D1E4DC00A80164,
 				7A7B223503D1EF0D00A80164,
+				7AB0143D03D57D6000A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
