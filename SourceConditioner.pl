@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.15 2003/10/02 23:33:35 southa Exp $
+# $Id: SourceConditioner.pl,v 1.16 2003/10/03 23:39:31 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.16  2003/10/03 23:39:31  southa
+# XML polymorphs
+#
 # Revision 1.15  2003/10/02 23:33:35  southa
 # XML polymorphic objects
 #
@@ -748,7 +751,7 @@ sub ProcessFileHeader($$)
 {
     my ($contentRef, $filename) = @_;
 
-    OldHeaderStrip(\@$contentRef);
+    # OldHeaderStrip(\@$contentRef);
     HeaderGenerate(\@$contentRef, $filename, \@gCHeaders);
 }
 
@@ -810,7 +813,7 @@ sub ProcessIncludeGuard($$)
 {
     my ($contentRef, $filename) = @_;
 
-    OldIncludeGuardStrip(\@$contentRef, $filename);
+    # OldIncludeGuardStrip(\@$contentRef, $filename);
     IncludeGuardGenerate(\@$contentRef, $filename);
 }
 
