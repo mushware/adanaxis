@@ -1,6 +1,9 @@
 /*
- * $Id: GLQuad.cpp,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLQuad.cpp,v 1.2 2002/07/23 14:10:46 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.2  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.1  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -59,8 +62,8 @@ GLQuad::RotateAboutCentre(tVal inAngle)
         tVal x = m_points[i].x - centre.x;
         tVal y = m_points[i].y - centre.y;
         
-        m_points[i].x = centre.x + x*cos(inAngle) + y*cos(inAngle);
-        m_points[i].y = centre.y + y*cos(inAngle) - x*cos(inAngle);
+        m_points[i].x = centre.x + x*cos(inAngle) + y*sin(inAngle);
+        m_points[i].y = centre.y + y*cos(inAngle) - x*sin(inAngle);
     }
 }
 
