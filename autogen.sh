@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.13 2003/02/06 18:55:27 southa Exp $
+# $Id: autogen.sh,v 1.14 2003/04/06 12:35:15 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.14  2003/04/06 12:35:15  southa
+# Fixes for release
+#
 # Revision 1.13  2003/02/06 18:55:27  southa
 # Linux build fixes
 #
@@ -81,7 +84,7 @@ case ic2:
     echo Building data Makefile.am in `pwd`
     rm -f Makefile.am
     echo -n 'nobase_dist_pkgdata_DATA =' >> Makefile.am
-    find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
+    find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -name '.*' -type f -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
     echo '' >> Makefile.am
     cd ..
 breaksw
