@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fNBxnWioPfFaM/uScT3/eA
 /*
- * $Id: MushPiePieceMobile.h,v 1.2 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePieceMobile.h,v 1.3 2004/09/27 22:42:10 southa Exp $
  * $Log: MushPiePieceMobile.h,v $
+ * Revision 1.3  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.2  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -32,7 +35,7 @@
 #include "MushPiePosicity.h"
 
 //:xml1base MushPiePiece
-//:generate ostream xml1 standard basic
+//:generate ostream xml1 standard
 class MushPiePieceMobile : public MushPiePiece
 {
 public:
@@ -57,11 +60,10 @@ public:
     virtual MushPiePieceMobile *AutoClone(void) const;
     virtual MushPiePieceMobile *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    virtual bool AutoEquals(const MushPiePieceMobile& inObj) const;
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } iW/RpTo5YpHE+YjTWnqnpw
+//%classPrototypes } VSoFRv3Jz+5+30S9kKhoaQ
 };
 
 inline void
@@ -72,23 +74,13 @@ MushPiePieceMobile::PosSwap(void)
 
 
 //%inlineHeader {
-inline bool
-operator==(const MushPiePieceMobile& inA, const MushPiePieceMobile& inB)
-{
-    return inA.AutoEquals(inB);
-}
-inline bool
-operator!=(const MushPiePieceMobile& inA, const MushPiePieceMobile& inB)
-{
-    return !inA.AutoEquals(inB);
-}
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushPiePieceMobile& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } N8JAcQSg07YLIgaWXKxNvQ
+//%inlineHeader } TbJaPMFRML9rFgeE6oksyQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

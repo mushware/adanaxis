@@ -12,8 +12,11 @@
 ****************************************************************************/
 //%Header } dnkP76FJ2EDluhnPYobJxw
 /*
- * $Id: MaurheenHypercube.cpp,v 1.3 2005/01/26 00:48:46 southa Exp $
+ * $Id: MaurheenHypercube.cpp,v 1.4 2005/01/27 21:00:39 southa Exp $
  * $Log: MaurheenHypercube.cpp,v $
+ * Revision 1.4  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.3  2005/01/26 00:48:46  southa
  * MushMeshGroup and rendering
  *
@@ -155,7 +158,7 @@ MaurheenHypercube::Render(tVal frame)
     MushMeshVector<tVal, 4> vec1(sin(ang0), sin(ang1), sin(ang2), 0);
     MushMeshVector<tVal, 4> vec2(0, 0, 0, 1);
     
-    if ((int)frame % 60 > 30)
+    if ((int)frame % 60 > 60)
     {
         vec0 = MushMeshVector<tVal, 4>(1,0,0,0);
         vec1 = MushMeshVector<tVal, 4>(0,1,0,0);
@@ -189,9 +192,9 @@ MaurheenHypercube::Render(tVal frame)
     float black[4] = {0,0,0,0};
     glEnable(GL_FOG);
     glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START,3.5);
-    glFogf(GL_FOG_END,4.5);
-    glFogi(GL_FOG_MODE,GL_LINEAR);
+    glFogf(GL_FOG_START, 3.7);
+    glFogf(GL_FOG_END, 4.3);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     glShadeModel(GL_SMOOTH);
 
@@ -213,7 +216,7 @@ MaurheenHypercube::Render(tVal frame)
             const MushMeshGroup::tGroup& facet = m_facetGroup.GroupAtSuperGroupGroup(0, *itrSrcFacet);
 
 #if 1            
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             glEnable(GL_FOG);
             glBegin(GL_LINE_LOOP);
             
@@ -231,7 +234,7 @@ MaurheenHypercube::Render(tVal frame)
             
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
             GLState::ColourSet(red, green, blue, 0.1*alpha);
-            glDisable(GL_FOG);
+            glEnable(GL_FOG);
             glBegin(GL_TRIANGLE_FAN);
             
             for (MushMeshGroup::tGroupConstItr vertIter = facet.begin(); vertIter != facet.end(); ++vertIter)

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QEwu7zWUlg50RfLo59G73Q
 /*
- * $Id: MushGL.h,v 1.2 2004/09/20 21:50:47 southa Exp $
+ * $Id: MushGL.h,v 1.3 2005/01/29 14:06:12 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.3  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.2  2004/09/20 21:50:47  southa
  * Added GLV
  *
@@ -30,6 +33,7 @@
 #include "MushGLBuffer.h"
 #include "MushGLStandard.h"
 #include "MushGLV.h"
+#include "MushGLVertexBuffer.h"
 
 //%includeGuardEnd {
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xxX+iSBjqDjjRTp/Knkivw
 /*
- * $Id: MaurheenHypersphere.cpp,v 1.2 2005/01/29 14:06:12 southa Exp $
+ * $Id: MaurheenHypersphere.cpp,v 1.3 2005/01/29 18:27:31 southa Exp $
  * $Log: MaurheenHypersphere.cpp,v $
+ * Revision 1.3  2005/01/29 18:27:31  southa
+ * Vertex buffer stuff
+ *
  * Revision 1.2  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -31,11 +34,8 @@
 using namespace Mushware;
 using namespace std;
 
-
-
 MaurheenHypersphere::MaurheenHypersphere()
 {
-    
 }
 
 void
@@ -59,18 +59,13 @@ MaurheenHypersphere::Create(tVal frame)
                 }
             } while (vec*vec > 1 || vec*vec < 0.01);
             
-            MushMeshOps::Normalise(vec);
+            //MushMeshOps::Normalise(vec);
             
-        } while (fabs(vec.X()) < 0.2 ||
-                 fabs(vec.Y()) < 0.2 ||
-                 fabs(vec.Z()) < 0.2 ||
-                 fabs(vec.W()) < 0.2,0
+        } while (fabs(vec.X()) < 0.15 ||
+                 fabs(vec.Y()) < 0.15 ||
+                 fabs(vec.Z()) < 0.15 ||
+                 fabs(vec.W()) < 0.15, 0
                  );
-        
-        for (U32 j=0; j<4; ++j)
-        {
-            vec.Set(vec[j]*scale[j], j);
-        }
 
         m_vertices.push_back(vec);
     }
@@ -82,12 +77,35 @@ MaurheenHypersphere::Create(tVal frame)
         m_colourBuffer.MapReadWrite();
         for (U32 i=0; i<kNumVertices; ++i)
         {
+            tVal length = sqrt(m_vertices[i]*m_vertices[i]);
             t4GLVal colour = m_vertices[i]*1 + colourOffset;
-            colour.WSet(1);
+            colour.WSet(0.2+0.8*(double)(rand())/RAND_MAX);
+            if (fabs(m_vertices[i].X()) < 0.5 &&
+                fabs(m_vertices[i].Y()) < 0.5 &&
+                fabs(m_vertices[i].Z()) < 0.5 &&
+                fabs(m_vertices[i].W()) < 0.5)
+            {
+                colour.WSet(1);
+            }
+            else
+            {
+                colour.WSet(0.1);
+            }
+            
+                
             m_colourBuffer.Set(colour, i);
         }
         if (m_colourBuffer.AttemptUnmap()) break;
         if (attempts++ > 100) throw MushcoreRequestFail("Cannot unmap");
+    }
+    glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
+    
+    for (U32 i=0; i<kNumVertices; ++i)
+    {
+        for (U32 j=0; j<4; ++j)
+        {
+            m_vertices[i].Set(m_vertices[i][j]*scale[j], j);
+        }
     }
 }
 
@@ -103,7 +121,7 @@ MaurheenHypersphere::Render(tVal frame)
     MushMeshVector<tVal, 4> vec1(sin(ang0), sin(ang1), sin(ang2), 0);
     MushMeshVector<tVal, 4> vec2(0, 0, 0, 1);
     
-    if ((int)frame % 60 > 30)
+    if ((int)frame % 60 > 60)
     {
         vec0 = MushMeshVector<tVal, 4>(1,0,0,0);
         vec1 = MushMeshVector<tVal, 4>(0,1,0,0);
@@ -119,7 +137,7 @@ MaurheenHypersphere::Render(tVal frame)
         rotate = MushMeshTools::RotateInAxis(i, cos((i+1)*(1.0+frame/30.0))*4*sin(frame/4)) * rotate;
     }
     
-    if ((U32)(frame*4) % 16 > 7)
+    if (1)
     {
         for (U32 j=0; j<vertices.size(); ++j)
         {
@@ -132,19 +150,22 @@ MaurheenHypersphere::Render(tVal frame)
          vec0, vec1, vec2
          );
     
-    t3GLVal vertOffset = t3GLVal(0,0,-4)*pow(sin(frame*0.1),2);
 
+    tVal distance = 4;
+    tVal extent = 0.5;
+
+    t3GLVal vertOffset = t3GLVal(0,0,0*distance);
     
     float black[4] = {0,0,0,0};
     glEnable(GL_FOG);
     glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START,(4-4*pow(sin(frame*0.1),2)-0.5));
-    glFogf(GL_FOG_END,(4-3*pow(sin(frame*0.1),2)+0.5));
-    glFogi(GL_FOG_MODE,GL_LINEAR);
+    glFogf(GL_FOG_START, 3.7);
+    glFogf(GL_FOG_END, 4.3);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    GLState::ColourSet(1,1,1,1);
+    GLState::ColourSet(1,1,1,0.33);
 
-    if ((U32)(frame*4) % 8 > 3)
+    if (1)
     {
         for (U32 attempts=0;;)
         {
@@ -159,42 +180,17 @@ MaurheenHypersphere::Render(tVal frame)
             }
             if (attempts++ > 100) throw MushcoreRequestFail("Cannot unmap");
         }
-        
-        cout << "yes=" << m_vertexBuffer;
-
-        glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
-        glVertexPointer(3, GL_FLOAT, 0, m_vertexBuffer.AddrForGLGet());
-        
-        glEnableClientState(GL_COLOR_ARRAY);
-        glEnableClientState(GL_VERTEX_ARRAY);
-        
-        glDrawArrays(GL_POINTS, 0, vertices.size());
-
-        glDisableClientState(GL_COLOR_ARRAY);
-        glDisableClientState(GL_VERTEX_ARRAY);
     }
-    else
-    {
-        glBegin(GL_POINTS);
-        m_vertexBuffer.MapReadWrite();
-        m_colourBuffer.MapReadWrite();
-        cout << "no=" << m_vertexBuffer;
-        Mushware::tSize verticesSize = vertices.size();
-        
-        const tGLVal *pColour = &m_colourBuffer.Ref(0).X();
-        t3GLVal vert;
-        const tGLVal *pVertex = &vert.X();
-            
-        for (U32 i=0; i<verticesSize; ++i)
-        {
-            vert = vertOffset + preMatrix * vertices[i];
-            glColor4fv(pColour);
-            glVertex3fv(pVertex);
-            pColour += 1;
-        }
-        m_vertexBuffer.AttemptUnmap();
-        m_colourBuffer.AttemptUnmap();
-        glEnd();
-    }    
+
+    glVertexPointer(3, GL_FLOAT, 0, m_vertexBuffer.AddrForGLGet());
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    
+    glDrawArrays(GL_POINTS, 0, vertices.size());
+
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);
+
 }
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } slFPFhapfdncvvpyGmZQIQ
 /*
- * $Id: MaurheenHypersphere.h,v 1.1 2005/01/27 21:00:39 southa Exp $
+ * $Id: MaurheenHypersphere.h,v 1.2 2005/01/29 14:06:12 southa Exp $
  * $Log: MaurheenHypersphere.h,v $
+ * Revision 1.2  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.1  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -41,11 +44,11 @@ public:
 private:
     enum
     {
-        kNumVertices = 100000
+        kNumVertices = 30000
     };
     std::vector<tVertex> m_vertices;
-    MushGLBuffer<Mushware::t3GLVal> m_vertexBuffer;
-    MushGLBuffer<Mushware::t4GLVal> m_colourBuffer;
+    MushGLVertexBuffer<Mushware::t3GLVal> m_vertexBuffer;
+    MushGLVertexBuffer<Mushware::t4GLVal> m_colourBuffer;
 };
 //%includeGuardEnd {
 #endif

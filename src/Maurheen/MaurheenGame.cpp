@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.8 2005/01/29 14:06:12 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.9 2005/01/29 18:27:30 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.9  2005/01/29 18:27:30  southa
+ * Vertex buffer stuff
+ *
  * Revision 1.8  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -67,16 +70,14 @@ MaurheenGame::Process(GameAppHandler& inAppHandler)
 void
 MaurheenGame::Display(GameAppHandler& inAppHandler)
 {
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    tVal msecNow = gameAppHandler.MillisecondsGet();
     
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
     
     GLUtils::PerspectiveLookAt(GLVector(0,0,-4), GLVector(0,0,0), 0);
-    
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    
-    tVal msecNow = gameAppHandler.MillisecondsGet();
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
     GLColour white(1,1,1,1);
@@ -130,7 +131,7 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
     
     m_hypersphere.Render(msecNow / 2000);
-    //m_hypercube.Render(msecNow / 2000);
+    m_hypercube.Render(msecNow / 2000);
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
@@ -144,7 +145,7 @@ void
 MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0)); // 13
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13)); // 13
     MushGLV::Sgl().Acquaint();
     m_hypercube.Create(0);
     m_hypersphere.Create(0);

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGLBUFFER_H
-#define MUSHGLBUFFER_H
+#ifndef MushGLVertexBuffer_H
+#define MushGLVertexBuffer_H
 //%includeGuardStart } 14ndRogKV1m4L55fic/KUw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGLBuffer.h
+ * File: src/MushGL/MushGLVertexBuffer.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,16 +14,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } waDPLDx1sNWC9Sjn6VGwXw
+//%Header } 8xLMG4RN55BtVXvugHCuFA
 /*
- * $Id: MushGLBuffer.h,v 1.2 2005/01/29 18:27:31 southa Exp $
- * $Log: MushGLBuffer.h,v $
- * Revision 1.2  2005/01/29 18:27:31  southa
- * Vertex buffer stuff
- *
- * Revision 1.1  2005/01/29 14:06:12  southa
- * OpenGL buffers and extensions
- *
+ * $Id: MushGLVertexBuffer.h,v 1.2 2005/01/29 18:27:31 southa Exp $
+ * $Log: MushGLVertexBuffer.h,v $
  */
 
 #include "MushGLStandard.h"
@@ -31,14 +25,14 @@
 #include "MushGLV.h"
 
 template <class T>
-class MushGLBuffer
+class MushGLVertexBuffer
 {
 public:
     typedef T tVec;
     
-    MushGLBuffer();
-    explicit MushGLBuffer(const Mushware::tSize inSize);
-    virtual ~MushGLBuffer();
+    MushGLVertexBuffer();
+    explicit MushGLVertexBuffer(const Mushware::tSize inSize);
+    virtual ~MushGLVertexBuffer();
     
     void Bind(void);
     void MapReadWrite();
@@ -53,9 +47,9 @@ public:
     GLuint GLName() const { return m_handle; }
     
 private:
-    MushGLBuffer(const MushGLBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy contructor"); }
-    const MushGLBuffer& operator=(const MushGLBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }    
-        
+    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy contructor"); }
+    const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }    
+    
     void Allocate(const Mushware::tSize inSize);
     void Deallocate();
     
@@ -65,14 +59,14 @@ private:
     bool m_allocated;
     Mushware::tSize m_size;
     tVec *m_pData;
-
+    
 public:
-    virtual void AutoPrint(std::ostream& ioOut) const;
+        virtual void AutoPrint(std::ostream& ioOut) const;
 };
 
 template <class T>
 inline
-MushGLBuffer<T>::MushGLBuffer() :
+MushGLVertexBuffer<T>::MushGLVertexBuffer() :
     m_isVertexBuffer(false),
     m_mapped(false),
     m_allocated(false),
@@ -83,7 +77,7 @@ MushGLBuffer<T>::MushGLBuffer() :
 
 template <class T>
 inline
-MushGLBuffer<T>::MushGLBuffer(const Mushware::tSize inSize) :
+MushGLVertexBuffer<T>::MushGLVertexBuffer(const Mushware::tSize inSize) :
     m_isVertexBuffer(false),
     m_mapped(false),
     m_allocated(false),
@@ -95,7 +89,7 @@ MushGLBuffer<T>::MushGLBuffer(const Mushware::tSize inSize) :
 
 template <class T>
 inline
-MushGLBuffer<T>::~MushGLBuffer()
+MushGLVertexBuffer<T>::~MushGLVertexBuffer()
 {
     if (m_allocated)
     {
@@ -105,21 +99,21 @@ MushGLBuffer<T>::~MushGLBuffer()
 
 template <class T>
 inline void
-MushGLBuffer<T>::Allocate(const Mushware::tSize inSize)
+MushGLVertexBuffer<T>::Allocate(const Mushware::tSize inSize)
 {
     if (MushGLV::Sgl().UseVertexBuffer())
     {
         MushGLV::Sgl().GenBuffers(1, &m_handle);
         MushGLV::Sgl().BindBuffer(GL_ARRAY_BUFFER, m_handle);
         MushGLV::Sgl().BufferData(GL_ARRAY_BUFFER, inSize*sizeof(T), NULL, GL_DYNAMIC_DRAW);
-    
+        
         m_isVertexBuffer = true;
     }
     else
     {
         if (m_pData != NULL)
         {
-            throw MushcoreLogicFail("MushGLBuffer: Double allocation");
+            throw MushcoreLogicFail("MushGLVertexBuffer: Double allocation");
         }
         m_pData = new tVec[inSize];
     }
@@ -129,7 +123,7 @@ MushGLBuffer<T>::Allocate(const Mushware::tSize inSize)
 
 template <class T>
 inline void
-MushGLBuffer<T>::Deallocate()
+MushGLVertexBuffer<T>::Deallocate()
 {
     if (m_isVertexBuffer)
     {
@@ -139,7 +133,7 @@ MushGLBuffer<T>::Deallocate()
     {
         if (m_pData == NULL)
         {
-            throw MushcoreLogicFail("MushGLBuffer: NULL deallocation");
+            throw MushcoreLogicFail("MushGLVertexBuffer: NULL deallocation");
         }
         delete[] m_pData;
     }
@@ -148,7 +142,7 @@ MushGLBuffer<T>::Deallocate()
 
 template <class T>
 inline void
-MushGLBuffer<T>::Bind(void)
+MushGLVertexBuffer<T>::Bind(void)
 {
     if (m_isVertexBuffer)
     {
@@ -158,13 +152,13 @@ MushGLBuffer<T>::Bind(void)
 
 template <class T>
 inline void
-MushGLBuffer<T>::MapReadWrite(void)
+MushGLVertexBuffer<T>::MapReadWrite(void)
 {
     if (m_mapped)
     {
-        throw MushcoreLogicFail("MushGLBuffer attempt to map buffer twice");
+        throw MushcoreLogicFail("MushGLVertexBuffer attempt to map buffer twice");
     }
-
+    
     if (m_isVertexBuffer)
     {
         Bind();
@@ -173,16 +167,16 @@ MushGLBuffer<T>::MapReadWrite(void)
         if (pData == NULL)
         {
             GLenum glErr = glGetError();
-
+            
             if (glErr == GL_INVALID_OPERATION)
             {
                 // m_pData still valid
-                throw MushcoreRequestFail("MushGLBuffer buffer already mapped");
+                throw MushcoreRequestFail("MushGLVertexBuffer buffer already mapped");
             }
             else if (glErr == GL_OUT_OF_MEMORY)
             {
                 m_pData = NULL;
-                throw MushcoreDeviceFail("MushGLBuffer cannot map buffer");
+                throw MushcoreDeviceFail("MushGLVertexBuffer cannot map buffer");
             }                
             else
             {
@@ -197,13 +191,13 @@ MushGLBuffer<T>::MapReadWrite(void)
 
 template <class T>
 inline bool
-MushGLBuffer<T>::AttemptUnmap(void)
+MushGLVertexBuffer<T>::AttemptUnmap(void)
 {
     bool success = true;
     
     if (!m_mapped)
     {
-        throw MushcoreLogicFail("MushGLBuffer buffer not mapped");
+        throw MushcoreLogicFail("MushGLVertexBuffer buffer not mapped");
     }
     
     m_mapped = false;
@@ -220,12 +214,12 @@ MushGLBuffer<T>::AttemptUnmap(void)
 }
 
 template <class T>
-inline typename MushGLBuffer<T>::tVec&
-MushGLBuffer<T>::Ref(const Mushware::tSize inIndex)
+inline typename MushGLVertexBuffer<T>::tVec&
+MushGLVertexBuffer<T>::Ref(const Mushware::tSize inIndex)
 {
     if (!m_mapped)
     {
-        throw MushcoreLogicFail("MushGLBuffer: Ref to unmapped buffer");
+        throw MushcoreLogicFail("MushGLVertexBuffer: Ref to unmapped buffer");
     }
     
     MushMeshUtils::BoundsCheck(inIndex, m_size);
@@ -234,11 +228,11 @@ MushGLBuffer<T>::Ref(const Mushware::tSize inIndex)
 
 template <class T>
 inline void
-MushGLBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
+MushGLVertexBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
 {
     if (!m_mapped)
     {
-        throw MushcoreLogicFail("MushGLBuffer: Set on unmapped buffer");
+        throw MushcoreLogicFail("MushGLVertexBuffer: Set on unmapped buffer");
     }
     MushMeshUtils::BoundsCheck(inIndex, m_size);
     m_pData[inIndex] = inValue;
@@ -246,11 +240,11 @@ MushGLBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
 
 template <class T>
 inline void *
-MushGLBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
+MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
 {
     if (m_mapped)
     {
-        throw MushcoreLogicFail("MushGLBuffer: AddrForGLGet on mapped buffer");
+        throw MushcoreLogicFail("MushGLVertexBuffer: AddrForGLGet on mapped buffer");
     }
     MushMeshUtils::BoundsCheck(inIndex, m_size);
     if (m_isVertexBuffer)
@@ -265,7 +259,7 @@ MushGLBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
 
 template <class T>
 inline void
-MushGLBuffer<T>::ClearAndResize(const Mushware::tSize inSize)
+MushGLVertexBuffer<T>::ClearAndResize(const Mushware::tSize inSize)
 {
     if (m_allocated)
     {
@@ -276,7 +270,7 @@ MushGLBuffer<T>::ClearAndResize(const Mushware::tSize inSize)
 
 template <class T>
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGLBuffer<T>& inObj)
+operator<<(std::ostream& ioOut, const MushGLVertexBuffer<T>& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
@@ -284,7 +278,7 @@ operator<<(std::ostream& ioOut, const MushGLBuffer<T>& inObj)
 
 template <class T>
 inline void
-MushGLBuffer<T>::AutoPrint(std::ostream& ioOut) const
+MushGLVertexBuffer<T>::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "handle=" << m_handle << ", ";

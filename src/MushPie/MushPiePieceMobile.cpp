@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yQV718sdUzJEMF7KFdA6Ew
 /*
- * $Id: MushPiePieceMobile.cpp,v 1.2 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePieceMobile.cpp,v 1.3 2004/09/27 22:42:10 southa Exp $
  * $Log: MushPiePieceMobile.cpp,v $
+ * Revision 1.3  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.2  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -57,17 +60,6 @@ void AutoInstall(void)
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
-bool
-MushPiePieceMobile::AutoEquals(const MushPiePieceMobile& inObj) const
-{
-    return 1
-        && MushPiePiece::AutoEquals(inObj)
-        && (m_pos0 == inObj.m_pos0)
-        && (m_pos1 == inObj.m_pos1)
-        && (m_currentPosIndex == inObj.m_currentPosIndex)
-        && (m_newPosIndex == inObj.m_newPosIndex)
-    ;
-}
 void
 MushPiePieceMobile::AutoPrint(std::ostream& ioOut) const
 {
@@ -125,4 +117,4 @@ MushPiePieceMobile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("newPosIndex");
     ioOut << m_newPosIndex;
 }
-//%outOfLineFunctions } b2/2RX3OEM6Tldx2FMK5OA
+//%outOfLineFunctions } HDUdFSbPyN5+Jgnu5VLCqg

@@ -154,7 +154,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_MODEL_CPU = G4;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
@@ -1200,6 +1201,7 @@
 				7A654C9107A9713200DE4A9D,
 				7A620FCD07ABA3DD00347A99,
 				7A62431807ABEE79006BCF7E,
+				7A643D7E07AEB25D006E88DD,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1491,6 +1493,7 @@
 				7A654C9207A9713200DE4A9D,
 				7A620FCE07ABA3DD00347A99,
 				7A62431907ABEE79006BCF7E,
+				7A643D7F07AEB25D006E88DD,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9310,6 +9313,46 @@
 			settings = {
 			};
 		};
+		7A643D7C07AEB25D006E88DD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGLVertexBuffer.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A643D7D07AEB25D006E88DD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGLVertexBuffer.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A643D7E07AEB25D006E88DD = {
+			fileRef = 7A643D7C07AEB25D006E88DD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A643D7F07AEB25D006E88DD = {
+			fileRef = 7A643D7D07AEB25D006E88DD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A643D8007AEB25D006E88DD = {
+			fileRef = 7A643D7C07AEB25D006E88DD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A643D8107AEB25D006E88DD = {
+			fileRef = 7A643D7D07AEB25D006E88DD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A651D3C05A85C230026CBAE = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -11075,6 +11118,8 @@
 				7A66E40105FB256A00135328,
 				7AC5D50A06FF502E00EF3984,
 				7AC5D50906FF502E00EF3984,
+				7A643D7D07AEB25D006E88DD,
+				7A643D7C07AEB25D006E88DD,
 			);
 			isa = PBXGroup;
 			path = MushGL;
@@ -14409,6 +14454,7 @@
 				7A0D469B07357AA800D06F24,
 				7A654C8F07A9713200DE4A9D,
 				7A620FCF07ABA3DD00347A99,
+				7A643D8007AEB25D006E88DD,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15446,6 +15492,7 @@
 				7A0D469C07357AA800D06F24,
 				7A654C9007A9713200DE4A9D,
 				7A620FD007ABA3DD00347A99,
+				7A643D8107AEB25D006E88DD,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
