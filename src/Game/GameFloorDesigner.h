@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.h,v 1.5 2002/07/07 13:25:56 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.6 2002/08/07 13:36:49 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.6  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/07 13:25:56  southa
  * Template designer
  *
@@ -63,8 +66,7 @@ private:
     void Redo(void);
     void Save(void);
     
-    vector<tVal> m_xPos;
-    vector<tVal> m_yPos;
+    vector<GLPoint> m_pos;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData
     GameTileMap *m_tileMap;
@@ -84,5 +86,6 @@ private:
     U32 m_currentUndoBuffer;
     U32 m_lastUndoBuffer;
     GameFloorMap m_scratchArea;
+    tVal m_masterScale;
 };
 #endif

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.8 2002/08/02 15:20:54 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.9 2002/08/07 13:36:48 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.9  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/08/02 15:20:54  southa
  * Frame rate timing
  *
@@ -56,8 +59,8 @@ public:
     virtual ~GLUTAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
-    virtual void MousePositionGet(S32& outX, S32& outY) const;
-    virtual void MouseDeltaGet(tVal& outX, tVal& outY);
+    virtual void MousePositionGet(tVal& outX, tVal& outY) const;
+    virtual void MouseDeltaTake(tVal& outX, tVal& outY);
     virtual void EnterScreen(tInitType inType);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);

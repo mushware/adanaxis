@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.49 2002/08/15 13:39:30 southa Exp $
+ * $Id: GameContract.cpp,v 1.50 2002/08/16 19:46:06 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.50  2002/08/16 19:46:06  southa
+ * MediaSound work
+ *
  * Revision 1.49  2002/08/15 13:39:30  southa
  * CoreData and CoreDatRef
  *
@@ -334,11 +337,10 @@ GameContract::RunningDisplay(void)
 
     playerSpec.Windback(timer.WindbackValueGet(gameAppHandler.MillisecondsGet()));
     
-    GameMapPoint aimingPoint(GLPoint(playerSpec.pos.x / m_floorMap->XStep(),
-                                     playerSpec.pos.y / m_floorMap->YStep()));
+    GameMapPoint aimingPoint(GLPoint(playerSpec.pos / m_floorMap->StepGet()));
 
     GameMotionSpec lookAtPoint;
-    lookAtPoint.pos=GLPoint(playerSpec.pos.x*m_masterScale, playerSpec.pos.y*m_masterScale);
+    lookAtPoint.pos=GLPoint(playerSpec.pos*m_masterScale);
     lookAtPoint.angle=playerSpec.angle;
     
     GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
@@ -349,7 +351,7 @@ GameContract::RunningDisplay(void)
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
     GLPoint screenRatios(GLUtils::ScreenRatiosGet());
-    GLPoint screenRadius((screenRatios.x / 2) / m_floorMap->XStep(), (screenRatios.x / 2) / m_floorMap->YStep());
+    GLPoint screenRadius((screenRatios / 2) / m_floorMap->StepGet());
     tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 

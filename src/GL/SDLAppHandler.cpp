@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.15 2002/08/07 13:36:48 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.16 2002/08/10 12:34:46 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.16  2002/08/10 12:34:46  southa
+ * Added current dialogues
+ *
  * Revision 1.15  2002/08/07 13:36:48  southa
  * Conditioned source
  *
@@ -140,15 +143,16 @@ SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 }
 
 void
-SDLAppHandler::MousePositionGet(S32& outX, S32& outY) const
+SDLAppHandler::MousePositionGet(tVal& outX, tVal& outY) const
 {
-    // Return with origin at bottom left
-    outX=m_mouseX;
-    outY=m_height-m_mouseY-1;
+    // Return with origin in the centre and bottom left at -x,-y.  The screen should
+    // measure 1 in its largest dimension
+    outX=(m_mouseX - m_width/2) / m_greatestDimension;
+    outY=(m_height/2 - m_mouseY) / m_greatestDimension;
 }
 
 void
-SDLAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
+SDLAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
 {
     if (m_firstDelta)
     {
@@ -158,8 +162,8 @@ SDLAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
     }
     else
     {
-        outXDelta=m_mouseXDelta/m_width;
-        outYDelta=-m_mouseYDelta/m_width; // width intentional
+        outXDelta=m_mouseXDelta/m_greatestDimension;
+        outYDelta=-m_mouseYDelta/m_greatestDimension;
     }
     m_mouseXDelta=0;
     m_mouseYDelta=0;
@@ -242,6 +246,15 @@ SDLAppHandler::EnterScreen(tInitType inType)
     else
     {
         GLUtils::PolygonSmoothingSet(false);
+    }
+    // Got video mode
+    if (m_width > m_height)
+    {
+        m_greatestDimension=m_width;
+    }
+    else
+    {
+        m_greatestDimension=m_height;
     }
     GLUtils::Reset();
 }

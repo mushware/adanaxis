@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaSoundStream.cpp,v 1.1 2002/08/16 21:13:52 southa Exp $
+ * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.1  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  */
 
 #include "MediaSoundStream.h"
@@ -35,7 +38,7 @@ MediaSoundStream::PlaySoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: playsoundstream soundstream('name')"));
+        throw(CommandFail("Usage: playsoundstreamm('name')"));
     }
     string name;
     ioCommand.PopParam(name);

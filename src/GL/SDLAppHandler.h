@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: SDLAppHandler.h,v 1.9 2002/08/02 15:20:54 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.10 2002/08/07 13:36:48 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.10  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.9  2002/08/02 15:20:54  southa
  * Frame rate timing
  *
@@ -56,8 +59,8 @@ public:
     virtual ~SDLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
-    virtual void MousePositionGet(S32& outX, S32& outY) const;
-    virtual void MouseDeltaGet(tVal& outX, tVal& outY);
+    virtual void MousePositionGet(tVal& outX, tVal& outY) const;
+    virtual void MouseDeltaTake(tVal& outX, tVal& outY);
     virtual void EnterScreen(tInitType inType);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);
@@ -85,10 +88,11 @@ private:
     bool m_visible;
     vector<bool> m_keyState;
     vector<bool> m_latchedKeyState;
-    U32 m_mouseX;
-    U32 m_mouseY;
+    tVal m_mouseX;
+    tVal m_mouseY;
     tVal m_mouseXDelta;
     tVal m_mouseYDelta;
     bool m_firstDelta;
+    tVal m_greatestDimension;
 };
 #endif

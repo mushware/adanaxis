@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.14 2002/08/02 15:20:53 southa Exp $
+ * $Id: GLAppHandler.h,v 1.15 2002/08/07 13:36:46 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.15  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.14  2002/08/02 15:20:53  southa
  * Frame rate timing
  *
@@ -91,8 +94,8 @@ public:
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
-    virtual void MousePositionGet(S32& outX, S32& outY) const = 0;
-    virtual void MouseDeltaGet(tVal& outX, tVal& outY) = 0;
+    virtual void MousePositionGet(tVal& outX, tVal& outY) const = 0;
+    virtual void MouseDeltaTake(tVal& outX, tVal& outY) = 0;
     virtual void EnterScreen(tInitType inType) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;

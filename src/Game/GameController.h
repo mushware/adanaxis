@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameController.h,v 1.4 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameController.h,v 1.5 2002/08/07 13:36:49 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.5  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -37,6 +40,9 @@
 class GameControllerState
 {
 public:
+    GLPoint MouseGet(void) { return GLPoint(mouseX, mouseY); }
+    GLPoint MouseDeltaGet(void) { return GLPoint(mouseXDelta, mouseYDelta); }
+    
     bool leftPressed;
     bool rightPressed;
     bool upPressed;

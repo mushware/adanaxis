@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.10 2002/07/31 16:27:16 southa Exp $
+ * $Id: GameFloorMap.h,v 1.11 2002/08/07 13:36:50 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.11  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/07/31 16:27:16  southa
  * Collision checking work
  *
@@ -83,6 +86,9 @@ public:
     U32 YSize(void) {return m_ysize;}
     tVal XStep(void) {return m_xstep;}
     tVal YStep(void) {return m_ystep;}
+    GLPoint SizeGet(void) { return GLPoint(m_xsize, m_ysize); }
+    GLPoint StepGet(void) { return GLPoint(m_xstep, m_ystep); }
+    
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
     

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.8 2002/08/02 15:20:54 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.9 2002/08/07 13:36:48 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.9  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/08/02 15:20:54  southa
  * Frame rate timing
  *
@@ -114,14 +117,15 @@ GLUTAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 }
 
 void
-GLUTAppHandler::MousePositionGet(S32& outX, S32& outY) const
+GLUTAppHandler::MousePositionGet(tVal& outX, tVal& outY) const
 {
+    // Needs fixing
     outX=m_mouseX;
     outY=m_mouseY;
 }
 
 void
-GLUTAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
+GLUTAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
 {
     outXDelta=m_mouseXDelta/m_width;
     outYDelta=m_mouseYDelta/m_width; 

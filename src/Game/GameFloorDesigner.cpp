@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.12 2002/07/19 18:42:37 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.13 2002/08/07 13:36:49 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.13  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.12  2002/07/19 18:42:37  southa
  * Fix for middle button drags
  *
@@ -58,11 +61,14 @@
 #include "GameData.h"
 #include "GameController.h"
 #include "GameMapArea.h"
+#include "GameMapPoint.h"
 #include "GameAppHandler.h"
+#include "GameMotionSpec.h"
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),
-    m_tileMap(NULL)
+    m_tileMap(NULL),
+    m_masterScale(0.05)
     {}
 
 void
@@ -83,8 +89,7 @@ GameFloorDesigner::Init(void)
     m_height=glHandler.HeightGet();
     for (U32 i=0; i<12;++i)
     {
-        m_xPos.push_back(glHandler.WidthGet()/2);
-        m_yPos.push_back(glHandler.HeightGet()/2);
+        m_pos.push_back(GLPoint(16,16));
     }
     for (U32 i=0; i<kUndoBufferSize; ++i)
     {
@@ -106,21 +111,34 @@ void
 GameFloorDesigner::Display(void)
 {
     COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_currentMap < m_xPos.size());
-    COREASSERT(m_currentMap < m_yPos.size());
+    COREASSERT(m_currentMap < m_pos.size());
 
-    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameFloorMap *floorMap(m_floorMaps[m_currentMap]);
+    
+    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
-    GLUtils::OrthoLookAt(m_xPos[m_currentMap], m_yPos[m_currentMap], 0);
-    GLPoint aimingPoint=GLPoint(m_xPos[m_currentMap] / m_floorMaps[m_currentMap]->XStep(),
-                                m_yPos[m_currentMap] / m_floorMaps[m_currentMap]->YStep());
+
+    GameMotionSpec lookAtSpec(m_pos[m_currentMap], 0);
+
+    GameMapPoint aimingPoint(GLPoint(lookAtSpec.pos / floorMap->StepGet()));
+
+    GameMotionSpec lookAtPoint;
+    lookAtPoint.pos=GLPoint(lookAtSpec.pos*m_masterScale);
+    lookAtPoint.angle=lookAtSpec.angle;
+
+    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    // m_masterScale is the proportion of the longest axis of the screen
+    // taken up by one map piece
+    GLUtils::Scale(m_masterScale, m_masterScale, 1);
+
+    // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
-    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMaps[m_currentMap]->XStep();
-    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMaps[m_currentMap]->YStep();
-    tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
+    GLPoint screenRatios(GLUtils::ScreenRatiosGet());
+    GLPoint screenRadius((screenRatios / 2) / floorMap->StepGet());
+    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea;
@@ -128,10 +146,30 @@ GameFloorDesigner::Display(void)
     {
         highlightArea.RectangleAdd(m_highlight);
     }
-    m_floorMaps[m_currentMap]->AttachTileMap(m_tileMap);
-    m_floorMaps[m_currentMap]->Render(visibleArea, highlightArea);
-
+    floorMap->AttachTileMap(m_tileMap);
+    floorMap->Render(visibleArea, highlightArea);
+    
     GLUtils::IdentityEpilogue();
+
+#if 0
+    GLUtils::IdentityPrologue();
+    GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
+    GLUtils::Scale(m_masterScale, m_masterScale, 1);
+    glMatrixMode(GL_MODELVIEW);
+    COREASSERT(m_currentView != NULL);
+    GLUtils::BlendSet(GLUtils::kBlendLine);
+    m_currentView->OverPlotGet().Render();
+    m_currentView->OverPlotGet().Clear();
+    GLUtils::IdentityEpilogue();
+
+    RenderText();
+
+    if (m_fastDiagnostics)
+    {
+        RenderFastDiagnostics();
+    }
+#endif
+    
     GLUtils::DisplayEpilogue();
 }
 
@@ -172,38 +210,43 @@ GameFloorDesigner::Move(void)
     {
         if (secondaryState)
         {
-            m_downPoint=GLPoint(controlState.mouseX, controlState.mouseY);
+            m_downPoint=GLPoint(controlState.MouseGet());
         }
     }
 
     if (secondaryState)
     {
         GLPoint start(m_downPoint);
-        GLPoint end(controlState.mouseX, controlState.mouseY);
-        
+        GLPoint end(controlState.MouseGet());
+        GLPoint selectStep(m_floorMaps[m_currentMap]->StepGet() * m_masterScale);
+        // Widen selected area by half a block
         if (end.x > start.x)
         {
-            end.x+=m_floorMaps[m_currentMap]->XStep()/2;
+            //start.x-=selectStep.x/4;
+            end.x+=selectStep.x/2;
         }
         else if (end.x < start.x)
         {
-            start.x+=m_floorMaps[m_currentMap]->XStep()/2;
+            start.x+=selectStep.x/2;
+            //end.x-=selectStep.x/4;
         }
 
         if (end.y > start.y)
         {
-            end.y+=m_floorMaps[m_currentMap]->YStep()/2;
+            //start.y-=selectStep.y/4;
+            end.y+=selectStep.y/2;
         }
         else if (end.y < start.y)
         {
-            start.y+=m_floorMaps[m_currentMap]->YStep()/2;
+            start.y+=selectStep.y/2;
+            // end.y-=selectStep.y/4;
         }
             
         m_highlight=GLRectangle(TranslateWindowToMap(start),
                                 TranslateWindowToMap(end));
         m_highlight.FixUp();
         m_highlightMap=m_currentMap;
-#if 0
+#if 1
         cerr << "Start was " << start.x << ", " << start.y;
         cerr << ", end was " << end.x << ", " << end.y << endl;
         cerr << "Translation was " << m_highlight.xmin << ", " <<
@@ -213,34 +256,32 @@ GameFloorDesigner::Move(void)
 #endif
     }
 
-    tVal deltaX=0;
-    tVal deltaY=0;
+    GLPoint delta(0,0);
+
     if (tertiaryState)
     {
-	    deltaX=-controlState.mouseXDelta*m_width;
-        deltaY=-controlState.mouseYDelta*m_width;
+	    delta -= controlState.MouseDeltaGet() / m_masterScale;
     }
 
-    tVal stepSize=m_floorMaps[0]->XStep();
+    GLPoint stepSize=m_floorMaps[0]->StepGet();
     
     if (controlState.leftPressed)
     {
-        deltaX = -stepSize;;
+        delta.x = -stepSize.x;
     }
     if (controlState.rightPressed)
     {
-        deltaX = stepSize;
+        delta.x = stepSize.x;
     }
     if (controlState.upPressed)
     {
-        deltaY = stepSize;
+        delta.y = stepSize.y;
     }
     if (controlState.downPressed)
     {
-        deltaY = -stepSize;
+        delta.y = -stepSize.y;
     }
-    m_xPos[m_currentMap] += deltaX;
-    m_yPos[m_currentMap] += deltaY;
+    m_pos[m_currentMap] += delta;
 
     bool undoKeyState=glHandler.KeyStateGet('z');
     if (undoKeyState && !m_lastUndoKeyState)
@@ -271,6 +312,15 @@ GameFloorDesigner::Move(void)
     }
     m_primaryButtonState = primaryState;
     m_secondaryButtonState = secondaryState;
+
+    if (glHandler.KeyStateGet('='))
+    {
+        m_masterScale += ((0.33-m_masterScale) / 30);
+    }
+    if (glHandler.KeyStateGet('-'))
+    {
+        m_masterScale -= (m_masterScale / 10);
+    }
 }
 
 void
@@ -304,7 +354,7 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
         for (S32 y=0; y<src.YSize() && y<dest.YSize(); ++y)
         {
             GLPoint offset(x,y);
-            // cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
+            cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
             destMap->ElementSet(dest.MinPoint()+offset,
                                 srcMap->ElementGet(src.MinPoint()+offset));
         }
@@ -355,17 +405,17 @@ GameFloorDesigner::Save(void)
     time_t now(time(NULL));
     outputFile << "<!-- Map saved by designer " << ctime(&now) << " -->" << endl;
     m_floorMaps[0]->Pickle(outputFile);
-    // m_floorMap[0]->Save(fileStream);
 }
 
 const GLPoint
 GameFloorDesigner::TranslateWindowToMap(const GLPoint& inPoint)
 {
     COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_currentMap < m_xPos.size());
-    COREASSERT(m_currentMap < m_yPos.size());
+    COREASSERT(m_currentMap < m_pos.size());
     GLPoint outPoint;
-    outPoint.x = (S32)(0.5 + (inPoint.x+m_xPos[m_currentMap]-m_width/2) / m_floorMaps[m_currentMap]->XStep());
-    outPoint.y = (S32)(0.5 + (inPoint.y+m_yPos[m_currentMap]-m_height/2) / m_floorMaps[m_currentMap]->YStep());
+    GLPoint mapSteps(m_floorMaps[m_currentMap]->StepGet());
+    outPoint = ((inPoint/m_masterScale) + m_pos[m_currentMap]) / mapSteps;
+    outPoint += GLPoint(0.5, 0.5); // Round to nearest
+    outPoint.MakeInteger();
     return outPoint;
 }
