@@ -36,6 +36,15 @@
 /* Define to 1 if you have the `PCRE' library (-lPCRE). */
 #undef HAVE_LIBPCRE
 
+/* Define to 1 if you have the `SDL' library (-lSDL). */
+#undef HAVE_LIBSDL
+
+/* Define to 1 if you have the `SDL_mixer' library (-lSDL_mixer). */
+#undef HAVE_LIBSDL_MIXER
+
+/* Define to 1 if you have the `smpeg' library (-lsmpeg). */
+#undef HAVE_LIBSMPEG
+
 /* Define to 1 if you have the `tiff' library (-ltiff). */
 #undef HAVE_LIBTIFF
 
@@ -50,6 +59,18 @@
 
 /* Define to 1 if you have the <OpenGL/gl.h> header file. */
 #undef HAVE_OPENGL_GL_H
+
+/* Define to 1 if you have the <SDL.h> header file. */
+#undef HAVE_SDL_H
+
+/* Define to 1 if you have the <SDL_mixer.h> header file. */
+#undef HAVE_SDL_MIXER_H
+
+/* Define to 1 if you have the <SDL/SDL.h> header file. */
+#undef HAVE_SDL_SDL_H
+
+/* Define to 1 if you have the <SDL/SDL_mixer.h> header file. */
+#undef HAVE_SDL_SDL_MIXER_H
 
 /* Define to 1 if you have the <sstream> header file. */
 #undef HAVE_SSTREAM
@@ -102,3 +123,6 @@
 /* Define to 1 if your processor stores words with the most significant byte
    first (like Motorola and SPARC, unlike Intel and VAX). */
 #undef WORDS_BIGENDIAN
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING

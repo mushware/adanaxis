@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.7 2002/06/04 14:11:21 southa Exp $
+ * $Id: CoreException.h,v 1.8 2002/06/05 12:28:05 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.8  2002/06/05 12:28:05  southa
+ * Map rendered using traits
+ *
  * Revision 1.7  2002/06/04 14:11:21  southa
  * Traits loader first stage
  *
@@ -105,6 +108,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, ReferenceFail f)
+{
+    return s << f.StringGet();
+}
+
+class FatalFail: public exception
+{
+public:
+    FatalFail(const string &inMessage) {m_message=inMessage;}
+    ~FatalFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, FatalFail f)
 {
     return s << f.StringGet();
 }

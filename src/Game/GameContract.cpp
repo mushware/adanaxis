@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.15 2002/06/05 12:28:05 southa Exp $
+ * $Id: GameContract.cpp,v 1.16 2002/06/05 15:53:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.16  2002/06/05 15:53:25  southa
+ * Player and keyboard control
+ *
  * Revision 1.15  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *
@@ -100,7 +103,6 @@ GameContract::Display(void)
             break;
     }
 }
-
 
 void
 GameContract::InitDisplay(void)

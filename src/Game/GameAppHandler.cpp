@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.10 2002/06/02 16:41:18 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.11 2002/06/04 20:27:35 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.11  2002/06/04 20:27:35  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.10  2002/06/02 16:41:18  southa
  * Rotated sprite plotting
  *
@@ -42,6 +45,7 @@
 #include "GameGlobalConfig.h"
 #include "GameFloorMap.h"
 #include "GameData.h"
+#include "mushMedia.h"
 
 void
 GameAppHandler::Initialise(void)
@@ -51,6 +55,9 @@ GameAppHandler::Initialise(void)
     GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
     GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
 
+MediaAudio::Init();
+MediaAudio::PlayMusic("../game/test.mp3");
+    
     CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
 
     m_pGame=GameData::Instance().ContractGet("game1");

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformInputUtils.cpp,v 1.1 2002/06/06 13:36:31 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.1 2002/06/06 14:59:57 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.1  2002/06/06 14:59:57  southa
+ * Mouse fixes
+ *
  * Revision 1.1  2002/06/06 13:36:31  southa
  * Mouse handling
  *
@@ -16,9 +19,10 @@
 
 #include <ApplicationServices/ApplicationServices.h>
 
-void
+bool
 PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
 {
+    return true;
 }
 
 void
