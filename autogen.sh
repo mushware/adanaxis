@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.4 2002/12/17 00:58:26 southa Exp $
+# $Id: autogen.sh,v 1.5 2003/01/11 17:07:48 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.5  2003/01/11 17:07:48  southa
+# Mushcore library separation
+#
 # Revision 1.4  2002/12/17 00:58:26  southa
 # Added support for libmustl target
 #
@@ -64,7 +67,7 @@ mustl)
     echo Building configuration for package mustl
     echo
     cp -f mustl.configure.in configure.in
-    cp -f def.Makefile.am Makefile.am
+    cp -f lib.Makefile.am Makefile.am
     cd src
     echo Building Makefile.am in `pwd`
     echo 'lib_LTLIBRARIES=libmustl.la' > Makefile.am
@@ -86,7 +89,7 @@ mushcore)
     echo Building configuration for package mushcore
     echo
     cp -f mushcore.configure.in configure.in
-    cp -f def.Makefile.am Makefile.am
+    cp -f lib.Makefile.am Makefile.am
     cd src
     echo Building Makefile.am in `pwd`
 
