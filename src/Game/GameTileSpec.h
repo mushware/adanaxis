@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileSpec.h,v 1.5 2003/01/11 13:03:15 southa Exp $
+ * $Id: GameTileSpec.h,v 1.6 2003/01/12 17:32:56 southa Exp $
  * $Log: GameTileSpec.h,v $
+ * Revision 1.6  2003/01/12 17:32:56  southa
+ * Mushcore work
+ *
  * Revision 1.5  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -83,5 +86,6 @@ GameTileSpec::RenderEpilogue(void) const
     }    
 }
 
-ostream& operator<<(std::ostream &inOut, const GameTileSpec& inSpec);
+std::ostream&
+operator<<(std::ostream &inOut, const GameTileSpec& inSpec);
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.26 2003/01/20 10:45:25 southa Exp $
+ * $Id: GameData.h,v 1.27 2003/02/05 16:19:45 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.27  2003/02/05 16:19:45  southa
+ * Build fixes
+ *
  * Revision 1.26  2003/01/20 10:45:25  southa
  * Singleton tidying
  *
@@ -181,22 +184,5 @@ private:
 
     static GameData *m_instance;
 };
-
-class GameDataNotPresent: public exception
-{
-public:
-    GameDataNotPresent(const std::string &inMessage) {m_message=inMessage;}
-    ~GameDataNotPresent() throw() {}
-    const std::string& StringGet(void) {return m_message;}
-    const char* what() const throw() {return m_message.c_str();}
-
-private:
-    std::string m_message;
-};
-
-inline std::ostream& operator<<(std::ostream &s, GameDataNotPresent f)
-{
-    return s << f.StringGet();
-}
 
 #endif

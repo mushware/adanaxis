@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.h,v 1.7 2003/01/20 10:45:31 southa Exp $
+ * $Id: MustlRouter.h,v 1.8 2003/02/05 17:06:38 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.8  2003/02/05 17:06:38  southa
+ * Build fixes
+ *
  * Revision 1.7  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -68,7 +71,7 @@ public:
     void ReceiveAll(MustlMessageHandler& inHandler);
 
 protected:
-    friend MushcoreSingleton<MustlRouter>;
+    friend class MushcoreSingleton<MustlRouter>;
     MustlRouter();
     void UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& inHandler);
     void UDPReceiveFromServer(MustlMessageHandler& inHandler);

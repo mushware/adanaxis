@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.27 2003/01/18 13:33:56 southa Exp $
+ * $Id: GameData.cpp,v 1.28 2003/02/05 17:06:36 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.28  2003/02/05 17:06:36  southa
+ * Build fixes
+ *
  * Revision 1.27  2003/01/18 13:33:56  southa
  * Created MushcoreSingleton
  *
@@ -232,7 +235,7 @@ GameData::TileMapGet(const string& inName) const
     map<std::string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
     if (p == m_tilemaps.end())
     {
-        throw(GameDataNotPresent("Access to non-existent tilemap '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent tilemap '"+inName+"'"));
     }
     return p->second;
 }
@@ -259,7 +262,7 @@ GameData::FloorMapGet(const string& inName) const
     map<std::string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
     if (p == m_floormaps.end())
     {
-        throw(GameDataNotPresent("Access to non-existent floormap '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent floormap '"+inName+"'"));
     }
     return p->second;
 }
@@ -286,7 +289,7 @@ GameData::ContractGet(const string& inName) const
     map<std::string, GameContract *>::const_iterator p = m_contracts.find(inName);
     if (p == m_contracts.end())
     {
-        throw(GameDataNotPresent("Access to non-existent contract '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent contract '"+inName+"'"));
     }
     return p->second;
 }
@@ -331,7 +334,7 @@ GameData::TraitsGet(const string& inName) const
     map<std::string, GameTraits *>::const_iterator p = m_traits.find(inName);
     if (p == m_traits.end())
     {
-        throw(GameDataNotPresent("Access to non-existent trait '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent trait '"+inName+"'"));
     }
     return p->second;
 }
@@ -358,7 +361,7 @@ GameData::ControllerGet(const string& inName) const
     map<std::string, GameController *>::const_iterator p = m_controllers.find(inName);
     if (p == m_controllers.end())
     {
-        throw(GameDataNotPresent("Access to non-existent controller '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent controller '"+inName+"'"));
     }
     return p->second;
 }
@@ -385,7 +388,7 @@ GameData::TemplateGet(const string& inName) const
     map<std::string, GamePiece *>::const_iterator p = m_templates.find(inName);
     if (p == m_templates.end())
     {
-        throw(GameDataNotPresent("Access to non-existent template '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent template '"+inName+"'"));
     }
     return p->second;
 }
@@ -412,7 +415,7 @@ GameData::DialogueGet(const string& inName) const
     map<std::string, GameDialogue *>::const_iterator p = m_dialogues.find(inName);
     if (p == m_dialogues.end())
     {
-        throw(GameDataNotPresent("Access to non-existent dialogue '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent dialogue '"+inName+"'"));
     }
     return p->second;
 }
@@ -439,7 +442,7 @@ GameData::ViewGet(const string& inName) const
     map<std::string, GameView *>::const_iterator p = m_views.find(inName);
     if (p == m_views.end())
     {
-        throw(GameDataNotPresent("Access to non-existent view '"+inName+"'"));
+        throw(MushcoreDataFail("Access to non-existent view '"+inName+"'"));
     }
     return p->second;
 }
@@ -453,7 +456,7 @@ GameData::CurrentViewGet(void) const
     {
         return p->second;
     }
-    throw(GameDataNotPresent("Access to non-existent current view"));
+    throw(MushcoreDataFail("Access to non-existent current view"));
 }
 
 GameTimer&
@@ -471,7 +474,7 @@ GameData::TypeGet(void) const
 {
     if (m_gameType == NULL)
     {
-        throw(GameDataNotPresent("Access to non-existent current type"));
+        throw(MushcoreDataFail("Access to non-existent current type"));
     }
     return *m_gameType;
 }
@@ -491,7 +494,7 @@ GameData::RewardsGet(void) const
 {
     if (m_gameRewards == NULL)
     {
-        throw(GameDataNotPresent("Access to non-existent rewards"));
+        throw(MushcoreDataFail("Access to non-existent rewards"));
     }
     return *m_gameRewards;
 }

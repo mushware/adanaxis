@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.9 2002/12/29 21:00:00 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.10 2003/01/12 17:33:01 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.10  2003/01/12 17:33:01  southa
+ * Mushcore work
+ *
  * Revision 1.9  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -60,25 +63,7 @@
 using namespace Mushware;
 using namespace std;
 
-
-bool
-PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    return true;
-}
-
 void
-PlatformInputUtils::GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-    throw(MushcoreLogicFail("GetMouseDeltas not implemented for X11"));
-}
-
-void
-PlatformInputUtils::MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
-{
-}
-
-void
-PlatformInputUtils::MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta)
+PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
 }

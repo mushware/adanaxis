@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.17 2003/01/13 14:32:01 southa Exp $
+ * $Id: GameTraits.cpp,v 1.18 2003/01/20 10:45:27 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.18  2003/01/20 10:45:27  southa
+ * Singleton tidying
+ *
  * Revision 1.17  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -97,18 +100,18 @@ GameTraits::RebuildTraits(void) const
     MUSHCOREASSERT(!m_traitsValid);
     m_baseTraits.resize(0);
     m_failMessage.erase();
-    bool success=true;    
+    bool success=true;
     for (U32 i=0;i<m_baseNames.size(); ++i)
     {
         try
         {
             m_baseTraits.push_back(GameData::Sgl().TraitsGet(m_baseNames[i]));
         }
-        catch (GameDataNotPresent& e)
+        catch (MushcoreDataFail& e)
         {
             success=false;
             m_failMessage+=" ";
-            m_failMessage+=e.StringGet();
+            m_failMessage+=e.what();
         }
     }
     m_traitsValid=success;

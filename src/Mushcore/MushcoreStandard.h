@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStandard.h,v 1.7 2003/02/03 23:15:51 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.8 2003/02/05 17:06:38 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.8  2003/02/05 17:06:38  southa
+ * Build fixes
+ *
  * Revision 1.7  2003/02/03 23:15:51  southa
  * Build work for Visual C++
  *
@@ -169,10 +172,10 @@ namespace Mushware
 
 #ifdef HAVE_VALARRAY
 #include <valarray>
-#define MushwareValarray valarray
+#define MushwareValarray std::valarray
 #else
 // Mimic valarray using vector
-#define MushwareValarray vector
+#define MushwareValarray std::vector
 #endif
 
 

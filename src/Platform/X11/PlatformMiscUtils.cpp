@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.15 2003/01/12 17:33:01 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.16 2003/01/20 10:45:32 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.16  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.15  2003/01/12 17:33:01  southa
  * Mushcore work
  *
@@ -75,9 +78,14 @@
 
 #include "mushPlatform.h"
 
+#include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+
 #include <unistd.h>
+
+#include <dirent.h>
+#include <signal.h>
 
 using namespace Mushware;
 using namespace std;
