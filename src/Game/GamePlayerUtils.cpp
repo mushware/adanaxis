@@ -1,16 +1,20 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GamePlayerUtils.cpp,v 1.1 2002/12/05 13:20:12 southa Exp $
+ * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.1  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  */
 
 #include "GamePlayerUtils.h"
 
 #include "GameAppHandler.h"
 #include "GameController.h"
+#include "GameData.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
-#include "GameData.h"
 #include "GamePiecePlayer.h"
+#include "GameProtocol.h"
 #include "GameTimer.h"
 
 void
@@ -51,17 +55,37 @@ GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 }
 
 void
-GamePlayerUtils::SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
+GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
 {
-    U32 startFrame = inTimer.CurrentMotionFrameGet();
-    CoreHistoryIterator<U32, GameControlFrameDef> p = inPlayer.ControlFrameDefIteratorGet(startFrame);
-    U32 deathCtr=0;
+    GameControlDataMessage controlMessage;
+    // frameNum is the first frame number in the chunk we're going to send
+    U32 startFrameNum = inTimer.CurrentMotionFrameGet();
+    controlMessage.startFrame=startFrameNum;
+    
+    CoreHistoryIterator<U32, GameControlFrameDef> p = inPlayer.ControlFrameDefIteratorGet(startFrameNum);
+    U32 entryCtr=0;
     while (p.ValidIs())
     {
-        // Do something with the iterator
+        U32 entryFrameNum=p.IndexGet();
+
+        S32 frameOffset = entryFrameNum - startFrameNum;
+        if (frameOffset < 0 || frameOffset > 255)
+        {
+            // Can't generate a frame offset for this
+            COREASSERT(frameOffset >= 0);
+            break;
+        }
+
+        controlMessage.data.push_back(GameControlDataMessage::DataEntry(frameOffset, p.StoreGet()));
+ 
         p.ForwardMove();
-        if (++deathCtr > 1000) COREASSERT(false);
+        if (++entryCtr >= GameControlDataMessage::kEntryLimit) break;
     }
+    
+    MediaNetData netData;
+    GameProtocol::ControlDataCreate(netData, controlMessage);
+    //cerr << "Would send " << netData << endl;
+    inClient.FastSendToServer(netData);
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.h,v 1.3 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameProtocol.h,v 1.4 2002/12/04 00:37:11 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.4  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  * Revision 1.3  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -21,8 +24,22 @@ class MediaNetData;
 class GameControlDataMessage
 {
 public:
-    U32 endFrame;
-    vector<GameControlFrameDef> frameDefs;
+    enum
+    {
+        kEntryLimit=32
+    };
+    
+    U32 startFrame;
+    struct DataEntry
+    {
+        DataEntry(U32 inOffset, const GameControlFrameDef& inDef) :
+            frameDef(inDef),
+            frameOffset(static_cast<U8>(inOffset))
+            {}
+        GameControlFrameDef frameDef;
+        U8 frameOffset;
+    };
+    vector<DataEntry> data;
 };
 
 class GameProtocol
