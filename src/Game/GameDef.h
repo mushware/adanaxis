@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDef.h,v 1.1 2002/11/21 18:06:17 southa Exp $
+ * $Log: GameDef.h,v $
+ * Revision 1.1  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  */
 
 #include "mushCore.h"
@@ -20,7 +23,7 @@ protected:
 private:
     enum
     {
-        kLinkSetupMsec=2000
+        kLinkSetupMsec=7000
     };
     enum tType
     {

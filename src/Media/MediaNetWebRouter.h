@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetWebRouter.h,v 1.1 2002/11/06 14:16:57 southa Exp $
+ * $Log: MediaNetWebRouter.h,v $
+ * Revision 1.1  2002/11/06 14:16:57  southa
+ * Basic web server
+ *
  */
 
 #include "mushCore.h"
@@ -19,7 +22,8 @@ protected:
 private:
     enum
     {
-        kTickPeriod=100
+        kTickPeriod=100,
+        kMaxReceivesPerCall=20
     };
 
     U32 m_lastTickMsec;

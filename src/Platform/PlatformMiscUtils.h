@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.13 2002/11/15 12:59:26 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.14 2002/11/17 13:38:31 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.14  2002/11/17 13:38:31  southa
+ * Game selection
+ *
  * Revision 1.13  2002/11/15 12:59:26  southa
  * Auto-open configuration on startup
  *
@@ -53,5 +56,6 @@ public:
     static void LaunchFile(const string& inFile);
     static void LaunchURL(const string& inURL);
     static void ShowUpdateAlert(void);
+    static void SleepMsec(U32 inMsec);
 };
 #endif

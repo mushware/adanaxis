@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.20 2002/11/18 18:55:58 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.21 2002/11/20 22:35:28 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.21  2002/11/20 22:35:28  southa
+ * Multiplayer setup
+ *
  * Revision 1.20  2002/11/18 18:55:58  southa
  * Game resume and quit
  *
@@ -378,6 +381,11 @@ bail:
     return err;
 }
 
+void
+PlatformMiscUtils::SleepMsec(U32 inMsec)
+{
+    usleep(inMsec*1000);
+}
 
     
 

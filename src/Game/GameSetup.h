@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.h,v 1.1 2002/11/15 18:58:34 southa Exp $
+ * $Id: GameSetup.h,v 1.2 2002/11/16 12:43:23 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.2  2002/11/16 12:43:23  southa
+ * GameApp mode switching
+ *
  * Revision 1.1  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -26,6 +29,11 @@ protected:
     void KeyControl(void);
     
 private:
+    enum
+    {
+        kSlowSleepMsec=10,
+        kFastSleepMsec=1
+    };
     enum tGameState
     {
         kGameStateInvalid,

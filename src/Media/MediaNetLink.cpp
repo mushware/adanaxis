@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.16 2002/11/22 18:16:44 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.17 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.17  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.16  2002/11/22 18:16:44  southa
  * Network tweaks
  *
@@ -732,10 +735,8 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
 
         case kLinkStateConnecting:
         case kLinkStateWaitingForPort:
-            return "bgyellow";
-            
         case kLinkStateUntested:
-            return "bglightyellow";
+            return "bgyellow";
             
         case kLinkStateTesting:
         case kLinkStateIdle:

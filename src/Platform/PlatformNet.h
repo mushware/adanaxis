@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.h,v 1.5 2002/11/22 18:02:43 southa Exp $
+ * $Id: PlatformNet.h,v 1.6 2002/11/23 14:39:07 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.6  2002/11/23 14:39:07  southa
+ * Store ports in network order
+ *
  * Revision 1.5  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -40,8 +43,9 @@ class PlatformNet
 {
 public:
     typedef S32 tSocket;
-    
+
     static void SocketNonBlockingSet(tSocket inSocket);
+    static void SocketAsyncSet(tSocket inSocket);
     static void UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, U32 inSize);
     static U32 UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize);
     static TCPsocket TCPConnectNonBlocking(IPaddress *ip);

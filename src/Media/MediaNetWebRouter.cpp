@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebRouter.cpp,v 1.1 2002/11/06 14:16:57 southa Exp $
+ * $Id: MediaNetWebRouter.cpp,v 1.2 2002/11/12 17:05:01 southa Exp $
  * $Log: MediaNetWebRouter.cpp,v $
+ * Revision 1.2  2002/11/12 17:05:01  southa
+ * Tidied localweb server
+ *
  * Revision 1.1  2002/11/06 14:16:57  southa
  * Basic web server
  *
@@ -34,16 +37,10 @@ MediaNetWebRouter::ReceiveAll(void)
     CoreData<MediaNetWebLink>::tMapIterator endValue=CoreData<MediaNetWebLink>::Instance().End();
     CoreData<MediaNetWebLink>::tMapIterator killValue=CoreData<MediaNetWebLink>::Instance().End();
 
-    for (CoreData<MediaNetWebLink>::tMapIterator p=CoreData<MediaNetWebLink>::Instance().Begin();
-         p != endValue; ++p)
+    if (callTick)
     {
-        string data;
-        if (p->second->Receive(data))
-        {
-            // MediaNetLog::Instance().Log() << "Received on " << p->first << ": '" << MediaNetUtils::MakePrintable(data) << "'" << endl;
-            p->second->ReceivedProcess(data);
-        }
-        if (callTick)
+        for (CoreData<MediaNetWebLink>::tMapIterator p=CoreData<MediaNetWebLink>::Instance().Begin();
+             p != endValue; ++p)
         {
             p->second->Tick();
             if (p->second->IsDead())
@@ -52,8 +49,27 @@ MediaNetWebRouter::ReceiveAll(void)
             }
         }
     }
+
     if (killValue != CoreData<MediaNetWebLink>::Instance().End())
     {
         CoreData<MediaNetWebLink>::Instance().DataDelete(killValue->first);
+    }
+    
+    for (CoreData<MediaNetWebLink>::tMapIterator p=CoreData<MediaNetWebLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        string data;
+        for (U32 i=0; i<kMaxReceivesPerCall; ++i)
+        {
+            if (p->second->Receive(data))
+            {
+                // MediaNetLog::Instance().Log() << "Received on " << p->first << ": '" << MediaNetUtils::MakePrintable(data) << "'" << endl;
+                p->second->ReceivedProcess(data);
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 }

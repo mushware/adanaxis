@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.5 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameSetup.cpp,v 1.6 2002/11/22 15:33:59 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.6  2002/11/22 15:33:59  southa
+ * More network logging
+ *
  * Revision 1.5  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -180,6 +183,15 @@ GameSetup::Config(void)
     KeyControl();
     GLUtils::PostRedisplay();
     MediaAudio::Instance().Ticker();
+    if (m_windowClicked)
+    {
+        PlatformMiscUtils::SleepMsec(kSlowSleepMsec);
+    }
+    else
+    {
+        // Running window animation
+        PlatformMiscUtils::SleepMsec(kFastSleepMsec);
+    }
 }
 
 void
