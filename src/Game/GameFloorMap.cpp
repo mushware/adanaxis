@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.23 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.24 2002/10/06 22:09:59 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.24  2002/10/06 22:09:59  southa
+ * Initial lighting test
+ *
  * Revision 1.23  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -112,6 +115,8 @@
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 
+GameFloorMap::tMapVector GameFloorMap::m_emptyMapVector;
+
 const GameMapPoint
 GameFloorMap::SpaceToMapFractional(const GameSpacePoint inPoint) const
 {
@@ -189,12 +194,20 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
                 }
                 
                 gl.MoveTo(point.x, point.y);
-                U32 mapVal=ElementGet(point);
-                glPushMatrix();
-                GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
-                    (*m_tileMap->TraitsPtrGet(mapVal));
-                tileTraits.Render();
-                glPopMatrix();
+
+
+                
+                
+                const tMapVector& mapVector=ElementGet(point);
+                U32 size=mapVector.size();
+                for (U32 i=0; i<size; ++i)
+                {
+                    GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
+                        (*m_tileMap->TraitsPtrGet(mapVector[i]));
+                    glPushMatrix();
+                    tileTraits.Render();
+                    glPopMatrix();
+                }
             }
         }
     }
@@ -214,7 +227,7 @@ GameFloorMap::RenderSolidMap(const GameMapArea& inArea)
     glPopMatrix();
 }
 
-U32
+const GameFloorMap::tMapVector&
 GameFloorMap::ElementGet(const GLPoint &inPoint) const
 {
     COREASSERT(inPoint.x < m_xsize);
@@ -222,25 +235,25 @@ GameFloorMap::ElementGet(const GLPoint &inPoint) const
     return m_map[inPoint.U32YGet()][inPoint.U32XGet()];
 }
 
-U32
+const GameFloorMap::tMapVector&
 GameFloorMap::ElementGet(const GameSpacePoint& inPoint) const
 {
     GameMapPoint mapPoint(SpaceToMap(inPoint));
     return ElementGet(mapPoint);
 }
 
-U32
+const GameFloorMap::tMapVector&
 GameFloorMap::ElementGet(const GameMapPoint& inPoint) const
 {
-    if (inPoint.x < 0 || inPoint.y < 0) return 0;
+    if (inPoint.x < 0 || inPoint.y < 0) return m_emptyMapVector;
     U32 x=static_cast<U32>(inPoint.x+0.5);
     U32 y=static_cast<U32>(inPoint.y+0.5);
-    if (x >= m_xsize || y>= m_ysize) return 0;
+    if (x >= m_xsize || y>= m_ysize) return m_emptyMapVector;
     return m_map[y][x];
 }
 
 void
-GameFloorMap::ElementSet(const GLPoint &inPoint, U32 inValue)
+GameFloorMap::ElementSet(const GLPoint &inPoint, const tMapVector& inValue)
 {
     COREASSERT(inPoint.x < m_xsize);
     COREASSERT(inPoint.y < m_ysize);
@@ -308,23 +321,38 @@ GameFloorMap::RebuildSolidMap(void) const
     {
         for (U32 y=0; y<m_ysize; ++y)
         {
-            U32 mapVal=ElementGet(GLPoint(x,y));
-            GameTileTraits& tileTraits=
-                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVal));
-            tVal value;
-            if (!tileTraits.PermeabilityGet(value))
+            const tMapVector& mapVec=ElementGet(GLPoint(x,y));
+            U32 size=mapVec.size();
+            tVal adhesion=-0.001;
+            tVal permeability=-0.001;
+            for (U32 i=0; i<size; ++i)
             {
-                cerr << tileTraits << endl;
-                throw(ReferenceFail("TileTrait missing permeability value"));
-            }
-            m_solidMap.PermeabilitySet(value, x, y);
+                GameTileTraits& tileTraits=
+                   dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
 
-            if (!tileTraits.AdhesionGet(value))
-            {
-                cerr << tileTraits << endl;
-                throw(ReferenceFail("TileTrait missing adhesion value"));
+                tVal value;
+                if (tileTraits.PermeabilityGet(value))
+                {
+                    if (value > permeability) permeability = value;
+                }
+
+                if (tileTraits.AdhesionGet(value))
+                {
+                    if (value > adhesion) adhesion = value;
+                }
             }
-            m_solidMap.AdhesionSet(value, x, y);            
+            if (adhesion < 0 || permeability < 0)
+            {
+                for (U32 i=0; i<size; ++i)
+                {
+                    GameTileTraits& tileTraits=
+                    dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
+                    cerr << tileTraits << endl;
+                }
+                throw(ReferenceFail("TileTrait missing adhesion or permeability value"));
+            }
+            m_solidMap.PermeabilitySet(permeability, x, y);
+            m_solidMap.AdhesionSet(adhesion, x, y);
         }
     }
     m_solidMapValid=true;
@@ -366,34 +394,55 @@ void
 GameFloorMap::HandleDataEnd(CoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
-    U32 data;
-    vector<U32> vec;
+
+    tMapValue data;
+    vector<tMapVector> rowVector;
+    char seperator;
+
     while (inStream >> data)
     {
-        char isComma;
-        vec.push_back(data);
-        if ((inStream >> isComma) && (isComma == ','))
+        tMapVector mapVector;
+        mapVector.push_back(data);
+        while (inStream >> seperator && seperator == '|')
         {
-            // Carry on - comma's there so expect more data
+            if (!inStream >> data)
+            {
+                inXML.Throw("Bad format for data element");
+            }
+            mapVector.push_back(data);
+            
+        }
+        rowVector.push_back(mapVector);
+
+        if (seperator == ',')
+        {
+            // Move to next element
         }
         else
         {
             break;
         }
     }
-    m_map.insert(m_map.begin(), vec);
+    m_map.insert(m_map.begin(), rowVector);
 }
 
 void
 GameFloorMap::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<gamemap xsize=\"" << m_xsize << "\" ysize=\"" << m_ysize << "\">" << endl;
-    for (vector< vector<U32> >::const_reverse_iterator x_it = m_map.rbegin(); x_it != m_map.rend(); x_it++)
+    for (vector< vector< tMapVector > >::const_reverse_iterator x_it = m_map.rbegin(); x_it != m_map.rend(); ++x_it)
     {
         inOut << inPrefix << "  <data>";
-        for (vector<U32>::const_iterator y_it = x_it->begin(); y_it != x_it->end(); y_it++)
+        for (vector< tMapVector >::const_iterator y_it = x_it->begin(); y_it != x_it->end(); ++y_it)
         {
-            inOut << *y_it;
+            for (tMapVector::const_iterator z_it = y_it->begin(); z_it != y_it->end(); ++z_it)
+            {
+                inOut << *z_it;
+                if (z_it+1 != y_it->end())
+                {
+                    inOut << "|";
+                }
+            }
             if (y_it+1 != x_it->end())
             {
                 inOut << ",";

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.25 2002/10/06 22:09:58 southa Exp $
+ * $Id: GLUtils.h,v 1.26 2002/10/07 12:15:36 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.26  2002/10/07 12:15:36  southa
+ * First specular lighting
+ *
  * Revision 1.25  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -138,12 +141,14 @@ public:
     void MoveToEdge(tVal inX, tVal inY);
 
     static void Vertex(tVal inX, tVal inY) { glVertex2f(inX, inY); }
+    static void Vertex(tVal inX, tVal inY, tVal inZ) { glVertex3f(inX, inY, inZ); }
     static void IdentityPrologue(void);
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
     static const GLPoint ScreenSizeGet(void);
     static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
+    static tVal ScreenScaleGet(void);
     static tVal LongestScreenAxis(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
     static void PerspectiveLookAt(GLPoint inPoint, tVal inAngle);
@@ -186,6 +191,7 @@ private:
     static bool m_modulateState;
     static tDisplayQuality m_displayQuality;
     static bool m_polygonSmoothing;
-    static bool m_useLighting;    
+    static bool m_useLighting;
+    static tVal m_eyeDistance;
 };
 #endif

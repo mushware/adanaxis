@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.64 2002/10/06 22:09:59 southa Exp $
+ * $Id: GameContract.cpp,v 1.65 2002/10/07 12:15:37 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.65  2002/10/07 12:15:37  southa
+ * First specular lighting
+ *
  * Revision 1.64  2002/10/06 22:09:59  southa
  * Initial lighting test
  *
@@ -325,7 +328,6 @@ GameContract::Init(void)
     COREASSERT(m_currentView != NULL);
     m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));  // Might be wrong
     // GameData::Instance().DumpAll(cout);
-    m_masterScale=0.5;
 
     GameData::Instance().TypeGet().Initialise();
 
@@ -392,18 +394,6 @@ GameContract::RunningMove(void)
     {
         if (m_gameState == kRunning) m_gameState = kOver;
     }
-    m_masterScale+=(0.5 - m_masterScale)/30;
-
-#if 0
-    // Sound test
-    tVal random = (double)rand()/RAND_MAX;
-    if (random < 0.005)
-
-    {
-	    CoreDataRef<MediaSound> soundRef("chequepoint");
-	    MediaAudio::Instance().Play(*soundRef.DataGet());
-    }
-#endif
 }
 
 void
@@ -426,17 +416,12 @@ GameContract::RunningDisplay(void)
     GameMapPoint aimingPoint(GLPoint(playerSpec.pos / m_floorMap->StepGet()));
 
     GameMotionSpec lookAtPoint;
-    lookAtPoint.pos=GLPoint(playerSpec.pos*m_masterScale);
+    lookAtPoint.pos=GLPoint(playerSpec.pos);
     lookAtPoint.angle=playerSpec.angle;
     
     GLUtils::PerspectiveLookAt(lookAtPoint.pos, lookAtPoint.angle);
-    // m_masterScale is the proportion of the longest axis of the screen
-    // taken up by one map piece
+
     GLUtils::PushMatrix();
-
-    GLUtils::Scale(m_masterScale, m_masterScale, 1);
-
-
     
     m_lights.LightAdd(0, GLLightDef());
     m_lights.LightEnable(0);
@@ -445,7 +430,7 @@ GameContract::RunningDisplay(void)
     GameMapArea visibleArea;
     GLPoint screenRatios(GLUtils::ScreenRatiosGet());
     GLPoint screenRadius((screenRatios / 2) / m_floorMap->StepGet());
-    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale*10;
+    tVal circleRadius=1+screenRadius.Magnitude()*GLUtils::ScreenScaleGet();
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea; // Empty area
@@ -464,12 +449,10 @@ GameContract::RunningDisplay(void)
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-    GLUtils::Scale(2*m_masterScale, 2*m_masterScale, 1);
+    GLUtils::Scale(2, 2, 1);
     m_player->Render();
 
     GLUtils::PopMatrix();
-
-    GLUtils::Scale(m_masterScale, m_masterScale, 1);
 
     COREASSERT(m_currentView != NULL);
     GLUtils::BlendSet(GLUtils::kBlendLine);

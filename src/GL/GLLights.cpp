@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.1 2002/10/06 22:09:58 southa Exp $
+ * $Id: GLLights.cpp,v 1.2 2002/10/07 12:15:35 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.2  2002/10/07 12:15:35  southa
+ * First specular lighting
+ *
  * Revision 1.1  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -44,7 +47,7 @@ GLLights::LightEnable(U32 inNum)
     GLfloat diffuse[4]={1.0,1.0,1.0,1};
     GLfloat specular[4]={1.0,1.0,1.0,1};
     GLfloat transparent[4]={0,0,0,0};
-    GLfloat position[4]={30,10,-1,1};
+    GLfloat position[4]={30,10,2,1};
     GLenum lightEnum=GL_LIGHT0+inNum;
     glLightfv(lightEnum, GL_AMBIENT, transparent);
     glLightfv(lightEnum, GL_DIFFUSE, diffuse);

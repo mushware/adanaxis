@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.21 2002/08/27 08:56:25 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.22 2002/10/07 12:15:37 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.22  2002/10/07 12:15:37  southa
+ * First specular lighting
+ *
  * Revision 1.21  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -108,7 +111,11 @@ GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
 {
     GameSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
     m_adhesion=inFloorMap.AdhesionGet(spacePoint);
-    m_standingOn=inFloorMap.ElementGet(spacePoint);
+
+    if (inFloorMap.ElementGet(spacePoint).size() > 0)
+    {
+        m_standingOn=inFloorMap.ElementGet(spacePoint)[0];
+    }
 }
 
 void

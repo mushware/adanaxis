@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.14 2002/08/18 20:44:34 southa Exp $
+ * $Id: GameFloorMap.h,v 1.15 2002/08/27 08:56:24 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.15  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/08/18 20:44:34  southa
  * Initial chequepoint work
  *
@@ -88,10 +91,14 @@ class GameMapPoint;
 class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
 public:
+
+    typedef U32 tMapValue;
+    typedef vector<tMapValue> tMapVector;
+    
     GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
+    const tMapVector& At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
     U32 XSize(void) {return m_xsize;}
     U32 YSize(void) {return m_ysize;}
     tVal XStep(void) {return m_xstep;}
@@ -106,10 +113,10 @@ public:
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
     
-    U32 ElementGet(const GLPoint &inPoint) const;
-    U32 ElementGet(const GameSpacePoint &inPoint) const;
-    U32 ElementGet(const GameMapPoint &inPoint) const;
-    void ElementSet(const GLPoint &inPoint, U32 inValue);
+    const tMapVector& ElementGet(const GLPoint &inPoint) const;
+    const tMapVector& ElementGet(const GameSpacePoint &inPoint) const;
+    const tMapVector& ElementGet(const GameMapPoint &inPoint) const;
+    void ElementSet(const GLPoint &inPoint, const tMapVector& inValue);
     tVal PermeabilityGet(const GameMapPoint &inPoint) const;
     tVal AdhesionGet(const GameSpacePoint &inPoint) const;
     tVal AdhesionGet(const GameMapPoint &inPoint) const;
@@ -145,7 +152,7 @@ private:
     vector<ElementFunctionMap> m_endTable;
     U32 m_state;
 
-    vector< vector<U32> > m_map;
+    vector< vector< tMapVector > > m_map;
     tSize m_xsize;
     tSize m_ysize;
     tVal m_xstep;
@@ -153,6 +160,7 @@ private:
     mutable GameSolidMap m_solidMap;
     mutable bool m_solidMapValid;
     GameTileMap *m_tileMap;
+    static tMapVector m_emptyMapVector;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)

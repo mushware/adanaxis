@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.24 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameContract.h,v 1.25 2002/10/06 22:09:59 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.25  2002/10/06 22:09:59  southa
+ * Initial lighting test
+ *
  * Revision 1.24  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -171,7 +174,6 @@ private:
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
     bool m_renderDiagnostics;
-    tVal m_masterScale;
     bool m_fastDiagnostics;
     GLLights m_lights; // temporary place
 };

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.28 2002/10/06 22:09:58 southa Exp $
+ * $Id: GLUtils.cpp,v 1.29 2002/10/07 12:15:36 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.29  2002/10/07 12:15:36  southa
+ * First specular lighting
+ *
  * Revision 1.28  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -117,6 +120,7 @@ bool GLUtils::m_modulateState=false;
 GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
 bool GLUtils::m_polygonSmoothing=false;
 bool GLUtils::m_useLighting=true;
+tVal GLUtils::m_eyeDistance=20;
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -205,15 +209,15 @@ void GLUtils::PerspectiveLookAt(GLPoint inPoint, tVal inAngle)
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
     tVal nearClip=1.0;
-    glFrustum(screenRatios.x*nearClip,-screenRatios.x*nearClip,
+    glFrustum(-screenRatios.x*nearClip,screenRatios.x*nearClip,
               -screenRatios.y*nearClip,screenRatios.y*nearClip,
                    nearClip, // zNear clipping plane distance from viewer
-                   20.0 // zFar clipping plane distance from viewer
+                   m_eyeDistance+1.0 // zFar clipping plane distance from viewer
                    );
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(inPoint.x, inPoint.y, -10.0, // eye position
+    gluLookAt(inPoint.x, inPoint.y, m_eyeDistance, // eye position
               inPoint.x, inPoint.y, 0.0, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
               );
@@ -232,6 +236,12 @@ const GLPoint
 GLUtils::ScreenRatiosGet(void)
 {
     return ScreenSizeGet() / LongestScreenAxis();
+}
+
+tVal
+GLUtils::ScreenScaleGet(void)
+{
+    return m_eyeDistance;
 }
 
 tVal
@@ -528,7 +538,7 @@ GLUtils::ModulationSet(tModulationType inValue)
                 
                 glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 glEnable(GL_LIGHTING);
-                glNormal3f(0,0,-1);
+                glNormal3f(0,0,1);
             }
             else
             {
