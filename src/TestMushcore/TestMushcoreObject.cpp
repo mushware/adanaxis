@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LQSTCy0TkFLyIzkXR+k2qA
 /*
- * $Id: TestMushcoreObject.cpp,v 1.16 2003/10/03 23:39:34 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.17 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.17  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/10/03 23:39:34  southa
  * XML polymorphs
  *
@@ -69,6 +72,7 @@
 using namespace std;
 using namespace Mushware;
 
+MUSHCORE_DATA_INSTANCE(TestMushcoreObject);
 
 //%outOfLineFunctions {
 const char *TestMushcoreObject::AutoNameGet(void) const

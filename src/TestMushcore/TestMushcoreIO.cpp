@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.10 2004/01/05 14:27:41 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.11 2004/01/07 18:01:19 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.11  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  * Revision 1.10  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -128,8 +131,54 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
             throw MushcoreLogicFail(message.str());
         }
+    }
+    
+    // MushcoreData test
+    {
+        ostringstream testOStream;
+        MushcoreXMLOStream xmlOStream(testOStream);
+        MushcoreData<TestMushcoreObject> testData;
         
-    } 
+        testData.Give("obj1", new TestMushcoreObject(1));
+        testData.Give("obj2", new TestMushcoreObject());
+        
+        xmlOStream << testData;
+        
+        MushcoreXMLOStream xmlCout(cout);
+        // xmlCout << testData;
+
+        MushcoreData<TestMushcoreObject> readBackData;
+        
+        istringstream testIStream(testOStream.str());
+        MushcoreXMLIStream xmlIStream(testIStream);
+        
+        xmlIStream >> readBackData;
+        
+        if (testData != readBackData)
+        {
+            ostringstream message;
+            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testData << " != " << readBackData;
+            throw MushcoreLogicFail(message.str());
+        }
+        
+        MushcoreDataRef<TestMushcoreObject> testObjectRef("obj1", testData);
+        
+        if (testObjectRef.Get() ==  NULL)
+        {
+            throw MushcoreLogicFail("MushcoreIO DataRef not found ");            
+        }            
+        
+        if (*testObjectRef.Get() != TestMushcoreObject(1))
+        {
+            throw MushcoreLogicFail("MushcoreIO DataRef value fault ");            
+        }
+        
+        testObjectRef.Get()->U8Set(3);
+        if (*testObjectRef.Get() == TestMushcoreObject(1))
+        {
+            throw MushcoreLogicFail("MushcoreIO DataRef write failure ");            
+        }
+    }
     
     return MushcoreScalar(0);
 }

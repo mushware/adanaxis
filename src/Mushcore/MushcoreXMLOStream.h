@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } pOEqFQn/JjDtnwtX47X7WQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.16 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.17 2004/01/02 17:31:48 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.17  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.16  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -115,6 +118,7 @@ MushcoreXMLOStream::ClosingTagWrite(const std::string& inStr)
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushcoreVirtualObject& inObj)
 {
+    if (ioOut.TagGet() == "") ioOut.TagSet("obj");
     std::string localTag = ioOut.OpeningTagWrite(inObj.AutoNameGet());
     ioOut.OStreamGet() << std::endl;
     inObj.AutoXMLPrint(ioOut);

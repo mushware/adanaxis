@@ -17,8 +17,11 @@
 //%Header } PnzbnMrxb1qHtbgCO/gBtw
 
 /*
- * $Id: MushcoreDataRef.h,v 1.10 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.11 2004/01/06 10:08:51 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.11  2004/01/06 10:08:51  southa
+ * MushcoreData and MushPieForm work
+ *
  * Revision 1.10  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -86,9 +89,9 @@ class MushcoreDataRef
 {
 public:
     inline MushcoreDataRef();
-    inline explicit MushcoreDataRef(MushcoreData<RefType, KeyType> *inInstance);
+    inline explicit MushcoreDataRef(MushcoreData<RefType, KeyType>& inInstance);
     inline explicit MushcoreDataRef(const KeyType& inName);
-    inline MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType> *inInstance);
+    inline MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType>& inInstance);
     
     void NameSet(const KeyType& inName) { m_name=inName; m_dataPtr=NULL; }
     const KeyType& NameGet(void) const { return m_name; }
@@ -122,8 +125,8 @@ MushcoreDataRef<RefType, KeyType>::MushcoreDataRef() :
 
 template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(MushcoreData<RefType, KeyType> *inInstance) :
-    m_dataInstance(inInstance),
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(MushcoreData<RefType, KeyType>& inInstance) :
+    m_dataInstance(&inInstance),
     m_dataPtr(NULL),
     m_sequenceNum(1)
 {
@@ -142,9 +145,9 @@ MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(const KeyType& inName) :
 
 template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType> *inInstance) :
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType> &inInstance) :
     m_name(inName),
-    m_dataInstance(inInstance),
+    m_dataInstance(&inInstance),
     m_dataPtr(NULL),
     m_sequenceNum(1)
 {

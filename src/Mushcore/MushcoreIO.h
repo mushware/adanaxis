@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } AqRkhzf74kOxwRFo7CMCSw
 /*
- * $Id: MushcoreIO.h,v 1.6 2003/10/17 12:27:19 southa Exp $
+ * $Id: MushcoreIO.h,v 1.7 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.7  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.6  2003/10/17 12:27:19  southa
  * Line end fixes and more mesh work
  *
@@ -68,7 +71,28 @@ operator<<(std::ostream& ioOut, const std::vector<T>& inObj)
 {
     typename std::vector<T>::const_iterator pEnd = inObj.end();
     typename std::vector<T>::const_iterator p = inObj.begin();
+    
+    ioOut << "[";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut << ", ";
+        }
+    }
+    ioOut << "]";
+    return ioOut;
+}
 
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::vector<T *>& inObj)
+{
+    typename std::vector<T *>::const_iterator pEnd = inObj.end();
+    typename std::vector<T *>::const_iterator p = inObj.begin();
+    
     ioOut << "[";
     while (p != pEnd)
     {
@@ -87,13 +111,20 @@ operator<<(std::ostream& ioOut, const std::vector<T>& inObj)
 // valarray output
 template <class T>
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushwareValarray<T>& inObj)
+operator<<(std::ostream& ioOut, const MushwareValarray<T *>& inObj)
 {
     Mushware::U32 size = inObj.size();
     ioOut << "[";
     for (Mushware::U32 i=0; i < size; ++i)
     {
-        ioOut << inObj[i];
+        if (inObj[i] == NULL)
+        {
+            ioOut << "NULL";
+        }
+        else
+        {
+            ioOut << *inObj[i];
+        }
         if (i + 1 < size)
         {
             ioOut << ", ";
@@ -111,7 +142,7 @@ operator<<(std::ostream& ioOut, const std::map<T, U>& inObj)
 {
     typename std::map<T, U>::const_iterator pEnd = inObj.end();
     typename std::map<T, U>::const_iterator p = inObj.begin();
-
+    
     ioOut << "[";
     while (p != pEnd)
     {
@@ -126,7 +157,34 @@ operator<<(std::ostream& ioOut, const std::map<T, U>& inObj)
     return ioOut;
 }
 
-
+template <class T, class U>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::map<T, U *>& inObj)
+{
+    typename std::map<T, U *>::const_iterator pEnd = inObj.end();
+    typename std::map<T, U *>::const_iterator p = inObj.begin();
+    
+    ioOut << "[";
+    while (p != pEnd)
+    {
+        if (p->second == NULL)
+        {
+            ioOut << p->first << " => NULL";
+        }
+        else
+        {
+            ioOut << p->first << " => " << *p->second;
+        }
+            
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut << ", ";
+        }
+    }
+    ioOut << "]";
+    return ioOut;
+}
 
 //%includeGuardEnd {
 #endif

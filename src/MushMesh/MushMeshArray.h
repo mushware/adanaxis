@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PK+ZCe4Bf9/jI7UGYOtvRA
 /*
- * $Id: MushMeshArray.h,v 1.11 2004/01/01 21:15:46 southa Exp $
+ * $Id: MushMeshArray.h,v 1.12 2004/01/02 21:13:10 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.12  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.11  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -54,6 +57,7 @@
  */
 
 #include "MushMeshStandard.h"
+
 #include "MushMeshVector.h"
 #include "MushMeshMath.h"
 
@@ -221,7 +225,7 @@ MushMeshArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "ySize=" << m_ySize << ", ";
-    ioOut << "values=" << m_values;
+    //FIXME ioOut << "values=" << m_values;
     ioOut << "]";
 }
 

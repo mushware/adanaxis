@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PCqvrnn/p0THwedPuNPI9g
 /*
- * $Id: MushcoreFactory.h,v 1.3 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.4 2004/01/07 18:01:19 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.4  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  * Revision 1.3  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -34,8 +37,8 @@
 #include "MushcoreSingleton.h"
 #include "MushcoreScalar.h"
 
-class MuscoreCommand;
-class MuscoreEnv;
+class MushcoreCommand;
+class MushcoreEnv;
 class MushcoreVirtualObject;
 
 //:generate ostream

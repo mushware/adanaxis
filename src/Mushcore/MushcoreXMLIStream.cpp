@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.13 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.14 2004/01/04 17:02:30 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.14  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.13  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -290,6 +293,42 @@ MushcoreXMLIStream::TagGet(string& outTag, const string& inStr, U32 inPos)
     // change to use substr
     outTag = string(inStr, startPos+1, endPos-startPos-1);
     return endPos + 1;
+}
+
+bool
+MushcoreXMLIStream::CompositePrologue(void)
+{
+    bool hasTag = false;
+    if (ByteGet() == '<')    
+    {
+        if (DataUntilTake(">") != "<obj")
+        {
+            Throw("Bad tag at start of composite");
+        }
+        ByteTake(); // Consume >
+        hasTag = true;
+    }
+    if (ByteTake() != '(')
+    {
+        Throw("Bad first character in map");
+    }
+    return hasTag;
+}
+
+void
+MushcoreXMLIStream::CompositeEpilogue(bool inHasTag)
+{
+    if (inHasTag)
+    {
+        if (ByteGet() == '<')    
+        {
+            if (DataUntilTake(">") != "</obj")
+            {
+                Throw("Bad tag at end of composite");
+            }
+            ByteTake(); // Consume >
+        }                
+    }
 }
 
 void

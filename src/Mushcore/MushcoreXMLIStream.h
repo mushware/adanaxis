@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.18 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.19 2004/01/04 17:02:30 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.19  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.18  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -93,6 +96,7 @@ public:
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
     template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
+    template<class T, class U> void ObjectRead(std::map<T, U *>& inMap);
 
     void ObjectRead(MushcoreVirtualObject *outpObj);
     void ObjectRead(MushcoreVirtualObject& outObj);
@@ -103,6 +107,9 @@ public:
     void ObjectRead(Mushware::tXMLVal& outObj);
     void ObjectRead(std::string& outStr);
 
+    bool CompositePrologue(void);
+    void CompositeEpilogue(bool inHasTag);
+    
     void Throw(const std::string& inMessage) const;
     
 protected:
@@ -195,6 +202,13 @@ operator>>(MushcoreXMLIStream& ioIn, std::map<T, U>& outObj)
     ioIn.ObjectRead(outObj);
 }
 
+template<class T, class U>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::map<T, U *>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
 inline void
 operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject& outObj)
 {
@@ -281,6 +295,14 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
 {
     // Decode the (x,y,z) sequence
 
+    if (ByteGet() == '<')    
+    {
+        if (DataUntilTake(">") != "<obj>")
+        {
+            Throw("Bad tag in vector");
+        }
+    }
+    
     if (ByteTake() != '(')
     {
         Throw("Bad first character in vector");
@@ -321,12 +343,7 @@ template<class T, class U>
 inline void
 MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
 {
-    // Decode the (x,y,z) sequence
-
-    if (ByteTake() != '(')
-    {
-        Throw("Bad first character in map");
-    }
+    bool hasTag = CompositePrologue();
 
     if (ByteGet() == ')')
     {
@@ -338,7 +355,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
         for (;;)
         {
             T keyValue;
-            ObjectRead(keyValue);
+            *this >> keyValue;
 
             if (ByteTake() != '=')
             {
@@ -347,7 +364,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
 
             // Read completely before setting the map, in case of exception
             U valueValue;
-            ObjectRead(valueValue);
+            *this >> valueValue;
             inMap[keyValue] = valueValue;
             
             Mushware::U8 nextByte = ByteTake();
@@ -364,9 +381,54 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
             }
         }
     }
+    CompositeEpilogue(hasTag);
+}
+
+template<class T, class U>
+inline void
+MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
+{
+    bool hasTag = CompositePrologue();
+    
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            T keyValue;
+            *this >> keyValue;
+            
+            if (ByteTake() != '=')
+            {
+                Throw("Bad separator in map");
+            }
+            
+            // Read completely before setting the map, in case of exception
+            U *valuePtr = NULL;
+            *this >> valuePtr;
+            inMap[keyValue] = valuePtr;
+            
+            Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in vector");
+            }
+        }
+    }
+    CompositeEpilogue(hasTag);
 }
 
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
-

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 5yrDa+Xrdt7jgCyT3G1cRw
 /*
- * $Id: MushcoreFactory.cpp,v 1.3 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreFactory.cpp,v 1.4 2004/01/07 18:01:19 southa Exp $
  * $Log: MushcoreFactory.cpp,v $
+ * Revision 1.4  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  * Revision 1.3  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -31,8 +34,11 @@
 #include "MushcoreEnv.h"
 #include "MushcoreFail.h"
 #include "MushcoreIO.h"
+#include "MushcoreInterpreter.h"
+#include "MushcoreInstaller.h"
 #include "MushcoreSTL.h"
 #include "MushcoreVirtualObject.h"
+#include "MushcoreXMLOStream.h"
 
 using namespace Mushware;
 using namespace std;

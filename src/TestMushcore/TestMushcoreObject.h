@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } F+NlKkNqHxJmGlhIZkKE4g
 /*
- * $Id: TestMushcoreObject.h,v 1.16 2003/10/14 10:46:05 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.17 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.17  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/10/14 10:46:05  southa
  * MeshMover creation
  *
@@ -144,7 +147,12 @@ public:
 
     virtual ~TestMushcoreObject() {}
     
+    void U8Set(Mushware::U8 inValue) { m_u8 = inValue; }
+    
 private:
+    TestMushcoreObject(const TestMushcoreObject&) {     throw(MushcoreLogicFail("Forbidden assignment of TestMushcoreObject")); } // Prohibit copy construction
+    TestMushcoreObject& operator=(const TestMushcoreObject&) {     throw(MushcoreLogicFail("Forbidden assignment of TestMushcoreObject")); return *this; } // Prohibit copy assignment
+    
     std::vector<MushcoreVirtualObject *> m_vectorPolymorph; // nobasic;
     std::vector<TestMushcoreObject *> m_vectorTestObject; // nobasic;
     
@@ -184,6 +192,7 @@ public:
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } 3ZK713N5be0A8cPbOSDlfA
 };
+
 //%inlineHeader {
 inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
