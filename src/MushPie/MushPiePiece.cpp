@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.5 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.6 2004/01/06 00:34:56 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.6  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.5  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -73,13 +76,15 @@ MushPiePiece::AutoEquals(const MushPiePiece& inObj) const
 {
     return 1
         && (m_sleepState == inObj.m_sleepState)
+        && (m_formRef == inObj.m_formRef)
     ;
 }
 void
 MushPiePiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "sleepState=" << m_sleepState;
+    ioOut << "sleepState=" << m_sleepState << ", ";
+    ioOut << "formRef=" << m_formRef;
     ioOut << "]";
 }
 bool
@@ -93,6 +98,10 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_sleepState;
     }
+    else if (inTagStr == "formRef")
+    {
+        ioIn >> m_formRef;
+    }
     else
     {
         return false;
@@ -104,5 +113,7 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("sleepState");
     ioOut << m_sleepState;
+    ioOut.TagSet("formRef");
+    ioOut << m_formRef;
 }
-//%outOfLineFunctions } ycf4SyVlSzuzXZclBSCDmQ
+//%outOfLineFunctions } DlcIeCYSDWk4Xvauv+z1/g

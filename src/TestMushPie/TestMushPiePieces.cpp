@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Ga1VHTuO8JZwOaZYl4bW2g
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushPiePieces.cpp,v 1.1 2004/01/06 00:34:56 southa Exp $
+ * $Log: TestMushPiePieces.cpp,v $
+ * Revision 1.1  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  */
 
 #include "TestMushPiePieces.h"
@@ -41,6 +44,8 @@ TestMushPiePieces::TestPieces(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         MushcoreXMLOStream xmlOStream(testOStream);
         MushPiePieceMobile testObject;
         
+        testObject.SleepStateSet(1);
+        testObject.FormRefSet(MushPieForm::tDataRef(2));
         testObject.NewPosSet(TestPosMake(0));
         testObject.PosSwap();
         testObject.NewPosSet(TestPosMake(100));

@@ -17,8 +17,11 @@
 //%Header } PnzbnMrxb1qHtbgCO/gBtw
 
 /*
- * $Id: MushcoreDataRef.h,v 1.9 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.10 2004/01/05 14:27:41 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.10  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.9  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -92,6 +95,7 @@ public:
     inline RefType *Get(void) const;
     inline bool GetIfExists(RefType *& outRef) const;
     inline bool Exists(void) const;
+    bool Equals(const MushcoreDataRef& inObj) const;
 
 private:
     inline void ReferenceGet(void) const;
@@ -150,7 +154,7 @@ template<class RefType, class KeyType>
 inline void
 MushcoreDataRef<RefType, KeyType>::DefaultDataPtrGet(void)
 {
-    m_dataInstance = &MushcoreData<RefType>::Sgl();
+    m_dataInstance = &MushcoreData<RefType, KeyType>::Sgl();
 }
 
 template<class RefType, class KeyType>
@@ -245,8 +249,35 @@ template<class RefType, class KeyType>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, MushcoreDataRef<RefType, KeyType>& outObj)
 {
-    ioIn >> outObj;
+    KeyType keyValue;
+    ioIn >> keyValue;
+    outObj.NameSet(keyValue);
 }
+
+template<class RefType, class KeyType>
+inline bool
+operator==(const MushcoreDataRef<RefType, KeyType>& inA, const MushcoreDataRef<RefType, KeyType>& inB)
+{
+    return inA.Equals(inB);
+}
+
+template<class RefType, class KeyType>
+inline bool
+operator!=(const MushcoreDataRef<RefType, KeyType>& inA, const MushcoreDataRef<RefType, KeyType>& inB)
+{
+    return !inA.Equals(inB);
+}
+
+template<class RefType, class KeyType>
+inline bool
+MushcoreDataRef<RefType, KeyType>::Equals(const MushcoreDataRef<RefType, KeyType>& inObj) const
+{
+    return 1
+        && (m_name == inObj.m_name)
+        && (m_dataInstance == inObj.m_dataInstance)
+    ;
+}
+
 
 //%includeGuardEnd {
 #endif

@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.13 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreData.h,v 1.14 2004/01/05 14:27:41 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.14  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.13  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -118,6 +121,9 @@
 
 #define MUSHCORE_DATA_INSTANCE(RefType) MUSHCORE_SINGLETON_INSTANCE(MushcoreData< RefType >)
 #define MUSHCORE_DESTROY_DATA_INSTANCE(RefType) MUSHCORE_DESTROY_SINGLETON_INSTANCE(MushcoreData< RefType >)
+
+#define MUSHCORE_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_SINGLETON_INSTANCE2(MushcoreData< RefType, KeyType >)
+#define MUSHCORE_DESTROY_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_DESTROY_SINGLETON_INSTANCE((MushcoreData< RefType, KeyType >))
 
 template<class RefType, class KeyType = std::string>
 class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >

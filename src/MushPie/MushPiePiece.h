@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.5 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePiece.h,v 1.6 2004/01/06 00:34:56 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.6  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.5  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -39,6 +42,8 @@
 
 #include "MushMesh.h"
 
+#include "MushPieForm.h"
+
 // Concrete base class for pieces containing only the mandatory elements
 
 //:generate standard ostream xml1 basic
@@ -59,12 +64,14 @@ protected:
         
 private:
     tSleepState m_sleepState; //:readwrite
-    //MushcoreDataRef<Mushware::U32> m_templateRef; //:readwrite
+    MushPieForm::tDataRef m_formRef; //:readwrite
     
 //%classPrototypes {
 public:
     const tSleepState& SleepStateGet(void) const { return m_sleepState; }
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
+    const MushPieForm::tDataRef& FormRefGet(void) const { return m_formRef; }
+    void FormRefSet(const MushPieForm::tDataRef& inValue) { m_formRef=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePiece *AutoClone(void) const;
     virtual MushPiePiece *AutoCreate(void) const;
@@ -73,7 +80,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } qWIu9qXsBUyqc8obP6pkig
+//%classPrototypes } 3gpOwTzsXdWBTliRUviRyg
 };
 //%inlineHeader {
 inline bool
