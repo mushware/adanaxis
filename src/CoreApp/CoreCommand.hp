@@ -1,24 +1,29 @@
 #ifndef CORECOMMAND_HP
 #define CORECOMMAND_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreCommand.hp,v 1.1 2002/03/02 12:08:23 southa Exp $
+ * $Log: CoreCommand.hp,v $
+ * Revision 1.1  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
  */
 
 #include "CoreStandard.hp"
+#include "CoreFlex.hp"
 
 class CoreEnv;
 
 class CoreCommand
 {
 public:
-    CoreCommand(const string& inStr): m_string(inStr), m_pos(0) {}
+    CoreCommand(const string& inStr): m_flex(inStr) {}
     virtual ~CoreCommand() {}
     virtual void Execute(CoreEnv& inEnv);
     virtual void Execute(void);
-    
+
 private:
     string m_string;
-    Size m_pos;
+    CoreFlex m_flex;
 };
 #endif

@@ -1,0 +1,21 @@
+#ifndef COREFLEX_HP
+#define COREFLEX_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreFlex
+{
+public:
+    CoreFlex(const string& inStr);
+    int Lex(Val *outVal, void *inPtr);
+    void SetVal(Val inVal) {m_val=inVal;}
+    
+private:
+    void *m_buffer_state; // Opaque to YY_BUFFER_STATE
+    Val m_val;
+};
+#endif

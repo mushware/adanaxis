@@ -1,0 +1,18 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+#include "CoreFlex.hp"
+
+class CoreBison
+{
+public:
+    CoreBison(const string& inStr): m_flex(CoreFlex(inStr)) {}
+    CoreBison(CoreFlex& inFlex): m_flex(inFlex) {}
+    void Parse(void);
+    
+private:
+    CoreFlex m_flex;
+};
