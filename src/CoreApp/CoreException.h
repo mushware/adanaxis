@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.6 2002/05/28 16:37:36 southa Exp $
+ * $Id: CoreException.h,v 1.7 2002/06/04 14:11:21 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.7  2002/06/04 14:11:21  southa
+ * Traits loader first stage
+ *
  * Revision 1.6  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *
@@ -85,6 +88,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, ConfigFail f)
+{
+    return s << f.StringGet();
+}
+
+class ReferenceFail: public exception
+{
+public:
+    ReferenceFail(const string &inMessage) {m_message=inMessage;}
+    ~ReferenceFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, ReferenceFail f)
 {
     return s << f.StringGet();
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.cpp,v 1.3 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameData.cpp,v 1.4 2002/06/04 20:27:36 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.4  2002/06/04 20:27:36  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.3  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -155,36 +158,40 @@ GameData::TraitsGet(const string& inName) const
 void
 GameData::DumpAll(ostream& inOut) const
 {
+    inOut << "<chunk type=\"tilemap\">" << endl;
     for (map<string, GameTileMap *>::const_iterator p = m_tilemaps.begin();
          p != m_tilemaps.end(); ++p)
     {
-        inOut << "<chunk type=\"tilemap\">" << endl;
         inOut << "  <tilemap name=\"" << p->first << "\">" << endl;
         p->second->Pickle(inOut, "    ");
-        inOut << "  </tilemap>" << endl << "</chunk>" << endl;
+        inOut << "  </tilemap>" << endl;
     }
+    inOut << "</chunk>" << endl;
+    inOut << "<chunk type=\"floormap\">" << endl;
     for (map<string, GameFloorMap *>::const_iterator p = m_floormaps.begin();
          p != m_floormaps.end(); ++p)
     {
-        inOut << "<chunk type=\"floormap\">" << endl;
         inOut << "  <floormap name=\"" << p->first << "\">" << endl;
         p->second->Pickle(inOut, "    ");
-        inOut << "  </floormap>" << endl << "</chunk>" << endl;
+        inOut << "  </floormap>" << endl;
     }
+    inOut << "</chunk>" << endl;
+    inOut << "<chunk type=\"contract\">" << endl;
     for (map<string, GameContract *>::const_iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
     {
-        inOut << "<chunk type=\"contract\">" << endl;
         inOut << "  <contract name=\"" << p->first << "\">" << endl;
         p->second->Pickle(inOut, "    ");
-        inOut << "  </contract>" << endl << "</chunk>" << endl;
+        inOut << "  </contract>" << endl;
     }
+    inOut << "</chunk>" << endl;
+    inOut << "<chunk type=\"traits\">" << endl;
     for (map<string, GameTraits *>::const_iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
-        inOut << "<chunk type=\"traits\">" << endl;
         inOut << "  <traits type=\"" << p->second->TypeNameGet() << "\" name=\"" << p->first << "\">" << endl;
         p->second->Pickle(inOut, "    ");
-        inOut << "  </traits>" << endl << "</chunk>" << endl;
+        inOut << "  </traits>" << endl;
     }
+    inOut << "</chunk>" << endl;
 }    

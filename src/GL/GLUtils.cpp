@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.8 2002/06/02 16:41:18 southa Exp $
+ * $Id: GLUtils.cpp,v 1.9 2002/06/04 17:02:24 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.9  2002/06/04 17:02:24  southa
+ * More work
+ *
  * Revision 1.8  2002/06/02 16:41:18  southa
  * Rotated sprite plotting
  *
@@ -39,12 +42,11 @@ GLUtils::MoveTo(tVal inX, tVal inY)
 }
 
 void
-GLUtils::OrthoPrologue(void)
+GLUtils::IdentityPrologue(void)
 {
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, 	glutGet(GLUT_WINDOW_HEIGHT));
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
@@ -52,14 +54,44 @@ GLUtils::OrthoPrologue(void)
 }
 
 void
-GLUtils::OrthoEpilogue(void)
+GLUtils::IdentityEpilogue(void)
 {
     glPopAttrib();
-    glPopMatrix();
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
 }
+
+void
+GLUtils::OrthoPrologue(void)
+{
+    IdentityPrologue();
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, 	glutGet(GLUT_WINDOW_HEIGHT));
+}
+
+void
+GLUtils::OrthoEpilogue(void)
+{
+    IdentityEpilogue();
+}
+
+void
+GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
+{
+    glMatrixMode(GL_PROJECTION);
+    tVal width=glutGet(GLUT_WINDOW_WIDTH);
+    tVal height=glutGet(GLUT_WINDOW_HEIGHT);
+    gluOrtho2D(-width/2, width/2, -height/2, height/2);
+    
+#if 1
+    gluLookAt(inX, inY, 0.1, // eye position
+              inX, inY, 0, // point we're looking at
+              sin(inAngle),cos(inAngle),0 // direction of up
+              );
+#endif
+}    
 
 void
 GLUtils::DisplayPrologue(void)

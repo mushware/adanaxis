@@ -1,8 +1,11 @@
 #ifndef GAMETILEMAP_H
 #define GAMETILEMAP_H
 /*
- * $Id: GameTileMap.h,v 1.4 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameTileMap.h,v 1.5 2002/06/04 20:27:37 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.5  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.4  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -19,13 +22,17 @@
 
 #include "mushCore.h"
 
+class GameTraits;
+
 class GameTileMap : public CorePickle, private CoreXMLHandler
 {
 public:
-    GameTileMap(): m_state(kInit) {}
+    GameTileMap(): m_state(kInit), m_warned(false) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     const string& NameGet(U32 inNum) const;
+    bool TraitsExist(U32 inNum) const;
+    GameTraits *TraitsPtrGet(U32 inNum) const;
     void Load(void);
     static CoreScalar LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
@@ -51,6 +58,14 @@ protected:
     };
 
 private:
+
+    enum
+    {
+        kMaxVectorSize=4000
+    };
+
+    GameTraits *LookupTrait(U32 inNum) const;
+
     typedef map<string, void (GameTileMap::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
@@ -58,6 +73,9 @@ private:
 
     map<U32, string> m_map;
     CoreScript m_loaderScript;
+
+    mutable bool m_warned;
+    mutable vector<GameTraits *> m_traits;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTileMap& inMap)

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileTraits.h,v 1.2 2002/06/04 17:02:11 southa Exp $
+ * $Id: GameTileTraits.h,v 1.3 2002/06/04 20:27:37 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.3  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.2  2002/06/04 17:02:11  southa
  * More work
  *
@@ -16,7 +19,7 @@ class GameTileTraits : public GameTraits
 {
 public:
     virtual ~GameTileTraits();
-    void Render(void) {}
+    void Render(void);
 
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);

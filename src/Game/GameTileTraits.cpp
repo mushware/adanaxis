@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileTraits.cpp,v 1.2 2002/06/04 17:02:11 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.3 2002/06/04 20:27:37 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.3  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.2  2002/06/04 17:02:11  southa
  * More work
  *
@@ -17,6 +20,15 @@ GameTileTraits::~GameTileTraits()
     for (U32 i=0; i<m_graphics.size(); ++i)
     {
         delete m_graphics[i];
+    }
+}
+
+void
+GameTileTraits::Render(void)
+{
+    for (U32 i=0; i<m_graphics.size(); ++i)
+    {
+        m_graphics[i]->Render();
     }
 }
 

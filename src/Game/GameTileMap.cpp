@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileMap.cpp,v 1.6 2002/06/04 17:02:11 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.7 2002/06/04 20:27:37 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.7  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.6  2002/06/04 17:02:11  southa
  * More work
  *
@@ -21,6 +24,7 @@
 #include "GameTileMap.h"
 #include "GameData.h"
 #include "GameTileTraits.h"
+#include "GameSwitches.h"
 
 CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 
@@ -39,6 +43,82 @@ GameTileMap::NameGet(U32 inNum) const
         return unknown;
     }
 }
+
+bool
+GameTileMap::TraitsExist(U32 inNum) const
+{
+    if (inNum < m_traits.size() && m_traits[inNum] != NULL)
+    {
+        return true;
+    }
+    else
+    {
+        IFCACHETESTING(cout << "Slow existence test" << endl);
+        return (m_map.find(inNum) != m_map.end());
+    }
+}
+
+
+GameTraits *
+GameTileMap::TraitsPtrGet(U32 inNum) const
+{
+    if (inNum < kMaxVectorSize)
+    {
+        if (inNum < m_traits.size())
+        {
+            if (m_traits[inNum] != NULL)
+            {
+                // Trait exists and is in the fast lookup table
+                return m_traits[inNum];
+            }
+            else
+            {
+                // Trait is in the range of the fast lookup table but NULL
+                return LookupTrait(inNum);
+            }
+        }
+        else
+        {
+            // Trait is outside of the fast lookup table
+            m_traits.resize(inNum+1);
+            return LookupTrait(inNum);
+        }            
+    }
+    else
+    {
+        // Trait number is larger than the maximum size of the fast lookup table
+        if (!m_warned)
+        {
+            cerr << "Warning: Use of map values above " << kMaxVectorSize << " is deoptimising" << endl;
+            m_warned=true;
+        }
+        return LookupTrait(inNum);
+    }
+}
+
+GameTraits *
+GameTileMap::LookupTrait(U32 inNum) const
+{
+    IFCACHETESTING(cout << "Slow lookup for " << inNum << endl);
+    map<U32, string>::const_iterator p = m_map.find(inNum);
+
+    if (p == m_map.end())
+    {
+        ostringstream message;
+        message << "Request for unknown tilemap value " << inNum << endl;
+        throw(ReferenceFail(message.str()));
+    }
+    else
+    {
+        GameTraits *traitsPtr=GameData::Instance().TraitsGet(p->second);
+        if (inNum < kMaxVectorSize)
+        {
+            COREASSERT(inNum < m_traits.size());
+            m_traits[inNum]=traitsPtr;
+        }
+        return traitsPtr;
+    }
+}    
 
 void
 GameTileMap::Load(void)

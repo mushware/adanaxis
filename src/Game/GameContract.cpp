@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.13 2002/06/04 17:02:11 southa Exp $
+ * $Id: GameContract.cpp,v 1.14 2002/06/04 20:27:35 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.14  2002/06/04 20:27:35  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.13  2002/06/04 17:02:11  southa
  * More work
  *
@@ -49,6 +52,7 @@
 #include "GameTileMap.h"
 #include "GameGlobalConfig.h"
 #include "GameAppHandler.h"
+#include "GameTileTraits.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -117,8 +121,10 @@ GameContract::RunningDisplay(void)
     COREASSERT(m_floorMap != NULL);
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
-    GLUtils::OrthoPrologue();
+    GLUtils::IdentityPrologue();
+    GLUtils::OrthoLookAt(80,80, angle);
 
+    glMatrixMode(GL_MODELVIEW);
     U32 xsize=m_floorMap->XSize();
     U32 ysize=m_floorMap->YSize();
     gl.SetPosition(0,0);
@@ -131,10 +137,11 @@ GameContract::RunningDisplay(void)
             S32 basex=32*x;
             S32 basey=32*y;
             gl.MoveTo(basex,basey);
-            // Plot it
+            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVal));
+            tileTraits.Render();
         }
     }
-    GLUtils::OrthoEpilogue();
+    GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
 }
 

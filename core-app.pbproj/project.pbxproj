@@ -815,20 +815,6 @@
 			path = CoreFlex.flex;
 			refType = 4;
 		};
-		F53F7CCB02311BB101633C4B = {
-			children = (
-				F53F7CCC02311BB101633C4B,
-			);
-			isa = PBXGroup;
-			name = flex;
-			refType = 4;
-		};
-		F53F7CCC02311BB101633C4B = {
-			isa = PBXFileReference;
-			name = libfl.a;
-			path = macosx/lib/libfl.a;
-			refType = 4;
-		};
 		F53F7CD802314C8B01633C4B = {
 			isa = PBXFileReference;
 			path = CoreBison.y;
@@ -1019,7 +1005,6 @@
 		};
 		F5431766020C372901449C4C = {
 			children = (
-				F53F7CCB02311BB101633C4B,
 				F543176C020C778501449C4C,
 				F545E49A02A28F030197F408,
 				F56065640216B517015AFBD9,
@@ -1033,8 +1018,8 @@
 		};
 		F543176C020C778501449C4C = {
 			children = (
-				F571FA03022820B801CDE23D,
-				F571FA04022820B801CDE23D,
+				F5450B7E02AD78D8010FCD91,
+				F5450B5902AD5970010FCD91,
 			);
 			isa = PBXGroup;
 			name = Expat;
@@ -1043,13 +1028,145 @@
 		};
 		F543177A020C8D6601449C4C = {
 			children = (
-				F571FA07022820B801CDE23D,
-				F571FA08022820B801CDE23D,
+				F5450B8002AD78D8010FCD91,
+				F5450B8C02AD7934010FCD91,
 			);
 			isa = PBXGroup;
 			name = PCRE;
 			path = "";
 			refType = 4;
+		};
+		F5450B5902AD5970010FCD91 = {
+			isa = PBXFileReference;
+			name = libexpat.a;
+			path = /usr/local/lib/libexpat.a;
+			refType = 0;
+		};
+		F5450B5A02AD5970010FCD91 = {
+			fileRef = F5450B5902AD5970010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B7E02AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = expat.h;
+			path = /usr/local/include/expat.h;
+			refType = 0;
+		};
+		F5450B7F02AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = gif_lib.h;
+			path = /usr/local/include/gif_lib.h;
+			refType = 0;
+		};
+		F5450B8002AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = pcre.h;
+			path = /usr/local/include/pcre.h;
+			refType = 0;
+		};
+		F5450B8102AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = tiff.h;
+			path = /usr/local/include/tiff.h;
+			refType = 0;
+		};
+		F5450B8202AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = tiffconf.h;
+			path = /usr/local/include/tiffconf.h;
+			refType = 0;
+		};
+		F5450B8302AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = tiffio.h;
+			path = /usr/local/include/tiffio.h;
+			refType = 0;
+		};
+		F5450B8402AD78D8010FCD91 = {
+			isa = PBXFileReference;
+			name = tiffvers.h;
+			path = /usr/local/include/tiffvers.h;
+			refType = 0;
+		};
+		F5450B8502AD78D8010FCD91 = {
+			fileRef = F5450B7E02AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8602AD78D8010FCD91 = {
+			fileRef = F5450B7F02AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8702AD78D8010FCD91 = {
+			fileRef = F5450B8002AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8802AD78D8010FCD91 = {
+			fileRef = F5450B8102AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8902AD78D8010FCD91 = {
+			fileRef = F5450B8202AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8A02AD78D8010FCD91 = {
+			fileRef = F5450B8302AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8B02AD78D8010FCD91 = {
+			fileRef = F5450B8402AD78D8010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B8C02AD7934010FCD91 = {
+			isa = PBXFileReference;
+			name = libpcre.a;
+			path = /usr/local/lib/libpcre.a;
+			refType = 0;
+		};
+		F5450B8D02AD7934010FCD91 = {
+			isa = PBXFileReference;
+			name = libtiff.a;
+			path = /usr/local/lib/libtiff.a;
+			refType = 0;
+		};
+		F5450B8E02AD7934010FCD91 = {
+			isa = PBXFileReference;
+			name = libungif.a;
+			path = /usr/local/lib/libungif.a;
+			refType = 0;
+		};
+		F5450B8F02AD7934010FCD91 = {
+			fileRef = F5450B8C02AD7934010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B9002AD7934010FCD91 = {
+			fileRef = F5450B8D02AD7934010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5450B9102AD7934010FCD91 = {
+			fileRef = F5450B8E02AD7934010FCD91;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5456272028ABBB201430A91 = {
 			isa = PBXFileReference;
@@ -1176,106 +1293,16 @@
 		};
 		F545E49A02A28F030197F408 = {
 			children = (
-				F545E49E02A28F390197F408,
-				F545E49F02A28F390197F408,
-				F545E4A002A28F390197F408,
-				F545E4A102A28F390197F408,
-				F545E49B02A28F260197F408,
+				F5450B8102AD78D8010FCD91,
+				F5450B8202AD78D8010FCD91,
+				F5450B8302AD78D8010FCD91,
+				F5450B8402AD78D8010FCD91,
+				F5450B8D02AD7934010FCD91,
 			);
 			isa = PBXGroup;
 			name = libtiff;
 			path = "";
 			refType = 4;
-		};
-		F545E49B02A28F260197F408 = {
-			isa = PBXFileReference;
-			name = libtiff.a;
-			path = macosx/lib/libtiff.a;
-			refType = 4;
-		};
-		F545E49C02A28F260197F408 = {
-			fileRef = F545E49B02A28F260197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E49D02A28F260197F408 = {
-			fileRef = F545E49B02A28F260197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E49E02A28F390197F408 = {
-			isa = PBXFileReference;
-			name = tiff.h;
-			path = macosx/include/tiff.h;
-			refType = 4;
-		};
-		F545E49F02A28F390197F408 = {
-			isa = PBXFileReference;
-			name = tiffconf.h;
-			path = macosx/include/tiffconf.h;
-			refType = 4;
-		};
-		F545E4A002A28F390197F408 = {
-			isa = PBXFileReference;
-			name = tiffio.h;
-			path = macosx/include/tiffio.h;
-			refType = 4;
-		};
-		F545E4A102A28F390197F408 = {
-			isa = PBXFileReference;
-			name = tiffvers.h;
-			path = macosx/include/tiffvers.h;
-			refType = 4;
-		};
-		F545E4A202A28F390197F408 = {
-			fileRef = F545E49E02A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A302A28F390197F408 = {
-			fileRef = F545E49F02A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A402A28F390197F408 = {
-			fileRef = F545E4A002A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A502A28F390197F408 = {
-			fileRef = F545E4A102A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A602A28F390197F408 = {
-			fileRef = F545E49E02A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A702A28F390197F408 = {
-			fileRef = F545E49F02A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A802A28F390197F408 = {
-			fileRef = F545E4A002A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F545E4A902A28F390197F408 = {
-			fileRef = F545E4A102A28F390197F408;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		F545E4AA02A28FE10197F408 = {
 			isa = PBXFileReference;
@@ -1381,6 +1408,102 @@
 			path = CoreEnv.cpp;
 			refType = 4;
 		};
+		F54631EB02ACC53801A7DA6B = {
+			isa = PBXFileReference;
+			name = GameTraits.cpp;
+			path = Game/GameTraits.cpp;
+			refType = 4;
+		};
+		F54631EC02ACC53801A7DA6B = {
+			isa = PBXFileReference;
+			name = GameTraits.h;
+			path = Game/GameTraits.h;
+			refType = 4;
+		};
+		F54631EF02ACC78201A7DA6B = {
+			isa = PBXFileReference;
+			name = GameTileTraits.cpp;
+			path = Game/GameTileTraits.cpp;
+			refType = 4;
+		};
+		F54631F002ACC78201A7DA6B = {
+			isa = PBXFileReference;
+			name = GameTileTraits.h;
+			path = Game/GameTileTraits.h;
+			refType = 4;
+		};
+		F54631F102ACC78201A7DA6B = {
+			fileRef = F54631EF02ACC78201A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54631F202ACC78201A7DA6B = {
+			fileRef = F54631F002ACC78201A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54631F302ACD53101A7DA6B = {
+			fileRef = F54631EC02ACC53801A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F54631F402ACD53201A7DA6B = {
+			fileRef = F54631EB02ACC53801A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546321902AD022D01A7DA6B = {
+			isa = PBXFileReference;
+			name = GameGraphic.cpp;
+			path = Game/GameGraphic.cpp;
+			refType = 4;
+		};
+		F546321A02AD022D01A7DA6B = {
+			isa = PBXFileReference;
+			name = GameGraphic.h;
+			path = Game/GameGraphic.h;
+			refType = 4;
+		};
+		F546321B02AD022D01A7DA6B = {
+			fileRef = F546321902AD022D01A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546321C02AD022D01A7DA6B = {
+			fileRef = F546321A02AD022D01A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546321D02AD04B701A7DA6B = {
+			isa = PBXFileReference;
+			name = GameGraphicSprite.cpp;
+			path = Game/GameGraphicSprite.cpp;
+			refType = 4;
+		};
+		F546321E02AD04B701A7DA6B = {
+			isa = PBXFileReference;
+			name = GameGraphicSprite.h;
+			path = Game/GameGraphicSprite.h;
+			refType = 4;
+		};
+		F546321F02AD04B701A7DA6B = {
+			fileRef = F546321D02AD04B701A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F546322002AD04B701A7DA6B = {
+			fileRef = F546321E02AD04B701A7DA6B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5463A970230DB9A011D269C = {
 			isa = PBXFileReference;
 			path = CoreCommand.cpp;
@@ -1395,6 +1518,18 @@
 			isa = PBXFileReference;
 			path = CoreParamList.cpp;
 			refType = 4;
+		};
+		F54668B402AE2A590163596F = {
+			isa = PBXFileReference;
+			name = GameSwitches.h;
+			path = Game/GameSwitches.h;
+			refType = 4;
+		};
+		F54668B502AE2A590163596F = {
+			fileRef = F54668B402AE2A590163596F;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F547DFD102395B6001A7C23C = {
 			children = (
@@ -1495,9 +1630,6 @@
 		F547DFD502395BCC01A7C23C = {
 			buildActionMask = 2147483647;
 			files = (
-				F547E00902395C9001A7C23C,
-				F547E00A02395C9001A7C23C,
-				F547E00B02395C9001A7C23C,
 				F52B3BFC028C25CF0179D0A8,
 				F52B3BFD028C25CF0179D0A8,
 				F52B3C37028C26530179D0A8,
@@ -1547,10 +1679,6 @@
 				F55808A1029E5D4501DA4293,
 				F54020C402A2551701F0D71D,
 				F54020CA02A25BFC01F0D71D,
-				F545E4A602A28F390197F408,
-				F545E4A702A28F390197F408,
-				F545E4A802A28F390197F408,
-				F545E4A902A28F390197F408,
 				F545E4AF02A28FE10197F408,
 				F5F2C65B02A3C0B201CB7A62,
 				F5F2C66102A3D8C001CB7A62,
@@ -1715,15 +1843,11 @@
 		F547E00602395BCC01A7C23C = {
 			buildActionMask = 2147483647;
 			files = (
-				F547E00D02395C9001A7C23C,
-				F547E00E02395C9001A7C23C,
-				F547E01102395C9001A7C23C,
 				F545B0AC0243A0DE01CBA783,
 				F545B0AD0243A0DE01CBA783,
 				F545B0AE0243A0DE01CBA783,
 				F5456276028ABBE801430A91,
 				F57BD754028AD4A901AD87C4,
-				F545E49D02A28F260197F408,
 			);
 			isa = PBXFrameworksBuildPhase;
 		};
@@ -1732,42 +1856,6 @@
 			files = (
 			);
 			isa = PBXRezBuildPhase;
-		};
-		F547E00902395C9001A7C23C = {
-			fileRef = F571FA03022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F547E00A02395C9001A7C23C = {
-			fileRef = F571FA06022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F547E00B02395C9001A7C23C = {
-			fileRef = F571FA07022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F547E00D02395C9001A7C23C = {
-			fileRef = F571FA04022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F547E00E02395C9001A7C23C = {
-			fileRef = F571FA05022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F547E01102395C9001A7C23C = {
-			fileRef = F571FA08022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		F548851B022F992901D6DA80 = {
 			isa = PBXFileReference;
@@ -1930,8 +2018,8 @@
 		};
 		F56065640216B517015AFBD9 = {
 			children = (
-				F571FA06022820B801CDE23D,
-				F571FA05022820B801CDE23D,
+				F5450B7F02AD78D8010FCD91,
+				F5450B8E02AD7934010FCD91,
 			);
 			isa = PBXGroup;
 			name = libungif;
@@ -2011,42 +2099,6 @@
 		F56F91AB0221AC0F011355B6 = {
 			isa = PBXFileReference;
 			path = GLTexture.cpp;
-			refType = 4;
-		};
-		F571FA03022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = expat.h;
-			path = macosx/include/expat.h;
-			refType = 4;
-		};
-		F571FA04022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = libexpat.a;
-			path = macosx/lib/libexpat.a;
-			refType = 4;
-		};
-		F571FA05022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = libungif.a;
-			path = macosx/lib/libungif.a;
-			refType = 4;
-		};
-		F571FA06022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = gif_lib.h;
-			path = macosx/include/gif_lib.h;
-			refType = 4;
-		};
-		F571FA07022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = pcre.h;
-			path = macosx/include/pcre.h;
-			refType = 4;
-		};
-		F571FA08022820B801CDE23D = {
-			isa = PBXFileReference;
-			name = libpcre.a;
-			path = macosx/lib/libpcre.a;
 			refType = 4;
 		};
 		F57B3120028C51470195BBD7 = {
@@ -2329,14 +2381,23 @@
 				F54020AE02A2423901F0D71D,
 				F545EE7B02A66359018FABF3,
 				F545EE7C02A66359018FABF3,
+				F545EEA102A67378018FABF3,
+				F545EEA202A67378018FABF3,
+				F546321902AD022D01A7DA6B,
+				F546321A02AD022D01A7DA6B,
+				F546321D02AD04B701A7DA6B,
+				F546321E02AD04B701A7DA6B,
 				F54020C502A25BFC01F0D71D,
 				F54020C602A25BFC01F0D71D,
 				F5939693028C067F016230BF,
 				F5939694028C067F016230BF,
 				F5F2C66302A410DA01CB7A62,
 				F5F2C66402A410DA01CB7A62,
-				F545EEA102A67378018FABF3,
-				F545EEA202A67378018FABF3,
+				F54631EF02ACC78201A7DA6B,
+				F54631F002ACC78201A7DA6B,
+				F54631EB02ACC53801A7DA6B,
+				F54631EC02ACC53801A7DA6B,
+				F54668B402AE2A590163596F,
 			);
 			isa = PBXGroup;
 			name = Game;
@@ -2391,9 +2452,6 @@
 				F593972B028C0D57016230BF,
 				F593972C028C0D58016230BF,
 				F593972E028C0D5B016230BF,
-				F5939732028C0D79016230BF,
-				F5939734028C0D80016230BF,
-				F593973A028C0D92016230BF,
 				F52B3BFA028C25CF0179D0A8,
 				F52B3BFB028C25CF0179D0A8,
 				F52B3C1C028C26530179D0A8,
@@ -2444,10 +2502,6 @@
 				F54020B002A2423901F0D71D,
 				F54020C202A2551701F0D71D,
 				F54020C802A25BFC01F0D71D,
-				F545E4A202A28F390197F408,
-				F545E4A302A28F390197F408,
-				F545E4A402A28F390197F408,
-				F545E4A502A28F390197F408,
 				F545E4AD02A28FE10197F408,
 				F5F2C65902A3C0B201CB7A62,
 				F5F2C65F02A3D8C001CB7A62,
@@ -2457,6 +2511,18 @@
 				F54B58CF02A78DE301E2A684,
 				F54B58D102A78FB301E2A684,
 				F54B58D502A7AD5901E2A684,
+				F54631F202ACC78201A7DA6B,
+				F54631F302ACD53101A7DA6B,
+				F546321C02AD022D01A7DA6B,
+				F546322002AD04B701A7DA6B,
+				F5450B8502AD78D8010FCD91,
+				F5450B8602AD78D8010FCD91,
+				F5450B8702AD78D8010FCD91,
+				F5450B8802AD78D8010FCD91,
+				F5450B8902AD78D8010FCD91,
+				F5450B8A02AD78D8010FCD91,
+				F5450B8B02AD78D8010FCD91,
+				F54668B502AE2A590163596F,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -2521,6 +2587,10 @@
 				F545EEA302A67378018FABF3,
 				F54B58CE02A78DE301E2A684,
 				F54B58D402A7AD5901E2A684,
+				F54631F102ACC78201A7DA6B,
+				F54631F402ACD53201A7DA6B,
+				F546321B02AD022D01A7DA6B,
+				F546321F02AD04B701A7DA6B,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -2528,14 +2598,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5939730028C0D70016230BF,
-				F5939733028C0D7A016230BF,
-				F5939735028C0D81016230BF,
 				F5939736028C0D86016230BF,
 				F5939737028C0D87016230BF,
 				F5939738028C0D8C016230BF,
-				F593973B028C0D93016230BF,
 				F57B3120028C51470195BBD7,
-				F545E49C02A28F260197F408,
+				F5450B5A02AD5970010FCD91,
+				F5450B8F02AD7934010FCD91,
+				F5450B9002AD7934010FCD91,
+				F5450B9102AD7934010FCD91,
 			);
 			isa = PBXFrameworksBuildPhase;
 		};
@@ -2559,7 +2629,6 @@
 				LIBRARY_SEARCH_PATHS = "/Volumes/work/sandbox/core-app/macosx/lib \"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\" /Volumes/work/core-app/macosx/lib";
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "core-app";
 				SECTORDER_FLAGS = "";
@@ -2855,30 +2924,6 @@
 			settings = {
 			};
 		};
-		F5939732028C0D79016230BF = {
-			fileRef = F571FA03022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5939733028C0D7A016230BF = {
-			fileRef = F571FA04022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5939734028C0D80016230BF = {
-			fileRef = F571FA06022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5939735028C0D81016230BF = {
-			fileRef = F571FA05022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F5939736028C0D86016230BF = {
 			fileRef = F543175F020C355F01449C4C;
 			isa = PBXBuildFile;
@@ -2893,18 +2938,6 @@
 		};
 		F5939738028C0D8C016230BF = {
 			fileRef = F56090D80217E16B014AEE46;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F593973A028C0D92016230BF = {
-			fileRef = F571FA07022820B801CDE23D;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F593973B028C0D93016230BF = {
-			fileRef = F571FA08022820B801CDE23D;
 			isa = PBXBuildFile;
 			settings = {
 			};

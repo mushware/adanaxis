@@ -6,8 +6,8 @@ loadpixmap('floor1',$IMAGEPATH+'/images/floor1.tiff')
 loadpixmap('wall1',$IMAGEPATH+'/images/wall1.tiff')
 	
 <!-- decompose options are src, dest, xsize, ysize, xstart, ystart, xnum, ynum -->
-decompose('floor1','floor_@',32,32)
-decompose('wall1','wall_@',32,32)
+decompose('floor1','floor1_@',32,32)
+decompose('wall1','wall1_@',32,32)
 <!-- Idealised command set
 pixmapflags('floor1',1,1); /* pixmapflags(<name>,<tesellates x>,<tesellates y>) */
 
@@ -85,36 +85,61 @@ adjustmap($THISX,$THISY,13)
 
 </script>
 
-<traits type="tile" name="slipperyfloor">
-  <base>tiledfloor,slippery</base>
-  <graphic>
-    <name>floor_0_1</name>
-  </graphic>
+<traits type="tile" name="tiledfloor">
 </traits>
 
-<map>10 floor_0_1</map>
-<map>11 floor_1_1</map>
-<map>12 floor_2_1</map>
-<map>13 floor_3_1</map>
-<map>14 floor_0_0</map>
-<map>15 floor_1_0</map>
-<map>16 floor_2_0</map>
-<map>17 floor_3_0</map>
+<traits type="tile" name="wall1">
+</traits>
 
-<map>100 wall_0_3</map>
-<map>101 wall_1_3</map>
-<map>102 wall_2_3</map>
-<map>103 wall_3_3</map>
-<map>104 wall_0_2</map>
-<map>105 wall_1_2</map>
-<map>106 wall_2_2</map>
-<map>107 wall_3_2</map>
-<map>108 wall_0_1</map>
-<map>109 wall_1_1</map>
-<map>110 wall_2_1</map>
-<map>111 wall_3_1</map>
-<map>112 wall_0_0</map>
-<map>113 wall_1_0</map>
-<map>114 wall_2_0</map>
-<map>115 wall_3_0</map>
+<traits type="tile" name="blacktiledfloor"><base>tiledfloor</base><graphic><name>floor1_0_1</name></graphic></traits>
+<traits type="tile" name="redtiledfloor"><base>tiledfloor</base><graphic><name>floor1_1_1</name></graphic></traits>
+<traits type="tile" name="greentiledfloor"><base>tiledfloor</base><graphic><name>floor1_2_1</name></graphic></traits>
+<traits type="tile" name="cyantiledfloor"><base>tiledfloor</base><graphic><name>floor1_3_1</name></graphic></traits>
+<traits type="tile" name="bluetiledfloor"><base>tiledfloor</base><graphic><name>floor1_0_0</name></graphic></traits>
+<traits type="tile" name="magentatiledfloor"><base>tiledfloor</base><graphic><name>floor1_1_0</name></graphic></traits>
+<traits type="tile" name="yellowtiledfloor"><base>tiledfloor</base><graphic><name>floor1_2_0</name></graphic></traits>
+<traits type="tile" name="browntiledfloor"><base>tiledfloor</base><graphic><name>floor1_3_0</name></graphic></traits>
+
+<traits type="tile" name="wall1_isolated"><base>wall1</base><graphic><name>wall1_0_3</name></graphic></traits>
+<traits type="tile" name="wall1_l"><base>wall1</base><graphic><name>wall1_1_3</name></graphic></traits>
+<traits type="tile" name="wall1_r"><base>wall1</base><graphic><name>wall1_2_3</name></graphic></traits>
+<traits type="tile" name="wall1_lr"><base>wall1</base><graphic><name>wall1_3_3</name></graphic></traits>
+<traits type="tile" name="wall1_u"><base>wall1</base><graphic><name>wall1_0_2</name></graphic></traits>
+<traits type="tile" name="wall1_lu"><base>wall1</base><graphic><name>wall1_1_2</name></graphic></traits>
+<traits type="tile" name="wall1_ru"><base>wall1</base><graphic><name>wall1_2_2</name></graphic></traits>
+<traits type="tile" name="wall1_lru"><base>wall1</base><graphic><name>wall1_3_2</name></graphic></traits>
+<traits type="tile" name="wall1_d"><base>wall1</base><graphic><name>wall1_0_1</name></graphic></traits>
+<traits type="tile" name="wall1_ld"><base>wall1</base><graphic><name>wall1_1_1</name></graphic></traits>
+<traits type="tile" name="wall1_rd"><base>wall1</base><graphic><name>wall1_2_1</name></graphic></traits>
+<traits type="tile" name="wall1_lrd"><base>wall1</base><graphic><name>wall1_3_1</name></graphic></traits>
+<traits type="tile" name="wall1_ud"><base>wall1</base><graphic><name>wall1_0_0</name></graphic></traits>
+<traits type="tile" name="wall1_lud"><base>wall1</base><graphic><name>wall1_1_0</name></graphic></traits>
+<traits type="tile" name="wall1_rud"><base>wall1</base><graphic><name>wall1_2_0</name></graphic></traits>
+<traits type="tile" name="wall1_lrud"><base>wall1</base><graphic><name>wall1_3_0</name></graphic></traits>
+
+<map>10 blacktiledfloor</map>
+<map>11 redtiledfloor</map>
+<map>12 greentiledfloor</map>
+<map>13 cyantiledfloor</map>
+<map>14 bluetiledfloor</map>
+<map>15 magentatiledfloor</map>
+<map>16 yellowtiledfloor</map>
+<map>17 browntiledfloor</map>
+
+<map>100 wall1_isolated</map>
+<map>101 wall1_l</map>
+<map>102 wall1_r</map>
+<map>103 wall1_lr</map>
+<map>104 wall1_u</map>
+<map>105 wall1_lu</map>
+<map>106 wall1_ru</map>
+<map>107 wall1_lru</map>
+<map>108 wall1_d</map>
+<map>109 wall1_ld</map>
+<map>110 wall1_rd</map>
+<map>111 wall1_lrd</map>
+<map>112 wall1_ud</map>
+<map>113 wall1_lud</map>
+<map>114 wall1_rud</map>
+<map>115 wall1_lrud</map>
 </tilemap>

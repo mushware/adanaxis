@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.6 2002/06/02 16:41:18 southa Exp $
+ * $Id: GLUtils.h,v 1.7 2002/06/04 17:02:24 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.7  2002/06/04 17:02:24  southa
+ * More work
+ *
  * Revision 1.6  2002/06/02 16:41:18  southa
  * Rotated sprite plotting
  *
@@ -30,9 +33,12 @@ class GLUtils
 public:
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(tVal inX, tVal inY);
-    
+
+    static void IdentityPrologue(void);
+    static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
+    static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
     static void CheckGLError(void);
     static void StandardInit(void);
     static void GameInit(void);
