@@ -20,13 +20,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Expat-1.95.6\Source\lib&quot;;&quot;C:\Program Files\GnuWin32\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
 				UsePrecompiledHeader="0"
-				WarningLevel="2"
+				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
 			<Tool
@@ -37,10 +37,11 @@
 				ShowProgress="0"
 				OutputFile="$(OutDir)/project.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\GnuWin32\bin&quot;;&quot;C:\Expat-1.95.6\Libs&quot;;&quot;C:\Program Files\GnuWin32\lib&quot;"
+				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/project.pdb"
-				SubSystem="2"
+				SubSystem="1"
+				EntryPointSymbol=""
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -117,24 +118,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
-			<File
-				RelativePath=".\project.cpp">
-			</File>
-			<File
-				RelativePath=".\stdafx.cpp">
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-			</File>
 			<Filter
 				Name="Mushcore"
 				Filter="">
@@ -397,34 +380,138 @@
 					RelativePath="..\..\src\Mushcore\MushcoreXMLStream.h">
 				</File>
 			</Filter>
+			<Filter
+				Name="TestMushcore"
+				Filter="">
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreApp.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreApp.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreAuto.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreAuto.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreCommand.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreCommand.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreIO.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreIO.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreMain.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreMain.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObject.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObject.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectBase.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectBase.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectSub.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectSub.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectSubSub.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreObjectSubSub.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreVirtualPointerObject.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushcore\TestMushcoreVirtualPointerObject.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Main"
+				Filter="">
+				<File
+					RelativePath="..\..\src\Main\PrimaryMain.cpp">
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\Main\PrimaryMain.h">
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\src\Main\SecondaryMain.h">
+				</File>
+				<Filter
+					Name="CommandLineApp"
+					Filter="">
+					<File
+						RelativePath="..\..\src\Main\CommandLineApp\SecondaryMain.cpp">
+					</File>
+				</Filter>
+				<Filter
+					Name="SDLApp"
+					Filter="">
+					<File
+						RelativePath="..\..\src\Main\SDLApp\SecondaryMain.cpp">
+						<FileConfiguration
+							Name="Debug|Win32"
+							ExcludedFromBuild="TRUE">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
-			<File
-				RelativePath=".\project.h">
-			</File>
-			<File
-				RelativePath=".\Resource.h">
-			</File>
-			<File
-				RelativePath=".\stdafx.h">
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
-			<File
-				RelativePath=".\project.ico">
-			</File>
-			<File
-				RelativePath=".\project.rc">
-			</File>
-			<File
-				RelativePath=".\small.ico">
-			</File>
 		</Filter>
 		<Filter
 			Name="Libraries"
@@ -438,9 +525,6 @@
 				Filter="">
 			</Filter>
 		</Filter>
-		<File
-			RelativePath=".\ReadMe.txt">
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
