@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.13 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.14 2002/12/05 13:20:12 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.14  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.13  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -75,6 +78,7 @@ GameDefClient::GameDefClient(const string& inName) :
     m_netLinks(kMaxLinks, CoreDataRef<MediaNetLink>("invalid-link")),
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
+    m_uplinkBandwidth(0),
     m_killed(false),
     m_joined(false)
 {
@@ -89,14 +93,6 @@ GameDefClient::JoinGame(const string& inServer, U32 inPort)
     StatusSet(GameDef::kStatusTesting);
     m_joined=true;
     m_lastRegistrationMsec=0; // Schedule immediate registration
-
-    string linkName;
-    if (MediaNetUtils::FindLinkToStation(linkName, m_netAddress))
-    {
-        COREASSERT(m_netLinks.size() > 0);
-        m_netLinks[0].NameSet(linkName);
-        cerr << "Grabbed link " << linkName << endl;
-    }
 }
 
 void
@@ -117,9 +113,11 @@ GameDefClient::Ticker(void)
     
     m_linkGood = GameNetUtils::MaintainLinks(m_netLinks, m_netAddress, m_numLinks);
     
-
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
+    // This can update the server itself, so do it before the registration time check
+    UpdateStatus();
+    
     if (m_linkGood)
     {
         if (m_currentMsec > m_lastRegistrationMsec + kRegistrationMsec)
@@ -127,7 +125,7 @@ GameDefClient::Ticker(void)
             UpdateServer();
         }
     }
-    UpdateStatus();
+
 }
 
 void
@@ -147,7 +145,7 @@ GameDefClient::UpdateServer(void)
     
     try
     {
-        GameNetUtils::ReliableSend(m_lastLinkNum, m_netLinks, netData);
+        ReliableSendToServer(netData);
         m_lastRegistrationMsec = m_currentMsec;
     }
     catch (NetworkFail& e)
@@ -167,6 +165,7 @@ GameDefClient::Kill(void)
 void
 GameDefClient::UpdateStatus(void)
 {
+    GameDef::tStatus oldStatus = StatusGet();
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
@@ -188,22 +187,59 @@ GameDefClient::UpdateStatus(void)
             }
         }
     }
+    if (oldStatus != StatusGet())
+    {
+        // Change of sttaus, so infor the server
+        UpdateServer();
+    }
+}
+
+void
+GameDefClient::ReliableSendToServer(MediaNetData& ioData)
+{
+    m_uplinkBandwidth += ioData.ReadSizeGet();
+    GameNetUtils::ReliableSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
+}
+
+void
+GameDefClient::FastSendToServer(MediaNetData& ioData)
+{
+    m_uplinkBandwidth += ioData.ReadSizeGet();
+    GameNetUtils::FastSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
+}
+
+
+void
+GameDefClient::WebHeaderPrint(ostream& ioOut)
+{
+    ioOut << "<td class=\"bgred\"><font class=\"bold\">Player</font></td>";
+    ioOut << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
+    ioOut << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
+    ioOut << "<td class=\"bgred\"><font class=\"bold\">Bytes sent</font></td>";
+    ioOut << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
 }
 
 void
 GameDefClient::WebPrint(ostream& ioOut) const
 {
-    ioOut << "<tr>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverName) << "</td>";
     ioOut << "<td>" << m_netAddress << "</td>";
+    ioOut << "<td>" << m_uplinkBandwidth << "</td>";
     ioOut << "<td>" << StatusWebStringGet() << "</td>";
-    ioOut << "</tr>" << endl;
 }
 
 void
 GameDefClient::NullHandler(CoreXML& inXML)
 {
+}
+
+void
+GameDefClient::HandleULBytesEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for ulbytes.  Should be <ulbytes>10240</ulbytes>";
+    if (!(data >> m_uplinkBandwidth)) inXML.Throw(failMessage);
 }
 
 void
@@ -216,7 +252,7 @@ void
 GameDefClient::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     GameDef::Pickle(inOut, inPrefix);
-    inOut << inPrefix << "<!-- Incomplete -->" << endl;
+    inOut << inPrefix << "<ulbytes>" << m_uplinkBandwidth << "</ulbytes>" << endl;
 }
 
 void
@@ -226,6 +262,8 @@ GameDefClient::Unpickle(CoreXML& inXML)
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
     m_endTable[kPickleData]["gamedefclient"] = &GameDefClient::HandleGameDefClientEnd;
+    m_startTable[kPickleData]["ulbytes"] = &GameDefClient::NullHandler;
+    m_endTable[kPickleData]["ulbytes"] = &GameDefClient::HandleULBytesEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
     inXML.ParseStream(*this);

@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.h,v 1.5 2002/11/28 18:05:36 southa Exp $
+ * $Id: GameSetup.h,v 1.6 2002/12/03 20:28:17 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.6  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.5  2002/11/28 18:05:36  southa
  * Print link ages
  *
@@ -43,7 +46,6 @@ private:
     {
         kSlowSleepMsec=10,
         kFastSleepMsec=1,
-        kImageLifetimeMsec=33000,
         kTickerMsec=100
     };
     enum tGameState

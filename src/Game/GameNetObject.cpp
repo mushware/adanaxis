@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.8 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.9 2002/12/05 13:20:12 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.9  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.8  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -61,17 +64,22 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     }
     else
     {
+        bool isUpdate = CoreData<GameDefClient>::Instance().Exists(dataName);
         GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
         gameDefClient->ImageIsSet(true);
         gameDefClient->AddressSet(m_address);
         gameDefClient->Unpickle(inXML);
-        
-        CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
-        for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+
+        // When a client image is created, we send an update of the server image to that client
+        if (!isUpdate)
         {
-            if (!p->second->ImageIs())
+            CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+            for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
             {
-                p->second->UpdateClient(*gameDefClient);
+                if (!p->second->ImageIs())
+                {
+                    p->second->UpdateClient(*gameDefClient);
+                }
             }
         }
     }
@@ -102,6 +110,10 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
         gameDefServer->ImageIsSet(true);
         gameDefServer->AddressSet(m_address);
         gameDefServer->Unpickle(inXML);
+
+        // When a server image is created or updated, we can't update the client images
+        // on that server without causing a loop, but the update on status change will
+        // do the job for us
     }
 }
 

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.18 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.19 2002/12/05 13:20:12 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.19  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.18  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -299,13 +302,9 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     
     ioEnv.Out() << "</table>" << endl;
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
-    
-    ioEnv.Out() << "<tr>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player</font></td>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
 
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
+    ioEnv.Out() << "<tr>";
+    GameDefClient::WebHeaderPrint(ioEnv.Out());
     ioEnv.Out() << "</tr>";
 
     {
@@ -354,11 +353,7 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
 
     ioEnv.Out() << "<tr>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player</font></td>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
-
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
-    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
+    GameDefClient::WebHeaderPrint(ioEnv.Out());
     ioEnv.Out() << "</tr>";
 
     {
@@ -368,7 +363,9 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
         {
             if (!p->second->ImageIs())
             {
+                ioEnv.Out() << "<tr>";
                 p->second->WebPrint(ioEnv.Out());
+                ioEnv.Out() << "</tr>";
             }
         }
     }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.103 2002/12/04 15:39:57 southa Exp $
+ * $Id: GameContract.cpp,v 1.104 2002/12/05 13:20:11 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.104  2002/12/05 13:20:11  southa
+ * Client link handling
+ *
  * Revision 1.103  2002/12/04 15:39:57  southa
  * Multiplayer work
  *
@@ -349,6 +352,7 @@
 #include "GameDataUtils.h"
 #include "GameTypeRace.h"
 #include "GameEvent.h"
+#include "GameNetUtils.h"
 #include "GameRewards.h"
 #include "GameRouter.h"
 #include "GameSpacePoint.h"
@@ -806,6 +810,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
         if (inAppHandler.MultiplayerIs())
         {
             GamePlayerUtils::SendControlQueues(timer, numMotionFrames);
+            GameNetUtils::NetReceive();
         }
         
         RunningMove(timer, numMotionFrames);
@@ -839,8 +844,10 @@ GameContract::Running(GameAppHandler& inAppHandler)
         for (tVal i=0; i<numPeriodic100ms && i<10; ++i)
         {
             // Keep web links ticking over
-            MediaNetWebServer::Instance().Accept();
-            MediaNetWebRouter::Instance().ReceiveAll();
+            if (i == 0)
+            {
+                GameNetUtils::WebReceive();
+            }
         }
         timer.Periodic100msDone(numPeriodic100ms);
 
@@ -850,9 +857,10 @@ GameContract::Running(GameAppHandler& inAppHandler)
         {
             if (inAppHandler.MultiplayerIs())
             {
+                GameNetUtils::NetTicker();
                 GamePlayerUtils::ManagePlayers(inAppHandler);
             }
-            
+
             static U32 lastPrint=0;
             m_fps=m_frames;
             m_frames=0;

@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.10 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameDef.h,v 1.11 2002/12/05 13:20:12 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.11  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.10  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -65,6 +68,7 @@ public:
     U32 CreationMsecGet(void) const { return m_creationMsec; }
     
 protected:
+    tStatus StatusGet(void) { return m_status; }
     void StatusSet(tStatus inStatus) { m_status = inStatus; }
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);

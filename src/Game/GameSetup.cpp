@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.19 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameSetup.cpp,v 1.20 2002/12/05 13:20:12 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.20  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.19  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -67,6 +70,7 @@
 #include "GameConfigDef.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameNetUtils.h"
 #include "GameRouter.h"
 
 #include "mushGL.h"
@@ -190,28 +194,20 @@ GameSetup::Config(void)
 {
     m_currentMsec=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
     
-    try
-    {
-        MediaNetWebServer::Instance().Accept();
-        MediaNetWebRouter::Instance().ReceiveAll();
+    GameNetUtils::WebReceive();
+    GameNetUtils::NetReceive();
 
-        MediaNetServer::Instance().Accept();
-        MediaNetRouter::Instance().ReceiveAll(GameRouter::Instance());
-    }
-    catch (NetworkFail& e)
-    {
-        MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
-    }
 
     if (m_currentMsec > m_lastTickerMsec + kTickerMsec)
     {
         m_lastTickerMsec = m_currentMsec;
-        Ticker();
+        GameNetUtils::NetTicker();
     }
     
     KeyControl();
     GLUtils::PostRedisplay();
     MediaAudio::Instance().Ticker();
+    
     if (m_windowClicked)
     {
         PlatformMiscUtils::SleepMsec(kSlowSleepMsec);
@@ -221,103 +217,8 @@ GameSetup::Config(void)
         // Running window animation
         PlatformMiscUtils::SleepMsec(kFastSleepMsec);
     }
-    
 }
 
-void
-GameSetup::Ticker(void)
-{
-    {
-        CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
-        CoreData<GameDefClient>::tMapIterator killValue = CoreData<GameDefClient>::Instance().End();
-    
-        for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
-        {
-            if (p->second->ImageIs())
-            {
-                // Expire images after a time limit
-                if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)
-                {
-                    p->second->Kill();
-                }
-            }
-            else
-            {
-                p->second->Ticker();
-            }
-            if (p->second->IsDead())
-            {
-                killValue = p;
-            }
-        }
-        if (killValue != CoreData<GameDefClient>::Instance().End())
-        {
-            CoreData<GameDefClient>::Instance().Delete(killValue);
-        }
-    }
-
-
-    bool serverNeeded=false;
-    {
-        CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
-        CoreData<GameDefServer>::tMapIterator killValue = CoreData<GameDefServer>::Instance().End();
-
-        for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
-        {
-            if (p->second->ImageIs())
-            {
-                // Expire images after a time limit
-                if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)
-                {
-                    p->second->Kill();
-                }
-            }
-            else
-            {
-                p->second->Ticker();
-                serverNeeded=true;
-            }
-            if (p->second->IsDead())
-            {
-                killValue = p;
-            }
-        }
-        if (killValue != CoreData<GameDefServer>::Instance().End())
-        {
-            CoreData<GameDefServer>::Instance().Delete(killValue);
-        }
-    }
-    
-    if (serverNeeded)
-    {
-        if (!MediaNetServer::Instance().IsServing())
-        {
-            U32 portNum=GameConfig::Instance().ParameterGet("multiport").U32Get();
-            
-            try
-            {
-                MediaNetServer::Instance().Connect(portNum);
-            }
-            catch (NetworkFail& e)
-            {
-                static U32 failedPortNum=65536;
-                if (portNum != failedPortNum)
-                {
-                    MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
-                    PlatformMiscUtils::MinorErrorBox(e.what());
-                    failedPortNum=portNum;
-                }
-            }
-        }
-    }
-    else
-    {
-        if (MediaNetServer::Instance().IsServing())
-        {
-            MediaNetServer::Instance().Disconnect();
-        }
-    }
-}
 
 void
 GameSetup::KeyControl(void)
