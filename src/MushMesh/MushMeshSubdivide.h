@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.9 2003/10/24 20:41:15 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.10 2003/10/25 11:08:17 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.10  2003/10/25 11:08:17  southa
+ * Triangular mesh work
+ *
  * Revision 1.9  2003/10/24 20:41:15  southa
  * Triangular subdivision test and fixes
  *
@@ -507,7 +510,6 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
         Mushware::U32 xz0Wrap = inOrder*x;
         Mushware::U32 xp1Wrap = xz0Wrap + inOrder;
 
-
         if (xz0Wrap > sizeVec.Y())
         {
             // Special case for right hand edge
@@ -530,7 +532,10 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
         else
         {
             xm1Wrap = (x-1)*inOrder;
-            MUSHCOREASSERT(xm1Wrap <= sizeVec.Y());
+            if (xm1Wrap > sizeVec.Y())
+            {
+                xm1Wrap = sizeVec.Y();
+            }
         }
 
 
@@ -670,7 +675,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             {
                 // The rectangular area, so unskewed
                 MUSHCOREASSERT(y < xm1Wrap); // needn't wrap any plain y
-                MUSHCOREASSERT(y < xz0Wrap);
+                MUSHCOREASSERT(y < xz0Wrap); 
                 MUSHCOREASSERT(y < xp1Wrap);
 
                 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.9 2003/10/24 20:41:16 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.10 2003/10/25 11:08:18 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.10  2003/10/25 11:08:18  southa
+ * Triangular mesh work
+ *
  * Revision 1.9  2003/10/24 20:41:16  southa
  * Triangular subdivision test and fixes
  *
@@ -296,7 +299,14 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
                     // centre at 0,0 affects all second row vertices
                     if (y < inOrder * 2)
                     {
-                        expected = y%2?B:A;
+                        if (x == xDefect)
+                        {
+                            expected = y%2?B:E;
+                        }
+                        else
+                        {
+                            expected = y%2?B:A;
+                        }
                         expected *= inProp;
                     }
                     else
@@ -317,7 +327,7 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
                     
                     // We are in the area covered by the form matrices
                     // Determine which form we have
-                    if (cY % cX == 0)
+                    if (cX <= xDefect && cY % cX == 0)
                     {
                         if (cX == xDefect)
                         {
@@ -339,7 +349,11 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
 
                     // Prepare to de-skew the y axis
                     U32 skew;
-                    if (cX > 0)
+                    if (cX > xDefect)
+                    {
+                        skew = cY / xDefect;
+                    }
+                    else if (cX > 0)
                     {
                         skew = cY/cX;
                     }
@@ -418,19 +432,23 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
                                     yWrap = inArray.SizeGet().Y();
                                 }
 
-                                // Deskew y, keeping it positive
-
                                 U32 newY = cY + ty + yWrap - 2;
 
-                                if (x <= xDefect)
+                                // Deskew y, keeping it positive
+
+                                if (newX <= xDefect)
                                 {
-                                    if (x >= cX)
+                                    if (cX > xDefect)
                                     {
-                                        newY += skew * (x - cX);
+                                        newY -= skew * (xDefect - newX);
+                                    }
+                                    else if (cX > newX)
+                                    {
+                                        newY -= skew * (cX - newX);
                                     }
                                     else
                                     {
-                                        newY -= skew * (cX - x);
+                                        newY += skew * (newX - cX);
                                     }
                                 }
                                 newY = newY % yWrap;
@@ -455,18 +473,13 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
 }
 
 void
-TestMushMeshSubdivide::SubdivideTriangle1(U32 inX, U32 inY)
+TestMushMeshSubdivide::SubdivideTriangle1(U32 inXSize, U32 inYSize, U32 inOrder, U32 inX, U32 inY)
 {
-    enum
-    {
-        kXMax = 7,
-        kYMax = 12
-    };
-    MushMeshArray<tVal> meshArray(kXMax, kYMax);
+    MushMeshArray<tVal> meshArray(inXSize, inYSize);
 
-    for (U32 x=0; x<kXMax; ++x)
+    for (U32 x=0; x<inXSize; ++x)
     {
-        for (U32 y=0; y<kYMax; ++y)
+        for (U32 y=0; y<inYSize; ++y)
         {
             meshArray.Set(0, x, y);
         }
@@ -474,28 +487,28 @@ TestMushMeshSubdivide::SubdivideTriangle1(U32 inX, U32 inY)
     meshArray.Set(1, inX, inY);
 
     MushMeshArray<tVal> subbedArray;
-    t2BoxU32 activeBox(0, 0, kXMax-1, kYMax);
+    t2BoxU32 activeBox(0, 0, inXSize-1, inYSize);
 
-    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 0, 3);
+    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 0, inOrder);
 
-    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 0, 3))
+    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 0, inOrder))
     {
         cout << "Orig mesh = " << endl;
-        TrianglePrint(meshArray, 3);
+        TrianglePrint(meshArray, inOrder);
         cout << "Moved mesh = " << endl;
-        TrianglePrint(subbedArray, 3);
+        TrianglePrint(subbedArray, inOrder);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 
-    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 1.0, 3);
+    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 1.0, inOrder);
     
 
-    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 1.0, 3))
+    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 1.0, inOrder))
     {
         cout << "Orig mesh = " << endl;
-        TrianglePrint(meshArray, 3);
+        TrianglePrint(meshArray, inOrder);
         cout << "Moved mesh = " << endl;
-        TrianglePrint(subbedArray, 3);
+        TrianglePrint(subbedArray, inOrder);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 }
@@ -557,11 +570,30 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
             SubdivideRectangle1(x, y);
         }
     }
-    for (U32 x=0; x<5; ++x)
+
+
+    for (U32 order = 3; order < 7; ++order)
     {
-        for (U32 y=0; y<5; ++y)
+        for (U32 xSize = 3 ; xSize < 8; ++xSize)
         {
-            SubdivideTriangle1(x, y);
+            U32 ySize;
+            if (xSize > 4)
+            {
+                ySize = (xSize - 4) * order;
+            }
+            else
+            {
+                ySize = (xSize - 3) * order;
+            }
+            if (ySize < order) ySize = order;
+
+            for (U32 x=0; x<xSize; ++x)
+            {
+                for (U32 y=0; y<ySize; ++y)
+                {
+                    SubdivideTriangle1(xSize, ySize, order, x, y);
+                }
+            }
         }
     }
     cout << endl;
