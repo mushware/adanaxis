@@ -1,10 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreBison.hp,v 1.1 2002/03/02 20:35:07 southa Exp $
+ * $Log: CoreBison.hp,v $
+ * Revision 1.1  2002/03/02 20:35:07  southa
+ * Added flex and bison parser
+ *
  */
 
 #include "CoreStandard.hp"
 #include "CoreFlex.hp"
+#include "CoreScalar.hp"
 
 class CoreBison
 {
@@ -12,6 +16,11 @@ public:
     CoreBison(const string& inStr): m_flex(CoreFlex(inStr)) {}
     CoreBison(CoreFlex& inFlex): m_flex(inFlex) {}
     void Parse(void);
+    CoreScalar Despatch(CoreScalar& inCommand);
+    CoreScalar Despatch(CoreScalar& inCommand, CoreScalar& inParam);
+
+    int Lex(CoreScalar *outScalar, void *inPtr)
+        {return m_flex.Lex(outScalar, inPtr);}
     
 private:
     CoreFlex m_flex;

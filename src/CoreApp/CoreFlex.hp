@@ -1,21 +1,25 @@
 #ifndef COREFLEX_HP
 #define COREFLEX_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreFlex.hp,v 1.1 2002/03/02 20:35:08 southa Exp $
+ * $Log: CoreFlex.hp,v $
+ * Revision 1.1  2002/03/02 20:35:08  southa
+ * Added flex and bison parser
+ *
  */
 
 #include "CoreStandard.hp"
+#include "CoreScalar.hp"
 
 class CoreFlex
 {
 public:
     CoreFlex(const string& inStr);
-    int Lex(Val *outVal, void *inPtr);
-    void SetVal(Val inVal) {m_val=inVal;}
+    int Lex(CoreScalar *outScalar, void *inPtr);
+    void SetVal(const CoreScalar& inScalar) {m_scalar=inScalar;}
     
 private:
     void *m_buffer_state; // Opaque to YY_BUFFER_STATE
-    Val m_val;
+    CoreScalar m_scalar;
 };
 #endif

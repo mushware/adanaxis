@@ -1,0 +1,48 @@
+#ifndef CORESCALAR_HP
+#define CORESCALAR_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreScalar
+{
+public:
+    CoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
+    CoreScalar(Val inVal): m_tag(kVal), m_val(inVal) {}
+    CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
+
+    CoreScalar& operator=(const char* inChar)
+    {
+        m_string=inChar;
+        m_tag=kString;
+        return *this;
+    }
+    CoreScalar& operator=(Val inVal)
+    {
+        m_val=inVal;
+        m_tag=kVal;
+        return *this;
+    }
+
+    void ostreamPrint(ostream &inOut) const;
+
+private:
+    enum Tag
+    {
+        kVal,
+        kString
+    };
+    Tag m_tag;
+    Val m_val;
+    string m_string;
+};
+
+inline ostream& operator<<(ostream& inOut, const CoreScalar& inScalar)
+{
+    inScalar.ostreamPrint(inOut);
+    return inOut;
+}
+#endif

@@ -2,4 +2,7 @@
 #define YYSTYPE int
 #endif
 #define	NUM	257
+#define	IDENTIFIER	258
+#define	STRING	259
+#define	EOS	260
 

@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: main.cpp,v 1.2 2002/02/24 22:49:33 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.2  2002/02/24 22:49:33  southa
+ * Got working under cygwin
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
@@ -18,6 +21,7 @@ int main(int argc, char *argv[])
         str.append(argv[i]);
         if (i+1 != argc) str.append(" ");
     }
+    str.append(";");
     cout << "Command line was '" << str << "'" << endl;
     try
     {

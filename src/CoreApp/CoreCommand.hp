@@ -1,8 +1,11 @@
 #ifndef CORECOMMAND_HP
 #define CORECOMMAND_HP
 /*
- * $Id: CoreCommand.hp,v 1.1 2002/03/02 12:08:23 southa Exp $
+ * $Id: CoreCommand.hp,v 1.2 2002/03/02 20:35:07 southa Exp $
  * $Log: CoreCommand.hp,v $
+ * Revision 1.2  2002/03/02 20:35:07  southa
+ * Added flex and bison parser
+ *
  * Revision 1.1  2002/03/02 12:08:23  southa
  * First stage rework of command handler
  * Added core target
@@ -10,20 +13,20 @@
  */
 
 #include "CoreStandard.hp"
-#include "CoreFlex.hp"
+#include "CoreBison.hp"
 
 class CoreEnv;
 
 class CoreCommand
 {
 public:
-    CoreCommand(const string& inStr): m_flex(inStr) {}
+    CoreCommand(const string& inStr): m_bison(inStr) {}
     virtual ~CoreCommand() {}
     virtual void Execute(CoreEnv& inEnv);
     virtual void Execute(void);
 
 private:
     string m_string;
-    CoreFlex m_flex;
+    CoreBison m_bison;
 };
 #endif

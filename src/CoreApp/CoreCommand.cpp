@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.1 2002/03/02 12:08:23 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.2 2002/03/02 20:35:07 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.2  2002/03/02 20:35:07  southa
+ * Added flex and bison parser
+ *
  * Revision 1.1  2002/03/02 12:08:23  southa
  * First stage rework of command handler
  * Added core target
@@ -22,5 +25,6 @@ CoreCommand::Execute(void)
 void
 CoreCommand::Execute(CoreEnv& ioEnv)
 {
-    CoreInterpreter::Instance().Execute(m_string);
+    m_bison.Parse();
+ //   CoreInterpreter::Instance().Execute(m_string);
 }
