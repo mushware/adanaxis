@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.12 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameTraits.cpp,v 1.13 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.13  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.12  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -126,7 +129,7 @@ GameTraits::NullHandler(CoreXML& inXML)
 }
 
 void
-GameTraits::Pickle(ostream& inOut, const string& inPrefix="") const
+GameTraits::Pickle(ostream& inOut, const string& inPrefix) const
 {
     if (m_baseNames.size() != 0)
     {

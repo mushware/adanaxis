@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.13 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.14 2002/12/29 20:59:56 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.14  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.13  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -157,7 +160,7 @@ GameNetObject::HandleNetObjectEnd(CoreXML& inXML)
 }
 
 void
-GameNetObject::Pickle(ostream& inOut, const string& inPrefix="") const
+GameNetObject::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<!-- Cannot pickle GameNetObject -->" << endl;
 }

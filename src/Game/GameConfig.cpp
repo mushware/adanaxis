@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.17 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameConfig.cpp,v 1.18 2002/12/29 20:59:54 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.18  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.17  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -256,7 +259,7 @@ GameConfig::NullHandler(CoreXML& inXML)
 }
 
 void
-GameConfig::Pickle(ostream& inOut, const string& inPrefix="") const
+GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
 {
     time_t now(time(NULL));
     inOut << inPrefix << "<!-- GameConfig file saved at " << ctime(&now) << " -->" << endl;

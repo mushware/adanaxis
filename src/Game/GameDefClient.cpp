@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.21 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.22 2002/12/29 20:59:54 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.22  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.21  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -284,7 +287,7 @@ GameDefClient::HandleGameDefClientEnd(CoreXML& inXML)
 }
 
 void
-GameDefClient::Pickle(ostream& inOut, const string& inPrefix="") const
+GameDefClient::Pickle(ostream& inOut, const string& inPrefix) const
 {
     GameDef::Pickle(inOut, inPrefix);
     inOut << inPrefix << "<ulbytes>" << m_uplinkBandwidth << "</ulbytes>" << endl;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.7 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.8 2002/12/29 20:59:54 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -105,7 +108,7 @@ GameConfigDefU32::WebInputPrint(ostream& ioOut, const string& inName)
 
 // -----
 
-GameConfigDefString::GameConfigDefString(const string& inValue, const string& inMenu="") :
+GameConfigDefString::GameConfigDefString(const string& inValue, const string& inMenu) :
     m_value(inValue),
     m_menu(inMenu)
 {

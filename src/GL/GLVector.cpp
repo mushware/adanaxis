@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.5 2002/12/20 13:17:37 southa Exp $
+ * $Id: GLVector.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,7 +47,7 @@ GLVector::Render(void) const
 
 
 void
-GLVector::Pickle(ostream& inOut, const string& inPrefix="") const
+GLVector::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << x << "," << y << "," << z;
 }

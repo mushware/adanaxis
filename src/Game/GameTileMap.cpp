@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.17 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.18 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.18  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.17  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -233,7 +236,7 @@ GameTileMap::HandleMapEnd(CoreXML& inXML)
 }
 
 void
-GameTileMap::Pickle(ostream& inOut, const string& inPrefix="") const
+GameTileMap::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_loaderScript;

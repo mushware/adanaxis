@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMap.h,v 1.9 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMap.h,v 1.10 2002/12/20 13:17:40 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.10  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -32,7 +35,7 @@ template<class T> class GameMap
 public:
     GameMap();
     void SizeSet(Mushware::U32 inX, Mushware::U32 inY);
-    const T& ElementGet(const GLPoint& inPoint) const { return ElementGet(inPoint.x, inPoint.y); }
+    const T& ElementGet(const GLPoint& inPoint) const { return ElementGet(inPoint.U32XGet(), inPoint.U32YGet()); }
     const T& ElementGet(Mushware::U32 inX, Mushware::U32 inY) const;
     void ElementSet(const T& inValue, Mushware::U32 inX, Mushware::U32 inY);
 

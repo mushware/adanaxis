@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.h,v 1.6 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlLink.h,v 1.7 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.7  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.6  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -179,6 +182,8 @@ private:
     class LinkState
     {
     public:
+        void Print(std::ostream& ioOut) const;
+        
         Mustl::tMsec linkCheckMsec;
         tLinkState linkState;
         tLinkCheckState linkCheckState;

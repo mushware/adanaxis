@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.cpp,v 1.8 2002/12/20 13:17:41 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.9 2002/12/29 20:59:56 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.9  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -85,7 +88,7 @@ GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
             {
                 frameMsec += frameInterval;
                 GameControlFrameDef frameDef;
-                localController->StateGet(frameDef, frameMsec);
+                localController->StateGet(frameDef, static_cast<U32>(frameMsec)); // Not sure about that cast
                 playerRef.ControlFrameDefAdd(frameDef, startFrame+i);
             }
         }

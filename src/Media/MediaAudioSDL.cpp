@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.7 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.8 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -158,7 +161,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop=10000)
+MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 {
     if (m_music != NULL)
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.15 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.16 2002/12/29 20:59:55 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.16  2002/12/29 20:59:55  southa
+ * More build fixes
+ *
  * Revision 1.15  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -208,7 +211,7 @@ GameDefServer::HandleDefServerEnd(CoreXML& inXML)
 }
 
 void
-GameDefServer::Pickle(ostream& inOut, const string& inPrefix="") const
+GameDefServer::Pickle(ostream& inOut, const string& inPrefix) const
 {
     GameDef::Pickle(inOut, inPrefix);
     inOut << inPrefix << "<message>" << MustlUtils::MakeXMLSafe(m_serverMessage) << "</message>" << endl;

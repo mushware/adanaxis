@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.108 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameContract.cpp,v 1.109 2002/12/29 20:59:54 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.109  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.108  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -1048,7 +1051,7 @@ GameContract::HandleRewardsStart(CoreXML& inXML)
 }
 
 void
-GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
+GameContract::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_script;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.30 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.31 2002/12/29 20:59:58 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.31  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.30  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -671,7 +674,7 @@ GameTypeRace::NullHandler(CoreXML& inXML)
 }
 
 void
-GameTypeRace::Pickle(ostream& inOut, const string& inPrefix="") const
+GameTypeRace::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<!-- Not implemented -->" << endl;
 }

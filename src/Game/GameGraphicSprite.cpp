@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.14 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.15 2002/12/29 20:59:56 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.15  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.14  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -122,7 +125,7 @@ GameGraphicSprite::NullHandler(CoreXML& inXML)
 }
 
 void
-GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix="") const
+GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<name>" << m_texRef.NameGet() << "</name>" << endl;
     m_rectangle.Pickle(inOut, inPrefix);

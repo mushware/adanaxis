@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.cpp,v 1.17 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameDef.cpp,v 1.18 2002/12/29 20:59:54 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.18  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.17  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -122,7 +125,7 @@ GameDef::NullHandler(CoreXML& inXML)
 }
 
 void
-GameDef::Pickle(ostream& inOut, const string& inPrefix="") const
+GameDef::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<name>" << MustlUtils::MakeXMLSafe(m_name) << "</name>" << endl;
     inOut << inPrefix << "<status>" << m_status << "</status>" << endl;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.cpp,v 1.8 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameMotion.cpp,v 1.9 2002/12/29 20:59:56 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.9  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -87,7 +90,7 @@ GameMotion::NullHandler(CoreXML& inXML)
 }
 
 void
-GameMotion::Pickle(ostream& inOut, const string& inPrefix="") const
+GameMotion::Pickle(ostream& inOut, const string& inPrefix) const
 {
     m_motionSpec.shape.Pickle(inOut, inPrefix);
     inOut << inPrefix << "<position>" << m_motionSpec.pos.x << ",";

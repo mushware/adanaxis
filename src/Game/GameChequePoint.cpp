@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.10 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.11 2002/12/29 20:59:54 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -134,7 +137,7 @@ GameChequePoint::NullHandler(CoreXML& inXML)
 }
 
 void
-GameChequePoint::Pickle(ostream& inOut, const string& inPrefix="") const
+GameChequePoint::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << "<!-- Not supported -->" << endl;
 }

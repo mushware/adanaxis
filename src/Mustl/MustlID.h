@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlID.h,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlID.h,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlID.h,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -40,6 +43,6 @@ public:
 private:
 };
 
-ostream& operator<<(std::ostream &ioOut, const MustlID& inObj);
+std::ostream& operator<<(std::ostream &ioOut, const MustlID& inObj);
 
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLLightDef.cpp,v 1.6 2002/12/29 20:59:52 southa Exp $
  * $Log: GLLightDef.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -139,7 +142,7 @@ GLLightDef::NullHandler(CoreXML& inXML)
 }
 
 void
-GLLightDef::Pickle(ostream& inOut, const string& inPrefix="") const
+GLLightDef::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<!-- Incomplete -->" << endl;
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLColour.cpp,v 1.7 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLColour.cpp,v 1.8 2002/12/29 20:59:52 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -40,7 +43,7 @@ using namespace Mushware;
 using namespace std;
 
 void
-GLColour::Pickle(ostream& inOut, const string& inPrefix="") const
+GLColour::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<colour>" << m_col[0] << "," << m_col[1] << "," << m_col[2] << "," << m_col[3] << "</colour>" << endl;
 }

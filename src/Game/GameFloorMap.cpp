@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.40 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.41 2002/12/29 20:59:55 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.41  2002/12/29 20:59:55  southa
+ * More build fixes
+ *
  * Revision 1.40  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -450,7 +453,7 @@ GameFloorMap::SetLightingFor(const GameMapPoint &inPoint) const
         {
             RebuildLightMap();
         }
-        const GameLightLinks& links=m_lightMap.ElementGet(inPoint.x,inPoint.y);
+        const GameLightLinks& links=m_lightMap.ElementGet(inPoint.U32XGet(),inPoint.U32YGet());
         U32 linksSize=links.SizeGet();
         for (U32 link=0; link<linksSize && links.ValidGet(link); ++link)
         {
@@ -736,7 +739,7 @@ GameFloorMap::HandleDataEnd(CoreXML& inXML)
 }
 
 void
-GameFloorMap::Pickle(ostream& inOut, const string& inPrefix="") const
+GameFloorMap::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<gamemap xsize=\"" << m_xsize << "\" ysize=\"" << m_ysize << "\">" << endl;
     for (vector< vector< tMapVector > >::const_reverse_iterator x_it = m_map.rbegin(); x_it != m_map.rend(); ++x_it)

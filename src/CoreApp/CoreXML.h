@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreXML.h,v 1.13 2002/12/29 20:30:52 southa Exp $
+ * $Id: CoreXML.h,v 1.14 2002/12/29 20:59:52 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.14  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.13  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -97,7 +100,7 @@ public:
     
     const std::string& TopTag(void) {COREASSERT(!m_tagStack.empty());return m_tagStack.top();}
     const std::string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
-    std::map<string, string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
+    std::map<std::string, std::string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
     void DumpTops(std::ostream& inOut);
     void StopHandler(void);
     CoreScalar GetAttrib(const std::string& inName);
@@ -118,9 +121,9 @@ private:
     CoreXMLHandler *m_currentHandler;
     std::stack<CoreXMLHandler *> m_handlers;
     XML_Parser m_parser;
-    std::stack< std::map<string, string> > m_attribStack;
-    std::stack<string> m_dataStack;
-    std::stack<string> m_tagStack;
+    std::stack< std::map<std::string, std::string> > m_attribStack;
+    std::stack<std::string> m_dataStack;
+    std::stack<std::string> m_tagStack;
     std::istream *m_inStream;
     std::string m_name;
     bool m_continue;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStreamUtil.cpp,v 1.6 2002/12/20 13:17:34 southa Exp $
+ * $Id: CoreStreamUtil.cpp,v 1.7 2002/12/29 20:59:52 southa Exp $
  * $Log: CoreStreamUtil.cpp,v $
+ * Revision 1.7  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -55,7 +58,7 @@ U32
 CoreStreamUtil::BigEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
-    inIn.read(buf, 4);
+    inIn.read(reinterpret_cast<char *>(buf), 4);
     m_ctr+=4;
     return ((buf[0] << 24) |
             (buf[1] << 16) |
@@ -67,7 +70,7 @@ U32
 CoreStreamUtil::LittleEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
-    inIn.read(buf, 4);
+    inIn.read(reinterpret_cast<char *>(buf), 4);
     m_ctr+=4;
     return ((buf[0] << 0)  |
             (buf[1] << 8)  |
@@ -94,7 +97,7 @@ CoreStreamUtil::Ignore(u8istream& inIn, tSize inSize)
 void
 CoreStreamUtil::Get(u8istream& inIn, U8 *outBuffer, tSize inSize)
 {
-    inIn.read(outBuffer, inSize);
+    inIn.read(reinterpret_cast<char *>(outBuffer), inSize);
     m_ctr+=inSize;
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.16 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.17 2002/12/29 20:59:55 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.17  2002/12/29 20:59:55  southa
+ * More build fixes
+ *
  * Revision 1.16  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -364,7 +367,7 @@ GameDialogue::NullHandler(CoreXML& inXML)
 }
 
 void
-GameDialogue::Pickle(ostream& inOut, const string& inPrefix="") const
+GameDialogue::Pickle(ostream& inOut, const string& inPrefix) const
 {
     if (m_strings.size() != 0)
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.35 2002/12/20 13:17:41 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.36 2002/12/29 20:59:56 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.36  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.35  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -316,7 +319,7 @@ GamePiecePlayer::NullHandler(CoreXML& inXML)
 }
 
 void
-GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
+GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<name>" << "" << "</name>" << endl;
     for (U32 i=0; i<m_graphics.size(); ++i)

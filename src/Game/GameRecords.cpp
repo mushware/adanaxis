@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.9 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameRecords.cpp,v 1.10 2002/12/29 20:59:57 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -230,7 +233,7 @@ GameRecords::NullHandler(CoreXML& inXML)
 }
 
 void
-GameRecords::Pickle(ostream& inOut, const string& inPrefix="") const
+GameRecords::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<records>" << endl;
     if (m_splitTimes.size() > 0 && SplitTimeValid(0))

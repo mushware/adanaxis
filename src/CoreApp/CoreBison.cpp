@@ -30,27 +30,12 @@
 
 
 /*
- * $Id: CoreBison.cpp,v 1.15 2002/12/20 13:17:31 southa Exp $
- * $Log: CoreBison.cpp,v $
- * Revision 1.15  2002/12/20 13:17:31  southa
- * Namespace changes, licence changes and source conditioning
+ * $Id: CoreBison.y,v 1.10 2002/12/29 20:59:51 southa Exp $
+ * $Log: CoreBison.y,v $
+ * Revision 1.10  2002/12/29 20:59:51  southa
+ * More build fixes
  *
- * Revision 1.14  2002/10/22 20:41:57  southa
- * Source conditioning
- *
- * Revision 1.13  2002/08/27 08:56:15  southa
- * Source conditioning
- *
- * Revision 1.12  2002/08/07 13:36:44  southa
- * Conditioned source
- *
- * Revision 1.11  2002/07/06 18:04:14  southa
- * More designer work
- *
- * Revision 1.10  2002/06/27 12:36:02  southa
- * Build process fixes
- *
- * Revision 1.9  2002/06/04 22:50:01  southa
+ * Revision 1.9  2002/06/04 22:50:02  southa
  * Fixes to mac project
  *
  * Revision 1.8  2002/05/30 14:41:13  southa
@@ -68,6 +53,8 @@
 #define CoreBison_lex INBISON->Lex
 #define YYDEBUG 1
 #define YYERROR_VERBOSE 1
+
+using namespace std;
     
 int yyerror( char *s);
 #ifndef YYSTYPE
@@ -140,8 +127,8 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    34,    35,    36,    37,    39,    43,    44,    45,    46,    48,
-    52,    53,    54,    56,    57,    59,    60
+    42,    43,    44,    45,    47,    51,    52,    53,    54,    56,
+    60,    61,    62,    64,    65,    67,    68
 };
 #endif
 
@@ -253,7 +240,6 @@ static const short yycheck[] = {     0,
 #include <malloc.h>
 
 using namespace Mushware;
-using namespace std;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)

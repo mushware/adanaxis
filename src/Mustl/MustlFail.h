@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.h,v 1.2 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlFail.h,v 1.3 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.3  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.2  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -25,7 +28,7 @@
 #include <stdexcept>
 #include <string>
 
-class MustlFail: public exception
+class MustlFail: public std::exception
 {
 public:
     MustlFail(const std::string &inMessage) {m_message=inMessage;}
@@ -38,5 +41,5 @@ private:
     std::string m_message;
 };
 
-ostream& operator<<(std::ostream &ioOut, MustlFail f);
+std::ostream& operator<<(std::ostream &ioOut, MustlFail f);
 #endif

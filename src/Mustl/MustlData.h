@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlData.h,v 1.4 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlData.h,v 1.5 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.5  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -113,7 +116,7 @@ private:
     std::vector<Mustl::U8> m_data;
 };
 
-ostream& operator<<(std::ostream &inOut, const MustlData& inData);
+std::ostream& operator<<(std::ostream &inOut, const MustlData& inData);
 
 inline
 MustlData::MustlData() :

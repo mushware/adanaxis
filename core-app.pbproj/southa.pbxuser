@@ -1,5 +1,752 @@
 // !$*UTF8*$!
 {
+	7A85AD8B03BF9B2300A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXTextBookmark;
+		name = "GameConfig.cpp: GameConfig";
+		rLen = 0;
+		rLoc = 8255;
+		rType = 0;
+		vrLen = 1393;
+		vrLoc = 7731;
+	};
+	7A85AD8C03BF9B2300A80164 = {
+		bstl = F57BD755028ADAEF01AD87C4;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A85AD8D03BF9B2300A80164 = {
+		bstl = F57BD756028ADB3801AD87C4;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A85AD8E03BF9B2300A80164 = {
+		fRef = F53F7CC902311A9701633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreFlex.flex: 46";
+		rLen = 0;
+		rLoc = 1141;
+		rType = 0;
+		vrLen = 961;
+		vrLoc = 2395;
+	};
+	7A85AD8F03BF9B2300A80164 = {
+		fRef = F53F7CD802314C8B01633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreBison.y: 24";
+		rLen = 0;
+		rLoc = 541;
+		rType = 0;
+		vrLen = 1093;
+		vrLoc = 0;
+	};
+	7A85AD9003BF9B2300A80164 = {
+		fRef = F5921CEB021876D70127AF47;
+		isa = PBXTextBookmark;
+		name = "CoreApp.cpp: 24";
+		rLen = 0;
+		rLoc = 766;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 645;
+	};
+	7A85AD9203BF9B2300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+	};
+	7A85AD9403BF9B2300A80164 = {
+		fRef = F593D55F035C11BE01A80166;
+		isa = PBXTextBookmark;
+		name = "GameConfig.cpp: GameConfig";
+		rLen = 0;
+		rLoc = 8255;
+		rType = 0;
+		vrLen = 1393;
+		vrLoc = 7731;
+	};
+	7A85AD9503BF9B2300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+	};
+	7A85AD9603BF9B2300A80164 = {
+		bstl = F57BD755028ADAEF01AD87C4;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A85AD9703BF9B2300A80164 = {
+		bstl = F57BD756028ADB3801AD87C4;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A85AD9803BF9B2300A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+	};
+	7A85AD9C03BF9B2300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 20";
+		rLen = 0;
+		rLoc = 452;
+		rType = 0;
+		vrLen = 452;
+		vrLoc = 0;
+	};
+	7A85AD9D03BF9B2300A80164 = {
+		fRef = F52B3C15028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreStandard.h: 175";
+		rLen = 0;
+		rLoc = 4054;
+		rType = 0;
+		vrLen = 601;
+		vrLoc = 3522;
+	};
+	7A85AD9E03BF9B2300A80164 = {
+		fRef = F52B3C03028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreChildRecord.h: OutputAppend";
+		rLen = 0;
+		rLoc = 2175;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 1599;
+	};
+	7A85AD9F03BF9B2300A80164 = {
+		fRef = F52B3C06028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreBison.h: CoreBison";
+		rLen = 0;
+		rLoc = 1537;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 1358;
+	};
+	7A85ADA003BF9B2300A80164 = {
+		fRef = F5580897029E5A2B01DA4293;
+		isa = PBXTextBookmark;
+		name = "CoreConfig.h: 81";
+		rLen = 0;
+		rLoc = 2383;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 1564;
+	};
+	7A85ADA103BF9B2300A80164 = {
+		fRef = F52B3C0B028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreException.h: LoaderFail";
+		rLen = 0;
+		rLoc = 9164;
+		rType = 0;
+		vrLen = 804;
+		vrLoc = 2242;
+	};
+	7A85ADA203BF9B2300A80164 = {
+		fRef = F54E9EB2030BD58E01D67831;
+		isa = PBXTextBookmark;
+		name = "CoreData.h: 279";
+		rLen = 0;
+		rLoc = 6468;
+		rType = 0;
+		vrLen = 542;
+		vrLoc = 6146;
+	};
+	7A85ADA303BF9B2300A80164 = {
+		fRef = F57BD75D028AE40001AD87C4;
+		isa = PBXTextBookmark;
+		name = "GLWrangleAppHandler.cpp: 61";
+		rLen = 33;
+		rLoc = 1621;
+		rType = 0;
+		vrLen = 603;
+		vrLoc = 1309;
+	};
+	7A85ADA403BF9B2300A80164 = {
+		fRef = F52B3C73028C26B40179D0A8;
+		isa = PBXTextBookmark;
+		name = "GLWrangleAppHandler.h: 55";
+		rLen = 22;
+		rLoc = 1460;
+		rType = 0;
+		vrLen = 626;
+		vrLoc = 1150;
+	};
+	7A85ADA503BF9B2300A80164 = {
+		fRef = F52B3BF8028C25CF0179D0A8;
+		isa = PBXTextBookmark;
+		name = "mushCore.h: 124";
+		rLen = 37;
+		rLoc = 3057;
+		rType = 0;
+		vrLen = 661;
+		vrLoc = 2718;
+	};
+	7A85ADA603BF9B2300A80164 = {
+		fRef = F52B3C0F028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreInterpreter.h: 75";
+		rLen = 0;
+		rLoc = 2078;
+		rType = 0;
+		vrLen = 766;
+		vrLoc = 1457;
+	};
+	7A85ADA703BF9B2300A80164 = {
+		fRef = F52B3C0D028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreFunction.h: 73";
+		rLen = 0;
+		rLoc = 2169;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1422;
+	};
+	7A85ADA803BF9B2300A80164 = {
+		fRef = F52B3C14028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreScript.h: 69";
+		rLen = 0;
+		rLoc = 1866;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 1272;
+	};
+	7A85ADA903BF9B2300A80164 = {
+		fRef = F53F7CC602311A0801633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreFlex.cpp: 1698";
+		rLen = 0;
+		rLoc = 41441;
+		rType = 0;
+		vrLen = 554;
+		vrLoc = 21189;
+	};
+	7A85ADAA03BF9B2300A80164 = {
+		fRef = F53F7CD902314F1301633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreBison.cpp: 833";
+		rLen = 53;
+		rLoc = 22578;
+		rType = 0;
+		vrLen = 487;
+		vrLoc = 1161;
+	};
+	7A85ADAB03BF9B2300A80164 = {
+		fRef = F52B3C18028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreXML.h: CoreXML";
+		rLen = 109;
+		rLoc = 2139;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 1867;
+	};
+	7A85ADAC03BF9B2300A80164 = {
+		fRef = F55808AA029EA98D01DA4293;
+		isa = PBXTextBookmark;
+		name = "CoreXML.cpp: CoreXML";
+		rLen = 71;
+		rLoc = 1556;
+		rType = 0;
+		vrLen = 772;
+		vrLoc = 1307;
+	};
+	7A85ADAD03BF9B2300A80164 = {
+		fRef = F54020AE02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.h: Pickle";
+		rLen = 84;
+		rLoc = 4214;
+		rType = 0;
+		vrLen = 999;
+		vrLoc = 3687;
+	};
+	7A85ADAE03BF9B2300A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: 1051";
+		rLen = 0;
+		rLoc = 28773;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 28425;
+	};
+	7A85ADAF03BF9B2300A80164 = {
+		fRef = 7A85ADCC03BF9B2300A80164;
+		isa = PBXTextBookmark;
+		name = "stl_pair.h: 84";
+		rLen = 68;
+		rLoc = 3506;
+		rType = 0;
+		vrLen = 1286;
+		vrLoc = 2828;
+	};
+	7A85ADB103BF9B2300A80164 = {
+		fRef = F57B1B6203B37C0F01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlConfig.cpp: 20";
+		rLen = 0;
+		rLoc = 452;
+		rType = 0;
+		vrLen = 452;
+		vrLoc = 0;
+	};
+	7A85ADB203BF9B2300A80164 = {
+		fRef = F52B3C15028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreStandard.h: 175";
+		rLen = 0;
+		rLoc = 4054;
+		rType = 0;
+		vrLen = 601;
+		vrLoc = 3522;
+	};
+	7A85ADB303BF9B2300A80164 = {
+		fRef = F52B3C03028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreChildRecord.h: OutputAppend";
+		rLen = 0;
+		rLoc = 2175;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 1599;
+	};
+	7A85ADB403BF9B2300A80164 = {
+		fRef = F52B3C06028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreBison.h: CoreBison";
+		rLen = 0;
+		rLoc = 1537;
+		rType = 0;
+		vrLen = 606;
+		vrLoc = 1358;
+	};
+	7A85ADB503BF9B2300A80164 = {
+		fRef = F5580897029E5A2B01DA4293;
+		isa = PBXTextBookmark;
+		name = "CoreConfig.h: 81";
+		rLen = 0;
+		rLoc = 2383;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 1564;
+	};
+	7A85ADB603BF9B2300A80164 = {
+		fRef = F52B3C0B028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreException.h: LoaderFail";
+		rLen = 0;
+		rLoc = 9164;
+		rType = 0;
+		vrLen = 804;
+		vrLoc = 2242;
+	};
+	7A85ADB703BF9B2300A80164 = {
+		fRef = F54E9EB2030BD58E01D67831;
+		isa = PBXTextBookmark;
+		name = "CoreData.h: 85";
+		rLen = 0;
+		rLoc = 2353;
+		rType = 0;
+		vrLen = 976;
+		vrLoc = 1571;
+	};
+	7A85ADB803BF9B2300A80164 = {
+		fRef = F52B3BF8028C25CF0179D0A8;
+		isa = PBXTextBookmark;
+		name = "mushCore.h: 97";
+		rLen = 30;
+		rLoc = 2487;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 2095;
+	};
+	7A85ADB903BF9B2300A80164 = {
+		fRef = F54E9EB2030BD58E01D67831;
+		isa = PBXTextBookmark;
+		name = "CoreData.h: 279";
+		rLen = 0;
+		rLoc = 6468;
+		rType = 0;
+		vrLen = 542;
+		vrLoc = 6146;
+	};
+	7A85ADBA03BF9B2300A80164 = {
+		fRef = F57BD75D028AE40001AD87C4;
+		isa = PBXTextBookmark;
+		name = "GLWrangleAppHandler.cpp: 61";
+		rLen = 33;
+		rLoc = 1621;
+		rType = 0;
+		vrLen = 603;
+		vrLoc = 1309;
+	};
+	7A85ADBB03BF9B2300A80164 = {
+		fRef = F52B3C73028C26B40179D0A8;
+		isa = PBXTextBookmark;
+		name = "GLWrangleAppHandler.h: 55";
+		rLen = 22;
+		rLoc = 1460;
+		rType = 0;
+		vrLen = 626;
+		vrLoc = 1150;
+	};
+	7A85ADBC03BF9B2300A80164 = {
+		fRef = F52B3BF8028C25CF0179D0A8;
+		isa = PBXTextBookmark;
+		name = "mushCore.h: 124";
+		rLen = 37;
+		rLoc = 3057;
+		rType = 0;
+		vrLen = 661;
+		vrLoc = 2718;
+	};
+	7A85ADBD03BF9B2300A80164 = {
+		fRef = F52B3C0F028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreInterpreter.h: 75";
+		rLen = 0;
+		rLoc = 2078;
+		rType = 0;
+		vrLen = 766;
+		vrLoc = 1457;
+	};
+	7A85ADBE03BF9B2300A80164 = {
+		fRef = F52B3C0D028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreFunction.h: 73";
+		rLen = 0;
+		rLoc = 2169;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 1422;
+	};
+	7A85ADBF03BF9B2300A80164 = {
+		fRef = F52B3C14028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreScript.h: 69";
+		rLen = 0;
+		rLoc = 1866;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 1272;
+	};
+	7A85ADC003BF9B2300A80164 = {
+		fRef = F53F7CD902314F1301633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreBison.cpp: 821";
+		rLen = 53;
+		rLoc = 22174;
+		rType = 0;
+		vrLen = 748;
+		vrLoc = 21886;
+	};
+	7A85ADC103BF9B2300A80164 = {
+		fRef = F53F7CC602311A0801633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreFlex.cpp: 1698";
+		rLen = 0;
+		rLoc = 41441;
+		rType = 0;
+		vrLen = 554;
+		vrLoc = 21189;
+	};
+	7A85ADC203BF9B2300A80164 = {
+		fRef = F52B3C18028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreXML.h: operator";
+		rLen = 0;
+		rLoc = 3864;
+		rType = 0;
+		vrLen = 1211;
+		vrLoc = 2623;
+	};
+	7A85ADC303BF9B2300A80164 = {
+		fRef = F53F7CD902314F1301633C4B;
+		isa = PBXTextBookmark;
+		name = "CoreBison.cpp: 833";
+		rLen = 53;
+		rLoc = 22578;
+		rType = 0;
+		vrLen = 487;
+		vrLoc = 1161;
+	};
+	7A85ADC403BF9B2300A80164 = {
+		fRef = F55808AA029EA98D01DA4293;
+		isa = PBXTextBookmark;
+		name = "CoreXML.cpp: CoreXML";
+		rLen = 71;
+		rLoc = 1556;
+		rType = 0;
+		vrLen = 795;
+		vrLoc = 1307;
+	};
+	7A85ADC503BF9B2300A80164 = {
+		fRef = F52B3C18028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreXML.h: CoreXML";
+		rLen = 109;
+		rLoc = 2139;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 1867;
+	};
+	7A85ADC603BF9B2300A80164 = {
+		fRef = F55808AA029EA98D01DA4293;
+		isa = PBXTextBookmark;
+		name = "CoreXML.cpp: CoreXML";
+		rLen = 71;
+		rLoc = 1556;
+		rType = 0;
+		vrLen = 772;
+		vrLoc = 1307;
+	};
+	7A85ADC703BF9B2300A80164 = {
+		fRef = F54020AE02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.h: Pickle";
+		rLen = 84;
+		rLoc = 4214;
+		rType = 0;
+		vrLen = 999;
+		vrLoc = 3687;
+	};
+	7A85ADC803BF9B2300A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: 1051";
+		rLen = 0;
+		rLoc = 28773;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 28425;
+	};
+	7A85ADC903BF9B2300A80164 = {
+		fRef = 7A85ADCD03BF9B2400A80164;
+		isa = PBXTextBookmark;
+		name = "stl_pair.h: 84";
+		rLen = 68;
+		rLoc = 3506;
+		rType = 0;
+		vrLen = 1286;
+		vrLoc = 2828;
+	};
+	7A85ADCC03BF9B2300A80164 = {
+		isa = PBXFileReference;
+		name = stl_pair.h;
+		path = "/usr/include/gcc/darwin/3.1/g++-v3/bits/stl_pair.h";
+		refType = 0;
+	};
+	7A85ADCD03BF9B2400A80164 = {
+		isa = PBXFileReference;
+		name = stl_pair.h;
+		path = "/usr/include/gcc/darwin/3.1/g++-v3/bits/stl_pair.h";
+		refType = 0;
+	};
+	7A9CB3A403CB418B00A80164 = {
+		fRef = 7A9CB3B703CB418C00A80164;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 350";
+		rLen = 0;
+		rLoc = 8823;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 8259;
+	};
+	7A9CB3A503CB418B00A80164 = {
+		fRef = F5AAB6D303A8D97F01A80164;
+		isa = PBXTextBookmark;
+		name = "CoreNamespace.h: 7";
+		rLen = 0;
+		rLoc = 216;
+		rType = 0;
+		vrLen = 849;
+		vrLoc = 0;
+	};
+	7A9CB3A603CB418B00A80164 = {
+		fRef = F5AAB6D403A8D97F01A80164;
+		isa = PBXTextBookmark;
+		name = "CoreNamespace.cpp: __GNUC__";
+		rLen = 0;
+		rLoc = 24;
+		rType = 0;
+		vrLen = 803;
+		vrLoc = 0;
+	};
+	7A9CB3A703CB418B00A80164 = {
+		fRef = F52B3C14028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreScript.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1428;
+		vrLoc = 0;
+	};
+	7A9CB3A803CB418B00A80164 = {
+		fRef = F52B3C17028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreUtil.h: 17";
+		rLen = 0;
+		rLoc = 553;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 0;
+	};
+	7A9CB3A903CB418B00A80164 = {
+		fRef = 7A9CB3B803CB418D00A80164;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 350";
+		rLen = 0;
+		rLoc = 8823;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 8259;
+	};
+	7A9CB3AA03CB418B00A80164 = {
+		fRef = F5AAB6D303A8D97F01A80164;
+		isa = PBXTextBookmark;
+		name = "CoreNamespace.h: 7";
+		rLen = 0;
+		rLoc = 216;
+		rType = 0;
+		vrLen = 849;
+		vrLoc = 0;
+	};
+	7A9CB3AB03CB418B00A80164 = {
+		fRef = F5AAB6D403A8D97F01A80164;
+		isa = PBXTextBookmark;
+		name = "CoreNamespace.cpp: __GNUC__";
+		rLen = 0;
+		rLoc = 24;
+		rType = 0;
+		vrLen = 803;
+		vrLoc = 0;
+	};
+	7A9CB3AC03CB418B00A80164 = {
+		fRef = F52B3C14028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreScript.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1428;
+		vrLoc = 0;
+	};
+	7A9CB3AD03CB418B00A80164 = {
+		fRef = F52B3C17028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreUtil.h: 17";
+		rLen = 0;
+		rLoc = 553;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 0;
+	};
+	7A9CB3AE03CB418B00A80164 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 472}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetGccCompilerSettingsModule,
+			);
+		};
+	};
+	7A9CB3AF03CB418B00A80164 = {
+		fRef = F5C4435D0372B4BE01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.cpp: 100";
+		rLen = 0;
+		rLoc = 2436;
+		rType = 0;
+		vrLen = 610;
+		vrLoc = 2144;
+	};
+	7A9CB3B003CB418B00A80164 = {
+		fRef = F5AAB69203A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.h: 183";
+		rLen = 6;
+		rLoc = 4994;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 4481;
+	};
+	7A9CB3B103CB418B00A80164 = {
+		fRef = F5AAB69103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		rLen = 0;
+		rLoc = 140;
+		rType = 1;
+	};
+	7A9CB3B203CB418B00A80164 = {
+		fRef = F5C4435D0372B4BE01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.cpp: 100";
+		rLen = 0;
+		rLoc = 2436;
+		rType = 0;
+		vrLen = 610;
+		vrLoc = 2144;
+	};
+	7A9CB3B303CB418B00A80164 = {
+		fRef = F5AAB69203A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.h: 183";
+		rLen = 6;
+		rLoc = 4994;
+		rType = 0;
+		vrLen = 951;
+		vrLoc = 4471;
+	};
+	7A9CB3B403CB418B00A80164 = {
+		fRef = F5AAB69103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.cpp: Give";
+		rLen = 0;
+		rLoc = 3396;
+		rType = 0;
+		vrLen = 900;
+		vrLoc = 3135;
+	};
+	7A9CB3B503CB418B00A80164 = {
+		fRef = F5AAB69203A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.h: 183";
+		rLen = 6;
+		rLoc = 4994;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 4481;
+	};
+	7A9CB3B603CB418B00A80164 = {
+		fRef = F5AAB69103A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlLink.cpp: 141";
+		rLen = 0;
+		rLoc = 3396;
+		rType = 0;
+		vrLen = 1033;
+		vrLoc = 3135;
+	};
+	7A9CB3B703CB418C00A80164 = {
+		isa = PBXFileReference;
+		name = SourceConditioner.pl;
+		path = "/Users/southa/core-app/src/SourceConditioner.pl";
+		refType = 0;
+	};
+	7A9CB3B803CB418D00A80164 = {
+		isa = PBXFileReference;
+		name = SourceConditioner.pl;
+		path = "/Users/southa/core-app/src/SourceConditioner.pl";
+		refType = 0;
+	};
 	F50089460373044701A80164 = {
 		fRef = F5457B9602AF8D8501E3BBF3;
 		isa = PBXTextBookmark;
@@ -1168,16 +1915,6 @@
 		vrLen = 594;
 		vrLoc = 0;
 	};
-	F52124F5028C33D001244F74 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 984;
-		vrLoc = 0;
-	};
 	F52124F6028C33D001244F74 = {
 		fRef = F52B3C1B028C26530179D0A8;
 		isa = PBXTextBookmark;
@@ -1921,7 +2658,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11916;
+		rLoc = 11913;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 3260;
@@ -2381,7 +3118,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10854;
+		rLoc = 10851;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 1991;
@@ -2866,16 +3603,6 @@
 		vrLen = 796;
 		vrLoc = 513;
 	};
-	F53D406B030989B40125CDBF = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 36";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1182;
-		vrLoc = 674;
-	};
 	F53D4072030989B40125CDBF = {
 		fRef = F5539E2C02B4CDA0010AB4A9;
 		isa = PBXTextBookmark;
@@ -2986,16 +3713,6 @@
 		vrLen = 1209;
 		vrLoc = 1232;
 	};
-	F53D407D030989B40125CDBF = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 36";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1182;
-		vrLoc = 674;
-	};
 	F53D407E030989B40125CDBF = {
 		fRef = F5412BCB0303E7D701F8C327;
 		isa = PBXTextBookmark;
@@ -3021,7 +3738,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10854;
+		rLoc = 10851;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 7776;
@@ -3371,7 +4088,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 197";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 5592;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 1094;
@@ -3391,7 +4108,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 204";
 		rLen = 0;
-		rLoc = 5897;
+		rLoc = 5894;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 4465;
@@ -3471,7 +4188,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14381;
+		rLoc = 14397;
 		rType = 0;
 		vrLen = 1152;
 		vrLoc = 5924;
@@ -3561,7 +4278,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14560;
+		rLoc = 14576;
 		rType = 0;
 		vrLen = 1448;
 		vrLoc = 6355;
@@ -3850,7 +4567,7 @@
 		fRef = F546321D02AD04B701A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: 1";
-		rLen = 5931;
+		rLen = 5928;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1161;
@@ -3921,7 +4638,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: 5";
 		rLen = 0;
-		rLoc = 5519;
+		rLoc = 5516;
 		rType = 0;
 		vrLen = 25;
 		vrLoc = 0;
@@ -3940,7 +4657,7 @@
 		fRef = F546321D02AD04B701A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: 1";
-		rLen = 5931;
+		rLen = 5928;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1161;
@@ -4071,7 +4788,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 78;
-		rLoc = 5441;
+		rLoc = 5438;
 		rType = 0;
 		vrLen = 1129;
 		vrLoc = 3164;
@@ -4091,7 +4808,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 78;
-		rLoc = 5441;
+		rLoc = 5438;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 3124;
@@ -4101,7 +4818,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5488;
+		rLoc = 5485;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 3124;
@@ -4571,7 +5288,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5678;
+		rLoc = 5675;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 0;
@@ -4750,7 +5467,7 @@
 		fRef = F5412BCB0303E7D701F8C327;
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 1";
-		rLen = 12671;
+		rLen = 12668;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1058;
@@ -4901,7 +5618,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5678;
+		rLoc = 5675;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 0;
@@ -5001,7 +5718,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5678;
+		rLoc = 5675;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 0;
@@ -5551,7 +6268,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7078;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 5304;
@@ -5731,7 +6448,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: SplitTimeSet";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7078;
 		rType = 0;
 		vrLen = 2427;
 		vrLoc = 1924;
@@ -5760,7 +6477,7 @@
 		fRef = F5412BCB0303E7D701F8C327;
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
-		rLen = 4758;
+		rLen = 4755;
 		rLoc = 7913;
 		rType = 0;
 		vrLen = 1287;
@@ -5911,7 +6628,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7078;
 		rType = 0;
 		vrLen = 718;
 		vrLoc = 5958;
@@ -5951,7 +6668,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7078;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 5329;
@@ -6504,16 +7221,6 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 594;
-		vrLoc = 0;
-	};
-	F54020E102A2646501F0D71D = {
-		fRef = F52B3C17028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreUtil.h: AppDirFilename";
-		rLen = 0;
-		rLoc = 553;
-		rType = 0;
-		vrLen = 557;
 		vrLoc = 0;
 	};
 	F54020F302A2646501F0D71D = {
@@ -7161,7 +7868,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4029;
+		rLoc = 4006;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 2983;
@@ -7341,7 +8048,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 3072;
+		rLoc = 3118;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 3050;
@@ -7471,7 +8178,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.cpp: 53";
 		rLen = 0;
-		rLoc = 1586;
+		rLoc = 1583;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 123;
@@ -7581,7 +8288,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 8";
 		rLen = 0;
-		rLoc = 12145;
+		rLoc = 12142;
 		rType = 0;
 		vrLen = 52;
 		vrLoc = 0;
@@ -7600,7 +8307,7 @@
 		fRef = F54631EB02ACC53801A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
-		rLen = 2762;
+		rLen = 2759;
 		rLoc = 2116;
 		rType = 0;
 		vrLen = 1022;
@@ -7700,8 +8407,8 @@
 		fRef = F55FF7D002D204F301F9DCD1;
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 167";
-		rLen = 875;
-		rLoc = 4062;
+		rLen = 872;
+		rLoc = 4054;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 3582;
@@ -7721,7 +8428,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.cpp: 26";
 		rLen = 0;
-		rLoc = 1586;
+		rLoc = 1583;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 0;
@@ -7750,8 +8457,8 @@
 		fRef = F55FF7D002D204F301F9DCD1;
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 161";
-		rLen = 1063;
-		rLoc = 3874;
+		rLen = 1060;
+		rLoc = 3866;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 3580;
@@ -7781,7 +8488,7 @@
 		isa = PBXTextBookmark;
 		name = "GLColour.cpp: 53";
 		rLen = 0;
-		rLoc = 1586;
+		rLoc = 1583;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 123;
@@ -7831,7 +8538,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10396;
+		rLoc = 10393;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 734;
@@ -7851,7 +8558,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10396;
+		rLoc = 10393;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 734;
@@ -8031,7 +8738,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14695;
+		rLoc = 14711;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 5967;
@@ -8871,7 +9578,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: XSize";
 		rLen = 0;
-		rLoc = 2228;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 1301;
@@ -8891,7 +9598,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: XSize";
 		rLen = 0;
-		rLoc = 2983;
+		rLoc = 2975;
 		rType = 0;
 		vrLen = 1405;
 		vrLoc = 1301;
@@ -8921,7 +9628,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 91";
 		rLen = 0;
-		rLoc = 2983;
+		rLoc = 2975;
 		rType = 0;
 		vrLen = 1405;
 		vrLoc = 1301;
@@ -9331,7 +10038,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: plus";
 		rLen = 0;
-		rLoc = 3393;
+		rLoc = 3385;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 2670;
@@ -9371,7 +10078,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: Expand";
 		rLen = 0;
-		rLoc = 3526;
+		rLoc = 3518;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 2670;
@@ -9421,7 +10128,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: Pickle";
 		rLen = 0;
-		rLoc = 3717;
+		rLoc = 3709;
 		rType = 0;
 		vrLen = 906;
 		vrLoc = 2669;
@@ -9441,7 +10148,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: operator+=";
 		rLen = 0;
-		rLoc = 3683;
+		rLoc = 3675;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 3045;
@@ -9482,140 +10189,14 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 62885049;
-			"PBXTemplateGeometry-F5CA7ECB015C094F0DCA290F" = {
-				ContentSize = "{668, 621}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 0}, {668, 621}}";
-					Split0 = {
-						Collapsed = NO;
-						Frame = "{{0, 0}, {668, 621}}";
-						Split0 = {
-							Frame = "{{0, 0}, {668, 621}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Frame = "{{0, 0}, {484, 208}}";
-						};
-						Tab1 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {664, 208}}";
-								Split0 = {
-									Frame = "{{0, 24}, {664, 184}}";
-									Split0 = {
-										Frame = "{{0, 0}, {325, 184}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											96.123,
-										);
-										Frame = "{{334, 0}, {330, 184}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab2 = {
-							Frame = "{{0, 0}, {664, 50}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 50}}";
-							};
-						};
-						Tab3 = {
-							BuildMessageFrame = "{{0, 0}, {614, 262}}";
-							BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
-							BuildTranscriptFrameExpanded = YES;
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						Tab4 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 5;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							280,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				NavBarShownByDefault = YES;
-				StatusViewVisible = NO;
-				Template = F5CA7ECB015C094F0DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{396, 269}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 63650380;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F57B1B9503B37F6E01A80164;
+									bookmark = 7A9CB3AE03CB418B00A80164;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -9631,7 +10212,6 @@
 										F5454FCF02A1425C01324E64,
 										F54020DB02A2646501F0D71D,
 										F54020DC02A2646501F0D71D,
-										F54020E102A2646501F0D71D,
 										F545E4B202A2920A0197F408,
 										F5F2C66C02A43D4501CB7A62,
 										F5F2C67F02A43D4501CB7A62,
@@ -9670,14 +10250,12 @@
 										F52A428302B3BBAA0109140E,
 										F50F4E4D02B50AB1014A78CB,
 										F5461B2D02B63BD701EABA85,
-										F5461B2E02B63BD701EABA85,
 										F5461B2F02B63BD701EABA85,
 										F5461B3202B63BD701EABA85,
 										F5461B3302B63BD701EABA85,
 										F5461B3402B63BD701EABA85,
 										F5461B3502B63BD701EABA85,
 										F5461B3602B63BD701EABA85,
-										F5A0E6B502B691060115E516,
 										F5A0E6B602B691060115E516,
 										F5451ECD02B8D0E401845B2C,
 										F546F70B02C230DE01173785,
@@ -9719,7 +10297,6 @@
 										F56F7E50030440F3015313DD,
 										F56F7E53030440F3015313DD,
 										F548C8E703053F7701B83DAD,
-										F53D406B030989B40125CDBF,
 										F53E713F030BBFF1012C3D24,
 										F53C1119030C3DF801380CAE,
 										F5486B55030E65D001C8D3DD,
@@ -9820,8 +10397,6 @@
 										F5B39DBE0384323901A80164,
 										F5B39DC20384323901A80164,
 										F5B39DCB0384323901A80164,
-										F55DE0F703843DB001A80164,
-										F55DE0F803843DB001A80164,
 										F507B6620385162F01A80164,
 										F5B37E510387D34401A80164,
 										F5B37E560387D34401A80164,
@@ -9959,7 +10534,6 @@
 										F5AAB6F603A8E62301A80164,
 										F5A934F003A90F3901A80164,
 										F5A934F203A90F3901A80164,
-										F5A934F303A90F3901A80164,
 										F5A9351803A90F3901A80164,
 										F5AAE0DC03A969D501A80164,
 										F5AAE0E403A969D501A80164,
@@ -9983,7 +10557,6 @@
 										F5AA747703AE153E01A80164,
 										F5AA747803AE153E01A80164,
 										F5AA747A03AE153E01A80164,
-										F5AA747B03AE153E01A80164,
 										F5AA747C03AE153E01A80164,
 										F5AA747F03AE153E01A80164,
 										F57D835E03AEACF101A80164,
@@ -9992,7 +10565,6 @@
 										F5AAD60003AF55A201A80164,
 										F5AAD60203AF55A201A80164,
 										F5AAD60603AF55A201A80164,
-										F5AAD60A03AF55A201A80164,
 										F5AAD60B03AF55A201A80164,
 										F5AAD61003AF55A201A80164,
 										F5AAD61203AF55A201A80164,
@@ -10002,11 +10574,9 @@
 										F5AAD61803AF55A201A80164,
 										F5AAD61903AF55A201A80164,
 										F5AAA6CB03B34F8A01A80164,
-										F5AAA6CC03B34F8A01A80164,
 										F5AAA6CE03B34F8A01A80164,
 										F5AAA6CF03B34F8A01A80164,
 										F5AAA6D003B34F8A01A80164,
-										F5AAA6D103B34F8A01A80164,
 										F5AAA6D203B34F8A01A80164,
 										F5AAA6D303B34F8A01A80164,
 										F5AAA6D403B34F8A01A80164,
@@ -10019,7 +10589,6 @@
 										F5AAA6DC03B34F8A01A80164,
 										F5AAA6DD03B34F8A01A80164,
 										F5AAA6DE03B34F8A01A80164,
-										F5AAA6DF03B34F8A01A80164,
 										F5AAA6E003B34F8A01A80164,
 										F5AAA6E103B34F8A01A80164,
 										F5AAA6E303B34F8A01A80164,
@@ -10064,7 +10633,18 @@
 										F57B1B7503B37F6E01A80164,
 										F57B1B7603B37F6E01A80164,
 										F57B1B7703B37F6E01A80164,
-										F57B1B7803B37F6E01A80164,
+										7A85AD8B03BF9B2300A80164,
+										7A85AD8C03BF9B2300A80164,
+										7A85AD8D03BF9B2300A80164,
+										7A85AD8E03BF9B2300A80164,
+										7A85AD8F03BF9B2300A80164,
+										7A85AD9003BF9B2300A80164,
+										7A9CB3A403CB418B00A80164,
+										7A9CB3A503CB418B00A80164,
+										7A9CB3A603CB418B00A80164,
+										7A9CB3A703CB418B00A80164,
+										7A9CB3A803CB418B00A80164,
+										7A85AD9203BF9B2300A80164,
 									);
 									prevStack = (
 										F57BD7D1028AF27C01AD87C4,
@@ -10112,7 +10692,6 @@
 										F593977C028C17E1016230BF,
 										F593977D028C17E1016230BF,
 										F593977E028C17E1016230BF,
-										F5939782028C17E1016230BF,
 										F59397E7028C20B2016230BF,
 										F52B3C85028C2D030179D0A8,
 										F52B3C86028C2D030179D0A8,
@@ -10120,7 +10699,6 @@
 										F52B3C88028C2D030179D0A8,
 										F52B3C89028C2D030179D0A8,
 										F52124F4028C33D001244F74,
-										F52124F5028C33D001244F74,
 										F52124F6028C33D001244F74,
 										F57B3143028C66AB0195BBD7,
 										F57B3144028C66AB0195BBD7,
@@ -10741,7 +11319,6 @@
 										F5F2C72102A43D4501CB7A62,
 										F5F2C72202A43D4501CB7A62,
 										F5F2C72302A43D4501CB7A62,
-										F5F2C72402A43D4501CB7A62,
 										F5F2C72502A43D4501CB7A62,
 										F5F2C72602A43D4501CB7A62,
 										F5F2C72702A43D4501CB7A62,
@@ -10766,16 +11343,13 @@
 										F5F2C74102A43D4501CB7A62,
 										F5F2C74202A43D4501CB7A62,
 										F5F2C74302A43D4501CB7A62,
-										F5F2C74402A43D4501CB7A62,
 										F5F2C74502A43D4501CB7A62,
-										F5F2C74602A43D4501CB7A62,
 										F5F2C74702A43D4501CB7A62,
 										F5F2C74802A43D4501CB7A62,
 										F5F2C74902A43D4501CB7A62,
 										F5F2C74A02A43D4501CB7A62,
 										F5F2C74B02A43D4501CB7A62,
 										F5F2C74C02A43D4501CB7A62,
-										F5F2C74E02A43D4501CB7A62,
 										F5F2C74F02A43D4501CB7A62,
 										F5F2C75002A43D4501CB7A62,
 										F5F2C75102A43D4501CB7A62,
@@ -10794,9 +11368,7 @@
 										F552FEFA02A4CF1201994BA3,
 										F552FEFB02A4CF1201994BA3,
 										F552FEFC02A4CF1201994BA3,
-										F552FEFD02A4CF1201994BA3,
 										F552FEFE02A4CF1201994BA3,
-										F552FEFF02A4CF1201994BA3,
 										F552FF0002A4CF1201994BA3,
 										F552FF0102A4CF1201994BA3,
 										F552FF0202A4CF1201994BA3,
@@ -10895,7 +11467,6 @@
 										F545EF2D02A68859018FABF3,
 										F545EF2E02A68859018FABF3,
 										F545EF2F02A68859018FABF3,
-										F545EF3002A68859018FABF3,
 										F545EF3102A68859018FABF3,
 										F545EF3202A68859018FABF3,
 										F545EF3302A68859018FABF3,
@@ -11016,12 +11587,10 @@
 										F545EFB202A68859018FABF3,
 										F545EFB402A68859018FABF3,
 										F545EFB502A68859018FABF3,
-										F545EFB702A68859018FABF3,
 										F545EFB802A68859018FABF3,
 										F545EFB902A68859018FABF3,
 										F545EFBA02A68859018FABF3,
 										F545EFBB02A68859018FABF3,
-										F545EFBC02A68859018FABF3,
 										F545EFC302A68859018FABF3,
 										F545EFC402A68859018FABF3,
 										F545EFC602A68859018FABF3,
@@ -11462,7 +12031,6 @@
 										F5461B4802B63BD701EABA85,
 										F5461B4902B63BD701EABA85,
 										F5461B4A02B63BD701EABA85,
-										F5461B4B02B63BD701EABA85,
 										F5461B4E02B63BD701EABA85,
 										F5461B4F02B63BD701EABA85,
 										F5461B5002B63BD701EABA85,
@@ -11472,7 +12040,6 @@
 										F5461B5802B63BD701EABA85,
 										F5461B5902B63BD701EABA85,
 										F5461B5A02B63BD701EABA85,
-										F5A0E6C202B691060115E516,
 										F5A0E6C302B691060115E516,
 										F5A0E6C502B691060115E516,
 										F5A0E6C602B691060115E516,
@@ -11503,7 +12070,6 @@
 										F5451ECF02B8D0E401845B2C,
 										F545CC6702B8EDF6011D56AF,
 										F545CC6802B8EDF6011D56AF,
-										F545CC6902B8EDF6011D56AF,
 										F545CC6A02B8EDF6011D56AF,
 										F545CC6B02B8EDF6011D56AF,
 										F545CC6D02B8EDF6011D56AF,
@@ -13079,7 +13645,6 @@
 										F53D407A030989B40125CDBF,
 										F53D407B030989B40125CDBF,
 										F53D407C030989B40125CDBF,
-										F53D407D030989B40125CDBF,
 										F53D407E030989B40125CDBF,
 										F53D407F030989B40125CDBF,
 										F53D4080030989B40125CDBF,
@@ -13886,7 +14451,6 @@
 										F59516600350EC0901A80166,
 										F59516610350EC0901A80166,
 										F59516620350EC0901A80166,
-										F59516630350EC0901A80166,
 										F59516640350EC0901A80166,
 										F59516650350EC0901A80166,
 										F59516660350EC0901A80166,
@@ -17326,7 +17890,6 @@
 										F5AA748603AE153E01A80164,
 										F5AA748703AE153E01A80164,
 										F5AA748803AE153E01A80164,
-										F5AA748903AE153E01A80164,
 										F5AA748A03AE153E01A80164,
 										F5AA748B03AE153E01A80164,
 										F5AA748C03AE153E01A80164,
@@ -17454,6 +18017,16 @@
 										F57B1B9203B37F6E01A80164,
 										F57B1B9303B37F6E01A80164,
 										F57B1B9403B37F6E01A80164,
+										7A85AD9403BF9B2300A80164,
+										7A85AD9503BF9B2300A80164,
+										7A85AD9603BF9B2300A80164,
+										7A85AD9703BF9B2300A80164,
+										7A85AD9803BF9B2300A80164,
+										7A9CB3A903CB418B00A80164,
+										7A9CB3AA03CB418B00A80164,
+										7A9CB3AB03CB418B00A80164,
+										7A9CB3AC03CB418B00A80164,
+										7A9CB3AD03CB418B00A80164,
 									);
 								};
 								NavCount = 1;
@@ -17461,9 +18034,10 @@
 									Frame = "{{0, 0}, {808, 726}}";
 									NavBarVisible = YES;
 								};
+								NavSplitVertical = NO;
 							};
 							SplitCount = 1;
-							Tab0 = {
+							Tab1 = {
 								Debugger = {
 									Split0 = {
 										SplitCount = 2;
@@ -17473,12 +18047,12 @@
 								};
 								LauncherConfigVersion = 7;
 							};
-							Tab1 = {
+							Tab2 = {
 								LauncherConfigVersion = 3;
 								Runner = {
 								};
 							};
-							TabCount = 4;
+							TabCount = 5;
 						};
 						SplitCount = 1;
 						Tab1 = {
@@ -17492,19 +18066,73 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F57B1B9703B37F6E01A80164;
+									bookmark = 7A9CB3B603CB418B00A80164;
 									history = (
-										F57B1B9603B37F6E01A80164,
+										7A85AD9C03BF9B2300A80164,
+										7A85AD9D03BF9B2300A80164,
+										7A85AD9E03BF9B2300A80164,
+										7A85AD9F03BF9B2300A80164,
+										7A85ADA003BF9B2300A80164,
+										7A85ADA103BF9B2300A80164,
+										7A85ADA203BF9B2300A80164,
+										7A85ADA303BF9B2300A80164,
+										7A85ADA403BF9B2300A80164,
+										7A85ADA503BF9B2300A80164,
+										7A85ADA603BF9B2300A80164,
+										7A85ADA703BF9B2300A80164,
+										7A85ADA803BF9B2300A80164,
+										7A85ADA903BF9B2300A80164,
+										7A85ADAA03BF9B2300A80164,
+										7A85ADAB03BF9B2300A80164,
+										7A85ADAC03BF9B2300A80164,
+										7A85ADAD03BF9B2300A80164,
+										7A85ADAE03BF9B2300A80164,
+										7A85ADAF03BF9B2300A80164,
+										7A9CB3AF03CB418B00A80164,
+										7A9CB3B003CB418B00A80164,
+										7A9CB3B103CB418B00A80164,
+									);
+									prevStack = (
+										7A85ADB103BF9B2300A80164,
+										7A85ADB203BF9B2300A80164,
+										7A85ADB303BF9B2300A80164,
+										7A85ADB403BF9B2300A80164,
+										7A85ADB503BF9B2300A80164,
+										7A85ADB603BF9B2300A80164,
+										7A85ADB703BF9B2300A80164,
+										7A85ADB803BF9B2300A80164,
+										7A85ADB903BF9B2300A80164,
+										7A85ADBA03BF9B2300A80164,
+										7A85ADBB03BF9B2300A80164,
+										7A85ADBC03BF9B2300A80164,
+										7A85ADBD03BF9B2300A80164,
+										7A85ADBE03BF9B2300A80164,
+										7A85ADBF03BF9B2300A80164,
+										7A85ADC003BF9B2300A80164,
+										7A85ADC103BF9B2300A80164,
+										7A85ADC203BF9B2300A80164,
+										7A85ADC303BF9B2300A80164,
+										7A85ADC403BF9B2300A80164,
+										7A85ADC503BF9B2300A80164,
+										7A85ADC603BF9B2300A80164,
+										7A85ADC703BF9B2300A80164,
+										7A85ADC803BF9B2300A80164,
+										7A85ADC903BF9B2300A80164,
+										7A9CB3B203CB418B00A80164,
+										7A9CB3B303CB418B00A80164,
+										7A9CB3B403CB418B00A80164,
+										7A9CB3B503CB418B00A80164,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {926, 519}}";
+									Frame = "{{0, 0}, {926, 439}}";
 									NavBarVisible = YES;
 								};
+								NavSplitVertical = NO;
 							};
 							SplitCount = 1;
-							Tab0 = {
+							Tab1 = {
 								Debugger = {
 									Split0 = {
 										SplitCount = 2;
@@ -17514,12 +18142,48 @@
 								};
 								LauncherConfigVersion = 7;
 							};
-							Tab1 = {
+							Tab2 = {
 								LauncherConfigVersion = 3;
 								Runner = {
 								};
 							};
-							TabCount = 4;
+							TabCount = 5;
+						};
+						SplitCount = 1;
+						Tab1 = {
+							OptionsSetName = "Hierarchy, all classes";
+						};
+						TabCount = 5;
+					};
+				},
+				{
+					LeftSlideOut = {
+						Split0 = {
+							Split0 = {
+								NavCount = 1;
+								NavGeometry0 = {
+									Frame = "{{0, 0}, {594, 150}}";
+									NavBarVisible = YES;
+								};
+								NavSplitVertical = NO;
+							};
+							SplitCount = 1;
+							Tab1 = {
+								Debugger = {
+									Split0 = {
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									TabCount = 2;
+								};
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								LauncherConfigVersion = 3;
+								Runner = {
+								};
+							};
+							TabCount = 5;
 						};
 						SplitCount = 1;
 						Tab1 = {
@@ -17534,6 +18198,7 @@
 					ContentSize = "{1071, 749}";
 					LeftSlideOut = {
 						ActiveTab = 3;
+						ActiveTabName = PBXTargetTreeModule;
 						Collapsed = NO;
 						Frame = "{{0, 23}, {1071, 726}}";
 						Split0 = {
@@ -17544,24 +18209,27 @@
 							};
 							SplitCount = 1;
 							Tab0 = {
+								Frame = "{{0, 0}, {681, 289}}";
+							};
+							Tab1 = {
 								Debugger = {
 									Collapsed = NO;
-									Frame = "{{0, 0}, {681, 289}}";
+									Frame = "{{0, 0}, {681, 150}}";
 									Split0 = {
-										Frame = "{{0, 24}, {681, 265}}";
+										Frame = "{{0, 24}, {681, 126}}";
 										Split0 = {
-											Frame = "{{0, 0}, {333, 265}}";
+											Frame = "{{0, 0}, {333, 126}}";
 										};
 										Split1 = {
 											DebugVariablesTableConfiguration = (
 												Name,
-												82.80298,
+												123,
 												Value,
-												104.074,
+												85,
 												Summary,
-												126.123,
+												105.123,
 											);
-											Frame = "{{342, 0}, {339, 265}}";
+											Frame = "{{342, 0}, {339, 126}}";
 										};
 										SplitCount = 2;
 									};
@@ -17575,25 +18243,26 @@
 									TabCount = 2;
 									TabsVisible = YES;
 								};
-								Frame = "{{0, 0}, {681, 289}}";
+								Frame = "{{0, 0}, {681, 120}}";
 								LauncherConfigVersion = 7;
 							};
-							Tab1 = {
-								Frame = "{{0, 0}, {681, 120}}";
+							Tab2 = {
+								Frame = "{{0, 0}, {681, 234}}";
 								LauncherConfigVersion = 3;
 								Runner = {
-									Frame = "{{0, 0}, {681, 120}}";
+									Frame = "{{0, 0}, {681, 234}}";
 								};
 							};
-							Tab2 = {
-								BuildMessageFrame = "{{0, 0}, {683, 127}}";
-								BuildTranscriptFrame = "{{0, 136}, {683, 100}}";
-								Frame = "{{0, 0}, {681, 234}}";
-							};
 							Tab3 = {
+								BuildMessageFrame = "{{0, 0}, {683, 205}}";
+								BuildTranscriptFrame = "{{0, 214}, {683, 2}}";
+								BuildTranscriptFrameExpanded = YES;
 								Frame = "{{0, 0}, {681, 238}}";
 							};
-							TabCount = 4;
+							Tab4 = {
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							TabCount = 5;
 							TabsVisible = NO;
 						};
 						SplitCount = 1;
@@ -17649,6 +18318,7 @@
 						TabCount = 5;
 						TabsVisible = YES;
 					};
+					NavBarShownByDefault = YES;
 					StatusViewVisible = YES;
 					Template = 64ABBB4501FA494900185B06;
 					ToolbarVisible = YES;
@@ -17661,31 +18331,35 @@
 						Frame = "{{0, 23}, {926, 740}}";
 						Split0 = {
 							ActiveTab = 2;
+							ActiveTabName = PBXBuildResultsModule;
 							Collapsed = NO;
 							Frame = "{{0, 0}, {926, 740}}";
 							Split0 = {
-								Frame = "{{0, 221}, {926, 519}}";
+								Frame = "{{0, 301}, {926, 439}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
+								Frame = "{{0, 0}, {952, 321}}";
+							};
+							Tab1 = {
 								Debugger = {
 									Collapsed = NO;
-									Frame = "{{0, 0}, {952, 321}}";
+									Frame = "{{0, 0}, {781, 452}}";
 									Split0 = {
-										Frame = "{{0, 24}, {952, 297}}";
+										Frame = "{{0, 24}, {781, 428}}";
 										Split0 = {
-											Frame = "{{0, 0}, {468, 297}}";
+											Frame = "{{0, 0}, {383, 428}}";
 										};
 										Split1 = {
 											DebugVariablesTableConfiguration = (
 												Name,
-												126.803,
+												123,
 												Value,
-												150.074,
+												85,
 												Summary,
-												172.123,
+												155.123,
 											);
-											Frame = "{{477, 0}, {475, 297}}";
+											Frame = "{{392, 0}, {389, 428}}";
 										};
 										SplitCount = 2;
 									};
@@ -17699,37 +18373,36 @@
 									TabCount = 2;
 									TabsVisible = YES;
 								};
-								Frame = "{{0, 0}, {952, 321}}";
+								Frame = "{{0, 0}, {781, 452}}";
 								LauncherConfigVersion = 7;
 							};
-							Tab1 = {
-								Frame = "{{0, 0}, {781, 452}}";
+							Tab2 = {
+								Frame = "{{0, 0}, {926, 215}}";
 								LauncherConfigVersion = 3;
 								Runner = {
-									Frame = "{{0, 0}, {781, 452}}";
+									Frame = "{{0, 0}, {926, 215}}";
 								};
 							};
-							Tab2 = {
-								BuildMessageFrame = "{{0, 0}, {928, 149}}";
-								BuildTranscriptFrame = "{{0, 158}, {928, 59}}";
-								Frame = "{{0, 0}, {926, 215}}";
-							};
 							Tab3 = {
+								BuildMessageFrame = "{{0, 0}, {928, 140}}";
+								BuildTranscriptFrame = "{{0, 149}, {928, 124}}";
+								BuildTranscriptFrameExpanded = YES;
+								Frame = "{{0, 0}, {926, 295}}";
+							};
+							Tab4 = {
 								Frame = "{{0, 0}, {612, 295}}";
 							};
-							TabCount = 4;
+							TabCount = 5;
 							TabsVisible = NO;
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Frame = "{{0, 0}, {300, 533}}";
 							GroupTreeTableConfiguration = (
-								SCMStatusColumn,
-								22,
 								TargetStatusColumn,
 								18,
 								MainColumn,
-								245,
+								267,
 							);
 						};
 						Tab1 = {
@@ -17773,15 +18446,220 @@
 						TabCount = 5;
 						TabsVisible = NO;
 					};
+					NavBarShownByDefault = YES;
 					StatusViewVisible = YES;
 					Template = F5314676015831810DCA290F;
 					ToolbarVisible = YES;
 					WindowLocation = "{106, 169}";
 				},
+				{
+					ContentSize = "{594, 303}";
+					LeftSlideOut = {
+						Collapsed = NO;
+						Frame = "{{0, 23}, {594, 280}}";
+						Split0 = {
+							ActiveTab = 1;
+							ActiveTabName = PBXRunSessionModule;
+							Collapsed = YES;
+							Frame = "{{0, 0}, {594, 280}}";
+							Split0 = {
+								Frame = "{{1e+06, 1e+06}, {594, 0}}";
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Frame = "{{0, 0}, {804, 321}}";
+							};
+							Tab1 = {
+								Debugger = {
+									Collapsed = NO;
+									Frame = "{{0, 0}, {594, 274}}";
+									Split0 = {
+										Frame = "{{0, 24}, {594, 250}}";
+										Split0 = {
+											Frame = "{{0, 0}, {290, 250}}";
+										};
+										Split1 = {
+											DebugVariablesTableConfiguration = (
+												Name,
+												123,
+												Value,
+												85,
+												Summary,
+												62.123,
+											);
+											Frame = "{{299, 0}, {295, 250}}";
+										};
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									Tab0 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									Tab1 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									TabCount = 2;
+									TabsVisible = YES;
+								};
+								Frame = "{{0, 0}, {594, 274}}";
+								LauncherConfigVersion = 7;
+							};
+							Tab2 = {
+								Frame = "{{0, 0}, {594, 274}}";
+								LauncherConfigVersion = 3;
+								Runner = {
+									Frame = "{{0, 0}, {594, 274}}";
+								};
+							};
+							Tab3 = {
+								BuildMessageFrame = "{{0, 0}, {614, 262}}";
+								BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
+								BuildTranscriptFrameExpanded = YES;
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							Tab4 = {
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							TabCount = 5;
+							TabsVisible = NO;
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {300, 533}}";
+							GroupTreeTableConfiguration = (
+								TargetStatusColumn,
+								18,
+								MainColumn,
+								267,
+							);
+						};
+						Tab1 = {
+							ClassesFrame = "{{0, 0}, {280, 398}}";
+							ClassesTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXClassColumnIdentifier,
+								237,
+							);
+							Frame = "{{0, 0}, {278, 659}}";
+							MembersFrame = "{{0, 407}, {280, 252}}";
+							MembersTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXMethodColumnIdentifier,
+								236,
+							);
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {200, 100}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {200, 386}}";
+							TargetTableConfiguration = (
+								ActiveObject,
+								16,
+								ObjectNames,
+								202.296,
+							);
+						};
+						Tab4 = {
+							BreakpointsTreeTableConfiguration = (
+								breakpointColumn,
+								197,
+								enabledColumn,
+								31,
+							);
+							Frame = "{{0, 0}, {250, 386}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					NavBarShownByDefault = YES;
+					StatusViewVisible = YES;
+					Template = F5534CB2020F3F8A0DCA290F;
+					ToolbarVisible = YES;
+					WindowLocation = "{4, 633}";
+				},
 			);
-			PBXWorkspaceStateSaveDate = 62885049;
+			PBXWorkspaceStateSaveDate = 63650380;
 		};
 		perUserProjectItems = {
+			7A85AD8B03BF9B2300A80164 = 7A85AD8B03BF9B2300A80164;
+			7A85AD8C03BF9B2300A80164 = 7A85AD8C03BF9B2300A80164;
+			7A85AD8D03BF9B2300A80164 = 7A85AD8D03BF9B2300A80164;
+			7A85AD8E03BF9B2300A80164 = 7A85AD8E03BF9B2300A80164;
+			7A85AD8F03BF9B2300A80164 = 7A85AD8F03BF9B2300A80164;
+			7A85AD9003BF9B2300A80164 = 7A85AD9003BF9B2300A80164;
+			7A85AD9203BF9B2300A80164 = 7A85AD9203BF9B2300A80164;
+			7A85AD9403BF9B2300A80164 = 7A85AD9403BF9B2300A80164;
+			7A85AD9503BF9B2300A80164 = 7A85AD9503BF9B2300A80164;
+			7A85AD9603BF9B2300A80164 = 7A85AD9603BF9B2300A80164;
+			7A85AD9703BF9B2300A80164 = 7A85AD9703BF9B2300A80164;
+			7A85AD9803BF9B2300A80164 = 7A85AD9803BF9B2300A80164;
+			7A85AD9C03BF9B2300A80164 = 7A85AD9C03BF9B2300A80164;
+			7A85AD9D03BF9B2300A80164 = 7A85AD9D03BF9B2300A80164;
+			7A85AD9E03BF9B2300A80164 = 7A85AD9E03BF9B2300A80164;
+			7A85AD9F03BF9B2300A80164 = 7A85AD9F03BF9B2300A80164;
+			7A85ADA003BF9B2300A80164 = 7A85ADA003BF9B2300A80164;
+			7A85ADA103BF9B2300A80164 = 7A85ADA103BF9B2300A80164;
+			7A85ADA203BF9B2300A80164 = 7A85ADA203BF9B2300A80164;
+			7A85ADA303BF9B2300A80164 = 7A85ADA303BF9B2300A80164;
+			7A85ADA403BF9B2300A80164 = 7A85ADA403BF9B2300A80164;
+			7A85ADA503BF9B2300A80164 = 7A85ADA503BF9B2300A80164;
+			7A85ADA603BF9B2300A80164 = 7A85ADA603BF9B2300A80164;
+			7A85ADA703BF9B2300A80164 = 7A85ADA703BF9B2300A80164;
+			7A85ADA803BF9B2300A80164 = 7A85ADA803BF9B2300A80164;
+			7A85ADA903BF9B2300A80164 = 7A85ADA903BF9B2300A80164;
+			7A85ADAA03BF9B2300A80164 = 7A85ADAA03BF9B2300A80164;
+			7A85ADAB03BF9B2300A80164 = 7A85ADAB03BF9B2300A80164;
+			7A85ADAC03BF9B2300A80164 = 7A85ADAC03BF9B2300A80164;
+			7A85ADAD03BF9B2300A80164 = 7A85ADAD03BF9B2300A80164;
+			7A85ADAE03BF9B2300A80164 = 7A85ADAE03BF9B2300A80164;
+			7A85ADAF03BF9B2300A80164 = 7A85ADAF03BF9B2300A80164;
+			7A85ADB103BF9B2300A80164 = 7A85ADB103BF9B2300A80164;
+			7A85ADB203BF9B2300A80164 = 7A85ADB203BF9B2300A80164;
+			7A85ADB303BF9B2300A80164 = 7A85ADB303BF9B2300A80164;
+			7A85ADB403BF9B2300A80164 = 7A85ADB403BF9B2300A80164;
+			7A85ADB503BF9B2300A80164 = 7A85ADB503BF9B2300A80164;
+			7A85ADB603BF9B2300A80164 = 7A85ADB603BF9B2300A80164;
+			7A85ADB703BF9B2300A80164 = 7A85ADB703BF9B2300A80164;
+			7A85ADB803BF9B2300A80164 = 7A85ADB803BF9B2300A80164;
+			7A85ADB903BF9B2300A80164 = 7A85ADB903BF9B2300A80164;
+			7A85ADBA03BF9B2300A80164 = 7A85ADBA03BF9B2300A80164;
+			7A85ADBB03BF9B2300A80164 = 7A85ADBB03BF9B2300A80164;
+			7A85ADBC03BF9B2300A80164 = 7A85ADBC03BF9B2300A80164;
+			7A85ADBD03BF9B2300A80164 = 7A85ADBD03BF9B2300A80164;
+			7A85ADBE03BF9B2300A80164 = 7A85ADBE03BF9B2300A80164;
+			7A85ADBF03BF9B2300A80164 = 7A85ADBF03BF9B2300A80164;
+			7A85ADC003BF9B2300A80164 = 7A85ADC003BF9B2300A80164;
+			7A85ADC103BF9B2300A80164 = 7A85ADC103BF9B2300A80164;
+			7A85ADC203BF9B2300A80164 = 7A85ADC203BF9B2300A80164;
+			7A85ADC303BF9B2300A80164 = 7A85ADC303BF9B2300A80164;
+			7A85ADC403BF9B2300A80164 = 7A85ADC403BF9B2300A80164;
+			7A85ADC503BF9B2300A80164 = 7A85ADC503BF9B2300A80164;
+			7A85ADC603BF9B2300A80164 = 7A85ADC603BF9B2300A80164;
+			7A85ADC703BF9B2300A80164 = 7A85ADC703BF9B2300A80164;
+			7A85ADC803BF9B2300A80164 = 7A85ADC803BF9B2300A80164;
+			7A85ADC903BF9B2300A80164 = 7A85ADC903BF9B2300A80164;
+			7A9CB3A403CB418B00A80164 = 7A9CB3A403CB418B00A80164;
+			7A9CB3A503CB418B00A80164 = 7A9CB3A503CB418B00A80164;
+			7A9CB3A603CB418B00A80164 = 7A9CB3A603CB418B00A80164;
+			7A9CB3A703CB418B00A80164 = 7A9CB3A703CB418B00A80164;
+			7A9CB3A803CB418B00A80164 = 7A9CB3A803CB418B00A80164;
+			7A9CB3A903CB418B00A80164 = 7A9CB3A903CB418B00A80164;
+			7A9CB3AA03CB418B00A80164 = 7A9CB3AA03CB418B00A80164;
+			7A9CB3AB03CB418B00A80164 = 7A9CB3AB03CB418B00A80164;
+			7A9CB3AC03CB418B00A80164 = 7A9CB3AC03CB418B00A80164;
+			7A9CB3AD03CB418B00A80164 = 7A9CB3AD03CB418B00A80164;
+			7A9CB3AE03CB418B00A80164 = 7A9CB3AE03CB418B00A80164;
+			7A9CB3AF03CB418B00A80164 = 7A9CB3AF03CB418B00A80164;
+			7A9CB3B003CB418B00A80164 = 7A9CB3B003CB418B00A80164;
+			7A9CB3B103CB418B00A80164 = 7A9CB3B103CB418B00A80164;
+			7A9CB3B203CB418B00A80164 = 7A9CB3B203CB418B00A80164;
+			7A9CB3B303CB418B00A80164 = 7A9CB3B303CB418B00A80164;
+			7A9CB3B403CB418B00A80164 = 7A9CB3B403CB418B00A80164;
+			7A9CB3B503CB418B00A80164 = 7A9CB3B503CB418B00A80164;
+			7A9CB3B603CB418B00A80164 = 7A9CB3B603CB418B00A80164;
 			F50089460373044701A80164 = F50089460373044701A80164;
 			F50089470373044701A80164 = F50089470373044701A80164;
 			F500894B0373044701A80164 = F500894B0373044701A80164;
@@ -17897,7 +18775,6 @@
 			F51FA15A028C90BE01B59D5E = F51FA15A028C90BE01B59D5E;
 			F51FA15B028C90BE01B59D5E = F51FA15B028C90BE01B59D5E;
 			F52124F4028C33D001244F74 = F52124F4028C33D001244F74;
-			F52124F5028C33D001244F74 = F52124F5028C33D001244F74;
 			F52124F6028C33D001244F74 = F52124F6028C33D001244F74;
 			F52A428002B3BBAA0109140E = F52A428002B3BBAA0109140E;
 			F52A428102B3BBAA0109140E = F52A428102B3BBAA0109140E;
@@ -18062,7 +18939,6 @@
 			F53C1161030C3DF801380CAE = F53C1161030C3DF801380CAE;
 			F53C1162030C3DF801380CAE = F53C1162030C3DF801380CAE;
 			F53C1163030C3DF801380CAE = F53C1163030C3DF801380CAE;
-			F53D406B030989B40125CDBF = F53D406B030989B40125CDBF;
 			F53D4072030989B40125CDBF = F53D4072030989B40125CDBF;
 			F53D4073030989B40125CDBF = F53D4073030989B40125CDBF;
 			F53D4074030989B40125CDBF = F53D4074030989B40125CDBF;
@@ -18074,7 +18950,6 @@
 			F53D407A030989B40125CDBF = F53D407A030989B40125CDBF;
 			F53D407B030989B40125CDBF = F53D407B030989B40125CDBF;
 			F53D407C030989B40125CDBF = F53D407C030989B40125CDBF;
-			F53D407D030989B40125CDBF = F53D407D030989B40125CDBF;
 			F53D407E030989B40125CDBF = F53D407E030989B40125CDBF;
 			F53D407F030989B40125CDBF = F53D407F030989B40125CDBF;
 			F53D4080030989B40125CDBF = F53D4080030989B40125CDBF;
@@ -18426,7 +19301,6 @@
 			F53F6A1002D5E50101786824 = F53F6A1002D5E50101786824;
 			F54020DB02A2646501F0D71D = F54020DB02A2646501F0D71D;
 			F54020DC02A2646501F0D71D = F54020DC02A2646501F0D71D;
-			F54020E102A2646501F0D71D = F54020E102A2646501F0D71D;
 			F54020F302A2646501F0D71D = F54020F302A2646501F0D71D;
 			F54020F402A2646501F0D71D = F54020F402A2646501F0D71D;
 			F54020F502A2646501F0D71D = F54020F502A2646501F0D71D;
@@ -19246,7 +20120,6 @@
 			F545A51F02E4AB91015FC162 = F545A51F02E4AB91015FC162;
 			F545CC6702B8EDF6011D56AF = F545CC6702B8EDF6011D56AF;
 			F545CC6802B8EDF6011D56AF = F545CC6802B8EDF6011D56AF;
-			F545CC6902B8EDF6011D56AF = F545CC6902B8EDF6011D56AF;
 			F545CC6A02B8EDF6011D56AF = F545CC6A02B8EDF6011D56AF;
 			F545CC6B02B8EDF6011D56AF = F545CC6B02B8EDF6011D56AF;
 			F545CC6D02B8EDF6011D56AF = F545CC6D02B8EDF6011D56AF;
@@ -19366,7 +20239,6 @@
 			F545EF2D02A68859018FABF3 = F545EF2D02A68859018FABF3;
 			F545EF2E02A68859018FABF3 = F545EF2E02A68859018FABF3;
 			F545EF2F02A68859018FABF3 = F545EF2F02A68859018FABF3;
-			F545EF3002A68859018FABF3 = F545EF3002A68859018FABF3;
 			F545EF3102A68859018FABF3 = F545EF3102A68859018FABF3;
 			F545EF3202A68859018FABF3 = F545EF3202A68859018FABF3;
 			F545EF3302A68859018FABF3 = F545EF3302A68859018FABF3;
@@ -19487,12 +20359,10 @@
 			F545EFB202A68859018FABF3 = F545EFB202A68859018FABF3;
 			F545EFB402A68859018FABF3 = F545EFB402A68859018FABF3;
 			F545EFB502A68859018FABF3 = F545EFB502A68859018FABF3;
-			F545EFB702A68859018FABF3 = F545EFB702A68859018FABF3;
 			F545EFB802A68859018FABF3 = F545EFB802A68859018FABF3;
 			F545EFB902A68859018FABF3 = F545EFB902A68859018FABF3;
 			F545EFBA02A68859018FABF3 = F545EFBA02A68859018FABF3;
 			F545EFBB02A68859018FABF3 = F545EFBB02A68859018FABF3;
-			F545EFBC02A68859018FABF3 = F545EFBC02A68859018FABF3;
 			F545EFC302A68859018FABF3 = F545EFC302A68859018FABF3;
 			F545EFC402A68859018FABF3 = F545EFC402A68859018FABF3;
 			F545EFC602A68859018FABF3 = F545EFC602A68859018FABF3;
@@ -19524,7 +20394,6 @@
 			F546084C02E601FE0166357B = F546084C02E601FE0166357B;
 			F546084D02E601FE0166357B = F546084D02E601FE0166357B;
 			F5461B2D02B63BD701EABA85 = F5461B2D02B63BD701EABA85;
-			F5461B2E02B63BD701EABA85 = F5461B2E02B63BD701EABA85;
 			F5461B2F02B63BD701EABA85 = F5461B2F02B63BD701EABA85;
 			F5461B3202B63BD701EABA85 = F5461B3202B63BD701EABA85;
 			F5461B3302B63BD701EABA85 = F5461B3302B63BD701EABA85;
@@ -19537,7 +20406,6 @@
 			F5461B4802B63BD701EABA85 = F5461B4802B63BD701EABA85;
 			F5461B4902B63BD701EABA85 = F5461B4902B63BD701EABA85;
 			F5461B4A02B63BD701EABA85 = F5461B4A02B63BD701EABA85;
-			F5461B4B02B63BD701EABA85 = F5461B4B02B63BD701EABA85;
 			F5461B4E02B63BD701EABA85 = F5461B4E02B63BD701EABA85;
 			F5461B4F02B63BD701EABA85 = F5461B4F02B63BD701EABA85;
 			F5461B5002B63BD701EABA85 = F5461B5002B63BD701EABA85;
@@ -20801,9 +21669,7 @@
 			F552FEFA02A4CF1201994BA3 = F552FEFA02A4CF1201994BA3;
 			F552FEFB02A4CF1201994BA3 = F552FEFB02A4CF1201994BA3;
 			F552FEFC02A4CF1201994BA3 = F552FEFC02A4CF1201994BA3;
-			F552FEFD02A4CF1201994BA3 = F552FEFD02A4CF1201994BA3;
 			F552FEFE02A4CF1201994BA3 = F552FEFE02A4CF1201994BA3;
-			F552FEFF02A4CF1201994BA3 = F552FEFF02A4CF1201994BA3;
 			F552FF0002A4CF1201994BA3 = F552FF0002A4CF1201994BA3;
 			F552FF0102A4CF1201994BA3 = F552FF0102A4CF1201994BA3;
 			F552FF0202A4CF1201994BA3 = F552FF0202A4CF1201994BA3;
@@ -21071,8 +21937,6 @@
 			F55A832A02AD2AAD01B5F8F9 = F55A832A02AD2AAD01B5F8F9;
 			F55A832B02AD2AAD01B5F8F9 = F55A832B02AD2AAD01B5F8F9;
 			F55C312A030DA4F2016C0BE2 = F55C312A030DA4F2016C0BE2;
-			F55DE0F703843DB001A80164 = F55DE0F703843DB001A80164;
-			F55DE0F803843DB001A80164 = F55DE0F803843DB001A80164;
 			F55DE0FB03843DB001A80164 = F55DE0FB03843DB001A80164;
 			F55DE0FC03843DB001A80164 = F55DE0FC03843DB001A80164;
 			F55DE0FD03843DB001A80164 = F55DE0FD03843DB001A80164;
@@ -21444,7 +22308,6 @@
 			F57B1B7503B37F6E01A80164 = F57B1B7503B37F6E01A80164;
 			F57B1B7603B37F6E01A80164 = F57B1B7603B37F6E01A80164;
 			F57B1B7703B37F6E01A80164 = F57B1B7703B37F6E01A80164;
-			F57B1B7803B37F6E01A80164 = F57B1B7803B37F6E01A80164;
 			F57B1B7903B37F6E01A80164 = F57B1B7903B37F6E01A80164;
 			F57B1B7A03B37F6E01A80164 = F57B1B7A03B37F6E01A80164;
 			F57B1B7B03B37F6E01A80164 = F57B1B7B03B37F6E01A80164;
@@ -21473,9 +22336,6 @@
 			F57B1B9203B37F6E01A80164 = F57B1B9203B37F6E01A80164;
 			F57B1B9303B37F6E01A80164 = F57B1B9303B37F6E01A80164;
 			F57B1B9403B37F6E01A80164 = F57B1B9403B37F6E01A80164;
-			F57B1B9503B37F6E01A80164 = F57B1B9503B37F6E01A80164;
-			F57B1B9603B37F6E01A80164 = F57B1B9603B37F6E01A80164;
-			F57B1B9703B37F6E01A80164 = F57B1B9703B37F6E01A80164;
 			F57B3132028C66AB0195BBD7 = F57B3132028C66AB0195BBD7;
 			F57B3133028C66AB0195BBD7 = F57B3133028C66AB0195BBD7;
 			F57B3143028C66AB0195BBD7 = F57B3143028C66AB0195BBD7;
@@ -21862,7 +22722,6 @@
 			F593977C028C17E1016230BF = F593977C028C17E1016230BF;
 			F593977D028C17E1016230BF = F593977D028C17E1016230BF;
 			F593977E028C17E1016230BF = F593977E028C17E1016230BF;
-			F5939782028C17E1016230BF = F5939782028C17E1016230BF;
 			F59397E7028C20B2016230BF = F59397E7028C20B2016230BF;
 			F593D573035C574401A80166 = F593D573035C574401A80166;
 			F593D574035C574401A80166 = F593D574035C574401A80166;
@@ -22131,7 +22990,6 @@
 			F59516600350EC0901A80166 = F59516600350EC0901A80166;
 			F59516610350EC0901A80166 = F59516610350EC0901A80166;
 			F59516620350EC0901A80166 = F59516620350EC0901A80166;
-			F59516630350EC0901A80166 = F59516630350EC0901A80166;
 			F59516640350EC0901A80166 = F59516640350EC0901A80166;
 			F59516650350EC0901A80166 = F59516650350EC0901A80166;
 			F59516660350EC0901A80166 = F59516660350EC0901A80166;
@@ -22839,9 +23697,7 @@
 			F59C490B037A8CF701A80164 = F59C490B037A8CF701A80164;
 			F59C490C037A8CF701A80164 = F59C490C037A8CF701A80164;
 			F59C490D037A8CF701A80164 = F59C490D037A8CF701A80164;
-			F5A0E6B502B691060115E516 = F5A0E6B502B691060115E516;
 			F5A0E6B602B691060115E516 = F5A0E6B602B691060115E516;
-			F5A0E6C202B691060115E516 = F5A0E6C202B691060115E516;
 			F5A0E6C302B691060115E516 = F5A0E6C302B691060115E516;
 			F5A0E6C502B691060115E516 = F5A0E6C502B691060115E516;
 			F5A0E6C602B691060115E516 = F5A0E6C602B691060115E516;
@@ -23123,7 +23979,6 @@
 			F5A8E6E6039F89DA01A80164 = F5A8E6E6039F89DA01A80164;
 			F5A934F003A90F3901A80164 = F5A934F003A90F3901A80164;
 			F5A934F203A90F3901A80164 = F5A934F203A90F3901A80164;
-			F5A934F303A90F3901A80164 = F5A934F303A90F3901A80164;
 			F5A9351803A90F3901A80164 = F5A9351803A90F3901A80164;
 			F5A9351C03A90F3901A80164 = F5A9351C03A90F3901A80164;
 			F5A9351D03A90F3901A80164 = F5A9351D03A90F3901A80164;
@@ -23356,7 +24211,6 @@
 			F5AA747703AE153E01A80164 = F5AA747703AE153E01A80164;
 			F5AA747803AE153E01A80164 = F5AA747803AE153E01A80164;
 			F5AA747A03AE153E01A80164 = F5AA747A03AE153E01A80164;
-			F5AA747B03AE153E01A80164 = F5AA747B03AE153E01A80164;
 			F5AA747C03AE153E01A80164 = F5AA747C03AE153E01A80164;
 			F5AA747F03AE153E01A80164 = F5AA747F03AE153E01A80164;
 			F5AA748103AE153E01A80164 = F5AA748103AE153E01A80164;
@@ -23367,7 +24221,6 @@
 			F5AA748603AE153E01A80164 = F5AA748603AE153E01A80164;
 			F5AA748703AE153E01A80164 = F5AA748703AE153E01A80164;
 			F5AA748803AE153E01A80164 = F5AA748803AE153E01A80164;
-			F5AA748903AE153E01A80164 = F5AA748903AE153E01A80164;
 			F5AA748A03AE153E01A80164 = F5AA748A03AE153E01A80164;
 			F5AA748B03AE153E01A80164 = F5AA748B03AE153E01A80164;
 			F5AA748C03AE153E01A80164 = F5AA748C03AE153E01A80164;
@@ -23406,11 +24259,9 @@
 			F5AA7F6C0390549B01A80164 = F5AA7F6C0390549B01A80164;
 			F5AA7F6D0390549B01A80164 = F5AA7F6D0390549B01A80164;
 			F5AAA6CB03B34F8A01A80164 = F5AAA6CB03B34F8A01A80164;
-			F5AAA6CC03B34F8A01A80164 = F5AAA6CC03B34F8A01A80164;
 			F5AAA6CE03B34F8A01A80164 = F5AAA6CE03B34F8A01A80164;
 			F5AAA6CF03B34F8A01A80164 = F5AAA6CF03B34F8A01A80164;
 			F5AAA6D003B34F8A01A80164 = F5AAA6D003B34F8A01A80164;
-			F5AAA6D103B34F8A01A80164 = F5AAA6D103B34F8A01A80164;
 			F5AAA6D203B34F8A01A80164 = F5AAA6D203B34F8A01A80164;
 			F5AAA6D303B34F8A01A80164 = F5AAA6D303B34F8A01A80164;
 			F5AAA6D403B34F8A01A80164 = F5AAA6D403B34F8A01A80164;
@@ -23423,7 +24274,6 @@
 			F5AAA6DC03B34F8A01A80164 = F5AAA6DC03B34F8A01A80164;
 			F5AAA6DD03B34F8A01A80164 = F5AAA6DD03B34F8A01A80164;
 			F5AAA6DE03B34F8A01A80164 = F5AAA6DE03B34F8A01A80164;
-			F5AAA6DF03B34F8A01A80164 = F5AAA6DF03B34F8A01A80164;
 			F5AAA6E003B34F8A01A80164 = F5AAA6E003B34F8A01A80164;
 			F5AAA6E103B34F8A01A80164 = F5AAA6E103B34F8A01A80164;
 			F5AAA6E303B34F8A01A80164 = F5AAA6E303B34F8A01A80164;
@@ -23616,7 +24466,6 @@
 			F5AAD60003AF55A201A80164 = F5AAD60003AF55A201A80164;
 			F5AAD60203AF55A201A80164 = F5AAD60203AF55A201A80164;
 			F5AAD60603AF55A201A80164 = F5AAD60603AF55A201A80164;
-			F5AAD60A03AF55A201A80164 = F5AAD60A03AF55A201A80164;
 			F5AAD60B03AF55A201A80164 = F5AAD60B03AF55A201A80164;
 			F5AAD61003AF55A201A80164 = F5AAD61003AF55A201A80164;
 			F5AAD61203AF55A201A80164 = F5AAD61203AF55A201A80164;
@@ -25568,7 +26417,6 @@
 			F5F2C72102A43D4501CB7A62 = F5F2C72102A43D4501CB7A62;
 			F5F2C72202A43D4501CB7A62 = F5F2C72202A43D4501CB7A62;
 			F5F2C72302A43D4501CB7A62 = F5F2C72302A43D4501CB7A62;
-			F5F2C72402A43D4501CB7A62 = F5F2C72402A43D4501CB7A62;
 			F5F2C72502A43D4501CB7A62 = F5F2C72502A43D4501CB7A62;
 			F5F2C72602A43D4501CB7A62 = F5F2C72602A43D4501CB7A62;
 			F5F2C72702A43D4501CB7A62 = F5F2C72702A43D4501CB7A62;
@@ -25593,16 +26441,13 @@
 			F5F2C74102A43D4501CB7A62 = F5F2C74102A43D4501CB7A62;
 			F5F2C74202A43D4501CB7A62 = F5F2C74202A43D4501CB7A62;
 			F5F2C74302A43D4501CB7A62 = F5F2C74302A43D4501CB7A62;
-			F5F2C74402A43D4501CB7A62 = F5F2C74402A43D4501CB7A62;
 			F5F2C74502A43D4501CB7A62 = F5F2C74502A43D4501CB7A62;
-			F5F2C74602A43D4501CB7A62 = F5F2C74602A43D4501CB7A62;
 			F5F2C74702A43D4501CB7A62 = F5F2C74702A43D4501CB7A62;
 			F5F2C74802A43D4501CB7A62 = F5F2C74802A43D4501CB7A62;
 			F5F2C74902A43D4501CB7A62 = F5F2C74902A43D4501CB7A62;
 			F5F2C74A02A43D4501CB7A62 = F5F2C74A02A43D4501CB7A62;
 			F5F2C74B02A43D4501CB7A62 = F5F2C74B02A43D4501CB7A62;
 			F5F2C74C02A43D4501CB7A62 = F5F2C74C02A43D4501CB7A62;
-			F5F2C74E02A43D4501CB7A62 = F5F2C74E02A43D4501CB7A62;
 			F5F2C74F02A43D4501CB7A62 = F5F2C74F02A43D4501CB7A62;
 			F5F2C75002A43D4501CB7A62 = F5F2C75002A43D4501CB7A62;
 			F5F2C75102A43D4501CB7A62 = F5F2C75102A43D4501CB7A62;
@@ -26131,7 +26976,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3604;
+		rLoc = 3601;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 2285;
@@ -26571,7 +27416,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
 		rLen = 0;
-		rLoc = 10716;
+		rLoc = 10713;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 1323;
@@ -26621,7 +27466,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 212";
 		rLen = 0;
-		rLoc = 6133;
+		rLoc = 6127;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 3510;
@@ -26661,7 +27506,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 212";
 		rLen = 0;
-		rLoc = 6133;
+		rLoc = 6127;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 3508;
@@ -27951,7 +28796,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: HandleTraitsStart";
 		rLen = 0;
-		rLoc = 6378;
+		rLoc = 6375;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 1145;
@@ -28061,7 +28906,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1234;
@@ -28071,7 +28916,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 128";
 		rLen = 0;
-		rLoc = 6690;
+		rLoc = 6687;
 		rType = 0;
 		vrLen = 944;
 		vrLoc = 0;
@@ -28091,7 +28936,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 128";
 		rLen = 0;
-		rLoc = 6690;
+		rLoc = 6687;
 		rType = 0;
 		vrLen = 944;
 		vrLoc = 0;
@@ -28131,7 +28976,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 128";
 		rLen = 0;
-		rLoc = 6690;
+		rLoc = 6687;
 		rType = 0;
 		vrLen = 944;
 		vrLoc = 0;
@@ -28201,7 +29046,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1111;
 		vrLoc = 2139;
@@ -28401,7 +29246,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 2139;
@@ -28441,7 +29286,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 2139;
@@ -28491,7 +29336,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 2139;
@@ -28781,7 +29626,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3204;
+		rLoc = 3181;
 		rType = 0;
 		vrLen = 989;
 		vrLoc = 1810;
@@ -28791,7 +29636,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3204;
+		rLoc = 3181;
 		rType = 0;
 		vrLen = 989;
 		vrLoc = 1810;
@@ -28811,7 +29656,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3427;
+		rLoc = 3404;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 2282;
@@ -28831,7 +29676,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3186;
+		rLoc = 3163;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 3018;
@@ -28851,7 +29696,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3344;
+		rLoc = 3321;
 		rType = 0;
 		vrLen = 1049;
 		vrLoc = 1870;
@@ -28891,7 +29736,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 3344;
+		rLoc = 3321;
 		rType = 0;
 		vrLen = 1049;
 		vrLoc = 1870;
@@ -29011,7 +29856,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4755;
+		rLoc = 4732;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 3101;
@@ -29031,7 +29876,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4119;
+		rLoc = 4096;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 3063;
@@ -29131,7 +29976,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4119;
+		rLoc = 4096;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 3063;
@@ -29151,7 +29996,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4029;
+		rLoc = 4006;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 3048;
@@ -30361,7 +31206,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 68";
 		rLen = 0;
-		rLoc = 1943;
+		rLoc = 1935;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 869;
@@ -30874,16 +31719,6 @@
 		rLoc = 960;
 		rType = 0;
 		vrLen = 825;
-		vrLoc = 0;
-	};
-	F545CC6902B8EDF6011D56AF = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 41";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1147;
 		vrLoc = 0;
 	};
 	F545CC6A02B8EDF6011D56AF = {
@@ -31921,7 +32756,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 7202;
+		rLoc = 7199;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 2377;
@@ -31961,7 +32796,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 6648;
+		rLoc = 6645;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 2548;
@@ -31991,7 +32826,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 6648;
+		rLoc = 6645;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 2548;
@@ -32051,7 +32886,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 6648;
+		rLoc = 6645;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 2612;
@@ -32075,16 +32910,6 @@
 		rType = 0;
 		vrLen = 680;
 		vrLoc = 267;
-	};
-	F545EF3002A68859018FABF3 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 41";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1167;
-		vrLoc = 0;
 	};
 	F545EF3102A68859018FABF3 = {
 		fRef = F548851B022F992901D6DA80;
@@ -32231,7 +33056,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 6648;
+		rLoc = 6645;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 2924;
@@ -32241,7 +33066,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 7096;
+		rLoc = 7093;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 2934;
@@ -32421,7 +33246,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 76;
-		rLoc = 6571;
+		rLoc = 6568;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 3000;
@@ -32501,7 +33326,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 7201;
+		rLoc = 7198;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 3189;
@@ -32601,7 +33426,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 6581;
+		rLoc = 6578;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3064;
@@ -32751,7 +33576,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: 158";
 		rLen = 0;
-		rLoc = 21199;
+		rLoc = 21215;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 2668;
@@ -32811,7 +33636,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 21199;
+		rLoc = 21215;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 2668;
@@ -32851,7 +33676,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 21199;
+		rLoc = 21215;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 2668;
@@ -32871,7 +33696,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: Unpickle";
 		rLen = 629;
-		rLoc = 6655;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 3228;
@@ -32881,7 +33706,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 20600;
+		rLoc = 20616;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 3340;
@@ -33030,7 +33855,7 @@
 		fRef = F5F2C66302A410DA01CB7A62;
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: NameGet";
-		rLen = 5827;
+		rLen = 5824;
 		rLoc = 827;
 		rType = 0;
 		vrLen = 1106;
@@ -33071,7 +33896,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 886;
-		rLoc = 20313;
+		rLoc = 20329;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 3423;
@@ -33286,16 +34111,6 @@
 		vrLen = 1192;
 		vrLoc = 0;
 	};
-	F545EFB702A68859018FABF3 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 41";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1167;
-		vrLoc = 0;
-	};
 	F545EFB802A68859018FABF3 = {
 		fRef = F548851B022F992901D6DA80;
 		isa = PBXTextBookmark;
@@ -33334,16 +34149,6 @@
 		rLoc = 478;
 		rType = 0;
 		vrLen = 522;
-		vrLoc = 0;
-	};
-	F545EFBC02A68859018FABF3 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 41";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1167;
 		vrLoc = 0;
 	};
 	F545EFC302A68859018FABF3 = {
@@ -33650,10 +34455,6 @@
 		fRef = F5461B6102B63BD801EABA85;
 		isa = PBXBookmark;
 	};
-	F5461B2E02B63BD701EABA85 = {
-		fRef = F5461B6F02B63BDA01EABA85;
-		isa = PBXBookmark;
-	};
 	F5461B2F02B63BD701EABA85 = {
 		fRef = F5461B6202B63BD801EABA85;
 		isa = PBXBookmark;
@@ -33714,10 +34515,6 @@
 		fRef = F5461B6C02B63BD901EABA85;
 		isa = PBXBookmark;
 	};
-	F5461B4B02B63BD701EABA85 = {
-		fRef = F5461B6002B63BD801EABA85;
-		isa = PBXBookmark;
-	};
 	F5461B4E02B63BD701EABA85 = {
 		fRef = F5461B7702B63BDA01EABA85;
 		isa = PBXBookmark;
@@ -33758,12 +34555,6 @@
 		isa = PBXFileReference;
 		name = index.html;
 		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Apps/index.html;
-		refType = 0;
-	};
-	F5461B6002B63BD801EABA85 = {
-		isa = PBXFileReference;
-		name = iCopying_Fil_BCDFCJA.html;
-		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Targets/iCopying_Fil_BCDFCJA.html;
 		refType = 0;
 	};
 	F5461B6102B63BD801EABA85 = {
@@ -33830,12 +34621,6 @@
 		isa = PBXFileReference;
 		name = index.html;
 		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Running/index.html;
-		refType = 0;
-	};
-	F5461B6F02B63BDA01EABA85 = {
-		isa = PBXFileReference;
-		name = iCopying_Fil_BCDFCJA.html;
-		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Targets/iCopying_Fil_BCDFCJA.html;
 		refType = 0;
 	};
 	F5461B7002B63BDA01EABA85 = {
@@ -34191,7 +34976,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4029;
+		rLoc = 4006;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 2940;
@@ -35191,7 +35976,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 90";
 		rLen = 0;
-		rLoc = 2983;
+		rLoc = 2975;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 1707;
@@ -35281,7 +36066,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 10138;
+		rLoc = 10135;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2214;
@@ -35311,7 +36096,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 10593;
+		rLoc = 10590;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 2227;
@@ -38278,7 +39063,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 332;
-		rLoc = 21878;
+		rLoc = 21891;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 7222;
@@ -38318,7 +39103,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 332;
-		rLoc = 21878;
+		rLoc = 21891;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 7217;
@@ -39688,7 +40473,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14381;
+		rLoc = 14397;
 		rType = 0;
 		vrLen = 1152;
 		vrLoc = 5924;
@@ -39888,7 +40673,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3585;
+		rLoc = 3582;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 1891;
@@ -40278,7 +41063,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 890;
@@ -40388,7 +41173,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 4002;
+		rLoc = 3999;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 890;
@@ -40588,7 +41373,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: TraitsPtrGet";
 		rLen = 703;
-		rLoc = 7609;
+		rLoc = 7606;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 6248;
@@ -40598,7 +41383,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9683;
+		rLoc = 9680;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 4448;
@@ -40618,7 +41403,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9749;
+		rLoc = 9746;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -40678,7 +41463,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9749;
+		rLoc = 9746;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -41208,7 +41993,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4006;
+		rLoc = 4003;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 238;
@@ -41348,7 +42133,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10738;
+		rLoc = 10735;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 8176;
@@ -41388,7 +42173,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: TraitsPtrGet";
 		rLen = 66;
-		rLoc = 8189;
+		rLoc = 8186;
 		rType = 0;
 		vrLen = 1250;
 		vrLoc = 6225;
@@ -41728,7 +42513,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10738;
+		rLoc = 10735;
 		rType = 0;
 		vrLen = 1554;
 		vrLoc = 0;
@@ -43921,7 +44706,7 @@
 		fRef = F546321D02AD04B701A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: 97";
-		rLen = 3555;
+		rLen = 3552;
 		rLoc = 2237;
 		rType = 0;
 		vrLen = 848;
@@ -44012,7 +44797,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: Render";
 		rLen = 0;
-		rLoc = 3865;
+		rLoc = 3857;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 2195;
@@ -44032,7 +44817,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 116";
 		rLen = 0;
-		rLoc = 4003;
+		rLoc = 3995;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 2383;
@@ -44072,7 +44857,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: Render";
 		rLen = 0;
-		rLoc = 3833;
+		rLoc = 3825;
 		rType = 0;
 		vrLen = 1394;
 		vrLoc = 2382;
@@ -44122,7 +44907,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: Unpickle";
 		rLen = 0;
-		rLoc = 4529;
+		rLoc = 4518;
 		rType = 0;
 		vrLen = 1395;
 		vrLoc = 2380;
@@ -44302,7 +45087,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4006;
+		rLoc = 4003;
 		rType = 0;
 		vrLen = 1531;
 		vrLoc = 238;
@@ -46417,16 +47202,6 @@
 		vrLen = 1176;
 		vrLoc = 0;
 	};
-	F552FEFD02A4CF1201994BA3 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 35";
-		rLen = 0;
-		rLoc = 822;
-		rType = 0;
-		vrLen = 1167;
-		vrLoc = 0;
-	};
 	F552FEFE02A4CF1201994BA3 = {
 		fRef = F548851B022F992901D6DA80;
 		isa = PBXTextBookmark;
@@ -46436,16 +47211,6 @@
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 990;
-	};
-	F552FEFF02A4CF1201994BA3 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 44";
-		rLen = 75;
-		rLoc = 1032;
-		rType = 0;
-		vrLen = 1167;
-		vrLoc = 0;
 	};
 	F552FF0002A4CF1201994BA3 = {
 		fRef = F52B3C0D028C26530179D0A8;
@@ -46841,7 +47606,7 @@
 		fRef = F55808AA029EA98D01DA4293;
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: startElement";
-		rLen = 2103;
+		rLen = 2080;
 		rLoc = 218;
 		rType = 0;
 		vrLen = 1241;
@@ -46871,7 +47636,7 @@
 		fRef = F55808AA029EA98D01DA4293;
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 13";
-		rLen = 2103;
+		rLen = 2080;
 		rLoc = 218;
 		rType = 0;
 		vrLen = 1218;
@@ -46962,7 +47727,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 946;
@@ -46992,7 +47757,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 1364;
@@ -47062,7 +47827,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 1307;
@@ -47082,7 +47847,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 1307;
@@ -47092,7 +47857,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 1307;
@@ -47112,7 +47877,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 1307;
@@ -47132,7 +47897,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 3535;
+		rLoc = 3512;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 1307;
@@ -47272,7 +48037,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: StartElement";
 		rLen = 0;
-		rLoc = 2321;
+		rLoc = 2298;
 		rType = 0;
 		vrLen = 1184;
 		vrLoc = 867;
@@ -47372,7 +48137,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 20254;
+		rLoc = 20270;
 		rType = 0;
 		vrLen = 1238;
 		vrLoc = 3346;
@@ -48336,7 +49101,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 37";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4584;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 0;
@@ -48356,7 +49121,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 18";
 		rLen = 0;
-		rLoc = 1982;
+		rLoc = 1959;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 0;
@@ -48376,7 +49141,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 21";
 		rLen = 0;
-		rLoc = 1999;
+		rLoc = 1976;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 0;
@@ -48406,7 +49171,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 26";
 		rLen = 42;
-		rLoc = 2199;
+		rLoc = 2176;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 0;
@@ -48510,7 +49275,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: 14";
 		rLen = 0;
-		rLoc = 1895;
+		rLoc = 1872;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 0;
@@ -48530,7 +49295,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: startElement";
 		rLen = 0;
-		rLoc = 1895;
+		rLoc = 1872;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 0;
@@ -48622,7 +49387,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: startElement";
 		rLen = 0;
-		rLoc = 1895;
+		rLoc = 1872;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 0;
@@ -49052,7 +49817,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 110";
 		rLen = 0;
-		rLoc = 6249;
+		rLoc = 6246;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 1905;
@@ -49062,7 +49827,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: HandleTraitsStart";
 		rLen = 0;
-		rLoc = 6378;
+		rLoc = 6375;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 2773;
@@ -49082,7 +49847,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 3530;
+		rLoc = 3527;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 2842;
@@ -49116,26 +49881,6 @@
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 1612;
-	};
-	F55DE0F703843DB001A80164 = {
-		fRef = F53F7CD802314C8B01633C4B;
-		isa = PBXTextBookmark;
-		name = "CoreBison.y: 46";
-		rLen = 0;
-		rLoc = 940;
-		rType = 0;
-		vrLen = 915;
-		vrLoc = 545;
-	};
-	F55DE0F803843DB001A80164 = {
-		fRef = F53F7CC902311A9701633C4B;
-		isa = PBXTextBookmark;
-		name = "CoreFlex.flex: 48";
-		rLen = 0;
-		rLoc = 1195;
-		rType = 0;
-		vrLen = 1123;
-		vrLoc = 646;
 	};
 	F55DE0FB03843DB001A80164 = {
 		fRef = F593D55F035C11BE01A80166;
@@ -49182,7 +49927,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 12876;
+		rLoc = 12873;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 7817;
@@ -49232,7 +49977,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 12876;
+		rLoc = 12873;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 7817;
@@ -50283,7 +51028,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 7081;
+		rLoc = 7078;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 5300;
@@ -50513,7 +51258,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 218";
 		rLen = 0;
-		rLoc = 6430;
+		rLoc = 6424;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 4953;
@@ -50573,7 +51318,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 218";
 		rLen = 0;
-		rLoc = 6430;
+		rLoc = 6424;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 4906;
@@ -50633,7 +51378,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 218";
 		rLen = 0;
-		rLoc = 6430;
+		rLoc = 6424;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 4906;
@@ -50713,7 +51458,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 218";
 		rLen = 0;
-		rLoc = 6430;
+		rLoc = 6424;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 4906;
@@ -50813,7 +51558,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 218";
 		rLen = 0;
-		rLoc = 6430;
+		rLoc = 6424;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 4906;
@@ -50953,7 +51698,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 194";
 		rLen = 0;
-		rLoc = 5681;
+		rLoc = 5675;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 4945;
@@ -50993,7 +51738,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: 208";
 		rLen = 0;
-		rLoc = 6228;
+		rLoc = 6222;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 4955;
@@ -51233,7 +51978,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudioSDL.cpp: MediaAudioSDL";
 		rLen = 0;
-		rLoc = 6133;
+		rLoc = 6127;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 3516;
@@ -51523,7 +52268,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 18;
-		rLoc = 3564;
+		rLoc = 3541;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 5030;
@@ -51583,7 +52328,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: 262";
 		rLen = 255;
-		rLoc = 14718;
+		rLoc = 14734;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 5967;
@@ -51633,7 +52378,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10299;
+		rLoc = 10296;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 1363;
@@ -51973,7 +52718,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 18;
-		rLoc = 3564;
+		rLoc = 3541;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 5030;
@@ -52063,7 +52808,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10376;
+		rLoc = 10373;
 		rType = 0;
 		vrLen = 1807;
 		vrLoc = 2967;
@@ -52153,7 +52898,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9888;
+		rLoc = 9885;
 		rType = 0;
 		vrLen = 2015;
 		vrLoc = 4038;
@@ -52233,7 +52978,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10257;
+		rLoc = 10254;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 0;
@@ -52833,7 +53578,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 202";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 6296;
@@ -52857,16 +53602,6 @@
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 899;
-	};
-	F57B1B7803B37F6E01A80164 = {
-		fRef = F593D55F035C11BE01A80166;
-		isa = PBXTextBookmark;
-		name = "GameConfig.cpp: GameConfig";
-		rLen = 0;
-		rLoc = 4243;
-		rType = 0;
-		vrLen = 1483;
-		vrLoc = 6249;
 	};
 	F57B1B7903B37F6E01A80164 = {
 		fRef = F5463A970230DB9A011D269C;
@@ -53103,7 +53838,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 202";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1345;
 		vrLoc = 0;
@@ -53123,7 +53858,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 202";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 6296;
@@ -53147,33 +53882,6 @@
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 899;
-	};
-	F57B1B9503B37F6E01A80164 = {
-		fRef = F593D55F035C11BE01A80166;
-		isa = PBXTextBookmark;
-		name = "GameConfig.cpp: GameConfig";
-		rLen = 0;
-		rLoc = 4243;
-		rType = 0;
-		vrLen = 1393;
-		vrLoc = 7731;
-	};
-	F57B1B9603B37F6E01A80164 = {
-		fRef = F57B1B6203B37C0F01A80164;
-		isa = PBXTextBookmark;
-		rLen = 1;
-		rLoc = 17;
-		rType = 1;
-	};
-	F57B1B9703B37F6E01A80164 = {
-		fRef = F57B1B6203B37C0F01A80164;
-		isa = PBXTextBookmark;
-		name = "MustlConfig.cpp: 18";
-		rLen = 0;
-		rLoc = 449;
-		rType = 0;
-		vrLen = 452;
-		vrLoc = 0;
 	};
 	F57B3132028C66AB0195BBD7 = {
 		fRef = F57B318B028C66AC0195BBD7;
@@ -54914,7 +55622,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RenderLightMap";
 		rLen = 140;
-		rLoc = 18241;
+		rLoc = 18257;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 17207;
@@ -54974,7 +55682,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RenderLightMap";
 		rLen = 0;
-		rLoc = 18421;
+		rLoc = 18437;
 		rType = 0;
 		vrLen = 1050;
 		vrLoc = 18078;
@@ -55034,7 +55742,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RenderLightMap";
 		rLen = 0;
-		rLoc = 19181;
+		rLoc = 19197;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 18107;
@@ -55134,7 +55842,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RenderLightMap";
 		rLen = 0;
-		rLoc = 18811;
+		rLoc = 18827;
 		rType = 0;
 		vrLen = 881;
 		vrLoc = 1220;
@@ -55524,7 +56232,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: i";
 		rLen = 0;
-		rLoc = 18811;
+		rLoc = 18827;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 18121;
@@ -55844,7 +56552,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3146;
+		rLoc = 3143;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 1984;
@@ -55874,7 +56582,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3156;
+		rLoc = 3153;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 1984;
@@ -55904,7 +56612,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3156;
+		rLoc = 3153;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 1984;
@@ -57126,16 +57834,6 @@
 		vrLen = 186;
 		vrLoc = 0;
 	};
-	F5939782028C17E1016230BF = {
-		fRef = F5921CEA021876D70127AF47;
-		isa = PBXTextBookmark;
-		name = "ChildRecord.cpp: __GNUC__";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 833;
-		vrLoc = 0;
-	};
 	F59397E7028C20B2016230BF = {
 		fRef = F593968D028C0342016230BF;
 		isa = PBXTextBookmark;
@@ -58121,7 +58819,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3802;
+		rLoc = 3799;
 		rType = 0;
 		vrLen = 767;
 		vrLoc = 2229;
@@ -59331,7 +60029,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14973;
+		rLoc = 14989;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 3187;
@@ -59808,16 +60506,6 @@
 		rLoc = 1177;
 		rType = 0;
 		vrLen = 1442;
-		vrLoc = 0;
-	};
-	F59516630350EC0901A80166 = {
-		fRef = F5921CEA021876D70127AF47;
-		isa = PBXTextBookmark;
-		name = "CoreChildRecord.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1421;
 		vrLoc = 0;
 	};
 	F59516640350EC0901A80166 = {
@@ -60949,7 +61637,7 @@
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: IsIntersecting";
 		rLen = 0;
-		rLoc = 2466;
+		rLoc = 2458;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 2190;
@@ -61143,7 +61831,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMap.h: 48";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 1176;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 0;
@@ -61473,7 +62161,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 15188;
+		rLoc = 15204;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 12760;
@@ -61503,7 +62191,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 16870;
+		rLoc = 16886;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 12610;
@@ -61523,7 +62211,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildLightMap";
 		rLen = 0;
-		rLoc = 17072;
+		rLoc = 17088;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 12938;
@@ -61593,7 +62281,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildLightMap";
 		rLen = 0;
-		rLoc = 17072;
+		rLoc = 17088;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 14135;
@@ -61613,7 +62301,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: linkVec";
 		rLen = 0;
-		rLoc = 18524;
+		rLoc = 18540;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 14445;
@@ -61653,7 +62341,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 237";
 		rLen = 0;
-		rLoc = 6074;
+		rLoc = 6071;
 		rType = 0;
 		vrLen = 1184;
 		vrLoc = 6625;
@@ -61682,8 +62370,8 @@
 		fRef = F55FF7D002D204F301F9DCD1;
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 184";
-		rLen = 1064;
-		rLoc = 4028;
+		rLen = 1061;
+		rLoc = 4020;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 3901;
@@ -61723,7 +62411,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: maxPoint";
 		rLen = 0;
-		rLoc = 17432;
+		rLoc = 17448;
 		rType = 0;
 		vrLen = 1783;
 		vrLoc = 13115;
@@ -61743,7 +62431,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildLightMap";
 		rLen = 0;
-		rLoc = 14821;
+		rLoc = 14837;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 11864;
@@ -62661,7 +63349,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildSolidMap";
 		rLen = 0;
-		rLoc = 13548;
+		rLoc = 13564;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 12188;
@@ -62701,7 +63389,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: tileSpec";
 		rLen = 0;
-		rLoc = 13973;
+		rLoc = 13989;
 		rType = 0;
 		vrLen = 1726;
 		vrLoc = 12670;
@@ -63641,7 +64329,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleDataEnd";
 		rLen = 0;
-		rLoc = 19710;
+		rLoc = 19726;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 10241;
@@ -63711,7 +64399,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: mapVector";
 		rLen = 0;
-		rLoc = 19583;
+		rLoc = 19599;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 10726;
@@ -63811,7 +64499,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14973;
+		rLoc = 14989;
 		rType = 0;
 		vrLen = 1739;
 		vrLoc = 8792;
@@ -64953,7 +65641,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: Pickle";
 		rLen = 0;
-		rLoc = 23311;
+		rLoc = 23324;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 12992;
@@ -64987,7 +65675,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: i";
 		rLen = 0;
-		rLoc = 13973;
+		rLoc = 13989;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 7865;
@@ -65017,7 +65705,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 267";
 		rLen = 0;
-		rLoc = 6414;
+		rLoc = 6411;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 5608;
@@ -65057,7 +65745,7 @@
 		isa = PBXTextBookmark;
 		name = "GLLightDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7011;
+		rLoc = 7008;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 2163;
@@ -65187,7 +65875,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMap.h: 71";
 		rLen = 0;
-		rLoc = 1205;
+		rLoc = 1221;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 1005;
@@ -65337,7 +66025,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildLightMap";
 		rLen = 0;
-		rLoc = 17355;
+		rLoc = 17371;
 		rType = 0;
 		vrLen = 1759;
 		vrLoc = 14622;
@@ -65477,7 +66165,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: 141";
 		rLen = 0;
-		rLoc = 3802;
+		rLoc = 3799;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 2251;
@@ -65607,7 +66295,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: HandleGameFloorMapStart";
 		rLen = 53;
-		rLoc = 19260;
+		rLoc = 19276;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 18947;
@@ -65877,7 +66565,7 @@
 		isa = PBXTextBookmark;
 		name = "GLPoint.cpp: Render";
 		rLen = 0;
-		rLoc = 1505;
+		rLoc = 1502;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 0;
@@ -65897,7 +66585,7 @@
 		isa = PBXTextBookmark;
 		name = "GLPoint.cpp: Render";
 		rLen = 0;
-		rLoc = 1505;
+		rLoc = 1502;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 79;
@@ -66151,7 +66839,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7288;
+		rLoc = 7285;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 471;
@@ -66501,7 +67189,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 367";
 		rLen = 0;
-		rLoc = 8404;
+		rLoc = 8401;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 2017;
@@ -67028,10 +67716,6 @@
 		vrLen = 869;
 		vrLoc = 1291;
 	};
-	F5A0E6B502B691060115E516 = {
-		fRef = F5A0E6EE02B691080115E516;
-		isa = PBXBookmark;
-	};
 	F5A0E6B602B691060115E516 = {
 		fRef = F5A0E6F002B691090115E516;
 		isa = PBXTextBookmark;
@@ -67041,10 +67725,6 @@
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 166428;
-	};
-	F5A0E6C202B691060115E516 = {
-		fRef = F5A0E6EF02B691080115E516;
-		isa = PBXBookmark;
 	};
 	F5A0E6C302B691060115E516 = {
 		fRef = F5457BA402AFB19401E3BBF3;
@@ -67275,18 +67955,6 @@
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 0;
-	};
-	F5A0E6EE02B691080115E516 = {
-		isa = PBXFileReference;
-		name = iTargets_and_BCBIEGA.html;
-		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Targets/iTargets_and_BCBIEGA.html;
-		refType = 0;
-	};
-	F5A0E6EF02B691080115E516 = {
-		isa = PBXFileReference;
-		name = iTargets_and_BCBIEGA.html;
-		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Targets/iTargets_and_BCBIEGA.html;
-		refType = 0;
 	};
 	F5A0E6F002B691090115E516 = {
 		isa = PBXFileReference;
@@ -69087,7 +69755,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRewards.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 3899;
@@ -69247,7 +69915,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 204";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 4032;
@@ -69267,7 +69935,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 6507;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 3241;
@@ -69367,7 +70035,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 6507;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1688;
 		vrLoc = 4110;
@@ -69397,7 +70065,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 6507;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1688;
 		vrLoc = 4110;
@@ -69417,7 +70085,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRewards.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 3899;
@@ -69904,16 +70572,6 @@
 		vrLen = 1095;
 		vrLoc = 0;
 	};
-	F5A934F303A90F3901A80164 = {
-		fRef = F5AAB6D403A8D97F01A80164;
-		isa = PBXTextBookmark;
-		name = "CoreNamespace.cpp: 5";
-		rLen = 0;
-		rLoc = 24;
-		rType = 0;
-		vrLen = 53;
-		vrLoc = 0;
-	};
 	F5A9351803A90F3901A80164 = {
 		fRef = F5A934DF03A8E96001A80164;
 		isa = PBXTextBookmark;
@@ -70319,7 +70977,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlData.h: 312";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6063;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 0;
@@ -71619,7 +72277,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4488;
+		rLoc = 4485;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 963;
@@ -72234,16 +72892,6 @@
 		vrLen = 1327;
 		vrLoc = 0;
 	};
-	F5AA747B03AE153E01A80164 = {
-		fRef = F5921CEB021876D70127AF47;
-		isa = PBXTextBookmark;
-		name = "CoreApp.cpp: 23";
-		rLen = 0;
-		rLoc = 766;
-		rType = 0;
-		vrLen = 1182;
-		vrLoc = 469;
-	};
 	F5AA747C03AE153E01A80164 = {
 		fRef = F53F7CD902314F1301633C4B;
 		isa = PBXTextBookmark;
@@ -72342,16 +72990,6 @@
 		rLoc = 451;
 		rType = 0;
 		vrLen = 1470;
-		vrLoc = 0;
-	};
-	F5AA748903AE153E01A80164 = {
-		fRef = F5921CEA021876D70127AF47;
-		isa = PBXTextBookmark;
-		name = "CoreChildRecord.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1406;
 		vrLoc = 0;
 	};
 	F5AA748A03AE153E01A80164 = {
@@ -72569,7 +73207,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 48";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 169;
@@ -72734,10 +73372,6 @@
 		vrLen = 927;
 		vrLoc = 0;
 	};
-	F5AAA6CC03B34F8A01A80164 = {
-		isa = PBXTargetBookmark;
-		trg = F59396D5028C0CA6016230BF;
-	};
 	F5AAA6CE03B34F8A01A80164 = {
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
@@ -72767,16 +73401,6 @@
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 0;
-	};
-	F5AAA6D103B34F8A01A80164 = {
-		fRef = F5921CEA021876D70127AF47;
-		isa = PBXTextBookmark;
-		name = "CoreChildRecord.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1120;
-		vrLoc = 812;
 	};
 	F5AAA6D203B34F8A01A80164 = {
 		fRef = F5AA9AD3039E935801A80164;
@@ -72897,16 +73521,6 @@
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 294;
-	};
-	F5AAA6DF03B34F8A01A80164 = {
-		fRef = F5AAA78303B34F8C01A80164;
-		isa = PBXTextBookmark;
-		name = "SourceConditioner.pl: 267";
-		rLen = 0;
-		rLoc = 6573;
-		rType = 0;
-		vrLen = 1506;
-		vrLoc = 5955;
 	};
 	F5AAA6E003B34F8A01A80164 = {
 		fRef = F57B3121028C579D0195BBD7;
@@ -73557,16 +74171,10 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 203";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 0;
-	};
-	F5AAA78303B34F8C01A80164 = {
-		isa = PBXFileReference;
-		name = SourceConditioner.pl;
-		path = "/Users/southa/core-app/src/SourceConditioner.pl";
-		refType = 0;
 	};
 	F5AAA78403B34F8D01A80164 = {
 		isa = PBXFileReference;
@@ -73999,7 +74607,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 962";
 		rLen = 0;
-		rLoc = 25143;
+		rLoc = 25029;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 23350;
@@ -74509,7 +75117,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 3032;
+		rLoc = 3078;
 		rType = 0;
 		vrLen = 1626;
 		vrLoc = 1746;
@@ -74830,16 +75438,6 @@
 	F5AAD60603AF55A201A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F5AAD5C303AF435A01A80164;
-	};
-	F5AAD60A03AF55A201A80164 = {
-		fRef = F5AAB6D303A8D97F01A80164;
-		isa = PBXTextBookmark;
-		name = "CoreNamespace.h: 12";
-		rLen = 0;
-		rLoc = 216;
-		rType = 0;
-		vrLen = 242;
-		vrLoc = 0;
 	};
 	F5AAD60B03AF55A201A80164 = {
 		fRef = F52B3C13028C26530179D0A8;
@@ -75434,7 +76032,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4488;
+		rLoc = 4485;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 1813;
@@ -75494,7 +76092,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 11656;
+		rLoc = 11702;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 756;
@@ -75634,7 +76232,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 129";
 		rLen = 0;
-		rLoc = 4127;
+		rLoc = 3997;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 8463;
@@ -75664,7 +76262,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 305";
 		rLen = 0;
-		rLoc = 8097;
+		rLoc = 7967;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 7037;
@@ -75684,7 +76282,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 460";
 		rLen = 0;
-		rLoc = 12764;
+		rLoc = 12634;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 11409;
@@ -75704,7 +76302,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 178";
 		rLen = 0;
-		rLoc = 5694;
+		rLoc = 5564;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 3422;
@@ -75724,7 +76322,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 358";
 		rLen = 0;
-		rLoc = 9590;
+		rLoc = 9460;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 7963;
@@ -75744,7 +76342,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 342";
 		rLen = 40;
-		rLoc = 9252;
+		rLoc = 9122;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 8059;
@@ -75764,7 +76362,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 360";
 		rLen = 0;
-		rLoc = 9590;
+		rLoc = 9460;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 8455;
@@ -76084,7 +76682,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 577";
 		rLen = 0;
-		rLoc = 15468;
+		rLoc = 15338;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 14166;
@@ -76094,7 +76692,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4488;
+		rLoc = 4485;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 1813;
@@ -76124,7 +76722,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 955";
 		rLen = 0;
-		rLoc = 24654;
+		rLoc = 24540;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 24371;
@@ -76214,7 +76812,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 955";
 		rLen = 0;
-		rLoc = 24654;
+		rLoc = 24540;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 12974;
@@ -76234,7 +76832,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 11656;
+		rLoc = 11702;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 756;
@@ -76680,7 +77278,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlData.h: 301";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6063;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 5534;
@@ -76690,7 +77288,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 218";
 		rLen = 0;
-		rLoc = 5560;
+		rLoc = 5430;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 4276;
@@ -76870,7 +77468,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 918";
 		rLen = 0;
-		rLoc = 22377;
+		rLoc = 22247;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 22603;
@@ -76930,7 +77528,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 864";
 		rLen = 0;
-		rLoc = 20422;
+		rLoc = 20292;
 		rType = 0;
 		vrLen = 1624;
 		vrLoc = 20779;
@@ -76950,7 +77548,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 341";
 		rLen = 0;
-		rLoc = 7773;
+		rLoc = 7643;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 7479;
@@ -76970,7 +77568,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 696";
 		rLen = 0;
-		rLoc = 16719;
+		rLoc = 16589;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 17102;
@@ -77040,7 +77638,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 707";
 		rLen = 0;
-		rLoc = 16931;
+		rLoc = 16801;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 17100;
@@ -77060,7 +77658,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 838";
 		rLen = 0;
-		rLoc = 20428;
+		rLoc = 20298;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2162;
@@ -77080,7 +77678,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 838";
 		rLen = 0;
-		rLoc = 20428;
+		rLoc = 20298;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 3128;
@@ -77100,7 +77698,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: NextLinkNameTake";
 		rLen = 0;
-		rLoc = 25158;
+		rLoc = 25044;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 24262;
@@ -77120,7 +77718,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: nameStream";
 		rLen = 0;
-		rLoc = 25131;
+		rLoc = 25017;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 24257;
@@ -77150,7 +77748,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 217";
 		rLen = 0;
-		rLoc = 5560;
+		rLoc = 5430;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 5157;
@@ -77210,7 +77808,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 217";
 		rLen = 0;
-		rLoc = 5560;
+		rLoc = 5430;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 3128;
@@ -77240,7 +77838,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 633";
 		rLen = 0;
-		rLoc = 15997;
+		rLoc = 15867;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 15304;
@@ -77280,7 +77878,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlData.h: 301";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6063;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 5534;
@@ -77660,7 +78258,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11916;
+		rLoc = 11913;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 3260;
@@ -78400,7 +78998,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 48";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 182;
@@ -78848,7 +79446,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 201";
 		rLen = 0;
-		rLoc = 6000;
+		rLoc = 5997;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 3841;
@@ -78868,7 +79466,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 12891;
+		rLoc = 12888;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 8719;
@@ -78918,7 +79516,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 201";
 		rLen = 0;
-		rLoc = 6000;
+		rLoc = 5997;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 3841;
@@ -78938,7 +79536,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 13025;
+		rLoc = 13022;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 8720;
@@ -78948,7 +79546,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 197";
 		rLen = 0;
-		rLoc = 5811;
+		rLoc = 5808;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 3841;
@@ -78978,7 +79576,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 13025;
+		rLoc = 13022;
 		rType = 0;
 		vrLen = 1719;
 		vrLoc = 8719;
@@ -79298,7 +79896,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 10286;
+		rLoc = 10283;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 7581;
@@ -79468,7 +80066,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79498,7 +80096,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79678,7 +80276,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79996,7 +80594,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 6507;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1715;
 		vrLoc = 4108;
@@ -80576,7 +81174,7 @@
 		isa = PBXTextBookmark;
 		name = "GLLightDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4630;
+		rLoc = 4627;
 		rType = 0;
 		vrLen = 2246;
 		vrLoc = 2620;
@@ -80706,7 +81304,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 11757;
+		rLoc = 11803;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 5914;
@@ -80726,7 +81324,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 11757;
+		rLoc = 11803;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 5914;
@@ -80746,7 +81344,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 73;
-		rLoc = 7455;
+		rLoc = 7501;
 		rType = 0;
 		vrLen = 1643;
 		vrLoc = 6693;
@@ -80776,7 +81374,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 9477;
+		rLoc = 9523;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 5734;
@@ -80786,7 +81384,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 9477;
+		rLoc = 9523;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 5734;
@@ -80806,7 +81404,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 24;
-		rLoc = 11218;
+		rLoc = 11264;
 		rType = 0;
 		vrLen = 1705;
 		vrLoc = 9952;
@@ -80866,7 +81464,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePlayerUtils.cpp: FillControlQueues";
 		rLen = 0;
-		rLoc = 11656;
+		rLoc = 11702;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 10221;
@@ -80976,7 +81574,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 8127;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 6839;
@@ -80986,7 +81584,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 5020;
+		rLoc = 5017;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 1894;
@@ -81006,7 +81604,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 259";
 		rLen = 0;
-		rLoc = 6556;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 5082;
@@ -81046,7 +81644,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 8127;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 6839;
@@ -81056,7 +81654,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRewards.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 3899;
@@ -81386,7 +81984,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 5020;
+		rLoc = 5017;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 1894;
@@ -81436,7 +82034,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 322";
 		rLen = 0;
-		rLoc = 8137;
+		rLoc = 8134;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 6653;
@@ -81476,7 +82074,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 314";
 		rLen = 0;
-		rLoc = 7966;
+		rLoc = 7963;
 		rType = 0;
 		vrLen = 1559;
 		vrLoc = 6966;
@@ -81496,7 +82094,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 314";
 		rLen = 0;
-		rLoc = 7966;
+		rLoc = 7963;
 		rType = 0;
 		vrLen = 1552;
 		vrLoc = 6202;
@@ -81616,7 +82214,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 259";
 		rLen = 0;
-		rLoc = 6556;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 5082;
@@ -81646,7 +82244,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: GameDefServer";
 		rLen = 0;
-		rLoc = 6813;
+		rLoc = 6810;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 5730;
@@ -82382,7 +82980,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: 281";
 		rLen = 0;
-		rLoc = 7705;
+		rLoc = 7702;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 1006;
@@ -82472,7 +83070,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: 285";
 		rLen = 0;
-		rLoc = 7786;
+		rLoc = 7783;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 573;
@@ -83328,7 +83926,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 12722;
+		rLoc = 12719;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 8122;
@@ -83858,7 +84456,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 104";
 		rLen = 0;
-		rLoc = 5211;
+		rLoc = 5208;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 0;
@@ -83908,7 +84506,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -84118,7 +84716,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 161";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 4744;
@@ -84128,7 +84726,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 76;
-		rLoc = 13292;
+		rLoc = 13289;
 		rType = 0;
 		vrLen = 1629;
 		vrLoc = 11549;
@@ -84148,7 +84746,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 164";
 		rLen = 0;
-		rLoc = 4815;
+		rLoc = 4812;
 		rType = 0;
 		vrLen = 1310;
 		vrLoc = 3154;
@@ -84168,7 +84766,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 161";
 		rLen = 89;
-		rLoc = 4134;
+		rLoc = 4131;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 3220;
@@ -84188,7 +84786,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 186";
 		rLen = 0;
-		rLoc = 4476;
+		rLoc = 4473;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 4010;
@@ -84208,7 +84806,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 7303;
+		rLoc = 7300;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 5781;
@@ -84288,7 +84886,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 206";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 4045;
@@ -84298,7 +84896,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 7219;
+		rLoc = 7216;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 6043;
@@ -84384,7 +84982,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMap.h: 44";
 		rLen = 0;
-		rLoc = 1205;
+		rLoc = 1221;
 		rType = 0;
 		vrLen = 517;
 		vrLoc = 769;
@@ -84414,7 +85012,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMap.h: 44";
 		rLen = 0;
-		rLoc = 1205;
+		rLoc = 1221;
 		rType = 0;
 		vrLen = 517;
 		vrLoc = 769;
@@ -84670,7 +85268,7 @@
 		isa = PBXTextBookmark;
 		name = "GLLightDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7620;
+		rLoc = 7617;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 6490;
@@ -84690,7 +85288,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 3744;
@@ -84750,7 +85348,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6280;
+		rLoc = 6277;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 5153;
@@ -84760,7 +85358,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9846;
+		rLoc = 9843;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 8714;
@@ -84770,7 +85368,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6655;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 5343;
@@ -84910,7 +85508,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 44";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 0;
@@ -84930,7 +85528,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 98";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 996;
@@ -84960,7 +85558,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 111";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1425;
 		vrLoc = 1450;
@@ -84980,7 +85578,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 124";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -85100,7 +85698,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 13495;
+		rLoc = 13492;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 11000;
@@ -85130,7 +85728,7 @@
 		isa = PBXTextBookmark;
 		name = "GLLightDef.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7620;
+		rLoc = 7617;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 6490;
@@ -85160,7 +85758,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 9690;
@@ -85180,7 +85778,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMotion.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 3744;
@@ -85210,7 +85808,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: LoadFloorMap";
 		rLen = 0;
-		rLoc = 24058;
+		rLoc = 24071;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 23259;
@@ -85230,7 +85828,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRecords.cpp: GameRecords";
 		rLen = 0;
-		rLoc = 8127;
+		rLoc = 8124;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 6975;
@@ -85250,7 +85848,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
 		rLen = 0;
-		rLoc = 13685;
+		rLoc = 13682;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 12476;
@@ -85300,7 +85898,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRewards.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 5207;
+		rLoc = 5204;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 4039;
@@ -85320,7 +85918,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 341";
 		rLen = 0;
-		rLoc = 8625;
+		rLoc = 8622;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 7506;
@@ -85340,7 +85938,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: TileSpecGet";
 		rLen = 0;
-		rLoc = 8055;
+		rLoc = 8052;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 7363;
@@ -85360,7 +85958,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3802;
+		rLoc = 3799;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 2202;
@@ -85380,7 +85978,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6280;
+		rLoc = 6277;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 5153;
@@ -85390,7 +85988,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9846;
+		rLoc = 9843;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 8714;
@@ -85400,7 +85998,7 @@
 		isa = PBXTextBookmark;
 		name = "GameChequePoint.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6655;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 5343;
@@ -85420,7 +86018,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 50";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 566;
@@ -85440,7 +86038,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 72";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 566;
@@ -85500,7 +86098,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 73";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 370;
@@ -85600,7 +86198,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 116";
 		rLen = 0;
-		rLoc = 8122;
+		rLoc = 8119;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 2092;
@@ -85610,7 +86208,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: 137";
 		rLen = 0;
-		rLoc = 7076;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 2092;
@@ -85640,7 +86238,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: 44";
 		rLen = 0;
-		rLoc = 7076;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 0;
@@ -85680,7 +86278,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 47";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3847;
 		rType = 0;
 		vrLen = 1037;
 		vrLoc = 0;
@@ -85700,7 +86298,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
 		rLen = 0;
-		rLoc = 13760;
+		rLoc = 13757;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 12526;
@@ -85720,7 +86318,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 9642;
@@ -85770,7 +86368,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 337";
 		rLen = 0;
-		rLoc = 8625;
+		rLoc = 8622;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 4279;
@@ -85780,7 +86378,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTraits.cpp: RebuildTraits";
 		rLen = 0;
-		rLoc = 5020;
+		rLoc = 5017;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 3900;
@@ -85790,7 +86388,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 140";
 		rLen = 0;
-		rLoc = 3849;
+		rLoc = 3846;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 1826;
@@ -85819,7 +86417,7 @@
 		fRef = F54631EF02ACC78201A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 185";
-		rLen = 4447;
+		rLen = 4444;
 		rLoc = 4274;
 		rType = 0;
 		vrLen = 1164;
@@ -85879,7 +86477,7 @@
 		fRef = F5B3598B039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 83";
-		rLen = 5055;
+		rLen = 5052;
 		rLoc = 3067;
 		rType = 0;
 		vrLen = 1089;
@@ -85890,7 +86488,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefServer.cpp: GameDefServer";
 		rLen = 0;
-		rLoc = 7076;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 0;
@@ -85910,7 +86508,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: TileSpecGet";
 		rLen = 0;
-		rLoc = 8055;
+		rLoc = 8052;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 7361;
@@ -85930,7 +86528,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 132";
 		rLen = 0;
-		rLoc = 3849;
+		rLoc = 3846;
 		rType = 0;
 		vrLen = 906;
 		vrLoc = 979;
@@ -86060,7 +86658,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileMap.cpp: TileSpecGet";
 		rLen = 0;
-		rLoc = 8055;
+		rLoc = 8052;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 7361;
@@ -86330,7 +86928,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 12722;
+		rLoc = 12719;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 8122;
@@ -87089,7 +87687,7 @@
 		fRef = F595FD83035821F601A80166;
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: 236";
-		rLen = 3813;
+		rLen = 3810;
 		rLoc = 5952;
 		rType = 0;
 		vrLen = 1237;
@@ -87320,7 +87918,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 10046;
+		rLoc = 10043;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 5216;
@@ -87360,7 +87958,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 9707;
+		rLoc = 9704;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 123;
@@ -87380,7 +87978,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 7497;
+		rLoc = 7494;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 4290;
@@ -87420,7 +88018,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 7497;
+		rLoc = 7494;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 4290;
@@ -87550,7 +88148,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfig.cpp: GameConfig";
 		rLen = 0;
-		rLoc = 8387;
+		rLoc = 8384;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 2258;
@@ -87789,7 +88387,7 @@
 		fRef = F5B39DB20383F5FB01A80164;
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 118";
-		rLen = 1013;
+		rLen = 1010;
 		rLoc = 2365;
 		rType = 0;
 		vrLen = 1458;
@@ -88360,7 +88958,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 132";
 		rLen = 0;
-		rLoc = 3849;
+		rLoc = 3846;
 		rType = 0;
 		vrLen = 906;
 		vrLoc = 979;
@@ -88830,7 +89428,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 204";
 		rLen = 0;
-		rLoc = 4913;
+		rLoc = 4910;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 4032;
@@ -89692,7 +90290,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14381;
+		rLoc = 14397;
 		rType = 0;
 		vrLen = 1152;
 		vrLoc = 5924;
@@ -89702,7 +90300,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 10854;
+		rLoc = 10851;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 1991;
@@ -89842,7 +90440,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
 		rLen = 0;
-		rLoc = 10252;
+		rLoc = 10249;
 		rType = 0;
 		vrLen = 1229;
 		vrLoc = 5135;
@@ -90202,7 +90800,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -90222,7 +90820,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -90242,7 +90840,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11298;
+		rLoc = 11295;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -90292,7 +90890,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11943;
+		rLoc = 11940;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 9969;
@@ -90332,7 +90930,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11916;
+		rLoc = 11913;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 9969;
@@ -90502,7 +91100,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ElementSet";
 		rLen = 0;
-		rLoc = 14973;
+		rLoc = 14989;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 8725;
@@ -90561,8 +91159,8 @@
 		fRef = F55FF7D002D204F301F9DCD1;
 		isa = PBXTextBookmark;
 		name = "GLRectangle.cpp: 164";
-		rLen = 1064;
-		rLoc = 3945;
+		rLen = 1061;
+		rLoc = 3937;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 3490;
@@ -90632,7 +91230,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 3802;
+		rLoc = 3799;
 		rType = 0;
 		vrLen = 1716;
 		vrLoc = 2342;
@@ -90912,7 +91510,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: ctr";
 		rLen = 0;
-		rLoc = 17355;
+		rLoc = 17371;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 15985;
@@ -90952,7 +91550,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: linkSlot";
 		rLen = 0;
-		rLoc = 15887;
+		rLoc = 15903;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 15123;
@@ -90982,7 +91580,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildLightMap";
 		rLen = 0;
-		rLoc = 17408;
+		rLoc = 17424;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 16773;
@@ -91662,7 +92260,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildSolidMap";
 		rLen = 0;
-		rLoc = 13484;
+		rLoc = 13500;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 13189;
@@ -91692,7 +92290,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: RebuildSolidMap";
 		rLen = 0;
-		rLoc = 13484;
+		rLoc = 13500;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 12553;
@@ -91722,7 +92320,7 @@
 		isa = PBXTextBookmark;
 		name = "GameTileTraits.cpp: 237";
 		rLen = 0;
-		rLoc = 6196;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 5043;
@@ -92052,7 +92650,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7491;
+		rLoc = 7488;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 4810;
@@ -92072,7 +92670,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7491;
+		rLoc = 7488;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 4810;
@@ -92112,7 +92710,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7242;
+		rLoc = 7239;
 		rType = 0;
 		vrLen = 1734;
 		vrLoc = 4723;
@@ -92172,7 +92770,7 @@
 		isa = PBXTextBookmark;
 		name = "GameGraphicModel.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7288;
+		rLoc = 7285;
 		rType = 0;
 		vrLen = 1616;
 		vrLoc = 5426;
@@ -92212,7 +92810,7 @@
 		isa = PBXTextBookmark;
 		name = "GameFloorMap.cpp: Pickle";
 		rLen = 0;
-		rLoc = 23875;
+		rLoc = 23888;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 3986;
@@ -92491,7 +93089,7 @@
 		fRef = F546321D02AD04B701A7DA6B;
 		isa = PBXTextBookmark;
 		name = "GameGraphicSprite.cpp: 14";
-		rLen = 4710;
+		rLen = 4707;
 		rLoc = 331;
 		rType = 0;
 		vrLen = 1182;
@@ -92522,7 +93120,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 132";
 		rLen = 0;
-		rLoc = 8101;
+		rLoc = 8098;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 729;
@@ -93202,7 +93800,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 8396;
+		rLoc = 8393;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 0;
@@ -94711,16 +95309,6 @@
 		vrLen = 1133;
 		vrLoc = 0;
 	};
-	F5F2C72402A43D4501CB7A62 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1123;
-		vrLoc = 0;
-	};
 	F5F2C72502A43D4501CB7A62 = {
 		fRef = F548851B022F992901D6DA80;
 		isa = PBXTextBookmark;
@@ -94916,7 +95504,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreXML.cpp: ProcessStartElement";
 		rLen = 0;
-		rLoc = 4389;
+		rLoc = 4366;
 		rType = 0;
 		vrLen = 1191;
 		vrLoc = 3594;
@@ -94961,16 +95549,6 @@
 		vrLen = 1065;
 		vrLoc = 0;
 	};
-	F5F2C74402A43D4501CB7A62 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 32";
-		rLen = 58;
-		rLoc = 757;
-		rType = 0;
-		vrLen = 1060;
-		vrLoc = 0;
-	};
 	F5F2C74502A43D4501CB7A62 = {
 		fRef = F548851B022F992901D6DA80;
 		isa = PBXTextBookmark;
@@ -94980,16 +95558,6 @@
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 454;
-	};
-	F5F2C74602A43D4501CB7A62 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 33";
-		rLen = 0;
-		rLoc = 821;
-		rType = 0;
-		vrLen = 1066;
-		vrLoc = 0;
 	};
 	F5F2C74702A43D4501CB7A62 = {
 		fRef = F52B3C0D028C26530179D0A8;
@@ -95049,16 +95617,6 @@
 		rLoc = 224;
 		rType = 0;
 		vrLen = 195;
-		vrLoc = 0;
-	};
-	F5F2C74E02A43D4501CB7A62 = {
-		fRef = F52B3C14028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreScript.h: 33";
-		rLen = 0;
-		rLoc = 822;
-		rType = 0;
-		vrLen = 1096;
 		vrLoc = 0;
 	};
 	F5F2C74F02A43D4501CB7A62 = {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreXML.cpp,v 1.13 2002/12/20 13:17:34 southa Exp $
+ * $Id: CoreXML.cpp,v 1.14 2002/12/29 20:59:52 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.14  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.13  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -59,7 +62,7 @@ using namespace Mushware;
 using namespace std;
 
 
-CoreXML::CoreXML(istream& inStream, const string& inName = "<unknown stream>", U32 inLine=1):
+CoreXML::CoreXML(istream& inStream, const string& inName, U32 inLine):
     m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_threaded(false), m_line(inLine)
 {
     m_parser = XML_ParserCreate(NULL);

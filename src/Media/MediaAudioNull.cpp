@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioNull.cpp,v 1.5 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.6 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -49,7 +52,7 @@ MediaAudioNull::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioNull::Play(MediaSoundStream& inSoundStream, U32 inLoop=10000)
+MediaAudioNull::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 {
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.8 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlLink.cpp,v 1.9 2002/12/29 20:59:59 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.9  2002/12/29 20:59:59  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -135,19 +138,18 @@ auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
 U32 MustlLink::m_linkNameNum=1;
 
 // Output for the private LinkState class
-ostream&
-operator<<(ostream &ioOut, const MustlLink::LinkState& inLinkState)
+void
+MustlLink::LinkState::Print(ostream& ioOut) const
 {
-    ioOut << "linkCheckMsec=" << inLinkState.linkCheckMsec << ", ";
-    ioOut << "linkState=" << inLinkState.linkState << ", ";
-    ioOut << "linkCheckState=" << inLinkState.linkCheckState << ", ";
-    ioOut << "linkPingMsec=" << inLinkState.linkPingMsec << ", ";
-    ioOut << "linkErrorsSinceGood=" << inLinkState.linkErrorsSinceGood << ", ";
-    ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
-    ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";
-    ioOut << "linkReceiveCtr=" << inLinkState.linkReceiveCtr << ", ";
-    ioOut << "linkCheckSeqNum=" << static_cast<U32>(inLinkState.linkCheckSeqNum);
-    return ioOut;
+    ioOut << "linkCheckMsec=" << linkCheckMsec << ", ";
+    ioOut << "linkState=" << linkState << ", ";
+    ioOut << "linkCheckState=" << linkCheckState << ", ";
+    ioOut << "linkPingMsec=" << linkPingMsec << ", ";
+    ioOut << "linkErrorsSinceGood=" << linkErrorsSinceGood << ", ";
+    ioOut << "linkErrorTotal=" << linkErrorTotal << ", ";
+    ioOut << "linkSendCtr=" << linkSendCtr << ", ";
+    ioOut << "linkReceiveCtr=" << linkReceiveCtr << ", ";
+    ioOut << "linkCheckSeqNum=" << static_cast<U32>(linkCheckSeqNum);
 }
 
 MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
@@ -907,7 +909,7 @@ MustlLink::LinkInfoLog(void) const
 void
 MustlLink::Print(ostream& ioOut) const
 {
-    ioOut << "tcpState=[" << m_tcpState << "], udpState=[" << m_udpState;
+    ioOut << "tcpState=[" << m_tcpState.Print() << "], udpState=[" << m_udpState.Print();
     ioOut << "], currentMsec=" << m_currentMsec << ", creationMsec=" << m_creationMsec;
     ioOut  << ", lastActivityMsec=" << m_lastActivityMsec << ", lastIDRequestMsec=" << m_lastIDRequestMsec;
     ioOut << ", netID";
@@ -997,7 +999,7 @@ ioOut << "<td><font class=\"";
     ioOut << "\">" << m_udpState.linkPingMsec << "ms</font></td>";
 
     m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
-    ioOut << "<td>" << MustlUtils::MsecDurationToString(m_currentMsec - m_creationMsec) << "</td>";
+    ioOut << "<td>" << MustlUtils::MsecDurationToString(static_cast<U32>(m_currentMsec - m_creationMsec)) << "</td>"; // Unsure about cast
     ioOut << endl;
 }
 

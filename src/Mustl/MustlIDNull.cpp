@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlIDNull.cpp,v 1.2 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlIDNull.cpp,v 1.3 2002/12/29 20:59:59 southa Exp $
  * $Log: MustlIDNull.cpp,v $
+ * Revision 1.3  2002/12/29 20:59:59  southa
+ * More build fixes
+ *
  * Revision 1.2  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -23,6 +26,10 @@
  */
 
 #include "MustlIDNull.h"
+
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
 using namespace Mustl;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.5 2002/12/29 20:30:57 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.6 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.6  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -204,7 +207,7 @@ MustlWebLink::Send(istream& ioStream)
     while (ioStream.good() && !ioStream.eof())
     {
         netData.PrepareForWrite();
-        ioStream.read(netData.WritePtrGet(), netData.WriteSizeGet());
+        ioStream.read(reinterpret_cast<char *>(netData.WritePtrGet()), netData.WriteSizeGet());
         U32 length=ioStream.gcount();
         netData.WritePosAdd(length);
         if (length == 0) break;

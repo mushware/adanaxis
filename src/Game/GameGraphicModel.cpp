@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.10 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -253,7 +256,7 @@ GameGraphicModel::NullHandler(CoreXML& inXML)
 }
 
 void
-GameGraphicModel::Pickle(ostream& inOut, const string& inPrefix="") const
+GameGraphicModel::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<!-- Incomplete -->" << endl;
 }

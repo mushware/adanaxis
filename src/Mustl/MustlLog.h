@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.4 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlLog.h,v 1.5 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.5  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -78,7 +81,7 @@ protected:
     std::ostream& Log(void);
 
 private:
-    ofstream *m_outStream;
+    std::ofstream *m_outStream;
     std::ostream *m_nullStream;
     bool m_netLog;
     bool m_webLog;

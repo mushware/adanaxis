@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.10 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLFont.cpp,v 1.11 2002/12/29 20:59:52 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -102,7 +105,7 @@ GLFont::RenderCharacter(U32 inChar) const
 }
 
 void
-GLFont::RenderString(const string& inStr, tVal inAlign=-1.0) const
+GLFont::RenderString(const string& inStr, tVal inAlign) const
 {
     GLUtils gl;
     tVal length=StringLengthGet(inStr);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.7 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLPoint.cpp,v 1.8 2002/12/29 20:59:52 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -51,7 +54,7 @@ GLPoint::Render(void) const
 }
 
 void
-GLPoint::Pickle(ostream& inOut, const string& inPrefix="") const
+GLPoint::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << x << "," << y << endl;
 }

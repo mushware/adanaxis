@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.cpp,v 1.6 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameRewards.cpp,v 1.7 2002/12/29 20:59:57 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.7  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -119,7 +122,7 @@ GameRewards::NullHandler(CoreXML& inXML)
 }
 
 void
-GameRewards::Pickle(ostream& inOut, const string& inPrefix="") const
+GameRewards::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << "<!-- Not implemented -->" << endl;
 // Fill me in

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.22 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.23 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.23  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.22  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -230,7 +233,7 @@ GameTileTraits::HandleTraitsEnd(CoreXML& inXML)
 }
 
 void
-GameTileTraits::Pickle(ostream& inOut, const string& inPrefix="") const
+GameTileTraits::Pickle(ostream& inOut, const string& inPrefix) const
 {
     GameTraits::Pickle(inOut, inPrefix);
     for (U32 i=0; i<m_graphics.size(); ++i)
