@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: MediaSDL.h,v 1.3 2002/06/27 12:36:08 southa Exp $
+ * $Id: MediaSDL.h,v 1.4 2002/07/06 18:04:20 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.4  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:08  southa
  * Build process fixes
  *
@@ -58,15 +61,22 @@ class MediaSDL
 {
 public:
     ~MediaSDL();
-    static MediaSDL& Instance(void) {return *((m_instance==NULL)?m_instance=new MediaSDL:m_instance);}
+    static MediaSDL& Instance(void)
+    {
+        if (m_instance.get() != NULL) return *m_instance;
+        m_instance.reset(new MediaSDL);
+        return *m_instance;
+    }
     void Init(U32 inWhich);
     void InitVideo(void) {Init(SDL_INIT_VIDEO);}
     void InitAudio(void) {Init(SDL_INIT_AUDIO);}
     
 protected:
-        MediaSDL(): m_inited(0) {}
+    MediaSDL(): m_inited(0) {}
+
 private:
-    static MediaSDL *m_instance;
+    static auto_ptr<MediaSDL> m_instance;
     U32 m_inited;
 };
+
 #endif

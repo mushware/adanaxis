@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: MediaSDL.cpp,v 1.2 2002/06/27 12:36:08 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.3 2002/07/06 18:04:20 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.3  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:08  southa
  * Build process fixes
  *
@@ -24,16 +27,17 @@
 
 #include "MediaSDL.h"
 
-MediaSDL *MediaSDL::m_instance=NULL;
+auto_ptr<MediaSDL> MediaSDL::m_instance;
 
 MediaSDL::~MediaSDL()
 {
     if (m_inited != 0)
     {
+        cerr << "Quitting SDL" << endl;
         SDL_Quit();
     }
 }
-        
+
 void
 MediaSDL::Init(U32 inWhich)
 {
