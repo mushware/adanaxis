@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.11 2002/08/21 15:39:01 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.12 2002/08/21 16:09:04 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.12  2002/08/21 16:09:04  southa
+ * GameTypeRace state tweaks
+ *
  * Revision 1.11  2002/08/21 15:39:01  southa
  * GameTypeRace states
  *
@@ -65,7 +68,16 @@ GameTypeRace::EventHandler(const GameEvent& inEvent)
     }
     else if (typeid(inEvent) == typeid(GameEventSequenceAdvance))
     {
-        SequenceAdvance();
+        switch(m_raceState)
+        {
+            case kPrelude:
+            case kRunning:
+                SequenceAdvance();
+                break;
+
+            default:
+                break;
+        }
     }
 }
 
@@ -89,12 +101,17 @@ GameTypeRace::SequenceAdvance(void)
     GameTimer::tMsec gameTime=timer.GameMsecGet();
 
     tVal judgementRatio=0.0;
-    
-    if (m_raceState == kPrelude)
+
+    switch(m_raceState)
     {
-        m_startTime=gameTime;
-        m_raceState=kRunning;
-        GameDataUtils::NamedDialoguesAdd(m_startAction);
+        case kPrelude:
+            m_startTime=gameTime;
+            m_raceState=kRunning;
+            GameDataUtils::NamedDialoguesAdd(m_startAction);
+            break;
+
+        default:
+            break;
     }
     
     U32 lastSequence = m_sequence;
@@ -111,16 +128,26 @@ GameTypeRace::SequenceAdvance(void)
     {
         if (m_lapCount == m_laps)
         {
-            // Race is finsihed
-            GameDataUtils::NamedDialoguesAdd(m_endAction);
+            // Race is finisihed
             m_raceState = kResult;
+            m_endTime = gameTime;
             // Calculate the total available time
             tVal extraTime=0;
             for (U32 i=0; i < m_chequePoints.size(); ++i)
             {
                 extraTime += m_chequePoints[i]->AddTimeGet();
             }
-            judgementRatio = (gameTime - m_startTime) / (m_initialTime + m_laps * extraTime);
+            judgementRatio = (m_endTime - m_startTime) / (m_initialTime + m_laps * extraTime);
+            if (judgementRatio <= 1.0)
+            {
+                // Race won
+                GameDataUtils::NamedDialoguesAdd(m_winAction);
+            }
+            else
+            {
+                // Race lost
+                GameDataUtils::NamedDialoguesAdd(m_loseAction);
+            }
         }
         
         // Just passed the lap start
@@ -184,8 +211,7 @@ GameTypeRace::SequenceAdvance(void)
         GameData::Instance().RewardsGet().JudgementPass(judgementRatio);
     }
 }
-
-
+  
 void
 GameTypeRace::Move(void)
 {
@@ -216,6 +242,7 @@ GameTypeRace::Render(void) const
 
         case kResult:
             RenderTimes();
+            RenderResult();
             break;
             
         case kInvalid:
@@ -253,7 +280,6 @@ GameTypeRace::UpdateTimes(void)
 void
 GameTypeRace::RenderTimes(void) const
 {
-    cerr << "RederTimes" << endl;
     GLUtils::OrthoPrologue();
     GLUtils::ColourSet(1.0,1.0,1.0,0.75);
     GLUtils orthoGL;
@@ -312,6 +338,46 @@ GameTypeRace::RenderTimes(void) const
 }
 
 void
+GameTypeRace::RenderResult(void) const
+{
+    GLUtils::OrthoPrologue();
+    GLUtils::ColourSet(1.0,1.0,1.0,0.75);
+    GLUtils orthoGL;
+    orthoGL.MoveTo(0,-0.03);
+    GLString timeStr(GameTimer::MsecToLongString(m_endTime - m_startTime),
+                          GLFontRef("font-mono1", 0.03), 0);
+    timeStr.Render();
+
+    orthoGL.MoveRelative(0, -0.06);
+    GLUtils::ColourSet(1.0,1.0,0.0,0.75);
+
+    if (m_records.LapTimeValid())
+    {
+        GLString lapRecordStr(GameTimer::MsecToLongString(m_records.LapTimeGet()),
+                              GLFontRef("font-mono1", 0.03), 0);
+        lapRecordStr.Render();
+    }
+    
+    orthoGL.MoveRelative(0, -0.03);
+    GLUtils::ColourSet(0.0,1.0,1.0,0.75);
+    
+    for (U32 i=0; i<m_chequePoints.size(); ++i)
+    {
+        orthoGL.MoveRelative(0, -0.03);
+        if (m_records.SplitTimeValid(i))
+        {
+            U32 next=i+1;
+            if (next >= m_chequePoints.size()) next=0;
+            ostringstream message;
+            message << i << "-" << next << ": " << GameTimer::MsecToString(m_records.SplitTimeGet(i));
+            GLString splitRecordStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+            splitRecordStr.Render();
+        }
+    }
+    GLUtils::OrthoEpilogue();
+}
+
+void
 GameTypeRace::HandleGameEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
@@ -345,11 +411,19 @@ GameTypeRace::HandleFinalLapActionEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleEndActionEnd(CoreXML& inXML)
+GameTypeRace::HandleWinActionEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
-    const char *failMessage="Bad format for endaction.  Should be <endaction>^raceend</endaction>";
-    if (!(data >> m_endAction)) inXML.Throw(failMessage);
+    const char *failMessage="Bad format for winaction.  Should be <winaction>^racewin</winaction>";
+    if (!(data >> m_winAction)) inXML.Throw(failMessage);
+}
+
+void
+GameTypeRace::HandleLoseActionEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for loseaction.  Should be <loseaction>^racelose</loseaction>";
+    if (!(data >> m_loseAction)) inXML.Throw(failMessage);
 }
 
 void
@@ -402,8 +476,10 @@ GameTypeRace::UnpicklePrologue(void)
     m_endTable[kPickleData]["startaction"] = &GameTypeRace::HandleStartActionEnd;
     m_startTable[kPickleData]["finallapaction"] = &GameTypeRace::NullHandler;
     m_endTable[kPickleData]["finallapaction"] = &GameTypeRace::HandleFinalLapActionEnd;
-    m_startTable[kPickleData]["endaction"] = &GameTypeRace::NullHandler;
-    m_endTable[kPickleData]["endaction"] = &GameTypeRace::HandleEndActionEnd;
+    m_startTable[kPickleData]["winaction"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["winaction"] = &GameTypeRace::HandleWinActionEnd;
+    m_startTable[kPickleData]["loseaction"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["loseaction"] = &GameTypeRace::HandleLoseActionEnd;
     m_startTable[kPickleData]["initialtime"] = &GameTypeRace::NullHandler;
     m_endTable[kPickleData]["initialtime"] = &GameTypeRace::HandleInitialTimeEnd;
     m_startTable[kPickleData]["laps"] = &GameTypeRace::NullHandler;

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.6 2002/08/21 15:39:01 southa Exp $
+ * $Id: GameTypeRace.h,v 1.7 2002/08/21 16:09:04 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.7  2002/08/21 16:09:04  southa
+ * GameTypeRace state tweaks
+ *
  * Revision 1.6  2002/08/21 15:39:01  southa
  * GameTypeRace states
  *
@@ -59,7 +62,8 @@ private:
     void HandleLapTimeEnd(CoreXML& inXML);
     void HandleStartActionEnd(CoreXML& inXML);
     void HandleFinalLapActionEnd(CoreXML& inXML);
-    void HandleEndActionEnd(CoreXML& inXML);
+    void HandleWinActionEnd(CoreXML& inXML);
+    void HandleLoseActionEnd(CoreXML& inXML);
     void HandleInitialTimeEnd(CoreXML& inXML);
     void HandleLapsEnd(CoreXML& inXML);
     void HandleChequePointStart(CoreXML& inXML);
@@ -91,10 +95,12 @@ private:
     void SequenceAdvance(void);
     void UpdateTimes(void);
     void RenderTimes(void) const;
+    void RenderResult(void) const;
     
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
     GameTimer::tMsec m_startTime;
+    GameTimer::tMsec m_endTime;
     GameRecords m_records;
     GameTimer::tMsec m_lapStartTime;
     GameTimer::tMsec m_chequePointTime;
@@ -107,8 +113,9 @@ private:
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
     string m_startAction;
-    string m_endAction;
     string m_finalLapAction;
+    string m_winAction;
+    string m_loseAction;
     U32 m_laps;
     U32 m_lapCount;
     tVal m_initialTime;
