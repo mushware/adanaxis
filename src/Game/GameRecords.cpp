@@ -1,6 +1,9 @@
 /*
- * $Id: GameRecords.cpp,v 1.2 2002/08/22 10:11:11 southa Exp $
+ * $Id: GameRecords.cpp,v 1.3 2002/08/23 16:40:17 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.3  2002/08/23 16:40:17  southa
+ * Pickling correction
+ *
  * Revision 1.2  2002/08/22 10:11:11  southa
  * Save records, spacebar dialogues
  *
@@ -111,6 +114,25 @@ bool
 GameRecords::RaceTimeValid(void) const
 {
     return m_raceTimeValid;
+}
+
+bool
+GameRecords::RecordsPropose(const GameRecords& inRecords)
+{
+    for (U32 i=0; inRecords.SplitTimeValid(i); ++i)
+    {
+        SplitTimePropose(i, inRecords.SplitTimeGet(i));
+        if (i>1e5) throw("Value runaway in GameRecords::RecordsPropose");
+    }
+    if (inRecords.LapTimeValid())
+    {
+        LapTimePropose(inRecords.LapTimeGet());
+    }
+    if (inRecords.RaceTimeValid())
+    {
+        RaceTimePropose(inRecords.RaceTimeGet());
+    }
+    return false; // for the moment
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.9 2002/08/21 19:48:42 southa Exp $
+ * $Id: GameTypeRace.h,v 1.10 2002/08/22 10:11:12 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.10  2002/08/22 10:11:12  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.9  2002/08/21 19:48:42  southa
  * Race result tweaking
  *
@@ -96,7 +99,7 @@ private:
         kInvalid,
         kPrelude,
         kRunning,
-	kPreResult,
+	    kPreResult,
         kResult
     };
 
@@ -106,13 +109,14 @@ private:
     void RenderResult(void) const;
     void RaceFinished(void);
     void LoadRecords(void);
-    void SaveRecords(void) const;
+    void SaveRecords(const GameRecords& inRecords) const;
 
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
+    GameRecords m_records;
+    GameRecords m_worldRecords;
     GameTimer::tMsec m_startTime;
     GameTimer::tMsec m_endTime;
-    GameRecords m_records;
     GameTimer::tMsec m_lapStartTime;
     GameTimer::tMsec m_chequePointTime;
     GameTimer::tMsec m_dispRemaining;

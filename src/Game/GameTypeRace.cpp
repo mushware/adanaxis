@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.16 2002/08/22 10:56:42 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.17 2002/08/22 10:59:49 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.17  2002/08/22 10:59:49  southa
+ * Correction to lapCount race finished test
+ *
  * Revision 1.16  2002/08/22 10:56:42  southa
  * Calculate final race results after advancing sequence
  *
@@ -220,15 +223,11 @@ GameTypeRace::RaceFinished(void)
     GameTimer::tMsec gameTime=timer.GameMsecGet();
     m_raceState = kPreResult;
     m_endTime = gameTime;
-    // Calculate the total available time
-    tVal extraTime=0;
-    for (U32 i=0; i < m_chequePoints.size(); ++i)
-    {
-        extraTime += m_chequePoints[i]->AddTimeGet();
-    }
+
     if (m_dispRemaining > 0.0)
     {
         // Race won
+        m_records.RaceTimePropose(m_endTime - m_startTime);
         GameDataUtils::NamedDialoguesAdd(m_winAction);
     }
     else
@@ -236,7 +235,14 @@ GameTypeRace::RaceFinished(void)
         // Race lost
         GameDataUtils::NamedDialoguesAdd(m_loseAction);
     }
-    SaveRecords();
+    // Calculate the new records and save, but leave m_worldRecords intact
+    // so that we can display the old records
+
+    GameRecords newRecords(m_worldRecords);
+
+    newRecords.RecordsPropose(m_records);
+    
+    SaveRecords(newRecords);
 }
 
 void
@@ -363,7 +369,7 @@ GameTypeRace::RenderTimes(void) const
     if (m_records.SplitTimeValid(nextSequence))
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(nextSequence)),
+        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(m_sequence)),
                               GLFontRef("font-mono1", 0.02), -1.0);
         splitRecordStr.Render();
     }
@@ -401,18 +407,25 @@ GameTypeRace::RenderResult(void) const
         orthoGL.MoveTo(column1,row1);
         GLString timeStr("Time:", GLFontRef("font-mono1", 0.03), 1);
         timeStr.Render();
-        timeStr.TextSet(GameTimer::MsecToLongString(m_endTime - m_startTime));
-        orthoGL.MoveTo(column2,row1);
-        timeStr.Render();
-        orthoGL.MoveTo(column3,row1);
-        timeStr.Render();
+        if (m_records.RaceTimeValid())
+        {
+            timeStr.TextSet(GameTimer::MsecToLongString(m_records.RaceTimeGet()));
+            orthoGL.MoveTo(column2,row1);
+            timeStr.Render();
+        }
+        if (m_worldRecords.RaceTimeValid())
+        {
+            timeStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.RaceTimeGet()));
+            orthoGL.MoveTo(column3,row1);
+            timeStr.Render();
+        }
     }
+    
     {
         orthoGL.MoveTo(0,row1+rowSpacing);
         GLString recordStr("BEST SECTIONS", GLFontRef("font-mono1", 0.02), 0);
         recordStr.Render();
     }
-
 
     GLUtils::ColourSet(1.0,1.0,0.0,m_resultAlpha);
 
@@ -424,9 +437,12 @@ GameTypeRace::RenderResult(void) const
         lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
         orthoGL.MoveTo(column2, row1+2*rowSpacing);
         lapRecordStr.Render();
-        lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
-        orthoGL.MoveTo(column3, row1+2*rowSpacing);
-        lapRecordStr.Render();
+        if (m_worldRecords.LapTimeValid())
+        {
+            lapRecordStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.LapTimeGet()));
+            orthoGL.MoveTo(column3, row1+2*rowSpacing);
+            lapRecordStr.Render();
+        }
     }
     
     GLUtils::ColourSet(0.0,1.0,1.0,m_resultAlpha);
@@ -442,21 +458,24 @@ GameTypeRace::RenderResult(void) const
             GLString splitRecordStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
             orthoGL.MoveTo(column1, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
-	    
-	    splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
+
+            splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
             orthoGL.MoveTo(column2, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
-	    
-	    splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
-            orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
-            splitRecordStr.Render();
+
+            if (m_worldRecords.SplitTimeValid(next))
+            {
+                splitRecordStr.TextSet(GameTimer::MsecToString(m_worldRecords.SplitTimeGet(next)));
+                orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
+                splitRecordStr.Render();
+            }
         }
     }
     GLUtils::OrthoEpilogue();
 }
 
 void
-GameTypeRace::SaveRecords(void) const
+GameTypeRace::SaveRecords(const GameRecords& inRecords) const
 {
     try
     {
@@ -470,7 +489,7 @@ GameTypeRace::SaveRecords(void) const
             time_t now(time(NULL));
             outputFile << "<?xml version=\"1.0\" standalone=\"no\"?>" << endl;
             outputFile << "<!-- Records saved " << ctime(&now) << " -->" << endl;
-            m_records.Pickle(outputFile);
+            inRecords.Pickle(outputFile);
         }
     }
     catch (exception& e)
@@ -491,7 +510,7 @@ GameTypeRace::LoadRecords(void)
         {
             filename=pScalar->StringGet();
         }
-        dynamic_cast<CorePickle&>(m_records).Unpickle(filename);
+        dynamic_cast<CorePickle&>(m_worldRecords).Unpickle(filename);
     }
     catch (exception& e)
     {

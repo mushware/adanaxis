@@ -1,6 +1,9 @@
 /*
- * $Id: GameRecords.h,v 1.1 2002/08/19 21:42:38 southa Exp $
+ * $Id: GameRecords.h,v 1.2 2002/08/22 10:11:11 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.2  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.1  2002/08/19 21:42:38  southa
  * Display of records and lap/split times
  *
@@ -29,6 +32,7 @@ public:
     void RaceTimePropose(GameTimer::tMsec inMsec);
     GameTimer::tMsec RaceTimeGet(void) const;
     bool RaceTimeValid(void) const;
+    bool RecordsPropose(const GameRecords& inRecords);
     void Reset(void);
 
 protected:
