@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLUTAppHandler.h,v 1.1 2002/06/21 18:50:16 southa Exp $
+ * $Log: GLUTAppHandler.h,v $
+ * Revision 1.1  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  */
 
 #include "mushCore.h"
@@ -16,7 +19,7 @@ public:
     virtual ~GLUTAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual void MousePositionGet(S32& outX, S32& outY) const;
-    virtual void MouseDeltaGet(S32& outX, S32& outY) const;
+    virtual void MouseDeltaGet(S32& outX, S32& outY);
     virtual void EnterScreen(tInitType inType);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);

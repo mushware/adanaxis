@@ -1,8 +1,11 @@
 #ifndef GLAPPHANDLER_H
 #define GLAPPHANDLER_H
 /*
- * $Id: GLAppHandler.h,v 1.6 2002/06/20 15:50:29 southa Exp $
+ * $Id: GLAppHandler.h,v 1.7 2002/06/21 18:50:16 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.7  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  * Revision 1.6  2002/06/20 15:50:29  southa
  * Subclassed GLAppHandler
  *
@@ -53,7 +56,7 @@ public:
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual void MousePositionGet(S32& outX, S32& outY) const = 0;
-    virtual void MouseDeltaGet(S32& outX, S32& outY) const = 0;
+    virtual void MouseDeltaGet(S32& outX, S32& outY) = 0;
     virtual void EnterScreen(tInitType inType) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;

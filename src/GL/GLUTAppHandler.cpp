@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLUTAppHandler.cpp,v 1.1 2002/06/21 18:50:16 southa Exp $
+ * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.1  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  */
 
 #include "GLUTAppHandler.h"
@@ -67,7 +70,7 @@ GLUTAppHandler::MousePositionGet(S32& outX, S32& outY) const
 }
 
 void
-GLUTAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta) const
+GLUTAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta)
 {
     outXDelta=m_mouseXDelta;
     outYDelta=m_mouseYDelta; 
