@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.cpp,v 1.13 2003/01/12 17:32:55 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.14 2003/01/13 14:31:59 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.14  2003/01/13 14:31:59  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.13  2003/01/12 17:32:55  southa
  * Mushcore work
  *
@@ -171,7 +174,7 @@ GameNetUtils::CreateLink(MushcoreDataRef<MustlLink>& outLink, const string& inCl
         MushcoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
     }
@@ -297,7 +300,7 @@ GameNetUtils::NetTicker(void)
             {
                 MustlServer::Instance().Connect(portNum);
             }
-            catch (MustlFail& e)
+            catch (MushcoreNonFatalFail& e)
             {
                 static U32 failedPortNum=65536;
                 if (portNum != failedPortNum)
@@ -326,7 +329,7 @@ GameNetUtils::WebReceive(void)
         MustlWebServer::Instance().Accept();
         MustlWebRouter::Instance().ReceiveAll();
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
     }
@@ -340,7 +343,7 @@ GameNetUtils::NetReceive(void)
         MustlServer::Instance().Accept();
         MustlRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }

@@ -8,12 +8,10 @@
 <font class="bigtitlebold">Status</font>
 <br>
 <br>
- <?mush gamestatuswrite(); ?>
+ <?mush mustlstatuswrite(); ?>
  <br><br>
- <?mush gameserverstatuswrite(); ?>
+ <?mush mustlserverstatuswrite(); ?>
  <br><br>
- <?mush gameclientstatuswrite(); ?>
- <br><br>
- <?mush gamelinkstatuswrite(); ?>
+ <?mush mustllinkstatuswrite(); ?>
 </body>
 </html>

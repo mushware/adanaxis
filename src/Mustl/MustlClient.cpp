@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlClient.cpp,v 1.8 2002/12/29 20:59:58 southa Exp $
+ * $Id: MustlClient.cpp,v 1.9 2003/01/13 16:50:48 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.9  2003/01/13 16:50:48  southa
+ * win32 support
+ *
  * Revision 1.8  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -169,7 +172,7 @@ MustlClient::UDPConnect(const MustlAddress& inAddress)
             m_udpSocket = MustlPlatform::UDPBindNonBlocking(localPort);
             break;
         }
-        catch (MustlFail& e)
+        catch (MushcoreNonFatalFail& e)
         {
             ++localPort;
             if (++failCtr > 8) // Should be configurable

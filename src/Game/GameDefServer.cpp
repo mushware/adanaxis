@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.19 2003/01/12 17:32:53 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.20 2003/01/13 14:31:57 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.20  2003/01/13 14:31:57  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.19  2003/01/12 17:32:53  southa
  * Mushcore work
  *
@@ -155,7 +158,7 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
         {
             netLink->ReliableSend(netData);
         }
-        catch (MustlFail& e)
+        catch (MushcoreNonFatalFail& e)
         {
             MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
         }

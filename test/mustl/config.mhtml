@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="StyleSheet" href="/style.css" type="text/css">
-<title>Mushware localweb - Infernal Contractor II</title>
+<title>Mustl test application - Configuration</title>
 </head>
 <body>
 
@@ -9,15 +9,13 @@
 <br><font class="tiny">Settings will take effect only when the Save Settings button is pressed</font>
 
 <form method="post" action="config.mhtml">
-<input type="hidden" name="type" value="mustlconfig">
+<input type="hidden" name="type" value="mustlonly">
 <table width="100%" class="bgblue" border="0" cellspacing="2" cellpadding="2">
 <tr>
-<td align="center" class="bglightblue"><button name="update" value="Update" type="submit">Save Settings</button></td>
-</tr><tr>
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Command log</font><br>
- <?mush gameconfiginputwrite('devcommandlog'); ?>
+ <?mush mustlinputwrite('mustlcommandlog'); ?>
 </td>
 <td>
  <font class="titlebold">Command Log</font>
@@ -27,7 +25,7 @@
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Net log</font><br>
- <?mush gameconfiginputwrite('devnetlog'); ?>
+ <?mush mustlinputwrite('mustlnetlog'); ?>
 </td>
 <td>
  <font class="titlebold">Network Log</font>
@@ -37,7 +35,7 @@
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Web log</font><br>
- <?mush gameconfiginputwrite('devweblog'); ?>
+ <?mush mustlinputwrite('mustlweblog'); ?>
 </td>
 <td>
  <font class="titlebold">Web Log</font>
@@ -47,7 +45,7 @@
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Verbose network log</font><br>
- <?mush gameconfiginputwrite('devverboselog'); ?>
+ <?mush mustlinputwrite('mustlverboselog'); ?>
 </td>
 <td>
  <font class="titlebold">Verbose Network Log</font>
@@ -57,7 +55,7 @@
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Network traffic log</font><br>
- <?mush gameconfiginputwrite('devtrafficlog'); ?>
+ <?mush mustlinputwrite('mustltrafficlog'); ?>
 </td>
 <td>
  <font class="titlebold">Network Traffic Log</font>
@@ -67,12 +65,14 @@
 
 <td align="center" class="bglightblue">
  <font class="tinyblue">Log full IP address</font><br>
- <?mush gameconfiginputwrite('devlogfullip'); ?>
+ <?mush mustlinputwrite('mustllogfullip'); ?>
 </td>
 <td>
  <font class="titlebold">Log Full IP Address</font>
- <br><font class="tiny">This option, when checked, will log full IP addresses and network names to network log, instead of the truncated form usually used to maintain privacy.</font>
+ <br><font class="tiny">This option, when checked, will log full IP addresses and network names to network log, instead of the truncated form 127.0.x.x used to maintain privacy.</font>
 </td>
+</tr><tr>
+<td align="center" class="bglightblue"><button name="update" value="Update" type="submit">Save Settings</button></td>
 </tr>
 </table>
 </form>

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.cpp,v 1.2 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlFail.cpp,v 1.3 2002/12/29 20:59:58 southa Exp $
  * $Log: MustlFail.cpp,v $
+ * Revision 1.3  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.2  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -26,12 +29,7 @@
 using namespace Mustl;
 using namespace std;
 
-MustlFail::~MustlFail() throw()
+MustlFail::MustlFail(const string &inMessage) :
+    MushcoreNonFatalFail(inMessage)
 {
-}
-
-ostream&
-operator<<(ostream &ioOut, const MustlFail& inFail)
-{
-    return ioOut << inFail.Print();
 }

@@ -11,11 +11,18 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreFail.h,v 1.1 2003/01/12 17:32:59 southa Exp $
+ * $Log: MushcoreFail.h,v $
+ * Revision 1.1  2003/01/12 17:32:59  southa
+ * Mushcore work
+ *
  */
 
-#include "MushcoreStandard.h"
+// This file does not include MustlStandard.h, and is available to clients
+// which want to generate Mushcore exceptions without #including #Mushcore.h itself
+
+#include <string>
+#include <stdexcept>
 
 // Base class for all Mushware exceptions
 class MushcoreFail : public std::exception
@@ -38,27 +45,20 @@ private:
 class MushcoreFatalFail : public MushcoreFail
 {
 public:
-    MushcoreFatalFail(const std::string& inMessage) :
-    MushcoreFail(inMessage)
-    {}
+    MushcoreFatalFail(const std::string& inMessage);
 };
 
 // Logical programming errors, similar to assert failures
 class MushcoreLogicFail : public MushcoreFatalFail
 {
 public:
-    MushcoreLogicFail(const std::string &inMessage) :
-    MushcoreFatalFail(inMessage)
-    {}
-};
+    MushcoreLogicFail(const std::string &inMessage);};
 
 // Fatal resource failure
 class MushcoreResourceFail : public MushcoreFatalFail
 {
 public:
-    MushcoreResourceFail(const std::string &inMessage) :
-    MushcoreFatalFail(inMessage)
-    {}
+    MushcoreResourceFail(const std::string &inMessage);
 };
 
 // *********************************************
@@ -68,72 +68,52 @@ public:
 class MushcoreNonFatalFail : public MushcoreFail
 {
 public:
-    MushcoreNonFatalFail(const std::string& inMessage) :
-    MushcoreFail(inMessage)
-    {}
-};
+    MushcoreNonFatalFail(const std::string& inMessage);};
 
 // A MushcoreCommand failed
 class MushcoreCommandFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreCommandFail(const std::string &inMessage) :
-    MushcoreNonFatalFail(inMessage)
-    {}
-};
+    MushcoreCommandFail(const std::string &inMessage);};
 
 // A data item, expression or value failed
 class MushcoreDataFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreDataFail(const std::string &inMessage) :
-    MushcoreNonFatalFail(inMessage)
-    {}
+    MushcoreDataFail(const std::string &inMessage);
 };
 
 // A device failed
 class MushcoreDeviceFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreDeviceFail(const std::string &inMessage) :
-    MushcoreNonFatalFail(inMessage)
-    {}
-};
+    MushcoreDeviceFail(const std::string &inMessage);};
 
 // All file-based failures
 class MushcoreFileFail: public MushcoreNonFatalFail
 {
 public:
-    MushcoreFileFail(const std::string& inFilename, const std::string& inMessage) :
-        MushcoreNonFatalFail(inMessage+" ("+inFilename+")")
-        {}
+    MushcoreFileFail(const std::string& inFilename, const std::string& inMessage);
 };
 
 // A reference to or specifier of a data object failed
 class MushcoreReferenceFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreReferenceFail(const std::string &inMessage) :
-        MushcoreNonFatalFail(inMessage)
-        {}
-};
-
-// Syntax errors, including XML failures
-class MushcoreSyntaxFail : public MushcoreNonFatalFail
-{
-public:
-    MushcoreSyntaxFail(const std::string &inMessage) :
-    MushcoreNonFatalFail(inMessage)
-    {}
+    MushcoreReferenceFail(const std::string &inMessage);
 };
 
 // Request failed.  Includes verification requests
 class MushcoreRequestFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreRequestFail(const std::string &inMessage) :
-    MushcoreNonFatalFail(inMessage)
-    {}
+    MushcoreRequestFail(const std::string &inMessage);
 };
+
+// Syntax errors, including XML failures
+class MushcoreSyntaxFail : public MushcoreNonFatalFail
+{
+public:
+    MushcoreSyntaxFail(const std::string &inMessage);};
 
 #endif

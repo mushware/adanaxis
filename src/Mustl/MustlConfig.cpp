@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.3 2003/01/13 23:05:22 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.4 2003/01/14 12:40:10 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.4  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  * Revision 1.3  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -35,50 +38,44 @@ using namespace std;
 
 auto_ptr<MustlConfig> MustlConfig::m_instance;
 
-MustlConfig::MustlConfig() :
-    m_config(new MushcoreConfig)
+MustlConfig::MustlConfig()
 {
 }
 
 MustlConfig::~MustlConfig()
 {
-    delete m_config;
 }
 
 void
-MustlConfig::Set(const string& inName, const MushcoreScalar& inValue)
+MustlConfig::PostDataHandle(const string& inData)
 {
-    m_config->Set(inName, inValue);
+    bool found=false;
+    string failStr;
+    
+    MushcoreData<MustlConfigDef>::tMapIterator endValue=MushcoreData<MustlConfigDef>::Instance().End();
+
+    for (MushcoreData<MustlConfigDef>::tMapIterator p=MushcoreData<MustlConfigDef>::Instance().Begin(); p != endValue; ++p)
+    {
+        try
+        {
+            if (p->second->FromPostRetrieve(p->first, inData))
+            {
+                found=true;
+            }
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            failStr += " ";
+            failStr += e.what();
+        }
+    }
+
+    if (found)
+    {
+        // SaveToFile();
+    }
+    if (failStr != "")
+    {
+        throw(MustlFail("Bad parameters:"+failStr));
+    }
 }
-
-void
-MustlConfig::Set(const string& inName, const string& inStr)
-{
-    m_config->Set(inName, inStr);
-}
-
-void
-MustlConfig::Set(const string& inName, const Mustl::U32& inValue)
-{
-    m_config->Set(inName, inValue);
-}
-
-const MushcoreScalar&
-MustlConfig::Get(const string& inName) const
-{
-    return m_config->Get(inName);
-}
-
-bool
-MustlConfig::GetIfExists(const MushcoreScalar **outScalar, const string& inName) const
-{
-    return m_config->GetIfExists(outScalar, inName);
-}
-
-bool
-MustlConfig::Exists(const std::string& inName) const
-{
-    return m_config->Exists(inName);
-}
-
-

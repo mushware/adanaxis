@@ -1,0 +1,40 @@
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.co.uk.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2003.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id$
+# $Log$
+#
+ 
+# Default values for ports
+configset('MUSTL_WEB_PORT', 7200)
+configset('MUSTL_NET_PORT', 9144)
+
+# Add config elements
+mustlconfigmenustring('mustlnetworkperms', 'normal', 'none=None&normal=Normal&debug=Debug')
+mustlconfigmenustring('mustlnetworkspeed', '56k', '56k=56k Modem&cable=Cable/DSL&t1=T1/LAN/Infinite')
+mustlconfigstring('mustlhttpproxy', '')
+mustlconfigmenustring('mustlconfigperms', 'allowlocal', 'none=Always Ask&local=Allow Localhost&all=Allow All')
+mustlconfigstring('mustlconfigextra', '')
+mustlconfigunsigned('mustlwebport', $MUSTL_WEB_PORT, 1024, 65536)
+mustlconfigunsigned('mustlnetport', $MUSTL_NET_PORT, 1024, 65536)
+mustlconfigbool('mustlsavepasswords', 1)
+
+# Add log control elements
+mustlconfigbool('mustlnetlog', 1)
+mustlconfigbool('mustlweblog', 1)
+mustlconfigbool('mustlverboselog', 0)
+mustlconfigbool('mustltrafficlog', 0)
+mustlconfigbool('mustlcommandlog', 1)
+mustlconfigbool('mustllogfullip', 0)
+
+# Add network test window elements
+mustlconfigstring('stationname', 'testmustl')
+mustlconfigstring('targetserver', 'localhost')
+mustlconfigunsigned('targetport', $MUSTL_NET_PORT, 1024, 65536)

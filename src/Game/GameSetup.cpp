@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.28 2003/01/12 17:32:56 southa Exp $
+ * $Id: GameSetup.cpp,v 1.29 2003/01/13 14:32:00 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.29  2003/01/13 14:32:00  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.28  2003/01/12 17:32:56  southa
  * Mushcore work
  *
@@ -215,7 +218,7 @@ GameSetup::ConfigInit(void)
     {
         MustlWebServer::Instance().Connect(webPort);
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
@@ -271,7 +274,7 @@ GameSetup::KeyControl(void)
             {
                 MustlWebServer::Instance().Connect(webPort);
             }
-            catch (MustlFail& e)
+            catch (MushcoreNonFatalFail& e)
             {
                 MustlLog::Instance().WebLog() << e.what() << endl;
             }

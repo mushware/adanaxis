@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: TestMustlMain.cpp,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Log: TestMustlMain.cpp,v $
+ * Revision 1.1  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  */
 
 #include "TestMustlMain.h"
@@ -22,22 +25,29 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    string argStr;
-    for (int i=1; i<argc; i++)
-    {
-        argStr += argv[i];
-        if (i+1 != argc) argStr+=" ";
-    }
 
-    MustlConfig::Instance().Set("MUSTL_WEB_PATH", "test/mustl");
-
-    if (argStr != "")
-    {
-        MushcoreInterpreter::Instance().Execute(argStr);
-    }
-    
     try
     {
+        cout << "This application must be started from the mustl directory" << endl;
+        MushcoreGlobalConfig::Instance().Set("MUSTL_WEB_PATH", "test/mustl");
+        MushcoreGlobalConfig::Instance().Set("MUSTL_START_FILE", "test/mustl/mustlstart.txt");
+
+        for (int i=1; i<argc; ++i)
+        {
+            string argStr=argv[i];
+            if (argStr.substr(0, 4) == "-psn")
+            {
+                // Ignore Mac OS X funnies
+                ++i;
+            }
+            else
+            {
+                MushcoreInterpreter::Instance().Execute(argStr);
+            }
+        }
+    
+        MushcoreInterpreter::Instance().Execute("load($MUSTL_START_FILE)");
+    
         TestMustlApp mustlApp;
         mustlApp.Enter();
     }

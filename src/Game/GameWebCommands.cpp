@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.28 2003/01/12 17:32:57 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.29 2003/01/13 14:32:01 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.29  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.28  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -199,7 +202,7 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
             gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
                                     GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
         }
-        catch (MustlFail& e)
+        catch (MushcoreNonFatalFail& e)
         {
             ostringstream message;
             message << "Join game failed: " << e.what() << endl;

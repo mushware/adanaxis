@@ -4,53 +4,24 @@
 <title>Mustl test application network configuration</title>
 </head>
 <body>
-<font class="bigtitlebold">Start Multiplayer Game</font>
+<font class="bigtitlebold">Network link test</font>
 <br>
-<br>Please log in with your existing ID or <a target="content" href="http://www.mushware.com/">create a new one</a>.
 <br>
-<br><table width="100%" class="bglightred" border="0" cellspacing="2" cellpadding="2">
-<tr>
-<td class="bgred" nowrap><font class="bold">Log In</font></td>
-<td class="bgred"><font class="bold">Mushware ID</font></td><td width="100%" class="bgred"><font class="bold">Password</font></td>
-</tr><tr>
-<form method="post" action="multiplayer.mhtml">
-<input type="hidden" name="type" value="mplogin">
-<td align="center" nowrap><button name="login" value="login" type="submit">Log In</button></td>
-<td><?mush gameconfiginputwrite('mpplayername'); ?></td>
-<td><?mush gameconfiginputwrite('mpplayerpassword'); ?></td>
-</form>
-</tr></table>
 <table width="100%" class="bgred" border="0" cellspacing="2" cellpadding="2">
-
 <tr>
-<td colspan="4" align="center"><font class="bold">Network Controls</font></td>
-
+<td colspan="2"><font class="titlebold">Network Controls</font></td>
 </tr><tr>
-<td width="25%" class="bglightred" align="center" nowrap>
-<form method="post" target="content" action="control.mhtml">
-<input type="hidden" name="type" value="mpentergame">
-<button name="button" value="" type="submit">Enter Game</button>
-</form>
-</td>
-
-<td width="25%" class="bglightred" align="center" nowrap>
-<form method="post" action="multiplayer.mhtml">
+<td width="50%" class="bglightred" align="center" nowrap>
+<form method="post" action="networkconfig.mhtml">
 <input type="hidden" name="type" value="linkcleardown">
 <button name="button" value="" type="submit">Cleardown Links</button>
 </form>
 </td>
 
-<td width="25%" class="bglightred" align="center" nowrap>
-<form method="post" action="multiplayer.mhtml">
-<input type="hidden" name="type" value="hostcleardown">
-<button name="button" value="" type="submit">Stop Hosting</button>
-</form>
-</td>
-
-<td width="25%" class="bglightred" align="center" nowrap>
-<form method="post" action="multiplayer.mhtml">
-<input type="hidden" name="type" value="joincleardown">
-<button name="button" value="" type="submit">Stop Joining</button>
+<td width="50%" class="bglightred" align="center" nowrap>
+<form method="post" action="networkconfig.mhtml">
+<input type="hidden" name="type" value="stopserver">
+<button name="button" value="" type="submit">Stop Server</button>
 </form>
 </td>
 
@@ -58,75 +29,64 @@
 </table>
 
 <br>
-<font class="titlebold">Host a game</font>
+<font class="titlebold">Mustl Network Server</font>
 <br>
 <br><table width="100%" class="bgred" border="0" cellspacing="2" cellpadding="2">
-<form method="post" action="multiplayer.mhtml">
-<input type="hidden" name="type" value="hostgame">
+<form method="post" action="networkconfig.mhtml">
+<input type="hidden" name="type" value="startserver">
 
 <tr>
+<td colspan="2"><font class="titlebold">Server Controls</font></td>
+</tr><tr>
 <td class="bglightred" align="center">
- <font class="tinyred">Server name</font><br>
- <?mush gameconfiginputwrite('mpservername'); ?>
+ <font class="tiny">Port number</font><br>
+ <?mush mustlinputwrite('mustlnetport'); ?>
 </td>
 <td width="100%">
- <font class="titlebold">Server Name</font>
- <br><font class="tiny">Choose a name for your game server.</font>
+ <font class="titlebold">Port number</font>
+ <br><font class="tiny">Choose the port number on which testmustl will accept network links.</font>
 </td>
 </tr><tr>
 
-<td class="bglightred" align="center">
- <font class="tinyred">Server message</font><br>
- <?mush gameconfiginputwrite('mpservermessage'); ?>
-</td>
-<td width="100%">
- <font class="titlebold">Server Message</font>
- <br><font class="tiny">This message will be displayed to players when the connect to your server.</font>
-</td>
-</tr><tr>
-
-<td class="bglightred" align="center">
- <font class="tinyred">Contract</font><br>
- <?mush gameconfiginputwrite('mpcontractname'); ?>
-</td>
-<td width="100%">
- <font class="titlebold">Contract</font>
- <br><font class="tiny">Choose the particular contract that you want to host.</font>
-</td>
-</tr><tr>
-
-<td class="bglightred" align="center">
- <font class="tinyred">Number of players</font><br>
- <?mush gameconfiginputwrite('mpplayerlimit'); ?>
-</td>
-<td width="100%">
- <font class="titlebold">Maximum Players</font>
- <br><font class="tiny">The maximum number of players you want to allow in your hosted game.  With a modem connection, choose no more than 4.</font>
-</td>
-</tr><tr>
-
-<td class="bglightred" align="center"><button name="join" value="join" type="submit">Host Game</button></td>
+<td class="bglightred" align="center" nowrap><button name="join" value="join" type="submit">Start Server</button></td>
 <td></td>
 </tr>
 </form>
 </table>
 
-
-<br><font class="titlebold">Join a game</font>
+<br><font class="titlebold">Mustl Links</font>
 <br>
-<br><table width="100%" class="bglightred" border="0" cellspacing="2" cellpadding="2">
+<br><table width="100%" class="bgred" border="0" cellspacing="2" cellpadding="2">
+<form method="post" action="networkconfig.mhtml">
+<input type="hidden" name="type" value="createlink">
+
 <tr>
-<td class="bgred" nowrap><font class="bold">Join Game</font></td>
-<td class="bgred"><font class="bold">Server</font></td><td class="bgred"><font class="bold">Port</font></td><td width="100%" class="bgred"><font class="bold">Game details</font></td>
+<td colspan="2"><font class="titlebold">Link Controls</font></td>
 </tr><tr>
-<form method="post" action="multiplayer.mhtml">
-<input type="hidden" name="type" value="joingame">
-<td align="center"><button name="join" value="join" type="submit">Join</button></td>
-<td><?mush gameconfiginputwrite('mpjoinserver'); ?></td>
-<td><?mush gameconfiginputwrite('mpjoinport'); ?></td>
-<td>No details known</td>
-</form>
+
+<td class="bglightred" align="center">
+ <font class="tiny">Server name</font><br>
+ <?mush mustlinputwrite('targetserver'); ?>
+</td>
+<td width="100%">
+ <font class="titlebold">Server name</font>
+ <br><font class="tiny">The name or IP address of target server.</font>
+</td>
+</tr><tr>
+
+<td class="bglightred" align="center">
+ <font class="tiny">Target port number</font><br>
+ <?mush mustlinputwrite('targetport'); ?>
+</td>
+<td width="100%">
+ <font class="titlebold">Target port number</font>
+ <br><font class="tiny">The port number of the target server.</font>
+</td>
+</tr><tr>
+
+<td class="bglightred" align="center" nowrap><button name="join" value="join" type="submit">Create Link</button></td>
+<td></td>
 </tr>
-</table>
-</body>
+</form>
+</table></body>
 </html>

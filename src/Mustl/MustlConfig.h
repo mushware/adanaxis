@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.h,v 1.2 2003/01/13 23:05:22 southa Exp $
+ * $Id: MustlConfig.h,v 1.3 2003/01/14 12:40:10 southa Exp $
  * $Log: MustlConfig.h,v $
+ * Revision 1.3  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  * Revision 1.2  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -30,16 +33,9 @@ class MustlConfig
 {
 public:
     ~MustlConfig();
-    void Set(const std::string& inName, const MushcoreScalar& inValue);
-    void Set(const std::string& inName, const std::string& inStr);
-    void Set(const std::string& inName, const Mustl::U32& inValue);
-    
-    const MushcoreScalar& Get(const std::string& inName) const;
-    bool GetIfExists(const MushcoreScalar **outScalar, const std::string& inName) const;
-    bool Exists(const std::string& inName) const;
+    void PostDataHandle(const std::string& inData);
     
     static MustlConfig& Instance(void);
-    static void Install(void);
 
 protected:
     MustlConfig();

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.h,v 1.3 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlFail.h,v 1.4 2003/01/07 17:13:44 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.4  2003/01/07 17:13:44  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.3  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -24,22 +27,21 @@
  *
  */
 
-#include <iosfwd>
-#include <stdexcept>
-#include <string>
+#include "MustlStandard.h"
 
-class MustlFail: public std::exception
+#if defined(HAVE_MUSHCORE_MUSHCORE_H)
+#include <Mushcore/MushcoreFail.h>
+#else
+#if defined(HAVE_MUSHCORE_H)
+#include <MushcoreFail.h>
+#else
+#include "MushcoreFail.h"
+#endif
+#endif
+
+class MustlFail : public MushcoreNonFatalFail
 {
 public:
-    MustlFail(const std::string &inMessage) {m_message=inMessage;}
-    ~MustlFail() throw();
-    const char *what() const throw() { return m_message.c_str(); }
-
-    const std::string& Print(void) const { return m_message; }
-
-private:
-    std::string m_message;
+    MustlFail(const std::string &inMessage);
 };
-
-std::ostream& operator<<(std::ostream &ioOut, MustlFail f);
 #endif

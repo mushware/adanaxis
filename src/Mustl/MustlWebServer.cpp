@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.10 2003/01/13 15:01:21 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.11 2003/01/13 16:50:50 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.11  2003/01/13 16:50:50  southa
+ * win32 support
+ *
  * Revision 1.10  2003/01/13 15:01:21  southa
  * Fix Mustl command line build
  *
@@ -176,7 +179,7 @@ MustlWebServer::ExtraAllowedAddrSet(const string& inAddr)
             MustlPlatform::ResolveHostName(netAddress, inAddr, 0);
             m_extraAllowedIP = netAddress.HostGetNetworkOrder();
         }
-        catch (MustlFail& e)
+        catch (MushcoreNonFatalFail& e)
         {
             m_extraAllowedIP = 0;
             throw(MustlFail("Could not resolve host name '"+inAddr+"', entered as the Extra Allowed Configuration address: " + e.what()));

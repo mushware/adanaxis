@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.13 2003/01/13 15:01:19 southa Exp $
+ * $Id: MustlLink.cpp,v 1.14 2003/01/14 12:40:11 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.14  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  * Revision 1.13  2003/01/13 15:01:19  southa
  * Fix Mustl command line build
  *
@@ -565,7 +568,7 @@ MustlLink::TCPSend(MustlData& ioData)
         m_client.TCPSend(ioData);
         ++m_tcpState.linkSendCtr;
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "TCPSend exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
@@ -593,7 +596,7 @@ MustlLink::TCPReceive(MustlData& outData)
         m_client.TCPReceive(outData);
         ++m_tcpState.linkReceiveCtr;
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "TCPReceive exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
@@ -624,7 +627,7 @@ MustlLink::UDPSend(MustlData& ioData)
             ++m_udpState.linkSendCtr;
         }
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "UDPSend exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)
@@ -656,7 +659,7 @@ MustlLink::UDPReceive(MustlData& outData)
             ++m_udpState.linkReceiveCtr;
         }
     }
-    catch (MustlFail& e)
+    catch (MushcoreNonFatalFail& e)
     {
         MustlLog::Instance().NetLog() << "UDPReceive exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)

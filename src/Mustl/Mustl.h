@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mustl.h,v 1.3 2002/12/20 13:17:45 southa Exp $
+ * $Id: Mustl.h,v 1.4 2003/01/13 23:05:22 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.4  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.3  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -41,6 +44,13 @@
 
 #include "MustlAddress.h"
 #include "MustlConfig.h"
+#include "MustlConfigDef.h"
+#include "MustlConfigDefBool.h"
+#include "MustlConfigDefMenuString.h"
+#include "MustlConfigDefPassword.h"
+#include "MustlConfigDefString.h"
+#include "MustlConfigDefU32.h"
+#include "MustlConfigDefVal.h"
 #include "MustlData.h"
 #include "MustlFail.h"
 #include "MustlHandler.h"

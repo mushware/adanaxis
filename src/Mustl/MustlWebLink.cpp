@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.12 2003/01/13 16:50:50 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.13 2003/01/13 23:05:22 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.13  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.12  2003/01/13 16:50:50  southa
  * win32 support
  *
@@ -188,7 +191,7 @@ MustlWebLink::Receive(string& outStr)
         }
     } while (result > 0);
 
-    // MustlLog::Instance().Log() << "Received " << MustlUtils::MakePrintable(outStr) << endl;
+    // MustlLog::Instance().WebLog() << "Received " << MustlUtils::MakePrintable(outStr) << endl;
 
     return (outStr.size() != 0);
 }
@@ -204,7 +207,7 @@ MustlWebLink::Send(MustlData& ioData)
     MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
     ioData.ReadPosAdd(sendSize);
 
-    // MustlLog::Instance().Log() << "Sending " << ioData << endl;
+    // MustlLog::Instance().WebLog() << "Sending " << ioData << endl;
 }
 
 void
@@ -362,7 +365,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             if (m_webPath == "")
             {
                 const MushcoreScalar *pScalar;
-                if (MustlConfig::Instance().GetIfExists(&pScalar, "MUSTL_WEB_PATH"))
+                if (MushcoreGlobalConfig::Instance().GetIfExists(&pScalar, "MUSTL_WEB_PATH"))
                 {
                     m_webPath = pScalar->StringGet();
                 }
@@ -375,7 +378,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             SendFile(localFilename);
         }
     }
-    catch (MustlFail &e)
+    catch (MushcoreNonFatalFail &e)
     {
         MustlLog::Instance().WebLog() << "ReceivedProcess exception: " << e.what() << endl;
         SendErrorPage(e.what());
@@ -391,13 +394,12 @@ MustlWebLink::PostProcess(const string& inValues)
         {
             throw(MustlFail("Invalid POST values"));
         }
-        //MushcoreCommand command(string("handlepostvalues('")+inValues+"')");
-        //command.Execute();
-        // Catch MushcoreCommandFail
-    }    
-    catch (MustlFail &e)
+        MushcoreCommand command(string("mustlpostvalues('")+inValues+"')");
+        command.Execute();
+    }
+    catch (MushcoreNonFatalFail &e)
     {
-        MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
+        MustlLog::Instance().WebLog() << "Exception: " << e.what() << endl;
     }
 }
 
@@ -414,7 +416,6 @@ MustlWebLink::SendFile(const string& inFilename)
     
     MustlHTTP http;
     http.Reply200();
-
 
     U32 dotPos = inFilename.rfind('.');
     if (dotPos == string::npos)
@@ -497,7 +498,7 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
             }
 
             string content=dataStr.substr(startPos+6, endPos - startPos - 6);
-            MustlLog::Instance().WebLog() << "Found mush command '" << content << "'" << endl;        
+            // MustlLog::Instance().WebLog() << "Found mush command '" << content << "'" << endl;        
 
             try
             {
