@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.8 2002/07/16 17:48:07 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.9 2002/07/16 17:58:53 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.9  2002/07/16 17:58:53  southa
+ * Fixed error
+ *
  * Revision 1.8  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -45,6 +48,7 @@
 #include "GameData.h"
 #include "GameController.h"
 #include "GameMapArea.h"
+#include "GameAppHandler.h"
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),
@@ -104,8 +108,8 @@ GameFloorDesigner::Display(void)
     GLPoint aimingPoint=GLPoint(m_xPos[m_currentMap] / m_floorMaps[m_currentMap]->XStep(),
                                 m_yPos[m_currentMap] / m_floorMaps[m_currentMap]->YStep());
     GameMapArea visibleArea;
-    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMap->XStep();
-    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMap->YStep();
+    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMaps[m_currentMap]->XStep();
+    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMaps[m_currentMap]->YStep();
     tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
