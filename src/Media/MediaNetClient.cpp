@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.15 2002/11/22 15:33:59 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.16 2002/11/22 18:02:43 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.16  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.15  2002/11/22 15:33:59  southa
  * More network logging
  *
@@ -234,7 +237,6 @@ MediaNetClient::TCPConnectionCompleted(void)
     }
     COREASSERT(m_tcpSocket != NULL);
     bool retVal=PlatformNet::TCPSocketConnectionCompleted(m_tcpSocket->channel);
-    cerr << "completed=" << retVal << endl;
     return retVal;
 }
 

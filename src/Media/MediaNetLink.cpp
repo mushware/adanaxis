@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.14 2002/11/22 15:33:59 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.15 2002/11/22 18:02:43 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.15  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.14  2002/11/22 15:33:59  southa
  * More network logging
  *
@@ -716,16 +719,18 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
     {
         default:
         case kLinkStateInvalid:
-        case kLinkStateConnecting:  // temporarily
             return "bgblue";
 
         case kLinkStateDead:
         case kLinkStateNotMade:
             return "bgred";
 
+        case kLinkStateConnecting:
         case kLinkStateWaitingForPort:
-        case kLinkStateUntested:
             return "bgyellow";
+            
+        case kLinkStateUntested:
+            return "bglightyellow";
             
         case kLinkStateTesting:
         case kLinkStateIdle:
