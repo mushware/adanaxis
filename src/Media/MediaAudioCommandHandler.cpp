@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.1 2002/07/02 15:48:30 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.2 2002/07/06 18:04:20 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.2  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 15:48:30  southa
  * Floor map designer
  *
@@ -42,6 +45,7 @@ MediaAudioCommandHandler::PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         throw(CommandFail(string("Command failed: ")+e.what()));
     }
+    throw(CommandFail("Test failure"));
     return CoreScalar(0);
 }
 

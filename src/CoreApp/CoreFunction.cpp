@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: CoreFunction.cpp,v 1.3 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreFunction.cpp,v 1.4 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreFunction.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:04  southa
  * Build process fixes
  *
@@ -27,13 +30,21 @@
 
 #include "CoreFunction.h"
 #include "CoreApp.h"
+#include "CoreException.h"
 
 void
 CoreFunction::Execute(void) const
 {
     for (U32 i=0; i<m_commands.size(); ++i)
     {
-        CoreApp::Instance().Process(m_commands[i]);
+        try
+        {
+            CoreApp::Instance().Process(m_commands[i]);
+        }
+        catch (CommandFail& e)
+        {
+            cerr << "Command failed: " << e.what() << endl;
+        }
     }
 }
 
