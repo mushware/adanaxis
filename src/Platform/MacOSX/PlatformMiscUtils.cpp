@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.17 2002/11/15 18:58:34 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.18 2002/11/17 13:38:31 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.18  2002/11/17 13:38:31  southa
+ * Game selection
+ *
  * Revision 1.17  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -169,16 +172,16 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
     struct dirent *entry;
     while (entry = readdir(dirPtr), entry != NULL)
     {
-        string name;
-        for (U32 i=0; i<entry->d_namlen; ++i)
-        {
-            name += entry->d_name[i];
-        }
-        COREASSERT(entry->d_name[name.size()] == '\0');
-        if (name != "." && name != ".." && name != "CVS")
-        {
-            outFilenames.push_back(name);
-        }
+	struct stat statInfo;
+        lstat(entry->d_name, &statInfo);
+        if(S_ISDIR(statInfo.st_mode))
+	{
+            string name=entry.d_name;
+            if (name != "." && name != ".." && name != "CVS")
+            {
+                outFilenames.push_back(name);
+            }
+	}
     }
     closedir(dirPtr);
 }
