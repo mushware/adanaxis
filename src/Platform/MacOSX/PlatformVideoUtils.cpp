@@ -1,12 +1,15 @@
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.1 2002/10/14 18:13:18 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.2 2002/10/15 14:02:31 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.2  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.1  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
  */
 
-#include "PlatformVideoUtils.h"
+#include "mushPlatform.h"
 #include "mushGL.h"
 
 #include <ApplicationServices/ApplicationServices.h>
