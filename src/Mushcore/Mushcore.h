@@ -1,12 +1,14 @@
 #ifndef MUSHCORE_H
 #define MUSHCORE_H
 /*
- * $Id$
- * $Log$
+ * $Id: Mushcore.h,v 1.1 2003/01/11 17:07:53 southa Exp $
+ * $Log: Mushcore.h,v $
+ * Revision 1.1  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  */
 
 #include "Mushcore/MushcoreAutoMonkey.h"
-#include "Mushcore/MushcoreApp.h"
 #include "Mushcore/MushcoreAppHandler.h"
 #include "Mushcore/MushcoreAppSignal.h"
 #include "Mushcore/MushcoreCommand.h"
@@ -15,6 +17,7 @@
 #include "Mushcore/MushcoreData.h"
 #include "Mushcore/MushcoreDataRef.h"
 #include "Mushcore/MushcoreEnv.h"
+#include "Mushcore/MushcoreEnvOutput.h"
 #include "Mushcore/MushcoreException.h"
 #include "Mushcore/MushcoreGlobalConfig.h"
 #include "Mushcore/MushcoreHistory.h"

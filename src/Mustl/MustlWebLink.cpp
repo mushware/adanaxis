@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.7 2003/01/07 17:13:45 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.8 2003/01/09 14:57:08 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.8  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2003/01/07 17:13:45  southa
  * Fixes for gcc 3.1
  *
@@ -80,7 +83,7 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
-#include "mustlCore.h"
+#include "Mushcore.h"
 
 using namespace Mustl;
 using namespace std;
