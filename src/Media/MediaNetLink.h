@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.14 2002/11/27 13:23:27 southa Exp $
+ * $Id: MediaNetLink.h,v 1.15 2002/11/27 16:35:10 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.15  2002/11/27 16:35:10  southa
+ * Client and server image handling
+ *
  * Revision 1.14  2002/11/27 13:23:27  southa
  * Server and client data exchange
  *
@@ -83,6 +86,7 @@ public:
     MediaNetAddress TCPTargetAddressGet(void) const { return MediaNetAddress(m_client.RemoteIPGet(), m_client.TCPRemotePortGet()); }
     U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
     U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
+    U32 CreationMsecGet(void) const { return m_creationMsec; }
     
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;

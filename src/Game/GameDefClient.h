@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.4 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameDefClient.h,v 1.5 2002/11/28 12:05:45 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.5  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.4  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -33,6 +36,7 @@ public:
     const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
+    void UpdateStatus(void);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -63,8 +67,10 @@ private:
     
     enum
     {
-        kLinkSetupMsec=7000,
-        kRegistrationMsec=10000
+        kLinkSetupIntervalMsec=7000,
+        kLinkSetupWaitMsec=1000,
+        kRegistrationMsec=10000,
+        kServerTimeoutMsec=5000
     };
 
     U32 m_lastLinkMsec;

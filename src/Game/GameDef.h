@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.6 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameDef.h,v 1.7 2002/11/28 12:05:45 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.7  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.6  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -30,6 +33,14 @@ class MediaNetAddress;
 class GameDef : public CorePickle, protected CoreXMLHandler
 {
 public:
+    enum tStatus
+    {
+        kStatusInvalid,
+        kStatusOK,
+        kStatusTesting,
+        kStatusNoServer
+    };
+    
     explicit GameDef(const string& inName);
     virtual ~GameDef() {}
     virtual void Ticker(void) = 0;
@@ -41,10 +52,12 @@ public:
     const string& NameGet(void) const { return m_name; }
     bool IsImage(void) const { return m_isImage; }
     void IsImageSet(bool inValue) { m_isImage = inValue; }
+    const string StatusWebStringGet(void) const;
+    U32 CreationMsecGet(void) const { return m_creationMsec; }
     
 protected:
     void CreateNewLink(const MediaNetAddress& inAddress) const;
-    
+    void StatusSet(tStatus inStatus) { m_status = inStatus; }
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
     void XMLStartHandler(CoreXML& inXML);
@@ -68,6 +81,8 @@ private:
     PickleState m_pickleState;
 
     string m_name;
+    tStatus m_status;
+    U32 m_creationMsec;
     bool m_isImage;
 };
 #endif

@@ -4271,8 +4271,6 @@
 				F54689F302E3048501CF937A,
 				F54689F402E3048501CF937A,
 				F54AC49402F841D801726764,
-				F5ADDCFE038C1A2601A80164,
-				F5ADDCFD038C1A2601A80164,
 				F5939693028C067F016230BF,
 				F5939694028C067F016230BF,
 				F5957EC4035982EC01A80166,
@@ -5718,18 +5716,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F5ADDCFD038C1A2601A80164 = {
-			isa = PBXFileReference;
-			name = GameStationDef.h;
-			path = Game/GameStationDef.h;
-			refType = 4;
-		};
-		F5ADDCFE038C1A2601A80164 = {
-			isa = PBXFileReference;
-			name = GameStationDef.cpp;
-			path = Game/GameStationDef.cpp;
-			refType = 4;
 		};
 		F5ADDD01038C1EFE01A80164 = {
 			isa = PBXFileReference;

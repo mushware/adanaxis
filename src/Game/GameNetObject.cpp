@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.4 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.5 2002/11/28 11:10:29 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.5  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.4  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -56,6 +59,17 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
         gameDefClient->IsImageSet(true);
         gameDefClient->AddressSet(m_address);
         gameDefClient->Unpickle(inXML);
+        
+        CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+        cerr << "Made client image " << elementName << endl;
+        for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        {
+            if (!p->second->IsImage())
+            {
+                cerr << "Update client sent" << endl;
+                p->second->UpdateClient(*gameDefClient);
+            }
+        }
     }
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.h,v 1.3 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameDefServer.h,v 1.4 2002/11/28 11:10:29 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.4  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.3  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -39,6 +42,8 @@ public:
     void ServerMessageSet(const string& inMessage) { m_serverMessage = inMessage; }
     void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
     const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
+
+    void UpdateClient(GameDefClient& inClient);
     
 protected:
     void XMLStartHandler(CoreXML& inXML);
@@ -69,12 +74,10 @@ private:
 
     enum
     {
-        kClientTimeoutMsec=35000,
         kUpdateMsec=10000
     };
 
     void UpdateClients(void);
-    void UpdateClient(GameDefClient& inClient);
     
     string m_serverMessage;
     string m_contractName;

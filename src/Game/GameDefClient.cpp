@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.7 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.8 2002/11/28 12:05:45 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.8  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.7  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -42,6 +45,7 @@
 #include "GameDefClient.h"
 
 #include "GameAppHandler.h"
+#include "GameDefServer.h"
 #include "GameProtocol.h"
 
 #include "mushPlatform.h"
@@ -55,13 +59,17 @@ GameDefClient::GameDefClient(const string& inName) :
     m_killed(false),
     m_joined(false)
 {
+    StatusSet(GameDef::kStatusOK);
 }
 
 void
 GameDefClient::JoinGame(const string& inServer, U32 inPort)
 {
+    StatusSet(GameDef::kStatusNoServer);
     m_netAddress.ResolveFrom(inServer, inPort); // throws NetworkFail
+    StatusSet(GameDef::kStatusTesting);
     m_joined=true;
+    m_lastRegistrationMsec=0; // Schedule immediate registration
 }
 
 void
@@ -76,7 +84,8 @@ GameDefClient::Ticker(void)
     if (MediaNetUtils::FindLinkToStation(netLink, m_netAddress))
     {
         COREASSERT(netLink != NULL);
-        if (m_lastRegistrationMsec + kRegistrationMsec < m_currentMsec)
+        if (m_currentMsec > m_lastRegistrationMsec + kRegistrationMsec &&
+            m_currentMsec > netLink->CreationMsecGet() + kLinkSetupWaitMsec)
         {
             MediaNetData netData;
             if (m_killed)
@@ -89,18 +98,26 @@ GameDefClient::Ticker(void)
                 // Update the client image on the remote station
                 GameProtocol::CreateObjectCreate(netData, *this, NameGet());
             }
-            netLink->ReliableSend(netData);
+            try
+            {
+                netLink->ReliableSend(netData);
+            }
+            catch (NetworkFail& e)
+            {
+                MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+            }
             m_lastRegistrationMsec = m_currentMsec;
         }
     }
     else
     {
-        if (m_lastLinkMsec + kLinkSetupMsec < m_currentMsec)
+        if (m_lastLinkMsec + kLinkSetupIntervalMsec < m_currentMsec)
         {
             CreateNewLink(m_netAddress);
             m_lastLinkMsec = m_currentMsec;
         }
     }
+    UpdateStatus();
 }
 
 void
@@ -112,13 +129,39 @@ GameDefClient::Kill(void)
 }
 
 void
+GameDefClient::UpdateStatus(void)
+{
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    m_currentMsec=gameAppHandler.MillisecondsGet();
+
+    if (m_currentMsec > CreationMsecGet() + kServerTimeoutMsec)
+    {
+        StatusSet(GameDef::kStatusNoServer);
+    }
+    
+    CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+
+    for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    {
+        if (p->second->IsImage())
+        {
+            if (p->second->AddressGet() == AddressGet())
+            {
+                StatusSet(GameDef::kStatusOK);
+                break;
+            }
+        }
+    }
+}
+
+void
 GameDefClient::WebPrint(ostream& ioOut) const
 {
     ioOut << "<tr>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverName) << "</td>";
     ioOut << "<td>" << m_netAddress << "</td>";
-    ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
+    ioOut << "<td>" << StatusWebStringGet() << "</td>";
     ioOut << "</tr>" << endl;
 }
 

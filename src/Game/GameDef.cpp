@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.10 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameDef.cpp,v 1.11 2002/11/28 12:05:45 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.11  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.10  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -39,8 +42,30 @@
 
 GameDef::GameDef(const string& inName) :
     m_name(inName),
+    m_status(kStatusTesting),
     m_isImage(false)
 {
+    m_creationMsec = dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
+}
+
+const string
+GameDef::StatusWebStringGet(void) const
+{
+    switch (m_status)
+    {
+        case kStatusInvalid:
+        default:
+            return "<font class=\"bgred\">INVALID</font>";
+
+        case kStatusTesting:
+            return "<font class=\"bgyellow\">TESTING</font>";
+            
+        case kStatusOK:
+            return "<font class=\"bggreen\">OK</font>";
+
+        case kStatusNoServer:
+            return "<font class=\"bgred\">NO SERVER</font>";
+    }
 }
 
 void

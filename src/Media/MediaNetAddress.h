@@ -1,8 +1,11 @@
 #ifndef MEDIANETADDRESS_H
 #define MEDIANETADDRESS_H
 /*
- * $Id: MediaNetAddress.h,v 1.1 2002/11/27 13:23:27 southa Exp $
+ * $Id: MediaNetAddress.h,v 1.2 2002/11/28 12:05:46 southa Exp $
  * $Log: MediaNetAddress.h,v $
+ * Revision 1.2  2002/11/28 12:05:46  southa
+ * Server name work
+ *
  * Revision 1.1  2002/11/27 13:23:27  southa
  * Server and client data exchange
  *
@@ -31,11 +34,26 @@ public:
     void ResolveFrom(const string& inHost, U32 inPortHostOrder);
     
     void Print(ostream& ioOut) const;
+
+    bool Equals(const MediaNetAddress& inAddress) const;
     
 private:
     U32 m_ip;
     U32 m_port;
 };
+
+inline bool
+MediaNetAddress::Equals(const MediaNetAddress& inAddress) const
+{
+    return m_ip == inAddress.HostGetNetworkOrder() &&
+           m_port == inAddress.PortGetNetworkOrder();
+}
+
+inline bool
+operator==(const MediaNetAddress& a, const MediaNetAddress& b)
+{
+    return a.Equals(b);
+}
 
 inline ostream&
 operator<<(ostream &ioOut, const MediaNetAddress& inLink)

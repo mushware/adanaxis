@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.5 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.6 2002/11/28 12:05:45 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.6  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.5  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -80,21 +83,26 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
     if (MediaNetUtils::FindLinkToStation(netLink, inClient.AddressGet()))
     {
         COREASSERT(netLink != NULL);
-        if (m_lastUpdateMsec + kUpdateMsec < m_currentMsec)
+        MediaNetData netData;
+
+        if (m_killed)
         {
-            MediaNetData netData;
-            if (m_killed)
-            {
-                // Server is killed, so delete the server image on the remote station
-                GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
-            }
-            else
-            {
-                // Update the server image on the remote station
-                GameProtocol::CreateObjectCreate(netData, *this, NameGet());
-            }
-            
+            // Server is killed, so delete the server image on the remote station
+            GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
+        }
+        else
+        {
+            // Update the server image on the remote station
+            GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+        }
+
+        try
+        {
             netLink->ReliableSend(netData);
+        }
+        catch (NetworkFail& e)
+        {
+            MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
         }
     }
 }
