@@ -16,5 +16,6 @@ cp ../INSTALL $DEST/INSTALL.txt
 cp ../NEWS $DEST/NEWS.txt
 cp ../README $DEST/README.txt
 cp system/start.txt system/start_backup.txt
+mkdir $DEST/save
 chmod -R g+w $DEST
 echo Done
