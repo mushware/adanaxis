@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.26 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.27 2002/12/03 20:28:16 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.27  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.26  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -95,14 +98,16 @@
 
 #include "GameFloorDesigner.h"
 
-#include "mushGL.h"
-#include "GameData.h"
+#include "GameAppHandler.h"
 #include "GameController.h"
+#include "GameControlFrameDef.h"
+#include "GameData.h"
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
-#include "GameAppHandler.h"
 #include "GameMotionSpec.h"
 #include "GameView.h"
+
+#include "mushGL.h"
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),
@@ -253,9 +258,13 @@ GameFloorDesigner::Move(void)
     {
         m_controller=GameData::Instance().ControllerGet(m_controllerName);
     }
-    GameControllerState controlState;
-    m_controller->StateGet(controlState, 0);
+    GameControlFrameDef frameDef;
+    m_controller->StateGet(frameDef, 0);
+    tVal mouseX, mouseY;
 
+    glHandler.MousePositionGet(mouseX, mouseY);
+    GLPoint mousePoint(mouseX, mouseY);
+    
     for (U32 i=0; i<m_floorMaps.size() && i<12 ; ++i)
     {
         if (glHandler.KeyStateGet(GLKeys::kKeyF1+i))
@@ -280,14 +289,14 @@ GameFloorDesigner::Move(void)
     {
         if (secondaryState)
         {
-            m_downPoint=GLPoint(controlState.MouseGet());
+            m_downPoint=mousePoint;
         }
     }
 
     if (secondaryState)
     {
         GLPoint start(m_downPoint);
-        GLPoint end(controlState.MouseGet());
+        GLPoint end(mousePoint);
         GLPoint selectStep(m_floorMaps[m_currentMap]->StepGet() * m_masterScale);
         // Widen selected area by half a block
         if (end.x > start.x)
@@ -330,24 +339,24 @@ GameFloorDesigner::Move(void)
 
     if (tertiaryState)
     {
-	    delta -= controlState.MouseDeltaGet() / m_masterScale;
+	    delta -= GLPoint(frameDef.mouseDeltaX, frameDef.mouseDeltaY) / (m_masterScale * 500);
     }
 
     GLPoint stepSize=m_floorMaps[0]->StepGet();
     
-    if (controlState.leftPressed)
+    if (frameDef.LeftPressed())
     {
         delta.x = -stepSize.x;
     }
-    if (controlState.rightPressed)
+    if (frameDef.RightPressed())
     {
         delta.x = stepSize.x;
     }
-    if (controlState.upPressed)
+    if (frameDef.UpPressed())
     {
         delta.y = stepSize.y;
     }
-    if (controlState.downPressed)
+    if (frameDef.DownPressed())
     {
         delta.y = -stepSize.y;
     }
@@ -376,7 +385,7 @@ GameFloorDesigner::Move(void)
         {
             SaveForUndo();
         }
-        Paste(GLPoint(controlState.mouseX, controlState.mouseY));
+        Paste(mousePoint);
     }
     else
     {

@@ -4063,6 +4063,30 @@
 			settings = {
 			};
 		};
+		F57FF20C039D829001A80164 = {
+			isa = PBXFileReference;
+			name = GameControlFrameDef.h;
+			path = Game/GameControlFrameDef.h;
+			refType = 4;
+		};
+		F57FF20D039D829001A80164 = {
+			isa = PBXFileReference;
+			name = GameControlFrameDef.cpp;
+			path = Game/GameControlFrameDef.cpp;
+			refType = 4;
+		};
+		F57FF20E039D829001A80164 = {
+			fileRef = F57FF20C039D829001A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57FF20F039D829001A80164 = {
+			fileRef = F57FF20D039D829001A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5909DAE022822A9013B17EF = {
 			children = (
 				F5909DAF022822A9013B17EF,
@@ -4198,6 +4222,8 @@
 				F5B39DB10383F5FB01A80164,
 				F54020AD02A2423901F0D71D,
 				F54020AE02A2423901F0D71D,
+				F57FF20D039D829001A80164,
+				F57FF20C039D829001A80164,
 				F5F06F1202AE5D2001B05200,
 				F5F06F1302AE5D2001B05200,
 				F545EE7B02A66359018FABF3,
@@ -4529,6 +4555,7 @@
 				F5B343AB039267A401A80164,
 				F5B3D4740394F2F301A80164,
 				F5A8A074039CE39901A80164,
+				F57FF20E039D829001A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4683,6 +4710,7 @@
 				F5B3D4750394F2F301A80164,
 				F5A8A075039CE39901A80164,
 				F5AB135B039D42E501A80164,
+				F57FF20F039D829001A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.10 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameController.cpp,v 1.11 2002/12/03 20:28:16 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.11  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.10  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -46,7 +49,9 @@
  */
 
 #include "GameController.h"
+
 #include "GameAppHandler.h"
+#include "GameControlFrameDef.h"
 
 GameController::GameController():
     m_keyState(4),
@@ -59,37 +64,54 @@ GameController::GameController():
 }
 
 void
-GameController::StateGet(GameControllerState& outState, U32 inAtMsec)
+GameController::StateGet(GameControlFrameDef& outDef, U32 inAtMsec)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     
     gameAppHandler.KeysOfInterestSet(m_keysOfInterest);
+    
     S32 unboundedMouseX, unboundedMouseY;
 
     gameAppHandler.ReadHistoricControlState(unboundedMouseX, unboundedMouseY, m_keyState, inAtMsec);
- 
-    COREASSERT(m_keyState.size() == 4);
-    outState.leftPressed=m_keyState[0];
-    outState.rightPressed=m_keyState[1];
-    outState.upPressed=m_keyState[2];
-    outState.downPressed=m_keyState[3];
+
+    U32 size=m_keyState.size();
+
+    outDef.keyState = 0;
+    for (U32 i=0; i<size; ++i)
+    {
+        outDef.keyState |= m_keyState[i] << i;
+    }
     
     tVal mouseX, mouseY;
     gameAppHandler.MousePositionGet(mouseX, mouseY);
 
-    outState.mouseX=mouseX;
-    outState.mouseY=mouseY;
+    //outState.mouseX=mouseX;
+    //outState.mouseY=mouseY;
+
+    S32 mouseDeltaX, mouseDeltaY;
+    
     if (m_lastMouseValid)
     {
-        outState.mouseXDelta = unboundedMouseX - m_lastUnboundedMouseX;
-        outState.mouseYDelta = unboundedMouseY - m_lastUnboundedMouseY;
+        mouseDeltaX = unboundedMouseX - m_lastUnboundedMouseX;
+        if (mouseDeltaX < -127) mouseDeltaX = -127;
+        if (mouseDeltaX > 127) mouseDeltaX = 127;
+
+        mouseDeltaY = unboundedMouseY - m_lastUnboundedMouseY;
+        if (mouseDeltaY < -127) mouseDeltaY = -127;
+        if (mouseDeltaY > 127) mouseDeltaY = 127;
     }
     else
     {
-        outState.mouseXDelta = 0;
-        outState.mouseYDelta = 0;
+        mouseDeltaX = 0;
+        mouseDeltaY = 0;
+        m_lastUnboundedMouseX = unboundedMouseX;
+        m_lastUnboundedMouseY = unboundedMouseY;
         m_lastMouseValid = true;
     }
-    m_lastUnboundedMouseX = unboundedMouseX;
-    m_lastUnboundedMouseY = unboundedMouseY;
+
+    outDef.mouseDeltaX = static_cast<S8>(mouseDeltaX);
+    outDef.mouseDeltaY = static_cast<S8>(mouseDeltaY);
+
+    m_lastUnboundedMouseX += mouseDeltaX;
+    m_lastUnboundedMouseY += mouseDeltaY;
 }

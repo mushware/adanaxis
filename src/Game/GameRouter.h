@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.h,v 1.4 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameRouter.h,v 1.5 2002/11/28 11:10:29 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.5  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.4  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -28,6 +31,7 @@ public:
 
 protected:
     void NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink);
+    void ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink);
     
 private:
     static auto_ptr<GameRouter> m_instance;

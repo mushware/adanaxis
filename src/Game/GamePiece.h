@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.10 2002/11/24 23:18:23 southa Exp $
+ * $Id: GamePiece.h,v 1.11 2002/12/03 20:28:17 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.11  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.10  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -50,6 +53,7 @@
 #include "mushCore.h"
 
 class GLPoint;
+class GameControlFrameDef;
 class GameMotionSpec;
 class GameFloorMap;
 
@@ -62,7 +66,7 @@ public:
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
-    virtual void MoveGet(GameMotionSpec& outSpec, U32 inWindbackMsec) const = 0;
+    virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const = 0;
     virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
     virtual char *TypeNameGet(void) const = 0;
     

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: DataSet.cpp,v 1.7 2002/08/27 08:56:18 southa Exp $
+ * $Id: DataSet.cpp,v 1.8 2002/10/22 20:41:59 southa Exp $
  * $Log: DataSet.cpp,v $
+ * Revision 1.8  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -61,8 +64,8 @@ Dataset::characterDataHandler(void *userData, const XML_Char *s, int len)
     vector<string> matches;
     if (dataset->m_regexp.Search(str, matches))
     {
-        Vec<tVal> data;
-        Vec<bool> valid;
+        vector<tVal> data;
+        vector<bool> valid;
         vector<string>::iterator p=matches.begin();
         while (p != matches.end())
         {
@@ -144,7 +147,7 @@ Dataset::Save(ostream& out)
 }
 
 void
-Dataset::AppendElement(const Vec<tVal>& data, const Vec<bool>& valid)
+Dataset::AppendElement(const vector<tVal>& data, const vector<bool>& valid)
 {
     m_data.push_back(data);
     m_valid.push_back(valid);
@@ -160,10 +163,10 @@ Dataset::Clear(void)
 void
 Dataset::Testset(void)
 {
-    Vec<tVal> data(2);
-    Vec<bool> valid(data.size(), true);
+    vector<tVal> data(2);
+    vector<bool> valid(data.size(), true);
     data[0]=2.3;data[1]=1.3;AppendElement(data, valid);
-    AppendElement(Vec<tVal>(2,1.1), valid);
+    AppendElement(vector<tVal>(2,1.1), valid);
 }
 
 

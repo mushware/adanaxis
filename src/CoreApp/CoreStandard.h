@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.19 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreStandard.h,v 1.20 2002/11/01 16:15:26 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.20  2002/11/01 16:15:26  southa
+ * Network send and receive
+ *
  * Revision 1.19  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -101,8 +104,6 @@
  *
  */
 
-
-// config.h
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -145,9 +146,13 @@
 
 using namespace std;
 
-typedef double tVal;
+typedef float tVal;
+typedef double tLongVal;
 typedef signed int S32;
 typedef unsigned int U32;
+typedef signed short S16;
+typedef unsigned short U16;
+typedef signed char S8;
 typedef unsigned char U8;
 typedef unsigned int tSize;
 
@@ -168,8 +173,6 @@ typedef istream u8istream;
 typedef ostream u8ostream;
 typedef ifstream u8ifstream;
 typedef ofstream u8ofstream;
-
-#define Vec vector
 
 #define COREASSERT(exp) assert(exp)
 

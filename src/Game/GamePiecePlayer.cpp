@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.27 2002/11/24 23:18:23 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.28 2002/12/03 20:28:17 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.28  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.27  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -97,13 +100,14 @@
  */
 
 #include "GamePiecePlayer.h"
-#include "GameGraphic.h"
+
+#include "GameControlFrameDef.h"
 #include "GameData.h"
-#include "GameController.h"
-#include "GameGraphicSprite.h"
-#include "GameView.h"
 #include "GameFloorMap.h"
+#include "GameGraphic.h"
+#include "GameGraphicSprite.h"
 #include "GameSpacePoint.h"
+#include "GameView.h"
 
 #include "mushGL.h"
 
@@ -128,7 +132,7 @@ GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
 }
 
 void
-GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, U32 inWindbackMsec) const
+GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const
 {
     outSpec = m_motion.MotionSpecGet();
     // Retard the current motion
@@ -142,32 +146,25 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, U32 inWindbackMsec) const
     tVal angleRetard=outSpec.deltaAngle;
     outSpec.deltaAngle -= 0.5*m_adhesion*angleRetard;
     
-    if (m_controller == NULL)
-    {
-        m_controller=GameData::Instance().ControllerGet(m_controllerName);
-    }
-    GameControllerState controlState;
-    m_controller->StateGet(controlState, inWindbackMsec);
-    
-    outSpec.deltaAngle += m_adhesion * M_PI * controlState.mouseXDelta / 500; // Fix scaling
+    outSpec.deltaAngle += m_adhesion * M_PI * inDef.mouseDeltaX / 500; // Fix scaling
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);
     
     GLPoint keyMovement(0,0);
-    if (controlState.leftPressed)
+    if (inDef.keyState & (1<<0))
     {
         keyMovement.x -= 1;
     }
-    if (controlState.rightPressed)
+    if (inDef.keyState & (1<<1))
     {
         keyMovement.x += 1;
     }
-    if (controlState.upPressed)
+    if (inDef.keyState & (1<<2))
     {
         keyMovement.y += 1;
     }
-    if (controlState.downPressed)
+    if (inDef.keyState & (1<<3))
     {
         keyMovement.y -= 1;
     }

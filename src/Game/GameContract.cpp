@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.99 2002/11/25 12:06:17 southa Exp $
+ * $Id: GameContract.cpp,v 1.100 2002/12/03 20:28:15 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.100  2002/12/03 20:28:15  southa
+ * Network, player and control work
+ *
  * Revision 1.99  2002/11/25 12:06:17  southa
  * Received net message routing
  *
@@ -316,6 +319,8 @@
 #include "mushMedia.h"
 #include "mushPlatform.h"
 
+#include "GameController.h"
+#include "GameControlFrameDef.h"
 #include "GameFloorMap.h"
 #include "GameData.h"
 #include "GameTileMap.h"
@@ -512,7 +517,11 @@ GameContract::RunningMove(U32 inAtMsec)
 
         GameData::Instance().TypeGet().EventHandler(standingOn);
 
-        playerRef.MoveGet(motion, inAtMsec);
+        GameControlFrameDef frameDef;
+
+        GameData::Instance().ControllerGet("controller1")->StateGet(frameDef, inAtMsec);
+        
+        playerRef.MoveGet(motion, frameDef);
         if (m_renderDiagnostics == kDiagnosticCollision)
         {
             GLState::DepthSet(GLState::kDepthNone);

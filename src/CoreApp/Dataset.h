@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Dataset.h,v 1.6 2002/08/27 08:56:18 southa Exp $
+ * $Id: Dataset.h,v 1.7 2002/10/22 20:41:59 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.7  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -52,7 +55,7 @@ public:
     void Load(istream& in);
     void Save(ostream& out);
     void Resize(tSize entries);
-    void AppendElement(const Vec<tVal>& data, const Vec<bool>& valid);
+    void AppendElement(const vector<tVal>& data, const vector<bool>& valid);
     void Clear(void);
     void Testset(void);
     
@@ -61,8 +64,8 @@ private:
     static void endElement(void *userData, const char *name);
     static void characterDataHandler(void *userData, const XML_Char *s, int len);
 
-    Vec< Vec<tVal> > m_data;
-    Vec< Vec<bool> > m_valid;
+    vector< vector<tVal> > m_data;
+    vector< vector<bool> > m_valid;
 
     CoreRegExp m_regexp;
     

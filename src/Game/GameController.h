@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.h,v 1.8 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameController.h,v 1.9 2002/12/03 20:28:16 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.9  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.8  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -44,27 +47,13 @@
 #include "mushCore.h"
 #include "mushGL.h"
 
-class GameControllerState
-{
-public:
-    GLPoint MouseGet(void) { return GLPoint(mouseX, mouseY); }
-    GLPoint MouseDeltaGet(void) { return GLPoint(mouseXDelta, mouseYDelta); } // Fix scaling
-    
-    bool leftPressed;
-    bool rightPressed;
-    bool upPressed;
-    bool downPressed;
-    tVal mouseX;
-    tVal mouseY;
-    S32 mouseXDelta;
-    S32 mouseYDelta;
-};
+class GameControlFrameDef;
 
 class GameController
 {
 public:
     GameController();
-    void StateGet(GameControllerState& outState, U32 inAtMsec);
+    void StateGet(GameControlFrameDef& outDef, U32 inAtMsec);
 
 private:
     vector<GLKeys::tKeyValue> m_keysOfInterest;

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.18 2002/11/24 23:18:24 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.19 2002/12/03 20:28:17 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.19  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.18  2002/11/24 23:18:24  southa
  * Added type name accessor to CorePickle
  *
@@ -76,19 +79,17 @@
 #include "GameFloorMap.h"
 
 class GameGraphic;
-class GameController;
+class GameControlFrameDef;
 
 class GamePiecePlayer: public GamePiece
 {
 public:
-    GamePiecePlayer():
-    m_controllerName("controller1"),
-    m_controller(NULL)
+    GamePiecePlayer()
         {}
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual void MoveGet(GameMotionSpec& inSpec, U32 inWindbackMsec) const;
+    virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
     virtual void Render(void);
@@ -137,8 +138,6 @@ private:
     GameMotion m_motion;
     tVal m_adhesion;
     vector <GameGraphic *> m_graphics;
-    string m_controllerName;
-    mutable GameController *m_controller; // in GameData
     tVal m_speedLim;
     tVal m_acceleration;
     GameFloorMap::tMapVector m_standingOn;
