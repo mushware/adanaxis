@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gImHcvR1YijrpW2VX2rWdw
 /*
- * $Id: MushcoreXMLStream.cpp,v 1.2 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreXMLStream.cpp,v 1.3 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreXMLStream.cpp,v $
+ * Revision 1.3  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.2  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -56,7 +59,7 @@
  *
  * vector<Polymorph *> m_marklar
  *
- * <marklar>(<marklar type="Lampshade">
+ * <marklar>(<obj type="Lampshade">
  *   <bulb type="economy">
  *    <watts>
  *    	3
@@ -65,7 +68,7 @@
  *   <height>
  *    6
  *   </height>
- *  </marklar>,<marklar type="Kebab">
+ *  </obj>,<obj type="Kebab">
  *   <taste type="hot">
  *    <chillipower>
  *    	3
@@ -74,7 +77,7 @@
  *   <size>
  *    6
  *   </size>
- *  </marklar>)</marklar>
+ *  </obj>)</marklar>
  *
  * map< map<U32, vector<U32> > > m_marklar
  *

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } SW5J6spEp5jvZeyT03E1UA
 /*
- * $Id: MushcoreXMLOStream.cpp,v 1.4 2003/09/21 11:46:11 southa Exp $
+ * $Id: MushcoreXMLOStream.cpp,v 1.5 2003/09/22 19:40:36 southa Exp $
  * $Log: MushcoreXMLOStream.cpp,v $
+ * Revision 1.5  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.4  2003/09/21 11:46:11  southa
  * XML input stream
  *
@@ -25,9 +28,10 @@
  *
  */
 
-#include "MushcoreXMLOstream.h"
+#include "MushcoreXMLOStream.h"
 
 MushcoreXMLOStream::MushcoreXMLOStream(std::ostream& inStream) :
-    m_pStream(inStream)
+    m_pStream(inStream),
+    m_tagStr("obj")
 {
 }

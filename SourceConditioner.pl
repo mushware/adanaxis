@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.12 2003/09/29 21:48:33 southa Exp $
+# $Id: SourceConditioner.pl,v 1.13 2003/09/30 22:11:26 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.13  2003/09/30 22:11:26  southa
+# XML objects within objects
+#
 # Revision 1.12  2003/09/29 21:48:33  southa
 # XML work
 #
@@ -615,22 +618,19 @@ sub XMLOStreamWriteFunctionGenerate($$)
             my $attr = $$attributesRef[$i+1];
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
-            my $line = "    ioOut << \"<$trimmedAttr>\" << ".TypeSpecial($type, $attr)." << \"</$trimmedAttr>\\n\";";            
+            
+            push @$outputRef,
+"    ioOut.TagSet(\"$trimmedAttr\");";
+           
             if ($indirection > 0)
             {
                 push @$outputRef,
-"    if (".VarBaseNameGet($attr)." == NULL)",
-"    {",
-"        ioOut << \"<$trimmedAttr>NULL</$trimmedAttr>\\n\";",
-"    }",
-"    else",
-"    {",
-"    ".$line,
-"    }";
+"    ioOut << ".VarBaseNameGet($attr)." << \"\\n\";";
             }
             else
             {
-                push @$outputRef, $line;
+                push @$outputRef,
+"    ioOut << ".$attr." << \"\\n\";";
             }
         }
     }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.10 2003/09/29 21:48:37 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.11 2003/09/30 22:11:30 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.11  2003/09/30 22:11:30  southa
+ * XML objects within objects
+ *
  * Revision 1.10  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -57,68 +60,85 @@ class MushcoreXMLOStream : public MushcoreXMLStream
 public:
     explicit MushcoreXMLOStream(std::ostream& inPStream);
     std::ostream& OStreamGet() { return m_pStream; }
+    std::string OpeningTagWrite(const std::string& inType="");
+    void ClosingTagWrite(const std::string& inStr);
+    void TagSet(const std::string& inStr) { m_tagStr = inStr; }
 
     template<class T> void PointerPrint(const T *inPtr);
     
 private:
     std::ostream& m_pStream;
+    std::string m_tagStr;
 };
 
-template<class T>
+
+inline std::string
+MushcoreXMLOStream::OpeningTagWrite(const std::string& inType)
+{
+    std::string localTag = m_tagStr;
+    if (localTag != "")
+    {
+        OStreamGet() << '<' << localTag;
+        if (inType != "")
+        {
+            OStreamGet() << " type=\"" << inType << "\"";
+        }	
+        OStreamGet() << '>';
+    }
+    m_tagStr = "";
+    return localTag;
+}
+
 inline void
-MushcoreXMLOStream::PointerPrint(const T *inPtr)
+MushcoreXMLOStream::ClosingTagWrite(const std::string& inStr)
 {
-    if (inPtr == NULL)
+    if (inStr != "")
     {
-        OStreamGet() << "NULL";
-    }
-    else
-    {
-        *this << *inPtr;
+        OStreamGet() << "</" << inStr << '>';
     }
 }
 
-#if 0
-template<class T>
-inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const T& inObj)
-{
-    ioOut.OStreamGet() << inObj;
-    return ioOut;
-}
-#endif
-
-//template<>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushcoreXMLConsumer& inObj)
 {
-    ioOut.OStreamGet() << "<obj type=\"" << inObj.AutoNameGet() << "\">" << endl;
+    std::string localTag = ioOut.OpeningTagWrite(inObj.AutoNameGet());
     inObj.AutoXMLPrint(ioOut);
-    ioOut.OStreamGet() << "</obj>" << endl;
+    ioOut.ClosingTagWrite(localTag);
+    ioOut.TagSet("obj");
     return ioOut;
 }
 
-//template<>
 inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const char * inChar)
+operator<<(MushcoreXMLOStream& ioOut, const char *inChar)
 {
     ioOut.OStreamGet() << inChar;
     return ioOut;
 }
 
-//template<>
 inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const Mushware::U8& inU8)
+operator<<(MushcoreXMLOStream& ioOut, const Mushware::U32& inU32)
 {
-    ioOut.OStreamGet() << static_cast<Mushware::U32>(inU8);
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << inU32;
+    ioOut.ClosingTagWrite(localTag);
     return ioOut;
 }
 
-//template<>
+
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::string& inStr)
 {
+    std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << '"' << MushcoreUtil::XMLMetaInsert(inStr) << '"';
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, T *inpObj)
+{
+    ioOut.PointerPrint(inpObj);
     return ioOut;
 }
 
@@ -129,6 +149,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T>& inObj)
     std::vector<T>::const_iterator pEnd = inObj.end();
     std::vector<T>::const_iterator p = inObj.begin();
 
+    std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
     while (p != pEnd)
     {
@@ -140,6 +161,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T>& inObj)
         }
     }
     ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
     return ioOut;
 }
 
@@ -150,6 +172,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
     std::vector<T *>::const_iterator pEnd = inObj.end();
     std::vector<T *>::const_iterator p = inObj.begin();
 
+    std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
     while (p != pEnd)
     {
@@ -161,6 +184,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
         }
     }
     ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
     return ioOut;
 }
 
@@ -171,6 +195,7 @@ operator<<(MushcoreXMLOStream& ioOut, const std::map<T, U>& inObj)
     std::map<T, U>::const_iterator pEnd = inObj.end();
     std::map<T, U>::const_iterator p = inObj.begin();
 
+    std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
     while (p != pEnd)
     {
@@ -182,7 +207,24 @@ operator<<(MushcoreXMLOStream& ioOut, const std::map<T, U>& inObj)
         }
     }
     ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
     return ioOut;
+}
+
+template<class T>
+inline void
+MushcoreXMLOStream::PointerPrint(const T *inPtr)
+{
+    if (inPtr == NULL)
+    {
+        std::string localTag = OpeningTagWrite();
+        OStreamGet() << "NULL";
+        ClosingTagWrite(localTag);
+    }
+    else
+    {
+        *this << *inPtr;
+    }
 }
 
 //%includeGuardEnd {

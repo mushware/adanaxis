@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.12 2003/09/29 21:48:37 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.13 2003/09/30 22:11:30 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.13  2003/09/30 22:11:30  southa
+ * XML objects within objects
+ *
  * Revision 1.12  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -231,50 +234,39 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
-    ioOut << "<u32>" << m_u32 << "</u32>\n";
-    ioOut << "<string>" << m_string << "</string>\n";
-    ioOut << "<u8Vector>" << m_u8Vector << "</u8Vector>\n";
-    ioOut << "<u32Vector>" << m_u32Vector << "</u32Vector>\n";
-    ioOut << "<stringVector>" << m_stringVector << "</stringVector>\n";
-    ioOut << "<u8EmptyVector>" << m_u8EmptyVector << "</u8EmptyVector>\n";
-    ioOut << "<uEmpty32Vector>" << m_uEmpty32Vector << "</uEmpty32Vector>\n";
-    ioOut << "<stringEmptyVector>" << m_stringEmptyVector << "</stringEmptyVector>\n";
-    ioOut << "<vectorVector>" << m_vectorVector << "</vectorVector>\n";
-    ioOut << "<mapVector>" << m_mapVector << "</mapVector>\n";
-    ioOut << "<vectorMap>" << m_vectorMap << "</vectorMap>\n";
-    if (m_pU32 == NULL)
-    {
-        ioOut << "<pU32>NULL</pU32>\n";
-    }
-    else
-    {
-        ioOut << "<pU32>" << *m_pU32 << "</pU32>\n";
-    }
-    if (m_pVectorU32 == NULL)
-    {
-        ioOut << "<pVectorU32>NULL</pVectorU32>\n";
-    }
-    else
-    {
-        ioOut << "<pVectorU32>" << *m_pVectorU32 << "</pVectorU32>\n";
-    }
-    ioOut << "<vectorpU32>" << m_vectorpU32 << "</vectorpU32>\n";
-    if (m_pNull == NULL)
-    {
-        ioOut << "<pNull>NULL</pNull>\n";
-    }
-    else
-    {
-        ioOut << "<pNull>" << *m_pNull << "</pNull>\n";
-    }
-    if (m_testObject == NULL)
-    {
-        ioOut << "<testObject>NULL</testObject>\n";
-    }
-    else
-    {
-        ioOut << "<testObject>" << *m_testObject << "</testObject>\n";
-    }
+    ioOut.TagSet("u8");
+    ioOut << m_u8 << "\n";
+    ioOut.TagSet("u32");
+    ioOut << m_u32 << "\n";
+    ioOut.TagSet("string");
+    ioOut << m_string << "\n";
+    ioOut.TagSet("u8Vector");
+    ioOut << m_u8Vector << "\n";
+    ioOut.TagSet("u32Vector");
+    ioOut << m_u32Vector << "\n";
+    ioOut.TagSet("stringVector");
+    ioOut << m_stringVector << "\n";
+    ioOut.TagSet("u8EmptyVector");
+    ioOut << m_u8EmptyVector << "\n";
+    ioOut.TagSet("uEmpty32Vector");
+    ioOut << m_uEmpty32Vector << "\n";
+    ioOut.TagSet("stringEmptyVector");
+    ioOut << m_stringEmptyVector << "\n";
+    ioOut.TagSet("vectorVector");
+    ioOut << m_vectorVector << "\n";
+    ioOut.TagSet("mapVector");
+    ioOut << m_mapVector << "\n";
+    ioOut.TagSet("vectorMap");
+    ioOut << m_vectorMap << "\n";
+    ioOut.TagSet("pU32");
+    ioOut << m_pU32 << "\n";
+    ioOut.TagSet("pVectorU32");
+    ioOut << m_pVectorU32 << "\n";
+    ioOut.TagSet("vectorpU32");
+    ioOut << m_vectorpU32 << "\n";
+    ioOut.TagSet("pNull");
+    ioOut << m_pNull << "\n";
+    ioOut.TagSet("testObject");
+    ioOut << m_testObject << "\n";
 }
-//%outOfLineFunctions } VtGEKIj4kRVpJLRo8j3dzA
+//%outOfLineFunctions } gH6Z+Z8o0b2w7eH3IbPTuA
