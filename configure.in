@@ -6,7 +6,7 @@ AC_CANONICAL_SYSTEM
 AM_INIT_AUTOMAKE(contractor, 0.0)
 TOP_SUBDIRS="src"
 AC_SUBST(TOP_SUBDIRS)
-prefix='${top_srcdir}/contractor'
+prefix='${top_srcdir}/ic2data'
 exec_prefix='${prefix}'
 bindir='${exec_prefix}/system'
 AM_CONFIG_HEADER(config.h)
