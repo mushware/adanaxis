@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.7 2002/07/08 14:22:02 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.8 2002/07/16 17:48:07 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.8  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.7  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -91,6 +94,9 @@ GameFloorDesigner::Display(void)
     COREASSERT(m_currentMap < m_floorMaps.size());
     COREASSERT(m_currentMap < m_xPos.size());
     COREASSERT(m_currentMap < m_yPos.size());
+
+    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
