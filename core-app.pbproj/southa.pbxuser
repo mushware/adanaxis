@@ -394,6 +394,1182 @@
 		path = "/Users/southa/core-app/COPYING";
 		refType = 0;
 	};
+	7A07FE6E0518F59B00158F49 = {
+		fRef = 7A07FED40518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "NEWS: 20";
+		rLen = 0;
+		rLoc = 389;
+		rType = 0;
+		vrLen = 389;
+		vrLoc = 0;
+	};
+	7A07FE6F0518F59B00158F49 = {
+		fRef = 7A05C3BC03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreAppHandler.cpp: 126";
+		rLen = 0;
+		rLoc = 2858;
+		rType = 0;
+		vrLen = 1462;
+		vrLoc = 0;
+	};
+	7A07FE700518F59B00158F49 = {
+		fRef = 7A05C3F403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreStandard.h: 17";
+		rLen = 0;
+		rLoc = 646;
+		rType = 0;
+		vrLen = 1500;
+		vrLoc = 0;
+	};
+	7A07FE710518F59B00158F49 = {
+		fRef = 7A05C3E503CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.h: Sgl";
+		rLen = 0;
+		rLoc = 2734;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 1486;
+	};
+	7A07FE720518F59B00158F49 = {
+		fRef = F5AAB68003A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "Mustl.h: 83";
+		rLen = 21;
+		rLoc = 2258;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 1363;
+	};
+	7A07FE730518F59B00158F49 = {
+		fRef = 7AB3264D03D8313E00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlMessageHandler.h: 61";
+		rLen = 0;
+		rLoc = 1707;
+		rType = 0;
+		vrLen = 1255;
+		vrLoc = 525;
+	};
+	7A07FE740518F59B00158F49 = {
+		fRef = 7AF8B14E03DC3A3F00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreMain.cpp: 49";
+		rLen = 0;
+		rLoc = 1377;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 533;
+	};
+	7A07FE750518F59B00158F49 = {
+		fRef = 7AF8B16903DC3B8E00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreStandard.h: 10";
+		rLen = 0;
+		rLoc = 300;
+		rType = 0;
+		vrLen = 1302;
+		vrLoc = 0;
+	};
+	7A07FE760518F59B00158F49 = {
+		fRef = 7AF8B17003DC3DA300A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreApp.cpp: 58";
+		rLen = 0;
+		rLoc = 1606;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 1092;
+	};
+	7A07FE770518F59B00158F49 = {
+		fRef = 7AF139FE03D310B500A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.h: 75";
+		rLen = 0;
+		rLoc = 2103;
+		rType = 0;
+		vrLen = 2250;
+		vrLoc = 2723;
+	};
+	7A07FE780518F59B00158F49 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 221";
+		rLen = 0;
+		rLoc = 6693;
+		rType = 0;
+		vrLen = 1668;
+		vrLoc = 5098;
+	};
+	7A07FE790518F59B00158F49 = {
+		fRef = 7A05C3C303CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.h: 1";
+		rLen = 638;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1543;
+		vrLoc = 0;
+	};
+	7A07FE7A0518F59B00158F49 = {
+		fRef = 7A05C3C403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.y: 2";
+		rLen = 0;
+		rLoc = 3;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 0;
+	};
+	7A07FE7B0518F59B00158F49 = {
+		fRef = 7A07FE5E0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceProcess.pm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1239;
+		vrLoc = 0;
+	};
+	7A07FE7C0518F59B00158F49 = {
+		fRef = 7A07FE640518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 0;
+	};
+	7A07FE7D0518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1467;
+		vrLoc = 0;
+	};
+	7A07FE7E0518F59B00158F49 = {
+		fRef = 7AF8B14D03DC3A3F00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreMain.h: 37";
+		rLen = 0;
+		rLoc = 1086;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 0;
+	};
+	7A07FE7F0518F59B00158F49 = {
+		fRef = 7AB68B0303D0728B00A80164;
+		isa = PBXTextBookmark;
+		name = "Mushcore.h: 73";
+		rLen = 0;
+		rLoc = 2077;
+		rType = 0;
+		vrLen = 1286;
+		vrLoc = 1157;
+	};
+	7A07FE800518F59B00158F49 = {
+		bstl = F54506F702CB614A019E6518;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A07FE810518F59B00158F49 = {
+		exec = 7AF8B16403DC3B1800A80164;
+		isa = PBXExecutableBookmark;
+		uiCtxt = {
+			buildSettingsExpandedSubviews = (
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+			);
+			buildSettingsVisRect = "{{0, 0}, {793, 672}}";
+		};
+	};
+	7A07FE820518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AF8B14F03DC3B1800A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE670518F1B200158F49,
+			);
+		};
+	};
+	7A07FE830518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB45DB503D3610100A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE6B0518F34900158F49,
+			);
+		};
+	};
+	7A07FE840518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE6A0518F33200158F49,
+			);
+		};
+	};
+	7A07FE850518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AEACAD603D1B87F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE690518F27C00158F49,
+			);
+		};
+	};
+	7A07FE860518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {513, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE680518F20700158F49,
+			);
+		};
+	};
+	7A07FE870518F59B00158F49 = {
+		fRef = 7A07FED50518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "lib.Makefile.am: 29";
+		rLen = 0;
+		rLoc = 817;
+		rType = 0;
+		vrLen = 860;
+		vrLoc = 0;
+	};
+	7A07FE880518F59B00158F49 = {
+		fRef = 7A07FED70518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "ic2.Makefile.am: 40";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1499;
+		vrLoc = 0;
+	};
+	7A07FE890518F59B00158F49 = {
+		fRef = 7A07FE5D0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 3";
+		rLen = 526;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 1594;
+		vrLoc = 0;
+	};
+	7A07FE8A0518F59B00158F49 = {
+		fRef = 7A07FE6C0518F42000158F49;
+		isa = PBXTextBookmark;
+		name = "prebuild.sh: 2";
+		rLen = 0;
+		rLoc = 453;
+		rType = 0;
+		vrLen = 110;
+		vrLoc = 0;
+	};
+	7A07FE8B0518F59B00158F49 = {
+		fRef = 7A07FED00518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "NEWS: 20";
+		rLen = 0;
+		rLoc = 389;
+		rType = 0;
+		vrLen = 389;
+		vrLoc = 0;
+	};
+	7A07FE8C0518F59B00158F49 = {
+		fRef = 7A05C3BC03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreAppHandler.cpp: 126";
+		rLen = 0;
+		rLoc = 2858;
+		rType = 0;
+		vrLen = 1462;
+		vrLoc = 0;
+	};
+	7A07FE8D0518F59B00158F49 = {
+		fRef = 7A07FE5E0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceProcess.pm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1239;
+		vrLoc = 0;
+	};
+	7A07FE8E0518F59B00158F49 = {
+		fRef = 7A07FE5D0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 319";
+		rLen = 0;
+		rLoc = 8638;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 7915;
+	};
+	7A07FE8F0518F59B00158F49 = {
+		fRef = 7A05C3F403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreStandard.h: 17";
+		rLen = 0;
+		rLoc = 646;
+		rType = 0;
+		vrLen = 1500;
+		vrLoc = 0;
+	};
+	7A07FE900518F59B00158F49 = {
+		fRef = 7A05C3E503CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreInterpreter.h: Sgl";
+		rLen = 0;
+		rLoc = 2734;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 1486;
+	};
+	7A07FE910518F59B00158F49 = {
+		fRef = F5AAB68003A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "Mustl.h: 83";
+		rLen = 21;
+		rLoc = 2258;
+		rType = 0;
+		vrLen = 1225;
+		vrLoc = 1363;
+	};
+	7A07FE920518F59B00158F49 = {
+		fRef = 7AB3264D03D8313E00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlMessageHandler.h: 61";
+		rLen = 0;
+		rLoc = 1707;
+		rType = 0;
+		vrLen = 1255;
+		vrLoc = 525;
+	};
+	7A07FE930518F59B00158F49 = {
+		fRef = 7AF8B14E03DC3A3F00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreMain.cpp: 49";
+		rLen = 0;
+		rLoc = 1377;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 533;
+	};
+	7A07FE940518F59B00158F49 = {
+		fRef = 7AF8B16903DC3B8E00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreStandard.h: 10";
+		rLen = 0;
+		rLoc = 300;
+		rType = 0;
+		vrLen = 1302;
+		vrLoc = 0;
+	};
+	7A07FE950518F59B00158F49 = {
+		fRef = 7A07FE640518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 0;
+	};
+	7A07FE960518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1467;
+		vrLoc = 0;
+	};
+	7A07FE970518F59B00158F49 = {
+		fRef = 7AF8B17003DC3DA300A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreApp.cpp: 58";
+		rLen = 0;
+		rLoc = 1606;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 1092;
+	};
+	7A07FE980518F59B00158F49 = {
+		fRef = 7AF139FE03D310B500A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.h: 75";
+		rLen = 0;
+		rLoc = 2103;
+		rType = 0;
+		vrLen = 2250;
+		vrLoc = 2723;
+	};
+	7A07FE990518F59B00158F49 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 221";
+		rLen = 0;
+		rLoc = 6693;
+		rType = 0;
+		vrLen = 1668;
+		vrLoc = 5098;
+	};
+	7A07FE9A0518F59B00158F49 = {
+		fRef = 7A05C3C303CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.h: 58";
+		rLen = 0;
+		rLoc = 1695;
+		rType = 0;
+		vrLen = 1285;
+		vrLoc = 1173;
+	};
+	7A07FE9B0518F59B00158F49 = {
+		fRef = 7A05C3C403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.y: 2";
+		rLen = 511;
+		rLoc = 3;
+		rType = 0;
+		vrLen = 1446;
+		vrLoc = 0;
+	};
+	7A07FE9C0518F59B00158F49 = {
+		fRef = 7A05C3C303CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.h: 1";
+		rLen = 638;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1543;
+		vrLoc = 0;
+	};
+	7A07FE9D0518F59B00158F49 = {
+		fRef = 7A05C3C403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.y: 174";
+		rLen = 0;
+		rLoc = 3824;
+		rType = 0;
+		vrLen = 743;
+		vrLoc = 3206;
+	};
+	7A07FE9E0518F59B00158F49 = {
+		fRef = 7A05C3C303CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.h: 1";
+		rLen = 638;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1543;
+		vrLoc = 0;
+	};
+	7A07FE9F0518F59B00158F49 = {
+		fRef = 7A05C3C403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.y: 2";
+		rLen = 0;
+		rLoc = 3;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 0;
+	};
+	7A07FEA00518F59B00158F49 = {
+		fRef = 7A07FE5E0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceProcess.pm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1239;
+		vrLoc = 0;
+	};
+	7A07FEA10518F59B00158F49 = {
+		fRef = 7A07FE5D0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 319";
+		rLen = 0;
+		rLoc = 8638;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 7915;
+	};
+	7A07FEA20518F59B00158F49 = {
+		fRef = 7A07FE5E0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceProcess.pm: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1239;
+		vrLoc = 0;
+	};
+	7A07FEA30518F59B00158F49 = {
+		fRef = 7A07FE640518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 0;
+	};
+	7A07FEA40518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1467;
+		vrLoc = 0;
+	};
+	7A07FEA50518F59B00158F49 = {
+		fRef = 7AF8B14D03DC3A3F00A80164;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreMain.h: 37";
+		rLen = 0;
+		rLoc = 1086;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 0;
+	};
+	7A07FEA60518F59B00158F49 = {
+		fRef = 7A07FE5D0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 320";
+		rLen = 0;
+		rLoc = 8638;
+		rType = 0;
+		vrLen = 1594;
+		vrLoc = 0;
+	};
+	7A07FEA70518F59B00158F49 = {
+		fRef = 7AB68B0303D0728B00A80164;
+		isa = PBXTextBookmark;
+		name = "Mushcore.h: 73";
+		rLen = 0;
+		rLoc = 2077;
+		rType = 0;
+		vrLen = 1286;
+		vrLoc = 1157;
+	};
+	7A07FEA80518F59B00158F49 = {
+		bstl = F54506F702CB614A019E6518;
+		isa = PBXBuildStyleBookmark;
+	};
+	7A07FEA90518F59B00158F49 = {
+		exec = 7AF8B16403DC3B1800A80164;
+		isa = PBXExecutableBookmark;
+		uiCtxt = {
+			buildSettingsExpandedSubviews = (
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+			);
+			buildSettingsVisRect = "{{0, 0}, {793, 672}}";
+		};
+	};
+	7A07FEAA0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 233}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetSummarySettingsModule,
+			);
+		};
+	};
+	7A07FEAB0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AF8B14F03DC3B1800A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 233}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetSummarySettingsModule,
+			);
+		};
+	};
+	7A07FEAC0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 233}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				PBXTargetSummarySettingsModule,
+			);
+		};
+	};
+	7A07FEAD0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AF8B14F03DC3B1800A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE670518F1B200158F49,
+			);
+		};
+	};
+	7A07FEAE0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB45DB503D3610100A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 119}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7AB45DB003D3610100A80164,
+			);
+		};
+	};
+	7A07FEAF0518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 672}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				F59396D0028C0CA6016230BF,
+			);
+		};
+	};
+	7A07FEB00518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AEACAD603D1B87F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 288}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				PBXProductDocumentTypesSettingsModule,
+			);
+		};
+	};
+	7A07FEB10518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE6A0518F33200158F49,
+			);
+		};
+	};
+	7A07FEB20518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB45DB503D3610100A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 240}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7AB45DB003D3610100A80164,
+				7A07FE6B0518F34900158F49,
+			);
+		};
+	};
+	7A07FEB30518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AF8B14F03DC3B1800A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE670518F1B200158F49,
+			);
+		};
+	};
+	7A07FEB40518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB45DB503D3610100A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE6B0518F34900158F49,
+			);
+		};
+	};
+	7A07FEB50518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AB8559703D2FD4F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE6A0518F33200158F49,
+			);
+		};
+	};
+	7A07FEB60518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = 7AEACAD603D1B87F00A80164;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {551, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {218, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE690518F27C00158F49,
+			);
+		};
+	};
+	7A07FEB70518F59B00158F49 = {
+		isa = PBXTargetBookmark;
+		trg = F59396D5028C0CA6016230BF;
+		uiCtxt = {
+			TOCViewDetailVisibleRect = "{{0, 0}, {513, 109}}";
+			TOCViewExpandedItems = (
+				"com.apple.target-editor-pane.settings",
+				"com.apple.target-editor-pane.settings.simple",
+				"com.apple.target-editor-pane.info-plist",
+				"com.apple.target-editor-pane.info-plist.simple",
+				"com.apple.target-editor-pane.buildphases",
+			);
+			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
+			TOCViewSelectedItems = (
+				7A07FE680518F20700158F49,
+			);
+		};
+	};
+	7A07FEB80518F59B00158F49 = {
+		fRef = 7A07FED10518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "lib.Makefile.am: 29";
+		rLen = 0;
+		rLoc = 817;
+		rType = 0;
+		vrLen = 860;
+		vrLoc = 0;
+	};
+	7A07FEB90518F59B00158F49 = {
+		fRef = 7A07FED60518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "ic2.Makefile.am: 40";
+		rLen = 0;
+		rLoc = 1136;
+		rType = 0;
+		vrLen = 1499;
+		vrLoc = 0;
+	};
+	7A07FEBA0518F59B00158F49 = {
+		fRef = 7A07FE5D0518EC8000158F49;
+		isa = PBXTextBookmark;
+		name = "SourceConditioner.pl: 3";
+		rLen = 526;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 1594;
+		vrLoc = 0;
+	};
+	7A07FEBB0518F59B00158F49 = {
+		fRef = 7A07FE6C0518F42000158F49;
+		isa = PBXTextBookmark;
+		name = "prebuild.sh: 22";
+		rLen = 0;
+		rLoc = 594;
+		rType = 0;
+		vrLen = 594;
+		vrLoc = 0;
+	};
+	7A07FEBC0518F59B00158F49 = {
+		fRef = 7A05C3BC03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreAppHandler.cpp: 127";
+		rLen = 0;
+		rLoc = 2917;
+		rType = 0;
+		vrLen = 236;
+		vrLoc = 295;
+	};
+	7A07FEBD0518F59B00158F49 = {
+		fRef = 7A05C3F403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreStandard.h: 2";
+		rLen = 27;
+		rLoc = 23;
+		rType = 0;
+		vrLen = 119;
+		vrLoc = 4637;
+	};
+	7A07FEBE0518F59B00158F49 = {
+		fRef = 7A05C3C203CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.cpp: 32";
+		rLen = 0;
+		rLoc = 957;
+		rType = 0;
+		vrLen = 909;
+		vrLoc = 916;
+	};
+	7A07FEBF0518F59B00158F49 = {
+		fRef = F5AAB69803A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.h: 79";
+		rLen = 27;
+		rLoc = 2041;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 1716;
+	};
+	7A07FEC00518F59B00158F49 = {
+		fRef = F5AAB69703A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.cpp: 101";
+		rLen = 7;
+		rLoc = 2592;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 2418;
+	};
+	7A07FEC10518F59B00158F49 = {
+		fRef = 7AF139FD03D310B500A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.cpp: 137";
+		rLen = 22;
+		rLoc = 3542;
+		rType = 0;
+		vrLen = 820;
+		vrLoc = 2890;
+	};
+	7A07FEC20518F59B00158F49 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 228";
+		rLen = 0;
+		rLoc = 6847;
+		rType = 0;
+		vrLen = 1113;
+		vrLoc = 5683;
+	};
+	7A07FEC30518F59B00158F49 = {
+		fRef = 7A07FED30518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "iostream.h: 80";
+		rLen = 33;
+		rLoc = 2918;
+		rType = 0;
+		vrLen = 1604;
+		vrLoc = 2173;
+	};
+	7A07FEC40518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 42;
+		rType = 1;
+	};
+	7A07FEC50518F59B00158F49 = {
+		fRef = 7A05C3BC03CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreAppHandler.cpp: 127";
+		rLen = 0;
+		rLoc = 2917;
+		rType = 0;
+		vrLen = 236;
+		vrLoc = 295;
+	};
+	7A07FEC60518F59B00158F49 = {
+		fRef = 7A05C3F403CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreStandard.h: 2";
+		rLen = 27;
+		rLoc = 23;
+		rType = 0;
+		vrLen = 119;
+		vrLoc = 4637;
+	};
+	7A07FEC70518F59B00158F49 = {
+		fRef = 7A05C3C203CB43AC00A80164;
+		isa = PBXTextBookmark;
+		name = "MushcoreBison.cpp: 32";
+		rLen = 0;
+		rLoc = 957;
+		rType = 0;
+		vrLen = 909;
+		vrLoc = 916;
+	};
+	7A07FEC80518F59B00158F49 = {
+		fRef = F5AAB69703A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.cpp: ProcessMessage";
+		rLen = 0;
+		rLoc = 3626;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2311;
+	};
+	7A07FEC90518F59B00158F49 = {
+		fRef = F5AAB69803A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.h: 79";
+		rLen = 27;
+		rLoc = 2041;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 1716;
+	};
+	7A07FECA0518F59B00158F49 = {
+		fRef = F5AAB69703A8C8CC01A80164;
+		isa = PBXTextBookmark;
+		name = "MustlRouter.cpp: 101";
+		rLen = 7;
+		rLoc = 2592;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 2418;
+	};
+	7A07FECB0518F59B00158F49 = {
+		fRef = 7AF139FD03D310B500A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatform.cpp: 137";
+		rLen = 22;
+		rLoc = 3542;
+		rType = 0;
+		vrLen = 820;
+		vrLoc = 2890;
+	};
+	7A07FECC0518F59B00158F49 = {
+		fRef = 7AB0B2FB03D6D22B00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlPlatformHeaders.h: 228";
+		rLen = 0;
+		rLoc = 6847;
+		rType = 0;
+		vrLen = 1113;
+		vrLoc = 5683;
+	};
+	7A07FECD0518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.cpp: TestIO";
+		rLen = 34;
+		rLoc = 1216;
+		rType = 0;
+		vrLen = 940;
+		vrLoc = 773;
+	};
+	7A07FECE0518F59B00158F49 = {
+		fRef = 7A07FED20518F59B00158F49;
+		isa = PBXTextBookmark;
+		name = "iostream.h: 80";
+		rLen = 33;
+		rLoc = 2918;
+		rType = 0;
+		vrLen = 1604;
+		vrLoc = 2173;
+	};
+	7A07FECF0518F59B00158F49 = {
+		fRef = 7A07FE630518ED8C00158F49;
+		isa = PBXTextBookmark;
+		name = "TestMushcoreIO.cpp: 6";
+		rLen = 0;
+		rLoc = 220;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	7A07FED00518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = NEWS;
+		path = "/Users/southa/core-app/NEWS";
+		refType = 0;
+	};
+	7A07FED10518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = lib.Makefile.am;
+		path = "/Users/southa/core-app/lib.Makefile.am";
+		refType = 0;
+	};
+	7A07FED20518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = iostream.h;
+		path = "/usr/include/gcc/darwin/2.95.2/g++/iostream.h";
+		refType = 0;
+	};
+	7A07FED30518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = iostream.h;
+		path = "/usr/include/gcc/darwin/2.95.2/g++/iostream.h";
+		refType = 0;
+	};
+	7A07FED40518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = NEWS;
+		path = "/Users/southa/core-app/NEWS";
+		refType = 0;
+	};
+	7A07FED50518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = lib.Makefile.am;
+		path = "/Users/southa/core-app/lib.Makefile.am";
+		refType = 0;
+	};
+	7A07FED60518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = ic2.Makefile.am;
+		path = "/Users/southa/core-app/ic2.Makefile.am";
+		refType = 0;
+	};
+	7A07FED70518F59B00158F49 = {
+		isa = PBXFileReference;
+		name = ic2.Makefile.am;
+		path = "/Users/southa/core-app/ic2.Makefile.am";
+		refType = 0;
+	};
 	7A0B335303D30BB600A80164 = {
 		fRef = 7A0B338C03D30BB700A80164;
 		isa = PBXTextBookmark;
@@ -793,7 +1969,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_INVALID_SOCKET";
 		rLen = 0;
-		rLoc = 4954;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1871;
 		vrLoc = 3096;
@@ -983,7 +2159,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 34";
 		rLen = 0;
-		rLoc = 1047;
+		rLoc = 985;
 		rType = 0;
 		vrLen = 2009;
 		vrLoc = 2221;
@@ -2148,16 +3324,6 @@
 		vrLen = 1381;
 		vrLoc = 8479;
 	};
-	7A7DCAD003D70DB700A80164 = {
-		fRef = 7AF139FE03D310B500A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatform.h: 89";
-		rLen = 0;
-		rLoc = 2103;
-		rType = 0;
-		vrLen = 1956;
-		vrLoc = 1914;
-	};
 	7A7DCAD203D70DB700A80164 = {
 		fRef = 7A7DCAC503D6FE6900A80164;
 		isa = PBXTextBookmark;
@@ -2313,7 +3479,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EADDRNOTAVAIL";
 		rLen = 0;
-		rLoc = 2730;
+		rLoc = 2689;
 		rType = 0;
 		vrLen = 2644;
 		vrLoc = 2100;
@@ -2332,8 +3498,8 @@
 		fRef = 7AB0B2FB03D6D22B00A80164;
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 94";
-		rLen = 1358;
-		rLoc = 2081;
+		rLen = 1379;
+		rLoc = 2019;
 		rType = 0;
 		vrLen = 2784;
 		vrLoc = 1960;
@@ -2343,7 +3509,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_ETIMEDOUT";
 		rLen = 0;
-		rLoc = 3199;
+		rLoc = 3158;
 		rType = 0;
 		vrLen = 2775;
 		vrLoc = 1874;
@@ -2553,7 +3719,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EAGAIN";
 		rLen = 0;
-		rLoc = 2118;
+		rLoc = 2056;
 		rType = 0;
 		vrLen = 2904;
 		vrLoc = 1829;
@@ -2573,7 +3739,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: MUSTL_ERROR_EAGAIN";
 		rLen = 0;
-		rLoc = 2118;
+		rLoc = 2056;
 		rType = 0;
 		vrLen = 2897;
 		vrLoc = 1829;
@@ -2650,57 +3816,15 @@
 		path = "/Users/southa/core-app/src/SourceConditioner.pl";
 		refType = 0;
 	};
-	7AAC831304F3FF2200A80164 = {
-		fRef = 7AB0B2FB03D6D22B00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlPlatformHeaders.h: 211";
-		rLen = 0;
-		rLoc = 6313;
-		rType = 0;
-		vrLen = 1631;
-		vrLoc = 2073;
-	};
-	7AAC831404F3FF2200A80164 = {
-		fRef = 7AAC831A04F3FF2200A80164;
-		isa = PBXTextBookmark;
-		name = "combined.cxx: 30";
-		rLen = 0;
-		rLoc = 845;
-		rType = 0;
-		vrLen = 1506;
-		vrLoc = 244865;
-	};
 	7AAC831604F3FF2200A80164 = {
 		fRef = 7AB0B2FB03D6D22B00A80164;
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 211";
 		rLen = 0;
-		rLoc = 6313;
+		rLoc = 6272;
 		rType = 0;
 		vrLen = 1631;
 		vrLoc = 2073;
-	};
-	7AAC831704F3FF2200A80164 = {
-		fRef = 7AAC831904F3FF2200A80164;
-		isa = PBXTextBookmark;
-		name = "combined.cxx: 30";
-		rLen = 0;
-		rLoc = 845;
-		rType = 0;
-		vrLen = 1506;
-		vrLoc = 244865;
-	};
-	7AAC831904F3FF2200A80164 = {
-		isa = PBXFileReference;
-		name = combined.cxx;
-		path = "/Users/southa/core-app/src/Mustl/combined.cxx";
-		refType = 0;
-	};
-	7AAC831A04F3FF2200A80164 = {
-		isa = PBXFileReference;
-		name = combined.cxx;
-		path = "/Users/southa/core-app/src/Mustl/combined.cxx";
-		refType = 0;
 	};
 	7AB0144403D5C0D800A80164 = {
 		fRef = 7AB014D903D5C0D900A80164;
@@ -3831,7 +4955,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 55";
 		rLen = 0;
-		rLoc = 1197;
+		rLoc = 1135;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 25;
@@ -3851,7 +4975,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 58";
 		rLen = 0;
-		rLoc = 1285;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 683;
@@ -3941,7 +5065,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 44";
 		rLen = 0;
-		rLoc = 1043;
+		rLoc = 981;
 		rType = 0;
 		vrLen = 1050;
 		vrLoc = 655;
@@ -4176,16 +5300,6 @@
 		vrLen = 278;
 		vrLoc = 0;
 	};
-	7AB16BFC03EF3E0E00A80164 = {
-		fRef = 7A05C3C403CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreBison.y: 80";
-		rLen = 0;
-		rLoc = 2121;
-		rType = 0;
-		vrLen = 1085;
-		vrLoc = 1822;
-	};
 	7AB16BFD03EF3E0E00A80164 = {
 		fRef = 7A05C3F003CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -4231,7 +5345,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 80";
 		rLen = 0;
-		rLoc = 2121;
+		rLoc = 2158;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 1822;
@@ -5101,7 +6215,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 56";
 		rLen = 0;
-		rLoc = 2007;
+		rLoc = 2044;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 959;
@@ -7527,7 +8641,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlPlatformHeaders.h: 40";
 		rLen = 0;
-		rLoc = 1047;
+		rLoc = 985;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 0;
@@ -7592,16 +8706,6 @@
 		vrLen = 1545;
 		vrLoc = 841;
 	};
-	7AB459C603D8EB6500A80164 = {
-		fRef = 7A05C3BC03CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreAppHandler.cpp: 56";
-		rLen = 0;
-		rLoc = 1550;
-		rType = 0;
-		vrLen = 882;
-		vrLoc = 1713;
-	};
 	7AB459C703D8EB6500A80164 = {
 		fRef = 7A05C3BF03CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -7611,16 +8715,6 @@
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 830;
-	};
-	7AB459C903D8EB6500A80164 = {
-		fRef = 7A05C3C303CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreBison.h: 61";
-		rLen = 0;
-		rLoc = 1695;
-		rType = 0;
-		vrLen = 1194;
-		vrLoc = 1190;
 	};
 	7AB459CA03D8EB6500A80164 = {
 		fRef = 7A05C3C703CB43AC00A80164;
@@ -7641,10 +8735,6 @@
 		rType = 0;
 		vrLen = 88;
 		vrLoc = 0;
-	};
-	7AB459D803D8EB6500A80164 = {
-		isa = PBXTargetBookmark;
-		trg = 7AB8559703D2FD4F00A80164;
 	};
 	7AB459D903D8EB6500A80164 = {
 		fRef = 7A05C3D103CB43AC00A80164;
@@ -8145,7 +9235,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 59";
 		rLen = 0;
-		rLoc = 2007;
+		rLoc = 2044;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 951;
@@ -8185,7 +9275,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 25";
 		rLen = 0;
-		rLoc = 1083;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 0;
@@ -8205,7 +9295,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 38";
 		rLen = 0;
-		rLoc = 1193;
+		rLoc = 1230;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 0;
@@ -8809,7 +9899,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 1004;
+		rLoc = 1041;
 		rType = 0;
 		vrLen = 1467;
 		vrLoc = 0;
@@ -9099,7 +10189,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 1004;
+		rLoc = 1041;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 2269;
@@ -9119,7 +10209,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 34";
 		rLen = 297;
-		rLoc = 1004;
+		rLoc = 1041;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 1603;
@@ -11281,20 +12371,6 @@
 		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
 		refType = 0;
 	};
-	7AB53C59043264DB00A80164 = {
-		isa = PBXTargetBookmark;
-		trg = F59396D5028C0CA6016230BF;
-	};
-	7AB53C5D043264DB00A80164 = {
-		fRef = 7AB53C93043264DB00A80164;
-		isa = PBXTextBookmark;
-		name = "NEWS: 19";
-		rLen = 0;
-		rLoc = 389;
-		rType = 0;
-		vrLen = 333;
-		vrLoc = 0;
-	};
 	7AB53C5E043264DB00A80164 = {
 		fRef = 7AB53C95043264DB00A80164;
 		isa = PBXTextBookmark;
@@ -11344,16 +12420,6 @@
 		rType = 0;
 		vrLen = 990;
 		vrLoc = 0;
-	};
-	7AB53C67043264DB00A80164 = {
-		fRef = 7A05C3F403CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreStandard.h: S16";
-		rLen = 0;
-		rLoc = 3996;
-		rType = 0;
-		vrLen = 820;
-		vrLoc = 3687;
 	};
 	7AB53C6B043264DB00A80164 = {
 		fRef = 7AF8B0A003DC39E700A80164;
@@ -11689,12 +12755,6 @@
 		isa = PBXFileReference;
 		name = ChangeLog;
 		path = "/Users/southa/core-app/ChangeLog";
-		refType = 0;
-	};
-	7AB53C93043264DB00A80164 = {
-		isa = PBXFileReference;
-		name = NEWS;
-		path = "/Users/southa/core-app/NEWS";
 		refType = 0;
 	};
 	7AB53C95043264DB00A80164 = {
@@ -13301,16 +14361,6 @@
 		vrLen = 1061;
 		vrLoc = 520;
 	};
-	7AB5B6FC03DC07B300A80164 = {
-		fRef = 7AB68B0303D0728B00A80164;
-		isa = PBXTextBookmark;
-		name = "Mushcore.h: 49";
-		rLen = 0;
-		rLoc = 1391;
-		rType = 0;
-		vrLen = 1397;
-		vrLoc = 158;
-	};
 	7AB5B6FE03DC07B300A80164 = {
 		fRef = F5A934DF03A8E96001A80164;
 		isa = PBXTextBookmark;
@@ -13781,16 +14831,6 @@
 		vrLen = 646;
 		vrLoc = 0;
 	};
-	7AB5FC6E04F57FED00A80164 = {
-		fRef = 7AB5FC8404F57FEE00A80164;
-		isa = PBXTextBookmark;
-		name = "combined.cxx: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1501;
-		vrLoc = 0;
-	};
 	7AB5FC6F04F57FED00A80164 = {
 		fRef = 7AB5FC8C04F57FEE00A80164;
 		isa = PBXTextBookmark;
@@ -13869,16 +14909,6 @@
 		rLoc = 411;
 		rType = 0;
 		vrLen = 1307;
-		vrLoc = 0;
-	};
-	7AB5FC7704F57FEE00A80164 = {
-		fRef = 7AB5FC8104F57FEE00A80164;
-		isa = PBXTextBookmark;
-		name = "combined.cxx: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1501;
 		vrLoc = 0;
 	};
 	7AB5FC7804F57FEE00A80164 = {
@@ -13961,22 +14991,6 @@
 		vrLen = 1307;
 		vrLoc = 0;
 	};
-	7AB5FC8004F57FEE00A80164 = {
-		fRef = 7AB5FC8B04F57FEE00A80164;
-		isa = PBXTextBookmark;
-		name = "NEWS: 20";
-		rLen = 0;
-		rLoc = 389;
-		rType = 0;
-		vrLen = 389;
-		vrLoc = 0;
-	};
-	7AB5FC8104F57FEE00A80164 = {
-		isa = PBXFileReference;
-		name = combined.cxx;
-		path = "/Users/southa/core-app/src/Mushcore/combined.cxx";
-		refType = 0;
-	};
 	7AB5FC8204F57FEE00A80164 = {
 		isa = PBXFileReference;
 		name = COPYING;
@@ -13987,12 +15001,6 @@
 		isa = PBXFileReference;
 		name = SourceConditioner.pl;
 		path = "/Users/southa/core-app/src/SourceConditioner.pl";
-		refType = 0;
-	};
-	7AB5FC8404F57FEE00A80164 = {
-		isa = PBXFileReference;
-		name = combined.cxx;
-		path = "/Users/southa/core-app/src/Mushcore/combined.cxx";
 		refType = 0;
 	};
 	7AB5FC8504F57FEE00A80164 = {
@@ -14029,12 +15037,6 @@
 		isa = PBXFileReference;
 		name = INSTALL;
 		path = "/Users/southa/core-app/INSTALL";
-		refType = 0;
-	};
-	7AB5FC8B04F57FEE00A80164 = {
-		isa = PBXFileReference;
-		name = NEWS;
-		path = "/Users/southa/core-app/NEWS";
 		refType = 0;
 	};
 	7AB5FC8C04F57FEE00A80164 = {
@@ -15757,16 +16759,6 @@
 		vrLen = 1191;
 		vrLoc = 774;
 	};
-	7AF8B18F03DC63A000A80164 = {
-		fRef = 7A05C3E503CB43AC00A80164;
-		isa = PBXTextBookmark;
-		name = "MushcoreInterpreter.h: LogFunctionSet";
-		rLen = 0;
-		rLoc = 2734;
-		rType = 0;
-		vrLen = 1340;
-		vrLoc = 1542;
-	};
 	7AF8B19003DC63A000A80164 = {
 		fRef = 7A05C3D003CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -16027,16 +17019,6 @@
 		vrLen = 910;
 		vrLoc = 0;
 	};
-	7AF8B1AB03DC63A000A80164 = {
-		fRef = F5AAB68003A8C8CC01A80164;
-		isa = PBXTextBookmark;
-		name = "Mustl.h: 65";
-		rLen = 0;
-		rLoc = 1756;
-		rType = 0;
-		vrLen = 1301;
-		vrLoc = 794;
-	};
 	7AF8B1AC03DC63A000A80164 = {
 		fRef = 7A05C3F803CB43AC00A80164;
 		isa = PBXTextBookmark;
@@ -16097,10 +17079,6 @@
 		vrLen = 1179;
 		vrLoc = 917;
 	};
-	7AF8B1B203DC63A000A80164 = {
-		isa = PBXTargetBookmark;
-		trg = 7AB45DB503D3610100A80164;
-	};
 	7AF8B1B303DC63A000A80164 = {
 		fRef = 7AB45DAE03D360E200A80164;
 		isa = PBXTextBookmark;
@@ -16119,16 +17097,6 @@
 		rLoc = 24;
 		rType = 0;
 		vrLen = 60;
-		vrLoc = 0;
-	};
-	7AF8B1B503DC63A000A80164 = {
-		fRef = 7AF8B16903DC3B8E00A80164;
-		isa = PBXTextBookmark;
-		name = "TestMushcoreStandard.h: 20";
-		rLen = 0;
-		rLoc = 300;
-		rType = 0;
-		vrLen = 632;
 		vrLoc = 0;
 	};
 	7AF8B1B603DC63A000A80164 = {
@@ -16151,16 +17119,6 @@
 		vrLen = 1304;
 		vrLoc = 28;
 	};
-	7AF8B1B903DC63A000A80164 = {
-		fRef = 7AF8B14D03DC3A3F00A80164;
-		isa = PBXTextBookmark;
-		name = "TestMushcoreMain.h: 3";
-		rLen = 0;
-		rLoc = 60;
-		rType = 0;
-		vrLen = 498;
-		vrLoc = 0;
-	};
 	7AF8B1BC03DC63A000A80164 = {
 		fRef = 7AF8B16F03DC3DA300A80164;
 		isa = PBXTextBookmark;
@@ -16169,16 +17127,6 @@
 		rLoc = 717;
 		rType = 0;
 		vrLen = 1183;
-		vrLoc = 0;
-	};
-	7AF8B1BE03DC63A000A80164 = {
-		fRef = 7AF8B32703DC63A100A80164;
-		isa = PBXTextBookmark;
-		name = "lib.Makefile.am: 27";
-		rLen = 0;
-		rLoc = 730;
-		rType = 0;
-		vrLen = 766;
 		vrLoc = 0;
 	};
 	7AF8B1C003DC63A000A80164 = {
@@ -16199,26 +17147,6 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1431;
-		vrLoc = 0;
-	};
-	7AF8B1C203DC63A000A80164 = {
-		fRef = 7AF8B14E03DC3A3F00A80164;
-		isa = PBXTextBookmark;
-		name = "TestMushcoreMain.cpp: main";
-		rLen = 0;
-		rLoc = 1377;
-		rType = 0;
-		vrLen = 1244;
-		vrLoc = 619;
-	};
-	7AF8B1C303DC63A000A80164 = {
-		fRef = 7AF8B17003DC3DA300A80164;
-		isa = PBXTextBookmark;
-		name = "TestMushcoreApp.cpp: 47";
-		rLen = 0;
-		rLoc = 1103;
-		rType = 0;
-		vrLen = 1176;
 		vrLoc = 0;
 	};
 	7AF8B1C403DC63A000A80164 = {
@@ -16320,14 +17248,6 @@
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 752;
-	};
-	7AF8B1CF03DC63A000A80164 = {
-		isa = PBXTargetBookmark;
-		trg = 7AF8B14F03DC3B1800A80164;
-	};
-	7AF8B1D003DC63A000A80164 = {
-		isa = PBXTargetBookmark;
-		trg = 7AEACAD603D1B87F00A80164;
 	};
 	7AF8B1D203DC63A000A80164 = {
 		fRef = 7AF8B17703DC4F9500A80164;
@@ -17992,7 +18912,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: 71";
 		rLen = 0;
-		rLoc = 2299;
+		rLoc = 2338;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 565;
@@ -18012,7 +18932,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: 63";
 		rLen = 0;
-		rLoc = 1758;
+		rLoc = 1797;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 825;
@@ -18032,7 +18952,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: FailuresPrint";
 		rLen = 0;
-		rLoc = 2004;
+		rLoc = 2043;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 789;
@@ -18102,7 +19022,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: 52";
 		rLen = 0;
-		rLoc = 1608;
+		rLoc = 1647;
 		rType = 0;
 		vrLen = 830;
 		vrLoc = 651;
@@ -18132,7 +19052,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: 52";
 		rLen = 0;
-		rLoc = 1608;
+		rLoc = 1647;
 		rType = 0;
 		vrLen = 824;
 		vrLoc = 651;
@@ -18262,7 +19182,7 @@
 		isa = PBXTextBookmark;
 		name = "TestMushcoreApp.cpp: RunTest";
 		rLen = 0;
-		rLoc = 2163;
+		rLoc = 2202;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 1386;
@@ -18452,7 +19372,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 94";
 		rLen = 0;
-		rLoc = 2645;
+		rLoc = 2682;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 1540;
@@ -18502,7 +19422,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 86";
 		rLen = 0;
-		rLoc = 2331;
+		rLoc = 2368;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 1790;
@@ -18572,7 +19492,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 89";
 		rLen = 0;
-		rLoc = 2441;
+		rLoc = 2478;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 1629;
@@ -18610,7 +19530,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 88";
 		rLen = 0;
-		rLoc = 2426;
+		rLoc = 2463;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 1970;
@@ -18640,7 +19560,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBison.y: 100";
 		rLen = 0;
-		rLoc = 2726;
+		rLoc = 2763;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 1769;
@@ -18685,12 +19605,6 @@
 		isa = PBXFileReference;
 		name = autogen.sh;
 		path = "/Users/southa/core-app/autogen.sh";
-		refType = 0;
-	};
-	7AF8B32703DC63A100A80164 = {
-		isa = PBXFileReference;
-		name = lib.Makefile.am;
-		path = "/Users/southa/core-app/lib.Makefile.am";
 		refType = 0;
 	};
 	F50089460373044701A80164 = {
@@ -21557,13 +22471,141 @@
 				ToolbarVisible = YES;
 				WindowLocation = "{7, 502}";
 			};
+			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
+				ContentSize = "{594, 303}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {594, 280}}";
+					Split0 = {
+						ActiveTab = 1;
+						ActiveTabName = PBXRunSessionModule;
+						Collapsed = YES;
+						Frame = "{{0, 0}, {594, 280}}";
+						Split0 = {
+							Frame = "{{1e+06, 1e+06}, {594, 27}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {804, 321}}";
+						};
+						Tab1 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {594, 274}}";
+								Split0 = {
+									Frame = "{{0, 24}, {594, 250}}";
+									Split0 = {
+										Frame = "{{0, 0}, {290, 250}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											62.123,
+										);
+										Frame = "{{299, 0}, {295, 250}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {594, 274}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {594, 274}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {594, 274}}";
+							};
+						};
+						Tab3 = {
+							BuildMessageFrame = "{{0, 0}, {614, 262}}";
+							BuildTranscriptFrame = "{{0, 271}, {614, 2}}";
+							BuildTranscriptFrameExpanded = YES;
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						Tab4 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 386}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 386}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				NavBarShownByDefault = YES;
+				StatusViewVisible = YES;
+				Template = F5534CB2020F3F8A0DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{4, 633}";
+			};
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7AB5FC8004F57FEE00A80164;
+									bookmark = 7A07FEBB0518F59B00158F49;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -21801,7 +22843,6 @@
 										7AB0145D03D5C0D800A80164,
 										7AB0146503D5C0D800A80164,
 										7A7DCACB03D70DB700A80164,
-										7A7DCAD003D70DB700A80164,
 										7A7DCAD203D70DB700A80164,
 										7A47562503D71C3700A80164,
 										7AB43D8003D73B2500A80164,
@@ -21833,12 +22874,9 @@
 										7AB459C003D8EB6500A80164,
 										7AB459C203D8EB6500A80164,
 										7AB459C503D8EB6500A80164,
-										7AB459C603D8EB6500A80164,
 										7AB459C703D8EB6500A80164,
-										7AB459C903D8EB6500A80164,
 										7AB459CA03D8EB6500A80164,
 										7AB459D103D8EB6500A80164,
-										7AB459D803D8EB6500A80164,
 										7AB459D903D8EB6500A80164,
 										7AB459DA03D8EB6500A80164,
 										7AB459E303D8EB6500A80164,
@@ -21853,7 +22891,6 @@
 										7AB459FD03D8EB6500A80164,
 										7AB5B6F803DC07B300A80164,
 										7AB5B6F903DC07B300A80164,
-										7AB5B6FC03DC07B300A80164,
 										7AB5B6FE03DC07B300A80164,
 										7AB5B6FF03DC07B300A80164,
 										7AB5B70103DC07B300A80164,
@@ -21881,7 +22918,6 @@
 										7AF8B18A03DC63A000A80164,
 										7AF8B18D03DC63A000A80164,
 										7AF8B18E03DC63A000A80164,
-										7AF8B18F03DC63A000A80164,
 										7AF8B19003DC63A000A80164,
 										7AF8B19103DC63A000A80164,
 										7AF8B19203DC63A000A80164,
@@ -21908,26 +22944,19 @@
 										7AF8B1A803DC63A000A80164,
 										7AF8B1A903DC63A000A80164,
 										7AF8B1AA03DC63A000A80164,
-										7AF8B1AB03DC63A000A80164,
 										7AF8B1AC03DC63A000A80164,
 										7AF8B1AD03DC63A000A80164,
 										7AF8B1AE03DC63A000A80164,
 										7AF8B1AF03DC63A000A80164,
 										7AF8B1B003DC63A000A80164,
 										7AF8B1B103DC63A000A80164,
-										7AF8B1B203DC63A000A80164,
 										7AF8B1B303DC63A000A80164,
 										7AF8B1B403DC63A000A80164,
-										7AF8B1B503DC63A000A80164,
 										7AF8B1B603DC63A000A80164,
 										7AF8B1B703DC63A000A80164,
-										7AF8B1B903DC63A000A80164,
 										7AF8B1BC03DC63A000A80164,
-										7AF8B1BE03DC63A000A80164,
 										7AF8B1C003DC63A000A80164,
 										7AF8B1C103DC63A000A80164,
-										7AF8B1C203DC63A000A80164,
-										7AF8B1C303DC63A000A80164,
 										7AF8B1C403DC63A000A80164,
 										7AF8B1C503DC63A000A80164,
 										7AF8B1C703DC63A000A80164,
@@ -21938,11 +22967,8 @@
 										7AF8B1CC03DC63A000A80164,
 										7AF8B1CD03DC63A000A80164,
 										7AF8B1CE03DC63A000A80164,
-										7AF8B1CF03DC63A000A80164,
-										7AF8B1D003DC63A000A80164,
 										7AF8B1D203DC63A000A80164,
 										7AF8B1D303DC63A000A80164,
-										7AB16BFC03EF3E0E00A80164,
 										7AB16BFD03EF3E0E00A80164,
 										7AB16BFE03EF3E0E00A80164,
 										7AB16BFF03EF3E0E00A80164,
@@ -21954,13 +22980,11 @@
 										7AB55188041E973400A80164,
 										7AB53C4A0432572800A80164,
 										7AB53C4B0432572800A80164,
-										7AB53C59043264DB00A80164,
 										7AB53C5E043264DB00A80164,
 										7AB53C5F043264DB00A80164,
 										7AB53C60043264DB00A80164,
 										7AB53C61043264DB00A80164,
 										7AB53C66043264DB00A80164,
-										7AB53C67043264DB00A80164,
 										7AB53C6B043264DB00A80164,
 										7AB53C6C043264DB00A80164,
 										7AB53C6E043264DB00A80164,
@@ -21978,9 +23002,6 @@
 										7ABA64DD04607B1900A80164,
 										7ABA64DE04607B1900A80164,
 										7AE4C7F604C72E3400A80164,
-										7AAC831304F3FF2200A80164,
-										7AAC831404F3FF2200A80164,
-										7AB5FC6E04F57FED00A80164,
 										7AB5FC6F04F57FED00A80164,
 										7AB5FC7004F57FED00A80164,
 										7AB5FC7104F57FED00A80164,
@@ -21989,7 +23010,38 @@
 										7AB5FC7404F57FED00A80164,
 										7AB5FC7504F57FED00A80164,
 										7AB5FC7604F57FED00A80164,
-										7AB53C5D043264DB00A80164,
+										7A07FE6E0518F59B00158F49,
+										7A07FE6F0518F59B00158F49,
+										7A07FE700518F59B00158F49,
+										7A07FE710518F59B00158F49,
+										7A07FE720518F59B00158F49,
+										7A07FE730518F59B00158F49,
+										7A07FE740518F59B00158F49,
+										7A07FE750518F59B00158F49,
+										7A07FE760518F59B00158F49,
+										7A07FE770518F59B00158F49,
+										7A07FE780518F59B00158F49,
+										7A07FE790518F59B00158F49,
+										7A07FE7A0518F59B00158F49,
+										7A07FE7B0518F59B00158F49,
+										7A07FE7C0518F59B00158F49,
+										7A07FE7D0518F59B00158F49,
+										7A07FE7E0518F59B00158F49,
+										7A07FE7F0518F59B00158F49,
+										7A07FE800518F59B00158F49,
+										7A07FE810518F59B00158F49,
+										7A07FE820518F59B00158F49,
+										7A07FE830518F59B00158F49,
+										7A07FE840518F59B00158F49,
+										7A07FE850518F59B00158F49,
+										7A07FE860518F59B00158F49,
+										7A07FE870518F59B00158F49,
+										7A07FE880518F59B00158F49,
+										7A07FE890518F59B00158F49,
+										7A07FE8A0518F59B00158F49,
+									);
+									nextStack = (
+										7A07FEBA0518F59B00158F49,
 									);
 									prevStack = (
 										F57BD7D5028AF27C01AD87C4,
@@ -26119,8 +27171,6 @@
 										7ABA64E904607B1900A80164,
 										7AE4C7F704C72E3400A80164,
 										7AAC831604F3FF2200A80164,
-										7AAC831704F3FF2200A80164,
-										7AB5FC7704F57FEE00A80164,
 										7AB5FC7804F57FEE00A80164,
 										7AB5FC7904F57FEE00A80164,
 										7AB5FC7A04F57FEE00A80164,
@@ -26129,6 +27179,53 @@
 										7AB5FC7D04F57FEE00A80164,
 										7AB5FC7E04F57FEE00A80164,
 										7AB5FC7F04F57FEE00A80164,
+										7A07FE8B0518F59B00158F49,
+										7A07FE8C0518F59B00158F49,
+										7A07FE8D0518F59B00158F49,
+										7A07FE8E0518F59B00158F49,
+										7A07FE8F0518F59B00158F49,
+										7A07FE900518F59B00158F49,
+										7A07FE910518F59B00158F49,
+										7A07FE920518F59B00158F49,
+										7A07FE930518F59B00158F49,
+										7A07FE940518F59B00158F49,
+										7A07FE950518F59B00158F49,
+										7A07FE960518F59B00158F49,
+										7A07FE970518F59B00158F49,
+										7A07FE980518F59B00158F49,
+										7A07FE990518F59B00158F49,
+										7A07FE9A0518F59B00158F49,
+										7A07FE9B0518F59B00158F49,
+										7A07FE9C0518F59B00158F49,
+										7A07FE9D0518F59B00158F49,
+										7A07FE9E0518F59B00158F49,
+										7A07FE9F0518F59B00158F49,
+										7A07FEA00518F59B00158F49,
+										7A07FEA10518F59B00158F49,
+										7A07FEA20518F59B00158F49,
+										7A07FEA30518F59B00158F49,
+										7A07FEA40518F59B00158F49,
+										7A07FEA50518F59B00158F49,
+										7A07FEA60518F59B00158F49,
+										7A07FEA70518F59B00158F49,
+										7A07FEA80518F59B00158F49,
+										7A07FEA90518F59B00158F49,
+										7A07FEAA0518F59B00158F49,
+										7A07FEAB0518F59B00158F49,
+										7A07FEAC0518F59B00158F49,
+										7A07FEAD0518F59B00158F49,
+										7A07FEAE0518F59B00158F49,
+										7A07FEAF0518F59B00158F49,
+										7A07FEB00518F59B00158F49,
+										7A07FEB10518F59B00158F49,
+										7A07FEB20518F59B00158F49,
+										7A07FEB30518F59B00158F49,
+										7A07FEB40518F59B00158F49,
+										7A07FEB50518F59B00158F49,
+										7A07FEB60518F59B00158F49,
+										7A07FEB70518F59B00158F49,
+										7A07FEB80518F59B00158F49,
+										7A07FEB90518F59B00158F49,
 									);
 								};
 								NavCount = 1;
@@ -26167,9 +27264,35 @@
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
+								NavContent0 = {
+									bookmark = 7A07FECF0518F59B00158F49;
+									history = (
+										7A07FEBC0518F59B00158F49,
+										7A07FEBD0518F59B00158F49,
+										7A07FEBE0518F59B00158F49,
+										7A07FEBF0518F59B00158F49,
+										7A07FEC00518F59B00158F49,
+										7A07FEC10518F59B00158F49,
+										7A07FEC20518F59B00158F49,
+										7A07FEC30518F59B00158F49,
+										7A07FEC40518F59B00158F49,
+									);
+									prevStack = (
+										7A07FEC50518F59B00158F49,
+										7A07FEC60518F59B00158F49,
+										7A07FEC70518F59B00158F49,
+										7A07FEC80518F59B00158F49,
+										7A07FEC90518F59B00158F49,
+										7A07FECA0518F59B00158F49,
+										7A07FECB0518F59B00158F49,
+										7A07FECC0518F59B00158F49,
+										7A07FECD0518F59B00158F49,
+										7A07FECE0518F59B00158F49,
+									);
+								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {685, 150}}";
+									Frame = "{{0, 0}, {768, 395}}";
 									NavBarVisible = YES;
 								};
 								NavSplitVertical = NO;
@@ -26332,17 +27455,17 @@
 					WindowLocation = "{92, 136}";
 				},
 				{
-					ContentSize = "{685, 434}";
+					ContentSize = "{768, 735}";
 					LeftSlideOut = {
 						Collapsed = NO;
-						Frame = "{{0, 23}, {685, 411}}";
+						Frame = "{{0, 23}, {768, 712}}";
 						Split0 = {
 							ActiveTab = 2;
 							ActiveTabName = PBXBuildResultsModule;
 							Collapsed = NO;
-							Frame = "{{0, 0}, {685, 411}}";
+							Frame = "{{0, 0}, {768, 712}}";
 							Split0 = {
-								Frame = "{{0, 301}, {685, 110}}";
+								Frame = "{{0, 317}, {768, 395}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -26391,10 +27514,10 @@
 								};
 							};
 							Tab3 = {
-								BuildMessageFrame = "{{0, 0}, {687, 262}}";
-								BuildTranscriptFrame = "{{0, 271}, {687, 2}}";
+								BuildMessageFrame = "{{0, 0}, {770, 50}}";
+								BuildTranscriptFrame = "{{0, 59}, {770, 230}}";
 								BuildTranscriptFrameExpanded = YES;
-								Frame = "{{0, 0}, {685, 295}}";
+								Frame = "{{0, 0}, {768, 311}}";
 							};
 							Tab4 = {
 								Frame = "{{0, 0}, {612, 295}}";
@@ -26457,7 +27580,7 @@
 					StatusViewVisible = YES;
 					Template = F5314676015831810DCA290F;
 					ToolbarVisible = YES;
-					WindowLocation = "{7, 502}";
+					WindowLocation = "{6, 199}";
 				},
 			);
 			PBXWorkspaceStateSaveDate = 85518927;
@@ -26467,6 +27590,104 @@
 			7A078AAE041D414C00A80164 = 7A078AAE041D414C00A80164;
 			7A078AAF041D414C00A80164 = 7A078AAF041D414C00A80164;
 			7A078AB0041D414C00A80164 = 7A078AB0041D414C00A80164;
+			7A07FE6E0518F59B00158F49 = 7A07FE6E0518F59B00158F49;
+			7A07FE6F0518F59B00158F49 = 7A07FE6F0518F59B00158F49;
+			7A07FE700518F59B00158F49 = 7A07FE700518F59B00158F49;
+			7A07FE710518F59B00158F49 = 7A07FE710518F59B00158F49;
+			7A07FE720518F59B00158F49 = 7A07FE720518F59B00158F49;
+			7A07FE730518F59B00158F49 = 7A07FE730518F59B00158F49;
+			7A07FE740518F59B00158F49 = 7A07FE740518F59B00158F49;
+			7A07FE750518F59B00158F49 = 7A07FE750518F59B00158F49;
+			7A07FE760518F59B00158F49 = 7A07FE760518F59B00158F49;
+			7A07FE770518F59B00158F49 = 7A07FE770518F59B00158F49;
+			7A07FE780518F59B00158F49 = 7A07FE780518F59B00158F49;
+			7A07FE790518F59B00158F49 = 7A07FE790518F59B00158F49;
+			7A07FE7A0518F59B00158F49 = 7A07FE7A0518F59B00158F49;
+			7A07FE7B0518F59B00158F49 = 7A07FE7B0518F59B00158F49;
+			7A07FE7C0518F59B00158F49 = 7A07FE7C0518F59B00158F49;
+			7A07FE7D0518F59B00158F49 = 7A07FE7D0518F59B00158F49;
+			7A07FE7E0518F59B00158F49 = 7A07FE7E0518F59B00158F49;
+			7A07FE7F0518F59B00158F49 = 7A07FE7F0518F59B00158F49;
+			7A07FE800518F59B00158F49 = 7A07FE800518F59B00158F49;
+			7A07FE810518F59B00158F49 = 7A07FE810518F59B00158F49;
+			7A07FE820518F59B00158F49 = 7A07FE820518F59B00158F49;
+			7A07FE830518F59B00158F49 = 7A07FE830518F59B00158F49;
+			7A07FE840518F59B00158F49 = 7A07FE840518F59B00158F49;
+			7A07FE850518F59B00158F49 = 7A07FE850518F59B00158F49;
+			7A07FE860518F59B00158F49 = 7A07FE860518F59B00158F49;
+			7A07FE870518F59B00158F49 = 7A07FE870518F59B00158F49;
+			7A07FE880518F59B00158F49 = 7A07FE880518F59B00158F49;
+			7A07FE890518F59B00158F49 = 7A07FE890518F59B00158F49;
+			7A07FE8A0518F59B00158F49 = 7A07FE8A0518F59B00158F49;
+			7A07FE8B0518F59B00158F49 = 7A07FE8B0518F59B00158F49;
+			7A07FE8C0518F59B00158F49 = 7A07FE8C0518F59B00158F49;
+			7A07FE8D0518F59B00158F49 = 7A07FE8D0518F59B00158F49;
+			7A07FE8E0518F59B00158F49 = 7A07FE8E0518F59B00158F49;
+			7A07FE8F0518F59B00158F49 = 7A07FE8F0518F59B00158F49;
+			7A07FE900518F59B00158F49 = 7A07FE900518F59B00158F49;
+			7A07FE910518F59B00158F49 = 7A07FE910518F59B00158F49;
+			7A07FE920518F59B00158F49 = 7A07FE920518F59B00158F49;
+			7A07FE930518F59B00158F49 = 7A07FE930518F59B00158F49;
+			7A07FE940518F59B00158F49 = 7A07FE940518F59B00158F49;
+			7A07FE950518F59B00158F49 = 7A07FE950518F59B00158F49;
+			7A07FE960518F59B00158F49 = 7A07FE960518F59B00158F49;
+			7A07FE970518F59B00158F49 = 7A07FE970518F59B00158F49;
+			7A07FE980518F59B00158F49 = 7A07FE980518F59B00158F49;
+			7A07FE990518F59B00158F49 = 7A07FE990518F59B00158F49;
+			7A07FE9A0518F59B00158F49 = 7A07FE9A0518F59B00158F49;
+			7A07FE9B0518F59B00158F49 = 7A07FE9B0518F59B00158F49;
+			7A07FE9C0518F59B00158F49 = 7A07FE9C0518F59B00158F49;
+			7A07FE9D0518F59B00158F49 = 7A07FE9D0518F59B00158F49;
+			7A07FE9E0518F59B00158F49 = 7A07FE9E0518F59B00158F49;
+			7A07FE9F0518F59B00158F49 = 7A07FE9F0518F59B00158F49;
+			7A07FEA00518F59B00158F49 = 7A07FEA00518F59B00158F49;
+			7A07FEA10518F59B00158F49 = 7A07FEA10518F59B00158F49;
+			7A07FEA20518F59B00158F49 = 7A07FEA20518F59B00158F49;
+			7A07FEA30518F59B00158F49 = 7A07FEA30518F59B00158F49;
+			7A07FEA40518F59B00158F49 = 7A07FEA40518F59B00158F49;
+			7A07FEA50518F59B00158F49 = 7A07FEA50518F59B00158F49;
+			7A07FEA60518F59B00158F49 = 7A07FEA60518F59B00158F49;
+			7A07FEA70518F59B00158F49 = 7A07FEA70518F59B00158F49;
+			7A07FEA80518F59B00158F49 = 7A07FEA80518F59B00158F49;
+			7A07FEA90518F59B00158F49 = 7A07FEA90518F59B00158F49;
+			7A07FEAA0518F59B00158F49 = 7A07FEAA0518F59B00158F49;
+			7A07FEAB0518F59B00158F49 = 7A07FEAB0518F59B00158F49;
+			7A07FEAC0518F59B00158F49 = 7A07FEAC0518F59B00158F49;
+			7A07FEAD0518F59B00158F49 = 7A07FEAD0518F59B00158F49;
+			7A07FEAE0518F59B00158F49 = 7A07FEAE0518F59B00158F49;
+			7A07FEAF0518F59B00158F49 = 7A07FEAF0518F59B00158F49;
+			7A07FEB00518F59B00158F49 = 7A07FEB00518F59B00158F49;
+			7A07FEB10518F59B00158F49 = 7A07FEB10518F59B00158F49;
+			7A07FEB20518F59B00158F49 = 7A07FEB20518F59B00158F49;
+			7A07FEB30518F59B00158F49 = 7A07FEB30518F59B00158F49;
+			7A07FEB40518F59B00158F49 = 7A07FEB40518F59B00158F49;
+			7A07FEB50518F59B00158F49 = 7A07FEB50518F59B00158F49;
+			7A07FEB60518F59B00158F49 = 7A07FEB60518F59B00158F49;
+			7A07FEB70518F59B00158F49 = 7A07FEB70518F59B00158F49;
+			7A07FEB80518F59B00158F49 = 7A07FEB80518F59B00158F49;
+			7A07FEB90518F59B00158F49 = 7A07FEB90518F59B00158F49;
+			7A07FEBA0518F59B00158F49 = 7A07FEBA0518F59B00158F49;
+			7A07FEBB0518F59B00158F49 = 7A07FEBB0518F59B00158F49;
+			7A07FEBC0518F59B00158F49 = 7A07FEBC0518F59B00158F49;
+			7A07FEBD0518F59B00158F49 = 7A07FEBD0518F59B00158F49;
+			7A07FEBE0518F59B00158F49 = 7A07FEBE0518F59B00158F49;
+			7A07FEBF0518F59B00158F49 = 7A07FEBF0518F59B00158F49;
+			7A07FEC00518F59B00158F49 = 7A07FEC00518F59B00158F49;
+			7A07FEC10518F59B00158F49 = 7A07FEC10518F59B00158F49;
+			7A07FEC20518F59B00158F49 = 7A07FEC20518F59B00158F49;
+			7A07FEC30518F59B00158F49 = 7A07FEC30518F59B00158F49;
+			7A07FEC40518F59B00158F49 = 7A07FEC40518F59B00158F49;
+			7A07FEC50518F59B00158F49 = 7A07FEC50518F59B00158F49;
+			7A07FEC60518F59B00158F49 = 7A07FEC60518F59B00158F49;
+			7A07FEC70518F59B00158F49 = 7A07FEC70518F59B00158F49;
+			7A07FEC80518F59B00158F49 = 7A07FEC80518F59B00158F49;
+			7A07FEC90518F59B00158F49 = 7A07FEC90518F59B00158F49;
+			7A07FECA0518F59B00158F49 = 7A07FECA0518F59B00158F49;
+			7A07FECB0518F59B00158F49 = 7A07FECB0518F59B00158F49;
+			7A07FECC0518F59B00158F49 = 7A07FECC0518F59B00158F49;
+			7A07FECD0518F59B00158F49 = 7A07FECD0518F59B00158F49;
+			7A07FECE0518F59B00158F49 = 7A07FECE0518F59B00158F49;
+			7A07FECF0518F59B00158F49 = 7A07FECF0518F59B00158F49;
 			7A0B335303D30BB600A80164 = 7A0B335303D30BB600A80164;
 			7A0B335903D30BB600A80164 = 7A0B335903D30BB600A80164;
 			7A0B335F03D30BB600A80164 = 7A0B335F03D30BB600A80164;
@@ -26635,7 +27856,6 @@
 			7A7B225903D1F45C00A80164 = 7A7B225903D1F45C00A80164;
 			7A7B225A03D1F45C00A80164 = 7A7B225A03D1F45C00A80164;
 			7A7DCACB03D70DB700A80164 = 7A7DCACB03D70DB700A80164;
-			7A7DCAD003D70DB700A80164 = 7A7DCAD003D70DB700A80164;
 			7A7DCAD203D70DB700A80164 = 7A7DCAD203D70DB700A80164;
 			7A7DCAD603D70DB700A80164 = 7A7DCAD603D70DB700A80164;
 			7A7DCAD703D70DB700A80164 = 7A7DCAD703D70DB700A80164;
@@ -26687,10 +27907,7 @@
 			7A85AD9703BF9B2300A80164 = 7A85AD9703BF9B2300A80164;
 			7A85AD9803BF9B2300A80164 = 7A85AD9803BF9B2300A80164;
 			7A9CB3A903CB418B00A80164 = 7A9CB3A903CB418B00A80164;
-			7AAC831304F3FF2200A80164 = 7AAC831304F3FF2200A80164;
-			7AAC831404F3FF2200A80164 = 7AAC831404F3FF2200A80164;
 			7AAC831604F3FF2200A80164 = 7AAC831604F3FF2200A80164;
-			7AAC831704F3FF2200A80164 = 7AAC831704F3FF2200A80164;
 			7AB0144403D5C0D800A80164 = 7AB0144403D5C0D800A80164;
 			7AB0144A03D5C0D800A80164 = 7AB0144A03D5C0D800A80164;
 			7AB0144B03D5C0D800A80164 = 7AB0144B03D5C0D800A80164;
@@ -26833,7 +28050,6 @@
 			7AB0B34303D6E4F400A80164 = 7AB0B34303D6E4F400A80164;
 			7AB0B34403D6E4F400A80164 = 7AB0B34403D6E4F400A80164;
 			7AB0B34503D6E4F400A80164 = 7AB0B34503D6E4F400A80164;
-			7AB16BFC03EF3E0E00A80164 = 7AB16BFC03EF3E0E00A80164;
 			7AB16BFD03EF3E0E00A80164 = 7AB16BFD03EF3E0E00A80164;
 			7AB16BFE03EF3E0E00A80164 = 7AB16BFE03EF3E0E00A80164;
 			7AB16BFF03EF3E0E00A80164 = 7AB16BFF03EF3E0E00A80164;
@@ -27156,12 +28372,9 @@
 			7AB459C003D8EB6500A80164 = 7AB459C003D8EB6500A80164;
 			7AB459C203D8EB6500A80164 = 7AB459C203D8EB6500A80164;
 			7AB459C503D8EB6500A80164 = 7AB459C503D8EB6500A80164;
-			7AB459C603D8EB6500A80164 = 7AB459C603D8EB6500A80164;
 			7AB459C703D8EB6500A80164 = 7AB459C703D8EB6500A80164;
-			7AB459C903D8EB6500A80164 = 7AB459C903D8EB6500A80164;
 			7AB459CA03D8EB6500A80164 = 7AB459CA03D8EB6500A80164;
 			7AB459D103D8EB6500A80164 = 7AB459D103D8EB6500A80164;
-			7AB459D803D8EB6500A80164 = 7AB459D803D8EB6500A80164;
 			7AB459D903D8EB6500A80164 = 7AB459D903D8EB6500A80164;
 			7AB459DA03D8EB6500A80164 = 7AB459DA03D8EB6500A80164;
 			7AB459E303D8EB6500A80164 = 7AB459E303D8EB6500A80164;
@@ -27534,14 +28747,11 @@
 			7AB53C4C0432572800A80164 = 7AB53C4C0432572800A80164;
 			7AB53C4D0432572800A80164 = 7AB53C4D0432572800A80164;
 			7AB53C4E0432572800A80164 = 7AB53C4E0432572800A80164;
-			7AB53C59043264DB00A80164 = 7AB53C59043264DB00A80164;
-			7AB53C5D043264DB00A80164 = 7AB53C5D043264DB00A80164;
 			7AB53C5E043264DB00A80164 = 7AB53C5E043264DB00A80164;
 			7AB53C5F043264DB00A80164 = 7AB53C5F043264DB00A80164;
 			7AB53C60043264DB00A80164 = 7AB53C60043264DB00A80164;
 			7AB53C61043264DB00A80164 = 7AB53C61043264DB00A80164;
 			7AB53C66043264DB00A80164 = 7AB53C66043264DB00A80164;
-			7AB53C67043264DB00A80164 = 7AB53C67043264DB00A80164;
 			7AB53C6B043264DB00A80164 = 7AB53C6B043264DB00A80164;
 			7AB53C6C043264DB00A80164 = 7AB53C6C043264DB00A80164;
 			7AB53C6E043264DB00A80164 = 7AB53C6E043264DB00A80164;
@@ -27736,7 +28946,6 @@
 			7AB5641503D1E9EB00A80164 = 7AB5641503D1E9EB00A80164;
 			7AB5B6F803DC07B300A80164 = 7AB5B6F803DC07B300A80164;
 			7AB5B6F903DC07B300A80164 = 7AB5B6F903DC07B300A80164;
-			7AB5B6FC03DC07B300A80164 = 7AB5B6FC03DC07B300A80164;
 			7AB5B6FE03DC07B300A80164 = 7AB5B6FE03DC07B300A80164;
 			7AB5B6FF03DC07B300A80164 = 7AB5B6FF03DC07B300A80164;
 			7AB5B70103DC07B300A80164 = 7AB5B70103DC07B300A80164;
@@ -27784,7 +28993,6 @@
 			7AB5B73403DC07B300A80164 = 7AB5B73403DC07B300A80164;
 			7AB5B73503DC07B300A80164 = 7AB5B73503DC07B300A80164;
 			7AB5B73B03DC07B300A80164 = 7AB5B73B03DC07B300A80164;
-			7AB5FC6E04F57FED00A80164 = 7AB5FC6E04F57FED00A80164;
 			7AB5FC6F04F57FED00A80164 = 7AB5FC6F04F57FED00A80164;
 			7AB5FC7004F57FED00A80164 = 7AB5FC7004F57FED00A80164;
 			7AB5FC7104F57FED00A80164 = 7AB5FC7104F57FED00A80164;
@@ -27793,7 +29001,6 @@
 			7AB5FC7404F57FED00A80164 = 7AB5FC7404F57FED00A80164;
 			7AB5FC7504F57FED00A80164 = 7AB5FC7504F57FED00A80164;
 			7AB5FC7604F57FED00A80164 = 7AB5FC7604F57FED00A80164;
-			7AB5FC7704F57FEE00A80164 = 7AB5FC7704F57FEE00A80164;
 			7AB5FC7804F57FEE00A80164 = 7AB5FC7804F57FEE00A80164;
 			7AB5FC7904F57FEE00A80164 = 7AB5FC7904F57FEE00A80164;
 			7AB5FC7A04F57FEE00A80164 = 7AB5FC7A04F57FEE00A80164;
@@ -27802,7 +29009,6 @@
 			7AB5FC7D04F57FEE00A80164 = 7AB5FC7D04F57FEE00A80164;
 			7AB5FC7E04F57FEE00A80164 = 7AB5FC7E04F57FEE00A80164;
 			7AB5FC7F04F57FEE00A80164 = 7AB5FC7F04F57FEE00A80164;
-			7AB5FC8004F57FEE00A80164 = 7AB5FC8004F57FEE00A80164;
 			7AB68B1103D0924400A80164 = 7AB68B1103D0924400A80164;
 			7AB68B3103D0924400A80164 = 7AB68B3103D0924400A80164;
 			7AB68B3303D0924400A80164 = 7AB68B3303D0924400A80164;
@@ -27964,7 +29170,6 @@
 			7AF8B18A03DC63A000A80164 = 7AF8B18A03DC63A000A80164;
 			7AF8B18D03DC63A000A80164 = 7AF8B18D03DC63A000A80164;
 			7AF8B18E03DC63A000A80164 = 7AF8B18E03DC63A000A80164;
-			7AF8B18F03DC63A000A80164 = 7AF8B18F03DC63A000A80164;
 			7AF8B19003DC63A000A80164 = 7AF8B19003DC63A000A80164;
 			7AF8B19103DC63A000A80164 = 7AF8B19103DC63A000A80164;
 			7AF8B19203DC63A000A80164 = 7AF8B19203DC63A000A80164;
@@ -27991,26 +29196,19 @@
 			7AF8B1A803DC63A000A80164 = 7AF8B1A803DC63A000A80164;
 			7AF8B1A903DC63A000A80164 = 7AF8B1A903DC63A000A80164;
 			7AF8B1AA03DC63A000A80164 = 7AF8B1AA03DC63A000A80164;
-			7AF8B1AB03DC63A000A80164 = 7AF8B1AB03DC63A000A80164;
 			7AF8B1AC03DC63A000A80164 = 7AF8B1AC03DC63A000A80164;
 			7AF8B1AD03DC63A000A80164 = 7AF8B1AD03DC63A000A80164;
 			7AF8B1AE03DC63A000A80164 = 7AF8B1AE03DC63A000A80164;
 			7AF8B1AF03DC63A000A80164 = 7AF8B1AF03DC63A000A80164;
 			7AF8B1B003DC63A000A80164 = 7AF8B1B003DC63A000A80164;
 			7AF8B1B103DC63A000A80164 = 7AF8B1B103DC63A000A80164;
-			7AF8B1B203DC63A000A80164 = 7AF8B1B203DC63A000A80164;
 			7AF8B1B303DC63A000A80164 = 7AF8B1B303DC63A000A80164;
 			7AF8B1B403DC63A000A80164 = 7AF8B1B403DC63A000A80164;
-			7AF8B1B503DC63A000A80164 = 7AF8B1B503DC63A000A80164;
 			7AF8B1B603DC63A000A80164 = 7AF8B1B603DC63A000A80164;
 			7AF8B1B703DC63A000A80164 = 7AF8B1B703DC63A000A80164;
-			7AF8B1B903DC63A000A80164 = 7AF8B1B903DC63A000A80164;
 			7AF8B1BC03DC63A000A80164 = 7AF8B1BC03DC63A000A80164;
-			7AF8B1BE03DC63A000A80164 = 7AF8B1BE03DC63A000A80164;
 			7AF8B1C003DC63A000A80164 = 7AF8B1C003DC63A000A80164;
 			7AF8B1C103DC63A000A80164 = 7AF8B1C103DC63A000A80164;
-			7AF8B1C203DC63A000A80164 = 7AF8B1C203DC63A000A80164;
-			7AF8B1C303DC63A000A80164 = 7AF8B1C303DC63A000A80164;
 			7AF8B1C403DC63A000A80164 = 7AF8B1C403DC63A000A80164;
 			7AF8B1C503DC63A000A80164 = 7AF8B1C503DC63A000A80164;
 			7AF8B1C703DC63A000A80164 = 7AF8B1C703DC63A000A80164;
@@ -28021,8 +29219,6 @@
 			7AF8B1CC03DC63A000A80164 = 7AF8B1CC03DC63A000A80164;
 			7AF8B1CD03DC63A000A80164 = 7AF8B1CD03DC63A000A80164;
 			7AF8B1CE03DC63A000A80164 = 7AF8B1CE03DC63A000A80164;
-			7AF8B1CF03DC63A000A80164 = 7AF8B1CF03DC63A000A80164;
-			7AF8B1D003DC63A000A80164 = 7AF8B1D003DC63A000A80164;
 			7AF8B1D203DC63A000A80164 = 7AF8B1D203DC63A000A80164;
 			7AF8B1D303DC63A000A80164 = 7AF8B1D303DC63A000A80164;
 			7AF8B1D503DC63A000A80164 = 7AF8B1D503DC63A000A80164;

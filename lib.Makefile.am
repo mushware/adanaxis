@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: lib.Makefile.am,v 1.2 2003/01/13 23:48:38 southa Exp $
+# $Id: lib.Makefile.am,v 1.3 2003/01/20 15:38:24 southa Exp $
 # $Log: lib.Makefile.am,v $
+# Revision 1.3  2003/01/20 15:38:24  southa
+# Created MushcoreTest
+#
 # Revision 1.2  2003/01/13 23:48:38  southa
 # Mustl fixes
 #
@@ -23,6 +26,7 @@
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
+EXTRA_DIST = prebuild.sh
 
 test:
 	$(MAKE) -Csrc test

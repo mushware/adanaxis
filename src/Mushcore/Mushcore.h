@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l5tY/TDG7oXfdjv1zFKmuQ
 /*
- * $Id: Mushcore.h,v 1.10 2003/08/21 23:09:03 southa Exp $
+ * $Id: Mushcore.h,v 1.11 2003/09/17 19:40:34 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.11  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:09:03  southa
  * Fixed file headers
  *
@@ -67,6 +70,7 @@
 #include "MushcoreInfo.h"
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
+#include "MushcoreIO.h"
 #include "MushcorePickle.h"
 #include "MushcoreRegExp.h"
 #include "MushcoreScalar.h"

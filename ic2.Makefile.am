@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: ic2.Makefile.am,v 1.2 2003/07/16 18:50:35 southa Exp $
+# $Id: ic2.Makefile.am,v 1.3 2003/07/16 19:15:57 southa Exp $
 # $Log: ic2.Makefile.am,v $
+# Revision 1.3  2003/07/16 19:15:57  southa
+# Tweak to x11-release target
+#
 # Revision 1.2  2003/07/16 18:50:35  southa
 # Fixed EXTRA_DIST
 #
@@ -34,7 +37,7 @@ BZIPFILE=ic2-@IC_VERSION@.tar.bz2
 
 DATAMAKEFILE=ic2data/Makefile.am
 
-EXTRA_DIST=ic2 MakeRelease.sh \
+EXTRA_DIST=prebuild.sh ic2 MakeRelease.sh \
 ic2.spec.mdk ic2.spec.mdk.in \
 ic2.spec.suse ic2.spec.suse.in \
 ic2.spec.redhat ic2.spec.redhat.in \
