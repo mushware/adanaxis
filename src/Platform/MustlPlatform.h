@@ -2,8 +2,11 @@
 #define MUSTLPLATFORM_H
 
 /*
- * $Id: MustlPlatform.h,v 1.3 2002/12/13 19:03:06 southa Exp $
+ * $Id: MustlPlatform.h,v 1.4 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.4  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.3  2002/12/13 19:03:06  southa
  * Mustl interface cleanup
  *
@@ -72,7 +75,10 @@ public:
     static Mustl::U32 HostToNetworkOrderU32(Mustl::U32 inVal);
     static Mustl::U32 NetworkToHostOrderU32(Mustl::U32 inVal);
     static bool IsLocalAddress(Mustl::U32 inIPNetworkOrder);
-    static void ResolveAddress(MustlAddress& outAddress, const std::string& inHostName, Mustl::U32 inPortHostOrder);
+    static bool ResolveIPAddressString(MustlAddress& outAddress, const std::string& inIPStr, Mustl::U32 inPortHostOrder);
+    static void ResolveHostName(MustlAddress& outAddress, const std::string& inHostName, Mustl::U32 inPortHostOrder);
+ 
+        
     static unsigned int DefaultTimer(void);
     
     // Only call this if the local IP address(es) might have changed

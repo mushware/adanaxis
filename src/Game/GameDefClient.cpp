@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.18 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.19 2002/12/12 18:38:57 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.19  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.18  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -103,7 +106,7 @@ void
 GameDefClient::JoinGame(const string& inServer, U32 inPort)
 {
     StatusSet(GameDef::kStatusNoServer);
-    m_netAddress.ResolveFrom(inServer, inPort); // throws MustlFail
+    m_netAddress.ResolveFromHostName(inServer, inPort); // Can block, throws MustlFail
     StatusSet(GameDef::kStatusTesting);
     m_joined=true;
     m_lastRegistrationMsec=0; // Schedule immediate registration

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatform.cpp,v 1.3 2002/12/13 19:03:06 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.4 2002/12/15 00:26:20 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.4  2002/12/15 00:26:20  southa
+ * Send, receive and timer work
+ *
  * Revision 1.3  2002/12/13 19:03:06  southa
  * Mustl interface cleanup
  *
@@ -464,18 +467,18 @@ MustlPlatform::IsLocalAddress(U32 inIPNetworkOrder)
 }
 
 void
-MustlPlatform::ResolveAddress(MustlAddress& outAddress, const string& inHostName, U32 inPortHostOrder)
+MustlPlatform::ResolveHostName(MustlAddress& outAddress, const string& inHostName, U32 inPortHostOrder)
 {
     if (inHostName == "")
     {
         outAddress.HostSetNetworkOrder(INADDR_ANY);
+        outAddress.PortSetHostOrder(inPortHostOrder);
     }
     else
     {
-        in_addr_t hostIP = inet_addr(inHostName.c_str());
-        if (hostIP != INADDR_NONE )
+        if (ResolveIPAddressString(outAddress, inHostName, inPortHostOrder))
         {
-            outAddress.HostSetNetworkOrder(hostIP);
+            // Done
         }
         else
         {
@@ -484,8 +487,10 @@ MustlPlatform::ResolveAddress(MustlAddress& outAddress, const string& inHostName
             hostEnt = gethostbyname(inHostName.c_str());
             if (hostEnt != NULL)
             {
+                in_addr_t hostIP;
                 memcpy(&hostIP, hostEnt->h_addr_list[0], sizeof(hostIP));
                 outAddress.HostSetNetworkOrder(hostIP);
+                outAddress.PortSetHostOrder(inPortHostOrder);
             }
             else
             {
@@ -493,7 +498,30 @@ MustlPlatform::ResolveAddress(MustlAddress& outAddress, const string& inHostName
             }
         }
     }
+}
+
+bool
+MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& inIPStr, U32 inPortHostOrder)
+{
+    
+    if (inIPStr == "")
+    {
+        outAddress.HostSetNetworkOrder(INADDR_ANY);
+    }
+    else
+    {
+        in_addr_t hostIP = inet_addr(inIPStr.c_str());
+        if (hostIP == INADDR_NONE)
+        {
+            return false;
+        }
+        else
+        {
+            outAddress.HostSetNetworkOrder(hostIP);
+        }
+    }
     outAddress.PortSetHostOrder(inPortHostOrder);
+    return true;
 }
 
 unsigned int

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebServer.cpp,v 1.9 2002/12/05 13:20:13 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.2 2002/12/12 18:38:26 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:26  southa
+ * Mustl separation
+ *
  * Revision 1.9  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -61,7 +64,7 @@ MustlWebServer::Connect(U32 inPort)
 
     MustlAddress netAddress;
 
-    MustlPlatform::ResolveAddress(netAddress, "", inPort);
+    MustlPlatform::ResolveHostName(netAddress, "", inPort);
 
     m_tcpSocket = MustlPlatform::TCPBindNonBlocking(netAddress);
     
@@ -135,7 +138,7 @@ MustlWebServer::ExtraAllowedAddrSet(const string& inAddr)
         MustlAddress netAddress;
         try
         {
-            MustlPlatform::ResolveAddress(netAddress, inAddr, 0);
+            MustlPlatform::ResolveHostName(netAddress, inAddr, 0);
             m_extraAllowedIP = netAddress.HostGetNetworkOrder();
         }
         catch (MustlFail& e)

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlServer.cpp,v 1.4 2002/12/13 19:03:06 southa Exp $
+ * $Id: MustlServer.cpp,v 1.5 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.5  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.4  2002/12/13 19:03:06  southa
  * Mustl interface cleanup
  *
@@ -106,7 +109,7 @@ MustlServer::Connect(U32 inPort)
     {
         try
         {
-            MustlPlatform::ResolveAddress(netAddress, "", portNum);
+            MustlPlatform::ResolveHostName(netAddress, "", portNum);
 
             m_tcpSocket = MustlPlatform::TCPBindNonBlocking(netAddress);
             m_udpSocket = MustlPlatform::UDPBindNonBlocking(portNum);

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlAddress.cpp,v 1.1 2002/12/12 14:00:25 southa Exp $
+ * $Id: MustlAddress.cpp,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlAddress.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:25  southa
  * Created Mustl
  *
@@ -45,7 +48,13 @@ MustlAddress::PortSetHostOrder(U32 inPortHostOrder)
 }
 
 void
-MustlAddress::ResolveFrom(const std::string& inHostName, U32 inPortHostOrder)
+MustlAddress::ResolveFromHostName(const std::string& inHostName, U32 inPortHostOrder)
 {
-    MustlPlatform::ResolveAddress(*this, inHostName, inPortHostOrder);
+    MustlPlatform::ResolveHostName(*this, inHostName, inPortHostOrder);
+}
+
+void
+MustlAddress::ResolveFromIPAddressString(const std::string& inHostName, U32 inPortHostOrder)
+{
+    MustlPlatform::ResolveIPAddressString(*this, inHostName, inPortHostOrder);
 }
