@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.h,v 1.5 2002/11/12 11:49:22 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.6 2002/11/12 17:05:01 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.6  2002/11/12 17:05:01  southa
+ * Tidied localweb server
+ *
  * Revision 1.5  2002/11/12 11:49:22  southa
  * Initial MHTML processing
  *
@@ -54,24 +57,34 @@ private:
         kLinkStateDone
     };
 
+    enum tReceiveState
+    {
+        kReceiveInvalid,
+        kReceiveInitial,
+        kReceiveHeaders,
+        kReceiveBody
+    };
+    
     enum tRequestType
     {
         kRequestInvalid,
-        kRequestGet
+        kRequestGet,
+        kRequestPost
     };
     
     enum
     {
         kLinkLifetime=30000, // Times in msec
-        kTimeoutIdle=5000,
         kErrorLimit=100
     };
-    
-    void GetProcess(void);
+
+    void GetProcess(const string& inFilename);
+    void PostProcess(const string& inValues);
     
     string m_requestLine;
     tRequestType m_requestType;
     tLinkState m_linkState;
+    tReceiveState m_receiveState;
     TCPsocket m_tcpSocket;
     U32 m_currentMsec;
     U32 m_creationMsec;

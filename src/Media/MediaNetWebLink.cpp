@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.7 2002/11/12 11:49:22 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.8 2002/11/12 17:05:01 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.8  2002/11/12 17:05:01  southa
+ * Tidied localweb server
+ *
  * Revision 1.7  2002/11/12 11:49:22  southa
  * Initial MHTML processing
  *
@@ -39,6 +42,7 @@ auto_ptr< CoreData<MediaNetWebLink> > CoreData<MediaNetWebLink>::m_instance;
 string MediaNetWebLink::m_webPath="";
 
 MediaNetWebLink::MediaNetWebLink(TCPsocket inSocket, U32 inPort) :
+    m_receiveState(kReceiveInitial),
     m_linkErrors(0),
     m_isDead(false)
 {
@@ -170,42 +174,89 @@ MediaNetWebLink::Send(istream& ioStream)
 void
 MediaNetWebLink::ReceivedProcess(const string& inStr)
 {
-    if (inStr.substr(0,3) == "GET")
+    switch (m_receiveState)
     {
-        m_requestLine = inStr;
-        m_requestType = kRequestGet;
-    }
-    else if (inStr.size() > 0 &&
-             (inStr[0] == 0xd || inStr[0] == 0xa))
-    {
-        // Blank line received
-        switch (m_requestType)
+        case kReceiveInitial:
         {
-            case kRequestGet:
-                GetProcess();
-                break;
-
-            default:
-                SendErrorPage("Unrecognised request");
-                break;
+            if (inStr.substr(0,3) == "GET")
+            {
+                m_requestLine = inStr;
+                m_requestType = kRequestGet;
+            }
+            else if (inStr.substr(0,4) == "POST")
+            {
+                m_requestLine = inStr;
+                m_requestType = kRequestPost;
+            }
         }
+        m_receiveState = kReceiveHeaders;
+        break;
+
+        case kReceiveHeaders:
+        {
+            if (inStr.size() > 0 &&
+             (inStr[0] == 0xd || inStr[0] == 0xa))
+            {
+                m_receiveState=kReceiveBody;
+            }
+            
+            switch (m_requestType)
+            {
+                case kRequestGet:
+                    GetProcess(m_requestLine.substr(4));
+                    m_receiveState = kReceiveInitial;
+                    break;
+
+                case kRequestPost:
+                    break;	
+
+                default:
+                    SendErrorPage("Unrecognised request");
+                    break;
+            }
+        }
+        break;
+
+        case kReceiveBody:
+        {
+            switch (m_requestType)
+            {
+                case kRequestGet:
+                    throw(LogicFail("Bad receive state for GET"));
+                    break;
+
+                case kRequestPost:
+                    PostProcess(inStr);
+                    GetProcess(m_requestLine.substr(5));
+                    break;
+
+                default:
+                    SendErrorPage("Unrecognised request");
+                    break;
+            }
+        }
+        break;
+
+        default:
+            throw(LogicFail("Bad value for m_receiveState"));
+            break;
     }
 }
 
 void
-MediaNetWebLink::GetProcess(void)
+MediaNetWebLink::GetProcess(const string& inFilename)
 {
-    string filename;
+    string localFilename;
     U32 dotCount=0;
     U32 slashCount=0;
 
-    MediaNetLog::Instance().Log() << "Serving GET request for " << MediaNetUtils::MakePrintable(m_requestLine) << endl;
+    MediaNetLog::Instance().Log() << "Serving fetch request for " << MediaNetUtils::MakePrintable(inFilename) << endl;
 
     try
     {
-        for (U32 i=4; i<m_requestLine.size(); ++i)
+        for (U32 i=0; i<inFilename.size(); ++i)
         {
-            U8 byte=m_requestLine[i];
+            U8 byte=inFilename[i];
             if (byte == '.')
             {
                 if (dotCount > 0)
@@ -213,7 +264,7 @@ MediaNetWebLink::GetProcess(void)
                     throw(NetworkFail("Bad filename (dots)"));
                 }
                 ++dotCount;
-                filename+=byte;
+                localFilename+=byte;
             }
             if (byte == '/')
             {
@@ -226,22 +277,21 @@ MediaNetWebLink::GetProcess(void)
             
             if (byte >= 'a' && byte <= 'z')
             {
-                filename+=byte;
+                localFilename+=byte;
             }
             if (byte <= ' ')
             {
                 break;
             }
         }
-        if (filename == "") filename = "index.html";
+        if (localFilename == "") localFilename = "index.html";
         
-        if (filename == "test.html")
+        if (localFilename == "test.html")
         {
             SendTestPage();
         }
         else
         {
-            // check for dynamic files
             if (m_webPath == "")
             {
                 CoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
@@ -250,8 +300,8 @@ MediaNetWebLink::GetProcess(void)
             {
                 throw(NetworkFail("Path to web files (LOCALWEB_PATH) not set"));
             }
-            filename = m_webPath+"/"+filename;
-            SendFile(filename);
+            localFilename = m_webPath+"/"+localFilename;
+            SendFile(localFilename);
         }
     }
     catch (NetworkFail &e)
@@ -259,6 +309,17 @@ MediaNetWebLink::GetProcess(void)
         MediaNetLog::Instance().Log() << "ReceivedProcess exception: " << e.what() << endl;
         SendErrorPage(e.what());
     }
+}
+
+void
+MediaNetWebLink::PostProcess(const string& inValues)
+{
+    if (inValues.find("'") != inValues.npos)
+    {
+        throw(NetworkFail("Dodgy POST values"));
+    }
+    CoreCommand command(string("handlepostvalues('")+inValues+"')");
+    command.Execute();
 }
 
 void

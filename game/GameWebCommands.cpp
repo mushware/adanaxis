@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.1 2002/11/07 11:59:02 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.2 2002/11/12 11:49:21 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.2  2002/11/12 11:49:21  southa
+ * Initial MHTML processing
+ *
  * Revision 1.1  2002/11/07 11:59:02  southa
  * Web commands
  *
@@ -27,6 +30,18 @@
 #include "mushPlatform.h"
 
 CoreInstaller GameWebCommandsInstaller(GameWebCommands::Install);
+
+CoreScalar
+GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(CommandFail("Usage: handlepostvalues(values)"));
+    }
+    string values;
+    ioCommand.PopParam(values);
+    return CoreScalar(0);
+}
 
 CoreScalar
 GameWebCommands::DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
@@ -52,5 +67,6 @@ GameWebCommands::DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 void
 GameWebCommands::Install(void)
 {
+    CoreApp::Instance().AddHandler("handlepostvalues", HandlePostValues);
     CoreApp::Instance().AddHandler("displaymodeswrite", DisplayModesWrite);
 }
