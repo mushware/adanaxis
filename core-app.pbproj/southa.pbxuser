@@ -10118,7 +10118,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 190";
 		rLen = 0;
-		rLoc = 5589;
+		rLoc = 5573;
 		rType = 0;
 		vrLen = 1827;
 		vrLoc = 4735;
@@ -11739,16 +11739,6 @@
 		vrLen = 1111;
 		vrLoc = 6300;
 	};
-	7AB53C8F043264DB00A80164 = {
-		fRef = 7A78FB8703D4711F00A80164;
-		isa = PBXTextBookmark;
-		name = "MustlWebCommands.cpp: MustlPostValues";
-		rLen = 0;
-		rLoc = 4146;
-		rType = 0;
-		vrLen = 191;
-		vrLoc = 3969;
-	};
 	7AB53C90043264DB00A80164 = {
 		isa = PBXFileReference;
 		name = INSTALL;
@@ -11815,16 +11805,6 @@
 		path = "/Users/southa/core-app/README";
 		refType = 0;
 	};
-	7AB55180041E973400A80164 = {
-		fRef = F5483A9C02D19E6101480ACF;
-		isa = PBXTextBookmark;
-		name = "start.txt: 198";
-		rLen = 0;
-		rLoc = 5780;
-		rType = 0;
-		vrLen = 1879;
-		vrLoc = 4651;
-	};
 	7AB55185041E973400A80164 = {
 		fRef = 7AF8B0DE03DC39E700A80164;
 		isa = PBXTextBookmark;
@@ -11854,7 +11834,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 198";
 		rLen = 0;
-		rLoc = 5780;
+		rLoc = 5764;
 		rType = 0;
 		vrLen = 1879;
 		vrLoc = 4651;
@@ -13378,6 +13358,26 @@
 		name = index.html;
 		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/UsingHelp/index.html;
 		refType = 0;
+	};
+	7AB5B61504495DC600A80164 = {
+		fRef = F5483A9102D19E6101480ACF;
+		isa = PBXTextBookmark;
+		name = "contract.xml: 420";
+		rLen = 0;
+		rLoc = 12272;
+		rType = 0;
+		vrLen = 1403;
+		vrLoc = 11352;
+	};
+	7AB5B61604495DC600A80164 = {
+		fRef = 7A78FB8703D4711F00A80164;
+		isa = PBXTextBookmark;
+		name = "MustlWebCommands.cpp: MustlPostValues";
+		rLen = 0;
+		rLoc = 4146;
+		rType = 0;
+		vrLen = 325;
+		vrLoc = 3637;
 	};
 	7AB5B6F803DC07B300A80164 = {
 		fRef = F5AAB69E03A8C8CC01A80164;
@@ -15085,28 +15085,48 @@
 		vrLen = 1906;
 		vrLoc = 0;
 	};
-	7AB81980044054DA00A80164 = {
-		fRef = F5483A9C02D19E6101480ACF;
-		isa = PBXTextBookmark;
-		name = "start.txt: 162";
-		rLen = 0;
-		rLoc = 4542;
-		rType = 0;
-		vrLen = 1440;
-		vrLoc = 3430;
+	7AB8559703D2FD4F00A80164 = {
+		activeExec = 0;
 	};
-	7AB81981044054DA00A80164 = {
+	7AB886250449726500A80164 = {
+		fRef = F5483A9102D19E6101480ACF;
+		isa = PBXTextBookmark;
+		name = "contract.xml: 155";
+		rLen = 0;
+		rLoc = 5330;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 4575;
+	};
+	7AB886260449726500A80164 = {
 		fRef = 7A78FB8703D4711F00A80164;
 		isa = PBXTextBookmark;
 		name = "MustlWebCommands.cpp: MustlPostValues";
 		rLen = 0;
 		rLoc = 4146;
 		rType = 0;
-		vrLen = 176;
-		vrLoc = 3899;
+		vrLen = 296;
+		vrLoc = 3586;
 	};
-	7AB8559703D2FD4F00A80164 = {
-		activeExec = 0;
+	7ABBD4EC04406BA300A80164 = {
+		fRef = F5483A9C02D19E6101480ACF;
+		isa = PBXTextBookmark;
+		name = "start.txt: 15";
+		rLen = 0;
+		rLoc = 689;
+		rType = 0;
+		vrLen = 1619;
+		vrLoc = 0;
+	};
+	7ABBD4ED04406BA300A80164 = {
+		fRef = F5483A9C02D19E6101480ACF;
+		isa = PBXTextBookmark;
+		name = "start.txt: 15";
+		rLen = 0;
+		rLoc = 689;
+		rType = 0;
+		vrLen = 1619;
+		vrLoc = 0;
 	};
 	7ABC6033041B65CC00A80164 = {
 		fRef = 7A05C3D803CB43AC00A80164;
@@ -18495,16 +18515,6 @@
 		vrLen = 681;
 		vrLoc = 762;
 	};
-	F512BC7B0379F0D901A80164 = {
-		fRef = F5483A9102D19E6101480ACF;
-		isa = PBXTextBookmark;
-		name = "contract.xml: 215";
-		rLen = 0;
-		rLoc = 7398;
-		rType = 0;
-		vrLen = 1284;
-		vrLoc = 6406;
-	};
 	F512BCA20379F0D901A80164 = {
 		fRef = F5483A9C02D19E6101480ACF;
 		isa = PBXTextBookmark;
@@ -18550,7 +18560,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 215";
 		rLen = 0;
-		rLoc = 7398;
+		rLoc = 7339;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 6406;
@@ -19600,7 +19610,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 214";
 		rLen = 0;
-		rLoc = 8349;
+		rLoc = 8290;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 0;
@@ -19630,7 +19640,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 213";
 		rLen = 0;
-		rLoc = 7820;
+		rLoc = 7761;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 5333;
@@ -19660,7 +19670,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 214";
 		rLen = 0;
-		rLoc = 7750;
+		rLoc = 7691;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 5202;
@@ -19670,7 +19680,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 214";
 		rLen = 0;
-		rLoc = 7750;
+		rLoc = 7691;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 5202;
@@ -19700,7 +19710,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 290";
 		rLen = 0;
-		rLoc = 9252;
+		rLoc = 9193;
 		rType = 0;
 		vrLen = 2094;
 		vrLoc = 576;
@@ -21099,14 +21109,14 @@
 			7AF8B16403DC3B1800A80164,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 71323455;
+			PBXPerProjectTemplateStateSaveDate = 71925738;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7AB81980044054DA00A80164;
+									bookmark = 7AB886250449726500A80164;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -21189,7 +21199,6 @@
 										F595955C0365EB4801A80164,
 										F5ABEBA60371A04901A80164,
 										F5ABEBA70371A04901A80164,
-										F512BC7B0379F0D901A80164,
 										F5AAA804037BDD6701A80164,
 										F5AA2FD10381221601A80164,
 										F5AA2FD60381221601A80164,
@@ -21531,7 +21540,8 @@
 										7AB81974044054DA00A80164,
 										7AB81975044054DA00A80164,
 										7AB81976044054DA00A80164,
-										7AB55180041E973400A80164,
+										7ABBD4EC04406BA300A80164,
+										7AB5B61504495DC600A80164,
 									);
 									prevStack = (
 										F57BD7D5028AF27C01AD87C4,
@@ -25653,6 +25663,7 @@
 										7AB8197D044054DA00A80164,
 										7AB8197E044054DA00A80164,
 										7AB8197F044054DA00A80164,
+										7ABBD4ED04406BA300A80164,
 									);
 								};
 								NavCount = 1;
@@ -25692,9 +25703,9 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = 7AB81981044054DA00A80164;
+									bookmark = 7AB886260449726500A80164;
 									history = (
-										7AB53C8F043264DB00A80164,
+										7AB5B61604495DC600A80164,
 									);
 								};
 								NavCount = 1;
@@ -26154,7 +26165,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 71323455;
+			PBXWorkspaceStateSaveDate = 71925738;
 		};
 		perUserProjectItems = {
 			7A078AAC041D414C00A80164 = 7A078AAC041D414C00A80164;
@@ -27275,8 +27286,6 @@
 			7AB53C8A043264DB00A80164 = 7AB53C8A043264DB00A80164;
 			7AB53C8B043264DB00A80164 = 7AB53C8B043264DB00A80164;
 			7AB53C8C043264DB00A80164 = 7AB53C8C043264DB00A80164;
-			7AB53C8F043264DB00A80164 = 7AB53C8F043264DB00A80164;
-			7AB55180041E973400A80164 = 7AB55180041E973400A80164;
 			7AB55185041E973400A80164 = 7AB55185041E973400A80164;
 			7AB55187041E973400A80164 = 7AB55187041E973400A80164;
 			7AB55188041E973400A80164 = 7AB55188041E973400A80164;
@@ -27436,6 +27445,8 @@
 			7AB5641303D1E9EB00A80164 = 7AB5641303D1E9EB00A80164;
 			7AB5641403D1E9EB00A80164 = 7AB5641403D1E9EB00A80164;
 			7AB5641503D1E9EB00A80164 = 7AB5641503D1E9EB00A80164;
+			7AB5B61504495DC600A80164 = 7AB5B61504495DC600A80164;
+			7AB5B61604495DC600A80164 = 7AB5B61604495DC600A80164;
 			7AB5B6F803DC07B300A80164 = 7AB5B6F803DC07B300A80164;
 			7AB5B6F903DC07B300A80164 = 7AB5B6F903DC07B300A80164;
 			7AB5B6FC03DC07B300A80164 = 7AB5B6FC03DC07B300A80164;
@@ -27603,8 +27614,10 @@
 			7AB8197D044054DA00A80164 = 7AB8197D044054DA00A80164;
 			7AB8197E044054DA00A80164 = 7AB8197E044054DA00A80164;
 			7AB8197F044054DA00A80164 = 7AB8197F044054DA00A80164;
-			7AB81980044054DA00A80164 = 7AB81980044054DA00A80164;
-			7AB81981044054DA00A80164 = 7AB81981044054DA00A80164;
+			7AB886250449726500A80164 = 7AB886250449726500A80164;
+			7AB886260449726500A80164 = 7AB886260449726500A80164;
+			7ABBD4EC04406BA300A80164 = 7ABBD4EC04406BA300A80164;
+			7ABBD4ED04406BA300A80164 = 7ABBD4ED04406BA300A80164;
 			7ABC6033041B65CC00A80164 = 7ABC6033041B65CC00A80164;
 			7ABC6035041B65CC00A80164 = 7ABC6035041B65CC00A80164;
 			7AF13A0203D32C9A00A80164 = 7AF13A0203D32C9A00A80164;
@@ -27942,7 +27955,6 @@
 			F50F4E6102B50AB1014A78CB = F50F4E6102B50AB1014A78CB;
 			F50F4E6402B50AB1014A78CB = F50F4E6402B50AB1014A78CB;
 			F50F4E6702B50AB1014A78CB = F50F4E6702B50AB1014A78CB;
-			F512BC7B0379F0D901A80164 = F512BC7B0379F0D901A80164;
 			F512BCA20379F0D901A80164 = F512BCA20379F0D901A80164;
 			F512BCAD0379F0D901A80164 = F512BCAD0379F0D901A80164;
 			F512BCAE0379F0D901A80164 = F512BCAE0379F0D901A80164;
@@ -30724,7 +30736,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 312";
 		rLen = 0;
-		rLoc = 11208;
+		rLoc = 11149;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 7039;
@@ -30734,7 +30746,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 312";
 		rLen = 0;
-		rLoc = 11208;
+		rLoc = 11149;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 7028;
@@ -30834,7 +30846,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 372";
 		rLen = 0;
-		rLoc = 10920;
+		rLoc = 10861;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 10261;
@@ -30844,7 +30856,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 354";
 		rLen = 0;
-		rLoc = 10387;
+		rLoc = 10328;
 		rType = 0;
 		vrLen = 1075;
 		vrLoc = 9259;
@@ -30854,7 +30866,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 360";
 		rLen = 0;
-		rLoc = 10487;
+		rLoc = 10428;
 		rType = 0;
 		vrLen = 1039;
 		vrLoc = 9877;
@@ -30864,7 +30876,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 393";
 		rLen = 0;
-		rLoc = 11434;
+		rLoc = 11375;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 10334;
@@ -30874,7 +30886,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 200";
 		rLen = 0;
-		rLoc = 6735;
+		rLoc = 6685;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 5517;
@@ -36072,7 +36084,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 198";
 		rLen = 0;
-		rLoc = 8363;
+		rLoc = 8304;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 1071;
@@ -40939,7 +40951,7 @@
 		rLen = 0;
 		rLoc = 2151;
 		rType = 0;
-		vrLen = 1169;
+		vrLen = 1119;
 		vrLoc = 11636;
 	};
 	F5842976035F1F8601A80164 = {
@@ -40969,7 +40981,7 @@
 		rLen = 0;
 		rLoc = 2151;
 		rType = 0;
-		vrLen = 1244;
+		vrLen = 1194;
 		vrLoc = 11561;
 	};
 	F5842979035F1F8601A80164 = {
@@ -41019,7 +41031,7 @@
 		rLen = 0;
 		rLoc = 2151;
 		rType = 0;
-		vrLen = 1244;
+		vrLen = 1194;
 		vrLoc = 11561;
 	};
 	F5895945038CFC2301A80164 = {
@@ -41037,7 +41049,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 156";
 		rLen = 0;
-		rLoc = 5373;
+		rLoc = 5330;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 5097;
@@ -45934,7 +45946,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 212";
 		rLen = 0;
-		rLoc = 7208;
+		rLoc = 7158;
 		rType = 0;
 		vrLen = 1911;
 		vrLoc = 5474;
@@ -45964,7 +45976,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 212";
 		rLen = 0;
-		rLoc = 7208;
+		rLoc = 7158;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 8105;
@@ -46004,7 +46016,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 212";
 		rLen = 0;
-		rLoc = 7208;
+		rLoc = 7158;
 		rType = 0;
 		vrLen = 1616;
 		vrLoc = 0;
@@ -48497,7 +48509,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 234";
 		rLen = 0;
-		rLoc = 8159;
+		rLoc = 8100;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 6201;
@@ -48507,7 +48519,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 267";
 		rLen = 0;
-		rLoc = 9498;
+		rLoc = 9439;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 6161;
@@ -51015,7 +51027,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 189";
 		rLen = 0;
-		rLoc = 5589;
+		rLoc = 5573;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 4637;
@@ -53417,7 +53429,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 186";
 		rLen = 0;
-		rLoc = 5548;
+		rLoc = 5532;
 		rType = 0;
 		vrLen = 1866;
 		vrLoc = 4137;
@@ -53437,7 +53449,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 187";
 		rLen = 0;
-		rLoc = 5605;
+		rLoc = 5589;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 4401;
@@ -53557,7 +53569,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 190";
 		rLen = 0;
-		rLoc = 5721;
+		rLoc = 5705;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 4400;
@@ -53679,7 +53691,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 186";
 		rLen = 0;
-		rLoc = 5759;
+		rLoc = 5743;
 		rType = 0;
 		vrLen = 1767;
 		vrLoc = 4163;
@@ -54229,7 +54241,7 @@
 		isa = PBXTextBookmark;
 		name = "start.txt: 194";
 		rLen = 0;
-		rLoc = 5832;
+		rLoc = 5816;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 4372;
@@ -54601,7 +54613,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 147";
 		rLen = 0;
-		rLoc = 6054;
+		rLoc = 6004;
 		rType = 0;
 		vrLen = 1539;
 		vrLoc = 3930;
@@ -55431,7 +55443,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 212";
 		rLen = 0;
-		rLoc = 7208;
+		rLoc = 7158;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 5517;
