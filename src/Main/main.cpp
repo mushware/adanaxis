@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.5 2002/05/08 17:25:31 southa Exp $
+ * $Id: main.cpp,v 1.6 2002/05/10 16:40:38 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.6  2002/05/10 16:40:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/05/08 17:25:31  southa
  * API tidying
  *
@@ -22,6 +25,11 @@
 
 int main(int argc, char *argv[])
 {
+    char *buf=new char[MAXPATHLEN];
+    CoreGlobalConfig::Instance().Set("APPLPATH", getcwd(buf, MAXPATHLEN));
+    cerr << "Path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
+    delete[] buf;
+    
     string str;
     for (int i=1; i<argc; i++)
     {

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreUtil.cpp,v 1.2 2002/05/09 17:10:38 southa Exp $
+ * $Id: CoreUtil.cpp,v 1.3 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreUtil.cpp,v $
+ * Revision 1.3  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.2  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -10,6 +13,7 @@
  */
 
 #include "CoreUtil.h"
+#include "CoreGlobalConfig.h"
 
 U32
 CoreUtil::BigEndianU32Get(istream& inIn)
@@ -39,4 +43,10 @@ CoreUtil::U8Get(istream& inIn)
     char ch;
     inIn.get(ch);
     return * reinterpret_cast<U8 *>(&ch);
+}
+
+string
+CoreUtil::AppDirFilename(const string& inStr)
+{
+    return CoreGlobalConfig::Instance().Get("APPLPATH").String() + "/" + inStr;
 }

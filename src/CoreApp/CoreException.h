@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.2 2002/05/24 16:23:09 southa Exp $
+ * $Id: CoreException.h,v 1.3 2002/05/24 18:08:35 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.3  2002/05/24 18:08:35  southa
+ * CoreXML and game map
+ *
  * Revision 1.2  2002/05/24 16:23:09  southa
  * Config and typenames
  *
@@ -115,21 +118,23 @@ inline ostream& operator<<(ostream &s, XMLFail f)
 class LoaderFail: public exception
 {
 public:
-    LoaderFail(const string& inFilename, const string& inMessage):
-    m_filename(inFilename), m_message(inMessage) {}
+    LoaderFail(const string& inFilename, const string& inReason):
+        m_filename(inFilename), m_reason(inReason)
+        { m_message="File '"+m_filename+"': "+m_reason; }
     ~LoaderFail() throw() {}
     const string& FilenameGet(void) {return m_filename;}
-    const string& MessageGet(void) {return m_message;}
+    const string& ReasonGet(void) {return m_reason;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
     string m_filename;
+    string m_reason;
     string m_message;
 };
 
 inline ostream& operator<<(ostream &s, LoaderFail f)
 {
-    return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+    return s << "File '" << f.FilenameGet() << "': " << f.ReasonGet();
 }
 
 #endif

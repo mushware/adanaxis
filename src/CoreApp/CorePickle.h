@@ -1,6 +1,11 @@
+#ifndef COREPICKLE_H
+#define COREPICKLE_H
 /*
- * $Id: CorePickle.h,v 1.2 2002/05/25 17:17:18 southa Exp $
+ * $Id: CorePickle.h,v 1.3 2002/05/26 16:35:07 southa Exp $
  * $Log: CorePickle.h,v $
+ * Revision 1.3  2002/05/26 16:35:07  southa
+ * CoreXML work
+ *
  * Revision 1.2  2002/05/25 17:17:18  southa
  * CoreXML implementation
  *
@@ -21,3 +26,4 @@ public:
     virtual void Unpickle(CoreXML& inXML) = 0;
     void Unpickle(const string& inFilename);
 };
+#endif

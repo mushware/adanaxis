@@ -1,6 +1,11 @@
+#ifndef CORECONFIG_H
+#define CORECONFIG_H
 /*
- * $Id: CoreConfig.h,v 1.2 2002/05/25 17:17:18 southa Exp $
+ * $Id: CoreConfig.h,v 1.3 2002/05/26 16:35:07 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.3  2002/05/26 16:35:07  southa
+ * CoreXML work
+ *
  * Revision 1.2  2002/05/25 17:17:18  southa
  * CoreXML implementation
  *
@@ -18,7 +23,7 @@ class CoreConfig : public CorePickle
 public:
     virtual ~CoreConfig() {}
     void Set(const string& inName, const CoreScalar& inValue);
-    void Set(const string& inName, const string& inStr) { Set(inName, CoreScalar(inStr)); }
+    // void Set(const string& inName, const string& inStr) { Set(inName, CoreScalar(inStr)); }
     void Set(const string& inName, const tVal inVal) { Set(inName, CoreScalar(inVal)); }
     const CoreScalar& Get(const string& inName) const;
     bool ConfigExists(const string& inName) const;
@@ -28,3 +33,4 @@ public:
 private:
     map<string, CoreScalar> m_config;
 };
+#endif

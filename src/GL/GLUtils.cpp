@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLUtils.cpp,v 1.1 2002/05/10 22:38:23 southa Exp $
+ * $Log: GLUtils.cpp,v $
+ * Revision 1.1  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  */
 
 #include "GLUtils.h"
@@ -68,6 +71,11 @@ GLUtils::CheckGLError(void)
 }
 
 void
+GLUtils::SafetyHandler(void)
+{
+}
+
+void
 GLUtils::StandardInit(void)
 {
     char *argv[] = {"glutInit", ""};
@@ -80,6 +88,10 @@ GLUtils::StandardInit(void)
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     glDisable(GL_LINE_SMOOTH);
+    glutDisplayFunc(SafetyHandler);
+    glutInitWindowSize(640,480);
+    glutCreateWindow("Game");
+    glutDisplayFunc(SafetyHandler);
     CheckGLError();
 }
 
@@ -96,5 +108,9 @@ GLUtils::GameInit(void)
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_BLEND);
     glDisable(GL_LINE_SMOOTH);
+    glutDisplayFunc(SafetyHandler);
+    glutGameModeString("640x480:16@60");
+    glutEnterGameMode();
+    glutDisplayFunc(SafetyHandler);
     CheckGLError();
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: mushCore.h,v 1.1 2002/05/10 16:39:34 southa Exp $
+ * $Id: mushCore.h,v 1.2 2002/05/24 16:23:08 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.2  2002/05/24 16:23:08  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -37,6 +40,9 @@
 
 // Exception classes to be thrown
 #include "CoreApp/CoreException.h"
+
+// Global configuration
+#include "CoreApp/CoreGlobalConfig.h"
 
 // Used as a hook to register classes and commands at startup
 #include "CoreApp/CoreInstaller.h"

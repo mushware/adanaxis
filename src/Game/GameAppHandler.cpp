@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.5 2002/05/25 17:16:14 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.6 2002/05/26 16:08:48 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.6  2002/05/26 16:08:48  southa
+ * CoreXML loader
+ *
  * Revision 1.5  2002/05/25 17:16:14  southa
  * CoreXML implementation
  *
@@ -23,28 +26,16 @@
 #include "mushCore.h"
 #include "mushGL.h"
 
-#include "GameTest.h"
+#include "GameContract.h"
 #include "GameMap.h"
 
 void
 GameAppHandler::Initialise(void)
 {
-    GameMap gMap;
-    string inFilename("../game/GameMap.xml");
-    ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
-    if (!in) throw(LoaderFail(inFilename, "Could not open file"));
-    CoreXML xml(in, inFilename);
-    gMap.Unpickle(xml);
-    gMap.Pickle(cout);
-    exit(0);
-    m_pGame = new GameTest;
+    m_pGame = new GameContract;
     
-    GLUtils::GameInit();
+    GLUtils::StandardInit();
 
-    //glutInitWindowSize(640,480);
-    //glutCreateWindow("Game");
-    glutGameModeString("640x480:16@60");
-    glutEnterGameMode();
     RegisterHandlers();
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
@@ -73,7 +64,15 @@ GameAppHandler::Idle(bool& outQuit, int& outUSleepFor)
 {
     bool redraw=false;
     COREASSERT(m_pGame != NULL);
-    m_pGame->Process(outQuit, redraw);
+    try
+    {
+        m_pGame->Process(outQuit, redraw);
+    }
+    catch (exception& e)
+    {
+        cerr << "In glut idle handler: " << e.what() << endl;
+        std::exit(1);
+    }
     if (redraw && IsVisible())
     {
         glutPostRedisplay();

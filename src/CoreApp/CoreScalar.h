@@ -1,8 +1,11 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id: CoreScalar.h,v 1.2 2002/05/24 16:23:10 southa Exp $
+ * $Id: CoreScalar.h,v 1.3 2002/05/26 16:35:07 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.3  2002/05/26 16:35:07  southa
+ * CoreXML work
+ *
  * Revision 1.2  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -69,6 +72,7 @@ public:
 
     // Conversion operators
     operator tVal() const { return Val(); }
+    operator string() const { return String(); }
     
     void ostreamPrint(ostream &inOut) const;
 
