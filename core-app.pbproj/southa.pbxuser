@@ -2641,7 +2641,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 368";
 		rLen = 20;
-		rLoc = 8731;
+		rLoc = 9175;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 7834;
@@ -2791,7 +2791,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 525";
 		rLen = 0;
-		rLoc = 12974;
+		rLoc = 13418;
 		rType = 0;
 		vrLen = 1726;
 		vrLoc = 11302;
@@ -2881,7 +2881,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 422";
 		rLen = 0;
-		rLoc = 10287;
+		rLoc = 10731;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 3375;
@@ -3635,7 +3635,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 402";
 		rLen = 0;
-		rLoc = 9802;
+		rLoc = 10246;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 8479;
@@ -3705,7 +3705,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 402";
 		rLen = 0;
-		rLoc = 9802;
+		rLoc = 10246;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 8479;
@@ -3735,7 +3735,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 402";
 		rLen = 0;
-		rLoc = 9802;
+		rLoc = 10246;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 8479;
@@ -4437,7 +4437,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 102";
 		rLen = 0;
-		rLoc = 3788;
+		rLoc = 3798;
 		rType = 0;
 		vrLen = 1328;
 		vrLoc = 3781;
@@ -5087,7 +5087,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 101";
 		rLen = 0;
-		rLoc = 3788;
+		rLoc = 3798;
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 2217;
@@ -8609,7 +8609,7 @@
 		isa = PBXTextBookmark;
 		name = "InfernalContract.cpp: 1195";
 		rLen = 0;
-		rLoc = 33239;
+		rLoc = 33266;
 		rType = 0;
 		vrLen = 443;
 		vrLoc = 29471;
@@ -11023,7 +11023,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 386";
 		rLen = 0;
-		rLoc = 9319;
+		rLoc = 9763;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 8406;
@@ -11273,7 +11273,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 568";
 		rLen = 0;
-		rLoc = 14470;
+		rLoc = 14914;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 12704;
@@ -11282,7 +11282,7 @@
 		fRef = F5AAB69E03A8C8CC01A80164;
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.h: 118";
-		rLen = 340;
+		rLen = 338;
 		rLoc = 2805;
 		rType = 0;
 		vrLen = 1001;
@@ -11293,7 +11293,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 582";
 		rLen = 0;
-		rLoc = 14491;
+		rLoc = 14935;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 12872;
@@ -12583,7 +12583,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 147";
 		rLen = 0;
-		rLoc = 5914;
+		rLoc = 5924;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 1616;
@@ -16124,7 +16124,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 83";
 		rLen = 0;
-		rLoc = 2910;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 1884;
@@ -16616,7 +16616,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 369";
 		rLen = 0;
-		rLoc = 8974;
+		rLoc = 9418;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 8047;
@@ -17076,7 +17076,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 363";
 		rLen = 0;
-		rLoc = 8820;
+		rLoc = 9264;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 7917;
@@ -17116,7 +17116,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 369";
 		rLen = 0;
-		rLoc = 8832;
+		rLoc = 9276;
 		rType = 0;
 		vrLen = 1311;
 		vrLoc = 7917;
@@ -17204,7 +17204,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 556";
 		rLen = 0;
-		rLoc = 13704;
+		rLoc = 14148;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 12573;
@@ -17224,7 +17224,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 556";
 		rLen = 0;
-		rLoc = 13704;
+		rLoc = 14148;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 12573;
@@ -17428,7 +17428,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.cpp: 509";
 		rLen = 0;
-		rLoc = 12591;
+		rLoc = 13035;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 11212;
@@ -19166,7 +19166,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 133";
 		rLen = 0;
-		rLoc = 4589;
+		rLoc = 4599;
 		rType = 0;
 		vrLen = 2247;
 		vrLoc = 3467;
@@ -19186,7 +19186,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 133";
 		rLen = 0;
-		rLoc = 4589;
+		rLoc = 4599;
 		rType = 0;
 		vrLen = 2247;
 		vrLoc = 3467;
@@ -21069,7 +21069,7 @@
 		fRef = F5AAB69E03A8C8CC01A80164;
 		isa = PBXTextBookmark;
 		name = "MustlWebLink.h: 118";
-		rLen = 340;
+		rLen = 338;
 		rLoc = 2805;
 		rType = 0;
 		vrLen = 1157;
@@ -21744,7 +21744,7 @@
 		isa = PBXTextBookmark;
 		name = "InfernalContract.cpp: 1195";
 		rLen = 0;
-		rLoc = 33239;
+		rLoc = 33266;
 		rType = 0;
 		vrLen = 443;
 		vrLoc = 29471;
@@ -22004,7 +22004,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 110";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 4775;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2791;
@@ -22624,7 +22624,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 70";
 		rLen = 0;
-		rLoc = 2339;
+		rLoc = 2349;
 		rType = 0;
 		vrLen = 1891;
 		vrLoc = 2181;
@@ -23843,7 +23843,7 @@
 		isa = PBXTextBookmark;
 		name = "InfernalContract.cpp: HandleGameStart";
 		rLen = 55;
-		rLoc = 29725;
+		rLoc = 29752;
 		rType = 0;
 		vrLen = 381;
 		vrLoc = 29528;
@@ -23863,7 +23863,7 @@
 		isa = PBXTextBookmark;
 		name = "InfernalContract.cpp: HandleGameStart";
 		rLen = 55;
-		rLoc = 29725;
+		rLoc = 29752;
 		rType = 0;
 		vrLen = 381;
 		vrLoc = 29528;
@@ -26677,7 +26677,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 164";
 		rLen = 0;
-		rLoc = 5985;
+		rLoc = 5995;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 4126;
@@ -50543,7 +50543,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 66";
 		rLen = 0;
-		rLoc = 2325;
+		rLoc = 2335;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 0;
@@ -50563,7 +50563,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 62";
 		rLen = 0;
-		rLoc = 2136;
+		rLoc = 2146;
 		rType = 0;
 		vrLen = 1676;
 		vrLoc = 1359;

@@ -1,19 +1,24 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/MustlGameServer.cpp
+ * File: src/MustlGame/MustlGameServer.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Copyright Andy Southgate 2002-2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8VGH48WmKw4GTWKcRcb5FA
+//%Header } B0fN063dcb0mX9SnWV0uAw
 /*
- * $Id: MustlGameServer.cpp,v 1.26 2003/09/17 19:40:31 southa Exp $
+ * $Id: MustlGameServer.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameServer.cpp,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.26  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -96,11 +101,11 @@
 
 #include "MustlGameServer.h"
 
-#include "GameAppHandler.h"
 #include "MustlGameClient.h"
-#include "GameProtocol.h"
-#include "GameSTL.h"
+#include "MustlGameSTL.h"
 
+#include "mushGame.h"
+#include "mushGL.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
@@ -128,8 +133,8 @@ MustlGameServer::HostGame(const string& inContract, U32 inPlayerLimit)
 void
 MustlGameServer::Ticker(const string& inName)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    m_currentMsec=gameAppHandler.MillisecondsGet();
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
+    m_currentMsec=glAppHandler.MillisecondsGet();
 
     if (m_currentMsec > m_lastUpdateMsec + kUpdateMsec)
     {

@@ -1,19 +1,24 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/MustlGameUtils.cpp
+ * File: src/MustlGame/MustlGameUtils.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Copyright Andy Southgate 2002-2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } B0xigx7uJcQrVowiNoFNZw
+//%Header } GeugbkGHevCjQ1ycdvmcWA
 /*
- * $Id: MustlGameUtils.cpp,v 1.19 2003/10/04 12:23:01 southa Exp $
+ * $Id: MustlGameUtils.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameUtils.cpp,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.19  2003/10/04 12:23:01  southa
  * File renaming
  *
@@ -75,13 +80,11 @@
 
 #include "MustlGameUtils.h"
 
-#include "GameConfig.h"
 #include "MustlGameClient.h"
 #include "MustlGameServer.h"
 #include "MustlGameID.h"
-#include "GameRouter.h"
-#include "GameSTL.h"
 
+#include "mushGame.h"
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"

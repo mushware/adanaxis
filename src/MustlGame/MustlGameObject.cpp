@@ -1,19 +1,24 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/MustlGameObject.cpp
+ * File: src/MustlGame/MustlGameObject.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Copyright Andy Southgate 2002-2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OeLT2lA5iuGBxjdqvKr/ZQ
+//%Header } Ik2Z7lBLlKgjCV23vkEnSA
 /*
- * $Id: MustlGameObject.cpp,v 1.21 2003/09/17 19:40:32 southa Exp $
+ * $Id: MustlGameObject.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameObject.cpp,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.21  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -80,7 +85,7 @@
 
 #include "MustlGameClient.h"
 #include "MustlGameServer.h"
-#include "GameSTL.h"
+#include "MustlGameSTL.h"
 
 #include "mushMedia.h"
 

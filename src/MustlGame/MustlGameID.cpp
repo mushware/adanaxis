@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } gX/hSaBezfywWwRSLJVYZw
 /*
- * $Id: MustlGameID.cpp,v 1.7 2003/09/17 19:40:32 southa Exp $
+ * $Id: MustlGameID.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameID.cpp,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.7  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -41,7 +44,7 @@
 
 #include "MustlGameID.h"
 
-#include "GameSTL.h"
+#include "MustlGameSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -1,19 +1,24 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/MustlGameClient.cpp
+ * File: src/MustlGame/MustlGameClient.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Copyright Andy Southgate 2002-2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } m88+th2pONGD/3Tj10JOUg
+//%Header } D3jiefET3k3peL6sMlTiLA
 /*
- * $Id: MustlGameClient.cpp,v 1.33 2003/10/04 15:32:09 southa Exp $
+ * $Id: MustlGameClient.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameClient.cpp,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.33  2003/10/04 15:32:09  southa
  * Module split
  *
@@ -132,16 +137,14 @@
 
 #include "MustlGameClient.h"
 
-#include "GameAppHandler.h"
-
 // Need to remove this dependency
 #include "Infernal/InfernalData.h"
 
 #include "MustlGameServer.h"
 #include "MustlGameUtils.h"
-#include "GameProtocol.h"
-#include "GameSTL.h"
+#include "MustlGameSTL.h"
 
+#include "mushGame.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

@@ -5,19 +5,24 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/MustlGameID.h
+ * File: src/MustlGame/MustlGameID.h
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2003.
+ * Copyright Andy Southgate 2002-2003
+ *
+ * This file may be redistributed and/or modified under the terms of the
+ * Mushware licence which you should have received with this file.  For
+ * information, please contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vzoQZGcmMzMJMgoZfNuZDA
+//%Header } /kg31EeeuSlYB8mSblVb4g
 /*
- * $Id: MustlGameID.h,v 1.8 2003/09/17 19:40:32 southa Exp $
+ * $Id: MustlGameID.h,v 1.1 2003/10/06 22:22:38 southa Exp $
  * $Log: MustlGameID.h,v $
+ * Revision 1.1  2003/10/06 22:22:38  southa
+ * Moved from Game to MustlGame
+ *
  * Revision 1.8  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
