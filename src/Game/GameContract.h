@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.30 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameContract.h,v 1.31 2002/11/15 18:58:34 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.31  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  * Revision 1.30  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -124,7 +127,9 @@ public:
     virtual void Process(void);
     virtual void Display(void);
     virtual void ScriptFunction(const string& inName) const;
-
+    virtual void SwapIn(void);
+    virtual void SwapOut(void);
+    
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     static CoreScalar LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv);

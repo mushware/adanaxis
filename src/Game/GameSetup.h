@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameSetup.h,v 1.1 2002/11/15 18:58:34 southa Exp $
+ * $Log: GameSetup.h,v $
+ * Revision 1.1  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  */
 
 #include "mushCore.h"
@@ -14,6 +17,8 @@ public:
     virtual void Process(void);
     virtual void Display(void);
     virtual void ScriptFunction(const string& inName) const;
+    virtual void SwapIn(void);
+    virtual void SwapOut(void);
 
 protected:
     void ConfigInit(void);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.30 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.31 2002/11/15 18:58:33 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.31  2002/11/15 18:58:33  southa
+ * Configuration mode
+ *
  * Revision 1.30  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -121,12 +124,15 @@
 #include "mushMedia.h"
 
 GameAppHandler::GameAppHandler() :
-    m_pGame(NULL)
+    m_pSetup(NULL),
+    m_pGame(NULL),
+    m_appState(kAppStateStartup)
 {
 }
 
 GameAppHandler::~GameAppHandler()
 {
+    if (m_pSetup != NULL) delete m_pSetup;
     if (m_pGame != NULL) delete m_pGame;
 }
 
@@ -135,36 +141,56 @@ GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
 
-    m_pGame=new GameSetup;
-    // m_pGame=GameData::Instance().ContractGet("contract1");
-    // m_pGame->ScriptFunction("load");
 
-    try
-    {
-        EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(GameConfig::Instance().DisplayModeGet()));
-    }
-    catch (...)
-    {
-        GameConfig::Instance().DisplayModeSetDefault();
-        throw;
-    }
-    GLUtils::CheckGLError();
 }
 
 void
 GameAppHandler::Display(void)
 {
-    COREASSERT(m_pGame != NULL);
-    m_pGame->Display();
+    switch (m_appState)
+    {
+        case kAppStateSetup:
+            COREASSERT(m_pSetup != NULL);
+            m_pSetup->Display();
+            break;
+
+        case kAppStateGame:
+            COREASSERT(m_pGame != NULL);
+            m_pGame->Display();
+            break;
+
+        case kAppStateStartup:
+            break;
+            
+        default:
+            throw(LogicFail("Bad value for m_appState"));
+    }
 }
 
 void
 GameAppHandler::Idle(void)
 {
-    COREASSERT(m_pGame != NULL);
     try
     {
-        m_pGame->Process();
+        switch (m_appState)
+        {
+            case kAppStateSetup:
+                COREASSERT(m_pSetup != NULL);
+                m_pSetup->Process();
+                break;
+
+            case kAppStateGame:
+                COREASSERT(m_pGame != NULL);
+                m_pGame->Process();
+                break;
+
+            case kAppStateStartup:
+                SetupModeEnter();
+                break;
+                
+            default:
+                throw(LogicFail("Bad value for m_appState"));
+        }
     }
     catch (exception& e)
     {
@@ -172,5 +198,53 @@ GameAppHandler::Idle(void)
 
         PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
         exit(1);
+    }
+}
+
+void
+GameAppHandler::SetupModeEnter(void)
+{
+    switch (m_appState)
+    {
+        case kAppStateGame:
+            COREASSERT(m_pGame != NULL);
+            m_pGame->SwapOut();
+            // Drop through
+        case kAppStateStartup:
+            if (m_pSetup == NULL) m_pSetup = new GameSetup;
+            m_pSetup->SwapIn();
+            m_appState=kAppStateSetup;
+            break;
+
+        case kAppStateSetup:
+            break;
+
+        default:
+            throw(LogicFail("Bad value for m_appState"));
+    }
+}
+
+void
+GameAppHandler::GameModeEnter(void)
+{
+    switch (m_appState)
+    {
+        case kAppStateSetup:
+            COREASSERT(m_pSetup != NULL);
+            m_pSetup->SwapOut();
+            // Drop through
+        case kAppStateStartup:
+            m_pGame=GameData::Instance().ContractGet("contract1");
+            //m_pGame->ScriptFunction("load");
+            COREASSERT(m_pGame != NULL);
+            m_pGame->SwapIn();
+            m_appState=kAppStateGame;
+            break;
+
+        case kAppStateGame:
+            break;
+
+        default:
+            throw(LogicFail("Bad value for m_appState"));
     }
 }

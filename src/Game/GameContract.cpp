@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.91 2002/11/15 12:59:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.92 2002/11/15 18:58:33 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.92  2002/11/15 18:58:33  southa
+ * Configuration mode
+ *
  * Revision 1.91  2002/11/15 12:59:25  southa
  * Auto-open configuration on startup
  *
@@ -391,6 +394,27 @@ GameContract::Display(void)
         default:
             throw(LogicFail("Bad value for m_gameState"));
     }
+}
+
+void
+GameContract::SwapIn(void)
+{
+    try
+    {
+        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+        glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(GameConfig::Instance().DisplayModeGet()));
+    }
+    catch (...)
+    {
+        GameConfig::Instance().DisplayModeSetDefault();
+        throw;
+    }
+    GLUtils::CheckGLError();
+}
+
+void
+GameContract::SwapOut(void)
+{
 }
 
 void

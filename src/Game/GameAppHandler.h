@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.10 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameAppHandler.h,v 1.11 2002/11/15 18:58:33 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.11  2002/11/15 18:58:33  southa
+ * Configuration mode
+ *
  * Revision 1.10  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -61,8 +64,21 @@ public:
     virtual void Display(void);
     virtual void Idle(void);
 
+    void SetupModeEnter(void);
+    void GameModeEnter(void);
+    
 protected:
 private:
+    enum tAppState
+    {
+        kAppStateInvalid,
+        kAppStateStartup,
+        kAppStateSetup,
+        kAppStateGame
+    };
+    
+    GameBase *m_pSetup;
     GameBase *m_pGame;
+    tAppState m_appState;
 };
 #endif

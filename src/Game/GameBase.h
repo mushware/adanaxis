@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameBase.h,v 1.10 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameBase.h,v 1.11 2002/11/15 18:58:33 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.11  2002/11/15 18:58:33  southa
+ * Configuration mode
+ *
  * Revision 1.10  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -56,6 +59,8 @@ public:
     virtual void Process(void) = 0;
     virtual void Display(void) = 0;
     virtual void ScriptFunction(const string& inName) const = 0;
+    virtual void SwapIn(void) = 0;
+    virtual void SwapOut(void) = 0;
 
 private:
 

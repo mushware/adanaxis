@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameSetup.cpp,v 1.1 2002/11/15 18:58:34 southa Exp $
+ * $Log: GameSetup.cpp,v $
+ * Revision 1.1  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  */
 
 #include "GameSetup.h"
@@ -155,5 +158,17 @@ GameSetup::KeyControl(void)
 
 void
 GameSetup::ScriptFunction(const string& inName) const
+{
+}
+
+void
+GameSetup::SwapIn(void)
+{
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(0));
+}
+
+void
+GameSetup::SwapOut(void)
 {
 }
