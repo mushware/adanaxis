@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.28 2003/01/20 10:45:23 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.29 2003/01/20 12:23:20 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.29  2003/01/20 12:23:20  southa
+ * Code and interface tidying
+ *
  * Revision 1.28  2003/01/20 10:45:23  southa
  * Singleton tidying
  *
@@ -134,16 +137,18 @@ GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MushcoreRegExp re;
-    if (re.Search(filename, "(spr|SPR)$"))
+    MushcoreRegExp sprRE("(spr|SPR)$");
+    MushcoreRegExp gifRE("(gif|GIF)$");
+    MushcoreRegExp tiffRE("(tif|tiff|TIF|TIFF)$");
+    if (sprRE.Search(filename))
     {
         GLData::Sgl().TextureAdd(name, GLTextureSpr(filename));
     }
-    else if (re.Search(filename, "(gif|GIF)$"))
+    else if (gifRE.Search(filename))
     {
         GLData::Sgl().TextureAdd(name, GLTextureGIF(filename));
     }
-    else if (re.Search(filename, "(tif|tiff|TIF|TIFF)$"))
+    else if (tiffRE.Search(filename))
     {
         GLData::Sgl().TextureAdd(name, GLTextureTIFF(filename));
     }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.19 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.20 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.20  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.19  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -85,7 +88,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
     MushcoreStreamUtil sUtil;
     FilenameSet(inFilename);
 
-    u8ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
+    ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
 
     if (!in) throw(MushcoreFileFail(inFilename, "Could not open file"));
     U32 numSprites=sUtil.LittleEndianU32Get(in);
@@ -100,7 +103,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
     
     if (numSprites > 0xffff) throw (MushcoreFileFail(inFilename, "Corrupt sprite file - first word insane"));
 
-    for (tSize spriteCtr=0; spriteCtr<numSprites; ++spriteCtr)
+    for (U32 spriteCtr=0; spriteCtr<numSprites; ++spriteCtr)
     {
         sUtil.ZeroIndex(0);
         U32 offsetNext=sUtil.LittleEndianU32Get(in);
@@ -141,15 +144,15 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         IFTEXTESTING(cerr << "bitsPerPixel=" << mode.BitsPerPixel() << ", ");
         IFTEXTESTING(cerr << "pixelDouble=" << mode.PixelDouble() << "]" << endl);
 
-        tSize inputSize=(height*width*mode.BitsPerPixel()+7)/8;
+        U32 inpuU32=(height*width*mode.BitsPerPixel()+7)/8;
 
-        U8 inputData[inputSize];
+        U8 inputData[inpuU32];
         
         sUtil.ConsumeToIndex(in, 0, dataOffset);
-        sUtil.Get(in, inputData, inputSize);
+        sUtil.Get(in, inputData, inpuU32);
         
-        tSize pixelMult=mode.PixelDouble()?2:1;
-        tSize u32Size=width*height;
+        U32 pixelMult=mode.PixelDouble()?2:1;
+        U32 u32Size=width*height;
 
         if (mode.PixelDouble()) u32Size *= pixelMult*pixelMult;
         
@@ -169,10 +172,10 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
             inputPtr=&inputData[((def.Height()-1-y)/pixelMult) * def.Width()/pixelMult];
             outputPtr=&def.DataPtr()[y*def.Width()];
 
-            for (tSize x=0; x<width; ++x)
+            for (U32 x=0; x<width; ++x)
             {
                 U8 colIndex=*inputPtr++;
-                for (tSize outputCtr=0; outputCtr<pixelMult; ++outputCtr)
+                for (U32 outputCtr=0; outputCtr<pixelMult; ++outputCtr)
                 {
                     // Pack data into output buffer in RGB order
                     *outputPtr++ =
@@ -215,7 +218,7 @@ GLTextureSpr::GeneratePalette(void)
 {
     assert(m_palette==NULL);
     m_palette=new Palette[256];
-    for (tSize i=0; i<256; i++)
+    for (U32 i=0; i<256; i++)
     {
         m_palette[i].red   = 0x11 * (((i>>1) & 8) | (i&7));
         m_palette[i].green = 0x11 * (((i>>3) & 0xC) | (i&3));

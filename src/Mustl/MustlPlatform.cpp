@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.12 2003/02/04 14:54:51 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.13 2003/02/04 19:07:12 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.13  2003/02/04 19:07:12  southa
+ * Build fixes
+ *
  * Revision 1.12  2003/02/04 14:54:51  southa
  * Build fixes
  *
@@ -277,7 +280,7 @@ U32
 MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outBuffer, U32 inSize)
 {
     struct sockaddr_in sockAddr;
-    int sockAddrSize=sizeof(sockAddr);
+    MUSTL_SOCKLEN_T sockAddrSize=sizeof(sockAddr);
 
     MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
@@ -451,7 +454,7 @@ bool
 MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSocket)
 {
     struct sockaddr_in sockAddr;
-    int sockAddrLen = sizeof(sockAddr);
+    MUSTL_SOCKLEN_T sockAddrLen = sizeof(sockAddr);
 
     MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
@@ -729,8 +732,12 @@ MustlPlatform::LocalAddressesRetrieve(void)
     {
         struct ifreq *ifReq = reinterpret_cast<struct ifreq *>(dataPtr);
 
+#ifdef HAVE_SOCKADDR_SA_LEN
         U32 entryLength=ifReq->ifr_addr.sa_len;
-        if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
+	if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
+#else
+        U32 entryLength=sizeof(struct sockaddr);
+#endif
         if (ifReq->ifr_addr.sa_family == AF_INET)
         {
             if (ioctl(testSocket, SIOCGIFFLAGS, ifReq) == 0)

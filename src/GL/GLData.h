@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.h,v 1.13 2002/12/29 20:30:52 southa Exp $
+ * $Id: GLData.h,v 1.14 2003/01/20 10:45:23 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.14  2003/01/20 10:45:23  southa
+ * Singleton tidying
+ *
  * Revision 1.13  2002/12/29 20:30:52  southa
  * Work for gcc 3.1 build
  *
@@ -93,8 +96,8 @@ public:
     void DumpTextures(std::ostream& inOut);
     
 private:
-    std::map<string, GLTexture *> m_textures;
-    std::map<string, GLFont *> m_fonts;
+    std::map<std::string, GLTexture *> m_textures;
+    std::map<std::string, GLFont *> m_fonts;
     GLLights *m_lights;
     static GLData *m_instance;
 };

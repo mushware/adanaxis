@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureTIFF.cpp,v 1.13 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.14 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.14  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.13  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -78,8 +81,8 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             TIFFGetField(pTiff, TIFFTAG_IMAGEWIDTH, &width);
             TIFFGetField(pTiff, TIFFTAG_IMAGELENGTH, &height);
 
-            tSize numPixels=width*height;
-            tSize u32Size=numPixels;
+            U32 numPixels=width*height;
+            U32 u32Size=numPixels;
             tiffData=reinterpret_cast<uint32 *>(_TIFFmalloc(sizeof(uint32)*width*height));
 
             // TextureDef takes ownership of the block

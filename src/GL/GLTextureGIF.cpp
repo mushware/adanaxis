@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureGIF.cpp,v 1.14 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.15 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.15  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.14  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -104,7 +107,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
 
             GifColorType *colors=colorMap->Colors;
             int colIndexLimit=1 << colorMap->BitsPerPixel;
-            tSize u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
+            U32 u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
 
             GLTextureDef def(new U32[u32Size]);
 

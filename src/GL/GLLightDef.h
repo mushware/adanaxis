@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.h,v 1.10 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLLightDef.h,v 1.11 2003/01/11 13:03:11 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.11  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.10  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -106,7 +109,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GLLightDef::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GLLightDef::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

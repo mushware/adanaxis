@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.25 2003/01/18 13:33:57 southa Exp $
+ * $Id: GameData.h,v 1.26 2003/01/20 10:45:25 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.26  2003/01/20 10:45:25  southa
+ * Singleton tidying
+ *
  * Revision 1.25  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -108,9 +111,9 @@ class GameRewards;
 class GameData
 {
 public:
-    typedef std::map<string, GameDialogue *> DialogueMap;
-    typedef std::map<string, GameDialogue *>::iterator DialogueMapIterator;
-    typedef std::map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
+    typedef std::map<std::string, GameDialogue *> DialogueMap;
+    typedef std::map<std::string, GameDialogue *>::iterator DialogueMapIterator;
+    typedef std::map<std::string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
     static GameData& Sgl(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
 
@@ -158,15 +161,15 @@ public:
 
 private:
     GameData();
-    std::map<string, GameTileMap *> m_tilemaps;
-    std::map<string, GameFloorMap *> m_floormaps;
-    std::map<string, GameContract *> m_contracts;
-    std::map<string, GameTraits *> m_traits;
-    std::map<string, GameController *> m_controllers;
+    std::map<std::string, GameTileMap *> m_tilemaps;
+    std::map<std::string, GameFloorMap *> m_floormaps;
+    std::map<std::string, GameContract *> m_contracts;
+    std::map<std::string, GameTraits *> m_traits;
+    std::map<std::string, GameController *> m_controllers;
     DialogueMap m_dialogues;
-    std::map<string, GamePiece *> m_templates;
-    std::map<string, GamePiece *> m_pieces;
-    std::map<string, GameView *> m_views;
+    std::map<std::string, GamePiece *> m_templates;
+    std::map<std::string, GamePiece *> m_pieces;
+    std::map<std::string, GameView *> m_views;
 
     MushcoreData<GamePiecePlayer> m_playerData;
     

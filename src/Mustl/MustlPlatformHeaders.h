@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatformHeaders.h,v 1.7 2003/02/04 14:54:52 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.8 2003/02/04 19:07:12 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.8  2003/02/04 19:07:12  southa
+ * Build fixes
+ *
  * Revision 1.7  2003/02/04 14:54:52  southa
  * Build fixes
  *
@@ -52,6 +55,7 @@
 #define MUSTL_MACOSX 1
 #define MUSTL_POSIX_OR_MACOSX 1
 #else
+#define MUSTL_POSIX_OR_MACOSX 1
 #define MUSTL_POSIX_NOT_MACOSX 1
 #endif
 #endif
@@ -136,9 +140,12 @@
 #define MUSTL_ERROR_NOTINITIALISED  WSANOTINITIALISED
 #define MUSTL_ERROR_EDISCON         WSAEDISCON
 
-#define MUSTL_INVALID_SOCKET INVALID_SOCKET
+#define MUSTL_INVALID_SOCKET        INVALID_SOCKET
+#define MUSTL_SOCKLEN_T             int
+#endif
 
-#else
+
+#ifdef MUSTL_POSIX_OR_MACOSX
 
 #define MUSTL_ERROR_PROLOGUE
 #define MUSTL_ERROR_RESET errno=0
@@ -178,4 +185,15 @@
 #define MUSTL_INVALID_SOCKET -1
 
 #endif
+
+
+#ifdef MUSTL_MACOSX
+#define MUSTL_SOCKLEN_T             int
+#endif
+
+
+#ifdef MUSTL_POSIX_NOT_MACOSX
+#define MUSTL_SOCKLEN_T             socklen_t
+#endif
+
 #endif

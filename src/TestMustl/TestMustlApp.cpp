@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlApp.cpp,v 1.3 2003/01/14 22:02:12 southa Exp $
+ * $Id: TestMustlApp.cpp,v 1.5 2003/01/20 10:45:32 southa Exp $
  * $Log: TestMustlApp.cpp,v $
+ * Revision 1.5  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/14 22:02:12  southa
  * Command line build fixes
  *
@@ -41,8 +44,14 @@ TestMustlApp::Enter(void)
     cout << "or press control-C to exit." << endl;
 
     MustlWebServer::Sgl().Connect(webPort);
-
-    MustlPlatform::LaunchURL(configURL.str());
+    try
+    {
+        MustlPlatform::LaunchURL(configURL.str());
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        cerr << "Exception: " << e.what() << endl;
+    }
     m_doQuit = false;
 
     while (!m_doQuit)

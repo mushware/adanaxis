@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.40 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameContract.h,v 1.41 2003/01/11 13:03:12 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.41  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.40  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -215,7 +218,7 @@ protected:
     };
     
 private:
-    typedef std::map<string, void (GameContract::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameContract::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_pickleState;

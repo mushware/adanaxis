@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.cpp,v 1.50 2003/01/13 14:31:56 southa Exp $
+ * $Id: GLUtils.cpp,v 1.51 2003/01/20 10:45:24 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.51  2003/01/20 10:45:24  southa
+ * Singleton tidying
+ *
  * Revision 1.50  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -418,7 +421,7 @@ GLUtils::RasterPos(tVal inX, tVal inY)
 void
 GLUtils::BitmapText(const string& inStr)
 {
-    tSize length=inStr.size();
+    U32 length=inStr.size();
     for (U32 i=0; i<length; i++)
     {
         // glutBitmapCharacter(GLUT_BITMAP_8_BY_13, inStr[i]);

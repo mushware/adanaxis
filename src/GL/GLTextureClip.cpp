@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureClip.cpp,v 1.11 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.12 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.12  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.11  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -88,8 +91,8 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
         // cerr << "inX1=" << inX1 << " inY1=" << inY1 << " inX2=" << inX2 << " inY2=" << inY2 << endl;
         // cerr << "xinc=" << xinc << " yinc=" << yinc << " xsize=" << xsize << " ysize=" << ysize << endl;
         
-        tSize numPixels=xsize*ysize;
-        tSize u32Size=numPixels;
+        U32 numPixels=xsize*ysize;
+        U32 u32Size=numPixels;
 
         // TextureDef takes ownership of the block
         GLTextureDef def(new U32[u32Size]);

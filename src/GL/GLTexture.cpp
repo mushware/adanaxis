@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.cpp,v 1.27 2003/01/12 17:32:51 southa Exp $
+ * $Id: GLTexture.cpp,v 1.28 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.28  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.27  2003/01/12 17:32:51  southa
  * Mushcore work
  *
@@ -137,7 +140,7 @@ GLTexture::ostreamPrint(ostream& inOut) const
 }
 
 void
-GLTexture::AddTextureDef(GLTextureDef& inDef, tSize inWhere)
+GLTexture::AddTextureDef(GLTextureDef& inDef, U32 inWhere)
 {
     if (m_textureDefs.size() < inWhere+1)
     {
@@ -147,7 +150,7 @@ GLTexture::AddTextureDef(GLTextureDef& inDef, tSize inWhere)
 }
 
 bool
-GLTexture::TextureDefValid(tSize inWhere) const
+GLTexture::TextureDefValid(U32 inWhere) const
 {
     if (inWhere >= m_textureDefs.size()) return false;
     return m_textureDefs[inWhere].Valid();

@@ -66,6 +66,7 @@ dnl Check for libraries
 
 dnl Checks for header files
 AC_CHECK_HEADERS(Mushcore/Mushcore.h,, AC_MSG_ERROR([Cannot find Mushcore.h library header.  Build requires Mushcore library - see http://www.mushware.com/]))
+AC_CHECK_HEADERS(Mushcore/MushcoreSingleton.h,, AC_MSG_ERROR([Cannot find MushcoreSingleton.h library header.  Build requires Mushcore library - see http://www.mushware.com/]))
 
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[

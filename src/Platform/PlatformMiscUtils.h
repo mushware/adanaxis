@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.18 2002/12/29 20:30:57 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.19 2003/01/11 13:03:18 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.19  2003/01/11 13:03:18  southa
+ * Use Mushcore header
+ *
  * Revision 1.18  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -59,7 +62,7 @@ public:
     static void Initialise(void);
     static bool DirectoryExists(const std::string& inName);
     static void MakeDirectory(const std::string& inName);
-    static void ReadDirectory(std::vector<string>& outFilenames, const std::string& inDirName);
+    static void ReadDirectory(std::vector<std::string>& outFilenames, const std::string& inDirName);
     static void ErrorBox(const std::string& inStr);
     static void MinorErrorBox(const std::string& inStr);
     static bool PermissionBox(const std::string& inStr, bool inDefault);
