@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.16 2002/07/08 14:22:02 southa Exp $
+ * $Id: GLUtils.cpp,v 1.17 2002/07/19 15:44:40 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.17  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.16  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -383,7 +386,7 @@ GLUtils::DisplayQualityGet(void)
 }
 
 void
-GLUtils::Reset(void)
+GLUtils::TextureParamsReset(void)
 {
     switch (DisplayQualityGet())
     {
@@ -391,8 +394,8 @@ GLUtils::Reset(void)
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
             break;
-            
-        case kQualityMedium:    
+
+        case kQualityMedium:
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
             break;
@@ -400,6 +403,27 @@ GLUtils::Reset(void)
         case kQualityHigh:
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            break;
+
+        default:
+            throw(LogicFail("Bad value for m_displayQuality"));
+    }
+}
+
+void
+GLUtils::Reset(void)
+{
+    TextureParamsReset();
+    
+    switch (DisplayQualityGet())
+    {
+        case kQualityLow:
+            break;
+            
+        case kQualityMedium:    
+            break;
+
+        case kQualityHigh:
             glEnable(GL_POINT_SMOOTH);
             glEnable(GL_LINE_SMOOTH);
             break;
@@ -407,6 +431,7 @@ GLUtils::Reset(void)
         default:
             throw(LogicFail("Bad value for m_displayQuality"));
     }
+    glDisable(GL_DEPTH_TEST);
 }
 
 void

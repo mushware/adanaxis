@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTexture.cpp,v 1.15 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLTexture.cpp,v 1.16 2002/07/19 15:44:39 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.16  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.15  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -62,6 +65,7 @@
  */
 
 #include "GLTexture.h"
+#include "GLUtils.h"
 
 GLTexture::~GLTexture()
 {
@@ -119,7 +123,7 @@ GLTexture::BindTexture(void) const
     COREASSERT(!m_bound);
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
-
+    GLUtils::TextureParamsReset();
     glTexImage2D(
 	GL_TEXTURE_2D, // target
 	0,             // level

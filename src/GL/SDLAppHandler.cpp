@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.8 2002/07/10 16:37:39 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.9 2002/07/19 15:44:40 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.9  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.8  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -171,7 +174,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
         }
         else
         {
-            GLUtils::PolygonSmoothingSet(false);
+            GLUtils::PolygonSmoothingSet(false); // ********
             cerr << "Disabling polygon smoothing (no alpha buffer)" << endl;
         }
     }

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.14 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLUtils.h,v 1.15 2002/07/19 15:44:40 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.15  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.14  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -116,6 +119,7 @@ public:
     static void RotateAboutZ(tVal inAngle);
     static void BlendSet(tBlendType inType);
     static void Reset(void);
+    static void TextureParamsReset(void);
     static tDisplayQuality DisplayQualityGet(void);
     static void PolygonSmoothingSet(bool inValue);
     
