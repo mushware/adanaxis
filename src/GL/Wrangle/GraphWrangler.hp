@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GraphWrangler.hp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Log: GraphWrangler.hp,v $
+ * Revision 1.1  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  */
 
 #include "Wrangler.hp"
@@ -29,12 +32,20 @@ protected:
     void Init(void);
     void FindVertAxis(void);
     void FindHorizAxis(void);
-    
-private:
+
+    U32 PredominantColumnColour(Size inX);
+    void ReplaceInColumn(Size inX, U32 inSrcCol, U32 inDestCol);
+
+    U32 Pixel(Size inX, Size inY);
+    void SetPixel(Size inX, Size inY, U32 inCol);
+
+private:        
     State m_state;
     GLTexture& m_tex;
     Size m_width;
     Size m_height;
     Size m_hbytes;
     U32 *m_dataPtr;
+    Size m_vertAxis;
+    Size m_horizAxis;
 };

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: Wrangler.hp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Log: Wrangler.hp,v $
+ * Revision 1.1  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  */
 
 #include "CoreStandard.hp"
@@ -9,4 +12,7 @@ class Wrangler
 {
 public:
     virtual void Process(bool& outDoQuit, bool& outRedraw) = 0;
+
+private:
+    
 };

@@ -1,10 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GraphWrangler.cpp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Log: GraphWrangler.cpp,v $
+ * Revision 1.1  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  */
 
 #include "GraphWrangler.hp"
 #include "GL/GLTexture.hp"
+#include "CoreException.hp"
 
 void
 GraphWrangler::Process(bool &outDoQuit, bool &outRedraw)
@@ -41,11 +45,91 @@ GraphWrangler::Init(void)
 void
 GraphWrangler::FindVertAxis(void)
 {
-    *m_dataPtr=0xffffffff;
+    /* Step in from the right until we find a column where the
+     * predominant pixel colour has changed
+     */
+    bool first=true;
+    U32 predomCol=0;
+    for (Size x=m_width-8; x-->0;)
+    {
+        U32 col=PredominantColumnColour(x);
+        if (first)
+        {
+            first=false;
+            predomCol=col;
+        }
+        else
+        {
+            if (predomCol != col)
+            {
+                m_vertAxis=x;
+                ReplaceInColumn(x, col, 0x0000ffff);
+                return;
+            }
+        }
+    }
+    throw(CommandFail("Couldn't find vertical axis"));
 }
 
 void
 GraphWrangler::FindHorizAxis(void)
 {
-    m_dataPtr[2]=0x008000ff;
+    m_dataPtr[m_vertAxis]=0xffffffff;
+}
+
+U32
+GraphWrangler::PredominantColumnColour(Size inX)
+{
+    map<U32, U32> colMap;
+    for (Size y=0; y<m_height; y++)
+    {
+        U32 col=Pixel(inX, y);
+        colMap[col]=colMap[col]+1;
+    }
+
+    U32 outCol;
+    U32 highest=0;
+    for (map<U32, U32>::const_iterator i=colMap.begin();
+         i != colMap.end(); ++i)
+    {
+        // cerr << hex << i->first << dec << " " << i->second << endl;
+        if (i->second > highest)
+        {
+            outCol = i->first;
+            highest = i->second;
+        }
+    }
+    // cerr << "Predominant colour was 0x" << hex << outCol << dec;
+    // cerr << " (occurred " << highest << " times)" << endl;
+    return outCol;
+}
+
+void
+GraphWrangler::ReplaceInColumn(Size inX, U32 inSrcCol, U32 inDestCol)
+{
+    for (Size y=0; y<m_height; ++y)
+    {
+        if (Pixel(inX, y) == inSrcCol)
+        {
+            SetPixel(inX, y, inDestCol);
+        }
+    }
+}
+
+U32
+GraphWrangler::Pixel(Size inX, Size inY)
+{
+    COREASSERT(inX < m_width);
+    COREASSERT(inY < m_height);
+
+    return m_dataPtr[inX+m_width*inY];
+}
+
+void
+GraphWrangler::SetPixel(Size inX, Size inY, U32 inCol)
+{
+    COREASSERT(inX < m_width);
+    COREASSERT(inY < m_height);
+
+    m_dataPtr[inX+m_width*inY]=inCol;
 }
