@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.5 2002/11/21 18:48:52 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.6 2002/11/22 18:12:57 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.6  2002/11/22 18:12:57  southa
+ * Added TCPConnectionCompleted
+ *
  * Revision 1.5  2002/11/21 18:48:52  southa
  * Added TCPConnectNonBlocking
  *
@@ -40,7 +43,7 @@ PlatformNet::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, 
 
     struct sockaddr_in sockAddr;
     sockAddr.sin_addr.s_addr = inHost;
-    SDLNet_Write16(inPort, &sockAddr.sin_port);
+    sockAddr.sin_port = inPort;
     sockAddr.sin_family = AF_INET;
     int wsaError;
     int result=sendto(inSocket, reinterpret_cast<const char *>(outBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
@@ -50,13 +53,13 @@ PlatformNet::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, 
     	wsaError = WSAGetLastError();
 
         ostringstream message;
-        message << "UDP send failed (error=" << wsaError << ")";
+        message << "UDP send to port " << PlatformNet::NetworkToHostOrderU16(inPort) << "failed (error=" << wsaError << ")";
         throw(NetworkFail(message.str()));
     }
     else if (result < 0 || static_cast<U32>(result) != inSize)
     {
         ostringstream message;
-        message << "UDP send failed (result=" << result << ")";
+        message << "UDP send to port " << PlatformNet::NetworkToHostOrderU16(inPort) << " failed (result=" << result << ")";
         throw(NetworkFail(message.str()));
     }
    
@@ -95,11 +98,8 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
         else
         {
             dataSize += result;
-
             outHost=sockAddr.sin_addr.s_addr;
-	    unsigned short u16Port;
-	    SDLNet_Write16(sockAddr.sin_port, &u16Port);
-	    outPort=u16Port;
+	    outPort=sockAddr.sin_port;
 	}
     }
     return dataSize;
@@ -174,4 +174,16 @@ PlatformNet::TCPSocketConnectionCompleted(tSocket inSocket)
     if (result == SOCKET_ERROR) return false;
     
     return (FD_ISSET(inSocket, &fdSet));
+}
+
+U32
+PlatformNet::HostToNetworkOrderU16(U32 inVal)
+{
+    return htons(inVal);
+}
+
+U32
+PlatformNet::NetworkToHostOrderU16(U32 inVal)
+{
+    return ntohs(inVal);
 }
