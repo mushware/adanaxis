@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.1 2003/10/15 11:54:54 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.2 2003/10/15 12:27:00 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.2  2003/10/15 12:27:00  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.1  2003/10/15 11:54:54  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -53,6 +56,13 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     {
         throw MushcoreLogicFail("Move of proportion 1 just copies array");
     }
+
+    MushMeshArray<tVal> subbedArray(kXMax*2, kYMax*2);
+    MushMeshSubdivide<tVal>::Subdivide(subbedArray, meshArray, 0);
+    
+    cout << "Orig mesh = " << meshArray << endl;
+    cout << "Moved mesh = " << subbedArray << endl;
+
     return MushcoreScalar(0);
 }
 

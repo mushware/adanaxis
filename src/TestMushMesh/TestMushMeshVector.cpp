@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mB7tJSwUOE22xsO0P0146A
 /*
- * $Id: TestMushMeshVector.cpp,v 1.3 2003/10/15 11:54:55 southa Exp $
+ * $Id: TestMushMeshVector.cpp,v 1.4 2003/10/15 12:23:10 southa Exp $
  * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.4  2003/10/15 12:23:10  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.3  2003/10/15 11:54:55  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -63,6 +66,18 @@ TestMushMeshVector::TestVector(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (a / b != t2vecVal(0.5,1))
     {
         throw(MushcoreLogicFail("operator / failed"));
+    }
+    if (a * 2 != t2vecVal(2,4))
+    {
+        throw(MushcoreLogicFail("operator * 2 failed"));
+    }
+    if (a / 2 != t2vecVal(0.5,1))
+    {
+        throw(MushcoreLogicFail("operator / 2 failed"));
+    }
+    if (2 * a != t2vecVal(2,4))
+    {
+        throw(MushcoreLogicFail("operator 2 * failed"));
     }
     return MushcoreScalar(0);
 }

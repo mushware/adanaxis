@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.17 2003/10/06 22:53:03 southa Exp $
+# $Id: SourceConditioner.pl,v 1.18 2003/10/14 10:46:04 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.18  2003/10/14 10:46:04  southa
+# MeshMover creation
+#
 # Revision 1.17  2003/10/06 22:53:03  southa
 # Removed old strip processing
 #
@@ -172,7 +175,7 @@ sub HeaderInfoCreate($$)
         }
         elsif ($state == HS_SCAN_FOR_MEMBERS)
         {
-            if ($line =~ /^\s*}\s*;\s*$/)
+            if ($line =~ /^}\s*;\s*$/)
             {
                 $$infoRef{CLOSING_LINE} = $lineNum;
                 $state = HS_DONE;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xFo+XPP1GOS/msMIb9Dkcg
 /*
- * $Id: MushMesh.h,v 1.3 2003/10/15 11:54:53 southa Exp $
+ * $Id: MushMesh.h,v 1.4 2003/10/15 12:26:58 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.4  2003/10/15 12:26:58  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.3  2003/10/15 11:54:53  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -30,6 +33,7 @@
  */
 
 #include "MushMeshArray.h"
+#include "MushMeshBox.h"
 #include "MushMeshSubdivide.h"
 #include "MushMeshVector.h"
 #include "MushMeshUtils.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Xy+fzSH8daL6jemhQN4e2A
 /*
- * $Id: MushcoreIO.h,v 1.4 2003/10/11 10:39:19 southa Exp $
+ * $Id: MushcoreIO.h,v 1.5 2003/10/15 12:26:59 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.5  2003/10/15 12:26:59  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.4  2003/10/11 10:39:19  southa
  * gcc3.3 fixes
  *
@@ -76,6 +79,27 @@ operator<<(std::ostream& ioOut, const std::vector<T>& inObj)
     ioOut << "]";
     return ioOut;
 }
+
+#ifdef HAVE_VALARRAY
+// valarray output
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushwareValarray<T>& inObj)
+{
+    Mushware::U32 size = inObj.size();
+    ioOut << "[";
+    for (Mushware::U32 i=0; i < size; ++i)
+    {
+        ioOut << inObj[i];
+        if (i + 1 < size)
+        {
+            ioOut << ", ";
+        }
+    }
+    ioOut << "]";
+    return ioOut;
+}
+#endif
 
 // std::map output
 template <class T, class U>

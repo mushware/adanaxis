@@ -97,6 +97,14 @@ SOURCE=..\..\src\TestMushMesh\TestMushMeshArray.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\TestMushMesh\TestMushMeshBox.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshBox.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\TestMushMesh\TestMushMeshMain.cpp
 # End Source File
 # Begin Source File
@@ -157,11 +165,35 @@ SOURCE=..\..\src\MushMesh\MushMeshArray.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\MushMesh\MushMeshBox.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshBox.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\MushMesh\MushMeshMath.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshMath.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatch.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatch.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatchPipe.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatchPipe.h
 # End Source File
 # Begin Source File
 
@@ -550,6 +582,38 @@ SOURCE=..\..\src\Mushcore\MushcoreXMLStream.cpp
 # Begin Source File
 
 SOURCE=..\..\src\Mushcore\MushcoreXMLStream.h
+# End Source File
+# End Group
+# Begin Group "Scripts"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\app.Makefile.am
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\autogen.sh
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\configure.in
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\ic2.configure.in
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\slog.configure.in
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\SourceConditioner.pl
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\SourceProcess.pm
 # End Source File
 # End Group
 # End Target

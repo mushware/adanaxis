@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8XvmBalkJaw8zlwB0njizA
 /*
- * $Id: TestMushMeshApp.cpp,v 1.3 2003/10/15 11:54:54 southa Exp $
+ * $Id: TestMushMeshApp.cpp,v 1.4 2003/10/15 12:23:10 southa Exp $
  * $Log: TestMushMeshApp.cpp,v $
+ * Revision 1.4  2003/10/15 12:23:10  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.3  2003/10/15 11:54:54  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -40,6 +43,7 @@ TestMushMeshApp::EnterInstance(void)
 {
     cout << "Starting tests" << endl;
     RunTest("testvector", "MushMeshVector");
+    RunTest("testbox", "MushMeshBox");
     RunTest("testarray", "MushMeshArray");
     RunTest("testutils", "MushMeshUtils");
     RunTest("testsubdivide", "MushMeshSubdivide");

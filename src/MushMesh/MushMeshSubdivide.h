@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.1 2003/10/15 11:54:54 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.2 2003/10/15 12:26:59 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.2  2003/10/15 12:26:59  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.1  2003/10/15 11:54:54  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -30,7 +33,7 @@ template <class T>
 class MushMeshSubdivide
 {
 public:
-    void Subdivide(MushMeshArray<T>& ioArray, Mushware::tVal inProp);
+    static void Subdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp);
     static void Move(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp);
 };
 
@@ -70,6 +73,41 @@ MushMeshSubdivide<T>::Move(MushMeshArray<T>& outArray, const MushMeshArray<T>& i
     }
 }
 
+template <class T>
+inline void
+MushMeshSubdivide<T>::Subdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray, Mushware::tVal inProp)
+{
+    MushwareValarray<const T *> verts(MushMeshArray<T>::kMaxVerts);
+    Mushware::U32 numVerts;
+
+    outArray.SizeSet(2 * inArray.SizeGet());
+
+    for (Mushware::U32 x=0; x < inArray.XSizeGet(); ++x)
+    {
+        for (Mushware::U32 y=0; y < inArray.YSizeGet(); ++y)
+        {
+            inArray.VertexNeighboursGet(verts, numVerts, x, y);
+
+            T value = inArray.Get(x, y);
+            
+            Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(numVerts);
+
+            value *= alpha;
+
+            for (Mushware::U32 v=0; v < numVerts; ++v)
+            {
+                 value += *verts[v];
+            }
+
+            value /= alpha + numVerts;
+
+            value *= inProp;
+            value += inArray.Get(x, y) * (1 - inProp);
+
+            outArray.Set(value, 2*x, 2*y);
+        }
+    }
+}
 
 
 //%includeGuardEnd {

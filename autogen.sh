@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.18 2003/10/06 22:26:57 southa Exp $
+# $Id: autogen.sh,v 1.19 2003/10/14 10:46:04 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.19  2003/10/14 10:46:04  southa
+# MeshMover creation
+#
 # Revision 1.18  2003/10/06 22:26:57  southa
 # Added MustlGame
 #
@@ -126,6 +129,38 @@ case meshmover:
     cd ..
 
     cd meshmoverdata
+    echo Building data Makefile.am in `pwd`
+    rm -f Makefile.am
+    echo -n 'nobase_dist_pkgdata_DATA =' >> Makefile.am
+    find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -name '.*' -type f -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
+    echo '' >> Makefile.am
+    cd ..
+breaksw
+
+case slog:
+    echo Building configuration for package slog
+    echo
+    cp -f slog.configure.in configure.in
+    cp -f app.Makefile.am Makefile.am
+    rm -f acinclude.m4
+
+    cd src
+    echo Building Makefile.am in `pwd`
+    echo 'bin_PROGRAMS=slogbinary' > Makefile.am
+    echo -n 'slogbinary_SOURCES=' >> Makefile.am
+    foreach module ( Slog Mushcore )
+    find $module -path 'Platform/*/*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -exec echo -n " " {} \;  >> Makefile.am
+    end
+    find Support -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+    echo INCLUDES=-I\$\{srcdir\}/API >> Makefile.am
+    echo -n 'EXTRA_DIST=' >> Makefile.am
+    find . -path './Platform/*/*' -a -name '*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -path './Platform/*/*' -a -name '*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+    cd ..
+
+    cd slogdata
     echo Building data Makefile.am in `pwd`
     rm -f Makefile.am
     echo -n 'nobase_dist_pkgdata_DATA =' >> Makefile.am
@@ -254,7 +289,7 @@ breaksw
 
 
 default:
-    echo Please supply a package name to build.  Choices are meshmover, ic2, mustl, mushcore.
+    echo Please supply a package name to build.  Choices are meshmover, ic2, slog, mushmesh, mustl, mushcore.
     exit 1
 breaksw
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.2 2003/10/15 11:54:54 southa Exp $
+ * $Id: MushMeshArray.h,v 1.3 2003/10/15 12:26:58 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.3  2003/10/15 12:26:58  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.2  2003/10/15 11:54:54  southa
  * MushMeshArray neighbour testing and subdivision
  *
@@ -52,14 +55,16 @@ public:
 
     bool EqualIs(const MushMeshArray<T>& inObj) const;
 
+    void Print(std::ostream& ioOut) const;
+
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
     Mushware::U32 m_xSizeSub1;
     Mushware::U32 m_ySizeSub1;
-    MushwareValarray<T> m_values;
     bool m_xCyclic;
     bool m_yCyclic;
+    MushwareValarray<T> m_values;
 };
 
 
@@ -70,10 +75,10 @@ MushMeshArray<T>::MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize) :
     m_xSizeSub1(inXSize-1),
     m_ySizeSub1(inYSize-1),
     m_xCyclic(false),
-    m_yCyclic(false)
+    m_yCyclic(false),
+    m_values(inXSize*inYSize)
 {
     MUSHCOREASSERT(inXSize > 0 && inYSize > 0);
-    m_values.resize(inXSize*inYSize);
 }
 
 template <class T>
@@ -270,6 +275,21 @@ MushMeshArray<T>::EqualIs(const MushMeshArray<T>& inObj) const
 }
 
 template <class T>
+inline void
+MushMeshArray<T>::Print(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "xSize=" << m_xSize << ", ";
+    ioOut << "ySize=" << m_ySize << ", ";
+    ioOut << "xSizeSub1=" << m_xSizeSub1 << ", ";
+    ioOut << "ySizeSub1=" << m_ySizeSub1 << ", ";
+    ioOut << "xCyclic=" << m_xCyclic << ", ";
+    ioOut << "yCyclic=" << m_yCyclic << ", ";
+    ioOut << "values=" << m_values;
+    ioOut << "]";
+}
+
+template <class T>
 inline bool
 operator==(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
 {
@@ -281,6 +301,14 @@ inline bool
 operator!=(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
 {
     return !a.EqualIs(b);
+}
+
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushMeshArray<T>& inObj)
+{
+    inObj.Print(ioOut);
+    return ioOut;
 }
 
 //%includeGuardEnd {
