@@ -34,10 +34,6 @@ MushMeshPatchPipe::GeometrySet(const tGeometryArray& inArray)
     Touch();
     StorageTouch();
     m_activeBox = t2BoxU32(t2U32(1,1), inArray.SizeGet() - 1);
-    if (m_geometry.BaseGet().SizeGet() != inArray.SizeGet())
-    {
-        EdgeDefsGenerate();
-    }
 
     m_geometry.BaseWRefGet() = inArray;
 }
@@ -69,96 +65,135 @@ MushMeshPatchPipe::TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIn
 }
 
 void
-MushMeshPatchPipe::EdgeDefsGenerate(void)
+MushMeshPatchPipe::NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeSelector inEdge)
 {
-    /* This lot needs storing centrally, but calculate for each patch for now.
-     * It's about 320 bytes
-     *
-     * Don't really need this optimisation.  Edge definition fetches are rare
-     */
-    m_edgeDefs.resize(MushMeshPatch::kNumEdgeSelectors);
-
-    m_edgeDefs[kEdgeLeft].start = m_activeBox.StartGet();
-    m_edgeDefs[kEdgeLeft].stride = t2U32(0, 1);
-    m_edgeDefs[kEdgeLeft].size = m_activeBox.SizeGet().Y();
-
-    m_edgeDefs[kEdgeRight].start = t2U32(m_activeBox.EndGet().X() - 1, m_activeBox.StartGet().Y());
-    m_edgeDefs[kEdgeRight].stride = t2U32(0, 1);
-    m_edgeDefs[kEdgeRight].size = m_activeBox.SizeGet().Y();
-
-    m_edgeDefs[kEdgeBottom].start = m_activeBox.StartGet();
-    m_edgeDefs[kEdgeBottom].stride = t2U32(1, 0);
-    m_edgeDefs[kEdgeBottom].size = m_activeBox.SizeGet().X();
-
-    m_edgeDefs[kEdgeTop].start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 1);
-    m_edgeDefs[kEdgeTop].stride = t2U32(1, 0);
-    m_edgeDefs[kEdgeTop].size = m_activeBox.SizeGet().X();
-
-    m_edgeDefs[kPointBottomLeft].start = m_activeBox.StartGet();
-    m_edgeDefs[kPointBottomLeft].stride = t2U32(0, 0);
-    m_edgeDefs[kPointBottomLeft].size = 1;
-
-    m_edgeDefs[kPointBottomRight].start = t2U32(m_activeBox.EndGet().X() - 1, m_activeBox.StartGet().Y());
-    m_edgeDefs[kPointBottomRight].stride = t2U32(0, 0);
-    m_edgeDefs[kPointBottomRight].size = 1;
-
-    m_edgeDefs[kPointTopLeft].start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 1);
-    m_edgeDefs[kPointTopLeft].stride = t2U32(0, 0);
-    m_edgeDefs[kPointTopLeft].size = 1;
-
-    m_edgeDefs[kPointTopRight].start = m_activeBox.EndGet() - t2U32(1, 1);
-    m_edgeDefs[kPointTopRight].stride = t2U32(0, 0);
-    m_edgeDefs[kPointTopRight].size = 1;
-
-    
-    m_neighbourDefs.resize(MushMeshPatch::kNumEdgeSelectors);
-
-    m_neighbourDefs[kEdgeLeft].start = m_activeBox.StartGet() - t2U32(1, 0);
-    m_neighbourDefs[kEdgeLeft].stride = t2U32(0, 1);
-    m_neighbourDefs[kEdgeLeft].size = m_activeBox.SizeGet().Y();
-
-    m_neighbourDefs[kEdgeRight].start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y());
-    m_neighbourDefs[kEdgeRight].stride = t2U32(0, 1);
-    m_neighbourDefs[kEdgeRight].size = m_activeBox.SizeGet().Y();
-
-    m_neighbourDefs[kEdgeBottom].start = m_activeBox.StartGet() - t2U32(0, 1);
-    m_neighbourDefs[kEdgeBottom].stride = t2U32(1, 0);
-    m_neighbourDefs[kEdgeBottom].size = m_activeBox.SizeGet().X();
-
-    m_neighbourDefs[kEdgeTop].start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y());
-    m_neighbourDefs[kEdgeTop].stride = t2U32(1, 0);
-    m_neighbourDefs[kEdgeTop].size = m_activeBox.SizeGet().X();
-
-    m_neighbourDefs[kPointBottomLeft].start = m_activeBox.StartGet() - t2U32(1, 1);
-    m_neighbourDefs[kPointBottomLeft].stride = t2U32(0, 0);
-    m_neighbourDefs[kPointBottomLeft].size = 1;
-
-    m_neighbourDefs[kPointBottomRight].start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y() - 1);
-    m_neighbourDefs[kPointBottomRight].stride = t2U32(0, 0);
-    m_neighbourDefs[kPointBottomRight].size = 1;
-
-    m_neighbourDefs[kPointTopLeft].start = t2U32(m_activeBox.StartGet().X() - 1, m_activeBox.EndGet().Y());
-    m_neighbourDefs[kPointTopLeft].stride = t2U32(0, 0);
-    m_neighbourDefs[kPointTopLeft].size = 1;
-
-    m_neighbourDefs[kPointTopRight].start = m_activeBox.EndGet();
-    m_neighbourDefs[kPointTopRight].stride = t2U32(0, 0);
-    m_neighbourDefs[kPointTopRight].size = 1;
+    switch  (inEdge)
+    {
+    case kEdgeLeft:
+        outSelection.start = m_activeBox.StartGet() - t2U32(1, 0);
+        outSelection.stride = t2U32(0, 1);
+        outSelection.size = m_activeBox.SizeGet().Y();
+        break;
+        
+    case kEdgeRight:
+        outSelection.start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y());
+        outSelection.stride = t2U32(0, 1);
+        outSelection.size = m_activeBox.SizeGet().Y();
+        break;
+        
+    case kEdgeBottom: outSelection.start = m_activeBox.StartGet() - t2U32(0, 1);
+        outSelection.stride = t2U32(1, 0);
+        outSelection.size = m_activeBox.SizeGet().X();
+        break;
+        
+    case kEdgeTop:
+        outSelection.start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y());
+        outSelection.stride = t2U32(1, 0);
+        outSelection.size = m_activeBox.SizeGet().X();
+        break;
+        
+    case kPointBottomLeft:
+        outSelection.start = m_activeBox.StartGet() - t2U32(1, 1);
+        outSelection.stride = t2U32(0, 0);
+        outSelection.size = 1;
+        break;
+        
+    case kPointBottomRight:
+        outSelection.start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y() - 1);
+        outSelection.stride = t2U32(0, 0);
+        outSelection.size = 1;
+        break;
+        
+    case kPointTopLeft:
+        outSelection.start = t2U32(m_activeBox.StartGet().X() - 1, m_activeBox.EndGet().Y());
+        outSelection.stride = t2U32(0, 0);
+        outSelection.size = 1;
+        break;
+        
+    case kPointTopRight:
+        outSelection.start = m_activeBox.EndGet();
+        outSelection.stride = t2U32(0, 0);
+        outSelection.size = 1;
+        break;
+        
+    default:
+        throw MushcoreDataFail("Bad edge value");        
+    }
 }
 
 void
-MushMeshPatchPipe::EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge)
+MushMeshPatchPipe::EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge)
 {
     MUSHCOREASSERT(inEdge < kNumEdgeSelectors);
     outStitchable.SourceSet(&m_geometry.BaseGet(), &m_texCoords.BaseGet(), &m_activeBox);
-    outStitchable.SelectionSet(m_edgeDefs[inEdge]);
+
+    MushMeshSelection selection;
+    
+    switch (inEdge)
+    {
+    case kEdgeLeft:
+        selection.start = m_activeBox.StartGet();
+        selection.stride = t2U32(0, 1);
+        selection.size = m_activeBox.SizeGet().Y();
+        break;
+        
+    case kEdgeRight:
+        selection.start = t2U32(m_activeBox.EndGet().X() - 1, m_activeBox.StartGet().Y());
+        selection.stride = t2U32(0, 1);
+        selection.size = m_activeBox.SizeGet().Y();
+        break;
+        
+    case kEdgeBottom:
+        selection.start = m_activeBox.StartGet();
+        selection.stride = t2U32(1, 0);
+        selection.size = m_activeBox.SizeGet().X();
+        break;
+        
+    case kEdgeTop:
+        selection.start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 1);
+        selection.stride = t2U32(1, 0);
+        selection.size = m_activeBox.SizeGet().X();
+        break;
+        
+    case kPointBottomLeft:
+        selection.start = m_activeBox.StartGet();
+        selection.stride = t2U32(0, 0);
+        selection.size = 1;
+        break;
+
+    case kPointBottomRight:
+        selection.start = t2U32(m_activeBox.EndGet().X() - 1, m_activeBox.StartGet().Y());
+        selection.stride = t2U32(0, 0);
+        selection.size = 1;
+        break;
+        
+    case kPointTopLeft:
+        selection.start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 1);
+        selection.stride = t2U32(0, 0);
+        selection.size = 1;
+        break;
+        
+    case kPointTopRight:
+        selection.start = m_activeBox.EndGet() - t2U32(1, 1);
+        selection.stride = t2U32(0, 0);
+        selection.size = 1;
+        break;
+        
+    default:
+        throw MushcoreDataFail("Bad edge value");
+        
+    }
+    outStitchable.SelectionSet(selection);
 }
 
 void
 MushMeshPatchPipe::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge)
 {
     MUSHCOREASSERT(inEdge < kNumEdgeSelectors);
-    U32 size = m_neighbourDefs[inEdge].size;
+    MushMeshSelection neighbourSelection;
+    NeighbourSelectionGet(neighbourSelection, inEdge);
+
+    U32 size = neighbourSelection.size;
     if (size != inStitchable.SelectionGet().size)
     {
         throw MushcoreDataFail("Different edge sizes in connected patches");
@@ -170,9 +205,9 @@ MushMeshPatchPipe::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSel
     }
 
     t2U32 readPos = inStitchable.SelectionGet().start;
-    t2U32 writePos = m_neighbourDefs[inEdge].start;
+    t2U32 writePos = neighbourSelection.start;
     t2U32 readStride = inStitchable.SelectionGet().stride;
-    t2U32 writeStride = m_neighbourDefs[inEdge].stride;
+    t2U32 writeStride = neighbourSelection.stride;
 
     for (U32 i=0; i<size; ++i)
     {
@@ -192,7 +227,7 @@ MushMeshPatchPipe::Subdivide(tVal inLevel)
     // FIXME: need to copy active box area only
     m_geometry.BaseToCurrentCopy();
 
-    for (tVal level=0; level + 0.001 < inLevel; ++level)
+    for (tVal level=0; level <= inLevel; ++level)
     {
         tVal proportion = inLevel - level;
 

@@ -40,11 +40,15 @@ public:
 
     // virtual void Render(void /* some render context */) = 0;
     virtual void Subdivide(Mushware::tVal inLevel);
-    virtual void EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge);
+
+    virtual void EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge);
+
     virtual void NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge);
 
+protected:
+    virtual void NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeSelector inEdge);
+
 private:
-    void EdgeDefsGenerate(void);
 
     MushMeshWorkspaceBased<Mushware::tGeometryArray> m_geometry;
     

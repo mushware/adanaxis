@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cpsh/PUv+N7hZwaE5of9Kg
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.6 2003/10/25 14:27:31 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.7 2003/10/25 15:56:59 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.7  2003/10/25 15:56:59  southa
+ * Test tweaks
+ *
  * Revision 1.6  2003/10/25 14:27:31  southa
  * Triangle mesh fixes
  *
@@ -70,6 +73,8 @@ private:
     template<class T> static void TriangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, Mushware::U32 inOrder, const std::string& inName);
     template<class T> static void TriangleValueTimeTest(const std::string& inName);
     template<class T> static void TriangleVectorTimeTest(const std::string& inName);
+
+    static Mushware::tVal m_testSeconds;
 };
 
 template<class T>
@@ -147,7 +152,7 @@ TestMushMeshSubdivide::RectangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& 
         }
 
         endTime = clock();
-        if (endTime - startTime > CLOCKS_PER_SEC)
+        if (endTime - startTime > m_testSeconds * CLOCKS_PER_SEC)
         {
             break;
         }
@@ -235,7 +240,7 @@ TestMushMeshSubdivide::TriangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& i
         }
 
         endTime = clock();
-        if (endTime - startTime > CLOCKS_PER_SEC)
+        if (endTime - startTime > m_testSeconds * CLOCKS_PER_SEC)
         {
             break;
         }

@@ -33,10 +33,10 @@ class MushMeshPatchEnd : public MushMeshPatch
 public:
     typedef Mushware::t2BoxU32 tActiveBox;
 
-    MushMeshPatchEnd() : m_order(3) {}
+    MushMeshPatchEnd() : m_order(0) {}
 
     Mushware::U32 OrderGet(void) const { return m_order; }
-    void OrderSet(Mushware::U32 inOrder) { m_order = inOrder; }
+    void OrderSet(Mushware::U32 inOrder);
 
     virtual const Mushware::tGeometryArray& GeometryGet(void);
     virtual void GeometrySet(const Mushware::tGeometryArray& inArray);
@@ -45,8 +45,12 @@ public:
 
     // virtual void Render(void /* some render context */) = 0;
     virtual void Subdivide(Mushware::tVal inLevel);
-    virtual void EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge);
+    virtual void EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge);
+
     virtual void NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge);
+
+protected:
+    virtual void NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeSelector inEdge);
 
 private:
     void EdgeDefsGenerate(void);

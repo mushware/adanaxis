@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } EpwjGbLj/pwQ7yhTL0oI3w
 /*
- * $Id: MushMeshConnector.cpp,v 1.2 2003/10/19 15:59:33 southa Exp $
+ * $Id: MushMeshConnector.cpp,v 1.3 2003/10/20 13:02:53 southa Exp $
  * $Log: MushMeshConnector.cpp,v $
+ * Revision 1.3  2003/10/20 13:02:53  southa
+ * Patch fixes and testing
+ *
  * Revision 1.2  2003/10/19 15:59:33  southa
  * Edge manipulation
  *
@@ -50,7 +53,7 @@ MushMeshConnector::StitchingUpdate(void)
 {
     for (U32 i=0; i<2; ++i)
     {
-        m_targets[i].pPatch->EdgeGet(m_targets[i].stitchable, m_targets[i].edgeSelector);
+        m_targets[i].pPatch->EdgeStitchableGet(m_targets[i].stitchable, m_targets[i].edgeSelector);
         m_targets[i].moveCount = m_targets[i].pPatch->MoveCountGet();
     }
 }

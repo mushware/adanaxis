@@ -6,7 +6,7 @@ C:\cygwin\home\mushware\core-app\VisualC\core_app>C:
 C:\cygwin\home\mushware\core-app\VisualC\core_app>chdir .. 
 
 C:\cygwin\home\mushware\core-app\VisualC>C:\cygwin\bin\bash -l -c 'cd ~/core-app;make' 
-/bin/sh prebuild.sh
+/bin/bash prebuild.sh
 Executing prebuild script
 SourceProcess::ProcessDirectory() called too early to check prototype at SourceProcess.pm line 115.
 Done.
@@ -14,13 +14,27 @@ make  all-recursive
 make[1]: Entering directory `/home/mushware/core-app'
 Making all in src
 make[2]: Entering directory `/home/mushware/core-app/src'
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -O3 -DNDEBUG -I./MushMesh  -O3 -DNDEBUG -MT test_mushmesh-TestMushMeshSubdivide.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" \
+if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshPatchEnd.lo -MD -MP -MF ".deps/MushMeshPatchEnd.Tpo" \
+  -c -o MushMeshPatchEnd.lo `test -f './MushMesh/MushMeshPatchEnd.cpp' || echo './'`./MushMesh/MushMeshPatchEnd.cpp; \
+then mv -f ".deps/MushMeshPatchEnd.Tpo" ".deps/MushMeshPatchEnd.Plo"; \
+else rm -f ".deps/MushMeshPatchEnd.Tpo"; exit 1; \
+fi
+g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshPatchEnd.lo -MD -MP -MF .deps/MushMeshPatchEnd.Tpo -c ./MushMesh/MushMeshPatchEnd.cpp -o MushMeshPatchEnd.o
+echo timestamp > MushMeshPatchEnd.lo
+/bin/bash ../libtool --mode=link g++  -g -Wall   -o libmushmesh.la -rpath C:/MinGW/lib  MushMesh.lo MushMeshArray.lo MushMeshBox.lo MushMeshConnector.lo MushMeshMath.lo MushMeshPatch.lo MushMeshPatchEnd.lo MushMeshPatchPipe.lo MushMeshPatchTypes.lo MushMeshSelection.lo MushMeshStandard.lo MushMeshStitchable.lo MushMeshSTL.lo MushMeshSubdivide.lo MushMeshTriangularArray.lo MushMeshUtils.lo MushMeshVector.lo MushMeshWorkspace.lo MushMeshWorkspaceBased.lo  
+libtool: link: warning: undefined symbols not allowed in i686-pc-cygwin shared libraries
+rm -fr .libs/libmushmesh.la .libs/libmushmesh.* .libs/libmushmesh.*
+ar cru .libs/libmushmesh.a  MushMesh.o MushMeshArray.o MushMeshBox.o MushMeshConnector.o MushMeshMath.o MushMeshPatch.o MushMeshPatchEnd.o MushMeshPatchPipe.o MushMeshPatchTypes.o MushMeshSelection.o MushMeshStandard.o MushMeshStitchable.o MushMeshSTL.o MushMeshSubdivide.o MushMeshTriangularArray.o MushMeshUtils.o MushMeshVector.o MushMeshWorkspace.o MushMeshWorkspaceBased.o 
+ranlib .libs/libmushmesh.a
+creating libmushmesh.la
+(cd .libs && rm -f libmushmesh.la && ln -s ../libmushmesh.la libmushmesh.la)
+if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshSubdivide.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" \
   -c -o test_mushmesh-TestMushMeshSubdivide.o `test -f './TestMushMesh/TestMushMeshSubdivide.cpp' || echo './'`./TestMushMesh/TestMushMeshSubdivide.cpp; \
 then mv -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" ".deps/test_mushmesh-TestMushMeshSubdivide.Po"; \
 else rm -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo"; exit 1; \
 fi
-/bin/sh ../libtool --mode=link g++  -O3 -DNDEBUG   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
-g++ -O3 -DNDEBUG -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
+/bin/bash ../libtool --mode=link g++  -g -Wall   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
+g++ -g -Wall -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
 make[2]: Leaving directory `/home/mushware/core-app/src'
 make[2]: Entering directory `/home/mushware/core-app'
 make[2]: Leaving directory `/home/mushware/core-app'
@@ -28,4 +42,4 @@ make[1]: Leaving directory `/home/mushware/core-app'
 
 
 
-core_app.exe - 0 error(s), 0 warning(s)
+core_app.exe - 0 error(s), 1 warning(s)

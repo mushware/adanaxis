@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.11 2003/10/25 14:27:31 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.12 2003/10/25 15:56:59 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.12  2003/10/25 15:56:59  southa
+ * Test tweaks
+ *
  * Revision 1.11  2003/10/25 14:27:31  southa
  * Triangle mesh fixes
  *
@@ -54,6 +57,8 @@ using namespace Mushware;
 using namespace std;
 
 MushcoreInstaller TestMushMeshSubdivideInstaller(TestMushMeshSubdivide::Install);
+
+Mushware::tVal TestMushMeshSubdivide::m_testSeconds = 0.1;
 
 void
 TestMushMeshSubdivide::ArrayPrint(const MushMeshArray<tVal>& inArray)
@@ -599,8 +604,8 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
         }
     }
     cout << endl;
+    cout << "Rectangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
     cout << fixed << setprecision(0);
-    cout << "Rectangle timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
 #if 0
     ValueTimeTest<char>("Single char  ");
     ValueTimeTest<unsigned char>("Single uchar ");
@@ -620,7 +625,9 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     RectangleVectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
     RectangleVectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
 
-    cout << "Triangle timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
+    cout.unsetf(ios::fixed);
+    cout << "Triangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
+    cout << fixed << setprecision(0);
 
     TriangleValueTimeTest<float>("(dummy) float");
     TriangleValueTimeTest<float>("Single float ");
@@ -632,7 +639,8 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     TriangleVectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
     TriangleVectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
     
-    cout << scientific << setprecision(6);
+    cout.unsetf(ios::fixed);
+    cout << setprecision(6);
 
     return MushcoreScalar(0);
 }

@@ -40,7 +40,7 @@ public:
     virtual ~MushMeshPatch() {}
     // virtual void Render(void /* some render context */) = 0;
     virtual void Subdivide(Mushware::tVal inLevel) = 0;
-    virtual void EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge) = 0;
+    virtual void EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge) = 0;
     virtual void NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge) = 0;
 
     Mushware::U32 ModCountGet(void) { return m_modCount; }
