@@ -1,9 +1,67 @@
 README for Linux
 
+Building from source on RedHat Linux 7.3
+========================================
+
+These instructions are based on building the ic2 source on a RedHat Linux
+installation.  RedHat Linux 7.3 was installed using the 'GNOME' setting.
+
+Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
+whichever version you choose to build) into your home directory.
+
+tar xvzf ic2-src-0_0_4.tar.gz
+cd ic2-0.0.4
+tar xvzf ../ic2-data-0_0_4.tar.gz
+./configure
+
+Configure is likely to fail first time round, but it will tell you what's
+missing..  The following steps were required for configure to complete.
+
+Insert the RedHat CD 2.  Answer 'Yes' when asked to run autorun, or run it
+manually.  Gnome RPM should start.  Choose Operations->Install... from the
+menu.  This application reads package details from the CD in the background,
+so the file list may take a while to complete.  Install the following
+packages:
+
+Development->Languages->cpp-2.96-110
+Development->Languages->gcc-2.96-110
+Development->Languages->gcc-c++-2.96-110
+Development->Libraries->glibc-devel-2.2.5-34
+Development->Libraries->libstdc++-devel-2.96-110
+Development->System->glibc-kernheaders-2.4-7.14
+Development->Tools->binutils-2.1.1.93.0.2-11
+
+Development->Libraries->XFree86-devel-4.2.0-8
+System Environment->Libraries->glut-3.7-4
+Development->Libraries->glut-devel-3.7-4
+
+Development->Libraries->pcre-devel-3.9-2
+
+Development->Libraries->expat-devel-1.95.2-2
+
+Development->Libraries->libungif-devel-4.1.0-10
+
+Development->Libraries->libtiff-devel-3.5.7-2
+
+Development->Libraries->SDL-devel-1.2.3-7
+
+Development->Libraries->smpeg-devel-0.4.4-9
+
+Development->Libraries->libogg-devel-1.0rc3-1
+
+Development->Libraries->libvorbis-devel-1.0rc3-1
+
+Development->Libraries->SDL_mixer-devel-1.2.1-4
+
+
+
+If the installers issues a warning about dependencies, find those packages
+and install the as well.
+
 Building from source on SUSE Linux personal 8.0
 ===============================================
 
-These instructions are based on building the ic2 source on SUSE Linux
+These instructions are based on building the ic2 source on a SUSE Linux
 installation.  SUSE Linux 8.0 was installed using the 'Default + office'
 setting.
 
