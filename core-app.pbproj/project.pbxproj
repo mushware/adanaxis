@@ -4214,6 +4214,10 @@
 				F548C8DF03052D3A01B83DAD,
 				F5ADDCFA038C19B701A80164,
 				F5ADDCF9038C19B701A80164,
+				F5B3598B039197E801A80164,
+				F5B3598A039197E801A80164,
+				F5B3598F039197FB01A80164,
+				F5B3598E039197FB01A80164,
 				F5412BCB0303E7D701F8C327,
 				F5412BCC0303E7D701F8C327,
 				F53E0FBB03102A8E01E1DB74,
@@ -4523,6 +4527,8 @@
 				F5ADDCFB038C19B701A80164,
 				F5ADDCFF038C1A2601A80164,
 				F5B3598803918CD501A80164,
+				F5B3598C039197E801A80164,
+				F5B35990039197FB01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4672,6 +4678,8 @@
 				F5ADDCFC038C19B701A80164,
 				F5ADDD00038C1A2601A80164,
 				F5B3598903918CD501A80164,
+				F5B3598D039197E801A80164,
+				F5B35991039197FB01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5981,6 +5989,54 @@
 		};
 		F5B3598903918CD501A80164 = {
 			fileRef = F5B3598703918CD501A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B3598A039197E801A80164 = {
+			isa = PBXFileReference;
+			name = GameDefClient.h;
+			path = Game/GameDefClient.h;
+			refType = 4;
+		};
+		F5B3598B039197E801A80164 = {
+			isa = PBXFileReference;
+			name = GameDefClient.cpp;
+			path = Game/GameDefClient.cpp;
+			refType = 4;
+		};
+		F5B3598C039197E801A80164 = {
+			fileRef = F5B3598A039197E801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B3598D039197E801A80164 = {
+			fileRef = F5B3598B039197E801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B3598E039197FB01A80164 = {
+			isa = PBXFileReference;
+			name = GameDefServer.h;
+			path = Game/GameDefServer.h;
+			refType = 4;
+		};
+		F5B3598F039197FB01A80164 = {
+			isa = PBXFileReference;
+			name = GameDefServer.cpp;
+			path = Game/GameDefServer.cpp;
+			refType = 4;
+		};
+		F5B35990039197FB01A80164 = {
+			fileRef = F5B3598E039197FB01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B35991039197FB01A80164 = {
+			fileRef = F5B3598F039197FB01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

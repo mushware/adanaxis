@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.4 2002/11/23 17:23:44 southa Exp $
+ * $Id: GameDef.cpp,v 1.6 2002/11/24 23:18:16 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.6  2002/11/24 23:18:16  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.4  2002/11/23 17:23:44  southa
  * Sleep in setup
  *
@@ -17,7 +20,9 @@
 
 #include "GameDef.h"
 
-#include "GameApphandler.h"
+#include "GameAppHandler.h"
+#include "GameProtocol.h"
+#include "GameStationDef.h"
 
 #include "mushPlatform.h"
 
@@ -40,87 +45,93 @@ GameDef::CreateNewLink(const GameStationDef& inStation)
     }
 }
 
-// -----
+void
+GameDef::HandleDefEnd(CoreXML& inXML)
+{
+    inXML.StopHandler();
+}
 
-GameDefClient::GameDefClient() :
-    m_lastLinkMsec(0)
+void
+GameDef::NullHandler(CoreXML& inXML)
 {
 }
 
 void
-GameDefClient::JoinGame(const string& inServer, U32 inPort)
+GameDef::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    m_serverStation=GameStationDef();
-    m_serverStation.NameSet(inServer);
-    m_serverStation.PortSetHostOrder(inPort);
 }
 
 void
-GameDefClient::Ticker(void)
+GameDef::UnpicklePrologue(void)
 {
-    MediaNetLink *netLink=NULL;
-    if (MediaNetUtils::FindLinkToStation(netLink, m_serverStation.NameGet(), PlatformNet::HostToNetworkOrderU16(m_serverStation.PortGet())))
+    m_startTable.resize(kPickleNumStates);
+    m_endTable.resize(kPickleNumStates);
+    m_endTable[kPickleData]["def"] = &GameDef::HandleDefEnd;
+    m_pickleState=kPickleData;
+}
+
+void
+GameDef::UnpickleEpilogue(void)
+{
+    m_startTable.clear();
+    m_endTable.clear();
+}
+
+void
+GameDef::Unpickle(CoreXML& inXML)
+{
+    UnpicklePrologue();
+    inXML.ParseStream(*this);
+}
+
+void
+GameDef::XMLStartHandler(CoreXML& inXML)
+{
+ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+
+    if (p != m_startTable[m_pickleState].end())
     {
-        COREASSERT(netLink != NULL);
+        (this->*p->second)(inXML);
     }
     else
     {
-        GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-        m_currentMsec=gameAppHandler.MillisecondsGet();
-
-        if (m_lastLinkMsec + kLinkSetupMsec < m_currentMsec)
+        ostringstream message;
+        message << "Unexpected tag <" << inXML.TopTag() << "> in Def.  Potential matches are";
+ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
+        while (p != m_startTable[m_pickleState].end())
         {
-            CreateNewLink(m_serverStation);
-            m_lastLinkMsec = m_currentMsec;
+            message << " <" << p->first << ">";
+            p++;
         }
+        inXML.Throw(message.str());
     }
 }
 
 void
-GameDefClient::WebPrint(ostream& ioOut) const
+GameDef::XMLEndHandler(CoreXML& inXML)
 {
-    ioOut << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
-    ioOut << "<tr>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Port</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
-    ioOut << "</tr><tr>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverStation.NameGet()) << "</td>";
-    ioOut << "<td>" << m_serverStation.PortGet() << "</td>";
-    ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
-    ioOut << "</tr></table>" << endl;
-}
+ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
-// -----
-
-GameDefServer::GameDefServer()
-{
-}
-
-void
-GameDefServer::HostGame(const string& inContract, U32 inPlayerLimit)
-{
-    m_contractName = inContract;
-    m_playerLimit = inPlayerLimit;
+    if (p != m_endTable[m_pickleState].end())
+    {
+        (this->*p->second)(inXML);
+    }
+    else
+    {
+        ostringstream message;
+        message << "Unexpected end of tag </" << inXML.TopTag() << "> in Def.  Potential matches are";
+ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
+        while (p != m_endTable[m_pickleState].end())
+        {
+            message << " <" << p->first << ">";
+            p++;
+        }
+        inXML.Throw(message.str());
+    }
 }
 
 void
-GameDefServer::Ticker(void)
+GameDef::XMLDataHandler(CoreXML& inXML)
 {
-}
-
-void
-GameDefServer::WebPrint(ostream& ioOut) const
-{
-    ioOut << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
-    ioOut << "<tr>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Contract Name</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Player Limit</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
-    ioOut << "</tr><tr>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_contractName) << "</td>";
-    ioOut << "<td>" << m_playerLimit << "</td>";
-    ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
-    ioOut << "</tr></table>" << endl;
 }
 

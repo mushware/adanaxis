@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.9 2002/10/14 15:13:40 southa Exp $
+ * $Id: GameTraits.cpp,v 1.10 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.10  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -205,11 +208,5 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 void
 GameTraits::XMLDataHandler(CoreXML& inXML)
 {
-}
-
-const string
-GameTraits::TraitsNameGet(void) const
-{
-    return "base";
 }
 

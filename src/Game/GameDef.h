@@ -1,6 +1,11 @@
+#ifndef GAMEDEF_H
+#define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.2 2002/11/23 17:23:44 southa Exp $
+ * $Id: GameDef.h,v 1.3 2002/11/24 22:32:42 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.3  2002/11/24 22:32:42  southa
+ * Host and join displays
+ *
  * Revision 1.2  2002/11/23 17:23:44  southa
  * Sleep in setup
  *
@@ -11,52 +16,42 @@
 
 #include "mushCore.h"
 
-#include "GameStationDef.h"
+class GameStationDef;
 
-class GameDef
+class GameDef : public CorePickle, protected CoreXMLHandler
 {
 public:
     GameDef();
     virtual ~GameDef() {}
     virtual void Ticker(void) = 0;
     virtual void WebPrint(ostream& ioOut) const = 0;
+
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Unpickle(CoreXML& inXML);
     
 protected:
     void CreateNewLink(const GameStationDef& inStation);
     
-private:
-};
-
-class GameDefClient : public GameDef
-{
-public:
-    GameDefClient();
-    virtual void Ticker(void);
-    virtual void WebPrint(ostream& ioOut) const;
-    
-    void JoinGame(const string& inServer, U32 inPort);
+    void UnpicklePrologue(void);
+    void UnpickleEpilogue(void);
+    void XMLStartHandler(CoreXML& inXML);
+    void XMLEndHandler(CoreXML& inXML);
+    void XMLDataHandler(CoreXML& inXML);
 
 private:
-    enum
+    void NullHandler(CoreXML& inXML);
+    void HandleDefEnd(CoreXML& inXML);
+
+    enum PickleState
     {
-        kLinkSetupMsec=7000
+        kPickleInit,
+        kPickleData,
+        kPickleNumStates
     };
-    U32 m_lastLinkMsec;
-    U32 m_currentMsec;
-    GameStationDef m_serverStation;
-};
 
-class GameDefServer : public GameDef
-{
-public:
-    GameDefServer();
-    virtual void Ticker(void);
-    virtual void WebPrint(ostream& ioOut) const;
-    
-    void HostGame(const string& inContract, U32 inPlayerLimit);
-
-private:
-    string m_contractName;
-    U32 m_playerLimit;
-    vector<string> m_clientStation;
+    typedef map<string, void (GameDef::*)(CoreXML& inXML)> ElementFunctionMap;
+    vector<ElementFunctionMap> m_startTable;
+    vector<ElementFunctionMap> m_endTable;
+    PickleState m_pickleState;
 };
+#endif

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.6 2002/11/23 14:45:34 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.7 2002/11/24 22:32:43 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.7  2002/11/24 22:32:43  southa
+ * Host and join displays
+ *
  * Revision 1.6  2002/11/23 14:45:34  southa
  * Replaced access to server port
  *
@@ -59,7 +62,8 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
-#include "GameDef.h"
+#include "GameDefClient.h"
+#include "GameDefServer.h"
 
 #include "mushCore.h"
 #include "mushMedia.h"

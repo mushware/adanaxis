@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.8 2002/10/14 15:13:40 southa Exp $
+ * $Id: GameTraits.h,v 1.9 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.9  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -51,7 +54,6 @@ public:
     void Verify(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) {return "base";}
     
 protected:
     U32 NumberOfTraitsGet(void) const;

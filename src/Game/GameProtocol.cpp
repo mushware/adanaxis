@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameProtocol.cpp,v 1.1 2002/11/24 23:18:24 southa Exp $
+ * $Log: GameProtocol.cpp,v $
+ * Revision 1.1  2002/11/24 23:18:24  southa
+ * Added type name accessor to CorePickle
+ *
  */
 
 #include "GameProtocol.h"
@@ -16,5 +19,6 @@ GameProtocol::SendObject(MediaNetLink& inLink, CorePickle& inObj, const string& 
     inObj.Pickle(netStream);
     netStream << "</object>" << endl;
     MediaNetData netData(netStream.str());
-    inLink.ReliableSend(netData);
+    MediaNetLog::Instance().NetLog() << "Sent " << netData << endl; 
+    // inLink.ReliableSend(netData);
 }
