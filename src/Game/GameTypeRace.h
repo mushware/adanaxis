@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.1 2002/08/18 20:51:09 southa Exp $
+ * $Id: GameTypeRace.h,v 1.2 2002/08/19 11:09:56 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.2  2002/08/19 11:09:56  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.1  2002/08/18 20:51:09  southa
  * Moved
  *
@@ -12,6 +15,7 @@
 #include "mushCore.h"
 #include "GameType.h"
 #include "GameTimer.h"
+#include "GameRecords.h"
 
 class GameChequePoint;
 class GameEvent;
@@ -20,6 +24,7 @@ class GameEventStandingOn;
 class GameTypeRace : public GameType
 {
 public:
+    GameTypeRace();
     virtual ~GameTypeRace() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -60,7 +65,12 @@ private:
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
     GameTimer::tMsec m_startTime;
+    GameRecords m_records;
+    GameTimer::tMsec m_lapStartTime;
+    GameTimer::tMsec m_chequePointTime;
     bool m_raceStarted;
+    bool m_lapStartTimeValid;
+    bool m_chequePointTimeValid;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)

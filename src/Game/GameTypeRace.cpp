@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.3 2002/08/19 11:09:56 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.4 2002/08/19 12:54:54 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.4  2002/08/19 12:54:54  southa
+ * Added time format
+ *
  * Revision 1.3  2002/08/19 11:09:56  southa
  * GameTypeRace rendering
  *
@@ -22,6 +25,12 @@
 #include "GameData.h"
 
 #include <typeinfo>
+
+GameTypeRace::GameTypeRace():
+    m_lapStartTimeValid(false),
+    m_chequePointTimeValid(false)
+{
+}
 
 void
 GameTypeRace::EventHandler(GameEvent& inEvent)
@@ -48,11 +57,11 @@ GameTypeRace::StandingOnHandler(GameEventStandingOn& inEvent)
 void
 GameTypeRace::SequenceAdvance(void)
 {
+    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer::tMsec gameTime=timer.GameMsecGet();
     if (!m_raceStarted)
     {
-        GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-        GameTimer& timer(GameData::Instance().TimerGet());
-        m_startTime=timer.GameMsecGet();
+        m_startTime=gameTime;
         m_raceStarted=true;
     }
     m_sequence++;
@@ -60,28 +69,76 @@ GameTypeRace::SequenceAdvance(void)
     {
         m_sequence = 0;
     }
+    if (m_sequence == 1)
+    {
+        // Just passed the lap start
+        if (m_lapStartTimeValid)
+        {
+            m_records.LapTimePropose(gameTime - m_lapStartTime);
+        }
+        m_lapStartTime = gameTime;
+        m_lapStartTimeValid = true;
+    }
+    if (m_chequePointTimeValid)
+    {
+        m_records.SplitTimePropose(m_sequence, gameTime - m_chequePointTime);
+    }
+    m_chequePointTime = gameTime;
+    m_chequePointTimeValid = true;    
 }
 
 void
 GameTypeRace::Render(void) const
 {
+    GameTimer& timer(GameData::Instance().TimerGet());
+    if (!timer.JudgementValid()) return;
+    GameTimer::tMsec gameTime=timer.GameMsecGet();
+
     GameTimer::tMsec elapsedTime=0;
     if (m_raceStarted)
     {
-        GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-        GameTimer& timer(GameData::Instance().TimerGet());
-        elapsedTime=timer.GameMsecGet() - m_startTime;
+        elapsedTime=gameTime - m_startTime;
     }
 
-    ostringstream message;
-    message << "Elapsed " << GameTimer::MsecToLongString(elapsedTime);
     GLUtils::OrthoPrologue();
     GLUtils::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;
     orthoGL.MoveToEdge(1,1);
     orthoGL.MoveRelative(-0.03,-0.03);
-    GLString fpsStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
+    GLString fpsStr("Elapsed " + GameTimer::MsecToLongString(elapsedTime),
+                    GLFontRef("font-mono1", 0.03), 1.0);
     fpsStr.Render();
+    if (m_records.LapTimeValid())
+    {
+        orthoGL.MoveRelative(0, -0.025);
+        GLString lapRecordStr("Lap record "+GameTimer::MsecToLongString(m_records.LapTimeGet()),
+                              GLFontRef("font-mono1", 0.02), 1.0);
+        lapRecordStr.Render();
+    }
+    if (m_lapStartTimeValid)
+    {
+        orthoGL.MoveRelative(0, -0.025);
+        GLString lapTimeStr("Lap time "+GameTimer::MsecToLongString(gameTime - m_lapStartTime),
+                              GLFontRef("font-mono1", 0.02), 1.0);
+        lapTimeStr.Render();
+    }
+
+    orthoGL.MoveToEdge(-1,1);
+    orthoGL.MoveRelative(-0.03,-0.03);
+    if (m_records.SplitTimeValid(m_sequence))
+    {
+        orthoGL.MoveRelative(0, -0.025);
+        GLString splitRecordStr("Split record "+GameTimer::MsecToLongString(m_records.SplitTimeGet(m_sequence)),
+                              GLFontRef("font-mono1", 0.02), -1.0);
+        splitRecordStr.Render();
+    }
+    if (m_chequePointTimeValid)
+    {
+        orthoGL.MoveRelative(0, -0.025);
+        GLString splitTimeStr("Split time "+GameTimer::MsecToLongString(gameTime - m_chequePointTime),
+                            GLFontRef("font-mono1", 0.02), -1.0);
+        splitTimeStr.Render();
+    }
     GLUtils::OrthoEpilogue();
 }
 
@@ -218,3 +275,4 @@ GameTypeRace::TypeNameGet(void) const
     return "race";
 }
 
+  
