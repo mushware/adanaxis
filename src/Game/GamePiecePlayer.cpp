@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.5 2002/07/06 18:04:19 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.6 2002/07/10 16:16:31 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.6  2002/07/10 16:16:31  southa
+ * Player graphic
+ *
  * Revision 1.5  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -49,7 +52,7 @@ GamePiecePlayer::Render(void)
 }
 
 void
-GamePiecePlayer::Move(void)
+GamePiecePlayer::MoveGet(GLPoint& outPoint, tVal& outAngle) const
 {
     if (m_controller == NULL)
     {
@@ -58,40 +61,50 @@ GamePiecePlayer::Move(void)
     GameControllerState controlState;
     m_controller->StateGet(controlState);
 
-    m_angle+=0.01*controlState.mouseXDelta;
-
+    tVal deltaAngle=0.01*controlState.mouseXDelta;
+    tVal angle=m_angle+deltaAngle;
+    
     tVal deltaX=0;
     tVal deltaY=0;
     
     if (controlState.leftPressed)
     {
-        deltaX -= cos(m_angle);
-        deltaY += sin(m_angle);
+        deltaX -= cos(angle);
+        deltaY += sin(angle);
     }
     if (controlState.rightPressed)
     {
-        deltaX += cos(m_angle);
-        deltaY -= sin(m_angle);
+        deltaX += cos(angle);
+        deltaY -= sin(angle);
     }
     if (controlState.upPressed)
     {
-        deltaX += sin(m_angle);
-        deltaY += cos(m_angle);
+        deltaX += sin(angle);
+        deltaY += cos(angle);
     }
     if (controlState.downPressed)
     {
-        deltaX -= sin(m_angle);
-        deltaY -= cos(m_angle);
+        deltaX -= sin(angle);
+        deltaY -= cos(angle);
     }
-    if (deltaX != 0 && deltaY != 0)
+    tVal magnitude=sqrt(deltaX*deltaX+deltaY*deltaY);
+    if (magnitude > 0)
     {
-        deltaX*=0.707;
-        deltaY*=0.707;
+        deltaX /= magnitude;
+        deltaY /= magnitude;
     }
-    m_x+=4*deltaX;
-    m_y+=4*deltaY;
+    outPoint.x = deltaX*4;
+    outPoint.y = deltaY*4;
+    outAngle=deltaAngle;
 }
 
+void
+GamePiecePlayer::MoveAdd(const GLPoint& inVec, tVal inAngle)
+{
+    m_x+=inVec.x;
+    m_y+=inVec.y;
+    m_angle+=inAngle;
+}
 
 void
 GamePiecePlayer::HandlePlayerStart(CoreXML& inXML)

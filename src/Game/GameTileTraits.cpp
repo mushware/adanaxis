@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.6 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.7 2002/07/08 14:22:03 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.7  2002/07/08 14:22:03  southa
+ * Rotated desks
+ *
  * Revision 1.6  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -58,12 +61,56 @@ GameTileTraits::Render(void)
     }
 }
 
+bool
+GameTileTraits::PermeabilityGet(tVal& outPermeability) const
+{
+    if (m_hasPermeability)
+    {
+        outPermeability=m_permeability;
+        return true;
+    }
+    else
+    {
+        for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+        {
+            GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
+            if (traits.PermeabilityGet(outPermeability))
+            {
+                return true;
+            }
+        }
+    }
+    
+    static bool notWarnedYet=true;
+    if (notWarnedYet)
+    {
+        cerr << "Warning: GameTileTrait with unknown permeability:" << endl;
+        Pickle(cerr);
+        notWarnedYet=false;
+    }
+    outPermeability=1.001;
+    return false;
+}
+
+void
+GameTileTraits::NullHandler(CoreXML& inXML)
+{
+}
+
 void
 GameTileTraits::HandleGraphicStart(CoreXML& inXML)
 {
     GameGraphicSprite *pSprite(new GameGraphicSprite);
     m_graphics.push_back(pSprite);
     pSprite->Unpickle(inXML);
+}
+
+void
+GameTileTraits::HandlePermeabilityEnd(CoreXML& inXML)
+{
+    istringstream inStream(inXML.TopData());
+    if (!(inStream >> m_permeability)) inXML.Throw("Expecting <permeability>1.0</permeability>");
+    m_hasPermeability=true;
 }
 
 void
@@ -82,6 +129,10 @@ GameTileTraits::Pickle(ostream& inOut, const string& inPrefix="") const
         m_graphics[i]->Pickle(inOut, inPrefix+"  ");
         inOut << inPrefix << "</graphic>" << endl;
     }
+    if (m_hasPermeability)
+    {
+        inOut << inPrefix << "<permeability>" << m_permeability << "</permeability>" << endl;
+    }
 }
 
 void
@@ -91,10 +142,13 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["graphic"] = &GameTileTraits::HandleGraphicStart;
+    m_startTable[kPickleData]["permeability"] = &GameTileTraits::NullHandler;
+    m_endTable[kPickleData]["permeability"] = &GameTileTraits::HandlePermeabilityEnd;
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
-    
+    m_permeability=1.001;
+    m_hasPermeability=false;
     inXML.ParseStream(*this);
 }
 

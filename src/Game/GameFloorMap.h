@@ -1,7 +1,5 @@
 #ifndef GAMEFLOORMAP_H
 #define GAMEFLOORMAP_H
-#ifndef GAMEMAP_H
-#define GAMEMAP_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.0)
@@ -16,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.6 2002/07/02 18:36:56 southa Exp $
+ * $Id: GameFloorMap.h,v 1.7 2002/07/06 18:04:19 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.7  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.6  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -55,12 +56,15 @@
 
 #include "mushCore.h"
 #include "mushGL.h"
+#include "GameSolidMap.h"
+
 class GameTileMap;
+class GameMapArea;
 
 class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
 public:
-    GameFloorMap(): m_state(kInit) {}
+    GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
@@ -68,11 +72,14 @@ public:
     U32 YSize(void) {return m_ysize;}
     tVal XStep(void) {return m_xstep;}
     tVal YStep(void) {return m_ystep;}
-    void Render(const GameTileMap& inTileMap);
-    void Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight);
-
+    void Render(const GameMapArea& inArea, const GameMapArea& inHighlight);
+    void RenderSolidMap(const GameMapArea& inArea);
+    
     U32 ElementGet(const GLPoint &inPoint) const;
     void ElementSet(const GLPoint &inPoint, U32 inValue);
+    tVal PermeabilityGet(const GLPoint &inPoint) const;
+    void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
+    
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 
@@ -94,6 +101,8 @@ protected:
     };
 
 private:
+    void RebuildSolidMap(void) const;
+
     typedef map<string, void (GameFloorMap::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
@@ -104,6 +113,9 @@ private:
     tSize m_ysize;
     tVal m_xstep;
     tVal m_ystep;
+    mutable GameSolidMap m_solidMap;
+    mutable bool m_solidMapValid;
+    GameTileMap *m_tileMap;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)
@@ -111,5 +123,4 @@ inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
-#endif
 #endif

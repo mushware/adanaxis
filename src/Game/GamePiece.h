@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiece.h,v 1.2 2002/06/27 12:36:07 southa Exp $
+ * $Id: GamePiece.h,v 1.3 2002/07/06 18:04:19 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.3  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -26,6 +29,8 @@
 
 #include "mushCore.h"
 
+class GLPoint;
+
 class GamePiece: public CorePickle, protected CoreXMLHandler
 {
 public:
@@ -34,7 +39,8 @@ public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
-    virtual void Move(void) = 0;
+    virtual void MoveGet(GLPoint& outPoint, tVal& outAngle) const = 0;
+    virtual void MoveAdd(const GLPoint& inVec, tVal inAngle) = 0;
     virtual string TypeNameGet(void) const = 0;
     
 protected:

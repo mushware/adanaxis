@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.10 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreStandard.h,v 1.11 2002/07/07 11:16:07 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.11  2002/07/07 11:16:07  southa
+ * More designer work
+ *
  * Revision 1.10  2002/07/06 18:04:16  southa
  * More designer work
  *
@@ -97,12 +100,20 @@
 #include <list>
 #include <map>
 #include <stack>
+
 #include <stdexcept>
 #include <ctime>
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
 #include <math.h>
+
+#ifdef HAVE_VALARRAY
+#include <valarray>
+template<class T> class tValarray : public std::valarray<T> {};
+#else
+template<class T> class tValarray : public std::vector<T> {};
+#endif
 
 using namespace std;
 
@@ -111,6 +122,7 @@ typedef signed int S32;
 typedef unsigned int U32;
 typedef unsigned char U8;
 typedef unsigned int tSize;
+
 
 #if 0
 // This didn't work

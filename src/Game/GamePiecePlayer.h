@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.3 2002/07/06 18:04:19 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.4 2002/07/10 16:16:31 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.4  2002/07/10 16:16:31  southa
+ * Player graphic
+ *
  * Revision 1.3  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -45,7 +48,8 @@ public:
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual void Move(void);
+    virtual void MoveGet(GLPoint& outPoint, tVal& outAngle) const;
+    virtual void MoveAdd(const GLPoint& inVec, tVal inAngle);
     virtual void Render(void);
     virtual string TypeNameGet(void) const {return "player";};
 

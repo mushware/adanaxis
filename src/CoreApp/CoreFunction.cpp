@@ -43,7 +43,7 @@ CoreFunction::Execute(void) const
         }
         catch (CommandFail& e)
         {
-            cerr << "Command failed: " << e.what() << endl;
+            cerr << "*** Command failed: " << e.what() << endl;
         }
     }
 }

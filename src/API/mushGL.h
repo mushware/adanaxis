@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.7 2002/07/02 18:36:56 southa Exp $
+ * $Id: mushGL.h,v 1.8 2002/07/06 18:04:14 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.8  2002/07/06 18:04:14  southa
+ * More designer work
+ *
  * Revision 1.7  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -44,6 +47,8 @@
 
 #include "GL/GLAppHandler.h"
 #include "GL/GLData.h"
+#include "GL/GLLine.h"
+#include "GL/GLQuad.h"
 #include "GL/GLPoint.h"
 #include "GL/GLRectangle.h"
 #include "GL/GLStandard.h"

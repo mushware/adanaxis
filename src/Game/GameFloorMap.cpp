@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.9 2002/07/08 14:22:02 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.10 2002/07/10 16:16:30 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.10  2002/07/10 16:16:30  southa
+ * Player graphic
+ *
  * Revision 1.9  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -62,83 +65,91 @@
 #include "GameData.h"
 #include "GameTileMap.h"
 #include "GameTileTraits.h"
+#include "GameMapArea.h"
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 
 void
-GameFloorMap::Render(const GameTileMap& inTileMap)
+GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
 {
-    GLUtils  gl;
-    glMatrixMode(GL_MODELVIEW);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
-    U32 xsize=XSize();
-    U32 ysize=YSize();
-    gl.SetPosition(0,0);
-    GLUtils::Scale(m_xstep, m_ystep, 1);
-    GLUtils::SetColour(1,1,1);
-    for (U32 x=0; x<xsize; x++)
-    {
-        for (U32 y=0; y<ysize; y++)
-        {
-            U32 mapVal=At(x,y);
-            tVal basex=x;
-            tVal basey=y;
-            gl.MoveTo(basex,basey);
-            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
-            glPushMatrix();
-            tileTraits.Render();
-            glPopMatrix();
-        }
-    }
-    gl.MoveTo(0,0);
-}
+    COREASSERT(m_tileMap != NULL);
 
-void
-GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight)
-{
-    GLUtils  gl;
-    glMatrixMode(GL_MODELVIEW);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-
     U32 timeNow=glAppHandler.GetMilliseconds();
     tVal xv=50*cos(timeNow/450.0);
     tVal yv=50*sin(timeNow/450.0);
-    U32 xsize=XSize();
-    U32 ysize=YSize();
+    
+    GLUtils gl;
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     gl.SetPosition(0,0);
     GLUtils::Scale(m_xstep, m_ystep, 1);
-    for (U32 x=0; x<xsize; x++)
-    {
-        for (U32 y=0; y<ysize; y++)
-        {
-            U32 mapVal=At(x,y);
-            tVal basex=x;
-            tVal basey=y;
-            gl.MoveTo(basex,basey);
-            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
-            if (x>=inHighlight.xmin && x < inHighlight.xmax &&
-                y>=inHighlight.ymin && y < inHighlight.ymax)
-            {
-                tVal clockNow=timeNow+x*xv+y*yv;
-                tVal redBri=0.4+0.35*sin(clockNow/200.0);
-                tVal greenBri=0.4+0.35*sin(clockNow/201.0);
-                tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+    GLUtils::SetColour(1,1,1);
+    GLPoint minPoint=inArea.MinPointGet();
+    GLPoint maxPoint=inArea.MaxPointGet();
 
-                GLUtils::SetColour(redBri, greenBri, blueBri);
-            }
-            else
+    GLRectangle wholeMap(0, 0, m_xsize, m_ysize);
+    wholeMap.ConstrainPoint(minPoint);
+    wholeMap.ConstrainPoint(maxPoint);
+
+    minPoint.MakeInteger();
+    maxPoint.MakeInteger();
+    
+    GLPoint point;
+    
+    bool highlightOn=true;
+    
+    for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
+    {
+        for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
+        {
+            if (inArea.IsWithin(point))
             {
-                GLUtils::SetColour(1,1,1);
+                if (inHighlight.IsWithin(point))
+                {
+                    tVal clockNow=timeNow+point.x*xv+point.y*yv;
+                    tVal redBri=0.4+0.35*sin(clockNow/200.0);
+                    tVal greenBri=0.4+0.35*sin(clockNow/201.0);
+                    tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+
+                        GLUtils::SetColour(redBri, greenBri, blueBri);
+                    highlightOn=true;
+                }
+                else
+                {
+                    if (highlightOn)
+                    {
+                        GLUtils::SetColour(1,1,1);
+                    }
+                    highlightOn=false;
+                }
+
+                gl.MoveTo(point.x, point.y);
+                U32 mapVal=ElementGet(point);
+                glPushMatrix();
+                GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
+                    (*m_tileMap->TraitsPtrGet(mapVal));
+                tileTraits.Render();
+                glPopMatrix();
             }
-            glPushMatrix();
-            tileTraits.Render();
-            glPopMatrix();
         }
     }
-    gl.MoveTo(0,0);
+    glPopMatrix();
+}
+
+void
+GameFloorMap::RenderSolidMap(const GameMapArea& inArea)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    m_solidMap.Render(inArea, GLPoint(m_xstep, m_ystep));
+    glPopMatrix();
 }
 
 U32
@@ -146,7 +157,7 @@ GameFloorMap::ElementGet(const GLPoint &inPoint) const
 {
     COREASSERT(inPoint.x < m_xsize);
     COREASSERT(inPoint.y < m_ysize);
-    return m_map[inPoint.y][inPoint.x];
+    return m_map[inPoint.U32YGet()][inPoint.U32XGet()];
 }
 
 void
@@ -157,15 +168,49 @@ GameFloorMap::ElementSet(const GLPoint &inPoint, U32 inValue)
     if (m_map.size() < inPoint.y)
     {
         cerr << "Warning: Had to grow map vector to accomodate y=" << inPoint.y << endl;
-        m_map.resize(inPoint.y+1);
+        m_map.resize(inPoint.U32YGet()+1);
     }
-    if (m_map[inPoint.y].size() < inPoint.x)
+    if (m_map[inPoint.U32YGet()].size() < inPoint.x)
     {
         cerr << "Warning: Had to grow map vector to accomodate x=" << inPoint.x << endl;
-        m_map[inPoint.y].resize(inPoint.x+1);
+        m_map[inPoint.U32YGet()].resize(inPoint.U32XGet()+1);
     }
-    m_map[inPoint.y][inPoint.x]=inValue;
+    m_map[inPoint.U32YGet()][inPoint.U32XGet()]=inValue;
 }
+
+tVal
+GameFloorMap::PermeabilityGet(const GLPoint &inPoint) const
+{
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    return m_solidMap.PermeabilityGet(inPoint);
+}
+
+void
+GameFloorMap::RebuildSolidMap(void) const
+{
+    COREASSERT(m_tileMap != NULL);
+    
+    m_solidMap.SizeSet(m_xsize, m_ysize);
+    for (U32 x=0; x<m_xsize; ++x)
+    {
+        for (U32 y=0; y<m_ysize; ++y)
+        {
+            U32 mapVal=ElementGet(GLPoint(x,y));
+            GameTileTraits& tileTraits=
+                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVal));
+            tVal perm;
+            tileTraits.PermeabilityGet(perm);
+            m_solidMap.PermeabilitySet(perm, x, y);
+        }
+    }
+    cerr << "Built solid map" << endl;
+    m_solidMapValid=true;
+}
+
+/* --- XML stuff --- */
 
 void
 GameFloorMap::NullHandler(CoreXML& inXML)

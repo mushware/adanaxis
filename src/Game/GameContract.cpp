@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.26 2002/07/10 16:37:39 southa Exp $
+ * $Id: GameContract.cpp,v 1.27 2002/07/11 10:17:18 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.27  2002/07/11 10:17:18  southa
+ * Removed debug code
+ *
  * Revision 1.26  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -104,6 +107,7 @@
 #include "GameTileTraits.h"
 #include "GamePiecePlayer.h"
 #include "GameFloorDesigner.h"
+#include "GameMapArea.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -174,18 +178,41 @@ GameContract::RunningDisplay(void)
 {
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
+
+    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
-    m_player->Move();
+    {
+        GLPoint point;
+        tVal angle;
+        m_player->MoveGet(point, angle);
+        m_player->MoveAdd(point, angle);
+    }
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
+    GLPoint aimingPoint=GLPoint(m_player->XGet() / m_floorMap->XStep(),
+                                m_player->YGet() / m_floorMap->YStep());
+    GameMapArea visibleArea;
+    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMap->XStep();
+    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMap->YStep();
+    tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
+    visibleArea.CircleAdd(aimingPoint, circleRadius);
 
-    m_floorMap->Render(*m_tileMap);
+    GameMapArea highlightArea; // Empty area
+    
+    m_floorMap->Render(visibleArea, highlightArea);
+
+    if (gameHandler.KeyStateGet('s'))
+    {
+        m_floorMap->RenderSolidMap(visibleArea);
+    }
+    
     GLUtils::IdentityEpilogue();
     
     GLUtils::IdentityPrologue();
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
-    GLUtils  gl;
+    GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -222,6 +249,7 @@ GameContract::Init(void)
     m_floorMap=GameData::Instance().FloorMapGet("floor");
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
+    m_floorMap->AttachTileMap(m_tileMap);
     m_tileMap->Load();
     GameData::Instance().ControllerGetOrCreate("controller1");
     m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceGet("player1"));
@@ -400,5 +428,3 @@ GameContract::Install(void)
 {
     CoreApp::Instance().AddHandler("loadcontract", LoadContract);
 }
-
-

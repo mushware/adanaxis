@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.h,v 1.1 2002/07/02 18:36:56 southa Exp $
+ * $Id: GLRectangle.h,v 1.2 2002/07/06 18:04:17 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.2  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -30,6 +33,8 @@ public:
     GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0);
     GLRectangle(const GLPoint& inMin, const GLPoint& inMax);
     void Clip(const GLRectangle& inClip);
+    void ConstrainPoint(GLPoint& ioPoint) const;
+    bool IsWithin(const GLPoint& inPoint) const;
     tVal XSize(void);
     tVal YSize(void);
     GLPoint Size(void);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.6 2002/07/07 13:25:56 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.7 2002/07/08 14:22:02 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.7  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.6  2002/07/07 13:25:56  southa
  * Template designer
  *
@@ -38,6 +41,7 @@
 #include "mushGL.h"
 #include "GameData.h"
 #include "GameController.h"
+#include "GameMapArea.h"
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),
@@ -91,14 +95,22 @@ GameFloorDesigner::Display(void)
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
     GLUtils::OrthoLookAt(m_xPos[m_currentMap], m_yPos[m_currentMap], 0);
+    GLPoint aimingPoint=GLPoint(m_xPos[m_currentMap] / m_floorMaps[m_currentMap]->XStep(),
+                                m_yPos[m_currentMap] / m_floorMaps[m_currentMap]->YStep());
+    GameMapArea visibleArea;
+    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMap->XStep();
+    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMap->YStep();
+    tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
+    visibleArea.CircleAdd(aimingPoint, circleRadius);
+
+    GameMapArea highlightArea;
     if (m_highlightMap == m_currentMap)
     {
-        m_floorMaps[m_currentMap]->Render(*m_tileMap, m_highlight);
+        highlightArea.RectangleAdd(m_highlight);
     }
-    else
-    {
-        m_floorMaps[m_currentMap]->Render(*m_tileMap);
-    }
+    
+    m_floorMaps[m_currentMap]->Render(visibleArea, highlightArea);
+
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.1 2002/07/02 18:36:56 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.2 2002/07/06 18:04:17 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.2  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -45,6 +48,24 @@ GLRectangle::Clip(const GLRectangle& inClip)
     if (xmax > inClip.xmax) xmax=inClip.xmax;
     if (ymax < inClip.ymin) ymax=inClip.ymin;
     if (ymax > inClip.ymax) ymax=inClip.ymax;
+}
+
+void
+GLRectangle::ConstrainPoint(GLPoint& ioPoint) const
+{
+    if (ioPoint.x < xmin) ioPoint.x = xmin;
+    if (ioPoint.x > xmax) ioPoint.x = xmax;
+    if (ioPoint.y < ymin) ioPoint.y = ymin;
+    if (ioPoint.y > ymax) ioPoint.y = ymax;
+}
+
+bool
+GLRectangle::IsWithin(const GLPoint& inPoint) const
+{
+    return (inPoint.x >= xmin &&
+            inPoint.x < xmax &&
+            inPoint.y >= ymin &&
+            inPoint.y < ymax);
 }
 
 tVal
