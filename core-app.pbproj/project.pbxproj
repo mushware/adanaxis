@@ -4111,6 +4111,8 @@
 				F54E9EB4030BD59A01D67831,
 				F546138B0238134A01507C92,
 				F52B3C0A028C26530179D0A8,
+				F59C48E5037A83D401A80164,
+				F59C48E4037A83D401A80164,
 				F52B3C0B028C26530179D0A8,
 				F53F7CC602311A0801633C4B,
 				F52B3C0C028C26530179D0A8,
@@ -4258,6 +4260,8 @@
 				F54668B402AE2A590163596F,
 				F5463AD602E6D60D018842E0,
 				F5463AD702E6D60D018842E0,
+				F59C48E1037A815D01A80164,
+				F59C48E0037A815D01A80164,
 			);
 			isa = PBXGroup;
 			name = Game;
@@ -4490,6 +4494,8 @@
 				F57C8854037832DC01A80164,
 				F57C885803783D1801A80164,
 				F512BC61037973D101A80164,
+				F59C48E2037A818201A80164,
+				F59C48E6037A83D401A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4630,6 +4636,8 @@
 				F57C8855037832DC01A80164,
 				F57C885903783D1801A80164,
 				F512BC62037973D101A80164,
+				F59C48E3037A818201A80164,
+				F59C48E7037A83D401A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5359,6 +5367,52 @@
 		};
 		F595FD8A03582A9101A80166 = {
 			fileRef = F595FD8803582A9101A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59C48E0037A815D01A80164 = {
+			isa = PBXFileReference;
+			name = GameWebCommands.h;
+			path = Game/GameWebCommands.h;
+			refType = 2;
+		};
+		F59C48E1037A815D01A80164 = {
+			isa = PBXFileReference;
+			name = GameWebCommands.cpp;
+			path = Game/GameWebCommands.cpp;
+			refType = 2;
+		};
+		F59C48E2037A818201A80164 = {
+			fileRef = F59C48E0037A815D01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59C48E3037A818201A80164 = {
+			fileRef = F59C48E1037A815D01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59C48E4037A83D401A80164 = {
+			isa = PBXFileReference;
+			path = CoreEnvOutput.h;
+			refType = 4;
+		};
+		F59C48E5037A83D401A80164 = {
+			isa = PBXFileReference;
+			path = CoreEnvOutput.cpp;
+			refType = 4;
+		};
+		F59C48E6037A83D401A80164 = {
+			fileRef = F59C48E4037A83D401A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59C48E7037A83D401A80164 = {
+			fileRef = F59C48E5037A83D401A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

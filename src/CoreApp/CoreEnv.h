@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.h,v 1.10 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreEnv.h,v 1.11 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.11  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -74,10 +77,16 @@ public:
     bool VariableGetIfExists(bool& outValue, const string& inName) const;
     bool VariableExists(const string& inName) const;
     void VariableSet(const string& inName, const string& inValue);
+    ostream& Out(void) const;
+    void OutSet(ostream& inOut);
+    void OutReset(void);
     
 private:
-    CoreEnv() {}
-    static CoreEnv *m_instance;
+    CoreEnv();
+
+    ostream *m_outStream;
+    bool m_outSet;
     vector<CoreConfig *> m_config;
+    static CoreEnv *m_instance;
 };
 #endif

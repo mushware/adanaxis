@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.cpp,v 1.13 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.14 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.14  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -60,6 +63,12 @@
 #include "CoreConfig.h"
 
 CoreEnv::CoreEnv *CoreEnv::m_instance=NULL;
+
+CoreEnv::CoreEnv() :
+    m_outStream(&cerr),
+    m_outSet(false)
+{
+}
 
 void
 CoreEnv::PushConfig(CoreConfig& inConfig)
@@ -197,3 +206,35 @@ CoreEnv::VariableSet(const string& inName, const string& inValue)
     m_config.back()->Set(inName, inValue);
 }
 
+ostream&
+CoreEnv::Out(void) const
+{
+    if (m_outStream == NULL)
+    {
+        throw(LogicFail("Write to uninitialised output stream"));
+    }
+    return *m_outStream;
+}
+
+void
+CoreEnv::OutSet(ostream& inOut)
+{
+    if (m_outSet)
+    {
+        throw(LogicFail("Multiple OutSets"));
+    }
+    
+    m_outStream = &inOut;
+    m_outSet=true;
+}
+
+void
+CoreEnv::OutReset(void)
+{
+    if (!m_outSet)
+    {
+        throw(LogicFail("OutReset without OutSet"));
+    }
+    m_outStream = &cerr;
+    m_outSet = false;
+}

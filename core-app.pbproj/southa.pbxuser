@@ -2037,7 +2037,7 @@
 		rLen = 6688;
 		rLoc = 0;
 		rType = 0;
-		vrLen = 1560;
+		vrLen = 1557;
 		vrLoc = 5131;
 	};
 	F512BCE70379F0D901A80164 = {
@@ -2067,7 +2067,7 @@
 		rLen = 61;
 		rLoc = 6133;
 		rType = 0;
-		vrLen = 1673;
+		vrLen = 1670;
 		vrLoc = 5018;
 	};
 	F512BCEA0379F0D901A80164 = {
@@ -2097,7 +2097,7 @@
 		rLen = 73;
 		rLoc = 6564;
 		rType = 0;
-		vrLen = 1673;
+		vrLen = 1670;
 		vrLoc = 5018;
 	};
 	F512BCED0379F0D901A80164 = {
@@ -10902,6 +10902,7 @@
 		activeExecutable = F59396D7028C0CA6016230BF;
 		activeTarget = F59396D5028C0CA6016230BF;
 		addToTargets = (
+			F59396D5028C0CA6016230BF,
 		);
 		breakpoints = (
 			F5AB16620371BF8201A80164,
@@ -10916,131 +10917,7 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 58290906;
-			"PBXTemplateGeometry-F5CA7ECC015C09990DCA290F" = {
-				ContentSize = "{773, 558}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {773, 535}}";
-					Split0 = {
-						ActiveTab = 0;
-						Collapsed = NO;
-						Frame = "{{24, 0}, {749, 535}}";
-						Split0 = {
-							Frame = "{{0, 273}, {749, 262}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {749, 267}}";
-								Split0 = {
-									Frame = "{{0, 24}, {749, 243}}";
-									Split0 = {
-										Frame = "{{0, 0}, {366, 243}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											162.803,
-											Value,
-											116.074,
-											Summary,
-											69.123,
-										);
-										Frame = "{{375, 0}, {374, 243}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {749, 267}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 208}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {666, 43}}";
-							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
-							Frame = "{{0, 0}, {664, 50}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							SCMStatusColumn,
-							22,
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							258,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = YES;
-				};
-				StatusViewVisible = YES;
-				Template = F5CA7ECC015C09990DCA290F;
-				ToolbarVisible = YES;
-				WindowLocation = "{108, 247}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 58359984;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
@@ -18110,7 +17987,7 @@
 					WindowLocation = "{7, 502}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 58290906;
+			PBXWorkspaceStateSaveDate = 58359984;
 		};
 		perUserProjectItems = {
 			F500892C0373044701A80164 = F500892C0373044701A80164;
@@ -33534,7 +33411,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 3639;
+		rLoc = 3709;
 		rType = 0;
 		vrLen = 1039;
 		vrLoc = 3193;
@@ -43988,7 +43865,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 3437;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3157;
@@ -44068,7 +43945,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 3437;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3157;
@@ -52985,7 +52862,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 3639;
+		rLoc = 3709;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 2705;

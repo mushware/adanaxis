@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.10 2002/08/27 08:56:15 southa Exp $
+ * $Id: mushCore.h,v 1.11 2002/10/22 20:41:56 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.11  2002/10/22 20:41:56  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -79,6 +82,12 @@
 
 // Data reference
 #include "CoreApp/CoreDataRef.h"
+
+// Environment
+#include "CoreApp/CoreEnv.h"
+
+// Environment output controller
+#include "CoreApp/CoreEnvOutput.h"
 
 // Exception classes to be thrown
 #include "CoreApp/CoreException.h"
