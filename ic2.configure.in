@@ -89,6 +89,8 @@ case "$target" in
             AC_CHECK_LIB(glu32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
             AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
             AC_CHECK_LIB(wsock32, main,, AC_MSG_ERROR([Not configured to build without wsock32 library]))
+            AC_CHECK_LIB(winmm, main,, AC_MSG_ERROR([Not configured to build without winmm library]))
+            AC_CHECK_LIB(iphlpapi, main,, AC_MSG_ERROR([Not configured to build without iphlpapi library]))
             CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/win32"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])

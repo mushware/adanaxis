@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.10 2003/01/12 17:33:02 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.11 2003/01/20 10:45:32 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.11  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.10  2003/01/12 17:33:02  southa
  * Mushcore work
  *
@@ -54,7 +57,8 @@ using namespace std;
 
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
-PlatformVideoUtils::PlatformVideoUtils()
+PlatformVideoUtils::PlatformVideoUtils() :
+    m_threadAttached(false)
 {
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
@@ -142,3 +146,30 @@ void
 PlatformVideoUtils::AppActivate(void)
 {
 }
+
+void
+PlatformVideoUtils::ModeChangePrologue(void)
+{
+    m_fgThreadID = GetWindowThreadProcessId(GetForegroundWindow(), NULL);
+    DWORD ourThreadID = GetCurrentThreadId();
+
+    if (m_fgThreadID != ourThreadID)
+    {
+	AttachThreadInput(m_fgThreadID, ourThreadID, true);
+        m_threadAttached = true;
+    }
+}
+
+void
+PlatformVideoUtils::ModeChangeEpilogue(void)
+{
+    if (m_threadAttached)
+    {
+	DWORD ourThreadID = GetCurrentThreadId();
+	AttachThreadInput(m_fgThreadID, ourThreadID, false);
+	m_threadAttached = false;
+    }
+}
+
+
+	

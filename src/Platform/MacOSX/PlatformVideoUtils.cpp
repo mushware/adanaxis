@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.11 2003/01/20 10:45:32 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.12 2003/04/06 12:35:23 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.12  2003/04/06 12:35:23  southa
+ * Fixes for release
+ *
  * Revision 1.11  2003/01/20 10:45:32  southa
  * Singleton tidying
  *
@@ -215,4 +218,14 @@ PlatformVideoUtils::AppActivate(void)
         SelectWindow(ourWindow);
     }
 #endif
+}
+
+void
+PlatformVideoUtils::ModeChangePrologue(void)
+{
+}
+
+void
+PlatformVideoUtils::ModeChangeEpilogue(void)
+{
 }

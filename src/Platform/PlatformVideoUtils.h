@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.8 2003/01/11 13:03:18 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.9 2003/01/20 10:45:31 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.9  2003/01/20 10:45:31  southa
+ * Singleton tidying
+ *
  * Revision 1.8  2003/01/11 13:03:18  southa
  * Use Mushcore header
  *
@@ -54,6 +57,8 @@ public:
     Mushware::U32 DefaultModeGet(void) const;
     Mushware::U32 NumModesGet(void) const;
     void RenderModeInfo(Mushware::U32 inNum) const;
+    void ModeChangePrologue(void);
+    void ModeChangeEpilogue(void);
     static void VBLWait(void);
     static void ForceShowCursor(void);
     static void AppActivate(void);
@@ -61,5 +66,8 @@ public:
 private:
     std::vector<GLModeDef> m_modeDefs;
     static PlatformVideoUtils *m_instance;
+
+    bool m_threadAttached;
+    unsigned long m_fgThreadID;
 };
 #endif

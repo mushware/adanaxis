@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.33 2003/01/13 14:31:56 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.34 2003/01/20 10:45:24 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.34  2003/01/20 10:45:24  southa
+ * Singleton tidying
+ *
  * Revision 1.33  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -247,6 +250,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         sdlFlags=SDL_OPENGL;
     }
 
+    PlatformVideoUtils::Sgl().ModeChangePrologue();
+
     SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
 
     if (surface == NULL)
@@ -262,6 +267,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
+    PlatformVideoUtils::Sgl().ModeChangeEpilogue();
     if (surface == NULL) throw(MushcoreDeviceFail("Could not select a video mode"));
 
 

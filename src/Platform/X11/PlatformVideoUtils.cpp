@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.10 2003/01/20 10:45:32 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.11 2003/02/06 18:55:28 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.11  2003/02/06 18:55:28  southa
+ * Linux build fixes
+ *
  * Revision 1.10  2003/01/20 10:45:32  southa
  * Singleton tidying
  *
@@ -148,6 +151,16 @@ PlatformVideoUtils::ForceShowCursor(void)
 
 void
 PlatformVideoUtils::AppActivate(void)
+{
+}
+
+void
+PlatformVideoUtils::ModeChangePrologue(void)
+{
+}
+
+void
+PlatformVideoUtils::ModeChangeEpilogue(void)
 {
 }
 
