@@ -1,6 +1,6 @@
 SUBDIRS = @TOP_SUBDIRS@
 
-EXTRA_DIST=core-app.pbproj/project.pbxproj LICENCE ic2
+EXTRA_DIST=core-app.pbproj/project.pbxproj LICENCE ic2 MakeRelease.sh
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
