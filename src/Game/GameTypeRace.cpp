@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.15 2002/08/22 10:11:11 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.16 2002/08/22 10:56:42 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.16  2002/08/22 10:56:42  southa
+ * Calculate final race results after advancing sequence
+ *
  * Revision 1.15  2002/08/22 10:11:11  southa
  * Save records, spacebar dialogues
  *
@@ -198,7 +201,7 @@ GameTypeRace::SequenceAdvance(void)
     m_chequePointTime = gameTime;
     m_chequePointTimeValid = true;
     
-    if (m_lapCount == m_laps && m_sequence == 1)
+    if (m_lapCount == m_laps+1 && m_sequence == 1)
     {
         RaceFinished();
         judgementRatio = (m_endTime - m_startTime) / (m_lapParTime * m_laps);
