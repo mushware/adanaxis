@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshQuaternion.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.1  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -27,7 +30,15 @@
 template<class T>
 class MushMeshQuaternion : public MushMeshVector<T, 4>
 {
-    
+public:
+    MushMeshQuaternion() {}
+    MushMeshQuaternion(const T& in0, const T& in1, const T& in2, const T& in3)
+    {
+        m_value[0] = in0;
+        m_value[1] = in1;
+        m_value[2] = in2;
+        m_value[3] = in3;
+    }
 };
 
 namespace Mushware

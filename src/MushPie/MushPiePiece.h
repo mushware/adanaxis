@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.4 2004/01/04 14:36:37 southa Exp $
+ * $Id: MushPiePiece.h,v 1.5 2004/01/04 17:02:30 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.5  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.4  2004/01/04 14:36:37  southa
  * Handle 'inline' in source conditioner
  *
@@ -38,7 +41,7 @@
 
 // Concrete base class for pieces containing only the mandatory elements
 
-//:generate standard ostream xml1
+//:generate standard ostream xml1 basic
 class MushPiePiece : public MushcoreVirtualObject
 {
 public:
@@ -66,19 +69,30 @@ public:
     virtual MushPiePiece *AutoClone(void) const;
     virtual MushPiePiece *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
+    bool AutoEquals(const MushPiePiece& inObj) const;
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oH3BpqHacmjoUXFvlp33Eg
+//%classPrototypes } qWIu9qXsBUyqc8obP6pkig
 };
 //%inlineHeader {
+inline bool
+operator==(const MushPiePiece& inA, const MushPiePiece& inB)
+{
+    return inA.AutoEquals(inB);
+}
+inline bool
+operator!=(const MushPiePiece& inA, const MushPiePiece& inB)
+{
+    return !inA.AutoEquals(inB);
+}
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushPiePiece& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } nfyVPwbvNF3FkNhxbB3/pw
+//%inlineHeader } aZXHQOXCZxnWlEyCRUxjGg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

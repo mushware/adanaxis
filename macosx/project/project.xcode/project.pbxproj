@@ -76,8 +76,8 @@
 				20286C32FDCF999611CA2CEA,
 				195DF8CFFE9D517E11CA2CBB,
 				7A6CE19605A58DB000777D9B,
+				7A63E99405AA25DD0051D708,
 				7A65837905A9D4FC00E727F8,
-				7A65838005A9D51400E727F8,
 			);
 			isa = PBXGroup;
 			name = project;
@@ -8450,6 +8450,141 @@
 			settings = {
 			};
 		};
+		7A63E99405AA25DD0051D708 = {
+			children = (
+				7A63E9AA05AA260F0051D708,
+				7A63E9AB05AA260F0051D708,
+				7A63E9AC05AA260F0051D708,
+				7A63E9AD05AA260F0051D708,
+				7A63E9AE05AA260F0051D708,
+				7A63E9AF05AA260F0051D708,
+				7A63E9B005AA260F0051D708,
+			);
+			isa = PBXGroup;
+			name = Info;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A63E9AA05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = all.Info.plist;
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9AB05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "Mushcore-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9AC05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "MushMesh-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9AD05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "MushPie-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9AE05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "TestMushcore-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9AF05AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "TestMushMesh-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9B005AA260F0051D708 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "TestMushPie-Info.plist";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A63E9CE05AA264C0051D708 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushPiePieces.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A63E9CF05AA264C0051D708 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushPiePieces.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A63E9D005AA264C0051D708 = {
+			fileRef = 7A63E9CE05AA264C0051D708;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A63E9D105AA264C0051D708 = {
+			fileRef = 7A63E9CF05AA264C0051D708;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A63E9F705AA27490051D708 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushPieStandard.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A63E9F805AA27490051D708 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushPieStandard.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A63EAD805AA2E910051D708 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../..\n./prebuild.sh";
+		};
+		7A63EB1B05AA311A0051D708 = {
+			fileRef = 7A657EE905A9CD1C00E727F8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A651D3C05A85C230026CBAE = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -8604,8 +8739,6 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "TestMushPie-Info.plist";
 				INSTALL_PATH = "$(USER_APPS_DIR)";
 				OTHER_CFLAGS = "";
@@ -8667,6 +8800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A657E7705A9CC4100E727F8,
+				7A63E9D005AA264C0051D708,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8688,6 +8822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A657E8205A9CC4100E727F8,
+				7A63E9D105AA264C0051D708,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8709,6 +8844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A657E8505A9CC4100E727F8,
+				7A63EB1B05AA311A0051D708,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9759,17 +9895,6 @@
 			);
 			isa = PBXGroup;
 			name = Doc;
-			path = "";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A65838005A9D51400E727F8 = {
-			children = (
-				7A7194EE05A998B900C42A20,
-				7A71998D05A99B6700C42A20,
-			);
-			isa = PBXGroup;
-			name = Info;
 			path = "";
 			refType = 4;
 			sourceTree = "<group>";
@@ -11061,6 +11186,10 @@
 		};
 		7A7193EE05A98FA600C42A20 = {
 			children = (
+				7A63E9CF05AA264C0051D708,
+				7A63E9CE05AA264C0051D708,
+				7A63E9F805AA27490051D708,
+				7A63E9F705AA27490051D708,
 			);
 			isa = PBXGroup;
 			name = TestMushPie;
@@ -11196,6 +11325,7 @@
 		7A7194EC05A998B900C42A20 = {
 			buildPhases = (
 				7A7194E705A998B900C42A20,
+				7A63EAD805AA2E910051D708,
 				7A7194E805A998B900C42A20,
 				7A7194E905A998B900C42A20,
 				7A7194EA05A998B900C42A20,
@@ -11258,14 +11388,6 @@
 			path = Mushcore.framework;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7A7194EE05A998B900C42A20 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "Mushcore-Info.plist";
-			path = "/Users/southa/core-app/macosx/project/Mushcore-Info.plist";
-			refType = 0;
-			sourceTree = "<absolute>";
 		};
 		7A71952F05A99A0500C42A20 = {
 			fileRef = 7A62B71005A49D04002A5F1C;
@@ -11958,14 +12080,6 @@
 			path = TestMushcore.app;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7A71998D05A99B6700C42A20 = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "TestMushcore-Info.plist";
-			path = "/Users/southa/core-app/macosx/project/TestMushcore-Info.plist";
-			refType = 0;
-			sourceTree = "<absolute>";
 		};
 		7A7199A505A99BDE00C42A20 = {
 			containerPortal = 20286C28FDCF999611CA2CEA;

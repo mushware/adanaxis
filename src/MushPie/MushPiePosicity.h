@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } u4KzedBl1+uLt37oBoF4HQ
 /*
- * $Id: MushPiePosicity.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePosicity.h,v 1.2 2004/01/05 14:27:41 southa Exp $
  * $Log: MushPiePosicity.h,v $
+ * Revision 1.2  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.1  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -25,10 +28,11 @@
 
 #include "MushPieStandard.h"
 
-//:generate ostream
+//:generate ostream basic
 class MushPiePosicity
 {
 public:
+    MushPiePosicity() {}
     Mushware::tQVal angPos;
     Mushware::tQVal angVel;
     Mushware::t3Val pos;
@@ -36,8 +40,9 @@ public:
     
 //%classPrototypes {
 public:
+    bool AutoEquals(const MushPiePosicity& inObj) const;
     void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+//%classPrototypes } Exb5ZZbjxTN8n4F0Gd2QIA
 };
 
 void
@@ -47,13 +52,23 @@ MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushPiePosicity& inObj);
 
 //%inlineHeader {
+inline bool
+operator==(const MushPiePosicity& inA, const MushPiePosicity& inB)
+{
+    return inA.AutoEquals(inB);
+}
+inline bool
+operator!=(const MushPiePosicity& inA, const MushPiePosicity& inB)
+{
+    return !inA.AutoEquals(inB);
+}
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushPiePosicity& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } tWJxSfzqfRjlGG2ziQD8OQ
+//%inlineHeader } fzs8dJlVZ1sroROUldg9NA
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

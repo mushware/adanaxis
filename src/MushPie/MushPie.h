@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 2wneGznSkHlrbgW3tFNYKA
 /*
- * $Id: MushPie.h,v 1.2 2004/01/02 11:56:59 southa Exp $
+ * $Id: MushPie.h,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushPie.h,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/02 11:56:59  southa
  * MushPie created
  *
@@ -26,7 +29,11 @@
  *
  */
 
-
+#include "MushPiePiece.h"
+#include "MushPiePieceMobile.h"
+#include "MushPiePieceSimple.h"
+#include "MushPiePosicity.h"
+#include "MushPiePosition.h"
 
 //%includeGuardEnd {
 #endif

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef TESTMUSHMESHSTANDARD_H
-#define TESTMUSHMESHSTANDARD_H
-//%includeGuardStart } W1k1jF6GZUYd6q1MA9D7LQ
+#ifndef TESTMUSHPIESTANDARD_H
+#define TESTMUSHPIESTANDARD_H
+//%includeGuardStart } O+ohKXYI4LUaueB8IiVCOA
 //%Header {
 /*****************************************************************************
  *
- * File: src/TestMushMesh/TestMushMeshStandard.h
+ * File: src/TestMushPie/TestMushPieStandard.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,19 +14,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /nYbX6dMQIzdhaCzwQSAWg
+//%Header } X1xDmqNtUZaxHFuNQrhnpQ
 /*
- * $Id: TestMushMeshStandard.h,v 1.3 2004/01/02 21:13:17 southa Exp $
- * $Log: TestMushMeshStandard.h,v $
- * Revision 1.3  2004/01/02 21:13:17  southa
- * Source conditioning
- *
- * Revision 1.2  2003/10/15 12:23:10  southa
- * MushMeshArray neighbour testing and subdivision work
- *
- * Revision 1.1  2003/10/14 13:07:26  southa
- * MushMesh vector creation
- *
+ * $Id$
+ * $Log$
  */
 
 // Include everything we might need to keep things simple
@@ -43,12 +34,12 @@
 #include "Mushcore.h"
 #endif
 
-#if defined(HAVE_MUSHMESH_MUSHMESH_H)
-#include <MushMesh/MushMesh.h>
-#elif defined(HAVE_MUSHMESH_H)
-#include <MushMesh.h>
+#if defined(HAVE_MUSHMESH_MUSHPIE_H)
+#include <MushPie/MushPie.h>
+#elif defined(HAVE_MUSHPIE_H)
+#include <MushPie.h>
 #else
-#include "MushMesh.h"
+#include "MushPie.h"
 #endif
 
 #include <list>

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mvCjgges5NRlmA/1rKDjiQ
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.13 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.14 2004/01/05 20:13:15 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.14  2004/01/05 20:13:15  southa
+ * Target and test updates
+ *
  * Revision 1.13  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -191,7 +194,7 @@ MushcoreBuiltinHandler::Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
         {
             cout << failsVec[i] << endl;
         }
-        throw MushcoreCommandFail("Test failed");
+        throw MushcoreCommandFail("Testing failed");
     }
         
     return MushcoreScalar(0);    

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fNBxnWioPfFaM/uScT3/eA
 /*
- * $Id$
- * $Log$
+ * $Id: MushPiePieceMobile.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Log: MushPiePieceMobile.h,v $
+ * Revision 1.1  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  */
 
 #include "MushPieStandard.h"
@@ -26,25 +29,22 @@
 #include "MushPiePosicity.h"
 
 //:xml1base MushPiePiece
-//:generate ostream xml1 standard
+//:generate ostream xml1 standard basic
 class MushPiePieceMobile : public MushPiePiece
 {
 public:
     MushPiePieceMobile();
     virtual ~MushPiePieceMobile() {}
     
-    const MushPiePosicity& CurrentPosGet(void) const { return m_pos[m_currentPosIndex]; }
-    const MushPiePosicity& NewPosGet(void) const { return m_pos[m_newPosIndex]; }
-    void NewPosSet(const MushPiePosicity& inValue) { m_pos[m_newPosIndex]=inValue; }
+    const MushPiePosicity& CurrentPosGet(void) const { return m_currentPosIndex?m_pos1:m_pos0; }
+    const MushPiePosicity& NewPosGet(void) const { return m_newPosIndex?m_pos1:m_pos0; }
+    void NewPosSet(const MushPiePosicity& inValue) { (m_newPosIndex?m_pos1:m_pos0)=inValue; }
     
     void PosSwap(void);
         
 private:
-    enum
-    {
-        kPosHistorySize = 2
-    };
-    MushPiePosicity m_pos[kPosHistorySize];
+    MushPiePosicity m_pos0;
+    MushPiePosicity m_pos1;
     Mushware::U32 m_currentPosIndex;
     Mushware::U32 m_newPosIndex;
     
@@ -54,29 +54,38 @@ public:
     virtual MushPiePieceMobile *AutoClone(void) const;
     virtual MushPiePieceMobile *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
+    bool AutoEquals(const MushPiePieceMobile& inObj) const;
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } V4OuYmqsW6oh7msFI8dQdg
+//%classPrototypes } glDtZguTeL3IT2tdBg1a/Q
 };
 
-void
+inline void
 MushPiePieceMobile::PosSwap(void)
 {
     std::swap(m_currentPosIndex, m_newPosIndex);
-    MUSHCOREASSERT(m_currentPosIndex < kPosHistorySize);
-    MUSHCOREASSERT(m_newPosIndex < kPosHistorySize);
 };
 
 
 //%inlineHeader {
+inline bool
+operator==(const MushPiePieceMobile& inA, const MushPiePieceMobile& inB)
+{
+    return inA.AutoEquals(inB);
+}
+inline bool
+operator!=(const MushPiePieceMobile& inA, const MushPiePieceMobile& inB)
+{
+    return !inA.AutoEquals(inB);
+}
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushPiePieceMobile& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } TbJaPMFRML9rFgeE6oksyQ
+//%inlineHeader } N8JAcQSg07YLIgaWXKxNvQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

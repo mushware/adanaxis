@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PxSYbLIM7YOX7YNd1OUhMw
 /*
- * $Id$
- * $Log$
+ * $Id: MushPiePosition.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Log: MushPiePosition.h,v $
+ * Revision 1.1  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  */
 
 #include "MushPieStandard.h"
@@ -26,6 +29,8 @@
 class MushPiePosition
 {
 public:
+    MushPiePosition() {}
+    
     Mushware::tQVal angPos;
     Mushware::t3Val pos;
 

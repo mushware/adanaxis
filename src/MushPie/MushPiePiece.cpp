@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.4 2004/01/04 14:36:37 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.5 2004/01/04 17:02:30 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.5  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.4  2004/01/04 14:36:37  southa
  * Handle 'inline' in source conditioner
  *
@@ -65,6 +68,13 @@ void Install(void)
 }
 MushcoreInstaller Installer(Install);
 } // end anonymous namespace
+bool
+MushPiePiece::AutoEquals(const MushPiePiece& inObj) const
+{
+    return 1
+        && (m_sleepState == inObj.m_sleepState)
+    ;
+}
 void
 MushPiePiece::AutoPrint(std::ostream& ioOut) const
 {
@@ -95,4 +105,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("sleepState");
     ioOut << m_sleepState;
 }
-//%outOfLineFunctions } J66q4nmmUiKYBn7WNet10A
+//%outOfLineFunctions } ycf4SyVlSzuzXZclBSCDmQ

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.22 2004/01/02 21:13:04 southa Exp $
+# $Id: SourceConditioner.pl,v 1.23 2004/01/04 14:36:37 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.23  2004/01/04 14:36:37  southa
+# Handle 'inline' in source conditioner
+#
 # Revision 1.22  2004/01/02 21:13:04  southa
 # Source conditioning
 #
@@ -378,6 +381,7 @@ sub VarNameTrim($)
     my ($name) = @_;
     $name =~ s/^\*//;
     $name =~ s/^m_//;
+    $name =~ s/\[.*\]//;
     return $name;
 }
 
@@ -610,6 +614,16 @@ sub BasicOperatorsFunctionGenerate($$)
 "${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
 "{",
 "    return 1";
+    
+    my $xmlBases = $$infoRef{XML_BASES};
+    if (defined($xmlBases))
+    {
+        foreach my $base (@$xmlBases)
+        {
+            push @$outputRef, "        && ${base}::$gConfig{AUTO_PREFIX}Equals(inObj)";
+        }
+    }
+    
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -620,7 +634,7 @@ sub BasicOperatorsFunctionGenerate($$)
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
             my $line = "        && ";
-
+            
             if ($indirection > 0)
             {
                 my $baseName = VarBaseNameGet($attr);
