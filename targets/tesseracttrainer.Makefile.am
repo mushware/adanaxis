@@ -1,0 +1,87 @@
+# -*-makefile-*-
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.com.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2002.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+
+#
+# $Id: tesseracttrainer.Makefile.am,v 1.7 2003/11/13 23:25:29 southa Exp $
+# $Log: tesseracttrainer.Makefile.am,v $
+
+AUTOMAKE_OPTIONS=1.6
+SUBDIRS = @TOP_SUBDIRS@
+DIST_SUBDIRS = @TOP_SUBDIRS@
+RUNFILE=${DESTDIR}${bindir}/tesseracttrainer
+GZIPFILE=tesseracttrainer-@APP_VERSION@.tar.gz
+BZIPFILE=tesseracttrainer-@APP_VERSION@.tar.bz2
+
+DATAMAKEFILE=tesseracttrainerdata/Makefile.am
+
+all:prebuild-script
+
+prebuild-script:
+	$(SHELL) -c 'if [ -f prebuild.sh ];then ./prebuild.sh;fi'
+
+release: install-strip
+	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
+
+mac-release: release
+	(cd $(top_srcdir);$(SHELL) macosx/MakeInstaller.sh @APP_UNDERSCORE_VERSION@)
+
+win32-release: release
+	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh @APP_UNDERSCORE_VERSION@)
+
+makefiles-withdata:
+	sed -e 's/_nodist_/_dist_/' $(DATAMAKEFILE) > tempMakefile
+	mv -f tempMakefile $(DATAMAKEFILE)
+
+makefiles-withoutdata:
+	sed -e 's/_dist_/_nodist_/' $(DATAMAKEFILE) > tempMakefile
+	mv -f tempMakefile $(DATAMAKEFILE)
+
+x11-release $(GZIPFILE): makefiles-withoutdata dist
+	rm -f tesseracttrainer-src-@APP_UNDERSCORE_VERSION@.tar.gz
+	rm -f tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar.gz
+	cp -p COPYING tesseracttrainerdata/COPYING
+	tar cpvf tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar tesseracttrainerdata/COPYING
+	rm tesseracttrainerdata/COPYING
+	find tesseracttrainerdata -path './data/system/tesseracttrainer*' -prune -o \
+           -path '*CVS' -prune -o \
+           -name 'tesseracttrainer.exe' -prune -o \
+           -name 'tesseracttrainer' -prune -o \
+           -name '.*' -prune -o \
+           -type f -name '*' \
+           -exec tar rpvf tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar {} \;
+	gzip tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar
+	cp -p tesseracttrainer-@APP_VERSION@.tar.gz tesseracttrainer-src-@APP_UNDERSCORE_VERSION@.tar.gz
+	$(MAKE) makefiles-withdata dist
+
+$(BZIPFILE):$(GZIPFILE)
+	rm -f $(BZIPFILE)
+	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
+
+rpm:
+	@echo
+	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
+	@exit 1
+
+%-rpm:tesseracttrainer.spec.%
+	cp -f $< tesseracttrainer.spec
+	$(MAKE) $(BZIPFILE)
+	rpm -ta $(BZIPFILE)
+
+install-exec-hook:
+	rm -f $(RUNFILE)
+	echo #!/bin/sh > $(RUNFILE)
+	echo cd $(DESTDIR)$(pkgdatadir)/system >> $(RUNFILE)
+	echo $(DESTDIR)$(bindir)/tesseracttrainerbinary >> $(RUNFILE)
+	chmod 0755 $(RUNFILE)
+
+uninstall-hook:
+	rm -f $(RUNFILE)
+
