@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.6 2002/11/24 23:18:16 southa Exp $
+ * $Id: GameDef.cpp,v 1.7 2002/11/24 23:54:36 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.7  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  * Revision 1.6  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -28,16 +31,31 @@
 
 auto_ptr< CoreData<GameDef> > CoreData<GameDef>::m_instance;
 
-GameDef::GameDef()
+GameDef::GameDef(const string& inName) :
+    m_name(inName),
+    m_isImage(false)
 {
 }
 
 void
-GameDef::CreateNewLink(const GameStationDef& inStation)
+GameDef::CreateNewLink(const GameStationDef& inStation) const
 {
     try
     {
         CoreData<MediaNetLink>::Instance().DataGive(inStation.NameGet()+"client", new MediaNetLink(inStation.NameGet(), inStation.PortGet()));
+    }
+    catch (NetworkFail& e)
+    {
+        MediaNetLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
+    }
+}
+
+void
+GameDef::CreateNewLink(const MediaNetAddress& inAddress) const
+{
+    try
+    {
+        CoreData<MediaNetLink>::Instance().DataGive(MediaNetLink::NextLinkNameTake(), new MediaNetLink(inAddress));
     }
     catch (NetworkFail& e)
     {

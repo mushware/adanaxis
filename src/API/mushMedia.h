@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.18 2002/11/15 18:58:33 southa Exp $
+ * $Id: mushMedia.h,v 1.19 2002/11/25 12:06:17 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.19  2002/11/25 12:06:17  southa
+ * Received net message routing
+ *
  * Revision 1.18  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -74,6 +77,7 @@
 
 #include "Media/MediaAudio.h"
 #include "Media/MediaNet.h"
+#include "Media/MediaNetAddress.h"
 #include "Media/MediaNetData.h"
 #include "Media/MediaNetHandler.h"
 #include "Media/MediaNetLink.h"

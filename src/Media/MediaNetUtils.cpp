@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.9 2002/11/24 00:29:08 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.10 2002/11/25 18:02:57 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.10  2002/11/25 18:02:57  southa
+ * Mushware ID work
+ *
  * Revision 1.9  2002/11/24 00:29:08  southa
  * Serve web pages to local addresses only
  *
@@ -32,9 +35,31 @@
 
 #include "MediaNetUtils.h"
 
+#include "MediaNetAddress.h"
 #include "MediaNetLink.h"
 
 bool MediaNetUtils::m_truncateLog=true;
+
+bool
+MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const MediaNetAddress& inAddress)
+{
+    U32 netIP=inAddress.HostGetNetworkOrder();
+    U32 netPort=inAddress.PortGetNetworkOrder();
+
+    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+
+    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        if (p->second->TCPTargetPortGet() == netPort &&
+            p->second->TCPTargetIPGet() == netIP)
+        {
+            outLink = p->second;
+            return true;
+        }
+    }
+    return false;
+}
 
 bool
 MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPortNetworkOrder)

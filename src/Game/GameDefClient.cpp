@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.3 2002/11/25 12:06:18 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.4 2002/11/25 18:02:56 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.4  2002/11/25 18:02:56  southa
+ * Mushware ID work
+ *
  * Revision 1.3  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -34,9 +37,10 @@
 
 #include "mushPlatform.h"
 
-GameDefClient::GameDefClient() :
-m_lastLinkMsec(0),
-m_lastRegistrationMsec(0)
+GameDefClient::GameDefClient(const string& inName) :
+    GameDef(inName),
+    m_lastLinkMsec(0),
+    m_lastRegistrationMsec(0)
 {
 }
 
@@ -61,7 +65,7 @@ GameDefClient::Ticker(void)
         if (m_lastRegistrationMsec + kRegistrationMsec < m_currentMsec)
         {
             MediaNetData netData;
-            GameProtocol::CreateObjectCreate(netData, *this, "client-ghost");
+            GameProtocol::CreateObjectCreate(netData, *this, NameGet());
             netLink->ReliableSend(netData);
             m_lastRegistrationMsec = m_currentMsec;
         }
@@ -79,16 +83,13 @@ GameDefClient::Ticker(void)
 void
 GameDefClient::WebPrint(ostream& ioOut) const
 {
-    ioOut << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
+
     ioOut << "<tr>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Port</font></td>";
-    ioOut << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
-    ioOut << "</tr><tr>";
+    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverStation.NameGet()) << "</td>";
     ioOut << "<td>" << m_serverStation.PortGet() << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
-    ioOut << "</tr></table>" << endl;
+    ioOut << "</tr>" << endl;
 }
 
 void

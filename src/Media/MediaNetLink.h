@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.12 2002/11/22 15:33:59 southa Exp $
+ * $Id: MediaNetLink.h,v 1.13 2002/11/22 18:02:43 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.13  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.12  2002/11/22 15:33:59  southa
  * More network logging
  *
@@ -48,10 +51,13 @@
 #include "MediaNetData.h"
 #include "MediaNetProtocol.h"
 
+class MediaNetAddress;
+
 class MediaNetLink
 {
 public:
     MediaNetLink(const string& inServer, U32 inPort);
+    explicit MediaNetLink(const MediaNetAddress& inAddress);
     explicit MediaNetLink(TCPsocket inSocket, U32 inPort);
     ~MediaNetLink();
 
@@ -76,6 +82,8 @@ public:
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
     void WebStatusPrint(ostream& ioOut) const;
+
+    static string NextLinkNameTake(void);
     
 private:
     enum tLinkState
@@ -158,6 +166,8 @@ private:
     bool m_targetIsServer;
     bool m_udpUseServerPort;
     mutable bool m_loggedLinkInfo;
+
+    static U32 m_linkNameNum;
 };
 
 inline ostream&

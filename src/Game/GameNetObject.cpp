@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.1 2002/11/25 15:44:02 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.2 2002/11/25 18:02:57 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.2  2002/11/25 18:02:57  southa
+ * Mushware ID work
+ *
  * Revision 1.1  2002/11/25 15:44:02  southa
  * CreateObject message decoding
  *
@@ -9,6 +12,7 @@
 #include "GameNetObject.h"
 
 #include "GameDefClient.h"
+#include "GameDefServer.h"
 
 GameNetObject::~GameNetObject()
 {
@@ -23,8 +27,21 @@ void
 GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
 {
     string elementName=inXML.GetAttribOrThrow("name").StringGet();
-    GameDefClient *gameDefClient = dynamic_cast<GameDefClient *>(CoreData<GameDef>::Instance().DataGive(elementName, new GameDefClient));
+    string dataName = elementName+"-image";
+    GameDefClient *gameDefClient = dynamic_cast<GameDefClient *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefClient(elementName)));
+    gameDefClient->IsImageSet(true);
+    gameDefClient->AddressSet(m_address);
     gameDefClient->Unpickle(inXML);                                           
+}
+
+void
+GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
+{
+    string elementName=inXML.GetAttribOrThrow("name").StringGet();
+    string dataName = elementName+"-image";
+    GameDefServer *gameDefServer = dynamic_cast<GameDefServer *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefServer(elementName)));
+    gameDefServer->IsImageSet(true);
+    gameDefServer->Unpickle(inXML);
 }
 
 void
@@ -54,7 +71,7 @@ GameNetObject::Unpickle(CoreXML& inXML)
     m_startTable[kPickleInit]["netobject"] = &GameNetObject::HandleNetObjectStart;
     m_endTable[kPickleData]["netobject"] = &GameNetObject::HandleNetObjectEnd;
     m_startTable[kPickleData]["gamedefclient"] = &GameNetObject::HandleGameDefClientStart;
-
+    m_startTable[kPickleData]["gamedefserver"] = &GameNetObject::HandleGameDefServerStart;
     m_pickleState=kPickleData;
     inXML.ParseStream(*this);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameWebCommands.h,v 1.1 2002/11/18 13:40:32 southa Exp $
+ * $Id: GameWebCommands.h,v 1.2 2002/11/20 22:35:27 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.2  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.1  2002/11/18 13:40:32  southa
  * Moved to correct place
  *
@@ -31,6 +34,9 @@ public:
     static CoreScalar DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameLinkStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
 
 private:
 

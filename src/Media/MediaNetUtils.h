@@ -1,8 +1,11 @@
 #ifndef MEDIANETUTILS_H
 #define MEDIANETUTILS_H
 /*
- * $Id: MediaNetUtils.h,v 1.7 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetUtils.h,v 1.8 2002/11/25 18:02:57 southa Exp $
  * $Log: MediaNetUtils.h,v $
+ * Revision 1.8  2002/11/25 18:02:57  southa
+ * Mushware ID work
+ *
  * Revision 1.7  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -28,12 +31,14 @@
 
 #include "mushCore.h"
 
+class MediaNetAddress;
 class MediaNetLink;
 
 class MediaNetUtils
 {
 public:
     static bool FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPortNetworkOrder);
+    static bool FindLinkToStation(MediaNetLink *& outLink, const MediaNetAddress& inAddress);
     static string IPAddressToString(U32 inAddress);
     static string IPAddressToLogString(U32 inAddress);
     static string MakePrintable(const string& inStr);

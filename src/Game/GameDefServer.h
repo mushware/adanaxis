@@ -1,16 +1,21 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDefServer.h,v 1.1 2002/11/24 23:54:36 southa Exp $
+ * $Log: GameDefServer.h,v $
+ * Revision 1.1  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  */
 
 #include "mushCore.h"
 
 #include "GameDef.h"
 
+class GameDefClient;
+
 class GameDefServer : public GameDef
 {
 public:
-    GameDefServer();
+    GameDefServer(const string& inName);
     virtual void Ticker(void);
     virtual void WebPrint(ostream& ioOut) const;
 
@@ -20,6 +25,9 @@ public:
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
+    const string& ServerMessageGet(void) const { return m_serverMessage; }
+    void ServerMessageSet(const string& inMessage) { m_serverMessage = inMessage; }
+    
 protected:
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
@@ -43,7 +51,20 @@ private:
     PickleState m_pickleState;
     U32 m_baseThreaded;
 
+    enum
+    {
+        kLinkSetupMsec=7000,
+        kUpdateMsec=10000
+    };
+
+    void UpdateClients(void);
+    void UpdateClient(GameDefClient& inClient);
+    
+    string m_serverName;
+    string m_serverMessage;
     string m_contractName;
     U32 m_playerLimit;
-    vector<string> m_clientStation;
+    U32 m_lastLinkMsec;
+    U32 m_lastUpdateMsec;
+    U32 m_currentMsec;
 };

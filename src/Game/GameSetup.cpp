@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.9 2002/11/24 22:32:43 southa Exp $
+ * $Id: GameSetup.cpp,v 1.10 2002/11/25 12:06:18 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.10  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.9  2002/11/24 22:32:43  southa
  * Host and join displays
  *
@@ -142,6 +145,7 @@ GameSetup::ConfigInit(void)
     catch (NetworkFail& e)
     {
         MediaNetLog::Instance().WebLog() << e.what() << endl;
+        PlatformMiscUtils::MinorErrorBox(e.what());
     }
         
     ostringstream configURL;
@@ -165,20 +169,19 @@ GameSetup::Config(void)
     {
         MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }
-   
+
+    
     bool netActive=false;
-    GameDef *gameDef = NULL;
-    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "client"))
+
+    CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
+
+    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
     {
-        netActive=true;
-        COREASSERT(gameDef != NULL);
-        gameDef->Ticker();
-    }
-    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "server"))
-    {
-        netActive=true;
-        COREASSERT(gameDef != NULL);
-        gameDef->Ticker();
+        if (!p->second->IsImage())
+        {
+            p->second->Ticker();
+            netActive=true;
+        }
     }
 
     if (netActive)
@@ -194,7 +197,12 @@ GameSetup::Config(void)
             catch (NetworkFail& e)
             {
                 MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what();
-                PlatformMiscUtils::MinorErrorBox(e.what());
+                static U32 failedPortNum=65536;
+                if (portNum != failedPortNum)
+                {
+                    PlatformMiscUtils::MinorErrorBox(e.what());
+                    failedPortNum=portNum;
+                }
             }
         }
     }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.2 2002/11/25 12:06:18 southa Exp $
+ * $Id: GameRouter.cpp,v 1.3 2002/11/25 15:44:03 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.3  2002/11/25 15:44:03  southa
+ * CreateObject message decoding
+ *
  * Revision 1.2  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -26,6 +29,8 @@ GameRouter::CreateObjectHandle(MediaNetData& ioData)
 {
     GameNetObject netObject;
 
+    netObject.AddressSet(MediaNetAddress(ioData.SourceHostGet(), ioData.SourcePortGet()));
+    
     string dataStr(reinterpret_cast<char *>(ioData.MessagePtrGet()), ioData.MessageSizeGet());
     istringstream data(dataStr);
     CoreXML xml(data, "network");

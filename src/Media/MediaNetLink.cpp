@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.17 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.18 2002/11/23 17:23:44 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.18  2002/11/23 17:23:44  southa
+ * Sleep in setup
+ *
  * Revision 1.17  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -65,6 +68,8 @@
 
 auto_ptr< CoreData<MediaNetLink> > CoreData<MediaNetLink>::m_instance;
 
+U32 MediaNetLink::m_linkNameNum=1;
+
 MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
 {
     // I am the client end of the link
@@ -78,6 +83,23 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     m_client.UDPRemotePortNetworkOrderSet(PlatformNet::HostToNetworkOrderU16(inPort));
     UDPLinkCheckSend();
     m_targetName=inServer;
+}
+
+MediaNetLink::MediaNetLink(const MediaNetAddress& inAddress)
+{
+    // I am the client end of the link
+    Initialise();
+    m_udpUseServerPort=false;
+    string serverName=inAddress.HostStringGet();
+    U32 portNum=inAddress.PortGetHostOrder();
+MediaNetLog::Instance().NetLog() << "Connecting to " << serverName << ":" << portNum << endl;
+    TCPConnect(serverName, portNum);
+    m_tcpState.linkState=kLinkStateConnecting;
+
+    UDPConnect(portNum);
+    m_client.UDPRemotePortNetworkOrderSet(PlatformNet::HostToNetworkOrderU16(portNum));
+    UDPLinkCheckSend();
+    m_targetName=serverName;
 }
 
 MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
@@ -772,4 +794,13 @@ MediaNetLink::WebStatusPrint(ostream& ioOut) const
     ioOut << "\">UDP:" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet()) << "</font></td><td>" << m_udpState.linkPingTime;
     ioOut << "ms</td>";
     ioOut << endl;
+}
+
+string
+MediaNetLink::NextLinkNameTake(void)
+{
+    ostringstream nameStream("link");
+    nameStream << m_linkNameNum;
+    ++m_linkNameNum;
+    return nameStream.str();
 }
