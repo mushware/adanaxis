@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.8 2002/12/29 21:00:00 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.1 2003/01/13 15:52:43 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.1  2003/01/13 15:52:43  southa
+ * Merged MustlPlatform
+ *
  * Revision 1.8  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -87,8 +90,8 @@
 
 #ifdef WIN32
 // win32 includes
-#include <iphlpapi.h>
 #include <windows.h>
+#include <iphlpapi.h>
 
 #else
 // POSIX includes
@@ -119,7 +122,7 @@ map<U32, bool> MustlPlatform::m_localAddressMap;
 #define MUSTL_ERROR_RESET
 #define MUSTL_ERROR_FETCH wsaError = WSAGetLastError()
 #define MUSTL_ERROR_VALUE wsaError
-#define MUSTL_ERROR_EAGAIN WSAEAGAIN
+#define MUSTL_ERROR_EAGAIN WSAEWOULDBLOCK
 #define MUSTL_ERROR_EINTR WSAEINTR
 #define MUSTL_ERROR_EWOULDBLOCK WSAEWOULDBLOCK
 #define MUSTL_ERROR_EINPROGRESS WSAEINPROGRESS
@@ -136,6 +139,16 @@ map<U32, bool> MustlPlatform::m_localAddressMap;
 #define MUSTL_ERROR_EINPROGRESS EINPROGRESS
 
 #endif
+
+void
+MustlPlatform::SocketClose(tSocket inSocket)
+{
+#ifdef WIN32
+    closesocket(inSocket);
+#else
+    close(inSocket);
+#endif
+}
 
 void
 MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
@@ -228,7 +241,7 @@ MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 {
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
-    int result = send(inSocket, inBuffer, inSize, 0);
+    int result = send(inSocket, reinterpret_cast<const char *>(inBuffer), inSize, 0);
 
     if (result < 0)
     {
@@ -246,7 +259,7 @@ MustlPlatform::TCPReceive(tSocket inSocket, void *outBuffer, U32 inSize)
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
 
-    int result = recv(inSocket, outBuffer, inSize, 0);
+    int result = recv(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0);
 
     if (result < 0)
     {
@@ -276,7 +289,7 @@ MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *in
 
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
-    int result=sendto(inSocket, inBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
+    int result=sendto(inSocket, reinterpret_cast<const char *>(inBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
 
     if (result < 0)
     {
@@ -297,7 +310,7 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
 
     MUSTL_ERROR_PREFIX;
     MUSTL_ERROR_RESET;
-    int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
+    int result = recvfrom(inSocket, reinterpret_cast<char *>(outBuffer), inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
 
     outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
     outAddress.PortSetNetworkOrder(sockAddr.sin_port);
@@ -365,7 +378,7 @@ MustlPlatform::TCPConnectNonBlocking(const MustlAddress& inAddress)
 
         if (MUSTL_ERROR_VALUE != MUSTL_ERROR_EINPROGRESS)
         {
-            close(sockHandle);
+            SocketClose(sockHandle);
             ostringstream message;
             message << "Couldn't connect to remote host " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
@@ -396,7 +409,7 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
     {
         MUSTL_ERROR_FETCH;
 
-        close(sockHandle);
+        SocketClose(sockHandle);
         ostringstream message;
         message << "Couldn't bind server address " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
@@ -406,7 +419,7 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
     {
         MUSTL_ERROR_FETCH;
         
-        close(sockHandle);
+        SocketClose(sockHandle);
         ostringstream message;
         message << "Couldn't listen on server socket " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
@@ -436,7 +449,7 @@ MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
 
         if (MUSTL_ERROR_VALUE != MUSTL_ERROR_EINPROGRESS)
         {
-            close(sockHandle);
+            SocketClose(sockHandle);
             ostringstream message;
             message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder) << " (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
@@ -472,12 +485,6 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
     outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
     outAddress.PortSetNetworkOrder(sockAddr.sin_port);
     return true;
-}
-
-void
-MustlPlatform::SocketClose(tSocket inSocket)
-{
-    close(inSocket);
 }
 
 bool
@@ -553,7 +560,7 @@ MustlPlatform::ResolveHostName(MustlAddress& outAddress, const string& inHostNam
             hostEnt = gethostbyname(inHostName.c_str());
             if (hostEnt != NULL)
             {
-                in_addr_t hostIP;
+                U32 hostIP;
                 memcpy(&hostIP, hostEnt->h_addr_list[0], sizeof(hostIP));
                 outAddress.HostSetNetworkOrder(hostIP);
                 outAddress.PortSetHostOrder(inPortHostOrder);
@@ -576,7 +583,7 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
     }
     else
     {
-        in_addr_t hostIP = inet_addr(inIPStr.c_str());
+        U32 hostIP = inet_addr(inIPStr.c_str());
         if (hostIP == INADDR_NONE)
         {
             return false;
@@ -590,37 +597,10 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
     return true;
 }
 
-unsigned int
-MustlPlatform::DefaultTimer(void)
-{
-    static struct timeval firstTime;
-    static bool firstTimeValid=false;
-    struct timeval currentTime;
-    
-    if (gettimeofday(&currentTime, NULL) != 0)
-    {
-        throw(MustlFail("Cannot determine current time"));
-    }
-    
-    if (firstTimeValid)
-    {
-        long uSec = currentTime.tv_usec - firstTime.tv_usec;
-        long sec = currentTime.tv_sec - firstTime.tv_sec;
-        return static_cast<unsigned int>(sec * 1000.0 + uSec / 1000.0);
-    }
-    else
-    {
-        firstTime = currentTime;
-        firstTimeValid=true;
-        return 0;
-    }
-}
-
-
 #ifdef WIN32
 
 void
-PlatformNet::LocalAddressesRetrieve(void)
+MustlPlatform::LocalAddressesRetrieve(void)
 {
     m_localAddressMap.clear();
 
@@ -633,7 +613,7 @@ PlatformNet::LocalAddressesRetrieve(void)
     {
         ostringstream message;
         message << "GetIpAddrTable failed (" << result << ")";
-        throw(NetworkFail(message.str()));
+        throw(MustlFail(message.str()));
     }
     DWORD numEntries = ipAddrTable->dwNumEntries;
 
@@ -641,7 +621,7 @@ PlatformNet::LocalAddressesRetrieve(void)
     {
         ostringstream message;
         message << "Too many entries from GetIpAddrTable (" << numEntries << ")";
-        throw(NetworkFail(message.str()));
+        throw(MustlFail(message.str()));
     }
 
     for (U32 i=0; i<numEntries; ++i)
@@ -650,6 +630,27 @@ PlatformNet::LocalAddressesRetrieve(void)
         m_localAddressMap[ipAddrRow->dwAddr]=true;
     }
     m_localAddressesValid=true;
+}
+
+unsigned int
+MustlPlatform::DefaultTimer(void)
+{
+    static DWORD firstTime;
+    static bool firstTimeValid=false;
+    DWORD currentTime;
+    
+    currentTime = timeGetTime();
+
+    if (firstTimeValid)
+    {
+        return static_cast<unsigned int>(currentTime - firstTime);
+    }
+    else
+    {
+        firstTime = currentTime;
+        firstTimeValid=true;
+        return 0;
+    }
 }
 
 #else
@@ -671,7 +672,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
     errno=0;
     if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
     {
-        close(testSocket);
+        SocketClose(testSocket);
         ostringstream message;
         message << "ioctl SIOCGIFCONF fail (" << errno << ")";
         throw(MustlFail(message.str()));
@@ -700,8 +701,34 @@ MustlPlatform::LocalAddressesRetrieve(void)
         }
         dataPtr += sizeof(ifReq->ifr_name) + entryLength;
     }
-    close(testSocket);
+    SocketClose(testSocket);
     m_localAddressesValid=true;
+}
+
+unsigned int
+MustlPlatform::DefaultTimer(void)
+{
+    static struct timeval firstTime;
+    static bool firstTimeValid=false;
+    struct timeval currentTime;
+    
+    if (gettimeofday(&currentTime, NULL) != 0)
+    {
+        throw(MustlFail("Cannot determine current time"));
+    }
+    
+    if (firstTimeValid)
+    {
+        long uSec = currentTime.tv_usec - firstTime.tv_usec;
+        long sec = currentTime.tv_sec - firstTime.tv_sec;
+        return static_cast<unsigned int>(sec * 1000.0 + uSec / 1000.0);
+    }
+    else
+    {
+        firstTime = currentTime;
+        firstTimeValid=true;
+        return 0;
+    }
 }
 
 #endif

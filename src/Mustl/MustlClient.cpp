@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlClient.cpp,v 1.7 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlClient.cpp,v 1.8 2002/12/29 20:59:58 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.8  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -95,8 +98,8 @@ using namespace Mustl;
 using namespace std;
 
 MustlClient::MustlClient() :
-    m_tcpSocket(NULL),
-    m_udpSocket(NULL),
+    m_tcpSocket(0),
+    m_udpSocket(0),
     m_tcpAddress(0,0),
     m_udpAddress(0,0),
     m_tcpConnected(false),
@@ -248,7 +251,7 @@ MustlClient::TCPReceive(MustlData& outData)
     {
         throw(MustlFail("TCP receive on closed socket"));
     }
-    MUSTLASSERT(m_tcpSocket != NULL);
+    MUSTLASSERT(m_tcpSocket != 0);
 
     outData.PrepareForWrite(kEthernetMTU);
     U32 receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
@@ -277,7 +280,7 @@ MustlClient::UDPSend(MustlData& ioData)
     {
         throw(MustlFail("UDP send on closed socket"));
     }
-    MUSTLASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_udpSocket != 0);
 
     U32 receiveSize, sentSize;
     
@@ -303,7 +306,7 @@ MustlClient::UDPReceive(MustlData& outData)
     {
         throw(MustlFail("UDP receive on closed socket"));
     }
-    MUSTLASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_udpSocket != 0);
 
     MustlAddress receiveAddress;
     outData.PrepareForWrite(kEthernetMTU);

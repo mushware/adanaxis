@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.10 2003/01/12 17:33:01 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.11 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.11  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.10  2003/01/12 17:33:01  southa
  * Mushcore work
  *
@@ -93,16 +96,13 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::MushcoreCommand;
-//using Mushware::MushcoreData;
-//using Mushware::MushcoreEnv;
-//using Mushware::MushcoreEnvOutput;
 
 auto_ptr< MushcoreData<MustlWebLink> > MushcoreData<MustlWebLink>::m_instance;
 string MustlWebLink::m_webPath="";
 
 MustlWebLink::MustlWebLink(tSocket inSocket) :
     m_receiveState(kReceiveInitial),
+    m_tcpSocket(0),
     m_linkErrors(0),
     m_isDead(false)
 {
@@ -139,10 +139,10 @@ MustlWebLink::~MustlWebLink()
 void
 MustlWebLink::Disconnect(void)
 {
-    if (m_tcpSocket != NULL)
+    if (m_tcpSocket != 0)
     {
         MustlPlatform::SocketClose(m_tcpSocket);
-        m_tcpSocket=NULL;
+        m_tcpSocket=0;
     }
     m_isDead = true;
 }
@@ -520,7 +520,7 @@ MustlWebLink::SendTestPage(void)
     http.Endl();
     http.Header();
 
-    http.Out() << "Infernal Contractor II test page";
+    http.Out() << "Mustl test page";
     
     http.Endl();
     http.Footer();

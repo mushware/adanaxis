@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.12 2003/01/11 17:58:15 southa Exp $
+ * $Id: MustlServer.cpp,v 1.13 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.13  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.12  2003/01/11 17:58:15  southa
  * Mustl fixes
  *
@@ -124,8 +127,8 @@ MustlServer::~MustlServer()
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
-        MUSTLASSERT(m_udpSocket != NULL);
+        MUSTLASSERT(m_tcpSocket != 0);
+        MUSTLASSERT(m_udpSocket != 0);
         MustlPlatform::SocketClose(m_tcpSocket);
         MustlPlatform::SocketClose(m_udpSocket);
     }
@@ -164,8 +167,8 @@ MustlServer::Connect(U32 inPort)
             if (portNum > inPort+7) throw;
         }
     }
-    MUSTLASSERT(m_tcpSocket != NULL);
-    MUSTLASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_tcpSocket != 0);
+    MUSTLASSERT(m_udpSocket != 0);
     
     MustlLog::Instance().NetLog() << "Created server on port " << m_serverPortHostOrder << endl;
     m_serving=true;
@@ -176,12 +179,12 @@ MustlServer::Disconnect(void)
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
-        MUSTLASSERT(m_udpSocket != NULL);
+        MUSTLASSERT(m_tcpSocket != 0);
+        MUSTLASSERT(m_udpSocket != 0);
         MustlPlatform::SocketClose(m_tcpSocket);
         MustlPlatform::SocketClose(m_udpSocket);
-        m_tcpSocket=NULL;
-        m_udpSocket=NULL;
+        m_tcpSocket=0;
+        m_udpSocket=0;
     }
     m_serving=false;
     MustlLog::Instance().NetLog() << "Closed server" << endl;
@@ -222,7 +225,7 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
         MustlLog::Instance().NetLog() << "UDPSend (server) to bad address (" << inAddress << ")" << endl;
     }
     
-    MUSTLASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_udpSocket != 0);
 
     U32 dataSize = MustlPlatform::UDPSend(inAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     ioData.ReadPosAdd(dataSize);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.9 2003/01/11 17:58:16 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.10 2003/01/13 15:01:21 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.10  2003/01/13 15:01:21  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.9  2003/01/11 17:58:16  southa
  * Mustl fixes
  *
@@ -78,6 +81,7 @@ using namespace std;
 auto_ptr<MustlWebServer> MustlWebServer::m_instance;
 
 MustlWebServer::MustlWebServer() :
+    m_tcpSocket(0),
     m_linkCtr(0),
     m_permission(kPermissionLocal),
     m_permissionFunction(NULL),
@@ -108,9 +112,9 @@ MustlWebServer::Disconnect(void)
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
+        MUSTLASSERT(m_tcpSocket != 0);
         MustlPlatform::SocketClose(m_tcpSocket);
-        m_tcpSocket = NULL;
+        m_tcpSocket = 0;
         m_serving=false;
     }
 }
@@ -119,7 +123,7 @@ MustlWebServer::~MustlWebServer()
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
+        MUSTLASSERT(m_tcpSocket != 0);
         MustlPlatform::SocketClose(m_tcpSocket);
     }
     MustlLog::Instance().WebLog() << "Closed web server" << endl;
@@ -130,7 +134,7 @@ MustlWebServer::Accept(void)
 {
     if (m_serving)
     {
-        MUSTLASSERT(m_tcpSocket != NULL);
+        MUSTLASSERT(m_tcpSocket != 0);
         MustlAddress remoteAddress;
         tSocket newSocket;
         if (MustlPlatform::Accept(newSocket, remoteAddress, m_tcpSocket))
