@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.20 2002/08/24 15:42:24 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.21 2002/08/24 15:57:35 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.21  2002/08/24 15:57:35  southa
+ * Reset player position
+ *
  * Revision 1.20  2002/08/24 15:42:24  southa
  * Race state change
  *
@@ -94,6 +97,7 @@ GameTypeRace::Initialise(void)
     m_resultAlpha=0;
     m_raceState=kPrelude;
     m_timeAllowance=m_initialTime;
+    m_records.Reset();
 }
 
 void
@@ -150,8 +154,13 @@ GameTypeRace::SequenceAdvance(void)
         default:
             break;
     }
+    m_timeAllowance=m_initialTime;
     
-    U32 lastSequence = m_sequence;
+    U32 previousSequence = m_sequence;
+    if (previousSequence == 0) previousSequence = m_chequePoints.size();
+    --previousSequence;
+    
+    U32 thisSequence = m_sequence;
 
     m_timeAllowance += m_chequePoints[m_sequence]->AddTimeGet();
     
@@ -197,9 +206,9 @@ GameTypeRace::SequenceAdvance(void)
     if (m_chequePointTimeValid)
     {
         GameTimer::tMsec splitTime = m_dispSplit;
-        if (m_records.SplitTimeValid(lastSequence))
+        if (m_records.SplitTimeValid(previousSequence))
         {
-            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(lastSequence);
+            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
             GameDialogue *splitDialogue =
                 GameData::Instance().CurrentDialogueAdd("splitdifference",
                                         *GameData::Instance().DialogueGet("splitdifference"));
@@ -211,10 +220,10 @@ GameTypeRace::SequenceAdvance(void)
                                     *GameData::Instance().DialogueGet("splitdisplay"));
         splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
 
-        m_records.SplitTimePropose(lastSequence, splitTime);
+        m_records.SplitTimePropose(previousSequence, splitTime);
         if (judgementRatio == 0.0)
         {
-            judgementRatio = splitTime / m_chequePoints[lastSequence]->ParTimeGet();
+            judgementRatio = splitTime / m_chequePoints[thisSequence]->ParTimeGet();
         }
     }
     m_chequePointTime = gameTime;
@@ -385,13 +394,13 @@ GameTypeRace::RenderTimes(void) const
 
     GLUtils::ColourSet(0.0,1.0,1.0,0.75);
 
-    U32 nextSequence = m_sequence+1;
-    if (nextSequence >= m_chequePoints.size()) nextSequence = 0;
-
-    if (m_records.SplitTimeValid(nextSequence))
+    U32 prevSequence = m_sequence;
+    if (prevSequence == 0) prevSequence = m_chequePoints.size();
+    --prevSequence;
+    if (m_records.SplitTimeValid(prevSequence))
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(m_sequence)),
+        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(prevSequence)),
                               GLFontRef("font-mono1", 0.02), -1.0);
         splitRecordStr.Render();
     }
@@ -473,21 +482,21 @@ GameTypeRace::RenderResult(void) const
     {
         if (m_records.SplitTimeValid(i))
         {
-            U32 next=i+1;
-            if (next >= m_chequePoints.size()) next=0;
             ostringstream message;
-            message << i+1 << "-" << next+1 << " :";
+	    U32 nextPoint=i+1;
+	    if (nextPoint >= m_chequePoints.size()) nextPoint=0;
+            message << i+1 << "-" << nextPoint+1 << " :";
             GLString splitRecordStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
             orthoGL.MoveTo(column1, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
-            splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
+            splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(i)));
             orthoGL.MoveTo(column2, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
-            if (m_worldRecords.SplitTimeValid(next))
+            if (m_worldRecords.SplitTimeValid(i))
             {
-                splitRecordStr.TextSet(GameTimer::MsecToString(m_worldRecords.SplitTimeGet(next)));
+                splitRecordStr.TextSet(GameTimer::MsecToString(m_worldRecords.SplitTimeGet(i)));
                 orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
                 splitRecordStr.Render();
             }
