@@ -46,7 +46,7 @@ else
     CPPFLAGS="$CPPFLAGS `$ac_prog_sdl_config --cflags`"
     LIBS="$LIBS `$ac_prog_sdl_config --libs`"
     
-    AC_ARG_WITH(nosdlmain, AC_HELP_STRING([--with-nosdlmain        Remove -lSDLmain from configure's tests]),[] , [    
+    AC_ARG_WITH(nosdlmain, [  --with-nosdlmain        Remove -lSDLmain from configure's tests], [    
         case "$LIBS" in
             *-lSDLmain*)
                 SDL_EXTRA_LIBS="-lSDLmain"
@@ -101,7 +101,7 @@ case "$target" in
             AC_CHECK_LIB(m, main)
             AC_CHECK_LIB(Xext, main)
             
-            AC_ARG_WITH(mesa, AC_HELP_STRING([--with-mesa             Use MesaGL libs instead of GL LIBS]), [
+            AC_ARG_WITH(mesa, [  --with-mesa             Use MesaGL libs instead of GL LIBS], [
 dnl Use Mesa
                 AC_CHECK_LIB(MesaGL, main,, AC_MSG_ERROR([Cannot find and link MesaGL]))
                 AC_CHECK_LIB(MesaGLU, main,, AC_MSG_ERROR([Cannot find and link MesaGLU]))
