@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } 4BtU5wMfOU8YYOqXOouT8w
 /*
- * $Id: MustlData.h,v 1.10 2004/09/26 21:07:15 southa Exp $
+ * $Id: MustlData.h,v 1.11 2004/09/27 22:42:10 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.11  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.10  2004/09/26 21:07:15  southa
  * Mustl compilation fixes
  *
@@ -97,9 +100,9 @@ public:
     Mustl::U8 *WritePtrGet(void);
     void Write(const std::string& inStr);
     
-    Mustl::U32 MessagePosGet(void) const;
+    std::size_t MessagePosGet(void) const;
     void MessagePosSet(std::size_t inPos);
-    Mustl::U32 MessageSizeGet(void) const;
+    std::size_t MessageSizeGet(void) const;
     Mustl::U8 *MessagePtrGet(void);
 
     void LengthPosSet(std::size_t inPos);

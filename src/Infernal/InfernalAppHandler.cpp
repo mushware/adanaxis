@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } OK79NjKAFVFPIyTLS5wV9g
 /*
- * $Id: InfernalAppHandler.cpp,v 1.5 2004/03/06 13:13:42 southa Exp $
+ * $Id: InfernalAppHandler.cpp,v 1.6 2004/09/26 20:43:19 southa Exp $
  * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.6  2004/09/26 20:43:19  southa
+ * TestMustl fixes
+ *
  * Revision 1.5  2004/03/06 13:13:42  southa
  * Maurheen created
  *
@@ -74,11 +77,11 @@ InfernalAppHandler::GameModeEnter(bool inResume)
     {
         CurrentSwapOut();
 
-        if (!inResume || !InfernalData::Sgl().ContractExists("contract1"))
+        if (!inResume || !MushcoreData<GameBase>::Sgl().Exists("contract1"))
         {
             PrepareNewGame();
         }
-        m_pGame=InfernalData::Sgl().ContractGet("contract1");
+        m_pGame=MushcoreData<GameBase>::Sgl().Get("contract1");
 
         MUSHCOREASSERT(m_pGame != NULL);
         CurrentSwapIn("contract1");
@@ -115,7 +118,7 @@ InfernalAppHandler::PrepareNewGame(void)
     command.Execute();
     
     // Get a pointer to the newly created contract
-    m_pGame=InfernalData::Sgl().ContractGet("contract1");
+    m_pGame=MushcoreData<GameBase>::Sgl().Get("contract1");
 }
 
 void

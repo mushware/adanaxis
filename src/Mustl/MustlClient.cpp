@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } Y1Uo8hcEb93pa7jVo15RrQ
 /*
- * $Id: MustlClient.cpp,v 1.14 2003/09/17 19:40:37 southa Exp $
+ * $Id: MustlClient.cpp,v 1.15 2004/01/02 21:13:14 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.15  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.14  2003/09/17 19:40:37  southa
  * Source conditioning upgrades
  *
@@ -194,6 +197,7 @@ MustlClient::UDPConnect(const MustlAddress& inAddress)
         }
         catch (MushcoreNonFatalFail& e)
         {
+            (void) e;
             ++localPort;
             if (++failCtr > 8) // Should be configurable
             {

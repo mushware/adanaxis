@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.9 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.10 2004/09/27 22:42:09 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.10  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.9  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
@@ -1233,7 +1236,9 @@ InfernalContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
-    InfernalData::Sgl().ContractGetOrCreate(name)->Unpickle(xml);
+    InfernalContract *pContract = new InfernalContract;
+    MushcoreData<GameBase>::Sgl().Give(name, pContract);
+    pContract->Unpickle(xml);
     return MushcoreScalar(0);
 }
 
