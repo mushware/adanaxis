@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.3 2002/08/07 10:47:44 southa Exp $
+# $Id: MakeInstaller.sh,v 1.4 2002/10/20 17:53:19 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.4  2002/10/20 17:53:19  southa
+# Preparation for 0.1.0
+#
 # Revision 1.3  2002/08/07 10:47:44  southa
 # Preparation for release 0.0.3
 #
@@ -29,6 +32,7 @@
 
 CpMac=/Developer/Tools/CpMac
 SetFile=/Developer/Tools/SetFile
+releaseDir=`pwd`/release
 
 if test "x$1" = "x"
 then
@@ -45,34 +49,30 @@ echo 'This scripts expects that the ProjectBuilder application is built and'
 echo 'installed in the ic2data directory, make release has been done, and'
 echo 'the macosxlibs checkout is present.'
 
-rm release/system/ic2
-strip release/system/ic2.app/Contents/MacOS/ic2
+rm "${releaseDir}/system/ic2"
+strip "${releaseDir}/system/ic2.app/Contents/MacOS/ic2"
+
+frameworksDir=${releaseDir}/system/ic2.app/Contents/Frameworks
+mkdir "${frameworksDir}"
 
 cd macosx
-rm -rf resources
-mkdir resources
-chmod 0775 resources
 cd macosxlibs
 # remake the links that CVS loses
 /bin/sh MakeLinks.sh
 for filename in *.dylib
 do
-cp -pR $filename ../resources/$filename
-chmod 0775 ../resources/$filename
+cp -pR "$filename" "${frameworksDir}/$filename"
 done
 # cd back to macosx
 cd ..
 
-# Copy executable files
-install -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_install
-install -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_upgrade
-
-# Copy non-executable files
-for filename in *.html *.url
+for filename in *.txt
 do
-cp -pR "$filename" "resources/$filename"
-chmod 0664 "resources/$filename"
+ditto -rsrcFork "$filename" "${releaseDir}/$filename"
 done
+
+ditto -rsrcFork "Mushware web site.url" "${releaseDir}/Mushware web site.url"
+ditto -rsrcFork "UpdateCheck.url" "${releaseDir}/system/UpdateCheck.url"
 
 # Special for udevgames
 echo "*** Appending udevgames to contract.xml"
@@ -80,35 +80,15 @@ sed -e "s/<\/contract>//" ../release/contracts/first-day/contract.xml > tmpfile$
 cat tmpfile$$ contract-append.xml > ../release/contracts/first-day/contract.xml
 rm tmpfile$$
 
-cd ../release
-for filename in *.txt
-do
-cp "$filename" "../macosx/resources/$filename"
-done
+echo Fixing up file types
+find ${releaseDir} -name '*.txt' -exec $SetFile -a E {} \;
+find ${releaseDir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
+ln -s 'system/ic2.app' "${releaseDir}/Infernal Contractor II"
 
-cd ../macosx
-for filename in *.txt
-do
-cp "$filename" "resources/$filename"
-done
+echo Setting permissions
+find ${releaseDir} -type f -exec chmod 0664 {} \;
+find ${releaseDir} -type d -exec chmod 0775 {} \;
+find ${releaseDir} -name ic2 -exec chmod 0775 {} \;
+find ${releaseDir} -name '*.dylib' -exec chmod 0775 {} \;
 
-cd resources
-
-# Fix the types
-for filename in *.txt
-do
-$SetFile -a E "$filename"
-done
-
-for filename in *.url
-do
-$SetFile -a E -t LINK -c MSIE "$filename"
-done
-
-for filename in *.txt *.url
-do
-chmod 0664 "$filename"
-done
-
-echo 'Done.  Please build the package using macosx/package-spec.pmsp'
-echo "and save with name IC2-macosx-setup-$version.pkg (important)."
+echo Done.  Name for disc image is IC2-macosx-setup-$version

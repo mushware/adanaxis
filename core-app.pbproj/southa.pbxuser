@@ -10749,14 +10749,14 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 59424095;
+			PBXPerProjectTemplateStateSaveDate = 59486099;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F5974ED8038ABD9601A80164;
+									bookmark = F5B34E7D038BB4F001A80164;
 									history = (
 										F57B3132028C66AB0195BBD7,
 										F57B3133028C66AB0195BBD7,
@@ -11007,7 +11007,6 @@
 										F595955D0365EB4801A80164,
 										F510CFDC0365F6FD01A80164,
 										F510CFDD0365F6FD01A80164,
-										F510CFDE0365F6FD01A80164,
 										F595AB0803660A6D01A80164,
 										F5B345EB037035A301A80164,
 										F5B345F0037035A301A80164,
@@ -11147,7 +11146,8 @@
 										F5B33B3A03896EF901A80164,
 										F5AD2999038ABCB201A80164,
 										F5974ED6038ABD9601A80164,
-										F5B345ED037035A301A80164,
+										F5B34E7B038BB4F001A80164,
+										F510CFDE0365F6FD01A80164,
 									);
 									prevStack = (
 										F57BD7D1028AF27C01AD87C4,
@@ -17849,6 +17849,7 @@
 										F5B33B8403896EF901A80164,
 										F5AD299A038ABCB201A80164,
 										F5974ED7038ABD9601A80164,
+										F5B34E7C038BB4F001A80164,
 									);
 								};
 								NavCount = 1;
@@ -18327,7 +18328,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 59424095;
+			PBXWorkspaceStateSaveDate = 59486099;
 		};
 		perUserProjectItems = {
 			F500892C0373044701A80164 = F500892C0373044701A80164;
@@ -23613,7 +23614,6 @@
 			F5968288035B15A601A80166 = F5968288035B15A601A80166;
 			F5974ED6038ABD9601A80164 = F5974ED6038ABD9601A80164;
 			F5974ED7038ABD9601A80164 = F5974ED7038ABD9601A80164;
-			F5974ED8038ABD9601A80164 = F5974ED8038ABD9601A80164;
 			F599EBB10365C60201A80164 = F599EBB10365C60201A80164;
 			F59C48EF037A8CF701A80164 = F59C48EF037A8CF701A80164;
 			F59C48F0037A8CF701A80164 = F59C48F0037A8CF701A80164;
@@ -24498,7 +24498,6 @@
 			F5B33B8303896EF901A80164 = F5B33B8303896EF901A80164;
 			F5B33B8403896EF901A80164 = F5B33B8403896EF901A80164;
 			F5B345EB037035A301A80164 = F5B345EB037035A301A80164;
-			F5B345ED037035A301A80164 = F5B345ED037035A301A80164;
 			F5B345F0037035A301A80164 = F5B345F0037035A301A80164;
 			F5B345F1037035A301A80164 = F5B345F1037035A301A80164;
 			F5B345F6037035A301A80164 = F5B345F6037035A301A80164;
@@ -24530,6 +24529,9 @@
 			F5B34610037035A301A80164 = F5B34610037035A301A80164;
 			F5B34611037035A301A80164 = F5B34611037035A301A80164;
 			F5B34612037035A301A80164 = F5B34612037035A301A80164;
+			F5B34E7B038BB4F001A80164 = F5B34E7B038BB4F001A80164;
+			F5B34E7C038BB4F001A80164 = F5B34E7C038BB4F001A80164;
+			F5B34E7D038BB4F001A80164 = F5B34E7D038BB4F001A80164;
 			F5B37E4D0387D34401A80164 = F5B37E4D0387D34401A80164;
 			F5B37E500387D34401A80164 = F5B37E500387D34401A80164;
 			F5B37E510387D34401A80164 = F5B37E510387D34401A80164;
@@ -67787,26 +67789,10 @@
 		vrLen = 1617;
 		vrLoc = 3255;
 	};
-	F5974ED8038ABD9601A80164 = {
-		fRef = F5974EDA038ABD9701A80164;
-		isa = PBXTextBookmark;
-		name = "configure.in: 199";
-		rLen = 0;
-		rLoc = 8539;
-		rType = 0;
-		vrLen = 995;
-		vrLoc = 7767;
-	};
 	F5974ED9038ABD9701A80164 = {
 		isa = PBXFileReference;
 		name = README.macosx;
 		path = "/Users/southa/core-app/README.macosx";
-		refType = 0;
-	};
-	F5974EDA038ABD9701A80164 = {
-		isa = PBXFileReference;
-		name = configure.in;
-		path = "/Users/southa/core-app/configure.in";
 		refType = 0;
 	};
 	F5974EDB038ABD9701A80164 = {
@@ -76769,16 +76755,6 @@
 		vrLen = 517;
 		vrLoc = 769;
 	};
-	F5B345ED037035A301A80164 = {
-		fRef = F5B3461A037035A401A80164;
-		isa = PBXTextBookmark;
-		name = "configure.in: 158";
-		rLen = 0;
-		rLoc = 7447;
-		rType = 0;
-		vrLen = 1108;
-		vrLoc = 0;
-	};
 	F5B345F0037035A301A80164 = {
 		fRef = F56CBBD70317A68E017AE398;
 		isa = PBXTextBookmark;
@@ -77095,12 +77071,6 @@
 		path = "/Users/southa/core-app/configure.in";
 		refType = 0;
 	};
-	F5B3461A037035A401A80164 = {
-		isa = PBXFileReference;
-		name = configure.in;
-		path = "/Users/southa/core-app/configure.in";
-		refType = 0;
-	};
 	F5B3461B037035A501A80164 = {
 		isa = PBXFileReference;
 		name = README.macosx;
@@ -77108,6 +77078,54 @@
 		refType = 0;
 	};
 	F5B3461C037035A501A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
+	F5B34E7B038BB4F001A80164 = {
+		fRef = F5B34E80038BB4F201A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 199";
+		rLen = 0;
+		rLoc = 8539;
+		rType = 0;
+		vrLen = 995;
+		vrLoc = 7767;
+	};
+	F5B34E7C038BB4F001A80164 = {
+		fRef = F5B34E7F038BB4F201A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 199";
+		rLen = 0;
+		rLoc = 8539;
+		rType = 0;
+		vrLen = 995;
+		vrLoc = 7767;
+	};
+	F5B34E7D038BB4F001A80164 = {
+		fRef = F5B34E7E038BB4F101A80164;
+		isa = PBXTextBookmark;
+		name = "MakeRelease.sh: 38";
+		rLen = 0;
+		rLoc = 1258;
+		rType = 0;
+		vrLen = 1258;
+		vrLoc = 0;
+	};
+	F5B34E7E038BB4F101A80164 = {
+		isa = PBXFileReference;
+		name = MakeRelease.sh;
+		path = "/Users/southa/core-app/MakeRelease.sh";
+		refType = 0;
+	};
+	F5B34E7F038BB4F201A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
+	F5B34E80038BB4F201A80164 = {
 		isa = PBXFileReference;
 		name = configure.in;
 		path = "/Users/southa/core-app/configure.in";
@@ -79918,7 +79936,7 @@
 		isa = PBXTextBookmark;
 		name = "MakeInstaller.sh: 84";
 		rLen = 0;
-		rLoc = 2214;
+		rLoc = 2162;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 1524;
@@ -79938,7 +79956,7 @@
 		isa = PBXTextBookmark;
 		name = "MakeInstaller.sh: 84";
 		rLen = 0;
-		rLoc = 2148;
+		rLoc = 2096;
 		rType = 0;
 		vrLen = 830;
 		vrLoc = 1524;
