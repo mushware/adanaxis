@@ -1500,6 +1500,79 @@
 			settings = {
 			};
 		};
+		7AB44AC4052EE23100A80064 = {
+			children = (
+				7AF8B07503DC39E700A80164,
+				7AF8B07603DC39E700A80164,
+				7AF8B07D03DC39E700A80164,
+				7AF8B07E03DC39E700A80164,
+				7AF8B08303DC39E700A80164,
+				7AF8B08403DC39E700A80164,
+				7AF8B08503DC39E700A80164,
+				7AF8B08603DC39E700A80164,
+				7AF8B09203DC39E700A80164,
+				7AF8B09303DC39E700A80164,
+				7AF8B09403DC39E700A80164,
+				7AF8B09503DC39E700A80164,
+				7AF8B0A003DC39E700A80164,
+				7AF8B0A103DC39E700A80164,
+				7AB5517D041E943100A80164,
+				7AB5517C041E943100A80164,
+				7AF8B0A203DC39E700A80164,
+				7AF8B0A303DC39E700A80164,
+				7AF8B0A403DC39E700A80164,
+				7AF8B0A503DC39E700A80164,
+				7AF8B0A603DC39E700A80164,
+				7AF8B0A703DC39E700A80164,
+				7AF8B0A803DC39E700A80164,
+				7AF8B0A903DC39E700A80164,
+				7AF8B0AA03DC39E700A80164,
+				7AF8B0AB03DC39E700A80164,
+				7AF8B0AC03DC39E700A80164,
+				7AF8B0B303DC39E700A80164,
+				7AF8B0B403DC39E700A80164,
+				7AF8B0C703DC39E700A80164,
+				7AF8B0C803DC39E700A80164,
+				7AF8B0C903DC39E700A80164,
+				7AF8B0CB03DC39E700A80164,
+				7AF8B0CC03DC39E700A80164,
+				7AF8B0CD03DC39E700A80164,
+				7AF8B0CE03DC39E700A80164,
+				7AF8B0CF03DC39E700A80164,
+				7AF8B0D003DC39E700A80164,
+				7AF8B0D103DC39E700A80164,
+				7AF8B0D203DC39E700A80164,
+				7AF8B0D303DC39E700A80164,
+				7AF8B0D403DC39E700A80164,
+				7AF8B0DB03DC39E700A80164,
+				7AF8B0DC03DC39E700A80164,
+				7AF8B0DD03DC39E700A80164,
+				7AF8B0DE03DC39E700A80164,
+			);
+			isa = PBXGroup;
+			name = Infernal;
+			refType = 4;
+		};
+		7AB44AC6052EE3C600A80064 = {
+			children = (
+				7AF8B08703DC39E700A80164,
+				7AF8B08803DC39E700A80164,
+				7AF8B08903DC39E700A80164,
+				7AF8B08A03DC39E700A80164,
+				7AF8B08B03DC39E700A80164,
+				7AF8B08C03DC39E700A80164,
+				7AF8B0AD03DC39E700A80164,
+				7AF8B0AE03DC39E700A80164,
+				7AF8B0AF03DC39E700A80164,
+				7AF8B0B003DC39E700A80164,
+				7AF8B0B103DC39E700A80164,
+				7AF8B0B203DC39E700A80164,
+			);
+			isa = PBXGroup;
+			name = MustlNet;
+			path = "";
+			refType = 2;
+		};
 		7AB4599603D8BD4100A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1858,13 +1931,15 @@
 		7AB5517C041E943100A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			path = GameInfo.h;
+			name = GameInfo.h;
+			path = Game/GameInfo.h;
 			refType = 4;
 		};
 		7AB5517D041E943100A80164 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			path = GameInfo.cpp;
+			name = GameInfo.cpp;
+			path = Game/GameInfo.cpp;
 			refType = 4;
 		};
 		7AB5517E041E943100A80164 = {
@@ -3241,39 +3316,19 @@
 				7AF8B07203DC39E700A80164,
 				7AF8B07303DC39E700A80164,
 				7AF8B07403DC39E700A80164,
-				7AF8B07503DC39E700A80164,
-				7AF8B07603DC39E700A80164,
 				7AF8B07703DC39E700A80164,
 				7AF8B07803DC39E700A80164,
 				7AF8B07903DC39E700A80164,
 				7AF8B07A03DC39E700A80164,
 				7AF8B07B03DC39E700A80164,
 				7AF8B07C03DC39E700A80164,
-				7AF8B07D03DC39E700A80164,
-				7AF8B07E03DC39E700A80164,
 				7AF8B07F03DC39E700A80164,
 				7AF8B08003DC39E700A80164,
 				7AF8B08103DC39E700A80164,
 				7AF8B08203DC39E700A80164,
-				7AF8B08303DC39E700A80164,
-				7AF8B08403DC39E700A80164,
-				7AF8B08503DC39E700A80164,
-				7AF8B08603DC39E700A80164,
-				7AF8B08703DC39E700A80164,
-				7AF8B08803DC39E700A80164,
-				7AF8B08903DC39E700A80164,
-				7AF8B08A03DC39E700A80164,
-				7AF8B08B03DC39E700A80164,
-				7AF8B08C03DC39E700A80164,
 				7AF8B08D03DC39E700A80164,
 				7AF8B08E03DC39E700A80164,
 				7AF8B08F03DC39E700A80164,
-				7AF8B09003DC39E700A80164,
-				7AF8B09103DC39E700A80164,
-				7AF8B09203DC39E700A80164,
-				7AF8B09303DC39E700A80164,
-				7AF8B09403DC39E700A80164,
-				7AF8B09503DC39E700A80164,
 				7AF8B09603DC39E700A80164,
 				7AF8B09703DC39E700A80164,
 				7AF8B09803DC39E700A80164,
@@ -3284,29 +3339,6 @@
 				7AF8B09D03DC39E700A80164,
 				7AF8B09E03DC39E700A80164,
 				7AF8B09F03DC39E700A80164,
-				7AF8B0A003DC39E700A80164,
-				7AB5517D041E943100A80164,
-				7AB5517C041E943100A80164,
-				7AF8B0A103DC39E700A80164,
-				7AF8B0A203DC39E700A80164,
-				7AF8B0A303DC39E700A80164,
-				7AF8B0A403DC39E700A80164,
-				7AF8B0A503DC39E700A80164,
-				7AF8B0A603DC39E700A80164,
-				7AF8B0A703DC39E700A80164,
-				7AF8B0A803DC39E700A80164,
-				7AF8B0A903DC39E700A80164,
-				7AF8B0AA03DC39E700A80164,
-				7AF8B0AB03DC39E700A80164,
-				7AF8B0AC03DC39E700A80164,
-				7AF8B0AD03DC39E700A80164,
-				7AF8B0AE03DC39E700A80164,
-				7AF8B0AF03DC39E700A80164,
-				7AF8B0B003DC39E700A80164,
-				7AF8B0B103DC39E700A80164,
-				7AF8B0B203DC39E700A80164,
-				7AF8B0B303DC39E700A80164,
-				7AF8B0B403DC39E700A80164,
 				7AF8B0B503DC39E700A80164,
 				7AF8B0B603DC39E700A80164,
 				7AF8B0B703DC39E700A80164,
@@ -3325,32 +3357,15 @@
 				7AF8B0C403DC39E700A80164,
 				7AF8B0C503DC39E700A80164,
 				7AF8B0C603DC39E700A80164,
-				7AF8B0C703DC39E700A80164,
-				7AF8B0C803DC39E700A80164,
-				7AF8B0C903DC39E700A80164,
 				7AB40C6303F1828100A80164,
 				7AB40C6403F1828100A80164,
 				7AF8B0CA03DC39E700A80164,
-				7AF8B0CB03DC39E700A80164,
-				7AF8B0CC03DC39E700A80164,
-				7AF8B0CD03DC39E700A80164,
-				7AF8B0CE03DC39E700A80164,
-				7AF8B0CF03DC39E700A80164,
-				7AF8B0D003DC39E700A80164,
-				7AF8B0D103DC39E700A80164,
-				7AF8B0D203DC39E700A80164,
-				7AF8B0D303DC39E700A80164,
-				7AF8B0D403DC39E700A80164,
 				7AF8B0D503DC39E700A80164,
 				7AF8B0D603DC39E700A80164,
 				7AF8B0D703DC39E700A80164,
 				7AF8B0D803DC39E700A80164,
 				7AF8B0D903DC39E700A80164,
 				7AF8B0DA03DC39E700A80164,
-				7AF8B0DB03DC39E700A80164,
-				7AF8B0DC03DC39E700A80164,
-				7AF8B0DD03DC39E700A80164,
-				7AF8B0DE03DC39E700A80164,
 			);
 			isa = PBXGroup;
 			path = Game;
@@ -3383,13 +3398,15 @@
 		7AF8B07503DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameChequePoint.cpp;
+			name = GameChequePoint.cpp;
+			path = Game/GameChequePoint.cpp;
 			refType = 4;
 		};
 		7AF8B07603DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameChequePoint.h;
+			name = GameChequePoint.h;
+			path = Game/GameChequePoint.h;
 			refType = 4;
 		};
 		7AF8B07703DC39E700A80164 = {
@@ -3431,13 +3448,15 @@
 		7AF8B07D03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameContract.cpp;
+			name = GameContract.cpp;
+			path = Game/GameContract.cpp;
 			refType = 4;
 		};
 		7AF8B07E03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameContract.h;
+			name = GameContract.h;
+			path = Game/GameContract.h;
 			refType = 4;
 		};
 		7AF8B07F03DC39E700A80164 = {
@@ -3467,61 +3486,71 @@
 		7AF8B08303DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameData.cpp;
+			name = GameData.cpp;
+			path = Game/GameData.cpp;
 			refType = 4;
 		};
 		7AF8B08403DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameData.h;
+			name = GameData.h;
+			path = Game/GameData.h;
 			refType = 4;
 		};
 		7AF8B08503DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDataUtils.cpp;
+			name = GameDataUtils.cpp;
+			path = Game/GameDataUtils.cpp;
 			refType = 4;
 		};
 		7AF8B08603DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDataUtils.h;
+			name = GameDataUtils.h;
+			path = Game/GameDataUtils.h;
 			refType = 4;
 		};
 		7AF8B08703DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDef.cpp;
+			name = GameDef.cpp;
+			path = src/Game/GameDef.cpp;
 			refType = 4;
 		};
 		7AF8B08803DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDef.h;
+			name = GameDef.h;
+			path = src/Game/GameDef.h;
 			refType = 4;
 		};
 		7AF8B08903DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDefClient.cpp;
+			name = GameDefClient.cpp;
+			path = src/Game/GameDefClient.cpp;
 			refType = 4;
 		};
 		7AF8B08A03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDefClient.h;
+			name = GameDefClient.h;
+			path = src/Game/GameDefClient.h;
 			refType = 4;
 		};
 		7AF8B08B03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDefServer.cpp;
+			name = GameDefServer.cpp;
+			path = src/Game/GameDefServer.cpp;
 			refType = 4;
 		};
 		7AF8B08C03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameDefServer.h;
+			name = GameDefServer.h;
+			path = src/Game/GameDefServer.h;
 			refType = 4;
 		};
 		7AF8B08D03DC39E700A80164 = {
@@ -3542,40 +3571,32 @@
 			path = GameEvent.h;
 			refType = 4;
 		};
-		7AF8B09003DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameException.cpp;
-			refType = 4;
-		};
-		7AF8B09103DC39E700A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			path = GameException.h;
-			refType = 4;
-		};
 		7AF8B09203DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameFloorDesigner.cpp;
+			name = GameFloorDesigner.cpp;
+			path = Game/GameFloorDesigner.cpp;
 			refType = 4;
 		};
 		7AF8B09303DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameFloorDesigner.h;
+			name = GameFloorDesigner.h;
+			path = Game/GameFloorDesigner.h;
 			refType = 4;
 		};
 		7AF8B09403DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameFloorMap.cpp;
+			name = GameFloorMap.cpp;
+			path = Game/GameFloorMap.cpp;
 			refType = 4;
 		};
 		7AF8B09503DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameFloorMap.h;
+			name = GameFloorMap.h;
+			path = Game/GameFloorMap.h;
 			refType = 4;
 		};
 		7AF8B09603DC39E700A80164 = {
@@ -3641,127 +3662,148 @@
 		7AF8B0A003DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameLightLinks.cpp;
+			name = GameLightLinks.cpp;
+			path = Game/GameLightLinks.cpp;
 			refType = 4;
 		};
 		7AF8B0A103DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameLightLinks.h;
+			name = GameLightLinks.h;
+			path = Game/GameLightLinks.h;
 			refType = 4;
 		};
 		7AF8B0A203DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMap.cpp;
+			name = GameMap.cpp;
+			path = Game/GameMap.cpp;
 			refType = 4;
 		};
 		7AF8B0A303DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMap.h;
+			name = GameMap.h;
+			path = Game/GameMap.h;
 			refType = 4;
 		};
 		7AF8B0A403DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMapArea.cpp;
+			name = GameMapArea.cpp;
+			path = Game/GameMapArea.cpp;
 			refType = 4;
 		};
 		7AF8B0A503DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMapArea.h;
+			name = GameMapArea.h;
+			path = Game/GameMapArea.h;
 			refType = 4;
 		};
 		7AF8B0A603DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMapPoint.h;
+			name = GameMapPoint.h;
+			path = Game/GameMapPoint.h;
 			refType = 4;
 		};
 		7AF8B0A703DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMessageControlData.cpp;
+			name = GameMessageControlData.cpp;
+			path = Game/GameMessageControlData.cpp;
 			refType = 4;
 		};
 		7AF8B0A803DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMessageControlData.h;
+			name = GameMessageControlData.h;
+			path = Game/GameMessageControlData.h;
 			refType = 4;
 		};
 		7AF8B0A903DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMotion.cpp;
+			name = GameMotion.cpp;
+			path = Game/GameMotion.cpp;
 			refType = 4;
 		};
 		7AF8B0AA03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMotion.h;
+			name = GameMotion.h;
+			path = Game/GameMotion.h;
 			refType = 4;
 		};
 		7AF8B0AB03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMotionSpec.cpp;
+			name = GameMotionSpec.cpp;
+			path = Game/GameMotionSpec.cpp;
 			refType = 4;
 		};
 		7AF8B0AC03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameMotionSpec.h;
+			name = GameMotionSpec.h;
+			path = Game/GameMotionSpec.h;
 			refType = 4;
 		};
 		7AF8B0AD03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetID.cpp;
+			name = GameNetID.cpp;
+			path = src/Game/GameNetID.cpp;
 			refType = 4;
 		};
 		7AF8B0AE03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetID.h;
+			name = GameNetID.h;
+			path = src/Game/GameNetID.h;
 			refType = 4;
 		};
 		7AF8B0AF03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetObject.cpp;
+			name = GameNetObject.cpp;
+			path = src/Game/GameNetObject.cpp;
 			refType = 4;
 		};
 		7AF8B0B003DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetObject.h;
+			name = GameNetObject.h;
+			path = src/Game/GameNetObject.h;
 			refType = 4;
 		};
 		7AF8B0B103DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetUtils.cpp;
+			name = GameNetUtils.cpp;
+			path = src/Game/GameNetUtils.cpp;
 			refType = 4;
 		};
 		7AF8B0B203DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameNetUtils.h;
+			name = GameNetUtils.h;
+			path = src/Game/GameNetUtils.h;
 			refType = 4;
 		};
 		7AF8B0B303DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameOverPlot.cpp;
+			name = GameOverPlot.cpp;
+			path = Game/GameOverPlot.cpp;
 			refType = 4;
 		};
 		7AF8B0B403DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameOverPlot.h;
+			name = GameOverPlot.h;
+			path = Game/GameOverPlot.h;
 			refType = 4;
 		};
 		7AF8B0B503DC39E700A80164 = {
@@ -3875,19 +3917,22 @@
 		7AF8B0C703DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameSolidMap.cpp;
+			name = GameSolidMap.cpp;
+			path = Game/GameSolidMap.cpp;
 			refType = 4;
 		};
 		7AF8B0C803DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameSolidMap.h;
+			name = GameSolidMap.h;
+			path = Game/GameSolidMap.h;
 			refType = 4;
 		};
 		7AF8B0C903DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameSpacePoint.h;
+			name = GameSpacePoint.h;
+			path = Game/GameSpacePoint.h;
 			refType = 4;
 		};
 		7AF8B0CA03DC39E700A80164 = {
@@ -3899,61 +3944,71 @@
 		7AF8B0CB03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTest.cpp;
+			name = GameTest.cpp;
+			path = Game/GameTest.cpp;
 			refType = 4;
 		};
 		7AF8B0CC03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTest.h;
+			name = GameTest.h;
+			path = Game/GameTest.h;
 			refType = 4;
 		};
 		7AF8B0CD03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileMap.cpp;
+			name = GameTileMap.cpp;
+			path = Game/GameTileMap.cpp;
 			refType = 4;
 		};
 		7AF8B0CE03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileMap.h;
+			name = GameTileMap.h;
+			path = Game/GameTileMap.h;
 			refType = 4;
 		};
 		7AF8B0CF03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileSpec.cpp;
+			name = GameTileSpec.cpp;
+			path = Game/GameTileSpec.cpp;
 			refType = 4;
 		};
 		7AF8B0D003DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileSpec.h;
+			name = GameTileSpec.h;
+			path = Game/GameTileSpec.h;
 			refType = 4;
 		};
 		7AF8B0D103DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileTraits.cpp;
+			name = GameTileTraits.cpp;
+			path = Game/GameTileTraits.cpp;
 			refType = 4;
 		};
 		7AF8B0D203DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTileTraits.h;
+			name = GameTileTraits.h;
+			path = Game/GameTileTraits.h;
 			refType = 4;
 		};
 		7AF8B0D303DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTimer.cpp;
+			name = GameTimer.cpp;
+			path = Game/GameTimer.cpp;
 			refType = 4;
 		};
 		7AF8B0D403DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameTimer.h;
+			name = GameTimer.h;
+			path = Game/GameTimer.h;
 			refType = 4;
 		};
 		7AF8B0D503DC39E700A80164 = {
@@ -3995,25 +4050,29 @@
 		7AF8B0DB03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameView.cpp;
+			name = GameView.cpp;
+			path = Game/GameView.cpp;
 			refType = 4;
 		};
 		7AF8B0DC03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameView.h;
+			name = GameView.h;
+			path = Game/GameView.h;
 			refType = 4;
 		};
 		7AF8B0DD03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameWebCommands.cpp;
+			name = GameWebCommands.cpp;
+			path = Game/GameWebCommands.cpp;
 			refType = 4;
 		};
 		7AF8B0DE03DC39E700A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			path = GameWebCommands.h;
+			name = GameWebCommands.h;
+			path = Game/GameWebCommands.h;
 			refType = 4;
 		};
 		7AF8B0DF03DC39E700A80164 = {
@@ -4198,18 +4257,6 @@
 		};
 		7AF8B0FD03DC39E800A80164 = {
 			fileRef = 7AF8B08F03DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B0FE03DC39E800A80164 = {
-			fileRef = 7AF8B09003DC39E700A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AF8B0FF03DC39E800A80164 = {
-			fileRef = 7AF8B09103DC39E700A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -7011,7 +7058,6 @@
 				7AF8B0FA03DC39E800A80164,
 				7AF8B0FC03DC39E800A80164,
 				7AF8B0FD03DC39E800A80164,
-				7AF8B0FF03DC39E800A80164,
 				7AF8B10103DC39E800A80164,
 				7AF8B10303DC39E800A80164,
 				7AF8B10503DC39E800A80164,
@@ -7131,7 +7177,6 @@
 				7AF8B0F703DC39E700A80164,
 				7AF8B0F903DC39E800A80164,
 				7AF8B0FB03DC39E800A80164,
-				7AF8B0FE03DC39E800A80164,
 				7AF8B10003DC39E800A80164,
 				7AF8B10203DC39E800A80164,
 				7AF8B10403DC39E800A80164,
@@ -7995,6 +8040,7 @@
 		};
 		F5B25BCA02187072017E032D = {
 			children = (
+				7AB44AC4052EE23100A80064,
 				F5456B4D0289845101446FAA,
 				7AF8B07003DC39E700A80164,
 				F5B25BCB02187072017E032D,
@@ -8002,6 +8048,7 @@
 				7AB562D303D1E49800A80164,
 				7A05C3B903CB43AC00A80164,
 				F5AAB67E03A8C8CC01A80164,
+				7AB44AC6052EE3C600A80064,
 				F5457BA202AFB16701E3BBF3,
 				F57BD757028ADEEF01AD87C4,
 				F5B25BE502187072017E032D,
