@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.16 2002/11/28 18:05:36 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.17 2002/12/03 20:28:17 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.17  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.16  2002/11/28 18:05:36  southa
  * Print link ages
  *
@@ -284,7 +287,7 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 
         for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (!p->second->ImageIs())
             {
                 p->second->WebPrint(ioEnv.Out());
             }
@@ -308,7 +311,7 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
         // Client images for server
         for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (p->second->IsImage())
+            if (p->second->ImageIs())
             {
                 p->second->WebPrint(ioEnv.Out());
             }
@@ -337,7 +340,7 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 
         for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            if (p->second->IsImage())
+            if (p->second->ImageIs())
             {
                 p->second->WebPrint(ioEnv.Out());
             }
@@ -360,7 +363,7 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
         // Local clients
         for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (!p->second->ImageIs())
             {
                 p->second->WebPrint(ioEnv.Out());
             }

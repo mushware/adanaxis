@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.9 2002/11/28 16:19:25 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.10 2002/11/28 18:05:35 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.10  2002/11/28 18:05:35  southa
+ * Print link ages
+ *
  * Revision 1.9  2002/11/28 16:19:25  southa
  * Fix delete object messaging
  *
@@ -79,7 +82,7 @@ GameDefServer::UpdateClients(void)
     {
         GameDefClient *clientDef=p->second;
         COREASSERT(clientDef != NULL);
-        if (clientDef->IsImage())
+        if (clientDef->ImageIs())
         {
             UpdateClient(*clientDef);
         }
@@ -89,7 +92,7 @@ GameDefServer::UpdateClients(void)
 void
 GameDefServer::UpdateClient(GameDefClient& inClient)
 {
-    COREASSERT(inClient.IsImage()); // Server shouldn't deal directly with clients on this station
+    COREASSERT(inClient.ImageIs()); // Server shouldn't deal directly with clients on this station
     MediaNetLink *netLink=NULL;
     if (MediaNetUtils::FindLinkToStation(netLink, inClient.AddressGet()))
     {

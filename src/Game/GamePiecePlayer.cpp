@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.28 2002/12/03 20:28:17 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.29 2002/12/04 00:37:11 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.29  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  * Revision 1.28  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -113,6 +116,11 @@
 
 CoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
 
+GamePiecePlayer::GamePiecePlayer() :
+    m_frameDefHistory(kFrameDefBufferSize, 0),
+    m_imageIs(false)
+{}
+
 void
 GamePiecePlayer::Render(void)
 {
@@ -202,6 +210,19 @@ GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
     motionSpec.angle += motionSpec.deltaAngle;
     // m_motion is the motionSpec used for windbacks
     m_motion.MotionSpecSet(motionSpec);
+}
+
+bool
+GamePiecePlayer::ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum)
+{
+    return m_frameDefHistory.PreviousGet(outFrameDef, inFrameNum);
+}
+
+void
+GamePiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum)
+{
+    // Function expects data to be added in frame order
+    m_frameDefHistory.Add(inDef, inFrameNum);
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.100 2002/12/03 20:28:15 southa Exp $
+ * $Id: GameContract.cpp,v 1.101 2002/12/04 00:37:10 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.101  2002/12/04 00:37:10  southa
+ * ControlFrameDef work
+ *
  * Revision 1.100  2002/12/03 20:28:15  southa
  * Network, player and control work
  *
@@ -500,63 +503,78 @@ GameContract::InitDisplay(void)
 }
 
 void
-GameContract::RunningMove(U32 inAtMsec)
+GameContract::RunningMove(const GameTimer& inTimer, U32 inNumFrames)
 {
     COREASSERT(m_floorMap != NULL);
-    GameMotionSpec motion;
-
+    U32 startFrameNum = inTimer.CurrentMotionFrameGet();
+    
     CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerDataGet().End();
 
-    for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerDataGet().Begin();
-             p != endValue; ++p)
+    for (U32 i=0; i<inNumFrames; ++i)
     {
-        GamePiecePlayer& playerRef=*p->second;
+        U32 frameNum = startFrameNum + i; // Add control delay here
         
-        playerRef.EnvironmentRead(*m_floorMap);
-        GameEventStandingOn standingOn(playerRef.StandingOnGet());
-
-        GameData::Instance().TypeGet().EventHandler(standingOn);
-
-        GameControlFrameDef frameDef;
-
-        GameData::Instance().ControllerGet("controller1")->StateGet(frameDef, inAtMsec);
-        
-        playerRef.MoveGet(motion, frameDef);
-        if (m_renderDiagnostics == kDiagnosticCollision)
+        for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerDataGet().Begin();
+                p != endValue; ++p)
         {
-            GLState::DepthSet(GLState::kDepthNone);
-            GLState::ModulationSet(GLState::kModulationColour);
-            GLState::BlendSet(GLState::kBlendLine);
-            m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
-        }
-        m_floorMap->SolidMapGet().TrimMotion(motion);
-        playerRef.MoveConfirm(motion);
-        if (m_renderDiagnostics == kDiagnosticCollision)
-        {
-            motion.Render();
+            GamePiecePlayer& playerRef=*p->second;
+            
+            playerRef.EnvironmentRead(*m_floorMap);
+            GameEventStandingOn standingOn(playerRef.StandingOnGet());
+    
+            GameData::Instance().TypeGet().EventHandler(standingOn);
+
+            const GameControlFrameDef *frameDef = NULL;
+            if (playerRef.ControlFrameDefGet(frameDef, frameNum))
+            {
+                COREASSERT(frameDef != NULL);
+    
+                GameMotionSpec motion;
+                playerRef.MoveGet(motion, *frameDef);
+                
+                if (m_renderDiagnostics == kDiagnosticCollision)
+                {
+                    GLState::DepthSet(GLState::kDepthNone);
+                    GLState::ModulationSet(GLState::kModulationColour);
+                    GLState::BlendSet(GLState::kBlendLine);
+                    m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
+                }
+                m_floorMap->SolidMapGet().TrimMotion(motion);
+                playerRef.MoveConfirm(motion);
+                if (m_renderDiagnostics == kDiagnosticCollision)
+                {
+                    motion.Render();
+                }
+            }
         }
     }
     
     const GameData::DialogueMap& currentDialogues(GameData::Instance().CurrentDialogueMapGet());
-    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
-         p != currentDialogues.end(); ++p)
-    {
-        p->second->Move();
-    }
+    string killName;
     
     for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
          p != currentDialogues.end(); ++p)
     {
+        for (U32 i=0; i<inNumFrames; ++i)
+        {
+            p->second->Move();
+        }
         if (p->second->ExpiredGet())
         {
-            GameData::Instance().CurrentDialogueDelete(p->first);
-            // Iterator now points to deleted object, so break and get the rest
-            // next time round
-            break;
+            killName=p->first;
         }
     }
+    
+    if (killName != "")
+    {
+        GameData::Instance().CurrentDialogueDelete(killName);
+    }
 
-    GameData::Instance().TypeGet().Move();
+    for (U32 i=0; i<inNumFrames; ++i)
+    {
+        GameData::Instance().TypeGet().Move();
+    }
+    
     if (GameData::Instance().TypeGet().IsGameOver())
     {
         if (m_gameState == kGameStateRunning) m_gameState = kGameStateOver;
@@ -578,7 +596,6 @@ GameContract::RunningDisplay(void)
     GLState::AmbientLightSet(currentView.AmbientLightingGet());
     GLData::Instance().LightsGet()->AmbientLightingSet(currentView.AmbientLightingGet());
     GLData::Instance().LightsGet()->LightingFactorSet(currentView.LightingFactorGet());
-    
     
     GLUtils::DisplayPrologue();
 
@@ -743,6 +760,62 @@ GameContract::DesigningDisplay(void)
 }
 
 void
+GameContract::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
+{
+    GameTimer::tMsec frameInterval = inTimer.MotionFrameIntervalGet(); // Msec between motion frames
+    GameTimer::tMsec currentMsec = inTimer.CurrentMsecGet(); // Current Msec
+    // Msec of the frame immediately before our first one
+    GameTimer::tMsec previousFrameMsec = currentMsec - frameInterval * inNumFrames;
+    // Frame number of the first frame in this sequence
+    U32 startFrame = inTimer.CurrentMotionFrameGet();
+
+    GameController *localController = GameData::Instance().ControllerGet("controller1");
+
+    CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerDataGet().End();
+
+    for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerDataGet().Begin();
+         p != endValue; ++p)
+    {
+        COREASSERT(p->second != NULL);
+        GamePiecePlayer& playerRef = *p->second;
+        if (playerRef.ImageIs())
+        {
+            // Image players have no contol queue
+        }
+        else if (localController != NULL)
+        {
+            GameTimer::tMsec frameMsec = previousFrameMsec; // Msec of frame we're working on
+            for (U32 i=0; i<inNumFrames; ++i)
+            {
+                frameMsec += frameInterval;
+                GameControlFrameDef frameDef;
+                localController->StateGet(frameDef, frameMsec);
+                playerRef.ControlFrameDefAdd(frameDef, startFrame+i);
+            }
+        }
+    }
+}
+
+void
+GameContract::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
+{
+    CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
+
+    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    {
+        if (!p->second->ImageIs())
+        {
+            GamePiecePlayer *playerPtr;
+            // Needs optimised lookup
+            if (GameData::Instance().PlayerDataGet().DataGetIfExists(playerPtr, p->first))
+            {
+                
+            }
+        }
+    }
+}
+
+void
 GameContract::Running(GameAppHandler& inAppHandler)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
@@ -765,21 +838,23 @@ GameContract::Running(GameAppHandler& inAppHandler)
             if (numMotionFrames > 6) numMotionFrames=6;
         }
 
-        GameTimer::tMsec motionFrameInterval = timer.MotionFrameIntervalGet();
-        GameTimer::tMsec frameTime = timer.CurrentMsecGet() - numMotionFrames * motionFrameInterval;
-        
-        for (tVal i=0; i<numMotionFrames; ++i)
+        FillControlQueues(timer, numMotionFrames);
+
+        if (inAppHandler.MultiplayerIs())
         {
-            // Perform a motion frame
-            frameTime += motionFrameInterval;
-            RunningMove(static_cast<U32>(frameTime));
+            SendControlQueues(timer, numMotionFrames);
         }
+        
+        RunningMove(timer, numMotionFrames);
 
         timer.MotionFramesDone(numMotionFrames);
         
         // Discard any motion frames we haven't caught up with
-        timer.MotionFramesDiscard();
-
+        if (!inAppHandler.MultiplayerIs())
+        {
+            timer.MotionFramesDiscard();
+        }
+        
         if (timer.RedisplayGet())
         {
             GLUtils::PostRedisplay();
@@ -962,7 +1037,9 @@ GameContract::VerifyOrCreateForClientDef(const string& inName, GameDefClient& in
         retVal = false;
         const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
         COREASSERT(templatePlayer != NULL);
-        playerData.DataGive(inName, new GamePiecePlayer(*templatePlayer));
+        GamePiecePlayer *newPlayer = playerData.DataGive(inName, new GamePiecePlayer(*templatePlayer));
+        COREASSERT(newPlayer != NULL);
+        newPlayer->ImageIsSet(inClientDef.ImageIs());
     }
     return retVal;
 }
@@ -975,7 +1052,7 @@ GameContract::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
     if (CoreData<GameDefClient>::Instance().DataGetIfExists(defClient, inName))
     {
         COREASSERT(defClient != NULL);
-        if (defClient->IsImage())
+        if (defClient->ImageIs())
         {
             retVal = true;
         }
@@ -995,7 +1072,7 @@ GameContract::ManagePlayers(GameAppHandler& inAppHandler)
         
         for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (p->second->IsImage())
+            if (p->second->ImageIs())
             {
                 VerifyOrCreateForClientDef(p->first, *p->second);
             }
@@ -1027,7 +1104,7 @@ GameContract::ManagePlayers(GameAppHandler& inAppHandler)
 
     for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
-        if (!p->second->IsImage())
+        if (!p->second->ImageIs())
         {
             // VerifyLocalClientDef(p->first, *p->second);
         }

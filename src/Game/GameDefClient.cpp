@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.11 2002/11/28 16:19:25 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.12 2002/11/28 18:05:35 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.12  2002/11/28 18:05:35  southa
+ * Print link ages
+ *
  * Revision 1.11  2002/11/28 16:19:25  southa
  * Fix delete object messaging
  *
@@ -164,7 +167,7 @@ GameDefClient::UpdateStatus(void)
 
     for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
-        if (p->second->IsImage())
+        if (p->second->ImageIs())
         {
             if (p->second->AddressGet() == AddressGet())
             {

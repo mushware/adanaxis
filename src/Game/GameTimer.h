@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.12 2002/11/20 22:35:27 southa Exp $
+ * $Id: GameTimer.h,v 1.13 2002/12/03 20:28:17 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.13  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.12  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -66,11 +69,12 @@ public:
     void CurrentMsecSet(U32 inMsec);
     tMsec CurrentMsecGet(void) const;
     tMsec GameMsecGet(void) const;
+    U32 CurrentMotionFrameGet(void) const;
     void Reset(void);
     bool JudgementValid(void) const;
     tVal MotionFramesGet(void) const;
     void MotionFramesDiscard(void);
-    void MotionFramesDone(tVal inFrames);
+    void MotionFramesDone(U32 inFrames);
     tVal PartialMotionFrameGet(void) const;
     bool RedisplayGet(void) const;
     void RedisplayDone(void);
@@ -98,8 +102,8 @@ private:
     tUsec m_periodic100msTime;
     tUsec m_periodic1sTime;
     tUsec m_motionFrameInterval;
-    tUsec m_currentMotionFrame;
-    tUsec m_lastRedisplayMotionFrame;
+    U32 m_currentMotionFrame;
+    U32 m_lastRedisplayMotionFrame;
     tUsec m_lastFrameTime;
     tUsec m_averageFrameDuration;
     tUsec m_motionMargin;

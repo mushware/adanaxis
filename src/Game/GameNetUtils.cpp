@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameNetUtils.cpp,v 1.1 2002/12/03 20:28:17 southa Exp $
+ * $Log: GameNetUtils.cpp,v $
+ * Revision 1.1  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  */
 
 #include "GameNetUtils.h"
@@ -46,13 +49,13 @@ GameNetUtils::KillLinks(void)
 }
 
 void
-GameNetUtils::KillServersByType(bool inIsImage)
+GameNetUtils::KillServersByType(bool inImageIs)
 {
     CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
 
     for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
-        if (p->second->IsImage() == inIsImage)
+        if (p->second->ImageIs() == inImageIs)
         {
             p->second->Kill();
         }
@@ -60,13 +63,13 @@ GameNetUtils::KillServersByType(bool inIsImage)
 }
 
 void
-GameNetUtils::KillClientsByType(bool inIsImage)
+GameNetUtils::KillClientsByType(bool inImageIs)
 {
     CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
 
     for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
-        if (p->second->IsImage() == inIsImage)
+        if (p->second->ImageIs() == inImageIs)
         {
             p->second->Kill();
         }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.5 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.7 2002/11/28 15:33:31 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.7  2002/11/28 15:33:31  southa
+ * Pass GameDef status over link
+ *
  * Revision 1.5  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -56,14 +59,14 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     else
     {
         GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(dataName, new GameDefClient(elementName));
-        gameDefClient->IsImageSet(true);
+        gameDefClient->ImageIsSet(true);
         gameDefClient->AddressSet(m_address);
         gameDefClient->Unpickle(inXML);
         
         CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
         for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (!p->second->ImageIs())
             {
                 p->second->UpdateClient(*gameDefClient);
             }
@@ -93,7 +96,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
     else
     {
         GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().DataGive(dataName, new GameDefServer(elementName));
-        gameDefServer->IsImageSet(true);
+        gameDefServer->ImageIsSet(true);
         gameDefServer->AddressSet(m_address);
         gameDefServer->Unpickle(inXML);
     }

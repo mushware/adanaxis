@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.37 2002/11/20 22:35:25 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.38 2002/12/03 20:28:15 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.38  2002/12/03 20:28:15  southa
+ * Network, player and control work
+ *
  * Revision 1.37  2002/11/20 22:35:25  southa
  * Multiplayer setup
  *
@@ -256,7 +259,7 @@ GameAppHandler::GameTypeDetermine(void)
 
     for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
-        if (!p->second->IsImage())
+        if (!p->second->ImageIs())
         {
             m_gameType = kGameTypeServer;
         }
@@ -268,7 +271,7 @@ GameAppHandler::GameTypeDetermine(void)
 
         for (CoreData<GameDefClient>::tMapIterator p = CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (!p->second->ImageIs())
             {
                 m_gameType = kGameTypeClient;
             }

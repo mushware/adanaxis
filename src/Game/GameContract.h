@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.33 2002/11/24 23:18:07 southa Exp $
+ * $Id: GameContract.h,v 1.34 2002/12/03 20:28:16 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.34  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.33  2002/11/24 23:18:07  southa
  * Added type name accessor to CorePickle
  *
@@ -155,18 +158,20 @@ protected:
         kGameStateOver
     };
 
-    virtual void Init(GameAppHandler& inAppHandler);
-    virtual void Running(GameAppHandler& inAppHandler);
-    virtual void Paused(void);
-    virtual void Designing(void);
-    virtual void Over(void);
-    virtual void InitDisplay(void);
-    virtual void RunningDisplay(void);
-    virtual void RenderText(void) const;
-    virtual void RenderFastDiagnostics(void) const;
-    virtual void DesigningDisplay(void);
-    virtual void GlobalKeyControl(void);
-    virtual void RunningMove(U32 inAtMsec);
+    void Init(GameAppHandler& inAppHandler);
+    void Running(GameAppHandler& inAppHandler);
+    void Paused(void);
+    void Designing(void);
+    void Over(void);
+    void InitDisplay(void);
+    void RunningDisplay(void);
+    void RenderText(void) const;
+    void RenderFastDiagnostics(void) const;
+    void DesigningDisplay(void);
+    void GlobalKeyControl(void);
+    void RunningMove(const GameTimer& inTimer, U32 inNumFrames);
+    void FillControlQueues(const GameTimer& inTimer, U32 inNumFrames);
+    void SendControlQueues(const GameTimer& inTimer, U32 inNumFrames);
     bool VerifyOrCreateForClientDef(const string& inName, GameDefClient& inClientDef);
     bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
     void ManagePlayers(GameAppHandler& inAppHandler);

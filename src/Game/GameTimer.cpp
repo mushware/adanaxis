@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.13 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTimer.cpp,v 1.14 2002/11/20 22:35:27 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.14  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.13  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -102,6 +105,18 @@ GameTimer::GameMsecGet(void) const
     return m_currentMotionFrame * m_motionFrameInterval / 1000;
 }
 
+U32
+GameTimer::CurrentMotionFrameGet(void) const
+{
+    if (!m_timesValid)
+    {
+        throw(LogicFail("GameMsecGet before Set"));
+    }
+    return m_currentMotionFrame;
+}
+
+
+
 void
 GameTimer::Reset(void)
 {
@@ -144,7 +159,7 @@ GameTimer::MotionFramesDiscard(void)
 }
 
 void
-GameTimer::MotionFramesDone(tVal inFrames)
+GameTimer::MotionFramesDone(U32 inFrames)
 {
     m_motionFrameTime += inFrames * m_motionFrameInterval;
     if (m_motionFrameTime > m_currentTime + m_motionMargin) ReportJitter();

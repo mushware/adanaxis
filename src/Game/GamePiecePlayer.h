@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.19 2002/12/03 20:28:17 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.20 2002/12/04 00:37:11 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.20  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  * Revision 1.19  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -74,18 +77,19 @@
  *
  */
 
-#include "GamePiece.h"
-#include "GameMotion.h"
+#include "mushCore.h"
+
+#include "GameControlFrameDef.h"
 #include "GameFloorMap.h"
+#include "GameMotion.h"
+#include "GamePiece.h"
 
 class GameGraphic;
-class GameControlFrameDef;
 
 class GamePiecePlayer: public GamePiece
 {
 public:
-    GamePiecePlayer()
-        {}
+    GamePiecePlayer();
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -101,6 +105,12 @@ public:
     tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
     const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
     const GameFloorMap::tMapVector& StandingOnGet(void) { return m_standingOn; }
+    
+    bool ImageIs(void) const { return m_imageIs; }
+    void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
+    bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum);
+    void ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum);
+    
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 
@@ -135,12 +145,19 @@ private:
     PickleState m_pickleState;
     bool m_baseThreaded;
 
+    enum
+    {
+        kFrameDefBufferSize=100
+    };
+
     GameMotion m_motion;
     tVal m_adhesion;
     vector <GameGraphic *> m_graphics;
     tVal m_speedLim;
     tVal m_acceleration;
     GameFloorMap::tMapVector m_standingOn;
+    CoreHistory<U32, GameControlFrameDef> m_frameDefHistory;
+    bool m_imageIs;
 };
 
 inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)

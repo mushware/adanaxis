@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.13 2002/11/14 17:29:07 southa Exp $
+ * $Id: mushCore.h,v 1.14 2002/11/22 11:42:05 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.14  2002/11/22 11:42:05  southa
+ * Added developer controls
+ *
  * Revision 1.13  2002/11/14 17:29:07  southa
  * Config database
  *
@@ -100,6 +103,9 @@
 
 // Global configuration
 #include "CoreApp/CoreGlobalConfig.h"
+
+// History storage
+#include "CoreApp/CoreHistory.h"
 
 // Package and version information
 #include "CoreApp/CoreInfo.h"

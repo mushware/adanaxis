@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.8 2002/11/28 15:14:14 southa Exp $
+ * $Id: GameDef.h,v 1.9 2002/11/28 15:33:31 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.9  2002/11/28 15:33:31  southa
+ * Pass GameDef status over link
+ *
  * Revision 1.8  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -53,8 +56,8 @@ public:
     virtual void Unpickle(CoreXML& inXML);
 
     const string& NameGet(void) const { return m_name; }
-    bool IsImage(void) const { return m_isImage; }
-    void IsImageSet(bool inValue) { m_isImage = inValue; }
+    bool ImageIs(void) const { return m_isImage; }
+    void ImageIsSet(bool inValue) { m_isImage = inValue; }
     const string StatusWebStringGet(void) const;
     U32 CreationMsecGet(void) const { return m_creationMsec; }
     

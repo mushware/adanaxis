@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.17 2002/11/28 18:05:36 southa Exp $
+ * $Id: GameSetup.cpp,v 1.18 2002/12/03 20:28:17 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.18  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.17  2002/11/28 18:05:36  southa
  * Print link ages
  *
@@ -227,7 +230,7 @@ GameSetup::Ticker(void)
     
         for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (p->second->IsImage())
+            if (p->second->ImageIs())
             {
                 // Expire images after a time limit
                 if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)
@@ -258,7 +261,7 @@ GameSetup::Ticker(void)
 
         for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            if (p->second->IsImage())
+            if (p->second->ImageIs())
             {
                 // Expire images after a time limit
                 if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)

@@ -1,6 +1,11 @@
+#ifndef GAMECONTROLFRAMEDEF_H
+#define GAMECONTROLFRAMEDEF_H
 /*
- * $Id$
- * $Log$
+ * $Id: GameControlFrameDef.h,v 1.1 2002/12/04 00:37:11 southa Exp $
+ * $Log: GameControlFrameDef.h,v $
+ * Revision 1.1  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  */
 
 #include "mushCore.h"
@@ -17,3 +22,4 @@ public:
     S8 mouseDeltaY;
     U8 keyState;
 };
+#endif
