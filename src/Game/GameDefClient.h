@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.3 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDefClient.h,v 1.4 2002/11/28 11:10:29 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.4  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.3  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -15,7 +18,6 @@
 #include "mushCore.h"
 
 #include "GameDef.h"
-#include "GameStationDef.h"
 
 #include "mushMedia.h"
 
@@ -68,7 +70,8 @@ private:
     U32 m_lastLinkMsec;
     U32 m_lastRegistrationMsec;
     U32 m_currentMsec;
-    GameStationDef m_serverStation;
+    string m_serverName;
     MediaNetAddress m_netAddress;
     bool m_killed;
+    bool m_joined;
 };

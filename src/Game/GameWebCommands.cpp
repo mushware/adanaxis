@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.12 2002/11/27 20:17:27 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.13 2002/11/28 11:10:29 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.13  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.12  2002/11/27 20:17:27  southa
  * Basic network cleardown
  *
@@ -134,8 +137,19 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         GameConfig::Instance().PostDataHandle(values);
         string clientName = GameConfig::Instance().ParameterGet("mpplayername").StringGet();
         GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(clientName, new GameDefClient(clientName));
-        gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
-                               GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
+        try
+        {
+            gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
+                                    GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
+        }
+        catch (NetworkFail& e)
+        {
+            ostringstream message;
+            message << "Join game failed: " << e.what() << endl;
+            PlatformMiscUtils::MinorErrorBox(message.str());
+            MediaNetLog::Instance().NetLog() << message.str() << endl;
+            gameDefClient->Kill();
+        }
     }
     else if (matches[1] == "hostgame")
     {

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.11 2002/11/23 15:23:33 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.12 2002/11/24 00:29:08 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.12  2002/11/24 00:29:08  southa
+ * Serve web pages to local addresses only
+ *
  * Revision 1.11  2002/11/23 15:23:33  southa
  * Fixed network orders for win32
  *
@@ -247,7 +250,6 @@ PlatformNet::LocalAddressesRetrieve(void)
                     {
                         struct in_addr ipAddr = ((struct sockaddr_in *)&(ifReq->ifr_addr))->sin_addr;
                         m_localAddressMap[ipAddr.s_addr]=true;
-                        cerr << "ipAddr=" << MediaNetUtils::IPAddressToString(ipAddr.s_addr) << endl;
                     }
                 }
             }

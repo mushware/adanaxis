@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.5 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDef.h,v 1.6 2002/11/27 16:35:09 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.6  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.5  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -22,7 +25,6 @@
 
 #include "mushCore.h"
 
-class GameStationDef;
 class MediaNetAddress;
 
 class GameDef : public CorePickle, protected CoreXMLHandler
@@ -41,7 +43,6 @@ public:
     void IsImageSet(bool inValue) { m_isImage = inValue; }
     
 protected:
-    void CreateNewLink(const GameStationDef& inStation) const;
     void CreateNewLink(const MediaNetAddress& inAddress) const;
     
     void UnpicklePrologue(void);

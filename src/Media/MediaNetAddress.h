@@ -1,8 +1,11 @@
 #ifndef MEDIANETADDRESS_H
 #define MEDIANETADDRESS_H
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetAddress.h,v 1.1 2002/11/27 13:23:27 southa Exp $
+ * $Log: MediaNetAddress.h,v $
+ * Revision 1.1  2002/11/27 13:23:27  southa
+ * Server and client data exchange
+ *
  */
 
 #include "mushCore.h"
@@ -24,6 +27,9 @@ public:
     U32 HostGetNetworkOrder(void) const { return m_ip; }
     U32 PortGetNetworkOrder(void) const { return m_port; }
     U32 PortGetHostOrder(void) const;
+
+    void ResolveFrom(const string& inHost, U32 inPortHostOrder);
+    
     void Print(ostream& ioOut) const;
     
 private:

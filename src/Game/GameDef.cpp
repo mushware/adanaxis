@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.9 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameDef.cpp,v 1.10 2002/11/28 11:10:29 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.10  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.9  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -31,7 +34,6 @@
 
 #include "GameAppHandler.h"
 #include "GameProtocol.h"
-#include "GameStationDef.h"
 
 #include "mushPlatform.h"
 
@@ -39,19 +41,6 @@ GameDef::GameDef(const string& inName) :
     m_name(inName),
     m_isImage(false)
 {
-}
-
-void
-GameDef::CreateNewLink(const GameStationDef& inStation) const
-{
-    try
-    {
-        CoreData<MediaNetLink>::Instance().DataGive(inStation.NameGet()+"client", new MediaNetLink(inStation.NameGet(), inStation.PortGet()));
-    }
-    catch (NetworkFail& e)
-    {
-        MediaNetLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
-    }
 }
 
 void

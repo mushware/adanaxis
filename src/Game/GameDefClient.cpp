@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.6 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.7 2002/11/28 11:10:29 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.7  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.6  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -49,26 +52,28 @@ GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),
     m_lastLinkMsec(0),
     m_lastRegistrationMsec(0),
-    m_killed(false)
+    m_killed(false),
+    m_joined(false)
 {
 }
 
 void
 GameDefClient::JoinGame(const string& inServer, U32 inPort)
 {
-    m_serverStation=GameStationDef();
-    m_serverStation.NameSet(inServer);
-    m_serverStation.PortSetHostOrder(inPort);
+    m_netAddress.ResolveFrom(inServer, inPort); // throws NetworkFail
+    m_joined=true;
 }
 
 void
 GameDefClient::Ticker(void)
 {
+    if (!m_joined) return;
+    
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
     MediaNetLink *netLink=NULL;
-    if (MediaNetUtils::FindLinkToStation(netLink, m_serverStation.NameGet(), PlatformNet::HostToNetworkOrderU16(m_serverStation.PortGet())))
+    if (MediaNetUtils::FindLinkToStation(netLink, m_netAddress))
     {
         COREASSERT(netLink != NULL);
         if (m_lastRegistrationMsec + kRegistrationMsec < m_currentMsec)
@@ -92,7 +97,7 @@ GameDefClient::Ticker(void)
     {
         if (m_lastLinkMsec + kLinkSetupMsec < m_currentMsec)
         {
-            CreateNewLink(m_serverStation);
+            CreateNewLink(m_netAddress);
             m_lastLinkMsec = m_currentMsec;
         }
     }
@@ -109,10 +114,9 @@ GameDefClient::Kill(void)
 void
 GameDefClient::WebPrint(ostream& ioOut) const
 {
-
     ioOut << "<tr>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverStation.NameGet()) << "</td>";
+    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverName) << "</td>";
     ioOut << "<td>" << m_netAddress << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
     ioOut << "</tr>" << endl;
