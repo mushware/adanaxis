@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLTexture.cpp,v 1.17 2002/07/19 16:25:21 southa Exp $
+ * $Id: GLTexture.cpp,v 1.18 2002/08/07 13:36:47 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.18  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.17  2002/07/19 16:25:21  southa
  * Texture tweaks
  *
@@ -128,17 +131,31 @@ GLTexture::BindTexture(void) const
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
     GLUtils::TextureParamsReset();
-    glTexImage2D(
-	GL_TEXTURE_2D, // target
-	0,             // level
-	GL_RGBA,       // internal format
-	Width(),       // width
-	Height(),      // height
-	0,             // border
-	PixelFormat(), // format
-	PixelType(),   // type
-	DataPtr()      // pointer to data
-	);
+    if (1)
+    {
+        GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target
+                                    4,             // components
+                                    Width(),       // width
+                                    Height(),      // height
+                                    PixelFormat(), // format
+                                    PixelType(),   // type
+                                    DataPtr()      // pointer to data
+                                    );
+        if (err != 0) cerr << "Error building mipmaps: " << gluErrorString(err) << endl;
+    }
+    else
+    {
+        glTexImage2D(GL_TEXTURE_2D, // target
+                     0,             // level
+                     GL_RGBA,       // internal format
+                     Width(),       // width
+                     Height(),      // height
+                     0,             // border
+                     PixelFormat(), // format
+                     PixelType(),   // type
+                     DataPtr()      // pointer to data
+                     );
+    }
     m_bound=true;
 }
 
