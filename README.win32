@@ -19,12 +19,13 @@ Ensure that any DLLs in the distribution are executable, e.g. chmod +x win32/win
 
 Remove MingW's ar.exe from the path, e.g. mv C:/MingW/bin/ar.exe C:/MingW/bin/mingw-ar.exe
 Remove MingW's ranlib.exe from the path, e.g. mv C:/MingW/bin/ranlib.exe C:/MingW/bin/mingw-ranlib.exe
+Rename cygwin's pcre and expat libraries.
 
 Build or get the required libraries using this environment.  Use
 
-./configure --prefix=C:/MinGW --target=i686-pc-mingw32
+./configure --prefix=C:/MinGW --build=i686-pc-mingw32 --target=i686-pc-mingw32
 
-to place them in the MingW search path.  Most packages are available at http://gnuwin32.sourceforge.net/, or failing that http://mingwrep.sourceforge.net/.  Precompiled GLUT can be found in the file glutming.zip at http://mywebpage.netscape.com/PtrPck/glut.htm.
+to place them in the MingW search path.  Most packages are available at http://gnuwin32.sourceforge.net/, or failing that http://mingwrep.sourceforge.net/.  Precompiled GLUT can be found in the file glutming.zip at http://mywebpage.netscape.com/PtrPck/glut.htm.  Libraries which do not need to be dynamically linked should be built with --enable-shared=no.
 
 You may need to patch libogg as per http://www.xiph.org/archives/vorbis-dev/200212/0009.html.
 
