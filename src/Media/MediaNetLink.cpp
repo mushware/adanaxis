@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.12 2002/11/22 11:42:06 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.13 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.13  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.12  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -59,10 +62,6 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     m_client.UDPRemotePortSet(inPort);
     LinkChecksSend();
     m_targetName=inServer;
-    if (m_targetIP == 0)
-    {
-        MediaNetLog::Instance().NetLog() << "Zero returned for target IP" << endl;
-    }
 }
 
 MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
@@ -73,12 +72,6 @@ MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
     m_udpUseServerPort=true;
     TCPSocketTake(inSocket);
     m_client.UDPRemotePortSet(0); // We don't know yet
-
-    m_targetIP=m_client.RemoteIPGet();
-    if (m_targetIP == 0)
-    {
-        MediaNetLog::Instance().NetLog() << "Zero returned for target IP" << endl;
-    }
 }
 
 void

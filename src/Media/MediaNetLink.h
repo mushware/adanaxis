@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.10 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetLink.h,v 1.11 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.11  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.10  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -147,7 +150,6 @@ private:
     U32 m_creationMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
-    U32 m_targetIP;
 
     bool m_targetIsServer;
     bool m_udpUseServerPort;

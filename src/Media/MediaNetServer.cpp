@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.13 2002/11/22 11:42:07 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.14 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.14  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.13  2002/11/22 11:42:07  southa
  * Added developer controls
  *
@@ -178,6 +181,7 @@ MediaNetServer::UDPReceive(MediaNetData& outData)
         {
             outData.WritePosAdd(dataSize);
             outData.SourceSet(netHost, netPort);
+            MediaNetLog::Instance().VerboseLog() << "UDPReceive (server) from " << MediaNetUtils::IPAddressToLogString(netHost) << ":" << netPort << ": " << outData << endl;
         }
     }
 }

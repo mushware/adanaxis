@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.13 2002/11/22 11:42:06 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.14 2002/11/22 15:00:32 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.14  2002/11/22 15:00:32  southa
+ * Network connection handling
+ *
  * Revision 1.13  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -311,8 +314,12 @@ MediaNetClient::UDPReceive(MediaNetData& outData)
     U32 host, port;
     U32 dataSize=PlatformNet::UDPReceive(host, port, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
 
-    outData.WritePosAdd(dataSize);
-    outData.SourceSet(host, port);
+    if (dataSize != 0)
+    {
+        outData.WritePosAdd(dataSize);
+        outData.SourceSet(host, port);
+        MediaNetLog::Instance().VerboseLog() << "UDPReceive from " << MediaNetUtils::IPAddressToLogString(host) << ":" << port << ": " << outData << endl;
+    }
 }
 
 void
