@@ -1,8 +1,11 @@
 #ifndef MEDIANETWEBLINK_H
 #define MEDIANETWEBLINK_H
 /*
- * $Id: MediaNetWebLink.h,v 1.7 2002/11/12 18:02:13 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.8 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.8  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.7  2002/11/12 18:02:13  southa
  * POST handling and handlepostvalues command
  *
@@ -36,7 +39,7 @@ class MediaNetData;
 class MediaNetWebLink
 {
 public:
-    MediaNetWebLink(TCPsocket inSocket, U32 inPort);
+    explicit MediaNetWebLink(TCPsocket inSocket);
     ~MediaNetWebLink();
 
     void Tick(void);

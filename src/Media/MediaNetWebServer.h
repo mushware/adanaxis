@@ -1,8 +1,11 @@
 #ifndef MEDIANETWEBSERVER_H
 #define MEDIANETWEBSERVER_H
 /*
- * $Id: MediaNetWebServer.h,v 1.2 2002/11/15 18:58:34 southa Exp $
+ * $Id: MediaNetWebServer.h,v 1.3 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetWebServer.h,v $
+ * Revision 1.3  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.2  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -34,7 +37,6 @@ protected:
 
 private:
     TCPsocket m_tcpSocket;
-    U32 m_serverPort;
     U32 m_linkCtr;
     bool m_serving;
 

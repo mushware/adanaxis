@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.15 2002/11/22 15:33:59 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.16 2002/11/22 18:02:43 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.16  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.15  2002/11/22 15:33:59  southa
  * More network logging
  *
@@ -67,7 +70,7 @@ MediaNetServer::Connect(U32 inPort)
         Disconnect();
     }
     
-    m_serverPort=inPort;
+    m_serverPortHostOrder=inPort;
         
     MediaNet::Instance();
     
@@ -90,7 +93,7 @@ MediaNetServer::Connect(U32 inPort)
 
     try
     {
-        m_udpSocket = SDLNet_UDP_Open(m_serverPort);
+        m_udpSocket = SDLNet_UDP_Open(m_serverPortHostOrder);
 
         if (m_udpSocket == 0)
         {
@@ -144,7 +147,7 @@ MediaNetServer::Accept(void)
         {
             ostringstream name;
             name << "server" << m_linkCtr;
-            CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
+            CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPortHostOrder));
             m_linkCtr++;
     
             MediaNetLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;
@@ -165,7 +168,7 @@ MediaNetServer::UDPSend(U32 inHost, U32 inPort, MediaNetData& ioData)
     }
     if (inHost == 0 || inPort == 0)
     {
-        MediaNetLog::Instance().NetLog() << "UDPSend to bad address (" << MediaNetUtils::IPAddressToLogString(inHost) << ":" << inPort << ")" << endl;
+        MediaNetLog::Instance().NetLog() << "UDPSend to bad address (" << MediaNetUtils::IPAddressToLogString(inHost) << ":" << PlatformNet::NetworkToHostOrderU16(inPort) << ")" << endl;
     }
     
     COREASSERT(m_udpSocket != NULL);
@@ -174,7 +177,7 @@ MediaNetServer::UDPSend(U32 inHost, U32 inPort, MediaNetData& ioData)
 
     PlatformNet::UDPSend(inHost, inPort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
-    MediaNetLog::Instance().VerboseLog() << "UDPSend (server) to " << MediaNetUtils::IPAddressToLogString(inHost) << ":" << inPort << ": " << ioData << endl;
+    MediaNetLog::Instance().VerboseLog() << "UDPSend (server) to " << MediaNetUtils::IPAddressToLogString(inHost) << ":" << PlatformNet::NetworkToHostOrderU16(inPort) << ": " << ioData << endl;
 }
 
 void
@@ -182,15 +185,15 @@ MediaNetServer::UDPReceive(MediaNetData& outData)
 {
     if (m_serving)
     {
-        U32 netHost;
-        U32 netPort;
+        U32 netHost; // Network order
+        U32 netPort; // Network order
         outData.PrepareForWrite();
         U32 dataSize=PlatformNet::UDPReceive(netHost, netPort, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
         if (dataSize != 0)
         {
             outData.WritePosAdd(dataSize);
             outData.SourceSet(netHost, netPort);
-            MediaNetLog::Instance().VerboseLog() << "UDPReceive (server) from " << MediaNetUtils::IPAddressToLogString(netHost) << ":" << netPort << ": " << outData << endl;
+            MediaNetLog::Instance().VerboseLog() << "UDPReceive (server) from " << MediaNetUtils::IPAddressToLogString(netHost) << ":" << PlatformNet::NetworkToHostOrderU16(netPort) << ": " << outData << endl;
         }
     }
 }

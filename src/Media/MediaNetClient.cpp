@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.16 2002/11/22 18:02:43 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.17 2002/11/22 18:16:44 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.17  2002/11/22 18:16:44  southa
+ * Network tweaks
+ *
  * Revision 1.16  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -141,19 +144,6 @@ MediaNetClient::ResolveTargetName(void)
     {
         m_remoteIP = remoteIP->host;
         m_tcpRemotePort = remoteIP->port;
-
-// No name lookups
-#if 0
-        char *remoteName=SDLNet_ResolveIP(remoteIP);
-        if (remoteName != NULL)
-        {
-            m_remoteName=remoteName;
-        }
-        else
-#endif
-        {
-            m_remoteName="unknown";
-        }
     }
     else
     {
@@ -177,20 +167,22 @@ MediaNetClient::UDPConnect(U32 inPort)
     {
         UDPDisconnect();
     }
-    
-    for (m_udpLocalPort=inPort; m_udpLocalPort < inPort+8; ++m_udpLocalPort)
+    U32 localPort;
+    for (localPort=inPort; localPort < inPort+8; ++localPort)
     {
-        m_udpSocket = SDLNet_UDP_Open(m_udpLocalPort);
+        m_udpSocket = SDLNet_UDP_Open(localPort);
         if (m_udpSocket != 0) break;
     }
     if (m_udpSocket == 0)
     {
         throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
     }
-    if (m_udpLocalPort != inPort)
+    if (localPort != inPort)
     {
-        MediaNetLog::Instance().NetLog() << "Selected local UDP port " << m_udpLocalPort << endl;
+        MediaNetLog::Instance().NetLog() << "Selected local UDP port " << localPort << endl;
     }
+
+    m_udpLocalPort = PlatformNet::HostToNetworkOrderU16(localPort);
 
     PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
     m_udpRemotePort=0; // We don't know
@@ -198,7 +190,7 @@ MediaNetClient::UDPConnect(U32 inPort)
 }
 
 void
-MediaNetClient::UDPRemotePortSet(U32 inPort)
+MediaNetClient::UDPRemotePortNetworkOrderSet(U32 inPort)
 {
     m_udpRemotePort=inPort;
 }
@@ -221,7 +213,6 @@ MediaNetClient::UDPDisconnect(void)
     if (m_udpConnected)
     {
         COREASSERT(m_udpSocket != NULL);
-        SDLNet_UDP_Unbind(m_udpSocket, 0);
         SDLNet_UDP_Close(m_udpSocket);
         m_udpSocket=NULL;
         m_udpConnected=false;
@@ -319,7 +310,7 @@ MediaNetClient::UDPSend(MediaNetData& ioData)
     PlatformNet::UDPSend(m_remoteIP, m_udpRemotePort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
 
-    MediaNetLog::Instance().VerboseLog() << "UDPSend to " << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ":" << m_udpRemotePort << ": " << ioData << endl;
+    MediaNetLog::Instance().VerboseLog() << "UDPSend to " << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ":" << PlatformNet:: NetworkToHostOrderU16(m_udpRemotePort) << ": " << ioData << endl;
 }
 
 void
@@ -332,14 +323,14 @@ MediaNetClient::UDPReceive(MediaNetData& outData)
     COREASSERT(m_udpSocket != NULL);
 
     outData.PrepareForWrite();
-    U32 host, port;
-    U32 dataSize=PlatformNet::UDPReceive(host, port, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
+    U32 netHost, netPort;
+    U32 dataSize=PlatformNet::UDPReceive(netHost, netPort, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
 
     if (dataSize != 0)
     {
         outData.WritePosAdd(dataSize);
-        outData.SourceSet(host, port);
-        MediaNetLog::Instance().VerboseLog() << "UDPReceive from " << MediaNetUtils::IPAddressToLogString(host) << ":" << port << ": " << outData << endl;
+        outData.SourceSet(netHost, netPort);
+MediaNetLog::Instance().VerboseLog() << "UDPReceive from " << MediaNetUtils::IPAddressToLogString(netHost) << ":" << PlatformNet:: NetworkToHostOrderU16(netPort) << ": " << outData << endl;
     }
 }
 
@@ -364,8 +355,8 @@ MediaNetClient::Print(ostream& ioOut) const
     {
         ioOut << m_udpSocket->channel;
     }
-    ioOut << ", udpLocalPort=" << m_udpLocalPort;
-    ioOut << ", remoteIP=" << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ", tcpRemotePort=" << m_tcpRemotePort << ", udpRemotePort=" << m_udpRemotePort;
-    ioOut << ", remoteName=" << m_remoteName << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected << "]";
+    ioOut << ", udpLocalPort=" << PlatformNet:: NetworkToHostOrderU16(m_udpLocalPort);
+    ioOut << ", remoteIP=" << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ", tcpRemotePort=" << PlatformNet:: NetworkToHostOrderU16(m_tcpRemotePort) << ", udpRemotePort=" << PlatformNet:: NetworkToHostOrderU16(m_udpRemotePort);
+    ioOut << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected << "]";
 }
 

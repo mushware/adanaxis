@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.8 2002/11/22 15:00:33 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.9 2002/11/22 18:02:43 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.9  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.8  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -32,6 +35,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <fcntl.h>
@@ -40,7 +44,9 @@ void
 PlatformNet::SocketNonBlockingSet(tSocket inSocket)
 {
     errno=0;
-    if (fcntl(inSocket, F_SETFL, O_NONBLOCK) == -1)
+    int flags = fcntl(inSocket, F_GETFL, 0);
+    if (flags < 0) flags = 0;
+    if (fcntl(inSocket, F_SETFL, flags | O_NONBLOCK) < 0)
     {
         ostringstream message;
         message << "Failed to set socket non-blocking: " << errno;
@@ -177,3 +183,16 @@ PlatformNet::TCPSocketConnectionCompleted(tSocket inSocket)
     
     return (FD_ISSET(inSocket, &fdSet));
 }
+
+U32
+PlatformNet::HostToNetworkOrderU16(U32 inVal)
+{
+    return htons(inVal);
+}
+
+U32
+PlatformNet::NetworkToHostOrderU16(U32 inVal)
+{
+    return ntohs(inVal);
+}
+

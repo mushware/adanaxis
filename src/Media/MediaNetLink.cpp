@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.15 2002/11/22 18:02:43 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.16 2002/11/22 18:16:44 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.16  2002/11/22 18:16:44  southa
+ * Network tweaks
+ *
  * Revision 1.15  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -55,6 +58,8 @@
 #include "MediaNetServer.h"
 #include "MediaNetUtils.h"
 
+#include "mushPlatform.h"
+
 auto_ptr< CoreData<MediaNetLink> > CoreData<MediaNetLink>::m_instance;
 
 MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
@@ -67,7 +72,7 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     m_tcpState.linkState=kLinkStateConnecting;
     
     UDPConnect(inPort);
-    m_client.UDPRemotePortSet(inPort);
+    m_client.UDPRemotePortNetworkOrderSet(PlatformNet::HostToNetworkOrderU16(inPort));
     UDPLinkCheckSend();
     m_targetName=inServer;
 }
@@ -79,7 +84,7 @@ MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
     m_udpState.linkState=kLinkStateWaitingForPort;
     m_udpUseServerPort=true;
     TCPSocketTake(inSocket);
-    m_client.UDPRemotePortSet(0); // We don't know yet
+    m_client.UDPRemotePortNetworkOrderSet(0); // We don't know yet
 }
 
 void
@@ -642,13 +647,13 @@ MediaNetLink::MessageUDPLinkCheckHandle(MediaNetData& ioData)
     U8 seqNum = ioData.MessageBytePop();
     if (!m_udpUseServerPort && !m_client.UDPConnectedGet())
     {
-        UDPConnect(ioData.SourcePortGet());
+        UDPConnect(PlatformNet::NetworkToHostOrderU16(ioData.SourcePortGet()));
         m_udpState.linkState=kLinkStateUntested;
     }
     
     if (m_udpState.linkState == kLinkStateWaitingForPort)
     {
-        m_client.UDPRemotePortSet(ioData.SourcePortGet());
+        m_client.UDPRemotePortNetworkOrderSet(ioData.SourcePortGet());
         m_udpState.linkState = kLinkStateUntested;
     }
     MediaNetData replyData;
@@ -760,10 +765,10 @@ MediaNetLink::WebStatusPrint(ostream& ioOut) const
     ioOut << "</td>";
     ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_tcpState);
-    ioOut << "\">TCP:" << m_client.TCPRemotePortGet() << "</font></td><td>" << m_tcpState.linkPingTime;
+    ioOut << "\">TCP:" << PlatformNet::NetworkToHostOrderU16(m_client.TCPRemotePortGet()) << "</font></td><td>" << m_tcpState.linkPingTime;
     ioOut << "ms</td><td><font class=\"";
     ioOut << LinkStateToBG(m_udpState);
-    ioOut << "\">UDP:" << m_client.UDPRemotePortGet() << "</font></td><td>" << m_udpState.linkPingTime;
+    ioOut << "\">UDP:" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet()) << "</font></td><td>" << m_udpState.linkPingTime;
     ioOut << "ms</td>";
     ioOut << endl;
 }

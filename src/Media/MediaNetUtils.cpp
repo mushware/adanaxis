@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.6 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.7 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.7  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.6  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -28,14 +31,14 @@
 bool MediaNetUtils::m_truncateLog=true;
 
 bool
-MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPort)
+MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPortNetworkOrder)
 {
     CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
 
     for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        if (p->second->TCPTargetPortGet() == inPort &&
+        if (p->second->TCPTargetPortGet() == inPortNetworkOrder &&
             p->second->TargetNameGet() == inName)
         {
             outLink = p->second;

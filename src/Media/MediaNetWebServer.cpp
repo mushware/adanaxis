@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.4 2002/11/18 21:02:40 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.5 2002/11/22 11:42:07 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.5  2002/11/22 11:42:07  southa
+ * Added developer controls
+ *
  * Revision 1.4  2002/11/18 21:02:40  southa
  * Prevent crash on exit
  *
@@ -38,8 +41,6 @@ MediaNetWebServer::Connect(U32 inPort)
     {
         Disconnect();
     }
-    
-    m_serverPort=inPort;
 
     MediaNet::Instance();
 
@@ -96,7 +97,7 @@ MediaNetWebServer::Accept(void)
         {
             ostringstream name;
             name << "web" << m_linkCtr;
-            CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket, m_serverPort));
+            CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket));
             m_linkCtr++;
             MediaNetLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
         }

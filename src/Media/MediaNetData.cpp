@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetData.cpp,v 1.3 2002/11/03 20:10:00 southa Exp $
+ * $Id: MediaNetData.cpp,v 1.4 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetData.cpp,v $
+ * Revision 1.4  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.3  2002/11/03 20:10:00  southa
  * Initial message unpacking
  *
@@ -16,6 +19,8 @@
 
 #include "MediaNetUtils.h"
 
+#include "mushPlatform.h"
+
 ostream& operator<<(ostream &inOut, const MediaNetData& inData)
 {
     inData.Print(inOut);
@@ -29,7 +34,7 @@ MediaNetData::Print(ostream& ioOut) const
     ioOut << ", messagePos=" << m_messagePos << ", sourceHost=";
     if (m_sourceValid)
     {
-        ioOut<< MediaNetUtils::IPAddressToString(m_sourceHost) << ":" << m_sourcePort;
+        ioOut<< MediaNetUtils::IPAddressToString(m_sourceHost) << ":" << PlatformNet::NetworkToHostOrderU16(m_sourcePort);
     }
     else
     {

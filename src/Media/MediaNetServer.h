@@ -1,8 +1,11 @@
 #ifndef MEDIANETSERVER_H
 #define MEDIANETSERVER_H
 /*
- * $Id: MediaNetServer.h,v 1.7 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetServer.h,v 1.8 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetServer.h,v $
+ * Revision 1.8  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.7  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -47,7 +50,7 @@ public:
     void UDPHarvest(void);
     void UDPDiscard(void);
     bool IsServing(void) const { return m_serving; }
-    U32 ServerPortGet(void) const { return m_serverPort; }
+    // U32 ServerPortGet(void) const { return m_serverPortHostOrder; }
     
 protected:
     MediaNetServer();
@@ -55,7 +58,7 @@ protected:
 private:
     TCPsocket m_tcpSocket;
     UDPsocket m_udpSocket;
-    U32 m_serverPort;
+    U32 m_serverPortHostOrder;
     U32 m_linkCtr;
     bool m_serving;
 

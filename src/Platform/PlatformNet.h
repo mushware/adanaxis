@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.h,v 1.4 2002/11/21 18:06:18 southa Exp $
+ * $Id: PlatformNet.h,v 1.5 2002/11/22 18:02:43 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.5  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.4  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -43,4 +46,6 @@ public:
     static U32 UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize);
     static TCPsocket TCPConnectNonBlocking(IPaddress *ip);
     static bool TCPSocketConnectionCompleted(tSocket inSocket);
+    static U32 HostToNetworkOrderU16(U32 inVal);
+    static U32 NetworkToHostOrderU16(U32 inVal);
 };

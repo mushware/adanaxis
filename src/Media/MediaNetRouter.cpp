@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.3 2002/11/04 19:34:47 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.4 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.4  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.3  2002/11/04 19:34:47  southa
  * Network link maintenance
  *
@@ -20,6 +23,8 @@
 #include "MediaNetProtocol.h"
 #include "MediaNetServer.h"
 #include "MediaNetUtils.h"
+
+#include "mushPlatform.h"
 
 auto_ptr<MediaNetRouter> MediaNetRouter::m_instance;
 
@@ -106,7 +111,7 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData)
     }
     MediaNetLog::Instance().VerboseLog() << "Discarding message from " <<
         MediaNetUtils::IPAddressToLogString(ioData.SourceHostGet()) << ":" <<
-        ioData.SourcePortGet() << endl;
+        PlatformNet::NetworkToHostOrderU16(ioData.SourcePortGet()) << endl;
 }
 
 void

@@ -1,8 +1,11 @@
 #ifndef MEDIANETCLIENT_H
 #define MEDIANETCLIENT_H
 /*
- * $Id: MediaNetClient.h,v 1.8 2002/11/20 22:35:27 southa Exp $
+ * $Id: MediaNetClient.h,v 1.9 2002/11/22 18:02:43 southa Exp $
  * $Log: MediaNetClient.h,v $
+ * Revision 1.9  2002/11/22 18:02:43  southa
+ * Wait for TCP connection
+ *
  * Revision 1.8  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -57,7 +60,7 @@ public:
     bool TCPConnectionCompleted(void);
     bool UDPConnectedGet(void) const { return m_udpConnected; }
     U32 UDPRemotePortGet(void) const { return m_udpRemotePort; }
-    void UDPRemotePortSet(U32 inPort);
+    void UDPRemotePortNetworkOrderSet(U32 inPort);
     U32 RemoteIPGet(void) const { return m_remoteIP; }
     void Print(ostream& ioOut) const;
     
@@ -70,7 +73,6 @@ private:
     U32 m_remoteIP;
     U32 m_tcpRemotePort;
     U32 m_udpRemotePort;
-    string m_remoteName;
     bool m_tcpConnected;
     bool m_udpConnected;
 };

@@ -1,8 +1,11 @@
 #ifndef MEDIANETUTILS_H
 #define MEDIANETUTILS_H
 /*
- * $Id: MediaNetUtils.h,v 1.5 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetUtils.h,v 1.6 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetUtils.h,v $
+ * Revision 1.6  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.5  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -27,7 +30,7 @@ class MediaNetLink;
 class MediaNetUtils
 {
 public:
-    static bool FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPort);
+    static bool FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPortNetworkOrder);
     static string IPAddressToString(U32 inAddress);
     static string IPAddressToLogString(U32 inAddress);
     static string MakePrintable(const string& inStr);
@@ -36,7 +39,7 @@ public:
     static U32 MakeWebSafe(U32 inValue) { return inValue; }
     static string RemoveMeta(const string& inStr);
     static void TruncateLogSet(bool inTruncate) { m_truncateLog=inTruncate; }
-
+    
 private:
     static bool m_truncateLog;
 };

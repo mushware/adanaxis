@@ -1,6 +1,11 @@
+#ifndef MEDIANETROUTER_H
+#define MEDIANETROUTER_H
 /*
- * $Id: MediaNetRouter.h,v 1.2 2002/11/04 19:34:47 southa Exp $
+ * $Id: MediaNetRouter.h,v 1.3 2002/11/22 15:00:33 southa Exp $
  * $Log: MediaNetRouter.h,v $
+ * Revision 1.3  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.2  2002/11/04 19:34:47  southa
  * Network link maintenance
  *
@@ -44,3 +49,4 @@ MediaNetRouter::Instance(void)
     m_instance.reset(new MediaNetRouter);
     return *m_instance;
 }
+#endif

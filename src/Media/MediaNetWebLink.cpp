@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.12 2002/11/18 14:11:04 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.13 2002/11/22 11:42:07 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.13  2002/11/22 11:42:07  southa
+ * Added developer controls
+ *
  * Revision 1.12  2002/11/18 14:11:04  southa
  * win32 support
  *
@@ -53,7 +56,7 @@
 auto_ptr< CoreData<MediaNetWebLink> > CoreData<MediaNetWebLink>::m_instance;
 string MediaNetWebLink::m_webPath="";
 
-MediaNetWebLink::MediaNetWebLink(TCPsocket inSocket, U32 inPort) :
+MediaNetWebLink::MediaNetWebLink(TCPsocket inSocket) :
     m_receiveState(kReceiveInitial),
     m_linkErrors(0),
     m_isDead(false)
