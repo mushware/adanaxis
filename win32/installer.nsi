@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.9 2002/08/27 13:18:11 southa Exp $
+; $Id: installer.nsi,v 1.10 2002/10/20 22:31:06 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.10  2002/10/20 22:31:06  southa
+; Fixed win32 release build
+;
 ; Revision 1.9  2002/08/27 13:18:11  southa
 ; Fixed line endings in LICENCE file
 ;
@@ -109,6 +112,12 @@ IfErrors err10 noerr10
 err10:
 File /oname=$OUTDIR\system\zlib.dll win32libs\zlib.dll
 noerr10:
+
+GetDLLVersion SDL_net $R1 $R2
+IfErrors err11 noerr11
+err11:
+File /oname=$OUTDIR\system\SDL_net.dll win32libs\SDL_net.dll
+noerr11:
 
 File /r ..\release\*.*
 
