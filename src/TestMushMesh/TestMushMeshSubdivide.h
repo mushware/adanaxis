@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cpsh/PUv+N7hZwaE5of9Kg
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.5 2003/10/25 11:08:18 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.6 2003/10/25 14:27:31 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.6  2003/10/25 14:27:31  southa
+ * Triangle mesh fixes
+ *
  * Revision 1.5  2003/10/25 11:08:18  southa
  * Triangular mesh work
  *
@@ -61,14 +64,17 @@ private:
     static bool VerifyTriangle1(const MushMeshArray<Mushware::tVal>& inArray, const Mushware::t2U32& inCentre, Mushware::tVal inProp, Mushware::U32 inOrder);
     static void SubdivideRectangle1(Mushware::U32 inX, Mushware::U32 inY);
     static void SubdivideTriangle1(Mushware::U32 inXSize, Mushware::U32 inYSize, Mushware::U32 inOrder, Mushware::U32 inX, Mushware::U32 inY);
-    template<class T> static void TimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, const std::string& inName);
-    template<class T> static void ValueTimeTest(const std::string& inName);
-    template<class T> static void VectorTimeTest(const std::string& inName);
+    template<class T> static void RectangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, const std::string& inName);
+    template<class T> static void RectangleValueTimeTest(const std::string& inName);
+    template<class T> static void RectangleVectorTimeTest(const std::string& inName);
+    template<class T> static void TriangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, Mushware::U32 inOrder, const std::string& inName);
+    template<class T> static void TriangleValueTimeTest(const std::string& inName);
+    template<class T> static void TriangleVectorTimeTest(const std::string& inName);
 };
 
 template<class T>
 inline void
-TestMushMeshSubdivide::ValueTimeTest(const std::string& inName)
+TestMushMeshSubdivide::RectangleValueTimeTest(const std::string& inName)
 {
     MushMeshWorkspace< MushMeshArray<T> > workspace;
 
@@ -88,12 +94,12 @@ TestMushMeshSubdivide::ValueTimeTest(const std::string& inName)
         }
     }
     workspace.Swap();
-    TimeTest(workspace, inName);
+    RectangleTimeTest(workspace, inName);
 }
 
 template<class T>
 inline void
-TestMushMeshSubdivide::VectorTimeTest(const std::string& inName)
+TestMushMeshSubdivide::RectangleVectorTimeTest(const std::string& inName)
 {
     MushMeshWorkspace< MushMeshArray<T> > workspace;
 
@@ -118,12 +124,12 @@ TestMushMeshSubdivide::VectorTimeTest(const std::string& inName)
         }
     }
     workspace.Swap();
-    TimeTest(workspace, inName);
+    RectangleTimeTest(workspace, inName);
 }
 
 template<class T>
 inline void
-TestMushMeshSubdivide::TimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, const std::string& inName)
+TestMushMeshSubdivide::RectangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, const std::string& inName)
 {
     clock_t startTime = 0;
     clock_t endTime;
@@ -146,10 +152,103 @@ TestMushMeshSubdivide::TimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspa
             break;
         }
     }
-    Mushware::tLongVal elapsed = (endTime - startTime) / CLOCKS_PER_SEC;
-    Mushware::tVal finalVertices = pow((double) inWorkspace.CurrentGet().SizeGet().X(), 2);
+    Mushware::tLongVal elapsed = (static_cast<Mushware::tLongVal>(endTime - startTime)) / CLOCKS_PER_SEC;
+    Mushware::tVal finalVertices = pow(static_cast<double>(inWorkspace.CurrentGet().SizeGet().X()), 2);
     cout << inName << " vertices: " << count * finalVertices / elapsed << " per second (vertices=" << finalVertices << " repetitions=" << count << ')'<< endl;
 }
+
+
+template<class T>
+inline void
+TestMushMeshSubdivide::TriangleValueTimeTest(const std::string& inName)
+{
+    MushMeshWorkspace< MushMeshArray<T> > workspace;
+
+    enum
+    {
+        kXMax = 20,
+        kYMax = 80,
+        kOrder = 5
+    };
+    workspace.CurrentWRefGet().SizeSet(Mushware::t2U32(kXMax, kYMax));
+
+    // Place non-trivial data in the array
+    for (Mushware::U32 x=0; x<kXMax; ++x)
+    {
+        for (Mushware::U32 y=0; y<kYMax; ++y)
+        {
+            workspace.CurrentWRefGet().Set(x+500*y, x, y);
+        }
+    }
+    workspace.Swap();
+    TriangleTimeTest(workspace, kOrder, inName);
+}
+
+template<class T>
+inline void
+TestMushMeshSubdivide::TriangleVectorTimeTest(const std::string& inName)
+{
+    MushMeshWorkspace< MushMeshArray<T> > workspace;
+
+    enum
+    {
+        kXMax = 20,
+        kYMax = 80,
+        kOrder = 5
+    };
+    workspace.CurrentWRefGet().SizeSet(Mushware::t2U32(kXMax, kYMax));
+
+    // Place non-trivial data in the array
+    for (Mushware::U32 x=0; x<kXMax; ++x)
+    {
+        for (Mushware::U32 y=0; y<kYMax; ++y)
+        {
+            T value;
+            for (Mushware::U32 i=0; i<T::SizeGet(); ++i)
+            {
+                value.Set(x+500*y+i, i);
+            }
+            workspace.CurrentWRefGet().Set(value, x, y);
+        }
+    }
+    workspace.Swap();
+    TriangleTimeTest(workspace, kOrder, inName);
+}
+
+template<class T>
+inline void
+TestMushMeshSubdivide::TriangleTimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, Mushware::U32 inOrder, const std::string& inName)
+{
+    clock_t startTime = 0;
+    clock_t endTime;
+    Mushware::U32 count;
+
+    for (count=0; count<1e7; ++count)
+    {
+        MushMeshSubdivide<T>::TriangularSubdivide(inWorkspace.CurrentWRefGet(),
+            inWorkspace.PreviousGet(),
+            Mushware::t2BoxU32(Mushware::t2U32(0,0), inWorkspace.PreviousGet().SizeGet()-Mushware::t2U32(1, 0)),
+            inOrder, 1.0);
+        if (startTime == 0)
+        {
+            startTime = clock();
+        }
+
+        endTime = clock();
+        if (endTime - startTime > CLOCKS_PER_SEC)
+        {
+            break;
+        }
+    }
+    Mushware::tLongVal elapsed = (static_cast<Mushware::tLongVal>(endTime - startTime)) / CLOCKS_PER_SEC;
+
+    Mushware::U32 xSize = inWorkspace.CurrentGet().SizeGet().X();
+    Mushware::U32 ySize = inWorkspace.CurrentGet().SizeGet().Y();
+    Mushware::U32 xTriangleSize = ySize / inOrder;
+    Mushware::U32 finalVertices = 1 + xTriangleSize*(ySize+1)/2 + ySize * (xSize - 1 - xTriangleSize);
+    cout << inName << " vertices: " << count * finalVertices / elapsed << " per second (vertices=" << finalVertices << " repetitions=" << count << ')'<< endl;
+}
+
 
 //%includeGuardEnd {
 #endif

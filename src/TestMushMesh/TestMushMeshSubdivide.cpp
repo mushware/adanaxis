@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.10 2003/10/25 11:08:18 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.11 2003/10/25 14:27:31 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.11  2003/10/25 14:27:31  southa
+ * Triangle mesh fixes
+ *
  * Revision 1.10  2003/10/25 11:08:18  southa
  * Triangular mesh work
  *
@@ -489,7 +492,7 @@ TestMushMeshSubdivide::SubdivideTriangle1(U32 inXSize, U32 inYSize, U32 inOrder,
     MushMeshArray<tVal> subbedArray;
     t2BoxU32 activeBox(0, 0, inXSize-1, inYSize);
 
-    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 0, inOrder);
+    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, inOrder, 0);
 
     if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 0, inOrder))
     {
@@ -500,8 +503,7 @@ TestMushMeshSubdivide::SubdivideTriangle1(U32 inXSize, U32 inYSize, U32 inOrder,
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 
-    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 1.0, inOrder);
-    
+    MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, inOrder, 1.0);
 
     if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 1.0, inOrder))
     {
@@ -597,7 +599,8 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
         }
     }
     cout << endl;
-    cout << "Timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
+    cout << fixed << setprecision(0);
+    cout << "Rectangle timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
 #if 0
     ValueTimeTest<char>("Single char  ");
     ValueTimeTest<unsigned char>("Single uchar ");
@@ -607,14 +610,29 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     ValueTimeTest<long>("  long long  ");
     ValueTimeTest<unsigned long long>(" ulong long  ");
 #endif
-    ValueTimeTest<float>("(dummy) float");
-    ValueTimeTest<float>("Single float ");
-    ValueTimeTest<double>("Single double");
-    VectorTimeTest< MushMeshVector<tVal, 1> >("1D vector    ");
-    VectorTimeTest< MushMeshVector<tVal, 2> >("2D vector    ");
-    VectorTimeTest< MushMeshVector<tVal, 4> >("4D vector    ");
-    VectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
-    VectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
+    RectangleValueTimeTest<float>("(dummy) float");
+    RectangleValueTimeTest<float>("Single float ");
+    RectangleValueTimeTest<double>("Single double");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 1> >("1D vector    ");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 2> >("2D vector    ");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 3> >("3D vector    ");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 4> >("4D vector    ");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
+    RectangleVectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
+
+    cout << "Triangle timing tests (duration = 1s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
+
+    TriangleValueTimeTest<float>("(dummy) float");
+    TriangleValueTimeTest<float>("Single float ");
+    TriangleValueTimeTest<double>("Single double");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 1> >("1D vector    ");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 2> >("2D vector    ");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 3> >("3D vector    ");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 4> >("4D vector    ");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 8> >("8D vector    ");
+    TriangleVectorTimeTest< MushMeshVector<tVal, 16> >("16D vector   ");
+    
+    cout << scientific << setprecision(6);
 
     return MushcoreScalar(0);
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.10 2003/10/25 11:08:17 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.11 2003/10/25 14:27:30 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.11  2003/10/25 14:27:30  southa
+ * Triangle mesh fixes
+ *
  * Revision 1.10  2003/10/25 11:08:17  southa
  * Triangular mesh work
  *
@@ -63,8 +66,8 @@ public:
     static void RectangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
                                     Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp);
     static void TriangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
-                                    Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp,
-                                    Mushware::U32 inOrder);
+                                    Mushware::t2BoxU32 inActiveBox, Mushware::U32 inOrder,
+                                    Mushware::tVal inProp);
 private:
     static Mushware::U32 M1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
     static Mushware::U32 Z0Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
@@ -163,7 +166,7 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
             const T& n_z0p1 = inArray.Get(x,   y+1);
             const T& n_p1p1 = inArray.Get(x+1, y+1);
 
-#define MUSHMESH_INTERLEAVE
+//#define MUSHMESH_INTERLEAVE
 #ifdef MUSHMESH_INTERLEAVE
             // Value0 is special as it is the original vertex and follows a different algorithm
             T value0 = n_z0z0;
@@ -429,8 +432,8 @@ MushMeshSubdivide<T>::P1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap)
 template <class T>
 inline void
 MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
-                                           Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp,
-                                           Mushware::U32 inOrder)
+                                           Mushware::t2BoxU32 inActiveBox, Mushware::U32 inOrder,
+                                           Mushware::tVal inProp)
 {
     // class T is usually some flavour of MushMeshVector, not a simple arithmetic type
 

@@ -206,8 +206,8 @@ MushMeshPatchEnd::Subdivide(tVal inLevel)
             m_geometry.CurrentWRefGet(),
             m_geometry.PreviousGet(),
             m_activeBox,
-            proportion,
-            m_order);
+            m_order,
+            proportion);
 
         m_texCoords.Swap();
         for (U32 i=0; i<m_texCoords.BaseGet().size(); ++i)
@@ -216,8 +216,8 @@ MushMeshPatchEnd::Subdivide(tVal inLevel)
                 m_texCoords.CurrentWRefGet()[i],
                 m_texCoords.PreviousGet()[i],
                 m_activeBox,
-                proportion,
-                m_order);
+                m_order,
+                proportion);
         }
     }
 }
