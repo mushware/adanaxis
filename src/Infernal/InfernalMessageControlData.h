@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalMessageControlData.h
+ * File: src/Infernal/InfernalMessageControlData.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pP8VClbrdysHqrJt2176OA
+//%Header } Y7vNeA9oLxjRkjys8zy/jA
 /*
- * $Id: InfernalMessageControlData.h,v 1.7 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalMessageControlData.h,v 1.1 2003/10/04 12:23:06 southa Exp $
  * $Log: InfernalMessageControlData.h,v $
+ * Revision 1.1  2003/10/04 12:23:06  southa
+ * File renaming
+ *
  * Revision 1.7  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

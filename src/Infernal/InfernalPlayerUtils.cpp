@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePlayerUtils.cpp
+ * File: src/Infernal/InfernalPlayerUtils.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IyS+FJVMZImMJW69Nn1WCw
+//%Header } aR8dJjPZW5KAdAjmbHfszQ
 /*
- * $Id: GamePlayerUtils.cpp,v 1.16 2003/09/17 19:40:33 southa Exp $
- * $Log: GamePlayerUtils.cpp,v $
+ * $Id: InfernalPlayerUtils.cpp,v 1.17 2003/10/04 12:23:02 southa Exp $
+ * $Log: InfernalPlayerUtils.cpp,v $
+ * Revision 1.17  2003/10/04 12:23:02  southa
+ * File renaming
+ *
  * Revision 1.16  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -64,7 +67,7 @@
  *
  */
 
-#include "GamePlayerUtils.h"
+#include "InfernalPlayerUtils.h"
 
 #include "GameAppHandler.h"
 #include "GameController.h"
@@ -74,7 +77,7 @@
 #include "GameEvent.h"
 #include "InfernalFloorMap.h"
 #include "InfernalMessageControlData.h"
-#include "GamePiecePlayer.h"
+#include "InfernalPiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
 #include "InfernalTimer.h"
@@ -84,7 +87,7 @@ using namespace Mushware;
 using namespace std;
 
 void
-GamePlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
 {
     InfernalTimer::tMsec frameInterval = inTimer.ConstClientGet().FrameIntervalMsecGet(); // Msec between motion frames
     InfernalTimer::tMsec currentMsec = inTimer.CurrentMsecGet(); // Current Msec
@@ -95,13 +98,13 @@ GamePlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFrames
 
     GameController *localController = InfernalData::Sgl().ControllerGet("controller1");
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
+    MushcoreData<InfernalPiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
 
-    for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
+    for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
          p != endValue; ++p)
     {
         MUSHCOREASSERT(p->second != NULL);
-        GamePiecePlayer& playerRef = *p->second;
+        InfernalPiecePlayer& playerRef = *p->second;
         if (playerRef.ImageIs())
         {
             // Image players have no contol queue
@@ -121,7 +124,7 @@ GamePlayerUtils::FillControlQueues(const InfernalTimer& inTimer, U32 inNumFrames
 }
 
 void
-GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inPlayer, const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const InfernalTimer& inTimer, U32 inNumFrames)
 {
     InfernalMessageControlData controlMessage;
     // frameNum is the first frame number in the chunk we're going to send
@@ -150,7 +153,7 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
 }
 
 void
-GamePlayerUtils::SendControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::SendControlQueues(const InfernalTimer& inTimer, U32 inNumFrames)
 {
     MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
 
@@ -159,7 +162,7 @@ GamePlayerUtils::SendControlQueues(const InfernalTimer& inTimer, U32 inNumFrames
         if (!p->second->ImageIs())
         {
             MUSHCOREASSERT(p->second != NULL);
-            GamePiecePlayer *playerPtr;
+            InfernalPiecePlayer *playerPtr;
             // Needs optimised lookup
             if (InfernalData::Sgl().PlayerGet().GetIfExists(playerPtr, p->first))
             {
@@ -171,17 +174,17 @@ GamePlayerUtils::SendControlQueues(const InfernalTimer& inTimer, U32 inNumFrames
 }
 
 bool
-GamePlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef)
+InfernalPlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef)
 {
     bool retVal=true;
-    MushcoreData<GamePiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
+    MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
 
     if (!playerData.Exists(inName))
     {
         retVal = false;
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
+        const InfernalPiecePlayer *templatePlayer=dynamic_cast<const InfernalPiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
-        GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
+        InfernalPiecePlayer *newPlayer = playerData.Give(inName, new InfernalPiecePlayer(*templatePlayer));
         MUSHCOREASSERT(newPlayer != NULL);
         newPlayer->ImageIsSet(inClientDef.ImageIs());
     }
@@ -189,7 +192,7 @@ GamePlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& 
 }
 
 bool
-GamePlayerUtils::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
+InfernalPlayerUtils::VerifyPlayer(const string& inName, InfernalPiecePlayer& inPlayer)
 {
     bool retVal = false;
     GameDefClient *defClient = NULL;
@@ -202,24 +205,24 @@ GamePlayerUtils::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
 }
 
 bool
-GamePlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef)
+InfernalPlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef)
 {
     bool retVal=true;
-    MushcoreData<GamePiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
+    MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
 
     if (!playerData.Exists(inName))
     {
         retVal = false;
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
+        const InfernalPiecePlayer *templatePlayer=dynamic_cast<const InfernalPiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
-        GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
+        InfernalPiecePlayer *newPlayer = playerData.Give(inName, new InfernalPiecePlayer(*templatePlayer));
         MUSHCOREASSERT(newPlayer != NULL);
     }
     return retVal;
 }
 
 void
-GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
+InfernalPlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
 {
     // Called for multiplayer games only
 
@@ -240,10 +243,10 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
     if (inAppHandler.ServerPresent())
     {
         // Loop through the players, checking that each one has an image
-        MushcoreData<GamePiecePlayer>::tMapIterator endValue = InfernalData::Sgl().PlayerGet().End();
-        MushcoreData<GamePiecePlayer>::tMapIterator killValue = endValue;
+        MushcoreData<InfernalPiecePlayer>::tMapIterator endValue = InfernalData::Sgl().PlayerGet().End();
+        MushcoreData<InfernalPiecePlayer>::tMapIterator killValue = endValue;
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
+        for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
         {
             if (!VerifyPlayer(p->first, *p->second))
             {
@@ -270,20 +273,20 @@ GamePlayerUtils::ManagePlayers(GameAppHandler& inAppHandler)
 }
 
 void
-GamePlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
 {
     U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
+    MushcoreData<InfernalPiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
         U32 frameNum = startFrameNum + i; // Add control delay here
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
+        for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
              p != endValue; ++p)
         {
-            GamePiecePlayer& playerRef=*p->second;
+            InfernalPiecePlayer& playerRef=*p->second;
 
             if (!playerRef.ImageIs())
             {
@@ -323,20 +326,20 @@ GamePlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer
 }
 
 void
-GamePlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
+InfernalPlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, U32 inNumFrames)
 {
     U32 startFrameNum = inTimer.ServerGet().FrameNumGet();
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
+    MushcoreData<InfernalPiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
         U32 frameNum = startFrameNum + i; // Add control delay here
 
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
+        for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
              p != endValue; ++p)
         {
-            GamePiecePlayer& playerRef=*p->second;
+            InfernalPiecePlayer& playerRef=*p->second;
 
             if (playerRef.ImageIs())
             {
@@ -376,16 +379,16 @@ GamePlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer
 }
 
 U32
-GamePlayerUtils::CompleteControlFrameFind(void)
+InfernalPlayerUtils::CompleteControlFrameFind(void)
 {
     U32 retFrame=0;
 
-    MushcoreData<GamePiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
+    MushcoreData<InfernalPiecePlayer>::tMapIterator endValue=InfernalData::Sgl().PlayerGet().End();
         
-    for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
+    for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin();
          p != endValue; ++p)
     {
-        GamePiecePlayer& playerRef=*p->second;
+        InfernalPiecePlayer& playerRef=*p->second;
         if (playerRef.ImageIs())
         {
             U32 lastFrame = playerRef.LastValidControlFrameGet();

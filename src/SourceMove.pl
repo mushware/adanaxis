@@ -30,6 +30,7 @@ my @fileList =
 
 foreach my $suffix (@fileList)
 {
+    die;
     my $command = "rm Game/Game$suffix.cpp";
     if (system($command) != 0)
     {
@@ -50,5 +51,9 @@ foreach my $suffix (@fileList)
     {
         print "'$command' failed\n";
     }
+
 }
 print "Done\n";
+
+
+

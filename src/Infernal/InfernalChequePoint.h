@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalChequePoint.h
+ * File: src/Infernal/InfernalChequePoint.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ti3JxBuZiNdS1cyjiqymJQ
+//%Header } Hn8hGWAF8X+36S0U9pCfBA
 /*
- * $Id: InfernalChequePoint.h,v 1.14 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalChequePoint.h,v 1.1 2003/10/04 12:23:04 southa Exp $
  * $Log: InfernalChequePoint.h,v $
+ * Revision 1.1  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.14  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *

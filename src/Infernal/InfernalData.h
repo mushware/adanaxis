@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalData.h
+ * File: src/Infernal/InfernalData.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rnUU4e7ACctzQCzxnyuMFw
+//%Header } RKDEvTZGWRiNbVX9UumVLA
 /*
- * $Id: InfernalData.h,v 1.30 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalData.h,v 1.1 2003/10/04 12:23:04 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.1  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.30  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -117,8 +120,8 @@ class InfernalFloorMap;
 class InfernalContract;
 class GameTraits;
 class GameController;
-class GamePiece;
-class GamePiecePlayer;
+class InfernalPiece;
+class InfernalPiecePlayer;
 class GameDialogue;
 class InfernalView;
 class InfernalTimer;
@@ -148,10 +151,10 @@ public:
     GameTraits *TraitsGet(const std::string& inName) const;
     GameController *ControllerGetOrCreate(const std::string& inName);
     GameController *ControllerGet(const std::string& inName) const;
-    const GamePiece *TemplateDeleteAndCreate(const std::string& inName, GamePiece *inPiece);
-    const GamePiece *TemplateGet(const std::string& inName) const;
-    GamePiece *PieceDeleteAndCreate(const std::string& inName, GamePiece *inPiece);
-    GamePiece *PieceGet(const std::string& inName) const;
+    const InfernalPiece *TemplateDeleteAndCreate(const std::string& inName, InfernalPiece *inPiece);
+    const InfernalPiece *TemplateGet(const std::string& inName) const;
+    InfernalPiece *PieceDeleteAndCreate(const std::string& inName, InfernalPiece *inPiece);
+    InfernalPiece *PieceGet(const std::string& inName) const;
     GameDialogue *DialogueDeleteAndCreate(const std::string& inName, GameDialogue *inDialogue);
     GameDialogue *DialogueGet(const std::string& inName) const;
     const DialogueMap& DialogueMapGet(void) const { return m_dialogues; }
@@ -159,7 +162,7 @@ public:
     InfernalView *ViewGet(const std::string& inName) const;
     InfernalView *CurrentViewGet(void) const;
 
-    MushcoreData<GamePiecePlayer>& PlayerGet(void) { return m_playerData; }
+    MushcoreData<InfernalPiecePlayer>& PlayerGet(void) { return m_playerData; }
     
     InfernalTimer& TimerGet(void);
     GameType& TypeGet(void) const;
@@ -184,11 +187,11 @@ private:
     std::map<std::string, GameTraits *> m_traits;
     std::map<std::string, GameController *> m_controllers;
     DialogueMap m_dialogues;
-    std::map<std::string, GamePiece *> m_templates;
-    std::map<std::string, GamePiece *> m_pieces;
+    std::map<std::string, InfernalPiece *> m_templates;
+    std::map<std::string, InfernalPiece *> m_pieces;
     std::map<std::string, InfernalView *> m_views;
 
-    MushcoreData<GamePiecePlayer> m_playerData;
+    MushcoreData<InfernalPiecePlayer> m_playerData;
     
     InfernalTimer *m_timer;
     GameType *m_gameType;

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalLightLinks.cpp
+ * File: src/Infernal/InfernalLightLinks.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } A3BgkNC/Ao1li2+NUPn5yg
+//%Header } mTTLh5yHC2UVmh40C7Kuew
 /*
- * $Id: InfernalLightLinks.cpp,v 1.9 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalLightLinks.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
  * $Log: InfernalLightLinks.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:05  southa
+ * File renaming
+ *
  * Revision 1.9  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

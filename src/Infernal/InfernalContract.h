@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalContract.h
+ * File: src/Infernal/InfernalContract.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } X14M0oTUIpdzdU77OVwmHg
+//%Header } pKxGNv0W5h1sUZPtuk0AFw
 /*
- * $Id: InfernalContract.h,v 1.44 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalContract.h,v 1.1 2003/10/04 12:23:04 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.1  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.44  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -158,7 +161,7 @@
 class GameDefClient;
 class InfernalFloorMap;
 class InfernalTileMap;
-class GamePiecePlayer;
+class InfernalPiecePlayer;
 class InfernalFloorDesigner;
 class InfernalView;
 
@@ -204,10 +207,10 @@ protected:
     void GlobalKeyControl(void);
     void RunningMove(InfernalTimer& inTimer, Mushware::U32 inNumFrames);
     void FillControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
-    void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControl(const GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
     void SendControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
     bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
-    bool VerifyPlayer(const std::string& inName, GamePiecePlayer& inPlayer);
+    bool VerifyPlayer(const std::string& inName, InfernalPiecePlayer& inPlayer);
     bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
     void ManagePlayers(GameAppHandler& inAppHandler);
     

@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalMotion.h
+ * File: src/Infernal/InfernalMotion.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } MnvuFUWLmQyttVJIc9GT4g
+//%Header } xrfzR12dM4JYonDbCWyJdA
 /*
- * $Id: InfernalMotion.h,v 1.13 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalMotion.h,v 1.1 2003/10/04 12:23:06 southa Exp $
  * $Log: InfernalMotion.h,v $
+ * Revision 1.1  2003/10/04 12:23:06  southa
+ * File renaming
+ *
  * Revision 1.13  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

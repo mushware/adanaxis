@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePiecePlayer.cpp
+ * File: src/Infernal/InfernalPiecePlayer.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } BEJLVYM9iDJn434I1VE2jw
+//%Header } umPUFlJuImupR0wuprty+w
 /*
- * $Id: GamePiecePlayer.cpp,v 1.45 2003/09/17 19:40:33 southa Exp $
- * $Log: GamePiecePlayer.cpp,v $
+ * $Id: InfernalPiecePlayer.cpp,v 1.46 2003/10/04 12:23:01 southa Exp $
+ * $Log: InfernalPiecePlayer.cpp,v $
+ * Revision 1.46  2003/10/04 12:23:01  southa
+ * File renaming
+ *
  * Revision 1.45  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -151,7 +154,7 @@
  *
  */
 
-#include "GamePiecePlayer.h"
+#include "InfernalPiecePlayer.h"
 
 #include "GameControlFrameDef.h"
 #include "InfernalData.h"
@@ -167,15 +170,15 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
+MushcoreInstaller InfernalPiecePlayerInstaller(InfernalPiecePlayer::Install);
 
-GamePiecePlayer::GamePiecePlayer() :
+InfernalPiecePlayer::InfernalPiecePlayer() :
     m_frameDefHistory(kFrameDefBufferSize, 0),
     m_imageIs(false)
 {}
 
 void
-GamePiecePlayer::Render(void)
+InfernalPiecePlayer::Render(void)
 {
     for (U32 i=0; i<m_graphics.size(); ++i)
     {
@@ -184,7 +187,7 @@ GamePiecePlayer::Render(void)
 }
 
 void
-GamePiecePlayer::EnvironmentRead(const InfernalFloorMap& inFloorMap)
+InfernalPiecePlayer::EnvironmentRead(const InfernalFloorMap& inFloorMap)
 {
     InfernalSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
     m_adhesion=inFloorMap.AdhesionGet(spacePoint);
@@ -193,7 +196,7 @@ GamePiecePlayer::EnvironmentRead(const InfernalFloorMap& inFloorMap)
 }
 
 void
-GamePiecePlayer::MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const
+InfernalPiecePlayer::MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const
 {
     outSpec = m_motion.MotionSpecGet();
     // Retard the current motion
@@ -256,7 +259,7 @@ GamePiecePlayer::MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef&
 }
 
 void
-GamePiecePlayer::MoveConfirm(const InfernalMotionSpec& inSpec)
+InfernalPiecePlayer::MoveConfirm(const InfernalMotionSpec& inSpec)
 {
     InfernalMotionSpec motionSpec(inSpec);
     motionSpec.pos += motionSpec.deltaPos;
@@ -266,19 +269,19 @@ GamePiecePlayer::MoveConfirm(const InfernalMotionSpec& inSpec)
 }
 
 bool
-GamePiecePlayer::ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum)
+InfernalPiecePlayer::ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum)
 {
     return m_frameDefHistory.PreviousGet(outFrameDef, inFrameNum);
 }
 
 MushcoreHistoryIterator<U32, GameControlFrameDef>
-GamePiecePlayer::ControlFrameDefIteratorGet(U32 inFrameNum) const
+InfernalPiecePlayer::ControlFrameDefIteratorGet(U32 inFrameNum) const
 {
     return m_frameDefHistory.IteratorPreviousGet(inFrameNum);
 }
 
 void
-GamePiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum)
+InfernalPiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum)
 {
     // Function expects data to be added in frame order
     m_frameDefHistory.Add(inDef, inFrameNum);
@@ -286,7 +289,7 @@ GamePiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFram
 }
 
 U32
-GamePiecePlayer::LastValidControlFrameGet(void) const
+InfernalPiecePlayer::LastValidControlFrameGet(void) const
 {
     if (m_frameDefHistory.Back().ValidIs())
     {
@@ -299,18 +302,18 @@ GamePiecePlayer::LastValidControlFrameGet(void) const
 }
 
 void
-GamePiecePlayer::HandlePlayerStart(MushcoreXML& inXML)
+InfernalPiecePlayer::HandlePlayerStart(MushcoreXML& inXML)
 {
     m_pickleState=kPickleData;
 }
 
 void
-GamePiecePlayer::HandleNameEnd(MushcoreXML& inXML)
+InfernalPiecePlayer::HandleNameEnd(MushcoreXML& inXML)
 {
 }
 
 void
-GamePiecePlayer::HandleGraphicStart(MushcoreXML& inXML)
+InfernalPiecePlayer::HandleGraphicStart(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
     GameGraphic& graphic(GameGraphic::NewFromType(typeStr));
@@ -319,38 +322,38 @@ GamePiecePlayer::HandleGraphicStart(MushcoreXML& inXML)
 }
 
 void
-GamePiecePlayer::HandleMotionStart(MushcoreXML& inXML)
+InfernalPiecePlayer::HandleMotionStart(MushcoreXML& inXML)
 {
     m_motion.Unpickle(inXML);
 }
 
 void
-GamePiecePlayer::HandleAccelerationEnd(MushcoreXML& inXML)
+InfernalPiecePlayer::HandleAccelerationEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_acceleration)) inXML.Throw("Expecting <acceleration>1.0</acceleration>");
 }
 
 void
-GamePiecePlayer::HandleSpeedLimitEnd(MushcoreXML& inXML)
+InfernalPiecePlayer::HandleSpeedLimitEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_speedLim)) inXML.Throw("Expecting <speedlimit>0.1</speedlimit>");
 }
 void
-GamePiecePlayer::HandlePlayerEnd(MushcoreXML& inXML)
+InfernalPiecePlayer::HandlePlayerEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GamePiecePlayer::NullHandler(MushcoreXML& inXML)
+InfernalPiecePlayer::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix) const
+InfernalPiecePlayer::Pickle(ostream& inOut, const string& inPrefix) const
 {
     inOut << inPrefix << "<name>" << "" << "</name>" << endl;
     for (U32 i=0; i<m_graphics.size(); ++i)
@@ -365,27 +368,27 @@ GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GamePiecePlayer::UnpicklePrologue(void)
+InfernalPiecePlayer::UnpicklePrologue(void)
 {
-    GamePiece::UnpicklePrologue();
+    InfernalPiece::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_startTable[kPickleInit]["player"] = &GamePiecePlayer::HandlePlayerStart;
-    m_startTable[kPickleData]["name"] = &GamePiecePlayer::NullHandler;
-    m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
-    m_startTable[kPickleData]["graphic"] = &GamePiecePlayer::HandleGraphicStart;
-    m_startTable[kPickleData]["motion"] = &GamePiecePlayer::HandleMotionStart;
-    m_startTable[kPickleData]["acceleration"] = &GamePiecePlayer::NullHandler;
-    m_endTable[kPickleData]["acceleration"] = &GamePiecePlayer::HandleAccelerationEnd;
-    m_startTable[kPickleData]["speedlimit"] = &GamePiecePlayer::NullHandler;
-    m_endTable[kPickleData]["speedlimit"] = &GamePiecePlayer::HandleSpeedLimitEnd;
-    m_endTable[kPickleData]["player"] = &GamePiecePlayer::HandlePlayerEnd;
+    m_startTable[kPickleInit]["player"] = &InfernalPiecePlayer::HandlePlayerStart;
+    m_startTable[kPickleData]["name"] = &InfernalPiecePlayer::NullHandler;
+    m_endTable[kPickleData]["name"] = &InfernalPiecePlayer::HandleNameEnd;
+    m_startTable[kPickleData]["graphic"] = &InfernalPiecePlayer::HandleGraphicStart;
+    m_startTable[kPickleData]["motion"] = &InfernalPiecePlayer::HandleMotionStart;
+    m_startTable[kPickleData]["acceleration"] = &InfernalPiecePlayer::NullHandler;
+    m_endTable[kPickleData]["acceleration"] = &InfernalPiecePlayer::HandleAccelerationEnd;
+    m_startTable[kPickleData]["speedlimit"] = &InfernalPiecePlayer::NullHandler;
+    m_endTable[kPickleData]["speedlimit"] = &InfernalPiecePlayer::HandleSpeedLimitEnd;
+    m_endTable[kPickleData]["player"] = &InfernalPiecePlayer::HandlePlayerEnd;
     m_pickleState=kPickleInit;
     m_baseThreaded=0;
 }
 
 void
-GamePiecePlayer::Unpickle(MushcoreXML& inXML)
+InfernalPiecePlayer::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     m_adhesion=0.5;
@@ -395,15 +398,15 @@ GamePiecePlayer::Unpickle(MushcoreXML& inXML)
 }
 
 void
-GamePiecePlayer::UnpickleEpilogue(void)
+InfernalPiecePlayer::UnpickleEpilogue(void)
 {
-    GamePiece::UnpickleEpilogue();
+    InfernalPiece::UnpickleEpilogue();
     m_startTable.resize(0);
     m_endTable.resize(0);
 }
 
 void
-GamePiecePlayer::XMLStartHandler(MushcoreXML& inXML)
+InfernalPiecePlayer::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -435,7 +438,7 @@ GamePiecePlayer::XMLStartHandler(MushcoreXML& inXML)
 }
 
 void
-GamePiecePlayer::XMLEndHandler(MushcoreXML& inXML)
+InfernalPiecePlayer::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -470,18 +473,18 @@ GamePiecePlayer::XMLEndHandler(MushcoreXML& inXML)
 }
 
 void
-GamePiecePlayer::XMLDataHandler(MushcoreXML& inXML)
+InfernalPiecePlayer::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
 char *
-GamePiecePlayer::TypeNameGet(void) const
+InfernalPiecePlayer::TypeNameGet(void) const
 {
     return "gamepieceplayer";
 }
 
 MushcoreScalar
-GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+InfernalPiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -493,14 +496,14 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
-    GamePiecePlayer *newPlayer=new GamePiecePlayer;
+    InfernalPiecePlayer *newPlayer=new InfernalPiecePlayer;
     InfernalData::Sgl().TemplateDeleteAndCreate("player1", newPlayer);
     newPlayer->Unpickle(xml);
     return MushcoreScalar(0);
 }
 
 void
-GamePiecePlayer::Install(void)
+InfernalPiecePlayer::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("loadplayer", LoadPlayer);
 }

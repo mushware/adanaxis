@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } DM7BwhgUOa9BxJv/mO4rWA
 /*
- * $Id: GameDefClient.h,v 1.18 2003/08/21 23:08:42 southa Exp $
+ * $Id: GameDefClient.h,v 1.19 2003/09/17 19:40:31 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.19  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.18  2003/08/21 23:08:42  southa
  * Fixed file headers
  *
@@ -77,7 +80,7 @@
 #include "Mushcore.h"
 
 #include "GameDef.h"
-#include "GamePiecePlayer.h"
+#include "InfernalPiecePlayer.h"
 
 #include "mushMedia.h"
 
@@ -92,7 +95,7 @@ public:
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
     void PlayerNameSet(const std::string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
-    const MushcoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
+    const MushcoreDataRef<InfernalPiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
@@ -150,7 +153,7 @@ private:
     Mushware::U32 m_lastLinkNum;
     Mushware::U32 m_numLinks;
     Mushware::U32 m_uplinkBandwidth;
-    MushcoreDataRef<GamePiecePlayer> m_playerRef;
+    MushcoreDataRef<InfernalPiecePlayer> m_playerRef;
     bool m_killed;
     bool m_joined;
     bool m_linkGood;

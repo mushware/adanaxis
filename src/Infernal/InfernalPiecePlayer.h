@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEPIECEPLAYER_H
-#define GAMEPIECEPLAYER_H
-//%includeGuardStart } ja1RTnDkMy390nDBve3cKw
+#ifndef INFERNALPIECEPLAYER_H
+#define INFERNALPIECEPLAYER_H
+//%includeGuardStart } rlQIUvcen6uu6xVsAaDz+g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePiecePlayer.h
+ * File: src/Infernal/InfernalPiecePlayer.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Xkb9AaqPPoJ778vYkqsb9Q
+//%Header } JtZQnntRKq9o0IGhePKVyg
 /*
- * $Id: GamePiecePlayer.h,v 1.31 2003/09/17 19:40:33 southa Exp $
- * $Log: GamePiecePlayer.h,v $
+ * $Id: InfernalPiecePlayer.h,v 1.32 2003/10/04 12:23:01 southa Exp $
+ * $Log: InfernalPiecePlayer.h,v $
+ * Revision 1.32  2003/10/04 12:23:01  southa
+ * File renaming
+ *
  * Revision 1.31  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -118,15 +121,15 @@
 #include "GameControlFrameDef.h"
 #include "InfernalFloorMap.h"
 #include "InfernalMotion.h"
-#include "GamePiece.h"
+#include "InfernalPiece.h"
 
 class GameGraphic;
 
-class GamePiecePlayer: public GamePiece
+class InfernalPiecePlayer: public InfernalPiece
 {
 public:
-    GamePiecePlayer();
-    virtual ~GamePiecePlayer() {}
+    InfernalPiecePlayer();
+    virtual ~InfernalPiecePlayer() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(MushcoreXML& inXML);
     virtual void MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
@@ -177,7 +180,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<std::string, void (GamePiecePlayer::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (InfernalPiecePlayer::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
@@ -198,7 +201,7 @@ private:
     bool m_imageIs;
 };
 
-inline std::ostream& operator<<(std::ostream &inOut, const GamePiecePlayer& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const InfernalPiecePlayer& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

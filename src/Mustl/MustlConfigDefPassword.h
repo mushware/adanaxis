@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } jCJlm5wbzbRaUz/2I4FeRQ
 /*
- * $Id: MustlConfigDefPassword.h,v 1.3 2003/08/21 23:09:23 southa Exp $
+ * $Id: MustlConfigDefPassword.h,v 1.4 2003/09/17 19:40:37 southa Exp $
  * $Log: MustlConfigDefPassword.h,v $
+ * Revision 1.4  2003/09/17 19:40:37  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.3  2003/08/21 23:09:23  southa
  * Fixed file headers
  *
@@ -53,9 +56,6 @@ public:
     static void NullFunction(void);
 
 private:
-//%classPrototypes {
-public:
-//%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
 };
 
 //%includeGuardEnd {

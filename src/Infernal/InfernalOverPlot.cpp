@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalOverPlot.cpp
+ * File: src/Infernal/InfernalOverPlot.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } anJr/qj1j1c9NVL9xUFAqw
+//%Header } o+fEIMrXzu6ZbEcV8tn9iQ
 /*
- * $Id: InfernalOverPlot.cpp,v 1.10 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalOverPlot.cpp,v 1.1 2003/10/04 12:23:06 southa Exp $
  * $Log: InfernalOverPlot.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:06  southa
+ * File renaming
+ *
  * Revision 1.10  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

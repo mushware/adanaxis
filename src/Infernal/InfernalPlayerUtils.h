@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEPLAYERUTILS_H
-#define GAMEPLAYERUTILS_H
-//%includeGuardStart } u/cKd4KD2FACTxMGfkaE/g
+#ifndef INFERNALPLAYERUTILS_H
+#define INFERNALPLAYERUTILS_H
+//%includeGuardStart } 3zHHkYCcKZRXNO64ZAPAAQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePlayerUtils.h
+ * File: src/Infernal/InfernalPlayerUtils.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9drEiigj4IJrzoCcFHHBBA
+//%Header } /aBkZ5RiZAE5bMJb3KNxLQ
 /*
- * $Id: GamePlayerUtils.h,v 1.8 2003/09/17 19:40:33 southa Exp $
- * $Log: GamePlayerUtils.h,v $
+ * $Id: InfernalPlayerUtils.h,v 1.9 2003/10/04 12:23:02 southa Exp $
+ * $Log: InfernalPlayerUtils.h,v $
+ * Revision 1.9  2003/10/04 12:23:02  southa
+ * File renaming
+ *
  * Revision 1.8  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -49,17 +52,17 @@
 class GameAppHandler;
 class GameDefClient;
 class InfernalFloorMap;
-class GamePiecePlayer;
+class InfernalPiecePlayer;
 class InfernalTimer;
 
-class GamePlayerUtils
+class InfernalPlayerUtils
 {
 public:
     static void FillControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
-    static void SendControl(GameDefClient& inClient, const GamePiecePlayer& inPlayer, const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
+    static void SendControl(GameDefClient& inClient, const InfernalPiecePlayer& inPlayer, const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
     static void SendControlQueues(const InfernalTimer& inTimer, Mushware::U32 inNumFrames);
     static bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
-    static bool VerifyPlayer(const std::string& inName, GamePiecePlayer& inPlayer);
+    static bool VerifyPlayer(const std::string& inName, InfernalPiecePlayer& inPlayer);
     static bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
     static void ManagePlayers(GameAppHandler& inAppHandler);
     static void ClientMove(InfernalFloorMap& inFloorMap, InfernalTimer& inTimer, Mushware::U32 inNumFrames);

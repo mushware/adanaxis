@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalDataUtils.cpp
+ * File: src/Infernal/InfernalDataUtils.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zxiyXZx/odF8CKIt1VtQFg
+//%Header } r0XbEmK9l6ohe5aiL2+V1g
 /*
- * $Id: InfernalDataUtils.cpp,v 1.11 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalDataUtils.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
  * $Log: InfernalDataUtils.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:05  southa
+ * File renaming
+ *
  * Revision 1.11  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *

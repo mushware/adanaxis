@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalData.cpp
+ * File: src/Infernal/InfernalData.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rcBrp79ftEu9yOd7k7bEew
+//%Header } KDC8pImwjeHS5CqhZ3lPPQ
 /*
- * $Id: InfernalData.cpp,v 1.31 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalData.cpp,v 1.1 2003/10/04 12:23:04 southa Exp $
  * $Log: InfernalData.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.31  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -114,8 +117,8 @@
 #include "GameController.h"
 #include "GameDialogue.h"
 #include "InfernalFloorMap.h"
-#include "GamePiece.h"
-#include "GamePiecePlayer.h"
+#include "InfernalPiece.h"
+#include "InfernalPiecePlayer.h"
 #include "GameRewards.h"
 #include "GameSTL.h"
 #include "InfernalTileMap.h"
@@ -179,7 +182,7 @@ InfernalData::Clear(void)
     }
     m_controllers.clear();
 
-    for (map<std::string, GamePiece *>::iterator p = m_templates.begin();
+    for (map<std::string, InfernalPiece *>::iterator p = m_templates.begin();
          p != m_templates.end(); ++p)
     {
         delete p->second;
@@ -378,10 +381,10 @@ InfernalData::ControllerGet(const string& inName) const
     return p->second;
 }
 
-const GamePiece *
-InfernalData::TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece)
+const InfernalPiece *
+InfernalData::TemplateDeleteAndCreate(const string& inName, InfernalPiece *inPiece)
 {
-    map<std::string, GamePiece *>::iterator p = m_templates.find(inName);
+    map<std::string, InfernalPiece *>::iterator p = m_templates.find(inName);
     if (p != m_templates.end())
     {
         delete p->second;
@@ -394,10 +397,10 @@ InfernalData::TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece)
     return inPiece;
 }
 
-const GamePiece *
+const InfernalPiece *
 InfernalData::TemplateGet(const string& inName) const
 {
-    map<std::string, GamePiece *>::const_iterator p = m_templates.find(inName);
+    map<std::string, InfernalPiece *>::const_iterator p = m_templates.find(inName);
     if (p == m_templates.end())
     {
         throw(MushcoreDataFail("Access to non-existent template '"+inName+"'"));

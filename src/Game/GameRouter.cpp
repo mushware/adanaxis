@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wEGV1dv23L0/XdO/oScH6A
 /*
- * $Id: GameRouter.cpp,v 1.24 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameRouter.cpp,v 1.25 2003/10/04 12:23:02 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.25  2003/10/04 12:23:02  southa
+ * File renaming
+ *
  * Revision 1.24  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -95,7 +98,7 @@
 #include "GameNetID.h"
 #include "GameNetObject.h"
 #include "GameNetUtils.h"
-#include "GamePiecePlayer.h"
+#include "InfernalPiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
 
@@ -176,7 +179,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
             GameDefClient *clientDef = gameNetID.DataRefGet().Get();
             if (clientDef->PlayerRefGet().Exists())
             {
-                GamePiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
+                InfernalPiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
 
                 InfernalMessageControlData controlData;
                 controlData.Unpack(ioData);
@@ -202,7 +205,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 
     
 #if 0
-    MushcoreData<GamePiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
+    MushcoreData<InfernalPiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
 
     if (playerData.Exists(clientName))
     {

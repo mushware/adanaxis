@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalSpacePoint.h
+ * File: src/Infernal/InfernalSpacePoint.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YxXYjdrjzBHVG0kABQN2wA
+//%Header } AE6fh4OKVYRKEno4yT42xQ
 /*
- * $Id: InfernalSpacePoint.h,v 1.9 2003/09/17 19:40:33 southa Exp $
+ * $Id: InfernalSpacePoint.h,v 1.1 2003/10/04 12:23:06 southa Exp $
  * $Log: InfernalSpacePoint.h,v $
+ * Revision 1.1  2003/10/04 12:23:06  southa
+ * File renaming
+ *
  * Revision 1.9  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *

@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalFloorDesigner.h
+ * File: src/Infernal/InfernalFloorDesigner.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } kigtSChfDQWeDlMu3D8u+Q
+//%Header } ied5lo9nDglcFhQO4w3reA
 /*
- * $Id: InfernalFloorDesigner.h,v 1.15 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalFloorDesigner.h,v 1.1 2003/10/04 12:23:05 southa Exp $
  * $Log: InfernalFloorDesigner.h,v $
+ * Revision 1.1  2003/10/04 12:23:05  southa
+ * File renaming
+ *
  * Revision 1.15  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalMap.cpp
+ * File: src/Infernal/InfernalMap.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SPPcKy92bW0Ap1+XrJt8rw
+//%Header } 9givs2sEAV+KnH7zLxW5YA
 /*
- * $Id: InfernalMap.cpp,v 1.12 2003/09/17 19:40:32 southa Exp $
+ * $Id: InfernalMap.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
  * $Log: InfernalMap.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:05  southa
+ * File renaming
+ *
  * Revision 1.12  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/InfernalContract.cpp
+ * File: src/Infernal/InfernalContract.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1sD3oPgBctIs2JIMc/MFVg
+//%Header } oMQ1VLZnjYUkw29lLBIRAQ
 /*
- * $Id: InfernalContract.cpp,v 1.120 2003/09/17 19:40:31 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.1 2003/10/04 12:23:04 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.1  2003/10/04 12:23:04  southa
+ * File renaming
+ *
  * Revision 1.120  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -397,8 +400,8 @@
 #include "InfernalMapPoint.h"
 #include "InfernalMotionSpec.h"
 #include "GameNetUtils.h"
-#include "GamePiecePlayer.h"
-#include "GamePlayerUtils.h"
+#include "InfernalPiecePlayer.h"
+#include "InfernalPlayerUtils.h"
 #include "GameRewards.h"
 #include "GameRouter.h"
 #include "GameSTL.h"
@@ -532,10 +535,10 @@ InfernalContract::Init(GameAppHandler& inAppHandler)
     if (!inAppHandler.MultiplayerIs())
     {
         // Create the player for a single player game
-        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
+        const InfernalPiecePlayer *templatePlayer=dynamic_cast<const InfernalPiecePlayer *>(InfernalData::Sgl().TemplateGet("player1"));
         MUSHCOREASSERT(templatePlayer != NULL);
 
-        InfernalData::Sgl().PlayerGet().Give("singleplayer", new GamePiecePlayer(*templatePlayer));
+        InfernalData::Sgl().PlayerGet().Give("singleplayer", new InfernalPiecePlayer(*templatePlayer));
     }
     
     if (m_floorDesigner == NULL) m_floorDesigner=new InfernalFloorDesigner; // This is leaked
@@ -634,7 +637,7 @@ InfernalContract::RunningDisplay(void)
     GLUtils::IdentityPrologue();
 
     // Just pick the first player for now
-    MushcoreData<GamePiecePlayer>::tMapIterator playerIter = InfernalData::Sgl().PlayerGet().Begin();
+    MushcoreData<InfernalPiecePlayer>::tMapIterator playerIter = InfernalData::Sgl().PlayerGet().Begin();
     if (playerIter != InfernalData::Sgl().PlayerGet().End())
     {
         InfernalMotionSpec playerSpec(playerIter->second->MotionSpecGet());
@@ -686,9 +689,9 @@ InfernalContract::RunningDisplay(void)
     GLState::DepthSet(GLState::kDepthTest);
 
     {
-        MushcoreData<GamePiecePlayer>::tMapIterator endValue = InfernalData::Sgl().PlayerGet().End();
+        MushcoreData<InfernalPiecePlayer>::tMapIterator endValue = InfernalData::Sgl().PlayerGet().End();
     
-        for (MushcoreData<GamePiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
+        for (MushcoreData<InfernalPiecePlayer>::tMapIterator p=InfernalData::Sgl().PlayerGet().Begin(); p != endValue; ++p)
         {
             GLUtils::PushMatrix();
             InfernalMotionSpec playerSpec(p->second->MotionSpecGet());
@@ -819,17 +822,17 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
             if (numClientFrames > 6) numClientFrames=6;
         }
 
-        GamePlayerUtils::FillControlQueues(timer, numClientFrames);
+        InfernalPlayerUtils::FillControlQueues(timer, numClientFrames);
 
         if (inAppHandler.MultiplayerIs())
         {
-            GamePlayerUtils::SendControlQueues(timer, numClientFrames);
+            InfernalPlayerUtils::SendControlQueues(timer, numClientFrames);
             GameNetUtils::NetReceive();
         }
         MUSHCOREASSERT(m_floorMap != NULL);
         
 
-        U32 lastCompleteFrameNum=GamePlayerUtils::CompleteControlFrameFind();
+        U32 lastCompleteFrameNum=InfernalPlayerUtils::CompleteControlFrameFind();
 
         U32 numServerFrames=0;
         if (lastCompleteFrameNum > timer.ServerGet().FrameNumGet())
@@ -838,10 +841,10 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
             if (numServerFrames > 100) numServerFrames=100;
         }
         
-        GamePlayerUtils::ClientMove(*m_floorMap, timer, numClientFrames);
+        InfernalPlayerUtils::ClientMove(*m_floorMap, timer, numClientFrames);
         if (numServerFrames > 0)
         {
-            GamePlayerUtils::ServerMove(*m_floorMap, timer, numServerFrames);
+            InfernalPlayerUtils::ServerMove(*m_floorMap, timer, numServerFrames);
         }        
         RunningMove(timer, numClientFrames);
 
@@ -890,7 +893,7 @@ InfernalContract::Running(GameAppHandler& inAppHandler)
             if (inAppHandler.MultiplayerIs())
             {
                 GameNetUtils::NetTicker();
-                GamePlayerUtils::ManagePlayers(inAppHandler);
+                InfernalPlayerUtils::ManagePlayers(inAppHandler);
             }
 
             static U32 lastPrint=0;
