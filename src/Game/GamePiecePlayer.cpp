@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.8 2002/07/16 19:30:09 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.9 2002/07/18 11:40:36 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.9  2002/07/18 11:40:36  southa
+ * Overplotting and movement
+ *
  * Revision 1.8  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *
@@ -72,29 +75,45 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 
     outSpec = m_motion;
     
-    outSpec.deltaAngle=0.01*controlState.mouseXDelta;
+    outSpec.deltaAngle+=m_adhesion * 0.01 * controlState.mouseXDelta;
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);
     
     if (controlState.leftPressed)
     {
-        outSpec.deltaPos.x -= 1.5;
+        outSpec.deltaPos.x -= m_adhesion;
     }
     if (controlState.rightPressed)
     {
-        outSpec.deltaPos.x += 1.5;
+        outSpec.deltaPos.x += m_adhesion;
     }
     if (controlState.upPressed)
     {
-        outSpec.deltaPos.y += 2;
+        outSpec.deltaPos.y += m_adhesion;
     }
     if (controlState.downPressed)
     {
-        outSpec.deltaPos.y -= 2;
+        outSpec.deltaPos.y -= m_adhesion;
     }
-    GLRectangle speedLimits(-2,-8,2,8);
-    speedLimits.ConstrainPoint(outSpec.deltaPos);
+    // Constrain magnitude to an egg-ellipse thing
+    tVal magnitude;
+    if (outSpec.deltaPos.y > 0)
+    {
+	magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
+                       0.5*outSpec.deltaPos.y*outSpec.deltaPos.y);
+    }
+    else
+    {
+	magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
+                       outSpec.deltaPos.y*outSpec.deltaPos.y);
+    }
+	    
+    if (magnitude > 2)
+    {
+	// Constrain magnitude to 2
+	outSpec.deltaPos *= 2/magnitude;
+    }
     
     outSpec.deltaPos.RotateAboutZ(newAngle);
 
@@ -113,15 +132,9 @@ GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
     m_motion.angle += m_motion.deltaAngle;
 
     GLPoint retardPos(m_motion.deltaPos);
-    tVal magnitude=retardPos.Magnitude();
-    if (magnitude > 1)
-    {
-        retardPos /= magnitude;
-    }
-    
-    // m_motion.deltaPos -= retardPos;
-    m_motion.deltaPos /= 1.5;
-    m_motion.deltaAngle /= 8;
+    retardPos.ConstrainMagnitude(m_adhesion);
+    m_motion.deltaPos -= retardPos*0.5;
+    m_motion.deltaAngle *= 1.0-(m_adhesion*0.5);
 }
 
 void
@@ -202,6 +215,7 @@ void
 GamePiecePlayer::Unpickle(CoreXML& inXML)
 {
     UnpicklePrologue();
+    m_adhesion=0.8;
     inXML.ParseStream(*this);
 }
 

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.6 2002/07/16 19:30:09 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.7 2002/07/18 11:40:36 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.7  2002/07/18 11:40:36  southa
+ * Overplotting and movement
+ *
  * Revision 1.6  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *
@@ -95,6 +98,7 @@ private:
     bool m_baseThreaded;
 
     GameMotionSpec m_motion;
+    tVal m_adhesion;
     vector <GameGraphic *> m_graphics;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData

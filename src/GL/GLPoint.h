@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.3 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLPoint.h,v 1.4 2002/07/18 11:40:34 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.4  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.3  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -56,6 +59,15 @@ public:
     }
     tVal MagnitudeSquared(void) const { return x*x+y*y; }
     tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
+    void ConstrainMagnitude(tVal inMagnitude)
+    {
+        tVal magnitude=Magnitude();
+	if (magnitude > inMagnitude)
+	{
+	    x *= inMagnitude/magnitude;
+	    y *= inMagnitude/magnitude;
+	}
+    }
     void MakeInteger(void)
     {
         double temp;
