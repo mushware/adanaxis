@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.40 2002/10/12 17:56:10 southa Exp $
+ * $Id: GLUtils.cpp,v 1.41 2002/10/13 12:26:46 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.41  2002/10/13 12:26:46  southa
+ * Facetised map rendering
+ *
  * Revision 1.40  2002/10/12 17:56:10  southa
  * Reset normal when drawing sprites
  *
@@ -299,14 +302,16 @@ GLUtils::DisplayPrologue(void)
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     glFinish();
     PlatformMiscUtils::VBLWait();
+
     glHandler.SwapBuffers();
-    glDrawBuffer(GL_BACK);
+    
 }
 
 void
 GLUtils::DisplayEpilogue(void)
 {
-
+    glDrawBuffer(GL_BACK);
+    glFlush();
 }
 
 void

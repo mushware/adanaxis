@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameTraits.h,v 1.6 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTraits.h,v 1.7 2002/08/27 08:56:27 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.7  2002/08/27 08:56:27  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -86,6 +89,24 @@ private:
     mutable bool m_traitsValid;
     mutable vector<GameTraits *> m_baseTraits;
 };
+
+inline U32
+GameTraits::NumberOfTraitsGet(void) const
+{
+    if (!m_traitsValid) RebuildTraits();
+    return m_baseTraits.size();
+}
+
+inline GameTraits&
+GameTraits::TraitsGet(U32 inIndex) const
+{
+    if (!m_traitsValid)
+    {
+        throw(LogicFail("Use of invalid traits"));
+    }
+    COREASSERT(inIndex < m_baseTraits.size());
+    return *m_baseTraits[inIndex];
+}
 
 inline ostream& operator<<(ostream &inOut, const GameTraits& inObj)
 {

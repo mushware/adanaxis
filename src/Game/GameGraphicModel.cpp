@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.3 2002/10/12 17:34:20 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.4 2002/10/14 13:03:00 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.4  2002/10/14 13:03:00  southa
+ * Display list test
+ *
  * Revision 1.3  2002/10/12 17:34:20  southa
  * Wall edges
  *
@@ -25,6 +28,18 @@
  */
 
 #include "GameGraphicModel.h"
+
+GameGraphicModel::~GameGraphicModel()
+{
+    if (m_listValid)
+    {
+        U32 size=m_listName.size();
+        for (U32 i=0; i<size; ++i)
+        {
+            glDeleteLists(m_listName[i], 1);
+        }
+    }
+}
 
 void
 GameGraphicModel::Render(void)
@@ -47,13 +62,25 @@ GameGraphicModel::Render(void)
             }
             GLState::BindTexture(facetDef.texRef.BindingNameGet());
             GLState::TextureEnable();
-            GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
-            GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
-            GLRender::NormalArraySet(facetDef.normals.ArrayGet());
-            //GLRender::DrawArrays(facetDef.type, arraySize);
-            GLRender::ArraysToList(facetDef.type, arraySize);
+            if (m_listValid)
+            {
+                COREASSERT(glIsList(m_listName[i]));
+                glCallList(m_listName[i]);
+            }
+            else
+            {
+                m_listName[i]=glGenLists(1);
+                GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
+                GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
+                GLRender::NormalArraySet(facetDef.normals.ArrayGet());
+                glNewList(m_listName[i], GL_COMPILE);
+                GLRender::DrawArrays(facetDef.type, arraySize);
+                glEndList();
+                glCallList(m_listName[i]);
+            }
         }
-    }    
+    }
+    m_listValid=true;
 }
 
 void
@@ -68,6 +95,7 @@ GameGraphicModel::HandleFacetsStart(CoreXML& inXML)
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
 
     m_facets.push_back(FacetDef());
+    m_listName.push_back(0); // Make space for list names
 
     if (typeStr == "points")
     {

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.74 2002/10/12 15:25:11 southa Exp $
+ * $Id: GameContract.cpp,v 1.75 2002/10/13 12:26:46 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.75  2002/10/13 12:26:46  southa
+ * Facetised map rendering
+ *
  * Revision 1.74  2002/10/12 15:25:11  southa
  * Facet renderer
  *
@@ -469,7 +472,7 @@ GameContract::RunningDisplay(void)
     GameMapArea highlightArea; // Empty area
     
     m_floorMap->Render(visibleArea, highlightArea, vector<bool>());
-
+    GLUtils::Flush();
     if (m_renderDiagnostics)
     {
         m_floorMap->RenderLightMap(visibleArea);
@@ -503,6 +506,7 @@ GameContract::RunningDisplay(void)
     {
         RenderFastDiagnostics();
     }
+    GLUtils::Flush();
 
     GameData::Instance().TypeGet().Render();
     
@@ -513,7 +517,9 @@ void
 GameContract::RenderFastDiagnostics(void) const
 {
     ostringstream message;
-    message << "FPS " << m_fps;
+
+    GameTimer& timer(GameData::Instance().TimerGet());
+    message << "FPS " << m_fps << " from " << timer.FrameRateGet();
     GLUtils::OrthoPrologue();
     GLState::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;

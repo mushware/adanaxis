@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTimer.cpp,v 1.9 2002/08/19 23:11:22 southa Exp $
+ * $Id: GameTimer.cpp,v 1.10 2002/08/27 08:56:27 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.10  2002/08/27 08:56:27  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/19 23:11:22  southa
  * Lap and split time tweaks
  *
@@ -100,7 +103,7 @@ GameTimer::Reset(void)
     m_currentMotionFrame=0;
     m_lastRedisplayMotionFrame=m_currentMotionFrame;
     m_lastFrameTime=m_currentTime;
-    m_averageFrameDuration=0;
+    m_averageFrameDuration=10000;
     m_motionMargin=0;
 }
 
@@ -200,9 +203,32 @@ GameTimer::DisplayedFrameAt(tMsec inMsec)
     tVal timeNow = m_currentTime + 1000 * (inMsec - m_lastMsec);
     tVal frameDuration = timeNow - m_lastFrameTime;
     // Keep rolling average of frame duration
-    m_averageFrameDuration *=0.9;
-    m_averageFrameDuration += 0.1*frameDuration;
+    tVal frameRatio = frameDuration / m_averageFrameDuration;
+    if (frameDuration < m_averageFrameDuration)
+    {
+        m_averageFrameDuration = frameDuration;
+        // cerr << "frame duration to " << m_averageFrameDuration << endl;
+    }
+    else if (frameRatio > 1.9 && frameRatio < 2.1)
+    {
+        // cerr << "Doubled frame" << endl;
+    }
+    else if (frameRatio > 1.45 && frameRatio < 1.55)
+    {
+        // cerr << "Frame 3/2" << endl;
+    }
+    else
+    {
+        m_averageFrameDuration *=0.95;
+        m_averageFrameDuration += 0.05*frameDuration;
+    }
     m_lastFrameTime = timeNow;
+}
+
+tVal
+GameTimer::FrameRateGet(void)
+{
+    return 1e6 / m_averageFrameDuration;
 }
 
 tVal

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.30 2002/10/11 14:01:11 southa Exp $
+ * $Id: GLUtils.h,v 1.31 2002/10/12 15:25:11 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.31  2002/10/12 15:25:11  southa
+ * Facet renderer
+ *
  * Revision 1.30  2002/10/11 14:01:11  southa
  * Lighting work
  *
@@ -161,6 +164,7 @@ public:
     static void PushMatrix(void) { glPushMatrix(); }
     static void PopMatrix(void) { glPopMatrix(); }
     static void Translate(const GLVector& inVec) { glTranslatef(inVec.x, inVec.y, inVec.z); }
+    static void Flush(void) { glFlush(); }
     
 private:            
     static void SafetyHandler(void);

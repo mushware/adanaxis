@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTraits.cpp,v 1.7 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTraits.cpp,v 1.8 2002/08/27 08:56:27 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.8  2002/08/27 08:56:27  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -61,23 +64,7 @@ GameTraits::Verify(void)
     }
 }
 
-U32
-GameTraits::NumberOfTraitsGet(void) const
-{
-    if (!m_traitsValid) RebuildTraits();
-    return m_baseTraits.size();
-}
 
-GameTraits&
-GameTraits::TraitsGet(U32 inIndex) const
-{
-    if (!m_traitsValid)
-    {
-        throw(LogicFail("Use of invalid traits"));
-    }
-    COREASSERT(inIndex < m_baseTraits.size());
-    return *m_baseTraits[inIndex];
-}
 
 void
 GameTraits::RebuildTraits(void) const

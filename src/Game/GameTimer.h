@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTimer.h,v 1.8 2002/08/19 23:11:22 southa Exp $
+ * $Id: GameTimer.h,v 1.9 2002/08/27 08:56:27 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.9  2002/08/27 08:56:27  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/19 23:11:22  southa
  * Lap and split time tweaks
  *
@@ -70,6 +73,7 @@ public:
     tMsec SleepTimeGet(void) const;
     void DisplayedFrameAt(tMsec inMsec);
     tVal WindbackValueGet(tMsec inMSec);
+    tVal FrameRateGet(void);
     static string MsecToString(tMsec inMsec);
     static string MsecDifferenceToString(tMsec inMsec);
     static string MsecToLongString(tMsec inMsec);
