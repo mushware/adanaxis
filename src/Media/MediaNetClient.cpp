@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.7 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.8 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.8  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.7  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -26,6 +29,7 @@
 
 #include "MediaNetClient.h"
 #include "MediaNetData.h"
+#include "MediaNetLog.h"
 #include "MediaNetUtils.h"
 
 #include "mushPlatform.h"
@@ -38,10 +42,8 @@ MediaNetClient::MediaNetClient() :
 
 MediaNetClient::~MediaNetClient()
 {
-    if (m_tcpConnected)
-    {
-        TCPDisconnect();
-    }
+    TCPDisconnect();
+    UDPDisconnect();
 }
 
 void
@@ -127,7 +129,7 @@ MediaNetClient::ResolveTargetName(void)
         static U32 errCtr=0;
         if (errCtr++ < 100)
         {
-            cerr << "Couldn't get hostname for IP: " << SDLNet_GetError() << endl;
+            MediaNetLog::Instance().Log() << "Couldn't get hostname for IP: " << SDLNet_GetError() << endl;
         }
     }
 }
@@ -154,8 +156,11 @@ MediaNetClient::UDPConnect(U32 inPort)
     {
         throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
     }
-    cout << "Selected local UDP port " << m_udpLocalPort << endl;
-
+    if (m_udpLocalPort != inPort)
+    {
+        MediaNetLog::Instance().Log() << "Selected local UDP port " << m_udpLocalPort << endl;
+    }
+    
     // Since we've replaced SDLNet_UDP_Send we don't use this bound address,
     // but let's bind it anyway
     IPaddress remoteIP;
@@ -183,20 +188,26 @@ MediaNetClient::UDPRemotePortSet(U32 inPort)
 void
 MediaNetClient::TCPDisconnect(void)
 {
-    COREASSERT(m_tcpConnected);
-    COREASSERT(m_tcpSocket != NULL);
-    SDLNet_TCP_Close(m_tcpSocket);
-    m_tcpSocket=NULL;
+    if (m_tcpConnected)
+    {
+        COREASSERT(m_tcpSocket != NULL);
+        SDLNet_TCP_Close(m_tcpSocket);
+        m_tcpSocket=NULL;
+        m_tcpConnected=false;
+    }
 }
 
 void
 MediaNetClient::UDPDisconnect(void)
 {
-    COREASSERT(m_udpConnected);
-    COREASSERT(m_udpSocket != NULL);
-    SDLNet_UDP_Unbind(m_udpSocket, 0);
-    SDLNet_UDP_Close(m_udpSocket);
-    m_udpSocket=NULL;
+    if (m_udpConnected)
+    {
+        COREASSERT(m_udpSocket != NULL);
+        SDLNet_UDP_Unbind(m_udpSocket, 0);
+        SDLNet_UDP_Close(m_udpSocket);
+        m_udpSocket=NULL;
+        m_udpConnected=false;
+    }
 }
 
 void

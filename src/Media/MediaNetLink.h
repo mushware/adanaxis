@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.h,v 1.5 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetLink.h,v 1.6 2002/11/04 13:11:58 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.6  2002/11/04 13:11:58  southa
+ * Link setup work
+ *
  * Revision 1.5  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -41,6 +44,7 @@ public:
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
+    void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
     
 private:
@@ -66,6 +70,7 @@ private:
         U32 linkCheckTime;
         tLinkState linkState;
         tLinkCheckState linkCheckState;
+        U32 linkPingTime;
         MediaNetData linkData;
         U8 linkCheckSeqNum;
     };
@@ -74,6 +79,7 @@ private:
     void TCPConnect(const string& inServer, U32 inPort);
     void UDPConnect(U32 inPort);
     void TCPSocketTake(TCPsocket inSocket);
+    void Disconnect(void);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
     bool LinkIsUp(tLinkState inState);
@@ -94,6 +100,7 @@ private:
     U32 m_currentMsec;
     bool m_targetIsServer;
     bool m_udpUseServerPort;
+    mutable bool m_loggedLinkInfo;
 };
 
 inline ostream&

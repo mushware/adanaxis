@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.5 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.6 2002/11/04 13:11:58 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.6  2002/11/04 13:11:58  southa
+ * Link setup work
+ *
  * Revision 1.5  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -20,6 +23,7 @@
 
 #include "MediaNetLink.h"
 
+#include "MediaNetLog.h"
 #include "MediaNetProtocol.h"
 #include "MediaNetServer.h"
 #include "MediaNetUtils.h"
@@ -56,10 +60,19 @@ MediaNetLink::Initialise(void)
     m_udpState.linkState=kLinkStateUntested;
     m_udpState.linkCheckState=kLinkCheckStateIdle;
     m_udpState.linkCheckSeqNum='M';
+    m_loggedLinkInfo=false;
 }
 
 MediaNetLink::~MediaNetLink()
 {
+    try
+    {
+        Disconnect();
+    }
+    catch (exception& e)
+    {
+        MediaNetLog::Instance().Log() << "~MediaNetLink exception: " << e.what() << endl;
+    }
 }
 
 void
@@ -80,6 +93,14 @@ void
 MediaNetLink::UDPConnect(U32 inPort)
 {
     m_client.UDPConnect(inPort);
+}
+
+void
+MediaNetLink::Disconnect(void)
+{
+    MediaNetLog::Instance().Log() << "Closed link " << *this << endl;
+    m_client.TCPDisconnect();
+    m_client.UDPDisconnect();
 }
 
 bool
@@ -188,7 +209,6 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
         U32 host, port;
         MediaNetServer::Instance().UDPReceive(host, port, outData);
         outData.SourceSet(host, port);
-        // cerr << "Received on " << MediaNetUtils::IPAddressToString(host) << ":" << port << ": " << outData << endl;
     }
     else
     {
@@ -308,11 +328,11 @@ MediaNetLink::MessageTCPLinkCheckReplyHandle(MediaNetData& ioData)
     if (seqNum == m_tcpState.linkCheckSeqNum &&
         m_tcpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        U32 pingTime=m_currentMsec - m_tcpState.linkCheckTime;
-        cerr << "Received valid TCP link check reply with ping time " << pingTime << "ms" << endl;
+        m_tcpState.linkPingTime=m_currentMsec - m_tcpState.linkCheckTime;
         if (m_tcpState.linkState == kLinkStateUntested)
         {
             m_tcpState.linkState = kLinkStateIdle;
+            if (m_udpState.linkState == kLinkStateIdle) LinkInfoLog();
         }
         m_tcpState.linkCheckState = kLinkCheckStateIdle;
     }
@@ -352,19 +372,30 @@ MediaNetLink::MessageUDPLinkCheckReplyHandle(MediaNetData& ioData)
     if (seqNum == m_udpState.linkCheckSeqNum &&
         m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        U32 pingTime=m_currentMsec - m_udpState.linkCheckTime;
-        cerr << "Received valid UDP link check reply with ping time " << pingTime << "ms" << endl;
+        m_udpState.linkPingTime=m_currentMsec - m_udpState.linkCheckTime;
         if (m_udpState.linkState == kLinkStateUntested)
         {
             m_udpState.linkState = kLinkStateIdle;
+            if (m_tcpState.linkState == kLinkStateIdle) LinkInfoLog();
         }
         m_udpState.linkCheckState = kLinkCheckStateIdle;
     }
 }
 
 void
+MediaNetLink::LinkInfoLog(void) const
+{
+    if (!m_loggedLinkInfo)
+    {
+        MediaNetLog::Instance().Log() << "Link: " << *this << endl;
+    }
+    m_loggedLinkInfo=true;
+}
+
+void
 MediaNetLink::Print(ostream& ioOut) const
 {
     ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState << ", targetIsServer=" << m_targetIsServer;
+    ioOut << ", currentMsec=" << m_currentMsec << ", udpUseServerPort=" << m_udpUseServerPort;
     ioOut << ", client=" << m_client << "]";
 }

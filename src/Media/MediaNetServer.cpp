@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.6 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.7 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.7  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.6  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -20,6 +23,7 @@
 #include "MediaNet.h"
 #include "MediaNetData.h"
 #include "MediaNetLink.h"
+#include "MediaNetLog.h"
 
 #include "mushPlatform.h"
 
@@ -70,11 +74,13 @@ MediaNetServer::Connect(U32 inPort)
     {
         SDLNet_TCP_Close(m_tcpSocket);
     }
+    MediaNetLog::Instance().Log() << "Created server on port " << inPort << endl;
     m_serving=true;
 }
 
 MediaNetServer::~MediaNetServer()
 {
+    MediaNetLog::Instance().Log() << "Closed server" << endl;
     SDLNet_TCP_Close(m_tcpSocket);
     SDLNet_UDP_Close(m_udpSocket);
 }
@@ -89,6 +95,8 @@ MediaNetServer::Accept(void)
         name << "server" << m_linkCtr;
         CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
         m_linkCtr++;
+
+        MediaNetLog::Instance().Log() << "Accepted connection for " << name.str() << endl;
     }
 }
 

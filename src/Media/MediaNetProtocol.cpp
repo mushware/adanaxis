@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.3 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.4 2002/11/04 13:11:58 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.4  2002/11/04 13:11:58  southa
+ * Link setup work
+ *
  * Revision 1.3  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -26,6 +29,7 @@
 
 #include "MediaNetProtocol.h"
 #include "MediaNetData.h"
+#include "MediaNetLog.h"
 
 void
 MediaNetProtocol::TCPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber)
@@ -67,6 +71,7 @@ void
 MediaNetProtocol::Unpack(MediaNetData& ioData)
 {
     U32 messageLength=0; // Content length after the message type (and length)
+    string skippedStr; // For error log
     
     U32 unpackState=ioData.UnpackStateGet();
     if (unpackState==0) unpackState=kUnpackStateSync1;
@@ -83,7 +88,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 }
                 else
                 {
-                    cerr << "Skipped '" << byte << "'" << endl;
+                    skippedStr += byte;
                 }
                 break;
 
@@ -97,7 +102,8 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 else
                 {
                     unpackState = kUnpackStateSync1;
-                    cerr << "Skipped '" << byte << "'" << endl;
+                    skippedStr += kSyncByte1;
+                    skippedStr += byte;
                 }
                 break;
 
@@ -146,6 +152,12 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
         // else come round in  kUnpackStateMessageDone next time when more data has been added
     }
     ioData.UnpackStateSet(unpackState);
+
+    // Error logging
+    if (skippedStr.size() > 0)
+    {
+        MediaNetLog::Instance().Log() << "NetProtocol skipped '" << skippedStr << "'" << endl;
+    }
 }
 
 bool
