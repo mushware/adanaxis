@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.9 2002/11/20 22:35:27 southa Exp $
+ * $Id: MediaNetLink.h,v 1.10 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.10  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.9  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -48,6 +51,7 @@ public:
 
     void FastSend(MediaNetData& ioData);
     void ReliableSend(MediaNetData& ioData);
+    bool UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioData);
     bool Receive(MediaNetData * & outData);
     void Tick(void);
     bool IsDead(void);
@@ -58,7 +62,10 @@ public:
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
     const string& TargetNameGet(void) const { return m_targetName; }
-    U32 TargetPortGet(void) const { return m_targetPort; }
+    U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
+    U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
+    U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
+    U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
     
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
@@ -69,6 +76,7 @@ private:
     {
         kLinkStateInvalid,
         kLinkStateNotMade,
+        kLinkStateWaitingForPort,
         kLinkStateUntested,
         kLinkStateTesting,
         kLinkStateIdle,
@@ -89,6 +97,7 @@ private:
         kUDPFastLinkCheckPeriod=1000, // Times in msec
         kUDPSlowLinkCheckPeriod=30000,
         kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
+        kLinkInitTimeoutMsec=6000, // Timeout to kill link if not up for send
         kErrorTotalLimit=100,
         kErrorsSinceGoodLimit=4
     };
@@ -114,7 +123,9 @@ private:
     void TCPSocketTake(TCPsocket inSocket);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
-    bool LinkIsUp(tLinkState inState);
+    bool LinkIsUpForSend(tLinkState inState);
+    bool LinkIsUpForReceive(tLinkState inState);
+    bool LinkDeathCheck(LinkState& ioLinkState);
 
     void TCPSend(MediaNetData& inData);
     void TCPReceive(MediaNetData& outData);
@@ -128,15 +139,15 @@ private:
     void MessageKillLinkHandle(MediaNetData& ioData);
 
     static string LinkStateToBG(const LinkState& inLinkState);
-    static bool LinkDeathCheck(LinkState& ioLinkState);
 
     LinkState m_tcpState;
     LinkState m_udpState;
     MediaNetClient m_client;
     U32 m_currentMsec;
+    U32 m_creationMsec;
     
-    string m_targetName; // These should be exactly what the caller asked for
-    U32 m_targetPort;
+    string m_targetName; // This should be exactly what the caller asked for
+    U32 m_targetIP;
 
     bool m_targetIsServer;
     bool m_udpUseServerPort;

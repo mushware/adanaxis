@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.12 2002/11/21 18:06:17 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.13 2002/11/22 11:42:06 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.13  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.12  2002/11/21 18:06:17  southa
  * Non-blocking network connection
  *
@@ -176,19 +179,6 @@ MediaNetClient::UDPConnect(U32 inPort)
     {
         MediaNetLog::Instance().NetLog() << "Selected local UDP port " << m_udpLocalPort << endl;
     }
-    
-    // Since we've replaced SDLNet_UDP_Send we don't use this bound address,
-    // but let's bind it anyway
-    IPaddress remoteIP;
-    remoteIP.host=m_remoteIP;
-    remoteIP.port=m_udpRemotePort;
-    
-    int result=SDLNet_UDP_Bind(m_udpSocket, -1, &remoteIP);
-
-    if (result == -1)
-    {
-        throw(NetworkFail(string("UDP socket bind failed: ")+SDLNet_GetError()));
-    }
 
     PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
     m_udpRemotePort=0; // We don't know
@@ -304,6 +294,8 @@ MediaNetClient::UDPSend(MediaNetData& ioData)
 
     PlatformNet::UDPSend(m_remoteIP, m_udpRemotePort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
+
+    MediaNetLog::Instance().VerboseLog() << "UDPSend to " << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ":" << m_udpRemotePort << ": " << ioData << endl;
 }
 
 void
@@ -345,7 +337,7 @@ MediaNetClient::Print(ostream& ioOut) const
         ioOut << m_udpSocket->channel;
     }
     ioOut << ", udpLocalPort=" << m_udpLocalPort;
-    ioOut << ", remoteIP=" << MediaNetUtils::IPAddressToString(m_remoteIP) << ", tcpRemotePort=" << m_tcpRemotePort << ", udpRemotePort=" << m_udpRemotePort;
+    ioOut << ", remoteIP=" << MediaNetUtils::IPAddressToLogString(m_remoteIP) << ", tcpRemotePort=" << m_tcpRemotePort << ", udpRemotePort=" << m_udpRemotePort;
     ioOut << ", remoteName=" << m_remoteName << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected << "]";
 }
 

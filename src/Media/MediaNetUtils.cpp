@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.5 2002/11/15 18:58:34 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.6 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.6  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.5  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -22,6 +25,8 @@
 
 #include "MediaNetLink.h"
 
+bool MediaNetUtils::m_truncateLog=true;
+
 bool
 MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPort)
 {
@@ -30,7 +35,7 @@ MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, 
     for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        if (p->second->TargetPortGet() == inPort &&
+        if (p->second->TCPTargetPortGet() == inPort &&
             p->second->TargetNameGet() == inName)
         {
             outLink = p->second;
@@ -47,6 +52,22 @@ MediaNetUtils::IPAddressToString(U32 inAddress)
     U8 *ipPtr=reinterpret_cast<U8 *>(&inAddress);
     ipStream << static_cast<U32>(ipPtr[0]) << "." << static_cast<U32>(ipPtr[1]) << "." << static_cast<U32>(ipPtr[2]) << "." << static_cast<U32>(ipPtr[3]);
     return ipStream.str();
+}
+
+string
+MediaNetUtils::IPAddressToLogString(U32 inAddress)
+{
+    if (m_truncateLog)
+    {
+        ostringstream ipStream;
+        U8 *ipPtr=reinterpret_cast<U8 *>(&inAddress);
+        ipStream << static_cast<U32>(ipPtr[0]) << "." << static_cast<U32>(ipPtr[1]) << ".x.x";
+        return ipStream.str();
+    }
+    else
+    {
+        return IPAddressToString(inAddress);
+    }
 }
 
 string

@@ -1,8 +1,11 @@
 #ifndef MEDIANETSERVER_H
 #define MEDIANETSERVER_H
 /*
- * $Id: MediaNetServer.h,v 1.6 2002/11/20 22:35:28 southa Exp $
+ * $Id: MediaNetServer.h,v 1.7 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetServer.h,v $
+ * Revision 1.7  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.6  2002/11/20 22:35:28  southa
  * Multiplayer setup
  *
@@ -40,7 +43,9 @@ public:
     void Disconnect(void);
     void Accept(void);
     void UDPSend(U32 inHost, U32 inPort, MediaNetData& inData);
-    void UDPReceive(U32& outHost, U32& outPort, MediaNetData& inData);
+    void UDPReceive(MediaNetData& inData);
+    void UDPHarvest(void);
+    void UDPDiscard(void);
     bool IsServing(void) const { return m_serving; }
     U32 ServerPortGet(void) const { return m_serverPort; }
     

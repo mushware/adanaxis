@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.6 2002/11/18 21:02:40 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.7 2002/11/21 18:06:18 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.7  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.6  2002/11/18 21:02:40  southa
  * Prevent crash on exit
  *
@@ -57,7 +60,7 @@ PlatformNet::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, 
     if (result < 0 || static_cast<U32>(result) != inSize)
     {
         ostringstream message;
-        message << "UDP send failed (" << errno << ")";
+        message << "UDP send to port " << inPort << " failed (" << errno << ")";
         throw(NetworkFail(message.str()));
     }
 }

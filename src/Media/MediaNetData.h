@@ -1,8 +1,11 @@
 #ifndef MEDIANETDATA_H
 #define MEDIANETDATA_H
 /*
- * $Id: MediaNetData.h,v 1.4 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetData.h,v 1.5 2002/11/12 17:05:01 southa Exp $
  * $Log: MediaNetData.h,v $
+ * Revision 1.5  2002/11/12 17:05:01  southa
+ * Tidied localweb server
+ *
  * Revision 1.4  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -52,7 +55,7 @@ public:
 
     U8 BytePop(void);
     U8 MessageBytePop(void);
-    void BytePush(U8 inByte);
+    void BytePush(U8 inByte); // Slow operation
 
     void PrepareForWrite(void);
     void PrepareForWrite(U32 inSize);
@@ -79,23 +82,21 @@ ostream& operator<<(ostream &inOut, const MediaNetData& inData);
 
 inline
 MediaNetData::MediaNetData() :
-m_readPos(0),
-m_writePos(0),
-m_messagePos(0),
-m_unpackState(0),
-m_sourceValid(false),
-m_data(kChunkSize)
+    m_readPos(0),
+    m_writePos(0),
+    m_messagePos(0),
+    m_unpackState(0),
+    m_sourceValid(false)
 {
 }
 
 inline
 MediaNetData::MediaNetData(const string& inStr) :
-m_readPos(0),
-m_writePos(0),
-m_messagePos(0),
-m_unpackState(0),
-m_sourceValid(false),
-m_data(kChunkSize)
+    m_readPos(0),
+    m_writePos(0),
+    m_messagePos(0),
+    m_unpackState(0),
+    m_sourceValid(false)
 {
     U32 size=inStr.size();
     for (U32 i=0; i<size; ++i)

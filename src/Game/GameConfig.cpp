@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.7 2002/11/15 11:47:55 southa Exp $
+ * $Id: GameConfig.cpp,v 1.8 2002/11/22 11:42:06 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.8  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.7  2002/11/15 11:47:55  southa
  * Web processing and error handling
  *
@@ -152,6 +155,10 @@ GameConfig::Update(void)
     if (ParameterExists("devcommandlog"))
     {
         CoreInterpreter::Instance().LogCommandsSet(ParameterGet("devcommandlog").U32Get());
+    }
+    if (ParameterExists("devlogfullip"))
+    {
+        MediaNetUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
     }
 }
 

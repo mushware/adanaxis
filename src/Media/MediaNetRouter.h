@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.h,v 1.1 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetRouter.h,v 1.2 2002/11/04 19:34:47 southa Exp $
  * $Log: MediaNetRouter.h,v $
+ * Revision 1.2  2002/11/04 19:34:47  southa
+ * Network link maintenance
+ *
  * Revision 1.1  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -8,6 +11,7 @@
 
 #include "mushCore.h"
 
+class MediaNetData;
 class MediaNetLink;
 
 class MediaNetRouter
@@ -18,11 +22,14 @@ public:
 
 protected:
     MediaNetRouter();
+    void UDPIfAddressMatchReceive(MediaNetData& ioData);
+    void UDPReceiveFromServer(void);
     
 private:
     enum
     {
-        kTickPeriod=100
+        kTickPeriod=100,
+        kUDPReceivePacketLimit=100
     };
     
     U32 m_lastTickMsec;

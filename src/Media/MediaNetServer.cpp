@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.12 2002/11/21 18:39:42 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.13 2002/11/22 11:42:07 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.13  2002/11/22 11:42:07  southa
+ * Added developer controls
+ *
  * Revision 1.12  2002/11/21 18:39:42  southa
  * Added m_serving check to Accept
  *
@@ -163,16 +166,18 @@ MediaNetServer::UDPSend(U32 inHost, U32 inPort, MediaNetData& ioData)
 }
 
 void
-MediaNetServer::UDPReceive(U32& outHost, U32& outPort, MediaNetData& outData)
+MediaNetServer::UDPReceive(MediaNetData& outData)
 {
     if (m_serving)
     {
-        COREASSERT(m_udpSocket != NULL);
-
+        U32 netHost;
+        U32 netPort;
         outData.PrepareForWrite();
-
-        U32 dataSize=PlatformNet::UDPReceive(outHost, outPort, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
-
-        outData.WritePosAdd(dataSize);
+        U32 dataSize=PlatformNet::UDPReceive(netHost, netPort, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
+        if (dataSize != 0)
+        {
+            outData.WritePosAdd(dataSize);
+            outData.SourceSet(netHost, netPort);
+        }
     }
 }
