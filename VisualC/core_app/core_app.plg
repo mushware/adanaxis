@@ -6,7 +6,7 @@ C:\CYGWIN\HOME\MUSHWARE\CORE-APP\VISUALC\core_app>C:
 C:\CYGWIN\HOME\MUSHWARE\CORE-APP\VISUALC\core_app>chdir .. 
 
 C:\cygwin\home\mushware\core-app\VisualC>C:\cygwin\bin\bash -l -c 'cd ~/core-app;make' 
-/bin/sh prebuild.sh
+/bin/bash prebuild.sh
 Executing prebuild script
 SourceProcess::ProcessDirectory() called too early to check prototype at SourceProcess.pm line 112.
 Done.
@@ -14,13 +14,13 @@ make  all-recursive
 make[1]: Entering directory `/home/mushware/core-app'
 Making all in src
 make[2]: Entering directory `/home/mushware/core-app/src'
-if g++ -DHAVE_CONFIG_H -I. -I. -I..    -I./MushMesh  -g -O2 -MT test_mushmesh-TestMushMeshVector.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshVector.Tpo" \
-  -c -o test_mushmesh-TestMushMeshVector.o `test -f './TestMushMesh/TestMushMeshVector.cpp' || echo './'`./TestMushMesh/TestMushMeshVector.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshVector.Tpo" ".deps/test_mushmesh-TestMushMeshVector.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshVector.Tpo"; exit 1; \
+if g++ -DHAVE_CONFIG_H -I. -I. -I..    -I./MushMesh  -g -O2 -MT test_mushmesh-TestMushMeshArray.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshArray.Tpo" \
+  -c -o test_mushmesh-TestMushMeshArray.o `test -f './TestMushMesh/TestMushMeshArray.cpp' || echo './'`./TestMushMesh/TestMushMeshArray.cpp; \
+then mv -f ".deps/test_mushmesh-TestMushMeshArray.Tpo" ".deps/test_mushmesh-TestMushMeshArray.Po"; \
+else rm -f ".deps/test_mushmesh-TestMushMeshArray.Tpo"; exit 1; \
 fi
-/bin/sh ../libtool --mode=link g++  -g -O2   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
-g++ -g -O2 -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
+/bin/bash ../libtool --mode=link g++  -g -O2   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
+g++ -g -O2 -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
 make[2]: Leaving directory `/home/mushware/core-app/src'
 make[2]: Entering directory `/home/mushware/core-app'
 make[2]: Leaving directory `/home/mushware/core-app'

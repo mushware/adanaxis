@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JlxNvBXL6uC0NayW/SROGA
 /*
- * $Id: MushMeshVector.h,v 1.1 2003/10/14 10:46:05 southa Exp $
+ * $Id: MushMeshVector.h,v 1.2 2003/10/14 13:07:26 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.2  2003/10/14 13:07:26  southa
+ * MushMesh vector creation
+ *
  * Revision 1.1  2003/10/14 10:46:05  southa
  * MeshMover creation
  *
@@ -31,6 +34,7 @@ template <class T = Mushware::tVal, Mushware::U32 D = 3>
 class MushMeshVector
 {
 public:
+    MushMeshVector() {}
     MushMeshVector(const T& in0, const T& in1)
     {
         MUSHCOREASSERT(D >= 2);

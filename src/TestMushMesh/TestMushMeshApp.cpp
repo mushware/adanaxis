@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8XvmBalkJaw8zlwB0njizA
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshApp.cpp,v 1.1 2003/10/14 13:07:26 southa Exp $
+ * $Log: TestMushMeshApp.cpp,v $
+ * Revision 1.1  2003/10/14 13:07:26  southa
+ * MushMesh vector creation
+ *
  */
 
 #include "TestMushMeshApp.h"
@@ -31,6 +34,8 @@ TestMushMeshApp::EnterInstance(void)
 {
     cout << "Starting tests" << endl;
     RunTest("testvector", "MushMeshVector");
+    RunTest("testarray", "MushMeshArray");
+    RunTest("testutils", "MushMeshUtils");
 }
 
 void
