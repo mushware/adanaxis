@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.22 2002/11/23 17:23:45 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.23 2002/11/24 12:57:02 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.23  2002/11/24 12:57:02  southa
+ * Added configuration host protection
+ *
  * Revision 1.22  2002/11/23 17:23:45  southa
  * Sleep in setup
  *
@@ -185,7 +188,7 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
     DIR *dirPtr = opendir(inDirName.c_str());
     if (dirPtr == NULL)
     {
-        throw(CommandFail("Cannot open drectory '" + inDirName + "'"));
+        throw(CommandFail("Cannot open directory '" + inDirName + "'"));
     }
     struct dirent *entry;
     while (entry = readdir(dirPtr), entry != NULL)

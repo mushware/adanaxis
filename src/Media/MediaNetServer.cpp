@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.16 2002/11/22 18:02:43 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.17 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.17  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.16  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -105,6 +108,7 @@ MediaNetServer::Connect(U32 inPort)
     catch (...)
     {
         SDLNet_TCP_Close(m_tcpSocket);
+        throw;
     }
     MediaNetLog::Instance().NetLog() << "Created server on port " << inPort << endl;
     m_serving=true;

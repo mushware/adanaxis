@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.10 2002/11/25 12:06:18 southa Exp $
+ * $Id: GameSetup.cpp,v 1.11 2002/11/27 13:23:26 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.11  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.10  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -39,6 +42,7 @@
 #include "GameConfig.h"
 #include "GameConfigDef.h"
 #include "GameDef.h"
+#include "GameDefServer.h"
 #include "GameRouter.h"
 
 #include "mushGL.h"
@@ -171,7 +175,7 @@ GameSetup::Config(void)
     }
 
     
-    bool netActive=false;
+    bool serverNeeded=false;
 
     CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
 
@@ -180,11 +184,15 @@ GameSetup::Config(void)
         if (!p->second->IsImage())
         {
             p->second->Ticker();
-            netActive=true;
+            if (dynamic_cast<GameDefServer *>(p->second) != NULL)
+            {
+                // We need a local server
+                serverNeeded=true;
+            }
         }
     }
 
-    if (netActive)
+    if (serverNeeded)
     {
         if (!MediaNetServer::Instance().IsServing())
         {
@@ -196,8 +204,8 @@ GameSetup::Config(void)
             }
             catch (NetworkFail& e)
             {
-                MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what();
                 static U32 failedPortNum=65536;
+                MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
                 if (portNum != failedPortNum)
                 {
                     PlatformMiscUtils::MinorErrorBox(e.what());
