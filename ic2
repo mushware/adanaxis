@@ -1,3 +1,15 @@
 #!/bin/sh
+if [ ! ic2data/system/ic2 -nt src/ic2binary ]
+then
+echo Installing src/ic2binary to ic2data/system/ic2
+/bin/cp -R src/ic2binary ic2data/system/ic2
+fi
+
+if [ ! ic2data/system/ic2.exe -nt src/ic2binary.exe ]
+then
+echo Installing src/ic2binary.exe to ic2data/system/ic2.exe
+/bin/cp -R src/ic2binary.exe ic2data/system/ic2.exe
+fi
+
 cd ic2data/system
 ./ic2
