@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.6 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.7 2004/01/06 10:08:51 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.7  2004/01/06 10:08:51  southa
+ * MushcoreData and MushPieForm work
+ *
  * Revision 1.6  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -65,11 +68,11 @@ MushcoreVirtualObject *MushPiePiece::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushPiePiece", MushPiePiece::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 bool
 MushPiePiece::AutoEquals(const MushPiePiece& inObj) const
@@ -116,4 +119,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("formRef");
     ioOut << m_formRef;
 }
-//%outOfLineFunctions } DlcIeCYSDWk4Xvauv+z1/g
+//%outOfLineFunctions } 3TNjcZOug6JpAVmJR8LORw

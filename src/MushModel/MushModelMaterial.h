@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NPCsJXr5ecNdynBZmJZGJg
 /*
- * $Id: MushModelMaterial.h,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushModelMaterial.h,v 1.2 2004/01/08 22:41:10 southa Exp $
  * $Log: MushModelMaterial.h,v $
+ * Revision 1.2  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.1  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -48,10 +51,10 @@ public:
     virtual MushModelMaterial *AutoClone(void) const;
     virtual MushModelMaterial *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } AUhAdfHU6VEPPcDNOXcJ+Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } X7kArZKGzw4eLk2klpV5hw
 };
 //%inlineHeader {
 inline std::ostream&

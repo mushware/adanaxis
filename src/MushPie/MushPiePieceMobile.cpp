@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yQV718sdUzJEMF7KFdA6Ew
 /*
- * $Id: MushPiePieceMobile.cpp,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePieceMobile.cpp,v 1.2 2004/01/06 00:34:56 southa Exp $
  * $Log: MushPiePieceMobile.cpp,v $
+ * Revision 1.2  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.1  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -48,11 +51,11 @@ MushcoreVirtualObject *MushPiePieceMobile::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushPiePieceMobile", MushPiePieceMobile::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 bool
 MushPiePieceMobile::AutoEquals(const MushPiePieceMobile& inObj) const
@@ -122,4 +125,4 @@ MushPiePieceMobile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("newPosIndex");
     ioOut << m_newPosIndex;
 }
-//%outOfLineFunctions } 5Sa2c2tDzNj26PaTa6orHg
+//%outOfLineFunctions } b2/2RX3OEM6Tldx2FMK5OA

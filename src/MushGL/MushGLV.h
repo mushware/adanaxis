@@ -16,10 +16,14 @@
  ****************************************************************************/
 //%Header } uiXTBqRVrI+qFoX2dUuamg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLV.h,v 1.1 2004/09/20 21:50:47 southa Exp $
+ * $Log: MushGLV.h,v $
+ * Revision 1.1  2004/09/20 21:50:47  southa
+ * Added GLV
+ *
  */
 
+#include "MushGLStandard.h"
 #include "MushGLV.h"
 
 //:generate ostream

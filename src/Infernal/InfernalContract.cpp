@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.8 2004/01/06 20:46:50 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.9 2004/01/10 20:29:34 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.9  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.8  2004/01/06 20:46:50  southa
  * Build fixes
  *
@@ -1239,3 +1242,94 @@ InfernalContract::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("loadcontract", LoadContract);
 }
+//%outOfLineFunctions {
+const char *InfernalContract::AutoNameGet(void) const
+{
+    return "InfernalContract";
+}
+InfernalContract *InfernalContract::AutoClone(void) const
+{
+    return new InfernalContract(*this);
+}
+InfernalContract *InfernalContract::AutoCreate(void) const
+{
+    return new InfernalContract;
+}
+MushcoreVirtualObject *InfernalContract::AutoVirtualFactory(void)
+{
+    return new InfernalContract;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("InfernalContract", InfernalContract::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+InfernalContract::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "pickleState=" << m_pickleState << ", ";
+    ioOut << "fps=" << m_fps << ", ";
+    ioOut << "frames=" << m_frames << ", ";
+    ioOut << "modeKeypressTime=" << m_modeKeypressTime << ", ";
+    ioOut << "newMode=" << m_newMode << ", ";
+    ioOut << "fastDiagnostics=" << m_fastDiagnostics;
+    ioOut << "]";
+}
+bool
+InfernalContract::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "pickleState")
+    {
+        ioIn >> m_pickleState;
+    }
+    else if (inTagStr == "fps")
+    {
+        ioIn >> m_fps;
+    }
+    else if (inTagStr == "frames")
+    {
+        ioIn >> m_frames;
+    }
+    else if (inTagStr == "modeKeypressTime")
+    {
+        ioIn >> m_modeKeypressTime;
+    }
+    else if (inTagStr == "newMode")
+    {
+        ioIn >> m_newMode;
+    }
+    else if (inTagStr == "fastDiagnostics")
+    {
+        ioIn >> m_fastDiagnostics;
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+InfernalContract::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("pickleState");
+    ioOut << m_pickleState;
+    ioOut.TagSet("fps");
+    ioOut << m_fps;
+    ioOut.TagSet("frames");
+    ioOut << m_frames;
+    ioOut.TagSet("modeKeypressTime");
+    ioOut << m_modeKeypressTime;
+    ioOut.TagSet("newMode");
+    ioOut << m_newMode;
+    ioOut.TagSet("fastDiagnostics");
+    ioOut << m_fastDiagnostics;
+}
+//%outOfLineFunctions } A7k3IxGNqg35blwhdF6e0w

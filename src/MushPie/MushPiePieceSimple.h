@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vgNHjnCCayhlm093vD2VmA
 /*
- * $Id: MushPiePieceSimple.h,v 1.2 2004/01/04 14:36:37 southa Exp $
+ * $Id: MushPiePieceSimple.h,v 1.3 2004/01/04 17:02:30 southa Exp $
  * $Log: MushPiePieceSimple.h,v $
+ * Revision 1.3  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.2  2004/01/04 14:36:37  southa
  * Handle 'inline' in source conditioner
  *
@@ -49,10 +52,10 @@ public:
     virtual MushPiePieceSimple *AutoClone(void) const;
     virtual MushPiePieceSimple *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } QttjoPd2VgkDPSEVN3eCLA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } JniBjRAZGacnOSK83+06rw
 };
 //%inlineHeader {
 inline std::ostream&

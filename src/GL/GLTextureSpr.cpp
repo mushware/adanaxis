@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LPAF2ITbPG1x+79//1lI5Q
 /*
- * $Id: GLTextureSpr.cpp,v 1.24 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.25 2004/01/06 20:46:49 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.25  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.24  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -100,6 +103,8 @@ GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 
 GLTextureSpr::GLTextureSpr(const string& inFilename)
 {
+    throw(MushcoreFileFail(inFilename, "Could not open file - unsupported format (RiscOS)"));
+#if 0
     MushcoreStreamUtil sUtil;
     FilenameSet(inFilename);
 
@@ -226,6 +231,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         if (!in.good()) throw(MushcoreFileFail(inFilename, "Fault reading file"));
     }
     IFTEXTESTING(cerr << "(dec)" << dec << endl);
+#endif
 }
 
 void

@@ -164,6 +164,7 @@ static void __cdecl cleanup_output(void)
 #if defined(_MSC_VER) && !defined(_WIN32_WCE)
 /* The VC++ compiler needs main defined */
 #define console_main main
+#error
 #endif
 
 /* This is where execution begins [console apps] */

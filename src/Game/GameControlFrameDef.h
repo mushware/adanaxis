@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 9BjTYy5ecWwzm5Ki2KMqog
 /*
- * $Id: GameControlFrameDef.h,v 1.8 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameControlFrameDef.h,v 1.9 2004/01/06 20:46:50 southa Exp $
  * $Log: GameControlFrameDef.h,v $
+ * Revision 1.9  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.8  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -49,10 +52,10 @@
 class GameControlFrameDef
 {
 public:
-    bool LeftPressed(void) const { return keyState & (1<<0); }
-    bool RightPressed(void) const { return keyState & (1<<1); }
-    bool UpPressed(void) const { return keyState & (1<<2); }
-    bool DownPressed(void) const { return keyState & (1<<3); }
+    bool LeftPressed(void) const { return (keyState & (1<<0)) != 0; }
+    bool RightPressed(void) const { return (keyState & (1<<1)) != 0; }
+    bool UpPressed(void) const { return (keyState & (1<<2)) != 0; }
+    bool DownPressed(void) const { return (keyState & (1<<3)) != 0; }
     void Print(std::ostream& ioOut) const;
     
     Mushware::S8 mouseDeltaX;

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.25 2004/01/08 22:41:09 southa Exp $
+# $Id: SourceConditioner.pl,v 1.26 2004/01/10 20:29:33 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.26  2004/01/10 20:29:33  southa
+# Form and rendering work
+#
 # Revision 1.25  2004/01/08 22:41:09  southa
 # MushModel commands
 #
@@ -541,6 +544,8 @@ sub OstreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
+            my $comment = $$attributesRef[$i+2];
+            next if ($comment =~ /:ignore\b/);
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
             my $comma = "";
@@ -636,6 +641,7 @@ sub BasicOperatorsFunctionGenerate($$)
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
             my $comment = $$attributesRef[$i+2];
+            next if ($comment =~ /:ignore\b/);
             next if ($comment =~ /\bnobasic\b/);
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
@@ -722,6 +728,8 @@ sub XMLIStreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
+            my $comment = $$attributesRef[$i+2];
+            next if ($comment =~ /:ignore\b/);
             my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
@@ -809,6 +817,8 @@ sub XMLOStreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
+            my $comment = $$attributesRef[$i+2];
+            next if ($comment =~ /:ignore\b/);
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
             

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } joRrEdPR9bRRSNuToPWilA
 /*
- * $Id: SecondaryMain.cpp,v 1.2 2004/01/05 20:13:15 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.3 2004/01/06 20:46:51 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.3  2004/01/06 20:46:51  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/01/05 20:13:15  southa
  * Target and test updates
  *
@@ -143,6 +146,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+    int retVal = 0;
     PlatformMiscUtils::Initialise();
     MushcoreGlobalConfig::Sgl().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
     // cerr << "Application path is " << MushcoreGlobalConfig::Sgl().Get("APPLPATH") << endl;
@@ -183,22 +187,22 @@ int main(int argc, char *argv[])
         cerr << "Exception: " << e.what() << endl;
 
         PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
-        return 1;
+        retVal = 1;
     }
     catch (string& ex_str)
     {
         cerr << "Exception: " << ex_str << endl;
-        return 1;
+        retVal = 1;
     }
     catch (const char *c_str)
     {
         cerr << "Exception: " << c_str << endl;
-        return 1;
+        retVal = 1;
     }
     catch (...)
     {
         cerr << "Unknown exception" << endl;
-        return 1;
+        retVal = 1;
     }
-    return 0;
+    return retVal;
 }

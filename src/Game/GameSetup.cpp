@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.39 2004/03/06 13:13:42 southa Exp $
+ * $Id: GameSetup.cpp,v 1.40 2004/03/06 13:59:59 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.40  2004/03/06 13:59:59  southa
+ * Fixes
+ *
  * Revision 1.39  2004/03/06 13:13:42  southa
  * Maurheen created
  *
@@ -353,7 +356,7 @@ operator>>(MushcoreXMLIStream& ioIn, GameSetup::tGameState& inValue)
 {
     Mushware::tXMLVal value;
     ioIn >> value;
-    inValue = static_cast<GameSetup::tGameState>(value);
+	inValue = static_cast<GameSetup::tGameState>(static_cast<Mushware::U32>(value));
 }
 
 //%outOfLineFunctions {

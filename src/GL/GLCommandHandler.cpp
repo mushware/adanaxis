@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Vbvn2bY5HmOscUTibPKIOQ
 /*
- * $Id: GLCommandHandler.cpp,v 1.33 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.34 2004/01/06 20:46:49 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.34  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.33  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -123,7 +126,6 @@
 #include "GLTextureRef.h"
 #include "GLTextureSpr.h"
 #include "GLTextureTIFF.h"
-#include "GLUTAppHandler.h"
 
 #include "GLSTL.h"
 #include "mushMushcore.h"
@@ -132,14 +134,6 @@ using namespace Mushware;
 using namespace std;
 
 MushcoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
-
-MushcoreScalar
-GLCommandHandler::InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
-{
-    // Save inStr to context
-    MushcoreAppHandler::Sgl().Mutate(new GLUTAppHandler);
-    return MushcoreScalar(0);
-}
 
 MushcoreScalar
 GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
@@ -244,7 +238,6 @@ GLCommandHandler::DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("initgl", InitGL);
     MushcoreInterpreter::Sgl().HandlerAdd("loadpixmap", LoadPixmap);
     MushcoreInterpreter::Sgl().HandlerAdd("decompose", Decompose);
     MushcoreInterpreter::Sgl().HandlerAdd("dumptextures", DumpTextures);

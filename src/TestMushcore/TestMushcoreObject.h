@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } F+NlKkNqHxJmGlhIZkKE4g
 /*
- * $Id: TestMushcoreObject.h,v 1.17 2004/01/02 21:13:18 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.18 2004/01/08 16:06:11 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.18  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.17  2004/01/02 21:13:18  southa
  * Source conditioning
  *
@@ -186,11 +189,11 @@ public:
     virtual TestMushcoreObject *AutoClone(void) const;
     virtual TestMushcoreObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    bool AutoEquals(const TestMushcoreObject& inObj) const;
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 3ZK713N5be0A8cPbOSDlfA
+    virtual bool AutoEquals(const TestMushcoreObject& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } zP/FuZ2HuWvjgKoNeNGvhQ
 };
 
 //%inlineHeader {

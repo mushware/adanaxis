@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } iDPNfbMZ7BZLg/2HjUP/7A
 /*
- * $Id: GLCommandHandler.h,v 1.14 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.15 2004/01/06 20:46:49 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.15  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.14  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -77,7 +80,6 @@ class GLCommandHandler
 {
 public:
     static void Install(void);
-    static MushcoreScalar InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);

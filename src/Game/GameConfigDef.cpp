@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TwbWoOrPtUKoOEt+DCSp2g
 /*
- * $Id: GameConfigDef.cpp,v 1.18 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.19 2004/01/02 21:13:06 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.19  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.18  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -283,7 +286,7 @@ GameConfigDefBool::ValueGet(void) const
 void
 GameConfigDefBool::ValueSet(const MushcoreScalar& inValue)
 {
-    m_value = inValue.U32Get();
+    m_value = inValue.BoolGet();
 }
 
 bool

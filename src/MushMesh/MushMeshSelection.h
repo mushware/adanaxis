@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } CmkuxGelnF+aOAES+7mivg
 /*
- * $Id: MushMeshSelection.h,v 1.1 2003/10/20 13:05:57 southa Exp $
+ * $Id: MushMeshSelection.h,v 1.2 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshSelection.h,v $
+ * Revision 1.2  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/20 13:05:57  southa
  * Created
  *
@@ -35,8 +38,8 @@ public:
     Mushware::U32 size;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2bfNYCnBe7Dts6IyFoxENQ
 /*
- * $Id: MushPiePieceSimple.cpp,v 1.2 2004/01/04 14:36:37 southa Exp $
+ * $Id: MushPiePieceSimple.cpp,v 1.3 2004/01/04 17:02:30 southa Exp $
  * $Log: MushPiePieceSimple.cpp,v $
+ * Revision 1.3  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.2  2004/01/04 14:36:37  southa
  * Handle 'inline' in source conditioner
  *
@@ -43,11 +46,11 @@ MushcoreVirtualObject *MushPiePieceSimple::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushPiePieceSimple", MushPiePieceSimple::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
 MushPiePieceSimple::AutoPrint(std::ostream& ioOut) const
@@ -85,4 +88,4 @@ MushPiePieceSimple::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pos");
     ioOut << m_pos;
 }
-//%outOfLineFunctions } ZtRntYJhfQMJX2T/LNXcvw
+//%outOfLineFunctions } X+Z7GYtm7JHy8MizkHHlWQ

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aK/iFeTBrNogp26MaxgKxg
 /*
- * $Id: GameConfig.cpp,v 1.31 2004/01/02 21:13:06 southa Exp $
+ * $Id: GameConfig.cpp,v 1.32 2004/01/06 20:46:49 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.32  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.31  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -294,7 +297,7 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
     bool savePasswords = false;
     if (ParameterExists("savepasswords"))
     {
-        savePasswords = ParameterGet("savepasswords").U32Get();
+        savePasswords = ParameterGet("savepasswords").BoolGet();
     }
     
     MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Sgl().End();
@@ -504,7 +507,7 @@ GameConfig::GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefBool(defaultValue));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefBool(defaultValue != 0));
     return MushcoreScalar(0);
 }
 

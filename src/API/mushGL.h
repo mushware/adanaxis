@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 9ALpBAAG9yNsjRsW9GGQ3A
 /*
- * $Id: mushGL.h,v 1.24 2004/01/10 20:29:33 southa Exp $
+ * $Id: mushGL.h,v 1.25 2004/03/07 12:05:56 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.25  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.24  2004/01/10 20:29:33  southa
  * Form and rendering work
  *
@@ -113,7 +116,6 @@
 #include "GL/GLString.h"
 #include "GL/GLTexture.h"
 #include "GL/GLTextureRef.h"
-#include "GL/GLUTAppHandler.h"
 #include "GL/GLUtils.h"
 #include "GL/GLXMLOperators.h"
 #include "GL/SDLAppHandler.h"

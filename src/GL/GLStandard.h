@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5G48h21GSab1hBFmr8Licg
 /*
- * $Id: GLStandard.h,v 1.19 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLStandard.h,v 1.20 2004/03/07 12:05:56 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.20  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.19  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -106,30 +109,27 @@
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
-#else
-#define HAVE_GLUT_GLUT_H
 #endif
 
-#if HAVE_WINDOWS_H
+#if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
 #include <windows.h>
 #endif
 
-#ifdef HAVE_GL_GLUT_H
-#include <GL/glut.h>
-#endif
-
-#ifdef HAVE_GLUT_GLUT_H
-#include <GLUT/glut.h>
-#endif
-
-#ifdef HAVE_OPENGL_GL_H
+#ifdef HAVE_GL_GL_H
+#include <GL/gl.h>
+#elif defined(HAVE_OPENGL_GL_H)
 #include <OpenGL/gl.h>
+#else
+#include "GL/gl.h"
 #endif
 
-#ifdef HAVE_OPENGL_GLU_H
+#ifdef HAVE_GL_GLU_H
+#include <GL/glu.h>
+#elif defined(HAVE_OPENGL_GLU_H)
 #include <OpenGL/glu.h>
+#else
+#include "GL/glu.h"
 #endif
-
 
 #include "mushMushcore.h"
 

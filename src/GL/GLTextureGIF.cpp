@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } vU84uA8b91SlwnymKt2NIA
 /*
- * $Id: GLTextureGIF.cpp,v 1.19 2004/01/01 21:15:45 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.20 2004/01/02 21:13:06 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.20  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.19  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -75,6 +78,7 @@
 
 #include "GLTextureGIF.h"
 
+#if 0
 namespace libgif
 {
 extern "C"
@@ -82,7 +86,7 @@ extern "C"
 #include "gif_lib.h"
 }
 }
-
+#endif
 #include "GLSTL.h"
 
 using namespace Mushware;
@@ -90,6 +94,9 @@ using namespace std;
 
 GLTextureGIF::GLTextureGIF(const string& inFilename)
 {
+
+    throw(MushcoreFileFail(inFilename, "Could not open file - unsupported format (RiscOS)"));
+#if 0
     libgif::GifFileType *gif;
     FilenameSet(inFilename);
 
@@ -175,6 +182,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
         DGifCloseFile(gif);
         throw;
     }
+#endif
 }
 
 const char *
@@ -186,6 +194,7 @@ GLTextureGIF::FiletypeName(void) const
 void
 GLTextureGIF::ThrowGifError(const string& inFilename, int inRC)
 {
+#if 0
     switch (inRC)
     {
         case D_GIF_ERR_OPEN_FAILED:
@@ -218,6 +227,7 @@ GLTextureGIF::ThrowGifError(const string& inFilename, int inRC)
         default:
             throw(MushcoreFileFail(inFilename, "Unknown GIF error"));
     }
+#endif
 }
 
 

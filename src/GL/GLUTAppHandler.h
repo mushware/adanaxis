@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } K22sbPiQEBIl3PBNZIK/dg
 /*
- * $Id: GLUTAppHandler.h,v 1.22 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.23 2004/01/06 20:46:49 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.23  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.22  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -85,6 +88,14 @@
  * SDLAppHandler added
  *
  */
+
+#ifdef HAVE_GL_GLUT_H
+#include <GL/glut.h>
+#endif
+
+#ifdef HAVE_GLUT_GLUT_H
+#include <GLUT/glut.h>
+#endif
 
 #include "GLAppHandler.h"
 #include "GLKeys.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.7 2004/01/06 10:08:51 southa Exp $
+ * $Id: MushPiePiece.h,v 1.8 2004/01/06 20:46:52 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.8  2004/01/06 20:46:52  southa
+ * Build fixes
+ *
  * Revision 1.7  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -77,11 +80,11 @@ public:
     virtual MushPiePiece *AutoClone(void) const;
     virtual MushPiePiece *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    bool AutoEquals(const MushPiePiece& inObj) const;
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 3gpOwTzsXdWBTliRUviRyg
+    virtual bool AutoEquals(const MushPiePiece& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } hYvstfd7uNgNN8cmNkB64g
 };
 //%inlineHeader {
 inline bool

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PCqvrnn/p0THwedPuNPI9g
 /*
- * $Id: MushcoreFactory.h,v 1.4 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.5 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.5  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.4  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -60,8 +63,8 @@ private:
     tFactoryMap m_factories;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 //%inlineHeader {
 inline std::ostream&

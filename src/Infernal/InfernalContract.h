@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rcXSfc3f9ci5xhawZesB7Q
 /*
- * $Id: InfernalContract.h,v 1.5 2004/01/02 21:13:08 southa Exp $
+ * $Id: InfernalContract.h,v 1.6 2004/01/06 20:46:50 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.6  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.5  2004/01/02 21:13:08  southa
  * Source conditioning
  *
@@ -173,7 +176,8 @@ class InfernalPiecePlayer;
 class InfernalFloorDesigner;
 class InfernalView;
 
-class InfernalContract: public GameBase, public MushcorePickle, private MushcoreXMLHandler
+//:generate standard ostream xml1
+class InfernalContract : public GameBase, public MushcorePickle, private MushcoreXMLHandler
 {
 public:
     InfernalContract();
@@ -244,10 +248,10 @@ protected:
     
 private:
     typedef std::map<std::string, void (InfernalContract::*)(MushcoreXML& inXML)> ElementFunctionMap;
-    std::vector<ElementFunctionMap> m_startTable;
-    std::vector<ElementFunctionMap> m_endTable;
+    std::vector<ElementFunctionMap> m_startTable; //:ignore
+    std::vector<ElementFunctionMap> m_endTable; //:ignore
     Mushware::U32 m_pickleState;
-    MushcoreScript m_script;
+    MushcoreScript m_script; //:ignore
 
     enum tDiagnostic
     {
@@ -260,24 +264,37 @@ private:
         kDiagnosticLast
     };
     
-    tGameState m_gameState;
-    InfernalFloorMap *m_floorMap;
-    InfernalTileMap *m_tileMap;
+    tGameState m_gameState; //:ignore
+    InfernalFloorMap *m_floorMap; //:ignore
+    InfernalTileMap *m_tileMap;   //:ignore
     Mushware::tVal m_fps;
     Mushware::U32 m_frames;
-    InfernalFloorDesigner *m_floorDesigner;
-    InfernalView *m_currentView;
+    InfernalFloorDesigner *m_floorDesigner; //:ignore
+    InfernalView *m_currentView; //:ignore
     GameTimer::tMsec m_modeKeypressTime;
     Mushware::U32 m_newMode;
-    tDiagnostic m_renderDiagnostics;
+    tDiagnostic m_renderDiagnostics; //:ignore
     bool m_fastDiagnostics;
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual InfernalContract *AutoClone(void) const;
+    virtual InfernalContract *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } ArqPdX+ygxsx35BBGLTQTw
 };
 
-inline std::ostream& operator<<(std::ostream &inOut, const InfernalContract& inObj)
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const InfernalContract& inObj)
 {
-    inObj.Pickle(inOut);
-    return inOut;
+    inObj.AutoPrint(ioOut);
+    return ioOut;
 }
+//%inlineHeader } jOHgn9U71S4w8O5rSrk8TQ
 
 //%includeGuardEnd {
 #endif
