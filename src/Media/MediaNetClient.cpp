@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.14 2002/11/22 15:00:32 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.15 2002/11/22 15:33:59 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.15  2002/11/22 15:33:59  southa
+ * More network logging
+ *
  * Revision 1.14  2002/11/22 15:00:32  southa
  * Network connection handling
  *
@@ -135,13 +138,16 @@ MediaNetClient::ResolveTargetName(void)
     {
         m_remoteIP = remoteIP->host;
         m_tcpRemotePort = remoteIP->port;
-        
+
+// No name lookups
+#if 0
         char *remoteName=SDLNet_ResolveIP(remoteIP);
         if (remoteName != NULL)
         {
             m_remoteName=remoteName;
         }
         else
+#endif
         {
             m_remoteName="unknown";
         }
@@ -217,6 +223,19 @@ MediaNetClient::UDPDisconnect(void)
         m_udpSocket=NULL;
         m_udpConnected=false;
     }
+}
+
+bool
+MediaNetClient::TCPConnectionCompleted(void)
+{
+    if (!m_tcpConnected)
+    {
+        throw(NetworkFail("CommnectionCompleted call on unconnected link"));
+    }
+    COREASSERT(m_tcpSocket != NULL);
+    bool retVal=PlatformNet::TCPSocketConnectionCompleted(m_tcpSocket->channel);
+    cerr << "completed=" << retVal << endl;
+    return retVal;
 }
 
 void

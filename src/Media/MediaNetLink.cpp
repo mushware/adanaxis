@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.13 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.14 2002/11/22 15:33:59 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.14  2002/11/22 15:33:59  southa
+ * More network logging
+ *
  * Revision 1.13  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -58,9 +61,11 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     m_udpUseServerPort=false;
     MediaNetLog::Instance().NetLog() << "Connecting to " << inServer << ":" << inPort << endl;
     TCPConnect(inServer, inPort);
+    m_tcpState.linkState=kLinkStateConnecting;
+    
     UDPConnect(inPort);
     m_client.UDPRemotePortSet(inPort);
-    LinkChecksSend();
+    UDPLinkCheckSend();
     m_targetName=inServer;
 }
 
@@ -177,6 +182,7 @@ MediaNetLink::LinkIsUpForSend(tLinkState inState)
         case kLinkStateInvalid:
         case kLinkStateNotMade:
         case kLinkStateWaitingForPort:
+        case kLinkStateConnecting:
         case kLinkStateDead:
             return false;
 
@@ -196,6 +202,7 @@ MediaNetLink::LinkIsUpForReceive(tLinkState inState)
     {
         case kLinkStateInvalid:
         case kLinkStateNotMade:
+        case kLinkStateConnecting:
         case kLinkStateDead:
             return false;
 
@@ -249,6 +256,15 @@ MediaNetLink::UDPLinkCheckSend(void)
 void
 MediaNetLink::Tick(void)
 {
+    if (m_tcpState.linkState == kLinkStateConnecting)
+    {
+        if (m_client.TCPConnectionCompleted())
+        {
+            m_tcpState.linkState = kLinkStateUntested;
+            TCPLinkCheckSend();
+        }
+    }
+    
     m_currentMsec=SDL_GetTicks();
 
     U32 tcpLinkCheckPeriod=kTCPFastLinkCheckPeriod;
@@ -501,7 +517,6 @@ MediaNetLink::ReliableSend(MediaNetData& ioData)
 bool
 MediaNetLink::UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioData)
 {
-    cerr << "Testing against " << MediaNetUtils::IPAddressToString(UDPTargetIPGet()) << ":" << UDPTargetPortGet() << endl;
     if (ioData.SourceHostGet() == UDPTargetIPGet() &&
         (UDPTargetPortGet() == 0 ||
          ioData.SourcePortGet() == UDPTargetPortGet())
@@ -511,9 +526,7 @@ MediaNetLink::UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioDat
         // as this allows us to receive the initial link check which tells the server which
         // port to talk back the the client on.
         
-        // This function should append the data to m_udpState to handled fragmentation, but doesn't yet 
-        cerr << "Address match for " << MediaNetUtils::IPAddressToString(UDPTargetIPGet()) << ":" << UDPTargetPortGet() << endl;
-
+        // This function should append the data to m_udpState to handled fragmentation, but doesn't yet
         MediaNetProtocol::Unpack(ioData);
         outTakeMessage=MediaNetProtocol::MessageTake(ioData);
         return true;
@@ -632,13 +645,8 @@ MediaNetLink::MessageUDPLinkCheckHandle(MediaNetData& ioData)
     
     if (m_udpState.linkState == kLinkStateWaitingForPort)
     {
-        cerr << "Got port" << endl;
         m_client.UDPRemotePortSet(ioData.SourcePortGet());
         m_udpState.linkState = kLinkStateUntested;
-    }
-    else if (m_client.UDPRemotePortGet() == 0)
-    {
-        cerr << "UDP port == 0" << endl;
     }
     MediaNetData replyData;
     MediaNetProtocol::UDPLinkCheckReplyCreate(replyData, seqNum);
@@ -708,6 +716,7 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
     {
         default:
         case kLinkStateInvalid:
+        case kLinkStateConnecting:  // temporarily
             return "bgblue";
 
         case kLinkStateDead:

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.h,v 1.3 2002/11/03 18:43:09 southa Exp $
+ * $Id: PlatformNet.h,v 1.4 2002/11/21 18:06:18 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.4  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.3  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -39,4 +42,5 @@ public:
     static void UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, U32 inSize);
     static U32 UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize);
     static TCPsocket TCPConnectNonBlocking(IPaddress *ip);
+    static bool TCPSocketConnectionCompleted(tSocket inSocket);
 };

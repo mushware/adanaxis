@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.7 2002/11/21 18:06:18 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.8 2002/11/22 15:00:33 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.8  2002/11/22 15:00:33  southa
+ * Network connection handling
+ *
  * Revision 1.7  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -27,6 +30,7 @@
 #include "mushPlatform.h"
 
 #include <sys/types.h>
+#include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -158,3 +162,18 @@ PlatformNet::TCPConnectNonBlocking(IPaddress *ip)
     return(sock);
 }
 
+bool
+PlatformNet::TCPSocketConnectionCompleted(tSocket inSocket)
+{
+    struct timeval timeVal;
+    timeVal.tv_sec = 0;
+    timeVal.tv_usec = 0;
+    fd_set fdSet;
+    FD_ZERO(&fdSet);
+    FD_SET(inSocket, &fdSet);
+    int result=select(inSocket+1, NULL, &fdSet, NULL, &timeVal);
+
+    if (result < 0) return false;
+    
+    return (FD_ISSET(inSocket, &fdSet));
+}

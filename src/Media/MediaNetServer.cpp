@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.14 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.15 2002/11/22 15:33:59 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.15  2002/11/22 15:33:59  southa
+ * More network logging
+ *
  * Revision 1.14  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -160,12 +163,18 @@ MediaNetServer::UDPSend(U32 inHost, U32 inPort, MediaNetData& ioData)
     {
         throw(NetworkFail("Attempt to send on unconnected server"));
     }
+    if (inHost == 0 || inPort == 0)
+    {
+        MediaNetLog::Instance().NetLog() << "UDPSend to bad address (" << MediaNetUtils::IPAddressToLogString(inHost) << ":" << inPort << ")" << endl;
+    }
+    
     COREASSERT(m_udpSocket != NULL);
 
     U32 dataSize=ioData.ReadSizeGet();
 
     PlatformNet::UDPSend(inHost, inPort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
+    MediaNetLog::Instance().VerboseLog() << "UDPSend (server) to " << MediaNetUtils::IPAddressToLogString(inHost) << ":" << inPort << ": " << ioData << endl;
 }
 
 void

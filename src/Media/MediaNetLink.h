@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.11 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetLink.h,v 1.12 2002/11/22 15:33:59 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.12  2002/11/22 15:33:59  southa
+ * More network logging
+ *
  * Revision 1.11  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -80,6 +83,7 @@ private:
         kLinkStateInvalid,
         kLinkStateNotMade,
         kLinkStateWaitingForPort,
+        kLinkStateConnecting,
         kLinkStateUntested,
         kLinkStateTesting,
         kLinkStateIdle,
