@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.10 2002/10/20 22:31:06 southa Exp $
+; $Id: installer.nsi,v 1.11 2002/11/24 10:26:14 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.11  2002/11/24 10:26:14  southa
+; Added SDL_net
+;
 ; Revision 1.10  2002/10/20 22:31:06  southa
 ; Fixed win32 release build
 ;
@@ -33,8 +36,8 @@
 Name "Infernal Contractor II"
 OutFile "IC2-win32-setup-0_0_0.exe"
 
-LicenseText "You should at least read the WARRANTY line of this licence before installing."
-LicenseData "LICENCE"
+; LicenseText "You should at least read the WARRANTY line of this licence before installing."
+; LicenseData "LICENCE"
 
 ; Some default compiler settings (uncomment and change at will):
 ; SetCompress auto ; (can be off or force)
