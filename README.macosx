@@ -1,9 +1,9 @@
 README for MacOS X
 
-Building from source on MacOS X 10.2
-====================================
+Building from source on Mac OS X 10.3
+=====================================
 
-These instructions are based on building the ic2 source on a MacOS X 10.2
+These instructions are based on building the ic2 source on a MacOS X 10.3
 installation.
 
 Install the Developer Tools.
@@ -56,20 +56,23 @@ following procedure was necessary to get the software to build:
 
 setenv LD_PREBIND
 
-# The perl command alter libtool so that it generates libraries which are searched for
+# The perl commands alter libtool so that it generates libraries which are searched for
 # releative to the executable.  If you don't want this behaviour the perl can be removed.
+#
+# Some work can be avoided by using the ports collection at http://darwinports.opendarwin.org/
 
-# Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-3.9.tar.gz
-tar xvzf pcre-3.9.tar.gz
-cd pcre-3.9
+# Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-4.5.tar.gz
+tar xvzf pcre-4.5.tar.gz
+cd pcre-4.5
 ./configure --enable-shared=no
 make
 sudo make install
 
-# Download expat-1.95.4.tar.gz from http://sourceforge.net/projects/expat/
-tar xvzf expat-1.95.4.tar.gz
-cd expat-1.95.4
-./configure
+# Download expat-1.95.7.tar.gz from http://sourceforge.net/projects/expat/
+tar xvzf expat-1.95.7.tar.gz
+cd expat-1.95.7
+./configure --enable-shared=no
+Add #define XMLCALL to lib/expat.h
 perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
@@ -78,24 +81,26 @@ sudo make install
 tar xvzf libungif-4.1.0.tar.gz
 cd libungif-4.1.0.tar.gz
 # Copy expat's libtool into our directory.  Change path to suit your setup
-cp ../expat-1.95.4/libtool .
+cp ../expat-1.95.7/libtool .
 ./configure powerpc-apple-bsd
+cp ../expat-1.95.7/libtool .
 make
 sudo make install
 
-# Download ftp://ftp.remotesensing.org/pub/libtiff/tiff-v3.5.7.tar.gz
-tar xvzf tiff-v3.5.7.tar.gz
-cd tiff-v3.5.7
+# Download ftp://ftp.remotesensing.org/pub/libtiff/tiff-v3.6.1.tar.gz
+tar xvzf tiff-v3.6.1.tar.gz
+cd tiff-v3.6.1
 ./configure
+perl -p -i.original -e 's#-install_name #-seg1addr 0x15000000 -install_name \@executable_path/../Frameworks/#g' libtiff/Makefile
 make
 sudo make install
 sudo ranlib /usr/local/lib/libtiff.a
 
-# Download the SDL 1.2.5 from http://www.libsdl.org/
-tar xvzf SDL-1.2.5.tar.gz
-cd SDL-1.2.5
+# Download the SDL 1.2.6 from http://www.libsdl.org/
+tar xvzf SDL-1.2.6.tar.gz
+cd SDL-1.2.6
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
+perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x12000000 -install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -109,7 +114,7 @@ cp ../SDL-1.2.5/ltmain.sh .
 # Make sure that sdl-config is in our path
 setenv PATH ${PATH}:/usr/local/bin
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
+perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x13000000 -install_name \@executable_path/../Frameworks#g' libtool
 # Ignore make erros when building plaympeg
 make -i
 sudo make -i install
@@ -117,40 +122,26 @@ sudo make -i install
 # Download http://www.vorbis.com/files/1.0/unix/libogg-1.0.tar.gz
 tar xvzf libogg-1.0.tar.gz
 cd libogg-1.0
-./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
+./configure --enable-shared=no
 make
 sudo make install
 
 # Download http://www.vorbis.com/files/1.0/unix/libvorbis-1.0.tar.gz
 tar xvzf libvorbis-1.0.tar.gz
 cd libvorbis-1.0
-./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
+./configure --enable-shared=no
 make
 sudo make install
 
-# Download http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.4.tar.gz
-tar xvzf SDL_mixer-1.2.4.tar.gz
-cd SDL_mixer-1.2.4
+# Download http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.5.tar.gz
+tar xvzf SDL_mixer-1.2.5.tar.gz
+cd SDL_mixer-1.2.5
 # Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2.5/libtool .
-cp ../SDL-1.2.5/ltconfig .
-cp ../SDL-1.2.5/ltmain.sh .
+cp ../SDL-1.2.6/libtool .
+cp ../SDL-1.2.6/ltconfig .
+cp ../SDL-1.2.6/ltmain.sh .
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
+perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x14000000 -install_name \@executable_path/../Frameworks#g' libtool
 # Ignore make erros when building playwave
 make -i
 sudo make -i install
-
-# Download http://www.libsdl.org/projects/SDL_net/release/SDL_net-1.2.4.tar.gz
-tar xvzf SDL_net-1.2.4.tar.gz
-cd SDL_net-1.2.4
-# Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2.5/libtool .
-cp ../SDL-1.2.5/ltconfig .
-cp ../SDL-1.2.5/ltmain.sh .
-./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-install_name \@executable_path/../Frameworks#g' libtool
-make
-sudo make install
