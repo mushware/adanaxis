@@ -15268,7 +15268,7 @@
 				INFOPLIST_FILE = "Mustl-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-seg1addr 0x2b000000";
+				OTHER_LDFLAGS = "-seg1addr 0x2c000000";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = Mustl;
 				REZ_EXECUTABLE = NO;

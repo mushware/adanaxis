@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8z6frlELi6JgItG1tdJiyw
 /*
- * $Id: GameQuit.cpp,v 1.16 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameQuit.cpp,v 1.17 2004/03/06 13:13:42 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.17  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.16  2004/01/02 21:13:07  southa
  * Source conditioning
  *
@@ -229,7 +232,6 @@ void
 GameQuit::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    GameBase::AutoPrint(ioOut);
     ioOut << "gameState=" << m_gameState << ", ";
     ioOut << "startMsec=" << m_startMsec;
     ioOut << "]";
@@ -249,10 +251,6 @@ GameQuit::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     {
         ioIn >> m_startMsec;
     }
-    else if (GameBase::AutoXMLDataProcess(ioIn, inTagStr))
-    {
-        // Tag consumed by base class
-    }
     else
     {
         return false;
@@ -262,10 +260,9 @@ GameQuit::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 void
 GameQuit::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    GameBase::AutoXMLPrint(ioOut);
     ioOut.TagSet("gameState");
     ioOut << m_gameState;
     ioOut.TagSet("startMsec");
     ioOut << m_startMsec;
 }
-//%outOfLineFunctions } OA02MJyGgAQQJM7kZqgQTQ
+//%outOfLineFunctions } UhXjnSZK9Y6FCmbCLriKlg

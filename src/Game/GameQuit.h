@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vWBeosVH87okVVejo5ZQ8Q
 /*
- * $Id: GameQuit.h,v 1.9 2004/01/06 20:46:50 southa Exp $
+ * $Id: GameQuit.h,v 1.10 2004/03/06 13:13:42 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.10  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.9  2004/01/06 20:46:50  southa
  * Build fixes
  *
@@ -51,7 +54,6 @@
 
 #include "GameBase.h"
 
-//:xml1base GameBase
 //:generate standard ostream xml1
 class GameQuit : public GameBase
 {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.38 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameSetup.cpp,v 1.39 2004/03/06 13:13:42 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.39  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.38  2004/01/02 21:13:07  southa
  * Source conditioning
  *
@@ -382,7 +385,6 @@ void
 GameSetup::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    GameBase::AutoPrint(ioOut);
     ioOut << "gameState=" << m_gameState << ", ";
     ioOut << "configURL=" << m_configURL << ", ";
     ioOut << "currentMsec=" << m_currentMsec << ", ";
@@ -417,10 +419,6 @@ GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
     {
         ioIn >> m_windowClicked;
     }
-    else if (GameBase::AutoXMLDataProcess(ioIn, inTagStr))
-    {
-        // Tag consumed by base class
-    }
     else
     {
         return false;
@@ -430,7 +428,6 @@ GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
 void
 GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    GameBase::AutoXMLPrint(ioOut);
     ioOut.TagSet("gameState");
     ioOut << m_gameState;
     ioOut.TagSet("configURL");
@@ -442,4 +439,4 @@ GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("windowClicked");
     ioOut << m_windowClicked;
 }
-//%outOfLineFunctions } mn9W6hyHYK0CO6V0eX7XIw
+//%outOfLineFunctions } 1JCKVdS7I9v9yAuburtcaA
