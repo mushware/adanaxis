@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.1 2003/01/20 10:45:28 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.2 2003/01/20 15:38:27 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.2  2003/01/20 15:38:27  southa
+ * Created MushcoreTest
+ *
  * Revision 1.1  2003/01/20 10:45:28  southa
  * Singleton tidying
  *
@@ -40,7 +43,10 @@ public:
     class SingletonDestroyer
     {
     public:
-        MUSHCORE_DECLARE_INLINE ~SingletonDestroyer();
+        MUSHCORE_DECLARE_INLINE ~SingletonDestroyer()
+		{
+			SingletonDestroy();
+		}
     };
     
     static MUSHCORE_DECLARE_INLINE SingletonType& Sgl(void);
@@ -149,13 +155,6 @@ inline bool
 MushcoreAbstractSingleton<SingletonType>::SingletonExists(void)
 {
     return (SingletonPtrGet() != NULL);
-}
-
-template<class SingletonType>
-inline
-MushcoreAbstractSingleton<SingletonType>::SingletonDestroyer::~SingletonDestroyer(void)
-{
-    SingletonDestroy();
 }
 
 #endif
