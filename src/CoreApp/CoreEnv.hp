@@ -1,0 +1,17 @@
+#ifndef COREENV_HP
+#define COREENV_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreEnv
+{
+public:
+
+private:
+    int temp;
+};
+#endif

@@ -1,0 +1,24 @@
+#ifndef CORECOMMAND_HP
+#define CORECOMMAND_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreEnv;
+
+class CoreCommand
+{
+public:
+    CoreCommand(const string& inStr): m_string(inStr), m_pos(0) {}
+    virtual ~CoreCommand() {}
+    virtual void Execute(CoreEnv& inEnv);
+    virtual void Execute(void);
+    
+private:
+    string m_string;
+    Size m_pos;
+};
+#endif
