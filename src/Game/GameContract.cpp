@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.19 2002/06/21 18:50:16 southa Exp $
+ * $Id: GameContract.cpp,v 1.20 2002/06/27 12:36:06 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.20  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.19  2002/06/21 18:50:16  southa
  * SDLAppHandler added
  *
@@ -81,6 +84,7 @@
 #include "GameAppHandler.h"
 #include "GameTileTraits.h"
 #include "GamePiecePlayer.h"
+#include "GameFloorDesigner.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -107,6 +111,10 @@ GameContract::Process(void)
         case kRunning:
             Running();
             break;
+
+        case kDesigning:
+            Designing();
+            break;
     }
 }
 
@@ -121,6 +129,10 @@ GameContract::Display(void)
         
         case kRunning:
             RunningDisplay();
+            break;
+
+        case kDesigning:
+            DesigningDisplay();
             break;
     }
 }
@@ -137,13 +149,10 @@ GameContract::InitDisplay(void)
     GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
 }
-    
+
 void
 GameContract::RunningDisplay(void)
 {
-    GLUtils  gl;
-    static tVal angle=0;
-    angle+=0.05;
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
     GLUtils::DisplayPrologue();
@@ -152,23 +161,7 @@ GameContract::RunningDisplay(void)
     m_player->Move();
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
 
-    glMatrixMode(GL_MODELVIEW);
-    U32 xsize=m_floorMap->XSize();
-    U32 ysize=m_floorMap->YSize();
-    gl.SetPosition(0,0);
-    GLUtils::SetColour(1,1,1);    
-    for (U32 x=0; x<xsize; x++)
-    {
-        for (U32 y=0; y<ysize; y++)
-        {
-            U32 mapVal=m_floorMap->At(x,y);
-            S32 basex=32*x;
-            S32 basey=32*y;
-            gl.MoveTo(basex,basey);
-            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVal));
-            tileTraits.Render();
-        }
-    }
+    m_floorMap->Render(*m_tileMap);
     GLUtils::IdentityEpilogue();
 
     ostringstream message;
@@ -183,6 +176,15 @@ GameContract::RunningDisplay(void)
 }
 
 void
+GameContract::DesigningDisplay(void)
+{
+    COREASSERT(m_floorDesigner != NULL);
+    m_floorDesigner->Display();
+}
+
+
+
+void
 GameContract::Init(void)
 {
     m_tileMap=GameData::Instance().TileMapGet("tiles");
@@ -193,6 +195,8 @@ GameContract::Init(void)
     GameData::Instance().ControllerGetOrCreate("controller1");
     m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceDeleteAndCreate("player1", new GamePiecePlayer));
     COREASSERT(m_player != NULL);
+    m_floorDesigner=new GameFloorDesigner; // This is leaked
+    m_floorDesigner->Init();
     // GameData::Instance().DumpAll(cout);
 }
 
@@ -215,6 +219,16 @@ GameContract::Running(void)
             m_frames=0;
         }
     }
+    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    if (gameHandler.KeyStateGet('d')) m_gameState=kDesigning;
+}
+
+void
+GameContract::Designing(void)
+{
+    GLUtils::PostRedisplay();
+    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    if (gameHandler.KeyStateGet('r')) m_gameState=kRunning;
 }
 
 void

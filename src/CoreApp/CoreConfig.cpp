@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.cpp,v 1.6 2002/06/04 14:11:21 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.7 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/06/04 14:11:21  southa
  * Traits loader first stage
  *
@@ -61,7 +64,7 @@ CoreConfig::GetIfExists(const CoreScalar **outScalar, const string& inName) cons
 
 
 bool
-CoreConfig::ConfigExists(const string& inName) const
+CoreConfig::Exists(const string& inName) const
 {
     return m_config.find(inName) != m_config.end();
 }

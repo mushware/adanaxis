@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.cpp,v 1.6 2002/05/30 14:41:13 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.7 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *
@@ -41,13 +44,13 @@
 CoreEnv::CoreEnv *CoreEnv::m_instance=NULL;
 
 void
-CoreEnv::PushConfig(const CoreConfig& inConfig)
+CoreEnv::PushConfig(CoreConfig& inConfig)
 {
     m_config.push_back(&inConfig);
 }
 
 void
-CoreEnv::PopConfig(const CoreConfig& inConfig)
+CoreEnv::PopConfig(CoreConfig& inConfig)
 {
     if (m_config.empty())
     {
@@ -64,7 +67,7 @@ const CoreScalar&
 CoreEnv::VariableGet(const string& inName) const
 {
     static const CoreScalar undefined;
-    for (vector<const CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
          p != m_config.rend(); ++p)
     {
         const CoreScalar *pScalar;
@@ -74,5 +77,57 @@ CoreEnv::VariableGet(const string& inName) const
         }
     }
     return undefined;
+}
+
+bool
+CoreEnv::VariableGetIfExists(const CoreScalar** outScalar, const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        if ((*p)->GetIfExists(outScalar, inName))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool
+CoreEnv::VariableGetIfExists(string &outValue, const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        const CoreScalar *pScalar;
+        if ((*p)->GetIfExists(&pScalar, inName))
+        {
+            outValue=pScalar->StringGet();
+            return true;
+        }
+        
+    }
+    return false;
+}
+
+bool
+CoreEnv::VariableExists(const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        if ((*p)->Exists(inName))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void
+CoreEnv::VariableSet(const string& inName, const string& inValue)
+{
+    COREASSERT(m_config.size() > 0);
+    m_config.back()->Set(inName, inValue);
 }
 

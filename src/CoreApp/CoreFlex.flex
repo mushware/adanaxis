@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.7 2002/05/28 13:07:04 southa Exp $
+ // $Id: CoreFlex.flex,v 1.8 2002/05/30 14:41:15 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.7 2002/05/28 13:07:04 southa Exp $
+ * $Id: CoreFlex.flex,v 1.8 2002/05/30 14:41:15 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.8  2002/05/30 14:41:15  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.7  2002/05/28 13:07:04  southa
  * Command parser extensions and TIFF loader
  *
@@ -50,10 +53,12 @@ num1        [-+]?{dig}+\.?([eE][-+]?{dig}+)?
 num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
 eos	        [;\n]
-
+comment     ^[ \t]*#.*
 %%
 
-{ws}    /* ignore whitespace */
+{ws}      /* ignore whitespace */
+
+{comment} /* ignore comment */
         
 ","     {
             IFFLEXTESTING(cerr << "," << endl);

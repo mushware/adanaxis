@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.17 2002/06/23 10:42:34 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.18 2002/06/27 12:36:06 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.18  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.17  2002/06/23 10:42:34  southa
  * SDL input
  *
@@ -81,25 +84,24 @@ void
 GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
-    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet());
-    GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/spaces");
-    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/pixels");
-    GameGlobalConfig::Instance().Set("CONTRACTPATH", appPath+"/pixels");
-    try
-    {
-        MediaAudio::Instance().PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
-    }
-    catch (DeviceFail& e)
-    {
-        cerr << "Audio failed : " << e << endl;
-    }
-    // CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
 
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
-    
-    EnterScreen(kWindow);
 
+    string displayType("fullscreen");
+    CoreEnv::Instance().VariableGetIfExists(displayType, "DISPLAYTYPE");
+    if (displayType == "fullscreen")
+    {
+        EnterScreen(kGame);
+    }
+    else if (displayType == "window")
+    {
+        EnterScreen(kWindow);
+    }
+    else
+    {
+        throw(CommandFail("Bad value for DISPLAYTYPE ("+displayType+").  Choices are fullscreen or window"));
+    }
     GLUtils::CheckGLError();
 }
 

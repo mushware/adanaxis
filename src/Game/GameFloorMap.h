@@ -15,8 +15,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.3 2002/06/04 20:27:37 southa Exp $
+ * $Id: GameFloorMap.h,v 1.4 2002/06/27 12:36:07 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.4  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/04 20:27:37  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -44,6 +47,8 @@
  */
 
 #include "mushCore.h"
+#include "mushGL.h"
+class GameTileMap;
 
 class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
@@ -54,6 +59,8 @@ public:
     U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
     U32 XSize(void) {return m_xsize;}
     U32 YSize(void) {return m_ysize;}
+    void Render(const GameTileMap& inTileMap);
+    void Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight);
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

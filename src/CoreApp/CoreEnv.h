@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.h,v 1.3 2002/05/30 14:41:13 southa Exp $
+ * $Id: CoreEnv.h,v 1.4 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.4  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *
@@ -43,13 +46,17 @@ class CoreEnv
 public:
     static CoreEnv& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreEnv:m_instance);}
 
-    void PushConfig(const CoreConfig& inConfig);
-    void PopConfig(const CoreConfig& inConfig);
+    void PushConfig(CoreConfig& inConfig);
+    void PopConfig(CoreConfig& inConfig);
     const CoreScalar& VariableGet(const string& inName) const;
+    bool VariableGetIfExists(const CoreScalar** outScalar, const string& inName) const;
+    bool VariableGetIfExists(string& outValue, const string& inName) const;
+    bool VariableExists(const string& inName) const;
+    void VariableSet(const string& inName, const string& inValue);
     
 private:
     CoreEnv() {}
     static CoreEnv *m_instance;
-    vector<const CoreConfig *> m_config;
+    vector<CoreConfig *> m_config;
 };
 #endif

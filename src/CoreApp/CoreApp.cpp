@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.cpp,v 1.5 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreApp.cpp,v 1.6 2002/06/27 12:36:02 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.6  2002/06/27 12:36:02  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -52,11 +55,11 @@ CoreApp::ServiceChildren(int &outCount)
     while (!m_children.empty())
     {
         bool done=false;
-        list<ChildRecord>::iterator p=m_children.begin();
-        list<ChildRecord>::iterator oldP=p;
+        list<CoreChildRecord>::iterator p=m_children.begin();
+        list<CoreChildRecord>::iterator oldP=p;
         do
         {
-            ChildStatus status;
+            CoreChildStatus status;
             string outputStr;
             oldP=p;
             // Must do this now because erase might invalidate the current object
@@ -83,7 +86,7 @@ CoreApp::ServiceChildren(int &outCount)
 void
 CoreApp::AddChild(int pid, int inPipe, int outPipe)
 {
-    m_children.push_back(ChildRecord(pid, inPipe, outPipe));
+    m_children.push_back(CoreChildRecord(pid, inPipe, outPipe));
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreBuiltinHandler.cpp,v 1.5 2002/06/27 12:36:02 southa Exp $
+ * $Id: CoreBuiltinHandler.cpp,v 1.1 2002/07/02 09:10:06 southa Exp $
  * $Log: CoreBuiltinHandler.cpp,v $
+ * Revision 1.1  2002/07/02 09:10:06  southa
+ * Name changed to CoreBuiltinHandler
+ *
  * Revision 1.5  2002/06/27 12:36:02  southa
  * Build process fixes
  *
@@ -59,7 +62,7 @@ CoreBuiltinHandler::Load(CoreCommand& ioCommand, CoreEnv &ioEnv)
 CoreScalar
 CoreBuiltinHandler::ConfigSet(CoreCommand& ioCommand, CoreEnv &ioEnv)
 {
-    if (ioCommand.NumParams() != 1)
+    if (ioCommand.NumParams() != 2)
     {
         throw(CommandFail("Usage: configset(name,value)"));
     }

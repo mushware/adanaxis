@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.h,v 1.2 2002/05/30 14:41:13 southa Exp $
+ * $Id: CoreApp.h,v 1.3 2002/06/27 12:36:02 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.3  2002/06/27 12:36:02  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *
@@ -37,7 +40,7 @@
  */
 
 #include "CoreStandard.h"
-#include "ChildRecord.h"
+#include "CoreChildRecord.h"
 #include "CoreCommandHandler.h"
 
 class CoreApp
@@ -56,7 +59,7 @@ protected:
     static CoreApp *m_instance;
     
 private:
-    list<ChildRecord> m_children;
+    list<CoreChildRecord> m_children;
 };
 
     

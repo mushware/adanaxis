@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.h,v 1.7 2002/06/04 14:11:21 southa Exp $
+ * $Id: CoreConfig.h,v 1.8 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.8  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.7  2002/06/04 14:11:21  southa
  * Traits loader first stage
  *
@@ -51,7 +54,7 @@ public:
     void Set(const string& inName, const tVal inVal) { Set(inName, CoreScalar(inVal)); }
     const CoreScalar& Get(const string& inName) const;
     bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
-    bool ConfigExists(const string& inName) const;
+    bool Exists(const string& inName) const;
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     

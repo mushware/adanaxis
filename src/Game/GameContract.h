@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.10 2002/06/13 15:15:55 southa Exp $
+ * $Id: GameContract.h,v 1.11 2002/06/27 12:36:06 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.11  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.10  2002/06/13 15:15:55  southa
  * New directory structure, FPS printing, load command
  *
@@ -51,6 +54,7 @@
 class GameFloorMap;
 class GameTileMap;
 class GamePiecePlayer;
+class GameFloorDesigner;
 
 class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
@@ -70,13 +74,16 @@ protected:
     enum GameState
     {
         kInit,
-        kRunning
+        kRunning,
+        kDesigning
     };
 
     virtual void Init(void);
     virtual void Running(void);
+    virtual void Designing(void);
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
+    virtual void DesigningDisplay(void);
 
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
@@ -108,6 +115,7 @@ private:
     GamePiecePlayer *m_player;
     tVal m_fps;
     U32 m_frames;
+    GameFloorDesigner *m_floorDesigner;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.6 2002/06/24 16:41:14 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.7 2002/06/27 12:36:05 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/06/24 16:41:14  southa
  * Fixed for mingw32
  *
@@ -141,6 +144,9 @@ void
 LaunchCommandHandler::Install(void)
 {
 #ifdef HAVE_POSIX
+// Disabled for security reasons
+#if 0    
     CoreApp::Instance().AddHandler("launch", Launch);
+#endif
 #endif
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.2 2002/06/04 14:12:26 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.3 2002/06/27 12:36:06 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.3  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/04 14:12:26  southa
  * Traits loader first stage
  *
@@ -38,8 +41,69 @@
 
 #include "GameFloorMap.h"
 #include "GameData.h"
+#include "GameTileMap.h"
+#include "GameTileTraits.h"
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
+
+void
+GameFloorMap::Render(const GameTileMap& inTileMap)
+{
+    GLUtils  gl;
+    glMatrixMode(GL_MODELVIEW);
+    U32 xsize=XSize();
+    U32 ysize=YSize();
+    gl.SetPosition(0,0);
+    GLUtils::SetColour(1,1,1);
+    for (U32 x=0; x<xsize; x++)
+    {
+        for (U32 y=0; y<ysize; y++)
+        {
+            U32 mapVal=At(x,y);
+            S32 basex=32*x;
+            S32 basey=32*y;
+            gl.MoveTo(basex,basey);
+            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
+            tileTraits.Render();
+        }
+    }
+}
+
+void
+GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight)
+{
+    GLUtils  gl;
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+
+    U32 timeNow=glAppHandler.GetMilliseconds();
+    tVal brightness=0.4+0.4*sin(timeNow/100.0);
+    glMatrixMode(GL_MODELVIEW);
+    U32 xsize=XSize();
+    U32 ysize=YSize();
+    gl.SetPosition(0,0);
+    for (U32 x=0; x<xsize; x++)
+    {
+        for (U32 y=0; y<ysize; y++)
+        {
+            U32 mapVal=At(x,y);
+            S32 basex=32*x;
+            S32 basey=32*y;
+            gl.MoveTo(basex,basey);
+            GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
+            if (x>=inHighlight.xmin && x < inHighlight.xmax &&
+                y>=inHighlight.ymin && y < inHighlight.ymax)
+            {
+                
+                GLUtils::SetColour(brightness, brightness, brightness);
+            }
+            else
+            {
+                GLUtils::SetColour(1,1,1);
+            }
+            tileTraits.Render();
+        }
+    }
+}
 
 void
 GameFloorMap::NullHandler(CoreXML& inXML)
