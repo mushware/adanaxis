@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.13 2002/08/27 08:56:26 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.14 2002/10/10 18:25:15 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.14  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  * Revision 1.13  2002/08/27 08:56:26  southa
  * Source conditioning
  *
@@ -183,7 +186,7 @@ GameTileTraits::HandleAdhesionEnd(CoreXML& inXML)
 }
 
 void
-GameTileTraits::HandleLightEnd(CoreXML& inXML)
+GameTileTraits::HandleLightStart(CoreXML& inXML)
 {
     m_light.Unpickle(inXML);
     m_hasLight=true;
@@ -223,8 +226,7 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_endTable[kPickleData]["permeability"] = &GameTileTraits::HandlePermeabilityEnd;
     m_startTable[kPickleData]["adhesion"] = &GameTileTraits::NullHandler;
     m_endTable[kPickleData]["adhesion"] = &GameTileTraits::HandleAdhesionEnd;
-    m_startTable[kPickleData]["light"] = &GameTileTraits::NullHandler;
-    m_endTable[kPickleData]["light"] = &GameTileTraits::HandleLightEnd;
+    m_startTable[kPickleData]["light"] = &GameTileTraits::HandleLightStart;
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;

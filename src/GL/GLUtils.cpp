@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.34 2002/10/10 13:51:16 southa Exp $
+ * $Id: GLUtils.cpp,v 1.35 2002/10/10 18:25:13 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.35  2002/10/10 18:25:13  southa
+ * Light links and test lights
+ *
  * Revision 1.34  2002/10/10 13:51:16  southa
  * Speed fixes and various others
  *
@@ -557,7 +560,7 @@ GLUtils::ModulationSet(tModulationType inValue)
                     GLfloat diffuse[4]={0.2,0.2,0.2,1};
                     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 
-                    glMaterialf(GL_FRONT, GL_SHININESS, 50);
+                    glMaterialf(GL_FRONT, GL_SHININESS, 30);
 
                     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                     glEnable(GL_LIGHTING);
@@ -591,6 +594,7 @@ GLUtils::DepthSet(tDepthType inValue)
                 break;
 
             case kDepthTest:
+                glDepthFunc(GL_LEQUAL);
                 glEnable(GL_DEPTH_TEST);
                 break;
 

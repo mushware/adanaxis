@@ -2,8 +2,11 @@
 #define GLLIGHTDEF_H
 
 /*
- * $Id: GLLightDef.h,v 1.3 2002/10/08 17:13:16 southa Exp $
+ * $Id: GLLightDef.h,v 1.4 2002/10/10 18:25:13 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.4  2002/10/10 18:25:13  southa
+ * Light links and test lights
+ *
  * Revision 1.3  2002/10/08 17:13:16  southa
  * Tiered maps
  *
@@ -19,15 +22,85 @@
 #include "GLStandard.h"
 #include "GLPoint.h"
 #include "GLVector.h"
+#include "GLColour.h"
 
-class GLLightDef
+class GLLightDef : public CorePickle, protected CoreXMLHandler
 {
 public:
     GLLightDef() {} // For vector
-    explicit GLLightDef(const GLVector& inPos) : pos(inPos) {}
-    GLVector pos;
-    void Pickle(ostream& inOut, const string& inPrefix="") const;
-    void Unpickle(CoreXML& inXML);
+    virtual ~GLLightDef() {}
+
+    const GLVector& PositionGet(void) const { return m_position; }
+    const GLColour& AmbientGet(void) const { return m_ambient; }
+    const GLColour& DiffuseGet(void) const { return m_diffuse; }
+    const GLColour& SpecularGet(void) const { return m_specular; }
+    tVal CutoffGet(void) const { return m_cutoff; }
+    const GLVector& DirectionGet(void) const { return m_direction; }
+    tVal ExponentGet(void) const { return m_exponent; }
+    tVal ConstantGet(void) const { return m_constant; }
+    tVal LinearGet(void) const { return m_linear; }
+    tVal QuadraticGet(void) const { return m_quadratic; }
+
+    void BasePositionSet(const GLVector& inVec);
+    
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Unpickle(CoreXML& inXML);
+    
+protected:
+    void UnpicklePrologue(void);
+    void UnpickleEpilogue(void);
+    void XMLStartHandler(CoreXML& inXML);
+    void XMLEndHandler(CoreXML& inXML);
+    void XMLDataHandler(CoreXML& inXML);
+
+private:
+    void HandleOffsetEnd(CoreXML& inXML);
+    void HandlePowerEnd(CoreXML& inXML);
+    void HandleColourEnd(CoreXML& inXML);
+    void HandleAmbientEnd(CoreXML& inXML);
+    void HandleDiffuseEnd(CoreXML& inXML);
+    void HandleSpecularEnd(CoreXML& inXML);
+    void HandleCutoffEnd(CoreXML& inXML);
+    void HandleDirectionEnd(CoreXML& inXML);
+    void HandleExponentEnd(CoreXML& inXML);
+    void HandleConstantEnd(CoreXML& inXML);
+    void HandleLinearEnd(CoreXML& inXML);
+    void HandleQuadraticEnd(CoreXML& inXML);
+    void HandleLightEnd(CoreXML& inXML);    
+    void NullHandler(CoreXML& inXML);
+
+    enum PickleState
+    {
+        kPickleInit,
+        kPickleData,
+        kPickleWithinBase,
+        kPickleNumStates
+    };
+
+    typedef map<string, void (GLLightDef::*)(CoreXML& inXML)> ElementFunctionMap;
+    vector<ElementFunctionMap> m_startTable;
+    vector<ElementFunctionMap> m_endTable;
+    PickleState m_pickleState;
+    bool m_baseThreaded;
+
+    GLVector m_basePosition;
+    GLVector m_offset;
+    
+    GLVector m_position;
+    GLColour m_ambient;
+    GLColour m_diffuse;
+    GLColour m_specular;
+    tVal m_cutoff;
+    GLVector m_direction;
+    tVal m_exponent;
+    tVal m_constant;
+    tVal m_linear;
+    tVal m_quadratic;
 };
 
+inline ostream& operator<<(ostream &inOut, const GLLightDef& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}
 #endif

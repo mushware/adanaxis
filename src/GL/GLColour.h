@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLColour.h,v 1.4 2002/08/09 17:09:02 southa Exp $
+ * $Id: GLColour.h,v 1.5 2002/08/27 08:56:19 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.5  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/09 17:09:02  southa
  * GameDialogue added
  *
@@ -37,42 +40,43 @@ class GLColour
 {
 public:
     GLColour() {}
-    GLColour(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha=1.0) :
-        m_red(inRed),
-        m_green(inGreen),
-        m_blue(inBlue),
-        m_alpha(inAlpha)
-        {}
-    void Apply(void) const { GLUtils::ColourSet(m_red, m_green, m_blue, m_alpha); }
-    tVal RedGet(void) const { return m_red; }
-    tVal GreenGet(void) const { return m_green; }
-    tVal BlueGet(void) const { return m_blue; }
-    tVal AlphaGet(void) const { return m_alpha; }
+    GLColour(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha=1.0)
+    {
+        m_col[0]=inRed;
+        m_col[1]=inGreen;
+        m_col[2]=inBlue;
+        m_col[3]=inAlpha;
+    }
+    void Apply(void) const { GLUtils::ColourSet(m_col[0], m_col[1], m_col[2], m_col[3]); }
+    tVal RedGet(void) const { return m_col[0]; }
+    tVal GreenGet(void) const { return m_col[1]; }
+    tVal BlueGet(void) const { return m_col[2]; }
+    tVal AlphaGet(void) const { return m_col[3]; }
+    typedef GLfloat tGLfloat4[4];
+    const tGLfloat4& ArrayGet(void) const { return m_col; }
+    
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
     const GLColour& operator+=(const GLColour& inCol)
     {
-        m_red+=inCol.m_red;
-        m_green+=inCol.m_green;
-        m_blue+=inCol.m_blue;
-        m_alpha+=inCol.m_alpha;
+        m_col[0]+=inCol.m_col[0];
+        m_col[1]+=inCol.m_col[1];
+        m_col[2]+=inCol.m_col[2];
+        m_col[3]+=inCol.m_col[3];
         return *this;
     }
     const GLColour& operator*=(tVal inVal)
     {
-        m_red*=inVal;
-        m_green*=inVal;
-        m_blue*=inVal;
-        m_alpha*=inVal;
+        m_col[0]*=inVal;
+        m_col[1]*=inVal;
+        m_col[2]*=inVal;
+        m_col[3]*=inVal;
         return *this;
     }
 
 private:
-    tVal m_red;
-    tVal m_green;
-    tVal m_blue;
-    tVal m_alpha;
+    GLfloat m_col[4];
 };
 
 inline const GLColour operator+(const GLColour& a, const GLColour& b)

@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.5 2002/10/08 17:13:16 southa Exp $
+ * $Id: GLLights.cpp,v 1.6 2002/10/10 18:25:13 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.6  2002/10/10 18:25:13  southa
+ * Light links and test lights
+ *
  * Revision 1.5  2002/10/08 17:13:16  southa
  * Tiered maps
  *
@@ -103,32 +106,30 @@ GLLights::LightEnable(U32 inNum)
     COREASSERT(slot < kMaxLights);
     
     GLenum lightEnum=GL_LIGHT0+slot;
+    COREASSERT(m_cache[slot].value == inNum);
 
+    const GLLightDef& def = m_lights[inNum];
+    
     if (m_cache[slot].modified)
     {
-        GLfloat diffuse[4]={m_lightingFactor,m_lightingFactor,m_lightingFactor,1};
-        GLfloat specular[4]={m_lightingFactor,m_lightingFactor,m_lightingFactor,1};
-        GLfloat transparent[4]={0,0,0,0};
+        glLightfv(lightEnum, GL_AMBIENT, def.AmbientGet().ArrayGet());
+        glLightfv(lightEnum, GL_DIFFUSE, def.DiffuseGet().ArrayGet());
+        glLightfv(lightEnum, GL_SPECULAR, def.SpecularGet().ArrayGet());
 
-        glLightfv(lightEnum, GL_AMBIENT, transparent);
-        glLightfv(lightEnum, GL_DIFFUSE, diffuse);
-        glLightfv(lightEnum, GL_SPECULAR, specular);
-
-        glLighti(lightEnum, GL_SPOT_CUTOFF, 180);
-        GLfloat direction[3]={0,0,1};
+        glLightf(lightEnum, GL_SPOT_CUTOFF, def.CutoffGet());
+        const GLVector& dir=def.DirectionGet();
+        GLfloat direction[3]={dir.x, dir.y, dir.z};
         glLightfv(lightEnum, GL_SPOT_DIRECTION, direction);
-        glLightf(lightEnum, GL_SPOT_EXPONENT, 4);
-        glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.01);
-        glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
-        glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 0.01);
+        glLightf(lightEnum, GL_SPOT_EXPONENT, def.ExponentGet());
+        glLightf(lightEnum, GL_CONSTANT_ATTENUATION, def.ConstantGet());
+        glLightf(lightEnum, GL_LINEAR_ATTENUATION, def.LinearGet());
+        glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, def.QuadraticGet());
         m_cache[slot].modified=false;
         cerr << "Wrote data for light " << inNum << " to slot " << slot << endl;
     }        
 
-    COREASSERT(m_cache[slot].value == inNum);
-
-    const GLLightDef& def = m_lights[inNum];
-    GLfloat position[4]={def.pos.x, def.pos.y, def.pos.z, 1};
+    const GLVector& pos = def.PositionGet();
+    GLfloat position[4]={pos.x, pos.y, pos.z, 1};
     glLightfv(lightEnum, GL_POSITION, position);
     
     if (!m_cache[slot].enabled)

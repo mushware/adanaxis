@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.28 2002/10/10 13:51:16 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.29 2002/10/10 18:25:15 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.29  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  * Revision 1.28  2002/10/10 13:51:16  southa
  * Speed fixes and various others
  *
@@ -462,8 +465,7 @@ GameFloorMap::RebuildLightMap(void) const
                 GLLightDef lightDef;
                 if (tileTraits.LightGet(lightDef))
                 {
-                    lightDef.pos += GLVector(x,y,0);
-                    cerr << "Light at " << lightDef.pos << endl;
+                    lightDef.BasePositionSet(GLVector(x,y,0));
                     GLData::Instance().LightsGet()->LightAdd(lightDefs.size(), lightDef);
                     lightDefs.push_back(lightDef);
                 }
@@ -487,7 +489,7 @@ GameFloorMap::RebuildLightMap(void) const
             for (U32 light=0; light<lightDefsSize; ++light)
             {
                 // Looping over each light which we read into the lightDefs above
-                tVal distance = (here - lightDefs[light].pos).Magnitude();
+                tVal distance = (here - lightDefs[light].PositionGet()).Magnitude();
 
                 bool slotFound=false;
                 bool linkSlot=0;
@@ -560,7 +562,7 @@ GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
                     {
                         U32 lightNum=links.LinkGet(i);
 
-                        GLVector linkVec=GLData::Instance().LightsGet()->LightGet(lightNum).pos;
+                        GLVector linkVec=GLData::Instance().LightsGet()->LightGet(lightNum).PositionGet();
                         GLLine line(point, GLPoint(linkVec.x, linkVec.y));
 
                         line.Render();

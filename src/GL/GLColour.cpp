@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLColour.cpp,v 1.3 2002/08/09 17:09:02 southa Exp $
+ * $Id: GLColour.cpp,v 1.4 2002/08/27 08:56:18 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.4  2002/08/27 08:56:18  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/09 17:09:02  southa
  * GameDialogue added
  *
@@ -30,7 +33,7 @@
 void
 GLColour::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << inPrefix << "<colour>" << m_red << "," << m_green << "," << m_blue << "," << m_alpha << "</colour>" << endl;
+    inOut << inPrefix << "<colour>" << m_col[0] << "," << m_col[1] << "," << m_col[2] << "," << m_col[3] << "</colour>" << endl;
 }
 
 void
@@ -39,18 +42,18 @@ GLColour::Unpickle(CoreXML& inXML)
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for colour.  Should be <colour>0.1,0.4,0.6,1.0</colour>";
     char comma;
-    if (!(data >> m_red)) inXML.Throw(failMessage);
+    if (!(data >> m_col[0])) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
 
-    if (!(data >> m_green)) inXML.Throw(failMessage);
+    if (!(data >> m_col[1])) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
 
-    if (!(data >> m_blue)) inXML.Throw(failMessage);
+    if (!(data >> m_col[2])) inXML.Throw(failMessage);
     
     // We don't care if alpha isn't present
-    m_alpha=1.0;
+    m_col[3]=1.0;
     if ((data >> comma) && comma == ',')
     {
-        data >> m_alpha;
+        data >> m_col[3];
     }
 }

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameTileTraits.h,v 1.10 2002/08/27 08:56:26 southa Exp $
+ * $Id: GameTileTraits.h,v 1.11 2002/10/10 18:25:15 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.11  2002/10/10 18:25:15  southa
+ * Light links and test lights
+ *
  * Revision 1.10  2002/08/27 08:56:26  southa
  * Source conditioning
  *
@@ -77,7 +80,7 @@ private:
     void HandleGraphicStart(CoreXML& inXML);
     void HandlePermeabilityEnd(CoreXML& inXML);
     void HandleAdhesionEnd(CoreXML& inXML);
-    void HandleLightEnd(CoreXML& inXML);
+    void HandleLightStart(CoreXML& inXML);
     void HandleTraitsEnd(CoreXML& inXML);
 
     enum PickleState

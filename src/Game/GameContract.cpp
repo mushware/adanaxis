@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.69 2002/10/08 21:44:09 southa Exp $
+ * $Id: GameContract.cpp,v 1.70 2002/10/10 18:25:14 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.70  2002/10/10 18:25:14  southa
+ * Light links and test lights
+ *
  * Revision 1.69  2002/10/08 21:44:09  southa
  * 3D maps
  *
@@ -345,8 +348,6 @@ GameContract::Init(void)
 
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
-
-    GLData::Instance().LightsGet()->LightAdd(0, GLLightDef(GLVector(30,10,1)));
 }
 
 void
@@ -436,10 +437,9 @@ GameContract::RunningDisplay(void)
     GLUtils::PerspectiveLookAt(lookAtPoint.pos, lookAtPoint.angle);
 
     GLUtils::PushMatrix();
-    
 
-    GLData::Instance().LightsGet()->LightEnable(0);
-    GLUtils::DepthSet(GLUtils::kDepthNone);
+    
+    GLUtils::DepthSet(GLUtils::kDepthTest);
     
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
