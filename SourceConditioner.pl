@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.16 2003/10/03 23:39:31 southa Exp $
+# $Id: SourceConditioner.pl,v 1.17 2003/10/06 22:53:03 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.17  2003/10/06 22:53:03  southa
+# Removed old strip processing
+#
 # Revision 1.16  2003/10/03 23:39:31  southa
 # XML polymorphs
 #
@@ -536,6 +539,11 @@ sub BasicOperatorsInlineGenerate($$)
 "{",
 "    return inA.$gConfig{AUTO_PREFIX}Equals(inB);",
 "}",
+"inline bool",
+"operator!=(const $className& inA, const $className& inB)",
+"{",
+"    return !inA.$gConfig{AUTO_PREFIX}Equals(inB);",
+"}";
 }
 
 ##########################################################

@@ -35,3 +35,4 @@ Some libraries will fail to build their example applications because of Cygwin/M
 Errors:
 
 0xC000022 on application startup:  Permision denied.  Typically a DLL which doesn't have execute permission.
+When building libraries, libtool may expand library paths by prepending /usr/lib.  For now, remove or rename the offending libraries is cygwin's /usr/lib (usually expat and pcre).

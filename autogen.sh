@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.17 2003/10/04 15:32:04 southa Exp $
+# $Id: autogen.sh,v 1.18 2003/10/06 22:26:57 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.18  2003/10/06 22:26:57  southa
+# Added MustlGame
+#
 # Revision 1.17  2003/10/04 15:32:04  southa
 # Module split
 #
@@ -98,6 +101,75 @@ case ic2:
     cd ..
 breaksw
 
+case meshmover:
+    echo Building configuration for package meshmover
+    echo
+    cp -f ic2.configure.in configure.in
+    cp -f ic2.Makefile.am Makefile.am
+    rm -f acinclude.m4
+    chmod +x meshmover
+
+    cd src
+    echo Building Makefile.am in `pwd`
+    echo 'bin_PROGRAMS=meshmoverbinary' > Makefile.am
+    echo -n 'meshmoverbinary_SOURCES=' >> Makefile.am
+    foreach module ( MeshMover MustlGame Game GL Media Platform Mushcore Mustl Main API)
+    find $module -path 'Platform/*/*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -exec echo -n " " {} \;  >> Makefile.am
+    end
+    find Support -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+    echo INCLUDES=-I\$\{srcdir\}/API >> Makefile.am
+    echo -n 'EXTRA_DIST=' >> Makefile.am
+    find . -path './Platform/*/*' -a -name '*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -path './Platform/*/*' -a -name '*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+    cd ..
+
+    cd meshmoverdata
+    echo Building data Makefile.am in `pwd`
+    rm -f Makefile.am
+    echo -n 'nobase_dist_pkgdata_DATA =' >> Makefile.am
+    find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -name '.*' -type f -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
+    echo '' >> Makefile.am
+    cd ..
+breaksw
+
+case mushmesh:
+    echo Building configuration for package mushmesh
+    echo
+    cp -f mushmesh.configure.in configure.in
+    cp -f lib.Makefile.am Makefile.am
+    cp -f lib.acinclude.m4 acinclude.m4
+    cd src
+    echo Building Makefile.am in `pwd`
+    echo 'lib_LTLIBRARIES=libmushmesh.la' > Makefile.am
+    echo -n 'libmushmesh_la_SOURCES=' >> Makefile.am
+    find . -name 'MushMesh*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'MushMesh*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+
+    echo 'library_includedir=$(includedir)/MushMesh' >> Makefile.am
+    echo -n 'library_include_HEADERS=' >> Makefile.am
+    find . -name 'MushMesh*.h' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+
+    echo 'bin_PROGRAMS=test_mushmesh' >> Makefile.am
+    echo -n 'test_mushmesh_SOURCES=' >> Makefile.am
+    find . -name 'TestMushMesh*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'TestMushMesh*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+    echo 'test_mushmesh_LDADD=libmushmesh.la -lmushcore -lexpat -lpcre' >> Makefile.am
+    # Make sure that MushMesh is in the include path for the test application
+    echo 'test_mushmesh_CXXFLAGS=-I${srcdir}/MushMesh $(AM_CXXFLAGS)' >> Makefile.am
+
+    cd ..
+#    echo -n 'EXTRA_DIST=' >> Makefile.am
+#    echo '' >> Makefile.am
+
+breaksw
+
 case mustl:
     echo Building configuration for package mustl
     echo
@@ -182,8 +254,7 @@ breaksw
 
 
 default:
-    echo Please supply a package name to build.  Choices are ic2, mustl, 
-mushcore.
+    echo Please supply a package name to build.  Choices are meshmover, ic2, mustl, mushcore.
     exit 1
 breaksw
 

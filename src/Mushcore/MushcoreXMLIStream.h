@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.13 2003/10/03 23:39:34 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.14 2003/10/11 10:39:19 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.14  2003/10/11 10:39:19  southa
+ * gcc3.3 fixes
+ *
  * Revision 1.13  2003/10/03 23:39:34  southa
  * XML polymorphs
  *
@@ -179,7 +182,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
     {
         for (;;)
         {
-            inVector.push_back();
+            inVector.push_back(T());
             try
             {
                 *this >> inVector.back();
