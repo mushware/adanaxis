@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.4 2002/05/24 16:23:07 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.5 2002/05/25 17:16:14 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.5  2002/05/25 17:16:14  southa
+ * CoreXML implementation
+ *
  * Revision 1.4  2002/05/24 16:23:07  southa
  * Config and typenames
  *
@@ -27,10 +30,12 @@ void
 GameAppHandler::Initialise(void)
 {
     GameMap gMap;
-    string inFilename("../test/XMLtest.xml");
+    string inFilename("../game/GameMap.xml");
     ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
-    gMap.Unpickle(in);
+    CoreXML xml(in, inFilename);
+    gMap.Unpickle(xml);
+    gMap.Pickle(cout);
     exit(0);
     m_pGame = new GameTest;
     

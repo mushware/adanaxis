@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.cpp,v 1.1 2002/05/24 18:08:35 southa Exp $
+ * $Id: CoreXML.cpp,v 1.2 2002/05/25 17:17:18 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.2  2002/05/25 17:17:18  southa
+ * CoreXML implementation
+ *
  * Revision 1.1  2002/05/24 18:08:35  southa
  * CoreXML and game map
  *
@@ -9,19 +12,20 @@
 #include "CoreXML.h"
 #include "CoreException.h"
 
-void
-CoreXML::XMLStartElement(void)
+
+CoreXML::CoreXML(istream& inStream, const string& inName = "<unknown stream>", U32 inLine=1):
+    m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_line(inLine)
 {
+    m_parser = XML_ParserCreate(NULL);
+    if (m_parser == NULL) throw(XMLFail("Couldn't create parser"));
+    XML_SetUserData(m_parser, this);
+    XML_SetElementHandler(m_parser, StartElementHandler, EndElementHandler);
+    XML_SetCharacterDataHandler(m_parser, CharacterDataHandler);
 }
 
-void
-CoreXML::XMLEndElement(void)
+CoreXML::~CoreXML()
 {
-}
-
-void
-CoreXML::XMLCharacterData(void)
-{
+    XML_ParserFree(m_parser);
 }
 
 void
@@ -35,19 +39,21 @@ CoreXML::ProcessStartElement(const char *inName, const char **inAttribs)
         m_attribStack.top()[inAttribs[0]]=inAttribs[1];
         inAttribs+=2;
     }
-    XMLStartElement();
+    COREASSERT(m_currentHandler != NULL);
+    m_currentHandler->XMLStartHandler(*this);
 }
 
 void
 CoreXML::ProcessEndElement(const char *inName)
 {
-    if (XMLTopTag() != inName)
+    if (TopTag() != inName)
     {
         ostringstream message;
-        message << "Tag mismatch <" << XMLTopTag() << "> != </" << inName << ">";
+        message << "Tag mismatch <" << TopTag() << "> != </" << inName << ">";
         throw (XMLFail(message.str()));
     }
-    XMLEndElement();
+    COREASSERT(m_currentHandler != NULL);
+    m_currentHandler->XMLEndHandler(*this);
     m_attribStack.pop();
     m_dataStack.pop();
     m_tagStack.pop();
@@ -57,7 +63,8 @@ void
 CoreXML::ProcessCharacterData(const char *inData, tSize inLen)
 {
     m_dataStack.top().append(inData, inLen);
-    XMLCharacterData();
+    COREASSERT(m_currentHandler != NULL);
+    m_currentHandler->XMLDataHandler(*this);
 }
 
 void
@@ -81,51 +88,97 @@ CoreXML::CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLe
     newThis->ProcessCharacterData(inData, inLen);
 }
 
-void
-CoreXML::XMLDumpTops(ostream& inOut)
+CoreScalar
+CoreXML::GetAttrib(const string& inName)
 {
-    inOut << "Data for tag <" << XMLTopTag() << ">:" << endl;
-    inOut << "Attribs were: " << endl;
-    for (map<string, string>::const_iterator p = XMLTopAttrib().begin();
-         p != XMLTopAttrib().end(); p++)
+    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    if (p != TopAttrib().end())
     {
-        inOut << p->first << " = " << p->second << endl;
+        return p->second;
     }
-
-    inOut << "Data: '" << XMLTopData() << "'" << endl;
+    else
+    {
+        return "";
+    }
 }
 
 void
-CoreXML::XMLParseStream(istream& inIn)
+CoreXML::GetAttrib(CoreScalar& outScalar, const string& inName)
 {
-    string str;
+    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    if (p != TopAttrib().end())
+    {
+        outScalar=p->second;
+    }
+}
 
-    XML_Parser parser = XML_ParserCreate(NULL);
-    if (parser == NULL) throw(XMLFail("Couldn't create parser"));
-                              
-    XML_SetUserData(parser, this);
-    XML_SetElementHandler(parser, StartElementHandler, EndElementHandler);
-    XML_SetCharacterDataHandler(parser, CharacterDataHandler);
+CoreScalar
+CoreXML::GetAttribOrThrow(const string& inName)
+{
 
+    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    if (p == TopAttrib().end())
+    {
+        ostringstream message;
+        message << "Missing essential attribute '" << inName << "'";
+        Throw(message.str());
+    }
+    return p->second;
+}
+
+void
+CoreXML::Throw(const string& inMessage)
+{
+    ostringstream message;
+    message << "XML parsing failure in " << m_name << " at line " << m_line << ": " << inMessage << endl;
+    DumpTops(message);
+    throw(XMLFail(message.str()));
+}
+
+void
+CoreXML::DumpTops(ostream& inOut)
+{
+    if (!m_tagStack.empty())
+    {
+        inOut << "Current tag <" << TopTag() << ">:" << endl;
+    }
+    if (!m_attribStack.empty())
+    {
+        inOut << "Attribs: " << endl;
+        for (map<string, string>::const_iterator p = TopAttrib().begin();
+             p != TopAttrib().end(); p++)
+        {
+            inOut << p->first << " = " << p->second << endl;
+        }
+    }
+    if (!m_dataStack.empty())
+    {
+        inOut << "Data: '" << TopData() << "'" << endl;
+    }
+}
+
+void
+CoreXML::ParseStream(CoreXMLHandler& inHandler)
+{
+    string str;    
+    m_currentHandler=&inHandler;
     m_continue=true;
     
     do
     {
-        getline(inIn, str);
-        if (!XML_Parse(parser, str.data(), str.length(), inIn.eof()))
+        getline(*m_inStream, str);
+        if (!XML_Parse(m_parser, str.data(), str.length(), m_inStream->eof()))
         {
             ostringstream message;
-            message << XML_ErrorString(XML_GetErrorCode(parser)) << " at line " <<
-                XML_GetCurrentLineNumber(parser);
-            XML_ParserFree(parser);
+            message << XML_ErrorString(XML_GetErrorCode(m_parser)) << " at line " <<
+                XML_GetCurrentLineNumber(m_parser);
             throw (XMLFail(message.str()));
         }
-    } while (m_continue && !inIn.eof());
-
-    XML_ParserFree(parser);
+        m_line++;
+    } while (m_continue && !m_inStream->eof());
 }
 
-void CoreXML::XMLStop(void)
+void CoreXML::Stop(void)
 {
     m_continue=false;
 }
