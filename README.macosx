@@ -1,0 +1,101 @@
+README for MacOS X
+
+Building from source on MacOS X 10.2
+====================================
+
+These instructions are based on building the ic2 source on a MacOS X 10.2
+installation.
+
+Install the Developer Tools.
+
+Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
+whichever version you choose to build) into your home directory.  Open
+a termianl (Applications->Utilities->Terminal).
+
+tar xvzf ic2-src-0_0_4.tar.gz
+cd ic2-0.0.4
+tar xvzf ../ic2-data-0_0_4.tar.gz
+./configure
+
+Configure will complain about the absence of various libraries.  The
+following procedure was necessary to get the software to build:
+
+# Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-3.9.tar.gz
+tar xvzf pcre-3.9.tar.gz
+cd pcre-3.9
+./configure --enable-shared=no
+make
+sudo make install
+
+# Download expat-1.95.4.tar.gz from http://sourceforge.net/projects/expat/
+tar xvzf expat-1.95.4.tar.gz
+cd expat-1.95.4
+./configure
+make
+sudo make install
+
+# Download http://www.ibiblio.org/pub/Linux/libs/graphics/libungif-4.1.0.tar.gz
+tar xvzf libungif-4.1.0.tar.gz
+cd libungif-4.1.0.tar.gz
+# Copy expat's libtool into our directory.  Change path to suit your setup
+cp ../expat-1.95.4/libtool .
+./configure powerpc-apple-bsd
+make
+sudo make install
+
+# Download ftp://ftp.remotesensing.org/pub/libtiff/tiff-v3.5.7.tar.gz
+tar xvzf tiff-v3.5.7.tar.gz
+cd tiff-v3.5.7
+./configure
+make
+sudo make install
+sudo ranlib /usr/local/lib/libtiff.a
+
+# Download the SDL CVS snapshot from http://www.libsdl.org/cvs.php
+# libsdl >= 1.2.5 would be preferable
+tar xvzf SDL-1.2.tar.gz
+cd SDL-1.2
+./configure
+make
+sudo make install
+
+# Download ftp://sunsite.dk/pub/os/linux/loki/open-source/smpeg/smpeg-0.4.4.tar.gz
+tar xvzf smpeg-0.4.4.tar.gz
+cd smpeg-0.4.4
+# Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
+cp ../SDL-1.2/libtool .
+cp ../SDL-1.2/ltconfig .
+cp ../SDL-1.2/ltmain.sh .
+# Make sure that sdl-config is in our path
+setenv PATH ${PATH}:/usr/local/bin
+./configure
+# Ignore make erros when building plaympeg
+make -i
+sudo make -i install
+
+# Download http://www.vorbis.com/files/1.0/unix/libogg-1.0.tar.gz
+tar xvzf libogg-1.0.tar.gz
+cd libogg-1.0
+./configure
+make
+sudo make install
+
+# Download http://www.vorbis.com/files/1.0/unix/libvorbis-1.0.tar.gz
+tar xvzf libvorbis-1.0.tar.gz
+cd libvorbis-1.0
+./configure
+make
+sudo make install
+
+# Download http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.4.tar.gz
+tar xvzf SDL_mixer-1.2.4.tar.gz
+cd SDL_mixer-1.2.4
+# Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
+cp ../SDL-1.2/libtool .
+cp ../SDL-1.2/ltconfig .
+cp ../SDL-1.2/ltmain.sh .
+./configure
+# Ignore make erros when building playwave
+make -i
+sudo make -i install
+
