@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: GLAppHandler.hp,v 1.2 2002/02/23 17:54:45 southa Exp $
  * $Log: GLAppHandler.hp,v $
+ * Revision 1.2  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
@@ -17,8 +20,9 @@ public:
     virtual void Display(void);
     
 protected:
+    void CheckGLError(void);
+    
 private:
     static void IdleHandler(void);
     static void DisplayHandler(void) {Instance().Display();}
-
 };

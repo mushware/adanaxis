@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.1 2002/02/23 17:54:45 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.2 2002/02/23 20:05:15 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.2  2002/02/23 20:05:15  southa
+ * Added libraries and test files
+ *
  * Revision 1.1  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
@@ -18,16 +21,14 @@ void
 GLTest1AppHandler::Initialise(void)
 {
     CoreApp::Instance().Process("loadPixmap ../test/test.gif");
-    
     glutInitWindowSize(640,480);
 
     char buf1[]="glutInit";
     char buf2[]="";
-    char buf3[]="";
-    char *argv[] = {buf1,buf2,buf3};
+    char *argv[] = {buf1,buf2};
     int argc=sizeof(argv)/sizeof(argv[0]);
+
     glutInit(&argc, argv);
-    glutInitDisplayString("");
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE /*| GLUT_ALPHA*/);
     if (0)
     {
@@ -36,11 +37,12 @@ GLTest1AppHandler::Initialise(void)
     }
     else
     {
-        glutCreateWindow("GLTest1App");
+        glutCreateWindow("GLTest1");
     }
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    CheckGLError();
 }
 
 void
@@ -94,3 +96,4 @@ GLTest1AppHandler::IdleHandler(void)
     int uSleepFor;
     Instance().Idle(doQuit, uSleepFor);
 }
+

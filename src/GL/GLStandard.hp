@@ -1,6 +1,9 @@
 /*
- * $Id: GLStandard.hp,v 1.4 2002/02/23 11:43:36 southa Exp $
+ * $Id: GLStandard.hp,v 1.5 2002/02/23 23:58:45 southa Exp $
  * $Log: GLStandard.hp,v $
+ * Revision 1.5  2002/02/23 23:58:45  southa
+ * Made buildable for cygwin
+ *
  * Revision 1.4  2002/02/23 11:43:36  southa
  * Added AutoMonkey
  *
@@ -21,15 +24,19 @@
 #define HAVE_GLUT_GLUT_H
 #endif
 
-
-#ifdef HAVE_GLUT_GLUT_H
-#include <GLUT/glut.h>
+#if 1
+#include <windows.h>
 #endif
+
+#include "CoreStandard.hp"
 
 #ifdef HAVE_GL_GLUT_H
 #include <GL/glut.h>
 #endif
-#include "CoreStandard.hp"
+
+#ifdef HAVE_GLUT_GLUT_H
+#include <GLUT/glut.h>
+#endif
 
 typedef int TextureRef;
 

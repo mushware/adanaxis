@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: main.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: main.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "CoreStandard.hp"
@@ -30,6 +33,11 @@ int main(int argc, char *argv[])
     catch (string& str)
     {
         cerr << "Exception: " << str << endl;
+        return 1;
+    }
+    catch (const char *c_str)
+    {
+        cerr << "Exception: " << c_str << endl;
         return 1;
     }
     catch (...)

@@ -15,8 +15,14 @@
 /* Define if you have the `gl' library (-lgl). */
 #undef HAVE_LIBGL
 
+/* Define if you have the `glu' library (-lglu). */
+#undef HAVE_LIBGLU
+
 /* Define if you have the `glu32' library (-lglu32). */
 #undef HAVE_LIBGLU32
+
+/* Define if you have the `glut' library (-lglut). */
+#undef HAVE_LIBGLUT
 
 /* Define if you have the `glut32' library (-lglut32). */
 #undef HAVE_LIBGLUT32

@@ -1,11 +1,55 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLAppHandler.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: GLAppHandler.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "GLAppHandler.hp"
 #include "GLStandard.hp"
 #include "CoreAppHandler.hp"
+
+void
+GLAppHandler::CheckGLError(void)
+{
+    GLenum glErr=glGetError();
+    switch (glErr)
+    {
+	case GL_NO_ERROR:
+	    break;
+
+	case GL_INVALID_ENUM:
+	    cerr << "GL invalid enum" << endl;
+	    break;
+
+	case GL_INVALID_VALUE:
+	    cerr << "GL invalid value" << endl;
+	    break;
+	
+	case GL_INVALID_OPERATION:
+	    cerr << "GL invalid operation" << endl;
+	    break;
+	    
+	case GL_STACK_OVERFLOW:
+	    cerr << "GL stack overflow" << endl;
+	    break;
+	    
+	case GL_STACK_UNDERFLOW:
+	    cerr << "GL stack underflow" << endl;
+	    break;
+	    
+	case GL_OUT_OF_MEMORY:
+	    cerr << "GL out of memory" << endl;
+	    break;
+	    
+	default:
+	    cerr << "Unknown GL error " << glErr << endl;
+	    break;
+    }
+}
+	    
+
 
 void
 GLAppHandler::Idle(bool& outQuit, int& outUSleepFor)
@@ -17,19 +61,18 @@ GLAppHandler::Idle(bool& outQuit, int& outUSleepFor)
 void
 GLAppHandler::Initialise(void)
 {
-    // glutInitWindowSize(winWidth = 512, winHeight = 512);
     char buf1[]="glutInit";
     char buf2[]="";
     char buf3[]="";
     char *argv[] = {buf1,buf2,buf3};
     int argc=sizeof(argv)/sizeof(argv[0]);
     glutInit(&argc, argv);
-    glutInitDisplayString("");
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA);
     glutCreateWindow("GLApp");
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    CheckGLError();
 }
 
 void
@@ -73,8 +116,6 @@ GLAppHandler::Display(void)
     glColor3f(lineWidth,lineWidth,lineWidth);
     for (Size i=0; i < str.size(); i++)
     {
-
-
         glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i]);
         if (str[i] == ' ')
         {
@@ -89,10 +130,12 @@ GLAppHandler::Display(void)
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
     glutSwapBuffers();
+    CheckGLError();
 }
 
 void
 GLAppHandler::MainLoop(void)
 {
     glutMainLoop();
+    CheckGLError();
 }

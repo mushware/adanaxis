@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.4 2002/02/23 17:54:45 southa Exp $
+ * $Id: GLTexture.cpp,v 1.5 2002/02/23 20:05:15 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.5  2002/02/23 20:05:15  southa
+ * Added libraries and test files
+ *
  * Revision 1.4  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
@@ -19,7 +22,10 @@
 
 extern "C"
 {
+// Prevent clash with windows
+#define DrawTextA gif_lib_DrawTextA
 #include "gif_lib.h"
+#undef DrawTextA
 }
 
 GLTexture::GLTexture(const string& inFilename)
