@@ -1,5 +1,8 @@
 README for Linux
 
+Building from source on Mandrake Linux 8.2
+==========================================
+
 Building from source on RedHat Linux 7.3
 ========================================
 
@@ -36,27 +39,21 @@ System Environment->Libraries->glut-3.7-4
 Development->Libraries->glut-devel-3.7-4
 
 Development->Libraries->pcre-devel-3.9-2
-
 Development->Libraries->expat-devel-1.95.2-2
-
 Development->Libraries->libungif-devel-4.1.0-10
-
 Development->Libraries->libtiff-devel-3.5.7-2
-
 Development->Libraries->SDL-devel-1.2.3-7
-
 Development->Libraries->smpeg-devel-0.4.4-9
-
 Development->Libraries->libogg-devel-1.0rc3-1
-
 Development->Libraries->libvorbis-devel-1.0rc3-1
-
 Development->Libraries->SDL_mixer-devel-1.2.1-4
-
-
 
 If the installers issues a warning about dependencies, find those packages
 and install the as well.
+
+./configure
+make
+make install
 
 Building from source on SUSE Linux personal 8.0
 ===============================================
@@ -107,3 +104,7 @@ ftp://ftp.suse.com/pub/suse/i386/8.0/suse/d4/libogg-devel-1.0rc3-73.i386.rpm
 
 (Paste the URL into Konqueror, click 'Open' when asked to 'Open using
 KPackage'.  Click 'Install' when KPackage starts.)
+
+./configure
+make
+make install
