@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.8 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.9 2002/11/24 00:29:08 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.9  2002/11/24 00:29:08  southa
+ * Serve web pages to local addresses only
+ *
  * Revision 1.8  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -118,6 +121,12 @@ MediaNetUtils::MakePrintable(const vector<U8> inBytes)
         }
     }
     return retStream.str();
+}
+
+string
+MediaNetUtils::MakeXMLSafe(const string& inStr)
+{
+    return MakeWebSafe(inStr);
 }
 
 string

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.7 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameConfig.h,v 1.8 2002/11/24 23:18:06 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.8  2002/11/24 23:18:06  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.7  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -49,6 +52,7 @@ public:
     static CoreScalar GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigPasswordAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv);
     

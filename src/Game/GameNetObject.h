@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameNetObject.h,v 1.1 2002/11/25 15:44:03 southa Exp $
+ * $Log: GameNetObject.h,v $
+ * Revision 1.1  2002/11/25 15:44:03  southa
+ * CreateObject message decoding
+ *
  */
 
 #include "mushCore.h"
@@ -18,6 +21,7 @@ protected:
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
 
+    void HandleGameDefClientStart(CoreXML& inXML);
     void HandleNetObjectStart(CoreXML& inXML);
     void HandleNetObjectEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);

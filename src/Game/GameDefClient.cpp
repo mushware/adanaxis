@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.2 2002/11/25 10:43:28 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.3 2002/11/25 12:06:18 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.3  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.2  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -94,7 +97,7 @@ GameDefClient::NullHandler(CoreXML& inXML)
 }
 
 void
-GameDefClient::HandleDefClientEnd(CoreXML& inXML)
+GameDefClient::HandleGameDefClientEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
 }
@@ -112,7 +115,7 @@ GameDefClient::Unpickle(CoreXML& inXML)
     GameDef::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_endTable[kPickleData]["defclient"] = &GameDefClient::HandleDefClientEnd;
+    m_endTable[kPickleData]["gamedefclient"] = &GameDefClient::HandleGameDefClientEnd;
     m_pickleState=kPickleData;
     inXML.ParseStream(*this);
 }

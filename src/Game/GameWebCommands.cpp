@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.7 2002/11/24 22:32:43 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.8 2002/11/24 23:54:36 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.8  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  * Revision 1.7  2002/11/24 22:32:43  southa
  * Host and join displays
  *
@@ -109,6 +112,10 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
         gameHandler.CurrentGameEnd(); // End the game
+    }
+    else if (matches[1] == "mplogin")
+    {
+        GameConfig::Instance().PostDataHandle(values);
     }
     else if (matches[1] == "joingame")
     {

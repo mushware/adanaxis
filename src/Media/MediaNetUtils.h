@@ -1,8 +1,11 @@
 #ifndef MEDIANETUTILS_H
 #define MEDIANETUTILS_H
 /*
- * $Id: MediaNetUtils.h,v 1.6 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetUtils.h,v 1.7 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetUtils.h,v $
+ * Revision 1.7  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.6  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -35,6 +38,7 @@ public:
     static string IPAddressToLogString(U32 inAddress);
     static string MakePrintable(const string& inStr);
     static string MakePrintable(const vector<U8> inBytes);
+    static string MakeXMLSafe(const string& inStr);
     static string MakeWebSafe(const string& inStr);
     static U32 MakeWebSafe(U32 inValue) { return inValue; }
     static string RemoveMeta(const string& inStr);

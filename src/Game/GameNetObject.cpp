@@ -1,9 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameNetObject.cpp,v 1.1 2002/11/25 15:44:02 southa Exp $
+ * $Log: GameNetObject.cpp,v $
+ * Revision 1.1  2002/11/25 15:44:02  southa
+ * CreateObject message decoding
+ *
  */
 
 #include "GameNetObject.h"
+
+#include "GameDefClient.h"
 
 GameNetObject::~GameNetObject()
 {
@@ -12,6 +17,14 @@ GameNetObject::~GameNetObject()
 void
 GameNetObject::NullHandler(CoreXML& inXML)
 {
+}
+
+void
+GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
+{
+    string elementName=inXML.GetAttribOrThrow("name").StringGet();
+    GameDefClient *gameDefClient = dynamic_cast<GameDefClient *>(CoreData<GameDef>::Instance().DataGive(elementName, new GameDefClient));
+    gameDefClient->Unpickle(inXML);                                           
 }
 
 void
@@ -40,6 +53,7 @@ GameNetObject::Unpickle(CoreXML& inXML)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleInit]["netobject"] = &GameNetObject::HandleNetObjectStart;
     m_endTable[kPickleData]["netobject"] = &GameNetObject::HandleNetObjectEnd;
+    m_startTable[kPickleData]["gamedefclient"] = &GameNetObject::HandleGameDefClientStart;
 
     m_pickleState=kPickleData;
     inXML.ParseStream(*this);

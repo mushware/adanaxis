@@ -1,6 +1,9 @@
 /*
- * $Id: GameConfigDef.h,v 1.2 2002/11/14 19:35:31 southa Exp $
+ * $Id: GameConfigDef.h,v 1.3 2002/11/22 11:42:06 southa Exp $
  * $Log: GameConfigDef.h,v $
+ * Revision 1.3  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.2  2002/11/14 19:35:31  southa
  * Configuration work
  *
@@ -60,6 +63,20 @@ private:
     string m_menu;
 };
 
+class GameConfigDefPassword : public GameConfigDef
+{
+public:
+    GameConfigDefPassword(const string& inValue);
+    virtual ~GameConfigDefPassword();
+    virtual const CoreScalar ValueGet(void) const;
+    virtual void ValueSet(const CoreScalar& inValue);
+    virtual bool FromPostRetrieve(const string& inName, const string& inData);
+    virtual void WebInputPrint(ostream& ioOut, const string& inName);
+
+private:
+    string m_value;
+};
+
 class GameConfigDefBool : public GameConfigDef
 {
 public:
@@ -74,6 +91,5 @@ public:
 private:
     bool m_value;
 };
-
 
 

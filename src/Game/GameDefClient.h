@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDefClient.h,v 1.1 2002/11/24 23:54:36 southa Exp $
+ * $Log: GameDefClient.h,v $
+ * Revision 1.1  2002/11/24 23:54:36  southa
+ * Initial send of objects over links
+ *
  */
 
 #include "mushCore.h"
@@ -28,7 +31,7 @@ protected:
 
 private:
     void NullHandler(CoreXML& inXML);
-    void HandleDefClientEnd(CoreXML& inXML);
+    void HandleGameDefClientEnd(CoreXML& inXML);
 
     enum PickleState
     {

@@ -1,6 +1,9 @@
 /*
- * $Id: GameConfigDef.cpp,v 1.3 2002/11/15 11:47:55 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.4 2002/11/22 11:42:06 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.4  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.3  2002/11/15 11:47:55  southa
  * Web processing and error handling
  *
@@ -146,6 +149,59 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
     
         SelectEpilogue(ioOut);
     }
+}
+
+// -----
+
+GameConfigDefPassword::GameConfigDefPassword(const string& inValue) :
+    m_value(inValue)
+{
+}
+
+GameConfigDefPassword::~GameConfigDefPassword()
+{
+}
+
+const CoreScalar
+GameConfigDefPassword::ValueGet(void) const
+{
+    return CoreScalar(m_value);
+}
+
+void
+GameConfigDefPassword::ValueSet(const CoreScalar& inValue)
+{
+    m_value = inValue.StringGet();
+}
+
+bool
+GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inData)
+{
+    bool found=false;
+    CoreRegExp re("&"+inName+"=([^&$]*)");
+    vector<string> matches;
+    if (re.Search(inData, matches))
+    {
+        COREASSERT(matches.size() == 1);
+        string newValue=MediaNetUtils::RemoveMeta(matches[0]);
+        if (newValue != "******")
+        {
+            m_value=MediaNetUtils::RemoveMeta(newValue);
+            found=true;
+        }
+    }
+    return found;
+}
+
+void
+GameConfigDefPassword::WebInputPrint(ostream& ioOut, const string& inName)
+{
+    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"password\" size=\"20\" value=\"";
+    if (m_value.size() != 0)
+    {
+        ioOut << "******";
+    }
+    ioOut << "\">" << endl;
 }
 
 // -----
