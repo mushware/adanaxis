@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: Makefile.am,v 1.18 2002/10/22 22:36:17 southa Exp $
+# $Log: Makefile.am,v $
+# Revision 1.18  2002/10/22 22:36:17  southa
+# Use SDL_INIT_NOPARACHUTE to avoid hang exit on MacOS 10.1.5
+#
 
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
@@ -22,11 +25,13 @@ BZIPFILE=ic2-@IC_VERSION@.tar.bz2
 
 DATAMAKEFILE=ic2data/Makefile.am
 
-nobase_EXTRA_DIST=core-app.pbproj/project.pbxproj ic2 MakeRelease.sh \
+EXTRA_DIST=ic2 MakeRelease.sh \
 ic2.spec.mdk ic2.spec.mdk.in \
 ic2.spec.suse ic2.spec.suse.in \
 ic2.spec.redhat ic2.spec.redhat.in \
-ic2.spec
+ic2.spec \
+README.linux README.macosx \
+core-app.pbproj/project.pbxproj
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
