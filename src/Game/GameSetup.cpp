@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.13 2002/11/27 20:17:26 southa Exp $
+ * $Id: GameSetup.cpp,v 1.14 2002/11/28 11:10:29 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.14  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.13  2002/11/27 20:17:26  southa
  * Basic network cleardown
  *
@@ -89,7 +92,9 @@ GameSetup::Display(void)
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
-    tVal msecNow=gameAppHandler.MillisecondsGet();
+    m_currentMsec=gameAppHandler.MillisecondsGet();
+
+    tVal msecNow=m_currentMsec;
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
     GLUtils orthoGL;
@@ -167,6 +172,8 @@ GameSetup::ConfigInit(void)
 void
 GameSetup::Config(void)
 {
+    m_currentMsec=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
+    
     try
     {
         MediaNetWebServer::Instance().Accept();
@@ -188,13 +195,21 @@ GameSetup::Config(void)
     
         for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (p->second->IsImage())
+            {
+                // Expire images after a time limit
+                if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)
+                {
+                    p->second->Kill();
+                }
+            }
+            else
             {
                 p->second->Ticker();
-                if (p->second->IsDead())
-                {
-                    killValue = p;
-                }
+            }
+            if (p->second->IsDead())
+            {
+                killValue = p;
             }
         }
         if (killValue != CoreData<GameDefClient>::Instance().End())
@@ -211,14 +226,23 @@ GameSetup::Config(void)
 
         for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            if (!p->second->IsImage())
+            if (p->second->IsImage())
+            {
+                // Expire images after a time limit
+                if (m_currentMsec > p->second->CreationMsecGet() + kImageLifetimeMsec)
+                {
+                    p->second->Kill();
+                }
+            }
+            else
             {
                 p->second->Ticker();
                 serverNeeded=true;
-                if (p->second->IsDead())
-                {
-                    killValue = p;
-                }
+
+            }
+            if (p->second->IsDead())
+            {
+                killValue = p;
             }
         }
         if (killValue != CoreData<GameDefServer>::Instance().End())

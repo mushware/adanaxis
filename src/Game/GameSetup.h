@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.h,v 1.2 2002/11/16 12:43:23 southa Exp $
+ * $Id: GameSetup.h,v 1.3 2002/11/23 17:23:44 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.3  2002/11/23 17:23:44  southa
+ * Sleep in setup
+ *
  * Revision 1.2  2002/11/16 12:43:23  southa
  * GameApp mode switching
  *
@@ -32,7 +35,8 @@ private:
     enum
     {
         kSlowSleepMsec=10,
-        kFastSleepMsec=1
+        kFastSleepMsec=1,
+        kImageLifetimeMsec=33000
     };
     enum tGameState
     {
@@ -43,5 +47,6 @@ private:
 
     tGameState m_gameState;
     string m_configURL;
+    U32 m_currentMsec;
     bool m_windowClicked;
 };
