@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 0wIEHnMxizldt3KbK6uiaQ
 /*
- * $Id: TestMushMeshOps.cpp,v 1.1 2004/10/31 09:22:51 southa Exp $
+ * $Id: TestMushMeshOps.cpp,v 1.1 2004/11/17 23:43:48 southa Exp $
  * $Log: TestMushMeshOps.cpp,v $
+ * Revision 1.1  2004/11/17 23:43:48  southa
+ * Added outer product
+ *
  */
 
 #include "TestMushMeshOps.h"
@@ -24,7 +27,41 @@ using namespace std;
 MushcoreInstaller TestMushMeshOps(TestMushMeshOps::Install);
 
 MushcoreScalar
-TestMushMeshOps::TestOps(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+TestMushMeshOps::TestInnerProduct(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    t4Val aVec(4, 3, 2, 1);
+    t4Val bVec(1, 1, -3, -1);
+
+    if (aVec * aVec != 30)
+    {
+        ostringstream message;
+        message << "InnerProduct failed : " << aVec << " * " << bVec;
+        message << " = " << aVec * aVec << " (expected 30)";
+        throw(MushcoreLogicFail(message.str()));
+    }
+
+    if (aVec * aVec != 30)
+    {
+        ostringstream message;
+        message << "InnerProduct failed : " << aVec << " * " << aVec;
+        message << " = " << aVec * aVec << " (expected 30)";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    if (aVec * bVec != 0)
+    {
+        ostringstream message;
+        message << "InnerProduct failed : " << aVec << " * " << bVec;
+        message << " = " << aVec * bVec << " (expected 0)";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    
+    return MushcoreScalar(0);
+}    
+
+MushcoreScalar
+TestMushMeshOps::TestOuterProduct(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     t4Val aVec(1, 0, 0, 0);
     t4Val bVec(0, 1, 0, 0);
@@ -80,8 +117,103 @@ TestMushMeshOps::TestOps(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     return MushcoreScalar(0);
 }
 
+MushcoreScalar
+TestMushMeshOps::TestNormalise(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    t4Val aVec(7, 5, 3, 1);
+    tVal length = std::sqrt(7*7+5*5+3*3+1.0);
+    t4Val resultVec(7/length, 5/length, 3/length, 1/length);
+    
+    MushMeshOps::Normalise(aVec);
+    
+    if (resultVec != aVec)
+    {
+        ostringstream message;
+        message << "Normalise failed : Normalise(" << aVec << ") != " << resultVec;
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    if (std::fabs(1.0 - resultVec * resultVec) > 1e-6)
+    {
+        ostringstream message;
+        message << "Normalise failed : Normalise(" << aVec << ") not unit length";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    return MushcoreScalar(0);
+}    
+
+MushcoreScalar
+TestMushMeshOps::TestSlerp(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    t4Val aVec(1, 0, 0, 0);
+    t4Val bVec(0, 1, 0, 0);
+    t4Val expectedVec(std::sqrt(2.0)/2, std::sqrt(2.0)/2, 0, 0);
+    
+    t4Val resultVec = MushMeshOps::SlerpNormalised(aVec, bVec, 0.5);
+    
+    if (!MushMeshOps::ApproxEquals(resultVec, expectedVec))
+    {
+        ostringstream message;
+        message << "Normalise failed : Slerp(" << aVec << ", " <<bVec << ", 0.5) = " << resultVec;
+        message << " (expected " << expectedVec << ")";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    resultVec = MushMeshOps::SlerpNormalised(aVec, bVec, 0.25);
+    resultVec = MushMeshOps::SlerpNormalised(resultVec, bVec, 1.0/3);
+    if (!MushMeshOps::ApproxEquals(resultVec, expectedVec))
+    {
+        ostringstream message;
+        message << "Normalise failed : Double Slerp = " << resultVec;
+        message << " (expected " << expectedVec << ")";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    bVec = t4Val(-1, 1e-5, 0, 0);
+
+    expectedVec = t4Val(0, 1, 0, 0);
+    resultVec = MushMeshOps::SlerpNormalised(aVec, bVec, 0.5);
+    
+    if (!MushMeshOps::ApproxEquals(resultVec, expectedVec))
+    {
+        ostringstream message;
+        message << "Normalise failed : Slerp(" << aVec << ", " <<bVec << ", 0.5) = " << resultVec;
+        message << " (expected " << expectedVec << ")";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    bVec = t4Val(-1, 0, 0, 0);
+    
+    expectedVec = t4Val(0, 1, 0, 0);
+    resultVec = MushMeshOps::SlerpNormalised(aVec, bVec, 0.5);
+    
+    if (!MushMeshOps::ApproxEquals(resultVec, expectedVec))
+    {
+        ostringstream message;
+        message << "Normalise failed : Slerp(" << aVec << ", " <<bVec << ", 0.5) = " << resultVec;
+        message << " (expected " << expectedVec << ")";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    resultVec = MushMeshOps::SlerpNormalised(aVec, aVec, 0.5);
+    
+    if (!MushMeshOps::ApproxEquals(resultVec, aVec))
+    {
+        ostringstream message;
+        message << "Normalise failed : Slerp(" << aVec << ", " << aVec << ", 0.5) = " << resultVec;
+        message << " (expected " << expectedVec << ")";
+        throw(MushcoreLogicFail(message.str()));
+    }
+    
+    return MushcoreScalar(0);
+}
+
 void
 TestMushMeshOps::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshops", TestOps);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshinnerproduct", TestInnerProduct);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshouterproduct", TestOuterProduct);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshnormalise", TestNormalise);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshslerp", TestSlerp);
 }

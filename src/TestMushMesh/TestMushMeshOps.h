@@ -16,15 +16,21 @@
  ****************************************************************************/
 //%Header } B8pdFksUBCzTrPbum/1twA
 /*
- * $Id: TestMushMeshPreMatrix.h,v 1.1 2004/10/31 09:22:51 southa Exp $
- * $Log: TestMushMeshPreMatrix.h,v $
+ * $Id: TestMushMeshOps.h,v 1.1 2004/11/17 23:43:48 southa Exp $
+ * $Log: TestMushMeshOps.h,v $
+ * Revision 1.1  2004/11/17 23:43:48  southa
+ * Added outer product
+ *
  */
 #include "TestMushMeshStandard.h"
 
 class TestMushMeshOps
 {
 public:
-    static MushcoreScalar TestOps(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar TestInnerProduct(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar TestOuterProduct(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar TestNormalise(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar TestSlerp(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     
 private:
