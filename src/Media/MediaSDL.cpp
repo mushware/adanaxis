@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.12 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.13 2002/10/22 22:36:18 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.13  2002/10/22 22:36:18  southa
+ * Use SDL_INIT_NOPARACHUTE to avoid hang exit on MacOS 10.1.5
+ *
  * Revision 1.12  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -59,7 +62,7 @@ auto_ptr<MediaSDL> MediaSDL::m_instance;
 
 MediaSDL::~MediaSDL()
 {
-    if (m_inited != 0)
+    if (m_firstInitCalled)
     {
         SDL_Quit();
     }
@@ -68,22 +71,26 @@ MediaSDL::~MediaSDL()
 void
 MediaSDL::Init(U32 inWhich)
 {
-    if (m_inited == 0)
+    if (m_firstInitCalled)
+    {
+        U32 whichNotDone=inWhich & ~m_inited;
+        if (whichNotDone != 0)
+        {
+            if (SDL_InitSubSystem(whichNotDone | SDL_INIT_NOPARACHUTE) < 0)
+            {
+                throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
+            }
+        }
+    }
+    else
     {
         if (SDL_Init(inWhich | SDL_INIT_NOPARACHUTE) < 0)
         {
             throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
         }
+        m_firstInitCalled=true;
     }
-    else
-    {
-        U32 whichNotDone=inWhich & ~m_inited;
-        if (SDL_InitSubSystem(whichNotDone | SDL_INIT_NOPARACHUTE) < 0)
-        {
-            throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
-        }
-    }
-    m_inited=inWhich;
+    m_inited |= inWhich;
 }
 
 void

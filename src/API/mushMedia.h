@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.8 2002/08/27 08:56:15 southa Exp $
+ * $Id: mushMedia.h,v 1.9 2002/10/22 20:41:56 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.9  2002/10/22 20:41:56  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -44,6 +47,7 @@
 
 
 #include "Media/MediaAudio.h"
+#include "Media/MediaNet.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSoundStream.h"
 #include "Media/MediaSound.h"

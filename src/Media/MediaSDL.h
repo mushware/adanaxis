@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.8 2002/10/14 18:13:18 southa Exp $
+ * $Id: MediaSDL.h,v 1.9 2002/10/22 20:42:07 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.9  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -66,6 +69,16 @@
 #endif
 #endif
 
+#if defined(HAVE_SDL_SDL_NET_H)
+#include <SDL/SDL_net.h>
+#else
+#if defined(HAVE_SDL_NET_H)
+#include <SDL_net.h>
+#else
+#include "SDL_net.h"
+#endif
+#endif
+
 #include "mushCore.h"
 
 class MediaSDL
@@ -85,11 +98,12 @@ public:
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
     
 protected:
-    MediaSDL(): m_inited(0) {}
+    MediaSDL(): m_inited(0), m_firstInitCalled(false) {}
 
 private:
     static auto_ptr<MediaSDL> m_instance;
     U32 m_inited;
+    bool m_firstInitCalled;
 };
 
 #endif
