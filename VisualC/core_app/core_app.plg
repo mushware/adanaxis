@@ -19,27 +19,6 @@ if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_m
 then mv -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo" ".deps/test_mushmesh-TestMushMeshSubdivide.Po"; \
 else rm -f ".deps/test_mushmesh-TestMushMeshSubdivide.Tpo"; exit 1; \
 fi
-MushMesh/MushMeshSubdivide.h: In function `static void 
-   MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>&, const 
-   MushMeshArray<T>&, MushMeshBox<U32>, float, unsigned int) [with T = tVal]':
-TestMushMesh/TestMushMeshSubdivide.cpp:233:   instantiated from here
-MushMesh/MushMeshSubdivide.h:429: warning: unused variable `MushMeshVector<U32, 
-   2> endPoint'
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshTriangularArray.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshTriangularArray.Tpo" \
-  -c -o test_mushmesh-TestMushMeshTriangularArray.o `test -f './TestMushMesh/TestMushMeshTriangularArray.cpp' || echo './'`./TestMushMesh/TestMushMeshTriangularArray.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshTriangularArray.Tpo" ".deps/test_mushmesh-TestMushMeshTriangularArray.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshTriangularArray.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshUtils.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshUtils.Tpo" \
-  -c -o test_mushmesh-TestMushMeshUtils.o `test -f './TestMushMesh/TestMushMeshUtils.cpp' || echo './'`./TestMushMesh/TestMushMeshUtils.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshUtils.Tpo" ".deps/test_mushmesh-TestMushMeshUtils.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshUtils.Tpo"; exit 1; \
-fi
-if g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall -I./MushMesh  -g -Wall -MT test_mushmesh-TestMushMeshVector.o -MD -MP -MF ".deps/test_mushmesh-TestMushMeshVector.Tpo" \
-  -c -o test_mushmesh-TestMushMeshVector.o `test -f './TestMushMesh/TestMushMeshVector.cpp' || echo './'`./TestMushMesh/TestMushMeshVector.cpp; \
-then mv -f ".deps/test_mushmesh-TestMushMeshVector.Tpo" ".deps/test_mushmesh-TestMushMeshVector.Po"; \
-else rm -f ".deps/test_mushmesh-TestMushMeshVector.Tpo"; exit 1; \
-fi
 /bin/bash ../libtool --mode=link g++  -g -Wall   -o test_mushmesh.exe  test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o libmushmesh.la -lmushcore -lexpat -lpcre 
 g++ -g -Wall -o test_mushmesh.exe test_mushmesh-TestMushMeshApp.o test_mushmesh-TestMushMeshArray.o test_mushmesh-TestMushMeshBox.o test_mushmesh-TestMushMeshMain.o test_mushmesh-TestMushMeshPatch.o test_mushmesh-TestMushMeshStandard.o test_mushmesh-TestMushMeshSubdivide.o test_mushmesh-TestMushMeshTriangularArray.o test_mushmesh-TestMushMeshUtils.o test_mushmesh-TestMushMeshVector.o  ./.libs/libmushmesh.a ./.libs/libmushcore.a -lexpat -lpcre
 make[2]: Leaving directory `/home/mushware/core-app/src'
@@ -49,4 +28,4 @@ make[1]: Leaving directory `/home/mushware/core-app'
 
 
 
-core_app.exe - 0 error(s), 1 warning(s)
+core_app.exe - 0 error(s), 0 warning(s)

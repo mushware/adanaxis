@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.7 2003/10/20 13:02:55 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.8 2003/10/24 12:39:09 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.8  2003/10/24 12:39:09  southa
+ * Triangular mesh work
+ *
  * Revision 1.7  2003/10/20 13:02:55  southa
  * Patch fixes and testing
  *
@@ -52,7 +55,7 @@ TestMushMeshSubdivide::ArrayPrint(const MushMeshArray<tVal>& inArray)
         cout << "[";
         for (U32 x=0; x<inArray.SizeGet().X(); ++x)
         {
-            cout << inArray.Get(x, y);
+            cout << setw(4) << inArray.Get(x, y);
             if (x+1 != inArray.SizeGet().X())
             {
                 cout << ", ";
@@ -65,27 +68,29 @@ TestMushMeshSubdivide::ArrayPrint(const MushMeshArray<tVal>& inArray)
 void
 TestMushMeshSubdivide::TrianglePrint(const MushMeshArray<tVal>& inArray, U32 inOrder)
 {
+    cout << setprecision(0);
     for (U32 y=inArray.SizeGet().Y(); y>0;)
     {
         --y;
         cout << "[";
         for (U32 x=0; x<inArray.SizeGet().X(); ++x)
         {
-            if (y >= MushMeshUtils::TriangleLimitGet(x, inOrder))
+            if (y >= MushMeshUtils::TriangleLimitGet(x, inOrder) && t2U32(x,y) != t2U32(0,0))
             {
-                cout << '(' << inArray.Get(x, y) << ')';
+                cout << setw(4) << inArray.Get(x, y) * 10000<< '/';
             }
             else
             {
-                cout << ' ' << inArray.Get(x, y) << ' ';
+                cout << setw(5) << inArray.Get(x, y) * 10000;
             }
             if (x+1 != inArray.SizeGet().X())
             {
-                cout << ", ";
+                cout << ",";
             }
         }
         cout << "]" << endl;
     }
+    cout << setprecision(6);
 }
 
 bool
@@ -134,8 +139,8 @@ TestMushMeshSubdivide::VerifyRectangle1(const MushMeshArray<tVal>& inArray, cons
             {
                 MUSHCOREASSERT(x + 4 - inCentre.X() < 5);
                 MUSHCOREASSERT(y + 4 - inCentre.Y() < 5);
-                expected = inProp * Rectangle1Prop1[x + 4 - inCentre.X()][inCentre.Y() - y] +
-                    (1 - inProp) * Rectangle1Prop0[x + 4 - inCentre.X()][inCentre.Y() - y];
+                expected = inProp * Rectangle1Prop1[inCentre.Y() - y][x + 4 - inCentre.X()] +
+                    (1 - inProp) * Rectangle1Prop0[inCentre.Y() - y][x + 4 - inCentre.X()];
             }
             if (fabs(inArray.Get(x, y) - expected) > 0.0001)
             {
@@ -158,7 +163,12 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
     const tVal C = 3.0/8.0;
     const tVal D = Alpha6/(Alpha6+6.0);
 
-    const tVal Triangle1Prop0[5][5] =
+    const tVal AOfN5 = (5.0/8.0) - pow(3.0+2.0*cos(2.0*M_PI/5.0), 2.0)/64.0;
+    const tVal Alpha5 = 5.0*(1.0-AOfN5)/AOfN5;
+    const tVal E = 1.0/(Alpha5+5.0);
+    const tVal F = Alpha5/(Alpha5+5.0);
+
+    const tVal Triangle1Form1Prop0[5][5] =
     {
         {0, 0, 0, 0, 0},
         {0, 0, 0.5, 0.5, 0},
@@ -167,7 +177,25 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
         {0, 0, 0, 0, 0}
     };
 
-    const tVal Triangle1Prop1[5][5] =
+    const tVal Triangle1Form2Prop0[5][5] =
+    {
+        {0, 0, 0, 0, 0},
+        {0, 0, 0.5, 0.5, 0},
+        {0, 0.5, 1, 0.5, 0},
+        {0, 0, 0.5, 0.5, 0},
+        {0, 0, 0, 0, 0}
+    };
+
+    const tVal Triangle1Form3Prop0[5][5] =
+    {
+        {0, 0, 0, 0, 0},
+        {0, 0, 0.5, 0.5, 0},
+        {0, 0.5, 1, 0.5, 0},
+        {0, 0, 0.5, 0, 0},
+        {0, 0, 0, 0, 0}
+    };
+
+    const tVal Triangle1Form1[5][5] =
     {
         {0, 0, A, B, A},
         {0, B, C, C, B},
@@ -176,27 +204,189 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
         {A, B, A, 0, 0}
     };
 
-    bool success = true;
+    const tVal Triangle1Form2[5][5] =
+    {
+        {0, 0, A, B, A},
+        {0, B, C, C, B},
+        {A, C, D, C, A},
+        {0, B, C, C, B},
+        {0, 0, A, B, A},
+    };
 
+    const tVal Triangle1Form3[5][5] =
+    {
+        {0, 0, E, B, E},
+        {0, B, C, C, B},
+        {E, C, F, C, E},
+        {0, B, C, B, 0},
+        {0, 0, E, 0, 0},
+    };
+
+    bool success = true;
+    tVal inverseProp = 1-inProp;
+    U32 cX = inCentre.X();
+    U32 cY = inCentre.Y();
+    U32 xDefect = inArray.SizeGet().Y() / inOrder;
+    // Check the apex
     for (U32 x=0; x<inArray.SizeGet().X(); ++x)
     {
+        U32 centreClip = inOrder*cX;
+        if (centreClip == 0) centreClip = 1;
         for (U32 y=0; y<inArray.SizeGet().Y(); ++y)
         {
-            tVal expected;
+            U32 yClip = inOrder*x;
+            if (yClip == 0) yClip = 1;
 
-            if (x + 4 < inCentre.X() ||
-                x > inCentre.X() + 0 ||
-                y + 4 < inCentre.Y() ||
-                y > inCentre.Y() + 0)
+            tVal expected = 0;
+            if (y >= yClip || cY >= centreClip)
             {
+                // Either this or the centre point is outside of the active part of the array
                 expected = 0;
             }
             else
             {
-                MUSHCOREASSERT(x + 4 - inCentre.X() < 5);
-                MUSHCOREASSERT(y + 4 - inCentre.Y() < 5);
-                expected = inProp * Triangle1Prop1[x + 4 - inCentre.X()][inCentre.Y() - y] +
-                    (1 - inProp) * Triangle1Prop0[x + 4 - inCentre.X()][inCentre.Y() - y];
+                if (x == 0)
+                {
+                    const tVal AOfN = (5.0/8.0) - pow(3.0+2.0*cos(2.0*M_PI/inOrder), 2.0)/64.0;
+                    const tVal Alpha = inOrder*(1.0-AOfN)/AOfN;
+                    if (cX == 0)
+                    {
+                        expected = Alpha/(Alpha + inOrder);
+                        expected *= inProp;
+                        expected += inverseProp;
+                    }
+                    else if (cX == 2)
+                    {
+                        expected = 1/(Alpha + inOrder);
+                        expected *= inProp;
+                    }
+                    else
+                    {
+                        expected = 0;
+                    }
+                }
+                else if (x == 1)
+                {
+                    if (cX == 0 && y < inOrder)
+                    {
+                        expected = C * inProp + 0.5 * inverseProp;
+                    }
+                    else if (cX == 2)
+                    {
+                        U32 cYWrap = inOrder*2;
+                        if (cY == y*2)
+                        {
+                            expected = C * inProp + 0.5 * inverseProp;
+                        }
+                        else if ((cY + 2) % cYWrap == y*2 ||
+                            (cY + cYWrap - 2) % cYWrap == y*2)
+                        {
+                            expected = B * inProp;
+                        }
+                        else
+                        {
+                            expected = 0;
+                        }
+                    }
+                }
+                else if (x == 2 && cX == 0)
+                {
+                    // centre at 0,0 affects all second row vertices
+                    if (y < inOrder * 2)
+                    {
+                        expected = y%2?B:A;
+                        expected *= inProp;
+                    }
+                    else
+                    {
+                        expected = 0;
+                    }
+                }
+                else if (cX == 0)
+                {
+                    expected = 0;
+                }
+                else
+                {
+                    const tVal (*formProp0Ptr)[5][5];
+                    const tVal (*formProp1Ptr)[5][5];
+                    // We are in the area covered by the form matrices
+                    // Determine which form we have
+                    if (cY % cX == 0)
+                    {
+                        if (x == xDefect)
+                        {
+                            formProp0Ptr = &Triangle1Form3Prop0;
+                            formProp1Ptr = &Triangle1Form3;
+                        }
+                        else
+                        {
+                            formProp0Ptr = &Triangle1Form2Prop0;
+                            formProp1Ptr = &Triangle1Form2;
+                        }
+                    }
+                    else
+                    {
+                        formProp0Ptr = &Triangle1Form1Prop0;
+                        formProp1Ptr = &Triangle1Form1;
+                    }
+
+
+                    // Prepare to de-skew the y axis
+                    U32 skew;
+                    if (cX > 0)
+                    {
+                        skew = cY/cX;
+                    }
+                    else
+                    {
+                        skew = 0;
+                    }
+
+                    /* Use the slow but simple approach.  Check if any of the form array elements,
+                     * after skewing and wrapping, match the index we have
+                     */
+                    for (U32 tx=0; tx<5; ++tx)
+                    {
+                        for (U32 ty=0; ty<5; ++ty)
+                        {
+                            // newX, newY is the coordinate that x,y of the form array maps onto
+                            U32 newX = cX + tx;
+                            if (newX >= 2) // Make sure newX not negative
+                            {
+                                newX -= 2; // newX valid after this
+
+                                U32 yWrap = newX * inOrder;
+                                if (yWrap < 1)
+                                {
+                                    yWrap = 1;
+                                }
+                                if (yWrap > inArray.SizeGet().Y())
+                                {
+                                    yWrap = inArray.SizeGet().Y();
+                                }
+
+                                // Deskew y, keeping it positive
+
+                                U32 newY = ty + yWrap - 2;
+                                if (x >= cX)
+                                {
+                                    newY += skew * (x - cX);
+                                }
+                                else
+                                {
+                                    newY -= skew * (cX - x);
+                                }
+                                newY = newY % yWrap;
+                                if (newX == x && newY == y)
+                                {
+                                    expected = inProp * (*formProp1Ptr)[4-ty][tx] +
+                                          inverseProp * (*formProp0Ptr)[4-ty][tx];
+                                }
+                            }
+                        }
+                    }
+                }
             }
             if (fabs(inArray.Get(x, y) - expected) > 0.0001)
             {
@@ -232,24 +422,24 @@ TestMushMeshSubdivide::SubdivideTriangle1(U32 inX, U32 inY)
 
     MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 0, 3);
 
-    if (!VerifyTriangle1(subbedArray, t2U32(inX*2+1, inY*2+1), 0, 3), 1)
+    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 0, 3))
     {
         cout << "Orig mesh = " << endl;
-        ArrayPrint(meshArray);
+        TrianglePrint(meshArray, 3);
         cout << "Moved mesh = " << endl;
-        ArrayPrint(subbedArray);
+        TrianglePrint(subbedArray, 3);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 
     MushMeshSubdivide<tVal>::TriangularSubdivide(subbedArray, meshArray, activeBox, 1.0, 3);
     
 
-    if (!VerifyTriangle1(subbedArray, t2U32(inX*2+1, inY*2+1), 1.0, 3), 1)
+    if (!VerifyTriangle1(subbedArray, t2U32(inX*2, inY*2), 1.0, 3))
     {
         cout << "Orig mesh = " << endl;
-        ArrayPrint(meshArray);
+        TrianglePrint(meshArray, 3);
         cout << "Moved mesh = " << endl;
-        ArrayPrint(subbedArray);
+        TrianglePrint(subbedArray, 3);
         throw MushcoreLogicFail("Subdivision failed to verify");
     }
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.7 2003/10/23 20:03:58 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.8 2003/10/24 12:39:08 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.8  2003/10/24 12:39:08  southa
+ * Triangular mesh work
+ *
  * Revision 1.7  2003/10/23 20:03:58  southa
  * End mesh work
  *
@@ -426,7 +429,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
 
     // These are start and end points for passes through the source array
     Mushware::t2U32 startPoint(inActiveBox.StartGet());
-    Mushware::t2U32 endPoint(inActiveBox.EndGet()); // + (1,0)?
+    // unused Mushware::t2U32 endPoint(inActiveBox.EndGet()); // + (1,0)?
     Mushware::t2U32 sizeVec = inActiveBox.SizeGet();
 
     // Size the output array appropriately for the active box
@@ -585,7 +588,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                     value4 /= 2;
                     
                     // Wrapping point in the output array
-                    Mushware::U32 outXp1Wrap = (x+1)*2*inOrder;
+                    Mushware::U32 outXp1Wrap = (x*2+1)*inOrder;
 
                     outArray.Set(value4, outX+1, M1Wrap(outY+skew, outXp1Wrap));
                 }
