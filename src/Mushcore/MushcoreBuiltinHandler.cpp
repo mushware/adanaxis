@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mvCjgges5NRlmA/1rKDjiQ
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.12 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.13 2004/01/05 14:27:41 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.13  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.12  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -145,11 +148,15 @@ MushcoreBuiltinHandler::Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
 {
     std::vector<std::string> commandVec;
     U32 numParams = ioCommand.NumParams();
+    if (numParams == 0)
+    {
+        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "^test\\w");
+    }
     for (U32 i=0; i<numParams; ++i)
     {
         string moduleStr;
         ioCommand.PopParam(moduleStr);
-        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "test"+moduleStr);
+        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "^test"+moduleStr);
     }
 
     std::vector<std::string> failsVec;

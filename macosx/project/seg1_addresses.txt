@@ -1,0 +1,6 @@
+To ship frameworks within applications requires that the application and its frameworks be prebound.  This requires a fixed segment base address for each framework, which is passed to the linker using the -seg1addr flag.  The segment addresses for external libraries are specified in the README.macosx file, and are in the range 0x10000000..0x20000000.  Addresses for Mushware frameworks are specified here:
+
+Mushcore 0x2a000000
+MushNet  0x2a800000
+MushMesh 0x2b000000
+MushPie  0x2b800000

@@ -21,16 +21,12 @@
 #endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreStandard.h>
-#include <Mushcore/MushcoreFail.h>
+#include <Mushcore/Mushcore.h>
 #elif defined(HAVE_MUSHCORE_H)
-#include <MushcoreStandard.h>
-#include <MushcoreFail.h>
+#include <Mushcore.h>
 #else
-#include "MushcoreStandard.h"
-#include "MushcoreFail.h"
+#include "Mushcore.h"
 #endif
-
 
 //%includeGuardEnd {
 #endif

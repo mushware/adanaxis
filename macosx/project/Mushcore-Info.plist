@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
+	<string>com.Mushware.Mushcore</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string></string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>Mush</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0d1</string>
 </dict>

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2oLxPDGEczTZy/E4MTcCKw
 /*
- * $Id: TestMushMeshVector.cpp,v 1.5 2003/10/17 12:27:20 southa Exp $
+ * $Id: TestMushMeshVector.cpp,v 1.6 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.6  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/10/17 12:27:20  southa
  * Line end fixes and more mesh work
  *
@@ -88,5 +91,5 @@ TestMushMeshVector::TestVector(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushMeshVector::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testvector", TestVector);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshvector", TestVector);
 }

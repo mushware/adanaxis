@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } I5PPNMg6sviaX01QxvfPlA
 /*
- * $Id: TestMushMeshTriangularArray.cpp,v 1.1 2003/10/23 20:03:58 southa Exp $
+ * $Id: TestMushMeshTriangularArray.cpp,v 1.2 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshTriangularArray.cpp,v $
+ * Revision 1.2  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/23 20:03:58  southa
  * End mesh work
  *
@@ -111,5 +114,5 @@ TestMushMeshTriangularArray::ValueFunction(U32 inX, U32 inY)
 void
 TestMushMeshTriangularArray::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testtriangulararray", TestTriangularArray);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshtriangulararray", TestTriangularArray);
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 6iM0/2RNlKnkj/n1JHnIVQ
 /*
- * $Id: TestMushMeshUtils.cpp,v 1.3 2003/10/15 12:23:10 southa Exp $
+ * $Id: TestMushMeshUtils.cpp,v 1.4 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshUtils.cpp,v $
+ * Revision 1.4  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/15 12:23:10  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -48,5 +51,5 @@ TestMushMeshUtils::TestUtils(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushMeshUtils::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testutils", TestUtils);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshutils", TestUtils);
 }

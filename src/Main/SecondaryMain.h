@@ -16,11 +16,15 @@
  ****************************************************************************/
 //%Header } wCFUtiY2ZiN1q8ghiz0/Mg
 /*
- * $Id$
- * $Log$
+ * $Id: SecondaryMain.h,v 1.1 2004/01/05 14:27:40 southa Exp $
+ * $Log: SecondaryMain.h,v $
+ * Revision 1.1  2004/01/05 14:27:40  southa
+ * MushPie work and build fixes
+ *
  */
 
-int SecondaryMain(int argc, char *argv[]);
+// No content
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } a4QmG9GUot9BdRziHdwp7A
 /*
- * $Id$
- * $Log$
+ * $Id: SecondaryMain.cpp,v 1.1 2004/01/05 14:27:40 southa Exp $
+ * $Log: SecondaryMain.cpp,v $
+ * Revision 1.1  2004/01/05 14:27:40  southa
+ * MushPie work and build fixes
+ *
  */
 
 #include "SecondaryMain.h"
@@ -25,7 +28,7 @@
 using namespace Mushware;
 using namespace std;
 
-int SecondaryMain(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     string str;
     for (int i=1; i<argc; i++)

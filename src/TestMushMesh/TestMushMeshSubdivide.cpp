@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } SFPsgjlDzWIJxo/MBcs9fA
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.14 2003/11/13 23:25:32 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.15 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.15  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.14  2003/11/13 23:25:32  southa
  * gcc 2.95 mods
  *
@@ -611,15 +614,16 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     }
     cout << endl;
     cout << "Rectangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
-    cout << ios::fixed << setprecision(0);
+    cout.setf(ios::fixed);
+    cout << setprecision(0);
 #if 0
-    ValueTimeTest<char>("Single char  ");
-    ValueTimeTest<unsigned char>("Single uchar ");
-    ValueTimeTest<short>("Single short ");
-    ValueTimeTest<int>("Single int   ");
-    ValueTimeTest<unsigned int>("Single uint  ");
-    ValueTimeTest<long>("  long long  ");
-    ValueTimeTest<unsigned long long>(" ulong long  ");
+    RectangleValueTimeTest<char>("Single char  ");
+    RectangleValueTimeTest<unsigned char>("Single uchar ");
+    RectangleValueTimeTest<short>("Single short ");
+    RectangleValueTimeTest<int>("Single int   ");
+    RectangleValueTimeTest<unsigned int>("Single uint  ");
+    RectangleValueTimeTest<long>("  long long  ");
+    RectangleValueTimeTest<unsigned long long>(" ulong long  ");
 #endif
     RectangleValueTimeTest<float>("(dummy) float");
     RectangleValueTimeTest<float>("Single float ");
@@ -633,7 +637,8 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
 
     cout.unsetf(ios::fixed);
     cout << "Triangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
-    cout << ios::fixed << setprecision(0);
+    cout.setf(ios::fixed);
+    cout << setprecision(0);
 
     TriangleValueTimeTest<float>("(dummy) float");
     TriangleValueTimeTest<float>("Single float ");
@@ -655,5 +660,5 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
 void
 TestMushMeshSubdivide::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testsubdivide", TestSubdivide);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshsubdivide", TestSubdivide);
 }

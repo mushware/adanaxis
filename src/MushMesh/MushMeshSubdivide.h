@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VBPRcc52TpNl7/OX9FnkjQ
 /*
- * $Id: MushMeshSubdivide.h,v 1.12 2003/10/25 15:56:58 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.13 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.13  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/10/25 15:56:58  southa
  * Test tweaks
  *
@@ -148,8 +151,6 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
     {
         for (Mushware::U32 y=startPoint.Y(); y < endPoint.Y(); ++y)
         {
-            // Will be reordered
-
             // Calculate output coordinates;
             Mushware::U32 outX = 2*x - destOffset.X();
             Mushware::U32 outY = 2*y - destOffset.Y();
@@ -168,8 +169,8 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
             // n_m1p1 not used
             const T& n_z0p1 = inArray.Get(x,   y+1);
             const T& n_p1p1 = inArray.Get(x+1, y+1);
-
-//#define MUSHMESH_INTERLEAVE
+// Interleaving can give around 50% speed increase on G4 but only for simple types
+// #define MUSHMESH_INTERLEAVE
 #ifdef MUSHMESH_INTERLEAVE
             // Value0 is special as it is the original vertex and follows a different algorithm
             T value0 = n_z0z0;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YqdDzo4FmreRLNxX5dDwDw
 /*
- * $Id: TestMushMeshArray.cpp,v 1.5 2003/10/20 13:02:54 southa Exp $
+ * $Id: TestMushMeshArray.cpp,v 1.6 2004/01/02 21:13:16 southa Exp $
  * $Log: TestMushMeshArray.cpp,v $
+ * Revision 1.6  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/10/20 13:02:54  southa
  * Patch fixes and testing
  *
@@ -105,5 +108,5 @@ TestMushMeshArray::ValueFunction(U32 inX, U32 inY)
 void
 TestMushMeshArray::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testarray", TestArray);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmesharray", TestArray);
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } HJ6KtynbiaC2oOYTL1uiSg
 /*
- * $Id: TestMushMeshBox.cpp,v 1.2 2003/10/17 19:33:11 southa Exp $
+ * $Id: TestMushMeshBox.cpp,v 1.3 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshBox.cpp,v $
+ * Revision 1.3  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/17 19:33:11  southa
  * Mesh patches
  *
@@ -100,5 +103,5 @@ TestMushMeshBox::TestBox(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushMeshBox::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testbox", TestBox);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshbox", TestBox);
 }

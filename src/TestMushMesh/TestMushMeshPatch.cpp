@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yKD5SCMk6D67HbzoDOzgSA
 /*
- * $Id: TestMushMeshPatch.cpp,v 1.2 2003/10/26 10:05:30 southa Exp $
+ * $Id: TestMushMeshPatch.cpp,v 1.3 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshPatch.cpp,v $
+ * Revision 1.3  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/26 10:05:30  southa
  * End patch testing
  *
@@ -301,5 +304,5 @@ TestMushMeshPatch::TestPatch(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushMeshPatch::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testpatch", TestPatch);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshpatch", TestPatch);
 }

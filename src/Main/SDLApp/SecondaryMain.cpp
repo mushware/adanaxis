@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } joRrEdPR9bRRSNuToPWilA
 /*
- * $Id: main.cpp,v 1.34 2004/01/02 21:13:09 southa Exp $
- * $Log: main.cpp,v $
+ * $Id: SecondaryMain.cpp,v 1.1 2004/01/05 14:27:40 southa Exp $
+ * $Log: SecondaryMain.cpp,v $
+ * Revision 1.1  2004/01/05 14:27:40  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.34  2004/01/02 21:13:09  southa
  * Source conditioning
  *
@@ -135,7 +138,7 @@
 using namespace Mushware;
 using namespace std;
 
-int SecondaryMain(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     PlatformMiscUtils::Initialise();
     MushcoreGlobalConfig::Sgl().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
