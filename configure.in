@@ -6,10 +6,14 @@ AC_CANONICAL_SYSTEM
 AM_INIT_AUTOMAKE(contractor, 0.0)
 TOP_SUBDIRS="src"
 AC_SUBST(TOP_SUBDIRS)
-prefix='${top_srcdir}/ic2data'
+prefix='${top_srcdir}/contractor'
 exec_prefix='${prefix}'
 bindir='${exec_prefix}/system'
 AM_CONFIG_HEADER(config.h)
+
+IC_CPPFLAGS="$CPPFLAGS"
+IC_LDFLAGS="$LDFLAGS"
+IC_LIBS="$LIBS"
 
 dnl Checks for programs.
 AC_PROG_MAKE_SET
@@ -23,12 +27,16 @@ if test "x$ac_prog_sdl_config" = "x"; then
     ac_prog_sdl_config="$ac_prog_sdl_config2"
 fi
 if test "x$ac_prog_sdl_config" = "x"; then
+    AC_PATH_PROG(ac_prog_sdl_config3, sdl-config, "", ["/usr/local/bin"])
+    ac_prog_sdl_config="$ac_prog_sdl_config3"
+fi
+if test "x$ac_prog_sdl_config" = "x"; then
     AC_MSG_NOTICE([Couldn't find sdl-config command.])
 else
-    CPPFLAGS="$CPPFLAGS `$ac_prog_sdl_config --cflags`"
-    LDFLAGS="$LDFLAGS `$ac_prog_sdl_config --libs`"
-    AC_MSG_NOTICE([sdl-config set CPPFLAGS set to $CPPFLAGS])
-    AC_MSG_NOTICE([sdl-config set LDFLAGS set to $LDFLAGS])
+    IC_CPPFLAGS="$IC_CPPFLAGS `$ac_prog_sdl_config --cflags`"
+    IC_LDFLAGS="$IC_LDFLAGS `$ac_prog_sdl_config --libs`"
+    AC_MSG_NOTICE([sdl-config set CPPFLAGS set to $IC_CPPFLAGS])
+    AC_MSG_NOTICE([sdl-config set LDFLAGS set to $IC_LDFLAGS])
 fi
 
 dnl Checks for libraries.
@@ -45,37 +53,28 @@ case "$target" in
     powerpc-apple-darwin*)
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         AC_MSG_NOTICE([* Using platform pack from src/Platform/MacOSX.])
-        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime"
+        IC_LIBS="$IC_LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime"
         AC_CHECK_HEADERS(OpenGL/gl.h,, AC_MSG_ERROR([Cannot survive without OpenGL]))
         AC_CHECK_HEADERS(OpenGL/glu.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
         AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
-        CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/MacOSX"
+        IC_CPPFLAGS="$IC_CPPFLAGS -I\${srcdir}/Platform/MacOSX"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
             AC_MSG_NOTICE([* Header windows.h detected.  Assuming target is Windows.])
             AC_MSG_NOTICE([* Using platform pack from src/Platform/win32.])
-	    LDFLAGS="-L/mingw32/lib --verbose $LDFLAGS"
-dnl            CPPFLAGS="$CPPFLAGS -I/cygwin/usr/include/mingw"
             AC_CHECK_LIB(opengl32, main,, AC_MSG_ERROR([Cannot survive without OpenGL]))
             AC_CHECK_LIB(glu32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
             AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
-            CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/win32"
+            IC_CPPFLAGS="$IC_CPPFLAGS -I\${srcdir}/Platform/win32"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
             AC_MSG_NOTICE([* Using platform pack from src/Platform/X11.])
-	    if test "x$LDFLAGS" = "x"; then
-	        LDFLAGS="-L/usr/local/lib"
-	        AC_MSG_NOTICE([LDFLAGS was empty.  Guessing '$LDFLAGS'])
-	    fi
-	    AC_PATH_XTRA
-	    CPPFLAGS="$CPPFLAGS $X_CFLAGS"
-	    LIBS="$LIBS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
-	    AC_CHECK_LIB(m,main)
-	    AC_CHECK_LIB(X11,main)
-	    AC_CHECK_LIB(Xext, main)
-
-	    AC_ARG_WITH(mesa, AC_HELP_STRING([--with-mesa             Use MesaGL libs instead of GL LIBS]), [
+            
+            AC_PATH_XTRA
+            CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+            LDFLAGS="$LDFLAGS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+            AC_ARG_WITH(mesa, AC_HELP_STRING([--with-mesa             Use MesaGL libs instead of GL LIBS]), [
 dnl Use Mesa
                 AC_CHECK_LIB(MesaGL, main,, AC_MSG_ERROR([Cannot find and link MesaGL]))
                 AC_CHECK_LIB(MesaGLU, main,, AC_MSG_ERROR([Cannot find and link MesaGLU]))
@@ -109,7 +108,7 @@ AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - ho
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[
 AC_MSG_WARN([sstream not found.  Using copy from distribution])
-CPPFLAGS="$CPPFLAGS -I\${srcdir}/Support/gcc-2.95.2"
+IC_CPPFLAGS="$IC_CPPFLAGS -I\${srcdir}/Support/gcc-2.95.2"
 ])
 
 AC_CHECK_HEADERS(unistd.h)
@@ -145,4 +144,11 @@ echo >> Makefile.am
 cd ..
 ])
 ])
+CPPFLAGS="$IC_CPPFLAGS"
+LDFLAGS="$IC_LDFLAGS"
+LIB="$IC_LIBS"
 AC_OUTPUT(Makefile src/Makefile)
+AC_MSG_NOTICE([Verdict was:])
+AC_MSG_NOTICE([CPPFLAGS=$CPPFLAGS])
+AC_MSG_NOTICE([LDFLAGS=$LDFLAGS])
+AC_MSG_NOTICE([LIBS=$LIBS])
