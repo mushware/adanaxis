@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.5 2002/11/22 11:42:07 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.6 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.6  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.5  2002/11/22 11:42:07  southa
  * Added developer controls
  *
@@ -95,11 +98,27 @@ MediaNetWebServer::Accept(void)
         TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
         if (newSocket != NULL)
         {
-            ostringstream name;
-            name << "web" << m_linkCtr;
-            CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket));
-            m_linkCtr++;
-            MediaNetLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
+            IPaddress *remoteIP;
+
+            remoteIP = SDLNet_TCP_GetPeerAddress(newSocket);
+            if (remoteIP == NULL)
+            {
+                throw(NetworkFail(string("Couldn't resolve IP for socket: ")+SDLNet_GetError()));
+            }
+            U32 remoteHost=remoteIP->host;
+            if (PlatformNet::IsLocalAddress(remoteHost))
+            {
+                ostringstream name;
+                name << "web" << m_linkCtr;
+                CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket));
+                m_linkCtr++;
+                MediaNetLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
+            }
+            else
+            {
+                SDLNet_TCP_Close(newSocket);
+                MediaNetLog::Instance().WebLog() << "Rejected web connection from prohibited IP address " << MediaNetUtils::IPAddressToLogString(remoteHost) << endl;
+            }
         }
     }
 }

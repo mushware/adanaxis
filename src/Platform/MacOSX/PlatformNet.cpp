@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.10 2002/11/23 14:39:07 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.11 2002/11/23 15:23:33 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.11  2002/11/23 15:23:33  southa
+ * Fixed network orders for win32
+ *
  * Revision 1.10  2002/11/23 14:39:07  southa
  * Store ports in network order
  *
@@ -38,10 +41,15 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/socket.h>
+#include <sys/ioctl.h>
 #include <arpa/inet.h>
+#include <net/if.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <fcntl.h>
+
+bool PlatformNet::m_localAddressesValid=false;
+map<U32, bool> PlatformNet::m_localAddressMap;
 
 void
 PlatformNet::SocketNonBlockingSet(tSocket inSocket)
@@ -199,3 +207,63 @@ PlatformNet::NetworkToHostOrderU16(U32 inVal)
     return ntohs(inVal);
 }
 
+void
+PlatformNet::LocalAddressesRetrieve(void)
+{
+    m_localAddressMap.clear();
+    
+    struct ifconf ifConf;
+    U8 ipBuffer[16384];
+    ifConf.ifc_buf = reinterpret_cast<char *>(ipBuffer);
+    ifConf.ifc_len = sizeof(ipBuffer)-256;
+    int testSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (testSocket == -1)
+    {
+        throw(DeviceFail("Socket creation failed"));
+    }
+    errno=0;
+    if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
+    {
+        close(testSocket);
+        ostringstream message;
+        message << "ioctl SIOCGIFCONF fail (" << errno << ")";
+        throw(NetworkFail(message.str()));
+    }
+    U8 *dataPtr=ipBuffer;
+    
+    while (dataPtr < ipBuffer+ifConf.ifc_len)
+    {
+        struct ifreq *ifReq = reinterpret_cast<struct ifreq *>(dataPtr);
+
+        U32 entryLength=ifReq->ifr_addr.sa_len;
+        if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
+        if (ifReq->ifr_addr.sa_family == AF_INET)
+        {
+            if (ioctl(testSocket, SIOCGIFFLAGS, ifReq) == 0)
+            {
+                if (ifReq->ifr_flags & IFF_UP)
+                {
+                    if (ioctl(testSocket, SIOCGIFADDR, ifReq) == 0)
+                    {
+                        struct in_addr ipAddr = ((struct sockaddr_in *)&(ifReq->ifr_addr))->sin_addr;
+                        m_localAddressMap[ipAddr.s_addr]=true;
+                        cerr << "ipAddr=" << MediaNetUtils::IPAddressToString(ipAddr.s_addr) << endl;
+                    }
+                }
+            }
+        }
+        dataPtr += sizeof(ifReq->ifr_name) + entryLength;
+    }
+    close(testSocket);
+    m_localAddressesValid=true;
+}
+
+bool
+PlatformNet::IsLocalAddress(U32 inIPNetworkOrder)
+{
+    if (!m_localAddressesValid)
+    {
+        LocalAddressesRetrieve();
+    }
+    return m_localAddressMap.find(inIPNetworkOrder) != m_localAddressMap.end();
+}

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.h,v 1.6 2002/11/23 14:39:07 southa Exp $
+ * $Id: PlatformNet.h,v 1.7 2002/11/23 17:23:45 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.7  2002/11/23 17:23:45  southa
+ * Sleep in setup
+ *
  * Revision 1.6  2002/11/23 14:39:07  southa
  * Store ports in network order
  *
@@ -52,4 +55,10 @@ public:
     static bool TCPSocketConnectionCompleted(tSocket inSocket);
     static U32 HostToNetworkOrderU16(U32 inVal);
     static U32 NetworkToHostOrderU16(U32 inVal);
+    static bool IsLocalAddress(U32 inIPNetworkOrder);
+
+private:
+    static void LocalAddressesRetrieve(void);
+    static bool m_localAddressesValid;
+    static map<U32, bool> m_localAddressMap;
 };

@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.6 2002/11/22 15:33:59 southa Exp $
+ * $Id: GameSetup.cpp,v 1.7 2002/11/23 17:23:44 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.7  2002/11/23 17:23:44  southa
+ * Sleep in setup
+ *
  * Revision 1.6  2002/11/22 15:33:59  southa
  * More network logging
  *
@@ -134,7 +137,7 @@ GameSetup::ConfigInit(void)
     }
         
     ostringstream configURL;
-    configURL << "http://localhost:" << webPort << "/";
+    configURL << "http://127.0.0.1:" << webPort << "/";
     m_configURL=configURL.str();
     m_gameState=kGameStateConfig;
 }    

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.7 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.8 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.8  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.7  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -89,7 +92,7 @@ MediaNetUtils::MakePrintable(const string& inStr)
         }
         else
         {
-            retStream << "[" << static_cast<U32>(inStr[i]) << "]";
+            retStream << "[" << static_cast<U32>(static_cast<U8>(inStr[i])) << "]";
         }
     }
     return retStream.str();
