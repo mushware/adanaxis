@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetData.cpp,v 1.1 2002/11/01 16:15:27 southa Exp $
+ * $Id: MediaNetData.cpp,v 1.2 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNetData.cpp,v $
+ * Revision 1.2  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.1  2002/11/01 16:15:27  southa
  * Network send and receive
  *
@@ -17,7 +20,9 @@ ostream& operator<<(ostream &inOut, const MediaNetData& inData)
 void
 MediaNetData::Print(ostream& ioOut) const
 {
-    ioOut << "[data size=" << m_data.size() << ", readPos=" << m_readPos << ", writePos=" << m_writePos << "] '";
+    ioOut << "[data size=" << m_data.size() << ", readPos=" << m_readPos << ", writePos=" << m_writePos;
+    ioOut << ", messagePos=" << m_messagePos << ", unpackState=" << m_unpackState;
+    ioOut << ", data='";
     for (U32 i=0; i<m_data.size() && i<m_writePos; ++i)
     {
         if (isprint(m_data[i]))
@@ -29,5 +34,5 @@ MediaNetData::Print(ostream& ioOut) const
             ioOut << "[" << hex << static_cast<U32>(m_data[i]) << dec << "]";
         }
     }
-    ioOut << "'";
+    ioOut << "']";
 }

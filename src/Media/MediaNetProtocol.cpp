@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetProtocol.cpp,v 1.1 2002/11/03 18:43:09 southa Exp $
+ * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.1  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  */
 
 /************************************
@@ -25,4 +28,103 @@ MediaNetProtocol::LinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber)
     outData.BytePush(kSyncByte2);
     outData.BytePush(kMessageTypeLinkCheck);
     outData.BytePush(static_cast<U8>(inSequenceNumber & 0xff));
+}
+
+void
+MediaNetProtocol::Unpack(MediaNetData& ioData)
+{
+    U32 messageLength=0; // Content length after the message type (and length)
+    
+    U32 unpackState=ioData.UnpackStateGet();
+    if (unpackState==0) unpackState=kUnpackStateSync1;
+
+    while (unpackState != kUnpackStateMessageDone && !ioData.IsEmptyForRead())
+    {
+        U8 byte=ioData.BytePop();
+        switch (static_cast<tUnpackUnpackState>(unpackState))
+        {
+            case kUnpackStateSync1:
+                if (byte == kSyncByte1)
+                {
+                    unpackState=kUnpackStateSync2;
+                }
+                else
+                {
+                    cerr << "Skipped '" << byte << "'" << endl;
+                }
+                break;
+
+            case kUnpackStateSync2:
+                if (byte == kSyncByte2)
+                {
+                    unpackState=kUnpackStateMessageType;
+                    // Leave messagePos pointing at the message type
+                    ioData.MessagePosSet(ioData.ReadPosGet());
+                }
+                else
+                {
+                    unpackState = kUnpackStateSync1;
+                    cerr << "Skipped '" << byte << "'" << endl;
+                }
+                break;
+
+            case kUnpackStateMessageType:
+                if (byte == kMessageTypeLinkCheck ||
+                    byte == kMessageTypeLinkCheckReply)
+                {
+                    messageLength=1;
+                    unpackState=kUnpackStateMessageDone;
+                }
+                else
+                {
+                    unpackState=kUnpackStateLengthMSB;
+                }
+                break;
+
+            case kUnpackStateLengthMSB:
+                COREASSERT(false);
+                break;
+
+            case kUnpackStateMessageDone:
+                // I think not
+                COREASSERT(false);
+                break;
+
+            case kUnpackStateMessageReady:
+                throw(LogicFail("Caller of Unpack failed to handle returned message"));
+
+            case kUnpackStateInvalid:
+            // default:
+                COREASSERT(false);
+                unpackState=kUnpackStateSync1;
+                break;
+        }
+    }
+    if (unpackState == kUnpackStateMessageDone)
+    {
+        if (ioData.ReadSizeGet() >= messageLength)
+        {
+            // Set readPos to byte beyond last byte of message
+            ioData.ReadPosAdd(messageLength);
+            unpackState=kUnpackStateMessageReady;
+        }
+        // else come round in  kUnpackStateMessageDone next time when more data has been added
+    }
+    ioData.UnpackStateSet(unpackState);
+}
+
+bool
+MediaNetProtocol::MessageToHandle(const MediaNetData& ioData)
+{
+    return ioData.UnpackStateGet() == kUnpackStateMessageReady;
+}
+
+void
+MediaNetProtocol::MessageHandledSet(MediaNetData& ioData)
+{
+    if (ioData.UnpackStateGet() != kUnpackStateMessageReady)
+    {
+        throw(LogicFail("MessageHandledSet without message"));
+    }
+    ioData.UnpackStateSet(kUnpackStateSync1);
 }

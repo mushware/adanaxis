@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.85 2002/11/01 18:46:24 southa Exp $
+ * $Id: GameContract.cpp,v 1.86 2002/11/03 18:43:08 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.86  2002/11/03 18:43:08  southa
+ * Network fixes
+ *
  * Revision 1.85  2002/11/01 18:46:24  southa
  * UDP Links
  *
@@ -425,6 +428,8 @@ GameContract::Init(void)
     cout << "dataIn " << dataIn << endl;
     cout << "dataOut " << dataOut << endl;
     cout << "dataBack " << dataBack << endl;
+    MediaNetProtocol::Unpack(dataOut);
+    cout << "Unpacked dataOut " << dataOut << endl;
     cerr << clientLink << endl;
     CoreData<MediaNetLink>::Instance().Dump(cerr);
 }
