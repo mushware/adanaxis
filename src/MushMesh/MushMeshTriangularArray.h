@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l6e5pdefOkqZRS3BnyRMLA
 /*
- * $Id: MushMeshTriangularArray.h,v 1.5 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushMeshTriangularArray.h,v 1.6 2004/09/26 19:42:05 southa Exp $
  * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.6  2004/09/26 19:42:05  southa
+ * Added MushMesh, fixed typenames and release target
+ *
  * Revision 1.5  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -64,7 +67,6 @@
 
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
-#include "MushMeshMath.h"
 
 template <class T>
 class MushMeshTriangularArray

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } iBl6/bhvcrVVWDxtT03+yg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshTools.cpp,v 1.1 2004/10/31 23:34:07 southa Exp $
+ * $Log: MushMeshTools.cpp,v $
+ * Revision 1.1  2004/10/31 23:34:07  southa
+ * Hypercube rendering test
+ *
  */
 
 #include "MushMeshTools.h"
@@ -34,16 +37,16 @@ MushMeshTools::RotateInXY(tVal inAngle)
      );
 }
 
-MushMeshPreMatrix<tVal, 4, 4>
-MushMeshTools::RotateInAxis(U32 inAxis, tVal inAngle)
+Mushware::t4x4Val
+MushMeshTools::MatrixRotateInAxis(U32 inAxis, tVal inAngle)
 {
     switch (inAxis)
     {
         case 0:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
-             MushMeshVector<tVal, 4>( cos(inAngle), sin(inAngle),            0,            0),
-             MushMeshVector<tVal, 4>(-sin(inAngle), cos(inAngle),            0,            0),
+             MushMeshVector<tVal, 4>( cos(inAngle),-sin(inAngle),            0,            0),
+             MushMeshVector<tVal, 4>( sin(inAngle), cos(inAngle),            0,            0),
              MushMeshVector<tVal, 4>(            0,            0,            1,            0),
              MushMeshVector<tVal, 4>(            0,            0,            0,            1)
              );
@@ -51,49 +54,104 @@ MushMeshTools::RotateInAxis(U32 inAxis, tVal inAngle)
         case 1:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
-             MushMeshVector<tVal, 4>( cos(inAngle),            0, sin(inAngle),            0),
+             MushMeshVector<tVal, 4>(            1,            0,            0,            0),
              MushMeshVector<tVal, 4>(            0,            1,            0,            0),
-             MushMeshVector<tVal, 4>(-sin(inAngle),            0, cos(inAngle),            0),
-             MushMeshVector<tVal, 4>(            0,            0,            0,            1)
+             MushMeshVector<tVal, 4>(            0,            0, cos(inAngle),-sin(inAngle)),
+             MushMeshVector<tVal, 4>(            0,            0, sin(inAngle), cos(inAngle))
              );
-            
+        
         case 2:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
-             MushMeshVector<tVal, 4>( cos(inAngle),            0,            0, sin(inAngle)),
+             MushMeshVector<tVal, 4>( cos(inAngle),            0,-sin(inAngle),            0),
              MushMeshVector<tVal, 4>(            0,            1,            0,            0),
-             MushMeshVector<tVal, 4>(            0,            0,            1,            0),
-             MushMeshVector<tVal, 4>(-sin(inAngle),            0,            0, cos(inAngle))
+             MushMeshVector<tVal, 4>( sin(inAngle),            0, cos(inAngle),            0),
+             MushMeshVector<tVal, 4>(            0,            0,            0,            1)
              );
             
         case 3:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
              MushMeshVector<tVal, 4>(            1,            0,            0,            0),
-             MushMeshVector<tVal, 4>(            0, cos(inAngle), sin(inAngle),            0),
-             MushMeshVector<tVal, 4>(            0,-sin(inAngle), cos(inAngle),            0),
-             MushMeshVector<tVal, 4>(            0,            0,            0,            1)
+             MushMeshVector<tVal, 4>(            0, cos(inAngle),            0,-sin(inAngle)),
+             MushMeshVector<tVal, 4>(            0,            0,            1,            0),
+             MushMeshVector<tVal, 4>(            0, sin(inAngle),            0, cos(inAngle))
              );
             
         case 4:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
-             MushMeshVector<tVal, 4>(            1,            0,            0,            0),
-             MushMeshVector<tVal, 4>(            0, cos(inAngle),            0, sin(inAngle)),
+             MushMeshVector<tVal, 4>( cos(inAngle),            0,            0,-sin(inAngle)),
+             MushMeshVector<tVal, 4>(            0,            1,            0,            0),
              MushMeshVector<tVal, 4>(            0,            0,            1,            0),
-             MushMeshVector<tVal, 4>(            0,-sin(inAngle),            0, cos(inAngle))
+             MushMeshVector<tVal, 4>( sin(inAngle),            0,            0, cos(inAngle))
              );
-            
             
         case 5:            
             return MushMeshPreMatrix<tVal, 4, 4>
             (
              MushMeshVector<tVal, 4>(            1,            0,            0,            0),
-             MushMeshVector<tVal, 4>(            0,            1,            0,            0),
-             MushMeshVector<tVal, 4>(            0,            0, cos(inAngle), sin(inAngle)),
-             MushMeshVector<tVal, 4>(            0,            0,-sin(inAngle), cos(inAngle))
+             MushMeshVector<tVal, 4>(            0, cos(inAngle),-sin(inAngle),            0),
+             MushMeshVector<tVal, 4>(            0, sin(inAngle), cos(inAngle),            0),
+             MushMeshVector<tVal, 4>(            0,            0,            0,            1)
+             );
+
+        default:
+        {
+            ostringstream message;
+            message << "Bad axis number (0 <= " << inAxis << " <= 5)";
+            throw MushcoreLogicFail(message.str());
+        }
+    }
+}
+
+Mushware::tQValPair
+MushMeshTools::QuaternionRotateInAxis(U32 inAxis, tVal inAngle)
+{
+    tVal halfAngle = inAngle/2;
+    switch (inAxis)
+    {
+        case 0:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), sin(halfAngle), 0, 0),
+             tQVal(cos(halfAngle), sin(halfAngle), 0, 0)
              );
             
+        case 1:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), sin(halfAngle), 0, 0),
+             tQVal(cos(halfAngle),-sin(halfAngle), 0, 0)
+             );
+            
+        case 2:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), 0, sin(halfAngle), 0),
+             tQVal(cos(halfAngle), 0, sin(halfAngle), 0)
+             );
+            
+        case 3:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), 0,-sin(halfAngle), 0),
+             tQVal(cos(halfAngle), 0, sin(halfAngle), 0)
+             );
+            
+        case 4:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), 0, 0, sin(halfAngle)),
+             tQVal(cos(halfAngle), 0, 0, sin(halfAngle))
+             );
+            
+        case 5:            
+            return tQValPair
+            (
+             tQVal(cos(halfAngle), 0, 0, sin(halfAngle)),
+             tQVal(cos(halfAngle), 0, 0,-sin(halfAngle))
+             );
             
         default:
         {

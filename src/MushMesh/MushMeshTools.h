@@ -16,19 +16,24 @@
  ****************************************************************************/
 //%Header } R8PJKwqR61qEAsXpbOlPGQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshTools.h,v 1.1 2004/10/31 23:34:07 southa Exp $
+ * $Log: MushMeshTools.h,v $
+ * Revision 1.1  2004/10/31 23:34:07  southa
+ * Hypercube rendering test
+ *
  */
 
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
+#include "MushMeshQuaternion.h"
 #include "MushMeshPreMatrix.h"
 
 class MushMeshTools
 {
 public:
-    static MushMeshPreMatrix<Mushware::tVal, 3, 3> RotateInXY(Mushware::tVal inAngle);
-    static MushMeshPreMatrix<Mushware::tVal, 4, 4> RotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
+    static Mushware::t3x3Val RotateInXY(Mushware::tVal inAngle);
+    static Mushware::t4x4Val MatrixRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
+    static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
 };
 //%includeGuardEnd {
 #endif

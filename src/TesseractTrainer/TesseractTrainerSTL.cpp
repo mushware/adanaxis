@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshMath.cpp
+ * File: src/TesseractTrainer/TesseractTrainerSTL.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,16 +10,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } D2kEVWKGSLCJmmQZb4kS1A
+//%Header } Xh8o0vwUH4msnPOO5BfPNQ
 /*
- * $Id: MushMeshMath.cpp,v 1.1 2003/10/15 11:54:54 southa Exp $
- * $Log: MushMeshMath.cpp,v $
- * Revision 1.1  2003/10/15 11:54:54  southa
- * MushMeshArray neighbour testing and subdivision
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshMath.h"
+#include "TesseractTrainerSTL.h"
 
-using namespace Mushware;
-using namespace std;

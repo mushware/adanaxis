@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.17 2005/01/26 00:48:46 southa Exp $
+ * $Id: MushMesh.h,v 1.18 2005/01/27 21:00:39 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.18  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.17  2005/01/26 00:48:46  southa
  * MushMeshGroup and rendering
  *
@@ -76,7 +79,6 @@
 #include "MushMeshConnector.h"
 #include "MushMeshDivide.h"
 #include "MushMeshGroup.h"
-#include "MushMeshMesh.h"
 #include "MushMeshOps.h"
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PK+ZCe4Bf9/jI7UGYOtvRA
 /*
- * $Id: MushMeshArray.h,v 1.13 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushMeshArray.h,v 1.14 2004/03/07 12:05:56 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.14  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.13  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -62,8 +65,6 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshVector.h"
-#include "MushMeshMath.h"
-
 #define MUSHMESHARRAY_VERBOSE_DEBUG
 #ifdef MUSHMESHARRAY_VERBOSE_DEBUG
 #include "MushMeshSTL.h"

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Y0heUUMv/8rG89Ya6G1wZg
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.1 2004/12/06 20:44:18 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.2 2004/12/12 10:55:37 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.2  2004/12/12 10:55:37  southa
+ * Quaternion conversions
+ *
  * Revision 1.1  2004/12/06 20:44:18  southa
  * Quaternion and matrix operations
  *
@@ -60,7 +63,7 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
     {
         ostringstream message;
         message << "Normalise failed : Normalise(" << aQuat << ") != " << resultQuat;
-        throw MushcoreLogicFail(message.str());
+        throw MushcoreCommandFail(message.str());
     }
     
     aQuat = tQVal(1, 2, 3, 4);
@@ -76,7 +79,7 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
         ostringstream message;
         message << "operator tQVal * tQVal failed : " << aQuat << " * " << bQuat << " == " << aQuat * bQuat;
         message << " (expected " << resultQuat << ")";
-        throw MushcoreLogicFail(message.str());
+        throw MushcoreCommandFail(message.str());
     }
     
     cQuat = aQuat;
@@ -87,7 +90,7 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
         ostringstream message;
         message << "Quat.PostMultiplyBy failed : " << aQuat << ".PostMultiplyBy(" << bQuat << ") == " << cQuat;
         message << " (expected " << resultQuat << ")";
-        throw MushcoreLogicFail(message.str());
+        throw MushcoreCommandFail(message.str());
     }
     
     cQuat = bQuat;
@@ -98,13 +101,13 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
         ostringstream message;
         message << "Quat.PreMultiplyBy failed : " << bQuat << ".PreMultiplyBy(" << aQuat << ") == " << cQuat;
         message << " (expected " << resultQuat << ")";
-        throw MushcoreLogicFail(message.str());
+        throw MushcoreCommandFail(message.str());
     }
     
     tQValPair aQuatPair;
     t4x4Val aMatrix, bMatrix;
     
-    for (tVal i=0; i<100; ++i)
+    for (tVal i=0; i<100; i+=0.77)
     {
         PseudoRandomRotationGet(aMatrix, i);
         
@@ -116,7 +119,27 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
             ostringstream message;
             message << "QuatPair/Matrix conversion failed : " << aMatrix << " != " << bMatrix;
             message << " (quaternions were " << aQuatPair.first << ", " << aQuatPair.second << ")";
-            throw MushcoreLogicFail(message.str());
+            throw MushcoreCommandFail(message.str());
+        }
+    }
+    
+    for (tVal angle=0; angle<100; angle+=0.73)
+    {
+        for (U32 axis=0; axis<6; ++axis)
+        {
+            tQValPair qPair = MushMeshTools::QuaternionRotateInAxis(axis, angle);
+            
+            MushMeshOps::QuaternionPairToRotationMatrix(aMatrix, qPair);
+
+            bMatrix = MushMeshTools::MatrixRotateInAxis(axis, angle);
+            
+            if (!MushMeshOps::ApproxEquals(aMatrix, bMatrix))
+            {
+                ostringstream message;
+                message << "QuatPair/Matrix conversion failed (angle=" << angle << ", axis=" << axis << ") : " << aMatrix << " != " << bMatrix;
+                message << " (quaternions were " << aQuatPair.first << ", " << aQuatPair.second << ")";
+                throw MushcoreCommandFail(message.str());
+            }
         }
     }
     return MushcoreScalar(0);
