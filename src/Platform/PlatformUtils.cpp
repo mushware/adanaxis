@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformUtils.cpp,v 1.8 2002/10/22 20:42:07 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.9 2002/11/01 16:56:49 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.9  2002/11/01 16:56:49  southa
+ * Fixed platform inclusion
+ *
  * Revision 1.8  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -44,5 +47,5 @@
 
 #include "PlatformInputUtils.cpp"
 #include "PlatformMiscUtils.cpp"
-#include "PlatformNetUtils.cpp"
+#include "PlatformNet.cpp"
 #include "PlatformVideoUtils.cpp"

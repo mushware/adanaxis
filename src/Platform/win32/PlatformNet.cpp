@@ -1,24 +1,22 @@
 /*
- *  PlatformNet.cpp
- *  core-app
- *
- *  Created by Andy Southgate on Fri Nov 01 2002.
- *  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
-#include "PlatformNet.h"
+#include "mushPlatform.h"
 
-#include <fcntl.h>
+#include <windows.h>
 
 void
 PlatformNet::SocketNonBlockingSet(tSocket inSocket)
 {
-    errno=0;
-    if (fcntl(inSocket, F_SETFL, O_NONBLOCK) == -1)
+    u_long mode = 1;
+    int result = ioctlsocket(inSocket, FIONBIO, &mode);
+
+    if (result != 0)
     {
         ostringstream message;
-        message << "Failed to set socket non-blocking: " << errno;
+        message << "Failed to set socket non-blocking: " << result;
         throw(NetworkFail(message.str()));
     }
 }

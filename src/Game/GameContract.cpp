@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.82 2002/10/31 19:55:53 southa Exp $
+ * $Id: GameContract.cpp,v 1.83 2002/11/01 16:15:26 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.83  2002/11/01 16:15:26  southa
+ * Network send and receive
+ *
  * Revision 1.82  2002/10/31 19:55:53  southa
  * Network links
  *
@@ -408,7 +411,8 @@ GameContract::Init(void)
     COREASSERT(serverLink != NULL);
     clientLink.SendTCP(dataIn);
     serverLink->SendTCP(dataReply);
-    sleep(1);
+    for (U32 i=0; i<1e6; ++i)
+        {}
     MediaNetData dataBack;
     clientLink.ReceiveTCP(dataBack);
     serverLink->ReceiveTCP(dataOut);
