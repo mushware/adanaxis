@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.15 2002/08/08 18:20:30 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.16 2002/08/18 12:20:40 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.16  2002/08/18 12:20:40  southa
+ * Movement tweaks
+ *
  * Revision 1.15  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
  *
@@ -90,6 +93,9 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     GLPoint retardPos(outSpec.deltaPos);
     retardPos.ConstrainMagnitude(m_adhesion*m_acceleration);
     outSpec.deltaPos -= retardPos*0.5;
+
+    // Slow down when turning
+    outSpec.deltaPos /= 1+10*m_adhesion*(1-m_acceleration)*fabs(outSpec.deltaAngle);
 
     tVal angleRetard=outSpec.deltaAngle;
     outSpec.deltaAngle -= 0.5*m_adhesion*angleRetard;
@@ -224,7 +230,7 @@ void
 GamePiecePlayer::Unpickle(CoreXML& inXML)
 {
     UnpicklePrologue();
-    m_adhesion=0.8;
+    m_adhesion=0.5;
     m_acceleration=0.1;
     m_speedLim=0.1;
     inXML.ParseStream(*this);
