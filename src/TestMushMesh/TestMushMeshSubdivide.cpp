@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.8 2003/10/24 12:39:09 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.9 2003/10/24 20:41:16 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.9  2003/10/24 20:41:16  southa
+ * Triangular subdivision test and fixes
+ *
  * Revision 1.8  2003/10/24 12:39:09  southa
  * Triangular mesh work
  *
@@ -68,7 +71,6 @@ TestMushMeshSubdivide::ArrayPrint(const MushMeshArray<tVal>& inArray)
 void
 TestMushMeshSubdivide::TrianglePrint(const MushMeshArray<tVal>& inArray, U32 inOrder)
 {
-    cout << setprecision(0);
     for (U32 y=inArray.SizeGet().Y(); y>0;)
     {
         --y;
@@ -77,11 +79,11 @@ TestMushMeshSubdivide::TrianglePrint(const MushMeshArray<tVal>& inArray, U32 inO
         {
             if (y >= MushMeshUtils::TriangleLimitGet(x, inOrder) && t2U32(x,y) != t2U32(0,0))
             {
-                cout << setw(4) << inArray.Get(x, y) * 10000<< '/';
+                cout << setw(4) << setprecision(4) << inArray.Get(x, y) * 10000<< '/';
             }
             else
             {
-                cout << setw(5) << inArray.Get(x, y) * 10000;
+                cout << setw(5) << setprecision(4) << inArray.Get(x, y) * 10000;
             }
             if (x+1 != inArray.SizeGet().X())
             {
@@ -215,11 +217,11 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
 
     const tVal Triangle1Form3[5][5] =
     {
-        {0, 0, E, B, E},
+        {0, 0, A, B, A},
         {0, B, C, C, B},
-        {E, C, F, C, E},
+        {A, C, F, C, A},
         {0, B, C, B, 0},
-        {0, 0, E, 0, 0},
+        {0, 0, A, 0, 0},
     };
 
     bool success = true;
@@ -309,26 +311,29 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
                 else
                 {
                     const tVal (*formProp0Ptr)[5][5];
-                    const tVal (*formProp1Ptr)[5][5];
+                    tVal formProp1[5][5];
+                    
+                    U32 formSize = sizeof(formProp1);
+                    
                     // We are in the area covered by the form matrices
                     // Determine which form we have
                     if (cY % cX == 0)
                     {
-                        if (x == xDefect)
+                        if (cX == xDefect)
                         {
                             formProp0Ptr = &Triangle1Form3Prop0;
-                            formProp1Ptr = &Triangle1Form3;
+                            memcpy(formProp1, Triangle1Form3, formSize);
                         }
                         else
                         {
                             formProp0Ptr = &Triangle1Form2Prop0;
-                            formProp1Ptr = &Triangle1Form2;
+                            memcpy(formProp1, Triangle1Form2, formSize);
                         }
                     }
                     else
                     {
                         formProp0Ptr = &Triangle1Form1Prop0;
-                        formProp1Ptr = &Triangle1Form1;
+                        memcpy(formProp1, Triangle1Form1, formSize);
                     }
 
 
@@ -342,6 +347,53 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
                     {
                         skew = 0;
                     }
+                    
+                    // Fix form for the valency difference on the defect line
+                    if (cX + 2 == xDefect)
+                    {
+                        for (U32 ty = 0; ty < 5; ++ty)
+                        {
+                            if (formProp1[4-ty][4] == A)
+                            {
+                                // Translate form array y to defect line y and test if a defect exists
+                                if ((xDefect + cY - 2 + ty + 2*skew) % xDefect == 0)
+                                {
+                                    formProp1[4-ty][4] = E;
+                                }
+                            }
+                        }
+                    }
+
+                    if (cX == xDefect)
+                    {
+                        for (U32 ty = 0; ty < 5; ++ty)
+                        {
+                            if (formProp1[4-ty][2] == A)
+                            {
+                                // Translate form array y to defect line y and test if a defect exists
+                                if ((xDefect + cY - 2 + ty) % xDefect == 0)
+                                {
+                                    formProp1[4-ty][2] = E;
+                                }
+                            }
+                        }
+                    }
+
+                    if (cX == xDefect + 2)
+                    {
+                        for (U32 ty = 0; ty < 5; ++ty)
+                        {
+                            if (formProp1[4-ty][0] == A)
+                            {
+                                // Translate form array y to defect line y and test if a defect exists
+                                if ((xDefect + cY - 2 + ty) % xDefect == 0)
+                                {
+                                    formProp1[4-ty][0] = E;
+                                }
+                            }
+                        }
+                    }
+
 
                     /* Use the slow but simple approach.  Check if any of the form array elements,
                      * after skewing and wrapping, match the index we have
@@ -368,19 +420,23 @@ TestMushMeshSubdivide::VerifyTriangle1(const MushMeshArray<tVal>& inArray, const
 
                                 // Deskew y, keeping it positive
 
-                                U32 newY = ty + yWrap - 2;
-                                if (x >= cX)
+                                U32 newY = cY + ty + yWrap - 2;
+
+                                if (x <= xDefect)
                                 {
-                                    newY += skew * (x - cX);
-                                }
-                                else
-                                {
-                                    newY -= skew * (cX - x);
+                                    if (x >= cX)
+                                    {
+                                        newY += skew * (x - cX);
+                                    }
+                                    else
+                                    {
+                                        newY -= skew * (cX - x);
+                                    }
                                 }
                                 newY = newY % yWrap;
                                 if (newX == x && newY == y)
                                 {
-                                    expected = inProp * (*formProp1Ptr)[4-ty][tx] +
+                                    expected = inProp * formProp1[4-ty][tx] +
                                           inverseProp * (*formProp0Ptr)[4-ty][tx];
                                 }
                             }

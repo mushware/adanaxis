@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.8 2003/10/24 12:39:08 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.9 2003/10/24 20:41:15 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.9  2003/10/24 20:41:15  southa
+ * Triangular subdivision test and fixes
+ *
  * Revision 1.8  2003/10/24 12:39:08  southa
  * Triangular mesh work
  *
@@ -61,6 +64,7 @@ public:
                                     Mushware::U32 inOrder);
 private:
     static Mushware::U32 M1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
+    static Mushware::U32 Z0Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
     static Mushware::U32 P1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
 };
 
@@ -406,6 +410,13 @@ MushMeshSubdivide<T>::M1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap)
 
 template <class T>
 inline Mushware::U32
+MushMeshSubdivide<T>::Z0Wrap(Mushware::U32 inValue, Mushware::U32 inWrap)
+{
+    return inValue % inWrap;
+}
+
+template <class T>
+inline Mushware::U32
 MushMeshSubdivide<T>::P1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap)
 {
     return (inValue+1) % inWrap;
@@ -541,20 +552,27 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
 
             if (x < xDefect)
             {
+                MUSHCOREASSERT(y < xz0Wrap); // needn't wrap x,y
+                MUSHCOREASSERT(y+skew < xp1Wrap); // needn't wrap x+1, y+skew
+                MUSHCOREASSERT(y+skew+1 < xp1Wrap); // needn't wrap x+1, y+skew+1
+
                 const T& n_m1m1 = inArray.Get(x-1, M1Wrap(y-skew, xm1Wrap));
                 const T& n_z0m1 = inArray.Get(x,   M1Wrap(y, xz0Wrap));
                 const T& n_p1m1 = inArray.Get(x+1, M1Wrap(y+skew, xp1Wrap));
                 
-                const T& n_m1z0 = inArray.Get(x-1, y-skew);
+                const T& n_m1z0 = inArray.Get(x-1, Z0Wrap(y-skew, xm1Wrap));
                 const T& n_z0z0 = inArray.Get(x,   y);
                 const T& n_p1z0 = inArray.Get(x+1, y+skew);
                 
                 // n_m1p1 not used
                 const T& n_z0p1 = inArray.Get(x,   P1Wrap(y, xz0Wrap));
-                const T& n_p1p1 = inArray.Get(x+1, P1Wrap(y+skew, xp1Wrap));
+                const T& n_p1p1 = inArray.Get(x+1, y+skew+1);
 
                 // Value0 is special as it is the original vertex and follows a different algorithm
                 T value0 = n_z0z0;
+                T value1 = n_z0z0;
+                value1 += n_p1z0;
+                value1 *= 3;
 
                 if (y % x == 0)
                 {
@@ -591,6 +609,8 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                     Mushware::U32 outXp1Wrap = (x*2+1)*inOrder;
 
                     outArray.Set(value4, outX+1, M1Wrap(outY+skew, outXp1Wrap));
+
+                    value1 += n_p1m1; // not n_z0m1
                 }
                 else
                 {
@@ -611,14 +631,12 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                     
                     value0 *= inProp;
                     value0 += n_z0z0 * inverseProp;
+
+                    value1 += n_z0m1;
                 }
                 
                 outArray.Set(value0, outX, outY);
                 
-                T value1 = n_z0z0;
-                value1 += n_p1z0;
-                value1 *= 3;
-                value1 += n_z0m1;
                 value1 += n_p1p1;
                 value1 *= propOver4;
                 value1 += (n_z0z0 + n_p1z0) * inverseProp;
@@ -651,6 +669,12 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             else if (x > xDefect)
             {
                 // The rectangular area, so unskewed
+                MUSHCOREASSERT(y < xm1Wrap); // needn't wrap any plain y
+                MUSHCOREASSERT(y < xz0Wrap);
+                MUSHCOREASSERT(y < xp1Wrap);
+
+                
+
                 const T& n_m1m1 = inArray.Get(x-1, M1Wrap(y, xm1Wrap));
                 const T& n_z0m1 = inArray.Get(x,   M1Wrap(y, xz0Wrap));
                 // n_p1m1 not used
@@ -716,12 +740,16 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             }
             else // x == xDefect
             {
+                MUSHCOREASSERT(y < xz0Wrap); // needn't wrap x,y
+                MUSHCOREASSERT(y < xp1Wrap); // needn't wrap x+1, y
+                
+
                 // Values to the left of x are skewed
                 const T& n_m1m1 = inArray.Get(x-1, M1Wrap(y-skew, xm1Wrap));
                 const T& n_z0m1 = inArray.Get(x,   M1Wrap(y, xz0Wrap));
                 // n_p1m1 not used
                 
-                const T& n_m1z0 = inArray.Get(x-1, y-skew);
+                const T& n_m1z0 = inArray.Get(x-1, Z0Wrap(y-skew, xm1Wrap));
                 const T& n_z0z0 = inArray.Get(x,   y);
                 const T& n_p1z0 = inArray.Get(x+1, y);
                 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cpsh/PUv+N7hZwaE5of9Kg
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.3 2003/10/18 20:28:39 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.4 2003/10/24 12:39:09 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.4  2003/10/24 12:39:09  southa
+ * Triangular mesh work
+ *
  * Revision 1.3  2003/10/18 20:28:39  southa
  * Subdivision speed tests
  *
@@ -30,6 +33,18 @@
  */
 
 #include "TestMushMeshStandard.h"
+
+
+
+#if defined(HAVE_MUSHMESH_MUSHMESH_H)
+#include <MushMesh/MushMeshSubdivide.h>
+#else
+#if defined(HAVE_MUSHMESH_H)
+#include <MushMeshSubdivide.h>
+#else
+#include "MushMeshSubdivide.h"
+#endif
+#endif
 
 class TestMushMeshSubdivide
 {
