@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xFo+XPP1GOS/msMIb9Dkcg
 /*
- * $Id: MushMesh.h,v 1.5 2003/10/17 12:27:18 southa Exp $
+ * $Id: MushMesh.h,v 1.6 2003/10/18 20:28:38 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.6  2003/10/18 20:28:38  southa
+ * Subdivision speed tests
+ *
  * Revision 1.5  2003/10/17 12:27:18  southa
  * Line end fixes and more mesh work
  *
@@ -37,6 +40,9 @@
 
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
+#include "MushMeshConnector.h"
+#include "MushMeshPatch.h"
+#include "MushMeshPatchPipe.h"
 #include "MushMeshSubdivide.h"
 #include "MushMeshVector.h"
 #include "MushMeshUtils.h"

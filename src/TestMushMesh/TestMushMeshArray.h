@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fToIyQQx8JGxur8jZBbZlg
 /*
- * $Id: TestMushMeshArray.h,v 1.3 2003/10/15 12:23:10 southa Exp $
+ * $Id: TestMushMeshArray.h,v 1.4 2003/10/17 19:33:11 southa Exp $
  * $Log: TestMushMeshArray.h,v $
+ * Revision 1.4  2003/10/17 19:33:11  southa
+ * Mesh patches
+ *
  * Revision 1.3  2003/10/15 12:23:10  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -38,6 +41,13 @@ public:
     static void Install(void);
 
 private:
+    enum
+    {
+        kXMax = 4,
+        kYMax = 5
+    };
+
+    static void ArrayVerify(const MushMeshArray<Mushware::U32>& inArray, const std::string& inName);
     static Mushware::U32 ValueFunction(Mushware::U32 inX, Mushware::U32 inY);
 };
 //%includeGuardEnd {

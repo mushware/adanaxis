@@ -15,7 +15,8 @@
 #include "MushMeshPatch.h"
 
 MushMeshPatch::MushMeshPatch() :
-    m_modCount(1)
+    m_modCount(1),
+    m_moveCount(0)
 {
 }
 
@@ -26,5 +27,15 @@ MushMeshPatch::Touch(void)
     if (m_modCount == 0)
     {
         m_modCount = 1;
+    }
+}
+
+void
+MushMeshPatch::StorageTouch(void)
+{
+    ++m_moveCount;
+    if (m_moveCount == 0)
+    {
+        m_moveCount = 1;
     }
 }

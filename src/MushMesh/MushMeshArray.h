@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.7 2003/10/18 20:28:38 southa Exp $
+ * $Id: MushMeshArray.h,v 1.8 2003/10/19 12:41:42 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.8  2003/10/19 12:41:42  southa
+ * Connectors
+ *
  * Revision 1.7  2003/10/18 20:28:38  southa
  * Subdivision speed tests
  *
@@ -45,6 +48,7 @@
 #include "MushMeshVector.h"
 #include "MushMeshMath.h"
 
+#define MUSHMESHARRAY_VERBOSE_DEBUG
 #ifdef MUSHMESHARRAY_VERBOSE_DEBUG
 #include "MushMeshSTL.h"
 #endif
@@ -57,7 +61,9 @@ public:
     MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
     const T& RefGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    const T& Get(const Mushware::t2U32& inPos) const;
     void Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY);
+    void Set(const T& inValue, const Mushware::t2U32& inPos);
     const Mushware::t2U32 SizeGet(void) const;
     void SizeSet(const Mushware::t2U32& inSize);
     Mushware::U32 XSizeGet(void) const { return m_xSize; }
@@ -66,6 +72,22 @@ public:
     bool EqualIs(const MushMeshArray<T>& inObj) const;
 
     void Print(std::ostream& ioOut) const;
+
+#ifndef HAVE_RESIZING_VALARRAY_ASSIGNMENT
+    MushMeshArray<T>& operator=(const MushMeshArray<T>& inObj)
+    {
+        // With most compilers we must resize the valarray before assignment
+        m_xSize = inObj.m_xSize;
+        m_ySize = inObj.m_ySize;
+        if (m_values.size() != inObj.m_values.size(), 1)
+        {
+            m_values.resize(0); // Prevent copies in the next resize
+            m_values.resize(inObj.m_values.size()+300);
+        }
+        m_values = inObj.m_values;
+        return *this;
+    }
+#endif
 
 private:
     Mushware::U32 m_xSize;
@@ -123,6 +145,13 @@ MushMeshArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
 }
 
 template <class T>
+inline const T&
+MushMeshArray<T>::Get(const Mushware::t2U32& inPos) const
+{
+    return Get(inPos.X(), inPos.Y());
+}
+
+template <class T>
 inline void
 MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
@@ -137,6 +166,13 @@ MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
     MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
 #endif
     m_values[inX + m_xSize * inY] = inValue;
+}
+
+template <class T>
+inline void
+MushMeshArray<T>::Set(const T& inValue, const Mushware::t2U32& inPos)
+{
+    Set(inValue, inPos.X(), inPos.Y());
 }
 
 template <class T>

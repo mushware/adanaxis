@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } W3kyDNAJV5Y8c9Vy1zFOEQ
 /*
- * $Id: MushMeshStitchable.h,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Id: MushMeshStitchable.h,v 1.2 2003/10/19 15:59:34 southa Exp $
  * $Log: MushMeshStitchable.h,v $
+ * Revision 1.2  2003/10/19 15:59:34  southa
+ * Edge manipulation
+ *
  * Revision 1.1  2003/10/19 12:41:42  southa
  * Connectors
  *
@@ -34,6 +37,10 @@ class MushMeshStitchable
 {
 public:
     MushMeshStitchable();
+
+    const Mushware::tGeometryArray& GeometryGet(void) const { MUSHCOREASSERT(m_pGeometry != NULL); return *m_pGeometry; } 
+    const Mushware::tTexCoordArrayVector& TexCoordGet(void) const { MUSHCOREASSERT(m_pTexVector != NULL); return *m_pTexVector; } 
+    const MushMeshSelection& SelectionGet() const { return m_selection; }
 
     void SourceSet(const Mushware::tGeometryArray *inpGeometry,
         const Mushware::tTexCoordArrayVector *inpTexVector,

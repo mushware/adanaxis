@@ -113,6 +113,14 @@ SOURCE=..\..\src\TestMushMesh\TestMushMeshMain.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\TestMushMesh\TestMushMeshPatch.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshPatch.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\TestMushMesh\TestMushMeshStandard.cpp
 # End Source File
 # Begin Source File
@@ -210,6 +218,14 @@ SOURCE=..\..\src\MushMesh\MushMeshPatchTypes.cpp
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshPatchTypes.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshSelection.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshSelection.h
 # End Source File
 # Begin Source File
 

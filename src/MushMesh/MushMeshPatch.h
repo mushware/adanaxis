@@ -44,10 +44,15 @@ public:
     virtual void NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge) = 0;
 
     Mushware::U32 ModCountGet(void) { return m_modCount; }
+    Mushware::U32 MoveCountGet(void) { return m_moveCount; }
     void Touch(void);
+
+protected:
+    void StorageTouch(void);
 
 private:
     Mushware::U32 m_modCount;
+    Mushware::U32 m_moveCount;
 };
 
 //%includeGuardEnd {

@@ -33,7 +33,9 @@ class MushMeshPatchPipe : public MushMeshPatch
 public:
     typedef Mushware::t2BoxU32 tActiveBox;
 
+    virtual const Mushware::tGeometryArray& GeometryGet(void);
     virtual void GeometrySet(const Mushware::tGeometryArray& inArray);
+    virtual const Mushware::tTexCoordArray& TexCoordGet(Mushware::U32 inIndex);
     virtual void TexCoordSet(const Mushware::tTexCoordArray& inArray, Mushware::U32 inIndex);
 
     // virtual void Render(void /* some render context */) = 0;

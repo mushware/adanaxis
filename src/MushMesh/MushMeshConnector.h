@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rkr6AHzeP46l9zTid8JO0g
 /*
- * $Id: MushMeshConnector.h,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Id: MushMeshConnector.h,v 1.2 2003/10/19 15:59:33 southa Exp $
  * $Log: MushMeshConnector.h,v $
+ * Revision 1.2  2003/10/19 15:59:33  southa
+ * Edge manipulation
+ *
  * Revision 1.1  2003/10/19 12:41:42  southa
  * Connectors
  *
@@ -34,13 +37,17 @@ public:
     MushMeshConnector();
     MushMeshConnector(MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1,
         MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1);
-    
+
+    void StitchingUpdate(void);
+    void TargetsUpdate(void);
+
 private:
     struct tTarget
     {
         MushMeshPatch *pPatch;
         MushMeshPatch::tEdgeSelector edgeSelector;
-        Mushware::U32 modCounter;
+        Mushware::U32 modCount;
+        Mushware::U32 moveCount;
         MushMeshStitchable stitchable;
     };
     std::vector<tTarget> m_targets;

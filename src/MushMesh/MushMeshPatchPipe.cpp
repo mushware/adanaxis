@@ -15,21 +15,43 @@
 
 #include "MushMeshPatchPipe.h"
 
+#include "MushMeshSTL.h"
 #include "MushMeshSubdivide.h"
+
 
 using namespace Mushware;
 using namespace std;
+
+const Mushware::tGeometryArray&
+MushMeshPatchPipe::GeometryGet(void)
+{
+    return m_geometry.BaseGet();
+}
 
 void
 MushMeshPatchPipe::GeometrySet(const tGeometryArray& inArray)
 {
     Touch();
+    StorageTouch();
     m_activeBox = t2BoxU32(t2U32(1,1), inArray.SizeGet() - 1);
     if (m_geometry.BaseGet().SizeGet() != inArray.SizeGet())
     {
         EdgeDefsGenerate();
     }
+
     m_geometry.BaseWRefGet() = inArray;
+}
+
+const Mushware::tTexCoordArray&
+MushMeshPatchPipe::TexCoordGet(Mushware::U32 inIndex)
+{
+    if (inIndex >= m_texCoords.BaseGet().size())
+    {
+        ostringstream message;
+        message << "TexCoordGet index too high (" << inIndex << " >= " << m_texCoords.BaseWRefGet().size() << ")";
+        throw MushcoreReferenceFail(message.str());
+    }
+    return m_texCoords.BaseGet()[inIndex];
 }
 
 
@@ -37,32 +59,37 @@ void
 MushMeshPatchPipe::TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIndex)
 {
     Touch();
+    StorageTouch();
     if (m_texCoords.BaseWRefGet().size() <= inIndex)
     {
         m_texCoords.BaseWRefGet().resize(inIndex + 1);
     }
+
     m_texCoords.BaseWRefGet()[inIndex] = inArray;
 }
 
 void
 MushMeshPatchPipe::EdgeDefsGenerate(void)
 {
+    /* This lot needs storing centrally, but calculate for each patch for now.
+     * It's about 320 bytes
+     */
     m_edgeDefs.resize(MushMeshPatch::kNumEdgeSelectors);
 
     m_edgeDefs[kEdgeLeft].start = m_activeBox.StartGet();
-    m_edgeDefs[kEdgeLeft].stride = t2U32(1, 0);
+    m_edgeDefs[kEdgeLeft].stride = t2U32(0, 1);
     m_edgeDefs[kEdgeLeft].size = m_activeBox.SizeGet().Y();
 
     m_edgeDefs[kEdgeRight].start = t2U32(m_activeBox.EndGet().X() - 1, m_activeBox.StartGet().Y());
-    m_edgeDefs[kEdgeRight].stride = t2U32(1, 0);
+    m_edgeDefs[kEdgeRight].stride = t2U32(0, 1);
     m_edgeDefs[kEdgeRight].size = m_activeBox.SizeGet().Y();
 
     m_edgeDefs[kEdgeBottom].start = m_activeBox.StartGet();
-    m_edgeDefs[kEdgeBottom].stride = t2U32(0, 1);
+    m_edgeDefs[kEdgeBottom].stride = t2U32(1, 0);
     m_edgeDefs[kEdgeBottom].size = m_activeBox.SizeGet().X();
 
     m_edgeDefs[kEdgeTop].start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 1);
-    m_edgeDefs[kEdgeTop].stride = t2U32(0, 1);
+    m_edgeDefs[kEdgeTop].stride = t2U32(1, 0);
     m_edgeDefs[kEdgeTop].size = m_activeBox.SizeGet().X();
 
     m_edgeDefs[kPointBottomLeft].start = m_activeBox.StartGet();
@@ -85,19 +112,19 @@ MushMeshPatchPipe::EdgeDefsGenerate(void)
     m_neighbourDefs.resize(MushMeshPatch::kNumEdgeSelectors);
 
     m_neighbourDefs[kEdgeLeft].start = m_activeBox.StartGet() - t2U32(1, 0);
-    m_neighbourDefs[kEdgeLeft].stride = t2U32(1, 0);
+    m_neighbourDefs[kEdgeLeft].stride = t2U32(0, 1);
     m_neighbourDefs[kEdgeLeft].size = m_activeBox.SizeGet().Y();
 
     m_neighbourDefs[kEdgeRight].start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y());
-    m_neighbourDefs[kEdgeRight].stride = t2U32(1, 0);
+    m_neighbourDefs[kEdgeRight].stride = t2U32(0, 1);
     m_neighbourDefs[kEdgeRight].size = m_activeBox.SizeGet().Y();
 
     m_neighbourDefs[kEdgeBottom].start = m_activeBox.StartGet() - t2U32(0, 1);
-    m_neighbourDefs[kEdgeBottom].stride = t2U32(0, 1);
+    m_neighbourDefs[kEdgeBottom].stride = t2U32(1, 0);
     m_neighbourDefs[kEdgeBottom].size = m_activeBox.SizeGet().X();
 
     m_neighbourDefs[kEdgeTop].start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y());
-    m_neighbourDefs[kEdgeTop].stride = t2U32(0, 1);
+    m_neighbourDefs[kEdgeTop].stride = t2U32(1, 0);
     m_neighbourDefs[kEdgeTop].size = m_activeBox.SizeGet().X();
 
     m_neighbourDefs[kPointBottomLeft].start = m_activeBox.StartGet() - t2U32(1, 1);
@@ -128,7 +155,33 @@ MushMeshPatchPipe::EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEd
 void
 MushMeshPatchPipe::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge)
 {
+    MUSHCOREASSERT(inEdge < kNumEdgeSelectors);
+    U32 size = m_neighbourDefs[inEdge].size;
+    if (size != inStitchable.SelectionGet().size)
+    {
+        throw MushcoreDataFail("Different edge sizes in connected patches");
+    }
+    U32 numTextures = inStitchable.TexCoordGet().size();
+    if (numTextures != m_texCoords.BaseGet().size())
+    {
+        throw MushcoreDataFail("Different number of textures in connected patches");
+    }
 
+    t2U32 readPos = inStitchable.SelectionGet().start;
+    t2U32 writePos = m_neighbourDefs[inEdge].start;
+    t2U32 readStride = inStitchable.SelectionGet().stride;
+    t2U32 writeStride = m_neighbourDefs[inEdge].stride;
+
+    for (U32 i=0; i<size; ++i)
+    {
+        m_geometry.BaseWRefGet().Set(inStitchable.GeometryGet().Get(readPos), writePos);
+        for (U32 j=0; j<numTextures; ++j)
+        {
+            m_texCoords.BaseWRefGet()[j].Set(inStitchable.TexCoordGet()[j].Get(readPos), writePos);
+        }
+        readPos += readStride;
+        writePos += writeStride;
+    }
 }
 
 void
@@ -149,11 +202,19 @@ MushMeshPatchPipe::Subdivide(tVal inLevel)
         m_geometry.Swap();
         MushMeshSubdivide<tGeometryVector>::RectangularSubdivide(
             m_geometry.CurrentWRefGet(),
-            m_geometry.PreviousWRefGet(),
+            m_geometry.PreviousGet(),
             m_activeBox,
             proportion);
 
-        // ActiveBoxDouble();
+        m_texCoords.Swap();
+        for (U32 i=0; i<m_texCoords.BaseGet().size(); ++i)
+        {
+            MushMeshSubdivide<tTexCoordVector>::RectangularSubdivide(
+                m_texCoords.CurrentWRefGet()[i],
+                m_texCoords.PreviousGet()[i],
+                m_activeBox,
+                proportion);
+        }
     }
 }
 

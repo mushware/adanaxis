@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JlxNvBXL6uC0NayW/SROGA
 /*
- * $Id: MushMeshVector.h,v 1.6 2003/10/17 12:27:19 southa Exp $
+ * $Id: MushMeshVector.h,v 1.7 2003/10/18 20:28:38 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.7  2003/10/18 20:28:38  southa
+ * Subdivision speed tests
+ *
  * Revision 1.6  2003/10/17 12:27:19  southa
  * Line end fixes and more mesh work
  *
@@ -49,14 +52,35 @@ public:
     typedef MushMeshVector<T, D> tThis;
 
     MushMeshVector() {}
+    explicit MushMeshVector(const T& in0)
+    {
+        MUSHCOREASSERT(D >= 1);
+        m_value[0] = in0;
+    }
     MushMeshVector(const T& in0, const T& in1)
     {
         MUSHCOREASSERT(D >= 2);
         m_value[0] = in0;
         m_value[1] = in1;
     }
+    MushMeshVector(const T& in0, const T& in1, const T& in2)
+    {
+        MUSHCOREASSERT(D >= 3);
+        m_value[0] = in0;
+        m_value[1] = in1;
+        m_value[2] = in2;
+    }
+    MushMeshVector(const T& in0, const T& in1, const T& in2, const T& in3)
+    {
+        MUSHCOREASSERT(D >= 4);
+        m_value[0] = in0;
+        m_value[1] = in1;
+        m_value[2] = in2;
+        m_value[3] = in3;
+    }
 
     const T& Get(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
+    T& WRefGet(Mushware::U32 inIndex) { BoundsCheck(inIndex); return m_value[inIndex]; }
     void Set(const T& inValue, Mushware::U32 inIndex) { BoundsCheck(inIndex); m_value[inIndex] = inValue; }
     
     const T& X(void) const { return Get(0); }
@@ -70,11 +94,27 @@ public:
     static Mushware::U32 SizeGet(void) { return D; }
     bool EqualIs(const tThis& b) const;
 
+    // Unchecked array operators
+    const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
+    T& operator[](Mushware::U32 inIndex) { return m_value[inIndex]; }
+
 protected:
     void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushMeshUtils::BoundaryThrow(i, D); }
 
-public:
-    T m_value[D]; 
+private:
+    T m_value[D];
+
+    // Declare various operators which need acess to m_value as friends
+    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator-=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator-=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend bool operator==(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend bool operator!=(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
 };
 
 // Operator helper functions

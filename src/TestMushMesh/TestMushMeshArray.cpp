@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } R8QEHD8pK6fOXGrE7cqcdg
 /*
- * $Id: TestMushMeshArray.cpp,v 1.3 2003/10/15 12:23:10 southa Exp $
+ * $Id: TestMushMeshArray.cpp,v 1.4 2003/10/17 19:33:11 southa Exp $
  * $Log: TestMushMeshArray.cpp,v $
+ * Revision 1.4  2003/10/17 19:33:11  southa
+ * Mesh patches
+ *
  * Revision 1.3  2003/10/15 12:23:10  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -31,15 +34,43 @@ using namespace std;
 
 MushcoreInstaller TestMushMeshArrayInstaller(TestMushMeshArray::Install);
 
+void
+TestMushMeshArray::ArrayVerify(const MushMeshArray<U32>& inArray, const string& inName)
+{
+    for (U32 x=0; x<kXMax; ++x)
+    {
+        for (U32 y=0; y<kYMax; ++y)
+        {
+            if (inArray.Get(x, y) != ValueFunction(x, y))
+            {
+                throw(MushcoreLogicFail(inName+" failed"));
+            }
+        }
+    }
+}
+
 MushcoreScalar
 TestMushMeshArray::TestArray(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    enum
+    // Check valarray assignment
+    typedef MushwareValarray<U32> tValarray;
+    tValarray srcValarray;
+
+    srcValarray.resize(1);
+    srcValarray[0] = 3;
+
     {
-        kXMax = 4,
-        kYMax = 5
-    };
-    typedef MushMeshVector<tVal, 2> t2vecVal;
+        tValarray destValarray;
+        destValarray = srcValarray;
+        if (destValarray.size() != srcValarray.size() ||
+            destValarray[0] != srcValarray[0])
+        {
+#ifdef HAVE_RESIZING_VALARRAY_ASSIGNMENT
+            throw MushcoreLogicFail("Resizing valarray assignment doesn't work, but HAVE_RESIZING_VALARRAY_ASSIGNMENT is #defined");
+#endif
+        }
+    }
+
     // Basic operations
     MushMeshArray<U32> meshArray(kXMax, kYMax);
 
@@ -51,16 +82,13 @@ TestMushMeshArray::TestArray(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         }
     }
 
-    for (U32 x=0; x<kXMax; ++x)
-    {
-        for (U32 y=0; y<kYMax; ++y)
-        {
-            if (meshArray.Get(x, y) != ValueFunction(x, y))
-            {
-                throw(MushcoreLogicFail("MeshArray readback failed"));
-            }
-        }
-    }
+    ArrayVerify(meshArray, "Readback");
+
+    MushMeshArray<U32> destArray;
+
+    destArray = meshArray;
+
+    ArrayVerify(destArray, "Assignment");
 
     return MushcoreScalar(0);
 }

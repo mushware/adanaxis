@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.5 2003/10/18 12:58:39 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.6 2003/10/18 20:28:39 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.6  2003/10/18 20:28:39  southa
+ * Subdivision speed tests
+ *
  * Revision 1.5  2003/10/18 12:58:39  southa
  * Subdivision implementation
  *
@@ -183,7 +186,7 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     ValueTimeTest<long>("  long long  ");
     ValueTimeTest<unsigned long long>(" ulong long  ");
 #endif
-    ValueTimeTest<float>("(dummy) float  ");
+    ValueTimeTest<float>("(dummy) float");
     ValueTimeTest<float>("Single float ");
     ValueTimeTest<double>("Single double");
     VectorTimeTest< MushMeshVector<tVal, 1> >("1D vector    ");

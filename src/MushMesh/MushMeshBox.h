@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } zg4dYJ2vck3XL9zB+0VZHQ
 /*
- * $Id: MushMeshBox.h,v 1.1 2003/10/17 12:27:19 southa Exp $
+ * $Id: MushMeshBox.h,v 1.2 2003/10/17 19:33:10 southa Exp $
  * $Log: MushMeshBox.h,v $
+ * Revision 1.2  2003/10/17 19:33:10  southa
+ * Mesh patches
+ *
  * Revision 1.1  2003/10/17 12:27:19  southa
  * Line end fixes and more mesh work
  *
@@ -54,6 +57,12 @@ public:
     bool EqualIs(const MushMeshBox& inObj) const;
     void Print(std::ostream& ioOut) const;
 };
+
+template <class T>
+inline
+MushMeshBox<T>::MushMeshBox()
+{
+}
 
 template <class T>
 inline
