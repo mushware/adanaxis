@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.11 2004/01/02 21:13:10 southa Exp $
+ * $Id: MushMesh.h,v 1.12 2004/01/04 17:02:30 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.12  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.11  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -59,6 +62,7 @@
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
+#include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
 // MushMeshSubdivide.h excluded
 #include "MushMeshTriangularArray.h"

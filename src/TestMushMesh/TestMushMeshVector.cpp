@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2oLxPDGEczTZy/E4MTcCKw
 /*
- * $Id: TestMushMeshVector.cpp,v 1.6 2004/01/02 21:13:17 southa Exp $
+ * $Id: TestMushMeshVector.cpp,v 1.7 2004/01/05 20:13:15 southa Exp $
  * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.7  2004/01/05 20:13:15  southa
+ * Target and test updates
+ *
  * Revision 1.6  2004/01/02 21:13:17  southa
  * Source conditioning
  *
@@ -65,14 +68,18 @@ TestMushMeshVector::TestVector(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     {
         throw(MushcoreLogicFail("operator - failed"));
     }
-    if (a * b != t2vecVal(2,4))
+    if (a * b != 6)
     {
-        throw(MushcoreLogicFail("operator * failed"));
+        ostringstream message;
+        message << "operator * failed : " << a << " * " << b << " != " << a * b;
+        throw(MushcoreLogicFail(message.str()));
     }
+#if 0
     if (a / b != t2vecVal(0.5,1))
     {
         throw(MushcoreLogicFail("operator / failed"));
     }
+#endif
     if (a * 2 != t2vecVal(2,4))
     {
         throw(MushcoreLogicFail("operator * 2 failed"));

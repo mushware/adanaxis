@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.12 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushMeshVector.h,v 1.13 2004/09/26 20:43:19 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.13  2004/09/26 20:43:19  southa
+ * TestMustl fixes
+ *
  * Revision 1.12  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *
@@ -343,6 +346,7 @@ operator-(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
     return retValue;
 }
 
+#if 0
 template <class T, Mushware::U32 D>
 inline MushMeshVector<T, D>
 operator*(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
@@ -358,6 +362,20 @@ operator/(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
 {
     MushMeshVector<T, D> retValue(a);
     retValue /= b;
+    return retValue;
+}
+#endif
+
+// Inner product
+template <class T, Mushware::U32 D>
+inline T
+operator*(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
+{
+    T retValue = a[0]*b[0]; // Avoid using 0
+    for (Mushware::U32 i=1; i<D; ++i)
+    {
+        retValue += a[i]*b[i];
+    }
     return retValue;
 }
 
