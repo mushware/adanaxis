@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } ZOIfzk0ChCSMw9uZrC+PiA
 /*
- * $Id: MushMeshOps.cpp,v 1.1 2004/11/17 23:43:47 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.2 2004/12/12 10:55:37 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.2  2004/12/12 10:55:37  southa
+ * Quaternion conversions
+ *
  * Revision 1.1  2004/11/17 23:43:47  southa
  * Added outer product
  *
@@ -107,9 +110,9 @@ MushMeshOps::QuaternionPairToRotationMatrix(Mushware::t4x4Val& outMatrix, const 
 void
 MushMeshOps::RotationMatrixToQuaternionPair(Mushware::tQValPair& outPair, const Mushware::t4x4Val& inMatrix)
 {
-    tQVal qS = tQVal(inMatrix.RCGet(0,0),-inMatrix.RCGet(1,0),-inMatrix.RCGet(2,0),-inMatrix.RCGet(3,0));
+    tQVal qS = tQVal(inMatrix.ColumnGet(0));
     
-    t4x4Val mS = PreQuaternionToMatrix(qS);
+    t4x4Val mS = PreQuaternionToMatrix(qS.ConjugateGet());
     t4x4Val mP = mS * inMatrix;
     
     //std::cout << "mA=" << inMatrix << endl;
@@ -206,6 +209,6 @@ Q3LARGEST:
     }
     
     tQVal qP = tQVal(q0, q1, q2, q3);
-    outPair.first = qS.ConjugateGet() * qP;
+    outPair.first = qS * qP;
     outPair.second = qP.ConjugateGet();
 }

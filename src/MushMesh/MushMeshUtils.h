@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0wfuXnSBCMb2QK1DMdaKSw
 /*
- * $Id: MushMeshUtils.h,v 1.6 2003/10/24 12:39:09 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.7 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.7  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.6  2003/10/24 12:39:09  southa
  * Triangular mesh work
  *
@@ -49,7 +52,6 @@ public:
     static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
     static Mushware::tVal SubdivisionAlphaGet(Mushware::U32 inN);
     static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN);
-    // static Mushware::U32 TriangleOrderGet(const MushMeshVector<Mushware::U32, 2>& inSize);
     static Mushware::U32 TriangleLimitGet(Mushware::U32 inX, Mushware::U32 inOrder);
 
     template<class T> static bool EqualIs(const MushwareValarray<T>& a, const MushwareValarray<T>& b);

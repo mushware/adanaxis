@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 3XzxqUPWd6V+FRewD4IMHw
 /*
- * $Id: MushMeshUtils.cpp,v 1.5 2003/10/24 12:39:09 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.6 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.6  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/10/24 12:39:09  southa
  * Triangular mesh work
  *
@@ -66,25 +69,6 @@ MushMeshUtils::BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mus
     message << "Access out of bounds (" << inValue1 << " >= " << inLimit1 << " or " << inValue2 << " >= " << inLimit2 << ')';
     throw MushcoreLogicFail(message.str()) ;
 }
-
-#if 0
-// Doesn't work
-Mushware::U32
-MushMeshUtils::TriangleOrderGet(const Mushware::t2U32& inSize)
-{
-    MUSHCOREASSERT(inSize.X() > 2);
-    MUSHCOREASSERT(inSize.Y() > 1);
-
-    U32 order = inSize.Y() / (inSize.X() - 2);
-    if (order * (inSize.X() - 2) != inSize.Y())
-    {
-        ostringstream message;
-        message << "Bad triangle size: x=" << inSize.X() << ", y=" << inSize.Y() << ", y != n(x-2)";
-        throw MushcoreDataFail(message.str());
-    }
-    return order;
-}
-#endif
 
 tVal
 MushMeshUtils::SubdivisionAlphaCalculate(Mushware::U32 inN)

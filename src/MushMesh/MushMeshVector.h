@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.14 2004/10/31 09:22:51 southa Exp $
+ * $Id: MushMeshVector.h,v 1.15 2004/11/17 23:43:47 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.15  2004/11/17 23:43:47  southa
+ * Added outer product
+ *
  * Revision 1.14  2004/10/31 09:22:51  southa
  * Added MushMeshPreMatrix
  *
@@ -101,7 +104,6 @@ public:
     }
 
     const T& Get(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
-    T& WRefGet(Mushware::U32 inIndex) { BoundsCheck(inIndex); return m_value[inIndex]; }
     void Set(const T& inValue, Mushware::U32 inIndex) { BoundsCheck(inIndex); m_value[inIndex] = inValue; }
     
     const T& X(void) const { return Get(0); }
@@ -119,7 +121,6 @@ public:
 
     // Unchecked array operators
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
-    T& operator[](Mushware::U32 inIndex) { return m_value[inIndex]; }
 
 protected:
     void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushMeshUtils::BoundaryThrow(i, D); }

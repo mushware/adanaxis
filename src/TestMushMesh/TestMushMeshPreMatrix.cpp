@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } UYsoSZkaMLApIrAjLIrskA
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshPreMatrix.cpp,v 1.1 2004/10/31 09:22:51 southa Exp $
+ * $Log: TestMushMeshPreMatrix.cpp,v $
+ * Revision 1.1  2004/10/31 09:22:51  southa
+ * Added MushMeshPreMatrix
+ *
  */
 
 #include "TestMushMeshPreMatrix.h"
@@ -44,7 +47,7 @@ TestMushMeshPreMatrix::TestPreMatrix(MushcoreCommand& ioCommand, MushcoreEnv& io
             MushMeshVector<tVal, 4> postVector(3, 5, 7, 11);
             MushMeshVector<tVal, 4> resultVector(0, 0, 0, 0);
     
-            resultVector[i] = 2*postVector[j];
+            resultVector.Set(2*postVector[j], i);
             
             if (preMatrix * postVector != resultVector)
             {

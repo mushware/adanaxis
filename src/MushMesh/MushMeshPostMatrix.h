@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } FzXzTmyb4EeEYrK5+Soi7A
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshPostMatrix.h,v 1.1 2004/12/06 20:44:17 southa Exp $
+ * $Log: MushMeshPostMatrix.h,v $
+ * Revision 1.1  2004/12/06 20:44:17  southa
+ * Quaternion and matrix operations
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -73,7 +76,7 @@ public:
     
     void RCSet(const T& inValue, Mushware::U32 inR, Mushware::U32 inC)
     {
-        m_value[inC][inR] = inValue;
+        m_value[inC].Set(inValue, inR);
     }
     
     const tThisVec& ColumnGet(Mushware::U32 inIndex) const { return m_value[inIndex]; }

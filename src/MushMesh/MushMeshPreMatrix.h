@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0u0Dmc4oDcZxueU4XtX+Cw
 /*
- * $Id: MushMeshPreMatrix.h,v 1.3 2004/12/06 20:44:17 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.4 2004/12/12 10:55:37 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.4  2004/12/12 10:55:37  southa
+ * Quaternion conversions
+ *
  * Revision 1.3  2004/12/06 20:44:17  southa
  * Quaternion and matrix operations
  *
@@ -70,27 +73,45 @@ public:
         m_value[2] = in2;
         m_value[3] = in3;
     }
-    
+        
     const T& RCGet(Mushware::U32 inR, Mushware::U32 inC) const
     {
+        RCBoundsCheck(inR, inC);
         return m_value[inR][inC];
     }
     
     void RCSet(const T& inValue, Mushware::U32 inR, Mushware::U32 inC)
     {
-        m_value[inR][inC] = inValue;
+        RCBoundsCheck(inR, inC);
+        m_value[inR].Set(inValue, inC);
     }
     
-    const tThisVec& RowGet(Mushware::U32 inIndex) const { return m_value[inIndex]; }
-    tThisVec& RowGet(Mushware::U32 inIndex) { return m_value[inIndex]; }
-    void RowSet(const tThisVec& inVec, Mushware::U32 inIndex) { m_value[inIndex] = inVec; }
+    const tThisVec& RowGet(Mushware::U32 inR) const { RowBoundsCheck(inR); return m_value[inR]; }
+    tThisVec ColumnGet(Mushware::U32 inC) const;
+
+    void RowSet(const tThisVec& inVec, Mushware::U32 inR) { RowBoundsCheck(inR); m_value[inR] = inVec; }
+    
+protected:
+    void RowBoundsCheck(Mushware::U32 inR) const { if (inR >= R) MushMeshUtils::BoundaryThrow(inR, R); }
+    void ColumnBoundsCheck(Mushware::U32 inC) const { if (inC >= C) MushMeshUtils::BoundaryThrow(inC, C); }
+    void RCBoundsCheck(Mushware::U32 inR, Mushware::U32 inC) const { RowBoundsCheck(inR); ColumnBoundsCheck(inC); }
     
 private:
     tThisVec m_value[R];
-    
-    //template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const fnI& b);
-    
 };
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline typename MushMeshPreMatrix<T, C, R>::tThisVec
+MushMeshPreMatrix<T, C, R>::ColumnGet(Mushware::U32 inC) const
+{
+    ColumnBoundsCheck(inC);
+    MushMeshVector<T, R> retValue;
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        retValue.Set(m_value[r][inC], r);
+    }
+    return retValue;
+}
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
 inline MushMeshVector<T, R>
@@ -99,11 +120,10 @@ operator*(const MushMeshPreMatrix<T, C, R>& a, const MushMeshVector<T, C>& b)
     MushMeshVector<T, R> retValue;
     for (Mushware::U32 i = 0; i < R; ++i)
     {
-        retValue[i] = a.RowGet(i) * b;
+        retValue.Set(a.RowGet(i) * b, i);
     }
     return retValue;
 }
-
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
 inline bool
