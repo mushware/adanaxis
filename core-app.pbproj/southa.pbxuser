@@ -170,6 +170,154 @@
 		vrLen = 525;
 		vrLoc = 0;
 	};
+	F510CFDC0365F6FD01A80164 = {
+		fRef = F52B3C01028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreAutoMonkey.h: Swap";
+		rLen = 0;
+		rLoc = 1766;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	F510CFDD0365F6FD01A80164 = {
+		fRef = F510CFE90365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "MakeInstaller.sh: 3";
+		rLen = 517;
+		rLoc = 11;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 0;
+	};
+	F510CFDE0365F6FD01A80164 = {
+		fRef = F510CFE60365F6FD01A80164;
+		isa = PBXTextBookmark;
+		name = "MakeRelease.sh: 2";
+		rLen = 437;
+		rLoc = 10;
+		rType = 0;
+		vrLen = 816;
+		vrLoc = 0;
+	};
+	F510CFDF0365F6FD01A80164 = {
+		fRef = F510CFEC0365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 200";
+		rLen = 0;
+		rLoc = 8231;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 7510;
+	};
+	F510CFE10365F6FD01A80164 = {
+		fRef = F52B3C01028C26530179D0A8;
+		isa = PBXTextBookmark;
+		name = "CoreAutoMonkey.h: Swap";
+		rLen = 0;
+		rLoc = 1766;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	F510CFE20365F6FD01A80164 = {
+		fRef = F510CFE80365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "MakeInstaller.sh: 3";
+		rLen = 517;
+		rLoc = 11;
+		rType = 0;
+		vrLen = 823;
+		vrLoc = 0;
+	};
+	F510CFE30365F6FD01A80164 = {
+		fRef = F510CFEB0365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "MakeRelease.sh: 2";
+		rLen = 437;
+		rLoc = 10;
+		rType = 0;
+		vrLen = 816;
+		vrLoc = 0;
+	};
+	F510CFE40365F6FD01A80164 = {
+		fRef = F510CFEA0365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "configure.in: 200";
+		rLen = 0;
+		rLoc = 8231;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 7510;
+	};
+	F510CFE50365F6FD01A80164 = {
+		fRef = F510CFED0365F6FE01A80164;
+		isa = PBXTextBookmark;
+		name = "Makefile.am: 18";
+		rLen = 0;
+		rLoc = 529;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 447;
+	};
+	F510CFE60365F6FD01A80164 = {
+		isa = PBXFileReference;
+		name = MakeRelease.sh;
+		path = "/Users/southa/core-app/MakeRelease.sh";
+		refType = 0;
+	};
+	F510CFE80365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = MakeInstaller.sh;
+		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
+		refType = 0;
+	};
+	F510CFE90365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = MakeInstaller.sh;
+		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
+		refType = 0;
+	};
+	F510CFEA0365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
+	F510CFEB0365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = MakeRelease.sh;
+		path = "/Users/southa/core-app/MakeRelease.sh";
+		refType = 0;
+	};
+	F510CFEC0365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = configure.in;
+		path = "/Users/southa/core-app/configure.in";
+		refType = 0;
+	};
+	F510CFED0365F6FE01A80164 = {
+		isa = PBXFileReference;
+		name = Makefile.am;
+		path = "/Users/southa/core-app/Makefile.am";
+		refType = 0;
+	};
+	F510CFF60365F92201A80164 = {
+		fRef = F510CFF70365F92301A80164;
+		isa = PBXTextBookmark;
+		name = "Makefile.am: 18";
+		rLen = 0;
+		rLoc = 529;
+		rType = 0;
+		vrLen = 666;
+		vrLoc = 447;
+	};
+	F510CFF70365F92301A80164 = {
+		isa = PBXFileReference;
+		name = Makefile.am;
+		path = "/Users/southa/core-app/Makefile.am";
+		refType = 0;
+	};
 	F5167B0702A28A98019F6D6A = {
 		fRef = F5B25BD202187072017E032D;
 		isa = PBXTextBookmark;
@@ -8440,7 +8588,7 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 57009416;
+			PBXPerProjectTemplateStateSaveDate = 57018192;
 			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
 				ContentSize = "{685, 434}";
 				LeftSlideOut = {
@@ -8563,129 +8711,7 @@
 				StatusViewVisible = YES;
 				Template = F5314676015831810DCA290F;
 				ToolbarVisible = YES;
-				WindowLocation = "{213, 449}";
-			};
-			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
-				ContentSize = "{594, 303}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {594, 280}}";
-					Split0 = {
-						ActiveTab = 1;
-						Collapsed = YES;
-						Frame = "{{0, 0}, {594, 280}}";
-						Split0 = {
-							Frame = "{{1e+06, 1e+06}, {594, 0}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {804, 321}}";
-								Split0 = {
-									Frame = "{{0, 24}, {804, 297}}";
-									Split0 = {
-										Frame = "{{0, 0}, {394, 297}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											167.123,
-										);
-										Frame = "{{403, 0}, {401, 297}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {804, 321}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {594, 274}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {594, 274}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {806, 237}}";
-							BuildTranscriptFrame = "{{0, 246}, {806, 3}}";
-							Frame = "{{0, 0}, {804, 247}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {300, 533}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							267,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 386}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 386}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				StatusViewVisible = YES;
-				Template = F5534CB2020F3F8A0DCA290F;
-				ToolbarVisible = YES;
-				WindowLocation = "{4, 633}";
+				WindowLocation = "{335, 346}";
 			};
 			PBXWorkspaceContents = (
 				{
@@ -8693,7 +8719,7 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F59595600365EB4801A80164;
+									bookmark = F510CFF60365F92201A80164;
 									history = (
 										F57BD7CC028AF27C01AD87C4,
 										F57B3132028C66AB0195BBD7,
@@ -9015,13 +9041,8 @@
 										F59573310362D3BE01A80164,
 										F59573320362D3BE01A80164,
 										F5B82F830362E7DC01A80164,
-										F5B82F840362E7DC01A80164,
-										F5B82F850362E7DC01A80164,
-										F5B82F860362E7DC01A80164,
 										F5B82F870362E7DC01A80164,
 										F5B82F880362E7DC01A80164,
-										F5B82F8A0362E7DC01A80164,
-										F5B82F8B0362E7DC01A80164,
 										F59159070363268601A80164,
 										F59159080363268601A80164,
 										F599EBB00365C60201A80164,
@@ -9029,7 +9050,16 @@
 										F595954B0365E4B601A80164,
 										F595955C0365EB4801A80164,
 										F595955D0365EB4801A80164,
-										F5E44F320358946E01A80166,
+										F510CFDC0365F6FD01A80164,
+										F510CFDD0365F6FD01A80164,
+										F510CFDE0365F6FD01A80164,
+										F510CFDF0365F6FD01A80164,
+										F510CFE50365F6FD01A80164,
+									);
+									nextStack = (
+										F510CFE20365F6FD01A80164,
+										F510CFE30365F6FD01A80164,
+										F510CFE40365F6FD01A80164,
 									);
 									prevStack = (
 										F57BD7D1028AF27C01AD87C4,
@@ -14343,7 +14373,6 @@
 										F595733C0362D3BE01A80164,
 										F5B82F8D0362E7DC01A80164,
 										F5B82F8E0362E7DC01A80164,
-										F5B82F8F0362E7DC01A80164,
 										F5B82F900362E7DC01A80164,
 										F5B82F910362E7DC01A80164,
 										F5B82F920362E7DC01A80164,
@@ -14351,7 +14380,6 @@
 										F5B82F940362E7DC01A80164,
 										F5B82F950362E7DC01A80164,
 										F5B82F960362E7DC01A80164,
-										F5B82F970362E7DC01A80164,
 										F5B82F980362E7DC01A80164,
 										F5B82F990362E7DC01A80164,
 										F59159090363268601A80164,
@@ -14361,11 +14389,47 @@
 										F595954D0365E4B601A80164,
 										F595955E0365EB4801A80164,
 										F595955F0365EB4801A80164,
+										F510CFE10365F6FD01A80164,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
 									Frame = "{{0, 0}, {697, 373}}";
+									NavBarVisible = YES;
+								};
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Debugger = {
+									Split0 = {
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									TabCount = 2;
+								};
+								LauncherConfigVersion = 7;
+							};
+							Tab1 = {
+								LauncherConfigVersion = 3;
+								Runner = {
+								};
+							};
+							TabCount = 4;
+						};
+						SplitCount = 1;
+						Tab1 = {
+							OptionsSetName = "Hierarchy, all classes";
+						};
+						TabCount = 5;
+					};
+				},
+				{
+					LeftSlideOut = {
+						Split0 = {
+							Split0 = {
+								NavCount = 1;
+								NavGeometry0 = {
+									Frame = "{{0, 0}, {685, 190}}";
 									NavBarVisible = YES;
 								};
 							};
@@ -14520,8 +14584,132 @@
 					ToolbarVisible = YES;
 					WindowLocation = "{63, 495}";
 				},
+				{
+					ContentSize = "{685, 434}";
+					LeftSlideOut = {
+						Collapsed = NO;
+						Frame = "{{0, 23}, {685, 411}}";
+						Split0 = {
+							ActiveTab = 2;
+							Collapsed = NO;
+							Frame = "{{0, 0}, {685, 411}}";
+							Split0 = {
+								Frame = "{{0, 221}, {685, 190}}";
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Debugger = {
+									Collapsed = NO;
+									Frame = "{{0, 0}, {952, 321}}";
+									Split0 = {
+										Frame = "{{0, 24}, {952, 297}}";
+										Split0 = {
+											Frame = "{{0, 0}, {468, 297}}";
+										};
+										Split1 = {
+											DebugVariablesTableConfiguration = (
+												Name,
+												126.803,
+												Value,
+												150.074,
+												Summary,
+												172.123,
+											);
+											Frame = "{{477, 0}, {475, 297}}";
+										};
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									Tab0 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									Tab1 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									TabCount = 2;
+									TabsVisible = YES;
+								};
+								Frame = "{{0, 0}, {952, 321}}";
+								LauncherConfigVersion = 7;
+							};
+							Tab1 = {
+								Frame = "{{0, 0}, {781, 452}}";
+								LauncherConfigVersion = 3;
+								Runner = {
+									Frame = "{{0, 0}, {781, 452}}";
+								};
+							};
+							Tab2 = {
+								BuildMessageFrame = "{{0, 0}, {687, 149}}";
+								BuildTranscriptFrame = "{{0, 158}, {687, 59}}";
+								Frame = "{{0, 0}, {685, 215}}";
+							};
+							Tab3 = {
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							TabCount = 4;
+							TabsVisible = NO;
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {300, 533}}";
+							GroupTreeTableConfiguration = (
+								SCMStatusColumn,
+								22,
+								TargetStatusColumn,
+								18,
+								MainColumn,
+								245,
+							);
+						};
+						Tab1 = {
+							ClassesFrame = "{{0, 0}, {280, 398}}";
+							ClassesTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXClassColumnIdentifier,
+								237,
+							);
+							Frame = "{{0, 0}, {278, 659}}";
+							MembersFrame = "{{0, 407}, {280, 252}}";
+							MembersTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXMethodColumnIdentifier,
+								236,
+							);
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {200, 100}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {200, 100}}";
+							TargetTableConfiguration = (
+								ActiveObject,
+								16,
+								ObjectNames,
+								202.296,
+							);
+						};
+						Tab4 = {
+							BreakpointsTreeTableConfiguration = (
+								breakpointColumn,
+								197,
+								enabledColumn,
+								31,
+							);
+							Frame = "{{0, 0}, {250, 100}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					StatusViewVisible = YES;
+					Template = F5314676015831810DCA290F;
+					ToolbarVisible = YES;
+					WindowLocation = "{335, 346}";
+				},
 			);
-			PBXWorkspaceStateSaveDate = 57009416;
+			PBXWorkspaceStateSaveDate = 57018192;
 		};
 		perUserProjectItems = {
 			F50F4E4D02B50AB1014A78CB = F50F4E4D02B50AB1014A78CB;
@@ -14541,6 +14729,16 @@
 			F50F4E6402B50AB1014A78CB = F50F4E6402B50AB1014A78CB;
 			F50F4E6702B50AB1014A78CB = F50F4E6702B50AB1014A78CB;
 			F50F4E6802B50AB1014A78CB = F50F4E6802B50AB1014A78CB;
+			F510CFDC0365F6FD01A80164 = F510CFDC0365F6FD01A80164;
+			F510CFDD0365F6FD01A80164 = F510CFDD0365F6FD01A80164;
+			F510CFDE0365F6FD01A80164 = F510CFDE0365F6FD01A80164;
+			F510CFDF0365F6FD01A80164 = F510CFDF0365F6FD01A80164;
+			F510CFE10365F6FD01A80164 = F510CFE10365F6FD01A80164;
+			F510CFE20365F6FD01A80164 = F510CFE20365F6FD01A80164;
+			F510CFE30365F6FD01A80164 = F510CFE30365F6FD01A80164;
+			F510CFE40365F6FD01A80164 = F510CFE40365F6FD01A80164;
+			F510CFE50365F6FD01A80164 = F510CFE50365F6FD01A80164;
+			F510CFF60365F92201A80164 = F510CFF60365F92201A80164;
 			F5167B0702A28A98019F6D6A = F5167B0702A28A98019F6D6A;
 			F5167B0802A28A98019F6D6A = F5167B0802A28A98019F6D6A;
 			F5167B0902A28A98019F6D6A = F5167B0902A28A98019F6D6A;
@@ -19221,7 +19419,6 @@
 			F595955D0365EB4801A80164 = F595955D0365EB4801A80164;
 			F595955E0365EB4801A80164 = F595955E0365EB4801A80164;
 			F595955F0365EB4801A80164 = F595955F0365EB4801A80164;
-			F59595600365EB4801A80164 = F59595600365EB4801A80164;
 			F595A82A035DC3FC01A80164 = F595A82A035DC3FC01A80164;
 			F595A82B035DC3FC01A80164 = F595A82B035DC3FC01A80164;
 			F595A82C035DC3FC01A80164 = F595A82C035DC3FC01A80164;
@@ -19634,16 +19831,10 @@
 			F5B6F5E8035747C301A80166 = F5B6F5E8035747C301A80166;
 			F5B6F5E9035747C301A80166 = F5B6F5E9035747C301A80166;
 			F5B82F830362E7DC01A80164 = F5B82F830362E7DC01A80164;
-			F5B82F840362E7DC01A80164 = F5B82F840362E7DC01A80164;
-			F5B82F850362E7DC01A80164 = F5B82F850362E7DC01A80164;
-			F5B82F860362E7DC01A80164 = F5B82F860362E7DC01A80164;
 			F5B82F870362E7DC01A80164 = F5B82F870362E7DC01A80164;
 			F5B82F880362E7DC01A80164 = F5B82F880362E7DC01A80164;
-			F5B82F8A0362E7DC01A80164 = F5B82F8A0362E7DC01A80164;
-			F5B82F8B0362E7DC01A80164 = F5B82F8B0362E7DC01A80164;
 			F5B82F8D0362E7DC01A80164 = F5B82F8D0362E7DC01A80164;
 			F5B82F8E0362E7DC01A80164 = F5B82F8E0362E7DC01A80164;
-			F5B82F8F0362E7DC01A80164 = F5B82F8F0362E7DC01A80164;
 			F5B82F900362E7DC01A80164 = F5B82F900362E7DC01A80164;
 			F5B82F910362E7DC01A80164 = F5B82F910362E7DC01A80164;
 			F5B82F920362E7DC01A80164 = F5B82F920362E7DC01A80164;
@@ -19651,7 +19842,6 @@
 			F5B82F940362E7DC01A80164 = F5B82F940362E7DC01A80164;
 			F5B82F950362E7DC01A80164 = F5B82F950362E7DC01A80164;
 			F5B82F960362E7DC01A80164 = F5B82F960362E7DC01A80164;
-			F5B82F970362E7DC01A80164 = F5B82F970362E7DC01A80164;
 			F5B82F980362E7DC01A80164 = F5B82F980362E7DC01A80164;
 			F5B82F990362E7DC01A80164 = F5B82F990362E7DC01A80164;
 			F5B96F28030DA285015847EC = F5B96F28030DA285015847EC;
@@ -19851,7 +20041,6 @@
 			F5DCAB700357668301A80166 = F5DCAB700357668301A80166;
 			F5DCAB710357668301A80166 = F5DCAB710357668301A80166;
 			F5E2010A03015CC501FFCB66 = F5E2010A03015CC501FFCB66;
-			F5E44F320358946E01A80166 = F5E44F320358946E01A80166;
 			F5E44F330358946E01A80166 = F5E44F330358946E01A80166;
 			F5E44F3A0358946E01A80166 = F5E44F3A0358946E01A80166;
 			F5E44F3B0358946E01A80166 = F5E44F3B0358946E01A80166;
@@ -56967,7 +57156,7 @@
 		isa = PBXTextBookmark;
 		name = "MakeRelease.sh: 21";
 		rLen = 0;
-		rLoc = 638;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 617;
 		vrLoc = 0;
@@ -58982,16 +59171,6 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 860;
-		vrLoc = 0;
-	};
-	F59595600365EB4801A80164 = {
-		fRef = F52B3C01028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreAutoMonkey.h: 62";
-		rLen = 0;
-		rLoc = 1766;
-		rType = 0;
-		vrLen = 827;
 		vrLoc = 0;
 	};
 	F59595610365EB4901A80164 = {
@@ -63156,36 +63335,6 @@
 		vrLen = 675;
 		vrLoc = 2978;
 	};
-	F5B82F840362E7DC01A80164 = {
-		fRef = F5B82FAC0362E7DE01A80164;
-		isa = PBXTextBookmark;
-		name = "configure.in: 200";
-		rLen = 0;
-		rLoc = 8231;
-		rType = 0;
-		vrLen = 721;
-		vrLoc = 7510;
-	};
-	F5B82F850362E7DC01A80164 = {
-		fRef = F5B82F9B0362E7DD01A80164;
-		isa = PBXTextBookmark;
-		name = "INSTALL.txt: 24";
-		rLen = 0;
-		rLoc = 528;
-		rType = 0;
-		vrLen = 614;
-		vrLoc = 0;
-	};
-	F5B82F860362E7DC01A80164 = {
-		fRef = F5B82F9E0362E7DD01A80164;
-		isa = PBXTextBookmark;
-		name = "MakeRelease.sh: 11";
-		rLen = 0;
-		rLoc = 330;
-		rType = 0;
-		vrLen = 638;
-		vrLoc = 0;
-	};
 	F5B82F870362E7DC01A80164 = {
 		fRef = F5B82FA10362E7DD01A80164;
 		isa = PBXTextBookmark;
@@ -63205,26 +63354,6 @@
 		rType = 0;
 		vrLen = 426;
 		vrLoc = 3419;
-	};
-	F5B82F8A0362E7DC01A80164 = {
-		fRef = F5B82FA60362E7DE01A80164;
-		isa = PBXTextBookmark;
-		name = "contract.xml: 442";
-		rLen = 0;
-		rLoc = 12931;
-		rType = 0;
-		vrLen = 615;
-		vrLoc = 12694;
-	};
-	F5B82F8B0362E7DC01A80164 = {
-		fRef = F5B82FA90362E7DE01A80164;
-		isa = PBXTextBookmark;
-		name = "MakeInstaller.sh: 84";
-		rLen = 0;
-		rLoc = 2148;
-		rType = 0;
-		vrLen = 830;
-		vrLoc = 1524;
 	};
 	F5B82F8D0362E7DC01A80164 = {
 		fRef = F5B82FA70362E7DE01A80164;
@@ -63246,22 +63375,12 @@
 		vrLen = 721;
 		vrLoc = 7510;
 	};
-	F5B82F8F0362E7DC01A80164 = {
-		fRef = F5B82F9F0362E7DD01A80164;
-		isa = PBXTextBookmark;
-		name = "INSTALL.txt: 24";
-		rLen = 0;
-		rLoc = 528;
-		rType = 0;
-		vrLen = 614;
-		vrLoc = 0;
-	};
 	F5B82F900362E7DC01A80164 = {
 		fRef = F5B82FAB0362E7DE01A80164;
 		isa = PBXTextBookmark;
 		name = "MakeRelease.sh: 11";
 		rLen = 0;
-		rLoc = 330;
+		rLoc = 769;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 0;
@@ -63326,16 +63445,6 @@
 		vrLen = 358;
 		vrLoc = 0;
 	};
-	F5B82F970362E7DC01A80164 = {
-		fRef = F5B82F9D0362E7DD01A80164;
-		isa = PBXTextBookmark;
-		name = "contract.xml: 442";
-		rLen = 0;
-		rLoc = 12931;
-		rType = 0;
-		vrLen = 615;
-		vrLoc = 12694;
-	};
 	F5B82F980362E7DC01A80164 = {
 		fRef = F5B82F820362DD0A01A80164;
 		isa = PBXTextBookmark;
@@ -63356,34 +63465,10 @@
 		vrLen = 830;
 		vrLoc = 1524;
 	};
-	F5B82F9B0362E7DD01A80164 = {
-		isa = PBXFileReference;
-		name = INSTALL.txt;
-		path = "/Users/southa/core-app/release/INSTALL.txt";
-		refType = 0;
-	};
 	F5B82F9C0362E7DD01A80164 = {
 		isa = PBXFileReference;
 		name = configure.in;
 		path = "/Users/southa/core-app/configure.in";
-		refType = 0;
-	};
-	F5B82F9D0362E7DD01A80164 = {
-		isa = PBXFileReference;
-		name = contract.xml;
-		path = "/Users/southa/core-app/release/contracts/first-day/contract.xml";
-		refType = 0;
-	};
-	F5B82F9E0362E7DD01A80164 = {
-		isa = PBXFileReference;
-		name = MakeRelease.sh;
-		path = "/Users/southa/core-app/MakeRelease.sh";
-		refType = 0;
-	};
-	F5B82F9F0362E7DD01A80164 = {
-		isa = PBXFileReference;
-		name = INSTALL.txt;
-		path = "/Users/southa/core-app/release/INSTALL.txt";
 		refType = 0;
 	};
 	F5B82FA00362E7DD01A80164 = {
@@ -63422,12 +63507,6 @@
 		path = "/Users/southa/core-app/macosx/IC2-macosx-setup.post";
 		refType = 0;
 	};
-	F5B82FA60362E7DE01A80164 = {
-		isa = PBXFileReference;
-		name = contract.xml;
-		path = "/Users/southa/core-app/release/contracts/first-day/contract.xml";
-		refType = 0;
-	};
 	F5B82FA70362E7DE01A80164 = {
 		isa = PBXFileReference;
 		name = README.macosx;
@@ -63440,12 +63519,6 @@
 		path = "/Users/southa/core-app/src/SourceConditioner.pl";
 		refType = 0;
 	};
-	F5B82FA90362E7DE01A80164 = {
-		isa = PBXFileReference;
-		name = MakeInstaller.sh;
-		path = "/Users/southa/core-app/macosx/MakeInstaller.sh";
-		refType = 0;
-	};
 	F5B82FAA0362E7DE01A80164 = {
 		isa = PBXFileReference;
 		name = README.macosx;
@@ -63456,12 +63529,6 @@
 		isa = PBXFileReference;
 		name = MakeRelease.sh;
 		path = "/Users/southa/core-app/MakeRelease.sh";
-		refType = 0;
-	};
-	F5B82FAC0362E7DE01A80164 = {
-		isa = PBXFileReference;
-		name = configure.in;
-		path = "/Users/southa/core-app/configure.in";
 		refType = 0;
 	};
 	F5B96F28030DA285015847EC = {
@@ -65433,16 +65500,6 @@
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 0;
-	};
-	F5E44F320358946E01A80166 = {
-		fRef = F52B3C01028C26530179D0A8;
-		isa = PBXTextBookmark;
-		name = "CoreAutoMonkey.h: 30";
-		rLen = 0;
-		rLoc = 848;
-		rType = 0;
-		vrLen = 1325;
-		vrLoc = 441;
 	};
 	F5E44F330358946E01A80166 = {
 		fRef = F595FD8703582A9101A80166;

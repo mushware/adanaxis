@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.11 2002/10/22 18:02:57 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.12 2002/10/22 20:42:07 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.12  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/22 18:02:57  southa
  * Final tweaks
  *
@@ -67,7 +70,7 @@ MediaSDL::Init(U32 inWhich)
 {
     if (m_inited == 0)
     {
-        if (SDL_Init(inWhich) < 0)
+        if (SDL_Init(inWhich | SDL_INIT_NOPARACHUTE) < 0)
         {
             throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
         }
@@ -75,7 +78,7 @@ MediaSDL::Init(U32 inWhich)
     else
     {
         U32 whichNotDone=inWhich & ~m_inited;
-        if (SDL_InitSubSystem(whichNotDone) < 0)
+        if (SDL_InitSubSystem(whichNotDone | SDL_INIT_NOPARACHUTE) < 0)
         {
             throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
         }
