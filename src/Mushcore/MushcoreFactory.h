@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PCqvrnn/p0THwedPuNPI9g
 /*
- * $Id: MushcoreFactory.h,v 1.2 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.3 2004/01/04 17:02:30 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.3  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.2  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -27,8 +30,13 @@
  */
 
 #include "MushcoreStandard.h"
+
 #include "MushcoreSingleton.h"
-#include "MushcoreVirtualObject.h"
+#include "MushcoreScalar.h"
+
+class MuscoreCommand;
+class MuscoreEnv;
+class MushcoreVirtualObject;
 
 //:generate ostream
 class MushcoreFactory : public MushcoreSingleton<MushcoreFactory>
@@ -39,7 +47,12 @@ public:
     
     void FactoryAdd(const std::string& inName, tFactoryPtr inPtr);
     MushcoreVirtualObject *ObjectCreate(const std::string& inName) const;
+    void TemplatesPrint(std::ostream& ioOut) const;
+    void TypesPrint(std::ostream& ioOut) const;
     
+    static MushcoreScalar XMLTemplatePrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar XMLTypesPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static void Install(void);
 private:
     tFactoryMap m_factories;
 //%classPrototypes {

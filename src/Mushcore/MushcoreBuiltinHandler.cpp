@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mvCjgges5NRlmA/1rKDjiQ
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.14 2004/01/05 20:13:15 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.15 2004/01/06 00:34:56 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.15  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.14  2004/01/05 20:13:15  southa
  * Target and test updates
  *
@@ -200,13 +203,12 @@ MushcoreBuiltinHandler::Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
     return MushcoreScalar(0);    
 }
 
-
 void
 MushcoreBuiltinHandler::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("load", Load);
     MushcoreInterpreter::Sgl().HandlerAdd("configset", ConfigSet);
-    MushcoreInterpreter::Sgl().HandlerAdd("test", Test);
+    MushcoreInterpreter::Sgl().HandlerAdd("MushcoreTest", Test);
 }
 
 void

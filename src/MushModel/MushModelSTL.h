@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIESTL_H
-#define MUSHPIESTL_H
-//%includeGuardStart } s1VDDs8uoifg5yG0M4Ld0Q
+#ifndef MUSHMODELSTL_H
+#define MUSHMODELSTL_H
+//%includeGuardStart } 5RUd/NdNhV7qTPcJvuprzg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieSTL.h
+ * File: src/MushModel/MushModelSTL.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,16 +14,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5GZB7i38V1ZXHKD6QTXNHw
+//%Header } BF+G+2lR2/42yOuEblC2zA
 /*
- * $Id: MushPieSTL.h,v 1.2 2004/01/06 20:46:52 southa Exp $
- * $Log: MushPieSTL.h,v $
- * Revision 1.2  2004/01/06 20:46:52  southa
- * Build fixes
- *
- * Revision 1.1  2004/01/02 11:57:47  southa
- * Created
- *
+ * $Id$
+ * $Log$
  */
 
 #ifdef HAVE_CONFIG_H

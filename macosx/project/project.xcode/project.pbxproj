@@ -169,7 +169,7 @@
 				HEADER_SEARCH_PATHS = "../../src ../../src/API";
 				OPTIMIZATION_CFLAGS = "-O0";
 				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
+				ZERO_LINK = YES;
 			};
 			isa = PBXBuildStyle;
 			name = Development;
@@ -638,6 +638,15 @@
 				7ACC327C05AB3A0A001A0873,
 				7ACC32F805AB4141001A0873,
 				7ACC330105AB4150001A0873,
+				7A71A2BC05AC51AE00B315B0,
+				7A71A2DF05AC520400B315B0,
+				7A71A34705AC549B00B315B0,
+				7A71A37005AC54FC00B315B0,
+				7A71A38505AC551300B315B0,
+				7A71A3CF05AC55E300B315B0,
+				7A71A3E905AC56EA00B315B0,
+				7A71A44F05AC5A0800B315B0,
+				7A71A48C05AC5B4700B315B0,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,6 +905,15 @@
 				7A65205C05A87C750026CBAE,
 				7A719AD305A9A02000C42A20,
 				7A65688B05AAAE6A0003984A,
+				7A71A2BD05AC51AE00B315B0,
+				7A71A2E005AC520400B315B0,
+				7A71A34805AC549B00B315B0,
+				7A71A37105AC54FC00B315B0,
+				7A71A38605AC551300B315B0,
+				7A71A3D005AC55E300B315B0,
+				7A71A3EA05AC56EA00B315B0,
+				7A71A45005AC5A0800B315B0,
+				7A71A48D05AC5B4700B315B0,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,6 +1027,7 @@
 				7A62B7E605A49D05002A5F1C,
 				7A62B7EF05A49D05002A5F1C,
 				7A62B84905A49D05002A5F1C,
+				7A71A33D05AC547E00B315B0,
 				7A62B87005A49D05002A5F1C,
 				7A62B87105A49D05002A5F1C,
 				7A62B8BC05A49D05002A5F1C,
@@ -2164,6 +2183,8 @@
 				7A62B79B05A49D04002A5F1C,
 				7A62B79C05A49D04002A5F1C,
 				7A62B79D05A49D04002A5F1C,
+				7A71A2BB05AC51AE00B315B0,
+				7A71A2BA05AC51AE00B315B0,
 				7A62B79E05A49D04002A5F1C,
 				7A62B79F05A49D04002A5F1C,
 				7A62B7A005A49D04002A5F1C,
@@ -2192,6 +2213,8 @@
 				7A62B7B705A49D05002A5F1C,
 				7A62B7B805A49D05002A5F1C,
 				7A62B7B905A49D05002A5F1C,
+				7A71A2DE05AC520400B315B0,
+				7A71A2DD05AC520400B315B0,
 				7A62B7BA05A49D05002A5F1C,
 				7A62B7BB05A49D05002A5F1C,
 				7A62B7BC05A49D05002A5F1C,
@@ -12347,6 +12370,281 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd ../..\n./prebuild.sh";
+		};
+		7A71A2BA05AC51AE00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = InfernalForm.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A2BB05AC51AE00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = InfernalForm.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A2BC05AC51AE00B315B0 = {
+			fileRef = 7A71A2BA05AC51AE00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A2BD05AC51AE00B315B0 = {
+			fileRef = 7A71A2BB05AC51AE00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A2DD05AC520400B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = InfernalStandard.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A2DE05AC520400B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = InfernalStandard.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A2DF05AC520400B315B0 = {
+			fileRef = 7A71A2DD05AC520400B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A2E005AC520400B315B0 = {
+			fileRef = 7A71A2DE05AC520400B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A33D05AC547E00B315B0 = {
+			children = (
+				7A71A34605AC549B00B315B0,
+				7A71A34505AC549B00B315B0,
+				7A71A3E805AC56EA00B315B0,
+				7A71A3E705AC56EA00B315B0,
+				7A71A48B05AC5B4700B315B0,
+				7A71A48A05AC5B4700B315B0,
+				7A71A44E05AC5A0800B315B0,
+				7A71A44D05AC5A0800B315B0,
+				7A71A3CE05AC55E300B315B0,
+				7A71A3CD05AC55E300B315B0,
+				7A71A36F05AC54FC00B315B0,
+				7A71A36E05AC54FC00B315B0,
+				7A71A38405AC551300B315B0,
+				7A71A38305AC551300B315B0,
+			);
+			isa = PBXGroup;
+			name = MushModel;
+			path = "/Users/southa/core-app/src/MushModel";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A71A34505AC549B00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModel.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A34605AC549B00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModel.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A34705AC549B00B315B0 = {
+			fileRef = 7A71A34505AC549B00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A34805AC549B00B315B0 = {
+			fileRef = 7A71A34605AC549B00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A36E05AC54FC00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelStandard.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A36F05AC54FC00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelStandard.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A37005AC54FC00B315B0 = {
+			fileRef = 7A71A36E05AC54FC00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A37105AC54FC00B315B0 = {
+			fileRef = 7A71A36F05AC54FC00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A38305AC551300B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelSTL.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A38405AC551300B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelSTL.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A38505AC551300B315B0 = {
+			fileRef = 7A71A38305AC551300B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A38605AC551300B315B0 = {
+			fileRef = 7A71A38405AC551300B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A3CD05AC55E300B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelMultiFacet.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A3CE05AC55E300B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelMultiFacet.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A3CF05AC55E300B315B0 = {
+			fileRef = 7A71A3CD05AC55E300B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A3D005AC55E300B315B0 = {
+			fileRef = 7A71A3CE05AC55E300B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A3E705AC56EA00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelFacet.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A3E805AC56EA00B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelFacet.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A3E905AC56EA00B315B0 = {
+			fileRef = 7A71A3E705AC56EA00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A3EA05AC56EA00B315B0 = {
+			fileRef = 7A71A3E805AC56EA00B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A44D05AC5A0800B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelMaterial.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A44E05AC5A0800B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelMaterial.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A44F05AC5A0800B315B0 = {
+			fileRef = 7A71A44D05AC5A0800B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A45005AC5A0800B315B0 = {
+			fileRef = 7A71A44E05AC5A0800B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A48A05AC5B4700B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushModelIO.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A48B05AC5B4700B315B0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushModelIO.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A71A48C05AC5B4700B315B0 = {
+			fileRef = 7A71A48A05AC5B4700B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A71A48D05AC5B4700B315B0 = {
+			fileRef = 7A71A48B05AC5B4700B315B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7ABCE94B05AB45CE00A00CC6 = {
 			fileEncoding = 30;

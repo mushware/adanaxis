@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.9 2004/01/02 21:13:17 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.10 2004/01/05 14:27:41 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.10  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.9  2004/01/02 21:13:17  southa
  * Source conditioning
  *
@@ -110,7 +113,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         xmlOStream << testObject;
 
         MushcoreXMLOStream xmlCout(cout);
-        xmlCout << testObject;
+        // xmlCout << testObject;
 
         TestMushcoreObject readBackObject;
 

@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.1 2004/01/07 11:14:15 southa Exp $
+# $Id: snapshot.def,v 1.2 2004/01/07 13:22:48 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.2  2004/01/07 13:22:48  southa
+# Snapshot fixes
+#
 # Revision 1.1  2004/01/07 11:14:15  southa
 # Snapshot fixes
 #
@@ -14,7 +17,7 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 Create: src/Makefile.am
 
 Program: all
-Modules: API Game GL Infernal Main Main/SDLApp Media MeshMover Mushcore MushMesh MushPie Mustl MustlGame Platform Support TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: API Game GL Infernal Main Main/SDLApp Media MeshMover Mushcore MushMesh MushModel MushPie Mustl MustlGame Platform Support TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
 Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$

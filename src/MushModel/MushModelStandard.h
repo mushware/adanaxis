@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIESTL_H
-#define MUSHPIESTL_H
-//%includeGuardStart } s1VDDs8uoifg5yG0M4Ld0Q
+#ifndef MUSHMODELSTANDARD_H
+#define MUSHMODELSTANDARD_H
+//%includeGuardStart } JegAGJHGOh2Qcfuu3rwbSA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieSTL.h
+ * File: src/MushModel/MushModelStandard.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,16 +14,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5GZB7i38V1ZXHKD6QTXNHw
+//%Header } v6O+xfOqhRH9HJZn1J92Yw
 /*
- * $Id: MushPieSTL.h,v 1.2 2004/01/06 20:46:52 southa Exp $
- * $Log: MushPieSTL.h,v $
- * Revision 1.2  2004/01/06 20:46:52  southa
- * Build fixes
- *
- * Revision 1.1  2004/01/02 11:57:47  southa
- * Created
- *
+ * $Id$
+ * $Log$
  */
 
 #ifdef HAVE_CONFIG_H
@@ -31,11 +25,19 @@
 #endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreSTL.h>
+#include <Mushcore/Mushcore.h>
 #elif defined(HAVE_MUSHCORE_H)
-#include <MushcoreSTL.h>
+#include <Mushcore.h>
 #else
-#include "Mushcore/MushcoreSTL.h"
+#include "Mushcore/Mushcore.h"
+#endif
+
+#if defined(HAVE_MUSHMESH_MUSHMESH_H)
+#include <MushMesh/MushMesh.h>
+#elif defined(HAVE_MUSHMESH_H)
+#include <MushMesh.h>
+#else
+#include "MushMesh/MushMesh.h"
 #endif
 
 //%includeGuardEnd {

@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.14 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushcoreData.h,v 1.15 2004/01/06 10:08:51 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.15  2004/01/06 10:08:51  southa
+ * MushcoreData and MushPieForm work
+ *
  * Revision 1.14  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -118,6 +121,8 @@
 
 #include "MushcoreFail.h"
 #include "MushcoreSingleton.h"
+#include "MushcoreXMLIStream.h"
+#include "MushcoreXMLOStream.h"
 
 #define MUSHCORE_DATA_INSTANCE(RefType) MUSHCORE_SINGLETON_INSTANCE(MushcoreData< RefType >)
 #define MUSHCORE_DESTROY_DATA_INSTANCE(RefType) MUSHCORE_DESTROY_SINGLETON_INSTANCE(MushcoreData< RefType >)
@@ -125,6 +130,7 @@
 #define MUSHCORE_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_SINGLETON_INSTANCE2(MushcoreData< RefType, KeyType >)
 #define MUSHCORE_DESTROY_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_DESTROY_SINGLETON_INSTANCE((MushcoreData< RefType, KeyType >))
 
+//:inline generate ostream xml1
 template<class RefType, class KeyType = std::string>
 class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
 {
@@ -156,6 +162,12 @@ protected:
 private:
     tMap m_data;
     Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
+//%classPrototypes {
+public:
+    void AutoPrint(std::ostream& ioOut) const;
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } KQOaWq2p/rer/H3n2W7hxQ
 };
 
 template<class RefType, class KeyType>
@@ -325,6 +337,55 @@ MushcoreData<RefType, KeyType>::SequenceNumGet(void) const
 {
     return m_sequenceNum;
 }
+//%inlineHeader {
+template<class RefType, class KeyType>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreData<RefType, KeyType>& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+template<class RefType, class KeyType>
+inline void
+MushcoreData<RefType, KeyType>::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "data=" << m_data << ", ";
+    ioOut << "sequenceNum=" << m_sequenceNum;
+    ioOut << "]";
+}
+template<class RefType, class KeyType>
+inline bool
+MushcoreData<RefType, KeyType>::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "data")
+    {
+        ioIn >> m_data;
+    }
+    else if (inTagStr == "sequenceNum")
+    {
+        ioIn >> m_sequenceNum;
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+template<class RefType, class KeyType>
+inline void
+MushcoreData<RefType, KeyType>::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("data");
+    ioOut << m_data;
+    ioOut.TagSet("sequenceNum");
+    ioOut << m_sequenceNum;
+}
+//%inlineHeader } 6Y1KGfKN4Hi6ioynnBBSLA
 
 //%includeGuardEnd {
 #endif
