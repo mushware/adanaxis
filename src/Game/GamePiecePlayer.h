@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.11 2002/08/07 13:36:50 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.12 2002/08/08 18:20:30 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.12  2002/08/08 18:20:30  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.11  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -70,6 +73,7 @@ public:
     virtual void Unpickle(CoreXML& inXML);
     virtual void MoveGet(GameMotionSpec& inSpec) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
+    virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
     virtual void Render(void);
     virtual string TypeNameGet(void) const {return "player";};
 
@@ -95,6 +99,8 @@ private:
     void HandlePlayerEnd(CoreXML& inXML);
     void HandleGraphicStart(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
+    void HandleAccelerationEnd(CoreXML& inXML);
+    void HandleSpeedLimitEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
     
     enum PickleState

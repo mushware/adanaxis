@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.50 2002/08/16 19:46:06 southa Exp $
+ * $Id: GameContract.cpp,v 1.51 2002/08/17 10:41:50 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.51  2002/08/17 10:41:50  southa
+ * Designer fixes
+ *
  * Revision 1.50  2002/08/16 19:46:06  southa
  * MediaSound work
  *
@@ -285,7 +288,9 @@ GameContract::InitDisplay(void)
 void
 GameContract::RunningMove(void)
 {
+    COREASSERT(m_floorMap != NULL);
     GameMotionSpec motion;
+    m_player->EnvironmentRead(*m_floorMap);
     m_player->MoveGet(motion);
     if (m_renderDiagnostics)
     {
@@ -511,6 +516,7 @@ GameContract::GlobalKeyControl(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     if (gameAppHandler.KeyStateGet('p'))
     {
+        m_floorMap->SolidMapInvalidate();
         gameAppHandler.SetCursorState(false);
         m_gameState=kRunning;
     }

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.19 2002/08/08 18:20:30 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.20 2002/08/16 19:46:07 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.20  2002/08/16 19:46:07  southa
+ * MediaSound work
+ *
  * Revision 1.19  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
  *
@@ -214,6 +217,26 @@ GameFloorMap::PermeabilityGet(const GameMapPoint &inPoint) const
     return m_solidMap.PermeabilityGet(inPoint);
 }
 
+tVal
+GameFloorMap::AdhesionGet(const GameMapPoint &inPoint) const
+{
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    return m_solidMap.AdhesionGet(inPoint);
+}
+
+tVal
+GameFloorMap::AdhesionGet(const GameSpacePoint &inPoint) const
+{
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    return m_solidMap.AdhesionGet(inPoint);
+}
+
 const GameSolidMap&
 GameFloorMap::SolidMapGet(void) const
 {
@@ -238,9 +261,20 @@ GameFloorMap::RebuildSolidMap(void) const
             U32 mapVal=ElementGet(GLPoint(x,y));
             GameTileTraits& tileTraits=
                 dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVal));
-            tVal perm;
-            tileTraits.PermeabilityGet(perm);
-            m_solidMap.PermeabilitySet(perm, x, y);
+            tVal value;
+            if (!tileTraits.PermeabilityGet(value))
+            {
+                cerr << tileTraits << endl;
+                throw(ReferenceFail("TileTrait missing permeability value"));
+            }
+            m_solidMap.PermeabilitySet(value, x, y);
+
+            if (!tileTraits.AdhesionGet(value))
+            {
+                cerr << tileTraits << endl;
+                throw(ReferenceFail("TileTrait missing adhesion value"));
+            }
+            m_solidMap.AdhesionSet(value, x, y);            
         }
     }
     m_solidMapValid=true;

@@ -2307,7 +2307,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 5417;
+		rLoc = 5489;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 5488;
@@ -2727,7 +2727,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 5417;
+		rLoc = 5489;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 5488;
@@ -3939,7 +3939,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 89;
-		rLoc = 4480;
+		rLoc = 4641;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 3513;
@@ -3989,7 +3989,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 5417;
+		rLoc = 5489;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 4193;
@@ -5199,7 +5199,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 7373;
+		rLoc = 7445;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 1466;
@@ -5219,7 +5219,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 7373;
+		rLoc = 7445;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 1141;
@@ -5239,7 +5239,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 1567;
@@ -5259,7 +5259,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 8189;
+		rLoc = 8261;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 1877;
@@ -5289,7 +5289,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 65;
-		rLoc = 7935;
+		rLoc = 8007;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 1877;
@@ -5329,7 +5329,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9652;
+		rLoc = 9724;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 2101;
@@ -5349,7 +5349,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 8412;
+		rLoc = 8484;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 2101;
@@ -5369,7 +5369,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 10266;
+		rLoc = 10338;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 2482;
@@ -5379,7 +5379,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 1567;
@@ -5399,7 +5399,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9652;
+		rLoc = 9724;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 3047;
@@ -5429,7 +5429,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9652;
+		rLoc = 9724;
 		rType = 0;
 		vrLen = 1562;
 		vrLoc = 2989;
@@ -5459,7 +5459,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 8491;
+		rLoc = 8563;
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 2724;
@@ -5489,7 +5489,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9755;
+		rLoc = 9827;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 3474;
@@ -5519,7 +5519,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 10245;
+		rLoc = 10317;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 3474;
@@ -5569,7 +5569,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 10220;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 3474;
@@ -5619,7 +5619,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9801;
+		rLoc = 9873;
 		rType = 0;
 		vrLen = 1476;
 		vrLoc = 3474;
@@ -5989,7 +5989,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9184;
+		rLoc = 9256;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 3075;
@@ -6049,7 +6049,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9138;
+		rLoc = 9210;
 		rType = 0;
 		vrLen = 1623;
 		vrLoc = 3075;
@@ -6079,7 +6079,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 9157;
+		rLoc = 9229;
 		rType = 0;
 		vrLen = 1629;
 		vrLoc = 3075;
@@ -6149,7 +6149,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 11593;
+		rLoc = 11665;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 1861;
@@ -6317,6 +6317,150 @@
 				Template = F5534CB2020F3F8A0DCA290F;
 				ToolbarVisible = YES;
 				WindowLocation = "{4, 633}";
+			};
+			"PBXTemplateGeometry-F5CA7ECC015C09990DCA290F" = {
+				ContentSize = "{773, 558}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {773, 535}}";
+					Split0 = {
+						ActiveTab = 0;
+						Collapsed = NO;
+						Frame = "{{24, 0}, {749, 535}}";
+						Split0 = {
+							Frame = "{{0, 273}, {749, 262}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {749, 267}}";
+								Split0 = {
+									Frame = "{{0, 24}, {749, 243}}";
+									Split0 = {
+										Frame = "{{0, 0}, {366, 243}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											93.80298,
+											Value,
+											116.074,
+											Summary,
+											138.123,
+										);
+										Frame = "{{375, 0}, {374, 243}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {749, 267}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {664, 208}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {664, 208}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {666, 43}}";
+							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
+							Frame = "{{0, 0}, {664, 50}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {313, 531}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							280,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 557}}";
+						Split0 = {
+							Frame = "{{0, 0}, {200, 270}}";
+							TargetTreeTableConfiguration = (
+								ActiveTarget,
+								16,
+								TargetName,
+								168,
+							);
+						};
+						Split1 = {
+							BuildStyleTreeTableConfiguration = (
+								IsActive,
+								16,
+								Name,
+								169,
+							);
+							Frame = "{{0, 279}, {200, 278}}";
+						};
+						SplitCount = 2;
+					};
+					Tab4 = {
+						ExecutableTreeTableConfiguration = (
+							ActiveExecutable,
+							16,
+							ExecutableName,
+							217,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					Tab5 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 6;
+					TabsVisible = YES;
+				};
+				StatusViewVisible = YES;
+				Template = F5CA7ECC015C09990DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{13, 372}";
 			};
 			PBXWorkspaceContents = (
 				{
@@ -16908,7 +17052,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 95";
 		rLen = 0;
-		rLoc = 2638;
+		rLoc = 2799;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1324;
@@ -16918,7 +17062,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 58";
 		rLen = 0;
-		rLoc = 11066;
+		rLoc = 11138;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 52;
@@ -17148,7 +17292,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 65";
 		rLen = 0;
-		rLoc = 11058;
+		rLoc = 11130;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 242;
@@ -17168,7 +17312,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 65";
 		rLen = 0;
-		rLoc = 11058;
+		rLoc = 11130;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 242;
@@ -17198,7 +17342,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 80";
 		rLen = 0;
-		rLoc = 10899;
+		rLoc = 10971;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 778;
@@ -17518,7 +17662,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 10896;
+		rLoc = 10968;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 781;
@@ -17578,7 +17722,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 10896;
+		rLoc = 10968;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 0;
@@ -17868,7 +18012,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 77";
 		rLen = 0;
-		rLoc = 10498;
+		rLoc = 10570;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 817;
@@ -17888,7 +18032,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 95";
 		rLen = 0;
-		rLoc = 2638;
+		rLoc = 2799;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1088;
@@ -17938,7 +18082,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 10894;
+		rLoc = 10966;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 817;
@@ -17958,7 +18102,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: 101";
 		rLen = 0;
-		rLoc = 11022;
+		rLoc = 11094;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 1128;
@@ -18038,7 +18182,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 94";
 		rLen = 0;
-		rLoc = 2638;
+		rLoc = 2799;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 2105;
@@ -18058,7 +18202,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: ";
 		rLen = 0;
-		rLoc = 4020;
+		rLoc = 4181;
 		rType = 0;
 		vrLen = 806;
 		vrLoc = 2389;
@@ -18088,7 +18232,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 11022;
+		rLoc = 11094;
 		rType = 0;
 		vrLen = 1485;
 		vrLoc = 1096;
@@ -18158,7 +18302,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: value_comp";
 		rLen = 0;
-		rLoc = 3924;
+		rLoc = 4085;
 		rType = 0;
 		vrLen = 1463;
 		vrLoc = 2843;
@@ -18178,7 +18322,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: pointer";
 		rLen = 0;
-		rLoc = 4847;
+		rLoc = 5008;
 		rType = 0;
 		vrLen = 1824;
 		vrLoc = 3074;
@@ -18288,7 +18432,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 11022;
+		rLoc = 11094;
 		rType = 0;
 		vrLen = 1437;
 		vrLoc = 1096;
@@ -18368,7 +18512,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: line";
 		rLen = 0;
-		rLoc = 11022;
+		rLoc = 11094;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 0;
@@ -21406,7 +21550,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiece.h: MoveAdd";
 		rLen = 41;
-		rLoc = 1324;
+		rLoc = 1344;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 0;
@@ -21416,7 +21560,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4847;
+		rLoc = 5008;
 		rType = 0;
 		vrLen = 1712;
 		vrLoc = 3052;
@@ -21436,7 +21580,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4847;
+		rLoc = 5008;
 		rType = 0;
 		vrLen = 1712;
 		vrLoc = 3052;
@@ -21456,7 +21600,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2443;
+		rLoc = 2604;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 1438;
@@ -21476,7 +21620,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2640;
+		rLoc = 2801;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 1591;
@@ -21496,7 +21640,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4387;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 1193;
@@ -21576,7 +21720,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2347;
+		rLoc = 2508;
 		rType = 0;
 		vrLen = 1310;
 		vrLoc = 1591;
@@ -21596,7 +21740,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveConfirm";
 		rLen = 0;
-		rLoc = 3496;
+		rLoc = 3657;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 1535;
@@ -22784,7 +22928,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveConfirm";
 		rLen = 0;
-		rLoc = 3496;
+		rLoc = 3657;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 1535;
@@ -23394,7 +23538,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 9068;
+		rLoc = 9229;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2214;
@@ -23424,7 +23568,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 9523;
+		rLoc = 9684;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 2227;
@@ -23654,7 +23798,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2386;
+		rLoc = 2547;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 1424;
@@ -24243,7 +24387,7 @@
 		fRef = F5F06F0E02AE554301B05200;
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
-		rLen = 1372;
+		rLen = 1533;
 		rLoc = 1414;
 		rType = 0;
 		vrLen = 1096;
@@ -24294,7 +24438,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiece.h: TypeNameGet";
 		rLen = 0;
-		rLoc = 1294;
+		rLoc = 1314;
 		rType = 0;
 		vrLen = 1425;
 		vrLoc = 0;
@@ -24304,7 +24448,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: const_pointer";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3206;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 1805;
@@ -24324,7 +24468,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: const_pointer";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3206;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 1766;
@@ -24344,7 +24488,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: const_pointer";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3206;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 1766;
@@ -24364,7 +24508,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: const_pointer";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3206;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 1324;
@@ -27390,7 +27534,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2386;
+		rLoc = 2547;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 2524;
@@ -27420,7 +27564,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 44;
-		rLoc = 10545;
+		rLoc = 10617;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 1403;
@@ -27450,7 +27594,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2386;
+		rLoc = 2547;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 1421;
@@ -28997,7 +29141,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 8613;
+		rLoc = 8774;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 4448;
@@ -29027,7 +29171,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 8679;
+		rLoc = 8840;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -29097,7 +29241,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 8679;
+		rLoc = 8840;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -29117,7 +29261,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4718;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 2161;
@@ -29227,7 +29371,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleNameEnd";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3206;
 		rType = 0;
 		vrLen = 848;
 		vrLoc = 1842;
@@ -29247,7 +29391,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4387;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 2404;
@@ -29327,7 +29471,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4387;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 2350;
@@ -29627,7 +29771,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 7490;
+		rLoc = 7562;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 2026;
@@ -29647,7 +29791,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 80;
-		rLoc = 7377;
+		rLoc = 7449;
 		rType = 0;
 		vrLen = 1065;
 		vrLoc = 2668;
@@ -29667,7 +29811,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 5907;
+		rLoc = 5979;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 3867;
@@ -29687,7 +29831,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 3519;
@@ -29727,7 +29871,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: MotionSpecPermeabilityGet";
 		rLen = 0;
-		rLoc = 12217;
+		rLoc = 12289;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 5415;
@@ -29747,7 +29891,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: MotionSpecPermeabilityGet";
 		rLen = 0;
-		rLoc = 11941;
+		rLoc = 12013;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 1607;
@@ -32141,7 +32285,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 3179;
+		rLoc = 3340;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 714;
@@ -32171,7 +32315,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: MotionSpecPermeabilityGet";
 		rLen = 0;
-		rLoc = 11941;
+		rLoc = 12013;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 1607;
@@ -32191,7 +32335,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 6521;
+		rLoc = 6593;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 10857;
@@ -32211,7 +32355,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 3179;
+		rLoc = 3340;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 3209;
@@ -32461,7 +32605,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6553;
+		rLoc = 6714;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 4565;
@@ -32511,7 +32655,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 6521;
+		rLoc = 6593;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 1481;
@@ -32641,7 +32785,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 8213;
+		rLoc = 8285;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 569;
@@ -32661,7 +32805,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 840;
-		rLoc = 7373;
+		rLoc = 7445;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 569;
@@ -32681,7 +32825,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 2518;
@@ -32701,7 +32845,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 2518;
@@ -32791,7 +32935,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 840;
-		rLoc = 7373;
+		rLoc = 7445;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 547;
@@ -32841,7 +32985,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 1417;
@@ -32871,7 +33015,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 1667;
@@ -32921,7 +33065,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiece.h: MoveGet";
 		rLen = 41;
-		rLoc = 1324;
+		rLoc = 1344;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 512;
@@ -32931,7 +33075,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 1667;
@@ -33301,7 +33445,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveGet";
 		rLen = 0;
-		rLoc = 3539;
+		rLoc = 3700;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 1667;
@@ -33321,7 +33465,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveConfirm";
 		rLen = 0;
-		rLoc = 3924;
+		rLoc = 4085;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 3318;
@@ -33341,7 +33485,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: MoveConfirm";
 		rLen = 0;
-		rLoc = 3924;
+		rLoc = 4085;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 2731;
@@ -33381,7 +33525,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 1579;
@@ -33581,7 +33725,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 840;
-		rLoc = 7373;
+		rLoc = 7445;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 866;
@@ -33601,7 +33745,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 10720;
+		rLoc = 10792;
 		rType = 0;
 		vrLen = 1448;
 		vrLoc = 1657;
@@ -33711,7 +33855,7 @@
 		isa = PBXTextBookmark;
 		name = "GameSolidMap.cpp: SizeSet";
 		rLen = 0;
-		rLoc = 10381;
+		rLoc = 10453;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 909;
@@ -39114,7 +39258,7 @@
 		fRef = F5F06F0E02AE554301B05200;
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
-		rLen = 870;
+		rLen = 1031;
 		rLoc = 1588;
 		rType = 0;
 		vrLen = 961;
@@ -39724,7 +39868,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiece.h: Unpickle";
 		rLen = 41;
-		rLoc = 1324;
+		rLoc = 1344;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 511;
@@ -40154,7 +40298,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiece.h: Unpickle";
 		rLen = 41;
-		rLoc = 1324;
+		rLoc = 1344;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 511;
@@ -44282,7 +44426,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 1520;
@@ -44302,7 +44446,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6243;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 1520;
@@ -44322,7 +44466,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: Render";
 		rLen = 0;
-		rLoc = 2175;
+		rLoc = 2229;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 1452;
@@ -44342,7 +44486,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 4314;
+		rLoc = 4475;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 1969;
@@ -44760,7 +44904,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 132";
 		rLen = 0;
-		rLoc = 7031;
+		rLoc = 7192;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 729;
@@ -45670,7 +45814,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7326;
+		rLoc = 7487;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 0;

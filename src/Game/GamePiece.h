@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GamePiece.h,v 1.5 2002/07/18 11:40:35 southa Exp $
+ * $Id: GamePiece.h,v 1.6 2002/08/07 13:36:50 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.6  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/07/18 11:40:35  southa
  * Overplotting and movement
  *
@@ -38,6 +41,7 @@
 
 class GLPoint;
 class GameMotionSpec;
+class GameFloorMap;
 
 class GamePiece: public CorePickle, protected CoreXMLHandler
 {
@@ -47,6 +51,7 @@ public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
+    virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
     virtual void MoveGet(GameMotionSpec& outSpec) const = 0;
     virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
     virtual string TypeNameGet(void) const = 0;

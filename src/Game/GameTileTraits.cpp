@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.10 2002/07/18 11:40:36 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.11 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.11  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.10  2002/07/18 11:40:36  southa
  * Overplotting and movement
  *
@@ -96,7 +99,7 @@ GameTileTraits::PermeabilityGet(tVal& outPermeability) const
         }
     }
 
-    // This logic is flawed
+    // This logic is flawed.  Only works at the top level
     static bool notWarnedYet=true;
     if (!foundPerm && notWarnedYet)
     {
@@ -106,6 +109,29 @@ GameTileTraits::PermeabilityGet(tVal& outPermeability) const
     }
     return foundPerm;
 }
+
+bool
+GameTileTraits::AdhesionGet(tVal& outAdhesion) const
+{
+    outAdhesion=1;
+    if (m_hasAdhesion)
+    {
+        outAdhesion=m_adhesion;
+        return true;
+    }
+    
+    for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+    {
+        GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
+        if (traits.AdhesionGet(outAdhesion))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 void
 GameTileTraits::NullHandler(CoreXML& inXML)
@@ -126,6 +152,14 @@ GameTileTraits::HandlePermeabilityEnd(CoreXML& inXML)
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_permeability)) inXML.Throw("Expecting <permeability>1.0</permeability>");
     m_hasPermeability=true;
+}
+
+void
+GameTileTraits::HandleAdhesionEnd(CoreXML& inXML)
+{
+    istringstream inStream(inXML.TopData());
+    if (!(inStream >> m_adhesion)) inXML.Throw("Expecting <adhesion>1.0</adhesion>");
+    m_hasAdhesion=true;
 }
 
 void
@@ -159,11 +193,15 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_startTable[kPickleData]["graphic"] = &GameTileTraits::HandleGraphicStart;
     m_startTable[kPickleData]["permeability"] = &GameTileTraits::NullHandler;
     m_endTable[kPickleData]["permeability"] = &GameTileTraits::HandlePermeabilityEnd;
+    m_startTable[kPickleData]["adhesion"] = &GameTileTraits::NullHandler;
+    m_endTable[kPickleData]["adhesion"] = &GameTileTraits::HandleAdhesionEnd;
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
     m_permeability=1.001;
     m_hasPermeability=false;
+    m_adhesion=1.001;
+    m_hasAdhesion=false;
     inXML.ParseStream(*this);
 }
 

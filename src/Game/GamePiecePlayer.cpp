@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.16 2002/08/18 12:20:40 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.17 2002/08/18 14:29:29 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.17  2002/08/18 14:29:29  southa
+ * More movement tweaks
+ *
  * Revision 1.16  2002/08/18 12:20:40  southa
  * Movement tweaks
  *
@@ -71,6 +74,8 @@
 #include "GameController.h"
 #include "GameGraphicSprite.h"
 #include "GameView.h"
+#include "GameFloorMap.h"
+#include "GameSpacePoint.h"
 
 #include "mushGL.h"
 
@@ -83,6 +88,13 @@ GamePiecePlayer::Render(void)
     {
         m_graphics[i]->Render();
     }
+}
+
+void
+GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
+{
+    GameSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
+    m_adhesion=inFloorMap.AdhesionGet(spacePoint);
 }
 
 void
@@ -186,6 +198,19 @@ GamePiecePlayer::HandleMotionStart(CoreXML& inXML)
 }
 
 void
+GamePiecePlayer::HandleAccelerationEnd(CoreXML& inXML)
+{
+    istringstream inStream(inXML.TopData());
+    if (!(inStream >> m_acceleration)) inXML.Throw("Expecting <acceleration>1.0</acceleration>");
+}
+
+void
+GamePiecePlayer::HandleSpeedLimitEnd(CoreXML& inXML)
+{
+    istringstream inStream(inXML.TopData());
+    if (!(inStream >> m_speedLim)) inXML.Throw("Expecting <speedlimit>0.1</speedlimit>");
+}
+void
 GamePiecePlayer::HandlePlayerEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
@@ -208,6 +233,8 @@ GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
         inOut << inPrefix << "</graphic>" << endl;
     }
     m_motion.Pickle(inOut, inPrefix);
+    inOut << inPrefix << "<acceleration>" << m_acceleration << "</acceleration>" << endl;
+    inOut << inPrefix << "<speedlimit>" << m_speedLim << "</speedlimit>" << endl;
 }
 
 void
@@ -218,9 +245,13 @@ GamePiecePlayer::UnpicklePrologue(void)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleInit]["player"] = &GamePiecePlayer::HandlePlayerStart;
     m_startTable[kPickleData]["name"] = &GamePiecePlayer::NullHandler;
+    m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
     m_startTable[kPickleData]["graphic"] = &GamePiecePlayer::HandleGraphicStart;
     m_startTable[kPickleData]["motion"] = &GamePiecePlayer::HandleMotionStart;
-    m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
+    m_startTable[kPickleData]["acceleration"] = &GamePiecePlayer::NullHandler;
+    m_endTable[kPickleData]["acceleration"] = &GamePiecePlayer::HandleAccelerationEnd;
+    m_startTable[kPickleData]["speedlimit"] = &GamePiecePlayer::NullHandler;
+    m_endTable[kPickleData]["speedlimit"] = &GamePiecePlayer::HandleSpeedLimitEnd;
     m_endTable[kPickleData]["player"] = &GamePiecePlayer::HandlePlayerEnd;
     m_pickleState=kPickleInit;
     m_baseThreaded=0;

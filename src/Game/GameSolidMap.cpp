@@ -104,6 +104,8 @@ GameSolidMap::SizeSet(U32 inXSize, U32 inYSize)
     m_ysize=inYSize;
     m_solidMap.resize(0);
     m_solidMap.resize(m_xsize*m_ysize);
+    m_adhesionMap.resize(0);
+    m_adhesionMap.resize(m_xsize*m_ysize);
 }
 
 void

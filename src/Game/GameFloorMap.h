@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.11 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameFloorMap.h,v 1.12 2002/08/17 10:41:51 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.12  2002/08/17 10:41:51  southa
+ * Designer fixes
+ *
  * Revision 1.11  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -95,8 +98,12 @@ public:
     U32 ElementGet(const GLPoint &inPoint) const;
     void ElementSet(const GLPoint &inPoint, U32 inValue);
     tVal PermeabilityGet(const GameMapPoint &inPoint) const;
+    tVal AdhesionGet(const GameSpacePoint &inPoint) const;
+    tVal AdhesionGet(const GameMapPoint &inPoint) const;
     void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
     const GameSolidMap& SolidMapGet(void) const;
+    void SolidMapInvalidate(void) { m_solidMapValid=false; }
+   
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

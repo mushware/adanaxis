@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameTileTraits.h,v 1.7 2002/07/16 17:48:09 southa Exp $
+ * $Id: GameTileTraits.h,v 1.8 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.8  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.7  2002/07/16 17:48:09  southa
  * Collision and optimisation work
  *
@@ -49,6 +52,7 @@ public:
     virtual ~GameTileTraits();
     void Render(void);
     bool PermeabilityGet(tVal& outPermeability) const;
+    bool AdhesionGet(tVal& outAdhesion) const;
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual string TypeNameGet(void) {return "tile";}
@@ -62,6 +66,7 @@ private:
     void NullHandler(CoreXML& inXML);
     void HandleGraphicStart(CoreXML& inXML);
     void HandlePermeabilityEnd(CoreXML& inXML);
+    void HandleAdhesionEnd(CoreXML& inXML);
     void HandleTraitsEnd(CoreXML& inXML);
 
     enum PickleState
@@ -81,6 +86,8 @@ private:
     vector <GameGraphic *> m_graphics;
     tVal m_permeability;
     bool m_hasPermeability;
+    tVal m_adhesion;
+    bool m_hasAdhesion;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTileTraits& inObj)

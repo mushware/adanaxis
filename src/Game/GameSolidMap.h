@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.h,v 1.5 2002/08/02 09:05:11 southa Exp $
+ * $Id: GameSolidMap.h,v 1.6 2002/08/07 13:36:50 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.6  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/08/02 09:05:11  southa
  * Movement modification in collison checking
  *
@@ -57,6 +60,9 @@ public:
     tVal PermeabilityGet(U32 inX, U32 inY) const;
     tVal PermeabilityGet(const GameSpacePoint& inPoint) const;
     tVal PermeabilityGet(const GameMapPoint& inPoint) const;
+    void AdhesionSet(tVal inValue, U32 inX, U32 inY);
+    tVal AdhesionGet(const GameSpacePoint& inPoint) const;
+    tVal AdhesionGet(const GameMapPoint& inPoint) const;
     void TrimMotion(GameMotionSpec& inSpec) const;
     void OverPlotCollisionSet(const GameMotionSpec& inSpec) const;
     void Render(const GameMapArea& inArea) const;
@@ -72,5 +78,6 @@ private:
     tVal m_xstep;
     tVal m_ystep;
     tValarray<tVal> m_solidMap;
+    tValarray<tVal> m_adhesionMap;
 };
 #endif
