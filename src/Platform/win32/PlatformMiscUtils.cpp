@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.26 2003/01/20 10:45:32 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.27 2003/02/05 17:06:38 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.27  2003/02/05 17:06:38  southa
+ * Build fixes
+ *
  * Revision 1.26  2003/01/20 10:45:32  southa
  * Singleton tidying
  *
@@ -95,6 +98,7 @@
 #include "mushPlatform.h"
 
 #include <windows.h>
+#include <direct.h>
 
 using namespace Mushware;
 using namespace std;
@@ -258,7 +262,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
     }
 	    
     int itemHit=MessageBox(NULL,
-		    MushcoreInfo::ApplicationNameGet().c_str(),
+		    MushcoreInfo::Sgl().ApplicationNameGet().c_str(),
 		    inStr.c_str(),
 		    flags);
 
