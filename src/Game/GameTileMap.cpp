@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileMap.cpp,v 1.2 2002/05/29 08:56:16 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.3 2002/05/30 14:41:12 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.3  2002/05/30 14:41:12  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.2  2002/05/29 08:56:16  southa
  * Tile display
  *
@@ -61,9 +64,7 @@ GameTileMap::HandleScriptStart(CoreXML& inXML)
 void
 GameTileMap::HandleScriptEnd(CoreXML& inXML)
 {
-    cerr << "Script content was '" << inXML.TopData() << "'" << endl;
     m_loaderScript=CoreScript(inXML.TopData());
-    cerr << "Script is:" << endl << m_loaderScript << endl;
 }
 
 void

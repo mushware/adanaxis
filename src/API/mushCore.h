@@ -1,6 +1,9 @@
 /*
- * $Id: mushCore.h,v 1.2 2002/05/24 16:23:08 southa Exp $
+ * $Id: mushCore.h,v 1.3 2002/05/27 12:58:42 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.3  2002/05/27 12:58:42  southa
+ * GameContract and global configs added
+ *
  * Revision 1.2  2002/05/24 16:23:08  southa
  * Config and typenames
  *
@@ -52,6 +55,12 @@
 
 // Regular expression utility
 #include "CoreApp/CoreRegExp.h"
+
+// Scalar type for expressions
+#include "CoreApp/CoreScalar.h"
+
+// Script class
+#include "CoreApp/CoreScript.h"
 
 // Standard typedefs
 #include "CoreApp/CoreStandard.h"

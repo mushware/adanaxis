@@ -16,19 +16,25 @@
 
 #include "GameBase.h"
 
-class GameMap;
+class GameFloorMap;
 class GameTileMap;
 
-class GameContract: public GameBase
+class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
 public:
     GameContract();
     virtual ~GameContract();
     virtual void Process(bool& outDoQuit, bool& outRedraw);
     virtual void Display(void);
+    virtual void ScriptFunction(const string& inName) const;
+
+    virtual void Pickle(ostream& inOut) const;
+    virtual void Unpickle(CoreXML& inXML);
+    static CoreScalar LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static void Install(void);
 
 protected:
-    enum State
+    enum GameState
     {
         kInit,
         kRunning
@@ -39,8 +45,31 @@ protected:
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
 
+    void XMLStartHandler(CoreXML& inXML);
+    void XMLEndHandler(CoreXML& inXML);
+    void XMLDataHandler(CoreXML& inXML);
+
+    void HandleContractStart(CoreXML& inXML);
+    void HandleContractEnd(CoreXML& inXML);
+    void HandleScriptStart(CoreXML& inXML);
+    void HandleScriptEnd(CoreXML& inXML);
+    void NullHandler(CoreXML& inXML);
+
+    enum PickleState
+    {
+        kPickleInit,
+        kPickleData,
+        kPickleNumStates
+    };
+    
 private:
-    State m_state;
-    auto_ptr<GameMap> m_gameMap;
+    typedef map<string, void (GameContract::*)(CoreXML& inXML)> ElementFunctionMap;
+    vector<ElementFunctionMap> m_startTable;
+    vector<ElementFunctionMap> m_endTable;
+    U32 m_pickleState;
+    CoreScript m_script;
+
+    GameState m_gameState;
+    GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
 };

@@ -23,17 +23,15 @@
 #include "mushCore.h"
 #include "mushGL.h"
 
-#include "GameMap.h"
+#include "GameFloorMap.h"
 #include "GameData.h"
 #include "GameTileMap.h"
 #include "GameGlobalConfig.h"
 
-GameContract::GameContract(): m_state(kInit)
+CoreInstaller GameContractInstaller(GameContract::Install);
+
+GameContract::GameContract(): m_gameState(kInit)
 {
-    CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
-    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").String());
-    GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
-    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
 }
 
 GameContract::~GameContract()
@@ -44,11 +42,11 @@ GameContract::~GameContract()
 void
 GameContract::Process(bool &outDoQuit, bool &outRedraw)
 {
-    switch (m_state)
+    switch (m_gameState)
     {
         case kInit:
             Init();
-            m_state=kRunning;
+            m_gameState=kRunning;
             outRedraw=true;
             break;
 
@@ -61,7 +59,7 @@ GameContract::Process(bool &outDoQuit, bool &outRedraw)
 void
 GameContract::Display(void)
 {
-    switch (m_state)
+    switch (m_gameState)
     {
         case kInit:
             InitDisplay();
@@ -91,17 +89,18 @@ void
 GameContract::RunningDisplay(void)
 {
     COREASSERT(m_tileMap != NULL);
+    COREASSERT(m_floorMap != NULL);
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    U32 xsize=m_gameMap->XSize();
-    U32 ysize=m_gameMap->YSize();
+    U32 xsize=m_floorMap->XSize();
+    U32 ysize=m_floorMap->YSize();
     for (U32 x=0; x<xsize; x++)
     {
         for (U32 y=0; y<ysize; y++)
         {
-            U32 mapVal=m_gameMap->At(x,y);
+            U32 mapVal=m_floorMap->At(x,y);
             S32 basex=32*x;
             S32 basey=32*y;
             GLTextureRef texRef(m_tileMap->NameGet(mapVal));
@@ -118,22 +117,11 @@ GameContract::RunningDisplay(void)
 void
 GameContract::Init(void)
 {
-    CoreApp::Instance().Process("loadtilemap('map1',$MAPPATH+'/TileMap.xml')");
-    m_tileMap=GameData::Instance().TileMapGet("map1");
-    
-    // Load the game map
-    {
-        m_gameMap.reset(new GameMap);
-        string filename=GameGlobalConfig::Instance().Get("MAPPATH").String() + "/GameMap.xml";
-        ifstream inStream(filename.c_str());
-        if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-        CoreXML xml(inStream, filename);
-        m_gameMap->Unpickle(xml);
-    }
-
+    m_tileMap=GameData::Instance().TileMapGet("tiles");
+    m_floorMap=GameData::Instance().FloorMapGet("floor");
     COREASSERT(m_tileMap != NULL);
+    COREASSERT(m_floorMap != NULL);
     m_tileMap->Load();
-    cerr << *m_tileMap;
 }
 
 void
@@ -141,3 +129,137 @@ GameContract::Running(bool &outRedraw)
 {
     // outRedraw=true;
 }
+
+void
+GameContract::ScriptFunction(const string& inName) const
+{
+    m_script.Execute();
+}
+
+void
+GameContract::NullHandler(CoreXML& inXML)
+{
+}
+
+void
+GameContract::HandleContractStart(CoreXML& inXML)
+{
+    m_pickleState=kPickleData;
+}
+
+void
+GameContract::HandleContractEnd(CoreXML& inXML)
+{
+    inXML.Stop();
+}
+
+void
+GameContract::HandleScriptStart(CoreXML& inXML)
+{
+}
+
+void
+GameContract::HandleScriptEnd(CoreXML& inXML)
+{
+    m_script=CoreScript(inXML.TopData());
+}
+
+void
+GameContract::Pickle(ostream& inOut) const
+{
+    inOut << "<contract version=\"0.0\">" << endl;
+    inOut << "<script type=\"text/core\">" << endl;
+    inOut << m_script;
+    inOut << "</script>" << endl;
+    inOut << "</contract>";
+}
+
+void
+GameContract::Unpickle(CoreXML& inXML)
+{
+    m_startTable.resize(kPickleNumStates);
+    m_endTable.resize(kPickleNumStates);
+    m_startTable[kPickleInit]["contract"] = &GameContract::HandleContractStart;
+    m_startTable[kPickleData]["script"] = &GameContract::HandleScriptStart;
+    m_endTable[kPickleData]["contract"] = &GameContract::HandleContractEnd;
+    m_endTable[kPickleData]["script"] = &GameContract::HandleScriptEnd;
+
+    m_pickleState=kPickleInit;
+    inXML.ParseStream(*this);
+}
+
+void
+GameContract::XMLStartHandler(CoreXML& inXML)
+{
+    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+
+    if (p != m_startTable[m_pickleState].end())
+    {
+        (this->*p->second)(inXML);
+    }
+    else
+    {
+        ostringstream message;
+        message << "Unexpected tag <" << inXML.TopTag() << ">.  Potential matches are";
+        ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
+        while (p != m_startTable[m_pickleState].end())
+        {
+            message << " <" << p->first << ">";
+            p++;
+        }
+        inXML.Throw(message.str());
+    }
+}
+
+void
+GameContract::XMLEndHandler(CoreXML& inXML)
+{
+    ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+
+    if (p != m_endTable[m_pickleState].end())
+    {
+        (this->*p->second)(inXML);
+    }
+    else
+    {
+        ostringstream message;
+        message << "Unexpected end of tag </" << inXML.TopTag() << ">.  Potential matches are";
+        ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
+        while (p != m_endTable[m_pickleState].end())
+        {
+            message << " <" << p->first << ">";
+            p++;
+        }
+        inXML.Throw(message.str());
+    }
+}
+
+void
+GameContract::XMLDataHandler(CoreXML& inXML)
+{
+}
+
+CoreScalar
+GameContract::LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(CommandFail("Usage: loadcontract <name> <filename>"));
+    }
+    string name, filename;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(filename);
+    ifstream inStream(filename.c_str());
+    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    CoreXML xml(inStream, filename);
+GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
+    return CoreScalar(0);
+}
+
+void
+GameContract::Install(void)
+{
+CoreApp::Instance().AddHandler("loadcontract", LoadContract);
+}
+
+

@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.6 2002/05/26 16:08:48 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.7 2002/05/27 12:58:43 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.7  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  * Revision 1.6  2002/05/26 16:08:48  southa
  * CoreXML loader
  *
@@ -27,12 +30,22 @@
 #include "mushGL.h"
 
 #include "GameContract.h"
-#include "GameMap.h"
+#include "GameGlobalConfig.h"
+#include "GameFloorMap.h"
+#include "GameData.h"
 
 void
 GameAppHandler::Initialise(void)
 {
-    m_pGame = new GameContract;
+    CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
+    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").String());
+    GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
+    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
+
+    CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
+
+    m_pGame=GameData::Instance().ContractGet("game1");
+    m_pGame->ScriptFunction("load");
     
     GLUtils::StandardInit();
 

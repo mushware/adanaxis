@@ -1,6 +1,9 @@
 /*
- * $Id: GameBase.h,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameBase.h,v 1.3 2002/05/10 22:38:22 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.3  2002/05/10 22:38:22  southa
+ * Checkpoint
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *
@@ -16,6 +19,7 @@ class GameBase
 public:
     virtual void Process(bool& outDoQuit, bool& outRedraw) = 0;
     virtual void Display(void) = 0;
+    virtual void ScriptFunction(const string& inName) const = 0;
 
 private:
 

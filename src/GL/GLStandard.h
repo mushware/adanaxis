@@ -1,6 +1,9 @@
 /*
- * $Id: GLStandard.h,v 1.2 2002/05/24 18:10:43 southa Exp $
+ * $Id: GLStandard.h,v 1.3 2002/05/28 16:37:39 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.3  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.2  2002/05/24 18:10:43  southa
  * CoreXML and game map
  *
@@ -53,6 +56,15 @@
 #ifdef HAVE_GLUT_GLUT_H
 #include <GLUT/glut.h>
 #endif
+
+#ifdef HAVE_OPENGL_GL_H
+#include <OpenGL/gl.h>
+#endif
+
+#ifdef HAVE_OPENGL_GLU_H
+#include <OpenGL/glu.h>
+#endif
+
 
 #include "mushCore.h"
 
