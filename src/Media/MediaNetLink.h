@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.18 2002/12/05 13:20:13 southa Exp $
+ * $Id: MediaNetLink.h,v 1.19 2002/12/07 18:32:15 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.19  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.18  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -134,6 +137,7 @@ private:
         kTCPSlowLinkCheckPeriod=31020,
         kUDPFastLinkCheckPeriod=1000, // Times in msec
         kUDPSlowLinkCheckPeriod=30000,
+        kIDRequestPeriod=1000, // Time between requests for ID transfer
         kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
         kLinkInitTimeoutMsec=6000, // Timeout to kill link if not up for send
         kLinkIdleTimeoutMsec=35000, // Timeout to disconnect if no activity
@@ -162,6 +166,7 @@ private:
     void TCPSocketTake(TCPsocket inSocket);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
+    void IDRequestSend(void);
     bool LinkIsUpForSend(tLinkState inState);
     bool LinkIsUpForReceive(tLinkState inState);
     bool LinkDeathCheck(LinkState& ioLinkState);
@@ -176,6 +181,7 @@ private:
     void MessageUDPLinkCheckHandle(MediaNetData& ioData);
     void MessageUDPLinkCheckReplyHandle(MediaNetData& ioData);
     void MessageKillLinkHandle(MediaNetData& ioData);
+    void MessageIDRequestHandle(MediaNetData& ioData);
 
     static string LinkStateToBG(const LinkState& inLinkState);
 
@@ -184,6 +190,7 @@ private:
     MediaNetClient m_client;
     U32 m_creationMsec;
     U32 m_lastActivityMsec;
+    U32 m_lastIDRequestMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
     MediaNetID *m_netID;

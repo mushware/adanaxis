@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.23 2002/12/05 13:20:13 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.24 2002/12/07 18:32:15 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.24  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.23  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -137,6 +140,8 @@ MediaNetLink::Initialise(void)
     m_currentMsec=SDL_GetTicks();
     m_creationMsec=m_currentMsec;
     m_lastActivityMsec=m_currentMsec;
+    m_lastIDRequestMsec=m_currentMsec;
+    
     m_tcpState.linkCheckTime=0;
     m_tcpState.linkState=kLinkStateUntested;
     m_tcpState.linkCheckState=kLinkCheckStateIdle;
@@ -283,14 +288,13 @@ MediaNetLink::LinkChecksSend(void)
 void
 MediaNetLink::TCPLinkCheckSend(void)
 {
-    m_currentMsec=SDL_GetTicks();
     if (m_currentMsec > m_tcpState.linkCheckTime + kLinkCheckDeadTime)
     {
         MediaNetData data;
         m_tcpState.linkCheckSeqNum++;
         MediaNetProtocol::TCPLinkCheckCreate(data, m_tcpState.linkCheckSeqNum);
-        m_tcpState.linkCheckState=kLinkCheckStateAwaitingReply;
-        m_tcpState.linkCheckTime=m_currentMsec;
+        m_tcpState.linkCheckState = kLinkCheckStateAwaitingReply;
+        m_tcpState.linkCheckTime = m_currentMsec;
         TCPSend(data);
     }
 }
@@ -298,17 +302,28 @@ MediaNetLink::TCPLinkCheckSend(void)
 void
 MediaNetLink::UDPLinkCheckSend(void)
 {
-    m_currentMsec=SDL_GetTicks();
     if (m_currentMsec > m_udpState.linkCheckTime + kLinkCheckDeadTime)
     {
         MediaNetData data;
         m_udpState.linkCheckSeqNum++;
         MediaNetProtocol::UDPLinkCheckCreate(data, m_udpState.linkCheckSeqNum);
-        m_udpState.linkCheckState=kLinkCheckStateAwaitingReply;
-        m_udpState.linkCheckTime=m_currentMsec;
+        m_udpState.linkCheckState = kLinkCheckStateAwaitingReply;
+        m_udpState.linkCheckTime = m_currentMsec;
         UDPSend(data);
     }
 }    
+
+void
+MediaNetLink::IDRequestSend(void)
+{
+    if (m_currentMsec > m_lastIDRequestMsec + kIDRequestPeriod)
+    {
+        MediaNetData data;
+        MediaNetProtocol::IDRequestCreate(data);
+        ReliableSend(data);
+        m_lastIDRequestMsec = m_currentMsec;
+    }
+}
 
 void
 MediaNetLink::Tick(void)
@@ -407,6 +422,11 @@ MediaNetLink::Tick(void)
         // Just disconnnect UDP if it fails
         m_client.UDPDisconnect();
         m_udpState.linkState=kLinkStateDead;
+    }
+
+    if (m_netID == NULL && LinkIsUpForSend(m_tcpState.linkState))
+    {
+        IDRequestSend();
     }
 }
 
@@ -676,7 +696,12 @@ MediaNetLink::MessageHandle(U32 inType, MediaNetData& ioData)
             MessageKillLinkHandle(ioData);
             break;
 
+        case MediaNetProtocol::kMessageTypeIDRequest:
+            MessageIDRequestHandle(ioData);
+            break;
+
         default:
+            MediaNetLog::Instance().NetLog() << "Discarding type " << inType << " link layer message" << endl; 
             break;
     }
 }
@@ -777,6 +802,21 @@ MediaNetLink::MessageKillLinkHandle(MediaNetData& ioData)
 }
 
 void
+MediaNetLink::MessageIDRequestHandle(MediaNetData& ioData)
+{
+    if (m_netID == NULL)
+    {
+                    MediaNetLog::Instance().NetLog() << "No ID present to answer to ID request" << endl;
+    }
+    else
+    {
+        MediaNetData netData;
+        MediaNetProtocol::IDTransferCreate(netData, *m_netID);
+        ReliableSend(netData);
+    }
+}
+
+void
 MediaNetLink::LinkInfoLog(void) const
 {
     if (!m_loggedLinkInfo)
@@ -790,8 +830,9 @@ void
 MediaNetLink::Print(ostream& ioOut) const
 {
     ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState;
-    ioOut << ", creationMsec =" << m_creationMsec << ", lastActivityMsec=" << m_lastActivityMsec;
-    ioOut << ", currentMsec=" << m_currentMsec << ", targetName=" << m_targetName << ", netID";
+    ioOut << ", currentMsec=" << m_currentMsec << ", creationMsec =" << m_creationMsec;
+    ioOut  << ", lastActivityMsec=" << m_lastActivityMsec << ", lastIDRequestMsec=" << m_lastIDRequestMsec;
+    ioOut << ", targetName=" << m_targetName << ", netID";
     if (m_netID == NULL)
     {
         ioOut << " is NULL";

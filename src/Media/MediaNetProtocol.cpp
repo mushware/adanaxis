@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.10 2002/12/05 13:20:13 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.11 2002/12/07 18:32:15 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.11  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.10  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -102,12 +105,13 @@ MediaNetProtocol::IDRequestCreate(MediaNetData& outData)
     outData.BytePush(kSyncByte1);
     outData.BytePush(kSyncByte2);
     outData.BytePush(kMessageTypeIDRequest);
+    outData.BytePush(0); // Pad to 4 bytes
 }
 
 void
 MediaNetProtocol::IDTransferCreate(MediaNetData& ioData, const MediaNetID& inID)
 {
-    LongAppMessageHeaderCreate(ioData, kMessageTypeIDTransfer);
+    LongAppMessageHeaderCreate(ioData, kMessageTypeIDTransfer - kMessageTypeLongAppStart);
     inID.Pack(ioData);
     LongAppMessageFinish(ioData);
 }

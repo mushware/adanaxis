@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetIDString.cpp,v 1.1 2002/12/07 18:32:15 southa Exp $
+ * $Log: MediaNetIDString.cpp,v $
+ * Revision 1.1  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  */
 
 #include "MediaNetIDString.h"
@@ -38,10 +41,10 @@ void
 MediaNetIDString::Unpack(MediaNetData& ioData)
 {
     m_name = "";
-    U32 size=ioData.BytePop();
+    U32 size=ioData.MessageBytePop();
     for (U32 i=0; i<size; ++i)
     {
-        m_name += ioData.BytePop();
+        m_name += ioData.MessageBytePop();
     }
 }
 
