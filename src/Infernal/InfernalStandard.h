@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nh/Ox41GRW79N1VNMOuYsg
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalStandard.h,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Log: InfernalStandard.h,v $
+ * Revision 1.1  2004/01/07 18:01:18  southa
+ * MushModel and Infernal work
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -57,6 +60,7 @@
 #endif
 
 #include "mushGame.h"
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

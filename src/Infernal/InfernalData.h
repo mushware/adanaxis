@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } d+1PYEKlqM49DPZUlGG7BQ
 /*
- * $Id: InfernalData.h,v 1.5 2004/01/02 21:13:08 southa Exp $
+ * $Id: InfernalData.h,v 1.6 2004/01/06 20:46:50 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.6  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.5  2004/01/02 21:13:08  southa
  * Source conditioning
  *
@@ -135,6 +138,7 @@ class InfernalDialogue;
 class InfernalView;
 class GameTimer;
 class GameRewards;
+class MushPiePieceMobile;
 
 class InfernalData
 {
@@ -142,6 +146,11 @@ public:
     typedef std::map<std::string, InfernalDialogue *> DialogueMap;
     typedef std::map<std::string, InfernalDialogue *>::iterator DialogueMapIterator;
     typedef std::map<std::string, InfernalDialogue *>::const_iterator DialogueMapConstIterator;
+    
+    typedef MushcoreData<MushPiePieceMobile, Mushware::U32> tProjectileData;
+    typedef MushcoreData<MushPiePieceMobile, Mushware::U32>::tMapIterator tProjectileDataIterator;
+    typedef MushcoreData<MushPiePieceMobile, Mushware::U32>::tMapConstIterator tProjectileDataConstIterator;
+    
     ~InfernalData();
     static InfernalData& Sgl(void) {return *((m_instance==NULL)?m_instance=new InfernalData:m_instance);}
 
@@ -181,7 +190,7 @@ public:
     const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
     void CurrentDialoguesClear(void);
 
-
+    tProjectileData& ProjectileDataGet(void) { return m_projectileData; }
     
     void DumpAll(std::ostream& inOut) const;
 
@@ -198,7 +207,7 @@ private:
     std::map<std::string, InfernalView *> m_views;
 
     MushcoreData<InfernalPiecePlayer> m_playerData;
-    
+    tProjectileData m_projectileData;
     GameTimer *m_timer;
     GameRewards *m_gameRewards;
     

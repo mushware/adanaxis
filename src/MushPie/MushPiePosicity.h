@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } u4KzedBl1+uLt37oBoF4HQ
 /*
- * $Id: MushPiePosicity.h,v 1.2 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushPiePosicity.h,v 1.3 2004/01/06 00:34:56 southa Exp $
  * $Log: MushPiePosicity.h,v $
+ * Revision 1.3  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.2  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -33,6 +36,14 @@ class MushPiePosicity
 {
 public:
     MushPiePosicity() {}
+    MushPiePosicity(Mushware::t3Val inPos, Mushware::t3Val inVel, Mushware::tQVal inAngPos, Mushware::tQVal inAngVel) :
+    angPos(inAngPos),
+    angVel(inAngVel),
+    pos(inPos),
+    vel(inVel)
+    {
+    }
+                        
     Mushware::tQVal angPos;
     Mushware::tQVal angVel;
     Mushware::t3Val pos;

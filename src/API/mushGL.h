@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 9ALpBAAG9yNsjRsW9GGQ3A
 /*
- * $Id: mushGL.h,v 1.22 2003/09/17 19:40:29 southa Exp $
+ * $Id: mushGL.h,v 1.23 2004/01/02 21:13:04 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.23  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.22  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -109,6 +112,7 @@
 #include "GL/GLTextureRef.h"
 #include "GL/GLUTAppHandler.h"
 #include "GL/GLUtils.h"
+#include "GL/GLXMLOperators.h"
 #include "GL/SDLAppHandler.h"
 
 //%includeGuardEnd {

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIEFORM_H
-#define MUSHPIEFORM_H
-//%includeGuardStart } chr+rdZQI8cOcPal/mrI9Q
+#ifndef MUSHPIESIGNAL_H
+#define MUSHPIESIGNAL_H
+//%includeGuardStart } 4Ppb7qlwhe1x6KEcwB9Qug
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieForm.h
+ * File: src/MushPie/MushPieSignal.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,51 +14,42 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GYyeLc+epGQUElec/y5hZA
+//%Header } WIDxM2ESAcY9zeM8fx9m/A
 /*
- * $Id: MushPieForm.h,v 1.1 2004/01/06 10:08:51 southa Exp $
- * $Log: MushPieForm.h,v $
- * Revision 1.1  2004/01/06 10:08:51  southa
- * MushcoreData and MushPieForm work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushPieStandard.h"
 
-class MushPieSignal;
-
 //:generate standard ostream xml1
-class MushPieForm : public MushcoreVirtualObject
+class MushPieSignal : public MushcoreVirtualObject
 {
 public:
-    typedef MushcoreData<MushPieForm, Mushware::U32> tData;
-    typedef MushcoreDataRef<MushPieForm, Mushware::U32> tDataRef;
+    MushPieSignal() {}
+    virtual ~MushPieSignal() {}
     
-    MushPieForm() {}
-    virtual ~MushPieForm() {}
-    
-    virtual void SignalHandle(const MushPieSignal& inSignal);
-    virtual void WriteableSignalHandle(MushPieSignal& inSignal);
+private:
     
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
-    virtual MushPieForm *AutoClone(void) const;
-    virtual MushPieForm *AutoCreate(void) const;
+    virtual MushPieSignal *AutoClone(void) const;
+    virtual MushPieSignal *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Gx6JkL8VRSyR1ELcL4awiQ
+//%classPrototypes } ILLrDRrOEn4vLolyop8qhg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushPieForm& inObj)
+operator<<(std::ostream& ioOut, const MushPieSignal& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } t8f6LLmjLkfX4mZD/ckOag
+//%inlineHeader } U1OYYIdjfEmHGMjXtntbzw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nUcp9FzfP81gpVR3OJFy4w
 /*
- * $Id: GLRender.h,v 1.9 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLRender.h,v 1.10 2004/01/06 20:46:49 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.10  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.9  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -62,16 +65,32 @@ public:
         glVertexPointer(3, GL_FLOAT, 0, inArray);
         m_vertexArray=inArray;
     }
+    static void VertexArraySet(const GLfloat *inArray)
+    {
+        glVertexPointer(3, GL_FLOAT, 0, inArray);
+    }
+    
     static void TexCoordArraySet(const GLfloat (*inArray)[2])
     {
         glTexCoordPointer(2, GL_FLOAT, 0, inArray);
         m_texCoordArray=inArray;
     }
+    static void TexCoordArraySet(const GLfloat *inArray)
+    {
+        glTexCoordPointer(4, GL_FLOAT, 0, inArray);
+    }
+
     static void NormalArraySet(const GLfloat (*inArray)[3])
     {
         glNormalPointer(GL_FLOAT, 0, inArray);
         m_normalArray=inArray;
     }
+
+    static void NormalArraySet(const GLfloat *inArray)
+    {
+        glNormalPointer(GL_FLOAT, 0, inArray);
+    }
+    
     static void TextureSet(const GLTextureRef& inTexRef)
     {
         GLState::BindTexture(inTexRef.BindingNameGet());

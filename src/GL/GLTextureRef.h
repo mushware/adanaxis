@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } WU9+ik61ykJexHMHA/3vVw
 /*
- * $Id: GLTextureRef.h,v 1.16 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureRef.h,v 1.17 2004/01/06 20:46:49 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.17  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.16  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -74,10 +77,12 @@
 
 class GLTexture;
 
-class GLTextureRef
+//:generate standard ostream xml1
+class GLTextureRef : public MushcoreVirtualObject
 {
 public:
     GLTextureRef(): m_texPtr(NULL), m_bindingNameContext(0) {}
+    virtual ~GLTextureRef() {}
     GLTextureRef(const std::string& inName): m_name(inName), m_texPtr(NULL) {}
     void NameSet(const std::string& inName) {m_name=inName;m_texPtr=NULL;}
     const std::string& NameGet(void) const {return m_name;}
@@ -93,6 +98,16 @@ private:
     mutable GLTexture *m_texPtr;
     mutable GLuint m_bindingName;
     mutable Mushware::U32 m_bindingNameContext;
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual GLTextureRef *AutoClone(void) const;
+    virtual GLTextureRef *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 5uGMeEVimNSV/fWBJixiRA
 };
 
 inline GLTexture *
@@ -111,6 +126,14 @@ GLTextureRef::BindingNameGet(void) const
     m_bindingNameContext = GLUtils::TextureContextGet();
     return m_bindingName;
 }
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLTextureRef& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } 7Tcn23BbQg1X7vdx6W+7ew
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

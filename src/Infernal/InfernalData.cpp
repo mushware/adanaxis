@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } XQTyenfOhm5qvgL72wIAJw
 /*
- * $Id: InfernalData.cpp,v 1.4 2003/10/07 22:40:05 southa Exp $
+ * $Id: InfernalData.cpp,v 1.5 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalData.cpp,v $
+ * Revision 1.5  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/10/07 22:40:05  southa
  * Created MeshMover
  *
@@ -130,6 +133,7 @@
 #include "InfernalView.h"
 
 #include "mushGame.h"
+#include "mushPie.h"
 
 using namespace Mushware;
 using namespace std;

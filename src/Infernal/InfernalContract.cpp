@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.7 2004/01/02 21:13:08 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.8 2004/01/06 20:46:50 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.8  2004/01/06 20:46:50  southa
+ * Build fixes
+ *
  * Revision 1.7  2004/01/02 21:13:08  southa
  * Source conditioning
  *
@@ -401,6 +404,7 @@
 #include "InfernalDialogue.h"
 #include "InfernalFloorDesigner.h"
 #include "InfernalFloorMap.h"
+#include "InfernalForm.h"
 #include "InfernalMapArea.h"
 #include "InfernalMapPoint.h"
 #include "InfernalMotionSpec.h"
@@ -419,6 +423,7 @@
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushMustlGame.h"
+#include "mushPie.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
@@ -693,9 +698,18 @@ InfernalContract::RunningDisplay(void)
         default:
             break;
     }
-            
+
+    // Render the mobile objects
+    InfernalData::tProjectileDataConstIterator pEnd = InfernalData::Sgl().ProjectileDataGet().End();
+    for (InfernalData::tProjectileDataConstIterator p = InfernalData::Sgl().ProjectileDataGet().Begin();
+         p != pEnd; ++p)
+    {
+        p->second->FormRefGet().RefGet().SignalHandle(MushPieSignalNumeric(InfernalForm::kSignalRender));
+    }
+    
     GLUtils::PopMatrix();
 
+    
     // Set states for player rendering
     GLState::DepthSet(GLState::kDepthTest);
 
@@ -1027,6 +1041,26 @@ InfernalContract::GlobalKeyControl(void)
         }
         GameConfig::Sgl().DisplayModeSet(m_newMode);
         m_modeKeypressTime=0;
+    }
+    if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
+    {
+        MushcoreData<InfernalPiecePlayer>::tMapIterator playerIter = InfernalData::Sgl().PlayerGet().Begin();
+        if (playerIter != InfernalData::Sgl().PlayerGet().End())
+        {
+            InfernalMotionSpec playerSpec(playerIter->second->MotionSpecGet());
+
+            MushPiePieceMobile *pPiece = InfernalData::Sgl().ProjectileDataGet().Give(1, new MushPiePieceMobile);
+            
+            pPiece->FormRefSet(MushPieForm::tDataRef(1));
+            pPiece->NewPosSet(MushPiePosicity(
+                t3Val(playerSpec.pos.x, playerSpec.pos.y, 0),
+                t3Val(0, 0, 0),
+                tQVal::IdentityGet(),
+                tQVal::IdentityGet()));
+
+            pPiece->PosSwap();
+            
+        }
     }
 }
 

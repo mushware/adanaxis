@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TFlui4Tvtcpr+T5oISSwRA
 /*
- * $Id$
- * $Log$
+ * $Id: MushModelFacet.cpp,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Log: MushModelFacet.cpp,v $
+ * Revision 1.1  2004/01/07 18:01:18  southa
+ * MushModel and Infernal work
+ *
  */
 
 #include "MushModelFacet.h"
@@ -39,18 +42,18 @@ MushcoreVirtualObject *MushModelFacet::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushModelFacet", MushModelFacet::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
 MushModelFacet::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "type=" << m_type << ", ";
-    ioOut << "material=" << m_material << ", ";
+    ioOut << "renderType=" << m_renderType << ", ";
+    ioOut << "materialRef=" << m_materialRef << ", ";
     ioOut << "vertices=" << m_vertices << ", ";
     ioOut << "texCoords=" << m_texCoords << ", ";
     ioOut << "normals=" << m_normals;
@@ -63,13 +66,13 @@ MushModelFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> *this;
     }
-    else if (inTagStr == "type")
+    else if (inTagStr == "renderType")
     {
-        ioIn >> m_type;
+        ioIn >> m_renderType;
     }
-    else if (inTagStr == "material")
+    else if (inTagStr == "materialRef")
     {
-        ioIn >> m_material;
+        ioIn >> m_materialRef;
     }
     else if (inTagStr == "vertices")
     {
@@ -92,10 +95,10 @@ MushModelFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("type");
-    ioOut << m_type;
-    ioOut.TagSet("material");
-    ioOut << m_material;
+    ioOut.TagSet("renderType");
+    ioOut << m_renderType;
+    ioOut.TagSet("materialRef");
+    ioOut << m_materialRef;
     ioOut.TagSet("vertices");
     ioOut << m_vertices;
     ioOut.TagSet("texCoords");
@@ -103,4 +106,4 @@ MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("normals");
     ioOut << m_normals;
 }
-//%outOfLineFunctions } PL9vaTOajY4RipihL7/KsQ
+//%outOfLineFunctions } FjBUA6XZAlFzinQacIRISw

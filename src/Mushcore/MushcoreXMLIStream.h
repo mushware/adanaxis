@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.20 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.21 2004/01/08 22:41:10 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.21  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.20  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -180,6 +183,14 @@ operator>>(MushcoreXMLIStream& ioIn, Mushware::tXMLVal& outObj)
 }
 
 inline void
+operator>>(MushcoreXMLIStream& ioIn, bool& outObj)
+{
+    Mushware::tXMLVal xmlVal;
+    ioIn.ObjectRead(xmlVal);
+    outObj = !(!xmlVal);
+}
+
+inline void
 operator>>(MushcoreXMLIStream& ioIn, std::string& outObj)
 {
     ioIn.ObjectRead(outObj);
@@ -217,6 +228,12 @@ inline void
 operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject& outObj)
 {
     ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& outpObj)
+{
+    ioIn.ObjectRead(outpObj);
 }
 
 template<class T>

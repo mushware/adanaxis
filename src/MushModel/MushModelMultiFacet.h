@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } TX3nuuL5kxBkNIyARfQDOA
 /*
- * $Id: MushModelMultiFacet.h,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushModelMultiFacet.h,v 1.2 2004/01/08 22:41:10 southa Exp $
  * $Log: MushModelMultiFacet.h,v $
+ * Revision 1.2  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.1  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -31,9 +34,18 @@
 class MushModelMultiFacet : public MushcoreVirtualObject
 {
 public:
+    typedef std::vector<MushModelFacet> tContainer;
+    typedef tContainer::iterator tIterator;
+    typedef tContainer::const_iterator tConstIterator;
+    
     MushModelMultiFacet() {}
     virtual ~MushModelMultiFacet() {}
 
+    tIterator FacetsBegin(void) { return m_facets.begin(); }
+    tIterator FacetsEnd(void) { return m_facets.end(); }
+    tConstIterator FacetsBegin(void) const { return m_facets.begin(); }
+    tConstIterator FacetsEnd(void) const { return m_facets.end(); }
+    
     static MushcoreScalar MushModelMultiFacetLoad(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static MushcoreScalar MushModelMultiFacetSave(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static MushcoreScalar MushModelMultiFacetPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
@@ -41,19 +53,19 @@ public:
     static void NullFunction(void);
     
 private:
-    std::vector<MushModelFacet> m_facets; //:readwrite
+    tContainer m_facets; //:readwrite
 //%classPrototypes {
 public:
-    const std::vector<MushModelFacet>& FacetsGet(void) const { return m_facets; }
-    void FacetsSet(const std::vector<MushModelFacet>& inValue) { m_facets=inValue; }
+    const tContainer& FacetsGet(void) const { return m_facets; }
+    void FacetsSet(const tContainer& inValue) { m_facets=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushModelMultiFacet *AutoClone(void) const;
     virtual MushModelMultiFacet *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } C0wEDaeexgMajMwcHzgPGg
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } oCiB+DEIGp5g/YNIcisVqA
 };
 //%inlineHeader {
 inline std::ostream&

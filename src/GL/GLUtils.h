@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } r0Ak1tFOlmIY8U+EmucRug
 /*
- * $Id: GLUtils.h,v 1.41 2003/10/04 15:32:08 southa Exp $
+ * $Id: GLUtils.h,v 1.42 2004/01/02 21:13:06 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.42  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.41  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -213,6 +216,7 @@ private:
     static Mushware::U32 m_context;
     static bool m_swapValid;
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

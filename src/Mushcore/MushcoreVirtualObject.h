@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ULcld2q1/9CHp8iLY+i0/A
 /*
- * $Id: MushcoreVirtualObject.h,v 1.1 2003/10/02 23:33:38 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.2 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.2  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *
@@ -32,7 +35,7 @@ class MushcoreXMLOStream;
 
 // General base class for objects with virtual functions
 
-class MushcoreVirtualObject : public MushcoreObject
+class MushcoreVirtualObject
 {
 public:
     virtual const char *AutoNameGet(void) const = 0;

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.24 2004/01/06 00:34:56 southa Exp $
+# $Id: SourceConditioner.pl,v 1.25 2004/01/08 22:41:09 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.25  2004/01/08 22:41:09  southa
+# MushModel commands
+#
 # Revision 1.24  2004/01/06 00:34:56  southa
 # MushPie testing
 #
@@ -508,7 +511,7 @@ sub OstreamWritePrototypeGenerate($$)
 
     die "No class found for ostream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;"; 
+    push @$outputRef, "$gConfig{INDENT}virtual void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;"; 
 }
 
 sub OstreamWriteFunctionGenerate($$)
@@ -599,7 +602,7 @@ sub BasicOperatorsPrototypeGenerate($$)
 
     die "No class found for BasicOperators writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
+    push @$outputRef, "$gConfig{INDENT}virtual bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
 }
 
 sub BasicOperatorsFunctionGenerate($$)
@@ -633,7 +636,7 @@ sub BasicOperatorsFunctionGenerate($$)
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
             my $comment = $$attributesRef[$i+2];
-            next if ($comment =~ /nobasic/);
+            next if ($comment =~ /\bnobasic\b/);
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
             my $line = "        && ";
@@ -690,7 +693,7 @@ sub XMLIStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
+    push @$outputRef, "$gConfig{INDENT}virtual bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -774,7 +777,7 @@ sub XMLOStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLOStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
+    push @$outputRef, "$gConfig{INDENT}virtual void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
 }
 
 sub XMLOStreamWriteFunctionGenerate($$)

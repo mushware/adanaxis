@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xwoN2sWoAdBULKAdLGUNBQ
 /*
- * $Id: GLTextureRef.cpp,v 1.16 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.17 2004/01/02 21:13:06 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.17  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -94,3 +97,59 @@ GLTextureRef::BindingNameFetch(void) const
 {
     m_bindingName=TextureGet()->BindingNameGet();
 }
+//%outOfLineFunctions {
+const char *GLTextureRef::AutoNameGet(void) const
+{
+    return "GLTextureRef";
+}
+GLTextureRef *GLTextureRef::AutoClone(void) const
+{
+    return new GLTextureRef(*this);
+}
+GLTextureRef *GLTextureRef::AutoCreate(void) const
+{
+    return new GLTextureRef;
+}
+MushcoreVirtualObject *GLTextureRef::AutoVirtualFactory(void)
+{
+    return new GLTextureRef;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GLTextureRef", GLTextureRef::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+GLTextureRef::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "name=" << m_name;
+    ioOut << "]";
+}
+bool
+GLTextureRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        ioIn >> *this;
+    }
+    else if (inTagStr == "name")
+    {
+        ioIn >> m_name;
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+void
+GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("name");
+    ioOut << m_name;
+}
+//%outOfLineFunctions } cEkL42fiYr9LubH92/tmVg

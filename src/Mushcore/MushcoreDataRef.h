@@ -17,8 +17,11 @@
 //%Header } PnzbnMrxb1qHtbgCO/gBtw
 
 /*
- * $Id: MushcoreDataRef.h,v 1.11 2004/01/06 10:08:51 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.12 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.12  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.11  2004/01/06 10:08:51  southa
  * MushcoreData and MushPieForm work
  *
@@ -96,6 +99,7 @@ public:
     void NameSet(const KeyType& inName) { m_name=inName; m_dataPtr=NULL; }
     const KeyType& NameGet(void) const { return m_name; }
     inline RefType *Get(void) const;
+    inline RefType& RefGet(void) const;
     inline bool GetIfExists(RefType *& outRef) const;
     inline bool Exists(void) const;
     bool Equals(const MushcoreDataRef& inObj) const;
@@ -179,10 +183,29 @@ MushcoreDataRef<RefType, KeyType>::Get(void) const
         ReferenceGet();
         if (m_dataPtr == NULL)
         {
-            throw(MushcoreReferenceFail("Attempt to access non-existent data '"+m_name+"'"));
+            std::ostringstream message;
+            message << "Attempt to access non-existent data '" << m_name << "'";
+            throw MushcoreReferenceFail(message.str());
         }
     }
     return m_dataPtr;
+}
+
+template<class RefType, class KeyType>
+inline RefType&
+MushcoreDataRef<RefType, KeyType>::RefGet(void) const
+{
+    if (m_dataPtr == NULL || m_sequenceNum != m_dataInstance->SequenceNumGet())
+    {
+        ReferenceGet();
+        if (m_dataPtr == NULL)
+        {
+            std::ostringstream message;
+            message << "Attempt to access non-existent data '" << m_name << "'";
+            throw MushcoreReferenceFail(message.str());
+        }
+    }
+    return *m_dataPtr;
 }
 
 template<class RefType, class KeyType>

@@ -12,13 +12,38 @@
  ****************************************************************************/
 //%Header } vqABr3CLkwVzCFoXq7BXTQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieForm.cpp,v 1.1 2004/01/06 10:08:51 southa Exp $
+ * $Log: MushPieForm.cpp,v $
+ * Revision 1.1  2004/01/06 10:08:51  southa
+ * MushcoreData and MushPieForm work
+ *
  */
 
 #include "MushPieForm.h"
 
+#include "MushPieSignal.h"
+#include "MushPieSTL.h"
+
+using namespace Mushware;
+using namespace std;
+
 MUSHCORE_SINGLETON_INSTANCE(MushPieForm::tData); // Data instance
+
+void
+MushPieForm::SignalHandle(const MushPieSignal& inSignal)
+{
+    ostringstream message;
+    message << "Unhandled signal " << inSignal;
+    throw MushcoreRequestFail(message.str());
+}
+
+void
+MushPieForm::WriteableSignalHandle(MushPieSignal& inSignal)
+{
+    ostringstream message;
+    message << "Unhandled signal " << inSignal;
+    throw MushcoreRequestFail(message.str());
+}
 
 //%outOfLineFunctions {
 const char *MushPieForm::AutoNameGet(void) const
@@ -39,11 +64,11 @@ MushcoreVirtualObject *MushPieForm::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushPieForm", MushPieForm::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
 MushPieForm::AutoPrint(std::ostream& ioOut) const
@@ -68,4 +93,4 @@ void
 MushPieForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } E3pxFCNG4aHC8nXb4L80zg
+//%outOfLineFunctions } rbAMOT7836I5GAKf9zYSSw

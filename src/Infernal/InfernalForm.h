@@ -16,22 +16,48 @@
  ****************************************************************************/
 //%Header } VxPQKKFlOK3QVRP/hQqigA
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalForm.h,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Log: InfernalForm.h,v $
+ * Revision 1.1  2004/01/07 18:01:18  southa
+ * MushModel and Infernal work
+ *
  */
 
 #include "InfernalStandard.h"
+
+#include "InfernalFacetContext.h"
+
+#include "mushGL.h"
 
 //:xml1base MushPieForm
 //:generate standard ostream xml1
 class InfernalForm : public MushPieForm
 {
 public:
-    InfernalForm() {}
+    enum SignalNumbers
+    {
+        kSignalInvalid,
+        kSignalNone,
+        kSignalRender
+    };
+    
+    InfernalForm() : m_facetContextIndex(0) {}
     virtual ~InfernalForm() {}
+
+    virtual void SignalHandle(const MushPieSignal& inSignal);
+
+    static MushcoreScalar InfernalFormLoad(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar InfernalFormSave(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar InfernalFormPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static void Install(void);
     
 private:
+    void Render(void);
+        
     MushcoreDataRef<MushModelMultiFacet> m_modelRef; //:readwrite
+
+    std::vector<InfernalFacetContext> m_facetContexts;
+    Mushware::U32 m_facetContextIndex;
     
 //%classPrototypes {
 public:
@@ -41,10 +67,10 @@ public:
     virtual InfernalForm *AutoClone(void) const;
     virtual InfernalForm *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } R0Vf/5HFz3j/luwFLpce9w
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } WldB++z0V4eACWKo6VE/Wg
 };
 //%inlineHeader {
 inline std::ostream&

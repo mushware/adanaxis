@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qKNbuOQrHP2ZbsyyRWEJ4Q
 /*
- * $Id: InfernalRouter.cpp,v 1.3 2003/10/07 22:40:06 southa Exp $
+ * $Id: InfernalRouter.cpp,v 1.4 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalRouter.cpp,v $
+ * Revision 1.4  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -30,6 +33,8 @@
 #include "InfernalData.h"
 #include "InfernalMessageControlData.h"
 #include "InfernalPiecePlayer.h"
+
+#include "InfernalSTL.h"
 
 #include "mushMustlGame.h"
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.2 2004/01/06 00:34:56 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.2  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.1  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -39,6 +42,8 @@ public:
         m_value[2] = in2;
         m_value[3] = in3;
     }
+    
+    static MushMeshQuaternion IdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
 };
 
 namespace Mushware

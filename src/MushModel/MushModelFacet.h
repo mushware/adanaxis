@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } KMRuFiR9Rvu+S944rUHZ1g
 /*
- * $Id: MushModelFacet.h,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushModelFacet.h,v 1.2 2004/01/08 22:41:10 southa Exp $
  * $Log: MushModelFacet.h,v $
+ * Revision 1.2  2004/01/08 22:41:10  southa
+ * MushModel commands
+ *
  * Revision 1.1  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -37,17 +40,17 @@ public:
     virtual ~MushModelFacet() {}
     
 private:
-    Mushware::U32 m_type; //:readwrite
-    MushcoreDataRef<MushModelMaterial> m_material; //:readwrite
+    std::string m_renderType; //:readwrite
+    MushcoreDataRef<MushModelMaterial> m_materialRef; //:readwrite
     std::vector<Mushware::t3Val> m_vertices; //:readwrite
     std::vector< std::vector<Mushware::t4Val> > m_texCoords; //:readwrite
     std::vector<Mushware::t3Val> m_normals; //:readwrite
 //%classPrototypes {
 public:
-    const Mushware::U32& TypeGet(void) const { return m_type; }
-    void TypeSet(const Mushware::U32& inValue) { m_type=inValue; }
-    const MushcoreDataRef<MushModelMaterial>& MaterialGet(void) const { return m_material; }
-    void MaterialSet(const MushcoreDataRef<MushModelMaterial>& inValue) { m_material=inValue; }
+    const std::string& RenderTypeGet(void) const { return m_renderType; }
+    void RenderTypeSet(const std::string& inValue) { m_renderType=inValue; }
+    const MushcoreDataRef<MushModelMaterial>& MaterialRefGet(void) const { return m_materialRef; }
+    void MaterialRefSet(const MushcoreDataRef<MushModelMaterial>& inValue) { m_materialRef=inValue; }
     const std::vector<Mushware::t3Val>& VerticesGet(void) const { return m_vertices; }
     void VerticesSet(const std::vector<Mushware::t3Val>& inValue) { m_vertices=inValue; }
     const std::vector< std::vector<Mushware::t4Val> >& TexCoordsGet(void) const { return m_texCoords; }
@@ -58,10 +61,10 @@ public:
     virtual MushModelFacet *AutoClone(void) const;
     virtual MushModelFacet *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } E6uLWygj8rVj1wMAcTUghQ
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } HhMmFM6BQW2ACxyEo/hr0A
 };
 //%inlineHeader {
 inline std::ostream&

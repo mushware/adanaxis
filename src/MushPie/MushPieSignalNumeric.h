@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIEFORM_H
-#define MUSHPIEFORM_H
-//%includeGuardStart } chr+rdZQI8cOcPal/mrI9Q
+#ifndef MUSHPIESIGNALNUMERIC_H
+#define MUSHPIESIGNALNUMERIC_H
+//%includeGuardStart } GfddsmMvUhs6Hi7kTC+NGA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieForm.h
+ * File: src/MushPie/MushPieSignalNumeric.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,51 +14,46 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GYyeLc+epGQUElec/y5hZA
+//%Header } FOmNozUEFEVBx83/GMJVjA
 /*
- * $Id: MushPieForm.h,v 1.1 2004/01/06 10:08:51 southa Exp $
- * $Log: MushPieForm.h,v $
- * Revision 1.1  2004/01/06 10:08:51  southa
- * MushcoreData and MushPieForm work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushPieStandard.h"
 
-class MushPieSignal;
+#include "MushPieSignal.h"
 
 //:generate standard ostream xml1
-class MushPieForm : public MushcoreVirtualObject
+class MushPieSignalNumeric : public MushPieSignal
 {
 public:
-    typedef MushcoreData<MushPieForm, Mushware::U32> tData;
-    typedef MushcoreDataRef<MushPieForm, Mushware::U32> tDataRef;
+    MushPieSignalNumeric() : m_eventNumber(0) {}
+    explicit MushPieSignalNumeric(Mushware::U32 inEventNumber) : m_eventNumber(inEventNumber) {}
+    virtual ~MushPieSignalNumeric() {}
     
-    MushPieForm() {}
-    virtual ~MushPieForm() {}
-    
-    virtual void SignalHandle(const MushPieSignal& inSignal);
-    virtual void WriteableSignalHandle(MushPieSignal& inSignal);
-    
+private:
+    Mushware::U32 m_eventNumber; //:read
 //%classPrototypes {
 public:
+    const Mushware::U32& EventNumberGet(void) const { return m_eventNumber; }
     virtual const char *AutoNameGet(void) const;
-    virtual MushPieForm *AutoClone(void) const;
-    virtual MushPieForm *AutoCreate(void) const;
+    virtual MushPieSignalNumeric *AutoClone(void) const;
+    virtual MushPieSignalNumeric *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Gx6JkL8VRSyR1ELcL4awiQ
+//%classPrototypes } +OHlIcZ/5Cm2KeCxiMlt8w
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushPieForm& inObj)
+operator<<(std::ostream& ioOut, const MushPieSignalNumeric& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } t8f6LLmjLkfX4mZD/ckOag
+//%inlineHeader } woqyvkQc0XgwBloUTmMO1A
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
