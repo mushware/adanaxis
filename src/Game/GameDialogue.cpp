@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.6 2002/08/19 22:18:36 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.7 2002/08/22 10:11:11 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.7  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.6  2002/08/19 22:18:36  southa
  * Display of time differences
  *
@@ -118,7 +121,8 @@ GameDialogue::Move(void)
         }
     }
 
-
+    size=m_soundStreams.size();
+    
     for (U32 i=0; i<size; ++i)
     {
         SoundStreamSpec& spec=m_soundStreams[i];
