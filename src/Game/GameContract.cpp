@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.53 2002/08/18 20:44:33 southa Exp $
+ * $Id: GameContract.cpp,v 1.54 2002/08/18 21:47:53 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.54  2002/08/18 21:47:53  southa
+ * Added temporary sound test
+ *
  * Revision 1.53  2002/08/18 20:44:33  southa
  * Initial chequepoint work
  *
@@ -336,8 +339,8 @@ GameContract::RunningMove(void)
 
     m_masterScale+=(0.05 - m_masterScale)/30;
 
-
-    // Sound test bodge
+#if 0
+    // Sound test
     tVal random = (double)rand()/RAND_MAX;
     if (random < 0.005)
 
@@ -345,6 +348,7 @@ GameContract::RunningMove(void)
 	    CoreDataRef<MediaSound> soundRef("chequepoint");
 	    MediaAudio::Instance().Play(*soundRef.DataGet());
     }
+#endif
 }
 
 void
@@ -421,6 +425,8 @@ GameContract::RunningDisplay(void)
     {
         RenderFastDiagnostics();
     }
+
+    GameData::Instance().TypeGet().Render();
     
     GLUtils::DisplayEpilogue();
 
@@ -428,7 +434,6 @@ GameContract::RunningDisplay(void)
 
     timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
     ++m_frames;
-
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Id: GameTypeRace.h,v 1.1 2002/08/18 20:51:09 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.1  2002/08/18 20:51:09  southa
+ * Moved
+ *
  * Revision 1.1  2002/08/18 20:44:33  southa
  * Initial chequepoint work
  *
@@ -8,6 +11,7 @@
 
 #include "mushCore.h"
 #include "GameType.h"
+#include "GameTimer.h"
 
 class GameChequePoint;
 class GameEvent;
@@ -23,6 +27,7 @@ public:
     virtual void Move(void) {}
     virtual void EventHandler(GameEvent& inEvent);
     virtual void SequenceAdvance(void);
+    virtual void Render(void) const;
     
 protected:
     void UnpicklePrologue(void);
@@ -54,6 +59,8 @@ private:
 
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
+    GameTimer::tMsec m_startTime;
+    bool m_raceStarted;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)

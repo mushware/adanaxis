@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.13 2002/07/18 11:43:34 southa Exp $
+ * $Id: CoreStandard.h,v 1.14 2002/08/07 13:36:46 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.14  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.13  2002/07/18 11:43:34  southa
  * Added M_PI
  *
@@ -94,6 +97,7 @@
 // General purpose includes used by most files 
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <memory>
 

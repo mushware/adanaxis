@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameType.h,v 1.1 2002/08/18 20:44:35 southa Exp $
+ * $Log: GameType.h,v $
+ * Revision 1.1  2002/08/18 20:44:35  southa
+ * Initial chequepoint work
+ *
  */
 
 #include "mushCore.h"
@@ -17,6 +20,7 @@ public:
     virtual void Move(void) {}
     virtual void EventHandler(GameEvent& inEvent) {}
     virtual void SequenceAdvance(void) {}
+    virtual void Render(void) const {}
     
 protected:
     void UnpicklePrologue(void) {}

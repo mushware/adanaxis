@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.5 2002/08/05 22:18:35 southa Exp $
+ * $Id: GameTimer.cpp,v 1.6 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.6  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.5  2002/08/05 22:18:35  southa
  * Replaced assertions with error report
  *
@@ -56,6 +59,26 @@ GameTimer::CurrentMsecSet(U32 inMsec)
         m_currentTime += 1000 * (inMsec - m_lastMsec);
     }
     m_lastMsec = inMsec;
+}
+
+GameTimer::tMsec
+GameTimer::CurrentMsecGet(void) const
+{
+    if (!m_timesValid)
+    {
+        throw(LogicFail("CurrentMsecGet before Set"));
+    }
+    return m_currentTime / 1000;
+}
+
+GameTimer::tMsec
+GameTimer::GameMsecGet(void) const
+{
+    if (!m_timesValid)
+    {
+        throw(LogicFail("GameMsecGet before Set"));
+    }
+    return m_currentMotionFrame * m_motionFrameInterval / 1000;
 }
 
 void

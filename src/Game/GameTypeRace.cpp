@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.1 2002/08/18 20:52:28 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.2 2002/08/19 09:59:36 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.2  2002/08/19 09:59:36  southa
+ * Removed sound callbacks, used polling
+ *
  * Revision 1.1  2002/08/18 20:52:28  southa
  * Moved
  *
@@ -12,6 +15,8 @@
 #include "GameTypeRace.h"
 #include "GameChequePoint.h"
 #include "GameEvent.h"
+#include "GameAppHandler.h"
+#include "GameData.h"
 
 #include <typeinfo>
 
@@ -40,11 +45,43 @@ GameTypeRace::StandingOnHandler(GameEventStandingOn& inEvent)
 void
 GameTypeRace::SequenceAdvance(void)
 {
+    if (!m_raceStarted)
+    {
+        GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        GameTimer& timer(GameData::Instance().TimerGet());
+        m_startTime=timer.GameMsecGet();
+        m_raceStarted=true;
+    }
     m_sequence++;
     if (m_sequence >= m_chequePoints.size())
     {
         m_sequence = 0;
     }
+}
+
+void
+GameTypeRace::Render(void) const
+{
+    GameTimer::tMsec elapsedTime=0;
+    if (m_raceStarted)
+    {
+        GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        GameTimer& timer(GameData::Instance().TimerGet());
+        elapsedTime=timer.GameMsecGet() - m_startTime;
+    }
+
+    ostringstream message;
+    double elapsedInt, elapsedFraction;
+    elapsedInt = modf(elapsedTime/1000, &elapsedFraction);
+    message << "Elapsed " << elapsedInt << "." << width(2) << elapsedFraction;
+    GLUtils::OrthoPrologue();
+    GLUtils::ColourSet(0.0,0.0,1.0,0.5);
+    GLUtils orthoGL;
+    orthoGL.MoveToEdge(1,1);
+    orthoGL.MoveRelative(-0.03,-0.03);
+    GLString fpsStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
+    fpsStr.Render();
+    GLUtils::OrthoEpilogue();
 }
 
 void

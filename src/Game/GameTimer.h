@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.4 2002/08/05 22:18:35 southa Exp $
+ * $Id: GameTimer.h,v 1.5 2002/08/07 13:36:51 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.5  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/08/05 22:18:35  southa
  * Replaced assertions with error report
  *
@@ -36,10 +39,12 @@ class GameTimer
 public:
     typedef double tMsec;
     typedef double tUsec;
-
+    
     GameTimer();
     
     void CurrentMsecSet(U32 inMsec);
+    tMsec CurrentMsecGet(void) const;
+    tMsec GameMsecGet(void) const;
     void Reset(void);
     bool JudgementValid(void) const;
     tVal MotionFramesGet(void) const;
@@ -56,6 +61,7 @@ public:
     void DisplayedFrameAt(tMsec inMsec);
     tVal WindbackValueGet(tMsec inMSec);
 
+    
 private:
     void ReportJitter(void);
     
