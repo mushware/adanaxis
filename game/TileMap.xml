@@ -2,24 +2,36 @@
 <!-- Tile map -->
 <tilemap version="0.0">
 <script type="text/core">
-loadpixmap('gra',$IMAGEPATH+'/gra1.tiff')
+	loadpixmap('floor1',$IMAGEPATH+'/images/floor1.tiff')
+	loadpixmap('wall1',$IMAGEPATH+'/images/wall1.tiff')
+	
 <!-- decompose options are src, dest, xsize, ysize, xstart, ystart, xnum, ynum -->
-decompose('gra','gra_@',32,32)
+decompose('floor1','floor_@',32,32)
+decompose('wall1','wall_@',32,32)
 </script>
-<map>1 gra_0_0</map>
-<map>2 gra_1_0</map>
-<map>3 gra_2_0</map>
-<map>4 gra_3_0</map>
-<map>5 gra_0_1</map>
-<map>6 gra_1_1</map>
-<map>7 gra_2_1</map>
-<map>8 gra_3_1</map>
-<map>9 gra_0_2</map>
-<map>10 gra_1_2</map>
-<map>11 gra_2_2</map>
-<map>12 gra_3_2</map>
-<map>13 gra_0_3</map>
-<map>14 gra_1_3</map>
-<map>15 gra_2_3</map>
-<map>16 gra_3_3</map>
+<map>10 floor_0_1</map>
+<map>11 floor_1_1</map>
+<map>12 floor_2_1</map>
+<map>13 floor_3_1</map>
+<map>14 floor_0_0</map>
+<map>15 floor_1_0</map>
+<map>16 floor_2_0</map>
+<map>17 floor_3_0</map>
+
+<map>100 wall_0_3</map>
+<map>101 wall_1_3</map>
+<map>102 wall_2_3</map>
+<map>103 wall_3_3</map>
+<map>104 wall_0_2</map>
+<map>105 wall_1_2</map>
+<map>106 wall_2_2</map>
+<map>107 wall_3_2</map>
+<map>108 wall_0_1</map>
+<map>109 wall_1_1</map>
+<map>110 wall_2_1</map>
+<map>111 wall_3_1</map>
+<map>112 wall_0_0</map>
+<map>113 wall_1_0</map>
+<map>114 wall_2_0</map>
+<map>115 wall_3_0</map>
 </tilemap>
