@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameMotionSpec.h,v 1.5 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameMotionSpec.h,v 1.6 2002/08/27 08:56:24 southa Exp $
  * $Log: GameMotionSpec.h,v $
+ * Revision 1.6  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -45,6 +48,7 @@ public:
     const GameMotionSpec WindbackGet(tVal inScale) const;
     void ApplyDelta(void);
     void Render(void) const;
+    void ZeroSet(void);
     
     GLPoint pos;
     tVal angle;

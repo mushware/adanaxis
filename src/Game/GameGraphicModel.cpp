@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.5 2002/10/14 15:13:39 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.6 2002/10/15 14:02:31 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.6  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.5  2002/10/14 15:13:39  southa
  * Frame rate tweaks for Mac
  *
@@ -210,6 +213,10 @@ GameGraphicModel::HandleVertexEnd(CoreXML& inXML)
     if ((data >> colon) && colon == ':')
     {
         normal.Unpickle(data);
+    }
+    if (normal.Magnitude() > 0)
+    {
+        normal /= normal.Magnitude();
     }
     vertex += m_positionOffset;
     vertex += m_facetPositionOffset;

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameMotion.cpp,v 1.3 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameMotion.cpp,v 1.4 2002/08/27 08:56:24 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.4  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -92,6 +95,8 @@ GameMotion::UnpicklePrologue(void)
     m_endTable[kPickleData]["delta"] = &GameMotion::HandleDeltaEnd;
     m_endTable[kPickleData]["motion"] = &GameMotion::HandleMotionEnd;
     m_pickleState=kPickleData;
+
+    m_motionSpec.ZeroSet();
 }
 
 void

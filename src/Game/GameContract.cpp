@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.77 2002/10/15 14:02:31 southa Exp $
+ * $Id: GameContract.cpp,v 1.78 2002/10/17 15:50:58 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.78  2002/10/17 15:50:58  southa
+ * Config saving, pause and quit
+ *
  * Revision 1.77  2002/10/15 14:02:31  southa
  * Mode changes
  *
@@ -528,9 +531,8 @@ GameContract::RunningDisplay(void)
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-    GLUtils::Scale(2,2,1);
-    m_player->Render();
 
+    m_player->Render();
 
     GLUtils::PopMatrix();
 

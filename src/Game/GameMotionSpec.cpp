@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.6 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.7 2002/08/27 08:56:24 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.7  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -45,6 +48,16 @@ GameMotionSpec::GameMotionSpec(const GLPoint& inPoint, tVal inAngle) :
     deltaPos(GLPoint(0,0)),
     deltaAngle(0)
 {
+}
+
+void
+GameMotionSpec::ZeroSet(void)
+{
+    pos=GLPoint(0,0);
+    angle=0;
+    shape=GLRectangle(0,0,0,0);
+    deltaPos=GLPoint(0,0);
+    deltaAngle=0;
 }
 
 void
