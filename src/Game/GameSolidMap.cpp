@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.11 2002/08/02 11:00:44 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.12 2002/08/02 12:56:40 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.12  2002/08/02 12:56:40  southa
+ * Working collision checking
+ *
  * Revision 1.11  2002/08/02 11:00:44  southa
  * Tweaked motion trimming
  *
@@ -196,7 +199,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
     {
         // Rotation with no movement is blocked, so try to find a suitable deltaPos which
         // will allow the player to turn
-        for (tVal deltaX=1; deltaX<=2; deltaX *= 2)
+        for (tVal deltaX=1; deltaX<=4; deltaX *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaPos.x=deltaX;
@@ -214,7 +217,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
     if (perm <= 0 && deltaAngleSignificant)
     {
         // Same for y
-        for (tVal deltaY=1; deltaY<=2; deltaY *= 2)
+        for (tVal deltaY=1; deltaY<=4; deltaY *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaPos.x=0;

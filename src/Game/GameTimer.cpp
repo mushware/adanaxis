@@ -1,6 +1,9 @@
 /*
- * $Id: GameTimer.cpp,v 1.2 2002/08/05 13:37:29 southa Exp $
+ * $Id: GameTimer.cpp,v 1.3 2002/08/05 15:15:21 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.3  2002/08/05 15:15:21  southa
+ * Improved windback and released FPS limit
+ *
  * Revision 1.2  2002/08/05 13:37:29  southa
  * Windback work
  *
@@ -70,9 +73,9 @@ GameTimer::MotionFramesGet(void) const
 void
 GameTimer::MotionFramesDiscard(void)
 {
-    while (m_currentTime - m_motionFrameTime > m_motionFrameInterval)
+    if (m_currentTime - m_motionFrameTime + m_motionMargin > m_motionFrameInterval)
     {
-        m_motionFrameTime += m_motionFrameInterval;
+        m_motionFrameTime = m_currentTime + m_motionMargin;
     }
 }
 
@@ -158,7 +161,7 @@ GameTimer::WindbackValueGet(tMsec inMSec)
     // Abort if we don't have enough information to calculate
     if (!m_timesValid || m_averageFrameDuration == 0)
     {
-	return 0;
+  	    return 0;
     }
 	
     // First predict the time of the next frame
@@ -181,18 +184,22 @@ GameTimer::WindbackValueGet(tMsec inMSec)
 
     // Adjust the motion frame margin if necessary to keep the windback value
     // between 0 and 1
-    if (windbackValue > 1.0 || windbackValue < 0.0)
-    {
-	m_motionMargin -= 100.0 * (windbackValue - 0.5);
-    }
+    m_motionMargin -= 100.0 * (windbackValue - 0.5) * fabs(windbackValue - 0.5);
+
+    //cout << "windbackValue=" << windbackValue << endl;
+    //cout << "motionMargin=" << m_motionMargin << endl;
+
     // Restrict to sensible values
     if (windbackValue > 1.0) windbackValue = 1.0;
-    if (windbackValue < -1.0) windbackValue = -1.0;
-    
-     
-    // cout << "windbackValue=" << windbackValue << endl;
-    // cout << "motionMargin=" << m_motionMargin << endl;
- 
+    if (windbackValue < -0.25) windbackValue = -0.25;
+
+    //if (m_motionMargin < 0) m_motionMargin = 0;
+    if (m_motionMargin > 200000)
+    {
+        // Give up partial frame compenasation at this point
+        m_motionMargin = 200000;
+        windbackValue=0;
+    }
     
     return windbackValue;
 }

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.40 2002/08/05 13:37:28 southa Exp $
+ * $Id: GameContract.cpp,v 1.41 2002/08/05 15:15:21 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.41  2002/08/05 15:15:21  southa
+ * Improved windback and released FPS limit
+ *
  * Revision 1.40  2002/08/05 13:37:28  southa
  * Windback work
  *
@@ -352,7 +355,7 @@ GameContract::Running(void)
     {
         tVal numMotionFrames=m_timer.MotionFramesGet();
         // cerr << "numMotionFrames=" << numMotionFrames << endl;
-        if (numMotionFrames > 4) numMotionFrames=4;
+        if (numMotionFrames > 6) numMotionFrames=6;
         for (tVal i=0; i<numMotionFrames; ++i)
         {
             // Perform a motion frame
@@ -360,8 +363,6 @@ GameContract::Running(void)
         }
         m_timer.MotionFramesDone(numMotionFrames);
         
-        tVal partialMotionFrame=m_timer.PartialMotionFrameGet();
-
         // Discard any motion frames we haven't caught up with
         m_timer.MotionFramesDiscard();
 
