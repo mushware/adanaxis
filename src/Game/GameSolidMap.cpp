@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.5 2002/07/31 16:27:16 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.6 2002/08/01 16:47:12 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.6  2002/08/01 16:47:12  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.5  2002/07/31 16:27:16  southa
  * Collision checking work
  *
@@ -112,16 +115,108 @@ GameSolidMap::PermeabilityGet(const GameMapPoint& inPoint) const
 void
 GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 {
+    tVal perm;
+    GameMotionSpec trialSpec;
+
+    trialSpec=inSpec;
+    perm=MotionSpecPermeabilityGet(trialSpec);
+
+    if (perm <= 0)
+    {
+        trialSpec=inSpec;
+        trialSpec.deltaPos.x=0;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+    }
+
+    if (perm <= 0)
+    {
+        trialSpec=inSpec;
+        trialSpec.deltaPos.y=0;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+    }
+
+    if (perm <= 0)
+    {
+        trialSpec=inSpec;
+        trialSpec.deltaPos.x=0;
+        trialSpec.deltaPos.y=0;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+    }
+
+    if (perm <= 0 && inSpec.deltaAngle != 0)
+    {
+        // Rotation with no movement is blocked, so try to find a suitable deltaPos which
+        // will allow the player to turn
+        for (tVal deltaX=1; deltaX<5; deltaX *= 2)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=deltaX;
+            trialSpec.deltaPos.y=0;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=-deltaX;
+            trialSpec.deltaPos.y=0;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+        }
+    }
+
+    if (perm <= 0 && inSpec.deltaAngle != 0)
+    {
+        // Same for y
+        for (tVal deltaY=1; deltaY<5; deltaY *= 2)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=0;
+            trialSpec.deltaPos.y=deltaY;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+            trialSpec=inSpec;
+            trialSpec.deltaPos.x=0;
+            trialSpec.deltaPos.y=-deltaY;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+        }
+    }
+    
+    if (perm <= 0)
+    {
+        trialSpec=inSpec;
+        trialSpec.deltaPos=GLPoint(0,0);
+        trialSpec.deltaAngle=0;
+    }
+    
+    inSpec=trialSpec;
+
+    if (perm > 0 && perm != 1)
+    {
+        // Scale deltaPos for permeabilty, if we can
+        trialSpec=inSpec;
+        trialSpec.deltaPos *= perm;
+        if (MotionSpecPermeabilityGet(trialSpec) > 0)
+        {
+            inSpec=trialSpec;
+        }
+    }
+}
+
+tVal
+GameSolidMap::MotionSpecPermeabilityGet(const GameMotionSpec& inSpec) const
+{
+    tVal perm=kPermeabilityMax;
     tCollisionSet colSet;
     CollisionSetAdd(colSet, inSpec);
     for (U32 i=0; i<colSet.size(); ++i)
     {
-        if (PermeabilityGet(colSet[i]) == 0)
+        tVal newPerm=PermeabilityGet(colSet[i]);
+        if (newPerm < perm) perm=newPerm;
+        if (perm <= 0)
         {
-            inSpec.deltaPos=GLPoint(0,0);
-            inSpec.deltaAngle=0;
+            break;
         }
     }
+    return perm;
 }
 
 void

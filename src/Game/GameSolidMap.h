@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.h,v 1.3 2002/07/31 16:27:17 southa Exp $
+ * $Id: GameSolidMap.h,v 1.4 2002/08/01 16:47:12 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.4  2002/08/01 16:47:12  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.3  2002/07/31 16:27:17  southa
  * Collision checking work
  *
@@ -23,6 +26,10 @@ class GameSpacePoint;
 class GameSolidMap
 {
 public:
+    enum
+    {
+        kPermeabilityMax=16
+    };
     GameSolidMap();
     void SizeSet(U32 inX, U32 inY);
     void StepSet(tVal inXStep, tVal inYStep);
@@ -42,7 +49,7 @@ private:
     void CollisionSetAdd(tCollisionSet& outSet, const GameMotionSpec& inSpec) const;
     void OverPlotBox(const GameMapPoint& inPoint) const;
     bool CollisionElementCheck(const GameMapPoint& inPoint, const GLQuad& inQuad) const;
-    
+    tVal MotionSpecPermeabilityGet(const GameMotionSpec& inSpec) const;
     U32 m_xsize;
     U32 m_ysize;
     tVal m_xstep;

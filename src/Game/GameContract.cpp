@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.35 2002/07/31 16:27:16 southa Exp $
+ * $Id: GameContract.cpp,v 1.36 2002/08/01 16:47:10 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.36  2002/08/01 16:47:10  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.35  2002/07/31 16:27:16  southa
  * Collision checking work
  *
@@ -219,10 +222,16 @@ GameContract::RunningDisplay(void)
     {
         GameMotionSpec motion;
         m_player->MoveGet(motion);
-        m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
+        if (gameHandler.KeyStateGet('m'))
+        {
+            m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
+        }
         m_floorMap->SolidMapGet().TrimMotion(motion);
         m_player->MoveConfirm(motion);
-        motion.Render();
+        if (gameHandler.KeyStateGet('m'))
+        {
+            motion.Render();
+        }
     }
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     GameMapArea visibleArea;
@@ -249,7 +258,7 @@ GameContract::RunningDisplay(void)
     gl.SetPosition(0,0);
     GLUtils::ModulateSet(false);
     gl.MoveTo(m_player->XGet(), m_player->YGet());
-    GLUtils::RotateAboutZ(-90-m_player->AngleGet()*180/3.14);
+    GLUtils::RotateAboutZ(-90-m_player->AngleGet()*(180/M_PI));
     GLUtils::Scale(64,64,1);
     m_player->Render();
     GLUtils::IdentityEpilogue();
@@ -258,7 +267,7 @@ GameContract::RunningDisplay(void)
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     glMatrixMode(GL_MODELVIEW);
     COREASSERT(m_currentView != NULL);
-    GLUtils::BlendSet(GLUtils::kBlendNone);
+    GLUtils::BlendSet(GLUtils::kBlendLine);
     m_currentView->OverPlotGet().Render();
     m_currentView->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
