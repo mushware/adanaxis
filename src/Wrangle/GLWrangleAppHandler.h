@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.h,v 1.1 2002/05/09 17:08:07 southa Exp $
+ * $Id: GLWrangleAppHandler.h,v 1.1 2002/05/10 16:40:39 southa Exp $
  * $Log: GLWrangleAppHandler.h,v $
+ * Revision 1.1  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:07  southa
  * Fixed for gcc 3.0
  *
@@ -24,11 +27,9 @@ public:
     GLWrangleAppHandler(): m_pWrangler(NULL) {}
     virtual void Initialise(void);
     virtual void Display(void);
-    virtual void Idle(bool& outQuit, int& outUSleepFor);    
+    virtual void Idle(void);    
 
 protected:
 private:
-    static void IdleHandler(void);
-    static void DisplayHandler(void) {Instance().Display();}
     Wrangler *m_pWrangler;
 };

@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.3 2002/05/28 13:07:01 southa Exp $
+ * $Id: GLUtils.h,v 1.4 2002/05/29 08:56:16 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.4  2002/05/29 08:56:16  southa
+ * Tile display
+ *
  * Revision 1.3  2002/05/28 13:07:01  southa
  * Command parser extensions and TIFF loader
  *
@@ -33,6 +36,7 @@ public:
     static void RasterPos(tVal inX, tVal inY);
     static void BitmapText(const string& inStr);
     static void DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY);
+    static void PostRedisplay(void);
     
 private:
     static void SafetyHandler(void);

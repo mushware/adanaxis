@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.h,v 1.1 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLAppHandler.h,v 1.2 2002/05/10 22:38:23 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.2  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  * Revision 1.1  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -22,31 +25,37 @@
  */
 
 #include "mushCore.h"
+#include "GLKeys.h"
+
+class GLKeyboardSignal;
 
 class GLAppHandler : public CoreAppHandler
 {
 public:
-    GLAppHandler(): m_visible(true) {}
+    GLAppHandler(): m_visible(true), m_keyState(GLKeys::kNumberOfKeys) {}
     virtual ~GLAppHandler() {}
+    bool KeyStateGet(const GLKeys& inKey) const;
+    
+protected:
     virtual void Initialise(void);
-    virtual void Idle(bool& outQuit, int& outUSleepFor);    
+    virtual void Idle(void);
     virtual void MainLoop(void);
     virtual void Display(void);
-    virtual void Signal(U32 inSignal);
-
-protected:
+    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
+    virtual void Signal(const CoreAppSignal& inSignal);
     bool IsVisible(void) {return m_visible;}
     void RegisterHandlers(void);
+
+    static GLKeys TranslateSpecialKey(int inKey);
     
 private:
-    enum
-    {
-        kSignalVisible,
-        kSignalNotVisible
-    };
     static void IdleHandler(void);
-    static void DisplayHandler(void) {Instance().Display();}
+    static void DisplayHandler(void);
     static void VisibilityHandler(int inState);
-
+    static void KeyboardHandler(unsigned char inKey, int inX, int inY);
+    static void KeyboardUpHandler(unsigned char inKey, int inX, int inY);
+    static void SpecialHandler(int inKey, int inX, int inY);
+    static void SpecialUpHandler(int inKey, int inX, int inY);
     bool m_visible;
+    vector<bool> m_keyState;
 };

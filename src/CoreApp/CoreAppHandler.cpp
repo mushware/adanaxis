@@ -1,6 +1,9 @@
 /*
- * $Id: CoreAppHandler.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Id: CoreAppHandler.cpp,v 1.2 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.2  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:08  southa
  * Created
  *
@@ -28,20 +31,34 @@ CoreAppHandler::Initialise(void)
 void
 CoreAppHandler::MainLoop(void)
 {
-    bool quit=false;
-    while (!quit)
-    {
-        int uSleepFor=0;
-        Idle(quit, uSleepFor);
-        if (uSleepFor > 0) usleep(uSleepFor);
-    }
+    Idle();
 }
 
 void
-CoreAppHandler::Idle(bool& outQuit, int& outUSleepFor)
+CoreAppHandler::Idle(void)
 {
     int childCount;
     CoreApp::Instance().ServiceChildren(childCount);
-    outUSleepFor=1000;
-    outQuit=(childCount == 0);
+    cout << "Sleeping in CoreAppHandler" << endl;
+    sleep(1);
+}
+
+void
+CoreAppHandler::Signal(const CoreAppSignal& inSignal)
+{
+    switch (inSignal.SigNumberGet())
+    {
+        case CoreAppSignal::kQuit:
+            cerr << "Quit signal.  Bye!" << endl;
+            exit(0);
+            break;
+
+        case CoreAppSignal::kEscape:
+            Instance().Signal(CoreAppSignal(CoreAppSignal::kQuit));
+            break;
+            
+        default:
+            cerr << "Unhandled CoreApp signal 0x" << hex << inSignal.SigNumberGet() << dec << endl;
+            break;
+    }
 }

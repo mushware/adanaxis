@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.h,v 1.1 2002/05/10 15:35:27 southa Exp $
+ * $Id: GameAppHandler.h,v 1.2 2002/05/10 16:39:34 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.2  2002/05/10 16:39:34  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/10 15:35:27  southa
  * Added Game group
  *
@@ -17,11 +20,9 @@ public:
     GameAppHandler(): m_pGame(NULL) {}
     virtual void Initialise(void);
     virtual void Display(void);
-    virtual void Idle(bool& outQuit, int& outUSleepFor);
+    virtual void Idle(void);
 
 protected:
 private:
-    static void IdleHandler(void);
-    static void DisplayHandler(void) {Instance().Display();}
     GameBase *m_pGame;
 };

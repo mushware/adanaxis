@@ -1,8 +1,11 @@
 #ifndef COREAPPHANDLER_HP
 #define COREAPPHANDLER_HP
 /*
- * $Id: CoreAppHandler.h,v 1.1 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreAppHandler.h,v 1.2 2002/05/30 14:41:13 southa Exp $
  * $Log: CoreAppHandler.h,v $
+ * Revision 1.2  2002/05/30 14:41:13  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.1  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -15,6 +18,7 @@
  */
 
 #include "CoreStandard.h"
+#include "CoreAppSignal.h"
 
 class CoreAppHandler
 {
@@ -24,9 +28,9 @@ public:
     virtual void Mutate(CoreAppHandler *inAppHandler);
     virtual void Initialise(void);
     virtual void MainLoop(void);
-    virtual void Idle(bool& outQuit, int& outUSleepFor);
-    virtual void Display(void) {}
-    virtual void Signal(U32 inSignal) {}
+    virtual void Idle(void);
+    virtual void Signal(const CoreAppSignal& inSignal);
+    
 protected:
     CoreAppHandler() {};
 private:

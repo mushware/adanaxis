@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.h,v 1.3 2002/05/08 16:31:21 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.1 2002/05/10 16:40:38 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.1  2002/05/10 16:40:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/05/08 16:31:21  southa
  * Created API directory
  *
@@ -25,6 +28,4 @@ public:
 
 protected:
 private:
-    static void IdleHandler(void);
-    static void DisplayHandler(void) {Instance().Display();}
 };

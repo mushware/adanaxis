@@ -1,6 +1,9 @@
 /*
- * $Id: GraphWrangler.cpp,v 1.2 2002/05/10 16:40:39 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.3 2002/05/24 16:24:11 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.3  2002/05/24 16:24:11  southa
+ * Config and typenames
+ *
  * Revision 1.2  2002/05/10 16:40:39  southa
  * Changed .hp files to .h
  *
@@ -23,7 +26,7 @@
 #include "mushGL.h"
 
 void
-GraphWrangler::Process(bool &outDoQuit, bool &outRedraw)
+GraphWrangler::Process(bool &outRedraw)
 {
     switch (m_state)
     {

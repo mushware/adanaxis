@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.3 2002/05/10 22:38:23 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.4 2002/05/28 16:37:36 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.4  2002/05/28 16:37:36  southa
+ * Texture references and decomposer
+ *
  * Revision 1.3  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -38,8 +41,7 @@ GLWrangleAppHandler::Initialise(void)
     glutInitWindowSize(tex.Width(), tex.Height());
 
     glutCreateWindow("Wrangling data");
-    glutDisplayFunc(DisplayHandler);
-    glutIdleFunc(IdleHandler);
+    RegisterHandlers();
     GLUtils::CheckGLError();    
 }
 
@@ -64,23 +66,13 @@ GLWrangleAppHandler::Display(void)
 }
 
 void
-GLWrangleAppHandler::IdleHandler(void)
-{
-    bool doQuit=false;
-    int uSleepFor=0;
-    Instance().Idle(doQuit, uSleepFor);
-    if (uSleepFor > 0) usleep(uSleepFor);
-}
-
-void
-GLWrangleAppHandler::Idle(bool& outQuit, int& outUSleepFor)
+GLWrangleAppHandler::Idle(void)
 {
     bool redraw=false;
     COREASSERT(m_pWrangler != NULL);
-    m_pWrangler->Process(outQuit, redraw);
+    m_pWrangler->Process(redraw);
     if (redraw && IsVisible())
     {
         glutPostRedisplay();
     }
-    outUSleepFor=1000000;
 }

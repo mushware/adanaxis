@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.10 2002/05/28 13:07:00 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.11 2002/05/28 16:37:39 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.11  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.10  2002/05/28 13:07:00  southa
  * Command parser extensions and TIFF loader
  *
@@ -51,8 +54,6 @@ GLTest1AppHandler::Initialise(void)
     CoreApp::Instance().Process("loadpixmap 0 ../test/test.tiff;");
 
     GLUtils::StandardInit();
-    glutDisplayFunc(DisplayHandler);
-    glutIdleFunc(IdleHandler);
     GLUtils::CheckGLError();
 }
 
@@ -97,14 +98,6 @@ GLTest1AppHandler::Display(void)
             if (tex.Valid(texNum)) break;
         }
     }
-}
-
-void
-GLTest1AppHandler::IdleHandler(void)
-{
-    bool doQuit;
-    int uSleepFor;
-    Instance().Idle(doQuit, uSleepFor);
 }
 
 CoreScalar

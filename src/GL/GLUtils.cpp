@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.4 2002/05/29 08:56:16 southa Exp $
+ * $Id: GLUtils.cpp,v 1.5 2002/05/29 10:07:48 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.5  2002/05/29 10:07:48  southa
+ * Fixed Inits for cygwin
+ *
  * Revision 1.4  2002/05/29 08:56:16  southa
  * Tile display
  *
@@ -110,6 +113,11 @@ GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
     glBitmap(0,0,0,0,inX,inY,NULL);
     glDrawPixels(inTex.Width(), inTex.Height(), inTex.PixelFormat(),
              inTex.PixelType(), inTex.DataPtr());
+}
+
+void GLUtils::PostRedisplay(void)
+{
+    glutPostRedisplay();
 }
 
 void

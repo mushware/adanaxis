@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.6 2002/05/10 22:38:23 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.7 2002/05/24 18:10:43 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.7  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
  * Revision 1.6  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -24,21 +27,45 @@
 #include "GLAppHandler.h"
 #include "GLStandard.h"
 #include "GLUtils.h"
-#include "mushCore.h"
-
-void
-GLAppHandler::Idle(bool& outQuit, int& outUSleepFor)
-{
-    glutPostRedisplay();
-    CoreAppHandler::Idle(outQuit, outUSleepFor);
-}
+#include "GLAppSignal.h"
 
 void
 GLAppHandler::Initialise(void)
 {
     GLUtils::StandardInit();
-    RegisterHandlers();
     glutCreateWindow("GLApp");
+    RegisterHandlers();
+}
+
+void
+GLAppHandler::Idle(void)
+{
+    CoreAppHandler::Idle();
+}
+
+void
+GLAppHandler::Display(void)
+{
+}
+
+void
+GLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
+{
+    COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
+    m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
+
+    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    {
+        // Escape key pressed
+        CoreAppHandler::Instance().Signal(CoreAppSignal(CoreAppSignal::kEscape));
+    }
+}
+
+bool
+GLAppHandler::KeyStateGet(const GLKeys& inKey) const
+{
+    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    return m_keyState[inKey.ValueGet()];
 }
 
 void
@@ -47,14 +74,17 @@ GLAppHandler::RegisterHandlers(void)
     glutVisibilityFunc(VisibilityHandler);
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
+    glutKeyboardFunc(KeyboardHandler);
+    glutKeyboardUpFunc(KeyboardUpHandler);
+    glutSpecialFunc(SpecialHandler);
+    glutSpecialUpFunc(SpecialUpHandler);
+    glutIgnoreKeyRepeat(1);
 }
 
 void
 GLAppHandler::IdleHandler(void)
 {
-    bool doQuit;
-    int uSleepFor;
-    Instance().Idle(doQuit, uSleepFor);
+    Instance().Idle();
 }
 
 void
@@ -62,77 +92,76 @@ GLAppHandler::VisibilityHandler(int inState)
 {
     if (inState == GLUT_NOT_VISIBLE)
     {
-        cerr << "Invisible" << endl;
-        Instance().Signal(kSignalNotVisible);
+        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
     }
     else if (inState == GLUT_VISIBLE)
     {
-        cerr << "Visible" << endl;
-        Instance().Signal(kSignalVisible);
+        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
     }
 }
 
 void
-GLAppHandler::Display(void)
+GLAppHandler::DisplayHandler(void)
 {
-    string str("Hello from OpenGL");
-
-    glEnable(GL_BLEND);
-    glEnable(GL_LINE_SMOOTH);
-    static float lineWidth;
-    if ((lineWidth+=0.002)>=1) lineWidth=0;
-    glLineWidth(5*lineWidth);
-
-    glDrawBuffer(GL_BACK);
-    glClearColor(1.0, 1.0, 1.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glPushAttrib(GL_ENABLE_BIT);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glTranslatef(16, 16, 0);
-
-    glScalef(0.5*lineWidth, 0.5*lineWidth, 0.5*lineWidth);
-    glColor3f(lineWidth,lineWidth,lineWidth);
-    for (tSize i=0; i < str.size(); i++)
-    {
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i]);
-        if (str[i] == ' ')
-        {
-            glTranslatef(-64, 0, 0);
-
-        }
-    }
-    glPopAttrib();
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glutSwapBuffers();
-    GLUtils::CheckGLError();
+    Instance().Signal(GLAppSignal(GLAppSignal::kDisplay));
 }
 
 void
-GLAppHandler::Signal(U32 inSignal)
+GLAppHandler::KeyboardHandler(unsigned char inKey, int inX, int inY)
 {
-    switch (inSignal)
+    Instance().Signal(GLKeyboardSignal(1, inKey, inX, inY));
+}
+
+void
+GLAppHandler::KeyboardUpHandler(unsigned char inKey, int inX, int inY)
+{
+    Instance().Signal(GLKeyboardSignal(0, inKey, inX, inY));
+}
+
+void
+GLAppHandler::SpecialHandler(int inKey, int inX, int inY)
+{
+    Instance().Signal(GLKeyboardSignal(1, TranslateSpecialKey(inKey), inX, inY));
+}
+
+void
+GLAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
+{
+    Instance().Signal(GLKeyboardSignal(0, TranslateSpecialKey(inKey), inX, inY));
+}
+
+void
+GLAppHandler::Signal(const CoreAppSignal& inSignal)
+{
+    switch (inSignal.SigNumberGet())
     {
-        case kSignalVisible:
+        case GLAppSignal::kDisplay:
+            Display();
+            break;
+
+        case GLAppSignal::kVisible:
             m_visible=true;
             break;
 
-        case kSignalNotVisible:
+        case GLAppSignal::kNotVisible:
             m_visible=false;
+            break;
+
+        case GLAppSignal::kKeyboard:
+        {
+            KeyboardSignal(dynamic_cast<const GLKeyboardSignal&>(inSignal));
+        }
+        break;
+
+        default:
+            if (inSignal.IsCoreAppSignal())
+            {
+                CoreAppHandler::Signal(inSignal);
+            }
+            else
+            {
+                cerr << "Unhandled GLAppHandler signal 0x" << hex << inSignal.SigNumberGet() << dec << endl;
+            }
             break;
     }
 }    
@@ -144,5 +173,76 @@ GLAppHandler::MainLoop(void)
     GLUtils::CheckGLError();
 }
 
+GLKeys
+GLAppHandler::TranslateSpecialKey(int inKey)
+{
+    switch (inKey)
+    {
+        case GLUT_KEY_F1:
+            return GLKeys::kKeyF1;
 
+        case GLUT_KEY_F2:
+            return GLKeys::kKeyF2;
 
+        case GLUT_KEY_F3:
+            return GLKeys::kKeyF3;
+
+        case GLUT_KEY_F4:
+            return GLKeys::kKeyF4;
+
+        case GLUT_KEY_F5:
+            return GLKeys::kKeyF5;
+
+        case GLUT_KEY_F6:
+            return GLKeys::kKeyF6;
+
+        case GLUT_KEY_F7:
+            return GLKeys::kKeyF7;
+
+        case GLUT_KEY_F8:
+            return GLKeys::kKeyF8;
+
+        case GLUT_KEY_F9:
+            return GLKeys::kKeyF9;
+
+        case GLUT_KEY_F10:
+            return GLKeys::kKeyF10;
+
+        case GLUT_KEY_F11:
+            return GLKeys::kKeyF11;
+
+        case GLUT_KEY_F12:
+            return GLKeys::kKeyF12;
+
+        case GLUT_KEY_LEFT:
+            return GLKeys::kKeyLeft;
+
+        case GLUT_KEY_UP:
+            return GLKeys::kKeyUp;
+
+        case GLUT_KEY_RIGHT:
+            return GLKeys::kKeyRight;
+
+        case GLUT_KEY_DOWN:
+            return GLKeys::kKeyDown;
+
+        case GLUT_KEY_PAGE_UP:
+            return GLKeys::kKeyPageUp;
+
+        case GLUT_KEY_PAGE_DOWN:
+            return GLKeys::kKeyPageDown;
+
+        case GLUT_KEY_HOME:
+            return GLKeys::kKeyHome;
+
+        case GLUT_KEY_END:
+            return GLKeys::kKeyEnd;
+
+        case GLUT_KEY_INSERT:
+            return GLKeys::kKeyInsert;
+
+        default:
+            cerr << "Unrecognised special key from GLUT " << inKey << endl;
+            return 0;
+    }
+}

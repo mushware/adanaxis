@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.7 2002/05/27 12:58:43 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.8 2002/05/30 16:21:53 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.8  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.7  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -50,8 +53,6 @@ GameAppHandler::Initialise(void)
     GLUtils::StandardInit();
 
     RegisterHandlers();
-    glutDisplayFunc(DisplayHandler);
-    glutIdleFunc(IdleHandler);
 
     GLUtils::CheckGLError();
 }
@@ -64,31 +65,16 @@ GameAppHandler::Display(void)
 }
 
 void
-GameAppHandler::IdleHandler(void)
+GameAppHandler::Idle(void)
 {
-    bool doQuit=false;
-    int uSleepFor=0;
-    Instance().Idle(doQuit, uSleepFor);
-    if (uSleepFor > 0) usleep(uSleepFor);
-}
-
-void
-GameAppHandler::Idle(bool& outQuit, int& outUSleepFor)
-{
-    bool redraw=false;
     COREASSERT(m_pGame != NULL);
     try
     {
-        m_pGame->Process(outQuit, redraw);
+        m_pGame->Process();
     }
     catch (exception& e)
     {
         cerr << "In glut idle handler: " << e.what() << endl;
         std::exit(1);
     }
-    if (redraw && IsVisible())
-    {
-        glutPostRedisplay();
-    }
-    outUSleepFor=0;
 }

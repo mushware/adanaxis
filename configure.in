@@ -60,7 +60,7 @@ AC_C_BIGENDIAN
 dnl Checks for library functions.
 
 dnl Automatically generate src/makefile.am if it's not there
-AC_CHECK_FILE(src/Makefile.am,,
+AC_CHECK_FILE(src/Makefile.am,,[
 echo Building src/Makefile.am
 cd src
 echo 'bin_PROGRAMS=coreapp' > Makefile.am
@@ -70,5 +70,5 @@ $ac_prog_find . -name '*.h' -exec echo $ECHO_N " " {} \;  >> Makefile.am
 echo >> Makefile.am
 echo INCLUDES=-IAPI >> Makefile.am
 cd ..
-)
+])
 AC_OUTPUT(Makefile src/Makefile)

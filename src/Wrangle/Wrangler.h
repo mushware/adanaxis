@@ -1,6 +1,9 @@
 /*
- * $Id: Wrangler.h,v 1.1 2002/05/09 17:08:08 southa Exp $
+ * $Id: Wrangler.h,v 1.1 2002/05/10 16:40:39 southa Exp $
  * $Log: Wrangler.h,v $
+ * Revision 1.1  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:08  southa
  * Fixed for gcc 3.0
  *
@@ -20,7 +23,7 @@
 class Wrangler
 {
 public:
-    virtual void Process(bool& outDoQuit, bool& outRedraw) = 0;
+    virtual void Process(bool& outRedraw) = 0;
 
 private:
     

@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.3 2002/05/28 22:36:44 southa Exp $
+ * $Id: GameContract.h,v 1.5 2002/05/30 16:21:53 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.5  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.3  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -24,7 +27,7 @@ class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 public:
     GameContract();
     virtual ~GameContract();
-    virtual void Process(bool& outDoQuit, bool& outRedraw);
+    virtual void Process(void);
     virtual void Display(void);
     virtual void ScriptFunction(const string& inName) const;
 
@@ -41,7 +44,7 @@ protected:
     };
 
     virtual void Init(void);
-    virtual void Running(bool &outRedraw);
+    virtual void Running(void);
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.5 2002/05/29 08:56:16 southa Exp $
+ * $Id: GameContract.cpp,v 1.7 2002/05/30 16:21:53 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.7  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.5  2002/05/29 08:56:16  southa
  * Tile display
  *
@@ -27,6 +30,7 @@
 #include "GameData.h"
 #include "GameTileMap.h"
 #include "GameGlobalConfig.h"
+#include "GameAppHandler.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -40,18 +44,18 @@ GameContract::~GameContract()
 }
 
 void
-GameContract::Process(bool &outDoQuit, bool &outRedraw)
+GameContract::Process(void)
 {
     switch (m_gameState)
     {
         case kInit:
             Init();
             m_gameState=kRunning;
-            outRedraw=true;
+            GLUtils::PostRedisplay();
             break;
 
         case kRunning:
-            Running(outRedraw);
+            Running();
             break;
     }
 }
@@ -125,9 +129,17 @@ GameContract::Init(void)
 }
 
 void
-GameContract::Running(bool &outRedraw)
+GameContract::Running(void)
 {
-    // outRedraw=true;
+    if (dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance()).KeyStateGet(GLKeys('a')))
+    {
+        cerr << 'a' << endl;
+    }
+    if (dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance()).KeyStateGet(GLKeys(GLKeys::kKeyRight)))
+    {
+        cerr << "(right)" << endl;
+    }
+GLUtils::PostRedisplay();
 }
 
 void
@@ -252,14 +264,14 @@ GameContract::LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ifstream inStream(filename.c_str());
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
     CoreXML xml(inStream, filename);
-GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
+    GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
     return CoreScalar(0);
 }
 
 void
 GameContract::Install(void)
 {
-CoreApp::Instance().AddHandler("loadcontract", LoadContract);
+    CoreApp::Instance().AddHandler("loadcontract", LoadContract);
 }
 
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GraphWrangler.h,v 1.1 2002/05/10 16:40:39 southa Exp $
+ * $Id: GraphWrangler.h,v 1.2 2002/05/24 16:24:12 southa Exp $
  * $Log: GraphWrangler.h,v $
+ * Revision 1.2  2002/05/24 16:24:12  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:40:39  southa
  * Changed .hp files to .h
  *
@@ -28,7 +31,7 @@ public:
         m_dataPtr(NULL)
         {}
 
-    void Process(bool& outDoQuit, bool& outRedraw);
+    void Process(bool& outRedraw);
 
 protected:
     enum State
