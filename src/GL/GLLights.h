@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.h,v 1.1 2002/10/06 22:09:58 southa Exp $
+ * $Id: GLLights.h,v 1.2 2002/10/08 11:58:52 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.2  2002/10/08 11:58:52  southa
+ * Light cache
+ *
  * Revision 1.1  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -9,7 +12,7 @@
 #include "mushCore.h"
 #include "GLStandard.h"
 
-class GLLightDef;
+#include "GLLightDef.h"
 
 class GLLights
 {
@@ -24,13 +27,13 @@ public:
     void LightEnable(U32 inNum);
     void LightDisable(U32 inNum);
     void DisableAll(void);
-    void LightingFactorSet(tVal inFactor) { m_lightingFactor = inFactor; InvalidateAll(); }
-    void AmbientLightingSet(tVal inAmbient) { m_ambientLighting = inAmbient; InvalidateAll(); }
+    void LightingFactorSet(tVal inFactor);
+    void AmbientLightingSet(tVal inAmbient);
+    void InvalidateAll(void);
 
 private:
     U32 LightCache(U32 inNum);
     void CacheInvalidate(U32 inNum);
-    void InvalidateAll(void);
     
     class CacheEntry
     {

@@ -1,6 +1,12 @@
+#ifndef GLLIGHTDEF_H
+#define GLLIGHTDEF_H
+
 /*
- * $Id: GLLightDef.h,v 1.1 2002/10/06 22:09:58 southa Exp $
+ * $Id: GLLightDef.h,v 1.2 2002/10/08 11:58:52 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.2  2002/10/08 11:58:52  southa
+ * Light cache
+ *
  * Revision 1.1  2002/10/06 22:09:58  southa
  * Initial lighting test
  *
@@ -18,3 +24,5 @@ public:
     explicit GLLightDef(const GLVector& inPos) : pos(inPos) {}
     GLVector pos;
 };
+
+#endif

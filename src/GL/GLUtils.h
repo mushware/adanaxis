@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.26 2002/10/07 12:15:36 southa Exp $
+ * $Id: GLUtils.h,v 1.27 2002/10/07 17:49:45 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.27  2002/10/07 17:49:45  southa
+ * Multiple values per map element
+ *
  * Revision 1.26  2002/10/07 12:15:36  southa
  * First specular lighting
  *
@@ -173,6 +176,7 @@ public:
     static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
     static void RotateAboutZ(tVal inAngle);
     static void BlendSet(tBlendType inType);
+    static void AmbientLightSet(tVal inAmbient);
     static void ModulationSet(tModulationType inType);
     static void Reset(void);
     static void TextureParamsReset(void);

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameSolidMap.cpp,v 1.24 2002/08/18 20:44:35 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.25 2002/08/27 08:56:26 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.25  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.24  2002/08/18 20:44:35  southa
  * Initial chequepoint work
  *
@@ -490,7 +493,8 @@ GameSolidMap::Render(const GameMapArea& inArea) const
 
     GLPoint point;
     GLUtils::BlendSet(GLUtils::kBlendLine);
-
+    GLUtils::ModulationSet(GLUtils::kModulationColour);
+    
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {
         for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
@@ -502,15 +506,17 @@ GameSolidMap::Render(const GameMapArea& inArea) const
 
                 tVal value;
                 value=PermeabilityGet(GameMapPoint(point));
-GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
-                   0.5-0.5*cos(value*M_PI),
-                   (value>1)?1:0, 0.33);
+                GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                                   0.5-0.5*cos(value*M_PI),
+                                   (value>1)?1:0, 0.33);
                 line.Render();
                 line.RotateAboutCentre(M_PI/2);
+#if 0
                 value=AdhesionGet(GameMapPoint(point));
-GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
-                   0.5-0.5*cos(value*M_PI),
-                   (value>1)?1:0, 0.33);
+                GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                                   0.5-0.5*cos(value*M_PI),
+                                   (value>1)?1:0, 0.33);
+#endif
                 line.Render();
             }
         }

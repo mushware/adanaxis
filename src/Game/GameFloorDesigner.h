@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.h,v 1.7 2002/08/17 10:41:51 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.8 2002/08/27 08:56:23 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.8  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/17 10:41:51  southa
  * Designer fixes
  *
@@ -60,7 +63,8 @@ private:
 
     enum
     {
-        kUndoBufferSize=8
+        kUndoBufferSize=8,
+        kNumTiers=5,
     };
     
     const GLPoint TranslateWindowToMap(const GLPoint& inPoint);
@@ -69,6 +73,7 @@ private:
     void Undo(void);
     void Redo(void);
     void Save(void);
+    void MoveTiers(S32 inStep);
     
     vector<GLPoint> m_pos;
     string m_controllerName;
@@ -83,13 +88,11 @@ private:
     GLPoint m_downPoint;
     tVal m_width;
     tVal m_height;
-    bool m_lastUndoKeyState;
-    bool m_lastRedoKeyState;
-    bool m_lastSaveKeyState;
     vector<GameFloorMap> m_undoBuffer;
     U32 m_currentUndoBuffer;
     U32 m_lastUndoBuffer;
     GameFloorMap m_scratchArea;
     tVal m_masterScale;
+    vector<bool> m_tierFlags;
 };
 #endif

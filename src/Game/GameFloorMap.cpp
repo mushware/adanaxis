@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.24 2002/10/06 22:09:59 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.25 2002/10/07 17:49:45 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.25  2002/10/07 17:49:45  southa
+ * Multiple values per map element
+ *
  * Revision 1.24  2002/10/06 22:09:59  southa
  * Initial lighting test
  *
@@ -140,7 +143,7 @@ GameFloorMap::MapToSpace(const GameMapPoint inPoint) const
 }
 
 void
-GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
+GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight)
 {
     COREASSERT(m_tileMap != NULL);
 
@@ -167,7 +170,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
     maxPoint.MakeInteger();
     
     GLPoint point;
-    
+
     bool highlightOn=true;
     
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
@@ -200,8 +203,20 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
                 
                 const tMapVector& mapVector=ElementGet(point);
                 U32 size=mapVector.size();
+                U32 tierHighlightSize=inTierHighlight.size();
                 for (U32 i=0; i<size; ++i)
                 {
+                    if (i < tierHighlightSize)
+                    {
+                        if (inTierHighlight[i])
+                        {
+                            GLUtils::AmbientLightSet(1.0);
+                        }
+                        else
+                        {
+                            GLUtils::AmbientLightSet(0.2);
+                        }
+                    }
                     GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
                         (*m_tileMap->TraitsPtrGet(mapVector[i]));
                     glPushMatrix();
@@ -324,7 +339,7 @@ GameFloorMap::RebuildSolidMap(void) const
             const tMapVector& mapVec=ElementGet(GLPoint(x,y));
             U32 size=mapVec.size();
             tVal adhesion=-0.001;
-            tVal permeability=-0.001;
+            tVal permeability=4;
             for (U32 i=0; i<size; ++i)
             {
                 GameTileTraits& tileTraits=
@@ -333,7 +348,7 @@ GameFloorMap::RebuildSolidMap(void) const
                 tVal value;
                 if (tileTraits.PermeabilityGet(value))
                 {
-                    if (value > permeability) permeability = value;
+                    if (value < permeability) permeability = value;
                 }
 
                 if (tileTraits.AdhesionGet(value))
@@ -341,15 +356,21 @@ GameFloorMap::RebuildSolidMap(void) const
                     if (value > adhesion) adhesion = value;
                 }
             }
-            if (adhesion < 0 || permeability < 0)
+            if (adhesion < 0 || permeability == 4)
             {
+
+                ostringstream message;
+                message << "TileTrait [";
                 for (U32 i=0; i<size; ++i)
                 {
                     GameTileTraits& tileTraits=
                     dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
                     cerr << tileTraits << endl;
+                    message << mapVec[i];
+                    if (i+1 != size) message << ",";
                 }
-                throw(ReferenceFail("TileTrait missing adhesion or permeability value"));
+                message << "] missing adhesion or permeability value at (" << x << "," << y << ")";  
+                throw(ReferenceFail(message.str()));
             }
             m_solidMap.PermeabilitySet(permeability, x, y);
             m_solidMap.AdhesionSet(adhesion, x, y);
@@ -399,18 +420,21 @@ GameFloorMap::HandleDataEnd(CoreXML& inXML)
     vector<tMapVector> rowVector;
     char seperator;
 
+    CoreScalar tierScalar(1);
+    inXML.GetAttrib(tierScalar, "tier");
+    U32 tier=tierScalar.U32Get();
+    if (tier > 0 ) --tier;
     while (inStream >> data)
     {
-        tMapVector mapVector;
+        tMapVector mapVector(tier, 0);
         mapVector.push_back(data);
-        while (inStream >> seperator && seperator == '|')
+        while ((inStream >> seperator) && seperator == '|')
         {
-            if (!inStream >> data)
+            if (!(inStream >> data))
             {
                 inXML.Throw("Bad format for data element");
             }
             mapVector.push_back(data);
-            
         }
         rowVector.push_back(mapVector);
 

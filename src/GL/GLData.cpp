@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLData.cpp,v 1.14 2002/08/08 13:39:09 southa Exp $
+ * $Id: GLData.cpp,v 1.15 2002/08/27 08:56:19 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.15  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -63,6 +66,7 @@
 #include "GLData.h"
 #include "GLTexture.h"
 #include "GLFont.h"
+#include "GLLights.h"
 
 GLData *GLData::m_instance=NULL;
 
@@ -79,6 +83,7 @@ GLData::~GLData()
     {
         delete p->second;
     }
+    if (m_lights != NULL) delete m_lights;
 }
 
 void
@@ -130,6 +135,16 @@ GLData::FontGet(const string& inName) const
         throw(ReferenceFail("Access to non-existent font '"+inName+"'"));
     }
     return p->second;
+}
+
+GLLights *
+GLData::LightsGet(void)
+{
+    if (m_lights == NULL)
+    {
+        m_lights = new GLLights;
+    }
+    return m_lights;
 }
 
 void

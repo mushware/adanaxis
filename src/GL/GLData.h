@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLData.h,v 1.6 2002/08/08 13:39:09 southa Exp $
+ * $Id: GLData.h,v 1.7 2002/08/27 08:56:19 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.7  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -60,6 +63,7 @@
 
 class GLTexture;
 class GLFont;
+class GLLights;
 
 class GLData
 {
@@ -70,11 +74,13 @@ public:
     GLTexture *TextureFind(const string& inName);
     GLFont *FontGive(const string& inName, GLFont *inFont);
     GLFont *FontGet(const string& inName) const;
+    GLLights *LightsGet(void);
     void DumpTextures(ostream& inOut);
     
 private:
     map<string, GLTexture *> m_textures;
     map<string, GLFont *> m_fonts;
+    GLLights *m_lights;
     static GLData *m_instance;
 };
 #endif

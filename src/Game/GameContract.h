@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.25 2002/10/06 22:09:59 southa Exp $
+ * $Id: GameContract.h,v 1.26 2002/10/07 17:49:45 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.26  2002/10/07 17:49:45  southa
+ * Multiple values per map element
+ *
  * Revision 1.25  2002/10/06 22:09:59  southa
  * Initial lighting test
  *
@@ -175,7 +178,6 @@ private:
     GameView *m_currentView;
     bool m_renderDiagnostics;
     bool m_fastDiagnostics;
-    GLLights m_lights; // temporary place
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

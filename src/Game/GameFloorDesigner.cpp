@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.18 2002/08/21 10:12:21 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.19 2002/08/27 08:56:23 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.19  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.18  2002/08/21 10:12:21  southa
  * Time down counter
  *
@@ -80,6 +83,7 @@
 #include "GameMapPoint.h"
 #include "GameAppHandler.h"
 #include "GameMotionSpec.h"
+#include "GameView.h"
 
 GameFloorDesigner::GameFloorDesigner():
     m_controller(NULL),
@@ -119,8 +123,7 @@ GameFloorDesigner::Init(void)
     m_lastUndoBuffer=0;
     m_primaryButtonState=false;
     m_secondaryButtonState=false;
-    m_lastUndoKeyState=false;
-    m_lastSaveKeyState=false;
+    m_tierFlags.resize(kNumTiers, true);
 }
 
 void
@@ -141,6 +144,10 @@ GameFloorDesigner::Display(void)
 
     GameMapPoint aimingPoint(GLPoint(lookAtSpec.pos / floorMap->StepGet()));
 
+    GLUtils::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+    GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+    GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
+    
     GameMotionSpec lookAtPoint;
     lookAtPoint.pos=GLPoint(lookAtSpec.pos*m_masterScale);
     lookAtPoint.angle=lookAtSpec.angle;
@@ -163,29 +170,55 @@ GameFloorDesigner::Display(void)
         highlightArea.RectangleAdd(m_highlight);
     }
     floorMap->AttachTileMap(m_tileMap);
-    floorMap->Render(visibleArea, highlightArea);
+    floorMap->Render(visibleArea, highlightArea, m_tierFlags);
     
     GLUtils::IdentityEpilogue();
 
-#if 0
     GLUtils::IdentityPrologue();
     GLUtils::OrthoLookAt(lookAtPoint.pos.x, lookAtPoint.pos.y, lookAtPoint.angle);
     GLUtils::Scale(m_masterScale, m_masterScale, 1);
     glMatrixMode(GL_MODELVIEW);
-    COREASSERT(m_currentView != NULL);
+    
     GLUtils::BlendSet(GLUtils::kBlendLine);
-    m_currentView->OverPlotGet().Render();
-    m_currentView->OverPlotGet().Clear();
+    GameData::Instance().CurrentViewGet()->OverPlotGet().Render();
+    GameData::Instance().CurrentViewGet()->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
 
-    RenderText();
+    GLUtils::OrthoPrologue();
+    GLUtils::ColourSet(1.0,1.0,0.7,0.8);
+    GLUtils orthoGL;
 
-    if (m_fastDiagnostics)
+    orthoGL.MoveToEdge(1,1);
+    orthoGL.MoveRelative(-0.03,-0.03);
     {
-        RenderFastDiagnostics();
+        ostringstream message;
+
+        for (U32 i=0; i<kNumTiers; ++i)
+        {
+            if (m_tierFlags[i])
+            {
+                message << (i+1);
+            }
+            else
+            {
+                message << " ";;
+            }
+        }
+        
+        GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
+        glStr.Render();
     }
-#endif
+    orthoGL.MoveToEdge(-1,1);
+    orthoGL.MoveRelative(0.03,-0.03);
+    {
+        ostringstream message;
+        message << "F" << (m_currentMap+1);
+        GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), -1.0);
+        glStr.Render();
+    }
     
+    GLUtils::OrthoEpilogue();
+
     GLUtils::DisplayEpilogue();
 }
 
@@ -215,8 +248,8 @@ GameFloorDesigner::Move(void)
     bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse3));
     bool tertiaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2));
 
-    // Make all maps apart from 0 read-only
-    if (m_currentMap != 0)
+    // Make all maps apart from 0 and 3 read-only
+    if (m_currentMap != 0 && m_currentMap != 3)
     {
         secondaryState |= primaryState;
         primaryState=false;
@@ -299,24 +332,22 @@ GameFloorDesigner::Move(void)
     }
     m_pos[m_currentMap] += delta;
 
-    bool undoKeyState=glHandler.KeyStateGet('z');
-    if (undoKeyState && !m_lastUndoKeyState)
+
+    if (glHandler.LatchedKeyStateTake('z'))
     {
         Undo();
     }
-    m_lastUndoKeyState=undoKeyState;
-    bool redoKeyState=glHandler.KeyStateGet('v');
-    if (redoKeyState && !m_lastRedoKeyState)
+
+    if (glHandler.LatchedKeyStateTake('v'))
     {
         Redo();
     }
-    m_lastRedoKeyState=redoKeyState;
-    bool saveKeyState=glHandler.KeyStateGet('s');
-    if (saveKeyState && !m_lastSaveKeyState)
+
+    if (glHandler.LatchedKeyStateTake('s'))
     {
         Save();
     }
-    m_lastSaveKeyState=saveKeyState;
+
     
     if (primaryState)
     {
@@ -337,6 +368,27 @@ GameFloorDesigner::Move(void)
     {
         m_masterScale -= (m_masterScale / 100);
     }
+    for (U32 i=0; i<kNumTiers; ++i)
+    {
+        if (glHandler.LatchedKeyStateTake('1'+i))
+        {
+            m_tierFlags[i] = !m_tierFlags[i];
+        }
+    }
+    if (glHandler.LatchedKeyStateTake(','))
+    {
+        SaveForUndo();
+        MoveTiers(1);
+    }
+    if (glHandler.LatchedKeyStateTake('.'))
+    {
+        SaveForUndo();
+        MoveTiers(-1);
+    }
+    if (glHandler.LatchedKeyStateTake('p'))
+    {
+        GameData::Instance().DumpAll(cerr);
+    }    
 }
 
 void
@@ -370,12 +422,91 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
         for (S32 y=0; y<src.YSize() && y<dest.YSize(); ++y)
         {
             GLPoint offset(x,y);
-            cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
-            destMap->ElementSet(dest.MinPoint()+offset,
-                                srcMap->ElementGet(src.MinPoint()+offset));
+            // cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
+            GameFloorMap::tMapVector srcVector(srcMap->ElementGet(src.MinPoint()+offset));
+            GameFloorMap::tMapVector destVector(destMap->ElementGet(dest.MinPoint()+offset));
+            for (U32 i=0; i<kNumTiers; ++i)
+            {
+                if (m_tierFlags[i])
+                {
+                    GameFloorMap::tMapValue value=0;
+                    if (i < srcVector.size())
+                    {
+                        value=srcVector[i];
+                    }
+                    if (i >= destVector.size())
+                    {
+                        destVector.resize(i+1);
+                    }
+                    destVector[i]=value;
+                }
+            }
+            for (U32 i=0; i<destVector.size(); ++i)
+            {
+                for (U32 j=1; j<destVector.size(); ++j)
+                {
+                    if (destVector[i] == destVector[j] && destVector[i] != 0)
+                    {
+                        cerr << "Duplicated map value " << destVector[i] << endl;
+                    }
+                }
+            }
+    
+            destMap->ElementSet(dest.MinPoint()+offset, destVector);
         }
     }
 }
+
+void
+GameFloorDesigner::MoveTiers(S32 inStep)
+{
+    COREASSERT(m_currentMap < m_floorMaps.size());
+    COREASSERT(m_highlightMap < m_floorMaps.size());
+    GameFloorMap *srcMap=m_floorMaps[m_highlightMap];
+    GameFloorMap *destMap=m_floorMaps[m_highlightMap];
+
+    GLRectangle src(m_highlight);
+    GLRectangle dest(m_highlight);
+    GLRectangle srcClip(0, 0, srcMap->XSize(), srcMap->YSize());
+    GLRectangle destClip(0, 0, destMap->XSize(), destMap->YSize());
+
+    src.Clip(srcClip);
+    dest.Clip(destClip);
+
+    for (S32 x=0; x<src.XSize() && x<dest.XSize(); ++x)
+    {
+        for (S32 y=0; y<src.YSize() && y<dest.YSize(); ++y)
+        {
+            GLPoint offset(x,y);
+
+            GameFloorMap::tMapVector srcVector(srcMap->ElementGet(src.MinPoint()+offset));
+            GameFloorMap::tMapVector destVector;
+            for (U32 i=0; i<kNumTiers; ++i)
+            {
+                GameFloorMap::tMapValue value=0;
+                S32 srcTier=i+inStep;
+                if (srcTier >= 0 && srcTier < srcVector.size() && srcTier < kNumTiers)
+                {
+                    value=srcVector[srcTier];
+                    if (value != 0)
+                    {
+                        if (i >= destVector.size())
+                        {
+                            destVector.resize(i+1,0);
+                        }
+                        destVector[i]=value;
+                    }
+                }
+            }
+            if (destVector.size() == 0)
+            {
+                destVector.resize(1,0);
+            }
+            destMap->ElementSet(dest.MinPoint()+offset, destVector);
+        }
+    }
+}
+
 
 void
 GameFloorDesigner::SaveForUndo(void)

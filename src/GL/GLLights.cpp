@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.3 2002/10/07 17:49:44 southa Exp $
+ * $Id: GLLights.cpp,v 1.4 2002/10/08 11:58:52 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.4  2002/10/08 11:58:52  southa
+ * Light cache
+ *
  * Revision 1.3  2002/10/07 17:49:44  southa
  * Multiple values per map element
  *
@@ -29,6 +32,26 @@ GLLights::GLLights() :
     
     m_cache.resize(kMaxLights, entry);
     m_cacheTime=1;
+}
+
+void
+GLLights::AmbientLightingSet(tVal inAmbient)
+{
+    if (m_ambientLighting != inAmbient)
+    {
+        InvalidateAll();
+    }
+    m_ambientLighting = inAmbient;
+}
+
+void
+GLLights::LightingFactorSet(tVal inFactor)
+{
+    if (m_lightingFactor != inFactor)
+    {
+        InvalidateAll();
+    }
+    m_lightingFactor = inFactor;
 }
 
 void

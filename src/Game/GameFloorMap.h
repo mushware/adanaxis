@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.15 2002/08/27 08:56:24 southa Exp $
+ * $Id: GameFloorMap.h,v 1.16 2002/10/07 17:49:46 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.16  2002/10/07 17:49:46  southa
+ * Multiple values per map element
+ *
  * Revision 1.15  2002/08/27 08:56:24  southa
  * Source conditioning
  *
@@ -110,7 +113,7 @@ public:
     const GameMapPoint SpaceToMapFractional(const GameSpacePoint inPoint) const;
     const GameSpacePoint MapToSpace(const GameMapPoint inPoint) const;
     
-    void Render(const GameMapArea& inArea, const GameMapArea& inHighlight);
+    void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
     
     const tMapVector& ElementGet(const GLPoint &inPoint) const;

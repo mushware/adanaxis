@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.66 2002/10/07 17:49:45 southa Exp $
+ * $Id: GameContract.cpp,v 1.67 2002/10/08 11:58:52 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.67  2002/10/08 11:58:52  southa
+ * Light cache
+ *
  * Revision 1.66  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -337,7 +340,7 @@ GameContract::Init(void)
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
 
-        m_lights.LightAdd(0, GLLightDef(GLVector(30,10,1)));
+    GLData::Instance().LightsGet()->LightAdd(0, GLLightDef(GLVector(30,10,1)));
 }
 
 void
@@ -429,7 +432,7 @@ GameContract::RunningDisplay(void)
     GLUtils::PushMatrix();
     
 
-    m_lights.LightEnable(0);
+    GLData::Instance().LightsGet()->LightEnable(0);
     
     // Work out how many map pieces we can see in our view
     GameMapArea visibleArea;
@@ -440,7 +443,7 @@ GameContract::RunningDisplay(void)
 
     GameMapArea highlightArea; // Empty area
     
-    m_floorMap->Render(visibleArea, highlightArea);
+    m_floorMap->Render(visibleArea, highlightArea, vector<bool>());
 
     if (m_renderDiagnostics)
     {
@@ -599,16 +602,24 @@ void
 GameContract::GlobalKeyControl(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameAppHandler.KeyStateGet('p'))
+    if (gameAppHandler.LatchedKeyStateTake('d'))
     {
-        m_floorMap->SolidMapInvalidate();
-        gameAppHandler.SetCursorState(false);
-        m_gameState=kRunning;
-    }
-    if (gameAppHandler.KeyStateGet('d'))
-    {
-        gameAppHandler.SetCursorState(true);
-        m_gameState=kDesigning;
+        if (m_gameState == kRunning)
+        {
+            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.7);
+            gameAppHandler.SetCursorState(true);
+            m_gameState=kDesigning;
+        }
+        else
+        {
+            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.2);
+            m_floorMap->SolidMapInvalidate();
+            gameAppHandler.SetCursorState(false);
+            m_gameState=kRunning;
+        }
+        GLUtils::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+        GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+        GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
     }
     if (gameAppHandler.LatchedKeyStateTake('m'))
     {

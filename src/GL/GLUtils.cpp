@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.29 2002/10/07 12:15:36 southa Exp $
+ * $Id: GLUtils.cpp,v 1.30 2002/10/07 17:49:44 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.30  2002/10/07 17:49:44  southa
+ * Multiple values per map element
+ *
  * Revision 1.29  2002/10/07 12:15:36  southa
  * First specular lighting
  *
@@ -503,6 +506,15 @@ GLUtils::BlendSet(tBlendType inValue)
 }
 
 void
+GLUtils::AmbientLightSet(tVal inAmbient)
+{
+    GLfloat ambient[4]={inAmbient, inAmbient, inAmbient, 1};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+    glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
+    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
+}
+
+void
 GLUtils::ModulationSet(tModulationType inValue)
 {
     if (m_modulateState != inValue)
@@ -522,10 +534,7 @@ GLUtils::ModulationSet(tModulationType inValue)
             case kModulationLighting:
             if (m_useLighting)
             {
-                GLfloat ambient[4]={0.3,0.3,0.3,1};
-                glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
-                glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
-                glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
+                GLfloat ambient[4]={1.0,1.0,1.0,1};
                 glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
                 
                 GLfloat specular[4]={1.0,1.0,1.0,1};
