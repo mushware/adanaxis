@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: Makefile.am,v 1.19 2002/10/23 13:21:15 southa Exp $
-# $Log: Makefile.am,v $
+# $Id: ic2.Makefile.am,v 1.1 2003/01/11 17:12:09 southa Exp $
+# $Log: ic2.Makefile.am,v $
+# Revision 1.1  2003/01/11 17:12:09  southa
+# Created
+#
 # Revision 1.19  2002/10/23 13:21:15  southa
 # Fixed distribution
 #
@@ -32,8 +35,7 @@ EXTRA_DIST=ic2 MakeRelease.sh \
 ic2.spec.mdk ic2.spec.mdk.in \
 ic2.spec.suse ic2.spec.suse.in \
 ic2.spec.redhat ic2.spec.redhat.in \
-ic2.spec \
-README.linux README.macosx \
+README.linux README.macosx README.win32 \
 core-app.pbproj/project.pbxproj
 
 release: install-strip
