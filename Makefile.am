@@ -20,4 +20,4 @@
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
-EXTRA_DIST=@EXTRA_DIST@
+EXTRA_DIST=  test/mustl/config.mhtml  test/mustl/home.mhtml  test/mustl/networkconfig.mhtml  test/mustl/networkstatus.mhtml  test/mustl/index.html  test/mustl/networkframe.html  test/mustl/title.html  test/mustl/style.css

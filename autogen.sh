@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.6 2003/01/11 17:12:09 southa Exp $
+# $Id: autogen.sh,v 1.7 2003/01/13 23:05:19 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.7  2003/01/13 23:05:19  southa
+# Mustl test application
+#
 # Revision 1.6  2003/01/11 17:12:09  southa
 # Created
 #
@@ -80,17 +83,22 @@ mustl)
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
     
-    echo 'bin_PROGRAMS=testmustl' >> Makefile.am
-    echo -n 'testmustl_SOURCES=' >> Makefile.am
+    echo 'bin_PROGRAMS=test_mustl' >> Makefile.am
+    echo -n 'test_mustl_SOURCES=' >> Makefile.am
     find . -name 'TestMustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'TestMustl*.h' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
+    echo 'test_mustl_LDADD = libmustl.la' >> Makefile.am
         
-    echo INCLUDES=-I\$\{srcdir\}/Mustl >> Makefile.am
-    echo -n 'EXTRA_DIST=' >> Makefile.am
-    echo '' >> Makefile.am
+    echo 'test_mustl_INCLUDES=-I\$\{srcdir\}/Mustl' >> Makefile.am
+
     cd ..
+    echo -n 'EXTRA_DIST=' >> Makefile.am
+    find test/mustl -name '*.mhtml' -exec echo -n " " {} \;  >> Makefile.am
+    find test/mustl -name '*.html' -exec echo -n " " {} \;  >> Makefile.am
+    find test/mustl -name '*.css' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
 
     ;;
 
