@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.1 2002/08/24 13:12:31 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.2 2002/08/26 12:44:37 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.2  2002/08/26 12:44:37  southa
+ * Timed rewards and sound tweaks
+ *
  * Revision 1.1  2002/08/24 13:12:31  southa
  * Null MediaAudio device
  *
@@ -128,12 +131,17 @@ MediaAudioSDL::Play(MediaSound& inSound)
         inSound.Load();
     }
     S32 channel=Mix_PlayChannel(-1, inSound.MixChunkGet(), 0);
+
     if (channel == -1)
     {
         if (++m_errCtr < 100) cerr << "Failed to play sound '" << inSound.FilenameGet() << "': " << string(Mix_GetError());
     }
-    COREASSERT(channel < static_cast<S32>(m_softChannels));
-    ChannelStateSet(channel, kChannelPlaying, &inSound);
+    else
+    {
+	Mix_Volume(channel, MIX_MAX_VOLUME); // Fix for SDL bug
+	COREASSERT(channel < static_cast<S32>(m_softChannels));
+        ChannelStateSet(channel, kChannelPlaying, &inSound);
+    }
 }
 
 void
@@ -150,7 +158,10 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop=10000)
     {
         if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
     }
-    Mix_PlayMusic(m_music, inLoop);
+    else
+    {
+        Mix_PlayMusic(m_music, inLoop);
+    }
 }
 
 void
@@ -208,12 +219,15 @@ MediaAudioSDL::Load(MediaSound &inSound) const
     {
         if (++m_errCtr < 100) cerr << "Failed to open file '" << filename << "': " << string(SDL_GetError());
     }
-    Mix_Chunk *chunk = Mix_LoadWAV_RW(src, false); // Don't free after play
-    if (chunk == NULL)
+    else
     {
-        if (++m_errCtr < 100) cerr << "Failed to load sound '" << filename << "': " << string(Mix_GetError());
+        Mix_Chunk *chunk = Mix_LoadWAV_RW(src, false); // Don't free after play
+        if (chunk == NULL)
+        {
+             if (++m_errCtr < 100) cerr << "Failed to load sound '" << filename << "': " << string(Mix_GetError());
+        }
+        inSound.MixChunkSet(chunk);
     }
-    inSound.MixChunkSet(chunk);
 }
 
 void
