@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreApp.h,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreApp.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreApp.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -61,7 +64,6 @@
  *
  */
 
-#include "MushcoreChildRecord.h"
 #include "MushcoreCommandHandler.h"
 #include "MushcoreStandard.h"
 
@@ -70,18 +72,12 @@ class MushcoreApp
 public:
     
     static MushcoreApp& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreApp:m_instance);}
-    virtual ~MushcoreApp() {}
-    void Process(const std::string& inStr);
-    void AddHandler(const std::string& inName, MushcoreCommandHandler inHandler);
-    void AddChild(int pid, int inPipe, int outPipe);
-    void ServiceChildren(int &outCount);
 
 protected:
     MushcoreApp() {}
-    static MushcoreApp *m_instance;
     
 private:
-    std::list<MushcoreChildRecord> m_children;
+    static MushcoreApp *m_instance;
 };
 
 #endif

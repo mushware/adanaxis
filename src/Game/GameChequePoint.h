@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.9 2003/01/09 14:56:59 southa Exp $
+ * $Id: GameChequePoint.h,v 1.10 2003/01/11 13:03:12 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.10  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.9  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -92,7 +95,7 @@ private:
     bool m_baseThreaded;
 
     Mushware::U32 m_sequence;
-    std::vector<U32> m_mapValues;
+    std::vector<Mushware::U32> m_mapValues;
     std::string m_action;
     Mushware::tVal m_parTime;
     Mushware::tVal m_addTime;

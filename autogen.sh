@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.3 2002/10/06 22:09:56 southa Exp $
+# $Id: autogen.sh,v 1.4 2002/12/17 00:58:26 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.4  2002/12/17 00:58:26  southa
+# Added support for libmustl target
+#
 # Revision 1.3  2002/10/06 22:09:56  southa
 # Initial lighting test
 #
@@ -30,6 +33,7 @@ ic2)
     echo Building configuration for package ic2
     echo
     cp -f ic2.configure.in configure.in
+    cp -f ic2.Makefile.am Makefile.am
     chmod +x ic2
     
     cd src
@@ -60,6 +64,7 @@ mustl)
     echo Building configuration for package mustl
     echo
     cp -f mustl.configure.in configure.in
+    cp -f def.Makefile.am Makefile.am
     cd src
     echo Building Makefile.am in `pwd`
     echo 'lib_LTLIBRARIES=libmustl.la' > Makefile.am
@@ -77,8 +82,35 @@ mustl)
 
     ;;
 
+mushcore)
+    echo Building configuration for package mushcore
+    echo
+    cp -f mushcore.configure.in configure.in
+    cp -f def.Makefile.am Makefile.am
+    cd src
+    echo Building Makefile.am in `pwd`
+
+    echo 'lib_LTLIBRARIES=libmushcore.la' > Makefile.am
+
+    echo -n 'libmushcore_la_SOURCES=' >> Makefile.am
+    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -path './Platform/*/*' -prune -o -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am    
+    
+    echo 'library_includedir=$(includedir)/Mushcore' >> Makefile.am
+
+    echo -n 'library_include_HEADERS=' >> Makefile.am
+    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am    
+
+    cd ..
+
+    ;;
+
+
 *)
-echo Please supply a package name to build.  Choices are ic2, mustl.
+echo Please supply a package name to build.  Choices are ic2, mustl. mushcore.
 exit 1
 esac
 

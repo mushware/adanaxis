@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.7 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.8 2003/01/09 14:57:05 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.8  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -81,6 +84,6 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 void
 MediaSoundStream::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("soundstream", SoundStream);
-    MushcoreApp::Instance().AddHandler("playsoundstream", PlaySoundStream);
+    MushcoreInterpreter::Instance().AddHandler("soundstream", SoundStream);
+    MushcoreInterpreter::Instance().AddHandler("playsoundstream", PlaySoundStream);
 }

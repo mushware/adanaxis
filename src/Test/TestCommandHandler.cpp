@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.14 2003/01/09 14:57:09 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.15 2003/01/11 13:03:18 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.15  2003/01/11 13:03:18  southa
+ * Use Mushcore header
+ *
  * Revision 1.14  2003/01/09 14:57:09  southa
  * Created Mushcore
  *
@@ -94,5 +97,5 @@ TestCommandHandler::Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestCommandHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("test", Execute);
+    MushcoreInterpreter::Instance().AddHandler("test", Execute);
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.37 2003/01/07 17:13:43 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.38 2003/01/09 14:57:03 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.38  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.37  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -474,5 +477,5 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GamePiecePlayer::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("loadplayer", LoadPlayer);
+    MushcoreInterpreter::Instance().AddHandler("loadplayer", LoadPlayer);
 }

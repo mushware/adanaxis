@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMapArea.h,v 1.6 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameMapArea.h,v 1.7 2003/01/11 13:03:13 southa Exp $
  * $Log: GameMapArea.h,v $
+ * Revision 1.7  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.6  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -49,7 +52,7 @@ public:
     
 private:
     std::vector<GLRectangle> m_rectangles;
-    std::vector<tVal> m_radiiSquared;
+    std::vector<Mushware::tVal> m_radiiSquared;
     std::vector<GLPoint> m_points;
 };
 #endif

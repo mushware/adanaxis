@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.23 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.24 2003/01/11 13:03:11 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.24  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.23  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -207,8 +210,8 @@ GLCommandHandler::DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLCommandHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("initgl", InitGL);
-    MushcoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
-    MushcoreApp::Instance().AddHandler("decompose", Decompose);
-    MushcoreApp::Instance().AddHandler("dumptextures", DumpTextures);
+    MushcoreInterpreter::Instance().AddHandler("initgl", InitGL);
+    MushcoreInterpreter::Instance().AddHandler("loadpixmap", LoadPixmap);
+    MushcoreInterpreter::Instance().AddHandler("decompose", Decompose);
+    MushcoreInterpreter::Instance().AddHandler("dumptextures", DumpTextures);
 }

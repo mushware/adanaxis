@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.12 2003/01/09 14:56:59 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.13 2003/01/11 13:03:12 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.13  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.12  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -161,8 +164,8 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
 void
 GameCommandHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("game", Game);
-    MushcoreApp::Instance().AddHandler("setsavepath", SetSavePath);
-    MushcoreApp::Instance().AddHandler("updatecheck", UpdateCheck);
-    MushcoreApp::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
+    MushcoreInterpreter::Instance().AddHandler("game", Game);
+    MushcoreInterpreter::Instance().AddHandler("setsavepath", SetSavePath);
+    MushcoreInterpreter::Instance().AddHandler("updatecheck", UpdateCheck);
+    MushcoreInterpreter::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
 }

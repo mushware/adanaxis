@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.18 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLPoint.h,v 1.19 2003/01/11 13:03:11 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.19  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.18  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -90,8 +93,8 @@ public:
     void Unpickle(MushcoreXML& inXML);
     void Unpickle(std::istream& ioIn);
     
-    Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
-    Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }
+    Mushware::U32 U32XGet(void) const { return static_cast<Mushware::U32>(x); }
+    Mushware::U32 U32YGet(void) const { return static_cast<Mushware::U32>(y); }
     void RotateAboutZ(const GLPoint& inPoint, Mushware::tVal inAngle)
     {
         Mushware::tVal xtemp=x;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreRegExp.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -92,7 +95,7 @@ public:
     const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 private:
-std::string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, MushcoreRegExpFail f)

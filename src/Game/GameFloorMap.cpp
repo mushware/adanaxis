@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.42 2003/01/07 17:13:42 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.43 2003/01/09 14:57:01 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.43  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.42  2003/01/07 17:13:42  southa
  * Fixes for gcc 3.1
  *
@@ -874,6 +877,6 @@ GameFloorMap::LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameFloorMap::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("loadfloormap", LoadFloorMap);
+    MushcoreInterpreter::Instance().AddHandler("loadfloormap", LoadFloorMap);
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.26 2002/12/29 21:00:00 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.27 2003/01/09 14:57:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.27  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.26  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -101,10 +104,13 @@
 
 #include "PlatformBoxes.h"
 
-#include <dirent.h>
-#include <signal.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/param.h>
+#include <unistd.h>
+
+#include <dirent.h>
+#include <signal.h>
 
 using namespace Mushware;
 using namespace std;

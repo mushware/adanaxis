@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.12 2003/01/07 17:13:40 southa Exp $
+ * $Id: GLFont.cpp,v 1.13 2003/01/09 14:56:58 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.13  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -140,7 +143,7 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MushcoreApp::Instance().Process("loadpixmap('"+name+"','"+filename+"')");
+    MushcoreInterpreter::Instance().Execute("loadpixmap('"+name+"','"+filename+"')");
     GLFont *font(new GLFont(name));
     GLData::Instance().FontGive(name, font);
     U32 xNum(10),yNum(10);
@@ -157,5 +160,5 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLFont::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("loadfontmap", LoadFontMap);
+    MushcoreInterpreter::Instance().AddHandler("loadfontmap", LoadFontMap);
 }

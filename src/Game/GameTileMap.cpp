@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.19 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.20 2003/01/09 14:57:03 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.20  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.19  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -346,7 +349,7 @@ GameTileMap::LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameTileMap::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("loadtilemap", LoadTileMap);
+    MushcoreInterpreter::Instance().AddHandler("loadtilemap", LoadTileMap);
 }
 
 

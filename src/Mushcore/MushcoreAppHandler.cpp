@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.cpp,v 1.12 2002/12/29 20:59:50 southa Exp $
+ * $Id: MushcoreAppHandler.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAppHandler.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:59:50  southa
  * More build fixes
  *
@@ -50,8 +53,9 @@
  */
 
 #include "MushcoreAppHandler.h"
+
 #include "MushcoreApp.h"
-#include "MushcorePOSIX.h"
+#include "MushcoreAppSignal.h"
 
 using namespace Mushware;
 using namespace std;
@@ -68,7 +72,6 @@ MushcoreAppHandler::Mutate(MushcoreAppHandler *inAppHandler)
 void
 MushcoreAppHandler::Initialise(void)
 {
-
 }
 
 void
@@ -80,12 +83,6 @@ MushcoreAppHandler::MainLoop(void)
 void
 MushcoreAppHandler::Idle(void)
 {
-    int childCount;
-    MushcoreApp::Instance().ServiceChildren(childCount);
-#ifdef HAVE_POSIX
-    cout << "Sleeping in MushcoreAppHandler" << endl;
-    sleep(1);
-#endif
 }
 
 void
@@ -94,7 +91,6 @@ MushcoreAppHandler::Signal(const MushcoreAppSignal& inSignal)
     switch (inSignal.SigNumberGet())
     {
         case MushcoreAppSignal::kQuit:
-            cerr << "Quit signal.  Bye!" << endl;
             exit(0);
             break;
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.h,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -51,8 +54,9 @@
  *
  */
 
-#include "MushcoreAppSignal.h"
 #include "MushcoreStandard.h"
+
+class MushcoreAppSignal;
 
 class MushcoreAppHandler
 {
@@ -67,6 +71,7 @@ public:
     
 protected:
     MushcoreAppHandler() {};
+    
 private:
     static MushcoreAppHandler *m_instance;
 };

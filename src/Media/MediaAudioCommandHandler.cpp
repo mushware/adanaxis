@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.12 2003/01/09 14:57:04 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.13 2003/01/11 13:03:15 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.13  2003/01/11 13:03:15  southa
+ * Use Mushcore header
+ *
  * Revision 1.12  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -82,5 +85,5 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
 void
 MediaAudioCommandHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("playmusic", PlayMusic);
+    MushcoreInterpreter::Instance().AddHandler("playmusic", PlayMusic);
 }

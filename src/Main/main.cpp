@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.24 2003/01/09 14:57:04 southa Exp $
+ * $Id: main.cpp,v 1.25 2003/01/11 13:03:15 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.25  2003/01/11 13:03:15  southa
+ * Use Mushcore header
+ *
  * Revision 1.24  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -136,7 +139,7 @@ int main(int argc, char *argv[])
     }
     try
     {
-        MushcoreApp::Instance().Process(str);
+        MushcoreInterpreter::Instance().Execute(str);
         MushcoreAppHandler::Instance().Initialise();
         MushcoreAppHandler::Instance().MainLoop();
     }

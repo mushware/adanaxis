@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.10 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaSound.cpp,v 1.11 2003/01/09 14:57:04 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.11  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -141,7 +144,7 @@ MediaSound::PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 MediaSound::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("residentsound", ResidentSound);
-    MushcoreApp::Instance().AddHandler("transientsound", TransientSound);
-    MushcoreApp::Instance().AddHandler("playsound", PlaySound);
+    MushcoreInterpreter::Instance().AddHandler("residentsound", ResidentSound);
+    MushcoreInterpreter::Instance().AddHandler("transientsound", TransientSound);
+    MushcoreInterpreter::Instance().AddHandler("playsound", PlaySound);
 }

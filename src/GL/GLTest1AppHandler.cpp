@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.24 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.25 2003/01/11 13:03:11 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.25  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.24  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -179,5 +182,5 @@ GLTest1AppHandler::GLTest1(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLTest1AppHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("gltest1", GLTest1);
+    MushcoreInterpreter::Instance().AddHandler("gltest1", GLTest1);
 }

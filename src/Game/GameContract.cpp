@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.111 2003/01/09 14:57:00 southa Exp $
+ * $Id: GameContract.cpp,v 1.112 2003/01/11 13:03:12 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.112  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.111  2003/01/09 14:57:00  southa
  * Created Mushcore
  *
@@ -1158,5 +1161,5 @@ GameContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameContract::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("loadcontract", LoadContract);
+    MushcoreInterpreter::Instance().AddHandler("loadcontract", LoadContract);
 }

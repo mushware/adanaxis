@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.cpp,v 1.17 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreCommand.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreCommand.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -130,5 +133,5 @@ MushcoreCommand::PopVal(void)
 MushcoreScalar
 MushcoreCommand::Despatch(void)
 {
-    return MushcoreInterpreter::Instance().Execute(*this);
+    return MushcoreInterpreter::Instance().Despatch(*this);
 }

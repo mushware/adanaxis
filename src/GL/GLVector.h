@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.8 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLVector.h,v 1.9 2003/01/11 13:03:12 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.9  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.8  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -59,10 +62,10 @@ public:
     void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     void Unpickle(MushcoreXML& inXML);
     void Unpickle(std::istream& ioIn);
-    
-    Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
-    Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }
-    Mushware::U32 U32ZGet(void) const { return static_cast<U32>(z); }
+
+Mushware::U32 U32XGet(void) const { return static_cast<Mushware::U32>(x); }
+    Mushware::U32 U32YGet(void) const { return static_cast<Mushware::U32>(y); }
+    Mushware::U32 U32ZGet(void) const { return static_cast<Mushware::U32>(z); }
     void RotateAboutZ(const GLVector& inVector, Mushware::tVal inAngle)
     {
         Mushware::tVal xtemp=x;

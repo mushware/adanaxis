@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.13 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -54,7 +57,10 @@
  */
 
 #include "MushcoreInterpreter.h"
+
+#include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
+#include "MushcoreEnv.h"
 #include "MushcoreException.h"
 
 using namespace Mushware;
@@ -67,8 +73,15 @@ MushcoreInterpreter::MushcoreInterpreter() :
 {
 }
 
+void
+MushcoreInterpreter::Execute(const string& inStr)
+{
+    MushcoreCommand command(inStr);
+    command.Execute();
+}
+
 MushcoreScalar
-MushcoreInterpreter::Execute(MushcoreCommand& ioCommand)
+MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
 {
     if (m_logCommands)
     {

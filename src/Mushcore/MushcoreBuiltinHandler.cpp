@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.8 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -53,9 +56,13 @@
  */
 
 #include "MushcoreBuiltinHandler.h"
+
 #include "MushcoreApp.h"
+#include "MushcoreCommand.h"
+#include "MushcoreEnv.h"
 #include "MushcoreException.h"
 #include "MushcoreInstaller.h"
+#include "MushcoreInterpreter.h"
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"
 
@@ -99,6 +106,6 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
 void
 MushcoreBuiltinHandler::Install(void)
 {
-    MushcoreApp::Instance().AddHandler("load", Load);
-    MushcoreApp::Instance().AddHandler("configset", ConfigSet);
+    MushcoreInterpreter::Instance().AddHandler("load", Load);
+    MushcoreInterpreter::Instance().AddHandler("configset", ConfigSet);
 }

@@ -2,92 +2,19 @@
 ##############################################################################
 #
 # This file contains original work by Andy Southgate.  Contact details can be
-# found at http://www.mushware.com.  This file was placed in the Public
-# Domain by Andy Southgate and Mushware Limited in 2002.
+# found at http://www.mushware.com/.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2003.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
 
 #
-# $Id: Makefile.am,v 1.18 2002/10/22 22:36:17 southa Exp $
-# $Log: Makefile.am,v $
-# Revision 1.18  2002/10/22 22:36:17  southa
-# Use SDL_INIT_NOPARACHUTE to avoid hang exit on MacOS 10.1.5
+# $Id$
+# $Log$
 #
 
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
-RUNFILE=${DESTDIR}${bindir}/ic2
-GZIPFILE=ic2-@IC_VERSION@.tar.gz
-BZIPFILE=ic2-@IC_VERSION@.tar.bz2
-
-DATAMAKEFILE=ic2data/Makefile.am
-
-EXTRA_DIST=ic2 MakeRelease.sh \
-ic2.spec.mdk ic2.spec.mdk.in \
-ic2.spec.suse ic2.spec.suse.in \
-ic2.spec.redhat ic2.spec.redhat.in \
-ic2.spec \
-README.linux README.macosx \
-core-app.pbproj/project.pbxproj
-
-release: install-strip
-	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
-
-mac-release: release
-	(cd $(top_srcdir);$(SHELL) macosx/MakeInstaller.sh @IC_UNDERSCORE_VERSION@)
-
-win32-release: release
-	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh @IC_UNDERSCORE_VERSION@)
-
-makefiles-withdata:
-	sed -e 's/_nodist_/_dist_/' $(DATAMAKEFILE) > tempMakefile
-	mv -f tempMakefile $(DATAMAKEFILE)
-
-makefiles-withoutdata:
-	sed -e 's/_dist_/_nodist_/' $(DATAMAKEFILE) > tempMakefile
-	mv -f tempMakefile $(DATAMAKEFILE)
-
-x11-release $(GZIPFILE): ic2.spec makefiles-withoutdata dist
-	rm -f ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
-	rm -f ic2-data-@IC_UNDERSCORE_VERSION@.tar.gz
-	cp -p COPYING ic2data/COPYING
-	tar cpvf ic2-data-@IC_UNDERSCORE_VERSION@.tar ic2data/COPYING
-	rm ic2data/COPYING
-	find ic2data -path './data/system/ic2*' -prune -o \
-           -path '*CVS' -prune -o \
-           -name 'ic2.exe' -prune -o \
-           -name 'ic2' -prune -o \
-           -name '.*' -prune -o \
-           -type f -name '*' \
-           -exec tar rpvf ic2-data-@IC_UNDERSCORE_VERSION@.tar {} \;
-	gzip ic2-data-@IC_UNDERSCORE_VERSION@.tar
-	cp -p ic2-@IC_VERSION@.tar.gz ic2-src-@IC_UNDERSCORE_VERSION@.tar.gz
-	$(MAKE) makefiles-withdata dist
-
-$(BZIPFILE):$(GZIPFILE)
-	rm -f $(BZIPFILE)
-	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
-
-rpm:
-	@echo
-	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
-	@exit 1
-
-%-rpm:ic2.spec.%
-	cp -f $< ic2.spec
-	$(MAKE) $(BZIPFILE)
-	rpm -ta $(BZIPFILE)
-
-install-exec-hook:
-	rm -f $(RUNFILE)
-	echo #!/bin/sh > $(RUNFILE)
-	echo cd $(DESTDIR)$(pkgdatadir)/system >> $(RUNFILE)
-	echo $(DESTDIR)$(bindir)/ic2binary >> $(RUNFILE)
-	chmod 0755 $(RUNFILE)
-
-uninstall-hook:
-	rm -f $(RUNFILE)
-
+EXTRA_DIST=@EXTRA_DIST@

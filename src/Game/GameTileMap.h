@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.17 2003/01/09 14:57:04 southa Exp $
+ * $Id: GameTileMap.h,v 1.18 2003/01/11 13:03:15 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.18  2003/01/11 13:03:15  southa
+ * Use Mushcore header
+ *
  * Revision 1.17  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -133,8 +136,8 @@ private:
         std::string name;
         GameTileSpec spec;
     };
-    
-    typedef std::map<U32, TraitDef> tTraitMap;
+
+    typedef std::map<Mushware::U32, TraitDef> tTraitMap;
 
     tTraitMap m_map;
     MushcoreScript m_loaderScript;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -58,11 +61,13 @@
  *
  */
 
-#include "MushcoreCommand.h"
-#include "MushcoreCommandHandler.h"
-#include "MushcoreEnv.h"
-#include "MushcoreScalar.h"
 #include "MushcoreStandard.h"
+
+#include "MushcoreCommandHandler.h"
+
+class MushcoreCommand;
+class MushcoreEnv;
+class MushcoreScalar;
 
 class MushcoreInterpreter
 {
@@ -71,8 +76,10 @@ public:
     virtual ~MushcoreInterpreter() {}
 
     static MushcoreInterpreter& Instance(void) {return *((m_instance==NULL)?m_instance=new MushcoreInterpreter:m_instance);}
+
+    virtual void Execute(const std::string& inStr);
     
-    virtual MushcoreScalar Execute(MushcoreCommand& ioCommand);
+    virtual MushcoreScalar Despatch(MushcoreCommand& ioCommand);
     virtual void AddHandler(const std::string& inName, MushcoreCommandHandler inHandler);
 
     void LogCommandsSet(bool inLog) { m_logCommands = inLog; }

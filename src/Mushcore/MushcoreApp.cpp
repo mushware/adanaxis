@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreApp.cpp,v 1.13 2002/12/29 20:59:50 southa Exp $
+ * $Id: MushcoreApp.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreApp.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 20:59:50  southa
  * More build fixes
  *
@@ -57,63 +60,8 @@
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
 #include "MushcoreInterpreter.h"
-#include "MushcorePOSIX.h"
 
 using namespace Mushware;
 using namespace std;
 
 MushcoreApp *MushcoreApp::m_instance = NULL;
-
-void
-MushcoreApp::Process(const string& inStr)
-{
-    MushcoreCommand command(inStr);
-    command.Execute();
-}
-
-void
-MushcoreApp::ServiceChildren(int &outCount)
-{
-    while (!m_children.empty())
-    {
-        bool done=false;
-        list<MushcoreChildRecord>::iterator p=m_children.begin();
-        list<MushcoreChildRecord>::iterator oldP=p;
-        do
-        {
-            MushcoreChildStatus status;
-            string outputStr;
-            oldP=p;
-            // Must do this now because erase might invalidate the current object
-            if (++p == m_children.end()) done=true;
-
-            if (oldP->OutputAppend(outputStr))
-            {
-                cout << outputStr;
-            }
-            if (oldP->StatusGet(status))
-            {
-                cout << "Status: " << status << endl;
-                if (status.Dead())
-                {
-                    m_children.erase(oldP); // Modifes the list
-                }
-            }
-        } while (!done);
-    }
-    outCount=m_children.size();
-}
-
-
-void
-MushcoreApp::AddChild(int pid, int inPipe, int outPipe)
-{
-    m_children.push_back(MushcoreChildRecord(pid, inPipe, outPipe));
-}
-
-void
-MushcoreApp::AddHandler(const string& inName, MushcoreCommandHandler inHandler)
-{
-    MushcoreInterpreter::Instance().AddHandler(inName, inHandler);
-}
-

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.26 2003/01/09 14:57:03 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.27 2003/01/11 13:03:14 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.27  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.26  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -125,7 +128,7 @@ public:
     bool ImageIs(void) const { return m_imageIs; }
     void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
     bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, Mushware::U32 inFrameNum);
-    MushcoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(Mushware::U32 inFrameNum) const;
+    MushcoreHistoryIterator<Mushware::U32, GameControlFrameDef> ControlFrameDefIteratorGet(Mushware::U32 inFrameNum) const;
     void ControlFrameDefAdd(const GameControlFrameDef& inDef, Mushware::U32 inFrameNum);
     Mushware::U32 LastValidControlFrameGet(void) const;
     
@@ -174,7 +177,7 @@ private:
     Mushware::tVal m_speedLim;
     Mushware::tVal m_acceleration;
     GameFloorMap::tMapVector m_standingOn;
-    MushcoreHistory<U32, GameControlFrameDef> m_frameDefHistory;
+    MushcoreHistory<Mushware::U32, GameControlFrameDef> m_frameDefHistory;
     bool m_imageIs;
 };
 
