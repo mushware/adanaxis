@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.1 2003/09/17 19:12:13 southa Exp $
+# $Id: SourceConditioner.pl,v 1.2 2003/09/17 19:40:26 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.2  2003/09/17 19:40:26  southa
+# Source conditioning upgrades
+#
 # Revision 1.1  2003/09/17 19:12:13  southa
 # Created
 #
@@ -116,7 +119,7 @@ sub HeaderInfoCreate($$)
                     $state = HS_SCAN_FOR_MEMBERS;
                 }
             }
-            if ($comments =~ /:(.*)$/)
+            if ($comments =~ /^\s*:(.*)$/)
             {
                 CommandsAdd($infoRef, $1);
             }
@@ -216,6 +219,24 @@ sub HeaderInfoPrint($)
     }
 }
 
+sub TypeSpecial($$)
+{
+    my ($type, $attr) = @_;
+
+    if ($type =~ /(.*::)U8/)
+    {
+        return "static_cast<${1}U32>($attr)";
+    }
+    elsif  ($type =~ /(.*::)S8/)
+    {
+        return "static_cast<${1}S32>($attr)";
+    }
+    else
+    {
+        return $attr;
+    }
+}
+
 sub OstreamWritePrototypeGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
@@ -245,7 +266,7 @@ sub OstreamWriteFunctionGenerate($$)
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
             my $line = "    ioOut << \"$$attributesRef[$i+1]=\" << $$attributesRef[$i+1]";
-            $line .= " << \", \"" unless ($i+1 == @$attributesRef);
+            $line .= " << \", \"" unless ($i+3 == @$attributesRef);
             $line .= ";";
             push @$outputRef, $line;
         }
@@ -263,12 +284,78 @@ sub OstreamOperatorGenerate($$)
     die "No class found for ostream operator" unless defined ($className);
     
     push @$outputRef, "inline std::ostream&";
-    push @$outputRef, "operator(std::ostream& ioOut, const $className& inObj)";
+    push @$outputRef, "operator<<(std::ostream& ioOut, const $className& inObj)";
     push @$outputRef,
 "{",
 "    inObj.$gConfig{AUTO_PREFIX}Print(ioOut);",
 "    return ioOut;",
 "}";
+}
+
+sub XMLOStreamWritePrototypeGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLOStream writer" unless defined ($className);
+    
+    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const;"; 
+}
+
+sub XMLOStreamWriteFunctionGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLOStream writer" unless defined ($className);
+    
+    push @$outputRef, "void";
+    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const";
+    push @$outputRef,
+"{",
+"    ioOut << \"<$className\";",
+"    if (inName != \"\")",
+"    {",
+'        ioOut << " name=\"" << inName << "\"";',
+"    }",
+"    ioOut << \">\\n\";"
+;
+    my $attributesRef = $$infoRef{ATTRIBUTES};
+    if (defined($attributesRef))
+    {
+        for (my $i=0; $i < @$attributesRef; $i += 3)
+        {
+            my $type = $$attributesRef[$i];
+            my $attr = $$attributesRef[$i+1];
+            my $line = "    ioOut << \"<$attr>\" << ".TypeSpecial($type, $attr)." << \"</$attr>\\n\";";
+            push @$outputRef, $line;
+        }
+    }
+    push @$outputRef, "    ioOut << \"</$className>\\n\";";
+    push @$outputRef, "}";  
+}
+
+sub XMLOStreamOperatorGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for XMLOStream operator" unless defined ($className);
+    
+    push @$outputRef,
+"namespace Mushcore",
+"{",
+"",
+"inline void",
+"Pickle(MushcoreXMLOStream& ioOut, const $className& inObj, const std::string& inName=\"\")",
+"{",
+"    inObj.$gConfig{AUTO_PREFIX}XMLPrint(ioOut, inName);",
+"}",
+"",
+"} // end namespace Mushcore";
 }
 
 sub OldBlocksStrip($$)
@@ -431,24 +518,33 @@ sub ProcessHeader($$)
     my %headerInfo;
     
     HeaderInfoCreate(\%headerInfo, \@$contentRef);
-    # HeaderInfoPrint(\%headerInfo);
+    HeaderInfoPrint(\%headerInfo) if $gVerbose;
     
     my @classPrototypes;
     my @inlineHeader;
     
     my $commandsRef = $headerInfo{COMMANDS};
-    
+
     if (defined($commandsRef))
     {
         push @ classPrototypes, "public:";
         
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # std::ostream
             if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
             {
                 OstreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
                 OstreamOperatorGenerate(\@inlineHeader, \%headerInfo)
             }
+ 
+            # MushcoreXMLOstream
+            if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
+            {
+                XMLOStreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
+                XMLOStreamOperatorGenerate(\@inlineHeader, \%headerInfo)
+            }
+
         }
     }
     
@@ -456,8 +552,11 @@ sub ProcessHeader($$)
     # line numbers remain valid
     my $lastLine = $headerInfo{LAST_LINE};
     SourceProcess::BlockReplace(\@$contentRef, \@inlineHeader, 'inlineHeader', $lastLine);
-    my $closingLine = $headerInfo{CLOSING_LINE};
-    SourceProcess::BlockReplace(\@$contentRef, \@classPrototypes, 'classPrototypes', $closingLine);
+    
+
+        my $closingLine = $headerInfo{CLOSING_LINE};
+        SourceProcess::BlockReplace(\@$contentRef, \@classPrototypes, 'classPrototypes', $closingLine);
+
 }
 
 sub ProcessCPP($$)
@@ -493,9 +592,15 @@ sub ProcessCPP($$)
     {
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # std::ostream
             if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
             {
                 OstreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
+            }
+            # MushcoreXMLOstream
+            if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
+            {
+                XMLOStreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);
             }
         }
     }

@@ -12,14 +12,18 @@
  ****************************************************************************/
 //%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.1 2003/09/17 19:10:17 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.2 2003/09/17 19:40:39 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.2  2003/09/17 19:40:39  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.1  2003/09/17 19:10:17  southa
  * Created
  *
  */
 
 #include "TestMushcoreIO.h"
+#include "TestMushcoreObject.h"
 
 using namespace Mushware;
 using namespace std;
@@ -59,6 +63,38 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
         }
     }
+
+    {
+        map<string, U32> testVector;
+        testVector["one"] = 1;
+        testVector["fifteen"] = 15;
+        testVector["eight"] = 8;
+        testVector["twenty five"] = 25;
+
+        ostringstream testStream;
+        testStream << testVector;
+
+        if (testStream.str() != "[eight => 8, fifteen => 15, one => 1, twenty five => 25]")
+        {
+            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+        }
+    }
+
+    // serial stream test
+    {
+        MushcoreXMLOStream xmlOStream;
+        TestMushcoreObject testObject;
+
+        Mushcore::Pickle(xmlOStream, testObject, "testobject");
+        ostringstream testStream;
+        testStream << xmlOStream;
+
+        if (testStream.str() != "")
+        {
+            throw MushcoreLogicFail("MushcoreIO fault '"+testStream.str()+"'");
+        }
+    } 
+    
     return MushcoreScalar(0);
 }
 

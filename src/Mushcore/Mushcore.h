@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l5tY/TDG7oXfdjv1zFKmuQ
 /*
- * $Id: Mushcore.h,v 1.11 2003/09/17 19:40:34 southa Exp $
+ * $Id: Mushcore.h,v 1.12 2003/09/17 20:04:59 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.12  2003/09/17 20:04:59  southa
+ * Build changes
+ *
  * Revision 1.11  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -71,6 +74,7 @@
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
 #include "MushcoreIO.h"
+#include "MushcoreObject.h"
 #include "MushcorePickle.h"
 #include "MushcoreRegExp.h"
 #include "MushcoreScalar.h"
@@ -81,6 +85,8 @@
 #include "MushcoreUninstaller.h"
 #include "MushcoreUtil.h"
 #include "MushcoreXML.h"
+#include "MushcoreXMLStream.h"
+#include "MushcoreXMLOStream.h"
 
 //%includeGuardEnd {
 #endif
