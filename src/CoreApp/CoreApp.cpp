@@ -1,6 +1,9 @@
 /*
- * $Id: CoreApp.cpp,v 1.2 2002/03/02 12:08:23 southa Exp $
+ * $Id: CoreApp.cpp,v 1.3 2002/03/05 22:44:45 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.3  2002/03/05 22:44:45  southa
+ * Changes to command handling
+ *
  * Revision 1.2  2002/03/02 12:08:23  southa
  * First stage rework of command handler
  * Added core target
@@ -66,7 +69,7 @@ CoreApp::AddChild(int pid, int inPipe, int outPipe)
 }
 
 void
-CoreApp::AddHandler(const string& inName, CoreCommandHandler& inHandler)
+CoreApp::AddHandler(const string& inName, CoreCommandHandler inHandler)
 {
     CoreInterpreter::Instance().AddHandler(inName, inHandler);
 }

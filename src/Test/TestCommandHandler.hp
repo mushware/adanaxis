@@ -1,20 +1,16 @@
 /*
- * $Id$
- * $Log$
+ * $Id: TestCommandHandler.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: TestCommandHandler.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
  
-#include "CommandHandler.hp"
+#include "CoreCommandHandler.hp"
  
-class TestCommandHandler : public CommandHandler
+class TestCommandHandler
 {
 public:
-    bool HandleCommand(const string& str);
+    static CoreScalar Execute(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
-    static TestCommandHandler& Instance(void) {return *((m_instance==NULL)?m_instance=new TestCommandHandler:m_instance);} 
-    
-protected:    
-    TestCommandHandler() {} // Prevent construction by client
-
-private:
-    static TestCommandHandler *m_instance;
 };

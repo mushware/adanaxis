@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.hp,v 1.5 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreStandard.hp,v 1.6 2002/03/05 22:44:46 southa Exp $
  * $Log: CoreStandard.hp,v $
+ * Revision 1.6  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.5  2002/03/04 22:30:49  southa
  * Interpreter work
  *
@@ -38,28 +41,5 @@ typedef unsigned char U8;
 typedef size_t Size;
 
 #define Vec vector
-
-#define CORETESTING(a) a
-#define IFCORETESTING(a) a
-
-#define TEXTESTING 1
-#define MONKEYTESTING 0
-#define FLEXTESTING 1
-
-#if TEXTESTING
-#define IFTEXTESTING(a) a
-#else
-#define IFTEXTESTING(a)
-#endif
-#if MONKEYTESTING
-#define IFMONKEYTESTING(a) a
-#else
-#define IFMONKEYTESTING(a)
-#endif
-#if FLEXTESTING
-#define IFFLEXTESTING(a) a
-#else
-#define IFFLEXTESTING(a)
-#endif
 
 #endif

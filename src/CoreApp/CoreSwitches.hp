@@ -1,0 +1,31 @@
+#ifndef CORESWITCHES_HP
+#define CORESWITCHES_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+#define CORETESTING(a) a
+#define IFCORETESTING(a) a
+
+#define TEXTESTING 0
+#define MONKEYTESTING 0
+#define FLEXTESTING 1
+
+#if TEXTESTING
+#define IFTEXTESTING(a) a
+#else
+#define IFTEXTESTING(a)
+#endif
+#if MONKEYTESTING
+#define IFMONKEYTESTING(a) a
+#else
+#define IFMONKEYTESTING(a)
+#endif
+#if FLEXTESTING
+#define IFFLEXTESTING(a) a
+#else
+#define IFFLEXTESTING(a)
+#endif
+
+#endif

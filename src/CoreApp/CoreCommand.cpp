@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.3 2002/03/04 22:30:48 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.4 2002/03/05 22:44:45 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.4  2002/03/05 22:44:45  southa
+ * Changes to command handling
+ *
  * Revision 1.3  2002/03/04 22:30:48  southa
  * Interpreter work
  *
@@ -51,6 +54,22 @@ CoreCommand::AllParams(void)
         retStr.append(str);
     }
     return retStr;
+}
+
+string
+CoreCommand::PopString(void)
+{
+    string retStr;
+    m_paramList.PopParam(retStr);
+    return retStr;
+}
+
+Val
+CoreCommand::PopVal(void)
+{
+    Val retVal;
+    m_paramList.PopParam(retVal);
+    return retVal;
 }
 
 CoreScalar

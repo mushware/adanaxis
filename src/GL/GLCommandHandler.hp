@@ -1,24 +1,17 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLCommandHandler.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: GLCommandHandler.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
-#include "CommandHandler.hp"
-class GLContext;
+#include "CoreCommandHandler.hp"
 
-class GLCommandHandler : public CommandHandler
+class GLCommandHandler
 {
 public:
-    bool HandleCommand(const string& str);
     static void Install(void);
-    static GLCommandHandler& Instance(void) {return *((m_instance==NULL)?m_instance=new GLCommandHandler:m_instance);}
-
-protected:
-    GLCommandHandler() {}
-
-private:
-    void InitGL(const string& inStr);
-    void LoadPixmap(const string& inStr);
-    
-    static GLCommandHandler *m_instance;
+    static CoreScalar InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv);
 };

@@ -4,5 +4,6 @@
 #define	NUM	257
 #define	IDENTIFIER	258
 #define	STRING	259
-#define	EOS	260
+#define	UNQUOTED_STRING	260
+#define	EOS	261
 

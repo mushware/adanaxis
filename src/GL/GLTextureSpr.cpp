@@ -1,9 +1,13 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureSpr.cpp,v 1.1 2002/02/26 17:01:38 southa Exp $
+ * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.1  2002/02/26 17:01:38  southa
+ * Completed Sprite loader
+ *
  */
 
 #include "GLTextureSpr.hp"
+#include "CoreSwitches.hp"
 #include "CoreUtil.hp"
 #include "StreamUtil.hp"
 

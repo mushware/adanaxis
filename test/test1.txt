@@ -1,0 +1,2 @@
+launch "/bin/ls .."
+launch "/bin/echo Hello from a script"

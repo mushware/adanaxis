@@ -1,6 +1,9 @@
 /*
- * $Id: AutoMonkey.cpp,v 1.2 2002/02/23 17:54:45 southa Exp $
+ * $Id: AutoMonkey.cpp,v 1.3 2002/02/26 17:01:40 southa Exp $
  * $Log: AutoMonkey.cpp,v $
+ * Revision 1.3  2002/02/26 17:01:40  southa
+ * Completed Sprite loader
+ *
  * Revision 1.2  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
@@ -11,6 +14,7 @@
 
 #include "AutoMonkey.hp"
 #include "CoreStandard.hp"
+#include "CoreSwitches.hp"
 
 AutoMonkey::~AutoMonkey()
 {

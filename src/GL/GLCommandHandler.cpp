@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.6 2002/02/25 23:05:14 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.7 2002/02/26 17:01:38 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.7  2002/02/26 17:01:38  southa
+ * Completed Sprite loader
+ *
  * Revision 1.6  2002/02/25 23:05:14  southa
  * Subclassed GLTexture
  *
@@ -24,54 +27,41 @@
 #include "GLCommandHandler.hp"
 #include "CoreApp.hp"
 #include "CoreTest.hp"
-#include "Installer.hp"
+#include "CoreInstaller.hp"
 #include "GLAppHandler.hp"
 #include "GLData.hp"
 #include "GLTextureSpr.hp"
 #include "GLTest.hp"
 
-GLCommandHandler *GLCommandHandler::m_instance = NULL;
+CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
 
-Installer GLCommandHandlerInstaller(GLCommandHandler::Install);
-
-bool
-GLCommandHandler::HandleCommand(const string& inStr)
-{
-    try
-    {
-        if (inStr.substr(0,6) == "initGL") InitGL(inStr.substr(6));
-        else if (inStr.substr(0,10) == "loadPixmap") LoadPixmap(inStr.substr(11));
-        else if (inStr == "glTest1") GLTest::Test1(inStr);
-        else return false;
-    }
-    catch (TestFail& f)
-    {
-        cerr << "Test failed: " << f;
-    }
-    return true;
-}
-
-void
-GLCommandHandler::InitGL(const string& inStr)
+CoreScalar
+GLCommandHandler::InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     // Save inStr to context
     CoreAppHandler::Instance().Mutate(new GLAppHandler);
+    return CoreScalar(0);
 }
 
-void GLCommandHandler::LoadPixmap(const string& inStr)
+CoreScalar
+GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
+    string filename;
+    ioCommand.PopParam(filename);
     try
     {
-        GLData::Instance().AddTexture(GLTextureSpr(inStr));
+        GLData::Instance().AddTexture(GLTextureSpr(filename));
     }
     catch (LoaderFail f)
     {
         cerr << f;
     }
+    return CoreScalar(0);
 }
 
 void
 GLCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler(Instance());
+    CoreApp::Instance().AddHandler("initgl", InitGL);
+    CoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.3 2002/02/24 22:49:33 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.4 2002/02/26 17:01:38 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.4  2002/02/26 17:01:38  southa
+ * Completed Sprite loader
+ *
  * Revision 1.3  2002/02/24 22:49:33  southa
  * Got working under cygwin
  *
@@ -19,11 +22,15 @@
 #include "GLTexture.hp"
 #include "GLData.hp"
 #include "CoreApp.hp"
+#include "CoreInstaller.hp"
+
+CoreInstaller
+GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadPixmap ../test/test.spr");
+CoreApp::Instance().Process("loadpixmap ../test/test.spr;");
     glutInitWindowSize(300,300);
 
     char buf1[]="glutInit";
@@ -117,3 +124,15 @@ GLTest1AppHandler::IdleHandler(void)
     Instance().Idle(doQuit, uSleepFor);
 }
 
+CoreScalar
+GLTest1AppHandler::GLTest1(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    CoreAppHandler::Instance().Mutate(new GLTest1AppHandler);
+    return CoreScalar(0);
+}
+
+void
+GLTest1AppHandler::Install(void)
+{
+    CoreApp::Instance().AddHandler("gltest1", GLTest1);
+}

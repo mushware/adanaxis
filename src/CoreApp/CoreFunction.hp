@@ -1,6 +1,11 @@
+#ifndef COREFUNCTION_HP
+#define COREFUNCTION_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreFunction.hp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Log: CoreFunction.hp,v $
+ * Revision 1.1  2002/03/01 12:21:25  southa
+ * Added first CoreScript code
+ *
  */
 
 #include "CoreStandard.hp"
@@ -18,3 +23,4 @@ private:
     string m_name;
     vector<string> m_commands;
 };
+#endif

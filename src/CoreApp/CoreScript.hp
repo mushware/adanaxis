@@ -1,6 +1,11 @@
+#ifndef CORESCRIPT_HP
+#define CORESCRIPT_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreScript.hp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Log: CoreScript.hp,v $
+ * Revision 1.1  2002/03/01 12:21:25  southa
+ * Added first CoreScript code
+ *
  */
 
 #include "CoreStandard.hp"
@@ -18,8 +23,9 @@ private:
     vector<CoreFunction> m_functions;
 };
 
-inline ostream& operator<<(ostream &inOut, CoreScript inCoreScript)
+inline ostream& operator<<(ostream &inOut, const CoreScript& inCoreScript)
 {
     inCoreScript.ostreamPrint(inOut);
     return inOut;
 }
+#endif

@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.2 2002/02/24 22:49:33 southa Exp $
+ * $Id: main.cpp,v 1.3 2002/03/04 22:30:47 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.3  2002/03/04 22:30:47  southa
+ * Interpreter work
+ *
  * Revision 1.2  2002/02/24 22:49:33  southa
  * Got working under cygwin
  *
@@ -31,7 +34,7 @@ int main(int argc, char *argv[])
     }
     catch (exception& e)
     {
-        cerr << "Exception: " << e.what() << endl;
+        cerr << "Standard exception: " << e.what() << endl;
         return 1;
     }
     catch (string& str)

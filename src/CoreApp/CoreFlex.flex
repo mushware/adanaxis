@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
+ // $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.3  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.2  2002/03/04 22:30:49  southa
  * Interpreter work
  *
@@ -14,6 +17,7 @@
 
 #include "CoreFlex.hp"
 #include "CoreStandard.hp"
+#include "CoreSwitches.hp"
 #include "CoreBisonDefs.hp"
 #include "CoreScalar.hp"
 
@@ -31,6 +35,7 @@ num1        [-+]?{dig}+\.?([eE][-+]?{dig}+)?
 num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
 operator    [-+/*]
+unq_string  [^\n; \t]+
 eos	    [;\n]
  
 %%
@@ -62,6 +67,12 @@ eos	    [;\n]
     IFFLEXTESTING(cerr << "string='" << yytext << "'" << endl);
     *outScalar=string(&yytext[1], strlen(yytext)-2);
     return STRING;
+}
+
+{unq_string} {
+    IFFLEXTESTING(cerr << "unq_string='" << yytext << "'" << endl);
+    *outScalar=yytext;
+    return UNQUOTED_STRING;
 }
 
 {eos} {

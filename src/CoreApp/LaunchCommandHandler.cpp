@@ -1,6 +1,9 @@
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.2 2002/03/05 22:44:46 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.2  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:08  southa
  * Created
  *
@@ -8,16 +11,14 @@
  
 #include "LaunchCommandHandler.hp"
 #include "CoreApp.hp"
-#include "Installer.hp"
+#include "CoreInstaller.hp"
 #include "CorePOSIX.hp"
 #include "CoreCommand.hp"
 
-LaunchCommandHandler *LaunchCommandHandler::m_instance = NULL;
-
-Installer LaunchCommandHandlerInstaller(LaunchCommandHandler::Install);
+CoreInstaller LaunchCommandHandlerInstaller(LaunchCommandHandler::Install);
 
 CoreScalar
-LaunchCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv &ioEnv)
+LaunchCommandHandler::Launch(CoreCommand& ioCommand, CoreEnv &ioEnv)
 {
     string funcName(ioCommand.AllParams());
     typedef enum
@@ -113,5 +114,5 @@ LaunchCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv &ioEnv)
 void
 LaunchCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("launch", Instance());
+    CoreApp::Instance().AddHandler("launch", Launch);
 }

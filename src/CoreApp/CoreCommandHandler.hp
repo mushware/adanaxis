@@ -1,6 +1,9 @@
 /*
- * $Id: CommandHandler.hp,v 1.2 2002/03/02 12:08:23 southa Exp $
- * $Log: CommandHandler.hp,v $
+ * $Id: CoreCommandHandler.hp,v 1.1 2002/03/05 22:44:45 southa Exp $
+ * $Log: CoreCommandHandler.hp,v $
+ * Revision 1.1  2002/03/05 22:44:45  southa
+ * Changes to command handling
+ *
  * Revision 1.2  2002/03/02 12:08:23  southa
  * First stage rework of command handler
  * Added core target
@@ -11,16 +14,10 @@
  */
 
 #include "CoreStandard.hp"
+
 #include "CoreScalar.hp"
+#include "CoreCommand.hp"
+#include "CoreEnv.hp"
 
-class CoreCommand;
-class CoreEnv;
-
-class CoreCommandHandler
-{
-public:
-    virtual CoreScalar Execute(CoreCommand& ioCommand, CoreEnv& ioEnv) = 0;
-
-private:
-};
-
+typedef 
+CoreScalar (*CoreCommandHandler)(CoreCommand& ioCommand, CoreEnv& ioEnv);

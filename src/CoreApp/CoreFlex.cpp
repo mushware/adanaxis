@@ -302,12 +302,12 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 6
-#define YY_END_OF_BUFFER 7
-static yyconst short int yy_accept[16] =
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
+static yyconst short int yy_accept[19] =
     {   0,
-        0,    0,    7,    6,    1,    5,    6,    3,    6,    1,
-        0,    3,    2,    4,    0
+        0,    0,    8,    5,    1,    6,    5,    3,    5,    5,
+        1,    5,    0,    3,    2,    4,    4,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -344,36 +344,42 @@ static yyconst int yy_ec[256] =
 
 static yyconst int yy_meta[12] =
     {   0,
-        1,    1,    2,    2,    3,    1,    3,    3,    3,    1,
-        3
+        1,    2,    3,    1,    1,    1,    1,    1,    1,    2,
+        1
     } ;
 
-static yyconst short int yy_base[18] =
+static yyconst short int yy_base[22] =
     {   0,
-        0,    0,   19,   20,   16,   20,    0,    0,   11,   14,
-       11,    0,   20,   20,   20,   11,   10
+        0,    0,   19,    0,   16,   45,   10,   20,   11,    0,
+       14,   30,   11,    0,    0,    0,   45,   45,   12,   40,
+       42
     } ;
 
-static yyconst short int yy_def[18] =
+static yyconst short int yy_def[22] =
     {   0,
-       15,    1,   15,   15,   15,   15,   16,   17,   15,   15,
-       16,   17,   15,   15,    0,   15,   15
+       18,    1,   18,   19,   18,   18,   20,   18,   19,   19,
+       18,   20,   21,    8,   19,   19,   18,    0,   18,   18,
+       18
     } ;
 
-static yyconst short int yy_nxt[32] =
+static yyconst short int yy_nxt[57] =
     {   0,
         4,    5,    6,    7,    8,    4,    4,    9,    8,    6,
-        8,   11,   12,   11,   14,   10,   13,   10,   15,    3,
-       15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
-       15
+        8,   13,   10,   10,   17,   11,   15,   11,   18,   13,
+       10,   18,   18,   10,   14,   10,   14,   14,   14,   18,
+       14,   13,   18,   16,   18,   18,   18,   18,   18,   13,
+       12,   12,   13,   13,    3,   18,   18,   18,   18,   18,
+       18,   18,   18,   18,   18,   18
     } ;
 
-static yyconst short int yy_chk[32] =
+static yyconst short int yy_chk[57] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,   16,   17,   16,   11,   10,    9,    5,    3,   15,
-       15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
-       15
+        1,    7,   19,    7,   13,   11,    9,    5,    3,    7,
+        8,    0,    0,    8,    8,    8,    8,    8,    8,    0,
+        8,   12,    0,   12,    0,    0,    0,    0,    0,   12,
+       20,   20,   21,   21,   18,   18,   18,   18,   18,   18,
+       18,   18,   18,   18,   18,   18
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -388,10 +394,13 @@ static char *yy_last_accepting_cpos;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #define INITIAL 0
-// $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
+// $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
 /*
- * $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.3  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  * Revision 1.2  2002/03/04 22:30:49  southa
  * Interpreter work
  *
@@ -403,6 +412,7 @@ char *yytext;
 
 #include "CoreFlex.hp"
 #include "CoreStandard.hp"
+#include "CoreSwitches.hp"
 #include "CoreBisonDefs.hp"
 #include "CoreScalar.hp"
 
@@ -609,13 +619,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 16 )
+				if ( yy_current_state >= 19 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 20 );
+		while ( yy_base[yy_current_state] != 45 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -681,6 +691,14 @@ YY_RULE_SETUP
 case 5:
 YY_RULE_SETUP
 {
+    IFFLEXTESTING(cerr << "unq_string='" << yytext << "'" << endl);
+    *outScalar=yytext;
+    return UNQUOTED_STRING;
+}
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+{
     IFFLEXTESTING(cerr << "EOS" << endl);
     return EOS;
 }
@@ -691,7 +709,7 @@ case YY_STATE_EOF(INITIAL):
     return 0;
 }
 	YY_BREAK
-case 6:
+case 7:
 YY_RULE_SETUP
 ECHO;
 	YY_BREAK
@@ -984,7 +1002,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 16 )
+			if ( yy_current_state >= 19 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1019,11 +1037,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 16 )
+		if ( yy_current_state >= 19 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 15);
+	yy_is_jam = (yy_current_state == 18);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
