@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.6 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.7 2003/09/24 19:03:23 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.7  2003/09/24 19:03:23  southa
+ * XML map IO
+ *
  * Revision 1.6  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -62,7 +65,9 @@ public:
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(std::string& outStr);
 
+    template<class T> void ObjectRead(T *inpObj);
     template<class T> void ObjectRead(vector<T>& inVector);
+    template<class T> void ObjectRead(vector<T *>& inVector);
     template<class T, class U> void ObjectRead(map<T, U>& inMap);
 
 protected:
@@ -106,6 +111,31 @@ inline void
 operator>>(MushcoreXMLIStream& ioIn, T& inObj)
 {
     ioIn.ObjectRead(inObj);
+}
+
+#if 0
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, T *inpObj)
+{
+    if (inpObj == NULL)
+    {
+        inpObj = new T;
+    }
+    ioIn >> *inpObj;
+}
+#endif
+
+
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(T *inpObj)
+{
+    if (inpObj == NULL)
+    {
+        inpObj = new T;
+    }
+    *this >> *inpObj;
 }
 
 template<class T>
@@ -155,6 +185,56 @@ MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
         }
     }
 }
+
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(vector<T *>& inVector)
+{
+    // Decode the (x,y,z) sequence
+
+    if (ByteTake() != '(')
+    {
+        Throw("Bad first character in vector");
+    }
+
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            inVector.push_back(new T);
+            try
+            {
+                ObjectRead(inVector.back());
+            }
+            catch (...)
+            {
+                // Remove partially written object
+                inVector.pop_back();
+                throw;
+            }
+
+Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in vector");
+            }
+        }
+    }
+}
+
+
 
 template<class T, class U>
 inline void

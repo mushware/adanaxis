@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.6 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.7 2003/09/24 19:03:23 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.7  2003/09/24 19:03:23  southa
+ * XML map IO
+ *
  * Revision 1.6  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -84,6 +87,27 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T>& inObj)
     while (p != pEnd)
     {
         ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    return ioOut;
+}
+
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
+{
+    std::vector<T *>::const_iterator pEnd = inObj.end();
+    std::vector<T *>::const_iterator p = inObj.begin();
+
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << **p;
         ++p;
         if (p != pEnd)
         {

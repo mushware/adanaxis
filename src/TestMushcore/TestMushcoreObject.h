@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.7 2003/09/23 22:57:57 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.8 2003/09/24 19:03:23 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.8  2003/09/24 19:03:23  southa
+ * XML map IO
+ *
  * Revision 1.7  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -88,13 +91,28 @@ public:
 #if 0
             m_pVector.push_back(TestMushcoreObject(0));
 #endif
+
+            m_pU32 = new Mushware::U32(2);
+            m_pVectorU32 = new vector<Mushware::U32>;
+            m_pVectorU32->push_back(4);
+            m_pVectorU32->push_back(18);
+            m_pVectorU32->push_back(1);
+
+            m_vectorpU32.push_back(new Mushware::U32(2));
+            m_vectorpU32.push_back(new Mushware::U32(8));
+            m_vectorpU32.push_back(new Mushware::U32(19));
+
+            // m_testObject = new TestMushcoreObject(0);
     }
 
     explicit TestMushcoreObject(Mushware::U32 inNum) :
     m_u8(0),
     m_u32(0),
-    m_string("z")
-    {}
+    m_string("z"),
+    m_pU32(NULL),
+    m_pVectorU32(NULL)
+    {
+    }
 
     virtual ~TestMushcoreObject() {}
     
@@ -113,9 +131,13 @@ private:
     std::map< Mushware::U32, std::vector<std::string> > m_mapVector;
     std::vector< std::map<Mushware::U32, std::string> > m_vectorMap;
 
-    //vector<TestMushcoreObject> m_pVector;
-    
+    Mushware::U32 *m_pU32;
+    std::vector<Mushware::U32> *m_pVectorU32;
 
+    std::vector<Mushware::U32 *> m_vectorpU32;
+
+    // TestMushcoreObject *m_testObject;
+    
 //%classPrototypes {
 public:
     bool AutoEquals(const TestMushcoreObject& inObj) const;
@@ -151,7 +173,8 @@ TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
            (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
            (m_vectorVector == inObj.m_vectorVector) &&
            (m_mapVector == inObj.m_mapVector) &&
-           (m_vectorMap == inObj.m_vectorMap);
+           (m_vectorMap == inObj.m_vectorMap) &&
+           (*m_pU32 == *inObj.m_pU32);
 }
 inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
@@ -164,7 +187,7 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } mtiBtssmlCyLe38L5iOZ9w
+//%inlineHeader } rci8rfVD3HIDloMw2pktXg
 
 
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.7 2003/09/23 22:57:57 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.8 2003/09/24 19:03:23 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.8  2003/09/24 19:03:23  southa
+ * XML map IO
+ *
  * Revision 1.7  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -59,7 +62,10 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "stringEmptyVector=" << m_stringEmptyVector << ", ";
     ioOut << "vectorVector=" << m_vectorVector << ", ";
     ioOut << "mapVector=" << m_mapVector << ", ";
-    ioOut << "vectorMap=" << m_vectorMap;
+    ioOut << "vectorMap=" << m_vectorMap << ", ";
+    ioOut << "pU32=" << *m_pU32 << ", ";
+    ioOut << "pVectorU32=" << *m_pVectorU32 << ", ";
+    ioOut << "vectorpU32=" << m_vectorpU32;
     ioOut << "]";
 }
 void
@@ -117,6 +123,26 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_vectorMap;
     }
+    else if (ioIn.TagNameGet() == "pU32")
+    {
+        if (m_pU32 == NULL)
+        {
+            m_pU32 = new Mushware::U32;
+        }
+        ioIn >> *m_pU32;
+    }
+    else if (ioIn.TagNameGet() == "pVectorU32")
+    {
+        if (m_pVectorU32 == NULL)
+        {
+            m_pVectorU32 = new std::vector<Mushware::U32>;
+        }
+        ioIn >> *m_pVectorU32;
+    }
+    else if (ioIn.TagNameGet() == "vectorpU32")
+    {
+        ioIn >> m_vectorpU32;
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
@@ -139,6 +165,9 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<vectorVector>" << m_vectorVector << "</vectorVector>\n";
     ioOut << "<mapVector>" << m_mapVector << "</mapVector>\n";
     ioOut << "<vectorMap>" << m_vectorMap << "</vectorMap>\n";
+    ioOut << "<pU32>" << *m_pU32 << "</pU32>\n";
+    ioOut << "<pVectorU32>" << *m_pVectorU32 << "</pVectorU32>\n";
+    ioOut << "<vectorpU32>" << m_vectorpU32 << "</vectorpU32>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } Sig60JxWdIF4FZnqb4hzqg
+//%outOfLineFunctions } 831K6VcUwQGh0MdhVu5cbw

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.7 2003/09/23 22:57:54 southa Exp $
+# $Id: SourceConditioner.pl,v 1.8 2003/09/24 19:03:19 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.8  2003/09/24 19:03:19  southa
+# XML map IO
+#
 # Revision 1.7  2003/09/23 22:57:54  southa
 # XML vector handling
 #
@@ -253,10 +256,36 @@ sub TypeSpecial($$)
     }
 }
 
+sub IndirectionGet($)
+{
+    my ($name) = @_;
+    if ($name =~ /^\*{3}/)
+    {
+        die "Too much indirection in $name";
+    }
+    if ($name =~ /^\*{2}/)
+    {
+        return 2;
+    }
+    if ($name =~ /^\*/)
+    {
+        return 1;
+    }
+}
+
+
 sub VarNameTrim($)
 {
     my ($name) = @_;
+    $name =~ s/^\*//;
     $name =~ s/^m_//;
+    return $name;
+}
+
+sub VarNameBaseGet($)
+{
+    my ($name) = @_;
+    $name =~ s/^\*+//;
     return $name;
 }
 
@@ -424,12 +453,28 @@ sub XMLIStreamWriteFunctionGenerate($$)
         {
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
+            my $indirection = IndirectionGet($attr);
+            my $baseAttr = VarNameBaseGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
 "    else if (ioIn.TagNameGet() == \"$trimmedAttr\")",
-"    {",
+"    {";
+            if ($indirection == 0)
+            {
+                push @$outputRef,
 "        ioIn >> $attr;",
 "    }";
+            }
+            elsif ($indirection == 1)
+            {
+                push @$outputRef,
+"        if ($baseAttr == NULL)",
+"        {",
+"            $baseAttr = new $type;",
+"        }",
+"        ioIn >> $attr;",
+"    }";
+            }
         }
     }
     push @$outputRef,
