@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.4 2002/11/25 18:02:56 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.5 2002/11/27 13:23:26 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.5  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.4  2002/11/25 18:02:56  southa
  * Mushware ID work
  *
@@ -87,7 +90,7 @@ GameDefClient::WebPrint(ostream& ioOut) const
     ioOut << "<tr>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverStation.NameGet()) << "</td>";
-    ioOut << "<td>" << m_serverStation.PortGet() << "</td>";
+    ioOut << "<td>" << m_netAddress << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
     ioOut << "</tr>" << endl;
 }
@@ -118,6 +121,7 @@ GameDefClient::Unpickle(CoreXML& inXML)
     m_endTable.resize(kPickleNumStates);
     m_endTable[kPickleData]["gamedefclient"] = &GameDefClient::HandleGameDefClientEnd;
     m_pickleState=kPickleData;
+    m_baseThreaded=0;
     inXML.ParseStream(*this);
 }
 

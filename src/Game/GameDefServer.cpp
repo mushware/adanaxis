@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.2 2002/11/25 18:02:57 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.3 2002/11/27 13:23:26 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.3  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.2  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -19,6 +22,7 @@
 
 GameDefServer::GameDefServer(const string& inName) :
     GameDef(inName),
+    m_playerCount(0),
     m_lastLinkMsec(0),
     m_lastUpdateMsec(0)
 {
@@ -43,8 +47,6 @@ GameDefServer::Ticker(void)
         m_lastUpdateMsec = m_currentMsec;
     }
 }
-
-    
 
 void
 GameDefServer::UpdateClients(void)
@@ -89,9 +91,10 @@ void
 GameDefServer::WebPrint(ostream& ioOut) const
 {
     ioOut << "<tr>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverName) << "</td>";
+    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
+    ioOut << "<td>" << m_netAddress << "</td>";
     ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_contractName) << "</td>";
-    ioOut << "<td>" << m_playerLimit << "</td>";
+    ioOut << "<td>" << m_playerCount << "/" << m_playerLimit << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
     ioOut << "</tr>";
 }
@@ -99,6 +102,34 @@ GameDefServer::WebPrint(ostream& ioOut) const
 void
 GameDefServer::NullHandler(CoreXML& inXML)
 {
+}
+
+void
+GameDefServer::HandleMessageEnd(CoreXML& inXML)
+{
+    m_serverMessage = inXML.TopData();
+}
+
+void
+GameDefServer::HandleContractEnd(CoreXML& inXML)
+{
+    m_contractName = inXML.TopData();
+}
+
+void
+GameDefServer::HandlePlayerCountEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for playercount.  Should be <playercount>3</playercount>";
+    if (!(data >> m_playerCount)) inXML.Throw(failMessage);
+}
+
+void
+GameDefServer::HandlePlayerLimitEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for playerlimit.  Should be <playerlimit>4</playerlimit>";
+    if (!(data >> m_playerLimit)) inXML.Throw(failMessage);
 }
 
 void
@@ -110,18 +141,30 @@ GameDefServer::HandleDefServerEnd(CoreXML& inXML)
 void
 GameDefServer::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-GameDef::Pickle(inOut, inPrefix);
-    inOut << inPrefix << "<!-- Incomplete -->" << endl;
+    GameDef::Pickle(inOut, inPrefix);
+    inOut << inPrefix << "<message>" << MediaNetUtils::MakeXMLSafe(m_serverMessage) << "</message>" << endl;
+    inOut << inPrefix << "<contract>" << MediaNetUtils::MakeXMLSafe(m_contractName) << "</contract>" << endl;
+    inOut << inPrefix << "<playercount>" << m_playerCount << "</playercount>" << endl;
+    inOut << inPrefix << "<playerlimit>" << m_playerLimit << "</playerlimit>" << endl;
 }
 
 void
 GameDefServer::Unpickle(CoreXML& inXML)
 {
-GameDef::UnpicklePrologue();
+    GameDef::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
     m_endTable[kPickleData]["gamedefserver"] = &GameDefServer::HandleDefServerEnd;
+    m_startTable[kPickleData]["message"] = &GameDefServer::NullHandler;
+    m_endTable[kPickleData]["message"] = &GameDefServer::HandleMessageEnd;
+    m_startTable[kPickleData]["contract"] = &GameDefServer::NullHandler;
+    m_endTable[kPickleData]["contract"] = &GameDefServer::HandleContractEnd;
+    m_startTable[kPickleData]["playercount"] = &GameDefServer::NullHandler;
+    m_endTable[kPickleData]["playercount"] = &GameDefServer::HandlePlayerCountEnd;
+    m_startTable[kPickleData]["playerlimit"] = &GameDefServer::NullHandler;
+    m_endTable[kPickleData]["playerlimit"] = &GameDefServer::HandlePlayerLimitEnd;
     m_pickleState=kPickleData;
+    m_baseThreaded=0;
     inXML.ParseStream(*this);
 }
 

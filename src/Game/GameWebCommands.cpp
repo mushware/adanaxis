@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.9 2002/11/25 18:02:57 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.10 2002/11/27 13:23:26 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.10  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.9  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -215,6 +218,7 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
     ioEnv.Out() << "<tr>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
+    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Contract</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player Limit</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
@@ -263,6 +267,7 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
     ioEnv.Out() << "<tr>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Server</font></td>";
+    ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Contract</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player Limit</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";

@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.13 2002/11/22 18:02:43 southa Exp $
+ * $Id: MediaNetLink.h,v 1.14 2002/11/27 13:23:27 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.14  2002/11/27 13:23:27  southa
+ * Server and client data exchange
+ *
  * Revision 1.13  2002/11/22 18:02:43  southa
  * Wait for TCP connection
  *
@@ -46,10 +49,11 @@
 
 #include "mushCore.h"
 
-#include "MediaSDL.h"
+#include "MediaNetAddress.h"
 #include "MediaNetClient.h"
 #include "MediaNetData.h"
 #include "MediaNetProtocol.h"
+#include "MediaSDL.h"
 
 class MediaNetAddress;
 
@@ -76,6 +80,7 @@ public:
     const string& TargetNameGet(void) const { return m_targetName; }
     U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
     U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
+    MediaNetAddress TCPTargetAddressGet(void) const { return MediaNetAddress(m_client.RemoteIPGet(), m_client.TCPRemotePortGet()); }
     U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
     U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
     
@@ -113,6 +118,7 @@ private:
         kUDPSlowLinkCheckPeriod=30000,
         kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
         kLinkInitTimeoutMsec=6000, // Timeout to kill link if not up for send
+        kLinkIdleTimeoutMsec=35000, // Timeout to disconnect if no activity
         kErrorTotalLimit=100,
         kErrorsSinceGoodLimit=4
     };
@@ -160,6 +166,7 @@ private:
     MediaNetClient m_client;
     U32 m_currentMsec;
     U32 m_creationMsec;
+    U32 m_lastActivityMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
 

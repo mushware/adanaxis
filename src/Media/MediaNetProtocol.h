@@ -1,8 +1,11 @@
 #ifndef MEDIANETPROTOCOL_H
 #define MEDIANETPROTOCOL_H
 /*
- * $Id: MediaNetProtocol.h,v 1.6 2002/11/25 10:43:28 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.7 2002/11/25 12:06:18 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.7  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.6  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -54,7 +57,8 @@ public:
         kReasonCodeTCPLinkCheckFail=68,
         kReasonCodeTCPBadLink=69,
         kReasonCodeUDPLinkCheckFail=70,
-        kReasonCodeUDPBadLink=71        
+        kReasonCodeUDPBadLink=71,
+        kReasonCodeIdleTimeout=72        
     };
     
     static void TCPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);

@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.2 2002/11/25 18:02:57 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.3 2002/11/27 13:23:26 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.3  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.2  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -31,7 +34,7 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     GameDefClient *gameDefClient = dynamic_cast<GameDefClient *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefClient(elementName)));
     gameDefClient->IsImageSet(true);
     gameDefClient->AddressSet(m_address);
-    gameDefClient->Unpickle(inXML);                                           
+    gameDefClient->Unpickle(inXML);
 }
 
 void
@@ -41,6 +44,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
     string dataName = elementName+"-image";
     GameDefServer *gameDefServer = dynamic_cast<GameDefServer *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefServer(elementName)));
     gameDefServer->IsImageSet(true);
+    gameDefServer->AddressSet(m_address);
     gameDefServer->Unpickle(inXML);
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.7 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameDef.cpp,v 1.8 2002/11/27 13:23:26 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.8  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.7  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -64,9 +67,9 @@ GameDef::CreateNewLink(const MediaNetAddress& inAddress) const
 }
 
 void
-GameDef::HandleDefEnd(CoreXML& inXML)
+GameDef::HandleNameEnd(CoreXML& inXML)
 {
-    inXML.StopHandler();
+    m_name = inXML.TopData();
 }
 
 void
@@ -77,6 +80,7 @@ GameDef::NullHandler(CoreXML& inXML)
 void
 GameDef::Pickle(ostream& inOut, const string& inPrefix="") const
 {
+    inOut << inPrefix << "<name>" << MediaNetUtils::MakeXMLSafe(m_name) << "</name>" << endl;
 }
 
 void
@@ -84,7 +88,8 @@ GameDef::UnpicklePrologue(void)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_endTable[kPickleData]["def"] = &GameDef::HandleDefEnd;
+    m_startTable[kPickleData]["name"] = &GameDef::NullHandler;
+    m_endTable[kPickleData]["name"] = &GameDef::HandleNameEnd;
     m_pickleState=kPickleData;
 }
 

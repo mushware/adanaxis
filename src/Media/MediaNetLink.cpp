@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.18 2002/11/23 17:23:44 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.19 2002/11/27 13:23:27 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.19  2002/11/27 13:23:27  southa
+ * Server and client data exchange
+ *
  * Revision 1.18  2002/11/23 17:23:44  southa
  * Sleep in setup
  *
@@ -115,8 +118,9 @@ MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
 void
 MediaNetLink::Initialise(void)
 {
-    m_creationMsec=SDL_GetTicks();
-    
+    m_currentMsec=SDL_GetTicks();
+    m_creationMsec=m_currentMsec;
+    m_lastActivityMsec=m_currentMsec;
     m_tcpState.linkCheckTime=0;
     m_tcpState.linkState=kLinkStateUntested;
     m_tcpState.linkCheckState=kLinkCheckStateIdle;
@@ -289,6 +293,14 @@ MediaNetLink::UDPLinkCheckSend(void)
 void
 MediaNetLink::Tick(void)
 {
+    m_currentMsec=SDL_GetTicks();
+    
+    if (m_currentMsec > m_lastActivityMsec + kLinkIdleTimeoutMsec)
+    {
+        // Idle timer expired
+        Disconnect(MediaNetProtocol::kReasonCodeIdleTimeout);
+    }
+    
     if (m_tcpState.linkState == kLinkStateConnecting)
     {
         if (m_client.TCPConnectionCompleted())
@@ -298,8 +310,6 @@ MediaNetLink::Tick(void)
         }
     }
     
-    m_currentMsec=SDL_GetTicks();
-
     U32 tcpLinkCheckPeriod=kTCPFastLinkCheckPeriod;
     if (m_tcpState.linkState == kLinkStateIdle && m_tcpState.linkErrorsSinceGood == 0)
     {
@@ -528,6 +538,7 @@ MediaNetLink::FastSend(MediaNetData& ioData)
     {
         throw(NetworkFail("Send on dead link"));
     }
+    m_lastActivityMsec = SDL_GetTicks();
 }
 
 void
@@ -545,6 +556,7 @@ MediaNetLink::ReliableSend(MediaNetData& ioData)
     {
         throw(NetworkFail("Send on dead link"));
     }
+    m_lastActivityMsec = SDL_GetTicks();
 }
 
 bool
@@ -574,9 +586,11 @@ MediaNetLink::UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioDat
 bool
 MediaNetLink::Receive(MediaNetData * & outData)
 {
+
     UDPReceive(m_udpState.linkData);
     if (!m_udpState.linkData.IsEmptyForRead())
     {
+        m_lastActivityMsec = SDL_GetTicks();
         MediaNetProtocol::Unpack(m_udpState.linkData);
         if (MediaNetProtocol::MessageTake(m_udpState.linkData))
         {
@@ -588,6 +602,7 @@ MediaNetLink::Receive(MediaNetData * & outData)
     TCPReceive(m_tcpState.linkData);
     if (!m_tcpState.linkData.IsEmptyForRead())
     {
+        m_lastActivityMsec = SDL_GetTicks();
         MediaNetProtocol::Unpack(m_tcpState.linkData);
         if (MediaNetProtocol::MessageTake(m_tcpState.linkData))
         {

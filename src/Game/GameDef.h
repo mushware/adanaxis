@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.4 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameDef.h,v 1.5 2002/11/27 13:23:26 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.5  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.4  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -49,7 +52,7 @@ protected:
 
 private:
     void NullHandler(CoreXML& inXML);
-    void HandleDefEnd(CoreXML& inXML);
+    void HandleNameEnd(CoreXML& inXML);
 
     enum PickleState
     {

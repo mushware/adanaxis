@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.5 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.6 2002/11/25 12:06:18 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.6  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.5  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -68,8 +71,11 @@ MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
             }
             else
             {
+                // Make data look like it came from the TCP address in all cases
+                // netData->SourcePortSet(p->second->TCPTargetPortGet());
+                
                 MediaNetProtocol::RemoveLength(*netData, messageType);
-                inHandler.MessageHandle(*netData, messageType);
+                inHandler.MessageHandle(*netData, *p->second, messageType);
             }
         }
         if (callTick)
@@ -107,8 +113,11 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& 
                 }
                 else
                 {
+                    // Make data look like it came from the TCP address in all cases
+                    //ioData.SourcePortSet(p->second->TCPTargetPortGet());
+
                     MediaNetProtocol::RemoveLength(ioData, messageType);
-                    inHandler.MessageHandle(ioData, messageType);
+                    inHandler.MessageHandle(ioData, *p->second, messageType);
                 }
             }
             // Message handled so return
