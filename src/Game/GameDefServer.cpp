@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.11 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.12 2002/12/07 18:32:14 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.12  2002/12/07 18:32:14  southa
+ * Network ID stuff
+ *
  * Revision 1.11  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -96,11 +99,11 @@ void
 GameDefServer::UpdateClient(GameDefClient& inClient)
 {
     COREASSERT(inClient.ImageIs()); // Server shouldn't deal directly with clients on this station
-    MediaNetLink *netLink=NULL;
-    if (MediaNetUtils::FindLinkToStation(netLink, inClient.AddressGet()))
+    MustlLink *netLink=NULL;
+    if (MustlUtils::FindLinkToStation(netLink, inClient.AddressGet()))
     {
         COREASSERT(netLink != NULL);
-        MediaNetData netData;
+        MustlData netData;
 
         if (m_killed)
         {
@@ -119,7 +122,7 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
         }
         catch (NetworkFail& e)
         {
-            MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+            MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
         }
     }
 }
@@ -135,9 +138,9 @@ void
 GameDefServer::WebPrint(ostream& ioOut) const
 {
     ioOut << "<tr>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
+    ioOut << "<td>" << MustlUtils::MakeWebSafe(NameGet()) << "</td>";
     ioOut << "<td>" << m_netAddress << "</td>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_contractName) << "</td>";
+    ioOut << "<td>" << MustlUtils::MakeWebSafe(m_contractName) << "</td>";
     ioOut << "<td>" << m_playerCount << "/" << m_playerLimit << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
     ioOut << "</tr>";
@@ -186,8 +189,8 @@ void
 GameDefServer::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     GameDef::Pickle(inOut, inPrefix);
-    inOut << inPrefix << "<message>" << MediaNetUtils::MakeXMLSafe(m_serverMessage) << "</message>" << endl;
-    inOut << inPrefix << "<contract>" << MediaNetUtils::MakeXMLSafe(m_contractName) << "</contract>" << endl;
+    inOut << inPrefix << "<message>" << MustlUtils::MakeXMLSafe(m_serverMessage) << "</message>" << endl;
+    inOut << inPrefix << "<contract>" << MustlUtils::MakeXMLSafe(m_contractName) << "</contract>" << endl;
     inOut << inPrefix << "<playercount>" << m_playerCount << "</playercount>" << endl;
     inOut << inPrefix << "<playerlimit>" << m_playerLimit << "</playerlimit>" << endl;
 }

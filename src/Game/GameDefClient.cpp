@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.16 2002/12/07 18:32:14 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.17 2002/12/09 23:59:58 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.17  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.16  2002/12/07 18:32:14  southa
  * Network ID stuff
  *
@@ -82,7 +85,7 @@ GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),
     m_lastLinkMsec(0),
     m_lastRegistrationMsec(0),
-    m_netLinks(kMaxLinks, CoreDataRef<MediaNetLink>("invalid-link")),
+    m_netLinks(kMaxLinks, CoreDataRef<MustlLink>("invalid-link")),
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
@@ -139,7 +142,7 @@ GameDefClient::Ticker(const string& inName)
 void
 GameDefClient::UpdateServer(void)
 {
-    MediaNetData netData;
+    MustlData netData;
     if (m_killed)
     {
         // Remove the image of this client on the server remote station
@@ -158,7 +161,7 @@ GameDefClient::UpdateServer(void)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+        MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
     }
 }
 
@@ -203,14 +206,14 @@ GameDefClient::UpdateStatus(void)
 }
 
 void
-GameDefClient::ReliableSendToServer(MediaNetData& ioData)
+GameDefClient::ReliableSendToServer(MustlData& ioData)
 {
     m_uplinkBandwidth += ioData.ReadSizeGet();
     GameNetUtils::ReliableSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
 }
 
 void
-GameDefClient::FastSendToServer(MediaNetData& ioData)
+GameDefClient::FastSendToServer(MustlData& ioData)
 {
     m_uplinkBandwidth += ioData.ReadSizeGet();
     GameNetUtils::FastSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
@@ -229,8 +232,8 @@ GameDefClient::WebHeaderPrint(ostream& ioOut)
 void
 GameDefClient::WebPrint(ostream& ioOut) const
 {
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(NameGet()) << "</td>";
-    ioOut << "<td>" << MediaNetUtils::MakeWebSafe(m_serverName) << "</td>";
+    ioOut << "<td>" << MustlUtils::MakeWebSafe(NameGet()) << "</td>";
+    ioOut << "<td>" << MustlUtils::MakeWebSafe(m_serverName) << "</td>";
     ioOut << "<td>" << m_netAddress << "</td>";
     ioOut << "<td>" << m_uplinkBandwidth << "</td>";
     ioOut << "<td>" << StatusWebStringGet() << "</td>";

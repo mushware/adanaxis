@@ -1,6 +1,9 @@
 /*
- * $Id: GamePlayerUtils.cpp,v 1.5 2002/12/10 19:00:17 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.6 2002/12/10 20:38:05 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.6  2002/12/10 20:38:05  southa
+ * Server timing
+ *
  * Revision 1.5  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
@@ -93,7 +96,7 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
         p.ForwardMove();
     }
     
-    MediaNetData netData;
+    MustlData netData;
     controlMessage.Pack(netData);
     //cerr << "Would send " << netData << endl;
     inClient.FastSendToServer(netData);

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.19 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.20 2002/12/05 23:52:52 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.20  2002/12/05 23:52:52  southa
+ * Network management and status
+ *
  * Revision 1.19  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -175,7 +178,7 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
             ostringstream message;
             message << "Join game failed: " << e.what() << endl;
             PlatformMiscUtils::MinorErrorBox(message.str());
-            MediaNetLog::Instance().NetLog() << message.str() << endl;
+            MustlLog::Instance().NetLog() << message.str() << endl;
             gameDefClient->Kill();
         }
     }
@@ -262,9 +265,9 @@ GameWebCommands::GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     time_t now(time(NULL));
     ioEnv.Out() << "Status at " << ctime(&now);
     ioEnv.Out() << "<br>Server: ";
-    if (MediaNetServer::Instance().IsServing())
+    if (MustlServer::Instance().IsServing())
     {
-        ioEnv.Out() << "Serving on port " << MediaNetServer::Instance().ServerPortHostOrderGet();
+        ioEnv.Out() << "Serving on port " << MustlServer::Instance().ServerPortHostOrderGet();
     }
     else
     {
@@ -384,11 +387,11 @@ GameWebCommands::GameLinkStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 
     ioEnv.Out() << "<br><br><table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
 
-    MediaNetLink::WebStatusHeaderPrint(ioEnv.Out());
+    MustlLink::WebStatusHeaderPrint(ioEnv.Out());
 
-    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
 
-    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
+    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
         ioEnv.Out() << "<tr>";

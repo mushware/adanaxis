@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameNetID.cpp,v 1.1 2002/12/09 23:59:58 southa Exp $
+ * $Log: GameNetID.cpp,v $
+ * Revision 1.1  2002/12/09 23:59:58  southa
+ * Network control
+ *
  */
 
 #include "GameNetID.h"
@@ -10,7 +13,7 @@ GameNetID::GameNetID(const string& inStr) :
 {
 }
 
-GameNetID::GameNetID(MediaNetData& ioData)
+GameNetID::GameNetID(MustlData& ioData)
 {
     Unpack(ioData);
 }
@@ -19,14 +22,14 @@ GameNetID::~GameNetID()
 {
 }
 
-MediaNetID *
+MustlID *
 GameNetID::Clone(void) const
 {
     return new GameNetID(*this);
 }
 
 void
-GameNetID::Pack(MediaNetData& ioData) const
+GameNetID::Pack(MustlData& ioData) const
 {
     const string& clientName = m_clientRef.NameGet();
     
@@ -40,7 +43,7 @@ GameNetID::Pack(MediaNetData& ioData) const
 }
 
 void
-GameNetID::Unpack(MediaNetData& ioData)
+GameNetID::Unpack(MustlData& ioData)
 {
     string clientName = "";
     U32 size=ioData.MessageBytePop();

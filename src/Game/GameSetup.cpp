@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.20 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameSetup.cpp,v 1.21 2002/12/05 23:52:52 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.21  2002/12/05 23:52:52  southa
+ * Network management and status
+ *
  * Revision 1.20  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -175,11 +178,11 @@ GameSetup::ConfigInit(void)
     U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
     try
     {
-        MediaNetWebServer::Instance().Connect(webPort);
+        MustlWebServer::Instance().Connect(webPort);
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().WebLog() << e.what() << endl;
+        MustlLog::Instance().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
         
@@ -226,16 +229,16 @@ GameSetup::KeyControl(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
     {
-        if (!MediaNetWebServer::Instance().IsConnected())
+        if (!MustlWebServer::Instance().IsConnected())
         {
             U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
             try
             {
-                MediaNetWebServer::Instance().Connect(webPort);
+                MustlWebServer::Instance().Connect(webPort);
             }
             catch (NetworkFail& e)
             {
-                MediaNetLog::Instance().WebLog() << e.what() << endl;
+                MustlLog::Instance().WebLog() << e.what() << endl;
             }
         }
         PlatformMiscUtils::LaunchURL(m_configURL);

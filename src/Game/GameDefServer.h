@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.h,v 1.6 2002/11/28 18:05:35 southa Exp $
+ * $Id: GameDefServer.h,v 1.7 2002/12/07 18:32:15 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.7  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.6  2002/11/28 18:05:35  southa
  * Print link ages
  *
@@ -46,8 +49,8 @@ public:
 
     const string& ServerMessageGet(void) const { return m_serverMessage; }
     void ServerMessageSet(const string& inMessage) { m_serverMessage = inMessage; }
-    void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
-    const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
+    void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
+    const MustlAddress& AddressGet(void) const { return m_netAddress; }
 
     void UpdateClient(GameDefClient& inClient);
     
@@ -91,6 +94,6 @@ private:
     U32 m_playerLimit;
     U32 m_lastUpdateMsec;
     U32 m_currentMsec;
-    MediaNetAddress m_netAddress;
+    MustlAddress m_netAddress;
     bool m_killed;
 };

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.20 2002/11/27 13:23:26 southa Exp $
+ * $Id: mushMedia.h,v 1.21 2002/12/07 18:32:14 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.21  2002/12/07 18:32:14  southa
+ * Network ID stuff
+ *
  * Revision 1.20  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -79,22 +82,7 @@
 #define MUSHMEDIA_H
 
 #include "Media/MediaAudio.h"
-#include "Media/MediaNet.h"
-#include "Media/MediaNetAddress.h"
-#include "Media/MediaNetData.h"
-#include "Media/MediaNetHandler.h"
-#include "Media/MediaNetID.h"
-#include "Media/MediaNetIDNull.h"
-#include "Media/MediaNetIDString.h"
-#include "Media/MediaNetLink.h"
-#include "Media/MediaNetLog.h"
-#include "Media/MediaNetProtocol.h"
-#include "Media/MediaNetRouter.h"
-#include "Media/MediaNetServer.h"
-#include "Media/MediaNetUtils.h"
-#include "Media/MediaNetWebLink.h"
-#include "Media/MediaNetWebRouter.h"
-#include "Media/MediaNetWebServer.h"
+#include "Mustl.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSoundStream.h"
 #include "Media/MediaSound.h"

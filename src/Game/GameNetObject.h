@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.h,v 1.3 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameNetObject.h,v 1.4 2002/11/28 11:10:29 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.4  2002/11/28 11:10:29  southa
+ * Client and server delete messages
+ *
  * Revision 1.3  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -24,8 +27,8 @@ public:
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
-    void AddressSet(const MediaNetAddress& inAddress) { m_address = inAddress; }
-    const MediaNetAddress& AddressGet(void) const { return m_address; }
+    void AddressSet(const MustlAddress& inAddress) { m_address = inAddress; }
+    const MustlAddress& AddressGet(void) const { return m_address; }
     
 protected:
     void XMLStartHandler(CoreXML& inXML);
@@ -51,7 +54,7 @@ private:
     vector<ElementFunctionMap> m_endTable;
     U32 m_pickleState;
     
-    MediaNetAddress m_address;
+    MustlAddress m_address;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameNetObject& inObj)

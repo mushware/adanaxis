@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.12 2002/11/25 18:02:55 southa Exp $
+ * $Id: GameConfig.cpp,v 1.13 2002/12/05 13:20:11 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.13  2002/12/05 13:20:11  southa
+ * Client link handling
+ *
  * Revision 1.12  2002/11/25 18:02:55  southa
  * Mushware ID work
  *
@@ -154,15 +157,15 @@ GameConfig::Update(void)
 {
     if (ParameterExists("devnetlog"))
     {
-        MediaNetLog::Instance().NetLogSet(ParameterGet("devnetlog").U32Get());
+        MustlLog::Instance().NetLogSet(ParameterGet("devnetlog").U32Get());
     }
     if (ParameterExists("devweblog"))
     {
-        MediaNetLog::Instance().WebLogSet(ParameterGet("devweblog").U32Get());
+        MustlLog::Instance().WebLogSet(ParameterGet("devweblog").U32Get());
     }
     if (ParameterExists("devverboselog"))
     {
-        MediaNetLog::Instance().VerboseLogSet(ParameterGet("devverboselog").U32Get());
+        MustlLog::Instance().VerboseLogSet(ParameterGet("devverboselog").U32Get());
     }
     if (ParameterExists("devcommandlog"))
     {
@@ -170,31 +173,31 @@ GameConfig::Update(void)
     }
     if (ParameterExists("devlogfullip"))
     {
-MediaNetUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
+MustlUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
     }
     if (ParameterExists("configperms"))
     {
         string configPerms=ParameterGet("configperms").StringGet();
         if (configPerms == "none")
         {
-            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionNone);
+            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionNone);
         }
         else if (configPerms == "local")
         {
-            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionLocal);
+            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionLocal);
         }
         else if (configPerms == "all")
         {
-            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionAll);
+            MustlWebServer::Instance().PermissionSet(MustlWebServer::kPermissionAll);
         }
         else
         {
-            MediaNetLog::Instance().WebLog() << "Unknown value for configerms '" << configPerms << "'" << endl;
+            MustlLog::Instance().WebLog() << "Unknown value for configerms '" << configPerms << "'" << endl;
         }
     }
     if (ParameterExists("configextra"))
     {
-        MediaNetWebServer::Instance().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
+        MustlWebServer::Instance().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
     }
     
 }
@@ -257,10 +260,10 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix="") const
         if (dynamic_cast<GameConfigDefPassword *>(p->second) == NULL ||
             savePasswords)
         {
-            inOut << inPrefix << "  <value name=\"" << MediaNetUtils::MakeXMLSafe(p->first) << "\">";
+            inOut << inPrefix << "  <value name=\"" << MustlUtils::MakeXMLSafe(p->first) << "\">";
             if (p->second != NULL)
             {
-                inOut << MediaNetUtils::MakeXMLSafe(p->second->ValueGet().StringGet());
+                inOut << MustlUtils::MakeXMLSafe(p->second->ValueGet().StringGet());
             }
             inOut << "</value>" << endl;
         }

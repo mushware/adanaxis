@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.cpp,v 1.8 2002/12/06 11:11:16 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.9 2002/12/06 17:38:00 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.9  2002/12/06 17:38:00  southa
+ * ControlData message unpacking
+ *
  * Revision 1.8  2002/12/06 11:11:16  southa
  * Send control information
  *
@@ -32,25 +35,25 @@
 #include "mushMedia.h"
 
 void
-GameProtocol::CreateObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName)
+GameProtocol::CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName)
 {
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\">";
     inObj.Pickle(netStream);
     netStream << "</" << inObj.TypeNameGet() << ">";
-    MediaNetProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
-    // MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl; 
+    MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
+    // MustlLog::Instance().NetLog() << "Sent " << ioData << endl; 
 }
 
 void
-GameProtocol::DeleteObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName)
+GameProtocol::DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName)
 {
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\" delete=\"1\">";
     netStream << "</" << inObj.TypeNameGet() << ">";
-    MediaNetProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
-    // MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl;
+    MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
+    // MustlLog::Instance().NetLog() << "Sent " << ioData << endl;
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.10 2002/12/05 23:52:51 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.11 2002/12/09 23:59:58 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.11  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.10  2002/12/05 23:52:51  southa
  * Network management and status
  *
@@ -62,7 +65,7 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
         }
         catch (ReferenceFail& e)
         {
-            MediaNetLog::Instance().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
+            MustlLog::Instance().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
         }
     }
     else
@@ -105,7 +108,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
         }
         catch (ReferenceFail& e)
         {
-            MediaNetLog::Instance().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
+            MustlLog::Instance().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
         }
     }
     else

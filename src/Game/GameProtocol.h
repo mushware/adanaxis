@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.h,v 1.7 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameProtocol.h,v 1.8 2002/12/09 23:59:58 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.8  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.7  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -28,7 +31,7 @@
 
 #include "GameControlFrameDef.h"
 
-class MediaNetData;
+class MustlData;
 
 class GameProtocol
 {
@@ -41,8 +44,8 @@ public:
         kMessageTypeControlData
     };
 
-    static void CreateObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName);
-    static void DeleteObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName);
+    static void CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName);
+    static void DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName);
     
 private:
 };

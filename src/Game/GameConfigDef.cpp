@@ -1,6 +1,9 @@
 /*
- * $Id: GameConfigDef.cpp,v 1.4 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.5 2002/11/25 18:02:56 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.5  2002/11/25 18:02:56  southa
+ * Mushware ID work
+ *
  * Revision 1.4  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -78,7 +81,7 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 void
 GameConfigDefU32::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"6\" value=\"" << MediaNetUtils::MakeWebSafe(m_value) << "\">" << endl;
+    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"6\" value=\"" << MustlUtils::MakeWebSafe(m_value) << "\">" << endl;
 }
 
 // -----
@@ -114,7 +117,7 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
     if (re.Search(inData, matches))
     {
         COREASSERT(matches.size() == 1);
-        m_value=MediaNetUtils::RemoveMeta(matches[0]);
+        m_value=MustlUtils::RemoveMeta(matches[0]);
         found=true;
     }
     return found;
@@ -126,7 +129,7 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
 
     if (m_menu.size() == 0)
     {
-        ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"20\" value=\"" << MediaNetUtils::MakeWebSafe(m_value) << "\">" << endl;
+        ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"20\" value=\"" << MustlUtils::MakeWebSafe(m_value) << "\">" << endl;
     }
     else
     {
@@ -183,10 +186,10 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
     if (re.Search(inData, matches))
     {
         COREASSERT(matches.size() == 1);
-        string newValue=MediaNetUtils::RemoveMeta(matches[0]);
+        string newValue=MustlUtils::RemoveMeta(matches[0]);
         if (newValue != "******")
         {
-            m_value=MediaNetUtils::RemoveMeta(newValue);
+            m_value=MustlUtils::RemoveMeta(newValue);
             found=true;
         }
     }
@@ -196,7 +199,7 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
 void
 GameConfigDefPassword::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"password\" size=\"20\" value=\"";
+    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"password\" size=\"20\" value=\"";
     if (m_value.size() != 0)
     {
         ioOut << "******";
@@ -250,10 +253,10 @@ GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
 void
 GameConfigDefBool::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"checkbox\" ";
+    ioOut << "<input name=\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"checkbox\" ";
     if (m_value) ioOut << "checked ";
     ioOut << "value=\"1\">" << endl;
-    ioOut << "<input name =\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"hidden\" value=\"0\"" << endl;
+    ioOut << "<input name =\"" << MustlUtils::MakeWebSafe(inName) << "\" type=\"hidden\" value=\"0\"" << endl;
 }
 
 // -----
@@ -261,7 +264,7 @@ GameConfigDefBool::WebInputPrint(ostream& ioOut, const string& inName)
 void
 GameConfigDef::SelectPrologue(ostream& ioOut, const string& inName)
 {
-    ioOut << "<select name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\">" << endl;
+    ioOut << "<select name=\"" << MustlUtils::MakeWebSafe(inName) << "\">" << endl;
 }
 
 void
@@ -269,8 +272,8 @@ GameConfigDef::SelectOption(ostream& ioOut, const string& inName, const string& 
 {
     ioOut << "<option ";
     if (inSelected) ioOut << "selected ";
-    ioOut << "value=\"" << MediaNetUtils::MakeWebSafe(inValue) << "\">";
-    ioOut << MediaNetUtils::MakeWebSafe(inName);
+    ioOut << "value=\"" << MustlUtils::MakeWebSafe(inValue) << "\">";
+    ioOut << MustlUtils::MakeWebSafe(inName);
     ioOut << "</option>" << endl;
 }
 

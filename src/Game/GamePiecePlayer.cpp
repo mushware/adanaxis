@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.32 2002/12/09 23:59:58 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.33 2002/12/10 20:38:05 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.33  2002/12/10 20:38:05  southa
+ * Server timing
+ *
  * Revision 1.32  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -244,7 +247,14 @@ GamePiecePlayer::ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFram
 U32
 GamePiecePlayer::LastValidControlFrameGet(void) const
 {
-    return m_frameDefHistory.Back().IndexGet();
+    if (m_frameDefHistory.Back().ValidIs())
+    {
+        return m_frameDefHistory.Back().IndexGet();
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 void

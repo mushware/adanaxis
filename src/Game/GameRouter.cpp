@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.10 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameRouter.cpp,v 1.11 2002/12/09 23:59:59 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.11  2002/12/09 23:59:59  southa
+ * Network control
+ *
  * Revision 1.10  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -46,7 +49,7 @@
 auto_ptr<GameRouter> GameRouter::m_instance;
 
 void
-GameRouter::MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType)
+GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
 {
     switch (inType)
     {
@@ -64,13 +67,13 @@ GameRouter::MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType
             break;
 
         default:
-            MediaNetLog::Instance().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
+            MustlLog::Instance().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
 }
 
 void
-GameRouter::IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink)
+GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
 {
     GameNetID netID(ioData);
 
@@ -83,7 +86,7 @@ GameRouter::IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink)
 }
 
 void
-GameRouter::NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink)
+GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
 {
     GameNetObject netObject;
 
@@ -103,7 +106,7 @@ GameRouter::NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 }
 
 void
-GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
+GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 {
     // Find object that relates to this control data
 
@@ -138,7 +141,7 @@ GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 
     if (discard)
     {
-        MediaNetLog::Instance().NetLog() << ": Discarding ControlData for unknown target" << endl;
+        MustlLog::Instance().NetLog() << ": Discarding ControlData for unknown target" << endl;
     }
 
     
@@ -147,11 +150,11 @@ GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 
     if (playerData.Exists(clientName))
     {
-        MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
+        MustlLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
     }
     else
     {
-       MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
+       MustlLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
     }
 #endif
     // Apply or store the data

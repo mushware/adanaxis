@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.cpp,v 1.5 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.6 2002/12/09 23:59:58 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.6  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.5  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -57,11 +60,11 @@ GameNetUtils::KillClientImages(void)
 void
 GameNetUtils::KillLinks(void)
 {
-    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
 
-    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin(); p != endValue; ++p)
+    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
     {
-        p->second->Disconnect(MediaNetProtocol::kReasonCodeUserDisconnect);
+        p->second->Disconnect(MustlProtocol::kReasonCodeUserDisconnect);
     }
 }
 
@@ -94,7 +97,7 @@ GameNetUtils::KillClientsByType(bool inImageIs)
 }
 
 bool
-GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const string& inClientName, const MediaNetAddress& inAddress, U32 inLinkNum)
+GameNetUtils::MaintainLinks(vector< CoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, U32 inLinkNum)
 {
     bool linkGood=false;
     U32 size = inLinks.size();
@@ -102,7 +105,7 @@ GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const 
     
     for (U32 i=0; i<inLinkNum; ++i)
     {
-        MediaNetLink *linkPtr = NULL;
+        MustlLink *linkPtr = NULL;
         if (inLinks[i].GetIfExists(linkPtr))
         {
             COREASSERT(linkPtr != NULL);
@@ -124,29 +127,29 @@ GameNetUtils::MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const 
 }
 
 void
-GameNetUtils::CreateLink(CoreDataRef<MediaNetLink>& outLink, const string& inClientName, const MediaNetAddress& inAddress)
+GameNetUtils::CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClientName, const MustlAddress& inAddress)
 {
     try
     {
-        string linkName=MediaNetLink::NextLinkNameTake();
-        CoreData<MediaNetLink>::Instance().Give(linkName, new MediaNetLink(GameNetID(inClientName), inAddress));
+        string linkName=MustlLink::NextLinkNameTake();
+        CoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
+        MustlLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
     }
 }
 
 void
-GameNetUtils::ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData)
+GameNetUtils::ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
     COREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
     {
         ++ioLinkNum;
         if (ioLinkNum >= inLinkNum) ioLinkNum = 0;
-        MediaNetLink *linkPtr = NULL;
+        MustlLink *linkPtr = NULL;
         if (inLinks[ioLinkNum].GetIfExists(linkPtr))
         {
             COREASSERT(linkPtr != NULL);
@@ -161,14 +164,14 @@ GameNetUtils::ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& 
 }
 
 void
-GameNetUtils::FastSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData)
+GameNetUtils::FastSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
     COREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
     {
         ++ioLinkNum;
         if (ioLinkNum >= inLinkNum) ioLinkNum = 0;
-        MediaNetLink *linkPtr = NULL;
+        MustlLink *linkPtr = NULL;
         if (inLinks[ioLinkNum].GetIfExists(linkPtr))
         {
             COREASSERT(linkPtr != NULL);
@@ -250,20 +253,20 @@ GameNetUtils::NetTicker(void)
     
     if (serverNeeded)
     {
-        if (!MediaNetServer::Instance().IsServing())
+        if (!MustlServer::Instance().IsServing())
         {
             U32 portNum=GameConfig::Instance().ParameterGet("multiport").U32Get();
     
             try
             {
-                MediaNetServer::Instance().Connect(portNum);
+                MustlServer::Instance().Connect(portNum);
             }
             catch (NetworkFail& e)
             {
                 static U32 failedPortNum=65536;
                 if (portNum != failedPortNum)
                 {
-                    MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
+                    MustlLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
                     PlatformMiscUtils::MinorErrorBox(e.what());
                     failedPortNum=portNum;
                 }
@@ -272,9 +275,9 @@ GameNetUtils::NetTicker(void)
     }
     else
     {
-        if (MediaNetServer::Instance().IsServing())
+        if (MustlServer::Instance().IsServing())
         {
-            MediaNetServer::Instance().Disconnect();
+            MustlServer::Instance().Disconnect();
         }
     }
 }
@@ -284,12 +287,12 @@ GameNetUtils::WebReceive(void)
 {
     try
     {
-        MediaNetWebServer::Instance().Accept();
-        MediaNetWebRouter::Instance().ReceiveAll();
+        MustlWebServer::Instance().Accept();
+        MustlWebRouter::Instance().ReceiveAll();
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
+        MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
     }
 }
 
@@ -298,11 +301,11 @@ GameNetUtils::NetReceive(void)
 {
     try
     {
-        MediaNetServer::Instance().Accept();
-        MediaNetRouter::Instance().ReceiveAll(GameRouter::Instance());
+        MustlServer::Instance().Accept();
+        MustlRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
+        MustlLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }
 }

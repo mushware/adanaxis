@@ -1,6 +1,9 @@
 /*
- * $Id: GameQuit.cpp,v 1.2 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameQuit.cpp,v 1.3 2002/12/03 20:28:17 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.3  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.2  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -86,7 +89,7 @@ GameQuit::Init(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
-    MediaNetLog::Instance().WebLog() << "Waiting to quit" << endl;
+    MustlLog::Instance().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
     GameNetUtils::KillServers();
     GameNetUtils::KillClients();
@@ -95,8 +98,8 @@ GameQuit::Init(void)
 void
 GameQuit::Timing(void)
 {
-    MediaNetWebServer::Instance().Accept();
-    MediaNetWebRouter::Instance().ReceiveAll();
+    MustlWebServer::Instance().Accept();
+    MustlWebRouter::Instance().ReceiveAll();
     GLUtils::PostRedisplay();
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     U32 currentMsec=gameAppHandler.MillisecondsGet();
@@ -104,16 +107,16 @@ GameQuit::Timing(void)
     if (m_startMsec + kQuitHangTime < currentMsec)
     {
         // Quit after quit hang time if all web links are closed
-        if (CoreData<MediaNetWebLink>::Instance().Size() == 0)
+        if (CoreData<MustlWebLink>::Instance().Size() == 0)
         {
-            MediaNetLog::Instance().WebLog() << "Quitting" << endl;
+            MustlLog::Instance().WebLog() << "Quitting" << endl;
             gameAppHandler.AppQuit();
         }
     }
     
     if (m_startMsec + kQuitTimeout < currentMsec)
     {
-        MediaNetLog::Instance().WebLog() << "Quitting on timeout" << endl;
+        MustlLog::Instance().WebLog() << "Quitting on timeout" << endl;
         gameAppHandler.AppQuit();
     }
 }

@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.12 2002/12/05 23:52:51 southa Exp $
+ * $Id: GameDef.h,v 1.13 2002/12/07 18:32:14 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.13  2002/12/07 18:32:14  southa
+ * Network ID stuff
+ *
  * Revision 1.12  2002/12/05 23:52:51  southa
  * Network management and status
  *
@@ -43,7 +46,7 @@
 
 #include "mushCore.h"
 
-class MediaNetAddress;
+class MustlAddress;
 
 class GameDef : public CorePickle, protected CoreXMLHandler
 {

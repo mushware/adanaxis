@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.h,v 1.6 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameRouter.h,v 1.7 2002/12/07 18:32:15 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.7  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.6  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -25,17 +28,17 @@
 
 #include "mushMedia.h"
 
-class GameRouter : public MediaNetHandler
+class GameRouter : public MustlHandler
 {
 public:
     static inline GameRouter& Instance(void);
 
-    void MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType);
+    void MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType);
 
 protected:
-    void IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink);
-    void NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink);
-    void ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink);
+    void IDTransferHandle(MustlData& ioData, MustlLink& inLink);
+    void NetObjectHandle(MustlData& ioData, const MustlLink& inLink);
+    void ControlDataHandle(MustlData& ioData, const MustlLink& inLink);
     
 private:
     static auto_ptr<GameRouter> m_instance;

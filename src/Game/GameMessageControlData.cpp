@@ -1,6 +1,9 @@
 /*
- * $Id: GameMessageControlData.cpp,v 1.1 2002/12/06 17:38:00 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.2 2002/12/09 23:59:58 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.2  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.1  2002/12/06 17:38:00  southa
  * ControlData message unpacking
  *
@@ -28,9 +31,9 @@ GameMessageControlData::DataEntryPush(U32 inFrameOffset, const GameControlFrameD
 }
 
 void
-GameMessageControlData::Pack(MediaNetData& ioData) const
+GameMessageControlData::Pack(MustlData& ioData) const
 {
-    MediaNetProtocol::LongAppMessageHeaderCreate(ioData, GameProtocol::kMessageTypeControlData);
+    MustlProtocol::LongAppMessageHeaderCreate(ioData, GameProtocol::kMessageTypeControlData);
     ioData.PrepareForWrite();
     ioData.BytePush(m_startFrame >> 8);
     ioData.BytePush(m_startFrame);
@@ -43,11 +46,11 @@ GameMessageControlData::Pack(MediaNetData& ioData) const
         ioData.BytePush(m_data[i].frameDef.mouseDeltaY);
         ioData.BytePush(m_data[i].frameDef.keyState);
     }
-    MediaNetProtocol::LongAppMessageFinish(ioData);
+    MustlProtocol::LongAppMessageFinish(ioData);
 }
 
 void
-GameMessageControlData::Unpack(MediaNetData& ioData)
+GameMessageControlData::Unpack(MustlData& ioData)
 {
     m_startFrame = ioData.MessageBytePop() << 8;
     m_startFrame |= ioData.MessageBytePop();
@@ -57,7 +60,7 @@ GameMessageControlData::Unpack(MediaNetData& ioData)
 
     if (messageSize % 4 != 0 || numEntries > kEntryLimit)
     {
-        MediaNetLog::Instance().NetLog() << "Bad message size for ControlDataMessage (" << messageSize << ")" << endl;
+        MustlLog::Instance().NetLog() << "Bad message size for ControlDataMessage (" << messageSize << ")" << endl;
         numEntries=0;
     }
 

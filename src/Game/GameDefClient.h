@@ -1,8 +1,11 @@
 #ifndef GAMEDEFCLIENT_H
 #define GAMEDEFCLIENT_H
 /*
- * $Id: GameDefClient.h,v 1.10 2002/12/07 18:32:14 southa Exp $
+ * $Id: GameDefClient.h,v 1.11 2002/12/09 23:59:58 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.11  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.10  2002/12/07 18:32:14  southa
  * Network ID stuff
  *
@@ -50,16 +53,16 @@ public:
     virtual void WebPrint(ostream& ioOut) const;
     
     void JoinGame(const string& inServer, U32 inPort);
-    void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
+    void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
     void PlayerNameSet(const string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
-    const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
+    const MustlAddress& AddressGet(void) const { return m_netAddress; }
     const CoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
     void UpdateStatus(void);
-    void ReliableSendToServer(MediaNetData& ioData);
-    void FastSendToServer(MediaNetData& ioData);
+    void ReliableSendToServer(MustlData& ioData);
+    void FastSendToServer(MustlData& ioData);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -106,8 +109,8 @@ private:
     U32 m_lastRegistrationMsec;
     U32 m_currentMsec;
     string m_serverName;
-    MediaNetAddress m_netAddress;
-    vector< CoreDataRef<MediaNetLink> > m_netLinks;
+    MustlAddress m_netAddress;
+    vector< CoreDataRef<MustlLink> > m_netLinks;
     U32 m_lastLinkNum;
     U32 m_numLinks;
     U32 m_uplinkBandwidth;

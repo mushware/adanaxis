@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.h,v 1.5 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameNetUtils.h,v 1.6 2002/12/09 23:59:58 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.6  2002/12/09 23:59:58  southa
+ * Network control
+ *
  * Revision 1.5  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -20,9 +23,9 @@
 
 #include "mushCore.h"
 
-class MediaNetAddress;
-class MediaNetData;
-class MediaNetLink;
+class MustlAddress;
+class MustlData;
+class MustlLink;
 
 class GameNetUtils
 {
@@ -33,10 +36,10 @@ public:
     static void KillClientImages(void);
     static void KillLinks(void);
 
-    static bool MaintainLinks(vector< CoreDataRef<MediaNetLink> >& inLinks, const string& inClientName, const MediaNetAddress& inAddress, U32 inLinkNum);
-    static void CreateLink(CoreDataRef<MediaNetLink>& outLink, const string& inClientName, const MediaNetAddress& inAddress);
-    static void ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData);
-    static void FastSend(U32& ioLinkNum, vector< CoreDataRef<MediaNetLink> >& inLinks, U32 inLinkNum, MediaNetData& ioData);
+    static bool MaintainLinks(vector< CoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, U32 inLinkNum);
+    static void CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClientName, const MustlAddress& inAddress);
+    static void ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData);
+    static void FastSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData);
     static void NetTicker(void);
     static void WebReceive(void);
     static void NetReceive(void);

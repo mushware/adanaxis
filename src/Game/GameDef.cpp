@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.13 2002/11/28 15:33:31 southa Exp $
+ * $Id: GameDef.cpp,v 1.14 2002/12/05 13:20:12 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.14  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.13  2002/11/28 15:33:31  southa
  * Pass GameDef status over link
  *
@@ -98,7 +101,7 @@ GameDef::NullHandler(CoreXML& inXML)
 void
 GameDef::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << inPrefix << "<name>" << MediaNetUtils::MakeXMLSafe(m_name) << "</name>" << endl;
+    inOut << inPrefix << "<name>" << MustlUtils::MakeXMLSafe(m_name) << "</name>" << endl;
     inOut << inPrefix << "<status>" << m_status << "</status>" << endl;
 }
 
