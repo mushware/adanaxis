@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreXML.h,v 1.5 2002/06/04 14:11:21 southa Exp $
+ * $Id: CoreXML.h,v 1.6 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.6  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/06/04 14:11:21  southa
  * Traits loader first stage
  *

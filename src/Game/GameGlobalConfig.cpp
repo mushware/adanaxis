@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameGlobalConfig.cpp,v 1.1 2002/05/28 13:05:55 southa Exp $
+ * $Id: GameGlobalConfig.cpp,v 1.2 2002/06/27 12:36:07 southa Exp $
  * $Log: GameGlobalConfig.cpp,v $
+ * Revision 1.2  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/28 13:05:55  southa
  * Command parser extensions and TIFF loader
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameData.cpp,v 1.6 2002/06/05 15:53:26 southa Exp $
+ * $Id: GameData.cpp,v 1.7 2002/06/27 12:36:06 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/06/05 15:53:26  southa
  * Player and keyboard control
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GamePiecePlayer.cpp,v 1.3 2002/06/13 15:15:56 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.4 2002/06/27 12:36:07 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.4  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/13 15:15:56  southa
  * New directory structure, FPS printing, load command
  *

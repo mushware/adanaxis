@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreFlex.h,v 1.2 2002/05/28 13:07:04 southa Exp $
+ * $Id: CoreFlex.h,v 1.3 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreFlex.h,v $
+ * Revision 1.3  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/28 13:07:04  southa
  * Command parser extensions and TIFF loader
  *

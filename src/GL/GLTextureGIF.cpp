@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureGIF.cpp,v 1.4 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: mushPlatform.h,v 1.3 2002/06/11 16:25:00 southa Exp $
+ * $Id: mushPlatform.h,v 1.4 2002/06/27 12:36:01 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.4  2002/06/27 12:36:01  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/11 16:25:00  southa
  * New paths to data files
  *

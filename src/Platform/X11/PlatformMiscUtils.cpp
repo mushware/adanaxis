@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.1 2002/06/26 17:56:34 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.2 2002/06/27 12:36:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.2  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/06/26 17:56:34  southa
  * Created
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: ChildRecord.cpp,v 1.5 2002/06/27 12:36:02 southa Exp $
- * $Log: ChildRecord.cpp,v $
+ * $Id: CoreChildRecord.cpp,v 1.1 2002/07/02 09:20:46 southa Exp $
+ * $Log: CoreChildRecord.cpp,v $
+ * Revision 1.1  2002/07/02 09:20:46  southa
+ * Name changed to CoreChildRecord
+ *
  * Revision 1.5  2002/06/27 12:36:02  southa
  * Build process fixes
  *

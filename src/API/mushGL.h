@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: mushGL.h,v 1.6 2002/07/02 15:48:29 southa Exp $
+ * $Id: mushGL.h,v 1.7 2002/07/02 18:36:56 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.7  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.6  2002/07/02 15:48:29  southa
  * Floor map designer
  *

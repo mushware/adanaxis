@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLKeys.h,v 1.2 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLKeys.h,v 1.3 2002/07/02 18:36:56 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.3  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.2  2002/06/27 12:36:05  southa
  * Build process fixes
  *

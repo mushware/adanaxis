@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameGraphic.h,v 1.2 2002/06/04 20:27:37 southa Exp $
+ * $Id: GameGraphic.h,v 1.3 2002/06/27 12:36:07 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.3  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/04 20:27:37  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *

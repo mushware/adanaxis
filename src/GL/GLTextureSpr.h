@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureSpr.h,v 1.1 2002/05/10 16:40:39 southa Exp $
+ * $Id: GLTextureSpr.h,v 1.2 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureSpr.h,v $
+ * Revision 1.2  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/10 16:40:39  southa
  * Changed .hp files to .h
  *

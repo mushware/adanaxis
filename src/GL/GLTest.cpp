@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTest.cpp,v 1.4 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTest.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTest.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *

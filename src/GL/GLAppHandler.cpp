@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLAppHandler.cpp,v 1.12 2002/06/20 15:50:29 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.13 2002/06/27 12:36:05 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.13  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.12  2002/06/20 15:50:29  southa
  * Subclassed GLAppHandler
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTileTraits.cpp,v 1.4 2002/06/05 12:28:05 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.5 2002/06/27 12:36:07 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *

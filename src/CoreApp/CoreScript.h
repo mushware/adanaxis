@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreScript.h,v 1.3 2002/05/28 22:36:44 southa Exp $
+ * $Id: CoreScript.h,v 1.4 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreScript.h,v $
+ * Revision 1.4  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *

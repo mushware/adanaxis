@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLUtils.cpp,v 1.13 2002/06/21 18:50:16 southa Exp $
+ * $Id: GLUtils.cpp,v 1.14 2002/06/27 12:36:06 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.14  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.13  2002/06/21 18:50:16  southa
  * SDLAppHandler added
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLStandard.h,v 1.4 2002/05/30 16:20:53 southa Exp $
+ * $Id: GLStandard.h,v 1.5 2002/06/27 12:36:05 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/30 16:20:53  southa
  * Pickleable GameContract
  *

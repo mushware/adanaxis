@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLUtils.h,v 1.10 2002/06/27 12:36:06 southa Exp $
+ * $Id: GLUtils.h,v 1.11 2002/07/02 18:36:56 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.11  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.10  2002/06/27 12:36:06  southa
  * Build process fixes
  *

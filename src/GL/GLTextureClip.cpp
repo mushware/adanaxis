@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureClip.cpp,v 1.2 2002/05/29 08:56:16 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.3 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.3  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/29 08:56:16  southa
  * Tile display
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreParamList.h,v 1.5 2002/06/24 12:12:52 southa Exp $
+ * $Id: CoreParamList.h,v 1.6 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.6  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/06/24 12:12:52  southa
  * Added newline
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: SDLAppHandler.cpp,v 1.3 2002/06/27 12:36:06 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.4 2002/07/02 18:36:56 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.4  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.3  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -88,15 +92,16 @@ SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
 void
 SDLAppHandler::MousePositionGet(S32& outX, S32& outY) const
 {
+    // Return with origin at bottom left
     outX=m_mouseX;
-    outY=m_mouseY;
+    outY=m_height-m_mouseY-1;
 }
 
 void
 SDLAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta)
 {
     outXDelta=m_mouseXDelta;
-    outYDelta=m_mouseYDelta;
+    outYDelta=-m_mouseYDelta;
     m_mouseXDelta=0;
     m_mouseYDelta=0;
 }

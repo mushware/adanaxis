@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreFunction.h,v 1.4 2002/05/29 08:56:16 southa Exp $
+ * $Id: CoreFunction.h,v 1.5 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreFunction.h,v $
+ * Revision 1.5  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/29 08:56:16  southa
  * Tile display
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreScript.cpp,v 1.5 2002/05/29 08:56:16 southa Exp $
+ * $Id: CoreScript.cpp,v 1.6 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.6  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/05/29 08:56:16  southa
  * Tile display
  *

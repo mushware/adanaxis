@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreApp.cpp,v 1.6 2002/06/27 12:36:02 southa Exp $
+ * $Id: CoreApp.cpp,v 1.7 2002/07/02 14:27:12 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.7  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.6  2002/06/27 12:36:02  southa
  * Build process fixes
  *

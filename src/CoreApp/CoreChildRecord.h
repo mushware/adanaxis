@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: ChildRecord.h,v 1.2 2002/06/27 12:36:02 southa Exp $
- * $Log: ChildRecord.h,v $
+ * $Id: CoreChildRecord.h,v 1.1 2002/07/02 09:20:46 southa Exp $
+ * $Log: CoreChildRecord.h,v $
+ * Revision 1.1  2002/07/02 09:20:46  southa
+ * Name changed to CoreChildRecord
+ *
  * Revision 1.2  2002/06/27 12:36:02  southa
  * Build process fixes
  *

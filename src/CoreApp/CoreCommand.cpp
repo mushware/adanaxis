@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreCommand.cpp,v 1.9 2002/05/30 14:41:13 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.10 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.10  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.9  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: main.cpp,v 1.13 2002/06/21 18:50:16 southa Exp $
+ * $Id: main.cpp,v 1.14 2002/06/27 12:36:08 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.14  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.13  2002/06/21 18:50:16  southa
  * SDLAppHandler added
  *

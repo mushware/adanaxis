@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTexture.cpp,v 1.13 2002/06/02 20:37:39 southa Exp $
+ * $Id: GLTexture.cpp,v 1.14 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.14  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.13  2002/06/02 20:37:39  southa
  * Set texture filtering
  *

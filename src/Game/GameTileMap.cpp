@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTileMap.cpp,v 1.8 2002/06/05 12:28:05 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.9 2002/06/27 12:36:07 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.9  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.8  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *

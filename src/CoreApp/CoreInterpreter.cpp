@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreInterpreter.cpp,v 1.5 2002/05/30 14:41:15 southa Exp $
+ * $Id: CoreInterpreter.cpp,v 1.6 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.6  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/05/30 14:41:15  southa
  * GameData and loadtilemap command
  *

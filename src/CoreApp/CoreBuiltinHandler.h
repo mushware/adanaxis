@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: BuiltinHandler.h,v 1.2 2002/06/27 12:36:02 southa Exp $
- * $Log: BuiltinHandler.h,v $
+ * $Id: CoreBuiltinHandler.h,v 1.1 2002/07/02 09:10:06 southa Exp $
+ * $Log: CoreBuiltinHandler.h,v $
+ * Revision 1.1  2002/07/02 09:10:06  southa
+ * Name changed to CoreBuiltinHandler
+ *
  * Revision 1.2  2002/06/27 12:36:02  southa
  * Build process fixes
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GraphWrangler.h,v 1.3 2002/05/31 15:18:16 southa Exp $
+ * $Id: GraphWrangler.h,v 1.4 2002/06/27 12:36:09 southa Exp $
  * $Log: GraphWrangler.h,v $
+ * Revision 1.4  2002/06/27 12:36:09  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/31 15:18:16  southa
  * Keyboard reading
  *

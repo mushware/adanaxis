@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameController.cpp,v 1.3 2002/06/06 13:36:55 southa Exp $
+ * $Id: GameController.cpp,v 1.4 2002/06/27 12:36:06 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.4  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/06 13:36:55  southa
  * Mouse handling
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreXML.cpp,v 1.7 2002/06/04 17:01:20 southa Exp $
+ * $Id: CoreXML.cpp,v 1.8 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.8  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.7  2002/06/04 17:01:20  southa
  * More work
  *

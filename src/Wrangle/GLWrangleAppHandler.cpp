@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.6 2002/06/20 15:50:30 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.7 2002/06/27 12:36:09 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:09  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/06/20 15:50:30  southa
  * Subclassed GLAppHandler
  *

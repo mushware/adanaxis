@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTest.h,v 1.4 2002/05/24 16:23:07 southa Exp $
+ * $Id: GameTest.h,v 1.5 2002/06/27 12:36:07 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.5  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/24 16:23:07  southa
  * Config and typenames
  *

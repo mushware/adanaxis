@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreUtil.cpp,v 1.5 2002/06/04 20:27:36 southa Exp $
+ * $Id: CoreUtil.cpp,v 1.6 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreUtil.cpp,v $
+ * Revision 1.6  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/06/04 20:27:36  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *

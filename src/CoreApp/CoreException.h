@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreException.h,v 1.10 2002/06/20 11:06:14 southa Exp $
+ * $Id: CoreException.h,v 1.11 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.11  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.10  2002/06/20 11:06:14  southa
  * Updated for cygwin
  *

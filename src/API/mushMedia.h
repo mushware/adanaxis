@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: mushMedia.h,v 1.2 2002/06/21 18:50:16 southa Exp $
+ * $Id: mushMedia.h,v 1.3 2002/06/27 12:36:01 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.3  2002/06/27 12:36:01  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/21 18:50:16  southa
  * SDLAppHandler added
  *

@@ -14,9 +14,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameFloorMap.h,v 1.5 2002/07/02 14:27:10 southa Exp $
+ * $Id: GameFloorMap.h,v 1.6 2002/07/02 18:36:56 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.6  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.5  2002/07/02 14:27:10  southa
  * First floor map designer build
  *
@@ -66,6 +70,9 @@ public:
     tVal YStep(void) {return m_ystep;}
     void Render(const GameTileMap& inTileMap);
     void Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight);
+
+    U32 ElementGet(const GLPoint &inPoint) const;
+    void ElementSet(const GLPoint &inPoint, U32 inValue);
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

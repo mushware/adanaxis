@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLCommandHandler.cpp,v 1.14 2002/06/20 15:50:29 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.15 2002/06/27 12:36:05 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.15  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.14  2002/06/20 15:50:29  southa
  * Subclassed GLAppHandler
  *

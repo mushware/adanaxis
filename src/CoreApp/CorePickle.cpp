@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CorePickle.cpp,v 1.2 2002/05/26 16:35:07 southa Exp $
+ * $Id: CorePickle.cpp,v 1.3 2002/06/27 12:36:04 southa Exp $
  * $Log: CorePickle.cpp,v $
+ * Revision 1.3  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/26 16:35:07  southa
  * CoreXML work
  *

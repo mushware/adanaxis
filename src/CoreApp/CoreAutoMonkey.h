@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreAutoMonkey.h,v 1.2 2002/06/27 12:36:02 southa Exp $
+ * $Id: CoreAutoMonkey.h,v 1.1 2002/07/02 09:12:53 southa Exp $
  * $Log: CoreAutoMonkey.h,v $
+ * Revision 1.1  2002/07/02 09:12:53  southa
+ * Name changed to CoreAutoMonkey
+ *
  * Revision 1.2  2002/06/27 12:36:02  southa
  * Build process fixes
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreEnv.h,v 1.4 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreEnv.h,v 1.5 2002/07/02 14:27:12 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.5  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.4  2002/06/27 12:36:03  southa
  * Build process fixes
  *

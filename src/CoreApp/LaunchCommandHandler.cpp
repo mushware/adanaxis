@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.7 2002/06/27 12:36:05 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.8 2002/07/02 14:27:12 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.8  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.7  2002/06/27 12:36:05  southa
  * Build process fixes
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLKeys.cpp,v 1.1 2002/05/31 15:18:16 southa Exp $
+ * $Id: GLKeys.cpp,v 1.2 2002/06/27 12:36:05 southa Exp $
  * $Log: GLKeys.cpp,v $
+ * Revision 1.2  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/31 15:18:16  southa
  * Keyboard reading
  *

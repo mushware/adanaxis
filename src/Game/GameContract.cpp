@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameContract.cpp,v 1.21 2002/07/02 14:27:08 southa Exp $
+ * $Id: GameContract.cpp,v 1.22 2002/07/02 18:36:56 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.22  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.21  2002/07/02 14:27:08  southa
  * First floor map designer build
  *

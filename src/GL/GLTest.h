@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTest.h,v 1.1 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTest.h,v 1.2 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTest.h,v $
+ * Revision 1.2  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *

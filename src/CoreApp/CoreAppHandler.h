@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreAppHandler.h,v 1.3 2002/05/31 15:18:15 southa Exp $
+ * $Id: CoreAppHandler.h,v 1.4 2002/06/27 12:36:02 southa Exp $
  * $Log: CoreAppHandler.h,v $
+ * Revision 1.4  2002/06/27 12:36:02  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/31 15:18:15  southa
  * Keyboard reading
  *

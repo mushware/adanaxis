@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameFloorMap.cpp,v 1.5 2002/07/02 18:36:56 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.6 2002/07/02 19:29:02 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.6  2002/07/02 19:29:02  southa
+ * Tidied up selection effect in designer
+ *
  * Revision 1.5  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -66,8 +70,8 @@ GameFloorMap::Render(const GameTileMap& inTileMap)
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=At(x,y);
-            tVal basex=32*x;
-            tVal basey=32*y;
+            tVal basex=m_xstep*x;
+            tVal basey=m_ystep*y;
             gl.MoveTo(basex,basey);
             GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
             tileTraits.Render();
@@ -113,6 +117,32 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
             tileTraits.Render();
         }
     }
+}
+
+U32
+GameFloorMap::ElementGet(const GLPoint &inPoint) const
+{
+    COREASSERT(inPoint.x < m_xsize);
+    COREASSERT(inPoint.y < m_ysize);
+    return m_map[inPoint.y][inPoint.x];
+}
+
+void
+GameFloorMap::ElementSet(const GLPoint &inPoint, U32 inValue)
+{
+    COREASSERT(inPoint.x < m_xsize);
+    COREASSERT(inPoint.y < m_ysize);
+    if (m_map.size() < inPoint.y)
+    {
+        cerr << "Had to grow map vector to accomodate y=" << inPoint.y << endl;
+        m_map.resize(inPoint.y+1);
+    }
+    if (m_map[inPoint.y].size() < inPoint.x)
+    {
+        cerr << "Had to grow map vector to accomodate x=" << inPoint.x << endl;
+        m_map[inPoint.y].resize(inPoint.x+1);
+    }
+    m_map[inPoint.y][inPoint.x]=inValue;
 }
 
 void

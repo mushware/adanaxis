@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLAppSignal.h,v 1.1 2002/05/31 15:18:15 southa Exp $
+ * $Id: GLAppSignal.h,v 1.2 2002/06/27 12:36:05 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.2  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/31 15:18:15  southa
  * Keyboard reading
  *

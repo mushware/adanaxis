@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameAppHandler.cpp,v 1.18 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.19 2002/07/02 14:27:08 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.19  2002/07/02 14:27:08  southa
+ * First floor map designer build
+ *
  * Revision 1.18  2002/06/27 12:36:06  southa
  * Build process fixes
  *

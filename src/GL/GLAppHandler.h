@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLAppHandler.h,v 1.8 2002/06/23 10:42:33 southa Exp $
+ * $Id: GLAppHandler.h,v 1.9 2002/06/27 12:36:05 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.9  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.8  2002/06/23 10:42:33  southa
  * SDL input
  *

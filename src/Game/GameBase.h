@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameBase.h,v 1.5 2002/05/31 15:18:16 southa Exp $
+ * $Id: GameBase.h,v 1.6 2002/06/27 12:36:06 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.6  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.5  2002/05/31 15:18:16  southa
  * Keyboard reading
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameContract.h,v 1.11 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameContract.h,v 1.12 2002/07/02 14:27:08 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.12  2002/07/02 14:27:08  southa
+ * First floor map designer build
+ *
  * Revision 1.11  2002/06/27 12:36:06  southa
  * Build process fixes
  *

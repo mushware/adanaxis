@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreGlobalConfig.h,v 1.2 2002/05/30 14:41:15 southa Exp $
+ * $Id: CoreGlobalConfig.h,v 1.3 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreGlobalConfig.h,v $
+ * Revision 1.3  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/30 14:41:15  southa
  * GameData and loadtilemap command
  *

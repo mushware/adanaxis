@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTraits.cpp,v 1.3 2002/06/04 20:27:37 southa Exp $
+ * $Id: GameTraits.cpp,v 1.4 2002/06/27 12:36:08 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.4  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/04 20:27:37  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *

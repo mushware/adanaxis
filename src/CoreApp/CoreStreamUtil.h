@@ -1,3 +1,5 @@
+#ifndef CORESTREAMUTIL_H
+#define CORESTREAMUTIL_H
 #ifndef STREAMUTIL_H
 #define STREAMUTIL_H
 /*****************************************************************************
@@ -12,9 +14,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: StreamUtil.h,v 1.3 2002/06/27 12:36:05 southa Exp $
- * $Log: StreamUtil.h,v $
+ * $Id: CoreStreamUtil.h,v 1.1 2002/07/02 09:24:10 southa Exp $
+ * $Log: CoreStreamUtil.h,v $
+ * Revision 1.1  2002/07/02 09:24:10  southa
+ * Name changed to CoreStreamUtil
+ *
  * Revision 1.3  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -51,4 +57,5 @@ private:
     vector<int> m_zero;
     int m_ctr;
 };
+#endif
 #endif

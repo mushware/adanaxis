@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: SDLAppHandler.h,v 1.2 2002/06/23 10:42:33 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.3 2002/06/27 12:36:06 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.3  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/23 10:42:33  southa
  * SDL input
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: MediaStandard.h,v 1.1 2002/06/10 15:16:59 southa Exp $
+ * $Id: MediaStandard.h,v 1.2 2002/06/27 12:36:08 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.2  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/06/10 15:16:59  southa
  * Integration of MP3 player
  *

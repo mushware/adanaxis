@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: MediaAudio.h,v 1.3 2002/06/20 15:50:30 southa Exp $
+ * $Id: MediaAudio.h,v 1.4 2002/06/27 12:36:08 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.4  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/20 15:50:30  southa
  * Subclassed GLAppHandler
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: mushCore.h,v 1.5 2002/06/27 12:36:01 southa Exp $
+ * $Id: mushCore.h,v 1.6 2002/07/02 15:48:29 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.6  2002/07/02 15:48:29  southa
+ * Floor map designer
+ *
  * Revision 1.5  2002/06/27 12:36:01  southa
  * Build process fixes
  *

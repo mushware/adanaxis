@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: TestCommandHandler.cpp,v 1.6 2002/05/24 18:09:39 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.7 2002/06/27 12:36:08 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.7  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/05/24 18:09:39  southa
  * CoreXML and game map
  *

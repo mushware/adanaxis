@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureRef.h,v 1.3 2002/06/04 20:29:43 southa Exp $
+ * $Id: GLTextureRef.h,v 1.4 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.4  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/04 20:29:43  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *

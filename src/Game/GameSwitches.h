@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameSwitches.h,v 1.1 2002/06/05 12:28:05 southa Exp $
+ * $Id: GameSwitches.h,v 1.2 2002/06/27 12:36:07 southa Exp $
  * $Log: GameSwitches.h,v $
+ * Revision 1.2  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameTileMap.h,v 1.6 2002/06/05 12:28:05 southa Exp $
+ * $Id: GameTileMap.h,v 1.7 2002/06/27 12:36:07 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.7  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
  * Revision 1.6  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *

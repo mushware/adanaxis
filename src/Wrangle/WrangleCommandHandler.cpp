@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.3 2002/05/28 16:37:36 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.4 2002/06/27 12:36:09 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.4  2002/06/27 12:36:09  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *

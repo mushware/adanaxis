@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureSpr.cpp,v 1.8 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.9 2002/07/02 15:48:30 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.9  2002/07/02 15:48:30  southa
+ * Floor map designer
+ *
  * Revision 1.8  2002/06/27 12:36:05  southa
  * Build process fixes
  *

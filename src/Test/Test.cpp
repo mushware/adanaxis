@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: Test.cpp,v 1.12 2002/06/27 12:36:08 southa Exp $
+ * $Id: Test.cpp,v 1.13 2002/07/02 15:48:30 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.13  2002/07/02 15:48:30  southa
+ * Floor map designer
+ *
  * Revision 1.12  2002/06/27 12:36:08  southa
  * Build process fixes
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreCommand.h,v 1.4 2002/05/28 16:37:36 southa Exp $
+ * $Id: CoreCommand.h,v 1.5 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.5  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *

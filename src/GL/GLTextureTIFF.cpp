@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTextureTIFF.cpp,v 1.4 2002/05/29 10:22:40 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/29 10:22:40  southa
  * Made machine endian independent
  *

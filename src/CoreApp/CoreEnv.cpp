@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreEnv.cpp,v 1.7 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.8 2002/07/02 14:27:12 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.8  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.7  2002/06/27 12:36:03  southa
  * Build process fixes
  *

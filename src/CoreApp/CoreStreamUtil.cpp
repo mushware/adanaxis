@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreStreamUtil.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
+ * $Id: CoreStreamUtil.cpp,v 1.1 2002/07/02 09:24:10 southa Exp $
  * $Log: CoreStreamUtil.cpp,v $
+ * Revision 1.1  2002/07/02 09:24:10  southa
+ * Name changed to CoreStreamUtil
+ *
  * Revision 1.5  2002/06/27 12:36:05  southa
  * Build process fixes
  *

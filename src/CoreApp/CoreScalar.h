@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreScalar.h,v 1.7 2002/06/04 20:27:35 southa Exp $
+ * $Id: CoreScalar.h,v 1.8 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.8  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.7  2002/06/04 20:27:35  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *

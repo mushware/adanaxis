@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameCommandHandler.cpp,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.3 2002/06/27 12:36:06 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.3  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *

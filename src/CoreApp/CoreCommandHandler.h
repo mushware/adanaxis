@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreCommandHandler.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreCommandHandler.h,v 1.2 2002/06/27 12:36:03 southa Exp $
  * $Log: CoreCommandHandler.h,v $
+ * Revision 1.2  2002/06/27 12:36:03  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *

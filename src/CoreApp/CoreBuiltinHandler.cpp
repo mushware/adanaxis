@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreBuiltinHandler.cpp,v 1.1 2002/07/02 09:10:06 southa Exp $
+ * $Id: CoreBuiltinHandler.cpp,v 1.2 2002/07/02 14:27:12 southa Exp $
  * $Log: CoreBuiltinHandler.cpp,v $
+ * Revision 1.2  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.1  2002/07/02 09:10:06  southa
  * Name changed to CoreBuiltinHandler
  *

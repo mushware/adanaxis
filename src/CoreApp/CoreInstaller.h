@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreInstaller.h,v 1.2 2002/06/04 17:01:20 southa Exp $
+ * $Id: CoreInstaller.h,v 1.3 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreInstaller.h,v $
+ * Revision 1.3  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/04 17:01:20  southa
  * More work
  *

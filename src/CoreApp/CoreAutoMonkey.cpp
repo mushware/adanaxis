@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreAutoMonkey.cpp,v 1.7 2002/06/27 12:36:01 southa Exp $
+ * $Id: CoreAutoMonkey.cpp,v 1.1 2002/07/02 09:12:53 southa Exp $
  * $Log: CoreAutoMonkey.cpp,v $
+ * Revision 1.1  2002/07/02 09:12:53  southa
+ * Name changed to CoreAutoMonkey
+ *
  * Revision 1.7  2002/06/27 12:36:01  southa
  * Build process fixes
  *

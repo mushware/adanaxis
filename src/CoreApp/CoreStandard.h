@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreStandard.h,v 1.8 2002/06/24 12:12:30 southa Exp $
+ * $Id: CoreStandard.h,v 1.9 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.9  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.8  2002/06/24 12:12:30  southa
  * Added <math.h>
  *

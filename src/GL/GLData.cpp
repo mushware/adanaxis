@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLData.cpp,v 1.9 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLData.cpp,v 1.10 2002/06/27 12:36:05 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.10  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.9  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *

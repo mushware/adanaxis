@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.7 2002/06/25 16:47:39 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.8 2002/06/27 12:36:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.8  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.7  2002/06/25 16:47:39  southa
  * Building with mingw32
  *

@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CoreRegExp.cpp,v 1.3 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreRegExp.cpp,v 1.4 2002/06/27 12:36:04 southa Exp $
  * $Log: CoreRegExp.cpp,v $
+ * Revision 1.4  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *

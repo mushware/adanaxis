@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLTest1AppHandler.h,v 1.3 2002/06/20 15:50:29 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.4 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.4  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.3  2002/06/20 15:50:29  southa
  * Subclassed GLAppHandler
  *

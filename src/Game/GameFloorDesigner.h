@@ -1,6 +1,23 @@
+#ifndef GAMEFLOORDESIGNER_H
+#define GAMEFLOORDESIGNER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameFloorDesigner.h,v 1.1 2002/07/02 14:27:09 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.2 2002/07/02 18:36:56 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.2  2002/07/02 18:36:56  southa
+ * Selection in designer, mouse buttons
+ *
  * Revision 1.1  2002/07/02 14:27:09  southa
  * First floor map designer build
  *
@@ -23,9 +40,13 @@ public:
     
 private:
     const GLPoint TranslateWindowToMap(const GLPoint& inPoint);
-
-    tVal m_xPos;
-    tVal m_yPos;
+    void Paste(const GLPoint& inDest);
+    void SaveForUndo(void);
+    void Undo(void);
+    void Save(void);
+    
+    vector<tVal> m_xPos;
+    vector<tVal> m_yPos;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData
     GameTileMap *m_tileMap;
@@ -38,4 +59,7 @@ private:
     GLPoint m_downPoint;
     tVal m_width;
     tVal m_height;
+    bool m_lastUndoKeyState;
+    bool m_lastSaveKeyState;
 };
+#endif

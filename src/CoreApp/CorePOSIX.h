@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: CorePOSIX.h,v 1.4 2002/06/27 00:07:06 southa Exp $
+ * $Id: CorePOSIX.h,v 1.5 2002/06/27 12:36:04 southa Exp $
  * $Log: CorePOSIX.h,v $
+ * Revision 1.5  2002/06/27 12:36:04  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/06/27 00:07:06  southa
  * Catch up
  *
