@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.16 2003/01/13 14:31:54 southa Exp $
+ * $Id: GLFont.cpp,v 1.17 2003/01/20 10:45:23 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.17  2003/01/20 10:45:23  southa
+ * Singleton tidying
+ *
  * Revision 1.16  2003/01/13 14:31:54  southa
  * Build frameworks for Mac OS X
  *
@@ -171,5 +174,5 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLFont::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("loadfontmap", LoadFontMap);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadfontmap", LoadFontMap);
 }

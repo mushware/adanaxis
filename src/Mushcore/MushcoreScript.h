@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScript.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreScript.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreScript.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -64,20 +67,26 @@ class MushcoreScript
 {
 public:
     MushcoreScript();
-    MushcoreScript(const std::string& inContent);
-    MushcoreScript(std::istream& inIn) {ReadFromStream(inIn);}
-    void ostreamPrint(std::ostream& inOut) const;
+    explicit MushcoreScript(const std::string& inContent);
+    explicit MushcoreScript(std::istream& inIn);
+    
+    void Print(std::ostream& ioOut) const;
     const MushcoreFunction& FunctionGet(const std::string& inName) const;
     void Execute(void) const;
     
 private:
+    typedef std::map<std::string, MushcoreFunction> tFunctionMap;
+    typedef tFunctionMap::iterator tFunctionMapIterator;
+    typedef tFunctionMap::const_iterator tFunctionMapConstIterator;
+    
     void ReadFromStream(std::istream& inIn);
-    std::map<std::string, MushcoreFunction> m_functions;
+    tFunctionMap m_functions;
 };
 
-inline std::ostream& operator<<(std::ostream &inOut, const MushcoreScript& inMushcoreScript)
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MushcoreScript& inMushcoreScript)
 {
-    inMushcoreScript.ostreamPrint(inOut);
-    return inOut;
+    inMushcoreScript.Print(ioOut);
+    return ioOut;
 }
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.27 2003/01/13 14:31:55 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.28 2003/01/20 10:45:24 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.28  2003/01/20 10:45:24  southa
+ * Singleton tidying
+ *
  * Revision 1.27  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -190,5 +193,5 @@ GLTest1AppHandler::GLTest1(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLTest1AppHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("gltest1", GLTest1);
+    MushcoreInterpreter::Sgl().HandlerAdd("gltest1", GLTest1);
 }

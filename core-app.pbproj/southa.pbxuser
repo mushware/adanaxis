@@ -2283,7 +2283,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 57";
 		rLen = 0;
-		rLoc = 1537;
+		rLoc = 1576;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 161;
@@ -3273,7 +3273,7 @@
 		rLen = 20;
 		rLoc = 2564;
 		rType = 0;
-		vrLen = 1266;
+		vrLen = 1184;
 		vrLoc = 1408;
 	};
 	7AB0148A03D5C0D800A80164 = {
@@ -3291,7 +3291,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 55";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1701;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 356;
@@ -3301,7 +3301,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 70";
 		rLen = 0;
-		rLoc = 1801;
+		rLoc = 1763;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 691;
@@ -3651,9 +3651,9 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebServer.h: MustlWebServer";
 		rLen = 0;
-		rLoc = 2125;
+		rLoc = 2147;
 		rType = 0;
-		vrLen = 1298;
+		vrLen = 1184;
 		vrLoc = 1408;
 	};
 	7AB014B003D5C0D800A80164 = {
@@ -3781,7 +3781,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 70";
 		rLen = 0;
-		rLoc = 1801;
+		rLoc = 1763;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 688;
@@ -3791,7 +3791,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: NullFunction";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1701;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 356;
@@ -3801,7 +3801,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 73";
 		rLen = 0;
-		rLoc = 1816;
+		rLoc = 1778;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 691;
@@ -4231,7 +4231,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 52";
 		rLen = 0;
-		rLoc = 1466;
+		rLoc = 1505;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 158;
@@ -4321,7 +4321,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 52";
 		rLen = 0;
-		rLoc = 1477;
+		rLoc = 1516;
 		rType = 0;
 		vrLen = 1463;
 		vrLoc = 161;
@@ -4351,7 +4351,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 52";
 		rLen = 0;
-		rLoc = 1477;
+		rLoc = 1516;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 158;
@@ -4391,9 +4391,9 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebServer.h: PermissionFunctionSet";
 		rLen = 0;
-		rLoc = 2125;
+		rLoc = 2147;
 		rType = 0;
-		vrLen = 1266;
+		vrLen = 1073;
 		vrLoc = 1519;
 	};
 	7AB2003503D9F41C00A80164 = {
@@ -4401,7 +4401,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 57";
 		rLen = 0;
-		rLoc = 1537;
+		rLoc = 1576;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 158;
@@ -5101,7 +5101,7 @@
 		rLen = 0;
 		rLoc = 812;
 		rType = 0;
-		vrLen = 1085;
+		vrLen = 1003;
 		vrLoc = 0;
 	};
 	7AB3AC7903D4E7C700A80164 = {
@@ -5621,7 +5621,7 @@
 		rLen = 20;
 		rLoc = 2564;
 		rType = 0;
-		vrLen = 1245;
+		vrLen = 1163;
 		vrLoc = 1429;
 	};
 	7AB3ACB803D4E7C800A80164 = {
@@ -5631,7 +5631,7 @@
 		rLen = 0;
 		rLoc = 812;
 		rType = 0;
-		vrLen = 1015;
+		vrLen = 1003;
 		vrLoc = 0;
 	};
 	7AB3ACB903D4E7C800A80164 = {
@@ -5941,7 +5941,7 @@
 		rLen = 0;
 		rLoc = 1168;
 		rType = 0;
-		vrLen = 1419;
+		vrLen = 1379;
 		vrLoc = 1847;
 	};
 	7AB3ACD803D4E7C800A80164 = {
@@ -5981,7 +5981,7 @@
 		rLen = 0;
 		rLoc = 812;
 		rType = 0;
-		vrLen = 1085;
+		vrLen = 1003;
 		vrLoc = 0;
 	};
 	7AB3ACDC03D4E7C800A80164 = {
@@ -8215,7 +8215,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 144";
 		rLen = 0;
-		rLoc = 4231;
+		rLoc = 4215;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 4923;
@@ -8235,7 +8235,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 65";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1773;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 625;
@@ -8265,7 +8265,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 63";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -8815,7 +8815,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 56";
 		rLen = 0;
-		rLoc = 1537;
+		rLoc = 1576;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 158;
@@ -9015,7 +9015,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 100";
 		rLen = 0;
-		rLoc = 2863;
+		rLoc = 2847;
 		rType = 0;
 		vrLen = 1468;
 		vrLoc = 2189;
@@ -9119,7 +9119,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 100";
 		rLen = 0;
-		rLoc = 2863;
+		rLoc = 2847;
 		rType = 0;
 		vrLen = 1468;
 		vrLoc = 2189;
@@ -9179,7 +9179,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 288";
 		rLen = 0;
-		rLoc = 6935;
+		rLoc = 6919;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 2190;
@@ -9199,7 +9199,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: endIter";
 		rLen = 0;
-		rLoc = 6640;
+		rLoc = 6624;
 		rType = 0;
 		vrLen = 1037;
 		vrLoc = 6484;
@@ -9409,7 +9409,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 76";
 		rLen = 0;
-		rLoc = 1896;
+		rLoc = 1858;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 771;
@@ -9419,7 +9419,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: Instance";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1701;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 512;
@@ -9429,7 +9429,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 61";
 		rLen = 0;
-		rLoc = 1787;
+		rLoc = 1771;
 		rType = 0;
 		vrLen = 1250;
 		vrLoc = 439;
@@ -9439,7 +9439,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 294";
 		rLen = 0;
-		rLoc = 7117;
+		rLoc = 7101;
 		rType = 0;
 		vrLen = 1972;
 		vrLoc = 1817;
@@ -9459,7 +9459,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 61";
 		rLen = 0;
-		rLoc = 1787;
+		rLoc = 1771;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 438;
@@ -9469,7 +9469,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 768;
@@ -9489,7 +9489,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: NullFunction";
 		rLen = 0;
-		rLoc = 1787;
+		rLoc = 1771;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 512;
@@ -9499,7 +9499,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 700;
@@ -9519,7 +9519,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1668;
+		rLoc = 1630;
 		rType = 0;
 		vrLen = 1170;
 		vrLoc = 700;
@@ -9539,7 +9539,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1668;
+		rLoc = 1630;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 680;
@@ -9609,7 +9609,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 64";
 		rLen = 0;
-		rLoc = 1797;
+		rLoc = 1781;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 512;
@@ -9619,7 +9619,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1668;
+		rLoc = 1630;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 816;
@@ -9709,7 +9709,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 69";
 		rLen = 0;
-		rLoc = 1838;
+		rLoc = 1800;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 771;
@@ -9729,7 +9729,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 69";
 		rLen = 0;
-		rLoc = 1838;
+		rLoc = 1800;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 816;
@@ -9739,7 +9739,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 64";
 		rLen = 0;
-		rLoc = 1797;
+		rLoc = 1781;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 442;
@@ -9787,7 +9787,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 62";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 816;
@@ -9807,7 +9807,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: Install";
 		rLen = 0;
-		rLoc = 1838;
+		rLoc = 1800;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 771;
@@ -9817,7 +9817,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 65";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1773;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 625;
@@ -9827,7 +9827,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 62";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 771;
@@ -9837,7 +9837,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreData.h: 144";
 		rLen = 0;
-		rLoc = 4231;
+		rLoc = 4215;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 4923;
@@ -9857,7 +9857,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 63";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 771;
@@ -9867,7 +9867,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: 65";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1773;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 625;
@@ -9877,7 +9877,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 62";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -9887,7 +9887,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 62";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -9897,7 +9897,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 63";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -9907,7 +9907,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: Install";
 		rLen = 0;
-		rLoc = 1836;
+		rLoc = 1798;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -9937,7 +9937,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: 63";
 		rLen = 0;
-		rLoc = 1671;
+		rLoc = 1633;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 771;
@@ -11098,7 +11098,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.h: Instance";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1750;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 359;
@@ -11290,7 +11290,7 @@
 		rLen = 45;
 		rLoc = 2516;
 		rType = 0;
-		vrLen = 1128;
+		vrLen = 1127;
 		vrLoc = 1556;
 	};
 	7AB45E7B03D387F000A80164 = {
@@ -13118,7 +13118,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 41";
 		rLen = 0;
-		rLoc = 1128;
+		rLoc = 1167;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 0;
@@ -14388,7 +14388,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 52";
 		rLen = 0;
-		rLoc = 1434;
+		rLoc = 1473;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 158;
@@ -14666,7 +14666,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 49";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 158;
@@ -15020,7 +15020,7 @@
 		isa = PBXTextBookmark;
 		name = "Mushcore.h: 49";
 		rLen = 0;
-		rLoc = 1352;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 158;
@@ -15190,7 +15190,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebRouter.h: 67";
 		rLen = 0;
-		rLoc = 1500;
+		rLoc = 1456;
 		rType = 0;
 		vrLen = 737;
 		vrLoc = 770;
@@ -15300,7 +15300,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreAbstractSingleton.h: 25";
 		rLen = 0;
-		rLoc = 714;
+		rLoc = 754;
 		rType = 0;
 		vrLen = 1516;
 		vrLoc = 0;
@@ -15340,7 +15340,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: Install";
 		rLen = 2;
-		rLoc = 1862;
+		rLoc = 1824;
 		rType = 0;
 		vrLen = 340;
 		vrLoc = 1566;
@@ -15400,7 +15400,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebRouter.h: 65";
 		rLen = 0;
-		rLoc = 1496;
+		rLoc = 1452;
 		rType = 0;
 		vrLen = 194;
 		vrLoc = 1313;
@@ -15450,7 +15450,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreGlobalConfig.cpp: Install";
 		rLen = 2;
-		rLoc = 1862;
+		rLoc = 1824;
 		rType = 0;
 		vrLen = 340;
 		vrLoc = 1566;
@@ -15510,7 +15510,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebRouter.h: 65";
 		rLen = 0;
-		rLoc = 1496;
+		rLoc = 1452;
 		rType = 0;
 		vrLen = 239;
 		vrLoc = 1268;
@@ -77783,7 +77783,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlTimer.h: 25";
 		rLen = 0;
-		rLoc = 1010;
+		rLoc = 1028;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -81227,7 +81227,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebServer.h: 71";
 		rLen = 0;
-		rLoc = 1832;
+		rLoc = 1854;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 781;
@@ -81351,7 +81351,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.h: 89";
 		rLen = 0;
-		rLoc = 2118;
+		rLoc = 2137;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 855;
@@ -82041,7 +82041,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlServer.h: 89";
 		rLen = 0;
-		rLoc = 2118;
+		rLoc = 2137;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 855;

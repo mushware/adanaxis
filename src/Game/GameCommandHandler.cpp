@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.16 2003/01/13 14:31:56 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.17 2003/01/20 10:45:24 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.17  2003/01/20 10:45:24  southa
+ * Singleton tidying
+ *
  * Revision 1.16  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -175,8 +178,8 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
 void
 GameCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("game", Game);
-    MushcoreInterpreter::Sgl().AddHandler("setsavepath", SetSavePath);
-    MushcoreInterpreter::Sgl().AddHandler("updatecheck", UpdateCheck);
-    MushcoreInterpreter::Sgl().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
+    MushcoreInterpreter::Sgl().HandlerAdd("game", Game);
+    MushcoreInterpreter::Sgl().HandlerAdd("setsavepath", SetSavePath);
+    MushcoreInterpreter::Sgl().HandlerAdd("updatecheck", UpdateCheck);
+    MushcoreInterpreter::Sgl().HandlerAdd("readdirectorytomenu", ReadDirectoryToMenu);
 }

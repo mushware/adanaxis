@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcorePickle.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcorePickle.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcorePickle.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -44,6 +47,7 @@
  */
 
 #include "MushcorePickle.h"
+
 #include "MushcoreFail.h"
 #include "MushcoreUtil.h"
 #include "MushcoreXML.h"

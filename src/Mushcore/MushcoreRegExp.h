@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreRegExp.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.3 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.3  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -51,56 +54,44 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
-#ifdef HAVE_PCRE_H
-#include <pcre.h>
-#else
-#ifdef HAVE_PCRE_PCRE_H
-#include <pcre/pcre.h>
-#else
-#include "pcre.h"
-#endif
-#endif
-
 #include "MushcoreStandard.h"
 
 class MushcoreRegExp
 {
 public:
-    MushcoreRegExp() {m_re = NULL;}
-    MushcoreRegExp(const std::string& inPattern) {m_re = NULL;SearchPatternSet(inPattern);}
-    ~MushcoreRegExp() {if (m_re != NULL) pcre_free(m_re);}
-    void SearchPatternSet(const std::string& inPattern);
+    enum
+    {
+        kMaxMatches = 256
+    };
+
+    typedef std::string tPattern;
+    typedef std::vector<std::string> tMatches;
+
+    MUSHCORE_DECLARE_INLINE MushcoreRegExp();
+    explicit MUSHCORE_DECLARE_INLINE MushcoreRegExp(const tPattern& inPattern);
+    ~MushcoreRegExp();
+    
+    void SearchPatternSet(const tPattern& inPattern);
     bool Search(const std::string& inString);
-    bool Search(const std::string& inString, std::vector<std::string>& outMatches);
-    bool Search(const std::string& inString, const std::string& inPattern);
-    bool Search(const std::string& inString, const std::string& inPattern, std::vector<std::string>& outMatches);
+    bool Search(tMatches& outMatches, const std::string& inString);
 
 private:
-    bool HandleRC(int inRC);
+    bool HandleReturnCode(int inRC);
         
-    pcre *m_re;
-    const char *m_error;
-    int m_erroffset;
+    void *m_regExp;
 };
 
-class MushcoreRegExpFail: public std::exception
+inline
+MushcoreRegExp::MushcoreRegExp() :
+    m_regExp(NULL)
 {
-public:
-    MushcoreRegExpFail(const std::string &inMessage) {m_message=inMessage;}
-    ~MushcoreRegExpFail() throw() {}
-    const std::string& SPrint(void) {return m_message;}
-    const char* what() const throw() {return m_message.c_str();}
-private:
-    std::string m_message;
-};
+}
 
-inline std::ostream& operator<<(std::ostream &s, MushcoreRegExpFail f)
+inline
+MushcoreRegExp::MushcoreRegExp(const tPattern& inPattern) :
+    m_regExp(NULL)
 {
-    return s<<f.SPrint();
+    SearchPatternSet(inPattern);
 }
 
 #endif

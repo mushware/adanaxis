@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.16 2003/01/18 13:33:57 southa Exp $
+ * $Id: MediaSound.cpp,v 1.17 2003/01/20 10:45:28 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.17  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.16  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -160,7 +163,7 @@ MediaSound::PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 MediaSound::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("residentsound", ResidentSound);
-    MushcoreInterpreter::Sgl().AddHandler("transientsound", TransientSound);
-    MushcoreInterpreter::Sgl().AddHandler("playsound", PlaySound);
+    MushcoreInterpreter::Sgl().HandlerAdd("residentsound", ResidentSound);
+    MushcoreInterpreter::Sgl().HandlerAdd("transientsound", TransientSound);
+    MushcoreInterpreter::Sgl().HandlerAdd("playsound", PlaySound);
 }

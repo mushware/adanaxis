@@ -1,8 +1,11 @@
- // $Id: MushcoreFlex.flex,v 1.3 2003/01/14 20:46:10 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.4 2003/01/18 13:33:58 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.3 2003/01/14 20:46:10 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.4 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreFlex.flex,v $
+ * Revision 1.4  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/14 20:46:10  southa
  * Post data handling
  *
@@ -92,22 +95,22 @@ comment     ^[ \t]*#.*
 {comment} /* ignore comment */
         
 ","     {
-            IFFLEXTESTING(cerr << "," << endl);
+            MUSHCORE_IFFLEXTESTING(cerr << "," << endl);
             return ',';
         }
         
 "("     {
-            IFFLEXTESTING(cerr << "(" << endl);
+            MUSHCORE_IFFLEXTESTING(cerr << "(" << endl);
             return '(';
         }
 
 ")"     {
-            IFFLEXTESTING(cerr << ")" << endl);
+            MUSHCORE_IFFLEXTESTING(cerr << ")" << endl);
             return ')';
         }
                     
 "+"     {
-            IFFLEXTESTING(cerr << yytext << endl);
+            MUSHCORE_IFFLEXTESTING(cerr << yytext << endl);
             return '+';
         }
                     
@@ -127,36 +130,36 @@ comment     ^[ \t]*#.*
         }
 
 {variable} {
-    IFFLEXTESTING(cerr << "variable='" << yytext << "'" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "variable='" << yytext << "'" << endl);
     *outScalar=yytext;
     return VARIABLE;
 }
 
 {identifier} {
-    IFFLEXTESTING(cerr << "identifier='" << yytext << "'" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "identifier='" << yytext << "'" << endl);
     *outScalar=yytext;
     return IDENTIFIER;
 }
 
 {number} {
-    IFFLEXTESTING(cerr << "number='" << yytext << "'" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "number='" << yytext << "'" << endl);
     *outScalar=yytext;
     return NUMBER;
 }
 
 {string} {
-    IFFLEXTESTING(cerr << "string='" << yytext << "'" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "string='" << yytext << "'" << endl);
     *outScalar=string(&yytext[1], strlen(yytext)-2);
     return STRING;
 }
 
 {eos} {
-    IFFLEXTESTING(cerr << "EOS" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "EOS" << endl);
     return EOS;
 }
 
 <<EOF>> {
-    IFFLEXTESTING(cerr << "EOF" << endl);
+    MUSHCORE_IFFLEXTESTING(cerr << "EOF" << endl);
     if (!m_eofFound)
     {
         m_eofFound=true;

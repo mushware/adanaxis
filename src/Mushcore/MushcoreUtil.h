@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreUtil.h,v 1.1 2003/01/09 14:57:08 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -53,11 +56,6 @@
 class MushcoreUtil
 {
 public:
-    static Mushware::U32 BigEndianU32Get(std::istream& inIn);
-    static Mushware::U32 LittleEndianU32Get(std::istream& inIn);
-    static Mushware::U8 U8Get(std::istream& inIn);
-
-    static std::string TranslateFilename(const std::string& inStr) {return inStr;}
-    static std::string AppDirFilename(const std::string& inStr);
+    static std::string TranslateFilename(const std::string& inStr);
 };
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreParamList.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreParamList.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreParamList.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -57,55 +60,36 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushcoreParamList::PopParam(tVal& outVal)
+MushcoreParamList::PopParam(MushcoreScalar& outScalar)
 {
-    if (!m_params.empty())
+    if (m_params.empty())
     {
-        m_params.front().Get(outVal);
+        throw(MushcoreSyntaxFail("Parameter missing"));
+    }
+    else
+    {
+        outScalar = m_params.front();
         m_params.pop_front();
     }
 }
 
 void
-MushcoreParamList::PopParam(string& outStr)
-{
-    if (!m_params.empty())
-    {
-        m_params.front().Get(outStr);
-        m_params.pop_front();
-    }
-}
-
-void
-MushcoreParamList::PopParam(U32 &outU32)
-{
-    if (!m_params.empty())
-    {
-        tVal val;
-        m_params.front().Get(val);
-        m_params.pop_front();
-        outU32=static_cast<U32>(val);
-    }
-}
-
-void
-MushcoreParamList::ostreamPrint(ostream& inOut)
+MushcoreParamList::Print(ostream& ioOut) const
 {
     bool first=true;
-    while (!Empty())
+    
+    tParamsConstIterator endValue = m_params.end();
+    
+    for (tParamsConstIterator p = m_params.begin(); p != endValue; ++p)
     {
-        string str;
-        PopParam(str);
         if (first)
         {
             first=false;
         }
         else
         {
-            inOut << ", ";
+            ioOut << ", ";
         }
-        inOut << str;
+        ioOut << *p;
     }
 }
-
-        

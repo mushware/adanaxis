@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScript.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreScript.cpp,v 1.3 2003/01/18 13:33:59 southa Exp $
  * $Log: MushcoreScript.cpp,v $
+ * Revision 1.3  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.2  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -67,27 +70,31 @@ MushcoreScript::MushcoreScript()
 {
 }
 
+MushcoreScript::MushcoreScript(std::istream& inIn)
+{
+    ReadFromStream(inIn);
+}
+
 MushcoreScript::MushcoreScript(const string& inContent)
 {
-    istringstream strm(inContent);
-    ReadFromStream(strm);
+    istringstream contentStream(inContent);
+    ReadFromStream(contentStream);
 }
 
 void
 MushcoreScript::ReadFromStream(istream& inIn)
 {
-    pair<map<string, MushcoreFunction>::iterator, bool> p =
-        m_functions.insert(pair<string, MushcoreFunction>("_global", MushcoreFunction("_global")));
+    pair<tFunctionMapIterator, bool> p = m_functions.insert(pair<string, MushcoreFunction>("_global", MushcoreFunction("_global")));
     if (!p.second)
     {
-        throw(MushcoreLogicFail("Duplicated function name _global"));
+        throw(MushcoreSyntaxFail("Duplicated function name _global"));
     }
     while (!inIn.eof())
     {
         string line;
         if (!inIn.good()) throw "Stream went bad";
         getline(inIn, line);
-        p.first->second.AddCommand(line);
+        p.first->second.CommandAdd(line);
     }
 }
 
@@ -95,11 +102,11 @@ MushcoreScript::ReadFromStream(istream& inIn)
 const MushcoreFunction&
 MushcoreScript::FunctionGet(const string& inName) const
 {
-    map<string, MushcoreFunction>::const_iterator p = m_functions.find(inName);
+    tFunctionMapConstIterator p = m_functions.find(inName);
 
     if (p == m_functions.end())
     {
-        throw(MushcoreLogicFail("Request for unknown function '"+inName+"'"));
+        throw(MushcoreRequestFail("Request for unknown function '"+inName+"'"));
     }
     return p->second;
 }
@@ -107,7 +114,7 @@ MushcoreScript::FunctionGet(const string& inName) const
 void
 MushcoreScript::Execute(void) const
 {
-    map<string, MushcoreFunction>::const_iterator p = m_functions.find("_global");
+    tFunctionMapConstIterator p = m_functions.find("_global");
     if (p != m_functions.end())
     {
         p->second.CoalesceErrorsExecute();
@@ -115,19 +122,20 @@ MushcoreScript::Execute(void) const
 }
 
 void
-MushcoreScript::ostreamPrint(ostream& inOut) const
+MushcoreScript::Print(ostream& ioOut) const
 {
-    for (map<string, MushcoreFunction>::const_iterator p = m_functions.begin();
-         p != m_functions.end(); ++p)
+    tFunctionMapConstIterator endValue = m_functions.end();
+    
+    for (tFunctionMapConstIterator p = m_functions.begin(); p != endValue; ++p)
     {
-        if (p->second.Name() == "_global")
+        if (p->second.NameGet() == "_global")
         {
-            inOut << p->second;
+            ioOut << p->second;
         }
         else
         {
-            inOut << "function " << p->second.Name() << endl;
-            inOut << "{" << endl << p->second << "}" << endl;
+            ioOut << "function " << p->second.NameGet() << endl;
+            ioOut << "{" << endl << p->second << "}" << endl;
         }
     }
 }

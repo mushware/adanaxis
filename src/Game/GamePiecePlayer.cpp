@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.41 2003/01/13 14:31:59 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.42 2003/01/20 10:45:27 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.42  2003/01/20 10:45:27  southa
+ * Singleton tidying
+ *
  * Revision 1.41  2003/01/13 14:31:59  southa
  * Build frameworks for Mac OS X
  *
@@ -487,5 +490,5 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GamePiecePlayer::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("loadplayer", LoadPlayer);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadplayer", LoadPlayer);
 }

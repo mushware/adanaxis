@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreRegExp.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreRegExp.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreRegExp.cpp,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -48,107 +51,131 @@
 
 #include "MushcoreRegExp.h"
 
+#include "MushcoreFail.h"
+
 #include "MushcoreSTL.h"
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#ifdef HAVE_PCRE_PCRE_H
+#include <pcre/pcre.h>
+#else
+#ifdef HAVE_PCRE_H
+#include <pcre.h>
+#else
+#include "pcre.h"
+#endif
+#endif
 
 using namespace Mushware;
 using namespace std;
 
-void MushcoreRegExp::SearchPatternSet(const std::string& inPattern)
+MushcoreRegExp::~MushcoreRegExp()
 {
-    if (m_re != NULL) pcre_free(m_re);
-    m_re = pcre_compile(
+    if (m_regExp != NULL)
+    {
+        pcre_free(m_regExp);
+    }
+}
+
+void MushcoreRegExp::SearchPatternSet(const tPattern& inPattern)
+{
+    const char *errorMessage;
+    int errOffset;
+    
+    if (m_regExp != NULL) pcre_free(m_regExp);
+    m_regExp = pcre_compile(
                       inPattern.c_str(),        /* the pattern */
                       0,                        /* default options */
-                      &m_error,	    	    	/* for error message */
-                      &m_erroffset,     	/* for error offset */
+                      &errorMessage,	    	    	/* for error message */
+                      &errOffset,     	    /* for error offset */
                       NULL);                    /* use default character tables */
-    if (m_re == NULL)
+
+    if (m_regExp == NULL)
     {
         std::ostringstream message;
-        message << "Regular expresion '" << inPattern << "' compilation failed at offset " << m_erroffset << ": " << m_error;
-        throw MushcoreRegExpFail(message.str());
+        message << "Regular expresion '" << inPattern << "' compilation failed at offset " << errOffset << ": " << errorMessage;
+        throw MushcoreSyntaxFail(message.str());
     }
 }
 
 bool MushcoreRegExp::Search(const std::string& inString)
 {
-    if (m_re == NULL) throw MushcoreRegExpFail("Search with specifying pattern");
+    if (m_regExp == NULL)
+    {
+        throw MushcoreLogicFail("Search without specifying pattern");
+    }
     
-    int rc;
-    rc = pcre_exec(
-        m_re,           	/* result of pcre_compile() */
-        NULL,           	/* we didn't study the pattern */
-        inString.data(), 	/* the subject string */
-        inString.size(),    	/* the length of the subject string */
-        0,              	/* start at offset 0 in the subject */
-        0,              	/* default options */
-        NULL,			/* vector for substring information */
-        0); 			/* number of elements in the vector */
+    int returnCode;
+    returnCode = pcre_exec(
+        reinterpret_cast<const pcre *>(m_regExp), /* result of pcre_compile() */
+        NULL,               /* we didn't study the pattern */
+        inString.data(),    /* the subject string */
+        inString.size(),    /* the length of the subject string */
+        0,                  /* start at offset 0 in the subject */
+        0,                  /* default options */
+        NULL,               /* vector for substring information */
+        0);                 /* number of elements in the vector */
 
-    return HandleRC(rc);
+    return HandleReturnCode(returnCode);
 }
 
-bool MushcoreRegExp::HandleRC(int inRC)
+bool MushcoreRegExp::HandleReturnCode(int inReturnCode)
 {
-    switch (inRC)
+    switch (inReturnCode)
     {
         case PCRE_ERROR_NOMATCH:
             return false;
 
         case PCRE_ERROR_NULL:
-            throw MushcoreRegExpFail("Null string");
+            throw MushcoreRequestFail("Null string");
 
         case PCRE_ERROR_BADOPTION:
-            throw MushcoreRegExpFail("Bad option");
+            throw MushcoreRequestFail("Bad option");
 
         case PCRE_ERROR_BADMAGIC:
-            throw MushcoreRegExpFail("Bad magic number");
+            throw MushcoreRequestFail("Bad magic number");
 
         case PCRE_ERROR_UNKNOWN_NODE:
-            throw MushcoreRegExpFail("Unknown mode");
+            throw MushcoreRequestFail("Unknown mode");
 
         case PCRE_ERROR_NOMEMORY:
-            throw MushcoreRegExpFail("Out of memory");
+            throw MushcoreRequestFail("Out of memory");
 
         case PCRE_ERROR_NOSUBSTRING:
-            throw MushcoreRegExpFail("No substring");
+            throw MushcoreRequestFail("No substring");
 
         default:
             return true;
     }
 }
 
-bool MushcoreRegExp::Search(const std::string& inString, std::vector<std::string>& outMatches)
+bool MushcoreRegExp::Search(tMatches& outMatches, const tPattern& inString)
 {
-    if (m_re == NULL) throw MushcoreRegExpFail("Search with specifying pattern");
-
-    int rc;
-    int ovector[768];
-    rc = pcre_exec(
-        m_re,           	/* result of pcre_compile() */
-        NULL,           	/* we didn't study the pattern */
-        inString.data(), 	/* the subject string */
-        inString.size(),        /* the length of the subject string */
-        0,              	/* start at offset 0 in the subject */
-        0,              	/* default options */
-        ovector,        	/* vector for substring information */
-        768); 			/* number of elements in the vector */
-
-    for (int i=1; i<rc; i++)
+    if (m_regExp == NULL)
     {
-        outMatches.push_back(std::string(inString.data(), ovector[2*i], ovector[2*i+1] - ovector[2*i]));
+        throw MushcoreLogicFail("Search with specifying pattern");
     }
-    return HandleRC(rc);
+    
+    int returnCode;
+    int oVector[3*kMaxMatches];
+    returnCode = pcre_exec(
+        reinterpret_cast<const pcre *>(m_regExp), /* result of pcre_compile() */
+        NULL,               /* we didn't study the pattern */
+        inString.data(),    /* the subject string */
+        inString.size(),    /* the length of the subject string */
+        0,                  /* start at offset 0 in the subject */
+        0,                  /* default options */
+        oVector,            /* vector for substring information */
+        3*kMaxMatches);     /* number of elements in the vector */
+
+    for (int i=1; i<returnCode; i++)
+    {
+        outMatches.push_back(string(inString.data(), oVector[2*i], oVector[2*i+1] - oVector[2*i]));
+    }
+    return HandleReturnCode(returnCode);
 }
 
-bool MushcoreRegExp::Search(const std::string& inString, const std::string& inPattern)
-{
-    SearchPatternSet(inPattern);
-    return Search(inString);
-}
 
-bool MushcoreRegExp::Search(const std::string& inString, const std::string& inPattern, std::vector<std::string>& outMatches)
-{
-    SearchPatternSet(inPattern);
-    return Search(inString, outMatches);
-}

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.46 2003/01/13 14:31:58 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.47 2003/01/20 10:45:26 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.47  2003/01/20 10:45:26  southa
+ * Singleton tidying
+ *
  * Revision 1.46  2003/01/13 14:31:58  southa
  * Build frameworks for Mac OS X
  *
@@ -887,6 +890,6 @@ GameFloorMap::LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameFloorMap::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("loadfloormap", LoadFloorMap);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadfloormap", LoadFloorMap);
 }
 

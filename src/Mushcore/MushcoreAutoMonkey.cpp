@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoMonkey.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAutoMonkey.cpp,v 1.2 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreAutoMonkey.cpp,v $
+ * Revision 1.2  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -71,12 +74,12 @@ using namespace std;
 MushcoreAutoMonkey::~MushcoreAutoMonkey()
 {
     --*m_refCtrPtr;
-    IFMONKEYTESTING(cerr << "Automonkey destroyed, refcount to " << ReferenceCountGet() << endl);
+    MUSHCORE_IFMONKEYTESTING(cerr << "Automonkey destroyed, refcount to " << ReferenceCountGet() << endl);
     if (*m_refCtrPtr == 0)
     {
         delete m_refCtrPtr;
         m_refCtrPtr=NULL;
-        IFMONKEYTESTING(cerr << "MushcoreAutoMonkey workspace freed" << endl); 
+        MUSHCORE_IFMONKEYTESTING(cerr << "MushcoreAutoMonkey workspace freed" << endl); 
     }
 }
 
@@ -84,7 +87,7 @@ MushcoreAutoMonkey::MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey)
 {
     m_refCtrPtr=inMonkey.m_refCtrPtr;
     ++*m_refCtrPtr;
-    IFMONKEYTESTING(cerr << "Automonkey copied, refcount to " << ReferenceCountGet() << endl);
+    MUSHCORE_IFMONKEYTESTING(cerr << "Automonkey copied, refcount to " << ReferenceCountGet() << endl);
 }
 
 void
@@ -107,7 +110,7 @@ bool
 MushcoreAutoMonkey::FreeInDestructor(void *inDataPtr) const
 {
     if (*m_refCtrPtr < 1) throw(MushcoreLogicFail("MushcoreAutoMonkey fault"));
-    IFMONKEYTESTING(cerr << "Automonkey InDestructorFree, refcount is " << ReferenceCountGet() << endl);
+    MUSHCORE_IFMONKEYTESTING(cerr << "Automonkey InDestructorFree, refcount is " << ReferenceCountGet() << endl);
     return (*m_refCtrPtr == 1  && inDataPtr != NULL);
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.23 2003/01/13 14:32:00 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.24 2003/01/20 10:45:27 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.24  2003/01/20 10:45:27  southa
+ * Singleton tidying
+ *
  * Revision 1.23  2003/01/13 14:32:00  southa
  * Build frameworks for Mac OS X
  *
@@ -360,7 +363,7 @@ GameTileMap::LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameTileMap::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("loadtilemap", LoadTileMap);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadtilemap", LoadTileMap);
 }
 
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.31 2003/01/17 13:30:39 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.32 2003/01/20 10:45:28 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.32  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.31  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -435,11 +438,11 @@ GameWebCommands::GameLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& io
 void
 GameWebCommands::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("posthandler", PostHandler);
-    MushcoreInterpreter::Sgl().AddHandler("displaymodeswrite", DisplayModesWrite);
-    MushcoreInterpreter::Sgl().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
-    MushcoreInterpreter::Sgl().AddHandler("gamestatuswrite", GameStatusWrite);
-    MushcoreInterpreter::Sgl().AddHandler("gameserverstatuswrite", GameServerStatusWrite);
-    MushcoreInterpreter::Sgl().AddHandler("gameclientstatuswrite", GameClientStatusWrite);
-    MushcoreInterpreter::Sgl().AddHandler("gamelinkstatuswrite", GameLinkStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("posthandler", PostHandler);
+    MushcoreInterpreter::Sgl().HandlerAdd("displaymodeswrite", DisplayModesWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("gameconfiginputwrite", GameConfigInputWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("gamestatuswrite", GameStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("gameserverstatuswrite", GameServerStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("gameclientstatuswrite", GameClientStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("gamelinkstatuswrite", GameLinkStatusWrite);
 }

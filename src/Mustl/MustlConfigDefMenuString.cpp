@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefMenuString.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefMenuString.cpp,v 1.4 2003/01/20 10:45:29 southa Exp $
  * $Log: MustlConfigDefMenuString.cpp,v $
+ * Revision 1.4  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -88,7 +91,7 @@ MustlConfigDefMenuString::MustlConfigMenuString(MushcoreCommand& ioCommand, Mush
 void
 MustlConfigDefMenuString::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("mustlconfigmenustring", MustlConfigMenuString);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlconfigmenustring", MustlConfigMenuString);
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.h,v 1.3 2003/01/11 17:44:27 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.4 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.4  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/11 17:44:27  southa
  * Mushcore fixes
  *
@@ -38,28 +41,15 @@
 
 #include "MushcoreStandard.h"
 
-class MushcoreInfo
+#include "MushcoreSingleton.h"
+
+class MushcoreInfo : public MushcoreSingleton<MushcoreInfo>
 {
 public:
-    static MushcoreInfo& Sgl(void);
-    static void Mutate(MushcoreInfo *inInfo);
-
     virtual std::string ApplicationNameGet(void);
     virtual std::string PackageNameGet(void);
     virtual std::string PackageVersionGet(void);
     virtual std::string PackageIDGet(void);
-
-private:
-    static MushcoreInfo *m_instance;
 };
 
-inline MushcoreInfo&
-MushcoreInfo::Sgl(void)
-{
-    if (m_instance == NULL)
-    {
-        m_instance = new MushcoreInfo;
-    }
-    return *m_instance;
-}
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebCommands.cpp,v 1.4 2003/01/17 13:30:41 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.5 2003/01/20 10:45:31 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.5  2003/01/20 10:45:31  southa
+ * Singleton tidying
+ *
  * Revision 1.4  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *
@@ -48,9 +51,9 @@ MustlWebCommands::MustlPostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     string valueStr;
     ioCommand.PopParam(valueStr);
 
-    MushcoreRegExp re("(^|&)type=([^&]+)($|&)");
-    vector<string> matchStrs;
-    if (!re.Search(valueStr, matchStrs))
+    MushcoreRegExp regExp("(^|&)type=([^&]+)($|&)");
+    MushcoreRegExp::tMatches matchStrs;
+    if (!regExp.Search(matchStrs, valueStr))
     {
         throw(MustlFail("No type= element at start of posted results '"+valueStr+"'"));
     }
@@ -142,10 +145,10 @@ MustlWebCommands::MustlLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
 void
 MustlWebCommands::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("mustlpostvalues", MustlPostValues);
-    MushcoreInterpreter::Sgl().AddHandler("mustlinputwrite", MustlInputWrite);
-    MushcoreInterpreter::Sgl().AddHandler("mustlserverstatuswrite", MustlServerStatusWrite);
-    MushcoreInterpreter::Sgl().AddHandler("mustllinkstatuswrite", MustlLinkStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlpostvalues", MustlPostValues);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlinputwrite", MustlInputWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlserverstatuswrite", MustlServerStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustllinkstatuswrite", MustlLinkStatusWrite);
 }
 
 void

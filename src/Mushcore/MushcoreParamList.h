@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreParamList.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreParamList.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreParamList.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -66,23 +69,42 @@
 class MushcoreParamList
 {
 public:
-    void PushParam(const MushcoreScalar& inScalar)
-        {m_params.push_back(inScalar);}
-    void PopParam(Mushware::tVal& outVal);
-    void PopParam(std::string& outStr);
-    void PopParam(Mushware::U32& outU32);
-    Mushware::U32 NumParams(void) {return m_params.size();}
-    void Clear(void) {m_params.clear();};
-    bool Empty(void) {return m_params.empty();}
-    void ostreamPrint(std::ostream& inOut);
+    typedef std::list<MushcoreScalar> tParams;
+    typedef tParams::iterator tParamsIterator;
+    typedef tParams::const_iterator tParamsConstIterator;
+    
+    void PushParam(const MushcoreScalar& inScalar) { m_params.push_back(inScalar); }
+    void PopParam(MushcoreScalar& outScalar);
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam);
+    Mushware::U32 NumParams(void) { return m_params.size(); }
+    void Clear(void) { m_params.clear(); };
+    bool Empty(void) { return m_params.empty(); }
+    void Print(std::ostream& ioOut) const;
+    
 private:
-    std::list<MushcoreScalar> m_params;
+    tParams m_params;
 };
 
-inline std::ostream& operator<<(std::ostream &inOut, MushcoreParamList inMushcoreParamList)
+template<class ParamType>
+inline void
+MushcoreParamList::PopParam(ParamType& outParam)
 {
-    inMushcoreParamList.ostreamPrint(inOut);
-    return inOut;
+    if (m_params.empty())
+    {
+        throw(MushcoreSyntaxFail("Parameter missing"));
+    }
+    else
+    {
+        m_params.front().Get(outParam);
+        m_params.pop_front();
+    }
+}
+
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MushcoreParamList inParamList)
+{
+    inParamList.Print(ioOut);
+    return ioOut;
 }
 
 #endif

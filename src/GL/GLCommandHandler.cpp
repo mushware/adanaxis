@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.27 2003/01/13 14:31:54 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.28 2003/01/20 10:45:23 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.28  2003/01/20 10:45:23  southa
+ * Singleton tidying
+ *
  * Revision 1.27  2003/01/13 14:31:54  southa
  * Build frameworks for Mac OS X
  *
@@ -221,8 +224,8 @@ GLCommandHandler::DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("initgl", InitGL);
-    MushcoreInterpreter::Sgl().AddHandler("loadpixmap", LoadPixmap);
-    MushcoreInterpreter::Sgl().AddHandler("decompose", Decompose);
-    MushcoreInterpreter::Sgl().AddHandler("dumptextures", DumpTextures);
+    MushcoreInterpreter::Sgl().HandlerAdd("initgl", InitGL);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadpixmap", LoadPixmap);
+    MushcoreInterpreter::Sgl().HandlerAdd("decompose", Decompose);
+    MushcoreInterpreter::Sgl().HandlerAdd("dumptextures", DumpTextures);
 }

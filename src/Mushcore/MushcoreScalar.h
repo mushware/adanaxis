@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.3 2003/01/18 13:33:59 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.3  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -105,10 +108,8 @@ public:
     MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const Mushware::tLongVal inVal);
 
     MUSHCORE_DECLARE_INLINE bool Equals(const MushcoreScalar& inScalar) const;
-
-    bool SlowEquals(const MushcoreScalar& inScalar) const;
     
-    void Print(std::ostream &inOut) const;
+    void Print(std::ostream &ioOut) const;
         
 private:
     enum eTypeTag
@@ -119,6 +120,7 @@ private:
         kTypeTagString
     };
 
+    bool SlowEquals(const MushcoreScalar& inScalar) const;
     void ValAsStringGet(std::string& outStr) const;
     void StringAsValGet(Mushware::tLongVal& outVal) const;
     void StringAsBoolGet(bool& outBool) const;
@@ -127,9 +129,6 @@ private:
     Mushware::tLongVal m_longVal;
     std::string m_stringVal;
 };
-
-std::ostream&
-operator<<(std::ostream& ioOut, const MushcoreScalar& inScalar);
 
 inline
 MushcoreScalar::MushcoreScalar() :
@@ -321,6 +320,11 @@ MushcoreScalar::Equals(const MushcoreScalar& inScalar) const
     {
         return m_longVal == inScalar.m_longVal;
     }
+    else if (m_typeTag == kTypeTagString && inScalar.m_typeTag ==  kTypeTagString)
+    {
+        return m_stringVal == inScalar.m_stringVal;
+    }
+        
     return SlowEquals(inScalar);
 }
 
@@ -334,6 +338,13 @@ inline bool
 operator!=(const MushcoreScalar& a, const MushcoreScalar& b)
 {
     return !a.Equals(b);
+}
+
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreScalar& inScalar)
+{
+    inScalar.Print(ioOut);
+    return ioOut;
 }
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.3 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreFunction.h,v $
+ * Revision 1.3  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -70,24 +73,36 @@ class MushcoreFunction
 public:
     // MushcoreFunction() {}
     MushcoreFunction(const std::string& inStr): m_name(inStr) {}
-    void AddCommand(const std::string& inStr) { if (inStr != "") m_commands.push_back(inStr); }
-    const std::string& Name(void) const { return m_name; }
-    const std::string& Command(Mushware::U32 inIndex) const { return m_commands[inIndex]; }
+    MUSHCORE_DECLARE_INLINE void CommandAdd(const std::string& inStr);
+    const std::string& NameGet(void) const { return m_name; }
+    const std::string& CommandGet(Mushware::U32 inIndex) const { return m_commands[inIndex]; }
     Mushware::U32 SizeGet(void) const { return m_commands.size(); }
-    const std::string& Line(Mushware::U32 inNum) const { return m_commands[inNum]; }
+    
     void ThrowErrorExecute(void) const;
     void CoalesceErrorsExecute(void) const;
-    void Print(std::ostream &inOut) const;
+    
+    void Print(std::ostream &ioOut) const;
+    
 private:
+    typedef std::vector<std::string> tCommands;
     std::string m_name;
-    std::vector<std::string> m_commands;
+    tCommands m_commands;
 };
 
-inline std::ostream&
-operator<<(std::ostream &inOut, const MushcoreFunction& inFunction)
+inline void
+MushcoreFunction::CommandAdd(const std::string& inStr)
 {
-    inFunction.Print(inOut);
-    return inOut;
+    if (inStr != "")
+    {
+        m_commands.push_back(inStr);
+    }
+}
+
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MushcoreFunction& inFunction)
+{
+    inFunction.Print(ioOut);
+    return ioOut;
 }
 
 #endif

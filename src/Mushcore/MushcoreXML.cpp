@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.cpp,v 1.3 2003/01/18 13:33:59 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.4 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.4  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -75,9 +78,18 @@
 using namespace Mushware;
 using namespace std;
 
+void
+MushcoreXMLHandler::XMLDataHandler(MushcoreXML& inXML)
+{
+    // Key function
+}
 
 MushcoreXML::MushcoreXML(istream& inStream, const string& inName, U32 inLine):
-    m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_threaded(false), m_line(inLine)
+    m_currentHandler(NULL),
+    m_inStream(&inStream),
+    m_name(inName),
+    m_threaded(false),
+    m_line(inLine)
 {
     m_parser = XML_ParserCreate(NULL);
     if (m_parser == NULL) throw(MushcoreSyntaxFail("Couldn't create parser"));

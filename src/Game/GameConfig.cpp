@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.25 2003/01/17 13:30:37 southa Exp $
+ * $Id: GameConfig.cpp,v 1.26 2003/01/20 10:45:24 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.26  2003/01/20 10:45:24  southa
+ * Singleton tidying
+ *
  * Revision 1.25  2003/01/17 13:30:37  southa
  * Source conditioning and build fixes
  *
@@ -497,12 +500,12 @@ GameConfig::GameConfigSpecial(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameConfig::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("configload", GameConfigLoad);
-    MushcoreInterpreter::Sgl().AddHandler("configvalueadd", GameConfigValueAdd);
-    MushcoreInterpreter::Sgl().AddHandler("configstringadd", GameConfigStringAdd);
-    MushcoreInterpreter::Sgl().AddHandler("configpasswordadd", GameConfigPasswordAdd);
-    MushcoreInterpreter::Sgl().AddHandler("configbooladd", GameConfigBoolAdd);
-    MushcoreInterpreter::Sgl().AddHandler("gameconfigspecial", GameConfigSpecial);
+    MushcoreInterpreter::Sgl().HandlerAdd("configload", GameConfigLoad);
+    MushcoreInterpreter::Sgl().HandlerAdd("configvalueadd", GameConfigValueAdd);
+    MushcoreInterpreter::Sgl().HandlerAdd("configstringadd", GameConfigStringAdd);
+    MushcoreInterpreter::Sgl().HandlerAdd("configpasswordadd", GameConfigPasswordAdd);
+    MushcoreInterpreter::Sgl().HandlerAdd("configbooladd", GameConfigBoolAdd);
+    MushcoreInterpreter::Sgl().HandlerAdd("gameconfigspecial", GameConfigSpecial);
 }
 
 char *

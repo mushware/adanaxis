@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.115 2003/01/13 14:31:56 southa Exp $
+ * $Id: GameContract.cpp,v 1.116 2003/01/20 10:45:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.116  2003/01/20 10:45:25  southa
+ * Singleton tidying
+ *
  * Revision 1.115  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -1171,5 +1174,5 @@ GameContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GameContract::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("loadcontract", LoadContract);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadcontract", LoadContract);
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreUtil.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.3 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.3  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.2  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -63,38 +66,8 @@
 using namespace Mushware;
 using namespace std;
 
-U32
-MushcoreUtil::BigEndianU32Get(istream& inIn)
-{
-    U8 buf[4]={0,0,0,0};
-    inIn.read(reinterpret_cast<char *>(buf), 4);
-    return ((buf[0] << 24) |
-            (buf[1] << 16) |
-            (buf[2] << 8)  |
-            (buf[3] << 0) );
-}
-
-U32
-MushcoreUtil::LittleEndianU32Get(istream& inIn)
-{
-    U8 buf[4]={0,0,0,0};
-    inIn.read(reinterpret_cast<char *>(buf), 4);
-    return ((buf[0] << 0)  |
-            (buf[1] << 8)  |
-            (buf[2] << 16) |
-            (buf[3] << 24));
-}
-
-U8
-MushcoreUtil::U8Get(istream& inIn)
-{
-    char ch;
-    inIn.get(ch);
-    return * reinterpret_cast<U8 *>(&ch);
-}
-
 string
-MushcoreUtil::AppDirFilename(const string& inStr)
+MushcoreUtil::TranslateFilename(const string& inStr)
 {
-    return MushcoreGlobalConfig::Sgl().Get("APPLPATH").StringGet() + "/" + inStr;
+    return inStr;
 }

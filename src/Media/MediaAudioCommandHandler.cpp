@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.16 2003/01/13 14:32:01 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.17 2003/01/20 10:45:28 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.17  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.16  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -96,5 +99,5 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
 void
 MediaAudioCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("playmusic", PlayMusic);
+    MushcoreInterpreter::Sgl().HandlerAdd("playmusic", PlayMusic);
 }

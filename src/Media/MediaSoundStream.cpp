@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.13 2003/01/18 13:33:57 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.14 2003/01/20 10:45:28 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.14  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.13  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -100,6 +103,6 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 void
 MediaSoundStream::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("soundstream", SoundStream);
-    MushcoreInterpreter::Sgl().AddHandler("playsoundstream", PlaySoundStream);
+    MushcoreInterpreter::Sgl().HandlerAdd("soundstream", SoundStream);
+    MushcoreInterpreter::Sgl().HandlerAdd("playsoundstream", PlaySoundStream);
 }

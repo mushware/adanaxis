@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.h,v 1.5 2003/01/17 00:41:03 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.6 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.6  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.5  2003/01/17 00:41:03  southa
  * Configuration updates from POST data
  *
@@ -91,7 +94,7 @@ public:
     virtual void Execute(const std::string& inStr);
     
     virtual MushcoreScalar Despatch(MushcoreCommand& ioCommand);
-    virtual void AddHandler(const std::string& inName, MushcoreCommandHandler inHandler);
+    virtual void HandlerAdd(const std::string& inName, MushcoreCommandHandler inHandler);
 
     void LogFunctionSet(tLogFunction inFunction) { m_logFunction = inFunction; }
 

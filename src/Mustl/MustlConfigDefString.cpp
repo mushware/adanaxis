@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefString.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefString.cpp,v 1.4 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlConfigDefString.cpp,v $
+ * Revision 1.4  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -61,11 +64,11 @@ MustlConfigDefString::FromPostRetrieve(const string& inName, const string& inDat
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]*)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches regExpMatches;
+    if (re.Search(regExpMatches, inData))
     {
-        MUSHCOREASSERT(matches.size() == 1);
-        m_value=MustlUtils::RemoveMeta(matches[0]);
+        MUSHCOREASSERT(regExpMatches.size() == 1);
+        m_value=MustlUtils::RemoveMeta(regExpMatches[0]);
         found=true;
     }
     return found;
@@ -95,7 +98,7 @@ MustlConfigDefString::MustlConfigString(MushcoreCommand& ioCommand, MushcoreEnv&
 void
 MustlConfigDefString::Install(void)
 {
-MushcoreInterpreter::Sgl().AddHandler("mustlconfigstring", MustlConfigString);
+MushcoreInterpreter::Sgl().HandlerAdd("mustlconfigstring", MustlConfigString);
 }
 
 void

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefPassword.cpp,v 1.4 2003/01/18 13:33:59 southa Exp $
+ * $Id: MustlConfigDefPassword.cpp,v 1.5 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlConfigDefPassword.cpp,v $
+ * Revision 1.5  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.4  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -52,11 +55,11 @@ MustlConfigDefPassword::FromPostRetrieve(const string& inName, const string& inD
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]*)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches regExpMatches;
+    if (re.Search(regExpMatches, inData))
     {
-        MUSHCOREASSERT(matches.size() == 1);
-        string newValue=MustlUtils::RemoveMeta(matches[0]);
+        MUSHCOREASSERT(regExpMatches.size() == 1);
+        string newValue=MustlUtils::RemoveMeta(regExpMatches[0]);
         if (newValue != "******")
         {
             ValueSet(MushcoreScalar(MustlUtils::RemoveMeta(newValue)));
@@ -95,7 +98,7 @@ MustlConfigDefPassword::MustlConfigPassword(MushcoreCommand& ioCommand, Mushcore
 void
 MustlConfigDefPassword::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("mustlconfigpassword", MustlConfigPassword);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlconfigpassword", MustlConfigPassword);
 }
 
 void

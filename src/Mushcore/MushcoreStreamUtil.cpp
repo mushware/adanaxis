@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.cpp,v 1.2 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreStreamUtil.cpp,v 1.3 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreStreamUtil.cpp,v $
+ * Revision 1.3  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.2  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -59,6 +62,8 @@
  */
 
 #include "MushcoreStreamUtil.h"
+
+#include "MushcoreFail.h"
 
 #include "MushcoreSTL.h"
 
@@ -127,16 +132,20 @@ MushcoreStreamUtil::GetIndex(U32 inWhich)
 {
     if (inWhich >= m_zero.size())
     {
-        throw "MushcoreStreamUtil::Request for uninitialised index";
+        throw(MushcoreLogicFail("Request for uninitialised MushcoreStreamUtil index"));
     }
-    return m_ctr-m_zero[inWhich];
+    if (m_ctr < m_zero[inWhich])
+    {
+        throw(MushcoreLogicFail("MushcoreStreamUtil index is beyond current position"));
+    }        
+    return m_ctr - m_zero[inWhich];
 }
 
 void
 MushcoreStreamUtil::ConsumeToIndex(istream& inIn, U32 inWhich, U32 inValue)
 {
-    int target=inValue-GetIndex(inWhich);
-    if (target>0)
+    S32 target=inValue - GetIndex(inWhich);
+    if (target > 0)
     {
         Ignore(inIn, target);
     }

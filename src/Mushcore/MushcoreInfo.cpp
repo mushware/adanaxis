@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.cpp,v 1.2 2003/01/11 17:44:27 southa Exp $
+ * $Id: MushcoreInfo.cpp,v 1.3 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreInfo.cpp,v $
+ * Revision 1.3  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 17:44:27  southa
  * Mushcore fixes
  *
@@ -31,7 +34,7 @@
 #include "MushcoreInfo.h"
 
 #ifndef PACKAGE
-#define PACKAGE "mushcore"
+#define PACKAGE "unknown"
 #endif
 
 #ifndef VERSION
@@ -43,14 +46,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreInfo *MushcoreInfo::m_instance = NULL;
-
-void
-MushcoreInfo::Mutate(MushcoreInfo *inInfo)
-{
-    delete(m_instance);
-    m_instance = inInfo;
-}
+MUSHCORE_SINGLETON_INSTANCE(MushcoreInfo);
 
 string
 MushcoreInfo::ApplicationNameGet(void)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSwitches.h,v 1.3 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.4 2003/01/18 13:33:59 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.4  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -51,22 +54,18 @@
  *
  */
 
-#define CORETESTING(a) a
-#define IFCORETESTING(a) a
+#include "MushcoreStandard.h"
 
-#define MONKEYTESTING 0
-#define FLEXTESTING 0
-
-#if MONKEYTESTING
-#define IFMONKEYTESTING(a) a
+#ifdef MUSHCORE_MONKEYTESTING
+#define MUSHCORE_IFMONKEYTESTING(a) a
 #else
-#define IFMONKEYTESTING(a)
+#define MUSHCORE_IFMONKEYTESTING(a)
 #endif
 
-#if FLEXTESTING
-#define IFFLEXTESTING(a) a
+#ifdef MUSHCORE_FLEXTESTING
+#define MUSHCORE_IFFLEXTESTING(a) a
 #else
-#define IFFLEXTESTING(a)
+#define MUSHCORE_IFFLEXTESTING(a)
 #endif
 
 #endif

@@ -9,14 +9,12 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlMushcoreSingleton.cpp,v 1.1 2003/01/20 10:45:30 southa Exp $
- * $Log: MustlMushcoreSingleton.cpp,v $
- * Revision 1.1  2003/01/20 10:45:30  southa
- * Singleton tidying
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MustlMushcoreSingleton.h"
+#include "MushcoreSwitches.h"
 
 using namespace Mushware;
 using namespace std;
+

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefU32.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfigDefU32.cpp,v 1.4 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlConfigDefU32.cpp,v $
+ * Revision 1.4  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -70,11 +73,11 @@ MustlConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]+)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches regExpMatches;
+    if (re.Search(regExpMatches, inData))
     {
-        MUSHCOREASSERT(matches.size() == 1);
-        istringstream valueStream(matches[0]);
+        MUSHCOREASSERT(regExpMatches.size() == 1);
+        istringstream valueStream(MustlUtils::RemoveMeta(regExpMatches[0]));
         U32 value;
         if (valueStream >> value)
         {
@@ -112,7 +115,7 @@ MustlConfigDefU32::MustlConfigUnsigned(MushcoreCommand& ioCommand, MushcoreEnv& 
 void
 MustlConfigDefU32::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("mustlconfigunsigned", MustlConfigUnsigned);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlconfigunsigned", MustlConfigUnsigned);
 }
 
 void

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.17 2003/01/12 17:33:02 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.18 2003/01/20 10:45:32 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.18  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.17  2003/01/12 17:33:02  southa
  * Mushcore work
  *
@@ -103,5 +106,5 @@ TestCommandHandler::Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestCommandHandler::Install(void)
 {
-    MushcoreInterpreter::Sgl().AddHandler("test", Execute);
+    MushcoreInterpreter::Sgl().HandlerAdd("test", Execute);
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.h,v 1.2 2003/01/11 13:03:17 southa Exp $
+ * $Id: MushcoreStreamUtil.h,v 1.3 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreStreamUtil.h,v $
+ * Revision 1.3  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.2  2003/01/11 13:03:17  southa
  * Use Mushcore header
  *
@@ -59,7 +62,7 @@
 class MushcoreStreamUtil
 {
 public:
-    MushcoreStreamUtil():m_ctr(0) {}
+    MushcoreStreamUtil() : m_ctr(0) {}
     Mushware::U32 BigEndianU32Get(std::istream& inIn);
     Mushware::U32 LittleEndianU32Get(std::istream& inIn);
     Mushware::U8 U8Get(std::istream& inIn);
@@ -71,6 +74,6 @@ public:
     
 private:
     std::vector<int> m_zero;
-    int m_ctr;
+    Mushware::S32 m_ctr;
 };
 #endif

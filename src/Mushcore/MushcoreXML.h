@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.h,v 1.2 2003/01/11 13:03:18 southa Exp $
+ * $Id: MushcoreXML.h,v 1.3 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.3  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 13:03:18  southa
  * Use Mushcore header
  *
@@ -98,7 +101,7 @@ class MushcoreXMLHandler
 public:
     virtual void XMLStartHandler(MushcoreXML& inXML) {}
     virtual void XMLEndHandler(MushcoreXML& inXML) = 0;
-    virtual void XMLDataHandler(MushcoreXML& inXML) {}
+    virtual void XMLDataHandler(MushcoreXML& inXML);
 };
 
 class MushcoreXML

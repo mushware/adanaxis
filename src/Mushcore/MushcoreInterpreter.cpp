@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.6 2003/01/17 00:41:02 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.7 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.7  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.6  2003/01/17 00:41:02  southa
  * Configuration updates from POST data
  *
@@ -122,7 +125,7 @@ MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
 }
 
 void
-MushcoreInterpreter::AddHandler(const string& inName, MushcoreCommandHandler inHandler)
+MushcoreInterpreter::HandlerAdd(const string& inName, MushcoreCommandHandler inHandler)
 {
     m_handlers[inName]=inHandler;
 }
