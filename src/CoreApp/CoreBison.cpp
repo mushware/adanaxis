@@ -20,8 +20,11 @@
 
 
 /*
- * $Id: CoreBison.y,v 1.7 2002/05/28 13:07:03 southa Exp $
- * $Log$
+ * $Id: CoreBison.y,v 1.8 2002/05/30 14:41:13 southa Exp $
+ * $Log: CoreBison.y,v $
+ * Revision 1.8  2002/05/30 14:41:13  southa
+ * GameData and loadtilemap command
+ *
  */
 #include "CoreBison.h"
 #include "CoreCommand.h"
@@ -106,8 +109,8 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    31,    32,    33,    34,    36,    40,    41,    42,    43,    45,
-    49,    50,    51,    53,    54,    56,    57
+    34,    35,    36,    37,    39,    43,    44,    45,    46,    48,
+    52,    53,    54,    56,    57,    59,    60
 };
 #endif
 
@@ -715,16 +718,16 @@ case 5:
 ;
     break;}
 case 6:
-{yyval=CoreEnv::Instance().VariableGet(yyvsp[0].String().substr(1)).String();;
+{yyval=CoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet();;
     break;}
 case 7:
-{yyval = yyvsp[0].String();;
+{yyval = yyvsp[0].StringGet();;
     break;}
 case 8:
-{yyval = yyvsp[0].Val();;
+{yyval = yyvsp[0].ValGet();;
     break;}
 case 9:
-{yyval = yyvsp[-2].String()+yyvsp[0].String(); /* Fix me */ ;
+{yyval = yyvsp[-2].StringGet()+yyvsp[0].StringGet(); /* Enhance me */ ;
     break;}
 case 10:
 {

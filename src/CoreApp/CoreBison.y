@@ -1,7 +1,10 @@
 %{
 /*
- * $Id: CoreBison.y,v 1.7 2002/05/28 13:07:03 southa Exp $
- * $Log$
+ * $Id: CoreBison.y,v 1.8 2002/05/30 14:41:13 southa Exp $
+ * $Log: CoreBison.y,v $
+ * Revision 1.8  2002/05/30 14:41:13  southa
+ * GameData and loadtilemap command
+ *
  */
 #include "CoreBison.h"
 #include "CoreCommand.h"
@@ -37,10 +40,10 @@ command: IDENTIFIER {
     INBISON->ClearParams();
 }
 ;
-scalar: VARIABLE {$$=CoreEnv::Instance().VariableGet($1.String().substr(1)).String();}
-| STRING {$$ = $1.String();}
-| NUMBER {$$ = $1.Val();}
-| scalar '+' scalar {$$ = $1.String()+$3.String(); /* Fix me */ }
+scalar: VARIABLE {$$=CoreEnv::Instance().VariableGet($1.StringGet().substr(1)).StringGet();}
+| STRING {$$ = $1.StringGet();}
+| NUMBER {$$ = $1.ValGet();}
+| scalar '+' scalar {$$ = $1.StringGet()+$3.StringGet(); /* Enhance me */ }
 ;
 parameter: scalar {
     INBISON->PushParam($1);
