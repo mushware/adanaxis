@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.h,v 1.1 2002/11/25 10:43:28 southa Exp $
+ * $Id: GameRouter.h,v 1.2 2002/11/25 12:06:18 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.2  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.1  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -16,6 +19,9 @@ public:
 
     void MessageHandle(MediaNetData& ioData, U32 inType);
 
+protected:
+    void CreateObjectHandle(MediaNetData& ioData);
+    
 private:
     static auto_ptr<GameRouter> m_instance;
 };
@@ -27,4 +33,3 @@ GameRouter::Instance(void)
     m_instance.reset(new GameRouter);
     return *m_instance;
 }
-

@@ -1,8 +1,11 @@
 #ifndef MEDIANETDATA_H
 #define MEDIANETDATA_H
 /*
- * $Id: MediaNetData.h,v 1.6 2002/11/22 15:00:32 southa Exp $
+ * $Id: MediaNetData.h,v 1.7 2002/11/25 10:43:28 southa Exp $
  * $Log: MediaNetData.h,v $
+ * Revision 1.7  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.6  2002/11/22 15:00:32  southa
  * Network connection handling
  *
@@ -192,8 +195,9 @@ MediaNetData::MessagePosSet(U32 inPos)
 inline U32
 MediaNetData::MessageSizeGet(void) const
 {
-    COREASSERT(m_messagePos <= m_readPos);
-    return m_readPos - m_writePos;
+    COREASSERT(m_messagePos <= m_writePos);
+    return m_writePos - m_messagePos;
+
 }
 
 inline U8 *
