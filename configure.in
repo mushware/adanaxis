@@ -37,6 +37,7 @@ AC_CHECK_LIB(expat, main)
 AC_CHECK_LIB(ungif, main)
 
 dnl Checks for header files.
+AC_CHECK_HEADERS(sstream)
 AC_CHECK_HEADERS(unistd.h)
 
 AC_CHECK_HEADERS(OpenGL/gl.h)

@@ -1,6 +1,9 @@
 /*
- * $Id: TestCommandHandler.cpp,v 1.2 2002/02/23 11:43:36 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.3 2002/03/07 22:24:34 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.3  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.2  2002/02/23 11:43:36  southa
  * Added AutoMonkey
  *
@@ -10,8 +13,7 @@
  */
  
 #include "TestCommandHandler.hp"
-#include "CoreApp.hp"
-#include "CoreInstaller.hp"
+#include "mushCore.hp"
 
 #include "Test.hp"
 

@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.3 2002/02/23 17:54:45 southa Exp $
+ * $Id: Test.cpp,v 1.4 2002/02/26 17:01:39 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.4  2002/02/26 17:01:39  southa
+ * Completed Sprite loader
+ *
  * Revision 1.3  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
@@ -13,14 +16,12 @@
  */
 
 #include "Test.hp"
-#include "Dataset.hp"
-#include "RegExp.hp"
-#include "AutoMonkey.hp"
+#include "mushCore.hp"
 
 void
 Test::Test1(void)
 {
-    RegExp re;
+    CoreRegExp re;
     vector<string> matches;
 
     if (re.Search("dog", "cat")) throw TestFail("False positive");
@@ -57,7 +58,7 @@ Test::Test1(void)
         re.Search("test", "{(");
         throw TestFail("Failed to raise exception");
     }
-    catch (RegExpFail r)
+    catch (CoreRegExpFail r)
     {
     }
 }

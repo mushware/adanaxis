@@ -42,6 +42,9 @@
 /* Define if you have the <OpenGL/gl.h> header file. */
 #undef HAVE_OPENGL_GL_H
 
+/* Define if you have the <sstream> header file. */
+#undef HAVE_SSTREAM
+
 /* Define if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
