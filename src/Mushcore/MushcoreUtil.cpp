@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.9 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.10 2003/09/24 19:03:22 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.10  2003/09/24 19:03:22  southa
+ * XML map IO
+ *
  * Revision 1.9  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -91,19 +94,6 @@ string
 MushcoreUtil::TranslateFilename(const string& inStr)
 {
     return inStr;
-}
-
-U32
-MushcoreUtil::TagGet(string& outTag, const string& inStr, U32 inPos)
-{
-    U32 startPos = inStr.find('<', inPos);
-
-    if (startPos == string::npos) return 0;
-    U32 endPos = inStr.find('>', startPos);
-    if (endPos == string::npos) return 0; // No tag end
-
-    outTag = string(inStr, startPos+1, endPos-startPos-1);
-    return endPos + 1;
 }
 
 string

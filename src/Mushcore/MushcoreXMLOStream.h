@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.8 2003/09/25 20:02:25 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.9 2003/09/27 17:50:49 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.9  2003/09/27 17:50:49  southa
+ * XML null pointer handling
+ *
  * Revision 1.8  2003/09/25 20:02:25  southa
  * XML pointer work
  *
@@ -44,6 +47,8 @@
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
 #include "MushcoreUtil.h"
+
+class MushcoreXMLConsumer;
 
 class MushcoreXMLOStream : public MushcoreXMLStream
 {
@@ -76,6 +81,14 @@ inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const T& inObj)
 {
     ioOut.OStreamGet() << inObj;
+    return ioOut;
+}
+
+template<>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreXMLConsumer& inObj)
+{
+    ioOut << inObj;
     return ioOut;
 }
 

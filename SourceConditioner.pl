@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.10 2003/09/26 19:18:06 southa Exp $
+# $Id: SourceConditioner.pl,v 1.11 2003/09/27 17:50:46 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.11  2003/09/27 17:50:46  southa
+# XML null pointer handling
+#
 # Revision 1.10  2003/09/26 19:18:06  southa
 # XML null pointer handling
 #
@@ -333,18 +336,19 @@ sub OstreamWriteFunctionGenerate($$)
             my $attr = $$attributesRef[$i+1];
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
-            
+            my $comma = "";
+            $comma = " << \", \"" unless ($i+3 == @$attributesRef);
+           
             my $line = "    ioOut << \"$trimmedAttr=\" << ".TypeSpecial($type, $attr);
             
-            $line .= " << \", \"" unless ($i+3 == @$attributesRef);
-            $line .= ";";
+            $line .= "$comma;";
             
             if ($indirection > 0)
             {
                 push @$outputRef,
 "    if (".VarBaseNameGet($attr)." == NULL)",
 "    {",
-"        ioOut << \"$trimmedAttr=NULL\";",
+"        ioOut << \"$trimmedAttr=NULL\" $comma;",
 "    }",
 "    else",
 "    {",
@@ -405,24 +409,19 @@ sub BasicOperatorsFunctionGenerate($$)
     push @$outputRef,
 "bool",
 "${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
-"{";
+"{",
+"    return 1";
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
         for (my $i=0; $i < @$attributesRef; $i += 3)
         {
+            my $comment = $$attributesRef[$i+2];
+            next if ($comment =~ /nobasic/);
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
+            my $line = "        && ";
 
-            my $line;
-            if ($i == 0)
-            {
-                $line = "    return ";
-            }
-            else
-            {
-                $line = "           ";
-            }
             if ($indirection > 0)
             {
                 my $baseName = VarBaseNameGet($attr);
@@ -432,18 +431,11 @@ sub BasicOperatorsFunctionGenerate($$)
             {
                 $line .= "($attr == inObj.$attr)";
             }
-            if ($i + 3 < @$attributesRef)
-            {
-                $line .= " &&";
-            }
-            else
-            {
-                $line .= ";";
-            }
             push @$outputRef, $line;
         }
     }
     push @$outputRef,
+"    ;",
 "}";
 }
 
@@ -514,6 +506,10 @@ sub XMLIStreamWriteFunctionGenerate($$)
         }
     }
     push @$outputRef,
+"    else",
+"    {",
+"        ioIn.Throw(\"Unrecognised tag '\"+ioIn.TagNameGet()+\"'\");",
+"    }",
 "}";
 }
 
@@ -555,14 +551,7 @@ sub XMLOStreamWriteFunctionGenerate($$)
     push @$outputRef, "void";
     push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const";
     push @$outputRef,
-"{",
-"    ioOut << \"<$className\";",
-"    if (inName != \"\")",
-"    {",
-'        ioOut << " name=" << inName;',
-"    }",
-"    ioOut << \">\\n\";"
-;
+"{";
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -591,7 +580,6 @@ sub XMLOStreamWriteFunctionGenerate($$)
             }
         }
     }
-    push @$outputRef, "    ioOut << \"</$className>\\n\";";
     push @$outputRef, "}";  
 }
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.10 2003/09/26 19:18:09 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.11 2003/09/27 17:50:49 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.11  2003/09/27 17:50:49  southa
+ * XML null pointer handling
+ *
  * Revision 1.10  2003/09/26 19:18:09  southa
  * XML null pointer handling
  *
@@ -56,22 +59,24 @@ using namespace Mushware;
 bool
 TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
 {
-    return (m_u8 == inObj.m_u8) &&
-           (m_u32 == inObj.m_u32) &&
-           (m_string == inObj.m_string) &&
-           (m_u8Vector == inObj.m_u8Vector) &&
-           (m_u32Vector == inObj.m_u32Vector) &&
-           (m_stringVector == inObj.m_stringVector) &&
-           (m_u8EmptyVector == inObj.m_u8EmptyVector) &&
-           (m_uEmpty32Vector == inObj.m_uEmpty32Vector) &&
-           (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
-           (m_vectorVector == inObj.m_vectorVector) &&
-           (m_mapVector == inObj.m_mapVector) &&
-           (m_vectorMap == inObj.m_vectorMap) &&
-           (m_pU32 == inObj.m_pU32 || (m_pU32 != NULL && inObj.m_pU32 != NULL && *m_pU32 == *inObj.m_pU32)) &&
-           (m_pVectorU32 == inObj.m_pVectorU32 || (m_pVectorU32 != NULL && inObj.m_pVectorU32 != NULL && *m_pVectorU32 == *inObj.m_pVectorU32)) &&
-           (m_vectorpU32 == inObj.m_vectorpU32) &&
-           (m_pNull == inObj.m_pNull || (m_pNull != NULL && inObj.m_pNull != NULL && *m_pNull == *inObj.m_pNull));
+    return 1
+        && (m_u8 == inObj.m_u8)
+        && (m_u32 == inObj.m_u32)
+        && (m_string == inObj.m_string)
+        && (m_u8Vector == inObj.m_u8Vector)
+        && (m_u32Vector == inObj.m_u32Vector)
+        && (m_stringVector == inObj.m_stringVector)
+        && (m_u8EmptyVector == inObj.m_u8EmptyVector)
+        && (m_uEmpty32Vector == inObj.m_uEmpty32Vector)
+        && (m_stringEmptyVector == inObj.m_stringEmptyVector)
+        && (m_vectorVector == inObj.m_vectorVector)
+        && (m_mapVector == inObj.m_mapVector)
+        && (m_vectorMap == inObj.m_vectorMap)
+        && (m_pU32 == inObj.m_pU32 || (m_pU32 != NULL && inObj.m_pU32 != NULL && *m_pU32 == *inObj.m_pU32))
+        && (m_pVectorU32 == inObj.m_pVectorU32 || (m_pVectorU32 != NULL && inObj.m_pVectorU32 != NULL && *m_pVectorU32 == *inObj.m_pVectorU32))
+        && (m_pNull == inObj.m_pNull || (m_pNull != NULL && inObj.m_pNull != NULL && *m_pNull == *inObj.m_pNull))
+        && (m_testObject == inObj.m_testObject || (m_testObject != NULL && inObj.m_testObject != NULL && *m_testObject == *inObj.m_testObject))
+    ;
 }
 void
 TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
@@ -91,7 +96,7 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "vectorMap=" << m_vectorMap << ", ";
     if (m_pU32 == NULL)
     {
-        ioOut << "pU32=NULL";
+        ioOut << "pU32=NULL"  << ", ";
     }
     else
     {
@@ -99,7 +104,7 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     }
     if (m_pVectorU32 == NULL)
     {
-        ioOut << "pVectorU32=NULL";
+        ioOut << "pVectorU32=NULL"  << ", ";
     }
     else
     {
@@ -108,11 +113,19 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "vectorpU32=" << m_vectorpU32 << ", ";
     if (m_pNull == NULL)
     {
-        ioOut << "pNull=NULL";
+        ioOut << "pNull=NULL"  << ", ";
     }
     else
     {
-        ioOut << "pNull=" << *m_pNull;
+        ioOut << "pNull=" << *m_pNull << ", ";
+    }
+    if (m_testObject == NULL)
+    {
+        ioOut << "testObject=NULL" ;
+    }
+    else
+    {
+        ioOut << "testObject=" << *m_testObject;
     }
     ioOut << "]";
 }
@@ -187,16 +200,18 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_pNull;
     }
+    else if (ioIn.TagNameGet() == "testObject")
+    {
+        ioIn >> m_testObject;
+    }
+    else
+    {
+        ioIn.Throw("Unrecognised tag '"+ioIn.TagNameGet()+"'");
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
 {
-    ioOut << "<TestMushcoreObject";
-    if (inName != "")
-    {
-        ioOut << " name=" << inName;
-    }
-    ioOut << ">\n";
     ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
     ioOut << "<u32>" << m_u32 << "</u32>\n";
     ioOut << "<string>" << m_string << "</string>\n";
@@ -234,6 +249,13 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     {
         ioOut << "<pNull>" << *m_pNull << "</pNull>\n";
     }
-    ioOut << "</TestMushcoreObject>\n";
+    if (m_testObject == NULL)
+    {
+        ioOut << "<testObject>NULL</testObject>\n";
+    }
+    else
+    {
+        ioOut << "<testObject>" << *m_testObject << "</testObject>\n";
+    }
 }
-//%outOfLineFunctions } 6oVWrvgaLzzYCsdBJtwa6w
+//%outOfLineFunctions } 99FEAXcfqZR/P1/3FQejQw

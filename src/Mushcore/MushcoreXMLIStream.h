@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.8 2003/09/25 20:02:25 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.9 2003/09/27 17:50:49 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.9  2003/09/27 17:50:49  southa
+ * XML null pointer handling
+ *
  * Revision 1.8  2003/09/25 20:02:25  southa
  * XML pointer work
  *
@@ -56,10 +59,7 @@ public:
     explicit MushcoreXMLIStream(std::istream& inPStream);
     virtual ~MushcoreXMLIStream();
 
-    std::string DataGet(void) const;
-    Mushware::U32 DataSizeGet(void) const;
-    void DataConsume(Mushware::U32 inSize);
-    string DataUntilTake(const std::string& inStr);
+    std::string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
 
     void ObjectRead(MushcoreXMLConsumer& inObj);
@@ -69,14 +69,17 @@ public:
     void ObjectRead(std::string& outStr);
 
     template<class T> void ObjectRead(T *& inpObj);
-    template<class T> void ObjectRead(vector<T>& inVector);
-    template<class T> void ObjectRead(vector<T *>& inVector);
-    template<class T, class U> void ObjectRead(map<T, U>& inMap);
+    template<class T> void ObjectRead(std::vector<T>& inVector);
+    template<class T> void ObjectRead(std::vector<T *>& inVector);
+    template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
 
-protected:
-    Mushware::U8 ByteGet(void) const;
-    Mushware::U8 ByteTake(void);
     void Throw(const std::string& inMessage) const;
+    
+protected:
+    Mushware::U8 ByteGet(void);
+    Mushware::U8 ByteTake(void);
+    Mushware::U32 TagGet(std::string& outTag, const std::string& inStr, Mushware::U32 inPos = 0);
+
     void InputFetch(void);
 
 private:    
@@ -84,16 +87,15 @@ private:
     std::string m_tagName;
     std::string m_contentStr;
     Mushware::U32 m_contentStart;
-    Mushware::U32 m_contentEnd;
     Mushware::U32 m_contentLineNum;
 };
 
 inline Mushware::U8
-MushcoreXMLIStream::ByteGet(void) const
+MushcoreXMLIStream::ByteGet(void)
 {
-    if (m_contentStart >= m_contentEnd)
+    if (m_contentStart >= m_contentStr.size())
     {
-        Throw("Unexpected end of input");
+        InputFetch();
     }
     return m_contentStr[m_contentStart];
 }
@@ -101,9 +103,9 @@ MushcoreXMLIStream::ByteGet(void) const
 inline Mushware::U8
 MushcoreXMLIStream::ByteTake(void)
 {
-    if (m_contentStart >= m_contentEnd)
+    if (m_contentStart >= m_contentStr.size())
     {
-        Throw("Unexpected end of input");
+        InputFetch();
     }
     // cout << "took '" << m_contentStr[m_contentStart] << "'" << endl;
     return m_contentStr[m_contentStart++];

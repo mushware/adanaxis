@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.10 2003/09/26 19:18:09 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.11 2003/09/27 17:50:49 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.11  2003/09/27 17:50:49  southa
+ * XML null pointer handling
+ *
  * Revision 1.10  2003/09/26 19:18:09  southa
  * XML null pointer handling
  *
@@ -60,7 +63,8 @@ public:
         m_u8(1),
         m_u32(2),
         m_string("&<>&lt;ab&am,p;cde\"f</string>&,&"),
-        m_pNull(NULL)
+        m_pNull(NULL),
+        m_testObject(NULL)
     {
             m_u8Vector.push_back(4);
             m_u8Vector.push_back(16);
@@ -109,7 +113,8 @@ public:
             m_vectorpU32.push_back(NULL);
             m_vectorpU32.push_back(new Mushware::U32(19));
 
-            // m_testObject = new TestMushcoreObject(0);
+            m_testObject = new TestMushcoreObject(0);
+            // m_testObjectVector.push_back(new TestMushcoreObject(0));
     }
 
     explicit TestMushcoreObject(Mushware::U32 inNum) :
@@ -118,7 +123,8 @@ public:
     m_string("z"),
     m_pU32(NULL),
     m_pVectorU32(NULL),
-    m_pNull(NULL)
+    m_pNull(NULL),
+    m_testObject(NULL)
     {
     }
 
@@ -141,12 +147,13 @@ private:
 
     Mushware::U32 *m_pU32;
     std::vector<Mushware::U32> *m_pVectorU32;
-    std::vector<Mushware::U32 *> m_vectorpU32;
+    std::vector<Mushware::U32 *> m_vectorpU32; // nobasic
 
     Mushware::U32 *m_pNull;
 
-    
-    // TestMushcoreObject *m_testObject;
+
+    TestMushcoreObject *m_testObject;
+    //vector<TestMushcoreObject *> m_testObjectVector;
     
 //%classPrototypes {
 public:
@@ -178,6 +185,12 @@ inline std::ostream&
 operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
 {
     inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj)
+{
+    inObj.AutoXMLPrint(ioOut, "");
     return ioOut;
 }
 //%inlineHeader } ikvElCmBt/z6dJAPO9xNgw

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.6 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.7 2003/09/24 19:03:23 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.7  2003/09/24 19:03:23  southa
+ * XML map IO
+ *
  * Revision 1.6  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -47,7 +50,6 @@ using namespace Mushware;
 MushcoreXMLIStream::MushcoreXMLIStream(std::istream& inStream) :
     m_inStream(inStream),
     m_contentStart(0),
-    m_contentEnd(0),
     m_contentLineNum(0)
 {
 }
@@ -65,40 +67,46 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
         string tagStr;
         U32 dataStartPos;
 
-        while (dataStartPos = MushcoreUtil::TagGet(tagStr, m_contentStr, m_contentStart),
-                dataStartPos == 0)
+        while (dataStartPos = TagGet(tagStr, m_contentStr, m_contentStart),
+               dataStartPos == 0)
         {
+            // Can be optimised
             InputFetch();
         }
-        m_tagName = tagStr.substr(0, tagStr.find(' '));
-    
-        string closingStr("</"+m_tagName+">");
-        U32 dataEndPos;
-    
-        while (dataEndPos = m_contentStr.find(closingStr, dataStartPos),
-               dataEndPos == string::npos)
-        {
-            InputFetch();
-        }
-            
-        U32 sequenceEndPos = dataEndPos + closingStr.size();
 
-        U32 contentEndStore = m_contentEnd;
+        if (tagStr.substr(0, 1) == "/")
+        {
+            // This is the end of the outer object
+            m_contentStart = dataStartPos;
+            break;
+        }
+        
+        m_tagName = tagStr.substr(0, tagStr.find(' '));
+        
         m_contentStart = dataStartPos;
-        m_contentEnd = dataEndPos;
 
         inObj.AutoXMLDataProcess(*this);
- 
-        m_contentStart = sequenceEndPos;
-        m_contentEnd = contentEndStore;
-        
-    } while (m_contentStart < m_contentEnd);
+
+        string closingTagStr;
+        // Consume and check the trailing tag
+        while (dataStartPos = TagGet(closingTagStr, m_contentStr, m_contentStart),
+               dataStartPos == 0)
+        {
+            // Can be optimised
+            InputFetch();
+        }
+        if (closingTagStr != "/"+tagStr)
+        {
+            Throw("Unmatched tag: '"+tagStr+"' != '"+closingTagStr+"'");
+        }
+        m_contentStart = dataStartPos;     
+    } while (1);
 }
 
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)
 {
-    string dataStr = DataUntilTake(",)=");
+    string dataStr = DataUntilTake(",)=<");
     istringstream dataStream(dataStr);
     if (!(dataStream >> outU32))
     {
@@ -149,39 +157,36 @@ MushcoreXMLIStream::InputFetch(void)
 }
 
 string
-MushcoreXMLIStream::DataGet(void) const
-{
-    MUSHCOREASSERT(m_contentEnd >= m_contentStart);
-    return m_contentStr.substr(m_contentStart, m_contentEnd - m_contentStart);
-}
-
-string
 MushcoreXMLIStream::DataUntilTake(const string& inStr)
 {
-    MUSHCOREASSERT(m_contentEnd >= m_contentStart);
+    U32 endPos;
 
-    string dataStr = DataGet();
-    U32 endPos = dataStr.find_first_of(inStr);
-
-    if (endPos == string::npos)
+    while (endPos = m_contentStr.find_first_of(inStr, m_contentStart), endPos == string::npos)
     {
-        m_contentStart = m_contentEnd;
-    }
-    else
-    {
-        m_contentStart += endPos;
+        InputFetch();
     }
 
-    MUSHCOREASSERT(m_contentEnd >= m_contentStart);
-    // cout << "Took until '" << dataStr.substr(0, endPos) << "'" << endl;
-    return dataStr.substr(0, endPos);
+    string dataStr = m_contentStr.substr(m_contentStart, endPos - m_contentStart);
+    
+    m_contentStart = endPos;
+
+    // cout << "Took '" << dataStr << "'" << endl;
+    return dataStr;
 }
 
 U32
-MushcoreXMLIStream::DataSizeGet(void) const
+MushcoreXMLIStream::TagGet(string& outTag, const string& inStr, U32 inPos)
 {
-    MUSHCOREASSERT(m_contentEnd >= m_contentStart);
-    return m_contentEnd - m_contentStart;
+    U32 startPos = inStr.find('<', inPos);
+    if (startPos == string::npos) return 0;
+    U32 endPos = inStr.find('>', startPos);
+    if (endPos == string::npos)
+    {
+        Throw("Unclosed tag");
+    }
+    // change to use substr
+    outTag = string(inStr, startPos+1, endPos-startPos-1);
+    return endPos + 1;
 }
 
 void
