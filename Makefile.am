@@ -52,6 +52,11 @@ $(BZIPFILE):$(GZIPFILE)
 	rm -f $(BZIPFILE)
 	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
 
+rpm:
+	@echo
+	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
+	@exit 1
+
 %-rpm:ic2.spec.%
 	cp -f $< ic2.spec
 	$(MAKE) $(BZIPFILE)
@@ -64,4 +69,6 @@ install-exec-hook:
 	echo $(DESTDIR)$(bindir)/ic2binary >> $(RUNFILE)
 	chmod 0755 $(RUNFILE)
 
+uninstall-hook:
+	rm -f $(RUNFILE)
 

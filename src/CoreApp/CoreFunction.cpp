@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreFunction.cpp,v 1.7 2002/08/07 13:36:45 southa Exp $
+ * $Id: CoreFunction.cpp,v 1.8 2002/08/27 08:56:17 southa Exp $
  * $Log: CoreFunction.cpp,v $
+ * Revision 1.8  2002/08/27 08:56:17  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/07 13:36:45  southa
  * Conditioned source
  *
@@ -50,6 +53,10 @@ CoreFunction::Execute(void) const
             CoreApp::Instance().Process(m_commands[i]);
         }
         catch (CommandFail& e)
+        {
+            cerr << "*** Command failed: " << e.what() << endl;
+        }
+        catch (LoaderFail& e)
         {
             cerr << "*** Command failed: " << e.what() << endl;
         }

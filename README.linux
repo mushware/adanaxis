@@ -3,6 +3,50 @@ README for Linux
 Building from source on Mandrake Linux 8.2
 ==========================================
 
+These instructions are based on building the ic2 source on a Mandrake Linux
+installation.  Mandrake Linux 8.2 was installed using the default settings.
+
+The glxinfo command should print information, and not tell you that GLX is
+disabled.  If it does, you may have to add a line loading the glx module
+to the file /etc/XF86Config.
+
+Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
+whichever version you choose to build) into your home directory.
+
+tar xvzf ic2-src-0_0_4.tar.gz
+cd ic2-0.0.4
+tar xvzf ../ic2-data-0_0_4.tar.gz
+./configure
+
+Configure is likely to fail first time round, but it will tell you what's
+missing..  The following steps were required for configure to complete.
+
+Open the software manager from Start Menu->Configuration->Packaging->Software
+Manager.  Search for and install the following packages, and allow the
+software manager to install the dependencies.
+
+gcc-c++
+XFree86-devel
+libMesaGLU1-devel
+libMesaglut3-devel
+libpcre0-devel
+libexpat1_95-devel
+libungif4-devel
+libtiff3-devel
+libSDL1.2-devel
+libalsa1-devel
+libesound0-devel
+libsmpeg0.4-devel
+libogg0-devel
+libvorbis0-devel
+libSDL_mixer1.2-devel
+
+Then
+
+./configure
+make
+make install
+
 Building from source on RedHat Linux 7.3
 ========================================
 
@@ -108,3 +152,28 @@ KPackage'.  Click 'Install' when KPackage starts.)
 ./configure
 make
 make install
+
+Generating RPMs
+===============
+
+Install the rpm-build package if necessary.
+
+mkdir -p ~/rpm/{BUILD,RPMS/i586,RPMS/noarch,SOURCES,SRPMS,SPECS,tmp}
+
+# Create these files:
+
+rm -f ~/.rpmrc
+echo buildarchtranslate: i386: i586 >> ~/.rpmrc
+echo buildarchtranslate: i486: i586 >> ~/.rpmrc
+echo buildarchtranslate: i586: i586 >> ~/.rpmrc
+echo buildarchtranslate: i686: i586 >> ~/.rpmrc
+
+
+rm -f ~/.rpmmacros
+echo %_topdir               $HOME/rpm >> ~/.rpmmacros
+echo %_tmppath              $HOME/rpm/tmp >> ~/.rpmmacros
+echo %_signature            gpg >> ~/.rpmmacros
+echo %_gpg_name             Infernal Contractor II >> ~/.rpmmacros
+echo %_gpg_path             ~/.gnupg >> ~/.rpmmacros
+echo %distribution          Infernal Contractor II >> ~/.rpmmacros
+echo %vendor                Mushware Limited >> ~/.rpmmacros
