@@ -47,6 +47,7 @@ case "$target" in
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         LIBS="$LIBS -framework Carbon"
         CPPFLAGS="$CPPFLAGS -fpascal-strings"
+        LDFLAGS="$LDFLAGS"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
@@ -63,10 +64,9 @@ case "$target" in
 esac
 
 dnl Check for libraries
-AC_CHECK_LIB(Mushcore, main,, AC_MSG_ERROR([Mushcore library not found.  Download from http://www.mushcore.com/]))
 
 dnl Checks for header files
-AC_CHECK_HEADERS(Mushcore/Mushcore.h,, AC_MSG_ERROR([Cannot find Mushcore.h header]))
+AC_CHECK_HEADERS(Mushcore/Mushcore.h,, AC_MSG_ERROR([Cannot find Mushcore.h library header.  Build requires Mushcore library - see http://www.mushware.com/]))
 
 dnl Checks for header files
 AC_CHECK_HEADERS(sstream,,[

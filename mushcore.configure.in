@@ -33,9 +33,11 @@ AC_PROG_LIBTOOL
 
 AC_LANG(C++)
 
+LDFLAGS="$LDFLAGS"
+        
 dnl Check for libraries
-AC_CHECK_LIB(PCRE, main,, AC_CHECK_LIB(pcre, main,, AC_MSG_ERROR([PCRE library not found - home is ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/])))
-AC_CHECK_LIB(expat, main,, AC_MSG_ERROR([expat library not found - home is http://expat.sourceforge.net/]))
+dnl AC_CHECK_LIB(PCRE, main,, AC_CHECK_LIB(pcre, main,, AC_MSG_ERROR([PCRE library not found - home is ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/])))
+dnl AC_CHECK_LIB(expat, main,, AC_MSG_ERROR([expat library not found - home is http://expat.sourceforge.net/]))
 
 dnl Checks for header files
 
@@ -48,8 +50,8 @@ AC_CHECK_HEADERS(valarray,,[
 AC_MSG_WARN([valarray not found.  Will fall back to vector])
 ])
 
-AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header]))])
-AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
+AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header.  Build requires PCRE library - home is ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/]))])
+AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header.  Build requires expat library - home is http://expat.sourceforge.net/]))])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
