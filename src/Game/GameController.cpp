@@ -1,6 +1,9 @@
 /*
- * $Id: GameController.cpp,v 1.1 2002/06/05 15:53:25 southa Exp $
+ * $Id: GameController.cpp,v 1.2 2002/06/05 16:29:51 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.2  2002/06/05 16:29:51  southa
+ * Mouse control
+ *
  * Revision 1.1  2002/06/05 15:53:25  southa
  * Player and keyboard control
  *
@@ -29,22 +32,11 @@ GameController::StateGet(GameControllerState& outState)
     outState.rightPressed=gameHandler.KeyStateGet(m_rightKey);
     outState.upPressed=gameHandler.KeyStateGet(m_upKey);
     outState.downPressed=gameHandler.KeyStateGet(m_downKey);
-    S32 mouseX, mouseY;
-    gameHandler.MouseStateGet(mouseX, mouseY);
-    if (m_lastMouseValid)
-    {
-        outState.mouseXDelta=mouseX-m_lastMouseX;
-        outState.mouseYDelta=mouseY-m_lastMouseY;
-    }
-    else
-    {
-        outState.mouseXDelta=0;
-        outState.mouseYDelta=0;
-    }
+    S32 mouseX, mouseY, mouseXDelta, mouseYDelta;
+    gameHandler.MousePositionGet(mouseX, mouseY);
+    gameHandler.MouseDeltaGet(mouseXDelta, mouseYDelta);
     outState.mouseX=mouseX;
     outState.mouseY=mouseY;
-    m_lastMouseX=mouseX;
-    m_lastMouseY=mouseY;
-    m_lastMouseValid=true;
-        
+    outState.mouseXDelta=mouseXDelta;
+    outState.mouseYDelta=mouseYDelta;
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.h,v 1.3 2002/05/31 15:18:15 southa Exp $
+ * $Id: GLAppHandler.h,v 1.4 2002/06/05 16:29:51 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.4  2002/06/05 16:29:51  southa
+ * Mouse control
+ *
  * Revision 1.3  2002/05/31 15:18:15  southa
  * Keyboard reading
  *
@@ -38,7 +41,8 @@ public:
     GLAppHandler(): m_visible(true), m_keyState(GLKeys::kNumberOfKeys) {}
     virtual ~GLAppHandler() {}
     bool KeyStateGet(const GLKeys& inKey) const;
-    void MouseStateGet(S32& outX, S32& outY) const;
+    void MousePositionGet(S32& outX, S32& outY) const;
+    void MouseDeltaGet(S32& outX, S32& outY) const;
     
 protected:
     virtual void Initialise(void);
@@ -65,4 +69,9 @@ private:
     vector<bool> m_keyState;
     static S32 m_mouseX;
     static S32 m_mouseY;
+    static S32 m_lastMouseX;
+    static S32 m_lastMouseY;
+    static S32 m_mouseXDelta;
+    static S32 m_mouseYDelta;
+    static bool m_lastMouseValid;
 };

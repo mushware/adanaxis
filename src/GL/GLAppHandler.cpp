@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.8 2002/05/31 15:18:15 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.9 2002/06/05 16:29:51 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.9  2002/06/05 16:29:51  southa
+ * Mouse control
+ *
  * Revision 1.8  2002/05/31 15:18:15  southa
  * Keyboard reading
  *
@@ -32,12 +35,26 @@
 #include "GLUtils.h"
 #include "GLAppSignal.h"
 
+#include "mushPlatform.h"
+
 S32 GLAppHandler::m_mouseX=0;
 S32 GLAppHandler::m_mouseY=0;
+S32 GLAppHandler::m_lastMouseX=0;
+S32 GLAppHandler::m_lastMouseY=0;
+S32 GLAppHandler::m_mouseXDelta=0;
+S32 GLAppHandler::m_mouseYDelta=0;
+bool GLAppHandler::m_lastMouseValid=false;
 
 void
 GLAppHandler::Initialise(void)
 {
+    m_mouseXDelta=0;
+    m_mouseYDelta=0;
+    m_lastMouseX=0;
+    m_lastMouseY=0;
+    m_mouseX=0;
+    m_mouseY=0;
+    m_lastMouseValid=false;
     GLUtils::StandardInit();
     glutCreateWindow("GLApp");
     RegisterHandlers();
@@ -75,10 +92,19 @@ GLAppHandler::KeyStateGet(const GLKeys& inKey) const
 }
 
 void
-GLAppHandler::MouseStateGet(S32& outX, S32& outY) const
+GLAppHandler::MousePositionGet(S32& outX, S32& outY) const
 {
     outX=m_mouseX;
     outY=m_mouseY;
+}
+
+void
+GLAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta) const
+{
+    outXDelta=m_mouseXDelta;
+    outYDelta=m_mouseYDelta; 
+    m_mouseXDelta=0;
+    m_mouseYDelta=0;
 }
 
 void
@@ -147,6 +173,27 @@ GLAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
 void
 GLAppHandler::PassiveMotionHandler(int inX, int inY)
 {
+    S32 deltaX, deltaY;
+    if (!m_lastMouseValid)
+    {
+        m_lastMouseX=inX;
+        m_lastMouseY=inY;
+    }
+    
+    PlatformInputUtils::MouseDeltaPrologue(inX, inY, m_lastMouseX, m_lastMouseY);
+    PlatformInputUtils::GetMouseDeltas(deltaX, deltaY, inX, inY, m_lastMouseX, m_lastMouseY);
+    PlatformInputUtils::MouseDeltaEpilogue(inX, inY, m_lastMouseX, m_lastMouseY);
+
+    if (m_lastMouseValid)
+    {
+        m_mouseXDelta+=deltaX;
+        m_mouseYDelta+=deltaY;
+    }
+    else
+    {
+        m_lastMouseValid=true;
+    }
+
     m_mouseX=inX;
     m_mouseY=inY;
 }
