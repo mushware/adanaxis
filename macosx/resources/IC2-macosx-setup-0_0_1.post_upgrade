@@ -1,0 +1,37 @@
+#!/bin/sh
+
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.co.uk.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2002.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+
+#
+# $Id: IC2-macosx-setup-0_0_1.post_upgrade,v 1.1 2002/06/30 18:30:05 southa Exp $
+# $Log: IC2-macosx-setup-0_0_1.post_upgrade,v $
+# Revision 1.1  2002/06/30 18:30:05  southa
+# Created
+#
+
+# This script installs the libraries the application needs in /usr/local/lib.
+# It tests to see if anything is there first so won't overwrite anything.
+
+if [ ! -e /usr/local/lib ]
+then
+install -d -m 755 /usr/local/lib
+fi
+resources="$1/Contents/Resources"
+cd $resources
+for filename in *.dylib
+do
+if [ ! -e /usr/local/lib/$filename ]
+then
+/bin/cp -R $filename /usr/local/lib/
+fi
+done
+# Leave the application directory +w so that user can delete it 
+chmod g+w "$2"

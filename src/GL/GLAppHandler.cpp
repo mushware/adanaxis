@@ -1,98 +1,67 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
+
+
+
 /*
- * $Id$
- * $Log$
+ * $Id: GLAppHandler.cpp,v 1.15 2002/08/07 13:36:46 southa Exp $
+ * $Log: GLAppHandler.cpp,v $
+ * Revision 1.15  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
+ * Revision 1.14  2002/07/06 18:04:17  southa
+ * More designer work
+ *
+ * Revision 1.13  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
+ * Revision 1.12  2002/06/20 15:50:29  southa
+ * Subclassed GLAppHandler
+ *
+ * Revision 1.11  2002/06/06 15:00:44  southa
+ * Mouse fixes
+ *
+ * Revision 1.10  2002/06/06 13:36:13  southa
+ * Mouse handling
+ *
+ * Revision 1.9  2002/06/05 16:29:51  southa
+ * Mouse control
+ *
+ * Revision 1.8  2002/05/31 15:18:15  southa
+ * Keyboard reading
+ *
+ * Revision 1.7  2002/05/24 18:10:43  southa
+ * CoreXML and game map
+ *
+ * Revision 1.6  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
+ * Revision 1.5  2002/05/10 16:41:42  southa
+ * Changed .hp files to .h
+ *
+ * Revision 1.4  2002/05/08 16:31:20  southa
+ * Created API directory
+ *
+ * Revision 1.3  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
+ * Revision 1.2  2002/02/24 22:49:33  southa
+ * Got working under cygwin
+ *
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
-#include "GLAppHandler.hp"
-#include "GLStandard.hp"
-#include "CoreAppHandler.hp"
-
-void
-GLAppHandler::Idle(bool& outQuit, int& outUSleepFor)
-{
-    Display();
-    CoreAppHandler::Idle(outQuit, outUSleepFor);
-}
-
-void
-GLAppHandler::Initialise(void)
-{
-    // glutInitWindowSize(winWidth = 512, winHeight = 512);
-    char buf1[]="glutInit";
-    char buf2[]="";
-    char buf3[]="";
-    char *argv[] = {buf1,buf2,buf3};
-    int argc=sizeof(argv)/sizeof(argv[0]);
-    glutInit(&argc, argv);
-    glutInitDisplayString("");
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA);
-    glutCreateWindow("GLApp");
-    glutDisplayFunc(DisplayHandler);
-    glutIdleFunc(IdleHandler);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
-void
-GLAppHandler::IdleHandler(void)
-{
-    bool doQuit;
-    int uSleepFor;
-    Instance().Idle(doQuit, uSleepFor);
-}
-
-void
-GLAppHandler::Display(void)
-{
-    string str("Hello from OpenGL");
-
-    glEnable(GL_BLEND);
-    glEnable(GL_LINE_SMOOTH);
-    static float lineWidth;
-    if ((lineWidth+=0.002)>=1) lineWidth=0;
-    glLineWidth(5*lineWidth);
-
-    glDrawBuffer(GL_BACK);
-    glClearColor(1.0, 1.0, 1.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glPushAttrib(GL_ENABLE_BIT);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glTranslatef(16, 16, 0);
-
-    glScalef(0.5*lineWidth, 0.5*lineWidth, 0.5*lineWidth);
-    glColor3f(lineWidth,lineWidth,lineWidth);
-    for (Size i=0; i < str.size(); i++)
-    {
-
-
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i]);
-        if (str[i] == ' ')
-        {
-            glTranslatef(-64, 0, 0);
-
-        }
-    }
-    glPopAttrib();
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glutSwapBuffers();
-}
-
-void
-GLAppHandler::MainLoop(void)
-{
-    glutMainLoop();
-}
+#include "GLAppHandler.h"
+#include "GLStandard.h"

@@ -1,0 +1,5 @@
+// $Id$
+// $Log$
+
+http://bigcharts.marketwatch.com/intchart/frames/main.asp?time=1&freq=9&compidx=aaaaa%3A0&comp=NO_SYMBOL_CHOSEN&ma=0&maval=9&uf=0&lf=1&lf2=0&lf3=0&type=2&style=320&size=4&sid=1643&o_symb=DJIA&startdate=&enddate=&show=true&symb=DJIA&draw.x=63&draw.y=11 -> grep '<img SRC="(http://chart.bigcharts.com/bc3/intchart/frames/chart.asp[^"]*)"' -> $target;
+$target -> data.gif;

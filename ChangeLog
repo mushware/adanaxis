@@ -1,0 +1,20 @@
+2002-08-26
+Release 0.0.4 adds racing game functionality, text and audio dialogues,
+WAV audio handling, and resolves some timing issues.
+
+Release 0.0.4 fixes the following bugs:
+592297 Angular movement poor at low frame rates
+
+2002-08-06
+Release 0.0.3 adds the following features:
+Collision checking with floor map, using bounding rectangle.
+Motion smoothing and adaptive frame rate, using partial or multiple motion frames per video frame.
+
+Release 0.0.3 fixes the following bugs:
+591954 Failure to call SDL_Quit, failing to reset screen mode/cursor on POSIX
+systems
+591956 Desktop icon missing
+
+2002-06-26
+ChangeLog Created
+

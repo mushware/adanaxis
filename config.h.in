@@ -1,0 +1,131 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define if you have the <GLUT/glut.h> header file. */
+#undef HAVE_GLUT_GLUT_H
+
+/* Define if you have the <GL/glut.h> header file. */
+#undef HAVE_GL_GLUT_H
+
+/* Define if you have the <GL/glu.h> header file. */
+#undef HAVE_GL_GLU_H
+
+/* Define if you have the <GL/gl.h> header file. */
+#undef HAVE_GL_GL_H
+
+/* Define if you have the `expat' library (-lexpat). */
+#undef HAVE_LIBEXPAT
+
+/* Define if you have the `GL' library (-lGL). */
+#undef HAVE_LIBGL
+
+/* Define if you have the `GLU' library (-lGLU). */
+#undef HAVE_LIBGLU
+
+/* Define if you have the `glu32' library (-lglu32). */
+#undef HAVE_LIBGLU32
+
+/* Define if you have the `glut' library (-lglut). */
+#undef HAVE_LIBGLUT
+
+/* Define if you have the `glut32' library (-lglut32). */
+#undef HAVE_LIBGLUT32
+
+/* Define if you have the `m' library (-lm). */
+#undef HAVE_LIBM
+
+/* Define if you have the `MesaGL' library (-lMesaGL). */
+#undef HAVE_LIBMESAGL
+
+/* Define if you have the `MesaGLU' library (-lMesaGLU). */
+#undef HAVE_LIBMESAGLU
+
+/* Define if you have the `ogg' library (-logg). */
+#undef HAVE_LIBOGG
+
+/* Define if you have the `opengl32' library (-lopengl32). */
+#undef HAVE_LIBOPENGL32
+
+/* Define if you have the `PCRE' library (-lPCRE). */
+#undef HAVE_LIBPCRE
+
+/* Define if you have the `SDL' library (-lSDL). */
+#undef HAVE_LIBSDL
+
+/* Define if you have the `SDL-1.1' library (-lSDL-1.1). */
+#undef HAVE_LIBSDL_1_1
+
+/* Define if you have the `SDL_mixer' library (-lSDL_mixer). */
+#undef HAVE_LIBSDL_MIXER
+
+/* Define if you have the `smpeg' library (-lsmpeg). */
+#undef HAVE_LIBSMPEG
+
+/* Define if you have the `tiff' library (-ltiff). */
+#undef HAVE_LIBTIFF
+
+/* Define if you have the `ungif' library (-lungif). */
+#undef HAVE_LIBUNGIF
+
+/* Define if you have the `vorbis' library (-lvorbis). */
+#undef HAVE_LIBVORBIS
+
+/* Define if you have the `vorbisfile' library (-lvorbisfile). */
+#undef HAVE_LIBVORBISFILE
+
+/* Define if you have the `Xext' library (-lXext). */
+#undef HAVE_LIBXEXT
+
+/* Define if you have the <OpenGL/glu.h> header file. */
+#undef HAVE_OPENGL_GLU_H
+
+/* Define if you have the <OpenGL/gl.h> header file. */
+#undef HAVE_OPENGL_GL_H
+
+/* Define if you have the <SDL.h> header file. */
+#undef HAVE_SDL_H
+
+/* Define if you have the <SDL_main.h> header file. */
+#undef HAVE_SDL_MAIN_H
+
+/* Define if you have the <SDL_mixer.h> header file. */
+#undef HAVE_SDL_MIXER_H
+
+/* Define if you have the <SDL/SDL.h> header file. */
+#undef HAVE_SDL_SDL_H
+
+/* Define if you have the <SDL/SDL_main.h> header file. */
+#undef HAVE_SDL_SDL_MAIN_H
+
+/* Define if you have the <SDL/SDL_mixer.h> header file. */
+#undef HAVE_SDL_SDL_MIXER_H
+
+/* Define if you have the <sstream> header file. */
+#undef HAVE_SSTREAM
+
+/* Define if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define if you have the <sys/wait.h> header file. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the <valarray> header file. */
+#undef HAVE_VALARRAY
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+
+/* Define if your processor stores words with the most significant byte first
+   (like Motorola and SPARC, unlike Intel and VAX). */
+#undef WORDS_BIGENDIAN
+
+/* Define if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING

@@ -1,0 +1,12091 @@
+
+REM
+ON ERROR SYS "Hourglass_Off":OSCLI "ERROR "+REPORT$+" at line "+STR$(ERL)
+*RMENSURE Fastspr 1.02 ERROR 666 No suitable Fastspr module present
+
+SYS "Hourglass_On"
+firstzone=0
+codelen=&10000
+varslen=&10000
+storearealen=&40000
+DIM code codelen, vars varslen, storearea storearealen
+REM PROCgetfile
+platblim=64
+blim=112
+bomblowlim=64
+bombhighlim=79
+boobylowlim=76
+boobyhighlim=79
+gaslowlim=54
+gashighlim=55
+animlowlim=54
+animhighlim=63
+eleclowlim=56
+elecvertlowlim=60
+elechighlim=63
+translowlim=gaslowlim
+transhighlim=elechighlim
+atomlowlim=72
+atomhighlim=75
+targetlowlim=80
+powertarget=84
+nuttertarget=88
+targethighlim=95
+teleplowlim=192
+telephighlim=199
+fuelairno=68
+neuronlowlim=40
+neuronhighlim=47
+bonuslow=16
+bonushigh=31
+megabonuslim=35
+starsno=15
+markerno=255
+alentlen=32
+xofs=159
+yofs=96
+platbase=2
+platno=176
+platlowlim=platno
+plathighlim=190
+alplathighlim=177
+weaplowlim=96
+weaphighlim=111
+triggerlim=193
+crumblelowlim=160
+crumblehighlim=167
+crumblestandlowlim=168
+crumblestandhighlim=175
+spcrumblelowlim=140
+spcrumblehighlim=143
+extendno=152
+solidlowlim=128
+solidhighlim=131
+shutdownno=200
+
+mpmgblamno=8
+rocketblamno=16
+
+windowxsize=160<<8
+windowysize=112<<8
+
+speedlim=15<<8
+windspeed=1<<8
+xlowlim=0
+ylowlim=15<<8
+lowx=16
+lowy=8
+highx=304
+highy=200
+
+neuronstoget=8
+
+expwidth=24<<8
+expheight=expwidth
+alheight=32<<8
+alwidth=16<<8
+
+backsize=48*60
+
+fsplx=28
+fsply=32
+fsphx=36
+fsphy=40
+
+boxwidth=20
+boxheight=16
+
+targetscore=500
+
+sleeprange=512<<8
+firerange=128<<8
+charwidth=16
+alno=&200
+projno=32
+bulno=64
+projentlen=24
+bulentlen=24
+rockettablen=192
+
+strengthmax=108<<8
+spstrengthmax=strengthmax-(4<<8)
+strengthinit=108<<8
+strengthxofs=108
+strengthyofs=239
+
+bonusxplace=34
+bonusyplace=232
+
+scorexofs=160-16*3.5
+scoreyofs=220
+
+bombloss=4<<8
+atomloss=32<<8
+explocontloss=1<<7
+bulletloss=2<<8
+
+fuelairduration=&18
+
+plheight=32<<8
+plwidth=16<<8
+
+REM alien object types
+Explo=1
+Ember=2
+Platbase=3
+Riseplat=Platbase
+Exploplat=Platbase+1
+Updownplat=Platbase+2
+Downplat=Platbase+3
+Fastplat=Platbase+4
+Fastplatstop=Platbase+5
+Fastplatexplo=Platbase+6
+Fastplatfire=Platbase+7
+Fallplat=Platbase+8
+Scoreobj=12
+Dyingbonus=13
+Flyingbonus=14
+Booby=15
+Decoration=16
+Extender=17
+Alien1=18
+
+boardhdrlen=32
+
+o=64
+vdu=&300
+pl=&340
+
+alofs=&F00
+colchofs=&5000:REM two tables
+colchlim=&1000
+bulcolchofs=&7000
+bulcolchlim=&1000
+
+fueltabofs=&8000
+fueltablim=&3C0:REM don't forget there's two of these
+projofs=&8800
+projlim=&1000
+bulofs=&9900
+bullim=&1000
+soundtabofs=&A900:REM length 8*16
+texttabofs=&AA00
+saveareaofs=&C000
+savearealen=&9C0
+highscorearea=&D000
+wipescrst=&D100
+
+
+soundtabvol=0
+soundtabsample=1
+soundtabpitchmsb=2
+soundtabpitchlsb=3
+soundtabvolslide=4
+soundtabpitchslide=8
+soundtabctr=12
+soundtabstereo=13
+soundentlen=16
+soundtabshift=4
+textno=32
+textlen=24
+
+SampJump=1
+SampBonus=2
+SampExplo=3
+SampAtomExplo=4
+SampCannon=5
+SampRocket=6
+SampHiss=7
+SampStunned=8
+Sampsmallzap=9
+Sampbigzap=10
+Samporgan=16
+Samprave=19
+
+projsmallno=54
+bulspritebase=16
+funnyfacesprbase=66
+scoresprbase=16
+rocketspriteno=32
+rocketspritelim=41
+skelspriteno=46
+starssprbase=58
+deadsprbase=70
+
+rockbase=9
+mpmgbase=1
+
+Playerchannel=0
+Explochannel=3
+Firechannel=1
+Sparechannel=2
+
+
+bank=0
+plframe=1
+plface=2
+fire=3
+jumping=4
+falling=5
+plotal=6
+masterplotal=7
+uppress=8: REM word aligned
+downpress=9
+leftpress=10
+rightpress=11
+lefthit=12: REM word aligned
+righthit=13
+uphit=14
+downhit=15
+recheck=16
+pluphit=17
+atombombctr=18
+frameinc=19
+firerate=20
+plfired=21
+plweapontype=22
+plweaponspeed=23
+rocketflag=24
+electrocuting=25
+alonplat=26
+platuphit=27
+colchecktype=28
+colchplace=29
+alonobj=30
+rate50=31
+bonusctr=32
+bonusreplot=33
+keypressed=35
+blamctr=36
+rocketblamctr=37
+plotterofs=38
+hiddenplatctr=39
+extending=40
+charsok=41
+arm3=42
+gameon=43
+savestart=44
+leftkey=44
+rightkey=45
+upkey=46
+downkey=47
+firekey=48
+soundtype=49
+soundquality=50
+explospeed=51
+gearchange=52
+soundvol=53
+musicvol=54
+joyno=55
+mentalzone=56
+saveend=57
+savedornot=57
+bonusstore=58
+plweaponstore=59
+hstindex=60
+idpermit=61
+cheatpermit=62
+
+boardadr=o
+blokeadr=o+4
+blockadr=o+8
+fspvars=o+12
+fspplot=o+16
+backadr=o+20
+backuse=o+24
+framectr=o+28
+boardwidth=o+32
+xtemp=o+36
+ytemp=o+40
+brainadr=o+44
+neuronadr=o+48
+fspareat=o+52
+colchtab=o+56
+colchptr=o+60
+platsandstr=o+64
+exploadr=o+68
+fueltabread=o+72
+fueltabwrite=o+76
+fueltabctr=o+80
+fuelexploctr=o+84
+lifeseed1=o+88
+lifeseed2=o+92
+strengthcoltab=o+96
+laststrengthframe=o+100
+cliplx=o+104
+cliply=o+108
+cliphx=o+112
+cliphy=o+116
+snuffctr=o+120
+charsadr=o+124
+addtabadr=o+128
+screennotuse=o+132
+rnseed=o+136
+projadr=o+140
+projctr=o+144
+firelastframe=o+148
+fullpitch=o+152
+rocketctr=o+156
+rockettabadr=o+160
+aladr=o+164
+alctr=o+168
+fuelairlastframe=o+172
+shutdownctr=o+176
+currentpath=o+180
+buladr=o+184
+bulctr=o+188
+xposmax=o+192
+yposmax=o+196
+alspradr=o+200
+platypos=o+204
+oldcolchtab=o+208
+oldcolchptr=o+212
+colchadr=o+216
+colchtabuse=o+220
+colchptruse=o+224
+dodgypointer=o+228
+bulcolchtab=o+232
+bulcolchptr=o+236
+laststrength=o+240
+currentzone=o+244
+telepctr=o+248
+telepxpos=o+252
+telepypos=o+256
+bonusxpos=o+260
+bonusypos=o+264
+bonustimer=o+268
+sprlx=o+272
+sprly=o+276
+sprhx=o+280
+sprhy=o+284
+lagerctr=o+288
+textadr=o+292
+boardlowlim=o+296
+boardhighlim=o+300
+storage=o+304
+storageend=o+308
+gamescreenadr=o+312
+chatscreenadr=o+316
+windctr=o+320
+xmode=o+324
+
+screenstart=vdu
+modesize=vdu+4
+hbytes=vdu+8
+screenuse=vdu+16
+screentop=vdu+20
+
+xpos=pl
+ypos=pl+4
+initplx=pl+8
+initply=pl+12
+hvec=pl+16
+vvec=pl+20
+pladr1=pl+24
+pladr2=pl+28
+pladr3=pl+32
+pladr4=pl+36
+pladr5=pl+40
+pladr6=pl+44
+pladr7=pl+48
+pladr8=pl+52
+pllx=pl+56
+plly=pl+60
+plhx=pl+64
+plhy=pl+68
+plscore=pl+72:REM Two words
+plscoreadd=pl+80
+plzone=pl+84
+pltophit=pl+88
+plstrength=pl+92
+lives=pl+96
+neuronctr=pl+100
+
+FOR OPT=8 TO 10 STEP 2
+P%=code
+L%=code+codelen
+
+[OPT OPT
+.init
+STMFD R13!,{R14}
+MOV R12,R0
+STR R12,varstr
+STR R1,[R12,#storage]
+ADD R2,R2,R1
+STR R2,[R12,#storageend]
+STR R3,[R12,#xmode]
+BL gethandlers
+
+SWI "FastSpr_GetAddress"
+STR R4,[R12,#fspvars]
+ADD R4,R4,#24
+STR R4,[R12,#fspareat]
+STR R0,[R12,#fspplot]
+ADD R0,R12,#colchofs
+STR R0,[R12,#colchadr]
+ADD R0,R12,#bulcolchofs
+STR R0,[R12,#bulcolchtab]
+ADD R0,R12,#texttabofs
+STR R0,[R12,#textadr]
+BL vduread
+SWI "XOS_RemoveCursors"
+MOV R0,#1
+STRB R0,[R12,#bank]
+BL switchbank     ;set up bank variables
+BL switchfspbank
+BL switchbank     ;set up bank variables
+BL switchfspbank
+BL checkifarm3
+BL getfiles
+BVS abort
+BL setdefaults
+BL loadconfig
+
+BL prelude
+BVS abort
+BL scorezero
+.playloop
+MOV R0,#124
+SWI "XOS_Byte"
+MOV R0,#0; not in game
+BL options
+BVS abort
+BL getlevelfiles
+BVS notgotlevel
+
+SWI "XBodgeMusic_Stop"
+BL game
+BVS playloop
+LDR R0,[R12,#neuronctr]
+CMP R0,#neuronstoget
+BGE zonedone
+BVS playloop
+
+LDRB R2,[R12,#soundtype]
+CMP R2,#2
+MOV R0,#2
+MOV R1,#0
+SWIEQ "XBodgeMusic_Start"
+MOV R0,#&980
+SWI "XSound_QTempo"
+LDRB R0,[R12,#musicvol]
+SWI "XBodgeMusic_Volume"
+B playloop
+
+.zonedone
+LDRB R0,[R12,#idpermit]
+CMP R0,#1
+BLNE permitid
+MOV R0,#3
+MOV R1,#0
+SWI "XBodgeMusic_Start"
+BL showhighscore
+B playloop
+
+.abort
+SWI "XBodgeMusic_Stop"
+BL losehandlers
+MOV R0,#124
+SWI "OS_Byte"
+CMP R0,R0
+LDMFD R13!,{PC}
+
+.varstr
+EQUD 0
+.restoreR12
+LDR R12,varstr
+MOV PC,R14
+
+.notgotlevel
+BCC abort
+B playloop
+
+.endmes
+EQUD 0
+EQUS "Game exited cleanly"
+EQUB 0
+ALIGN
+.game
+STMFD R13!,{R14}
+BL wipetexttab
+BL setup
+BL switchcolch ; setup colch vars
+BL startmessage
+BL findplayer
+BL getarms
+LDRB R0,[R12,#cheatpermit]
+CMP R0,#1
+BLEQ zonecheatread
+.zonerestart
+BL restartplayer
+.mainrestart
+BL showgamescreen
+MOV R0,#0
+MOV R1,#0
+LDR R2,[R12,#plzone]
+CMP R2,#0
+MOVNE R0,#1
+LDRB R2,[R12,#soundtype]
+CMP R2,#2
+SWIEQ "XBodgeMusic_Start"
+LDRB R0,[R12,#musicvol]
+SWI "XBodgeMusic_Volume"
+MOV R0,#1
+STRB R0,[R12,#frameinc]
+STRB R0,[R12,#rate50]
+SWI "XBlitz_Wait"
+.mainloop
+LDR R0,[R12,#plzone]
+LDR R1,[R12,#currentzone]
+CMP R0,R1
+BNE switchzone
+;BL saveal
+;BL restoreal
+LDRB R0,[R12,#rate50]
+CMP R0,#1
+BEQ rate50link
+BL plmove
+BL bonuscheck
+BL fuelairproc
+BL switchcolch
+MOV R0,#0
+STRB R0,[R12,#masterplotal]
+BL moval
+BL project
+BL bullets
+BL alfire
+BL wakeupal
+.rate50link
+BL plmove
+BL bonuscheck
+BL fuelairproc
+BL mazeplot
+BL switchcolch
+MOV R0,#1
+STRB R0,[R12,#masterplotal]
+LDRB R0,[R12,#snuffctr]
+CMP R0,#0
+BLNE playerplot
+BL moval
+BL project
+BL bullets
+BL alfire
+LDRB R0,[R12,#snuffctr]
+CMP R0,#0
+BLEQ playerplot
+BL bonusplot
+BL scoreadd
+BL showstrength
+BL texthandler
+BL seeifdead
+BL makesounds
+BL wakeupal
+LDRB R0,[R12,#cheatpermit]
+CMP R0,#1
+BLEQ cheatread
+BL scorewipe
+BL showscore
+LDR R1,[R12,#xmode]
+CMP R1,#49
+LDR R0,[R12,#screenuse]
+SWIEQ "Blitz_ScreenExpand"
+LDRB R0,[R12,#gearchange]
+CMP R0,#0
+MOV R0,#1
+MOVEQ R0,#2
+SWI "XBlitz_Wait"
+MOV R3,R0
+LDRB R2,[R12,#rate50]
+CMP R2,#1
+BEQ rateskip
+CMP R0,#2 ;rate 25 and two frames passed
+BGE rateskip
+MOV R0,#1;rate 25 but one frame passed
+STMFD R13!,{R3}
+SWI "XBlitz_Wait"
+LDMFD R13!,{R3}
+ADD R0,R3,R0
+CMP R0,#2
+MOVGT R0,#2
+.rateskip
+STRB R0,[R12,#frameinc]
+
+LDR R1,[R12,#framectr]
+ADD R1,R1,R0
+STR R1,[R12,#framectr]
+MOV R0,#0
+CMP R3,#1
+MOVEQ R0,#1
+STRB R0,[R12,#rate50]
+
+BL switchbankins
+BL switchfspbank
+SWI "Blitz_SmallRetrieve"
+LDR R0,[R12,#snuffctr]
+CMP R0,#300
+BGE playerdead
+SWI "XOS_ReadEscapeState"
+BCC mainloop
+SWI "XBodgeMusic_Stop"
+BL escapehandler
+MOV R0,#4
+STRB R0,[R12,#bonusreplot]
+LDMVSFD R13!,{PC}
+B mainrestart
+
+.switchzone
+BL loadzone
+B zonerestart
+
+.playerdead
+BL showgamescreen
+LDR R0,[R12,#lives]
+CMP R0,#0
+LDMEQFD R13!,{PC}
+SUB R0,R0,#1
+CMP R0,#9
+MOVGT R0,#9
+STR R0,[R12,#lives]
+BL prepstrength
+B zonerestart
+
+
+.switchcolch
+LDR R0,[R12,#colchtab]
+STR R0,[R12,#oldcolchtab]
+LDR R0,[R12,#colchptr]
+STR R0,[R12,#oldcolchptr]
+LDR R0,[R12,#colchadr]
+LDRB R2,[R12,#colchplace]
+CMP R2,#1
+MOVEQ R2,#0
+MOVNE R2,#1
+STRB R2,[R12,#colchplace]
+ADDNE R0,R0,#colchlim
+ADDNE R0,R0,#16 ; for safety
+STR R0,[R12,#colchtab]
+STR R0,[R12,#colchptr]
+
+LDR R0,[R12,#bulcolchtab] ;reset bullet checking table
+STR R0,[R12,#bulcolchptr]
+MOV PC,R14
+
+.switchbank
+STMFD R13!,{R14}
+LDR R1,[R12,#xmode]
+CMP R1,#49
+LDR R0,[R12,#screenuse]
+SWIEQ "Blitz_ScreenExpand"
+LDMFD R13!,{R14}
+.switchbankins
+STMFD R13!,{R14}
+
+LDRB R1,[R12,#bank]
+
+
+
+
+RSB R1,R1,#3
+STRB R1,[R12,#bank]
+MOV R0,#&71
+SWI "XOS_Byte"
+SWI "Blitz_ScreenRetrieve"
+LDRB R0,[R12,#bank]
+
+LDR R1,[R12,#screenstart]
+LDR R2,[R12,#modesize]
+CMP R0,#1
+MOV R0,R1
+ADDNE R0,R1,R2
+ADDEQ R1,R1,R2
+STR R1,[R12,#screenuse]
+STR R0,[R12,#screennotuse]
+LDMFD R13!,{PC}
+
+.switchfspbank
+STMFD R13!,{R14}
+LDRB R0,[R12,#bank]
+SWI "XFastSpr_ScreenBank"
+LDMFD R13!,{PC}
+
+.makesounds
+STMFD R13!,{R14}
+ADD R11,R12,#soundtabofs
+MOV R6,#8
+.loop50
+LDRB R8,[R11,#soundtabvol]
+CMP R8,#0
+BEQ soundskip
+LDRB R0,[R11,#soundtabctr]
+TST R0,#1<<7
+BEQ soundmade; sound already made
+BIC R0,R0,#1<<7
+STRB R0,[R11,#soundtabctr]
+LDRB R1,[R11,#soundtabsample]
+RSB R0,R6,#9
+SWI "XStasis_Link"
+LDRB R0,[R11,#soundtabpitchmsb]
+LDRB R1,[R11,#soundtabpitchlsb]
+ADD R2,R1,R0,LSL #8
+RSB R0,R6,#9
+LDRB R1,[R12,#soundvol]
+SUB R1,R1,#&7F
+ADDS R1,R1,R8
+BMI soundmade
+ADD R1,R1,#&100
+MOV R3,#0
+SWI "XSound_Control"
+LDRB R1,[R11,#soundtabstereo]
+MOV R1,R1,LSL #24
+MOV R1,R1,ASR #24
+SWI "XSound_Stereo"
+LDR R0,[R11,#soundtabvolslide]
+CMP R0,#0
+MOV R1,#0
+MOV R2,#0
+BEQ nosetvolslide
+BIC R1,R0,#&FF<<24
+BIC R1,R1,#&FF<<16
+MOV R2,R0,LSR #16
+TST R1,#1<<15
+ORRNE R1,R1,#&FF<<24
+ORRNE R1,R1,#&FF<<16
+.nosetvolslide
+RSB R0,R6,#9
+SWI "XStasis_VolSlide"
+LDR R0,[R11,#soundtabpitchslide]
+MOV R1,#0
+MOV R2,#0
+CMP R0,#0
+BEQ nosetpitchslide
+BICNE R1,R0,#&FF<<24
+BICNE R1,R1,#&FF<<16
+MOVNE R2,R0,LSR #16
+TST R1,#1<<15
+ORRNE R1,R1,#&FF<<24
+ORRNE R1,R1,#&FF<<16
+.nosetpitchslide
+RSB R0,R6,#9
+SWI "XStasis_PitchSlide"
+.soundmade
+LDRB R0,[R11,#soundtabctr]
+LDRB R1,[R12,#frameinc]
+SUBS R0,R0,R1
+MOVMI R0,#0
+STRB R0,[R11,#soundtabctr]
+.soundskip
+ADD R11,R11,#soundentlen
+SUBS R6,R6,#1
+BGT loop50
+LDMFD R13!,{PC}
+
+.bidforsoundforce
+STMFD R13!,{R10}
+ADD R10,R12,#soundtabofs
+AND R0,R0,#7
+
+ADD R10,R10,R0,LSL #soundtabshift
+B soundclaim
+
+
+.bidforsound
+STMFD R13!,{R10}
+ADD R10,R12,#soundtabofs
+AND R0,R0,#7
+CMP R0,#Explochannel
+
+ADD R10,R10,R0,LSL #soundtabshift
+LDRB R0,[R12,#soundtype]
+CMPEQ R0,#3
+BEQ bidforexplo
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+LDMFD R13!,{R10}
+MOV PC,R14
+.bidforexplo
+ADD R10,R10,R0,LSL #soundtabshift
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+ADD R10,R10,#soundentlen
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+ADD R10,R10,#soundentlen
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+ADD R10,R10,#soundentlen
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+ADD R10,R10,#soundentlen
+LDRB R0,[R10,#soundtabctr]
+CMP R0,#0
+BEQ soundclaim
+LDRB R0,[R10,#soundtabvol]
+CMP R0,R2
+BLT soundclaim
+LDMFD R13!,{R10}
+MOV PC,R14
+
+.soundclaim
+STRB R1,[R10,#soundtabsample]
+AND R2,R2,#&7F
+STRB R2,[R10,#soundtabvol]
+STRB R3,[R10,#soundtabpitchlsb]
+MOV R3,R3,LSR #8
+STRB R3,[R10,#soundtabpitchmsb]
+STR R4,[R10,#soundtabvolslide]
+STR R5,[R10,#soundtabpitchslide]
+ORR R6,R6,#1<<7
+STRB R6,[R10,#soundtabctr]
+CMP R7,#127
+MOVGT R7,#127
+CMN R7,#127
+MVNLT R7,#126
+STRB R7,[R10,#soundtabstereo]
+LDMFD R13!,{R10}
+
+MOV PC,R14
+
+
+.showtext
+STMFD R13!,{R14}
+BL texthandler
+BL switchbank
+BL switchfspbank
+LDMFD R13!,{PC}
+
+.texthandler
+STMFD R13!,{R14}
+LDR R0,[R12,#charsadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+MOV R9,#textno
+LDR R11,[R12,#textadr]
+
+.loopa6
+LDR R0,[R11]
+CMP R0,#0
+BLNE textproc
+ADD R11,R11,#textlen
+SUBS R9,R9,#1
+BGT loopa6
+LDMFD R13!,{PC}
+
+.textproc
+STMFD R13!,{R9,R11,R14}
+LDRB R4,[R12,#frameinc]
+CMP R4,#4
+MOVGT R4,#4
+ADD R11,R11,#4
+LDR R0,[R11,#-4]
+SUBS R0,R0,R4
+MOVMI R0,#0
+STR R0,[R11,#-4]
+LDMIA R11,{R0-R3}
+
+.loopb1
+ADD R0,R0,R2
+ADD R1,R1,R3
+SUBS R4,R4,#1
+BGT loopb1
+STMIA R11,{R0-R1}
+LDMIA R11,{R1-R2}
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+LDR R10,[R11,#16]
+LDRB R0,[R10],#1
+CMP R0,#0
+BEQ textdone
+.loopa7
+STMFD R13!,{R0-R2}
+SUB R0,R0,#1
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R0-R2}
+ADD R1,R1,#14
+CMP R0,#10
+ADDLE R1,R1,#2
+CMP R0,#43
+SUBGT R1,R1,#6
+LDRB R0,[R10],#1
+CMP R0,#0
+BNE loopa7
+.textdone
+LDMFD R13!,{R9,R11,PC}
+.textdelete
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+.message
+STMFD R13!,{R14}
+STMFD R13!,{R0}
+MOV R10,R0
+MOV R9,#textno
+LDR R11,[R12,#textadr]
+
+.loopa8
+LDR R0,[R11]
+CMP R0,#0
+BEQ messageproc
+ADD R11,R11,#textlen
+SUBS R9,R9,#1
+BGT loopa8
+LDMFD R13!,{R0}
+LDMFD R13!,{PC}
+.messageproc
+LDMIA R10,{R0-R4}
+STMIA R11,{R0-R4}
+ADD R10,R10,#20
+STR R10,[R11,#20]
+LDMFD R13!,{R0}
+ADD R0,R0,#24
+.loopb0
+LDRB R1,[R0],#1
+CMP R1,#0
+BNE loopb0
+ADD R0,R0,#3
+BIC R0,R0,#3
+LDMFD R13!,{PC}
+
+.startmessage
+STMFD R13!,{R14}
+ADR R0,startmess
+BL message
+LDMFD R13!,{PC}
+.startmess
+FNmessage(1128,136,0,0,"Let's Go!")
+
+.deathmessage
+STMFD R13!,{R14}
+ADR R0,deathmess
+BL message
+LDR R1,[R12,#lives]
+CMP R1,#0
+BLEQ message
+LDMFD R13!,{PC}
+.deathmess
+FNmessage(72,208,0,-1,"¤ Snuffed It! ¤")
+FNmessage(72,256,0,-1,"-  GAME OVER  -")
+
+.alfire
+STMFD R13!,{R14}
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+LDR R3,[R12,#rnseed]
+EOR R3,R3,R3,ROR #13
+ADD R3,R3,#137
+STR R3,[R12,#rnseed]
+AND R2,R3,#15
+AND R4,R3,#7<<4
+ADD R2,R2,R4,ASR #4
+SUB R2,R2,#11
+ADD R0,R0,R2,ASL #12
+CMP R0,#1<<12
+LDMLTFD R13!,{PC}
+EOR R3,R3,R3,ROR #13
+ADD R3,R3,#137
+STR R3,[R12,#rnseed]
+AND R2,R3,#15
+SUB R2,R2,#7
+ADD R1,R1,R2,ASL #12
+CMP R1,#1<<12
+LDMLTFD R13!,{PC}
+LDR R2,[R12,#xposmax]
+SUB R2,R2,#1<<12
+CMP R0,R2
+LDMGTFD R13!,{PC}
+LDR R2,[R12,#yposmax]
+SUB R2,R2,#1<<12
+CMP R1,R2
+LDMGTFD R13!,{PC}
+BIC R0,R0,#&FF
+BIC R1,R1,#&FF
+BIC R0,R0,#&0F<<8
+BIC R1,R1,#&0F<<8
+STMFD R13!,{R0-R1}
+BL translate
+LDRB R6,[R0]
+CMP R6,#targetlowlim
+BLT nofoundtarget
+CMP R6,#targethighlim
+LDMLEFD R13!,{R0-R1}
+BLE foundtarget
+.nofoundtarget
+LDRB R6,[R0,#1]!
+LDMFD R13!,{R0-R1}
+ADD R0,R0,#1<<12
+CMP R6,#targetlowlim
+LDMLTFD R13!,{PC}
+CMP R6,#targethighlim
+LDMGTFD R13!,{PC}
+
+.foundtarget
+ADD R1,R1,#16<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#12<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+MOV R2,R2,ASR #6
+MOV R3,R3,ASR #6
+STMFD R13!,{R0-R3}
+SUB R1,R1,#8<<8
+ADD R0,R0,#8<<8
+ADD R0,R0,R2,ASL #4
+ADD R1,R1,R3,ASL #4
+BL translate
+LDRB R4,[R0]
+CMP R4,#targethighlim
+LDMFD R13!,{R0-R3}
+LDMGTFD R13!,{PC}
+LDR R4,[R12,#rnseed]
+ADD R4,R4,#156
+EOR R4,R4,R4,ROR #14
+STR R4,[R12,#rnseed]
+BIC R6,R6,#3
+AND R4,R4,#7
+CMP R4,#7
+MOVEQ R4,#6
+CMP R6,#powertarget
+SUBGE R4,R4,#6
+ANDEQ R4,R4,#2
+ADD R4,R4,#bulspritebase
+ADDEQ R4,R4,#8
+CMP R6,#nuttertarget
+LDREQ R4,[R12,#rnseed]
+ANDEQ R4,R4,#3
+ADDEQ R4,R4,#bulspritebase+12
+MOV R5,#1<<24
+BL makebul
+LDMFD R13!,{PC}
+
+
+
+.bullets; the bullet handler (aliens fire these)
+
+STMFD R13!,{R14}
+LDR R3,[R12,#exploadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+
+LDR R11,[R12,#buladr]
+LDR R9,[R11],#4 ;get table length
+.loop71
+LDR R0,[R11],#bulentlen
+CMP R0,#0
+BLNE foundbul
+SUBS R9,R9,#1
+BGT loop71
+LDMFD R13!,{PC}
+.foundbul
+STMFD R13!,{R9,R11,R14}
+SUB R11,R11,#bulentlen-4
+LDMIA R11,{R0-R4}
+ADD R0,R0,R2
+ADD R1,R1,R3
+LDR R5,[R12,#xposmax]
+LDR R6,[R12,#yposmax]
+CMP R0,#xlowlim
+CMPGT R5,R0
+CMPGT R1,#ylowlim
+CMPGT R6,R1
+BLE projoffscr
+MOV R5,R2
+CMP R5,#0
+RSBLT R5,R5,#0
+CMP R5,#1<<12
+BGT bulnoacc
+TST R4,#1<<14
+ADDNE R2,R2,R2,ASR #4
+ADDNE R3,R3,R3,ASR #4
+.bulnoacc
+TST R4,#1<<13
+BEQ bulnohome
+CMP R4,#3<<22
+BGT bulnohome
+MOV R6,#1<<4
+TST R4,#1<<12
+MOVNE R6,#1<<6
+SUBEQ R2,R2,R2,ASR #5
+SUBEQ R3,R3,R3,ASR #5
+LDR R7,[R12,#xpos]
+LDR R8,[R12,#ypos]
+SUBS R7,R0,R7
+ADDMI R2,R2,R6
+SUBPL R2,R2,R6
+SUBS R8,R1,R8
+ADDMI R3,R3,R6
+SUBPL R3,R3,R6
+.bulnohome
+CMP R2,#speedlim
+MOVGT R2,#speedlim
+CMN R2,#speedlim
+MVNLT R2,#speedlim
+CMP R3,#speedlim
+MOVGT R3,#speedlim
+CMN R3,#speedlim
+MVNLT R3,#speedlim
+SUBS R4,R4,#1<<16; decrement the life counter
+STMIA R11,{R0-R4}
+BMI buldestroy; out of time
+LDR R6,[R12,#pllx]
+CMP R0,R6
+LDRGT R6,[R12,#plhx]
+CMPGT R6,R0
+LDRGT R6,[R12,#plly]
+CMPGT R1,R6
+LDRGT R6,[R12,#plhy]
+CMPGT R6,R1
+BGT bulletkill
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#16
+BGE bulhit; hit a block
+.bulhitins
+
+
+
+LDRB R1,[R12,#masterplotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R0,[R11,#-4]
+CMP R0,#bulspritebase+8
+CMPNE R0,#bulspritebase+10
+LDREQ R5,[R12,#framectr]
+ANDEQ R5,R5,#4
+EOREQ R0,R0,R5,ASR #2
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9,R11,PC}
+
+.bulhit
+CMP R1,#translowlim
+BLT bulhitcont
+CMP R1,#transhighlim
+BLE bulhitins
+.bulhitcont
+CMP R1,#targetlowlim
+BLT nobultarget
+CMP R1,#targethighlim
+BLE bulhitins
+.nobultarget
+MOV R2,#0
+STR R2,[R11,#-4]
+.bulnodestroy
+LDR R0,[R11,#16]
+TST R0,#1<<15
+BNE causeexplobullet
+
+.buldestroy
+LDR R0,[R11,#16]
+TST R0,#1<<10
+BNE bulsplit
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+.splittab
+]
+FOR F=0 TO 6
+A=(F+0.5)/3.5*PI
+[OPT OPT
+EQUD &200*SIN(A)
+EQUD &200*COS(A)
+]
+NEXT F
+[OPT OPT
+
+.bulsplit
+LDMIA R11,{R0-R3}
+MOV R2,R2,ASR #2
+MOV R3,R3,ASR #2
+LDR R6,[R12,#rnseed]
+EOR R6,R6,R6,ROR #22
+ADD R6,R6,#56<<8
+STR R6,[R12,#rnseed]
+AND R4,R6,#7
+CMP R4,#7
+MOVEQ R4,#0
+LDR R7,[R11,#-4]
+CMP R7,#bulspritebase+13
+MOVEQ R4,#7
+CMP R7,#bulspritebase+14
+MOVEQ R4,#10
+CMP R7,#bulspritebase+15
+ANDEQ R4,R4,#3
+ADDEQ R4,R4,#12
+CMP R4,#15
+MOVEQ R4,#0
+
+ADD R4,R4,#bulspritebase
+MOV R5,#1<<22
+ADR R10,splittab
+MOV R9,#7
+.loop75
+LDMIA R10!,{R6-R7}
+STMFD R13!,{R0-R5,R9-R11}
+ADD R2,R2,R6
+ADD R3,R3,R7
+BL makebul
+LDMFD R13!,{R0-R5,R9-R11}
+SUBS R9,R9,#1
+BGT loop75
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+
+
+
+
+.bulletkill
+MOV R0,#0
+STR R0,[R11,#-4]
+B causeexplobullet
+
+.makebul
+STMFD R13!,{R0-R5,R14}
+LDR R10,[R12,#buladr]
+LDR R9,[R10],#4
+LDR R8,[R12,#bulctr]
+MOV R1,#bulentlen
+MUL R0,R8,R1
+ADD R10,R10,R0
+SUB R9,R9,R8
+.loop72
+LDR R0,[R10],#bulentlen
+CMP R0,#0
+BEQ foundmakebul
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop72
+LDR R10,[R12,#buladr]
+LDR R9,[R12,#bulctr]
+ADD R10,R10,#4
+.loop69
+LDR R0,[R10],#bulentlen
+CMP R0,#0
+BEQ foundmakebul
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop69
+LDMFD R13!,{R0-R5,R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.foundmakebul
+SUB R10,R10,#bulentlen
+
+LDMFD R13!,{R0-R5,R14}
+STMFD R13!,{R14}
+CMP R5,#1<<16
+ORRLT R5,R5,#1<<22
+CMP R4,#bulspritebase+8
+ORRGE R5,R5,#(%1001<<12)
+CMP R4,#bulspritebase+12
+MOVGE R5,#1<<21
+ORRGE R5,R5,#1<<10
+CMP R4,#bulspritebase+7
+CMPNE R4,#bulspritebase+8
+ORREQ R5,R5,#1<<13
+CMP R4,#bulspritebase+10
+ORREQ R5,R5,#1<<14
+
+STMIA R10!,{R4}
+STMIA R10,{R0-R3,R5}
+
+LDR R9,[R12,#buladr]
+LDR R9,[R9]
+ADD R8,R8,#1
+.loop68
+CMP R8,R9
+SUBGE R8,R8,R9
+BGE loop68
+STR R8,[R12,#bulctr]
+LDRNE R1,[R10]
+LDRNE R2,[R10,#4]
+LDR R0,[R12,#xpos]
+SUBS R1,R1,R0
+MOV R7,R1,ASR #9
+MVNMI R1,R1
+LDR R0,[R12,#ypos]
+SUBS R2,R2,R0
+MVNMI R2,R2
+ADD R1,R1,R2
+MOV R1,R1,ASR #12
+RSBS R1,R1,#&7F
+CMP R1,#80
+BLT nozapsound
+
+AND R2,R1,#&7F         ;vol
+CMP R2,#&7C
+MOVGT R2,#&7C
+
+MOV R0,#Explochannel   ;channel
+MOV R1,#Sampsmallzap
+CMP R4,#bulspritebase+8
+MOVGE R1,#Sampbigzap
+
+LDR R3,[R12,#fullpitch]          ;pitch
+ADD R3,R3,#&1000
+ADDEQ R3,R3,#&800
+SUBEQ R2,R2,#&10
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2          ;lifetime (frames)
+BL bidforsound
+.nozapsound
+LDMFD R13!,{PC}
+
+
+
+
+.project; the projectile handler
+
+STMFD R13!,{R14}
+LDR R3,[R12,#blokeadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+
+LDR R11,[R12,#projadr]
+LDR R9,[R11],#4 ;get table length
+.loop41
+LDR R0,[R11],#projentlen
+CMP R0,#0
+BLNE foundproj
+SUBS R9,R9,#1
+BGT loop41
+LDMFD R13!,{PC}
+.foundproj
+STMFD R13!,{R9,R11,R14}
+SUB R11,R11,#projentlen-4
+LDMIA R11,{R0-R4}
+ADD R0,R0,R2
+ADD R1,R1,R3
+LDR R5,[R12,#xposmax]
+LDR R6,[R12,#yposmax]
+CMP R0,#xlowlim
+CMPGT R5,R0
+CMPGT R1,#ylowlim
+CMPGT R6,R1
+BLE projoffscr
+TST R4,#1<<15
+
+
+ADDNE R2,R2,R2,ASR #4
+ADDNE R3,R3,R3,ASR #4
+.projnoacc
+CMP R2,#speedlim
+MOVGT R2,#speedlim
+CMN R2,#speedlim
+MVNLT R2,#speedlim
+CMP R3,#speedlim
+MOVGT R3,#speedlim
+CMN R3,#speedlim
+MVNLT R3,#speedlim
+
+SUBS R4,R4,#1<<16; decrement the life counter
+BMI projdestroy; out of time
+BL bulcolcheck
+BNE projhital
+STMIA R11,{R0-R4}
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#16
+BGE projhit; hit a block
+.projhitins
+LDRB R1,[R12,#masterplotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R0,[R11,#-4]
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9,R11,PC}
+.projhit
+CMP R1,#translowlim
+BLT projhitcont
+CMP R1,#transhighlim
+BGT projhitcont
+LDR R1,[R11,#16]
+TST R1,#1<<9
+BEQ projhitins
+.projhitcont
+CMP R1,#spcrumblelowlim
+BLT nospcrumble
+CMP R1,#spcrumblehighlim
+BGT nospcrumble
+LDRB R2,[R12,#plweapontype]
+CMP R2,#5
+BNE nospcrumble
+MOV R1,#0
+STRB R1,[R0]
+STMFD R13!,{R0,R11}
+LDMIA R11,{R1-R2}
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#0
+BL explogo
+LDMFD R13!,{R0,R11}
+.nospcrumble
+MOV R1,#0
+STR R1,[R11,#-4]
+STMFD R13!,{R0,R11}
+BL destroy
+LDMFD R13!,{R1,R11}
+LDR R0,[R11,#16]
+TST R0,#1<<9
+BNE atomrocket
+TST R0,#1<<11
+BNE causeexplonopyro
+TST R0,#1<<15
+BNE causeexplo
+LDMFD R13!,{R9,R11,PC}
+.projdestroy
+LDR R0,[R11,#16]
+TST R0,#1<<10
+BNE projsplit
+.projoffscr
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+.atomrocket
+LDRB R0,[R1]
+CMP R0,#solidlowlim
+BLT atomdest
+CMP R0,#solidhighlim
+BGT atomdest
+B causeexplo
+.atomdest
+CMP R0,#eleclowlim
+BLT noelecatom
+CMP R0,#elechighlim
+BLE elecatom
+.noelecatom
+CMP R0,#targetlowlim
+BLT noelecatom2
+CMP R0,#targethighlim
+BGT noelecatom2
+.elecatom
+MOV R5,R1
+STMFD R13!,{R1,R11}
+BL elecdestroy
+LDMFD R13!,{R1,R11}
+.noelecatom2
+CMP R0,#neuronlowlim
+BLT notreasatom
+CMP R0,#neuronhighlim
+BGT notreasatom
+B causeexplo
+
+.notreasatom
+MOV R0,#0
+STRB R0,[R1]
+B causeexplo
+
+
+.projhital
+LDR R0,[R6,#24]
+LDR R1,[R11,#16]
+TST R1,#1<<15
+SUBEQ R0,R0,#bulletloss
+SUBNE R0,R0,#bulletloss<<2
+STR R0,[R6,#24]
+MOV R1,#0
+STR R1,[R11,#-4]
+CMP R0,#0
+LDMGTFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R3}
+MOV R3,R3,ASR #2
+MVN R4,#1<<10
+MOV R5,#&200<<16
+LDR R0,[R6]
+LDR R6,[R12,#rnseed]
+EOR R6,R6,R6,ROR #12
+ADD R6,R6,#237
+STR R6,[R12,#rnseed]
+AND R6,R6,#7
+SUBS R0,R0,#Alien1
+MOVMI R0,#0
+ADD R6,R6,R0
+ADD R6,R6,#bonuslow
+CMP R6,#bonushigh
+MOVGT R6,#bonushigh-3
+CMP R6,#bonuslow
+MOVLT R6,#bonuslow
+MOV R0,#Flyingbonus
+BL makeobj
+LDR R0,[R11,#16]
+TST R0,#1<<15
+BNE causeexplo
+B causeexplonopyro
+
+LDMFD R13!,{R9,R11,PC}
+
+
+.causeexplo
+LDMIA R11,{R1-R4}
+SUB R1,R1,R3
+SUB R2,R2,R4
+SUB R2,R2,#8<<8
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#1
+BL explogomaybe
+LDMFD R13!,{R9,R11,PC}
+.causeexplonopyro
+LDMIA R11,{R1-R4}
+SUB R1,R1,R3
+SUB R2,R2,R4
+SUB R2,R2,#8<<8
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#1
+BL explogonopyro
+LDMFD R13!,{R9,R11,PC}
+
+
+.causeexplobullet
+LDMIA R11,{R1-R4}
+SUB R1,R1,R3
+SUB R2,R2,R4
+SUB R2,R2,#8<<8
+MOV R3,R3,ASR #4
+MOV R4,R4,ASR #4
+
+MOV R5,#0
+MOV R10,#0
+STMFD R13!,{R0-R5,R10}
+ADD R6,R3,R4
+SUB R4,R4,R3
+MOV R3,R6
+BL explogonopyroquiet
+LDMFD R13!,{R0-R5,R10}
+SUB R6,R3,R4
+ADD R4,R4,R3
+MOV R3,R6
+BL explogonopyro
+LDMFD R13!,{R9,R11,PC}
+
+.projsplittab
+]
+FOR F=0 TO 4
+
+[OPT OPT
+EQUD &40*(0.5-SIN(F/4*PI))
+EQUD &100*(F-2)
+]
+NEXT F
+[OPT OPT
+
+.projsplit
+LDMIA R11,{R0-R3}
+MOV R2,R2,ASR #1
+MOV R3,R3,ASR #1
+LDR R5,[R11,#16]
+TST R5,#1<<15
+BNE rocketsplit
+
+LDR R7,[R11,#-4]
+MOV R4,#projsmallno
+
+
+MOV R6,#1<<22
+ADR R10,projsplittab
+MOV R9,#5
+
+TST R5,#1<<14
+ADDEQ R10,R10,#8
+MOVEQ R9,#3
+ADDNE R4,R4,#1
+TST R5,#1<<13
+MOVEQ R2,R2,ASR #1
+TST R5,#1<<12
+
+MOVNE R4,#projsmallno+2
+MOVNE R2,R2,ASL #2
+TST R5,#1<<11
+ORRNE R6,R6,#1<<15
+MOVNE R4,#projsmallno+3
+MOV R5,R6
+
+.loop76
+LDMIA R10!,{R6-R7}
+STMFD R13!,{R0-R5,R9-R11}
+ADD R2,R2,R6
+ADD R3,R3,R7
+BL makeproj
+LDMFD R13!,{R0-R5,R9-R11}
+SUBS R9,R9,#1
+BGT loop76
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+.rocketbursttab
+]
+FOR F=0 TO 4
+A=(F+0.5)/2.5*PI
+[OPT OPT
+EQUD &200*SIN(A)
+EQUD &200*COS(A)
+]
+NEXT F
+[OPT OPT
+
+.rocketsplit
+TST R5,#1<<14
+BNE rocketpair
+.rocketburst
+MOV R4,#projsmallno+3
+MOV R2,R2,ASR #3
+MOV R3,R3,ASR #3
+
+MOV R5,#1<<22
+ORR R5,R5,#1<<15
+ORR R5,R5,#1<<11
+ADR R10,rocketbursttab
+MOV R9,#5
+.loop77
+LDMIA R10!,{R6-R7}
+STMFD R13!,{R0-R5,R9-R11}
+ADD R2,R2,R6
+ADD R3,R3,R7
+BL makeproj
+LDMFD R13!,{R0-R5,R9-R11}
+SUBS R9,R9,#1
+BGT loop77
+MOV R0,#0
+STR R0,[R11,#-4]
+B causeexplonopyro
+LDMFD R13!,{R9,R11,PC}
+
+.rocketpair
+
+LDR R4,[R11,#-4]
+MOV R6,#1<<22
+TST R5,#1<<12
+MOVNE R6,#1<<20
+ORRNE R6,R6,#%101<<10
+TST R5,#1<<13; continue splitting
+ORRNE R6,R6,#1<<20
+BICNE R6,R6,#1<<22
+ORRNE R6,R6,#%10001<<10
+
+ORR R6,R6,#1<<15
+MOV R5,R6
+
+STMFD R13!,{R0-R5,R9-R11}
+TST R4,#1
+ADDEQ R2,R2,R3,ASR #2
+SUBEQ R3,R3,R2,ASR #2
+SUBNE R2,R2,R3,ASR #2
+ADDNE R3,R3,R2,ASR #2
+SUB R4,R4,#2
+CMP R4,#rocketspriteno
+ADDLT R4,R4,#2
+BL makeproj
+LDMFD R13!,{R0-R5,R9-R11}
+TST R4,#1
+SUBEQ R2,R2,R3,ASR #2
+ADDEQ R3,R3,R2,ASR #2
+ADDNE R2,R2,R3,ASR #2
+SUBNE R3,R3,R2,ASR #2
+ADD R4,R4,#2
+CMP R4,#rocketspritelim
+SUBGT R4,R4,#2
+BL makeproj
+
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+
+
+.makeproj
+STMFD R13!,{R0-R5,R14}
+LDR R10,[R12,#projadr]
+LDR R9,[R10],#4
+LDR R8,[R12,#projctr]
+MOV R1,#projentlen
+MUL R0,R8,R1
+ADD R10,R10,R0
+SUB R9,R9,R8
+.loop42
+LDR R0,[R10],#projentlen
+CMP R0,#0
+BEQ foundmakeproj
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop42
+LDR R10,[R12,#projadr]
+LDR R9,[R12,#projctr]
+ADD R10,R10,#4
+.loop43
+LDR R0,[R10],#projentlen
+CMP R0,#0
+BEQ foundmakeproj
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop43
+LDMFD R13!,{R0-R5,R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.foundmakeproj
+SUB R10,R10,#projentlen
+LDMFD R13!,{R0-R5,R14}
+CMP R5,#1<<16
+ORRLT R5,R5,#1<<22
+STMIA R10!,{R4}
+STMIA R10,{R0-R3,R5}
+
+LDR R9,[R12,#projadr]
+LDR R9,[R9]
+ADD R8,R8,#1
+.loop45
+CMP R8,R9
+SUBGE R8,R8,R9
+BGE loop45
+STR R8,[R12,#projctr]
+MOVS PC,R14
+
+
+.softmakeobj
+STMFD R13!,{R0-R6,R14}
+LDR R10,[R12,#aladr]
+LDR R9,[R10],#4
+LDR R8,[R12,#alctr]
+CMP R8,R9
+MOVGE R8,#0
+MOV R1,#alentlen
+MUL R0,R8,R1
+ADD R10,R10,R0
+SUB R9,R9,R8
+CMP R9,#10; check 10 object spaces
+MOV R9,#10
+MOVLT R8,#0
+LDRLT R10,[R12,#aladr]
+ADDLT R10,R10,#4
+.softloop
+LDR R0,[R10],#alentlen
+CMP R0,#0
+BEQ foundmakeal
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT softloop
+STR R8,[R12,#alctr]
+
+
+LDMFD R13!,{R0-R6,R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+
+
+.makeobj
+STMFD R13!,{R0-R6,R14}
+LDR R10,[R12,#aladr]
+LDR R9,[R10],#4
+LDR R8,[R12,#alctr]
+CMP R8,R9
+MOVGE R8,#0
+MOV R1,#alentlen
+MUL R0,R8,R1
+ADD R10,R10,R0
+SUB R9,R9,R8
+.loop52
+LDR R0,[R10],#alentlen
+CMP R0,#0
+BEQ foundmakeal
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop52
+LDR R10,[R12,#aladr]
+LDR R9,[R12,#alctr]
+ADD R10,R10,#4
+.loop53
+LDR R0,[R10],#alentlen
+CMP R0,#0
+BEQ foundmakeal
+ADD R8,R8,#1
+SUBS R9,R9,#1
+BGT loop53
+LDMFD R13!,{R0-R6,R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.foundmakeal
+SUB R10,R10,#alentlen
+LDMFD R13!,{R0-R6,R14}
+STMIA R10,{R0-R6}
+
+LDR R9,[R12,#aladr]
+LDR R9,[R9]
+ADD R8,R8,#1
+CMP R8,R9
+MOVGE R8,#0
+STR R8,[R12,#alctr]
+MOVS PC,R14
+
+.seestars
+STMFD R13!,{R14}
+LDR R0,[R12,#plstrength]
+LDR R1,[R12,#laststrength]
+CMP R0,R1
+STRGE R0,[R12,#laststrength]
+LDMGEFD R13!,{PC}
+SUB R1,R1,#1<<8
+STR R1,[R12,#laststrength]
+LDR R0,[R12,#blokeadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+
+LDR R1,[R12,#framectr]
+MOV R1,R1,ASR #1
+AND R0,R1,#7
+ADD R0,R0,#starssprbase
+ANDS R1,R1,#7
+MOV R2,#91
+CMPNE R1,#4
+MOVGT R2,#89
+MOVEQ R2,#90
+LDRB R3,[R12,#plotterofs]
+ADD R2,R2,R3
+MOV R1,#160
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDR R0,[R12,#plstrength]
+LDR R1,[R12,#laststrength]
+SUBS R4,R1,R0
+LDMEQFD R13!,{PC}
+;STR R0,[R12,#laststrength]
+LDRB R0,[R12,#electrocuting]
+CMP R0,#0
+BNE elecsound
+MOV R0,#Playerchannel
+MOV R1,#SampStunned
+MOV R2,#&70
+MOV R3,#&4000
+CMP R4,#&1000
+MOVGT R4,#&1000
+SUB R3,R3,R4
+
+MOV R4,#0
+MOV R5,#0
+MOV R6,#50
+MOV R7,#0
+BL bidforsound
+
+LDMFD R13!,{PC}
+.elecsound
+MOV R0,#Playerchannel
+MOV R1,#Samprave
+MOV R2,#&7F
+MOV R3,#&2000
+MOV R4,#&FF<<8
+
+MOV R5,#0
+MOV R6,#10
+MOV R7,#0
+BL bidforsound
+MOV R0,#Firechannel
+MOV R1,#Samprave
+MOV R2,#&7F
+MOV R3,#&2400
+MOV R4,#&FF<<8
+MOV R5,#0
+MOV R6,#10
+MOV R7,#127
+BL bidforsound
+MOV R0,#Sparechannel
+MOV R1,#Samprave
+MOV R2,#&7F
+MOV R3,#&2800
+MOV R4,#&FF<<8
+MOV R5,#0
+MOV R6,#10
+MVN R7,#126
+BL bidforsound
+
+LDMFD R13!,{PC}
+
+
+.seeifdead
+LDR R0,[R12,#plstrength]
+CMP R0,#0
+LDR R0,[R12,#snuffctr]
+CMPLE R0,#0
+MOVGT PC,R14
+STMFD R13!,{R14}
+MOV R0,#1
+STR R0,[R12,#snuffctr]
+MOV R0,#Decoration
+MOV R1,#1<<8
+MOV R2,#2<<8
+MOV R3,#0
+MVN R4,#2<<8
+MOV R5,#250<<16
+MOV R6,#24
+STMFD R13!,{R0-R2,R5-R6}
+ADD R5,R5,#deadsprbase-3
+SUB R2,R2,#12<<8
+
+BL makeobj
+LDMFD R13,{R0-R2,R5-R6}; no writeback
+SUB R1,R1,#5<<8
+MVN R3,#1<<8
+MVN R4,#3<<8
+ADD R5,R5,#deadsprbase+1
+BL makeobj
+LDMFD R13!,{R0-R2,R5-R6}
+ADD R1,R1,#6<<8
+MOV R3,#1<<8
+MVN R4,#3<<8
+ADD R5,R5,#deadsprbase+2
+BL makeobj
+
+BL deathmessage
+LDMFD R13!,{PC}
+
+.wipearea
+STMFD R13!,{R14}
+LDR R9,[R12,#hbytes]
+MUL R1,R9,R1
+ADD R10,R0,R1
+MUL R0,R9,R3
+SUB R10,R10,R0,ASR #1    ;R3 is a multiple of 2
+SUB R10,R10,R2,ASR #1    ;R2 is a multiple of 8
+LDR R0,[R12,#screenuse]
+ADD R11,R12,#wipescrst
+ADD R10,R10,R0
+MOV R9,#16
+.wipetest
+LDMIA R11!,{R0-R7}
+STMIA R10!,{R0-R7}
+LDMIA R11!,{R0-R7}
+STMIA R10!,{R0-R7}
+LDMIA R11!,{R0-R7}
+STMIA R10!,{R0-R7}
+LDMIA R11!,{R0-R7}
+STMIA R10!,{R0-R7}
+ADD R10,R10,#320-128
+SUBS R9,R9,#1
+BGT wipetest
+LDMFD R13!,{PC}
+
+.wipearearead
+STMFD R13!,{R14}
+LDR R9,[R12,#hbytes]
+MUL R1,R9,R1
+ADD R10,R0,R1
+MUL R0,R9,R3
+SUB R10,R10,R0,ASR #1    ;R3 is a multiple of 2
+SUB R10,R10,R2,ASR #1    ;R2 is a multiple of 8
+LDR R0,[R12,#screenuse]
+ADD R11,R12,#wipescrst
+ADD R10,R10,R0
+MOV R9,#16
+.wipetest2
+LDMIA R10!,{R0-R7}
+STMIA R11!,{R0-R7}
+LDMIA R10!,{R0-R7}
+STMIA R11!,{R0-R7}
+LDMIA R10!,{R0-R7}
+STMIA R11!,{R0-R7}
+LDMIA R10!,{R0-R7}
+STMIA R11!,{R0-R7}
+ADD R10,R10,#320-128
+SUBS R9,R9,#1
+BGT wipetest2
+LDMFD R13!,{PC}
+
+.scorewipe
+STMFD R13!,{R14}
+MOV R0,#160
+MOV R1,#scoreyofs
+MOV R2,#16*8
+MOV R3,#16
+BL wipearea
+LDMFD R13!,{PC}
+
+.scorewiperead
+STMFD R13!,{R14}
+MOV R0,#160
+MOV R1,#scoreyofs
+MOV R2,#16*8
+MOV R3,#16
+BL wipearearead
+LDMFD R13!,{PC}
+
+.showscore
+STMFD R13!,{R14}
+LDR R0,[R12,#charsadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+BL releaseclip
+ADD R11,R12,#plscore
+MOV R1,#scorexofs
+MOV R2,#scoreyofs
+MOV R6,#8
+
+LDRB R0,[R11]
+CMP R0,#0
+BNE score10mil
+ADD R1,R1,#charwidth/2
+ADD R11,R11,#1
+SUB R6,R6,#1
+LDRB R0,[R11]
+CMP R0,#0
+ADDEQ R1,R1,#charwidth/2
+ADDEQ R11,R11,#1
+SUBEQ R6,R6,#1
+.score10mil
+MOV R7,#0
+
+.loop36
+LDRB R0,[R11],#1
+CMP R0,#10
+BGT scoreskip
+STMFD R13!,{R1-R2,R6-R8}
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2,R6-R8}
+MOV R8,#1
+.scoreskip
+ADD R1,R1,#charwidth
+SUBS R6,R6,#1
+BGT loop36
+LDMFD R13!,{PC}
+
+.scoreadd
+LDR R5,[R12,#plscoreadd]
+CMP R5,#0
+MOVEQ PC,R14
+MOV R0,#0
+STR R0,[R12,#plscoreadd]
+MOV R6,#8
+ADD R10,R12,#plscore
+LDR R11,[R12,#addtabadr]
+.loop37
+LDR R0,[R11],#4
+CMP R5,R0
+BLT scoreaddskip
+MOV R1,#0
+CMP R5,R0,ASL #3
+ADDGE R1,R1,#8
+SUBGE R5,R5,R0,ASL #3
+CMP R5,R0,ASL #2
+ADDGE R1,R1,#4
+SUBGE R5,R5,R0,ASL #2
+CMP R5,R0,ASL #1
+ADDGE R1,R1,#2
+SUBGE R5,R5,R0,ASL #1
+CMP R5,R0
+ADDGE R1,R1,#1
+SUBGE R5,R5,R0
+
+LDRB R0,[R10]
+ADD R0,R0,R1
+STRB R0,[R10]
+.scoreaddskip
+ADD R10,R10,#1
+SUBS R6,R6,#1
+BGT loop37
+MOV R6,#8 ; now handle carries
+MOV R1,#0
+.loop38
+SUB R10,R10,#1
+LDRB R0,[R10]
+ADD R0,R0,R1
+CMP R0,#10
+SUBGE R0,R0,#10
+MOVGE R1,#1
+MOVLT R1,#0
+STRB R0,[R10]
+SUBS R6,R6,#1
+BGT loop38
+MOV PC,R14
+
+
+.showstrength
+STMFD R13!,{R14}
+LDR R0,[R12,#lagerctr]
+CMP R0,#0
+BEQ nolager
+LDRB R1,[R12,#frameinc]
+SUBS R0,R0,R1
+MOVMI R0,#0
+STR R0,[R12,#lagerctr]
+LDR R0,[R12,#plstrength]
+LDR R2,[R12,#laststrength]
+ADD R0,R0,R1,LSL #6
+CMP R0,#strengthinit
+MOVGT R0,#strengthinit
+ADD R2,R2,R1,LSL #6
+CMP R2,#strengthinit
+MOVGT R2,#strengthinit
+STR R2,[R12,#laststrength]
+STR R0,[R12,#plstrength]
+.nolager
+LDR R10,[R12,#screenuse]
+LDR R5,[R12,#hbytes]
+MOV R1,#strengthyofs
+MUL R0,R1,R5
+ADD R0,R0,#strengthxofs
+ADD R10,R10,R0
+STMFD R13!,{R10}
+LDR R9,[R12,#lifeseed1]
+ADD R9,R9,#137
+EOR R9,R9,R9,ROR #13
+STR R9,[R12,#lifeseed1]
+LDR R11,[R12,#strengthcoltab]
+LDR R3,[R12,#plstrength]
+CMP R3,#strengthmax
+MOVGT R3,#strengthmax
+CMP R3,#0
+MOVLT R3,#0
+MOV R3,R3,ASR #8
+MOV R7,#0
+.loop31
+MOV R4,R10
+CMP R3,#0
+BLE writeblue
+MOV R6,#6
+.loop32
+ADD R9,R9,#137
+EOR R9,R9,R9,ROR #13
+AND R0,R9,#&1F
+ADD R0,R11,R0
+LDR R0,[R0]
+STR R0,[R4],R5
+SUBS R6,R6,#1
+BGT loop32
+ADD R10,R10,#4
+ADD R7,R7,#1
+SUBS R3,R3,#4
+B loop31
+
+.writeblue
+LDMFD R13!,{R10}
+ADD R10,R10,#(spstrengthmax>>8)
+ADD R11,R11,#&24
+LDR R9,[R12,#lifeseed2]
+ADD R9,R9,#137
+EOR R9,R9,R9,ROR #13
+LDR R0,[R12,#laststrengthframe]
+LDR R1,[R12,#framectr]
+SUB R0,R1,R0
+CMP R0,#2
+STRHI R9,[R12,#lifeseed2]
+STRHI R1,[R12,#laststrengthframe]
+
+.loop35
+MOV R4,R10
+MOV R6,#6
+CMP R7,#(spstrengthmax>>8)/4
+BGT writemaskedlife
+.loop34
+ADD R9,R9,#137
+EOR R9,R9,R9,ROR #13
+AND R0,R9,#&1F
+ADD R0,R11,R0
+LDR R0,[R0]
+STR R0,[R4],R5
+SUBS R6,R6,#1
+BGT loop34
+SUB R10,R10,#4
+ADD R7,R7,#1
+B loop35
+
+.writemaskedlife
+
+MOV R2,#0; the mask
+CMN R3,#3
+ADDGE R2,R2,#&FF
+CMN R3,#2
+ADDGE R2,R2,#&FF<<8
+CMN R3,#1
+ADDGE R2,R2,#&FF<<16
+CMP R3,#0
+LDMGEFD R13!,{PC}
+
+MOV R6,#6
+MOV R4,R10
+.loop33
+ADD R9,R9,#137
+EOR R9,R9,R9,ROR #13
+AND R0,R9,#&1F
+ADD R0,R11,R0
+LDR R0,[R0]
+BIC R0,R0,R2
+LDR R1,[R4]
+AND R1,R1,R2
+ORR R0,R1,R0
+STR R0,[R4],R5
+SUBS R6,R6,#1
+BGT loop33
+LDMFD R13!,{PC}
+
+
+
+.fuelairproc
+STMFD R13!,{R14}
+LDR R0,[R12,#fuelairlastframe]
+LDR R1,[R12,#fueltabctr]
+LDR R2,[R12,#framectr]
+RSB R1,R1,#fuelairduration
+ADD R0,R0,R1,ASR #1
+CMP R0,R2
+LDMGTFD R13!,{PC}
+STR R2,[R12,#fuelairlastframe]
+
+LDR R11,[R12,#fueltabread]
+LDR R10,[R12,#fueltabwrite]
+STR R10,[R12,#fueltabread]
+STR R11,[R12,#fueltabwrite]
+LDR R0,[R12,#fueltabctr]
+SUBS R0,R0,#1
+BMI fuelprocdone
+STR R0,[R12,#fueltabctr]
+
+LDR R9,[R12,#boardwidth]
+ADD R7,R10,#fueltablim
+MOV R2,#gaslowlim
+.loop22
+LDR R8,[R11],#4
+CMP R8,#0
+BEQ fuelprocdone
+LDRB R0,[R8]
+BIC R0,R0,#1
+CMP R0,#gaslowlim
+BNE skipfuelair
+SUB R1,R8,#1
+LDRB R0,[R1]
+CMP R0,#0
+STREQB R2,[R1]
+STREQ R1,[R10],#4
+ADD R1,R8,R9
+LDRB R0,[R1]
+CMP R0,#0
+STREQB R2,[R1]
+STREQ R1,[R10],#4
+ADD R1,R8,#1
+LDRB R0,[R1]
+CMP R0,#0
+STREQB R2,[R1]
+STREQ R1,[R10],#4
+SUB R1,R8,R9
+LDRB R0,[R1]
+CMP R0,#0
+STREQB R2,[R1]
+STREQ R1,[R10],#4
+
+.skipfuelair
+CMP R10,R7
+BLT loop22
+
+.fuelprocdone
+MOV R0,#0
+STR R0,[R10]
+LDMFD R13!,{PC}
+
+.noobject
+MOV R0,#Explo
+ADD R2,R2,#8<<8
+MOV R5,#0
+CMP R10,#1
+MOVEQ R5,#1<<15
+STMFD R13!,{R1-R5}
+
+BL softmakeobj
+LDMFD R13!,{R1-R5}
+LDMFD R13!,{PC}
+
+.explogonopyro
+STMFD R13!,{R14}
+BL explocreate
+LDMFD R13!,{PC}
+
+.explogonopyroquiet
+STMFD R13!,{R14}
+BL explocreatequiet
+LDMFD R13!,{PC}
+
+.explogoquiet
+STMFD R13!,{R14}
+BL explocreatequiet
+BL embercreate
+LDMFD R13!,{PC}
+
+.explogomaybe
+STMFD R13!,{R14}
+BL explocreate
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #12
+ADD R0,R0,#124
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#3
+BLEQ embercreate
+LDMFD R13!,{PC}
+
+.explogo
+STMFD R13!,{R14}
+BL explocreate
+BL embercreate
+LDMFD R13!,{PC}
+
+.explocreate
+CMP R10,#8
+LDRGE R1,[R10,#4]
+LDRGE R2,[R10,#8]
+STMFD R13!,{R1-R4,R10,R14}
+LDR R0,[R12,#xpos]
+SUBS R1,R1,R0
+MOV R7,R1,ASR #9
+MVNMI R1,R1
+LDR R0,[R12,#ypos]
+SUBS R2,R2,R0
+MVNMI R2,R2
+ADD R1,R1,R2
+MOV R1,R1,ASR #12
+RSBS R1,R1,#&7F
+CMP R1,#80
+BLT noexplosound
+
+AND R2,R1,#&7F         ;vol
+CMP R2,#&7C
+MOVGT R2,#&7C
+
+MOV R0,#Explochannel   ;channel
+MOV R1,#SampExplo
+MOV R3,#&3800          ;pitch
+MOV R4,#0
+MOV R5,#0
+MOV R6,#10          ;lifetime (frames)
+BL bidforsound
+.noexplosound
+LDMFD R13!,{R1-R4,R10,R14}
+.explocreatequiet
+STMFD R13!,{R14}
+CMP R10,#8
+BLT noobject
+
+MOV R0,#Explo
+STR R0,[R10]
+LDR R1,[R10,#4]
+LDR R2,[R10,#8]
+STR R3,[R10,#12]
+STR R4,[R10,#16]
+MOV R0,#0
+STR R0,[R10,#20]
+.noobjectins
+LDMFD R13!,{PC}
+.embercreate
+STMFD R13!,{R14}
+MOV R0,#Ember
+MOV R3,#1<<8
+MVN R4,#1<<8
+MOV R5,#0
+STMFD R13!,{R0-R5}
+BL softmakeobj
+LDMFD R13!,{R0-R5}
+
+MVN R3,R3
+BL softmakeobj
+
+LDMFD R13!,{PC}
+
+.atomexplogo
+STMFD R13!,{R14}
+STMFD R13!,{R1-R4,R10}
+BL explogoquiet
+LDMFD R13!,{R1-R4,R10}
+SUB R2,R2,#16<<8
+MVN R4,#1<<6
+STMFD R13!,{R1-R2}
+STMFD R13!,{R1-R4,R10}
+BL explogoquiet
+LDMFD R13!,{R1-R4,R10}
+MVN R4,#1<<7
+SUB R2,R2,#16<<8
+STMFD R13!,{R1-R4,R10}
+BL explogoquiet
+LDMFD R13!,{R1-R4,R10}
+MVN R4,#3<<5
+MOV R3,#1<<6
+ADD R2,R2,#8<<8
+ADD R1,R1,#12<<8
+STMFD R13!,{R1-R4,R10}
+BL explogoquiet
+LDMFD R13!,{R1-R4,R10}
+SUB R1,R1,#24<<8
+MVN R3,#1<<6
+BL explogoquiet
+LDMFD R13!,{R1-R2}
+LDR R0,[R12,#xpos]
+SUBS R1,R1,R0
+MOV R7,R1,ASR #9
+MVNMI R1,R1
+LDR R0,[R12,#ypos]
+SUBS R2,R2,R0
+MVNMI R2,R2
+ADD R1,R1,R2
+MOV R1,R1,ASR #12
+RSBS R1,R1,#&8F
+CMP R1,#&7F
+MOVGT R1,#&7F
+CMP R1,#60
+BLT noatomsound
+MOV R0,#Explochannel
+AND R2,R1,#&7F
+MOV R2,#&7F
+MOV R1,#SampAtomExplo
+MOV R3,#&2800
+MOV R4,#0
+MOV R5,#0
+MOV R6,#50
+BL bidforsound
+
+.noatomsound
+LDMFD R13!,{PC}
+
+.screenwakeup
+STMFD R13!,{R14}
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+BL translate
+MOV R7,R0
+LDR R8,[R12,#boardadr]  ;set up outer limits
+LDR R1,[R8,#4]
+LDR R2,[R8,#8]
+MUL R9,R1,R2
+ADD R8,R8,#boardhdrlen  ;start
+ADD R9,R8,R9            ;end
+LDR R6,[R12,#boardwidth]
+SUB R7,R7,#boxwidth
+SUB R7,R7,R6,ASL #4
+MOV R5,#boxheight*2
+.loopa4
+MOV R4,#boxwidth*2
+STMFD R13!,{R5-R7}
+BL linecheck
+LDMFD R13!,{R5-R7}
+ADD R7,R7,R6
+SUBS R5,R5,#1
+BGT loopa4
+LDMFD R13!,{PC}
+
+.linecheck
+STMFD R13!,{R14}
+MOV R5,#1
+.loopa3
+CMP R7,R8
+CMPGT R9,R7
+LDRB R0,[R7],R5
+CMPGT R0,#triggerlim
+BLGT dowakeup
+SUBS R4,R4,#1
+BGT loopa3
+LDMFD R13!,{PC}
+
+.wakeupal
+STMFD R13!,{R14}
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+BL translate
+MOV R7,R0
+LDR R8,[R12,#boardadr]  ;set up outer limits
+LDR R1,[R8,#4]
+LDR R2,[R8,#8]
+MUL R9,R1,R2
+ADD R8,R8,#boardhdrlen  ;start
+ADD R9,R8,R9            ;end
+LDR R6,[R12,#boardwidth]
+SUB R7,R7,#boxwidth/2
+SUB R7,R7,R6,ASL #3
+MOV R5,#1
+MOV R4,#boxwidth
+BL boxcheck
+MOV R5,R6
+MOV R4,#boxheight
+BL boxcheck
+MVN R5,#0
+MOV R4,#boxwidth
+BL boxcheck
+RSB R5,R6,#0
+MOV R4,#boxheight
+BL boxcheck
+LDMFD R13!,{PC}
+
+.boxcheck
+STMFD R13!,{R14}
+.loop80
+CMP R7,R8
+CMPGT R9,R7
+LDRB R0,[R7],R5
+CMPGT R0,#triggerlim
+BLGT dowakeup
+.wakeinsert
+SUBS R4,R4,#1
+BGT loop80
+LDMFD R13!,{PC}
+.badalmarker
+STMFD R13!,{R7}
+SUB R7,R7,R5
+MOV R0,#0
+STRB R0,[R7]
+LDMFD R13!,{R7}
+B wakeinsert
+
+
+.dowakeup
+CMP R0,#240
+MOVLT PC,R14
+CMP R0,#253
+MOVGT PC,R14
+STMFD R13!,{R4-R9,R14}
+STMFD R13!,{R0}
+SUB R7,R7,R5
+MOV R0,#0
+STRB R0,[R7]
+MOV R0,R7
+BL backtranslate
+MOV R2,R1
+MOV R1,R0
+ADD R1,R1,#8<<8
+ADD R2,R2,#7<<8
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+LDMFD R13!,{R0}
+SUB R0,R0,#240-Alien1
+MOV R6,R0,LSL #9
+SUB R6,R6,#(Alien1-1)<<9
+BL makeobj
+LDMFD R13!,{R4-R9,PC}
+.savevalid
+EQUS "IsOK"
+ALIGN
+
+.saveal
+STMFD R13!,{R14}
+LDRB R0,[R12,#bonusctr]
+STRB R0,[R12,#bonusstore]
+LDRB R0,[R12,#plweapontype]
+STRB R0,[R12,#plweaponstore]
+
+ADD R10,R12,#saveareaofs
+ADD R7,R10,#savearealen
+ADR R0,savevalid
+LDR R0,[R0]
+STR R0,[R10],#4
+ADD R4,R12,#pl
+LDMIA R4,{R0-R5}
+STMIA R10!,{R0-R5}
+
+LDR R11,[R12,#aladr]
+LDR R9,[R11],#4
+.sl8
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procsaveal
+
+SUBS R9,R9,#8
+BGT sl8
+MVN R0,#0
+STR R0,[R10]; end marker
+LDMFD R13!,{PC}
+.procsaveal
+CMP R8,#Explo         ;don't save these
+CMPNE R8,#Scoreobj
+CMPNE R8,#Flyingbonus
+CMPNE R8,#Dyingbonus
+MOVEQ PC,R14
+CMP R10,R7
+MOVGE PC,R14
+STMFD R13!,{R11}
+SUB R11,R11,#alentlen
+LDMIA R11!,{R0-R3}
+STMIA R10!,{R0-R3}
+LDMIA R11!,{R0-R3}
+STMIA R10!,{R0-R3}
+LDMFD R13!,{R11}
+MOV PC,R14
+
+.restoreal
+STMFD R13!,{R14}
+LDRB R0,[R12,#bonusstore]
+STRB R0,[R12,#bonusctr]
+LDRB R0,[R12,#plweaponstore]
+STRB R0,[R12,#plweapontype]
+BL wipealtab
+ADD R11,R12,#saveareaofs
+ADR R0,savevalid
+LDR R0,[R0]
+LDR R1,[R11]
+CMP R0,R1
+LDMNEFD R13!,{PC}
+MOV R0,#0
+STR R0,[R11],#4
+ADD R8,R12,#pl
+LDMIA R11!,{R0-R5}
+STMIA R8,{R0-R5}
+LDR R10,[R12,#aladr]
+ADD R10,R10,#4
+.sl1
+LDMIA R11!,{R0-R7}
+CMP R0,#32
+BHI restored
+STMIA R10!,{R0-R7}
+B sl1
+.restored
+LDMFD R13!,{PC}
+
+.moval
+STMFD R13!,{R14}
+;BL writeclip - active for release version
+LDRB R0,[R12,#extending]
+CMP R0,#0
+SUBNE R0,R0,#1
+STRNEB R0,[R12,#extending]
+STR R0,[R12,#fuelexploctr]
+LDR R1,[R12,#xpos]
+SUB R0,R1,#windowxsize
+STR R0,[R12,#sprlx]
+ADD R0,R1,#windowxsize
+STR R0,[R12,#sprhx]
+LDR R1,[R12,#ypos]
+SUB R0,R1,#windowysize
+STR R0,[R12,#sprly]
+ADD R0,R1,#windowysize
+STR R0,[R12,#sprhy]
+
+LDR R11,[R12,#aladr]
+LDR R9,[R11],#4
+.l8
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+LDR R8,[R11],#alentlen
+CMP R8,#0
+BLNE procal
+
+SUBS R9,R9,#8
+BGT l8
+LDMFD R13!,{PC}
+
+.procal
+STMFD R13!,{R9,R11,R14}
+SUB R11,R11,#alentlen-4
+LDMIA R11,{R0-R3}
+LDR R4,[R12,#xposmax]
+LDR R5,[R12,#yposmax]
+CMP R0,#xlowlim
+CMPGT R4,R0
+CMPGT R1,#ylowlim
+CMPGT R5,R1
+BLE aloffscr
+.noaloffscr
+ADD R10,R12,#sprlx
+LDMIA R10,{R4-R7}
+CMP R0,R4
+CMPGE R6,R0
+CMPGE R1,R5
+CMPGE R7,R1
+MOV R4,#0
+LDRGEB R4,[R12,#masterplotal]
+STRB R4,[R12,#plotal]
+AND R8,R8,#&1F
+MOV R8,R8,LSL #2
+ADR R9,aljumptab
+LDR R9,[R9,R8]
+ADD PC,PC,R9
+
+.aljumptab       ;alien type table
+EQUD aljerr
+.t
+EQUD explo-t
+EQUD ember-t
+EQUD plat1-t
+EQUD plat2-t
+EQUD plat3-t
+EQUD plat3-t
+EQUD plat4-t
+EQUD plat4-t
+EQUD plat4-t
+EQUD plat4-t
+EQUD plat5-t
+EQUD scoreobj-t
+EQUD dyingbonus-t
+EQUD flyingbonus-t
+EQUD booby-t
+EQUD decoration-t
+EQUD extender-t
+EQUD alien1-t
+EQUD alien2-t
+EQUD alien3-t
+EQUD alien4-t
+EQUD alien5-t
+EQUD alien6-t
+EQUD alien7-t
+EQUD alien8-t
+EQUD alien9-t
+EQUD alien10-t
+EQUD alien11-t
+EQUD alien12-t
+EQUD alien13-t
+EQUD alien14-t
+EQUD aljerr-t
+EQUD aljerr-t
+EQUD aljerr-t
+EQUD aljerr-t
+EQUD aljerr-t
+.aljerr
+
+LDMFD R13!,{R9,R11,PC}
+
+.aloffscr
+LDR R4,[R11,#-4]
+CMP R4,#Decoration
+BEQ noaloffscr
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{R9,R11,PC}
+
+.alienwander
+LDRB R4,[R12,#righthit]
+CMP R4,#1
+LDRNEB R4,[R12,#lefthit]
+CMPNE R4,#1
+BEQ almightjump
+LDRB R4,[R5]
+CMP R4,#0
+BEQ alpossjump
+LDRB R4,[R5,#1]
+CMP R4,#0
+BEQ alpossjump
+LDR R4,[R12,#rnseed]
+TST R4,#&3F
+BEQ almightjump
+.almightjumpins
+CMP R2,#0
+MOV R4,R2
+RSBLT R4,R4,#0
+CMP R4,#1<<5
+MOVGT PC,R14
+CMP R3,#0
+MOV R4,R3
+RSBLT R4,R4,#0
+CMP R4,#1<<7
+MOVGT PC,R14
+B alienstopped
+
+.jumpyalwander
+LDRB R4,[R12,#righthit]
+CMP R4,#1
+LDRNEB R4,[R12,#lefthit]
+CMPNE R4,#1
+BEQ almightwelljump
+B almightjumpins
+
+.alienwanderfly
+LDR R4,[R12,#rnseed]
+ANDS R4,R4,#&FF
+BEQ alienstoppedfly
+CMP R2,#0
+MOV R4,R2
+RSBLT R4,R4,#0
+CMP R4,#1<<5
+MOVGE PC,R14
+CMP R3,#0
+MOV R4,R3
+RSBLT R4,R4,#0
+CMP R4,#1<<5
+MOVGE PC,R14
+B alienstoppedfly
+
+
+.alienwandernojump
+CMP R2,#0
+MOV R4,R2
+RSBLT R4,R4,#0
+CMP R4,#1<<5
+MOVGT PC,R14
+CMP R3,#0
+MOV R4,R3
+RSBLT R4,R4,#0
+CMP R4,#1<<8
+MOVGT PC,R14
+B alienstopped
+
+.alienstopped
+LDRB R4,[R12,#downhit]
+CMP R4,#1
+LDRNEB R4,[R12,#alonobj]
+CMPNE R4,#1
+MOVNE PC,R14
+LDR R2,[R12,#rnseed]
+EOR R2,R2,R2,ROR #14
+ADD R2,R2,#211
+STR R2,[R12,#rnseed]
+AND R2,R2,#1<<9
+SUB R2,R2,#1<<8
+
+STR R2,[R11,#8]
+MOV PC,R14
+
+.alienstoppedfly
+LDR R2,[R12,#rnseed]
+EOR R2,R2,R2,ROR #14
+ADD R2,R2,#211
+STR R2,[R12,#rnseed]
+TST R2,#6
+BEQ flyup
+TST R2,#1
+BEQ flyupdown
+AND R2,R2,#1<<10
+SUB R2,R2,#1<<9
+MOV R3,#0
+
+STR R2,[R11,#8]
+STR R3,[R11,#12]
+MOV PC,R14
+
+.flyup
+MVN R3,#1<<7
+MOV R2,#0
+
+STR R2,[R11,#8]
+STR R3,[R11,#12]
+MOV PC,R14
+
+
+.flyupdown
+AND R3,R2,#1<<9
+SUB R3,R3,#1<<8
+MOV R2,#0
+
+STR R2,[R11,#8]
+STR R3,[R11,#12]
+MOV PC,R14
+.almightjump
+LDRB R4,[R12,#downhit]
+CMP R4,#1
+MOVNE R2,#0
+BNE almightjumpins
+LDR R4,[R12,#rnseed]
+EOR R4,R4,R4,ROR #13
+ADD R4,R4,#157
+STR R4,[R12,#rnseed]
+ANDS R4,R4,#3
+BNE almightjumpins
+MVN R3,#%1000<<8
+B almightjumpins
+
+
+.alpossjump
+LDRB R4,[R12,#downhit]
+CMP R4,#1
+MOVNE R2,#0
+BNE almightjumpins
+LDR R4,[R12,#rnseed]
+EOR R4,R4,R4,ROR #14
+ADD R4,R4,#157
+STR R4,[R12,#rnseed]
+ANDS R4,R4,#&1F
+BNE almightjumpins
+MVN R3,#%1000<<8
+B almightjumpins
+
+.almightwelljump
+LDRB R4,[R12,#downhit]
+CMP R4,#1
+MOVNE R2,#0
+BNE almightjumpins
+LDR R4,[R12,#rnseed]
+EOR R4,R4,R4,ROR #4
+ADD R4,R4,#157
+STR R4,[R12,#rnseed]
+ANDS R4,R4,#3
+BEQ almightjumpins
+MVN R3,#%1000<<8
+B almightjumpins
+
+.alientestplat
+LDRB R4,[R12,#alonplat]
+CMP R4,#1
+MOVNE PC,R14
+STMFD R13!,{R0-R3,R11,R14}
+MOV R0,R5
+BL plattoobj
+LDMFD R13!,{R0-R3,R11,R14}
+MOV PC,R14
+
+.decoration
+LDR R4,[R11,#20]
+SUBS R4,R4,#1
+STR R4,[R11,#20]
+ADDMI R0,R0,R2
+ADDMI R1,R1,R3
+ADDMI R3,R3,#1<<4
+STMMIIA R11,{R0-R3}
+LDR R0,[R11,#16]
+SUBS R0,R0,#1<<16
+STR R0,[R11,#16]
+MOV R0,#0
+STRMI R0,[R11,#-4]
+
+LDRB R1,[R12,#masterplotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs+8
+LDR R3,[R12,#blokeadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#16]
+AND R0,R0,#&FF
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+
+.contracting
+AND R2,R2,#&FF
+CMP R1,R2
+CMPNE R1,#0
+MOVEQ R2,#0
+STREQB R2,[R0]
+ADD R2,R2,#1
+CMPNE R1,R2
+ADD R2,R2,#1
+CMPNE R1,R2
+CMPNE R1,#gaslowlim
+CMPNE R1,#gashighlim
+BEQ nostopextend
+MOV R0,#0
+STR R0,[R11,#-4]
+BNE aldone
+
+.extender
+ADD R0,R0,R2
+ADD R1,R1,R3
+STMFD R13!,{R0-R1}
+MOV R2,#32<<8; horiz.size
+MOV R3,#8<<8; vert. size
+BL plcolcheck
+LDMFD R13!,{R0-R1}
+STMEQIA R11,{R0-R1}
+
+
+FNtranslate
+LDRB R1,[R0]
+LDR R2,[R11,#16]
+TST R2,#1<<8
+BNE contracting
+AND R2,R2,#&FF
+CMP R1,#0
+STREQB R2,[R0]
+CMPNE R1,R2
+ADD R2,R2,#1
+CMPNE R1,R2
+ADD R2,R2,#1
+CMPNE R1,R2
+CMPNE R1,#gaslowlim
+CMPNE R1,#gashighlim
+BEQ nostopextend
+
+LDR R2,[R11,#8]
+RSB R2,R2,#0
+STR R2,[R11,#8]
+LDR R2,[R11,#16]
+ORR R2,R2,#1<<8
+STR R2,[R11,#16]
+
+.nostopextend
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R0-R2}
+ADD R0,R0,R2,ASL #4
+SUB R0,R0,R2
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#0
+LDRNE R0,[R11,#16]
+ANDNE R0,R0,#&FF
+CMPNE R0,R1
+ADD R0,R0,#1
+CMPNE R0,R1
+ADD R0,R0,#1
+CMPNE R0,R1
+BNE aldone
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R11,#8]
+SUB R3,R3,R4,ASL #3
+ADD R3,R3,R4
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#blockadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#16]
+AND R0,R0,#&FF
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+
+
+.alien1
+MOV R4,#2
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwandernojump
+
+STR R3,[R11,#12]
+BL bulcolchaddshort
+MOV R2,#alwidth
+MOV R3,#alheight/2
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#1
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#1
+BLGT alsleep
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs+8
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#8]
+CMP R0,#0
+MOV R0,#8
+MOVGT R0,#10
+LDR R5,[R12,#framectr]
+AND R5,R5,#8
+EOR R0,R0,R5,LSR #3
+
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+
+
+.alien2
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#2
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#2
+BLGT alsleep
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R9}
+MOV R0,#0
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9}
+B aldone
+
+
+
+.alien3
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#3
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#3
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&3F
+BLEQ alshoot
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#1
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien4
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL jumpyalwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#4 ;alien number
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#4
+BLGT alsleep
+
+LDR R0,[R11,#16]
+ADD R0,R0,R0,LSL #16
+TST R0,#1<<29
+BLNE alspinfire
+TST R0,#1<<31
+ADDEQ R0,R0,#4
+SUBNE R0,R0,#8
+TST R0,#&FF<<8
+TSTEQ R0,#&FF
+MOVEQ R0,#0
+STR R0,[R11,#16]
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#2
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #24
+SUB R2,R2,#7
+STMFD R13!,{R0-R2}
+AND R0,R0,#3
+ADD R0,R0,#4
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDR R0,[R12,#exploadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+LDMFD R13!,{R0-R2}
+LDR R4,[R11,#16]
+TST R4,#1<<31
+BNE aldone
+AND R5,R0,#3<<2
+MOV R5,R5,ASR #2
+AND R0,R0,#3
+ADR R3,alspintab
+ADD R3,R3,R0,LSL #3
+MOV R4,#4
+.loop81
+STMFD R13!,{R1-R5}
+LDR R0,[R3]
+ADD R1,R1,R0,ASR #8
+LDR R0,[R3,#4]
+ADD R2,R2,R0,ASR #8
+ADD R0,R4,R5
+AND R0,R0,#3
+ADD R0,R0,#bulspritebase
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R5}
+ADD R3,R3,#32
+SUBS R4,R4,#1
+BGT loop81
+B aldone
+
+
+.alien5
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#5 ;alien number
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#5
+BLGT alsleep
+
+LDR R0,[R11,#16]
+ADD R0,R0,R0,LSL #16
+TST R0,#1<<29
+MOV R7,#0
+BLNE alspinpowerfire
+TST R0,#1<<31
+ADDEQ R0,R0,#2
+SUBNE R0,R0,#2
+TST R0,#&FF<<8
+TSTEQ R0,#&FF
+MOVEQ R0,#0
+STR R0,[R11,#16]
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#2
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #24
+SUB R2,R2,#7
+STMFD R13!,{R0-R2}
+AND R0,R0,#3
+ADD R0,R0,#4
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDR R0,[R12,#exploadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+LDMFD R13!,{R0-R2}
+LDR R4,[R11,#16]
+TST R4,#1<<31
+BNE aldone
+AND R5,R0,#3<<2
+MOV R5,R5,ASR #2
+AND R0,R0,#3
+ADR R3,alspintab
+ADD R3,R3,R0,LSL #3
+MOV R4,#4
+.loop83
+STMFD R13!,{R1-R5}
+LDR R0,[R3]
+ADD R1,R1,R0,ASR #8
+LDR R0,[R3,#4]
+ADD R2,R2,R0,ASR #8
+ADD R0,R4,R5
+AND R0,R0,#1
+ADD R0,R0,#bulspritebase+8
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R5}
+ADD R3,R3,#32
+SUBS R4,R4,#1
+BGT loop83
+B aldone
+
+
+.alien6
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#6 ;alien number
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+MOV R0,#6
+CMP R1,#sleeprange
+BLGT alsleep
+
+LDR R0,[R11,#16]
+ADD R0,R0,R0,LSL #16
+TST R0,#1<<29
+MOV R7,#1
+BLNE alspinpowerfire
+TST R0,#1<<31
+ADDEQ R0,R0,#8
+SUBNE R0,R0,#2
+TST R0,#&FF<<8
+TSTEQ R0,#&FF
+MOVEQ R0,#0
+STR R0,[R11,#16]
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#3
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #24
+SUB R2,R2,#7
+STMFD R13!,{R0-R2}
+AND R0,R0,#3
+ADD R0,R0,#4
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDR R0,[R12,#exploadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+LDMFD R13!,{R0-R2}
+LDR R4,[R11,#16]
+TST R4,#1<<31
+BNE aldone
+AND R5,R0,#3<<2
+MOV R5,R5,ASR #2
+AND R0,R0,#3
+ADR R3,alspintab
+ADD R3,R3,R0,LSL #3
+MOV R4,#4
+.loop85
+STMFD R13!,{R1-R5}
+LDR R0,[R3]
+ADD R1,R1,R0,ASR #8
+LDR R0,[R3,#4]
+ADD R2,R2,R0,ASR #8
+ADD R0,R4,R5
+AND R0,R0,#1
+ADD R0,R0,#bulspritebase+10
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R5}
+ADD R3,R3,#32
+SUBS R4,R4,#1
+BGT loop85
+B aldone
+
+
+
+.alspintab
+]
+FOR F=0 TO 15+4
+x=F*2*PI/16
+[OPT OPT
+EQUD (10<<8)*SIN(x)
+EQUD (10<<8)*COS(x)
+]
+NEXT F
+[OPT OPT
+.alspinfire
+MOV R0,#8*32
+ORR R0,R0,#1<<31
+STMFD R13!,{R0-R3,R14}
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#27
+EOR R0,R0,R0,ROR #17
+STR R0,[R12,#rnseed]
+AND R5,R0,#3
+AND R0,R0,#3
+ADR R6,alspintab
+ADD R6,R6,R0,LSL #3
+MOV R4,#4
+.loop82
+STMFD R13!,{R1-R6}
+LDR R0,[R6]
+LDR R1,[R6,#4]
+SUB R1,R1,#7<<8
+LDR R2,[R11]
+LDR R3,[R11,#4]
+LDR R0,[R6]
+ADD R0,R0,R2
+ADD R1,R1,R3
+LDR R2,[R6,#32]
+LDR R3,[R6,#36]
+MOV R2,R2,ASR #2
+MOV R3,R3,ASR #2
+ADD R4,R4,R5
+AND R4,R4,#3
+ADD R4,R4,#bulspritebase
+MOV R5,#1<<24
+BL makebul
+
+LDMFD R13!,{R1-R6}
+ADD R6,R6,#32
+SUBS R4,R4,#1
+BGT loop82
+
+SUB R6,R6,#32
+LDR R0,[R6]
+LDR R1,[R6,#4]
+SUB R1,R1,#7<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MOV R7,R1,ASR #9
+MOVMI R0,R0
+SUBS R1,R1,R3
+MOVMI R1,R1
+ADD R2,R1,R0
+RSB R2,R2,#&7F
+CMP R2,#&40
+BLE nospinzapsound
+
+MOV R0,#Explochannel
+MOV R1,#Sampsmallzap
+LDR R3,[R12,#fullpitch]          ;pitch
+ADD R3,R3,#&1000
+MOV R4,#0
+MOV R5,#0
+MOV R6,#2          ;lifetime (frames)
+BL bidforsound
+.nospinzapsound
+
+LDMFD R13!,{R0-R3,PC}
+
+.alspinpowerfire
+MOV R0,#2*32
+ORR R0,R0,#1<<31
+STMFD R13!,{R0-R3,R14}
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#27
+EOR R0,R0,R0,ROR #17
+STR R0,[R12,#rnseed]
+AND R5,R0,#3
+AND R0,R0,#3
+ADR R6,alspintab
+ADD R6,R6,R0,LSL #3
+MOV R4,#4
+.loop84
+STMFD R13!,{R1-R7}
+LDR R0,[R6]
+LDR R1,[R6,#4]
+SUB R1,R1,#7<<8
+LDR R2,[R11]
+LDR R3,[R11,#4]
+ADD R0,R0,R2
+ADD R1,R1,R3
+LDR R2,[R6,#32]
+LDR R3,[R6,#36]
+MOV R2,R2,ASR #2
+MOV R3,R3,ASR #2
+MOV R4,#bulspritebase+8
+ADD R4,R4,R7,LSL #1
+MOV R5,#1<<24
+BL makebul
+LDMFD R13!,{R1-R7}
+ADD R6,R6,#32
+SUBS R4,R4,#1
+BGT loop84
+SUB R6,R6,#32
+LDR R0,[R6]
+LDR R1,[R6,#4]
+SUB R1,R1,#7<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MOV R7,R1,ASR #9
+MOVMI R0,R0
+SUBS R1,R1,R3
+MOVMI R1,R1
+ADD R2,R1,R0
+RSB R2,R2,#&7F
+CMP R2,#&40
+BLE nopowerzapsound
+
+MOV R0,#Explochannel
+MOV R1,#Sampbigzap
+LDR R3,[R12,#fullpitch]          ;pitch
+MOV R4,#0
+MOV R5,#0
+MOV R6,#2          ;lifetime (frames)
+BL bidforsound
+.nopowerzapsound
+
+LDMFD R13!,{R0-R3,PC}
+
+.alien7
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#7
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#7
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&3F
+ADD R14,PC,#8
+BEQ alshootnutter
+ANDS R0,R0,#&F
+BLEQ alshootfast
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#16
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien8
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<7; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#8
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#8
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&3F
+ADD R14,PC,#8
+BEQ alshootnutter
+ANDS R0,R0,#&F
+BLEQ alshootmental
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#16
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien9
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<2; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#9
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#9
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&1F
+BLEQ alshootnutterplus
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#17
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien10
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+ADD R3,R3,#1<<2; gravity
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwander
+BL alientestplat
+
+STR R3,[R11,#12]
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#10
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#10
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&1F
+BLEQ alshootnuttermental
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+MOV R0,#17
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien11
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3 ;no gravity
+STMIA R11,{R0-R1}
+BL alienwanderfly
+
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange*2
+MOV R0,#11
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange*2
+MOV R0,#11
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&1F
+BLEQ alshootfast
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+LDR R0,[R12,#rnseed]
+AND R0,R0,#3
+
+ADD R0,R0,#12
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien12
+
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3 ;no gravity
+ADD R2,R2,R2,ASR #6
+ADD R3,R3,R3,ASR #6
+CMP R2,#speedlim
+MOVGT R2,#speedlim
+CMN R2,#speedlim
+MVNLT R2,#speedlim
+CMP R3,#speedlim
+MOVGT R3,#speedlim
+CMN R3,#speedlim
+MVNLT R3,#speedlim
+
+STMIA R11,{R0-R3}
+BL alienwanderfly
+
+BL bulcolchadd
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange*4
+MOV R0,#12
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange*4
+MOV R0,#12
+BLGT alsleep
+LDR R0,[R12,#rnseed]
+EOR R0,R0,R0,ROR #17
+ADD R0,R0,#97
+STR R0,[R12,#rnseed]
+ANDS R0,R0,#&1F
+BLEQ alshootnuttermental
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+LDR R0,[R12,#rnseed]
+AND R0,R0,#3
+
+ADD R0,R0,#12
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+.alien13
+MOV R4,#2
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R1}
+BL alienwanderfly
+
+STR R3,[R11,#12]
+BL bulcolchaddshort
+
+MOV R2,#alwidth
+MOV R3,#alheight/2
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#13
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#13
+BLGT alsleep
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs+8
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#8]
+CMP R0,#0
+MOV R0,#8
+MOVGT R0,#10
+LDR R5,[R12,#framectr]
+AND R5,R5,#8
+EOR R0,R0,R5,LSR #3
+
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+.alien14
+MOV R4,#1
+STRB R4,[R12,#colchecktype]
+LDR R1,[R11,#4]
+SUB R1,R1,#8<<8
+STR R1,[R12,#platypos]
+STMFD R13!,{R0-R1,R11}
+BL colcheck
+LDMFD R13!,{R0-R1,R11}
+LDR R1,[R12,#platypos]
+ADD R1,R1,#8<<8
+STR R1,[R11,#4]
+BL albcheck
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1
+CMP R3,#1<<9
+MOVGT R3,#1<<8
+STMIA R11,{R0-R3}
+BL bulcolchadd
+LDRB R0,[R12,#downhit]
+CMP R0,#1
+BLEQ hamsterspecial
+
+MOV R2,#alwidth
+MOV R3,#alheight
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+LDRNE R0,[R11,#20] ; alien strength
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R11,#20]
+LDR R0,[R11,#20]
+CMP R0,#0
+BLE alkill
+LDMIA R11,{R0-R1}
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+SUBS R0,R0,R2
+MVNMI R0,R0
+CMP R0,#sleeprange
+MOV R0,#14
+BLGT alsleep
+SUBS R1,R1,R3
+MVNMI R1,R1
+CMP R1,#sleeprange
+MOV R0,#14
+BLGT alsleep
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#alspradr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2}
+
+MOV R0,#18
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2}
+B aldone
+
+
+.hamsterspecial
+MOV R0,#Alien1+11
+STR R0,[R11,#-4]
+MOV R0,#12<<8
+STR R0,[R11,#20]
+MOV R0,#0
+STR R0,[R11,#8]
+STR R0,[R11,#12]
+MOV PC,R14
+
+
+
+.alkill
+STMFD R13!,{R0-R1,R11}
+LDR R3,[R11,#-4]
+SUB R3,R3,#Alien1-1
+AND R3,R3,#&1F
+MOV R4,#100
+MUL R3,R4,R3
+LDR R4,[R12,#plscoreadd]
+ADD R4,R4,R3
+STR R4,[R12,#plscoreadd]
+
+SUB R10,R11,#4
+MOV R3,#0
+MOV R4,#0
+
+BL explogo
+
+LDMFD R13!,{R0-R1,R11}
+B exploins
+
+.alshoot
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#6<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#8<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,R2,ASR #6
+MOV R3,R3,ASR #6
+
+LDR R4,[R12,#rnseed]
+AND R4,R4,#7<<8
+MOV R4,R4,ASR #8
+CMP R4,#7
+MOVEQ R4,#6
+ADD R4,R4,#bulspritebase
+MOV R5,#1<<24
+BL makebul
+
+
+MOV R0,#Explochannel
+MOV R1,#Sampsmallzap
+MOV R2,#&78
+LDR R3,[R12,#fullpitch]          ;pitch
+ADD R3,R3,#&1000
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2
+MOV R7,#0
+BL bidforsound
+.noshootsound
+LDMFD R13!,{R11,PC}
+
+.alshootfast
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#6<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#8<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,R2,ASR #5
+MOV R3,R3,ASR #5
+
+LDR R4,[R12,#rnseed]
+AND R4,R4,#7<<8
+MOV R4,R4,ASR #8
+CMP R4,#7
+MOVEQ R4,#6
+ADD R4,R4,#bulspritebase
+MOV R5,#1<<24
+BL makebul
+MOV R0,#Explochannel
+MOV R1,#Sampsmallzap
+MOV R2,#&6F
+LDR R3,[R12,#fullpitch]          ;pitch
+ADD R3,R3,#&1000
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2          ;lifetime (frames)
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R11,PC}
+
+
+
+.alshootnutter
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#8<<8 ;fire from sensible place
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#12<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,#0
+MVN R3,#1<<10
+
+MOV R4,#bulspritebase+12
+MOV R5,#1<<22
+BL makebul
+MOV R0,#Explochannel
+MOV R1,#Sampbigzap
+MOV R2,#&6F
+LDR R3,[R12,#fullpitch]          ;pitch
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R11,PC}
+
+.alshootnutterplus
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#8<<8 ;fire from sensible place
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#12<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,#0
+MVN R3,#1<<10
+
+MOV R4,#bulspritebase+13
+MOV R5,#1<<21
+BL makebul
+MOV R0,#Explochannel
+MOV R1,#Sampbigzap
+MOV R2,#&6F
+LDR R3,[R12,#fullpitch]          ;pitch
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R11,PC}
+
+.alshootnuttermental
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#8<<8 ;fire from sensible place
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#12<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,#1<<10
+LDR R4,[R12,#rnseed]
+TST R4,#1<<10
+RSBEQ R2,R2,#0
+MOV R3,#0
+TST R4,#1<<11
+MOVEQ R2,#0
+MVNEQ R3,#1<<10
+MOV R4,#bulspritebase+14
+MOV R5,#1<<21
+BL makebul
+MOV R0,#Explochannel
+MOV R1,#Sampbigzap
+MOV R2,#&6F
+LDR R3,[R12,#fullpitch]          ;pitch
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R11,PC}
+
+
+.alshootmental
+STMFD R13!,{R11,R14}
+LDMIA R11,{R0-R1}
+SUB R1,R1,#6<<8
+LDR R2,[R12,#xpos]
+LDR R3,[R12,#ypos]
+ADD R3,R3,#8<<8;  aim at body
+SUB R2,R2,R0
+SUB R3,R3,R1
+CMP R2,#firerange
+CMPLE R3,#firerange
+LDMGTFD R13!,{R11,PC}
+CMN R2,#firerange
+CMNGE R3,#firerange
+LDMLTFD R13!,{R11,PC}
+MOV R2,R2,ASR #6
+MOV R3,R3,ASR #6
+
+LDR R4,[R12,#rnseed]
+AND R4,R4,#2<<8
+MOV R4,R4,ASR #8
+ADD R4,R4,#bulspritebase+8
+MOV R5,#1<<24
+BL makebul
+MOV R0,#Explochannel
+MOV R1,#Sampsmallzap
+MOV R2,#&6F
+LDR R3,[R12,#fullpitch]          ;pitch
+ADD R3,R3,#&1000
+MOV R4,#0
+LDR R5,[R12,#fullpitch]
+MOV R5,R5,LSL #16
+ORR R5,R5,#&FE<<8
+MOV R6,#2          ;lifetime (frames)
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R11,PC}
+
+
+
+.alsleep
+STMFD R13!,{R14}
+SUB R2,R0,#1
+LDMIA R11,{R0-R1}
+SUB R0,R0,#4<<8
+SUB R1,R1,#8<<8
+BL translate
+LDRB R1,[R0]
+CMP R1,#0
+LDMNEFD R13!,{PC}
+ADD R1,R2,#240
+
+STRB R1,[R0]
+MOV R0,#0
+STR R0,[R11,#-4]
+LDMFD R13!,{PC}
+
+.explo
+ADD R0,R0,R2
+ADD R1,R1,R3
+STMIA R11,{R0-R1}
+MOV R2,#expwidth   ;object size
+MOV R3,#expheight
+LDR R4,[R11,#16]
+LDRB R5,[R12,#explospeed]
+MOV R5,R5,LSL #2
+CMP R4,R5
+BGT exploins
+BL plcolcheck
+LDR R0,[R12,#plstrength]
+SUBNE R0,R0,#explocontloss
+STRNE R0,[R12,#plstrength]
+.exploins
+LDR R0,[R11,#16]
+LDRB R5,[R12,#explospeed]
+ADDS R0,R0,R5
+MOVMI R0,#50<<8 ;trap negatives
+STR R0,[R11,#16]
+AND R0,R0,#&FF
+CMP R0,#8<<2 ; explo frame length
+MOVGE R0,#0
+STRGE R0,[R11,#-4]
+LDMGEFD R13!,{R9,R11,PC}
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#exploadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R9}
+LDR R0,[R11,#16]
+AND R0,R0,#&FF
+MOV R0,R0,ASR #2
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9}
+B aldone
+
+.booby
+ADD R0,R0,R2
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bomblowlim
+BLT noboobybomb
+CMP R1,#targethighlim
+BLT emberbooby
+.noboobybomb
+CMP R1,#blim
+MVNGE R2,R2,ASR #1
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#boobylowlim
+BLT noboobybooby
+CMP R1,#boobyhighlim
+BLE emberbooby
+.noboobybooby
+CMP R1,#blim
+MVNGE R3,R3,ASR #1
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<4   ;gravity
+STMIA R11,{R0-R3}
+LDR R0,[R11,#16]
+ADDS R0,R0,#1
+MOVMI R0,#1<<8  ;trap negatives
+STR R0,[R11,#16]
+CMP R0,#140    ; booby lifetime
+MOVGE R0,#0
+STRGE R0,[R11,#-4]
+LDMGEFD R13!,{R9,R11,PC}
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#exploadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R9}
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #2
+AND R0,R0,#3
+ADD R0,R0,#12
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9}
+B aldone
+
+.ember
+ADD R0,R0,R2
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bomblowlim
+BLT noemberbomb
+CMP R1,#bombhighlim
+BLT emberbomb
+.noemberbomb
+CMP R1,#blim
+MVNGE R2,R2,ASR #1
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#gaslowlim
+BLT noembergas
+CMP R1,#gashighlim
+BLT emberbomb
+.noembergas
+CMP R1,#blim
+MVNGE R3,R3,ASR #1
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<4   ;gravity
+STMIA R11,{R0-R3}
+
+
+
+LDR R0,[R11,#16]
+ADDS R0,R0,#1
+MOVMI R0,#1<<8  ;trap negatives
+STR R0,[R11,#16]
+CMP R0,#70    ; ember lifetime
+MOVGE R0,#0
+STRGE R0,[R11,#-4]
+LDMGEFD R13!,{R9,R11,PC}
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#exploadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R9}
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #2
+AND R0,R0,#3
+ADD R0,R0,#8
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R9}
+B aldone
+
+.flyingbonus
+MOV R4,#0; hit wall marker
+LDR R6,[R12,#boardwidth]
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+SUB R0,R0,#8<<8
+SUB R1,R1,#8<<8
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bonuslow
+LDRLTB R1,[R0,R6]
+CMPLT R1,#bonuslow
+RSBGES R1,R2,#0
+MVNGE R2,R2
+MOVGE R4,#1
+LDRB R1,[R0,#1]!
+CMP R1,#bonuslow
+LDRLTB R1,[R0,R6]
+CMPLT R1,#bonuslow
+CMPGE R2,#0
+MVNGE R2,R2
+MOVGE R4,#1
+.flyingskip
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+SUB R0,R0,#8<<8
+SUB R1,R1,#8<<8
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bonuslow
+LDRLTB R1,[R0,#1]
+CMPLT R1,#bonuslow
+RSBGES R1,R3,#0
+MVNGE R3,R3
+MOVGE R4,#1
+LDRB R1,[R0,R6]!
+CMP R1,#bonuslow
+LDRLTB R1,[R0,#1]
+CMPLT R1,#bonuslow
+CMPGE R3,#0
+MVNGE R3,R3
+MOVGE R4,#1
+
+.flyingvertskip
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+SUB R0,R0,#8<<8
+SUB R1,R1,#8<<8
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bonuslow
+LDRLTB R1,[R0,R6]
+CMPLT R1,#bonuslow
+RSBGES R1,R2,#0
+MVNGE R2,R2
+MOVGE R4,#1
+LDRB R1,[R0,#1]!
+CMP R1,#bonuslow
+LDRLTB R1,[R0,R6]
+CMPLT R1,#bonuslow
+CMPGE R2,#0
+MVNGE R2,R2
+MOVGE R4,#1
+
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+SUB R0,R0,#8<<8
+SUB R1,R1,#8<<8
+FNtranslate
+LDRB R1,[R0]
+CMP R1,#bonuslow
+LDRLTB R1,[R0,#1]
+CMPLT R1,#bonuslow
+RSBGES R1,R3,#0
+MVNGE R3,R3
+MOVGE R4,#1
+LDRB R1,[R0,R6]!
+CMP R1,#bonuslow
+LDRLTB R1,[R0,#1]
+CMPLT R1,#bonuslow
+CMPGE R3,#0
+MVNGE R3,R3
+MOVGE R4,#1
+LDMIA R11,{R0-R1}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<5   ;gravity
+CMP R4,#0
+BEQ flyingnoslow
+SUB R2,R2,R2,ASR #2
+SUB R3,R3,R3,ASR #2
+.flyingnoslow
+STMIA R11,{R0-R3}
+
+LDR R4,[R11,#16]
+SUBS R4,R4,#1<<16
+STR R4,[R11,#16]
+BLMI bonusdowngrade
+
+LDR R6,[R12,#pllx]
+SUB R6,R6,#8<<8
+CMP R0,R6
+LDRGT R6,[R12,#plhx]
+ADD R6,R6,#8<<8
+CMPGT R6,R0
+LDRGT R6,[R12,#plly]
+CMPGT R1,R6
+LDRGT R6,[R12,#plhy]
+CMPGT R6,R1
+BLGT bonusobjgot
+
+
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+MOV R8,R8,LSR #17
+RSB R8,R8,#8
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#blockadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#20]
+AND R0,R0,#&FF
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+.bonusdowngrade
+LDR R5,[R11,#20]
+MOV R0,#Dyingbonus
+STR R0,[R11,#-4]
+ORR R5,R5,#1<<20
+STR R5,[R11,#16]
+MOV PC,R14
+
+.dyingbonus
+LDR R8,[R11,#16]
+SUBS R8,R8,#1<<16
+STR R8,[R11,#16]
+BMI deleteobj
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+MOV R8,R8,LSR #17
+RSB R8,R8,#8
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#blockadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#16]
+BIC R0,R0,#&FF<<16
+BIC R0,R0,#&FF<<24
+ADD R2,R2,R8
+STMFD R13!,{R0-R2,R8}
+LDR R10,[R12,#fspvars]
+STR R2,[R10,#fsphy]
+LDR R3,[R12,#cliphy]
+CMP R2,R3
+BGT nodyingtop
+LDR R3,[R10,#fsply]
+CMP R3,R2
+BGE nodyingtop
+STR R1,[R10,#fsphx]
+LDR R3,[R12,#cliphx]
+CMP R1,R3
+LDRLE R3,[R10,#fsplx]
+CMPLE R3,R1
+ADD R1,R1,R8
+ADD R2,R2,R8
+MOV R14,PC
+LDRLT PC,[R12,#fspplot]
+LDR R1,[R12,#cliphx]
+STR R1,[R10,#fsphx]
+LDMFD R13,{R0-R2,R8}; no writeback
+STR R1,[R10,#fsplx]
+LDR R3,[R12,#cliplx]
+CMP R1,R3
+LDRGE R3,[R10,#fsphx]
+CMPGE R3,R1
+SUB R1,R1,R8
+ADD R2,R2,R8
+MOV R14,PC
+LDRGT PC,[R12,#fspplot]
+.nodyingtop
+LDMFD R13,{R0-R2,R8}
+LDR R3,[R12,#cliphy]
+STR R3,[R10,#fsphy]
+LDR R3,[R12,#cliplx]
+STR R3,[R10,#fsplx]
+STR R2,[R10,#fsply]
+LDR R3,[R12,#cliply]
+CMP R2,R3
+BLT nodyingbot
+LDR R3,[R10,#fsphy]
+CMP R2,R3
+BGE nodyingbot
+STR R1,[R10,#fsphx]
+LDR R3,[R12,#cliphx]
+CMP R1,R3
+LDRLE R3,[R10,#fsplx]
+CMPLE R3,R1
+ADD R1,R1,R8
+SUB R2,R2,R8
+MOV R14,PC
+LDRLT PC,[R12,#fspplot]
+LDR R1,[R12,#cliphx]
+STR R1,[R10,#fsphx]
+LDMFD R13,{R0-R2,R8}
+STR R1,[R10,#fsplx]
+LDR R3,[R12,#cliplx]
+CMP R1,R3
+LDRGE R3,[R10,#fsphx]
+CMPGE R3,R1
+SUB R1,R1,R8
+SUB R2,R2,R8
+MOV R14,PC
+LDRGT PC,[R12,#fspplot]
+
+.nodyingbot
+LDMFD R13!,{R0-R2,R8}
+BL writeclip
+B aldone
+
+
+
+
+.scoreobj
+LDMIA R11,{R0-R4}
+ADD R0,R0,R2
+ADD R1,R1,R3
+ADD R3,R3,#1<<5
+SUB R4,R4,#1
+STMIA R11,{R0-R4}
+ANDS R4,R4,#&FF
+MOVEQ R0,#0
+STREQ R0,[R11,#-4]
+LDMEQFD R13!,{R9,R11,PC}
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDMIA R11,{R1-R2}
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#blokeadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+LDR R0,[R11,#16]
+MOV R0,R0,ASR #8
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B aldone
+
+
+.plat1           ;alien routines
+MOV R2,#0
+BL dvcheck
+LDMIA R11,{R0-R1}
+
+ADD R1,R1,R3
+ADD R3,R3,#1<<4
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R3}
+LDRB R2,[R12,#downhit]
+CMP R2,#0
+MOV R9,#platno
+BNE platland
+
+BL colchadd
+MOV R9,#platno
+B platins
+
+
+.plat2
+MOV R2,#0
+BL dvcheck
+LDMIA R11,{R0-R1}
+
+ADD R1,R1,R3
+ADD R3,R3,#1<<4
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R3}
+LDRB R2,[R12,#downhit]
+CMP R2,#0
+LDREQB R2,[R12,#uphit]
+CMPEQ R2,#0
+MOV R9,#platno+2
+BNE plattoexplo
+BL colchadd
+MOV R9,#platno+2
+B platins
+
+.plat3
+MOV R2,#0
+BL dvcheck
+LDMIA R11,{R0-R1}
+
+ADD R1,R1,R3
+ADD R3,R3,#1<<4
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R3}
+LDRB R2,[R12,#downhit]
+CMP R2,#0
+MOV R9,#platno+4
+BNE platland
+BL colchadd
+MOV R9,#platno+4
+B platins
+
+.plat4           ;alien routines
+MOV R2,#0
+BL dvcheck
+LDMIA R11,{R0-R1}
+
+ADD R1,R1,R3
+ADD R3,R3,#1<<4
+CMP R3,#1<<11
+MOVGT R3,#1<<11
+STMIA R11,{R0-R3}
+LDRB R2,[R12,#downhit]
+CMP R2,#0
+LDR R2,[R11,#-4]
+
+MOV R9,#platno-8
+ADD R9,R9,R2,ASL #1
+BNE platland
+
+BL colchadd
+LDR R2,[R11,#-4]
+MOV R9,#platno-8
+ADD R9,R9,R2,ASL #1
+
+B platins
+
+.plat5
+MOV R2,#0
+BL dvcheck
+LDMIA R11,{R0-R1}
+ADD R1,R1,R3
+ADD R3,R3,#1<<2
+CMP R3,#1<<9
+MOVGT R3,#1<<9
+
+STMIA R11,{R0-R3}
+LDRB R2,[R12,#downhit]
+CMP R2,#0
+MOV R9,#platno+14
+BNE platland
+.platlandins
+
+BL colchadd
+MOV R9,#platno+14
+B platins
+.platlandins
+BL colchadd
+.platins
+
+LDRB R1,[R12,#plotal]
+CMP R1,#0
+LDMEQFD R13!,{R9,R11,PC}
+LDR R1,[R11,#0]
+LDR R2,[R11,#4]
+LDR R3,[R12,#xpos]
+LDR R4,[R12,#ypos]
+MOV R1,R1,ASR #8
+MOV R2,R2,ASR #8
+SUB R1,R1,R3,ASR #8
+SUB R2,R2,R4,ASR #8
+ADD R1,R1,#xofs
+ADD R2,R2,#yofs
+LDR R3,[R12,#blockadr]
+LDR R4,[R12,#fspareat]
+STR R3,[R4]
+STMFD R13!,{R1-R2,R9}
+MOV R0,R9
+SUB R1,R1,#8
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R2,R9}
+ADD R0,R9,#1
+ADD R1,R1,#8
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+.aldone
+LDMFD R13!,{R9,R11,PC}
+
+.colchadd
+LDR R10,[R12,#colchptr]
+LDR R1,[R12,#colchtab]
+SUB R1,R10,R1
+CMP R1,#colchlim
+MOVGE PC,R14
+SUB R0,R11,#4
+LDMIA R11,{R1-R2}
+LDR R3,[R11,#16]
+MOV R4,R3,LSL #16
+MOV R4,R4,LSR #16
+MOV R3,R3,LSR #16
+SUB R1,R1,R3,LSL #7
+SUB R2,R2,R4,LSL #7
+ADD R3,R1,R3,LSL #8
+ADD R4,R2,R4,LSL #8
+STMIA R10!,{R0-R4}
+STR R10,[R12,#colchptr]
+MOV PC,R14
+
+.bulcolchadd
+STMFD R13!,{R0-R3,R14}
+LDR R10,[R12,#bulcolchptr]
+LDR R1,[R12,#bulcolchtab]
+SUB R1,R10,R1
+CMP R1,#bulcolchlim
+LDMGEFD R13!,{R0-R3,PC}
+SUB R0,R11,#4
+LDMIA R11,{R1-R2}
+MOV R3,#32
+MOV R4,#32
+SUB R1,R1,R3,LSL #7
+SUB R2,R2,R4,LSL #7
+ADD R3,R1,R3,LSL #8
+ADD R4,R2,R4,LSL #8
+STMIA R10!,{R0-R4}
+STR R10,[R12,#bulcolchptr]
+LDMFD R13!,{R0-R3,PC}
+
+.bulcolchaddshort
+STMFD R13!,{R0-R3,R14}
+LDR R10,[R12,#bulcolchptr]
+LDR R1,[R12,#bulcolchtab]
+SUB R1,R10,R1
+CMP R1,#bulcolchlim
+LDMGEFD R13!,{R0-R3,PC}
+SUB R0,R11,#4
+LDMIA R11,{R1-R2}
+ADD R2,R2,#8<<8
+MOV R3,#32
+MOV R4,#16
+SUB R1,R1,R3,LSL #7
+SUB R2,R2,R4,LSL #7
+ADD R3,R1,R3,LSL #8
+ADD R4,R2,R4,LSL #8
+STMIA R10!,{R0-R4}
+STR R10,[R12,#bulcolchptr]
+LDMFD R13!,{R0-R3,PC}
+
+.platland
+STMFD R13!,{R9}
+BL translate
+LDMFD R13!,{R9}
+LDRB R1,[R0]
+
+CMP R1,#platblim
+
+LDR R4,[R12,#boardwidth]
+SUBGE R0,R0,R4
+LDRB R1,[R0,R4]
+CMP R1,#extendno
+ADD R4,R4,#1
+LDRNEB R1,[R0,R4]
+CMPNE R1,#extendno
+BEQ platlandins
+
+
+MOV R1,R9
+STRB R1,[R0]
+ADD R1,R9,#1
+STRB R1,[R0,#1]
+MOV R1,#0
+STR R1,[R11,#-4]
+B platlandins
+
+.plattoexplo
+BL blowup
+B aldone
+
+.deleteobj
+MOV R0,#0
+STR R0,[R11,#-4]
+B aldone
+
+.blowup
+STMFD R13!,{R14}
+SUB R10,R11,#4
+MOV R3,#0
+MOV R4,#1<<6
+BL explogo
+
+LDMFD R13!,{PC}
+
+.emberbooby
+CMP R1,#atomlowlim
+BLT normbombsurvive
+CMP R1,#atomhighlim
+BGT normbombsurvive
+MOV R5,R0
+BL atombomb
+B aldone
+
+
+.emberbomb
+CMP R1,#atomlowlim
+BLT normbomb
+CMP R1,#atomhighlim
+BGT normbomb
+MOV R5,R0
+BL atombomb
+B aldone
+.normbomb
+MOV R4,#0
+STR R4,[R11,#-4]
+.normbombsurvive
+CMP R1,#fuelairno
+CMPNE R1,#fuelairno+1
+BEQ fuelbomb
+.normbombins
+STMFD R13!,{R0,R11}
+BL destroy
+LDMFD R13!,{R0,R11}
+B aldone
+
+.fuelbomb
+CMP R1,#fuelairno
+SUBNE R0,R0,#1
+MOV R1,#0
+STRB R1,[R0]
+STRB R1,[R0,#1]
+BL backtranslate
+STMFD R13!,{R0-R1}
+MOV R2,R1
+ADD R1,R0,#8<<8
+MOV R3,#0
+MVN R4,#1<<7
+MOV R5,#0
+MOV R10,#0
+BL explogo
+LDMFD R13!,{R0-R1}
+B aldone
+
+.plcolcheck
+ADD R4,R0,R2,ASR #1
+LDR R6,[R12,#pllx]
+CMP R4,R6
+SUBGT R4,R0,R2,ASR #1
+LDRGT R6,[R12,#plhx]
+CMPGT R6,R4
+CMPLE R0,R0
+MOVEQ PC,R14
+ADD R4,R1,R3,ASR #1
+LDR R6,[R12,#plly]
+CMP R4,R6
+SUBGT R4,R1,R3,ASR #1
+LDRGT R6,[R12,#plhy]
+CMPGT R6,R4
+CMPLE R0,R0
+MOV PC,R14
+
+
+.settestal
+STMFD R13!,{R14}
+MOV R0,#Alien1+13
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+SUB R2,R2,#24<<8
+SUB R1,R1,#65<<8
+MOV R3,#0
+MOV R4,#0
+MOV R5,#16<<16
+ADD R5,R5,#32
+MOV R6,#1<<10
+
+BL makeobj
+
+
+LDMFD R13!,{PC}
+
+.dvcheck
+STMFD R13!,{R14}
+STR R0,[R12,#xtemp]
+STR R1,[R12,#ytemp]
+MOV R6,#0
+STRB R6,[R12,#uphit]
+STRB R6,[R12,#downhit]
+ADD R1,R1,R3
+BL translate
+MOV R6,R0
+LDR R5,[R12,#boardwidth]
+; up
+SUB R1,R6,R5
+LDRB R0,[R1]
+CMP R0,#platblim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#platblim
+BLGE noup
+;down
+
+MOV R1,R6
+LDRB R0,[R1]
+CMP R0,#platblim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#platblim
+BLGE nodown
+LDMFD R13!,{PC}
+
+.dotelep
+STMFD R13!,{R14}
+LDR R0,[R12,#telepxpos]
+STR R0,[R12,#xpos]
+LDR R1,[R12,#telepypos]
+STR R1,[R12,#ypos]
+BL screenwakeup
+LDMFD R13!,{PC}
+
+.snuffhandler
+LDRB R1,[R12,#frameinc]
+ADD R0,R0,R1
+STR R0,[R12,#snuffctr]
+SUBS R0,R0,#96
+MOVMI R0,#0
+MOV R10,R0,ASR #1
+STRB R10,[R12,#plotterofs]
+LDR R0,[R12,#blokeadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+MOV R0,#70
+MOV R1,#160
+ADD R2,R10,#104
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B playerplotins
+
+
+.playerplot
+STMFD R13!,{R14}
+LDR R0,[R12,#fspvars]
+MOV R1,#120
+STR R1,[R0,#fsphy]
+LDR R0,[R12,#snuffctr]
+CMP R0,#0
+BNE snuffhandler
+
+LDR R1,[R12,#telepctr]
+CMP R1,#0
+BEQ telepskip
+LDRB R2,[R12,#frameinc]
+CMP R2,#2
+MOVGT R2,#2
+CMP R1,#31
+MOVEQ R2,#1
+ADD R1,R1,R2
+CMP R1,#64
+MOVGT R1,#0
+STR R1,[R12,#telepctr]
+CMP R1,#32
+BLEQ dotelep
+RSBGT R1,R1,#64
+.telepskip
+MOV R10,R1
+STRB R10,[R12,#plotterofs]
+LDR R0,[R12,#blokeadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+LDR R0,[R12,#xpos]
+MOV R0,R0,LSR #10
+AND R0,R0,#3
+MOV R1,R0
+CMP R0,#2
+MOVEQ R1,#0
+CMP R0,#3
+MOVEQ R1,#2
+LDRB R0,[R12,#plface]
+CMP R0,#1
+ADDEQ R1,R1,#3
+
+STRB R1,[R12,#plframe]
+LDRB R0,[R12,#electrocuting]
+CMP R0,#1
+BEQ plotskel
+
+MOV R0,#0
+LDRB R1,[R12,#plface]
+CMP R1,#1
+MOVEQ R0,#1
+MOV R1,#160
+ADD R2,R10,#104
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDRB R0,[R12,#plframe]
+
+
+ADD R0,R0,#6
+MOV R1,#160
+ADD R2,R10,#115
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDR R0,[R12,#plstrength]
+LDR R1,[R12,#laststrength]
+CMP R0,R1
+BGE nofunnyface
+LDR R0,[R12,#framectr]
+MOV R0,R0,ASR #2
+AND R0,R0,#3
+ADD R0,R0,#funnyfacesprbase
+B plotface
+.nofunnyface
+LDRB R1,[R12,#plface]
+MOV R0,#12
+CMP R1,#1
+MOVEQ R0,#15
+.plotface
+MOV R1,#160
+ADD R2,R10,#94  ;head
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+
+LDRB R0,[R12,#plweapontype]
+CMP R0,#0
+BEQ plotarms
+CMP R0,#mpmgblamno
+BEQ plotmpmgblam
+CMP R0,#rocketblamno
+BEQ plotrocketblam
+CMP R0,#rockbase
+BLT plotmpmg
+
+B plotrocket
+.plotskelins
+.playerplotins
+BL seestars
+BL writeclip
+LDMFD R13!,{PC}
+
+.plotskel
+LDRB R0,[R12,#plface]
+CMP R0,#1
+
+MOV R0,#skelspriteno
+MOVEQ R0,#skelspriteno+1
+MOV R1,#160
+ADD R2,R10,#104
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B plotskelins
+
+.plotarms
+LDRB R0,[R12,#plframe]
+ADD R0,R0,#2
+MOV R1,#160
+ADD R2,R10,#105
+CMP R0,#4
+SUBGT R0,R0,#3
+ADDGT R1,R1,#1
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+B playerplotins
+
+.plotmpmg
+MOV R0,#42
+LDRB R3,[R12,#plface]
+CMP R3,#1
+ADDEQ R0,R0,#1
+MOV R1,#160-6
+ADDNE R1,R1,#12
+LDRB R4,[R12,#plfired]
+CMP R4,#0
+SUBNE R1,R1,#1
+ADDNE R1,R1,R3,ASL #1
+ADD R2,R10,#106
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#44
+LDRB R3,[R12,#plface]
+CMP R3,#1
+ADDEQ R0,R0,#1
+MOV R1,#160
+ADD R2,R10,#104
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#0
+STRB R0,[R12,#plfired]
+B playerplotins
+
+.plotmpmgblam
+LDR R0,[R12,#blockadr]
+LDR R3,[R12,#fspareat]
+STR R0,[R3]
+MOV R0,#weaplowlim+6
+LDRB R3,[R12,#plface]
+CMP R3,#1
+ADDEQ R0,R0,#1
+
+
+
+MOV R1,#160-6
+ADDNE R1,R1,#12
+LDRB R2,[R12,#blamctr]
+AND R2,R2,#15
+CMP R2,#8
+SUBGE R2,R2,#15
+LDRB R4,[R12,#plfired]
+CMP R4,#0
+SUBNE R1,R1,#1
+ADDNE R1,R1,R3,ASL #1
+STMFD R13!,{R2}
+ADD R2,R10,R2,ASR #1
+ADD R2,R2,#107
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R2}
+LDR R0,[R12,#blokeadr]
+LDR R3,[R12,#fspareat]
+STR R0,[R3]
+MOV R0,#44
+LDRB R3,[R12,#plface]
+CMP R3,#1
+ADDEQ R0,R0,#1
+MOV R1,#160
+ADD R2,R10,R2,ASR #2
+ADD R2,R2,#104
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#0
+STRB R0,[R12,#plfired]
+B playerplotins
+
+.plotrocket
+MOV R2,#50
+LDR R0,[R12,#rocketctr]
+LDR R1,[R12,#rockettabadr]
+LDR R0,[R1,R0,ASL #2]
+CMP R0,#170
+ADDGT R2,R2,#1
+CMP R0,#60
+ADDGT R2,R2,#1
+CMN R0,#60
+SUBLT R2,R2,#1
+CMN R0,#170
+SUBLT R2,R2,#1
+MOV R0,R2
+LDRB R3,[R12,#plface]
+
+MOV R1,#160
+LDRB R4,[R12,#plfired]
+CMP R4,#0
+SUBNE R1,R1,#1
+ADDNE R1,R1,R3,ASL #1
+ADD R2,R10,#97
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#53
+LDRB R3,[R12,#plface]
+ADD R1,R3,#160
+ADD R2,R10,#102
+
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#0
+STRB R0,[R12,#plfired]
+LDRB R0,[R12,#rocketflag]
+CMP R0,#0
+MOV R0,#0
+STREQ R0,[R12,#rocketctr]
+B playerplotins
+
+.plotrocketblam
+LDR R0,[R12,#blockadr]
+LDR R3,[R12,#fspareat]
+STR R0,[R3]
+MOV R0,#weaplowlim+15
+LDRB R3,[R12,#plface]
+CMP R3,#1
+MOV R1,#160
+LDRB R2,[R12,#blamctr]
+AND R2,R2,#15
+CMP R2,#8
+SUBGE R2,R2,#15
+LDRB R4,[R12,#plfired]
+CMP R4,#0
+SUBNE R1,R1,#1
+ADDNE R1,R1,R3,ASL #1
+STMFD R13!,{R2}
+ADD R2,R10,R2,ASR #1
+ADD R2,R2,#96
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R2}
+LDR R0,[R12,#blokeadr]
+LDR R3,[R12,#fspareat]
+STR R0,[R3]
+MOV R0,#53
+MOV R1,#160
+ADD R2,R10,R2,ASR #2
+ADD R2,R2,#102
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+MOV R0,#0
+STRB R0,[R12,#plfired]
+B playerplotins
+
+
+.bonusplot
+STMFD R13!,{R14}
+LDRB R2,[R12,#frameinc]
+CMP R2,#2
+MOVGT R2,#2
+LDR R0,[R12,#bonustimer]
+CMP R0,#0
+SUBNE R0,R0,R2
+STRNE R0,[R12,#bonustimer]
+CMP R0,#1
+CMPNE R0,#2
+BLEQ bonusreset
+
+
+LDRB R0,[R12,#bonusctr]
+CMP R0,#13
+LDRB R0,[R12,#bonusreplot]
+CMPGE R0,#0
+BEQ bonusbonus
+CMP R0,#0
+
+LDMEQFD R13!,{PC}
+SUBS R0,R0,R2 ;from above
+MOVMI R0,#0
+STRB R0,[R12,#bonusreplot]
+LDR R0,[R12,#blockadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+
+MOV R0,#bonusxplace-8
+MOV R1,#bonusyplace-20
+MOV R2,#bonusxplace+8
+MOV R3,#bonusyplace+20
+ADD R0,R0,#&100
+ADD R2,R2,#&100
+LDR R5,[R12,#fspvars]
+ADD R5,R5,#fsplx ;align to write clip window to FastSpr
+STMIA R5,{R0-R3}
+SWI "XFastSpr_ClearWindow"
+LDRB R3,[R12,#bonusreplot]
+SUBS R3,R3,#8
+MOVMI R3,#0
+STMFD R13!,{R3}
+LDRB R0,[R12,#bonusctr]
+ADD R0,R0,#16
+CMP R0,#bonuslow+12
+MOVGT R0,#0
+MOV R1,#bonusxplace
+ADD R1,R1,#&100
+MOV R2,#bonusyplace
+ADD R2,R2,R3
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13,{R3}   ;no writeback
+LDRB R0,[R12,#bonusctr]
+CMP R0,#0
+BLEQ nosecond
+ADD R0,R0,#15
+CMP R0,#bonuslow+12
+MOVGT R0,#0
+MOV R1,#bonusxplace
+ADD R1,R1,#&100
+MOV R2,#bonusyplace-20
+ADD R2,R2,R3
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+.nosecond
+LDMFD R13!,{R3}
+LDRB R0,[R12,#bonusctr]
+CMP R0,#12
+BLEQ nothird
+ADD R0,R0,#17
+CMP R0,#bonuslow+12
+MOVGT R0,#0
+MOV R1,#bonusxplace
+ADD R1,R1,#&100
+MOV R2,#bonusyplace+20
+ADD R2,R2,R3
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+.nothird
+BL writeclip ; reset the clip window
+
+
+LDMFD R13!,{PC}
+
+.bonusbonus     ;not to be called by BL
+MOV R0,#8
+STRB R0,[R12,#bonusctr]
+MOV R0,#28
+STRB R0,[R12,#bonusreplot]
+MOV R0,#0
+STRB R0,[R12,#keypressed]
+LDR R11,[R12,#boardadr]
+LDR R1,[R11,#4]
+LDR R2,[R11,#8]
+ADD R11,R11,#boardhdrlen
+MUL R3,R1,R2
+.loop90
+LDRB R0,[R11],#1
+CMP R0,#starsno
+BEQ foundmarker
+SUBS R3,R3,#1
+BGT loop90
+BL bonus1
+LDMFD R13!,{PC}
+.foundmarker
+SUB R0,R11,#1
+MOV R1,#0
+STRB R1,[R0]
+BL backtranslate
+SUB R1,R1,#1<<8
+STR R0,[R12,#telepxpos]
+STR R1,[R12,#telepypos]
+MOV R0,#1
+STR R0,[R12,#telepctr]
+LDR R0,[R12,#xpos]
+STR R0,[R12,#bonusxpos]
+LDR R0,[R12,#ypos]
+STR R0,[R12,#bonusypos]
+MOV R0,#&180
+STR R0,[R12,#bonustimer]
+LDMFD R13!,{PC}
+
+.bonusreset
+STMFD R13!,{R2,R14}
+LDRB R0,[R12,#keypressed]
+CMP R0,#0
+BNE normreset
+MOV R0,#0
+STRB R0,[R12,#bonusctr]
+MOV R0,#28
+STRB R0,[R12,#bonusreplot]
+MOV R0,#1
+STRB R0,[R12,#keypressed]
+LDR R11,[R12,#boardadr]
+LDR R1,[R11,#4]
+LDR R2,[R11,#8]
+ADD R11,R11,#boardhdrlen
+MUL R3,R1,R2
+.loop91
+LDRB R0,[R11],#1
+CMP R0,#starsno
+BEQ foundresetmarker
+SUBS R3,R3,#1
+BGT loop91
+BL bonus1
+B normreset
+.foundresetmarker
+SUB R0,R11,#1
+MOV R1,#0
+STRB R1,[R0]
+BL backtranslate
+SUB R1,R1,#1<<8
+STR R0,[R12,#telepxpos]
+STR R1,[R12,#telepypos]
+MOV R0,#1
+STR R0,[R12,#telepctr]
+MOV R0,#&180
+STR R0,[R12,#bonustimer]
+LDMFD R13!,{R2,PC}
+
+.normreset
+MOV R0,#1
+STR R0,[R12,#telepctr]
+LDR R0,[R12,#bonusxpos]
+STR R0,[R12,#telepxpos]
+LDR R0,[R12,#bonusypos]
+STR R0,[R12,#telepypos]
+MOV R0,#0
+STR R0,[R12,#bonustimer]
+LDMFD R13!,{R2,PC}
+
+.zonecheatread
+STMFD R13!,{R14}
+MOV R0,#129
+MOV R1,#0
+MOV R2,#0
+SWI "XOS_Byte"
+CMP R2,#0
+LDMNEFD R13!,{PC}
+SUBS R1,R1,#ASC"0"
+LDMMIFD R13!,{PC}
+CMP R1,#8
+LDMGTFD R13!,{PC}
+STR R1,[R12,#plzone]
+LDMFD R13!,{PC}
+
+.cheatread
+STMFD R13!,{R14}
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#113
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ getmpmg
+
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#114
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ getrocket
+
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#20
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ screensave
+
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#115
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ prepstrength
+
+LDMFD R13!,{PC}
+
+.nostickmes
+FNmessage(32,32,0,1,"Can't see a joystick!")
+.nostickerr
+ADR R0,nostickmes
+BL message
+MVN R4,#0
+MOV R0,#0
+STRB R0,[R12,#joyno]
+B nojoystick
+
+
+.keyread
+STMFD R13!,{R14}
+MVN R4,#0
+LDRB R0,[R12,#joyno]
+CMP R0,#0
+BEQ nojoystick
+SUB R0,R0,#1
+SWI "XJoystick_Read"
+BVS nostickerr
+MVN R4,#0
+MOV R1,R0,ASL #24
+CMN R1,#32<<24
+BICLT R4,R4,#8; down
+CMP R1,#32<<24
+BICGT R4,R4,#4; up
+BIC R0,R0,#&FF
+MOV R1,R0,ASL #16
+CMN R1,#32<<24
+BICLT R4,R4,#1; left
+CMP R1,#32<<24
+BICGT R4,R4,#2; right
+
+TST R0,#1<<16
+BICNE R4,R4,#16; fire
+TST R0,#1<<17
+BICNE R4,R4,#4; up on fire button 2
+
+.nojoystick
+MOV R2,#&FF
+MOV R0,#&81
+LDRB R1,[R12,#leftkey]
+SWI "XOS_Byte"
+CMP R1,#&FF
+TSTNE R4,#1
+LDRB R0,[R12,#leftpress]
+ADDEQ R0,R0,#1
+MOVNE R0,#0
+CMPEQ R0,#&100
+STRNEB R0,[R12,#leftpress]
+MOV R0,#&81
+MOV R2,#&FF
+LDRB R1,[R12,#rightkey]
+SWI "XOS_Byte"
+CMP R1,#&FF
+TSTNE R4,#2
+LDRB R0,[R12,#rightpress]
+ADDEQ R0,R0,#1
+MOVNE R0,#0
+CMPEQ R0,#&100
+STRNEB R0,[R12,#rightpress]
+MOV R0,#&81
+LDRB R1,[R12,#upkey]
+MOV R2,#&FF
+SWI "XOS_Byte"
+CMP R1,#&FF
+TSTNE R4,#4
+LDRB R0,[R12,#uppress]
+ADDEQ R0,R0,#1
+MOVNE R0,#0
+CMPEQ R0,#&100
+STRNEB R0,[R12,#uppress]
+MOV R0,#&81
+MOV R2,#&FF
+LDRB R1,[R12,#downkey]
+SWI "XOS_Byte"
+CMP R1,#&FF
+TSTNE R4,#8
+LDRB R0,[R12,#downpress]
+ADDEQ R0,R0,#1
+MOVNE R0,#0
+CMPEQ R0,#&100
+STRNEB R0,[R12,#downpress]
+MOV R0,#&81
+MOV R2,#&FF
+LDRB R1,[R12,#firekey]
+SWI "XOS_Byte"
+CMP R1,#&FF
+TSTNE R4,#16
+LDRB R0,[R12,#fire]
+ADDEQ R0,R0,#1
+MOVNE R0,#0
+CMPEQ R0,#&100
+STRNEB R0,[R12,#fire]
+MOV R1,#1
+LDR R0,[R12,#leftpress] ;use word-aligned property
+CMP R0,#0
+STRNEB R1,[R12,#keypressed]
+LDRB R0,[R12,#fire]
+CMP R0,#0
+STRNEB R1,[R12,#keypressed]
+
+LDMFD R13!,{PC}
+
+
+
+.plmove
+STMFD R13!,{R14}
+LDR R0,[R12,#shutdownctr]
+CMP R0,#0
+ADDNE R0,R0,#1
+STRNE R0,[R12,#shutdownctr]
+CMP R0,#150
+MOVEQ R0,#0
+STREQ R0,[R12,#plzone]
+CMP R0,#0
+BLNE deletepoint
+BL keyread
+;LDRB R0,[R12,#fire]
+;CMP R0,#0
+;BNE cheatmove
+
+LDR R0,[R12,#snuffctr]
+CMP R0,#0
+MOV R0,#0
+STRNE R0,[R12,#uppress]
+STRNEB R0,[R12,#fire]
+LDR R0,[R12,#vvec]
+SUB R0,R0,R0,ASR #5
+STR R0,[R12,#vvec]
+LDR R0,[R12,#hvec]
+SUB R0,R0,R0,ASR #5
+
+STR R0,[R12,#hvec]
+
+LDRB R0,[R12,#leftpress]
+LDRB R1,[R12,#rightpress]
+MOV R2,#0
+CMP R0,R1
+MOVGT R2,#1
+STRNEB R2,[R12,#plface]
+MOV R2,#2<<8
+CMP R0,#4
+CMPLT R1,#4
+MOVLT R2,#1<<8
+CMP R0,R1
+RSBGT R2,R2,#0
+MOVEQ R2,#0
+LDRB R3,[R12,#falling]
+
+LDR R0,[R12,#hvec]
+ADD R0,R0,R2,ASR #5
+CMP R3,#4
+MOVLE R0,R2
+STR R0,[R12,#hvec]
+
+
+.cheatins
+LDRB R0,[R12,#downpress]
+CMP R0,#32
+MOV R0,#1<<10
+STRGE R0,[R12,#windctr]
+LDR R0,[R12,#windctr]
+CMP R0,#0
+BLNE windcheck
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+LDR R2,[R12,#hvec]
+LDR R3,[R12,#vvec]
+CMP R2,#speedlim
+MOVGT R2,#speedlim
+CMN R2,#speedlim
+MVNLT R2,#speedlim
+CMP R3,#speedlim
+MOVGT R3,#speedlim
+CMN R3,#speedlim
+MVNLT R3,#speedlim
+STR R2,[R12,#hvec]
+STR R3,[R12,#vvec]
+LDR R4,[R12,#ypos]
+STR R4,[R12,#platypos]
+MOV R4,#0
+STRB R4,[R12,#colchecktype]
+BL colcheck
+LDRB R0,[R12,#platuphit]
+STRB R0,[R12,#pluphit]
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+;LDRB R7,[R12,#fire]
+;CMP R7,#0
+
+BL bcheck
+LDRB R0,[R12,#uphit]
+STRB R0,[R12,#pluphit]
+CMP R3,#1<<12
+MOVGT R3,#1<<12
+CMN R3,#1<<12
+MVNLT R3,#1<<12
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R0,R0,R2
+ADD R1,R1,R3
+STR R0,[R12,#xpos]
+STR R1,[R12,#ypos]
+LDR R5,[R12,#xposmax]
+LDR R6,[R12,#yposmax]
+STMFD R13!,{R2-R3}
+CMP R0,#xlowlim
+CMPGT R5,R0
+CMPGT R1,#ylowlim
+CMPGT R6,R1
+BLLE restartplayer
+LDMFD R13!,{R2-R3}
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+
+
+LDR R4,[R12,#snuffctr]
+CMP R4,#0
+BNE fakecolch
+
+ADD R1,R1,#6<<8
+STR R3,[R12,#vvec]
+SUB R4,R0,#plwidth/2
+STR R4,[R12,#pllx]
+ADD R4,R0,#plwidth/2
+STR R4,[R12,#plhx]
+SUB R4,R1,#plheight/2
+LDRB R5,[R12,#plotterofs]
+ADD R4,R4,R5,LSL #8
+STR R4,[R12,#plly]
+ADD R4,R1,#plheight/2
+STR R4,[R12,#plhy]
+LDR R1,[R12,#ypos]
+SUB R1,R1,#6<<8; - adjustment
+B fakeins
+.fakecolch
+MOV R4,#0
+STR R4,[R12,#plhx]
+STR R4,[R12,#plhy]
+MOV R4,#1
+STR R4,[R12,#pllx]
+STR R4,[R12,#plly]
+.fakeins
+BL translate
+LDR R5,[R12,#boardwidth]
+STR R0,[R12,#pladr1]
+ADD R1,R0,#1
+STR R1,[R12,#pladr2]
+ADD R0,R0,R5
+STR R0,[R12,#pladr3]
+ADD R1,R0,#1
+STR R1,[R12,#pladr4]
+ADD R0,R0,R5
+STR R0,[R12,#pladr5]
+ADD R1,R0,#1
+STR R1,[R12,#pladr6]
+
+LDRB R0,[R12,#falling]
+CMP R0,#0
+CMPNE R0,#&FF
+BNE jumpins
+LDRB R0,[R12,#uppress]
+CMP R0,#0
+BEQ jumpins
+
+
+
+LDRB R1,[R12,#downpress]
+CMP R1,R0
+SUBGT R0,R1,R0
+RSBGT R0,R0,#&100
+MVNGT R0,R0,LSL #3
+
+MVNLE R0,#19<<7
+
+STR R0,[R12,#vvec]
+
+MOV R0,#1
+STRB R0,[R12,#falling]
+STMFD R13!,{R4-R6}
+MOV R0,#Playerchannel
+MOV R1,#SampJump
+MOV R2,#&5F
+MOV R3,#&4600
+
+MOV R4,#0
+MOV R5,#0
+MOV R6,#4
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R4-R6}
+
+
+
+
+.jumpins
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R1,R1,#1<<8
+BL translate
+MOV R11,R0
+ADD R1,R11,R5
+STR R1,[R12,#pladr7]
+ADD R1,R1,#1
+STR R1,[R12,#pladr8]
+LDR R1,[R12,#pladr7]
+BL crumblecheck
+LDR R1,[R12,#pladr8]
+BL crumblecheck
+LDR R1,[R12,#pladr7]
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLT R1,[R12,#pladr8]
+LDRLTB R0,[R1]
+CMPLT R0,#blim
+BGE nofall
+LDRB R0,[R12,#falling]
+ADD R0,R0,#1
+CMP R0,#&FF
+STRNEB R0,[R12,#falling]
+CMP R0,#&100
+BEQ nofall     ;standing on a platform
+
+LDR R1,[R12,#vvec]
+CMP R1,#12<<8
+ADDLT R1,R1,#8<<4
+CMP R0,#1
+STRGT R1,[R12,#vvec]
+CMP R0,#1
+BGT fallins
+B nofallins
+.nofall
+
+
+MOV R0,#0
+
+STRB R0,[R12,#falling]
+.nofallins
+
+.fallins
+LDR R0,[R12,#pladr8]
+LDRB R1,[R0]
+CMP R1,#platlowlim+1
+BLT noplatrebuild
+CMP R1,#plathighlim+1
+BGT noplatrebuild
+TST R1,#1
+BEQ noplatrebuild
+SUB R1,R1,#1
+STRB R1,[R0,#-1]
+.noplatrebuild
+LDR R0,[R12,#pladr7]
+LDRB R1,[R0]
+CMP R1,#platlowlim
+BLT fallinscont
+CMP R1,#plathighlim
+BGT fallinscont
+MOV R4,#0
+STRNEB R4,[R12,#hiddenplatctr]
+BNE nohidplat
+LDRB R4,[R12,#hiddenplatctr]
+LDRB R5,[R12,#frameinc]
+ADD R4,R4,R5
+STRB R4,[R12,#hiddenplatctr]
+CMP R4,#50
+BLT fallinscont
+.nohidplat
+TST R1,#1
+BEQ plplattoobj
+.fallinscont
+LDR R0,[R12,#pladr7]
+LDRB R1,[R0]
+TST R1,#1
+BNE notelep
+CMP R1,#teleplowlim
+BLT notelep
+CMP R1,#telephighlim
+BLLE telep
+
+.notelep
+LDR R0,[R12,#pladr1]
+LDR R1,[R12,#boardwidth]
+SUB R0,R0,R1
+LDRB R1,[R0]
+CMP R1,#platlowlim
+BLT notelepcont1
+CMP R1,#plathighlim-1 ;not hidden platforms
+BLE plplattoobj
+.notelepcont1
+LDRB R1,[R0,#1]!
+CMP R1,#platlowlim
+BLT notelepcont2
+CMP R1,#plathighlim-1
+BLE plplattoobj
+.notelepcont2
+LDR R0,[R12,#pladr7]
+LDRB R1,[R0]
+CMP R1,#extendno+1
+BEQ doextendfromleft
+LDR R0,[R12,#pladr8]
+LDRB R1,[R0]
+CMP R1,#extendno+2
+BEQ doextendfromright
+
+LDR R0,[R12,#pladr7]
+LDRB R1,[R0]
+CMP R1,#shutdownno
+BNE plattoins
+MOV R1,#14
+STRB R1,[R0]
+MOV R0,#1
+STR R0,[R12,#shutdownctr]
+LDR R0,[R12,#neuronctr]
+ADD R0,R0,#1
+STR R0,[R12,#neuronctr]
+MOV R3,#3
+.shutloop
+STMFD R13!,{R3}
+MOV R7,R3,LSL #6
+SUB R7,R7,#96
+MOV R0,R3
+MOV R1,#Samprave
+MOV R2,#&1F
+MOV R3,R3,LSL #8
+ADD R3,R3,#&3000
+LDRB R4,[R12,#soundvol]
+MOV R4,R4,LSL #25
+ADD R4,R4,#&1000
+MOV R5,#&FF00
+ADD R5,R5,#&100<<16
+MOV R6,#100
+BL bidforsoundforce
+LDMFD R13!,{R3}
+SUBS R3,R3,#1
+BGT shutloop
+
+
+
+.plattoins
+BL playerfire
+LDMFD R13!,{PC}
+
+.doextendfromleft
+LDRB R1,[R12,#extending]
+CMP R1,#0
+BNE plattoins
+LDRB R1,[R0,#1]
+CMP R1,#0
+BNE plattoins
+BL backtranslate
+MOV R2,R1
+MOV R1,R0
+ADD R2,R2,#15<<8
+SUB R1,R1,#8<<8
+MOV R0,#Extender
+MOV R3,#1<<8
+MOV R4,#0
+MOV R5,#extendno
+MOV R6,#0
+BL makeobj
+MOV R0,#20
+STRB R0,[R12,#extending]
+B plattoins
+
+.doextendfromright
+LDRB R1,[R12,#extending]
+CMP R1,#0
+BNE plattoins
+LDRB R1,[R0,#-1]
+CMP R1,#0
+BNE plattoins
+BL backtranslate
+MOV R2,R1
+MOV R1,R0
+ADD R1,R1,#8<<8
+ADD R2,R2,#15<<8
+MOV R0,#Extender
+MVN R3,#(1<<8)-1
+
+MOV R4,#0
+MOV R5,#extendno
+MOV R6,#0
+BL makeobj
+MOV R0,#20
+STRB R0,[R12,#extending]
+B plattoins
+
+.windcheck
+STMFD R13!,{R14}
+LDR R1,[R12,#pladr1]
+CMP R1,#0
+LDMEQFD R13!,{PC}
+MOV R4,#0
+BL seeifwind
+LDR R1,[R12,#pladr2]
+BL seeifwind
+LDR R1,[R12,#pladr3]
+BL seeifwind
+LDR R1,[R12,#pladr4]
+BL seeifwind
+LDR R0,[R12,#windctr]
+CMP R4,#0
+SUBEQ R0,R0,#64
+SUBS R0,R0,#1
+MOVMI R0,#0
+STR R0,[R12,#windctr]
+LDMFD R13!,{PC}
+
+.seeifwind
+LDR R2,[R12,#hvec]
+LDR R3,[R12,#vvec]
+LDRB R0,[R1]
+CMP R0,#2
+SUBEQ R2,R2,#windspeed*4
+MOVEQ R4,#1
+CMP R0,#3
+ADDEQ R2,R2,#windspeed*4
+MOVEQ R4,#1
+CMP R0,#12
+SUBEQ R3,R3,#windspeed
+MOVEQ R4,#1
+CMP R0,#13
+ADDEQ R3,R3,#windspeed
+MOVEQ R4,#1
+STR R2,[R12,#hvec]
+STR R3,[R12,#vvec]
+MOV PC,R14
+
+
+.plattoobj
+MOV R4,#0
+.plattoobjins
+STMFD R13!,{R14}
+LDRB R1,[R0]
+TST R1,#1
+SUBNE R0,R0,#1
+LDRB R6,[R0]
+STMFD R13!,{R0-R1}
+BL backtranslate
+
+ADD R2,R1,#15<<8
+ADD R1,R0,#8<<8
+MOV R3,#0
+MOV R5,#16
+ADD R5,R5,#32<<16
+
+
+SUB R0,R6,#platno-2*Platbase
+MOV R0,R0,LSR #1
+CMP R0,#Exploplat
+MVNEQ R4,#1>>5; stop instant explosion
+CMP R0,#Downplat
+ADDGE R0,R0,#1
+BL makeobj
+LDMFD R13!,{R0-R1}
+MOVVC R1,#0
+STRVCB R1,[R0]
+STRVCB R1,[R0,#1]
+LDMFD R13!,{PC}
+
+.plplattoobj
+LDR R4,[R12,#vvec]
+MOV R4,R4,ASR #3
+BL plattoobjins
+MOV R0,#0
+STR R0,[R12,#vvec]
+B plattoins
+
+.crumblecheck
+LDRB R0,[R1]
+CMP R0,#crumblestandlowlim
+MOVLT PC,R14
+CMP R0,#crumblestandhighlim
+MOVGT PC,R14
+LDRB R4,[R12,#falling]
+CMP R4,#8
+MOVLT PC,R14
+LDR R4,[R12,#vvec]
+CMP R4,#2<<8
+MOVLT PC,R14
+ADD R0,R0,#1
+TST R0,#3
+MOVEQ R0,#0
+STRB R0,[R1]
+MOV PC,R14
+
+.telep
+STMFD R13!,{R14}
+LDR R0,[R12,#xpos]
+STR R0,[R12,#initplx]
+LDR R0,[R12,#ypos]
+STR R0,[R12,#initply]
+
+LDRB R0,[R12,#downpress]
+CMP R0,#16
+LDMLTFD R13!,{PC}
+LDR R0,[R12,#telepctr]
+CMP R0,#0
+LDMNEFD R13!,{PC}
+LDR R11,[R12,#boardadr]
+LDR R0,[R11,#4]
+LDR R1,[R11,#8]
+MUL R3,R1,R0
+ADD R11,R11,#boardhdrlen
+MOV R2,R11
+ADD R3,R11,R3
+LDR R1,[R12,#pladr7]
+LDRB R4,[R1]
+MOV R5,#1
+TST R4,#2
+RSBEQ R5,R5,#0
+LDRB R1,[R12,#downpress]
+LDRB R0,[R12,#leftpress]
+CMP R0,#64
+BLT normtelep
+LDRB R0,[R12,#uppress]
+CMP R0,#0
+BNE normtelep
+LDRB R0,[R12,#fire]
+CMP R0,#0
+BEQ normtelep
+CMP R0,R1
+BGT normtelep
+LDRB R0,[R12,#rightpress]
+CMP R0,#64
+BLT normtelep
+RSB R5,R5,#0
+STMFD R13!,{R2-R6}
+MOV R0,#Explochannel
+MOV R1,#SampJump
+MOV R2,#&7F
+MOV R3,#&1000
+MOV R4,#0
+MOV R5,#0
+MOV R6,#50
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R2-R6}
+.normtelep
+MOV R0,#0
+STRB R0,[R12,#downpress]
+LDR R1,[R12,#pladr7]
+EOR R4,R4,#2
+
+.loop62
+LDRB R0,[R1,R5]!
+CMP R0,R4
+BEQ telepfound
+CMP R1,R2
+BLE telepoffleft
+CMP R1,R3
+BGE telepoffright
+B loop62
+.telepfound
+MOV R0,R1
+BL backtranslate
+ADD R0,R0,#8<<8
+SUB R1,R1,#17<<8
+STR R0,[R12,#telepxpos]
+STR R1,[R12,#telepypos]
+MOV R0,#1
+STR R0,[R12,#telepctr]
+MOV R0,#Playerchannel
+MOV R1,#Samporgan
+MOV R2,#&7F
+MOV R3,#&1000
+MOV R4,#&FF00
+MOV R5,#&5000<<16
+ADD R5,R5,#&A00
+MOV R6,#25
+MOV R7,#127
+BL bidforsound
+MOV R0,#Sparechannel
+MOV R1,#Samporgan
+MOV R2,#&7F
+MOV R3,#&4000
+MOV R4,#&FF00
+MOV R5,#&1000<<16
+ADD R5,R5,#&F400
+MOV R6,#25
+MVN R7,#126
+BL bidforsound
+
+LDMFD R13!,{PC}
+.telepoffleft
+.telepoffright
+LDMFD R13!,{PC}
+
+.playerfire
+STMFD R13!,{R14}
+LDR R0,[R12,#snuffctr]
+CMP R0,#0
+LDMNEFD R13!,{PC}
+LDRB R0,[R12,#blamctr]
+CMP R0,#0
+ADDNE R0,R0,#2
+STRNEB R0,[R12,#blamctr]
+CMP R0,#224
+BGE goblam
+LDRB R0,[R12,#plweapontype]
+CMP R0,#0
+LDMEQFD R13!,{PC}
+LDRB R0,[R12,#fire]
+CMP R0,#0
+BLNE dofire
+LDRB R0,[R12,#rocketflag]
+CMP R0,#0
+BLNE launchrocket
+LDMFD R13!,{PC}
+
+.goblam
+LDRB R0,[R12,#plweapontype]
+CMP R0,#rocketblamno
+BEQ rocketblam
+MOV R9,#32
+.loopa0
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R1,R1,#12<<8
+SUBS R3,R9,#16
+MOV R4,R3
+RSBMI R4,R4,#0
+
+LDRB R5,[R12,#plface]
+CMP R5,#1
+ADDNE R0,R0,#20<<8
+SUBEQ R0,R0,#20<<8
+MOV R2,#4<<8
+SUB R2,R2,R4,LSL #5
+RSBEQ R2,R2,#0
+MOV R3,R3,ASL #6
+MOV R4,#57
+MOV R5,#%1<<15
+STMFD R13!,{R9}
+BL makeproj
+LDMFD R13!,{R9}
+SUBS R9,R9,#1
+BGT loopa0
+
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+ADD R2,R2,#4<<8
+
+LDRB R5,[R12,#plface]
+CMP R5,#1
+ADDNE R1,R1,#24<<8
+SUBEQ R1,R1,#24<<8
+MOV R3,#1<<8
+RSBEQ R3,R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#0
+BL explogonopyroquiet
+
+
+MOV R0,#1
+STRB R0,[R12,#plfired]
+MOV R0,#0
+STRB R0,[R12,#blamctr]
+
+MOV R0,#Firechannel
+MOV R1,#SampAtomExplo
+MOV R2,#&7F
+LDR R3,[R12,#fullpitch]
+MOV R4,#0
+MOV R5,#0
+MOV R6,#8
+MOV R7,#0
+BL bidforsound
+
+LDMFD R13!,{PC}
+
+
+.rocketblam
+MOV R9,#32
+.loopa1
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R1,R1,#2<<8
+LDRB R5,[R12,#plface]
+CMP R5,#1
+MOVNE R5,#0
+MOV R4,R5
+
+ADDNE R0,R0,#12<<8
+SUBEQ R0,R0,#12<<8
+
+
+MOV R2,#4<<8
+RSBEQ R2,R2,#0
+MOV R6,R9,LSL #2
+ADD R6,R6,R9,LSL #1
+LDR R7,[R12,#rockettabadr]
+LDR R3,[R7,R6,LSL #2]
+RSBEQ R3,R3,#0
+MOV R3,R3,ASL #1
+CMP R3,#170
+ADDGT R4,R4,#2
+CMP R3,#60
+ADDGT R4,R4,#2
+CMN R3,#60
+SUBLT R4,R4,#2
+CMN R3,#170
+SUBLT R4,R4,#2
+CMP R3,#1
+ADD R4,R4,#36
+MOV R5,#%10000010<<8
+ADD R0,R0,R2,ASL #1
+ADD R1,R1,R3,ASL #1
+STMFD R13!,{R9}
+BL makeproj
+LDMFD R13!,{R9}
+SUBS R9,R9,#1
+BGT loopa1
+
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+SUB R2,R2,#8<<8
+
+LDRB R5,[R12,#plface]
+CMP R5,#1
+ADDEQ R1,R1,#24<<8
+SUBNE R1,R1,#24<<8
+MOV R3,#1<<9
+RSBNE R3,R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#1
+BL explogonopyroquiet
+
+MOV R0,#1
+STRB R0,[R12,#plfired]
+MOV R0,#0
+STRB R0,[R12,#blamctr]
+
+MOV R0,#Firechannel
+MOV R1,#SampAtomExplo
+MOV R2,#&7F
+LDR R3,[R12,#fullpitch]
+MOV R4,#0
+MOV R5,#0
+MOV R6,#8
+MOV R7,#0
+BL bidforsound
+LDRB R0,[R12,#rocketblamctr]
+SUBS R0,R0,#1
+STRB R0,[R12,#rocketblamctr]
+TST R0,#1<<7
+LDMEQFD R13!,{PC}
+MOV R0,#rockbase
+STRB R0,[R12,#plweapontype]
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+ADD R2,R2,#4<<8
+MOV R3,#0
+MVN R4,#1<<7
+MOV R5,#0
+MOV R10,#0
+BL explogoquiet
+LDMFD R13!,{PC}
+
+.dofire
+LDRB R2,[R12,#plweapontype]
+CMP R2,#rockbase
+BGE firerocket ; no return
+.firempmg
+CMP R2,#mpmgblamno
+BEQ blamfire
+LDRB R0,[R12,#firerate]
+LDR R1,[R12,#firelastframe]
+LDR R2,[R12,#framectr]
+SUB R1,R2,R1
+CMP R1,R0
+LDMLTFD R13!,{PC}
+STR R2,[R12,#firelastframe]
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R1,R1,#12<<8
+LDRB R4,[R12,#plface]
+CMP R4,#1
+MOVNE R4,#0
+ADDNE R0,R0,#14<<8
+SUBEQ R0,R0,#14<<8
+LDR R2,[R12,#hvec]
+MOV R2,R2,ASR #1
+LDRB R3,[R12,#plweaponspeed]
+ADD R2,R2,R3,LSL #8
+RSBEQ R2,R2,#0
+LDR R3,[R12,#rnseed]
+ADD R3,R3,#152
+EOR R3,R3,R3,ROR #17
+STR R3,[R12,#rnseed]
+AND R3,R3,#&FF
+SUB R3,R3,#&7F
+ADD R4,R4,#30
+LDRB R6,[R12,#plweapontype]
+AND R6,R6,#7
+MOV R5,#1<<22
+CMP R6,#2
+MOVGE R5,#1<<18
+ORRGE R5,R5,#1<<10
+CMP R6,#3
+ORREQ R5,R5,#1<<14
+CMP R6,#4
+ORREQ R5,R5,#3<<13
+CMP R6,#5
+ORREQ R5,R5,#3<<12
+ORREQ R5,R5,#1<<20
+MOVEQ R2,R2,ASR #2
+CMP R6,#6
+ORREQ R5,R5,#1<<11
+CMP R6,#7
+ORREQ R5,R5,#%1001<<11
+BL makeproj
+MOV R0,#1
+STRB R0,[R12,#plfired]
+MOV R0,#Firechannel
+MOV R1,#SampCannon
+MOV R2,#&7E
+LDR R3,[R12,#fullpitch]
+MOV R4,#0
+MOV R5,#0
+MOV R6,#2
+MOV R7,#0
+
+BL bidforsound
+
+LDMFD R13!,{PC}
+
+.blamfire
+LDRB R0,[R12,#blamctr]
+CMP R0,#0
+LDMNEFD R13!,{PC}
+LDRB R1,[R12,#plweapontype]
+CMP R1,#8
+MOV R0,#1
+MOVEQ R0,#128
+STRB R0,[R12,#blamctr]
+MOV R0,#Firechannel
+MOV R1,#Samprave
+MOV R2,#&7E
+LDR R3,[R12,#fullpitch]
+MOV R4,#0
+MOV R5,R3,ASL #17
+ADD R5,R5,#&200
+MOV R6,#40
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{PC}
+
+.firerocket
+CMP R2,#rocketblamno
+BEQ blamfire
+MOV R0,#1
+STRB R0,[R12,#rocketflag]
+MOV R2,#2
+LDRB R0,[R12,#plweapontype]
+CMP R0,#rockbase+1
+MOVGE R2,#4
+CMP R0,#rockbase+6
+MOVEQ R2,#8
+LDR R1,[R12,#rocketctr]
+LDRB R0,[R12,#plface]
+CMP R0,#1
+ADDEQ R1,R1,R2
+SUBNE R1,R1,R2
+CMP R1,#rockettablen
+MOVGE R1,#0
+CMP R1,#0
+MOVLT R1,#rockettablen-1
+STR R1,[R12,#rocketctr]
+LDMFD R13!,{PC}
+
+.launchrocket
+LDRB R0,[R12,#firerate]
+LDR R1,[R12,#firelastframe]
+LDR R2,[R12,#framectr]
+SUB R1,R2,R1
+CMP R1,R0
+LDMLTFD R13!,{PC}
+STR R2,[R12,#firelastframe]
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+ADD R1,R1,#2<<8
+LDRB R5,[R12,#plface]
+CMP R5,#1
+MOVNE R5,#0
+MOV R4,R5
+
+ADDNE R0,R0,#12<<8
+SUBEQ R0,R0,#12<<8
+
+LDRB R2,[R12,#plweaponspeed]
+MOV R2,R2,ASL #8
+RSBEQ R2,R2,#0
+LDR R6,[R12,#rocketctr]
+LDR R7,[R12,#rockettabadr]
+LDR R3,[R7,R6,LSL #2]
+RSBEQ R3,R3,#0
+CMP R3,#170
+ADDGT R4,R4,#2
+CMP R3,#60
+ADDGT R4,R4,#2
+CMN R3,#60
+SUBLT R4,R4,#2
+CMN R3,#170
+SUBLT R4,R4,#2
+CMP R3,#1
+ADD R4,R4,#36
+LDRB R6,[R12,#plweapontype]
+SUB R6,R6,#rockbase
+MOV R5,#1<<22
+CMP R6,#6
+LDRGE R6,[R12,#rnseed]
+ANDGE R6,R6,#7
+CMP R6,#6
+MOVGE R6,#0
+CMP R6,#1
+MOVGE R5,#1<<19
+ORRGE R5,R5,#1<<10
+ORREQ R5,R5,#1<<14; split
+CMP R6,#2
+ORREQ R5,R5,#3<<13;split twice
+CMP R6,#3
+ORREQ R5,R5,#%1001<<12; burst
+EOREQ R5,R5,#%111<<18;    a safe distance away
+CMP R6,#4
+
+ORREQ R5,R5,#%1101<<12;dual burst
+ORREQ R5,R5,#3<<17
+CMP R6,#5
+ORREQ R5,R5,#%1111<<12;quad burst!!!
+;EOREQ R5,R5,#3<<18
+ORR R5,R5,#1<<15
+ADD R0,R0,R2,ASL #1
+ADD R1,R1,R3,ASL #1
+BL makeproj
+MOV R0,#1
+STRB R0,[R12,#plfired]
+MOV R0,#Firechannel
+MOV R1,#SampRocket
+MOV R2,#&7E
+LDR R3,[R12,#fullpitch]
+MOV R4,#0
+MOV R5,#0
+MOV R6,#2
+MOV R7,#0
+BL bidforsound
+MOV R0,#0
+STRB R0,[R12,#rocketflag]
+LDMFD R13!,{PC}
+
+
+.getarms
+MOV R0,#0
+STRB R0,[R12,#blamctr]
+STRB R0,[R12,#plweapontype]
+MOV PC,R14
+.getrocket
+LDR R0,[R12,#rnseed]
+AND R0,R0,#7
+ADD R0,R0,#rockbase
+STRB R0,[R12,#plweapontype]
+MOV R0,#2
+STRB R0,[R12,#plweaponspeed]
+MOV R0,#12
+STRB R0,[R12,#firerate]
+MOV R0,#0
+STRB R0,[R12,#blamctr]
+MOV PC,R14
+
+.getmpmg
+LDR R0,[R12,#rnseed]
+AND R0,R0,#7
+ADD R0,R0,#mpmgbase
+STRB R0,[R12,#plweapontype]
+MOV R0,#8
+STRB R0,[R12,#plweaponspeed]
+MOV R0,#4
+STRB R0,[R12,#firerate]
+MOV R0,#0
+STRB R0,[R12,#blamctr]
+MOV PC,R14
+
+.bulcolcheck
+STMFD R13!,{R0-R4,R11,R14}
+LDR R11,[R12,#bulcolchtab]
+.bulcolchins
+LDR R3,[R12,#bulcolchptr]
+.bl10
+CMP R3,R11
+BLE bulcolched
+LDMIA R11!,{R6-R10}
+CMP R9,R0
+CMPGE R10,R1
+CMPGE R0,R7
+CMPGE R1,R8
+BLT bl10
+.bullethit
+LDMFD R13!,{R0-R4,R11,R14}
+BIC R14,R14,#1<<30
+MOVS PC,R14
+.bulcolched
+LDMFD R13!,{R0-R4,R11,R14}
+ORR R14,R14,#1<<30
+MOVS PC,R14
+
+
+.colcheck
+STMFD R13!,{R14}
+STR R11,[R12,#dodgypointer]
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0; player check
+MOVEQ R4,#0
+STRB R4,[R12,#alonobj]
+STREQ R4,[R12,#platsandstr]
+LDREQ R4,[R12,#colchtab]
+STREQ R4,[R12,#colchtabuse]
+LDREQ R4,[R12,#colchptr]
+STREQ R4,[R12,#colchptruse]
+LDRNE R4,[R12,#oldcolchtab]
+STRNE R4,[R12,#colchtabuse]
+LDRNE R4,[R12,#oldcolchptr]
+STRNE R4,[R12,#colchptruse]
+
+
+STR R0,[R12,#xtemp]
+STR R1,[R12,#ytemp]
+;ADD R0,R0,R2
+;ADD R1,R1,R3
+ADD R1,R1,#8<<8
+MOV R4,#24<<8
+MOV R5,#32<<8
+SUB R0,R0,R4,LSR #1
+SUB R1,R1,R5,LSR #1
+ADD R4,R0,R4
+ADD R5,R1,R5
+ADD R5,R5,#2<<8   ;so always in contact with platforms
+
+LDR R11,[R12,#colchtabuse]
+.l10
+.colchins
+LDR R6,[R12,#colchptruse]
+CMP R6,R11
+BLE colched
+LDMIA R11!,{R6-R10}
+CMP R9,R0
+CMPGE R10,R1
+CMPGE R4,R7
+CMPGE R5,R8
+
+BLT l10
+STMFD R13!,{R0,R1,R4,R5,R6,R11}
+STMFD R13!,{R2}
+SUB R2,R10,R1
+CMP R2,#1<<8    ;lim for plat on head -> can move horiz.
+BLT nolimr2
+SUB R2,R5,R8
+CMP R2,#3<<8    ;same for standing on plat
+.nolimr2
+LDMFD R13!,{R2}
+BLGE limr2
+SUB R0,R9,R0
+CMP R0,#6<<8    ;margin for right on edge
+BLT colchcon
+SUB R0,R4,R7
+CMP R0,#6<<8    ;ditto
+BLT colchcon
+
+
+SUB R0,R5,R8
+CMP R0,#16<<8  ;safety margin for platform under pl
+BLE rise
+SUB R0,R10,R1
+CMP R0,#16<<8  ;ditto for plat on head
+BLE platonhead
+
+B colchcon
+.limr2
+CMP R9,R4
+CMPGT R2,#0
+MOVGT R2,#0
+CMP R7,R0
+CMPLT R2,#0
+MOVLT R2,#0
+MOV PC,R14
+
+.rise
+
+STMFD R13!,{R0-R1}
+LDRB R0,[R12,#colchecktype]
+CMP R0,#2 ;no rise
+BEQ dontrise
+LDR R0,[R6]
+CMP R0,#Fastplatfire
+BLEQ platfire
+CMP R0,#Downplat ;plat type 5 falls
+CMPNE R0,#Fallplat
+BEQ platfall
+CMP R0,#Fastplat ;plat 6+ moves quickly
+LDRGE R0,[R6,#16]
+SUBGE R0,R0,#1<<7
+STRGE R0,[R6,#16]
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+LDREQB R0,[R12,#pluphit]
+BLNE alheadcheck
+CMP R0,#0
+
+LDR R0,[R6,#16] ;hit
+SUB R0,R0,#1<<5
+BLNE headonroof
+CMP R0,#1<<5
+SUBGT R0,R0,#1<<5  ;plat is moving down - more speed
+
+CMN R0,#3<<10
+MVNLT R0,#3<<10
+BLT platmaxspeed
+.platmaxspeedins
+
+STR R0,[R6,#16]
+CMP R3,R0
+MOVGE R3,R0
+
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+MOVEQ R0,#&FF
+
+STREQB R0,[R12,#falling]
+ADDEQ R0,R6,#16
+STREQ R0,[R12,#platsandstr]
+
+LDR R0,[R6,#8]
+LDR R1,[R12,#platypos]
+SUB R0,R0,#32<<8
+SUB R0,R0,R1
+ADD R3,R3,R0
+
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+MOVNE R4,#1
+STRNEB R4,[R12,#alonobj]
+MOVNE R2,R2,ASR #2
+LDMFD R13!,{R0-R1}
+B colchcon
+
+.dontrise
+MOV R3,#0
+MOV R4,#1
+STRB R4,[R12,#alonobj]
+LDMFD R13!,{R0-R1}
+B colchcon
+
+.platfall
+CMP R0,#Fallplat
+LDR R0,[R6,#16]
+ADDNE R0,R0,#1<<4
+CMN R0,#1<<5
+ADDLT R0,R0,#1<<5  ;plat is moving up - more speed
+CMP R0,#1<<11
+MOVGT R0,#1<<11
+STR R0,[R6,#16]
+CMP R3,R0
+MOVGT R3,R0
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+MOVEQ R0,#&FF
+
+STREQB R0,[R12,#falling]
+ADDEQ R0,R6,#16
+STREQ R0,[R12,#platsandstr]
+LDR R0,[R6,#8]
+LDR R1,[R12,#platypos]
+SUB R0,R0,#32<<8
+SUB R0,R0,R1
+ADD R3,R3,R0
+LDMFD R13!,{R0-R1}
+B colchcon
+
+.platonhead
+LDR R0,[R6]
+CMP R0,#Exploplat
+BEQ platdestroy
+LDR R0,[R6,#16]
+CMP R0,#0
+MVNPL R0,R0
+CMP R0,R3
+ADDGT R0,R0,R3,ASR #1
+STR R0,[R6,#16]
+MOV R0,#1
+STRB R0,[R12,#platuphit]
+CMP R3,#0
+MOVMI R3,#0
+LDRB R0,[R12,#falling]
+CMP R0,#&FF
+BEQ platsandwich
+B colchcon
+
+.platdestroy
+STMFD R13!,{R2-R3}
+MOV R10,R6
+MOV R3,#0
+MVN R4,#1<<6
+
+BL explogo
+LDMFD R13!,{R2-R3}
+B colchcon
+
+.platsandwich
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+BNE colchcon
+LDR R0,[R12,#platsandstr]
+MOV R1,#1<<8
+CMP R0,#0
+STRNE R1,[R0]
+B colchcon
+
+.platmaxspeed
+STMFD R13!,{R0}
+LDR R0,[R6]
+CMP R0,#Fastplatstop
+BEQ platstop
+CMP R0,#Fastplatexplo
+CMPNE R0,#Fastplatfire
+BEQ platexplo
+LDMFD R13!,{R0}
+B platmaxspeedins
+
+.platstop
+BL platsurefire
+LDMFD R13!,{R0}
+MVN R0,#1<<9
+B platmaxspeedins
+
+.platexplo
+
+LDMFD R13!,{R0}
+LDMFD R13!,{R0-R1}
+B platdestroy
+
+.platfire
+STMFD R13!,{R0-R11,R14}
+LDR R0,[R6,#4]
+LDR R1,[R6,#8]
+ADD R1,R1,#16<<8
+LDR R4,[R12,#rnseed]
+ADD R4,R4,#156
+EOR R4,R4,R4,ROR #14
+STR R4,[R12,#rnseed]
+TST R4,#3<<24;         firing rate
+BNE platfireskip
+AND R2,R4,#&FE<<2
+SUB R2,R2,#&FE<<1
+AND R3,R4,#&FE<<12
+MVN R3,R3,ASR #11; best negative (up)
+MOV R4,#bulspritebase+8
+MOV R5,#1<<24
+BL makebul
+.platfireskip
+LDMFD R13!,{R0-R11,PC}
+
+.platsurefire
+STMFD R13!,{R0-R11,R14}
+LDR R0,[R6,#4]
+LDR R1,[R6,#8]
+ADD R1,R1,#16<<8
+LDR R4,[R12,#rnseed]
+ADD R4,R4,#156
+EOR R4,R4,R4,ROR #14
+STR R4,[R12,#rnseed]
+AND R2,R4,#&FE<<2
+SUB R2,R2,#&FE<<1
+AND R3,R4,#&FE<<12
+MVN R3,R3,ASR #11; best negative (up)
+MOV R4,#bulspritebase+14
+MOV R5,#1<<24
+BL makebul
+LDMFD R13!,{R0-R11,PC}
+
+
+.colchcon
+LDMFD R13!,{R0,R1,R4,R5,R6,R11}
+B colchins
+
+.colched
+LDMFD R13!,{PC}
+
+.headonroof
+STMFD R13!,{R14}
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+BEQ skipalrand
+LDR R4,[R12,#rnseed]
+EOR R4,R4,R4,ROR #14
+ADD R4,R4,#211
+STR R4,[R12,#rnseed]
+TST R4,#7
+BNEskipalrandload
+
+AND R2,R4,#1<<9
+SUB R2,R2,#1<<8
+LDR R4,[R12,#dodgypointer]
+STR R2,[R4,#8]
+.skipalrandload
+LDRB R4,[R12,#colchecktype]
+CMP R4,#0
+
+.skipalrand
+LDR R1,[R12,#platypos]            ; force plat to player pos
+ADD R1,R1,#32<<8
+
+STR R1,[R6,#8]
+MOV R0,#1<<8
+MOVNE R0,#1
+LDRB R1,[R12,#downpress]
+MOVNE R1,#0
+CMP R1,#64
+MOVGT R0,#1<<11
+LDR R1,[R6]
+CMP R1,#Updownplat
+MOVEQ R1,#Downplat
+STREQ R1,[R6]
+LDMFD R13!,{PC}
+
+
+.alheadcheck
+STMFD R13!,{R1-R3,R6,R14}
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+
+;ADD R1,R1,R3
+BL translate
+
+LDR R5,[R12,#boardwidth]
+SUB R1,R0,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+MOV R0,#0
+MOVGE R0,#1
+LDMFD R13!,{R1-R3,R6,PC}
+
+
+
+.albcheck
+STMFD R13!,{R11,R14}
+MOV R6,#0
+STR R6,[R12,#lefthit] ;wipe all four
+STRB R6,[R12,#alonplat]
+SUB R0,R0,#1<<8
+SUB R1,R1,#8<<8
+STR R0,[R12,#xtemp]
+STR R1,[R12,#ytemp]
+AND R6,R1,#15<<8
+
+ADD R1,R1,R3
+BL translate
+MOV R11,R0
+LDR R5,[R12,#boardwidth]
+; up
+SUB R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE noup
+;down
+
+ADD R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE nodown
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+ADD R0,R0,R2
+CMP R6,#15<<8
+BEQ alshort
+STMFD R13!,{R0,R1}
+BL translate
+MOV R11,R0
+LDMFD R13!,{R0-R1}
+BL translate
+MOV R10,R0
+
+
+;left
+
+SUB R1,R10,R5
+LDRB R0,[R1]
+CMP R0,#blim
+SUB R1,R11,R5
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+LDRLTB R0,[R1,R5,LSL #1]
+CMPLT R0,#blim
+BLGE noleft
+;right
+
+SUB R1,R10,R5
+ADD R1,R1,#1
+LDRB R0,[R1]
+CMP R0,#blim
+SUB R1,R11,R5
+ADD R1,R1,#1
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+LDRLTB R0,[R1,R5,LSL #1]
+CMPLT R0,#blim
+BLGE noright
+B albcheckins
+
+.alshort
+
+BL translate
+MOV R11,R0
+MOV R1,R11
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+BLGE noleft
+;right
+ADD R1,R11,#1
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+BLGE noright
+
+.albcheckins
+
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+
+ADD R0,R0,R2
+ADD R1,R1,R3
+BL translate
+MOV R11,R0
+LDR R5,[R12,#boardwidth]
+; up
+SUB R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE noup
+;down
+
+ADD R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE nodown
+ADD R1,R11,R5,ASL #1
+LDRB R0,[R1]
+MOV R5,R1 ;signal position to caller
+CMP R0,#alplathighlim
+LDMGTFD R13!,{R11,PC}
+CMP R0,#platlowlim
+LDMLTFD R13!,{R11,PC}
+MOV R0,#1
+STRB R0,[R12,#alonplat]
+LDMFD R13!,{R11,PC}
+
+
+.bcheck
+STMFD R13!,{R14}
+MOV R6,#0
+STRB R6,[R12,#uphit]
+STRB R6,[R12,#downhit]
+STR R0,[R12,#xtemp]
+STR R1,[R12,#ytemp]
+AND R6,R1,#15<<8
+
+ADD R1,R1,R3
+BL translate
+MOV R11,R0
+LDR R5,[R12,#boardwidth]
+; up
+SUB R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE noup
+;down
+
+ADD R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE nodown
+ADD R1,R1,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE nodownifplat
+BL fallinggap
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+ADD R0,R0,R2
+CMP R6,#15<<8
+BEQ short
+STMFD R13!,{R0,R1}
+BL translate
+MOV R11,R0
+LDMFD R13!,{R0-R1}
+;ADD R1,R1,#4<<8
+BL translate
+MOV R10,R0
+
+
+;left
+
+SUB R1,R10,R5
+LDRB R0,[R1]
+CMP R0,#blim
+SUB R1,R11,R5
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+LDRLTB R0,[R1,R5,LSL #1]
+CMPLT R0,#blim
+BLGE noleft
+;right
+
+SUB R1,R10,R5
+ADD R1,R1,#1
+LDRB R0,[R1]
+CMP R0,#blim
+SUB R1,R11,R5
+ADD R1,R1,#1
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+LDRLTB R0,[R1,R5,LSL #1]
+CMPLT R0,#blim
+BLGE noright
+B bcheckins
+
+.fallinggap
+STMFD R13!,{R14}
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+ADD R0,R0,R2
+CMP R3,#0
+SUBLT R1,R1,#15<<8
+;ADD R1,R1,R3
+BL translate
+MOV R11,R0
+MOV R1,#1
+CMP R2,#0
+MOVLT R1,#0
+
+LDRB R0,[R11,R1]
+CMP R0,#blim
+ADD R11,R11,R5
+LDRLTB R0,[R11,R1]
+CMP R0,#blim
+BLT stopfall
+LDMFD R13!,{PC}
+.stopfall
+CMP R3,#0
+BGT stopfalldown
+BLT stopfallup
+LDMFD R13!,{PC}
+.stopfalldown
+SUB R11,R11,R5,LSL #1
+LDRB R0,[R11,R1]
+CMP R0,#blim
+LDMLTFD R13!,{PC}
+ADD R11,R11,R5,LSL #1
+ADD R11,R11,R5
+LDRB R0,[R11,R1]
+CMP R0,#blim
+LDMLTFD R13!,{PC}
+
+RSB R1,R1,#1
+LDRB R0,[R11,R1]
+CMP R0,#blim
+
+BLLT nodown
+LDMFD R13!,{PC}
+.stopfallup
+LDR R0,[R12,#ytemp]
+AND R0,R0,#15<<8
+CMP R0,#8<<8
+LDMGTFD R13!,{PC}
+SUB R11,R11,R5,LSL #1
+LDRB R0,[R11,R1]
+CMP R0,#blim
+LDMLTFD R13!,{PC}
+ADD R11,R11,R5
+ADD R11,R11,R5,LSL #1
+LDRB R0,[R11,R1]
+CMP R0,#blim
+LDMLTFD R13!,{PC}
+
+RSB R1,R1,#1
+LDRB R0,[R11,R1]
+CMP R0,#blim
+
+BLLT noup
+LDMFD R13!,{PC}
+
+
+
+
+.short
+
+BL translate
+MOV R11,R0
+MOV R1,R11
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+BLGE noleft
+;right
+ADD R1,R11,#1
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,R5]
+CMPLT R0,#blim
+BLGE noright
+
+.bcheckins
+
+LDR R0,[R12,#xtemp]
+LDR R1,[R12,#ytemp]
+
+ADD R0,R0,R2
+ADD R1,R1,R3
+BL translate
+MOV R11,R0
+LDR R5,[R12,#boardwidth]
+; up
+SUB R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE noup
+;down
+
+ADD R1,R11,R5
+LDRB R0,[R1]
+CMP R0,#blim
+LDRLTB R0,[R1,#1]
+CMPLT R0,#blim
+BLGE nodown
+LDMFD R13!,{PC}
+
+
+
+.noleft
+CMP R2,#0
+MOVGE PC,R14
+MOV R2,#0
+MOV R4,#1
+STRB R4,[R12,#lefthit]
+MOV PC,R14
+.noright
+CMP R2,#0
+MOVLE PC,R14
+MOV R2,#0
+MOV R4,#1
+STRB R4,[R12,#righthit]
+MOV PC,R14
+
+.nodown
+CMP R3,#0
+
+BLE nodownrel
+
+LDR R0,[R12,#ytemp]
+RSB R0,R0,#16<<8
+AND R3,R0,#15<<8
+SUBS R3,R3,#1
+MOVMI R3,#0
+.nodownrel
+MOV R0,#1
+STRB R0,[R12,#downhit]
+MOV PC,R14
+
+.nodownifplat
+LDRB R0,[R12,#falling]
+CMP R0,#&FF
+MOVNE PC,R14
+CMP R3,#0
+BLE nodownrel
+
+LDR R0,[R12,#ytemp]
+RSB R0,R0,#16<<8
+AND R3,R0,#15<<8
+SUBS R3,R3,#1
+MOVMI R3,#0
+B nodownrel
+.noup
+CMP R3,#0
+MOVGE PC,R14
+LDR R0,[R12,#ytemp]
+ADD R0,R0,#1<<8
+AND R0,R0,#15<<8
+RSB R3,R0,#0
+MOV R0,#1
+STRB R0,[R12,#uphit]
+MOV PC,R14
+
+.translate
+MOV R1,R1,ASR #12
+
+LDR R8,[R12,#boardadr]
+LDR R9,[R8,#4]
+MUL R9,R1,R9
+ADD R8,R8,#32
+ADD R8,R8,R0,ASR #12
+ADD R0,R8,R9
+MOV PC,R14
+
+.backtranslate
+LDR R1,[R12,#boardadr]
+ADD R1,R1,#boardhdrlen
+SUB R0,R0,R1
+LDR R1,[R12,#boardwidth]
+MOV R2,#0
+MOV R3,#0
+MOV R4,#1<<31
+.l9
+MOVS R0,R0,ASL #1
+ADC R3,R3,R3
+CMP R3,R1
+SUBGE R3,R3,R1
+ORRGE R2,R2,R4
+MOVS R4,R4,LSR #1
+BNE l9
+
+MOV R0,R3,LSL #12
+MOV R1,R2,LSL #12
+MOV PC,R14
+
+.deadbonuscheck
+STMFD R13!,{R14}
+MOV R0,#0
+STRB R0,[R12,#atombombctr]
+STRB R0,[R12,#electrocuting]
+LDR R5,[R12,#pladr1]
+LDRB R0,[R5]
+BL deadbonuslim
+LDR R5,[R12,#pladr2]
+LDRB R0,[R5]
+BL deadbonuslim
+LDR R5,[R12,#pladr3]
+LDRB R0,[R5]
+BL deadbonuslim
+LDR R5,[R12,#pladr4]
+LDRB R0,[R5]
+BL deadbonuslim
+LDMFD R13!,{PC}
+
+
+.bonuscheck
+LDR R0,[R12,#snuffctr]
+CMP R0,#0
+BNE deadbonuscheck
+STMFD R13!,{R14}
+MOV R0,#0
+STRB R0,[R12,#atombombctr]
+STRB R0,[R12,#electrocuting]
+LDR R5,[R12,#pladr1]
+LDRB R0,[R5]
+BL plbombcheck
+BL bonuslim
+BL weaponcheck
+
+LDR R5,[R12,#pladr2]
+LDRB R0,[R5]
+BL plbombcheck
+BL bonuslim
+BL weaponcheck
+LDR R5,[R12,#pladr3]
+LDRB R0,[R5]
+BL plbombcheck
+BL bonuslim
+BL weaponcheck
+LDR R5,[R12,#pladr4]
+LDRB R0,[R5]
+BL plbombcheck
+BL bonuslim
+BL weaponcheck
+LDMFD R13!,{PC}
+
+.weaponcheck
+LDRB R0,[R5]
+CMP R0,#weaplowlim
+MOVLT PC,R14
+CMP R0,#weaphighlim
+MOVGT PC,R14
+STMFD R13!,{R5,R14}
+LDRB R2,[R5]
+MOV R1,#0
+STRB R1,[R5]
+
+SUB R2,R2,#weaplowlim-1
+CMP R2,#rockbase
+STRB R2,[R12,#plweapontype]
+SUB R2,R2,#1
+MOVGE R0,#2
+MOVLT R0,#8
+STRB R0,[R12,#plweaponspeed]
+MOVGE R0,#12
+MOVLT R0,#4
+STRB R0,[R12,#firerate]
+MOV R0,#5
+STRB R0,[R12,#rocketblamctr]
+
+MOV R0,#1000
+MOV R7,#scoresprbase+9
+TST R2,#4
+MOVNE R7,#scoresprbase+10
+MOVNE R0,R0,LSL #1
+AND R2,R2,#7
+CMP R2,#7
+MOVEQ R0,R0,LSL #1
+MOVEQ R7,#scoresprbase+12
+STMFD R13!,{R7}
+LDR R2,[R12,#plscoreadd]
+ADD R2,R2,R0
+STR R2,[R12,#plscoreadd]
+
+
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+MOV R4,R0
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+
+STR R0,[R12,#rnseed]
+AND R0,R0,#&FE<<1
+SUB R0,R0,#&FE<<0
+LDR R3,[R12,#hvec]
+ADD R3,R0,R3,ASR #2
+AND R4,R4,#&FE<<2
+MVN R4,R4
+MOV R5,#60
+ADD R5,R5,R7,LSL #8
+
+MOV R0,#Scoreobj
+BL makeobj
+LDMFD R13,{R7} ;no writeback
+CMP R7,#scoresprbase+12
+MOV R0,#Playerchannel
+
+MOV R1,#Samporgan
+MOVEQ R1,#Samprave
+MOV R3,#&3000
+
+MOV R2,#&7F
+MOV R4,#&FF00
+
+MOV R5,#&200
+MOVEQ R5,#&800
+ADD R5,R5,#&6000<<16
+MOV R6,#10
+MOV R7,#127
+BL bidforsound
+LDMFD R13!,{R7}
+CMP R7,#scoresprbase+12
+MOV R0,#Sparechannel
+MOV R1,#Samporgan
+MOVEQ R1,#Samprave
+
+MOV R3,#&3800
+MOV R2,#&7F
+MOV R4,#&FF00
+MOV R5,#&200
+MOVEQ R5,#&800
+ADD R5,R5,#&6000<<16
+MOV R6,#10
+MVN R7,#126
+BL bidforsound
+LDRB R2,[R12,#plweapontype]
+SUB R2,R2,#1
+AND R2,R2,#15
+ADR R1,weapmestab
+LDR R0,[R1,R2,LSL #2]
+CMP R0,#0
+LDMEQFD R13!,{R5,PC}
+MOV R3,#0
+STR R3,[R1,R2,LSL #2]
+
+ADD R0,R0,R1
+BL message
+LDMFD R13!,{R5,PC}
+
+.weapmestab
+.r
+EQUD m1-r
+EQUD m2-r
+EQUD m3-r
+EQUD m4-r
+EQUD m5-r
+EQUD m6-r
+EQUD m7-r
+EQUD m8-r
+EQUD m9-r
+EQUD m10-r
+EQUD m11-r
+EQUD m12-r
+EQUD m13-r
+EQUD m14-r
+EQUD m15-r
+EQUD m16-r
+.m1
+FNmessage(320,192,-3,0,"Standard Mini-Gun")
+.m2
+FNmessage(320,192,-3,0,"Mini-Gun with spray")
+.m3
+FNmessage(320,192,-3,0,"Five Stream Gun")
+.m4
+FNmessage(320,192,-3,0,"Fast 5 way - zap those nasties!")
+.m5
+FNmessage(320,192,-3,0,"A weird one!")
+.m6
+FNmessage(320,192,-3,0,"Three Way Blitzer")
+.m7
+FNmessage(320,192,-3,0,"Blitzing Five Way - Lets Party")
+.m8
+FNmessage(320,192,-3,0,"MegaBlam 5000 Mini-Gun!!!!")
+.m9
+FNmessage(320,192,-3,0,"Standard Rocket Launcher")
+.m10
+FNmessage(320,192,-3,0,"Twin Rocket Launcher")
+.m11
+FNmessage(320,192,-3,0,"Quad Launcher - Open Fire!")
+.m12
+FNmessage(320,192,-3,0,"Launcher with starburst")
+.m13
+FNmessage(320,192,-3,0,"Twin rockets with starburst - let's see some fireworks!")
+.m14
+FNmessage(320,192,-3,0,"Quad Launcher with starburst! Arrgghhhh!!!!")
+.m15
+FNmessage(320,192,-3,0,"A Pot Pourri Rocket Launcher - mix and match!")
+.m16
+FNmessage(320,192,-3,0,"MegaBlam Rocket Launcher!!!!  Six Shots Only!")
+
+
+
+
+
+
+
+.plbombcheck
+STMFD R13!,{R14}
+STMFD R13!,{R5}
+BL bombcheck
+LDMFD R13!,{R5}
+LDRB R0,[R5]
+CMP R0,#targetlowlim
+BLT nopltarg
+CMP R0,#targethighlim
+BLLE normalbomb
+.nopltarg
+LDR R0,[R12,#plstrength]
+SUB R0,R0,R1
+STR R0,[R12,#plstrength]
+LDMFD R13!,{PC}
+.bombcheck
+MOV R1,#0
+LDRB R0,[R5]
+CMP R0,#bomblowlim
+MOVLT PC,R14
+CMP R0,#bombhighlim
+MOVGT PC,R14
+CMP R0,#fuelairno
+BEQ fuelairbomb
+CMP R0,#fuelairno+1
+BEQ fuelairbomb
+CMP R0,#boobylowlim
+BGE boobybomb
+CMP R0,#atomlowlim
+BLT normalbomb
+CMP R0,#atomhighlim
+BGT normalbomb
+.atombomb                 ;Caution - recursive routine
+
+STMFD R13!,{R5,R14}
+LDRB R0,[R12,#atombombctr]
+ADD R0,R0,#1
+CMP R0,#&20
+BGE atomabandon
+STRB R0,[R12,#atombombctr]
+LDR R1,[R12,#boardwidth]
+LDRB R0,[R5]
+SUB R0,R0,#atomlowlim
+TST R0,#1
+SUBNE R5,R5,#1
+TST R0,#2
+SUBNE R5,R5,R1
+
+MOV R2,#&0
+STRB R2,[R5]
+STRB R2,[R5,#1]
+ADD R5,R5,R1
+
+STRB R2,[R5]
+STRB R2,[R5,#1]; delete this a-bomb
+MOV R2,#&0
+SUB R5,R5,R1,ASL #1
+BL procatom
+BL procatom
+ADD R5,R5,R1
+SUB R5,R5,#3
+BL procatom
+ADD R5,R5,#2
+BL procatom
+ADD R5,R5,R1
+SUB R5,R5,#4
+BL procatom
+ADD R5,R5,#2
+BL procatom
+ADD R5,R5,R1
+SUB R5,R5,#3
+BL procatom
+BL procatom
+SUB R5,R5,R1,ASL #1
+SUB R5,R5,#2     ;Get R5 back
+MOV R0,R5
+BL backtranslate
+ADD R2,R1,#24<<8
+ADD R1,R0,#8<<8
+
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#0  ;signal no existing object
+BL atomexplogo
+.atomabandon
+MOV R1,#atomloss
+LDMFD R13!,{R5,PC}
+
+
+.procatom
+LDRB R0,[R5]
+CMP R0,#targetlowlim
+BLT noatomtarget
+CMP R0,#targethighlim
+BGT noatomtarget
+STMFD R13!,{R0-R2,R14}
+BL shoottarget
+LDMFD R13!,{R0-R2,R14}
+.noatomtarget
+STRB R2,[R5],#1
+
+CMP R0,#atomlowlim
+MOVLT PC,R14
+CMP R0,#atomhighlim
+MOVGT PC,R14
+STMFD R13!,{R14}
+STRB R0,[R5,#-1]!;replace bomb segment
+BL atombomb
+ADD R5,R5,#1
+LDR R1,[R12,#boardwidth] ;restore R1
+MOV R2,#0 ; restore R2
+LDMFD R13!,{PC}
+
+.fuelairbomb
+STMFD R13!,{R5,R14}
+BL deletetwin
+LDR R1,[R12,#boardwidth]
+LDR R2,[R12,#fueltabread]
+SUB R0,R5,R1
+MOV R4,#gaslowlim
+STRB R4,[R0]
+LDR R3,[R2]
+CMP R3,#0
+STR R0,[R2],#4
+ADD R0,R0,#1
+STRB R4,[R0]
+LDRNE R3,[R2]
+CMPNE R3,#0
+STR R0,[R2],#4
+MOV R0,#0
+STREQ R0,[R2] ; replace end marker if overwritten
+MOV R0,#fuelairduration     ; fuel-air duration
+STR R0,[R12,#fueltabctr]
+MOV R0,#Explochannel
+MOV R1,#SampHiss
+MOV R2,#&6F
+MOV R3,#&6000
+MOV R4,#&FF00
+ADD R4,R4,#&80
+
+MOV R5,#&FF00
+ADD R5,R5,#&2000<<16
+MOV R6,#50
+MOV R7,#0
+BL bidforsound
+MOV R1,#0
+
+LDMFD R13!,{R5,PC}
+
+
+.normalbomb
+STMFD R13!,{R5,R14}
+
+BL elecdestroy
+MOV R0,#0
+STRB R0,[R5]
+MOV R0,R5
+BL backtranslate
+ADD R2,R1,#8<<8
+MOV R1,R0
+
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#0  ;signal no existing object
+BL explogo
+MOV R1,#bombloss
+LDMFD R13!,{R5,PC}
+.boobyvectab
+
+EQUD -&400
+EQUD -&80
+
+EQUD &400
+EQUD -&80
+
+EQUD 0
+EQUD -&400
+
+EQUD 0
+EQUD &400
+
+.boobybomb
+STMFD R13!,{R5,R14}
+ADR R1,boobyvectab
+SUB R0,R0,#boobylowlim
+AND R0,R0,#3
+ADD R6,R1,R0,LSL #3
+MOV R0,#0
+STRB R0,[R5]
+MOV R0,R5
+BL backtranslate
+ADD R2,R1,#8<<8
+MOV R1,R0
+LDMIA R6,{R3-R4}
+MOV R3,R3,ASR #2
+MOV R4,R4,ASR #2
+RSB R3,R3,#0
+RSB R4,R4,#0
+MOV R5,#0
+MOV R10,#0  ;signal no existing object
+STMFD R13!,{R1-R2,R6}
+BL explogonopyro
+LDMFD R13!,{R1-R2,R6}
+MOV R0,#Booby
+LDMIA R6,{R3-R4}
+MOV R5,#0
+MOV R10,#0
+BL makeobj
+MOV R1,#bombloss
+LDMFD R13!,{R5,PC}
+
+
+
+.bonusobjgot
+STMFD R13!,{R14}
+LDMIA R11,{R1-R4}
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+AND R0,R0,#&FE<<1
+SUB R0,R0,#&FE<<0
+STR R0,[R11,#8]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+STR R0,[R12,#rnseed]
+AND R0,R0,#&FE<<2
+ADD R0,R0,#1<<9
+MVN R0,R0
+STR R0,[R11,#12]
+LDR R0,[R11,#20]
+STMFD R13!,{R0-R4,R11}
+BL sortbonus
+LDMFD R13!,{R0-R4,R11}
+SUB R0,R0,#bonuslow-2
+MOV R0,R0,ASR #1
+CMP R0,#10
+MOVGT R0,#10
+LDR R2,[R12,#plscoreadd]
+MOV R1,#100
+MUL R1,R0,R1
+ADD R2,R2,R1
+STR R2,[R12,#plscoreadd]
+MOV R1,#&F60
+ADD R1,R1,R0,LSL #8
+STR R1,[R11,#16]
+MOV R0,#Scoreobj
+STR R0,[R11,#-4]
+MOV R3,R0,LSL #6
+ADD R3,R3,#&3000
+MOV R0,#Playerchannel
+MOV R1,#SampBonus
+MOV R2,#&6E
+MOV R4,#0
+MOV R5,#0
+MOV R6,#3
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{PC}
+
+.deadbonuslim
+CMP R0,#bonushigh-2
+MOVLT PC,R14
+CMP R0,#bonushigh
+MOVGT PC,R14
+B bonusgot
+
+.bonuslim
+LDRB R0,[R5]
+CMP R0,#neuronlowlim
+BLT noneuron
+CMP R0,#neuronhighlim
+BGT noneuron
+
+SUB R0,R0,#neuronlowlim-1
+STR R0,[R12,#plzone]
+MOV R0,#0
+STRB R0,[R5]
+LDR R0,[R12,#xpos]
+STR R0,[R12,#initplx]
+LDR R0,[R12,#ypos]
+STR R0,[R12,#initply]
+MOV PC,R14
+.noneuron
+CMP R0,#eleclowlim
+BLT bonuslimcont
+CMP R0,#elechighlim
+BLE electrocute
+.bonuslimcont
+CMP R0,#bonuslow
+MOVLT PC,R14
+CMP R0,#megabonuslim
+MOVGT PC,R14
+CMP R0,#bonushigh
+BGT megabonus  ;no return
+
+.bonusgot
+STMFD R13!,{R5,R14}
+MOV R1,R0
+STMFD R13!,{R0-R5}
+BL sortbonus
+LDMFD R13!,{R0-R5}
+MOV R0,#0
+STRB R0,[R5]
+SUB R0,R1,#bonuslow-2
+MOV R0,R0,ASR #1
+CMP R0,#10
+MOVGT R0,#10
+STMFD R13!,{R0}
+BL addbonus
+LDMFD R13!,{R2}
+MOV R0,#Playerchannel
+MOV R1,#SampBonus
+MOV R2,R2,LSL #6
+ADD R3,R2,#&3000
+MOV R2,#&6E
+MOV R4,#0
+MOV R5,#0
+MOV R6,#3
+MOV R7,#0
+BL bidforsound
+LDMFD R13!,{R5,PC}
+
+.addbonus
+STMFD R13!,{R14}
+MOV R6,R0
+MOV R3,#100
+MUL R0,R3,R0
+LDR R2,[R12,#plscoreadd]
+ADD R2,R2,R0
+STR R2,[R12,#plscoreadd]
+MOV R0,R5
+BL backtranslate
+MOV R2,R1
+MOV R1,R0
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+MOV R4,R0
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+
+STR R0,[R12,#rnseed]
+AND R0,R0,#&FE<<1
+SUB R0,R0,#&FE<<0
+LDR R3,[R12,#hvec]
+ADD R3,R0,R3,ASR #2
+AND R4,R4,#&FE<<2
+MVN R4,R4
+MOV R5,#&F60
+ADD R5,R5,R6,LSL #8
+
+MOV R0,#Scoreobj
+BL makeobj
+
+LDMFD R13!,{PC}
+
+.reincarnatemes
+FNmessage(48,24,0,0.5,"A potion and Skull!")
+FNmessage(48,176,0,-0.5,"Rise from the dead!")
+
+.sortbonus
+STMFD R13!,{R14}
+SUB R0,R0,#bonuslow
+CMP R0,#13
+CMPNE R0,#14
+BLEQ bonusstrength
+
+LDRB R1,[R12,#bonusctr]
+CMP R0,R1
+BEQ advancebonus
+CMP R0,#15
+LDMNEFD R13!,{PC}
+MOV R1,#0
+STRB R1,[R12,#bonusctr]
+LDR R2,[R12,#snuffctr]
+CMP R2,#0
+BEQ sortreplot
+LDR R2,[R12,#plstrength]
+CMP R2,#0
+BLE sortreplot
+STMFD R13!,{R0-R11}
+BL prepstrength
+ADR R0,reincarnatemes
+BL message
+BL message
+LDMFD R13!,{R0-R11}
+
+B sortreplot
+.advancebonus
+ADD R1,R1,#1
+.sortreplot
+STRB R1,[R12,#bonusctr]
+MOV R0,#28
+STRB R0,[R12,#bonusreplot]
+LDMFD R13!,{PC}
+
+.bonusstrength
+MOV R1,#50
+CMP R0,#14
+MOVEQ R1,#150
+LDR R2,[R12,#lagerctr]
+ADD R2,R2,R1
+STR R2,[R12,#lagerctr]
+LDR R1,[R12,#plstrength]
+STR R1,[R12,#laststrength]
+MOV PC,R14
+
+.bonus1mes
+FNmessage(96,224,0,-2,"Bonus 10000")
+.bonus2mes
+FNmessage(96,224,0,-2,"Bonus 20000")
+.bonus3mes
+FNmessage(96,224,0,-2,"Bonus 30000")
+.bonus4mes
+FNmessage(96,224,0,-2,"Bonus 40000")
+.bonus5mes
+FNmessage(96,224,0,-2,"Bonus 50000")
+.bonus10mes
+FNmessage(96,224,0,-2,"Bonus 100000")
+
+.bonusnumb
+STMFD R13!,{R14}
+AND R9,R9,#&FF
+.loopc3
+STMFD R13!,{R5,R9}
+LDR R1,[R12,#xpos]
+LDR R2,[R12,#ypos]
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+MOV R4,R0
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+MOV R6,R0
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+
+STR R0,[R12,#rnseed]
+AND R0,R0,#&FE<<1
+SUB R0,R0,#&FE<<0
+LDR R3,[R12,#hvec]
+ADD R3,R0,R3,ASR #2
+AND R4,R4,#&FE<<2
+MVN R4,R4
+AND R6,R6,#3
+MOV R5,#&F60
+ADD R5,R5,#10<<8
+ADD R5,R5,R6,LSL #8
+
+MOV R0,#Scoreobj
+STMFD R13!,{R6}
+BL makeobj
+LDMFD R13!,{R6}
+LDMFD R13!,{R5,R9}
+ADD R6,R6,#1
+SUBS R9,R9,R6
+BGT loopc3
+LDMFD R13!,{PC}
+
+
+.megabonus
+MOV R1,#0
+STRB R1,[R5]
+STMFD R13!,{R0,R5}
+MOV R0,#Playerchannel
+MOV R1,#SampBonus
+MOV R3,#&2200
+MOV R2,#&7E
+MOV R4,#0
+MOV R5,#0
+MOV R6,#5
+MOV R7,#127
+BL bidforsound
+MOV R0,#Sparechannel
+MOV R1,#SampBonus
+MOV R3,#&2000
+MOV R2,#&7E
+MOV R4,#0
+MOV R5,#0
+MOV R6,#5
+MVN R7,#126
+BL bidforsound
+LDMFD R13!,{R0,R5}
+LDMFD R13!,{R14}
+CMP R0,#bonushigh+1
+BEQ bonus1
+CMP R0,#bonushigh+2
+BEQ bonus2
+CMP R0,#bonushigh+3
+BEQ bonus3
+CMP R0,#bonushigh+4
+BEQ bonus5
+B bonus10
+
+.bonus1
+STMFD R13!,{R5,R14}
+MOV R9,#10
+BL bonusnumb
+ADR R0,bonus1mes
+BL message
+MOV R0,#100
+MOV R1,#100
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+.bonus2
+STMFD R13!,{R5,R14}
+MOV R9,#20
+BL bonusnumb
+ADR R0,bonus2mes
+BL message
+MOV R0,#200
+MOV R1,#100
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+.bonus3
+STMFD R13!,{R5,R14}
+MOV R9,#30
+BL bonusnumb
+ADR R0,bonus3mes
+BL message
+MOV R0,#300
+MOV R1,#100
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+.bonus4
+STMFD R13!,{R5,R14}
+MOV R9,#40
+BL bonusnumb
+ADR R0,bonus4mes
+BL message
+MOV R0,#200
+MOV R1,#200
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+.bonus5
+STMFD R13!,{R5,R14}
+MOV R9,#50
+BL bonusnumb
+ADR R0,bonus5mes
+BL message
+MOV R0,#250
+MOV R1,#200
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+.bonus10
+STMFD R13!,{R5,R14}
+MOV R9,#100
+BL bonusnumb
+ADR R0,bonus10mes
+BL message
+MOV R0,#100
+MOV R1,#1000
+MUL R0,R1,R0
+LDR R1,[R12,#plscoreadd]
+ADD R1,R0,R1
+STR R1,[R12,#plscoreadd]
+LDMFD R13!,{R5,PC}
+
+
+
+
+
+
+
+
+
+.electrocute
+STMFD R13!,{R5,R14}
+MOV R0,#1
+STRB R0,[R12,#electrocuting]
+MOV R0,R5
+BL backtranslate
+ADD R2,R1,#16<<8
+MOV R1,R0
+LDR R5,[R12,#rnseed]
+EOR R5,R5,R5,ROR #3
+ADD R5,R5,#217
+AND R3,R5,#&FE<<2
+SUB R3,R3,#&FE<<1
+EOR R5,R5,R5,ROR #3
+ADD R5,R5,#217
+AND R4,R5,#&FE<<2
+SUB R4,R4,#&FE<<1
+STR R5,[R12,#rnseed]
+MOV R5,#0
+MOV R10,#0
+BL explogonopyro
+LDMFD R13!,{R5,PC}
+
+
+.destroy
+STMFD R13!,{R14}
+LDR R1,[R12,#boardlowlim]
+CMP R0,R1
+LDR R1,[R12,#boardhighlim]
+CMP R0,R1
+
+
+MOV R5,R0
+STMFD R13!,{R5}
+BL bombcheck
+LDMFD R13,{R5}  ;note no writeback
+
+LDRB R0,[R5]
+CMP R0,#gaslowlim
+CMPNE R0,#gashighlim
+BEQ normalbomb
+CMP R0,#bonuslow
+BLT noshootbonus
+CMP R0,#bonushigh
+BGT noshootbonus
+MOV R0,R5
+BL backtranslate
+MOV R2,R1
+MOV R1,R0
+ADD R2,R2,#8<<8
+STMFD R13!,{R1-R2}
+ADD R2,R2,#7<<8
+LDRB R3,[R5]
+MOV R0,#0
+STRB R0,[R5]
+ORR R5,R3,#1<<20
+MOV R0,#Dyingbonus
+MOV R3,#0
+MOV R4,#0
+BL makeobj
+LDMFD R13!,{R1-R2}
+.noshootbonus
+CMP R0,#targetlowlim
+BLT noshoottarget
+CMP R0,#targethighlim
+BGT noshoottarget
+B shoottargetins
+
+.shoottarget
+STMFD R13!,{R14}
+STMFD R13!,{R5}
+.shoottargetins
+LDRB R3,[R5]
+MOV R0,#0
+STRB R0,[R5]
+MOV R0,#targetscore/100
+MOV R1,#100
+MUL R0,R1,R0
+LDR R2,[R12,#plscoreadd]
+ADD R2,R2,R0
+STR R2,[R12,#plscoreadd]
+CMP R3,#powertarget
+BLGE elecdestroy
+
+MOV R0,R5
+BL backtranslate
+STMFD R13!,{R0-R1}
+ADD R2,R1,#8<<8
+MOV R1,R0
+
+MOV R3,#0
+MOV R4,#0
+MOV R5,#0
+MOV R10,#0  ;signal no existing object
+BL explogo
+LDMFD R13!,{R1-R2}
+LDR R0,[R12,#rnseed]
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+MOV R4,R0
+ADD R0,R0,#137
+EOR R0,R0,R0,ROR #13
+
+STR R0,[R12,#rnseed]
+AND R0,R0,#&FE<<1
+SUB R0,R0,#&FE<<0
+LDR R3,[R12,#hvec]
+ADD R3,R0,R3,ASR #2
+AND R4,R4,#&FE<<2
+MVN R4,R4
+MOV R5,#&F60
+ADD R5,R5,#(targetscore/100)<<8
+
+MOV R0,#Scoreobj
+BL makeobj
+B nocrumble
+.noshoottarget
+CMP R0,#crumblelowlim
+BLT nocrumble
+CMP R0,#crumblehighlim
+BGT nocrumble
+.crumble
+ADD R0,R0,#1
+TST R0,#3
+MOVEQ R0,#0
+STRB R0,[R5]
+.nocrumble
+LDMFD R13!,{R5}
+
+
+LDMFD R13!,{PC}
+
+.elecdestroy
+STMFD R13!,{R14}
+LDR R0,[R12,#boardwidth]
+SUB R10,R5,R0
+BL eleccheck
+SUB R10,R5,#1
+BL eleccheck
+ADD R10,R5,#1
+BL eleccheck
+LDR R0,[R12,#boardwidth]
+ADD R10,R5,R0
+BL eleccheck
+LDMFD R13!,{PC}
+.eleccheck
+LDRB R0,[R10]
+CMP R0,#eleclowlim
+MOVLT PC,R14
+CMP R0,#elechighlim
+MOVGT PC,R14
+STMFD R13!,{R14}
+CMP R0,#elecvertlowlim
+MOV R4,#1
+LDRGE R4,[R12,#boardwidth]
+BL elecdelete
+RSB R4,R4,#0
+BL elecdelete
+LDMFD R13!,{PC}
+.elecdelete
+MOV R0,#0
+MOV R1,R10
+.loop78
+STRB R0,[R1]
+LDRB R2,[R1,R4]!
+CMP R2,#eleclowlim
+MOVLT PC,R14
+CMP R2,#elechighlim
+MOVGT PC,R14
+B loop78
+
+
+
+.deletetwin
+LDRB R0,[R5]
+TST R0,#1
+SUBNE R5,R5,#1
+MOV R0,#0
+STRB R0,[R5]
+STRB R0,[R5,#1]
+MOV PC,R14
+
+.deletepoint
+STMFD R13!,{R14}
+MOV R3,#16
+.delloop
+STMFD R13!,{R3}
+BL dodeletepoint
+LDMFD R13!,{R3}
+SUBS R3,R3,#1
+BGT delloop
+LDMFD R13!,{PC}
+
+.dodeletepoint
+STMFD R13!,{R14}
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+LDR R3,[R12,#rnseed]
+EOR R3,R3,R3,ROR #13
+ADD R3,R3,#137
+STR R3,[R12,#rnseed]
+AND R2,R3,#15
+AND R4,R3,#7<<4
+ADD R2,R2,R4,ASR #4
+SUB R2,R2,#11
+ADD R0,R0,R2,ASL #12
+CMP R0,#1<<12
+LDMLTFD R13!,{PC}
+EOR R3,R3,R3,ROR #13
+ADD R3,R3,#137
+STR R3,[R12,#rnseed]
+AND R2,R3,#15
+SUB R2,R2,#7
+ADD R1,R1,R2,ASL #12
+CMP R1,#1<<12
+LDMLTFD R13!,{PC}
+LDR R2,[R12,#xposmax]
+SUB R2,R2,#1<<12
+CMP R0,R2
+LDMGTFD R13!,{PC}
+LDR R2,[R12,#yposmax]
+SUB R2,R2,#1<<12
+CMP R1,R2
+LDMGTFD R13!,{PC}
+BIC R0,R0,#&FF
+BIC R1,R1,#&FF
+BIC R0,R0,#&0F<<8
+BIC R1,R1,#&0F<<8
+STMFD R13!,{R0-R1}
+BL translate
+LDRB R3,[R0]
+CMP R3,#0
+MOV R2,#0
+STRB R2,[R0]
+LDMFD R13!,{R0-R1}
+LDMEQFD R13!,{PC}
+
+MOV R2,R1
+MOV R1,R0
+ADD R2,R2,#8<<8
+
+ADD R2,R2,#7<<8
+ORR R5,R3,#1<<20
+MOV R0,#Dyingbonus
+MOV R3,#0
+MOV R4,#0
+BL makeobj
+LDMFD R13!,{PC}
+
+
+.mazeplot
+STMFD R13!,{R14}
+BL writeclip
+BL backdrop
+
+LDR R0,[R12,#blockadr]
+LDR R1,[R12,#fspvars]
+STR R0,[R1,#24]
+LDR R10,[R12,#boardadr]
+ADD R11,R10,#boardhdrlen
+LDR R0,[R12,#xpos]
+LDR R1,[R12,#ypos]
+
+
+SUB R0,R0,#144<<8
+SUB R1,R1,#96<<8
+MOV R0,R0,ASR #8
+MOV R1,R1,ASR #8
+
+AND R8,R0,#15
+AND R9,R1,#15
+RSB R8,R8,#15
+RSB R9,R9,#15
+
+
+MOV R5,#0
+MOVS R7,R1,ASR #4
+MVNMI R5,R7
+ADDMI R5,R5,#1
+MOVMI R7,#0
+B ins2
+
+
+
+.l2
+LDR R0,[R12,#xpos]
+MOV R0,R0,ASR #8
+SUB R0,R0,#144
+MOV R4,#0
+MOVS R6,R0,ASR #4
+MVNMI R4,R6
+ADDMI R4,R4,#1
+MOVMI R6,#0
+B ins1
+
+
+.l1
+MOV R0,R6
+LDR R1,[R12,#boardwidth]
+MUL R1,R7,R1
+ADD R0,R0,R1
+LDRB R0,[R11,R0]
+
+CMP R0,#0
+BEQ skip1
+BIC R1,R0,#7
+CMP R1,#neuronlowlim
+LDR R1,[R12,#framectr]
+ANDEQ R1,R1,#7<<2
+MOVEQ R0,#neuronlowlim
+ADDEQ R0,R0,R1,LSR #2
+CMP R0,#crumblestandhighlim
+BGT noanimate
+CMP R0,#crumblelowlim
+BICGE R0,R0,#8 ; alter for crumbles
+CMP R0,#animlowlim
+BLT noanimate
+CMP R0,#animhighlim
+BGT noanimate
+LDR R1,[R12,#rnseed]
+EOR R1,R1,R1,ROR #13
+ADD R1,R1,#213
+STR R1,[R12,#rnseed]
+AND R1,R1,#7
+CMP R0,#gaslowlim
+CMPNE R0,#gashighlim
+EOREQ R0,R0,R1,LSR #2
+EORNE R0,R0,R1,LSR #1
+.noanimate
+CMP R0,#weaplowlim+1
+CMPNE R0,#weaplowlim+2
+CMPNE R0,#weaplowlim+3
+CMPNE R0,#weaplowlim+4
+CMPNE R0,#weaplowlim+5
+CMPNE R0,#weaplowlim+6
+MOVEQ R0,#weaplowlim+1
+
+STMFD R13!,{R4-R9}
+MOV R1,R4,LSL #4
+MOV R2,R5,LSL #4
+ADD R1,R1,R8
+ADD R2,R2,R9
+
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R4-R9}
+.skip1
+ADD R4,R4,#1
+ADD R6,R6,#1
+.ins1
+LDR R0,[R10,#4]
+CMP R4,#21
+CMPLT R6,R0
+
+
+BLT l1
+ADD R5,R5,#1
+ADD R7,R7,#1
+.ins2
+LDR R0,[R10,#8]
+CMP R5,#14
+CMPLT R7,R0
+BLT l2
+.skip2
+LDMFD R13!,{PC}
+
+
+
+.backtab
+LDMIA R12!,{R0-R11}
+MOVNV R0,R0
+LDMIA R12!,{R1-R11}
+LDMIA R12!,{R0}
+LDMIA R12!,{R2-R11}
+LDMIA R12!,{R0-R1}
+LDMIA R12!,{R3-R11}
+LDMIA R12!,{R0-R2}
+LDMIA R12!,{R4-R11}
+LDMIA R12!,{R0-R3}
+LDMIA R12!,{R5-R11}
+LDMIA R12!,{R0-R4}
+LDMIA R12!,{R6-R11}
+LDMIA R12!,{R0-R5}
+LDMIA R12!,{R7-R11}
+LDMIA R12!,{R0-R6}
+LDMIA R12!,{R8-R11}
+LDMIA R12!,{R0-R7}
+LDMIA R12!,{R9-R11}
+LDMIA R12!,{R0-R8}
+LDMIA R12!,{R10-R11}
+LDMIA R12!,{R0-R9}
+LDMIA R12!,{R11}
+LDMIA R12!,{R0-R10}
+LDMFD R13!,{PC}
+
+
+
+.backdrop
+STMFD R13!,{R14}
+LDR R14,[R12,#screenuse]
+ADD R14,R14,#320*8
+ADD R14,R14,#16
+STR R14,[R12,#screentop]
+
+LDR R3,[R12,#xpos]
+MOV R3,R3,ASR #8
+ADD R3,R3,#3072
+SUB R3,R3,R3,LSR #2      ;parallax
+AND R0,R3,#3
+MOV R1,#1536
+MUL R0,R1,R0
+LDR R1,[R12,#backadr]
+ADD R1,R1,R0
+STR R1,[R12,#backuse]
+MOV R2,R3,LSR #2
+
+CMP R2,#6144
+.l7
+SUBGE R2,R2,#6144
+CMP R2,#6144
+BGE l7
+
+CMP R2,#3072
+SUBGE R2,R2,#3072
+CMP R2,#1536
+SUBGE R2,R2,#1536
+CMP R2,#768
+SUBGE R2,R2,#768
+CMP R2,#384
+SUBGE R2,R2,#384
+CMP R2,#192
+SUBGE R2,R2,#192
+CMP R2,#96
+SUBGE R2,R2,#96
+CMP R2,#48
+SUBGE R2,R2,#48
+CMP R2,#24
+SUBGE R2,R2,#24
+CMP R2,#12
+SUBGE R2,R2,#12
+
+RSB R2,R2,#11
+
+
+ADR R4,backtab
+ADR R5,modpos
+ADD R4,R4,R2,LSL #3
+
+LDR R0,[R4]
+STR R0,[R5]
+LDR R0,[R4,#4]
+STR R0,[R5,#4]
+
+
+
+MOV R3,#0
+LDR R4,[R12,#ypos]
+MOV R4,R4,ASR #8
+SUB R4,R4,R4,LSR #2       ;- parallax
+AND R4,R4,#31
+
+
+
+
+
+.l4
+
+
+
+STMFD R13!,{R0-R12,R14}
+LDR R14,[R12,#screentop]
+LDR R1,[R12,#hbytes]
+MUL R0,R3,R1
+ADD R14,R14,R0
+LDR R0,[R12,#backuse]
+ADD R12,R0,R4,LSL #5
+ADD R12,R12,R4,LSL #4
+.modpos
+MOVNV R0,R0
+MOVNV R0,R0
+MOV R12,#320*31
+ADD R12,R12,#32
+
+
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+ADD R14,R14,R12
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+ADD R14,R14,R12
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+ADD R14,R14,R12
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+ADD R14,R14,R12
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+ADD R14,R14,R12
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+STMIA R14!,{R0-R11}
+
+LDMFD R13!,{R0-R12,R14}
+ADD R3,R3,#1
+ADD R4,R4,#1
+CMP R4,#31
+MOVGT R4,#0
+CMP R3,#31
+BLE l4
+LDMFD R13!,{PC}
+
+.escapemes
+FNmessage(36,40-256,0,4,"¤ Game Interrupted ¤")
+FNmessage(32-256,72,4,0,"Please select action")
+FNmessage(46+256,104,-4,0,"ESC - Abandon game")
+FNmessage(40-256,136,4,0,"Q    - lose this life")
+FNmessage(40,168+256,0,-4,"R    - Return to Game")
+FNmessage(40,200+256,0,-4,"O    - Alter Options")
+
+
+.escapehandler
+STMFD R13!,{R14}
+MOV R0,#1
+STRB R0,[R12,#frameinc]
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+SWI "XFastSpr_ClearWindow"
+BL wipetexttab
+ADR R0,escapemes
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL showtext
+MOV R0,#124; clear escape
+SWI "XOS_Byte"
+MOV R9,#64
+.loopb8
+MOV R0,#0
+SWI "XBlitz_Wait"
+CMP R9,#0
+BEQ esctextstop
+SUB R9,R9,#1
+STMFD R13!,{R9}
+BL switchbank
+BL switchfspbank
+SWI "XFastSpr_ClearWindow"
+BL texthandler
+LDMFD R13!,{R9}
+.esctextstop
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#16
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ loselife
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#54
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ adjustopt
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#51
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ rejoin
+
+SWI "XOS_ReadEscapeState"
+BCC loopb8
+MOV R0,#124
+SWI "XOS_Byte"
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.loselife
+MOV R0,#0
+STR R0,[R12,#lagerctr]
+STR R0,[R12,#plstrength] ;no return
+
+.rejoin
+BL wipetexttab
+BL showgamescreen
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<28
+MOVS PC,R14
+
+.adjustopt
+MOV R0,#1; mark as in game
+BL options
+B rejoin
+
+.copyscreen
+STMFD R13!,{R14}
+LDR R0,[R12,#screenstart]
+LDR R1,[R12,#modesize]
+ADD R2,R0,R1
+MOV R1,#&14000
+
+.loop30
+LDR R3,[R0],#4
+STR R3,[R2],#4
+SUBS R1,R1,#4
+BGT loop30
+SWI "Blitz_ScreenFlush"
+LDMFD R13!,{PC}
+.setfullclip
+MOV R0,#lowx
+MOV R1,#lowy
+MOV R2,#highx
+MOV R3,#highy
+ADD R10,R12,#cliplx
+STMIA R10,{R0-R3}  ; note no return
+
+.writeclip
+LDR R5,[R12,#fspvars]
+ADD R5,R5,#fsplx ;align to write clip window to FastSpr
+ADD R4,R12,#cliplx
+LDMIA R4,{R0-R3}
+STMIA R5,{R0-R3}
+MOV PC,R14
+
+.releaseclip
+LDR R5,[R12,#fspvars]
+ADD R5,R5,#fsplx
+ADR R4,cliptab
+LDMIA R4,{R0-R3}
+STMIA R5,{R0-R3}
+MOV PC,R14
+.cliptab    ;size of mode
+EQUD 0
+EQUD 0
+EQUD 319
+EQUD 255
+
+.restartplayer
+STMFD R13!,{R14}
+LDR R0,[R12,#initplx]
+STR R0,[R12,#xpos]
+LDR R0,[R12,#initply]
+STR R0,[R12,#ypos]
+BL screenwakeup
+MOV R0,#33
+STR R0,[R12,#telepctr]
+;MOV R0,#0
+;STRB R0,[R12,#bonusctr]
+MOV R0,#28
+STRB R0,[R12,#bonusreplot]
+MOV R0,#0
+STR R0,[R12,#pladr1]
+STR R0,[R12,#windctr]
+STR R0,[R12,#bonustimer]
+STRB R0,[R12,#rocketblamctr]
+STR R0,[R12,#shutdownctr]
+LDR R0,[R12,#neuronctr]
+CMP R0,#neuronstoget
+BGE completedzone
+LDMFD R13!,{PC}
+
+.completemes
+FNmessage(114,64,0,0,"WELL DONE!")
+FNmessage(44,96,0,0,"You have completed")
+FNmessage(114,128,0,0,"This zone!")
+.completedgamemes
+FNmessage(114,128,0,0,"The game!!!")
+
+
+.completedzone
+ADR R0,completemes
+BL message
+BL message
+LDRB R1,[R12,#mentalzone]
+CMP R1,#3
+ADREQ R0,completedgamemes
+BL message
+MOV R0,#0
+STR R0,[R12,#lives]
+MOV R0,#1
+STR R0,[R12,#snuffctr]
+LDMFD R13!,{PC}
+
+.findplayer
+STMFD R13!,{R14}
+MOV R0,#0
+STRB R0,[R12,#bonusctr]
+LDR R11,[R12,#boardadr]
+LDR R1,[R11,#4]
+LDR R2,[R11,#8]
+ADD R11,R11,#boardhdrlen-1
+MUL R3,R1,R2
+MOV R1,#0
+MOV R5,#0
+.loop60
+LDRB R0,[R11,R3]
+CMP R0,#markerno
+STREQB R1,[R11,R3]
+ADDEQ R5,R11,R3
+SUBS R3,R3,#1
+BGT loop60
+MOV R0,R5
+CMP R5,#0
+MOVEQ R0,#64<<8
+MOVEQ R1,#64<<8
+BLNE backtranslate
+SUB R1,R1,#1<<8
+STR R0,[R12,#initplx]
+STR R1,[R12,#initply]
+LDMFD R13!,{PC}
+
+.showgamescreen
+STMFD R13!,{R14}
+LDR R11,[R12,#gamescreenadr]
+BL decomp
+BL copyscreen
+BL scorewiperead
+BL showlives
+
+LDMFD R13!,{PC}
+
+.showlives
+STMFD R13!,{R14}
+BL releaseclip
+LDR R0,[R12,#charsadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+MOV R1,#44
+MOV R2,#234
+LDR R0,[R12,#lives]
+AND R0,R0,#7
+STMFD R13!,{R0-R2}
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+BL switchbank
+BL switchfspbank
+LDMFD R13!,{R0-R2}
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+
+BL writeclip
+LDMFD R13!,{PC}
+
+
+
+.showchatscreen
+STMFD R13!,{R14}
+LDR R11,[R12,#chatscreenadr]
+BL decomp
+BL copyscreen
+LDMFD R13!,{PC}
+
+.showchatscores
+STMFD R13!,{R14}
+LDR R11,[R12,#chatscreenadr]
+BL decomptonot
+LDMFD R13!,{PC}
+
+
+.decomptonot
+STMFD R13!,{R14}
+LDR R10,[R12,#screenuse]
+B decompins
+
+.decomp
+STMFD R13!,{R14}
+LDR R10,[R12,#screenstart]
+.decompins
+MOV R9,#&14000
+ADD R9,R9,R10
+
+ADD R11,R11,#68
+.loopb4
+LDRB R0,[R11],#1
+TST R0,#1<<7
+BNE sequence
+B pattern
+.decompdone
+CMP R10,R9
+BLT loopb4
+LDMFD R13!,{PC}
+.pattern
+AND R3,R0,#&7F
+ADD R3,R3,#1
+.loopb5
+LDRB R0,[R11],#1
+STRB R0,[R10],#1
+CMP R9,R10
+SUBGTS R3,R3,#1
+BGT loopb5
+B decompdone
+.sequence
+AND R3,R0,#&7F
+ADD R3,R3,#2
+LDRB R0,[R11],#1
+.loopb6
+STRB R0,[R10],#1
+CMP R9,R10
+SUBGTS R3,R3,#1
+BGT loopb6
+B decompdone
+
+.clearkeybuf
+STMFD R13!,{R14}
+.clearkbloop
+MOV R0,#121
+MOV R1,#0
+SWI "XOS_Byte"
+CMP R1,#&FF
+BNE clearkbloop
+.clearkbloop2
+MOV R0,#129
+MOV R1,#1
+MOV R2,#0
+SWI "XOS_Byte"
+CMP R2,#&FF
+BNE clearkbloop2
+LDMFD R13!,{PC}
+
+.setdefaults
+STMFD R13!,{R14}
+BL checkifarm3
+LDRB R0,[R12,#arm3]
+CMP R0,#0
+MOV R0,#2
+STRB R0,[R12,#soundtype]
+MOV R0,#0
+MOVNE R0,#1
+STRB R0,[R12,#soundquality]
+MOV R0,#&7F
+STRB R0,[R12,#soundvol]
+STRB R0,[R12,#musicvol]
+LDR R0,keydefs
+STR R0,[R12,#leftkey]
+LDRB R0,keydefs2
+STRB R0,[R12,#firekey]
+MOV R0,#0
+MOVNE R0,#1
+STRB R0,[R12,#gearchange]
+MOV R0,#2
+MOVNE R0,#1
+STRB R0,[R12,#explospeed]
+MOV R0,#0
+STRB R0,[R12,#joyno]
+MOV R0,#1
+STRB R0,[R12,#mentalzone]
+LDMFD R13!,{PC}
+
+.keydefs
+EQUB 97 EOR &FF
+EQUB 66 EOR &FF
+EQUB 79 EOR &FF
+EQUB 104 EOR &FF
+.keydefs2
+EQUB 73 EOR &FF
+ALIGN
+
+.soundupdate
+STMFD R13!,{R14}
+LDRB R5,[R12,#soundtype]
+LDRB R6,[R12,#soundquality]
+CMP R5,#0
+BEQ soundkill
+MOV R0,#2
+SWI "XSound_Enable"
+MOV R0,#129
+MOV R1,#0
+MOV R2,#&FF
+SWI "OS_Byte"
+MOV R8,R1
+
+MOV R0,#8; channels
+CMP R5,#1
+MOVEQ R0,#4
+MOV R1,#208
+MOV R2,#96
+TST R6,#1
+MOVNE R2,#48
+CMP R8,#&A3
+MOVLT R2,#0; RISC OS 2 bug
+
+MOV R3,#0
+MOV R4,#0
+SWI "XSound_Configure"
+ADR R0,sptunenorm
+TST R6,#1
+ADRNE R0,sptunehq
+CMP R8,#&A3
+ADRLT R0,sptunehq
+SWI "XOS_CLI"
+LDRB R0,[R12,#soundquality]
+TST R0,#1
+MOV R0,#6
+MOVNE R0,#12
+SWI "XSound_QBeat"
+MOV R0,#&1000
+SWI "XSound_QTempo"
+LDRB R0,[R12,#musicvol]
+SWI "XBodgeMusic_Volume"
+LDRB R0,[R12,#soundquality]
+MOV R0,R0,LSR #1
+MOV R1,#1
+SWI "XStasis_Control"
+LDMFD R13!,{PC}
+.sptunenorm
+EQUS "StasisTune &8000"
+EQUB 0
+.sptunehq
+EQUS "StasisTune &4000"
+EQUB 0
+ALIGN
+.soundkill
+MOV R0,#1
+SWI "XSound_Enable"
+LDMFD R13!,{PC}
+
+
+
+.optionsmes
+FNmessage(128,48,0,0,"Options")
+FNmessage(32,96,0,0,"1. Define Controls")
+FNmessage(32,128,0,0,"2. Tune Game Options")
+FNmessage(88,224,0,0,"Fire - Play")
+FNmessage(32,160,0,0,"3. Choose Mental Zone")
+FNmessage(32,192,0,0,"4. Save Settings")
+
+.options
+STMFD R13!,{R14}
+STRB R0,[R12,#gameon]
+MOV R0,#0
+STRB R0,[R12,#savedornot]
+.optionins
+BL clearkeybuf
+BL wipetexttab
+BL showchatscreen
+ADR R0,optionsmes
+BL message
+BL message
+BL message
+BL message
+LDRB R1,[R12,#gameon]
+CMP R1,#0
+BLEQ message
+LDRB R1,[R12,#gameon]
+CMP R1,#0
+LDRB R1,[R12,#savedornot]
+CMPEQ R1,#1
+BLEQ message
+BL showtext
+LDRB R1,[R12,#gameon]
+CMP R1,#0
+MOV R0,#2
+MOVEQ R0,#4
+BL readopt
+BVS optionexit
+MOV R1,#1
+STRB R1,[R12,#savedornot]
+CMP R0,#1
+BEQ choosecontrol
+CMP R0,#2
+BEQ tunegame
+CMP R0,#3
+BEQ getzone
+CMP R0,#4
+BEQ dosaveconf
+BL soundupdate
+.optionexit
+LDMFD R13!,{PC}
+
+.dosaveconf
+BL saveconfig
+MOV R0,#0
+STRB R0,[R12,#savedornot]
+B optionins
+
+.getzonemes
+FNmessage(88,48,0,0,"Choose which")
+FNmessage(96,68,0,0,"mental zone")
+FNmessage(64,96,0,0,"1. Ego")
+FNmessage(64,128,0,0,"2. Psyche")
+FNmessage(64,160,0,0,"3. Id")
+FNmessage(64,192,0,0,"4. Extended Level")
+
+.getzone
+BL wipetexttab
+BL showchatscreen
+ADR R0,getzonemes
+BL message
+BL message
+BL message
+BL message
+BL message
+STMFD R13!,{R0}
+BL checkifextend
+LDMFD R13!,{R0}
+BLEQ message
+MOV R0,#3
+MOVEQ R0,#4
+STMFD R13!,{R0}
+BL showtext
+LDMFD R13!,{R0}
+BL readopt
+LDMVSFD R13!,{PC}
+CMP R0,#3
+BEQ testid
+STRB R0,[R12,#mentalzone]
+B optionins
+
+.idnowaymes
+FNmessage(80,100,0,0,"To play the id")
+FNmessage(32,128,0,0,"you need to complete")
+FNmessage(80,156,0,0,"the ego first.")
+
+
+.testid
+LDRB R1,[R12,#idpermit]
+CMP R1,#1
+STREQB R0,[R12,#mentalzone]
+BEQ optionins
+BL wipetexttab
+BL showchatscreen
+ADR R0,idnowaymes
+BL message
+BL message
+BL message
+BL showtext
+MOV R0,#0
+BL readopt
+B optionins
+
+
+.choosecontrolmes
+FNmessage(96,48,0,0,"Controls")
+FNmessage(64,96,0,0,"1. Keyboard")
+FNmessage(64,128,0,0,"2. Joystick")
+
+.choosecontrol
+BL wipetexttab
+BL showchatscreen
+ADR R0,choosecontrolmes
+BL message
+BL message
+BL message
+STMFD R13!,{R0}
+BL checkifextend
+LDMFD R13!,{R0}
+BLEQ message
+BL showtext
+MOV R0,#2
+BL readopt
+BVS optionins
+CMP R0,#1
+BEQ choosekeys
+CMP R0,#2
+BEQ choosestick
+B optionins
+
+.keyleftmes
+FNmessage(48,128,0,0,"Press Key For Left")
+.keyrightmes
+FNmessage(48,128,0,0,"Press Key For Right")
+.keyupmes
+FNmessage(48,128,0,0,"Press Key For Up")
+.keydownmes
+FNmessage(48,128,0,0,"Press Key For Down")
+.keyfiremes
+FNmessage(48,128,0,0,"Press Key to Fire")
+
+
+.choosekeys
+STMFD R13!,{R14}
+BL wipetexttab
+BL showchatscreen
+ADR R0,keyleftmes
+BL selectkey
+STRB R0,[R12,#leftkey]
+ADR R0,keyrightmes
+BL selectkey
+STRB R0,[R12,#rightkey]
+ADR R0,keyupmes
+BL selectkey
+STRB R0,[R12,#upkey]
+ADR R0,keydownmes
+BL selectkey
+STRB R0,[R12,#downkey]
+ADR R0,keyfiremes
+BL selectkey
+STRB R0,[R12,#firekey]
+LDMFD R13!,{PC}
+
+
+.choosestickmes
+FNmessage(88,48,0,0,"Joystick")
+FNmessage(64,96,0,0,"Joystick Number")
+FNmessage(136,128,0,0,"0-3")
+.choosestickmes2
+FNmessage(96,48,0,0,"Reminder")
+FNmessage(48,96,0,0,"To jump, you can")
+FNmessage(32,128,0,0,"1. Use Joystick Up")
+FNmessage(32,160,0,0,"2. Use Fire Button 2")
+FNmessage(64,180,0,0,"If you have one.")
+FNmessage(32,212,0,0,"3. Use The Up Key")
+
+
+
+.choosestick
+BL wipetexttab
+BL showchatscreen
+ADR R0,choosestickmes
+BL message
+BL message
+BL message
+BL showtext
+MOV R0,#3
+BL readopt
+
+ADD R0,R0,#1
+MOVVS R0,#0
+STRB R0,[R12,#joyno]
+BVS optionins
+BL wipetexttab
+BL showchatscreen
+ADR R0,choosestickmes2
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL showtext
+MOV R0,#9
+BL readopt
+B optionins
+
+
+.tunegamemes
+FNmessage(96,48,0,0,"Tune Game")
+FNmessage(64,96,0,0,"1. Sound System")
+FNmessage(64,128,0,0,"2. Sound Volume")
+FNmessage(64,160,0,0,"3. Speed Tweaks")
+
+
+.tunegame
+BL wipetexttab
+BL showchatscreen
+ADR R0,tunegamemes
+BL message
+BL message
+BL message
+BL message
+BL showtext
+MOV R0,#3
+BL readopt
+BVS optionins
+CMP R0,#1
+BEQ tunesound
+CMP R0,#2
+BEQ tunevolume
+CMP R0,#3
+BEQ tunespeed
+B optionins
+
+.tunesoundmes
+FNmessage(96,32,0,0,"Tune Sound")
+FNmessage(32,60,0,0,"-1. No Sound")
+]:sound1=madr:[OPT OPT
+FNmessage(32,80,0,0,"-2. 4 Channels")
+]:sound2=madr:[OPT OPT
+FNmessage(32,100,0,0,"-3. 4 Channels")
+]:sound3=madr:[OPT OPT
+FNmessage(80,120,0,0,"and music")
+FNmessage(32,140,0,0,"-4. 8 Channels")
+]:sound4=madr:[OPT OPT
+FNmessage(32,160,0,0,"-5. Normal Quality")
+]:sound5=madr:[OPT OPT
+FNmessage(32,180,0,0,"-6. High Quality")
+]:sound6=madr:[OPT OPT
+FNmessage(32,200,0,0,"-7. Overdrive")
+]:sound7=madr:[OPT OPT
+FNmessage(96,220,0,0,"ESC - Exit")
+
+.tunesound
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+B tunesoundins
+.tunesoundloop
+BL soundupdate
+MOV R0,#1
+MOV R1,#1
+SWI "XStasis_Link"
+MOV R0,#1
+MVN R1,#14
+MOV R2,#&20
+MOV R3,#&FE
+SWI "XSound_Control"
+.tunesoundins
+BL wipetexttab
+BL soundfillin
+ADR R0,tunesoundmes
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+MOV R0,#0
+SWI "XBlitz_Wait"
+SWI "XFastSpr_ClearWindow"
+BL showtext
+MOV R0,#7
+BL readopt
+BVS optionins
+
+CMP R0,#1
+MOVEQ R1,#0
+STREQB R1,[R12,#soundtype]
+BEQ tunesoundloop
+CMP R0,#2
+MOVEQ R1,#1
+STREQB R1,[R12,#soundtype]
+BEQ tunesoundloop
+CMP R0,#3
+MOVEQ R1,#2
+STREQB R1,[R12,#soundtype]
+BEQ tunesoundloop
+CMP R0,#4
+MOVEQ R1,#3
+STREQB R1,[R12,#soundtype]
+BEQ tunesoundloop
+CMP R0,#5
+LDREQB R1,[R12,#soundquality]
+BIC R1,R1,#1
+STREQB R1,[R12,#soundquality]
+BEQ tunesoundloop
+CMP R0,#6
+LDREQB R1,[R12,#soundquality]
+ORR R1,R1,#1
+STREQB R1,[R12,#soundquality]
+BEQ tunesoundloop
+CMP R0,#7
+LDREQB R1,[R12,#soundquality]
+EOR R1,R1,#2
+STREQB R1,[R12,#soundquality]
+BEQ tunesoundloop
+B optionins
+
+.soundfillin
+ADR R1,sound1
+LDRB R0,[R12,#soundtype]
+CMP R0,#0
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,sound2
+LDRB R0,[R12,#soundtype]
+CMP R0,#1
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,sound3
+LDRB R0,[R12,#soundtype]
+CMP R0,#2
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,sound4
+LDRB R0,[R12,#soundtype]
+CMP R0,#3
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,sound5
+LDRB R0,[R12,#soundquality]
+TST R0,#1
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,sound6
+LDRB R0,[R12,#soundquality]
+TST R0,#1
+MOV R0,#17
+MOVNE R0,#16
+STRB R0,[R1]
+ADR R1,sound7
+LDRB R0,[R12,#soundquality]
+TST R0,#2
+MOV R0,#17
+MOVNE R0,#16
+STRB R0,[R1]
+MOV PC,R14
+
+.tunevolumemes
+FNmessage(80,32,0,0,"Change volume")
+FNmessage(48,96,0,0,"1. Louder effects")
+FNmessage(48,116,0,0,"2. Quieter effects")
+FNmessage(48,136,0,0,"3. Louder music")
+FNmessage(48,156,0,0,"4. Quieter music")
+FNmessage(48-14,176,0,0,"-5. Speaker on")
+]:tunevol1=madr:[OPT OPT
+FNmessage(96,220,0,0,"ESC - Exit")
+
+.tunevolume
+BL showchatscreen
+BL wipetexttab
+LDRB R0,[R12,#soundtype]
+CMP R0,#2
+MOV R0,#1
+MOV R1,#0
+SWIEQ "XBodgeMusic_Start"
+LDRB R0,[R12,#musicvol]
+SWI "XBodgeMusic_Volume"
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+ADR R0,tunevolumemes
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+.tunevolumeloop
+MOV R0,#0
+SWI "XSound_Speaker"
+CMP R0,#1
+MOV R0,#16
+MOVEQ R0,#17
+ADR R1,tunevol1
+STRB R0,[R1]
+MOV R0,#0
+SWI "XBlitz_Wait"
+SWI "XFastSpr_ClearWindow"
+BL showtext
+MOV R0,#5
+BL readopt
+BVS optionins
+
+LDRB R1,[R12,#soundvol]
+ADD R1,R1,#1
+CMP R1,#&7F
+MOVGT R1,#&7F
+CMP R0,#1
+STREQB R1,[R12,#soundvol]
+BEQ maketestsound
+LDRB R1,[R12,#soundvol]
+SUBS R1,R1,#1
+MOVMI R1,#0
+CMP R0,#2
+STREQB R1,[R12,#soundvol]
+BEQ maketestsound
+LDRB R1,[R12,#musicvol]
+ADD R1,R1,#1
+CMP R1,#&7F
+MOVGT R1,#&7F
+CMP R0,#3
+STREQB R1,[R12,#musicvol]
+BEQ maketestsound
+LDRB R1,[R12,#musicvol]
+SUBS R1,R1,#1
+MOVMI R1,#0
+CMP R0,#4
+STREQB R1,[R12,#musicvol]
+BEQ maketestsound
+CMP R0,#5
+BNE optionins
+MOV R0,#0
+SWI "XSound_Speaker"
+RSB R0,R0,#3
+SWI "XSound_Speaker"
+B tunevolumeloop
+
+.maketestsound
+STMFD R13!,{R1}
+MOV R0,#1
+MOV R1,#1
+SWI "XStasis_Link"
+MOV R0,#1
+LDMFD R13!,{R1}
+ORR R1,R1,#&100
+MOV R2,#&20
+MOV R3,#&FE
+SWI "XSound_Control"
+LDRB R0,[R12,#musicvol]
+SWI "XBodgeMusic_Volume"
+B tunevolumeloop
+
+
+
+.tunespeedmes
+FNmessage(96,48,0,0,"Tune Speed")
+FNmessage(32,96,0,0,"-1. Auto frame rate")
+]:speed1=madr:[OPT OPT
+FNmessage(80,116,0,0,"gearchanging.")
+FNmessage(32,140,0,0,"-2. Full Explosions")
+]:speed2=madr:[OPT OPT
+FNmessage(40,172,0,0,"Tick Options if you")
+FNmessage(40,192,0,0,"Have a fast machine")
+
+FNmessage(96,220,0,0,"ESC - Exit")
+
+
+.tunespeed
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+.tunespeedloop
+BL wipetexttab
+ADR R1,speed1
+LDRB R0,[R12,#gearchange]
+CMP R0,#1
+MOV R0,#17
+MOVEQ R0,#16
+STRB R0,[R1]
+ADR R1,speed2
+LDRB R0,[R12,#explospeed]
+CMP R0,#2
+MOV R0,#17
+MOVNE R0,#16
+STRB R0,[R1]
+ADR R0,tunespeedmes
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+MOV R0,#0
+SWI "XBlitz_Wait"
+SWI "XFastSpr_ClearWindow"
+BL showtext
+MOV R0,#2
+BL readopt
+BVS optionins
+CMP R0,#1
+LDREQB R1,[R12,#gearchange]
+EOREQ R1,R1,#1
+STREQB R1,[R12,#gearchange]
+BEQ tunespeedloop
+CMP R0,#2
+LDREQB R1,[R12,#explospeed]
+EOREQ R1,R1,#3
+STREQB R1,[R12,#explospeed]
+BEQ tunespeedloop
+
+B optionins
+
+
+.selectkey
+STMFD R13!,{R0,R14}
+BL wipetexttab
+BL showchatscreen
+BL clearkeybuf
+LDMFD R13,{R0,R14}; no writeback
+BL message
+BL showtext
+.choosekeyloop
+MOV R0,#121
+MOV R1,#0
+SWI "XOS_Byte" ; read key
+CMP R1,#&FF  ;no key pressed
+BEQ choosekeyloop
+MOV R0,#129
+MOV R1,#1
+MOV R2,#0
+SWI "XOS_Byte" ; read key
+CMP R2,#&1B
+BEQ chooseescape
+MOV R4,R1
+MOV R0,#121; scan keyboard
+MOV R1,#0
+SWI "XOS_Byte"
+CMP R1,#&FF
+BEQ choosekeyloop
+LDMFD R13!,{R0,R14}
+MOV R0,R1
+EOR R0,R0,#&FF
+MOV R1,R4
+MOV PC,R14
+.chooseescape
+MOV R0,#124
+SWI "XOS_Byte"
+LDMFD R13!,{R0,R14}
+LDMFD R13!,{PC} ;early exit
+
+.readopt
+STMFD R13!,{R14}
+STMFD R13!,{R0}
+.keyloop
+LDRB R0,[R12,#joyno]
+CMP R0,#0
+BEQ nooptstick
+SUB R0,R0,#1
+SWI "XJoystick_Read"
+MOVVS R0,#0
+TST R0,#1<<16
+BNE optfire
+.nooptstick
+MOV R0,#129 ; read key in time limit
+MOV R1,#&1
+MOV R2,#0
+SWI "XOS_Byte"
+CMP R2,#&1B
+BEQ optescape
+CMP R2,#0
+BNE keyloop
+STMFD R13!,{R1}
+MOV R0,#129
+LDRB R1,[R12,#firekey]
+MOV R2,#&FF
+SWI "XOS_Byte"
+CMP R1,#&FF
+LDMFD R13!,{R1}
+BEQ optfire
+SUB R1,R1,#ASC"0"
+LDMFD R13,{R0}; no writeback
+CMP R1,#0
+BLT keyloop
+
+CMP R1,R0
+BGT keyloop
+LDMFD R13!,{R0}
+MOV R0,R1
+.optexit
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<28
+MOVS PC,R14
+.optescape
+MOV R0,#124
+SWI "XOS_Byte"; clear escape
+LDMFD R13!,{R0}
+MOV R0,#0
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.optfire
+LDMFD R13!,{R0}
+MOV R0,#0
+B optexit
+]
+x=250
+v=-1
+[OPT OPT
+
+.preludemes
+FNmessage(2048,x,0,v,"Digital Psychosis")
+FNmessage(2108,x+24,0,v,"Presents")
+
+FNmessage(2152,x+24*2.5,0,v,"#")
+.preludemes2
+FNmessage(2040,x+4*24,0,v,"Young Sigmund has a")
+FNmessage(2056,x+5*24,0,v,"Few problems. Can")
+FNmessage(2056,x+6*24,0,v,"you help him find")
+FNmessage(2028,x+7*24,0,v,"the rogue brain cells")
+FNmessage(2036,x+8*24,0,v,"in his mind and shut")
+FNmessage(2100,x+9*24,0,v,"Them down?")
+FNmessage(2096,x+10*24,0,v,"PRESS SPACE")
+
+FNmessage(2088,x+12*24,0,v,"Cheat Mode!!!")
+FNmessage(2028,x+14*24,0,v,"F1, F2 Get Weapons")
+FNmessage(2028,x+15*24,0,v,"F3 - Restore Strength")
+FNmessage(2096,x+17*24,0,v,"HAVE FUN !!!")
+
+
+
+
+
+.prelude
+STMFD R13!,{R14}
+MOV R0,#0
+STRB R0,[R12,#cheatpermit]
+MOV R0,#1
+STRB R0,[R12,#frameinc]
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+SWI "XFastSpr_ClearWindow"
+BL wipetexttab
+ADR R0,preludemes
+BL message
+BL message
+BL message
+ADR R0,preludemes2
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+BL message
+
+
+BL showtext
+MOV R9,#256+8
+.loope0
+MOV R0,#2
+SWI "XBlitz_Wait"
+CMP R9,#0
+BEQ preludetextstop
+SUB R9,R9,#1
+STMFD R13!,{R9}
+BL switchbank
+BL switchfspbank
+SWI "XFastSpr_ClearWindow"
+BL texthandler
+LDMFD R13!,{R9}
+.preludetextstop
+MOV R0,#122
+SWI "XOS_Byte"
+CMP R1,#&FF
+CMPNE R1,#112; escape
+BNE endprelude
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#10
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ gocheat
+
+SWI "XOS_ReadEscapeState"
+BCC loope0
+MOV R0,#124
+SWI "XOS_Byte"
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+.endprelude
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<28
+MOVS PC,R14
+
+.gocheat
+STMFD R13!,{R14}
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#5
+SWI "XOS_Byte"
+CMP R1,#&FF
+LDMNEFD R13!,{PC}
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#8
+SWI "XOS_Byte"
+CMP R1,#&FF
+LDMNEFD R13!,{PC}
+MOV R0,#1
+STRB R0,[R12,#cheatpermit]
+MOV R9,#1024
+LDMFD R13!,{PC}
+
+
+
+
+
+
+.extendstring
+EQUS "PsychoExtend$Path"
+EQUB 0
+.buf
+.checkifarm3
+STMFD R13!,{R14}
+MOV R0,#0
+MVN R1,#0
+SWI &20280
+MOV R0,#1
+MOVVS R0,#0
+STRB R0,[R12,#arm3]
+LDMFD R13!,{PC}
+
+.checkifextend
+STMFD R13!,{R14}
+ADR R0,extendstring
+ADR R1,buf
+MOV R2,#1<<31
+MOV R3,#0
+SWI "XOS_ReadVarVal"
+CMP R2,#0
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<30; z flag
+ORRNE R14,R14,#1<<30
+MOVS PC,R14
+
+.permitid
+STMFD R13!,{R14}
+MOV R0,#1
+STRB R0,[R12,#idpermit]
+MOV R0,#10
+ADR R1,idpermitpath
+MOV R2,#&FF
+ADD R2,R2,#&F00
+ADR R4,idpermitstring
+ADD R5,R4,#40
+SWI "XOS_File"
+LDMFD R13!,{PC}
+
+.idpermitpath
+EQUS "<PsychoResource$Path>Idpermit"
+EQUB 0
+.idpermitstring
+EQUS "You are now permitted to play the ID!!!"
+EQUB 13
+ALIGN
+
+
+.loadconfig
+STMFD R13!,{R14}
+MOV R0,#&40; read access with path variable R2
+ADR R1,configname
+SWI "XOS_Find"
+CMP R0,#0
+BEQ findoutid
+MOV R6,R0
+MOV R0,#3; read bytes from pointer R4
+MOV R1,R6
+ADD R2,R12,#savestart
+MOV R3,#saveend-savestart
+MOV R4,#0
+SWI "XOS_GBPB"
+MOV R0,#0
+MOV R1,R6
+SWI "XOS_Find"
+.findoutid
+MOV R0,#5
+ADR R1,idpermitpath
+SWI "XOS_File"
+CMP R0,#1
+MOVNE R0,#0
+STRB R0,[R12,#idpermit]
+LDMFD R13!,{PC}
+
+.saveconfig
+STMFD R13!,{R14}
+MOV R0,#&80; create file with read/write access with path variable R2
+ADR R1,configname
+SWI "XOS_Find"
+CMP R0,#0
+LDMEQFD R13!,{PC}
+MOV R6,R0
+MOV R0,#1; write bytes to pointer R4
+MOV R1,R6
+ADD R2,R12,#savestart
+MOV R3,#saveend-savestart
+MOV R4,#0
+SWI "XOS_GBPB"
+MOV R0,#0
+MOV R1,R6
+SWI "XOS_Find"
+LDMFD R13!,{PC}
+
+
+
+.gamescreenpath
+EQUS "GameScreen"
+EQUB 0
+ALIGN
+.chatscreenpath
+EQUS "ChatScreen"
+EQUB 0
+ALIGN
+.blokepath
+EQUS "FSPBloke"
+EQUB 0
+ALIGN
+.boardpath
+EQUS "Brain"
+EQUB 0
+ALIGN
+.blockpath
+EQUS "FSPBlocks"
+EQUB 0
+ALIGN
+.backpath
+EQUS "Backfile"
+EQUB 0
+ALIGN
+.neuronbackpath
+EQUS "Neurons.Backfile"
+EQUB 0
+ALIGN
+.neuronpath
+EQUS "Neurons.Cell"
+.neuronnumber
+EQUS "1"
+EQUB 0
+ALIGN
+.explopath
+EQUS "FSPExplo"
+EQUB 0
+ALIGN
+.charpath
+EQUS "FSPChars"
+EQUB 0
+ALIGN
+.alienpath
+EQUS "FSPAliens"
+EQUB 0
+ALIGN
+.configname
+EQUS "<PsychoResource$Path>Config"
+EQUB 0
+ALIGN
+.resourcepath
+EQUS "PsychoResource$Path"
+EQUB 0
+ALIGN
+.extendpath
+EQUS "Psychoextend$Path"
+EQUB 0
+ALIGN
+.idpath
+EQUS "PsychoId$Path"
+EQUB 0
+ALIGN
+.psychepath
+EQUS "PsychoPsyche$Path"
+EQUB 0
+ALIGN
+.egopath
+EQUS "PsychoEgo$Path"
+EQUB 0
+ALIGN
+.egomusic1path
+EQUS "<PsychoEgo$Path>"
+EQUS "Music1"
+EQUB 0
+ALIGN
+.egomusic2path
+EQUS "<PsychoEgo$Path>"
+EQUS "Music2"
+EQUB 0
+ALIGN
+.psychemusic1path
+EQUS "<PsychoPsyche$Path>"
+EQUS "Music1"
+EQUB 0
+ALIGN
+.psychemusic2path
+EQUS "<PsychoPsyche$Path>"
+EQUS "Music2"
+EQUB 0
+ALIGN
+.idmusic1path
+EQUS "<PsychoId$Path>"
+EQUS "Music1"
+EQUB 0
+ALIGN
+.idmusic2path
+EQUS "<PsychoId$Path>"
+EQUS "Music2"
+EQUB 0
+ALIGN
+.mainmusicpath
+EQUS "<PsychoResource$Path>Music1"
+EQUB 0
+ALIGN
+.deathmusicpath
+EQUS "<PsychoResource$Path>Music2"
+EQUB 0
+ALIGN
+
+
+
+.getfiles
+STMFD R13!,{R14}
+
+BL getvitalfiles
+BL showloading
+BL getmusicfiles
+BL getgamefiles
+LDMFD R13!,{PC}
+
+.getvitalfiles
+STMFD R13!,{R14}
+MOV R0,#0
+STRB R0,[R12,#charsok]
+LDR R10,[R12,#storage]
+ADR R9,resourcepath
+
+STR R10,[R12,#chatscreenadr]
+ADR R1,chatscreenpath
+BL loadvitalfile
+
+STR R10,[R12,#charsadr]
+ADR R1,charpath
+BL loadvitalfile
+MOV R0,#1
+STRB R0,[R12,#charsok]
+STR R10,[R12,#gamescreenadr]
+LDMFD R13!,{PC}
+
+.getmusicfiles
+STMFD R13!,{R14}
+MOV R0,#1
+ADR R1,mainmusicpath
+SWI "XBodgeMusic_Load"
+
+MOV R0,#2
+ADR R1,deathmusicpath
+SWI "XBodgeMusic_Load"
+MOV R0,#1
+MOV R1,#0
+SWI "XBodgeMusic_Start"
+LDMFD R13!,{PC}
+
+.getgamefiles
+STMFD R13!,{R14}
+LDR R10,[R12,#gamescreenadr]
+ADR R9,resourcepath
+.load1
+ADR R1,gamescreenpath
+BL loadhammered
+BCS load1
+BVS badload
+
+STR R10,[R12,#blokeadr]
+.load2
+ADR R1,blokepath
+BL loadhammered
+BCS load2
+BVS badload
+
+STR R10,[R12,#exploadr]
+.load3
+ADR R1,explopath
+BL loadhammered
+BCS load3
+BVS badload
+
+STR R10,[R12,#blockadr]
+LDMFD R13!,{PC}
+
+.getlevelfiles
+STMFD R13!,{R14}
+BL showgamescreen
+MOV R0,#0
+STR R0,[R12,#currentzone]
+LDRB R0,[R12,#mentalzone]
+ADR R9,egopath
+CMP R0,#2
+ADREQ R9,psychepath
+CMP R0,#3
+ADREQ R9,idpath
+CMP R0,#4
+ADREQ R9,extendpath
+STR R9,[R12,#currentpath]
+
+LDR R10,[R12,#blockadr]
+
+.load4
+ADR R1,blockpath
+BL loadhammered
+BCS load4
+BLVS badlevelload
+BCS load4
+
+STR R10,[R12,#alspradr]
+.load5
+ADR R1,alienpath
+BL loadhammered
+BCS load5
+BLVS badlevelload
+BCS load5
+
+STR R10,[R12,#brainadr]
+STR R10,[R12,#boardadr]
+.load6
+ADR R1,boardpath
+BL loadhammered
+BCS load6
+BLVS badlevelload
+BCS load6
+
+STR R10,[R12,#backadr]
+.load7
+ADR R1,backpath
+BL loadhammered
+BCS load7
+BLVS badlevelload
+BCS load7
+LDRB R2,[R12,#mentalzone]
+ADR R1,egomusic1path
+CMP R2,#2
+ADREQ R1,psychemusic1path
+CMP R2,#3
+ADREQ R1,idmusic1path
+MOV R0,#0
+SWI "XBodgeMusic_Load"
+LDRB R2,[R12,#mentalzone]
+ADR R1,egomusic2path
+CMP R2,#2
+ADREQ R1,psychemusic2path
+CMP R2,#3
+ADREQ R1,idmusic2path
+MOV R0,#1
+SWI "XBodgeMusic_Load"
+
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+
+.retrievebackdrop
+STMFD R13!,{R14}
+LDR R9,[R12,#currentpath]
+LDR R10,[R12,#backadr]
+.load10
+ADR R1,backpath
+BL loadhammered
+BCS load10
+BLVS badlevelload
+BCS load10
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+
+
+.getneuronfiles
+STMFD R13!,{R14}
+LDR R9,[R12,#currentpath]
+
+LDR R10,[R12,#backadr]
+;STR R10,[R12,#backadr]
+.load8
+ADR R1,neuronbackpath
+BL loadhammered
+BCS load8
+BLVS badlevelload
+BCS load8
+ADD R10,R10,#backsize*3
+STR R10,[R12,#neuronadr]
+STR R10,[R12,#boardadr]
+.neuronloadloop
+LDR R0,[R12,#plzone]
+ADD R0,R0,#ASC"0"
+ADR R1,neuronnumber
+STRB R0,[R1]
+ADR R1,neuronpath
+BL filelength
+BVC load9
+LDR R0,[R12,#plzone]
+SUBS R0,R0,#1
+STR R0,[R12,#plzone]
+STR R0,[R12,#currentzone]
+BLEQ noneuronshere
+B neuronloadloop
+.load9
+ADR R1,neuronpath
+BL loadhammered
+BCS load9
+BLVS badlevelload
+BCS load9
+
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+.noneuronshere
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+
+
+
+
+.loadvitalfile
+STMFD R13!,{R14}
+STMFD R13!,{R10}
+MOV R0,#15
+MOV R4,R9
+SWI "XOS_File"
+BVS fatalfile
+CMP R0,#1
+BNE fatalfile
+ADD R0,R10,R4
+LDR R8,[R12,#storageend]
+CMP R0,R8
+BGE fatalfile
+MOV R0,#14
+MOV R2,R10
+MOV R3,#0
+MOV R4,R9
+SWI "XOS_File"
+LDMFD R13!,{R10}
+BVS fatalfile
+ADD R10,R10,R4
+ADD R10,R10,#3
+BIC R10,R10,#3
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+
+.loadhammered
+STMFD R13!,{R14}
+
+MOV R0,#0
+MOV R2,R9
+SWI "Blitz_HammerOp"
+BVS filenotthere
+CMP R3,#0
+LDMEQFD R13!,{R14}
+BEQ loadfile
+
+ADD R0,R10,R3
+LDR R8,[R12,#storageend]
+CMP R0,R8
+BGE nomemory
+STMFD R13!,{R3}
+MOV R0,#1
+MOV R2,R9
+MOV R3,R10
+SWI "Blitz_HammerOp"
+LDMFD R13!,{R3}
+BVS filesyserror
+ADD R10,R10,R3
+ADD R10,R10,#3
+BIC R10,R10,#3
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+
+.loadfile
+STMFD R13!,{R14}
+STMFD R13!,{R10}
+BL filelength
+LDMVSFD R13!,{R10}
+BVS filenotthere
+ADD R0,R10,R4
+LDR R8,[R12,#storageend]
+CMP R0,R8
+BGE nomemory
+MOV R0,#14
+MOV R2,R10
+MOV R3,#0
+MOV R4,R9
+SWI "XOS_File"
+LDMFD R13!,{R10}
+BVS filesyserror
+ADD R10,R10,R4
+ADD R10,R10,#3
+BIC R10,R10,#3
+LDMFD R13!,{R14}
+BIC R14,R14,#3<<28
+MOVS PC,R14
+
+.egosave
+EQUS "<PsychoEgo$Path>HighScores"
+EQUB 0
+.psychesave
+EQUS "<PsychoPsyche$Path>HighScores"
+EQUB 0
+.idsave
+EQUS "<PsychoId$Path>HighScores"
+EQUB 0
+.extendedsave
+EQUS "<PsychoExtended$Path>HighScores"
+EQUB 0
+ALIGN
+
+
+.savescores
+STMFD R13!,{R14}
+MOV R0,#0
+ADD R1,R12,#highscorearea
+ADD R2,R1,#13*5
+MOV R3,#1
+SWI "XOS_CRC"
+STRB R0,[R2]
+MOV R0,#10
+LDRB R5,[R12,#mentalzone]
+ADR R1,egosave
+CMP R5,#2
+ADREQ R1,psychesave
+CMP R5,#3
+ADREQ R1,idsave
+CMP R5,#4
+ADREQ R1,extendedsave
+ADD R4,R12,#highscorearea
+ADD R5,R4,#13*5+1
+MOV R2,#&FD
+ADD R2,R2,#&0F<<8
+SWI "XOS_File"
+LDMFD R13!,{PC}
+
+.loadscores
+STMFD R13!,{R14}
+MOV R0,#255
+LDRB R5,[R12,#mentalzone]
+ADR R1,egosave
+CMP R5,#2
+ADREQ R1,psychesave
+CMP R5,#3
+ADREQ R1,idsave
+CMP R5,#4
+ADREQ R1,extendedsave
+ADD R4,R12,#highscorearea
+ADD R5,R4,#13*5+1
+ADD R2,R12,#highscorearea
+MOV R3,#0
+SWI "XOS_File"
+BVS setdefaultscores
+MOV R0,#0
+ADD R1,R12,#highscorearea
+ADD R2,R1,#13*5
+MOV R3,#1
+SWI "XOS_CRC"
+AND R0,R0,#&FF
+LDRB R1,[R2]
+CMP R0,R1
+BNE setdefaultscores
+LDMFD R13!,{PC}
+
+.setdefaultscores
+ADD R10,R12,#highscorearea
+MOV R3,#5
+.loopd4
+ADR R11,defscore
+MOV R2,#13
+.loopd5
+LDRB R0,[R11],#1
+STRB R0,[R10],#1
+SUBS R2,R2,#1
+BGT loopd5
+SUBS R3,R3,#1
+BGT loopd4
+LDMFD R13!,{PC}
+.defscore
+EQUS "00000000 PSY"+CHR$(10)
+ALIGN
+
+
+
+.fatalfile
+ADR R0,fatalmes
+SWI "OS_GenerateError"
+.fatalmes
+EQUD 0
+EQUS "A file vital to the game cannot be loaded.  Please reset your machine and try   again"
+EQUB 0
+ALIGN
+
+.loadingmes
+FNmessage(88,64,0,0,"Please Wait")
+FNmessage(48,128,0,0,"Loading Game files")
+
+
+.showloading
+STMFD R13!,{R14}
+BL wipetexttab
+BL showchatscreen
+ADR R0,loadingmes
+BL message
+BL message
+BL showtext
+LDMFD R13!,{PC}
+
+
+.filenotmes
+FNmessage(56,64,0,0,"A file is missing.")
+FNmessage(48,96,0,0,"It cannot be loaded")
+
+
+.filenotthere
+STMFD R13!,{R9,R10}
+BL showerror
+ADR R0,filenotmes
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R9,R10}
+LDMFD R13!,{PC}
+
+
+
+.filesysmes
+FNmessage(40,64,0,0,"Unable to Load File")
+FNmessage(56,96,0,0,"Please Check Disc")
+
+
+.filesyserror
+STMFD R13!,{R9,R10}
+BL showerrorok
+ADR R0,filesysmes
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R9,R10}
+LDMFD R13!,{PC}
+
+.badloadmes
+FNmessage(32,32,0,0,"A game file could not")
+FNmessage(48,64,0,0,"be loaded. Program")
+FNmessage(80,96,0,0,"Must exit now.")
+
+
+.badload
+STMFD R13!,{R9,R10}
+BL showerrorok
+ADR R0,badloadmes
+BL message
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R9,R10}
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+BIC R14,R14,#1<<29
+MOVS PC,R14
+
+.badlevelloadmes
+FNmessage(40,32,0, 0,"The level cannot be")
+FNmessage(32,64,0 ,0,"Loaded. Please check")
+FNmessage(48,96,0,0,"the disc, or press")
+FNmessage(48,128,0,0,"escape to end game.")
+
+
+.badlevelload
+STMFD R13!,{R9,R10,R14}
+BL showerrorok
+ADR R0,badlevelloadmes
+BL message
+BL message
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R9,R10,R14}
+LDMVSFD R13!,{R14}
+ORR R14,R14,#3<<28
+BICCC R14,R14,#1<<29; 'clear carry if carry clear (???)'
+
+MOVS PC,R14
+
+.nomemorymes
+FNmessage(48,32,0,0,"There is not enough")
+FNmessage(48,64,0,0,"memory available to")
+FNmessage(48,96,0,0,"load the game files.")
+
+
+.nomemory
+BL showerrorok
+ADR R0,nomemorymes
+BL message
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R14}
+LDMFD R13!,{R14}
+ORR R14,R14,#3<<28
+BICCC R14,R14,#1<<29
+
+MOVS PC,R14
+
+
+.filelength
+STMFD R13!,{R14}
+MOV R0,#15
+MOV R4,R9
+SWI "XOS_File"
+BVS filesyserror
+CMP R0,#1
+BNE fileerror
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<28
+MOVS PC,R14
+.fileerror
+LDMFD R13!,{R14}
+ORR R14,R14,#1<<28
+MOVS PC,R14
+
+.errortext
+FNmessage(72,200,0,0,"RET - Try Again")
+FNmessage(72,224,0,0,"ESC - Abandon")
+
+
+.showerror
+STMFD R13!,{R14}
+MOV R0,#1
+STRB R0,[R12,#frameinc]
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+SWI "XFastSpr_ClearWindow"
+BL wipetexttab
+ADR R0,errortext
+BL message
+BL message
+LDMFD R13!,{PC}
+
+.errortextok
+FNmessage(72,200,0,0,"RET - OK")
+FNmessage(72,224,0,0,"ESC - Abandon")
+
+
+.showerrorok
+STMFD R13!,{R14}
+MOV R0,#1
+STRB R0,[R12,#frameinc]
+BL showchatscreen
+MOV R0,#20
+MOV R1,#20
+MOV R2,#320-20
+SUB R2,R2,#1
+MOV R3,#255-20
+SWI "XFastSpr_SetClipWindow"
+SWI "XFastSpr_ClearWindow"
+BL wipetexttab
+ADR R0,errortextok
+BL message
+BL message
+LDMFD R13!,{PC}
+
+
+.errorwait
+STMFD R13!,{R14}
+.loopb9
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#73
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ waitover
+MOV R2,#&FF
+MOV R0,#&81
+MVN R1,#60
+SWI "XOS_Byte"
+CMP R1,#&FF
+BLEQ waitover
+SWI "XOS_ReadEscapeState"
+BCC loopb9
+MOV R0,#124
+SWI "XOS_Byte"
+BL wipetexttab
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<29
+ORR R14,R14,#1<<28
+MOVS PC,R14
+
+.waitover
+BL wipetexttab
+LDMFD R13!,{R14}
+ORR R14,R14,#3<<28
+MOVS PC,R14
+
+.insertdiscmes
+FNmessage(48,64,0,0,"Please insert disc")
+EQUD 400
+EQUD 96<<8
+EQUD 128<<8
+EQUD 0
+EQUD 0
+.discnameadr
+EQUS "SpaceForName"
+EQUB 0
+ALIGN
+
+.writediscname
+ADR R1,discnameadr
+MOV R3,#0
+MOV R9,#12
+.loopc2
+CMP R3,#0
+BNE writediscskip
+LDRB R0,[R2],#1
+CMP R0,#64
+BICGT R0,R0,#1<<5
+SUBS R0,R0,#47
+
+MOVMI R0,#&FF
+MOVMI R3,#1
+.writediscskip
+STRB R0,[R1],#1
+SUBS R9,R9,#1
+BGT loopc2
+MOV R0,#0
+STRB R0,[R1]
+MOV PC,R14
+
+.insertdisc
+.insertdiscagain
+STMFD R13!,{R0-R11,R14}
+LDRB R0,[R12,#charsok]
+CMP R0,#0
+LDMEQFD R13!,{R0-R11,PC}
+BL writediscname
+BL showerrorok
+ADR R0,insertdiscmes
+BL message
+BL message
+BL showtext
+BL errorwait
+LDMFD R13!,{R0-R11,R14}
+MOV R0,#0
+MVNCC R0,#0
+LDMFD R13!,{R14}; do not pass on vector to standard routine
+BIC R14,R14,#1<<28
+MOVS PC,R14
+
+.hta
+.errorhandler
+MOV R0,R0
+BL losehandlers
+SWI 256+22
+SWI 256+0
+SWI "OS_WriteS"
+EQUS "Error from Asylum:"
+EQUB 10
+EQUB 13
+EQUB 0
+ALIGN
+ADR R0,buffer
+ADD R0,R0,#4
+SWI "OS_GenerateError"
+
+.exithandler
+BL losehandlers
+SWI "OS_Exit"
+
+.upcallhandler
+CMP R0,#256
+BNE noexitupcall
+STMFD R13!,{R0-R12,R14}
+BL losehandlers
+LDMFD R13!,{R0-R12,PC}
+.noexitupcall
+CMP R0,#1
+BEQ insertdiscagain
+CMP R0,#2
+BEQ insertdisc
+MOVS PC,R14
+
+.gethandlers
+STMFD R13!,{R14}
+
+MOV R9,#3
+ADR R11,handlertab
+.loopc0
+LDMIA R11,{R0-R3}
+ADR R4,hta
+ADD R1,R1,R4
+CMP R0,#6;error
+ADDEQ R3,R3,R4
+MOV R2,R12
+STMFD R13!,{R9,R11}
+SWI "XOS_ChangeEnvironment"
+LDMFD R13!,{R9,R11}
+STMIA R11!,{R0-R3}
+SUBS R9,R9,#1
+BGT loopc0
+MOV R0,#&1D
+ADR R1,upcallhandler
+MOV R2,R12
+SWI "XOS_Claim"
+
+LDMFD R13!,{PC}
+
+.losehandlers
+STMFD R13!,{R0-R12,R14}
+MOV R0,#&1D
+ADR R1,upcallhandler
+MOV R2,R12
+SWI "XOS_Release"
+MOV R9,#3
+ADR R11,handlertab
+.loopc1
+LDMIA R11!,{R0-R3}
+STMFD R13!,{R9,R11}
+SWI "XOS_ChangeEnvironment"
+LDMFD R13!,{R9,R11}
+SUBS R9,R9,#1
+BGT loopc1
+LDMFD R13!,{R0-R12,PC}^
+
+
+.handlertab
+EQUD 16;upcall(16)
+EQUD upcallhandler-hta
+EQUD 0
+EQUD 0
+EQUD 11;exit(11)
+EQUD exithandler-hta
+EQUD 0
+EQUD 0
+EQUD 6;error(6)
+EQUD errorhandler-hta
+EQUD 0
+EQUD buffer-hta
+
+.buffer
+]
+FOR F=0 TO 256/4
+[OPT OPT
+EQUD 0
+]
+NEXT F
+[OPT OPT
+
+.loadzone
+STMFD R13!,{R14}
+LDR R0,[R12,#plzone]
+LDR R1,[R12,#currentzone]
+STR R0,[R12,#currentzone]
+CMP R0,#0
+BEQ exitneuron
+B enterneuron
+
+
+.enterneuron
+CMP R1,#0
+BLEQ saveal
+BL getneuronfiles
+BVS exitneuron
+BL wipealtab
+BL getarms
+BL initweapon
+BL initprojtab
+BL initbultab
+BL backprep
+BL boardreg
+BL prepfueltab
+BL findplayer
+LDMFD R13!,{PC}
+
+.exitneuron
+LDR R0,[R12,#brainadr]
+STR R0,[R12,#boardadr]
+BL restoreal
+BL initweapon
+BL initprojtab
+BL initbultab
+BL retrievebackdrop
+BL backprep
+BL boardreg
+BL prepfueltab
+BL wipesoundtab
+LDMFD R13!,{PC}
+.highscorepress
+FNmessage(96,224,0,0,"press fire")
+
+.showhighscore
+STMFD R13!,{R14}
+BL loadscores
+BL updatehst
+BL showhst
+BL wipetexttab
+ADR R0,highscorepress
+BL message
+BL releaseclip
+BL showtext
+MOV R0,#0
+BL readopt
+SWI "XOS_ReadEscapeState"
+LDMFD R13!,{R14}
+BIC R14,R14,#1<<28
+ORRCS R14,R14,#1<<28
+MOVS PC,R14
+
+.updatehst
+STMFD R13!,{R14}
+MOV R4,#5
+ADD R10,R12,#highscorearea
+ADD R10,R10,#4*13; 4*entry length
+.loopd1
+BL comparescore
+BCC lessthan
+SUB R10,R10,#13; entry length
+SUBS R4,R4,#1
+BGT loopd1
+.lessthan
+ADD R10,R10,#13; entry length
+CMP R4,#5
+STRB R4,[R12,#hstindex]
+BEQ notontable
+MOV R9,R10
+RSBS R3,R4,#4
+BLE noshiftscore
+MOV R0,#13
+MUL R3,R0,R3
+ADD R9,R12,#highscorearea
+ADD R9,R9,#4*13-1
+.loopd7
+LDRB R0,[R9]
+STRB R0,[R9,#13]
+SUB R9,R9,#1
+SUBS R3,R3,#1
+BGT loopd7
+.noshiftscore
+
+
+
+ADD R11,R12,#plscore
+MOV R3,#8
+.loopda
+LDRB R0,[R11],#1
+ADD R0,R0,#ASC"0"
+STRB R0,[R10],#1
+SUBS R3,R3,#1
+BGT loopda
+
+ADD R10,R10,#1
+MOV R9,#1024
+MOV R8,#3
+.scorekeyloop
+SUBS R9,R9,#1
+BLE scoreexit
+STMFD R13!,{R8-R10}
+BL keyread
+LDMFD R13,{R8-R10}; no writeback
+LDRB R1,[R10]
+LDRB R0,[R12,#leftpress]
+CMP R0,#0
+ADDEQ R1,R1,#1
+LDRB R0,[R12,#rightpress]
+CMP R0,#0
+SUBEQ R1,R1,#1
+CMP R1,#ASC"0"
+MOVLT R1,#ASC"0"
+CMP R1,#ASC"Z"+4
+MOVGT R1,#ASC"Z"+4
+STRB R1,[R10]
+BL showhst
+LDMFD R13!,{R8-R10}
+LDRB R0,[R12,#fire]
+CMP R0,#0
+BEQ scorekeyloop
+ADD R10,R10,#1
+STMFD R13!,{R8-R10}
+MOV R0,#1
+MOV R1,#18
+SWI "XStasis_Link"
+MOV R0,#1
+MOV R1,#0
+MOV R2,#0
+SWI "XStasis_VolSlide"
+MOV R0,#1
+MOV R1,#&17C
+MOV R2,#140
+MOV R3,#0
+SWI "XSound_Control"
+LDMFD R13!,{R8-R10}
+SUBS R8,R8,#1
+BLE scoreexit
+MOV R0,#20
+SWI "XBlitz_Wait"
+B scorekeyloop
+.scoreexit
+BL savescores
+.notontable
+LDMFD R13!,{PC}
+
+
+.comparescore
+STMFD R13!,{R10}
+ADD R11,R12,#plscore
+MOV R3,#8
+.loopd0
+LDRB R0,[R10],#1
+SUB R0,R0,#ASC"0"
+LDRB R1,[R11],#1
+CMP R0,R1
+BEQ compnext
+BLT scoregreater
+B scoreless
+.compnext
+SUBS R3,R3,#1
+BGT loopd0
+B scoregreater
+
+.scoreless
+LDMFD R13!,{R10}
+BIC R14,R14,#1<<29
+MOVS PC,R14
+
+.scoregreater
+LDMFD R13!,{R10}
+ORR R14,R14,#1<<29
+MOVS PC,R14
+
+
+.hstmes
+FNmessage(64,32,0,0,"Zone High Scores")
+
+
+.showhst
+STMFD R13!,{R14}
+MOV R0,#0
+SWI "XBlitz_Wait"
+BL switchbank
+BL switchfspbank
+BL showchatscores
+BL wipetexttab
+ADR R0,hstmes
+BL message
+BL texthandler
+LDR R0,[R12,#charsadr]
+LDR R1,[R12,#fspareat]
+STR R0,[R1]
+ADD R10,R12,#highscorearea
+MOV R1,#32
+MOV R2,#64
+MOV R3,#5
+.showhstloop
+LDRB R0,[R10],#1
+CMP R0,#&0A
+BLE showhstnewline
+SUB R0,R0,#ASC"0"
+STMFD R13!,{R1-R3,R10}
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{R1-R3,R10}
+ADD R1,R1,#16
+B showhstloop
+.showhstnewline
+MOV R1,#32
+ADD R2,R2,#32
+SUBS R3,R3,#1
+BGT showhstloop
+MOV R0,#13
+MOV R1,#280
+LDRB R2,[R12,#hstindex]
+CMP R2,#5
+LDMEQFD R13!,{PC}
+ADD R2,R2,#2
+MOV R2,R2,LSL #5
+MOV R14,PC
+LDR PC,[R12,#fspplot]
+LDMFD R13!,{PC}
+
+.setup
+STMFD R13!,{R14}
+
+MOV R0,#0
+STR R0,[R12,#framectr]
+MOV R0,#firstzone
+STR R0,[R12,#plzone]
+BL wipesoundtab
+BL initweapon
+BL initprojtab
+BL initbultab
+BL setfullclip
+BL initrockettab
+BL addtabinit
+BL getvars
+BL prepstrength
+BL scorezero
+BL backprep
+BL boardreg
+BL wipealtab
+BL prepfueltab
+LDMFD R13!,{PC}
+
+.wipesoundtab
+STMFD R13!,{R14}
+MOV R0,#&55
+ADD R0,R0,#&2100
+STR R0,[R12,#fullpitch]
+ADD R10,R12,#soundtabofs
+MOV R0,#0
+MOV R3,#soundentlen*8
+.loop51
+STR R0,[R10],#4
+SUBS R3,R3,#4
+BGT loop51
+MOV R0,#7
+MOV R1,#&FC00
+MOV R2,#0
+.soundkillloop
+STMFD R13!,{R0-R2}
+SWI "XStasis_VolSlide"
+LDMFD R13!,{R0-R2}
+SUBS R0,R0,#1
+BPL soundkillloop
+LDMFD R13!,{PC}
+
+.wipetexttab
+LDR R10,[R12,#textadr]
+MOV R3,#textno*textlen
+MOV R0,#0
+.loopa5
+STR R0,[R10],#4
+SUBS R3,R3,#4
+BGT loopa5
+MOV PC,R14
+
+
+
+.initprojtab
+ADD R10,R12,#projofs
+STR R10,[R12,#projadr]
+MOV R9,#projno
+STR R9,[R10],#4
+MOV R0,#0
+STR R0,[R12,#projctr]
+.loop44
+STR R0,[R10],#projentlen
+SUBS R9,R9,#1
+BGT loop44
+MOV PC,R14
+
+.initbultab
+ADD R10,R12,#bulofs
+STR R10,[R12,#buladr]
+MOV R9,#projno
+STR R9,[R10],#4
+MOV R0,#0
+STR R0,[R12,#bulctr]
+.loop74
+STR R0,[R10],#bulentlen
+SUBS R9,R9,#1
+BGT loop74
+MOV PC,R14
+
+
+.initweapon
+MOV R0,#0
+STR R0,[R12,#firelastframe]
+LDRB R2,[R12,#plweapontype]
+CMP R2,#rockbase
+MOVGE R0,#2
+MOVLT R0,#8
+STRB R0,[R12,#plweaponspeed]
+MOVGE R0,#12
+MOVLT R0,#4
+STRB R0,[R12,#firerate]
+MOV R0,#5
+STRB R0,[R12,#rocketblamctr]
+MOV PC,R14
+
+
+
+.prepfueltab
+MOV R0,#0
+ADD R1,R12,#fueltabofs
+STR R1,[R12,#fueltabread]
+STR R0,[R1]
+ADD R1,R1,#fueltablim
+ADD R1,R1,#4
+STR R1,[R12,#fueltabwrite]
+STR R0,[R1]
+MOV R0,#0
+STR R0,[R12,#fueltabctr]
+STR R0,[R12,#fuelairlastframe]
+MOV PC,R14
+
+.scorezero
+MOV R0,#0
+STR R0,[R12,#plscoreadd]
+ADD R1,R12,#plscore
+STR R0,[R1]
+STR R0,[R1,#4]
+MOV R0,#2
+STR R0,[R12,#lives]
+MOV R0,#0
+STR R0,[R12,#neuronctr]
+MOV PC,R14
+
+.wipealtab
+ADD R10,R12,#alofs
+STR R10,[R12,#aladr]
+MOV R9,#alno
+STR R9,[R10],#4
+MOV R0,#0
+STR R0,[R12,#alctr]
+MOV R0,#0
+.l9
+STR R0,[R10],#alentlen
+SUBS R9,R9,#1
+BGE l9
+
+.boardreg
+LDR R11,[R12,#boardadr]
+LDR R1,[R11,#4]
+STR R1,[R12,#boardwidth]
+MOV R1,R1,ASL #12
+STR R1,[R12,#xposmax]
+LDR R2,[R11,#8]
+MOV R2,R2,ASL #12
+STR R2,[R12,#yposmax]
+ADD R0,R11,#boardhdrlen
+STR R0,[R12,#boardlowlim]
+LDR R1,[R11,#4]
+LDR R2,[R11,#8]
+MUL R1,R2,R1
+ADD R0,R0,R1
+STR R0,[R12,#boardhighlim]
+MOV PC,R14
+
+.backprep
+STMFD R13!,{R14}
+LDR R11,[R12,#backadr]
+ADD R10,R11,#32*48
+BL backexec
+MOV R11,R10
+ADD R10,R11,#32*48
+BL backexec
+MOV R11,R10
+ADD R10,R11,#32*48
+BL backexec
+LDMFD R13!,{PC}
+
+.backexec
+STMFD R13!,{R10-R11}
+MOV R4,#32
+.l6
+LDRB R2,[R11],#1
+MOV R3,#47
+.l5
+LDRB R0,[R11],#1
+STRB R0,[R10],#1
+SUBS R3,R3,#1
+BGT l5
+STRB R2,[R10],#1
+SUBS R4,R4,#1
+BGT l6
+LDMFD R13!,{R10-R11}
+MOV PC,R14
+
+.shiftblock
+STMFD R13!,{R3}
+SUB R2,R2,#1
+.sbloop
+LDR R3,[R0],#4
+STR R3,[R1],#4
+SUBS R2,R2,#1
+BPL sbloop
+LDMFD R13!,{R3}
+MOV PC,R14
+
+.prepstrength
+MOV R0,#strengthinit
+STR R0,[R12,#plstrength]
+STR R0,[R12,#laststrength]
+MOV R0,#0
+STR R0,[R12,#snuffctr]
+STR R0,[R12,#lagerctr]
+MOV PC,R14
+
+.screensave
+STMFD R13!,{R14}
+BL showscore
+ADR R0,savecommand
+;SWI "XOS_CLI"
+ADR R0,savecommand2
+SWI "OS_CLI"
+LDMFD R13!,{PC}
+
+.savecommand
+EQUS "Mount"
+EQUB 0
+.savecommand2
+EQUS "Screensave Screenfile"
+EQUB 0
+ALIGN
+
+
+.getvars
+STMFD R13!,{R14}
+BL getstrengthtab
+ADR R0,initvars
+ADD R1,R12,#pl
+MOV R2,#8
+BL shiftblock
+MOV R0,#0
+STRB R0,[R12,#plface]
+LDMFD R13!,{PC}
+.initvars
+EQUD 64<<8
+EQUD 48<<8
+EQUD 0
+EQUD 0
+EQUD 0
+EQUD 0
+EQUD 0
+EQUD 0
+
+.vduread
+STMFD R13!,{R14}
+MOV R0,#113
+MOV R1,#1
+SWI "XOS_Byte" ;get non-shadow screen bank
+ADR R0,vdublock
+ADD R1,R12,#vdu
+SWI "XOS_ReadVduVariables"
+LDR R0,[R12,#screenstart]
+STR R0,[R12,#screenuse]
+LDMFD R13!,{PC}
+
+
+.vdublock
+EQUD 149
+EQUD 7
+EQUD 6
+EQUD -1
+.getstrengthtab
+ADR R0,strengthcol
+STR R0,[R12,#strengthcoltab]
+MOV PC,R14
+.strengthcol
+]
+FOR F=1 TO &24
+[OPT OPT
+EQUB &12+RND(5)
+]
+NEXT F
+FOR F=1 TO &24
+[OPT OPT
+EQUB RND(4)-1
+]
+NEXT F
+[OPT OPT
+ALIGN
+.addtabinit
+ADR R0,addtab
+STR R0,[R12,#addtabadr]
+MOV PC,R14
+.addtab
+EQUD 10^7
+EQUD 10^6
+EQUD 10^5
+EQUD 10^4
+EQUD 10^3
+EQUD 10^2
+EQUD 10
+EQUD 1
+.initrockettab
+MOV R0,#0
+STR R0,[R12,#rocketctr]
+STRB R0,[R12,#rocketflag]
+ADR R0,rockettab
+STR R0,[R12,#rockettabadr]
+MOV PC,R14
+
+.rockettab
+EQUD 0
+EQUD 0
+EQUD 0
+EQUD 0
+]
+FOR F=0 TO (rockettablen-8)
+
+[OPT OPT
+EQUD 256*SIN(F*2*PI/(rockettablen-8))
+
+
+]
+NEXT F
+[OPT OPT
+EQUD 0
+EQUD 0
+EQUD 0
+EQUD 0
+
+]
+NEXT OPT
+SYS "Hourglass_Off"
+OSCLI "SAVE Asylum:Code.GameCode "+STR$~(code)+" "+STR$~(P%):END
+MODE 15
+MODE 13
+
+VOICES 8
+STEREO 5,-32
+STEREO 6,32
+STEREO 7,-32
+STEREO 8,32
+SYS "Stasis_Control",8,8
+REPEAT
+A%=vars
+B%=storearea
+C%=storearealen
+CALL init
+UNTIL vars!snuffctr<300
+
+SYS "OS_Exit"
+END
+
+DEFFNtranslate
+[OPT OPT
+ADD R0,R0,#8<<8
+SUB R1,R1,#8<<8
+MOV R1,R1,ASR #12
+
+LDR R8,[R12,#boardadr]
+LDR R9,[R8,#4]
+MUL R9,R1,R9
+ADD R8,R8,#32
+ADD R8,R8,R0,ASR #12
+ADD R0,R8,R9
+]
+=0
+
+DEFFNmessage(x,y,xv,yv,A$)
+time = 400
+IF x>1000 THEN x=x-1000:time=50
+IF x>1000 THEN x=x-1000:time=&10000
+
+[OPT OPT
+EQUD time; time in frames
+EQUD x<<8
+EQUD y<<8
+EQUD xv*256; might be non-integers
+EQUD yv*256
+.madr
+]
+FOR F=1 TO LEN(A$)
+S$=MID$(A$,F,1)
+CASE S$ OF
+ WHEN "-":
+  S$=";"
+ WHEN "¤":
+  S$=":"
+ WHEN "'":
+  S$="~"
+ WHEN ".":
+  S$= "{"
+ WHEN ",":
+  S$="|"
+ WHEN "?":
+  S$="<"
+ WHEN "!":
+  S$="}"
+ WHEN "%":
+  S$=">"
+ WHEN "€":
+  S$="?"
+ WHEN "×":
+  S$="@"
+ WHEN "#":
+  S$=CHR$(127)
+ENDCASE
+IF ASC(S$)>=96 THEN S$=CHR$(ASC(S$)-32)
+X=ASC(S$)-47
+IF S$=" " THEN X=&FF
+IF (X>55 AND X<>&FF) THEN ERROR 0,"Bad message character "+MID$(A$,F,1)
+[OPT OPT
+EQUB X
+]
+NEXT F
+[OPT OPT
+EQUB 0
+ALIGN
+]
+=0
+
+
+
+
+
+
