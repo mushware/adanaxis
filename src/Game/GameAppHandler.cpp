@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.20 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.21 2002/07/08 14:22:02 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.21  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.20  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -109,6 +112,7 @@ GameAppHandler::Initialise(void)
     {
         throw(CommandFail("Bad value for DISPLAY_TYPE ("+displayType+").  Choices are fullscreen or window"));
     }
+    SetCursorState(false);
     GLUtils::CheckGLError();
 }
 

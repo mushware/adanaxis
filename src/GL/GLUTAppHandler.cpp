@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.3 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.4 2002/07/06 18:04:18 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -246,6 +249,20 @@ GLUTAppHandler::PassiveMotionHandler(int inX, int inY)
 
     m_mouseX=inX;
     m_mouseY=inY;
+}
+
+void
+GLUTAppHandler::SetCursorState(bool inValue)
+{
+    if (inValue)
+    {
+        glutSetCursor(GLUT_CURSOR_INHERIT);
+    }
+    else
+    {
+        glutSetCursor(GLUT_CURSOR_NONE);
+    }
+    
 }
 
 void

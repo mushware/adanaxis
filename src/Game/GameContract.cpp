@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.24 2002/07/07 11:16:07 southa Exp $
+ * $Id: GameContract.cpp,v 1.25 2002/07/10 16:16:30 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.25  2002/07/10 16:16:30  southa
+ * Player graphic
+ *
  * Revision 1.24  2002/07/07 11:16:07  southa
  * More designer work
  *
@@ -246,7 +249,11 @@ GameContract::Running(void)
         }
     }
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameHandler.KeyStateGet('d')) m_gameState=kDesigning;
+    if (gameHandler.KeyStateGet('d'))
+    {
+        gameHandler.SetCursorState(true);
+        m_gameState=kDesigning;
+    }
 }
 
 void
@@ -255,7 +262,11 @@ GameContract::Designing(void)
     m_floorDesigner->Move();
     GLUtils::PostRedisplay();
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameHandler.KeyStateGet('p')) m_gameState=kRunning;
+    if (gameHandler.KeyStateGet('p'))
+    {
+        gameHandler.SetCursorState(false);
+        m_gameState=kRunning;
+    }
 }
 
 void

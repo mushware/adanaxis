@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.6 2002/07/07 13:44:18 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.7 2002/07/08 14:22:02 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.7  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.6  2002/07/07 13:44:18  southa
  * Screen size config variables
  *
@@ -164,6 +167,12 @@ U32
 SDLAppHandler::GetMilliseconds(void) const
 {
     return SDL_GetTicks();
+}
+
+void
+SDLAppHandler::SetCursorState(bool inValue)
+{
+    SDL_ShowCursor(inValue?SDL_ENABLE:SDL_DISABLE);
 }
 
 void

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.h,v 1.3 2002/06/27 12:36:06 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.4 2002/07/06 18:04:18 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.4  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -47,6 +50,7 @@ public:
     virtual U32 WidthGet(void) const {return m_width;}
     virtual U32 HeightGet(void) const {return m_height;}
     virtual U32 GetMilliseconds(void) const;
+    virtual void SetCursorState(bool inValue);
     
 protected:
     virtual void Initialise(void);

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.9 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLAppHandler.h,v 1.10 2002/07/06 18:04:17 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.10  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.9  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -82,5 +85,6 @@ public:
     virtual U32 WidthGet(void) const = 0;
     virtual U32 HeightGet(void) const = 0;
     virtual U32 GetMilliseconds(void) const = 0;
+    virtual void SetCursorState(bool inValue) = 0;
 };
 #endif
