@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.18 2002/10/22 20:42:08 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.19 2002/11/18 12:55:13 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.19  2002/11/18 12:55:13  southa
+ * win32 support for URLs and directories
+ *
  * Revision 1.18  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -286,5 +289,11 @@ PlatformMiscUtils::LaunchURL(const string& inURL)
 	message << "URL launch failed for '" << inURL << "': " << status;
 	throw(CommandFail(message.str()));
     }
+}
+
+void
+PlatformMiscUtils::SleepMsec(U32 inMsec)
+{
+    Sleep(inMsec);
 }
 
