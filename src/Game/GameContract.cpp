@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.59 2002/08/24 15:27:07 southa Exp $
+ * $Id: GameContract.cpp,v 1.60 2002/08/24 15:42:24 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.60  2002/08/24 15:42:24  southa
+ * Race state change
+ *
  * Revision 1.59  2002/08/24 15:27:07  southa
  * Race restart
  *
@@ -220,8 +223,10 @@ CoreInstaller GameContractInstaller(GameContract::Install);
 
 GameContract::GameContract() :
     m_gameState(kInit),
+    m_player(NULL),
     m_fps(0),
     m_frames(0),
+    m_floorDesigner(),
     m_currentView(NULL),
     m_renderDiagnostics(false),
     m_fastDiagnostics(false)
@@ -293,14 +298,16 @@ GameContract::Init(void)
     m_floorMap->AttachTileMap(m_tileMap);
     m_tileMap->Load();
     GameData::Instance().ControllerGetOrCreate("controller1");
-    m_player=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceGet("player1"));
-    COREASSERT(m_player != NULL);
-    m_floorDesigner=new GameFloorDesigner; // This is leaked
+    if (m_player != NULL) delete m_player;
+    GamePiecePlayer *templatePlayer=dynamic_cast<GamePiecePlayer *>(GameData::Instance().PieceGet("player1"));
+    COREASSERT(templatePlayer != NULL);
+    m_player=new GamePiecePlayer(*templatePlayer);
+    if (m_floorDesigner == NULL) m_floorDesigner=new GameFloorDesigner; // This is leaked
     m_floorDesigner->Init();
     GameData::Instance().ViewGetOrCreate("view1");
     m_currentView=GameData::Instance().CurrentViewGet();
     COREASSERT(m_currentView != NULL);
-    m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));
+    m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));  // Might be wrong
     // GameData::Instance().DumpAll(cout);
     m_masterScale=0.5;
 
@@ -358,7 +365,7 @@ GameContract::RunningMove(void)
         if (p->second->ExpiredGet())
         {
             GameData::Instance().CurrentDialogueDelete(p->first);
-            // Iterator now points to delete object, so break and get the rest
+            // Iterator now points to deleted object, so break and get the rest
             // next time round
             break;
         }

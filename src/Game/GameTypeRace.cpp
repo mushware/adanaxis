@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.19 2002/08/24 15:27:07 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.20 2002/08/24 15:42:24 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.20  2002/08/24 15:42:24  southa
+ * Race state change
+ *
  * Revision 1.19  2002/08/24 15:27:07  southa
  * Race restart
  *
@@ -90,7 +93,7 @@ GameTypeRace::Initialise(void)
     m_lapCount=0;
     m_resultAlpha=0;
     m_raceState=kPrelude;
-    
+    m_timeAllowance=m_initialTime;
 }
 
 void
