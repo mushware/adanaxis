@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.cpp,v 1.2 2002/02/18 22:43:53 southa Exp $
+ * $Id: GLData.cpp,v 1.3 2002/02/23 17:54:45 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.3  2002/02/23 17:54:45  southa
+ * Added GIF loader and GL tests
+ *
  * Revision 1.2  2002/02/18 22:43:53  southa
  * First stage GIF loader
  *
@@ -24,5 +27,5 @@ GLData::AddTexture(const GLTexture& inTexture)
 const GLTexture&
 GLData::GetTexture(const TextureRef& inRef)
 {
-    return m_textures.at(inRef);
+    return m_textures[inRef];
 }

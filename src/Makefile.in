@@ -1,0 +1,538 @@
+# Makefile.in generated automatically by automake 1.5 from Makefile.am.
+
+# Copyright 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
+# Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+@SET_MAKE@
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_HEADER = $(INSTALL_DATA)
+transform = @program_transform_name@
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+AMTAR = @AMTAR@
+AWK = @AWK@
+CXX = @CXX@
+DEPDIR = @DEPDIR@
+EXEEXT = @EXEEXT@
+INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+MY_SUBDIRS = @MY_SUBDIRS@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+am__include = @am__include@
+am__quote = @am__quote@
+install_sh = @install_sh@
+
+bin_PROGRAMS = coreapp
+coreapp_SOURCES = ./CoreApp/AutoMonkey.cpp  ./CoreApp/ChildRecord.cpp  ./CoreApp/CoreApp.cpp  ./CoreApp/CoreAppHandler.cpp  ./CoreApp/DataSet.cpp  ./CoreApp/LaunchCommandHandler.cpp  ./CoreApp/RegExp.cpp  ./GL/GLAppHandler.cpp  ./GL/GLCommandHandler.cpp  ./GL/GLData.cpp  ./GL/GLTest.cpp  ./GL/GLTest1AppHandler.cpp  ./GL/GLTexture.cpp  ./Main/main.cpp  ./Test/Test.cpp  ./Test/TestCommandHandler.cpp  ./CoreApp/AutoMonkey.hp  ./CoreApp/ChildRecord.hp  ./CoreApp/CommandHandler.hp  ./CoreApp/CoreApp.hp  ./CoreApp/CoreAppHandler.hp  ./CoreApp/CorePOSIX.hp  ./CoreApp/CoreStandard.hp  ./CoreApp/CoreTest.hp  ./CoreApp/CoreXML.hp  ./CoreApp/Dataset.hp  ./CoreApp/Installer.hp  ./CoreApp/LaunchCommandHandler.hp  ./CoreApp/RegExp.hp  ./GL/GLAppHandler.hp  ./GL/GLCommandHandler.hp  ./GL/GLData.hp  ./GL/GLStandard.hp  ./GL/GLTest.hp  ./GL/GLTest1AppHandler.hp  ./GL/GLTexture.hp  ./Test/Test.hp  ./Test/TestCommandHandler.hp  
+INCLUDES = -ICoreApp
+subdir = src
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = $(top_builddir)/config.h
+CONFIG_CLEAN_FILES =
+bin_PROGRAMS = coreapp$(EXEEXT)
+PROGRAMS = $(bin_PROGRAMS)
+
+am_coreapp_OBJECTS = AutoMonkey.$(OBJEXT) ChildRecord.$(OBJEXT) \
+	CoreApp.$(OBJEXT) CoreAppHandler.$(OBJEXT) DataSet.$(OBJEXT) \
+	LaunchCommandHandler.$(OBJEXT) RegExp.$(OBJEXT) \
+	GLAppHandler.$(OBJEXT) GLCommandHandler.$(OBJEXT) \
+	GLData.$(OBJEXT) GLTest.$(OBJEXT) GLTest1AppHandler.$(OBJEXT) \
+	GLTexture.$(OBJEXT) main.$(OBJEXT) Test.$(OBJEXT) \
+	TestCommandHandler.$(OBJEXT)
+coreapp_OBJECTS = $(am_coreapp_OBJECTS)
+coreapp_LDADD = $(LDADD)
+coreapp_DEPENDENCIES =
+coreapp_LDFLAGS =
+
+DEFS = @DEFS@
+DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+depcomp = $(SHELL) $(top_srcdir)/depcomp
+@AMDEP_TRUE@DEP_FILES = $(DEPDIR)/AutoMonkey.Po $(DEPDIR)/ChildRecord.Po \
+@AMDEP_TRUE@	$(DEPDIR)/CoreApp.Po $(DEPDIR)/CoreAppHandler.Po \
+@AMDEP_TRUE@	$(DEPDIR)/DataSet.Po $(DEPDIR)/GLAppHandler.Po \
+@AMDEP_TRUE@	$(DEPDIR)/GLCommandHandler.Po $(DEPDIR)/GLData.Po \
+@AMDEP_TRUE@	$(DEPDIR)/GLTest.Po $(DEPDIR)/GLTest1AppHandler.Po \
+@AMDEP_TRUE@	$(DEPDIR)/GLTexture.Po \
+@AMDEP_TRUE@	$(DEPDIR)/LaunchCommandHandler.Po \
+@AMDEP_TRUE@	$(DEPDIR)/RegExp.Po $(DEPDIR)/Test.Po \
+@AMDEP_TRUE@	$(DEPDIR)/TestCommandHandler.Po $(DEPDIR)/main.Po
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
+	-o $@
+CXXFLAGS = @CXXFLAGS@
+DIST_SOURCES = $(coreapp_SOURCES)
+DIST_COMMON = Makefile.am Makefile.in configure
+SOURCES = $(coreapp_SOURCES)
+
+all: all-am
+
+.SUFFIXES:
+.SUFFIXES: .cpp .o .obj
+$(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
+	cd $(top_srcdir) && \
+	  $(AUTOMAKE) --gnu  src/Makefile
+Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) && \
+	  CONFIG_HEADERS= CONFIG_LINKS= \
+	  CONFIG_FILES=$(subdir)/$@ $(SHELL) ./config.status
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  p1=`echo $$p|sed 's/$(EXEEXT)$$//'`; \
+	  if test -f $$p \
+	  ; then \
+	    f=`echo $$p1|sed '$(transform);s/$$/$(EXEEXT)/'`; \
+	   echo " $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/$$f"; \
+	   $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/$$f; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  f=`echo $$p|sed 's/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/'`; \
+	  echo " rm -f $(DESTDIR)$(bindir)/$$f"; \
+	  rm -f $(DESTDIR)$(bindir)/$$f; \
+	done
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+AutoMonkey.$(OBJEXT): ./CoreApp/AutoMonkey.cpp
+ChildRecord.$(OBJEXT): ./CoreApp/ChildRecord.cpp
+CoreApp.$(OBJEXT): ./CoreApp/CoreApp.cpp
+CoreAppHandler.$(OBJEXT): ./CoreApp/CoreAppHandler.cpp
+DataSet.$(OBJEXT): ./CoreApp/DataSet.cpp
+LaunchCommandHandler.$(OBJEXT): ./CoreApp/LaunchCommandHandler.cpp
+RegExp.$(OBJEXT): ./CoreApp/RegExp.cpp
+GLAppHandler.$(OBJEXT): ./GL/GLAppHandler.cpp
+GLCommandHandler.$(OBJEXT): ./GL/GLCommandHandler.cpp
+GLData.$(OBJEXT): ./GL/GLData.cpp
+GLTest.$(OBJEXT): ./GL/GLTest.cpp
+GLTest1AppHandler.$(OBJEXT): ./GL/GLTest1AppHandler.cpp
+GLTexture.$(OBJEXT): ./GL/GLTexture.cpp
+main.$(OBJEXT): ./Main/main.cpp
+Test.$(OBJEXT): ./Test/Test.cpp
+TestCommandHandler.$(OBJEXT): ./Test/TestCommandHandler.cpp
+coreapp$(EXEEXT): $(coreapp_OBJECTS) $(coreapp_DEPENDENCIES) 
+	@rm -f coreapp$(EXEEXT)
+	$(CXXLINK) $(coreapp_LDFLAGS) $(coreapp_OBJECTS) $(coreapp_LDADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT) core *.core
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/AutoMonkey.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/ChildRecord.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/CoreApp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/CoreAppHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/DataSet.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLAppHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLCommandHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLData.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLTest1AppHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/GLTexture.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/LaunchCommandHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/RegExp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/Test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/TestCommandHandler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/main.Po@am__quote@
+
+distclean-depend:
+	-rm -rf $(DEPDIR)
+
+.cpp.o:
+@AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXXCOMPILE) -c -o $@ `test -f $< || echo '$(srcdir)/'`$<
+
+.cpp.obj:
+@AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXXCOMPILE) -c -o $@ `cygpath -w $<`
+
+AutoMonkey.o: ./CoreApp/AutoMonkey.cpp
+@AMDEP_TRUE@	source='./CoreApp/AutoMonkey.cpp' object='AutoMonkey.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/AutoMonkey.Po' tmpdepfile='$(DEPDIR)/AutoMonkey.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AutoMonkey.o `test -f ./CoreApp/AutoMonkey.cpp || echo '$(srcdir)/'`./CoreApp/AutoMonkey.cpp
+
+AutoMonkey.obj: ./CoreApp/AutoMonkey.cpp
+@AMDEP_TRUE@	source='./CoreApp/AutoMonkey.cpp' object='AutoMonkey.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/AutoMonkey.Po' tmpdepfile='$(DEPDIR)/AutoMonkey.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o AutoMonkey.obj `cygpath -w ./CoreApp/AutoMonkey.cpp`
+
+ChildRecord.o: ./CoreApp/ChildRecord.cpp
+@AMDEP_TRUE@	source='./CoreApp/ChildRecord.cpp' object='ChildRecord.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/ChildRecord.Po' tmpdepfile='$(DEPDIR)/ChildRecord.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ChildRecord.o `test -f ./CoreApp/ChildRecord.cpp || echo '$(srcdir)/'`./CoreApp/ChildRecord.cpp
+
+ChildRecord.obj: ./CoreApp/ChildRecord.cpp
+@AMDEP_TRUE@	source='./CoreApp/ChildRecord.cpp' object='ChildRecord.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/ChildRecord.Po' tmpdepfile='$(DEPDIR)/ChildRecord.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ChildRecord.obj `cygpath -w ./CoreApp/ChildRecord.cpp`
+
+CoreApp.o: ./CoreApp/CoreApp.cpp
+@AMDEP_TRUE@	source='./CoreApp/CoreApp.cpp' object='CoreApp.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/CoreApp.Po' tmpdepfile='$(DEPDIR)/CoreApp.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CoreApp.o `test -f ./CoreApp/CoreApp.cpp || echo '$(srcdir)/'`./CoreApp/CoreApp.cpp
+
+CoreApp.obj: ./CoreApp/CoreApp.cpp
+@AMDEP_TRUE@	source='./CoreApp/CoreApp.cpp' object='CoreApp.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/CoreApp.Po' tmpdepfile='$(DEPDIR)/CoreApp.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CoreApp.obj `cygpath -w ./CoreApp/CoreApp.cpp`
+
+CoreAppHandler.o: ./CoreApp/CoreAppHandler.cpp
+@AMDEP_TRUE@	source='./CoreApp/CoreAppHandler.cpp' object='CoreAppHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/CoreAppHandler.Po' tmpdepfile='$(DEPDIR)/CoreAppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CoreAppHandler.o `test -f ./CoreApp/CoreAppHandler.cpp || echo '$(srcdir)/'`./CoreApp/CoreAppHandler.cpp
+
+CoreAppHandler.obj: ./CoreApp/CoreAppHandler.cpp
+@AMDEP_TRUE@	source='./CoreApp/CoreAppHandler.cpp' object='CoreAppHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/CoreAppHandler.Po' tmpdepfile='$(DEPDIR)/CoreAppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CoreAppHandler.obj `cygpath -w ./CoreApp/CoreAppHandler.cpp`
+
+DataSet.o: ./CoreApp/DataSet.cpp
+@AMDEP_TRUE@	source='./CoreApp/DataSet.cpp' object='DataSet.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/DataSet.Po' tmpdepfile='$(DEPDIR)/DataSet.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o DataSet.o `test -f ./CoreApp/DataSet.cpp || echo '$(srcdir)/'`./CoreApp/DataSet.cpp
+
+DataSet.obj: ./CoreApp/DataSet.cpp
+@AMDEP_TRUE@	source='./CoreApp/DataSet.cpp' object='DataSet.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/DataSet.Po' tmpdepfile='$(DEPDIR)/DataSet.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o DataSet.obj `cygpath -w ./CoreApp/DataSet.cpp`
+
+LaunchCommandHandler.o: ./CoreApp/LaunchCommandHandler.cpp
+@AMDEP_TRUE@	source='./CoreApp/LaunchCommandHandler.cpp' object='LaunchCommandHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/LaunchCommandHandler.Po' tmpdepfile='$(DEPDIR)/LaunchCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LaunchCommandHandler.o `test -f ./CoreApp/LaunchCommandHandler.cpp || echo '$(srcdir)/'`./CoreApp/LaunchCommandHandler.cpp
+
+LaunchCommandHandler.obj: ./CoreApp/LaunchCommandHandler.cpp
+@AMDEP_TRUE@	source='./CoreApp/LaunchCommandHandler.cpp' object='LaunchCommandHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/LaunchCommandHandler.Po' tmpdepfile='$(DEPDIR)/LaunchCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o LaunchCommandHandler.obj `cygpath -w ./CoreApp/LaunchCommandHandler.cpp`
+
+RegExp.o: ./CoreApp/RegExp.cpp
+@AMDEP_TRUE@	source='./CoreApp/RegExp.cpp' object='RegExp.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/RegExp.Po' tmpdepfile='$(DEPDIR)/RegExp.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o RegExp.o `test -f ./CoreApp/RegExp.cpp || echo '$(srcdir)/'`./CoreApp/RegExp.cpp
+
+RegExp.obj: ./CoreApp/RegExp.cpp
+@AMDEP_TRUE@	source='./CoreApp/RegExp.cpp' object='RegExp.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/RegExp.Po' tmpdepfile='$(DEPDIR)/RegExp.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o RegExp.obj `cygpath -w ./CoreApp/RegExp.cpp`
+
+GLAppHandler.o: ./GL/GLAppHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLAppHandler.cpp' object='GLAppHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLAppHandler.Po' tmpdepfile='$(DEPDIR)/GLAppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLAppHandler.o `test -f ./GL/GLAppHandler.cpp || echo '$(srcdir)/'`./GL/GLAppHandler.cpp
+
+GLAppHandler.obj: ./GL/GLAppHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLAppHandler.cpp' object='GLAppHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLAppHandler.Po' tmpdepfile='$(DEPDIR)/GLAppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLAppHandler.obj `cygpath -w ./GL/GLAppHandler.cpp`
+
+GLCommandHandler.o: ./GL/GLCommandHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLCommandHandler.cpp' object='GLCommandHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLCommandHandler.Po' tmpdepfile='$(DEPDIR)/GLCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLCommandHandler.o `test -f ./GL/GLCommandHandler.cpp || echo '$(srcdir)/'`./GL/GLCommandHandler.cpp
+
+GLCommandHandler.obj: ./GL/GLCommandHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLCommandHandler.cpp' object='GLCommandHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLCommandHandler.Po' tmpdepfile='$(DEPDIR)/GLCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLCommandHandler.obj `cygpath -w ./GL/GLCommandHandler.cpp`
+
+GLData.o: ./GL/GLData.cpp
+@AMDEP_TRUE@	source='./GL/GLData.cpp' object='GLData.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLData.Po' tmpdepfile='$(DEPDIR)/GLData.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLData.o `test -f ./GL/GLData.cpp || echo '$(srcdir)/'`./GL/GLData.cpp
+
+GLData.obj: ./GL/GLData.cpp
+@AMDEP_TRUE@	source='./GL/GLData.cpp' object='GLData.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLData.Po' tmpdepfile='$(DEPDIR)/GLData.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLData.obj `cygpath -w ./GL/GLData.cpp`
+
+GLTest.o: ./GL/GLTest.cpp
+@AMDEP_TRUE@	source='./GL/GLTest.cpp' object='GLTest.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTest.Po' tmpdepfile='$(DEPDIR)/GLTest.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTest.o `test -f ./GL/GLTest.cpp || echo '$(srcdir)/'`./GL/GLTest.cpp
+
+GLTest.obj: ./GL/GLTest.cpp
+@AMDEP_TRUE@	source='./GL/GLTest.cpp' object='GLTest.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTest.Po' tmpdepfile='$(DEPDIR)/GLTest.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTest.obj `cygpath -w ./GL/GLTest.cpp`
+
+GLTest1AppHandler.o: ./GL/GLTest1AppHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLTest1AppHandler.cpp' object='GLTest1AppHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTest1AppHandler.Po' tmpdepfile='$(DEPDIR)/GLTest1AppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTest1AppHandler.o `test -f ./GL/GLTest1AppHandler.cpp || echo '$(srcdir)/'`./GL/GLTest1AppHandler.cpp
+
+GLTest1AppHandler.obj: ./GL/GLTest1AppHandler.cpp
+@AMDEP_TRUE@	source='./GL/GLTest1AppHandler.cpp' object='GLTest1AppHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTest1AppHandler.Po' tmpdepfile='$(DEPDIR)/GLTest1AppHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTest1AppHandler.obj `cygpath -w ./GL/GLTest1AppHandler.cpp`
+
+GLTexture.o: ./GL/GLTexture.cpp
+@AMDEP_TRUE@	source='./GL/GLTexture.cpp' object='GLTexture.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTexture.Po' tmpdepfile='$(DEPDIR)/GLTexture.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTexture.o `test -f ./GL/GLTexture.cpp || echo '$(srcdir)/'`./GL/GLTexture.cpp
+
+GLTexture.obj: ./GL/GLTexture.cpp
+@AMDEP_TRUE@	source='./GL/GLTexture.cpp' object='GLTexture.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/GLTexture.Po' tmpdepfile='$(DEPDIR)/GLTexture.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GLTexture.obj `cygpath -w ./GL/GLTexture.cpp`
+
+main.o: ./Main/main.cpp
+@AMDEP_TRUE@	source='./Main/main.cpp' object='main.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/main.Po' tmpdepfile='$(DEPDIR)/main.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o main.o `test -f ./Main/main.cpp || echo '$(srcdir)/'`./Main/main.cpp
+
+main.obj: ./Main/main.cpp
+@AMDEP_TRUE@	source='./Main/main.cpp' object='main.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/main.Po' tmpdepfile='$(DEPDIR)/main.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o main.obj `cygpath -w ./Main/main.cpp`
+
+Test.o: ./Test/Test.cpp
+@AMDEP_TRUE@	source='./Test/Test.cpp' object='Test.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/Test.Po' tmpdepfile='$(DEPDIR)/Test.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Test.o `test -f ./Test/Test.cpp || echo '$(srcdir)/'`./Test/Test.cpp
+
+Test.obj: ./Test/Test.cpp
+@AMDEP_TRUE@	source='./Test/Test.cpp' object='Test.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/Test.Po' tmpdepfile='$(DEPDIR)/Test.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Test.obj `cygpath -w ./Test/Test.cpp`
+
+TestCommandHandler.o: ./Test/TestCommandHandler.cpp
+@AMDEP_TRUE@	source='./Test/TestCommandHandler.cpp' object='TestCommandHandler.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/TestCommandHandler.Po' tmpdepfile='$(DEPDIR)/TestCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o TestCommandHandler.o `test -f ./Test/TestCommandHandler.cpp || echo '$(srcdir)/'`./Test/TestCommandHandler.cpp
+
+TestCommandHandler.obj: ./Test/TestCommandHandler.cpp
+@AMDEP_TRUE@	source='./Test/TestCommandHandler.cpp' object='TestCommandHandler.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/TestCommandHandler.Po' tmpdepfile='$(DEPDIR)/TestCommandHandler.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o TestCommandHandler.obj `cygpath -w ./Test/TestCommandHandler.cpp`
+CXXDEPMODE = @CXXDEPMODE@
+uninstall-info-am:
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	mkid -fID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || etags $(ETAGS_ARGS) $$tags  $$unique $(LISP)
+
+GTAGS:
+	here=`CDPATH=: && cd $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
+
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+
+top_distdir = ..
+distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  if test -f $$file; then d=.; else d=$(srcdir); fi; \
+	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
+	  if test "$$dir" != "$$file" && test "$$dir" != "."; then \
+	    $(mkinstalldirs) "$(distdir)/$$dir"; \
+	  fi; \
+	  if test -d $$d/$$file; then \
+	    cp -pR $$d/$$file $(distdir) \
+	    || exit 1; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || cp -p $$d/$$file $(distdir)/$$file \
+	    || exit 1; \
+	  fi; \
+	done
+check-am: all-am
+check: check-am
+all-am: Makefile $(PROGRAMS)
+
+installdirs:
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+
+install: install-am
+install-exec: install-exec-am
+install-data: install-data-am
+uninstall: uninstall-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+
+installcheck: installcheck-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+	  `test -z '$(STRIP)' || \
+	    echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES) stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+	@echo "This command is intended for maintainers to use"
+	@echo "it deletes files that may require special tools to rebuild."
+clean: clean-am
+
+clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
+
+distclean: distclean-am
+
+distclean-am: clean-am distclean-compile distclean-depend \
+	distclean-generic distclean-tags
+
+dvi: dvi-am
+
+dvi-am:
+
+info: info-am
+
+info-am:
+
+install-data-am:
+
+install-exec-am: install-binPROGRAMS
+
+install-info: install-info-am
+
+install-man:
+
+installcheck-am:
+
+maintainer-clean: maintainer-clean-am
+
+maintainer-clean-am: distclean-am maintainer-clean-generic
+
+mostlyclean: mostlyclean-am
+
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
+
+uninstall-am: uninstall-binPROGRAMS uninstall-info-am
+
+.PHONY: GTAGS all all-am check check-am clean clean-binPROGRAMS \
+	clean-generic distclean distclean-compile distclean-depend \
+	distclean-generic distclean-tags distdir dvi dvi-am info \
+	info-am install install-am install-binPROGRAMS install-data \
+	install-data-am install-exec install-exec-am install-info \
+	install-info-am install-man install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic tags uninstall uninstall-am \
+	uninstall-binPROGRAMS uninstall-info-am
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
