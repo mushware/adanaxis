@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.2 2002/10/15 14:02:31 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.3 2002/10/15 14:39:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.3  2002/10/15 14:39:21  southa
+ * Include fixes
+ *
  * Revision 1.2  2002/10/15 14:02:31  southa
  * Mode changes
  *
@@ -92,7 +95,7 @@ GLUtils::PushMatrix();
             glStr=GLString("Hard sync provides a stable display", GLFontRef("font-mono1", 0.025), 0);
             glStr.Render();
             glStr.TextSet("but sometimes with slower frame rates");
-            gl.MoveTo(0,-0.07);
+            gl.MoveTo(0,-0.08);
             glStr.Render();
             break;
 
@@ -100,7 +103,7 @@ GLUtils::PushMatrix();
             glStr=GLString("Soft sync can provide better frame rates", GLFontRef("font-mono1", 0.025), 0);
             glStr.Render();
             glStr.TextSet("but with slight visual distortion");
-            gl.MoveTo(0,-0.07);
+            gl.MoveTo(0,-0.08);
             glStr.Render();
             break;
             
@@ -142,5 +145,11 @@ PlatformVideoUtils::VBLWait(void)
             //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
         }
     }
+}
+
+void
+PlatformVideoUtils::ForceShowCursor(void)
+{
+    ShowCursor();
 }
 

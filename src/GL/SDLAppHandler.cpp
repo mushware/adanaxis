@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.23 2002/10/14 18:13:17 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.24 2002/10/15 14:02:30 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.24  2002/10/15 14:02:30  southa
+ * Mode changes
+ *
  * Revision 1.23  2002/10/14 18:13:17  southa
  * GLModeDef work
  *
@@ -188,8 +191,9 @@ SDLAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
     }
     else
     {
-        outXDelta=m_mouseXDelta/m_greatestDimension;
-        outYDelta=-m_mouseYDelta/m_greatestDimension;
+        // Normalise based on 640x480 screen
+        outXDelta=m_mouseXDelta/640;
+        outYDelta=-m_mouseYDelta/640;
     }
     m_mouseXDelta=0;
     m_mouseYDelta=0;
@@ -241,7 +245,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     }
     if (surface == NULL) throw(DeviceFail("Could not select a video mode"));
 
-    GLState::PolygonSmoothingSet(false);
 
     // Got video mode
     if (m_width > m_height)
@@ -292,6 +295,7 @@ SDLAppHandler::SetCursorState(bool inValue)
     else
     {
         SDL_ShowCursor(SDL_ENABLE);
+        PlatformVideoUtils::ForceShowCursor();
     }    
 }
 

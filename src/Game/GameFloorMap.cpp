@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.33 2002/10/12 15:25:13 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.34 2002/10/13 12:26:47 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.34  2002/10/13 12:26:47  southa
+ * Facetised map rendering
+ *
  * Revision 1.33  2002/10/12 15:25:13  southa
  * Facet renderer
  *
@@ -319,16 +322,23 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
 }
 
 void
-GameFloorMap::RenderSolidMap(const GameMapArea& inArea)
+GameFloorMap::RenderSolidMap(const GameMapArea& inArea) const
 {
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
     if (!m_solidMapValid)
     {
         RebuildSolidMap();
     }
-    m_solidMap.Render(inArea);
-    glPopMatrix();
+    m_solidMap.RenderSolid(inArea);
+}
+
+void
+GameFloorMap::RenderAdhesionMap(const GameMapArea& inArea) const
+{
+    if (!m_solidMapValid)
+    {
+        RebuildSolidMap();
+    }
+    m_solidMap.RenderAdhesion(inArea);
 }
 
 const GameFloorMap::tMapVector&
@@ -605,8 +615,10 @@ GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
     maxPoint.MakeInteger();
 
     GLPoint point;
-    GLState::BlendSet(GLState::kBlendLine);
+    GLState::DepthSet(GLState::kDepthNone);
     GLState::ModulationSet(GLState::kModulationColour);
+    GLState::BlendSet(GLState::kBlendLine);
+    
     GLState::ColourSet(1, 1, 1, 0.2);
     
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameSolidMap.cpp,v 1.26 2002/10/08 17:13:18 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.27 2002/10/12 15:25:18 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.27  2002/10/12 15:25:18  southa
+ * Facet renderer
+ *
  * Revision 1.26  2002/10/08 17:13:18  southa
  * Tiered maps
  *
@@ -477,11 +480,11 @@ GameSolidMap::CollisionElementCheck(const GameMapPoint& inPoint, const GLQuad& i
 }
 
 void
-GameSolidMap::Render(const GameMapArea& inArea) const
+GameSolidMap::Render(const GameMapArea& inArea, tType inType) const
 {
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
+    GLUtils::PushMatrix();
     gl.SetPosition(0,0);
     GLUtils::Scale(m_xstep, m_ystep, 1);
     GLPoint minPoint=inArea.MinPointGet();
@@ -495,8 +498,9 @@ GameSolidMap::Render(const GameMapArea& inArea) const
     maxPoint.MakeInteger();
 
     GLPoint point;
-    GLState::BlendSet(GLState::kBlendLine);
+    GLState::DepthSet(GLState::kDepthNone);
     GLState::ModulationSet(GLState::kModulationColour);
+    GLState::BlendSet(GLState::kBlendLine);
     
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {
@@ -508,21 +512,28 @@ GameSolidMap::Render(const GameMapArea& inArea) const
                             (point+GLPoint(0.5, 0.5)));
 
                 tVal value;
-                value=PermeabilityGet(GameMapPoint(point));
+                switch (inType)
+                {
+                    case kTypePermeability:
+                        value=PermeabilityGet(GameMapPoint(point));
+                        break;
+
+                    case kTypeAdhesion:
+                        value=AdhesionGet(GameMapPoint(point));
+                        break;
+
+                    default:
+                        value=0;
+                        break;
+                }
                 GLState::ColourSet(0.5+0.5*cos(value*M_PI),
                                    0.5-0.5*cos(value*M_PI),
-                                   (value>1)?1:0, 0.33);
+                                   (value>1)?1:0, 0.7);
                 line.Render();
                 line.RotateAboutCentre(M_PI/2);
-#if 0
-                value=AdhesionGet(GameMapPoint(point));
-                GLState::ColourSet(0.5+0.5*cos(value*M_PI),
-                                   0.5-0.5*cos(value*M_PI),
-                                   (value>1)?1:0, 0.33);
-#endif
                 line.Render();
             }
         }
     }
-    glPopMatrix();
+    GLUtils::PopMatrix();
 }

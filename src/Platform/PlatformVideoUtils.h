@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformVideoUtils.h,v 1.1 2002/10/14 18:13:18 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.2 2002/10/15 14:02:31 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.2  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.1  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -21,6 +24,7 @@ public:
     U32 DefaultModeGet(void) const;
     void RenderModeInfo(U32 inNum) const;
     static void VBLWait(void);
+    static void ForceShowCursor(void);
     
 private:
     vector<GLModeDef> m_modeDefs;

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLLine.cpp,v 1.5 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLLine.cpp,v 1.6 2002/10/10 13:51:16 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.6  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.5  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -35,6 +38,7 @@
 
 #include "GLStandard.h"
 #include "GLUtils.h"
+#include "GLState.h"
 
 GLLine::GLLine(const GLPoint& inStart, const GLPoint& inEnd):
     m_start(inStart),
@@ -106,6 +110,7 @@ GLLine::IsIntersecting(const GLLine& inLine) const
 void
 GLLine::Render(void) const
 {
+    GLState::TextureDisable();
     glBegin(GL_LINES);
     GLUtils::Vertex(m_start.x, m_start.y);
     GLUtils::Vertex(m_end.x, m_end.y);

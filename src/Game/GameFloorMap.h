@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.18 2002/10/10 18:25:15 southa Exp $
+ * $Id: GameFloorMap.h,v 1.19 2002/10/11 14:01:12 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.19  2002/10/11 14:01:12  southa
+ * Lighting work
+ *
  * Revision 1.18  2002/10/10 18:25:15  southa
  * Light links and test lights
  *
@@ -123,7 +126,8 @@ public:
     bool IsInMap(const GameMapPoint inPoint) const;
 
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight);
-    void RenderSolidMap(const GameMapArea& inArea);
+    void RenderSolidMap(const GameMapArea& inArea) const;
+    void RenderAdhesionMap(const GameMapArea& inArea) const;
     void RenderLightMap(const GameMapArea& inArea) const;
         
     const tMapVector& ElementGet(const GLPoint &inPoint) const;

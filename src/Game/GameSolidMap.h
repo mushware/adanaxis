@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameSolidMap.h,v 1.7 2002/08/18 15:13:16 southa Exp $
+ * $Id: GameSolidMap.h,v 1.8 2002/08/27 08:56:26 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.8  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/18 15:13:16  southa
  * Adhesion handling
  *
@@ -69,9 +72,20 @@ public:
     tVal AdhesionGet(const GameMapPoint& inPoint) const;
     void TrimMotion(GameMotionSpec& inSpec) const;
     void OverPlotCollisionSet(const GameMotionSpec& inSpec) const;
-    void Render(const GameMapArea& inArea) const;
+    void RenderSolid(const GameMapArea& inArea) const { Render(inArea, kTypePermeability); }
+    void RenderAdhesion(const GameMapArea& inArea) const { Render(inArea, kTypeAdhesion); }
     
 private:
+    enum tType
+    {
+        kInvalid,
+        kTypeNone,
+        kTypePermeability,
+        kTypeAdhesion
+    };
+
+    void Render(const GameMapArea& inArea, tType inType) const;
+
     typedef vector<GameMapPoint> tCollisionSet;
     void CollisionSetAdd(tCollisionSet& outSet, const GameMotionSpec& inSpec) const;
     void OverPlotBox(const GameMapPoint& inPoint) const;

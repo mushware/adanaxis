@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLQuad.cpp,v 1.5 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLQuad.cpp,v 1.6 2002/08/27 08:56:19 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -34,6 +37,7 @@
 #include "GLQuad.h"
 #include "GLStandard.h"
 #include "GLRectangle.h"
+#include "GLState.h"
 
 
 GLQuad::GLQuad(const GLRectangle& inRectangle)
@@ -119,6 +123,7 @@ GLQuad::BoundingRectangleGet(GLRectangle& outRect) const
 void
 GLQuad::Render(void) const
 {
+    GLState::TextureDisable();
     glBegin(GL_LINE_LOOP);
     glVertex2f(m_points[0].x, m_points[0].y);
     glVertex2f(m_points[1].x, m_points[1].y);

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLRectangle.cpp,v 1.8 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.9 2002/10/10 13:51:16 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.9  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.8  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -44,6 +47,7 @@
 #include "GLRectangle.h"
 #include "GLLine.h"
 #include "GLUtils.h"
+#include "GLState.h"
 
 GLRectangle::GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0):
 xmin(inMinX),
@@ -211,6 +215,7 @@ GLRectangle::Unpickle(CoreXML& inXML)
 void
 GLRectangle::Render(void) const
 {
+    GLState::TextureDisable();
     glBegin(GL_LINE_LOOP);
     GLUtils::Vertex(xmin, ymin);
     GLUtils::Vertex(xmax, ymin);

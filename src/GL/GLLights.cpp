@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.7 2002/10/10 22:47:57 southa Exp $
+ * $Id: GLLights.cpp,v 1.8 2002/10/11 14:01:10 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.8  2002/10/11 14:01:10  southa
+ * Lighting work
+ *
  * Revision 1.7  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -216,7 +219,7 @@ GLLights::CacheInvalidate(U32 inNum)
     {
         if (m_cache[i].value == inNum)
         {
-            cerr << "Invalidated cache slot " << i << endl;
+            // cerr << "Invalidated cache slot " << i << endl;
             m_cache[i].modified=true;
         }
     }

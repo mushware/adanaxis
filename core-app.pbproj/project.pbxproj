@@ -2909,7 +2909,6 @@
 		};
 		F5483A8A02D19C6B01480ACF = {
 			children = (
-				F5955432035EC51401A80164,
 				F54506E502CB469F019E6518,
 			);
 			isa = PBXGroup;
@@ -4309,7 +4308,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F54506E602CB469F019E6518,
-				F5955433035EC51401A80164,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4899,18 +4897,6 @@
 		};
 		F59516480350B32201A80166 = {
 			fileRef = F59516470350B32201A80166;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5955432035EC51401A80164 = {
-			isa = PBXFileReference;
-			name = StartupWindow.nib;
-			path = macosx/macosxlibs/StartupWindow.nib;
-			refType = 4;
-		};
-		F5955433035EC51401A80164 = {
-			fileRef = F5955432035EC51401A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.23 2002/10/12 15:25:13 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.24 2002/10/15 14:02:31 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.24  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.23  2002/10/12 15:25:13  southa
  * Facet renderer
  *
@@ -381,11 +384,11 @@ GameFloorDesigner::Move(void)
     m_primaryButtonState = primaryState;
     m_secondaryButtonState = secondaryState;
 
-    if (glHandler.KeyStateGet('I'))
+    if (glHandler.KeyStateGet('='))
     {
         m_masterScale += (m_masterScale / 100);
     }
-    if (glHandler.KeyStateGet('O'))
+    if (glHandler.KeyStateGet('-'))
     {
         m_masterScale -= (m_masterScale / 100);
     }
@@ -464,7 +467,7 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
             }
             for (U32 i=0; i<destVector.size(); ++i)
             {
-                for (U32 j=1; j<destVector.size(); ++j)
+                for (U32 j=i+1; j<destVector.size(); ++j)
                 {
                     if (destVector[i] == destVector[j] && destVector[i] != 0)
                     {

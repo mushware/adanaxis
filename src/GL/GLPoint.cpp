@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLPoint.cpp,v 1.3 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLPoint.cpp,v 1.4 2002/10/12 11:22:21 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.4  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  * Revision 1.3  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -27,10 +30,12 @@
 
 #include "GLPoint.h"
 #include "GLUtils.h"
+#include "GLState.h"
 
 void
 GLPoint::Render(void) const
 {
+    GLState::TextureDisable();
     glBegin(GL_POINTS);
     GLUtils::Vertex(x, y);
     glEnd();

@@ -2,8 +2,11 @@
 #define GLSTATE_H
 
 /*
- * $Id: GLState.h,v 1.3 2002/10/13 12:26:46 southa Exp $
+ * $Id: GLState.h,v 1.4 2002/10/14 13:03:00 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.4  2002/10/14 13:03:00  southa
+ * Display list test
+ *
  * Revision 1.3  2002/10/13 12:26:46  southa
  * Facetised map rendering
  *
@@ -61,7 +64,6 @@ public:
     static void AmbientLightSet(tVal inAmbient);
     static void ModulationSet(tModulationType inType);
     static void DepthSet(tDepthType inType);
-    static void PolygonSmoothingSet(bool inValue);
     static void UseLightingSet(bool inValue);
     static void Reset(void);
     static void TextureParamsReset(void);
@@ -77,7 +79,6 @@ private:
     static tModulationType m_modulateState;
     static tDepthType m_depthState;
     static tDisplayQuality m_displayQuality;
-    static bool m_polygonSmoothing;
     static bool m_useLighting;
     static bool m_textureEnabled;
 
@@ -104,14 +105,12 @@ GLState::BlendSet(tBlendType inValue)
         switch (inValue)
         {
             case kBlendTransparent:
-                glDisable(GL_POLYGON_SMOOTH);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glEnable(GL_BLEND);
                 break;
 
             case kBlendLine:
             {
-                glDisable(GL_POLYGON_SMOOTH);
                 if (m_displayQuality != kQualityLow)
                 {
                     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -125,22 +124,11 @@ GLState::BlendSet(tBlendType inValue)
             break;
 
             case kBlendNone:
-                glDisable(GL_POLYGON_SMOOTH);
                 glDisable(GL_BLEND);
                 break;
 
             case kBlendSolid:
-                if (m_polygonSmoothing)
-                {
-                    // Set up polygon anti-aliasing
-                    glEnable(GL_POLYGON_SMOOTH);
-                    glBlendFunc(GL_SRC_ALPHA_SATURATE, GL_ONE);
-                    glEnable(GL_BLEND);
-                }
-                else
-                {
-                    glDisable(GL_BLEND);
-                }
+                glDisable(GL_BLEND);
                 break;
 
             default:
@@ -294,6 +282,7 @@ GLState::Reset(void)
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CCW);
+    glDisable(GL_POLYGON_SMOOTH);
     m_depthState=kDepthInvalid;
     DepthSet(kDepthNone);
     m_modulateState=kModulationInvalid;
@@ -306,12 +295,6 @@ GLState::Reset(void)
     glEnableClientState(GL_VERTEX_ARRAY); // Always enabled
     glEnableClientState(GL_TEXTURE_COORD_ARRAY); // Always enabled
     glEnableClientState(GL_NORMAL_ARRAY); // Always enabled
-}
-
-inline void
-GLState::PolygonSmoothingSet(bool inValue)
-{
-    m_polygonSmoothing=inValue;
 }
     
 inline void

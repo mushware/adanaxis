@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.76 2002/10/14 15:13:39 southa Exp $
+ * $Id: GameContract.cpp,v 1.77 2002/10/15 14:02:31 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.77  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.76  2002/10/14 15:13:39  southa
  * Frame rate tweaks for Mac
  *
@@ -283,7 +286,7 @@ GameContract::GameContract() :
     m_currentView(NULL),
     m_modeKeypressTime(0),
     m_newMode(0),
-    m_renderDiagnostics(false),
+    m_renderDiagnostics(kDiagnosticNone),
     m_fastDiagnostics(false)
 {
 }
@@ -316,6 +319,11 @@ GameContract::Process(void)
             Running();
             Over();
             break;
+
+        case kPaused:
+            Paused();
+            break;
+            
     }
 }
 
@@ -330,6 +338,7 @@ GameContract::Display(void)
         
         case kRunning:
         case kOver:
+        case kPaused:
             RunningDisplay();
             break;
 
@@ -399,13 +408,16 @@ GameContract::RunningMove(void)
     GameData::Instance().TypeGet().EventHandler(standingOn);
 
     m_player->MoveGet(motion);
-    if (m_renderDiagnostics)
+    if (m_renderDiagnostics == kDiagnosticCollision)
     {
+        GLState::DepthSet(GLState::kDepthNone);
+        GLState::ModulationSet(GLState::kModulationColour);
+        GLState::BlendSet(GLState::kBlendLine);
         m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
     }
     m_floorMap->SolidMapGet().TrimMotion(motion);
     m_player->MoveConfirm(motion);
-    if (m_renderDiagnostics)
+    if (m_renderDiagnostics == kDiagnosticCollision)
     {
         motion.Render();
     }
@@ -487,16 +499,31 @@ GameContract::RunningDisplay(void)
     
     m_floorMap->Render(visibleArea, highlightArea, vector<bool>());
     GLUtils::Flush();
-    if (m_renderDiagnostics)
+    switch(m_renderDiagnostics)
     {
-        m_floorMap->RenderLightMap(visibleArea);
-    }
+        case kDiagnosticLights:
+            m_floorMap->RenderLightMap(visibleArea);
+            break;
 
+        case kDiagnosticSolidMap:
+            m_floorMap->RenderSolidMap(visibleArea);
+            break;
+
+        case kDiagnosticAdhesionMap:
+            m_floorMap->RenderAdhesionMap(visibleArea);
+            break;
+
+        default:
+            break;
+    }
+            
     GLUtils::PopMatrix();
     GLUtils::PushMatrix();
 
     m_floorMap->SetLightingFor(GameSpacePoint(lookAtPoint.pos));
     GLState::DepthSet(GLState::kDepthTest);
+    GLState::ModulationSet(GLState::kModulationLighting);
+
     GLUtils gl;
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
@@ -504,11 +531,12 @@ GameContract::RunningDisplay(void)
     GLUtils::Scale(2,2,1);
     m_player->Render();
 
-    GLState::DepthSet(GLState::kDepthNone);
 
     GLUtils::PopMatrix();
 
     COREASSERT(m_currentView != NULL);
+    GLState::DepthSet(GLState::kDepthNone);
+    GLState::ModulationSet(GLState::kModulationColour);
     GLState::BlendSet(GLState::kBlendLine);
     m_currentView->OverPlotGet().Render();
     m_currentView->OverPlotGet().Clear();
@@ -523,7 +551,22 @@ GameContract::RunningDisplay(void)
     GLUtils::Flush();
 
     GameData::Instance().TypeGet().Render();
-    
+
+    if (m_gameState == kPaused)
+    {
+        static tVal rotateAdd=0;
+        static tVal rotateTime=0;
+        static tVal rotateCtr=0;
+        rotateCtr+=0.1*cos(rotateAdd-rotateTime*1.5);
+        rotateAdd+=0.01*cos(sin(rotateAdd*1.3)-cos(rotateCtr*1.7)+sin(rotateTime*1.8));
+        rotateTime+= 0.01;
+        GLUtils::OrthoPrologue();
+        GLState::ColourSet(1,0.5+0.5*sin(rotateCtr*0.85),0.5+0.5*cos(rotateCtr*1.23),0.8);
+        GLString glStr("PAUSED", GLFontRef("font-mono1", 0.07+0.05*cos(rotateCtr*1.35)),0);
+        GLUtils::RotateAboutZ(rotateCtr);
+        glStr.Render();
+        GLUtils::OrthoEpilogue();
+    }
     GLUtils::DisplayEpilogue();
 }
 
@@ -634,6 +677,15 @@ GameContract::Running(void)
 }
 
 void
+GameContract::Paused(void)
+{
+    GLUtils::PostRedisplay();
+    GlobalKeyControl();
+    MediaAudio::Instance().Ticker();
+}
+
+
+void
 GameContract::Over(void)
 {
     // Expects Running to have been called as well
@@ -669,10 +721,30 @@ GameContract::GlobalKeyControl(void)
         GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
         GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
         GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
+        gameAppHandler.LatchedKeyStateTake('-');
+        gameAppHandler.LatchedKeyStateTake('=');
     }
+    if (gameAppHandler.LatchedKeyStateTake('p'))
+    {
+        if (m_gameState == kRunning)
+        {
+            m_gameState=kPaused;
+        }
+        else if (m_gameState == kPaused)
+        {
+            m_gameState=kRunning;
+        }
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('q'))
+    {
+        m_gameState=kInit;
+    }
+    
     if (gameAppHandler.LatchedKeyStateTake('m'))
     {
-        m_renderDiagnostics=!m_renderDiagnostics;
+        m_renderDiagnostics = static_cast<tDiagnostic>(m_renderDiagnostics+1);
+        if (m_renderDiagnostics == kDiagnosticLast) m_renderDiagnostics=kDiagnosticNone;
     }
     if (gameAppHandler.LatchedKeyStateTake('n'))
     {

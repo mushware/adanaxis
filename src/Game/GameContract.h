@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.27 2002/10/08 17:13:17 southa Exp $
+ * $Id: GameContract.h,v 1.28 2002/10/15 14:02:31 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.28  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.27  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -129,12 +132,14 @@ protected:
     {
         kInit,
         kRunning,
+        kPaused,
         kDesigning,
         kOver
     };
 
     virtual void Init(void);
     virtual void Running(void);
+    virtual void Paused(void);
     virtual void Designing(void);
     virtual void Over(void);
     virtual void InitDisplay(void);
@@ -171,6 +176,17 @@ private:
     U32 m_pickleState;
     CoreScript m_script;
 
+    enum tDiagnostic
+    {
+        kDiagnosticInvalid,
+        kDiagnosticNone,
+        kDiagnosticCollision,
+        kDiagnosticSolidMap,
+        kDiagnosticAdhesionMap,
+        kDiagnosticLights,
+        kDiagnosticLast
+    };
+    
     GameState m_gameState;
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
@@ -181,9 +197,8 @@ private:
     GameView *m_currentView;
     GameTimer::tMsec m_modeKeypressTime;
     U32 m_newMode;
-    bool m_renderDiagnostics;
+    tDiagnostic m_renderDiagnostics;
     bool m_fastDiagnostics;
-    
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
