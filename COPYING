@@ -1,5 +1,5 @@
-Mushware software licence
-=========================
+Mushware software licence version 1.0
+=====================================
 
 1.  The software is provided WITHOUT WARRANTY of any kind.
 
@@ -9,7 +9,7 @@ Mushware software licence
 3.  This Package may be used, installed, and redistributed in unmodified
     form without restriction.
 
-4.  Distribution of modified versions of thie Package is permitted but
+4.  Distribution of modified versions of this Package is permitted but
     subject to the conditions below and those imposed by the licences of
     libraries used by this Package.
 
@@ -18,24 +18,24 @@ Mushware software licence
     contains no files you may, at your option, replace this licence with
     version 2 of the GNU General Public License.
 
-Proprietory original source code
+Proprietary original source code
 ================================
 
-6.1  Proprietory original source code consists of those files listed in
+6.1  Proprietary original source code consists of those files listed in
      Schedule 2.
      
-6.2  Proprietory original source code files are copyrighted by or licenced to
+6.2  Proprietary original source code files are copyrighted by or licenced to
      the Company.  At your option, they may be used and distributed under
      either:
 
-6.2.1  The terms for other proprietory files below.
+6.2.1  The terms for other proprietary files below.
 6.2.2  Version 2 of the GNU General Public License.
 6.2.3  A separate licence from the Company.
 
-Other proprietory files
+Other proprietary files
 =======================
 
-7.1  Other proprietory files are those on the list of proprietory files
+7.1  Other proprietary files are those on the list of proprietary files
      specified in Schedule 3.
     
 7.2  The Company grants you a licence to use and distribute these files only
@@ -53,15 +53,15 @@ Build configuration files
 8.2  Build configuration files follow the normal licence conditions for such
      files.  Licence conditions are generally stated within those files.
 
-Non-proprietory files
+Non-proprietary files
 =====================
 
-9.1  Non-proprietory files are those created by the Author and included in This
+9.1  Non-proprietary files are those created by the Author and included in This
      Distribution, but not in the classes above.
 
-9.2  Non-proprietory files are placed in the public domain by the Author and
-     the Company.  The author hereby relinquished all copyright rights on
-     those files.  The Company, as the author's employer during the time of
+9.2  Non-proprietary files are placed in the public domain by the Author and
+     the Company.  The Author hereby relinquishes all copyright rights on
+     those files.  The Company, as the Author's employer during the time of
      authorship, claims no rights thereon.
 
 Schedule 1: Definitions
@@ -70,22 +70,22 @@ Schedule 1: Definitions
 The Company: Mushware Limited, number 3410722 registered in England,
              registered office 47 Lower Brook St, Ipswich, England.
      
-The Author: Andy Southgate, of 55 Kimberley Raod, Cambridge, England
+The Author: Andy Southgate of 55 Kimberley Road, Cambridge, England
 
 This Package: The software, package or installer named
               Infernal Contractor II version 0.1.1
 
-Schedule 2: Proprietory original source files
+Schedule 2: Proprietary original source files
 =============================================
 
-Proprietory original source code files for this Package:
+Proprietary original source code files for this Package:
 
 All files in the src/Mustl directory of the source distribution.
 
-Schedule 3: Other proprietory files
+Schedule 3: Other proprietary files
 ====================================
 
-Other proprietory files for this Package:
+Other proprietary files for this Package:
 
 (empty list)
 

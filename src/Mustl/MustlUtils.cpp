@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.cpp,v 1.11 2003/01/13 15:01:20 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.12 2003/01/20 10:45:31 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.12  2003/01/20 10:45:31  southa
+ * Singleton tidying
+ *
  * Revision 1.11  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -290,6 +293,28 @@ MustlUtils::RemoveMeta(const string& inStr)
                 retStr += charVal;
             }
             i+=2;
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
+}
+
+string
+MustlUtils::InsertMeta(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte >= ' ' && byte < '0')
+        {
+            retStr += "%";
+            retStr += "0123456789ABCDEF"[byte / 16];
+            retStr += "0123456789ABCDEF"[byte % 16];
         }
         else
         {

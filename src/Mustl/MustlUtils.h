@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.h,v 1.5 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlUtils.h,v 1.6 2003/01/14 12:40:11 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.6  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  * Revision 1.5  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -83,6 +86,7 @@ public:
     static Mustl::U32 MakeWebSafe(Mustl::U32 inValue) { return inValue; }
     static Mustl::tVal MakeWebSafe(Mustl::tVal inValue) { return inValue; }
     static std::string RemoveMeta(const std::string& inStr);
+    static std::string InsertMeta(const std::string& inStr);
     static void TruncateLogSet(bool inTruncate) { m_truncateLog=inTruncate; }
     
 private:

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebCommands.cpp,v 1.6 2003/01/20 12:23:24 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.7 2003/04/06 12:35:23 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.7  2003/04/06 12:35:23  southa
+ * Fixes for release
+ *
  * Revision 1.6  2003/01/20 12:23:24  southa
  * Code and interface tidying
  *
@@ -152,6 +155,20 @@ MustlWebCommands::MustlPrintPackageID(MushcoreCommand& ioCommand, MushcoreEnv& i
     return MushcoreScalar(0);
 }
 
+MushcoreScalar
+MustlWebCommands::MustlPrintMetaPackageID(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    ioEnv.Out() << MustlUtils::InsertMeta(MushcoreInfo::Sgl().PackageIDGet());
+    return MushcoreScalar(0);
+}
+
+MushcoreScalar
+MustlWebCommands::MustlPrintApplicationName(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    ioEnv.Out() << MushcoreInfo::Sgl().ApplicationNameGet();
+    return MushcoreScalar(0);
+}
+
 void
 MustlWebCommands::Install(void)
 {
@@ -160,6 +177,8 @@ MustlWebCommands::Install(void)
     MushcoreInterpreter::Sgl().HandlerAdd("mustlserverstatuswrite", MustlServerStatusWrite);
     MushcoreInterpreter::Sgl().HandlerAdd("mustllinkstatuswrite", MustlLinkStatusWrite);
     MushcoreInterpreter::Sgl().HandlerAdd("mustlprintpackageid", MustlPrintPackageID);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlprintmetapackageid", MustlPrintMetaPackageID);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlprintapplicationname", MustlPrintApplicationName);
 }
 
 void
