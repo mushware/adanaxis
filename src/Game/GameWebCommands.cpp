@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.10 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.11 2002/11/27 16:35:09 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.11  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.10  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -140,6 +143,59 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         gameDefServer.ServerMessageSet(serverMessage);
         gameDefServer.HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
                                GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
+    }
+    else if (matches[1] == "linkcleardown")
+    {
+        CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+
+        for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin(); p != endValue; ++p)
+        {
+            p->second->Disconnect(MediaNetProtocol::kReasonCodeUserDisconnect);
+        }
+    }
+    else if (matches[1] == "hostcleardown")
+    {
+        bool found=true;
+        while(found)
+        {
+            found=false;
+            CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
+
+            for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+            {
+                GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
+                GameDefClient *clientDef = dynamic_cast<GameDefClient *>(p->second);
+                if ((serverDef != NULL && !serverDef->IsImage()) ||
+                    (clientDef != NULL && clientDef->IsImage()))
+                {
+                    CoreData<GameDef>::Instance().DataDelete(p->first);
+                    found=true;
+                    break;
+                }
+            }
+        }
+    }
+    else if (matches[1] == "joincleardown")
+    {
+        bool found=true;
+        while(found)
+        {
+            found=false;
+            CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
+
+            for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+            {
+                GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
+                GameDefClient *clientDef = dynamic_cast<GameDefClient *>(p->second);
+                if ((serverDef != NULL && serverDef->IsImage()) ||
+                    (clientDef != NULL && !clientDef->IsImage()))
+                {
+                    CoreData<GameDef>::Instance().DataDelete(p->first);
+                    found=true;
+                    break;
+                }
+            }
+        }
     }
     else if (matches[1] == "quit")
     {
@@ -316,7 +372,7 @@ GameWebCommands::GameLinkStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     
     // Link status
-    ioEnv.Out() << "<br><br><font class=\"boldtitle\">Link Status</font>" << endl;
+    ioEnv.Out() << "<font class=\"boldtitle\">Link Status</font>" << endl;
 
     ioEnv.Out() << "<br><br><table class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
     ioEnv.Out() << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";

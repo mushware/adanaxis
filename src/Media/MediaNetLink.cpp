@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.19 2002/11/27 13:23:27 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.20 2002/11/27 16:35:09 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.20  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.19  2002/11/27 13:23:27  southa
  * Server and client data exchange
  *
@@ -590,7 +593,6 @@ MediaNetLink::Receive(MediaNetData * & outData)
     UDPReceive(m_udpState.linkData);
     if (!m_udpState.linkData.IsEmptyForRead())
     {
-        m_lastActivityMsec = SDL_GetTicks();
         MediaNetProtocol::Unpack(m_udpState.linkData);
         if (MediaNetProtocol::MessageTake(m_udpState.linkData))
         {
@@ -602,7 +604,6 @@ MediaNetLink::Receive(MediaNetData * & outData)
     TCPReceive(m_tcpState.linkData);
     if (!m_tcpState.linkData.IsEmptyForRead())
     {
-        m_lastActivityMsec = SDL_GetTicks();
         MediaNetProtocol::Unpack(m_tcpState.linkData);
         if (MediaNetProtocol::MessageTake(m_tcpState.linkData))
         {

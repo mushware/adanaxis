@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.11 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameSetup.cpp,v 1.12 2002/11/27 17:44:20 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.12  2002/11/27 17:44:20  southa
+ * Network fixes
+ *
  * Revision 1.11  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -205,9 +208,9 @@ GameSetup::Config(void)
             catch (NetworkFail& e)
             {
                 static U32 failedPortNum=65536;
-                MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
                 if (portNum != failedPortNum)
                 {
+                    MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what() << endl;
                     PlatformMiscUtils::MinorErrorBox(e.what());
                     failedPortNum=portNum;
                 }

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.17 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.18 2002/11/27 17:44:20 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.18  2002/11/27 17:44:20  southa
+ * Network fixes
+ *
  * Revision 1.17  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -72,45 +75,59 @@ MediaNetServer::Connect(U32 inPort)
     {
         Disconnect();
     }
-    
-    m_serverPortHostOrder=inPort;
-        
+
     MediaNet::Instance();
-    
+
     IPaddress ip;
-    if (SDLNet_ResolveHost(&ip, NULL, inPort) == -1)
+
+    for (U32 portNum=inPort; ; ++portNum)
     {
-        ostringstream message;
-        message << "Resolution for server creation failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-
-    m_tcpSocket=SDLNet_TCP_Open(&ip);
-
-    if (m_tcpSocket == NULL)
-    {
-        ostringstream message;
-        message << "Server socket creation failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-
-    try
-    {
-        m_udpSocket = SDLNet_UDP_Open(m_serverPortHostOrder);
-
-        if (m_udpSocket == 0)
+        try
         {
-            throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
-        }
 
-        PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
+            if (SDLNet_ResolveHost(&ip, NULL, portNum) == -1)
+            {
+                ostringstream message;
+                message << "Resolution for server creation failed: " << SDLNet_GetError();
+                throw(NetworkFail(message.str()));
+            }
+            m_tcpSocket=SDLNet_TCP_Open(&ip);
+    
+            if (m_tcpSocket == NULL)
+            {
+                ostringstream message;
+                message << "Server socket creation failed: " << SDLNet_GetError();
+                throw(NetworkFail(message.str()));
+            }
+    
+            m_udpSocket = SDLNet_UDP_Open(portNum);
+
+            if (m_udpSocket == 0)
+            {
+                SDLNet_TCP_Close(m_tcpSocket);
+                throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
+            }
+
+            PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
+            m_serverPortHostOrder=portNum;
+            break;
+        }
+    
+        catch (exception& e)
+        {
+            static U32 errCtr=0;
+            
+            if (++errCtr < 100)
+            {
+                MediaNetLog::Instance().NetLog() << "Server creation failed on port " << inPort << ": " << e.what() << endl;
+            }
+            if (portNum > inPort+7) throw;
+        }
     }
-    catch (...)
-    {
-        SDLNet_TCP_Close(m_tcpSocket);
-        throw;
-    }
-    MediaNetLog::Instance().NetLog() << "Created server on port " << inPort << endl;
+    COREASSERT(m_tcpSocket != NULL);
+    COREASSERT(m_udpSocket != NULL);
+    
+    MediaNetLog::Instance().NetLog() << "Created server on port " << m_serverPortHostOrder << endl;
     m_serving=true;
 }
 
