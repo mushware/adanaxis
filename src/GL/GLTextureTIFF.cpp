@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureTIFF.cpp,v 1.1 2002/05/28 13:07:00 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.2 2002/05/28 16:37:40 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.2  2002/05/28 16:37:40  southa
+ * Texture references and decomposer
+ *
  * Revision 1.1  2002/05/28 13:07:00  southa
  * Command parser extensions and TIFF loader
  *
@@ -52,11 +55,24 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             for (U32 i=0; i<numPixels; i++)
             {
                 U32 col=*srcData++;
+                U8 *bytePtr=(U8 *)destData;
+                *bytePtr++=col;
+                *bytePtr++=col>>8;
+                *bytePtr++=col>>16;
+                *bytePtr++=col>>24;
+                destData++;
+#if 0
+#ifdef WORDS_BIGENDIAN
                 *destData++=
                     (col & 0xff) << 24 |
                     (col & 0xff00) << 8 |
                     (col & 0xff0000) >> 8 |
                     (col & 0xff000000)>> 24;
+#else
+                *destData++=col;
+#endif
+#endif
+                    
             }
             COREASSERT(srcData == tiffData+width*height);
             COREASSERT(destData == def.DataPtr()+width*height);
