@@ -8,9 +8,40 @@ installation.
 
 Install the Developer Tools.
 
+Check that your tools can build the application.  From Project Builder, create
+a new project of type 'C++ tool'.  Replace the contents of the main.cpp file
+with the following:
+
+#include <string>
+#include <map>
+
+class SomeClass
+{
+public:
+    void SomeFunction(void) {}
+};
+
+std::map<std::string, void (SomeClass::*)(void)> someMap;
+
+int main (int argc, const char * argv[])
+{
+    someMap["some"]=&SomeClass::SomeFunction;
+    return 0;
+}
+
+If the above will not compile, you will need to use gcc-2.95 to compile the
+software.  Open a terminal (Applications->Utilities->Terminal) and enter:
+
+sudo gcc_select 2
+
+Note that this has a fundamental effect on your development system, and can be
+reversed using:
+
+sudo gcc_select 3
+
 Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
 whichever version you choose to build) into your home directory.  Open
-a termianl (Applications->Utilities->Terminal).
+a terminal (Applications->Utilities->Terminal).
 
 tar xvzf ic2-src-0_0_4.tar.gz
 cd ic2-0.0.4
