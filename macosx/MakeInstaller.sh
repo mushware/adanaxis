@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: MakeInstaller.sh,v 1.1 2002/07/01 13:46:12 southa Exp $
+# $Log: MakeInstaller.sh,v $
+# Revision 1.1  2002/07/01 13:46:12  southa
+# MacOS X installer automation
+#
 #
 
 # Script for generating the MacOS X installer.  Needs a bit of manual
@@ -27,7 +30,7 @@ fi
 
 version=$1
 
-echo 'Building MacOS X installer for version $version'
+echo "Building MacOS X installer for version $version"
 echo '***************************************************************'
 echo '*                                                             *'
 echo '* Remember to create the alias for the application in ic2data *'
