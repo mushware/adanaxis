@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.14 2002/10/10 18:25:15 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.15 2002/10/10 22:47:57 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.15  2002/10/10 22:47:57  southa
+ * Full light definitions
+ *
  * Revision 1.14  2002/10/10 18:25:15  southa
  * Light links and test lights
  *
@@ -87,35 +90,38 @@ GameTileTraits::Render(void)
 bool
 GameTileTraits::PermeabilityGet(tVal& outPermeability) const
 {
-    outPermeability=1;
-    bool foundPerm=false;
+    // Permeability returns the highest value it finds
+    bool found=false;
+    tVal bestValue=0;
+    
     if (m_hasPermeability)
     {
-        outPermeability=m_permeability;
-        foundPerm=true;
+        bestValue=m_permeability;
+        found=true;
     }
 
     for (U32 i=0; i<NumberOfTraitsGet(); ++i)
     {
-        tVal newPerm;
+        tVal newValue;
         GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
-        if (traits.PermeabilityGet(newPerm))
+        if (traits.PermeabilityGet(newValue))
         {
-            if (!foundPerm || newPerm < outPermeability)
+            if (!found || newValue < bestValue)
             {
-                outPermeability=newPerm;
-                foundPerm=true;
+                bestValue=newValue;
+                found=true;
             }
         }
     }
 
-    return foundPerm;
+    if (found) outPermeability=bestValue;
+    return found;    
 }
 
 bool
 GameTileTraits::AdhesionGet(tVal& outAdhesion) const
 {
-    outAdhesion=1;
+    // Adhesion return the first value it finds
     if (m_hasAdhesion)
     {
         outAdhesion=m_adhesion;
@@ -130,7 +136,6 @@ GameTileTraits::AdhesionGet(tVal& outAdhesion) const
             return true;
         }
     }
-
     return false;
 }
 
@@ -230,9 +235,9 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
-    m_permeability=1.001;
+    m_permeability=-1;
     m_hasPermeability=false;
-    m_adhesion=1.001;
+    m_adhesion=-1;
     m_hasAdhesion=false;
     m_hasLight=false;
     

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.36 2002/10/10 22:47:57 southa Exp $
+ * $Id: GLUtils.cpp,v 1.37 2002/10/11 14:01:10 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.37  2002/10/11 14:01:10  southa
+ * Lighting work
+ *
  * Revision 1.36  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -653,7 +656,7 @@ GLUtils::TextureParamsReset(void)
             break;
 
         case kQualityMedium:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
             break;
 

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.71 2002/10/10 22:47:57 southa Exp $
+ * $Id: GameContract.cpp,v 1.72 2002/10/11 14:01:11 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.72  2002/10/11 14:01:11  southa
+ * Lighting work
+ *
  * Revision 1.71  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -466,12 +469,11 @@ GameContract::RunningDisplay(void)
 
     m_floorMap->SetLightingFor(GameSpacePoint(lookAtPoint.pos));
     GLUtils::ModulationSet(GLUtils::kModulationLighting);
-    
     GLUtils gl;
     gl.SetPosition(0,0);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-    GLUtils::Scale(2, 2, 1);
+    GLUtils::Scale(2,2,1);
     m_player->Render();
 
     GLUtils::DepthSet(GLUtils::kDepthNone);
@@ -628,7 +630,7 @@ GameContract::GlobalKeyControl(void)
         }
         else
         {
-            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.02);
+            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
             m_floorMap->SolidMapInvalidate();
             gameAppHandler.SetCursorState(false);
             m_gameState=kRunning;

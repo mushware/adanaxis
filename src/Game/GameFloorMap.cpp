@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.30 2002/10/10 22:47:57 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.31 2002/10/11 14:01:12 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.31  2002/10/11 14:01:12  southa
+ * Lighting work
+ *
  * Revision 1.30  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -444,7 +447,7 @@ GameFloorMap::RebuildSolidMap(void) const
         {
             const tMapVector& mapVec=ElementGet(GLPoint(x,y));
             U32 size=mapVec.size();
-            tVal adhesion=-0.001;
+            tVal adhesion=-1;
             tVal permeability=4;
             for (U32 i=0; i<size; ++i)
             {
@@ -462,7 +465,7 @@ GameFloorMap::RebuildSolidMap(void) const
                     if (value > adhesion) adhesion = value;
                 }
             }
-            if (adhesion < 0 || permeability == 4)
+            if (adhesion < 0 || adhesion > 1.0 || permeability < 0 || permeability >= 4)
             {
 
                 ostringstream message;
@@ -475,7 +478,7 @@ GameFloorMap::RebuildSolidMap(void) const
                     message << mapVec[i];
                     if (i+1 != size) message << ",";
                 }
-                message << "] missing adhesion or permeability value at (" << x << "," << y << ")";
+                message << "] bad adhesion or permeability value at (" << x << "," << y << ")";
                 throw(ReferenceFail(message.str()));
             }
             m_solidMap.PermeabilitySet(permeability, x, y);
