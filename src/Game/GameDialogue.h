@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.1 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameDialogue.h,v 1.2 2002/08/10 12:34:48 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.2  2002/08/10 12:34:48  southa
+ * Added current dialogues
+ *
  * Revision 1.1  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -54,29 +57,28 @@ private:
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
+    // End of pickle
 
-    vector<GLString> m_strings;
-    vector<GameMotionSpec> m_motionSpecs;
-    vector<GLColour> m_startColours;
-    vector<GLColour> m_midColours;
-    vector<GLColour> m_endColours;
-    vector<tVal> m_startTimes;
-    vector<tVal> m_endTimes;
-    vector<tVal> m_fadeTimes;
-    vector<tVal> m_startSizes;
-    vector<tVal> m_midSizes;
-    vector<tVal> m_endSizes;
-    GLColour m_currentStartColour;
-    GLColour m_currentMidColour;
-    GLColour m_currentEndColour;
-    GLFontRef m_currentFontRef;
-    GameMotion m_currentMotion;
-    tVal m_currentStartTime;
-    tVal m_currentEndTime;
-    tVal m_currentFadeTime;
-    tVal m_currentStartSize;
-    tVal m_currentMidSize;
-    tVal m_currentEndSize;
+    class StringSpec
+    {
+    public:
+        GLString string;
+        GameMotionSpec motionSpec;
+        GLColour startColour;
+        GLColour midColour;
+        GLColour endColour;
+        tVal startTime;
+        tVal endTime;
+        tVal fadeTime;
+        tVal startSize;
+        tVal midSize;
+        tVal endSize;
+    };
+
+    StringSpec m_currentSpec;
+    vector<StringSpec> m_specs;
+    GLFontRef m_fontRef;
+    GameMotion m_motion;
     tVal m_age;
     bool m_expired;
 };

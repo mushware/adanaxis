@@ -1,6 +1,9 @@
 /*
- * $Id: GLString.h,v 1.1 2002/08/08 13:39:09 southa Exp $
+ * $Id: GLString.h,v 1.2 2002/08/09 17:09:02 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.2  2002/08/09 17:09:02  southa
+ * GameDialogue added
+ *
  * Revision 1.1  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -14,6 +17,7 @@
 class GLString : public GLRenderable
 {
 public:
+    GLString() {}
     GLString(const string& inValue, const GLFontRef& inFont, tVal inAlign);
     void AlignmentSet(tVal inAlign) { m_alignment=inAlign; }
     virtual void Render(void) const;

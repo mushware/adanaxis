@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.2 2002/08/10 12:34:48 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.3 2002/08/13 17:50:21 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.3  2002/08/13 17:50:21  southa
+ * Added playsound command
+ *
  * Revision 1.2  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
@@ -20,32 +23,27 @@ GameDialogue::Render(void) const
 {
     GameTimer& timer(GameData::Instance().TimerGet());
    
-    U32 size=m_strings.size();
-    COREASSERT(size==m_motionSpecs.size());
-    COREASSERT(size==m_startColours.size());
-    COREASSERT(size==m_midColours.size());
-    COREASSERT(size==m_endColours.size());
-    COREASSERT(size==m_startTimes.size());
-    COREASSERT(size==m_endTimes.size());
-    COREASSERT(size==m_fadeTimes.size());
+    U32 size=m_specs.size();
     
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     tVal windbackValue=timer.WindbackValueGet(glAppHandler.MillisecondsGet());
+
     
     for (U32 i=0; i<size; ++i)
     {
-        if (m_age >= m_startTimes[i] && m_age < m_endTimes[i])
+        const StringSpec& spec=m_specs[i];
+        if (m_age >= spec.startTime && m_age < spec.endTime)
         {
             tVal startMult(0),midMult(0),endMult(0);
-            if (m_age < m_startTimes[i])
+            if (m_age < spec.startTime)
             {
                 startMult=1;
             }
-            else if (m_age < m_endTimes[i])
+            else if (m_age < spec.endTime)
             {
-                startMult = 1 - (m_age - m_startTimes[i]) / m_fadeTimes[i];
+                startMult = 1 - (m_age - spec.startTime) / spec.fadeTime;
                 if (startMult < 0) startMult=0;
-                endMult = 1 - (m_endTimes[i] - m_age) / m_fadeTimes[i];
+                endMult = 1 - (spec.endTime - m_age) / spec.fadeTime;
                 if (endMult < 0) endMult=0;
                 midMult=1-startMult-endMult;
             }
@@ -54,24 +52,24 @@ GameDialogue::Render(void) const
                 endMult=1;
             }
             
-            GameMotionSpec motionSpec(m_motionSpecs[i]);
+            GameMotionSpec motionSpec(spec.motionSpec);
             motionSpec.Windback(windbackValue);
             GLUtils::PushMatrix();
             GLUtils gl;
             gl.MoveTo(motionSpec.pos);
             GLUtils::RotateAboutZ(motionSpec.angle);
             GLColour colour=
-                startMult*m_startColours[i] +
-                midMult*m_midColours[i] +
-                endMult*m_endColours[i];
+                startMult*spec.startColour +
+                midMult*spec.midColour +
+                endMult*spec.endColour;
             colour.Apply();
             
             tVal scale=
-                startMult*m_startSizes[i] +
-                midMult*m_midSizes[i] +
-                endMult*m_endSizes[i];
+                startMult*spec.startSize +
+                midMult*spec.midSize +
+                endMult*spec.endSize;
             GLUtils::Scale(scale, scale, 1);
-            m_strings[i].Render();
+            spec.string.Render();
             GLUtils::PopMatrix();
         }
     }
@@ -80,16 +78,18 @@ GameDialogue::Render(void) const
 void
 GameDialogue::Move(void)
 {
-    U32 size=m_motionSpecs.size();
+    U32 size=m_specs.size();
     bool expired=true;
     for (U32 i=0; i<size; ++i)
     {
-        if (m_age < m_endTimes[i])
+        StringSpec& spec=m_specs[i];
+
+        if (m_age < spec.endTime)
         {
             expired=false;
-            if (m_age >= m_startTimes[i])
+            if (m_age >= spec.startTime)
             {
-                m_motionSpecs[i].ApplyDelta();
+                spec.motionSpec.ApplyDelta();
             }
         }
     }
@@ -101,29 +101,23 @@ void
 GameDialogue::HandleTextEnd(CoreXML& inXML)
 {
     CoreScalar alignment(CoreScalar(0));
-    inXML.GetAttrib(alignment, "align");
-    m_strings.push_back(GLString(inXML.TopData(), m_currentFontRef, alignment.ValGet()));
-    m_motionSpecs.push_back(m_currentMotion.MotionSpecGet());
-    m_startColours.push_back(m_currentStartColour);
-    m_midColours.push_back(m_currentMidColour);
-    m_endColours.push_back(m_currentEndColour);
-    m_startSizes.push_back(m_currentStartSize);
-    m_midSizes.push_back(m_currentMidSize);
-    m_endSizes.push_back(m_currentEndSize);
-    m_startTimes.push_back(m_currentStartTime);
-    m_endTimes.push_back(m_currentEndTime);
-    m_fadeTimes.push_back(m_currentFadeTime);
 
-    GameMotionSpec motionSpec=m_currentMotion.MotionSpecGet();
-    motionSpec.pos.y -= m_currentFontRef.SizeGet()*m_currentMidSize;
-    m_currentMotion.MotionSpecSet(motionSpec);
+    GameMotionSpec motionSpec=m_motion.MotionSpecGet();
+
+    inXML.GetAttrib(alignment, "align");
+    m_currentSpec.string=GLString(inXML.TopData(), m_fontRef, alignment.ValGet());
+    m_currentSpec.motionSpec=motionSpec;
+    m_specs.push_back(m_currentSpec);
+    
+    motionSpec.pos.y -= m_fontRef.SizeGet()*m_currentSpec.midSize;
+    m_motion.MotionSpecSet(motionSpec);
 }
 
 void
 GameDialogue::HandleFontEnd(CoreXML& inXML)
 {
     tVal size=inXML.GetAttribOrThrow("size").ValGet();
-    m_currentFontRef=GLFontRef(inXML.TopData(), size);
+    m_fontRef=GLFontRef(inXML.TopData(), size);
 }
 
 void
@@ -131,7 +125,7 @@ GameDialogue::HandleStartTimeEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for starttime.  Should be <starttime>100.0</starttime>";
-    if (!(data >> m_currentStartTime)) inXML.Throw(failMessage);
+    if (!(data >> m_currentSpec.startTime)) inXML.Throw(failMessage);
 }
 
 void
@@ -139,7 +133,7 @@ GameDialogue::HandleEndTimeEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for endtime.  Should be <endtime>100.0</endtime>";
-    if (!(data >> m_currentEndTime)) inXML.Throw(failMessage);
+    if (!(data >> m_currentSpec.endTime)) inXML.Throw(failMessage);
 }
 
 void
@@ -147,8 +141,8 @@ GameDialogue::HandleFadeTimeEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for fadetime.  Should be <fadetime>100.0</fadetime>";
-    if (!(data >> m_currentFadeTime)) inXML.Throw(failMessage);
-    if (fabs(m_currentFadeTime) < 1) m_currentFadeTime=1;
+    if (!(data >> m_currentSpec.fadeTime)) inXML.Throw(failMessage);
+    if (fabs(m_currentSpec.fadeTime) < 1) m_currentSpec.fadeTime=1;
 }
 
 void
@@ -157,37 +151,37 @@ GameDialogue::HandleSizesEnd(CoreXML& inXML)
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for sizes.  Should be <sizes>0.0,1.0,0.0</sizes>";
     char comma;
-    if (!(data >> m_currentStartSize)) inXML.Throw(failMessage);
+    if (!(data >> m_currentSpec.startSize)) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
 
-    if (!(data >> m_currentMidSize)) inXML.Throw(failMessage);
+    if (!(data >> m_currentSpec.midSize)) inXML.Throw(failMessage);
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
 
-    if (!(data >> m_currentEndSize)) inXML.Throw(failMessage);
+    if (!(data >> m_currentSpec.endSize)) inXML.Throw(failMessage);
 }
 
 void
 GameDialogue::HandleStartColourEnd(CoreXML& inXML)
 {
-    m_currentStartColour.Unpickle(inXML);
+    m_currentSpec.startColour.Unpickle(inXML);
 }
 
 void
 GameDialogue::HandleMidColourEnd(CoreXML& inXML)
 {
-    m_currentMidColour.Unpickle(inXML);
+    m_currentSpec.midColour.Unpickle(inXML);
 }
 
 void
 GameDialogue::HandleEndColourEnd(CoreXML& inXML)
 {
-    m_currentEndColour.Unpickle(inXML);
+    m_currentSpec.endColour.Unpickle(inXML);
 }
 
 void
 GameDialogue::HandleMotionStart(CoreXML& inXML)
 {
-    m_currentMotion.Unpickle(inXML);
+    m_motion.Unpickle(inXML);
 }
 
 void
@@ -205,7 +199,7 @@ GameDialogue::NullHandler(CoreXML& inXML)
 void
 GameDialogue::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    if (m_strings.size() != 0)
+    if (m_specs.size() != 0)
     {
 // Fill me in
     }
@@ -237,17 +231,17 @@ GameDialogue::UnpicklePrologue(void)
     m_startTable[kPickleData]["motion"] = &GameDialogue::HandleMotionStart;
     m_endTable[kPickleData]["dialogue"] = &GameDialogue::HandleDialogueEnd;
     m_pickleState=kPickleData;
-    m_currentMotion.MotionSpecSet(GameMotionSpec(GLPoint(0,0), 0));
-    m_currentStartColour=GLColour(0,0,0,0);
-    m_currentMidColour=GLColour(0,0,0,0);
-    m_currentEndColour=GLColour(0,0,0,0);
-    m_currentStartSize=1;
-    m_currentMidSize=1;
-    m_currentEndSize=1;
-    m_currentFontRef=GLFontRef("font not set");
-    m_currentStartTime=0;
-    m_currentEndTime=100;
-    m_currentFadeTime=1;
+    m_motion.MotionSpecSet(GameMotionSpec(GLPoint(0,0), 0));
+    m_currentSpec.startColour=GLColour(0,0,0,0);
+    m_currentSpec.midColour=GLColour(0,0,0,0);
+    m_currentSpec.endColour=GLColour(0,0,0,0);
+    m_currentSpec.startSize=1;
+    m_currentSpec.midSize=1;
+    m_currentSpec.endSize=1;
+    m_fontRef=GLFontRef("font not set");
+    m_currentSpec.startTime=0;
+    m_currentSpec.endTime=100;
+    m_currentSpec.fadeTime=1;
     m_age=0;
     m_expired=false;
 }
