@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Xy+fzSH8daL6jemhQN4e2A
 /*
- * $Id: MushcoreIO.h,v 1.2 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreIO.h,v 1.3 2003/09/21 09:51:08 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.3  2003/09/21 09:51:08  southa
+ * Stream autogenerators
+ *
  * Revision 1.2  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -54,8 +57,8 @@ template <class T>
 inline std::ostream&
 operator<<(std::ostream& ioOut, const std::vector<T>& inObj)
 {
-    std::vector<T>::const_iterator pEnd = inObj.end();
-    std::vector<T>::const_iterator p = inObj.begin();
+    typename std::vector<T>::const_iterator pEnd = inObj.end();
+    typename std::vector<T>::const_iterator p = inObj.begin();
 
     ioOut << "[";
     while (p != pEnd)
@@ -76,8 +79,8 @@ template <class T, class U>
 inline std::ostream&
 operator<<(std::ostream& ioOut, const std::map<T, U>& inObj)
 {
-    std::map<T, U>::const_iterator pEnd = inObj.end();
-    std::map<T, U>::const_iterator p = inObj.begin();
+    typename std::map<T, U>::const_iterator pEnd = inObj.end();
+    typename std::map<T, U>::const_iterator p = inObj.begin();
 
     ioOut << "[";
     while (p != pEnd)

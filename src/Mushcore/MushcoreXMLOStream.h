@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.13 2003/10/02 23:33:39 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.14 2003/10/03 23:39:34 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.14  2003/10/03 23:39:34  southa
+ * XML polymorphs
+ *
  * Revision 1.13  2003/10/02 23:33:39  southa
  * XML polymorphic objects
  *
@@ -99,7 +102,7 @@ MushcoreXMLOStream::ClosingTagWrite(const std::string& inStr)
 {
     if (inStr != "")
     {
-        OStreamGet() << "</" << inStr << ">" << endl;
+        OStreamGet() << "</" << inStr << ">" << std::endl;
     }
 }
 
@@ -107,7 +110,7 @@ inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushcoreVirtualObject& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite(inObj.AutoNameGet());
-    ioOut.OStreamGet() << endl;
+    ioOut.OStreamGet() << std::endl;
     inObj.AutoXMLPrint(ioOut);
     ioOut.ClosingTagWrite(localTag);
     return ioOut;
@@ -180,8 +183,8 @@ template<class T>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::vector<T>& inObj)
 {
-    std::vector<T>::const_iterator pEnd = inObj.end();
-    std::vector<T>::const_iterator p = inObj.begin();
+    typename std::vector<T>::const_iterator pEnd = inObj.end();
+    typename std::vector<T>::const_iterator p = inObj.begin();
 
     std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
@@ -203,8 +206,8 @@ template<class T>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
 {
-    std::vector<T *>::const_iterator pEnd = inObj.end();
-    std::vector<T *>::const_iterator p = inObj.begin();
+    typename std::vector<T *>::const_iterator pEnd = inObj.end();
+    typename std::vector<T *>::const_iterator p = inObj.begin();
 
     std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
@@ -226,8 +229,8 @@ template<class T, class U>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::map<T, U>& inObj)
 {
-    std::map<T, U>::const_iterator pEnd = inObj.end();
-    std::map<T, U>::const_iterator p = inObj.begin();
+    typename std::map<T, U>::const_iterator pEnd = inObj.end();
+    typename std::map<T, U>::const_iterator p = inObj.begin();
 
     std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.12 2003/10/02 23:33:39 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.13 2003/10/03 23:39:34 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.13  2003/10/03 23:39:34  southa
+ * XML polymorphs
+ *
  * Revision 1.12  2003/10/02 23:33:39  southa
  * XML polymorphic objects
  *
@@ -158,7 +161,7 @@ MushcoreXMLIStream::ObjectRead(T *& inpObj)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
+MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
 {
     // Decode the (x,y,z) sequence
 
@@ -206,7 +209,7 @@ MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(vector<T *>& inVector)
+MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
 {
     // Decode the (x,y,z) sequence
 
@@ -248,7 +251,7 @@ MushcoreXMLIStream::ObjectRead(vector<T *>& inVector)
 
 template<class T, class U>
 inline void
-MushcoreXMLIStream::ObjectRead(map<T, U>& inMap)
+MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
 {
     // Decode the (x,y,z) sequence
 
