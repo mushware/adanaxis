@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.13 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.14 2002/08/17 10:41:51 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.14  2002/08/17 10:41:51  southa
+ * Designer fixes
+ *
  * Revision 1.13  2002/08/07 13:36:49  southa
  * Conditioned source
  *
@@ -138,7 +141,7 @@ GameFloorDesigner::Display(void)
     GameMapArea visibleArea;
     GLPoint screenRatios(GLUtils::ScreenRatiosGet());
     GLPoint screenRadius((screenRatios / 2) / floorMap->StepGet());
-    tVal circleRadius=1+screenRadius.Magnitude()/m_masterScale;
+    tVal circleRadius=2+screenRadius.Magnitude()/m_masterScale;
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
     GameMapArea highlightArea;
@@ -315,11 +318,11 @@ GameFloorDesigner::Move(void)
 
     if (glHandler.KeyStateGet('='))
     {
-        m_masterScale += ((0.33-m_masterScale) / 30);
+        m_masterScale += (m_masterScale / 100);
     }
     if (glHandler.KeyStateGet('-'))
     {
-        m_masterScale -= (m_masterScale / 10);
+        m_masterScale -= (m_masterScale / 100);
     }
 }
 
