@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.3 2002/10/17 15:50:59 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.4 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.4  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -39,6 +42,7 @@ public:
     U32 PreviousModeDef(U32 inNum) const;
     U32 NextModeDef(U32 inNum) const;
     U32 DefaultModeGet(void) const;
+    U32 NumModesGet(void) const;
     void RenderModeInfo(U32 inNum) const;
     static void VBLWait(void);
     static void ForceShowCursor(void);

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.5 2002/11/08 11:29:24 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.6 2002/11/08 11:54:40 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.6  2002/11/08 11:54:40  southa
+ * Web fixes
+ *
  * Revision 1.5  2002/11/08 11:29:24  southa
  * Web fixes and debug
  *
@@ -242,6 +245,8 @@ MediaNetWebLink::GetProcess(void)
 void
 MediaNetWebLink::SendFile(const string& inFilename)
 {
+    bool processFile=false;
+    
     ifstream fileStream(inFilename.c_str());
     if (!fileStream)
     {
@@ -252,23 +257,28 @@ MediaNetWebLink::SendFile(const string& inFilename)
     http.Reply200();
 
     CoreRegExp re;
-    if (re.Search(inFilename, "html$"))
+    if (re.Search(inFilename, "\\.html$"))
     {
         http.ContentTypeHTML();
     }
-    else if (re.Search(inFilename, "(jpg|jpeg)$"))
+    else if (re.Search(inFilename, "\\.mhtml$"))
+    {
+        http.ContentTypeHTML();
+        processFile=true;
+    }
+    else if (re.Search(inFilename, "\\.(jpg|jpeg)$"))
     {
         http.ContentType("image/jpeg");
     }
-    else if (re.Search(inFilename, "(tif|tiff)$"))
+    else if (re.Search(inFilename, "\\.(tif|tiff)$"))
     {
         http.ContentType("image/tiff");
     }
-    else if (re.Search(inFilename, "png$"))
+    else if (re.Search(inFilename, "\\.png$"))
     {
         http.ContentType("image/png");
     }
-    else if (re.Search(inFilename, "css$"))
+    else if (re.Search(inFilename, "\\.css$"))
     {
         http.ContentType("text/css");
     }
@@ -277,10 +287,114 @@ MediaNetWebLink::SendFile(const string& inFilename)
         throw(NetworkFail("Unknown file type: "+inFilename));
     }
         
-    http.Endl();
-    Send(http.ContentGet().str());
-    Send(fileStream);
+    if (processFile)
+    {
+        SendMHTML(fileStream, http);
+    }
+    else
+    {
+        http.Endl();
+        Send(http.ContentGet().str());
+        Send(fileStream);
+    }
     Disconnect();
+}
+
+void
+MediaNetWebLink::SendMHTML(istream& ioStream, MediaNetHTTP& ioHTTP)
+{
+    ioHTTP.Endl();
+    Send(ioHTTP.ContentGet().str());
+    vector<U8> bytes;
+
+    enum
+    {
+        kCharIdle,
+        kCharSequence,
+        kCharCommand,
+        kCharEnd
+    } charState=kCharIdle;
+
+    string mushSequence;
+    string mushMagic="<?mush";
+    string mushContent;
+    
+    while (ioStream.good() && !ioStream.eof())
+    {
+        U8 byte;
+        ioStream.get(byte);
+
+        switch (charState)
+        {
+            case kCharIdle:
+            {
+                if (byte == '<')
+                {
+                    charState=kCharSequence;
+                    mushSequence=byte;
+                }
+                else
+                {
+                    bytes.push_back(byte);
+                }
+            }
+            break;
+
+            case kCharSequence:
+            {
+                mushSequence += byte;
+
+                if (mushSequence.size() >= mushMagic.size())
+                {
+                    if (mushSequence == mushMagic)
+                    {
+                        mushContent="";
+                        mushSequence="";
+                        charState=kCharCommand;
+                    }
+                    else
+                    {
+                        for (U32 i=0; i<mushSequence.size(); ++i)
+                        {
+                            bytes.push_back(mushSequence[i]);
+                        }
+                        mushSequence="";
+                        charState=kCharIdle;
+                    }
+                }
+            }
+            break;
+
+            case kCharCommand:
+                if (byte == '?')
+                {
+                    charState = kCharEnd;
+                }
+                else
+                {
+                    mushContent += byte;
+                }
+                break;
+
+            case kCharEnd:
+            {
+                CoreCommand command(mushContent);
+                ostringstream commandOutput;
+                {
+                    CoreEnvOutput envOutput(CoreEnv::Instance(), commandOutput);
+                    command.Execute();
+                }
+                for (U32 i=0; i<commandOutput.str().size(); ++i)
+                {
+                    bytes.push_back(commandOutput.str()[i]);
+                }
+                charState = kCharIdle;
+            }
+            break;
+
+        }
+    }
+    Send(bytes);
 }
 
 void

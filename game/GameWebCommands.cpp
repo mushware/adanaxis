@@ -11,26 +11,40 @@
 ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: GameWebCommands.cpp,v 1.1 2002/11/07 11:59:02 southa Exp $
+ * $Log: GameWebCommands.cpp,v $
+ * Revision 1.1  2002/11/07 11:59:02  southa
+ * Web commands
+ *
  */
 
 #include "GameWebCommands.h"
 
+#include "GameAppHandler.h"
+#include "GameConfig.h"
+
 #include "mushCore.h"
 #include "mushPlatform.h"
-#include "GameAppHandler.h"
 
 CoreInstaller GameWebCommandsInstaller(GameWebCommands::Install);
 
 CoreScalar
 GameWebCommands::DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
+
+    U32 selectedMode=GameConfig::Instance().DisplayModeGet();
+    U32 size=PlatformVideoUtils::Instance().NumModesGet();
+    
     ioEnv.Out() << "<select name=\"displaymode\">";
-    ioEnv.Out() << "<option selected value=\"0\">640x480</option>";
-    ioEnv.Out() << "<option value=\"0\">800x600</option>";
-    ioEnv.Out() << "<option value=\"0\">1024x768</option>";
-    ioEnv.Out() << "<option value=\"0\">1280x1024</option>";
+    for (U32 i=0; i<size; ++i)
+    {
+        ioEnv.Out() << "<option ";
+        if (i == selectedMode) ioEnv.Out() << "selected ";
+
+        ioEnv.Out() << "value=\"" << i << "\">";
+        ioEnv.Out() << PlatformVideoUtils::Instance().ModeDefGet(i).NameGet();
+        ioEnv.Out() << "</option>";
+    }
     ioEnv.Out() << "</select>";
     return CoreScalar(0);
 }

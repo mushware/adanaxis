@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.h,v 1.3 2002/11/07 00:53:37 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.4 2002/11/08 11:29:24 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.4  2002/11/08 11:29:24  southa
+ * Web fixes and debug
+ *
  * Revision 1.3  2002/11/07 00:53:37  southa
  * localweb work
  *
@@ -16,6 +19,8 @@
 
 #include "MediaSDL.h"
 
+class MediaNetHTTP;
+
 class MediaNetWebLink
 {
 public:
@@ -30,6 +35,7 @@ public:
     void Send(const string& inStr);
     void Send(istream& ioStream);
     void SendFile(const string& inStr);
+    void SendMHTML(istream& ioStream, MediaNetHTTP& ioHTTP);
     void SendTestPage(void);
     void SendErrorPage(const string& inText);
     void ReceivedProcess(const string& inStr);

@@ -510,8 +510,8 @@
 		};
 		F512BC6D0379C3B401A80164 = {
 			isa = PBXFileReference;
-			name = config.html;
-			path = localweb/config.html;
+			name = config.mhtml;
+			path = localweb/config.mhtml;
 			refType = 4;
 		};
 		F512BC6F0379C8C401A80164 = {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.4 2002/10/22 20:42:08 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.5 2002/10/23 13:53:35 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.5  2002/10/23 13:53:35  southa
+ * Changed default video mode to 0
+ *
  * Revision 1.4  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -81,6 +84,12 @@ PlatformVideoUtils::NextModeDef(U32 inNum) const
 {
     if (inNum+1 >= m_modeDefs.size()) return 0;
     return inNum+1;
+}
+
+U32
+PlatformVideoUtils::NumModesGet(void) const
+{
+    return m_modeDefs.size();
 }
 
 void
