@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.21 2002/08/24 15:57:35 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.22 2002/08/24 17:08:32 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.22  2002/08/24 17:08:32  southa
+ * Split time fixes
+ *
  * Revision 1.21  2002/08/24 15:57:35  southa
  * Reset player position
  *
@@ -154,7 +157,7 @@ GameTypeRace::SequenceAdvance(void)
         default:
             break;
     }
-    m_timeAllowance=m_initialTime;
+    
     
     U32 previousSequence = m_sequence;
     if (previousSequence == 0) previousSequence = m_chequePoints.size();
