@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } RALAx/jADryC5GEZJ6YVLw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.35 2003/09/17 19:40:39 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.36 2004/01/02 21:13:16 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.36  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.35  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -138,6 +141,8 @@
 
 #include <dirent.h>
 #include <signal.h>
+
+#include <mach-o/dyld.h>
 
 using namespace Mushware;
 using namespace std;
@@ -485,6 +490,21 @@ PlatformMiscUtils::SleepMsec(U32 inMsec)
     usleep(inMsec*1000);
 }
 
+bool
+PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
+{
+    std::string mangledName = "_" + inName;
+    NSSymbol symbol;    
+    bool success = false;
     
+    if (NSIsSymbolNameDefined(mangledName.c_str()))
+    {
+        symbol = NSLookupAndBindSymbol(mangledName.c_str());
+        outPtr = NSAddressOfSymbol(symbol);
+        success = true;
+    }
+    return success;
+}
+
 
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0u0Dmc4oDcZxueU4XtX+Cw
 /*
- * $Id: MushMeshPreMatrix.h,v 1.4 2004/12/12 10:55:37 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.5 2004/12/13 11:09:11 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.5  2004/12/13 11:09:11  southa
+ * Quaternion and vector tweaks
+ *
  * Revision 1.4  2004/12/12 10:55:37  southa
  * Quaternion conversions
  *
@@ -91,6 +94,8 @@ public:
 
     void RowSet(const tThisVec& inVec, Mushware::U32 inR) { RowBoundsCheck(inR); m_value[inR] = inVec; }
     
+    static const tThis Identity(void);
+    
 protected:
     void RowBoundsCheck(Mushware::U32 inR) const { if (inR >= R) MushMeshUtils::BoundaryThrow(inR, R); }
     void ColumnBoundsCheck(Mushware::U32 inC) const { if (inC >= C) MushMeshUtils::BoundaryThrow(inC, C); }
@@ -109,6 +114,28 @@ MushMeshPreMatrix<T, C, R>::ColumnGet(Mushware::U32 inC) const
     for (Mushware::U32 r = 0; r < R; ++r)
     {
         retValue.Set(m_value[r][inC], r);
+    }
+    return retValue;
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline const typename MushMeshPreMatrix<T, C, R>::tThis
+MushMeshPreMatrix<T, C, R>::Identity()
+{
+    MushMeshPreMatrix<T, C, R> retValue;
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        for (Mushware::U32 c = 0; c < C; ++c)
+        {
+            if (r == c)
+            {
+                retValue.RCSet(1, r, c);
+            }
+            else
+            {
+                retValue.RCSet(0, r, c);
+            }
+        }
     }
     return retValue;
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 9NgAD45hoxxJPNGfLM9/7Q
 /*
- * $Id: GLUtils.cpp,v 1.56 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLUtils.cpp,v 1.57 2004/03/07 12:05:56 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.57  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.56  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -322,7 +325,7 @@ GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, t
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
-    tVal nearClip=1.0;
+    tVal nearClip=0.01;
     tVal scale=m_screenScale/m_eyeDistance*nearClip;
     glFrustum(-screenRatios.x*scale,screenRatios.x*scale,
               -screenRatios.y*scale,screenRatios.y*scale,

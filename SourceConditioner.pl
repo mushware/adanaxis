@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.26 2004/01/10 20:29:33 southa Exp $
+# $Id: SourceConditioner.pl,v 1.27 2004/09/27 22:42:08 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.27  2004/09/27 22:42:08  southa
+# MSVC compilation fixes
+#
 # Revision 1.26  2004/01/10 20:29:33  southa
 # Form and rendering work
 #
@@ -551,7 +554,12 @@ sub OstreamWriteFunctionGenerate($$)
             my $comma = "";
             $comma = " << \", \"" unless ($i+3 == @$attributesRef);
            
-            my $line = "    ioOut << \"$trimmedAttr=\" << ".TypeSpecial($type, $attr);
+            my $line = "    ioOut << \"$trimmedAttr=\" << ";
+            if ($comment =~ /:aspointer\b/)
+            {
+                $line .= '(void *)';   
+            }
+            $line .= TypeSpecial($type, $attr);
             
             $line .= "$comma;";
             
@@ -818,7 +826,7 @@ sub XMLOStreamWriteFunctionGenerate($$)
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
             my $comment = $$attributesRef[$i+2];
-            next if ($comment =~ /:ignore\b/);
+            next if ($comment =~ /:(xml|)ignore\b/);
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
             

@@ -16,14 +16,18 @@
  ****************************************************************************/
 //%Header } QEwu7zWUlg50RfLo59G73Q
 /*
- * $Id: MushGL.h,v 1.1 2004/03/07 12:05:56 southa Exp $
+ * $Id: MushGL.h,v 1.2 2004/09/20 21:50:47 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.2  2004/09/20 21:50:47  southa
+ * Added GLV
+ *
  * Revision 1.1  2004/03/07 12:05:56  southa
  * Rendering work
  *
  */
 
 #include "MushGLArrays.h"
+#include "MushGLBuffer.h"
 #include "MushGLStandard.h"
 #include "MushGLV.h"
 

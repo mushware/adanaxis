@@ -12,14 +12,25 @@
  ****************************************************************************/
 //%Header } 3XIr5cTD30rcFqo9UL9xaQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLV.cpp,v 1.1 2004/09/20 21:50:47 southa Exp $
+ * $Log: MushGLV.cpp,v $
+ * Revision 1.1  2004/09/20 21:50:47  southa
+ * Added GLV
+ *
  */
 
 #include "MushGLV.h"
 #include "MushGLStandard.h"
 
-MushGLV::MushGLV()
+#include "mushPlatform.h"
+
+using namespace Mushware;
+using namespace std;
+
+MUSHCORE_SINGLETON_INSTANCE(MushGLV);
+
+MushGLV::MushGLV() :
+    m_fpBindBuffer(NULL)
 {
 }
 
@@ -30,20 +41,29 @@ MushGLV::Acquaint()
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     m_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
     m_extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
-    std::cout << "Vendor: " << m_vendor << std::endl;
-    std::cout << "Renderer: " << m_renderer << std::endl;
-    std::cout << "Version: " << m_version << std::endl;
-    std::cout << "Extensions: " << m_extensions << std::endl;
+    
+    void *fnPtr;
+    if (PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, "glBindBuffer"))
+    {
+        m_fpBindBuffer = (tfpBindBuffer)fnPtr;
+        cout << "Found function at " << fnPtr << endl;
+    }
+    else
+    {
+        cout << "failed to find function" << endl;
+    }
 }
+
 //%outOfLineFunctions {
 void
 MushGLV::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "fpBindBuffer=" << (void *)m_fpBindBuffer << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions;
     ioOut << "]";
 }
-//%outOfLineFunctions } MnoBURhpIqyQKkqyHcMhMA
+//%outOfLineFunctions } ltALzkImmeRSCMstKHzgCg

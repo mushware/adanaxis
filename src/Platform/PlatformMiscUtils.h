@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4UPdmxdhcOYTSSiCCkQrtg
 /*
- * $Id: PlatformMiscUtils.h,v 1.23 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.24 2004/01/06 20:46:52 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.24  2004/01/06 20:46:52  southa
+ * Build fixes
+ *
  * Revision 1.23  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -88,6 +91,7 @@ public:
     static void LaunchURL(const std::string& inURL);
     static void ShowUpdateAlert(void);
     static void SleepMsec(Mushware::U32 inMsec);
+    static bool FunctionPointerGetIfExists(void *& outPtr, const std::string& inName);
 };
 //%includeGuardEnd {
 #endif

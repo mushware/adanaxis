@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } slFPFhapfdncvvpyGmZQIQ
 /*
- * $Id: MaurheenHypersphere.h,v 1.2 2005/01/26 00:48:46 southa Exp $
+ * $Id: MaurheenHypersphere.h,v 1.1 2005/01/27 21:00:39 southa Exp $
  * $Log: MaurheenHypersphere.h,v $
+ * Revision 1.1  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  */
 
 #include "MaurheenStandard.h"
@@ -31,12 +34,18 @@ public:
     typedef Mushware::t4Val tVertex;
     typedef MushMeshGroup tFacetGroup;
     
-    MaurheenHypersphere() {}
+    MaurheenHypersphere();
     void Create(Mushware::tVal frame);
     void Render(Mushware::tVal frame);
     
 private:
+    enum
+    {
+        kNumVertices = 100000
+    };
     std::vector<tVertex> m_vertices;
+    MushGLBuffer<Mushware::t3GLVal> m_vertexBuffer;
+    MushGLBuffer<Mushware::t4GLVal> m_colourBuffer;
 };
 //%includeGuardEnd {
 #endif

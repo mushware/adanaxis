@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.6 2005/01/26 00:48:46 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.7 2005/01/27 21:00:39 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.7  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.6  2005/01/26 00:48:46  southa
  * MushMeshGroup and rendering
  *
@@ -126,7 +129,7 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
     
     m_hypersphere.Render(msecNow / 2000);
-    m_hypercube.Render(msecNow / 2000);
+    //m_hypercube.Render(msecNow / 2000);
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
@@ -140,15 +143,14 @@ void
 MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13)); // 13
-    MushGLV glv;
-    glv.Acquaint();
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0)); // 13
+    MushGLV::Sgl().Acquaint();
+    cout << MushGLV::Sgl() << endl;
 }
 
 void
 MaurheenGame::SwapOut(GameAppHandler& inAppHandler)
 {}
-
 
 //%outOfLineFunctions {
 const char *MaurheenGame::AutoNameGet(void) const
@@ -157,7 +159,7 @@ const char *MaurheenGame::AutoNameGet(void) const
 }
 MaurheenGame *MaurheenGame::AutoClone(void) const
 {
-    return new MaurheenGame(*this);
+    return new MaurheenGame();
 }
 MaurheenGame *MaurheenGame::AutoCreate(void) const
 {

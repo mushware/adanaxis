@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } uiXTBqRVrI+qFoX2dUuamg
 /*
- * $Id: MushGLV.h,v 1.1 2004/09/20 21:50:47 southa Exp $
+ * $Id: MushGLV.h,v 1.2 2004/09/27 22:42:09 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.2  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.1  2004/09/20 21:50:47  southa
  * Added GLV
  *
@@ -27,23 +30,39 @@
 #include "MushGLV.h"
 
 //:generate ostream
-class MushGLV
+class MushGLV : public MushcoreSingleton<MushGLV>
 {
 public:
     MushGLV();
     virtual ~MushGLV() {};
     virtual void Acquaint();
     
+    void BindBuffer(GLenum target, GLuint buffer);
+    
 private:
+    typedef void (*tfpBindBuffer)(GLenum target, GLuint buffer);
+    tfpBindBuffer m_fpBindBuffer; // :aspointer
+        
     std::string m_vendor;
     std::string m_renderer;
     std::string m_version;
     std::string m_extensions;
+    
 //%classPrototypes {
 public:
     virtual void AutoPrint(std::ostream& ioOut) const;
 //%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
+
+inline void
+MushGLV::BindBuffer(GLenum target, GLuint buffer)
+{
+    if (m_fpBindBuffer != NULL)
+    {
+        m_fpBindBuffer(target, buffer);
+    }
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGLV& inObj)
