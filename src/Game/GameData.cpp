@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.13 2002/08/18 20:44:34 southa Exp $
+ * $Id: GameData.cpp,v 1.14 2002/08/20 11:43:25 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.14  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.13  2002/08/18 20:44:34  southa
  * Initial chequepoint work
  *
@@ -446,6 +449,17 @@ GameData::CurrentDialogueDelete(const string& inName)
         delete p->second;
         m_currentDialogues.erase(p);
     }    
+}
+
+void
+GameData::CurrentDialoguesClear(void)
+{
+    for (GameData::DialogueMapIterator p = m_currentDialogues.begin(); p != m_currentDialogues.end(); ++p)
+    {
+        p->second->ExpireNow();
+        delete p->second;
+    }
+    m_currentDialogues.clear();
 }
 
 void

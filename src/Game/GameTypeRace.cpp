@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.13 2002/08/21 16:53:46 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.14 2002/08/21 19:48:42 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.14  2002/08/21 19:48:42  southa
+ * Race result tweaking
+ *
  * Revision 1.13  2002/08/21 16:53:46  southa
  * Win and lose handling
  *
@@ -60,6 +63,12 @@ GameTypeRace::GameTypeRace():
     m_lapStartTimeValid(false),
     m_chequePointTimeValid(false)
 {
+}
+
+void
+GameTypeRace::Initialise(void)
+{
+    LoadRecords();
 }
 
 void
@@ -202,24 +211,25 @@ GameTypeRace::RaceFinished(void)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
     GameTimer::tMsec gameTime=timer.GameMsecGet();
-            m_raceState = kPreResult;
-            m_endTime = gameTime;
-            // Calculate the total available time
-            tVal extraTime=0;
-            for (U32 i=0; i < m_chequePoints.size(); ++i)
-            {
-                extraTime += m_chequePoints[i]->AddTimeGet();
-            }
-            if (m_dispRemaining > 0.0)
-            {
-                // Race won
-                GameDataUtils::NamedDialoguesAdd(m_winAction);
-            }
-            else
-            {
-                // Race lost
-                GameDataUtils::NamedDialoguesAdd(m_loseAction);
-            }
+    m_raceState = kPreResult;
+    m_endTime = gameTime;
+    // Calculate the total available time
+    tVal extraTime=0;
+    for (U32 i=0; i < m_chequePoints.size(); ++i)
+    {
+        extraTime += m_chequePoints[i]->AddTimeGet();
+    }
+    if (m_dispRemaining > 0.0)
+    {
+        // Race won
+        GameDataUtils::NamedDialoguesAdd(m_winAction);
+    }
+    else
+    {
+        // Race lost
+        GameDataUtils::NamedDialoguesAdd(m_loseAction);
+    }
+    SaveRecords();
 }
 
 void
@@ -436,6 +446,51 @@ GameTypeRace::RenderResult(void) const
         }
     }
     GLUtils::OrthoEpilogue();
+}
+
+void
+GameTypeRace::SaveRecords(void) const
+{
+    try
+    {
+        string filename;
+        const CoreScalar *pScalar;
+        if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        {
+            filename=pScalar->StringGet();
+            ofstream outputFile(filename.c_str());
+            if (!outputFile) throw(FileFail(filename, "Could not open file for writing"));
+            time_t now(time(NULL));
+            outputFile << "<?xml version=\"1.0\" standalone=\"no\"?>" << endl;
+            outputFile << "<!-- Records saved " << ctime(&now) << " -->" << endl;
+            m_records.Pickle(outputFile);
+        }
+    }
+    catch (exception& e)
+    {
+        cerr << "Save records failed: " << e.what() << endl;
+        // We don't really care if it fails
+    }
+}
+
+void
+GameTypeRace::LoadRecords(void)
+{
+    try
+    {
+        string filename;
+        const CoreScalar *pScalar;
+        if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        {
+            filename=pScalar->StringGet();
+        }
+        dynamic_cast<CorePickle&>(m_records).Unpickle(filename);
+    }
+    catch (exception& e)
+    {
+        cerr << "Load records failed: " << e.what() << endl;
+        // We don't really care if it fails
+    }
 }
 
 void

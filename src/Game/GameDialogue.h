@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.5 2002/08/16 21:13:52 southa Exp $
+ * $Id: GameDialogue.h,v 1.6 2002/08/19 22:18:36 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.6  2002/08/19 22:18:36  southa
+ * Display of time differences
+ *
  * Revision 1.5  2002/08/16 21:13:52  southa
  * Added MediaSoundStream
  *
@@ -34,6 +37,7 @@ public:
     virtual GLRenderable *Clone(void) const { return new GameDialogue(*this); }
     virtual bool ExpiredGet(void) { return m_expired; }
     virtual void TextSet(U32 inWhich, const string& inStr);
+    virtual void ExpireNow();
     
 protected:
     void UnpicklePrologue(void);

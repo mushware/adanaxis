@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.5 2002/08/16 21:13:52 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.6 2002/08/19 22:18:36 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.6  2002/08/19 22:18:36  southa
+ * Display of time differences
+ *
  * Revision 1.5  2002/08/16 21:13:52  southa
  * Added MediaSoundStream
  *
@@ -115,7 +118,6 @@ GameDialogue::Move(void)
         }
     }
 
-    size=m_soundStreams.size();
 
     for (U32 i=0; i<size; ++i)
     {
@@ -143,6 +145,33 @@ GameDialogue::TextSet(U32 inWhich, const string& inStr)
     }
     m_strings[inWhich].string.TextSet(inStr);
 }
+
+void GameDialogue::ExpireNow(void)
+{
+    // Need to leave the last sound stream playing, if we haven't started it yet
+    tVal latestTime=m_age;
+    bool latestFound=false;
+    U32 latestIndex;
+    U32 size=m_soundStreams.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        SoundStreamSpec& spec=m_soundStreams[i];
+        if (latestTime <= spec.startTime)
+        {
+            latestTime=spec.startTime;
+            latestFound=true;
+            latestIndex=i;
+        }
+    }
+
+    if (latestFound)
+    {
+        COREASSERT(latestIndex < m_soundStreams.size());
+        SoundStreamSpec& spec=m_soundStreams[latestIndex];
+        MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet());
+    }
+}
+    
 
 void
 GameDialogue::HandleTextEnd(CoreXML& inXML)

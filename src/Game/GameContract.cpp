@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.56 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.57 2002/08/21 16:09:04 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.57  2002/08/21 16:09:04  southa
+ * GameTypeRace state tweaks
+ *
  * Revision 1.56  2002/08/20 11:43:25  southa
  * GameRewards added
  *
@@ -286,6 +289,8 @@ GameContract::Init(void)
     m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));
     // GameData::Instance().DumpAll(cout);
     m_masterScale=0.5;
+
+    GameData::Instance().TypeGet().Initialise();
 
     GameDataUtils::NamedDialoguesAdd("^start");
 }
@@ -568,6 +573,10 @@ GameContract::GlobalKeyControl(void)
     if (gameAppHandler.LatchedKeyStateTake('n'))
     {
         m_fastDiagnostics=!m_fastDiagnostics;
+    }
+    if (gameAppHandler.LatchedKeyStateTake(' '))
+    {
+        GameData::Instance().CurrentDialoguesClear();
     }
 }
 

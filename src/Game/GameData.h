@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.12 2002/08/18 20:44:34 southa Exp $
+ * $Id: GameData.h,v 1.13 2002/08/20 11:43:25 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.13  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.12  2002/08/18 20:44:34  southa
  * Initial chequepoint work
  *
@@ -73,6 +76,7 @@ class GameData
 {
 public:
     typedef map<string, GameDialogue *> DialogueMap;
+    typedef map<string, GameDialogue *>::iterator DialogueMapIterator;
     typedef map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
     static GameData& Instance(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
@@ -103,6 +107,7 @@ public:
     GameDialogue *CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue);
     void CurrentDialogueDelete(const string& inName);
     const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
+    void CurrentDialoguesClear(void);
     
     void DumpAll(ostream& inOut) const;
 

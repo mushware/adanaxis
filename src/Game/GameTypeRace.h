@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.8 2002/08/21 16:53:46 southa Exp $
+ * $Id: GameTypeRace.h,v 1.9 2002/08/21 19:48:42 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.9  2002/08/21 19:48:42  southa
+ * Race result tweaking
+ *
  * Revision 1.8  2002/08/21 16:53:46  southa
  * Win and lose handling
  *
@@ -50,7 +53,8 @@ public:
     virtual void Move(void);
     virtual void EventHandler(const GameEvent& inEvent);
     virtual void Render(void) const;
-    
+    virtual void Initialise(void);
+        
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
@@ -101,7 +105,9 @@ private:
     void RenderTimes(void) const;
     void RenderResult(void) const;
     void RaceFinished(void);
-    
+    void LoadRecords(void);
+    void SaveRecords(void) const;
+
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
     GameTimer::tMsec m_startTime;

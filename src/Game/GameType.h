@@ -1,6 +1,9 @@
 /*
- * $Id: GameType.h,v 1.2 2002/08/19 11:09:56 southa Exp $
+ * $Id: GameType.h,v 1.3 2002/08/21 16:09:04 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.3  2002/08/21 16:09:04  southa
+ * GameTypeRace state tweaks
+ *
  * Revision 1.2  2002/08/19 11:09:56  southa
  * GameTypeRace rendering
  *
@@ -23,6 +26,7 @@ public:
     virtual void Move(void) = 0;
     virtual void EventHandler(const GameEvent& inEvent) = 0;
     virtual void Render(void) const = 0;
+    virtual void Initialise(void) = 0;
     
 protected:
     void UnpicklePrologue(void) {}
