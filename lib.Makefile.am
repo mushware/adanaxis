@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: lib.Makefile.am,v 1.5 2003/09/22 19:58:13 southa Exp $
+# $Id: lib.Makefile.am,v 1.6 2003/10/26 10:55:09 southa Exp $
 # $Log: lib.Makefile.am,v $
+# Revision 1.6  2003/10/26 10:55:09  southa
+# Catch up
+#
 # Revision 1.5  2003/09/22 19:58:13  southa
 # Prebuild in makefiles
 #
@@ -37,7 +40,7 @@ EXTRA_DIST = prebuild.sh
 all:prebuild-script
 
 prebuild-script:
-	$(SHELL) -c 'if [ -f prebuild.sh ];then prebuild.sh;fi'
+	$(SHELL) -c 'if [ -f prebuild.sh ];then ./prebuild.sh;fi'
 
 test:
 	$(MAKE) -Csrc test

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.19 2003/10/14 10:46:04 southa Exp $
+# $Id: autogen.sh,v 1.20 2003/10/17 12:27:17 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.20  2003/10/17 12:27:17  southa
+# Line end fixes and more mesh work
+#
 # Revision 1.19  2003/10/14 10:46:04  southa
 # MeshMover creation
 #
@@ -199,6 +202,15 @@ case mushmesh:
     # Make sure that MushMesh is in the include path for the test application
     echo 'test_mushmesh_CXXFLAGS=-I${srcdir}/MushMesh $(AM_CXXFLAGS)' >> Makefile.am
 
+    echo '' >> Makefile.am
+
+    echo 'test: test_@PACKAGE@' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	@echo Launching test application...' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	./test_@PACKAGE@' >> Makefile.am
+    echo '' >> Makefile.am
+    echo '' >> Makefile.am
     cd ..
 #    echo -n 'EXTRA_DIST=' >> Makefile.am
 #    echo '' >> Makefile.am
@@ -240,6 +252,14 @@ case mustl:
     find test/mustl -name '*.mhtml' -exec echo -n " " {} \;  >> Makefile.am
     find test/mustl -name '*.html' -exec echo -n " " {} \;  >> Makefile.am
     find test/mustl -name '*.css' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+
+    echo 'test: test_@PACKAGE@' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	@echo Launching test application...' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	./test_@PACKAGE@' >> Makefile.am
+    echo '' >> Makefile.am
     echo '' >> Makefile.am
 breaksw
 

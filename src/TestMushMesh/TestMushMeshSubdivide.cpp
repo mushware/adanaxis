@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.12 2003/10/25 15:56:59 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.13 2003/10/25 18:26:03 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.13  2003/10/25 18:26:03  southa
+ * Patch connection rework
+ *
  * Revision 1.12  2003/10/25 15:56:59  southa
  * Test tweaks
  *
@@ -605,7 +608,7 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
     }
     cout << endl;
     cout << "Rectangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
-    cout << fixed << setprecision(0);
+    cout << ios::fixed << setprecision(0);
 #if 0
     ValueTimeTest<char>("Single char  ");
     ValueTimeTest<unsigned char>("Single uchar ");
@@ -627,7 +630,7 @@ TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& io
 
     cout.unsetf(ios::fixed);
     cout << "Triangle timing tests (duration = " << m_testSeconds << "s, clock granularity = 1/" << CLOCKS_PER_SEC << "s)" << endl;
-    cout << fixed << setprecision(0);
+    cout << ios::fixed << setprecision(0);
 
     TriangleValueTimeTest<float>("(dummy) float");
     TriangleValueTimeTest<float>("Single float ");

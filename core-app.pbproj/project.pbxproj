@@ -1882,6 +1882,661 @@
 			settings = {
 			};
 		};
+		7AB44A0D05643B6000A80065 = {
+			buildPhases = (
+				7AB44A0F05643B6000A80065,
+				7AB44A1005643B6000A80065,
+				7AB44A1505643B6000A80065,
+				7AB44A1605643B6000A80065,
+				7AB44A1B05643B6000A80065,
+				7AB44A1E05643B6000A80065,
+				7AB44A1F05643B6000A80065,
+			);
+			buildSettings = {
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = TestMushMesh;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wall -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+				7AB44B1405643C5F00A80065,
+			);
+			isa = PBXApplicationTarget;
+			name = TestMushMesh;
+			productInstallPath = "$(USER_APPS_DIR)";
+			productName = TestMustl;
+			productReference = 7AB44A2205643B6000A80065;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TestMushMesh</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+</dict>
+</plist>
+";
+		};
+		7AB44A0F05643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			generatedFileNames = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			neededFileNames = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./prebuild.sh;
+		};
+		7AB44A1005643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44B0105643C5100A80065,
+				7AB44B0305643C5100A80065,
+				7AB44B0505643C5100A80065,
+				7AB44B0705643C5100A80065,
+				7AB44B0905643C5100A80065,
+				7AB44B0B05643C5100A80065,
+				7AB44B0D05643C5100A80065,
+				7AB44B0F05643C5100A80065,
+				7AB44B1105643C5100A80065,
+				7AB44B1305643C5100A80065,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A1505643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A1605643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44B0005643C5100A80065,
+				7AB44B0205643C5100A80065,
+				7AB44B0405643C5100A80065,
+				7AB44B0605643C5100A80065,
+				7AB44B0805643C5100A80065,
+				7AB44B0A05643C5100A80065,
+				7AB44B0C05643C5100A80065,
+				7AB44B0E05643C5100A80065,
+				7AB44B1005643C5100A80065,
+				7AB44B1205643C5100A80065,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A1B05643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44A1D05643B6000A80065,
+				7AB44B1D05643CB700A80065,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A1D05643B6000A80065 = {
+			fileRef = 7AEACAD703D1B87F00A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44A1E05643B6000A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A1F05643B6000A80065 = {
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7AB44A2005643B6000A80065,
+				7AB44B2005643CDE00A80065,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A2005643B6000A80065 = {
+			fileRef = 7AEACAD703D1B87F00A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44A2205643B6000A80065 = {
+			isa = PBXApplicationReference;
+			path = TestMushMesh.app;
+			refType = 3;
+		};
+		7AB44A2405643BB700A80065 = {
+			buildPhases = (
+				7AB44A2605643BB700A80065,
+				7AB44A4C05643BB700A80065,
+				7AB44A4D05643BB700A80065,
+				7AB44A4E05643BB700A80065,
+				7AB44A7405643BB700A80065,
+				7AB44A7705643BB700A80065,
+			);
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_LDFLAGS = "-seg1addr 0x2c000000";
+				OTHER_LIBTOOL_FLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRINCIPAL_CLASS = "";
+				PRODUCT_NAME = MushMesh;
+				SECTORDER_FLAGS = "";
+				SKIP_INSTALL = YES;
+				USE_GCC3_PFE_SUPPORT = NO;
+				WARNING_CFLAGS = "-Wall -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = framework;
+			};
+			dependencies = (
+				7AB44A2505643BB700A80065,
+			);
+			isa = PBXFrameworkTarget;
+			name = MushMesh;
+			productInstallPath = "@executable_path/../Frameworks";
+			productName = mushcore;
+			productReference = 7AB44A7805643BB700A80065;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>MushMesh</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+</dict>
+</plist>
+";
+		};
+		7AB44A2505643BB700A80065 = {
+			isa = PBXTargetDependency;
+			target = 7AEACAD603D1B87F00A80164;
+		};
+		7AB44A2605643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44AC605643BF900A80065,
+				7AB44AC805643BF900A80065,
+				7AB44ACA05643BF900A80065,
+				7AB44ACC05643BF900A80065,
+				7AB44ACE05643BF900A80065,
+				7AB44AD005643BF900A80065,
+				7AB44AD205643BF900A80065,
+				7AB44AD405643BF900A80065,
+				7AB44AD605643BF900A80065,
+				7AB44AD805643BF900A80065,
+				7AB44ADA05643BF900A80065,
+				7AB44ADC05643BF900A80065,
+				7AB44ADE05643BF900A80065,
+				7AB44AE005643BF900A80065,
+				7AB44AE205643BF900A80065,
+				7AB44AE405643BF900A80065,
+				7AB44AE605643BF900A80065,
+				7AB44AE805643BF900A80065,
+				7AB44AEA05643BF900A80065,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A4C05643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			generatedFileNames = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			neededFileNames = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./prebuild.sh;
+		};
+		7AB44A4D05643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A4E05643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44AC505643BF900A80065,
+				7AB44AC705643BF900A80065,
+				7AB44AC905643BF900A80065,
+				7AB44ACB05643BF900A80065,
+				7AB44ACD05643BF900A80065,
+				7AB44ACF05643BF900A80065,
+				7AB44AD105643BF900A80065,
+				7AB44AD305643BF900A80065,
+				7AB44AD505643BF900A80065,
+				7AB44AD705643BF900A80065,
+				7AB44AD905643BF900A80065,
+				7AB44ADB05643BF900A80065,
+				7AB44ADD05643BF900A80065,
+				7AB44ADF05643BF900A80065,
+				7AB44AE105643BF900A80065,
+				7AB44AE305643BF900A80065,
+				7AB44AE505643BF900A80065,
+				7AB44AE705643BF900A80065,
+				7AB44AE905643BF900A80065,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A7405643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+				7AB44A7605643BB700A80065,
+				7AB44B2105643EB100A80065,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A7605643BB700A80065 = {
+			fileRef = F52A41C702B3B4CF0109140E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44A7705643BB700A80065 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AB44A7805643BB700A80065 = {
+			isa = PBXFrameworkReference;
+			path = MushMesh.framework;
+			refType = 3;
+		};
+		7AB44A7905643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMesh.cpp;
+			path = src/MushMesh/MushMesh.cpp;
+			refType = 2;
+		};
+		7AB44A7A05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMesh.h;
+			path = src/MushMesh/MushMesh.h;
+			refType = 2;
+		};
+		7AB44A7B05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshArray.cpp;
+			path = src/MushMesh/MushMeshArray.cpp;
+			refType = 2;
+		};
+		7AB44A7C05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshArray.h;
+			path = src/MushMesh/MushMeshArray.h;
+			refType = 2;
+		};
+		7AB44A7D05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshBox.cpp;
+			path = src/MushMesh/MushMeshBox.cpp;
+			refType = 2;
+		};
+		7AB44A7E05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshBox.h;
+			path = src/MushMesh/MushMeshBox.h;
+			refType = 2;
+		};
+		7AB44A7F05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshConnector.cpp;
+			path = src/MushMesh/MushMeshConnector.cpp;
+			refType = 2;
+		};
+		7AB44A8005643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshConnector.h;
+			path = src/MushMesh/MushMeshConnector.h;
+			refType = 2;
+		};
+		7AB44A8105643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshMath.cpp;
+			path = src/MushMesh/MushMeshMath.cpp;
+			refType = 2;
+		};
+		7AB44A8205643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshMath.h;
+			path = src/MushMesh/MushMeshMath.h;
+			refType = 2;
+		};
+		7AB44A8305643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatch.cpp;
+			path = src/MushMesh/MushMeshPatch.cpp;
+			refType = 2;
+		};
+		7AB44A8405643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatch.h;
+			path = src/MushMesh/MushMeshPatch.h;
+			refType = 2;
+		};
+		7AB44A8505643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchEnd.cpp;
+			path = src/MushMesh/MushMeshPatchEnd.cpp;
+			refType = 2;
+		};
+		7AB44A8605643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchEnd.h;
+			path = src/MushMesh/MushMeshPatchEnd.h;
+			refType = 2;
+		};
+		7AB44A8705643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchPipe.cpp;
+			path = src/MushMesh/MushMeshPatchPipe.cpp;
+			refType = 2;
+		};
+		7AB44A8805643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchPipe.h;
+			path = src/MushMesh/MushMeshPatchPipe.h;
+			refType = 2;
+		};
+		7AB44A8905643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchTypes.cpp;
+			path = src/MushMesh/MushMeshPatchTypes.cpp;
+			refType = 2;
+		};
+		7AB44A8A05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshPatchTypes.h;
+			path = src/MushMesh/MushMeshPatchTypes.h;
+			refType = 2;
+		};
+		7AB44A8B05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSelection.cpp;
+			path = src/MushMesh/MushMeshSelection.cpp;
+			refType = 2;
+		};
+		7AB44A8C05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSelection.h;
+			path = src/MushMesh/MushMeshSelection.h;
+			refType = 2;
+		};
+		7AB44A8D05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshStandard.cpp;
+			path = src/MushMesh/MushMeshStandard.cpp;
+			refType = 2;
+		};
+		7AB44A8E05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshStandard.h;
+			path = src/MushMesh/MushMeshStandard.h;
+			refType = 2;
+		};
+		7AB44A8F05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshStitchable.cpp;
+			path = src/MushMesh/MushMeshStitchable.cpp;
+			refType = 2;
+		};
+		7AB44A9005643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshStitchable.h;
+			path = src/MushMesh/MushMeshStitchable.h;
+			refType = 2;
+		};
+		7AB44A9105643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSTL.cpp;
+			path = src/MushMesh/MushMeshSTL.cpp;
+			refType = 2;
+		};
+		7AB44A9205643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSTL.h;
+			path = src/MushMesh/MushMeshSTL.h;
+			refType = 2;
+		};
+		7AB44A9305643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSubdivide.cpp;
+			path = src/MushMesh/MushMeshSubdivide.cpp;
+			refType = 2;
+		};
+		7AB44A9405643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshSubdivide.h;
+			path = src/MushMesh/MushMeshSubdivide.h;
+			refType = 2;
+		};
+		7AB44A9505643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshTriangularArray.cpp;
+			path = src/MushMesh/MushMeshTriangularArray.cpp;
+			refType = 2;
+		};
+		7AB44A9605643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshTriangularArray.h;
+			path = src/MushMesh/MushMeshTriangularArray.h;
+			refType = 2;
+		};
+		7AB44A9705643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshUtils.cpp;
+			path = src/MushMesh/MushMeshUtils.cpp;
+			refType = 2;
+		};
+		7AB44A9805643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshUtils.h;
+			path = src/MushMesh/MushMeshUtils.h;
+			refType = 2;
+		};
+		7AB44A9905643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshVector.cpp;
+			path = src/MushMesh/MushMeshVector.cpp;
+			refType = 2;
+		};
+		7AB44A9A05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshVector.h;
+			path = src/MushMesh/MushMeshVector.h;
+			refType = 2;
+		};
+		7AB44A9B05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshWorkspace.cpp;
+			path = src/MushMesh/MushMeshWorkspace.cpp;
+			refType = 2;
+		};
+		7AB44A9C05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshWorkspace.h;
+			path = src/MushMesh/MushMeshWorkspace.h;
+			refType = 2;
+		};
+		7AB44A9D05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshWorkspaceBased.cpp;
+			path = src/MushMesh/MushMeshWorkspaceBased.cpp;
+			refType = 2;
+		};
+		7AB44A9E05643BF900A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = MushMeshWorkspaceBased.h;
+			path = src/MushMesh/MushMeshWorkspaceBased.h;
+			refType = 2;
+		};
+		7AB44AC505643BF900A80065 = {
+			fileRef = 7AB44A7905643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44AC605643BF900A80065 = {
+			fileRef = 7AB44A7A05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44AC705643BF900A80065 = {
+			fileRef = 7AB44A7B05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44AC805643BF900A80065 = {
+			fileRef = 7AB44A7C05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44AC905643BF900A80065 = {
+			fileRef = 7AB44A7D05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACA05643BF900A80065 = {
+			fileRef = 7AB44A7E05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACB05643BF900A80065 = {
+			fileRef = 7AB44A7F05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACC05643BF900A80065 = {
+			fileRef = 7AB44A8005643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACD05643BF900A80065 = {
+			fileRef = 7AB44A8105643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACE05643BF900A80065 = {
+			fileRef = 7AB44A8205643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44ACF05643BF900A80065 = {
+			fileRef = 7AB44A8305643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD0052EEAE600A80064 = {
 			children = (
 				7A6228D0052EF92C00A80064,
@@ -1956,11 +2611,23 @@
 			path = Infernal;
 			refType = 4;
 		};
+		7AB44AD005643BF900A80065 = {
+			fileRef = 7AB44A8405643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD1052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalChequePoint.cpp;
 			refType = 4;
+		};
+		7AB44AD105643BF900A80065 = {
+			fileRef = 7AB44A8505643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AD2052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -1968,11 +2635,23 @@
 			path = InfernalChequePoint.h;
 			refType = 4;
 		};
+		7AB44AD205643BF900A80065 = {
+			fileRef = 7AB44A8605643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD3052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalContract.cpp;
 			refType = 4;
+		};
+		7AB44AD305643BF900A80065 = {
+			fileRef = 7AB44A8705643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AD4052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -1980,11 +2659,23 @@
 			path = InfernalContract.h;
 			refType = 4;
 		};
+		7AB44AD405643BF900A80065 = {
+			fileRef = 7AB44A8805643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD5052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalData.cpp;
 			refType = 4;
+		};
+		7AB44AD505643BF900A80065 = {
+			fileRef = 7AB44A8905643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AD6052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -1992,11 +2683,23 @@
 			path = InfernalData.h;
 			refType = 4;
 		};
+		7AB44AD605643BF900A80065 = {
+			fileRef = 7AB44A8A05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD7052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalDataUtils.cpp;
 			refType = 4;
+		};
+		7AB44AD705643BF900A80065 = {
+			fileRef = 7AB44A8B05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AD8052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2004,11 +2707,23 @@
 			path = InfernalDataUtils.h;
 			refType = 4;
 		};
+		7AB44AD805643BF900A80065 = {
+			fileRef = 7AB44A8C05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AD9052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalFloorDesigner.cpp;
 			refType = 4;
+		};
+		7AB44AD905643BF900A80065 = {
+			fileRef = 7AB44A8D05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44ADA052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2016,11 +2731,23 @@
 			path = InfernalFloorDesigner.h;
 			refType = 4;
 		};
+		7AB44ADA05643BF900A80065 = {
+			fileRef = 7AB44A8E05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44ADB052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalFloorMap.cpp;
 			refType = 4;
+		};
+		7AB44ADB05643BF900A80065 = {
+			fileRef = 7AB44A8F05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44ADC052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2028,11 +2755,23 @@
 			path = InfernalFloorMap.h;
 			refType = 4;
 		};
+		7AB44ADC05643BF900A80065 = {
+			fileRef = 7AB44A9005643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44ADD052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalInfo.cpp;
 			refType = 4;
+		};
+		7AB44ADD05643BF900A80065 = {
+			fileRef = 7AB44A9105643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44ADE052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2040,11 +2779,23 @@
 			path = InfernalInfo.h;
 			refType = 4;
 		};
+		7AB44ADE05643BF900A80065 = {
+			fileRef = 7AB44A9205643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44ADF052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalLightLinks.cpp;
 			refType = 4;
+		};
+		7AB44ADF05643BF900A80065 = {
+			fileRef = 7AB44A9305643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AE0052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2052,11 +2803,23 @@
 			path = InfernalLightLinks.h;
 			refType = 4;
 		};
+		7AB44AE005643BF900A80065 = {
+			fileRef = 7AB44A9405643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AE1052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMap.cpp;
 			refType = 4;
+		};
+		7AB44AE105643BF900A80065 = {
+			fileRef = 7AB44A9505643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AE2052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2064,11 +2827,23 @@
 			path = InfernalMap.h;
 			refType = 4;
 		};
+		7AB44AE205643BF900A80065 = {
+			fileRef = 7AB44A9605643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AE3052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMapArea.cpp;
 			refType = 4;
+		};
+		7AB44AE305643BF900A80065 = {
+			fileRef = 7AB44A9705643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AE4052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2076,11 +2851,23 @@
 			path = InfernalMapArea.h;
 			refType = 4;
 		};
+		7AB44AE405643BF900A80065 = {
+			fileRef = 7AB44A9805643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AE5052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMapPoint.h;
 			refType = 4;
+		};
+		7AB44AE505643BF900A80065 = {
+			fileRef = 7AB44A9905643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AE6052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2088,11 +2875,23 @@
 			path = InfernalMessageControlData.cpp;
 			refType = 4;
 		};
+		7AB44AE605643BF900A80065 = {
+			fileRef = 7AB44A9A05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AE7052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMessageControlData.h;
 			refType = 4;
+		};
+		7AB44AE705643BF900A80065 = {
+			fileRef = 7AB44A9B05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AE8052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2100,11 +2899,23 @@
 			path = InfernalMotion.cpp;
 			refType = 4;
 		};
+		7AB44AE805643BF900A80065 = {
+			fileRef = 7AB44A9C05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AE9052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMotion.h;
 			refType = 4;
+		};
+		7AB44AE905643BF900A80065 = {
+			fileRef = 7AB44A9D05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7AB44AEA052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2112,10 +2923,44 @@
 			path = InfernalMotionSpec.cpp;
 			refType = 4;
 		};
+		7AB44AEA05643BF900A80065 = {
+			fileRef = 7AB44A9E05643BF900A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44AEB052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalMotionSpec.h;
+			refType = 4;
+		};
+		7AB44AEB05643C2B00A80065 = {
+			children = (
+				7AB44AEC05643C5100A80065,
+				7AB44AED05643C5100A80065,
+				7AB44AEE05643C5100A80065,
+				7AB44AEF05643C5100A80065,
+				7AB44AF005643C5100A80065,
+				7AB44AF105643C5100A80065,
+				7AB44AF205643C5100A80065,
+				7AB44AF305643C5100A80065,
+				7AB44AF405643C5100A80065,
+				7AB44AF505643C5100A80065,
+				7AB44AF605643C5100A80065,
+				7AB44AF705643C5100A80065,
+				7AB44AF805643C5100A80065,
+				7AB44AF905643C5100A80065,
+				7AB44AFA05643C5100A80065,
+				7AB44AFB05643C5100A80065,
+				7AB44AFC05643C5100A80065,
+				7AB44AFD05643C5100A80065,
+				7AB44AFE05643C5100A80065,
+				7AB44AFF05643C5100A80065,
+			);
+			isa = PBXGroup;
+			name = TestMushMesh;
+			path = TestMustl;
 			refType = 4;
 		};
 		7AB44AEC052EEAE600A80064 = {
@@ -2124,11 +2969,25 @@
 			path = InfernalOverPlot.cpp;
 			refType = 4;
 		};
+		7AB44AEC05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshApp.cpp;
+			path = src/TestMushMesh/TestMushMeshApp.cpp;
+			refType = 2;
+		};
 		7AB44AED052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalOverPlot.h;
 			refType = 4;
+		};
+		7AB44AED05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshApp.h;
+			path = src/TestMushMesh/TestMushMeshApp.h;
+			refType = 2;
 		};
 		7AB44AEE052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2136,11 +2995,25 @@
 			path = InfernalSolidMap.cpp;
 			refType = 4;
 		};
+		7AB44AEE05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshArray.cpp;
+			path = src/TestMushMesh/TestMushMeshArray.cpp;
+			refType = 2;
+		};
 		7AB44AEF052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalSolidMap.h;
 			refType = 4;
+		};
+		7AB44AEF05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshArray.h;
+			path = src/TestMushMesh/TestMushMeshArray.h;
+			refType = 2;
 		};
 		7AB44AF0052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2148,11 +3021,25 @@
 			path = InfernalSpacePoint.h;
 			refType = 4;
 		};
+		7AB44AF005643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshBox.cpp;
+			path = src/TestMushMesh/TestMushMeshBox.cpp;
+			refType = 2;
+		};
 		7AB44AF1052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalTest.cpp;
 			refType = 4;
+		};
+		7AB44AF105643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshBox.h;
+			path = src/TestMushMesh/TestMushMeshBox.h;
+			refType = 2;
 		};
 		7AB44AF2052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2160,11 +3047,25 @@
 			path = InfernalTest.h;
 			refType = 4;
 		};
+		7AB44AF205643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshMain.cpp;
+			path = src/TestMushMesh/TestMushMeshMain.cpp;
+			refType = 2;
+		};
 		7AB44AF3052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalTileMap.cpp;
 			refType = 4;
+		};
+		7AB44AF305643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshMain.h;
+			path = src/TestMushMesh/TestMushMeshMain.h;
+			refType = 2;
 		};
 		7AB44AF4052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2172,11 +3073,25 @@
 			path = InfernalTileMap.h;
 			refType = 4;
 		};
+		7AB44AF405643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshPatch.cpp;
+			path = src/TestMushMesh/TestMushMeshPatch.cpp;
+			refType = 2;
+		};
 		7AB44AF5052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalTileSpec.cpp;
 			refType = 4;
+		};
+		7AB44AF505643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshPatch.h;
+			path = src/TestMushMesh/TestMushMeshPatch.h;
+			refType = 2;
 		};
 		7AB44AF6052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2184,11 +3099,25 @@
 			path = InfernalTileSpec.h;
 			refType = 4;
 		};
+		7AB44AF605643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshStandard.cpp;
+			path = src/TestMushMesh/TestMushMeshStandard.cpp;
+			refType = 2;
+		};
 		7AB44AF7052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalTileTraits.cpp;
 			refType = 4;
+		};
+		7AB44AF705643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshStandard.h;
+			path = src/TestMushMesh/TestMushMeshStandard.h;
+			refType = 2;
 		};
 		7AB44AF8052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2196,11 +3125,39 @@
 			path = InfernalTileTraits.h;
 			refType = 4;
 		};
+		7AB44AF805643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshSubdivide.cpp;
+			path = src/TestMushMesh/TestMushMeshSubdivide.cpp;
+			refType = 2;
+		};
+		7AB44AF905643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshSubdivide.h;
+			path = src/TestMushMesh/TestMushMeshSubdivide.h;
+			refType = 2;
+		};
+		7AB44AFA05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshTriangularArray.cpp;
+			path = src/TestMushMesh/TestMushMeshTriangularArray.cpp;
+			refType = 2;
+		};
 		7AB44AFB052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalView.cpp;
 			refType = 4;
+		};
+		7AB44AFB05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshTriangularArray.h;
+			path = src/TestMushMesh/TestMushMeshTriangularArray.h;
+			refType = 2;
 		};
 		7AB44AFC052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2208,11 +3165,25 @@
 			path = InfernalView.h;
 			refType = 4;
 		};
+		7AB44AFC05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshUtils.cpp;
+			path = src/TestMushMesh/TestMushMeshUtils.cpp;
+			refType = 2;
+		};
 		7AB44AFD052EEAE600A80064 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = InfernalWebCommands.cpp;
 			refType = 4;
+		};
+		7AB44AFD05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshUtils.h;
+			path = src/TestMushMesh/TestMushMeshUtils.h;
+			refType = 2;
 		};
 		7AB44AFE052EEAE600A80064 = {
 			fileEncoding = 30;
@@ -2220,14 +3191,34 @@
 			path = InfernalWebCommands.h;
 			refType = 4;
 		};
+		7AB44AFE05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshVector.cpp;
+			path = src/TestMushMesh/TestMushMeshVector.cpp;
+			refType = 2;
+		};
 		7AB44AFF052EEAE600A80064 = {
 			fileRef = 7AB44AD1052EEAE600A80064;
 			isa = PBXBuildFile;
 			settings = {
 			};
 		};
+		7AB44AFF05643C5100A80065 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = TestMushMeshVector.h;
+			path = src/TestMushMesh/TestMushMeshVector.h;
+			refType = 2;
+		};
 		7AB44B00052EEAE600A80064 = {
 			fileRef = 7AB44AD2052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0005643C5100A80065 = {
+			fileRef = 7AB44AEC05643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2238,8 +3229,20 @@
 			settings = {
 			};
 		};
+		7AB44B0105643C5100A80065 = {
+			fileRef = 7AB44AED05643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B02052EEAE600A80064 = {
 			fileRef = 7AB44AD4052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0205643C5100A80065 = {
+			fileRef = 7AB44AEE05643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2250,8 +3253,20 @@
 			settings = {
 			};
 		};
+		7AB44B0305643C5100A80065 = {
+			fileRef = 7AB44AEF05643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B04052EEAE600A80064 = {
 			fileRef = 7AB44AD6052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0405643C5100A80065 = {
+			fileRef = 7AB44AF005643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2262,8 +3277,20 @@
 			settings = {
 			};
 		};
+		7AB44B0505643C5100A80065 = {
+			fileRef = 7AB44AF105643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B06052EEAE600A80064 = {
 			fileRef = 7AB44AD8052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0605643C5100A80065 = {
+			fileRef = 7AB44AF205643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2274,8 +3301,20 @@
 			settings = {
 			};
 		};
+		7AB44B0705643C5100A80065 = {
+			fileRef = 7AB44AF305643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B08052EEAE600A80064 = {
 			fileRef = 7AB44ADA052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0805643C5100A80065 = {
+			fileRef = 7AB44AF405643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2286,8 +3325,20 @@
 			settings = {
 			};
 		};
+		7AB44B0905643C5100A80065 = {
+			fileRef = 7AB44AF505643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B0A052EEAE600A80064 = {
 			fileRef = 7AB44ADC052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0A05643C5100A80065 = {
+			fileRef = 7AB44AF605643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2298,8 +3349,20 @@
 			settings = {
 			};
 		};
+		7AB44B0B05643C5100A80065 = {
+			fileRef = 7AB44AF705643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B0C052EEAE600A80064 = {
 			fileRef = 7AB44ADE052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0C05643C5100A80065 = {
+			fileRef = 7AB44AF805643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2310,8 +3373,20 @@
 			settings = {
 			};
 		};
+		7AB44B0D05643C5100A80065 = {
+			fileRef = 7AB44AF905643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B0E052EEAE600A80064 = {
 			fileRef = 7AB44AE0052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B0E05643C5100A80065 = {
+			fileRef = 7AB44AFA05643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2322,8 +3397,20 @@
 			settings = {
 			};
 		};
+		7AB44B0F05643C5100A80065 = {
+			fileRef = 7AB44AFB05643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B10052EEAE600A80064 = {
 			fileRef = 7AB44AE2052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B1005643C5100A80065 = {
+			fileRef = 7AB44AFC05643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2334,8 +3421,20 @@
 			settings = {
 			};
 		};
+		7AB44B1105643C5100A80065 = {
+			fileRef = 7AB44AFD05643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B12052EEAE600A80064 = {
 			fileRef = 7AB44AE4052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B1205643C5100A80065 = {
+			fileRef = 7AB44AFE05643C5100A80065;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2346,11 +3445,21 @@
 			settings = {
 			};
 		};
+		7AB44B1305643C5100A80065 = {
+			fileRef = 7AB44AFF05643C5100A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B14052EEAE600A80064 = {
 			fileRef = 7AB44AE6052EEAE600A80064;
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		7AB44B1405643C5F00A80065 = {
+			isa = PBXTargetDependency;
+			target = 7AB44A2405643BB700A80065;
 		};
 		7AB44B15052EEAE600A80064 = {
 			fileRef = 7AB44AE7052EEAE600A80064;
@@ -2406,6 +3515,12 @@
 			settings = {
 			};
 		};
+		7AB44B1D05643CB700A80065 = {
+			fileRef = 7AB44A7805643BB700A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B1E052EEAE600A80064 = {
 			fileRef = 7AB44AF0052EEAE600A80064;
 			isa = PBXBuildFile;
@@ -2424,8 +3539,20 @@
 			settings = {
 			};
 		};
+		7AB44B2005643CDE00A80065 = {
+			fileRef = 7AB44A7805643BB700A80065;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AB44B21052EEAE600A80064 = {
 			fileRef = 7AB44AF3052EEAE600A80064;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB44B2105643EB100A80065 = {
+			fileRef = 7AEACAD703D1B87F00A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -3436,6 +4563,44 @@
 		};
 		7AB7610F0533476F00A80064 = {
 			children = (
+				7AB44A7905643BF900A80065,
+				7AB44A7A05643BF900A80065,
+				7AB44A7B05643BF900A80065,
+				7AB44A7C05643BF900A80065,
+				7AB44A7D05643BF900A80065,
+				7AB44A7E05643BF900A80065,
+				7AB44A7F05643BF900A80065,
+				7AB44A8005643BF900A80065,
+				7AB44A8105643BF900A80065,
+				7AB44A8205643BF900A80065,
+				7AB44A8305643BF900A80065,
+				7AB44A8405643BF900A80065,
+				7AB44A8505643BF900A80065,
+				7AB44A8605643BF900A80065,
+				7AB44A8705643BF900A80065,
+				7AB44A8805643BF900A80065,
+				7AB44A8905643BF900A80065,
+				7AB44A8A05643BF900A80065,
+				7AB44A8B05643BF900A80065,
+				7AB44A8C05643BF900A80065,
+				7AB44A8D05643BF900A80065,
+				7AB44A8E05643BF900A80065,
+				7AB44A8F05643BF900A80065,
+				7AB44A9005643BF900A80065,
+				7AB44A9105643BF900A80065,
+				7AB44A9205643BF900A80065,
+				7AB44A9305643BF900A80065,
+				7AB44A9405643BF900A80065,
+				7AB44A9505643BF900A80065,
+				7AB44A9605643BF900A80065,
+				7AB44A9705643BF900A80065,
+				7AB44A9805643BF900A80065,
+				7AB44A9905643BF900A80065,
+				7AB44A9A05643BF900A80065,
+				7AB44A9B05643BF900A80065,
+				7AB44A9C05643BF900A80065,
+				7AB44A9D05643BF900A80065,
+				7AB44A9E05643BF900A80065,
 			);
 			isa = PBXGroup;
 			name = MushMesh;
@@ -7837,6 +9002,8 @@
 				7AB8559703D2FD4F00A80164,
 				7AB45DB503D3610100A80164,
 				7AF8B14F03DC3B1800A80164,
+				7AB44A0D05643B6000A80065,
+				7AB44A2405643BB700A80065,
 			);
 		};
 		F5431746020C310101449C4C = {
@@ -7880,6 +9047,8 @@
 				7AB45DB603D3610100A80164,
 				7AF8B16303DC3B1800A80164,
 				7AB7624E05334A1D00A80064,
+				7AB44A2205643B6000A80065,
+				7AB44A7805643BB700A80065,
 			);
 			isa = PBXGroup;
 			name = Products;
@@ -10200,6 +11369,7 @@
 				F57BD757028ADEEF01AD87C4,
 				F5B25BE502187072017E032D,
 				7AF8B06F03DC392A00A80164,
+				7AB44AEB05643C2B00A80065,
 				7AB45DAB03D35DAF00A80164,
 			);
 			isa = PBXGroup;
