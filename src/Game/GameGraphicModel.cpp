@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.1 2002/10/12 11:22:21 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.2 2002/10/12 15:25:18 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.2  2002/10/12 15:25:18  southa
+ * Facet renderer
+ *
  * Revision 1.1  2002/10/12 11:22:21  southa
  * GraphicModel work
  *
@@ -24,25 +27,28 @@ void
 GameGraphicModel::Render(void)
 {
     U32 facetSize=m_facets.size();
+
     for (U32 i=0; i<facetSize; ++i)
     {
         FacetDef& facetDef=m_facets[i];
         U32 arraySize=facetDef.vertices.SizeGet();
         if (facetDef.texRef.Exists())
-        
-        if (facetDef.texRef.TextureGet()->NeedsAlpha())
         {
-            GLState::BlendSet(GLState::kBlendTransparent);
+            if (facetDef.texRef.TextureGet()->NeedsAlpha())
+            {
+                GLState::BlendSet(GLState::kBlendTransparent);
+            }
+            else
+            {
+                GLState::BlendSet(GLState::kBlendSolid);
+            }
+            GLState::BindTexture(facetDef.texRef.BindingNameGet());
+            GLState::TextureEnable();
+            GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
+            GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
+            GLRender::NormalArraySet(facetDef.normals.ArrayGet());
+            GLRender::VertexTextureArray(facetDef.type, arraySize);
         }
-        else
-        {
-            GLState::BlendSet(GLState::kBlendSolid);
-        }
-        GLState::BindTexture(facetDef.texRef.BindingNameGet());
-        GLState::TextureEnable();
-        GLRender::VertexArraySet(facetDef.vertices.ArrayGet());
-        GLRender::TexCoordArraySet(facetDef.texCoords.ArrayGet());
-        GLRender::VertexTextureArrayQuads(arraySize);
     }    
 }
 
@@ -55,17 +61,65 @@ GameGraphicModel::HandleTextureEnd(CoreXML& inXML)
 void
 GameGraphicModel::HandleFacetsStart(CoreXML& inXML)
 {
-    m_pickleState = kPickleFacets;
+    string typeStr=inXML.GetAttribOrThrow("type").StringGet();
 
     m_facets.push_back(FacetDef());
+
+    if (typeStr == "points")
+    {
+        m_facets.back().type=GL_POINTS;
+    }
+    else if (typeStr == "linestrip")
+    {
+        m_facets.back().type=GL_LINE_STRIP;
+    }
+    else if (typeStr == "lineloop")
+    {
+        m_facets.back().type=GL_LINE_LOOP;
+    }
+    else if (typeStr == "lines")
+    {
+        m_facets.back().type=GL_LINES;
+    }
+    else if (typeStr == "trianglestrip")
+    {
+        m_facets.back().type=GL_TRIANGLE_STRIP;
+    }
+    else if (typeStr == "trianglefan")
+    {
+        m_facets.back().type=GL_TRIANGLE_FAN;
+    }
+    else if (typeStr == "triangles")
+    {
+        m_facets.back().type=GL_TRIANGLES;
+    }
+    else if (typeStr == "quadstrip")
+    {
+        m_facets.back().type=GL_QUAD_STRIP;
+    }
+    else if (typeStr == "quads")
+    {
+        m_facets.back().type=GL_QUADS;
+    }
+    else if (typeStr == "polygon")
+    {
+        m_facets.back().type=GL_POLYGON;
+    }
+    else
+    {
+        inXML.Throw("Unknown facet type '"+typeStr+"'");
+    }
+
+    m_facetPositionOffset=GLVector(0,0,0);
+    m_facetTexCoordOffset=GLPoint(0,0);
+
+    m_pickleState = kPickleFacets;
 }
 
 void
 GameGraphicModel::HandleFacetsEnd(CoreXML& inXML)
 {
     m_facets.back().texRef=m_currentTexRef;
-    m_facets.back().vertices.Build();
-    m_facets.back().texCoords.Build();
     m_pickleState = kPickleData;
 }
 
@@ -88,21 +142,47 @@ GameGraphicModel::HandleOffsetEnd(CoreXML& inXML)
 }
 
 void
+GameGraphicModel::HandleFacetOffsetEnd(CoreXML& inXML)
+{
+    string typeStr=inXML.GetAttribOrThrow("type").StringGet();
+    if (typeStr == "position")
+    {
+        m_facetPositionOffset.Unpickle(inXML);
+    }
+    else if (typeStr == "texture")
+    {
+        m_facetTexCoordOffset.Unpickle(inXML);
+    }
+    else
+    {
+        inXML.Throw("Bad type for offset '"+typeStr+"'");
+    }
+}
+
+
+void
 GameGraphicModel::HandleVertexEnd(CoreXML& inXML)
 {
     const char *failMessage="Bad format for vertex.  Should be <vertex>0,0,2:0,0.5</vertex>";
     istringstream data(inXML.TopData());
     GLVector vertex;
     GLPoint texCoord;
-
+    GLVector normal(GLVector(0,0,1));
     char colon;
     vertex.Unpickle(data);
     if (!(data >> colon) || colon != ':') inXML.Throw(failMessage);
     texCoord.Unpickle(data);
+    if ((data >> colon) && colon == ':')
+    {
+        normal.Unpickle(data);
+    }
     vertex += m_positionOffset;
-    texCoord += m_texCoordOffset;   
+    vertex += m_facetPositionOffset;
+    texCoord += m_texCoordOffset;
+    texCoord += m_facetTexCoordOffset;   
     m_facets.back().vertices.Push(vertex);
-    m_facets.back().texCoords.Push(texCoord);    
+    m_facets.back().texCoords.Push(texCoord);
+    m_facets.back().normals.Push(normal);    
 };
 
 void
@@ -134,8 +214,10 @@ GameGraphicModel::UnpicklePrologue(void)
     m_startTable[kPickleData]["facets"] = &GameGraphicModel::HandleFacetsStart;
     m_endTable[kPickleFacets]["facets"] = &GameGraphicModel::HandleFacetsEnd;
 
+    m_startTable[kPickleData]["offset"] = &GameGraphicModel::NullHandler;
+    m_endTable[kPickleData]["offset"] = &GameGraphicModel::HandleOffsetEnd;
     m_startTable[kPickleFacets]["offset"] = &GameGraphicModel::NullHandler;
-    m_endTable[kPickleFacets]["offset"] = &GameGraphicModel::HandleOffsetEnd;
+    m_endTable[kPickleFacets]["offset"] = &GameGraphicModel::HandleFacetOffsetEnd;
     m_startTable[kPickleFacets]["vertex"] = &GameGraphicModel::NullHandler;
     m_endTable[kPickleFacets]["vertex"] = &GameGraphicModel::HandleVertexEnd;
 
@@ -156,6 +238,12 @@ GameGraphicModel::Unpickle(CoreXML& inXML)
 void
 GameGraphicModel::UnpickleEpilogue(void)
 {
+    for (U32 i=0; i<m_facets.size(); ++i)
+    {
+        m_facets[i].vertices.Build();
+        m_facets[i].texCoords.Build();
+        m_facets[i].normals.Build();
+    }
     GameGraphic::UnpickleEpilogue();
     m_startTable.resize(0);
     m_endTable.resize(0);

@@ -2,8 +2,11 @@
 #define GLSTATE_H
 
 /*
- * $Id$
- * $Log$
+ * $Id: GLState.h,v 1.1 2002/10/12 15:24:58 southa Exp $
+ * $Log: GLState.h,v $
+ * Revision 1.1  2002/10/12 15:24:58  southa
+ * Facet renderer
+ *
  */
 
 #include "GLStandard.h"
@@ -290,6 +293,7 @@ GLState::Reset(void)
     m_textureEnabled=true;
     glEnableClientState(GL_VERTEX_ARRAY); // Always enabled
     glEnableClientState(GL_TEXTURE_COORD_ARRAY); // Always enabled
+    glEnableClientState(GL_NORMAL_ARRAY); // Always enabled
 }
 
 inline void

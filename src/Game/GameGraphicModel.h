@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: GameGraphicModel.h,v 1.1 2002/10/12 11:22:21 southa Exp $
+ * $Log: GameGraphicModel.h,v $
+ * Revision 1.1  2002/10/12 11:22:21  southa
+ * GraphicModel work
+ *
  */
 
 #include "GameGraphic.h"
@@ -41,6 +44,7 @@ private:
     void HandleFacetsStart(CoreXML& inXML);
     void HandleFacetsEnd(CoreXML& inXML);
     void HandleOffsetEnd(CoreXML& inXML);
+    void HandleFacetOffsetEnd(CoreXML& inXML);
     void HandleVertexEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
@@ -63,13 +67,17 @@ private:
     class FacetDef
     {
     public:
+        GLenum type;
         GLTextureRef texRef;
         GLArray<GLVector, GLfloat[3]> vertices;
         GLArray<GLPoint, GLfloat[2]> texCoords;
+        GLArray<GLVector, GLfloat[3]> normals;
     };
-    
+
     GLVector m_positionOffset;
     GLPoint m_texCoordOffset;
+    GLVector m_facetPositionOffset;
+    GLPoint m_facetTexCoordOffset;
     GLTextureRef m_currentTexRef;
     
     vector<FacetDef> m_facets;

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id$
- * $Log$
+ * $Id: GLRender.h,v 1.1 2002/10/12 15:24:58 southa Exp $
+ * $Log: GLRender.h,v $
+ * Revision 1.1  2002/10/12 15:24:58  southa
+ * Facet renderer
+ *
  */
 
 #include "mushCore.h"
@@ -34,17 +37,20 @@ public:
     }
     static void TexCoordArraySet(const GLfloat (*inArray)[2])
     {
-        glTexCoordPointer(2, GL_FLOAT, 0, inArray);
+            glTexCoordPointer(2, GL_FLOAT, 0, inArray);
+    }
+    static void NormalArraySet(const GLfloat (*inArray)[3])
+    {
+        glNormalPointer(GL_FLOAT, 0, inArray);
     }
     static void TextureSet(const GLTextureRef& inTexRef)
     {
         GLState::BindTexture(inTexRef.BindingNameGet());
         GLState::TextureEnable();
     }
-
-    static void VertexTextureArrayQuads(U32 inSize)
+    static void VertexTextureArray(GLenum inType, U32 inSize)
     {
-        glDrawArrays(GL_QUADS, 0, inSize);
+        glDrawArrays(inType, 0, inSize);
     }
 
 private:
