@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 7eDOjlMAR1UQYJUhR6Jr0w
 /*
- * $Id: InfernalTypeRace.cpp,v 1.1 2003/10/04 15:32:12 southa Exp $
+ * $Id: InfernalTypeRace.cpp,v 1.2 2003/10/07 22:40:06 southa Exp $
  * $Log: InfernalTypeRace.cpp,v $
+ * Revision 1.2  2003/10/07 22:40:06  southa
+ * Created MeshMover
+ *
  * Revision 1.1  2003/10/04 15:32:12  southa
  * Module split
  *
@@ -772,11 +775,11 @@ InfernalTypeRace::UnpickleEpilogue(void)
 void
 InfernalTypeRace::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -804,11 +807,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 InfernalTypeRace::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

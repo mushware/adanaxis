@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } D3jiefET3k3peL6sMlTiLA
 /*
- * $Id: MustlGameClient.cpp,v 1.2 2003/10/06 22:42:04 southa Exp $
+ * $Id: MustlGameClient.cpp,v 1.3 2003/10/07 22:40:06 southa Exp $
  * $Log: MustlGameClient.cpp,v $
+ * Revision 1.3  2003/10/07 22:40:06  southa
+ * Created MeshMover
+ *
  * Revision 1.2  2003/10/06 22:42:04  southa
  * Include fixes
  *
@@ -352,11 +355,11 @@ MustlGameClient::Unpickle(MushcoreXML& inXML)
 void
 MustlGameClient::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -384,11 +387,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 MustlGameClient::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e2PHR6Xz+yz+YtTyuBFEgA
 /*
- * $Id: GameRecords.cpp,v 1.17 2003/10/04 12:23:02 southa Exp $
+ * $Id: GameRecords.cpp,v 1.19 2003/10/04 18:12:13 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.19  2003/10/04 18:12:13  southa
+ * Readded
+ *
  * Revision 1.17  2003/10/04 12:23:02  southa
  * File renaming
  *
@@ -321,11 +324,11 @@ GameRecords::Unpickle(MushcoreXML& inXML)
 void
 GameRecords::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -344,11 +347,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 GameRecords::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DrgZeyyyqa0NzNz0YO96hg
 /*
- * $Id: GameGraphicSprite.cpp,v 1.20 2003/09/17 19:40:32 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.21 2003/10/04 12:23:00 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.21  2003/10/04 12:23:00  southa
+ * File renaming
+ *
  * Revision 1.20  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -193,11 +196,11 @@ GameGraphicSprite::UnpickleEpilogue(void)
 void
 GameGraphicSprite::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -225,11 +228,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 GameGraphicSprite::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

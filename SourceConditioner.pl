@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.18 2003/10/14 10:46:04 southa Exp $
+# $Id: SourceConditioner.pl,v 1.19 2003/10/17 12:27:17 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.19  2003/10/17 12:27:17  southa
+# Line end fixes and more mesh work
+#
 # Revision 1.18  2003/10/14 10:46:04  southa
 # MeshMover creation
 #
@@ -93,7 +96,7 @@ my @gCHeaders = (
 ' *',
 ' * File: @FILENAME@',
 ' *',
-' * Copyright Andy Southgate 2002-2003',
+' * Copyright Andy Southgate 2002-2004',
 ' *',
 ' * This file may be redistributed and/or modified under the terms of the',
 ' * Mushware licence which you should have received with this file.  For',
@@ -111,7 +114,7 @@ my @gCHeaders = (
 ' *',
 ' * This file contains original work by Andy Southgate.  Contact details can be',
 ' * found at http://www.mushware.com/.  This file was placed in the Public',
-' * Domain by Andy Southgate and Mushware Limited in 2002-2003.',
+' * Domain by Andy Southgate and Mushware Limited in 2002-2004.',
 ' *',
 ' * This software carries NO WARRANTY of any kind.',
 ' *',

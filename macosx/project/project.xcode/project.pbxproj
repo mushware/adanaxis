@@ -63,7 +63,7 @@
 				20286C2CFDCF999611CA2CEA,
 				20286C32FDCF999611CA2CEA,
 				195DF8CFFE9D517E11CA2CBB,
-				7A62B6FB05A49C0C002A5F1C,
+				7A2E6CB805A4DD550025F99B,
 			);
 			isa = PBXGroup;
 			name = project;
@@ -73,6 +73,7 @@
 		};
 		20286C2CFDCF999611CA2CEA = {
 			children = (
+				7A2E6C9505A4DAF90025F99B,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -131,8 +132,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
@@ -197,6 +196,84 @@
 //7A2
 //7A3
 //7A4
+		7A2E6C8C05A4DA9B0025F99B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.rez;
+			name = PlatformBoxes.r;
+			path = MacOSX/PlatformBoxes.r;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A2E6C8D05A4DA9B0025F99B = {
+			fileRef = 7A2E6C8C05A4DA9B0025F99B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A2E6C9505A4DAF90025F99B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.icns;
+			name = ic2_app.icns;
+			path = "/Users/southa/core-app/macosx/ic2_app.icns";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A2E6C9605A4DAF90025F99B = {
+			fileRef = 7A2E6C9505A4DAF90025F99B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A2E6CB805A4DD550025F99B = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = "dummp-Info.plist";
+			path = "/Users/southa/core-app/macosx/project/dummp-Info.plist";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A5FA8C905A4CC1F00AA22E5 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushPie.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5FA8CA05A4CC1F00AA22E5 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushPie.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5FA8CB05A4CC2000AA22E5 = {
+			fileRef = 7A5FA8C905A4CC1F00AA22E5;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5FA8CC05A4CC2000AA22E5 = {
+			fileRef = 7A5FA8CA05A4CC1F00AA22E5;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5FA8DF05A4CC5700AA22E5 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../..\n./prebuild.sh";
+		};
 		7A62B6F305A49C0B002A5F1C = {
 			buildActionMask = 2147483647;
 			files = (
@@ -298,7 +375,6 @@
 				7A62B9D505A49D06002A5F1C,
 				7A62B9D705A49D06002A5F1C,
 				7A62B9D905A49D06002A5F1C,
-				7A62B9DB05A49D06002A5F1C,
 				7A62B9E105A49D06002A5F1C,
 				7A62B9E305A49D06002A5F1C,
 				7A62B9E505A49D06002A5F1C,
@@ -422,7 +498,6 @@
 				7A62BAD605A49D06002A5F1C,
 				7A62BAD805A49D06002A5F1C,
 				7A62BAD905A49D06002A5F1C,
-				7A62BADA05A49D06002A5F1C,
 				7A62BADC05A49D06002A5F1C,
 				7A62BADF05A49D06002A5F1C,
 				7A62BAED05A49D06002A5F1C,
@@ -502,6 +577,7 @@
 				7A710D8705A4A26800A58F05,
 				7A710D8805A4A26800A58F05,
 				7A710F6205A4A97500A58F05,
+				7A5FA8CC05A4CC2000AA22E5,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A62BAEA05A49D06002A5F1C,
+				7A2E6C9605A4DAF90025F99B,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +681,6 @@
 				7A62B9D405A49D06002A5F1C,
 				7A62B9D605A49D06002A5F1C,
 				7A62B9D805A49D06002A5F1C,
-				7A62B9DA05A49D06002A5F1C,
 				7A62B9DC05A49D06002A5F1C,
 				7A62B9E005A49D06002A5F1C,
 				7A62B9E205A49D06002A5F1C,
@@ -750,6 +826,7 @@
 				7A62BB1005A49D06002A5F1C,
 				7A62BB1205A49D06002A5F1C,
 				7A62BB1405A49D06002A5F1C,
+				7A5FA8CB05A4CC2000AA22E5,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,6 +835,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A62BAD105A49D06002A5F1C,
+				7A2E6C8D05A4DA9B0025F99B,
 			);
 			isa = PBXRezBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,6 +861,7 @@
 		};
 		7A62B6F805A49C0B002A5F1C = {
 			buildPhases = (
+				7A5FA8DF05A4CC5700AA22E5,
 				7A62B6F305A49C0B002A5F1C,
 				7A62B6F405A49C0B002A5F1C,
 				7A62B6F505A49C0B002A5F1C,
@@ -794,9 +873,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				INFOPLIST_FILE = "All-Info.plist";
+				INFOPLIST_FILE = All.Info.plist;
 				INSTALL_PATH = "$(USER_APPS_DIR)";
-				PRODUCT_NAME = All;
+				PRODUCT_NAME = ic2;
 			};
 			dependencies = (
 			);
@@ -837,17 +916,9 @@
 			explicitFileType = wrapper.application;
 			includeInIndex = 0;
 			isa = PBXFileReference;
-			path = All.app;
+			path = ic2.app;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7A62B6FB05A49C0C002A5F1C = {
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			name = "All-Info.plist";
-			path = "/Users/southa/core-app/macosx/project/All-Info.plist";
-			refType = 0;
-			sourceTree = "<absolute>";
 		};
 		7A62B70B05A49D04002A5F1C = {
 			children = (
@@ -2055,8 +2126,6 @@
 				7A62B7CA05A49D05002A5F1C,
 				7A62B7CB05A49D05002A5F1C,
 				7A62B7CC05A49D05002A5F1C,
-				7A62B7CD05A49D05002A5F1C,
-				7A62B7CE05A49D05002A5F1C,
 			);
 			isa = PBXGroup;
 			path = Infernal;
@@ -2580,22 +2649,6 @@
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			path = InfernalWebCommands.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A62B7CD05A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			path = MushPie.cpp;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A62B7CE05A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = MushPie.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3991,6 +4044,8 @@
 		};
 		7A62B87005A49D05002A5F1C = {
 			children = (
+				7A5FA8C905A4CC1F00AA22E5,
+				7A5FA8CA05A4CC1F00AA22E5,
 			);
 			isa = PBXGroup;
 			path = MushPie;
@@ -4810,12 +4865,12 @@
 				7A62B8CC05A49D05002A5F1C,
 				7A62B8D505A49D05002A5F1C,
 				7A62B8D605A49D05002A5F1C,
-				7A62B8D705A49D05002A5F1C,
 				7A62B8D805A49D05002A5F1C,
 				7A62B8D905A49D05002A5F1C,
 				7A62B8DA05A49D05002A5F1C,
 				7A62B8DB05A49D05002A5F1C,
 				7A62B8DC05A49D05002A5F1C,
+				7A2E6C8C05A4DA9B0025F99B,
 				7A62B8DD05A49D05002A5F1C,
 				7A62B8E305A49D05002A5F1C,
 			);
@@ -4830,7 +4885,6 @@
 				7A62B8CE05A49D05002A5F1C,
 				7A62B8CF05A49D05002A5F1C,
 				7A62B8D005A49D05002A5F1C,
-				7A62B8D105A49D05002A5F1C,
 				7A62B8D205A49D05002A5F1C,
 				7A62B8D305A49D05002A5F1C,
 				7A62B8D405A49D05002A5F1C,
@@ -4872,14 +4926,6 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		7A62B8D105A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			path = PlatformNet.cpp;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		7A62B8D205A49D05002A5F1C = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -4917,14 +4963,6 @@
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			path = PlatformMiscUtils.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A62B8D705A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = PlatformNet.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -6621,18 +6659,6 @@
 			settings = {
 			};
 		};
-		7A62B9DA05A49D06002A5F1C = {
-			fileRef = 7A62B7CD05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A62B9DB05A49D06002A5F1C = {
-			fileRef = 7A62B7CE05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		7A62B9DC05A49D06002A5F1C = {
 			fileRef = 7A62B7D005A49D05002A5F1C;
 			isa = PBXBuildFile;
@@ -8111,12 +8137,6 @@
 		};
 		7A62BAD905A49D06002A5F1C = {
 			fileRef = 7A62B8D605A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A62BADA05A49D06002A5F1C = {
-			fileRef = 7A62B8D705A49D05002A5F1C;
 			isa = PBXBuildFile;
 			settings = {
 			};
