@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.2 2002/10/31 19:55:54 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.3 2002/11/01 16:15:27 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.3  2002/11/01 16:15:27  southa
+ * Network send and receive
+ *
  * Revision 1.2  2002/10/31 19:55:54  southa
  * Network links
  *
@@ -12,7 +15,7 @@
 #include "MediaNetClient.h"
 #include "MediaNetData.h"
 
-#include "PlatformNet.h"
+#include "mushPlatform.h"
 
 // Need to peek into socket structure to set nonblocking.  A bit nasty
 struct _TCPsocket

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformUtils.cpp,v 1.7 2002/10/14 18:13:18 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.8 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -41,4 +44,5 @@
 
 #include "PlatformInputUtils.cpp"
 #include "PlatformMiscUtils.cpp"
+#include "PlatformNetUtils.cpp"
 #include "PlatformVideoUtils.cpp"

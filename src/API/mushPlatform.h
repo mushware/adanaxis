@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushPlatform.h,v 1.8 2002/10/14 18:13:17 southa Exp $
+ * $Id: mushPlatform.h,v 1.9 2002/10/22 20:41:56 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.9  2002/10/22 20:41:56  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/10/14 18:13:17  southa
  * GLModeDef work
  *
@@ -46,6 +49,9 @@
 
 // Miscellaneous utilities
 #include "Platform/PlatformMiscUtils.h"
+
+// Network
+#include "Platform/PlatformNet.h"
 
 // Video utilities
 #include "Platform/PlatformVideoUtils.h"
