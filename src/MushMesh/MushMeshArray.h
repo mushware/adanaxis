@@ -16,21 +16,38 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshArray.h,v 1.1 2003/10/15 07:08:29 southa Exp $
+ * $Log: MushMeshArray.h,v $
+ * Revision 1.1  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  */
 
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
+#include "MushMeshMath.h"
 
 template <class T>
 class MushMeshArray
 {
 public:
+    enum
+    {
+        kMaxVerts = 6
+    };
+    
     MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
+    const T& RefGet(Mushware::U32 inX, Mushware::U32 inY) const;
     void Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY);
-    void VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY);
+    const Mushware::t2U32 SizeGet(void) const;
+    void SizeSet(const Mushware::t2U32& inSize);
+    Mushware::U32 XSizeGet(void) const { return m_xSize; }
+    Mushware::U32 YSizeGet(void) const { return m_ySize; }
+
+    void VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY) const;
+
+    bool EqualIs(const MushMeshArray<T>& inObj) const;
 
 private:
     Mushware::U32 m_xSize;
@@ -64,6 +81,13 @@ MushMeshArray<T>::Get(Mushware::U32 inX, Mushware::U32 inY) const
 }
 
 template <class T>
+inline const T&
+MushMeshArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
+{
+    return m_values[inX + m_xSize * inY];
+}
+
+template <class T>
 inline void
 MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
@@ -71,21 +95,43 @@ MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 }
 
 template <class T>
-inline void
-MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY)
+inline const Mushware::t2U32
+MushMeshArray<T>::SizeGet(void) const
 {
-    MUSHCOREASSERT(outVerts.size() >= 6);
+    return Mushware::t2U32(m_xSize, m_ySize);
+}
+
+template <class T>
+inline void
+MushMeshArray<T>::SizeSet(const Mushware::t2U32& inSize)
+{
+    if (Mushware::t2U32(m_xSize, m_ySize) != inSize)
+    {
+        m_values.resize(m_xSize * m_ySize);
+        m_xSize = inSize.X();
+        m_ySize = inSize.Y();
+        m_xSizeSub1 = inSize.X()-1;
+        m_ySizeSub1 = inSize.Y()-1;
+        MUSHCOREASSERT(m_xSize > 0 && m_ySize > 0);
+    }
+}
+
+template <class T>
+inline void
+MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mushware::U32& outSize, Mushware::U32 inX, Mushware::U32 inY) const
+{
+    MUSHCOREASSERT(outVerts.size() >= kMaxVerts);
     const T **pVertex = &outVerts[0];
 
     if (inX != 0 && inY != 0 && inX < m_xSizeSub1 && inY < m_ySizeSub1)
     {
         // Optimised case
-        *pVertex = &m_values[inX-1, inY-1];
-        *(++pVertex) = &m_values[inX, inY-1];
-        *(++pVertex) = &m_values[inX-1, inY];
-        *(++pVertex) = &m_values[inX+1, inY];
-        *(++pVertex) = &m_values[inX, inY+1];
-        *(++pVertex) = &m_values[inX+1, inY+1];
+        *pVertex = &RefGet(inX-1, inY-1);
+        *(++pVertex) = &RefGet(inX, inY-1);
+        *(++pVertex) = &RefGet(inX-1, inY);
+        *(++pVertex) = &RefGet(inX+1, inY);
+        *(++pVertex) = &RefGet(inX, inY+1);
+        *(++pVertex) = &RefGet(inX+1, inY+1);
         outSize = 6;
     }
     else
@@ -112,6 +158,7 @@ MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mus
             {
                 generateXSub1 = false;
             }
+            xPlus1 = inX + 1;
             generateXPlus1 = true;
         }
         else
@@ -150,6 +197,7 @@ MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mus
             {
                 generateYSub1 = false;
             }
+            yPlus1 = inY + 1;
             generateYPlus1 = true;
         }
         else
@@ -180,34 +228,57 @@ MushMeshArray<T>::VertexNeighboursGet(MushwareValarray<const T *>& outVerts, Mus
         {
             if (generateXSub1)
             {
-                *pVertex++ = &m_values[xSub1, ySub1];
+                *pVertex++ = &RefGet(xSub1, ySub1);
             }
-            *pVertex++ = &m_values[inX, ySub1];
+            *pVertex++ = &RefGet(inX, ySub1);
         }
 
         if (generateXSub1)
         {
-            *pVertex++ = &m_values[xSub1, inY];
+            *pVertex++ = &RefGet(xSub1, inY);
         }
 
         if (generateXPlus1)
         {
-            *pVertex++ = &m_values[xPlus1, inY];
+            *pVertex++ = &RefGet(xPlus1, inY);
         }
 
         if (generateYPlus1)
         {
-            *pVertex++ = &m_values[inX, yPlus1];
+            *pVertex++ = &RefGet(inX, yPlus1);
             if (generateXPlus1)
             {
-                *pVertex++ = &m_values[xPlus1, yPlus1];
+                *pVertex++ = &RefGet(xPlus1, yPlus1);
             }
         }
         outSize = pVertex - &outVerts[0];
     }
 }
 
+template <class T>
+inline bool
+MushMeshArray<T>::EqualIs(const MushMeshArray<T>& inObj) const
+{
+    return (m_xSize == inObj.m_xSize) &&
+           (m_ySize == inObj.m_ySize) &&
+           MushMeshUtils::EqualIs(m_values, inObj.m_values) && // Workaround for STL problem
+           (m_xCyclic == inObj.m_xCyclic) &&
+           (m_yCyclic == inObj.m_yCyclic);
+}
 
+template <class T>
+inline bool
+operator==(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
+{
+    return a.EqualIs(b);
+}
+
+template <class T>
+inline bool
+operator!=(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
+{
+    return !a.EqualIs(b);
+}
 
 //%includeGuardEnd {
 #endif

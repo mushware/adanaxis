@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mB7tJSwUOE22xsO0P0146A
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshVector.cpp,v 1.2 2003/10/15 07:08:30 southa Exp $
+ * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.2  2003/10/15 07:08:30  southa
+ * MushMeshArray creation
+ *
  */
 #include "TestMushMeshVector.h"
 
@@ -58,6 +61,7 @@ TestMushMeshVector::TestVector(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     {
         throw(MushcoreLogicFail("operator / failed"));
     }
+    return MushcoreScalar(0);
 }
 
 void

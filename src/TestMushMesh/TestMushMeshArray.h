@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fToIyQQx8JGxur8jZBbZlg
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshArray.h,v 1.1 2003/10/15 07:08:29 southa Exp $
+ * $Log: TestMushMeshArray.h,v $
+ * Revision 1.1  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  */
 
 #include "TestMushMeshStandard.h"
@@ -27,6 +30,25 @@ class TestMushMeshArray
 public:
     static MushcoreScalar TestArray(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+
+private:
+    struct tNeighbourPoint
+    {
+        Mushware::U32 nx;
+        Mushware::U32 ny;
+    };
+
+    struct tNeighbourSpec
+    {
+        Mushware::U32 x;
+        Mushware::U32 y;
+        Mushware::U32 numNeighbours;
+        tNeighbourPoint neighbours[6];
+    };
+
+    static Mushware::U32 ValueFunction(Mushware::U32 inX, Mushware::U32 inY);
+    static void CheckNeighbours(const tNeighbourSpec& inSpec, const MushwareValarray<const Mushware::U32 *>& inVerts,
+                                Mushware::U32 inNumVerts, Mushware::U32 inNumTest);
 };
 //%includeGuardEnd {
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8XvmBalkJaw8zlwB0njizA
 /*
- * $Id: TestMushMeshApp.cpp,v 1.1 2003/10/14 13:07:26 southa Exp $
+ * $Id: TestMushMeshApp.cpp,v 1.2 2003/10/15 07:08:29 southa Exp $
  * $Log: TestMushMeshApp.cpp,v $
+ * Revision 1.2  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  * Revision 1.1  2003/10/14 13:07:26  southa
  * MushMesh vector creation
  *
@@ -36,6 +39,7 @@ TestMushMeshApp::EnterInstance(void)
     RunTest("testvector", "MushMeshVector");
     RunTest("testarray", "MushMeshArray");
     RunTest("testutils", "MushMeshUtils");
+    RunTest("testsubdivide", "MushMeshSubdivide");
 }
 
 void

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JlxNvBXL6uC0NayW/SROGA
 /*
- * $Id: MushMeshVector.h,v 1.2 2003/10/14 13:07:26 southa Exp $
+ * $Id: MushMeshVector.h,v 1.3 2003/10/15 07:08:29 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.3  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  * Revision 1.2  2003/10/14 13:07:26  southa
  * MushMesh vector creation
  *
@@ -42,7 +45,11 @@ public:
         m_value[1] = in1;
     }
 
-    T ValueGet(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
+    const T& ValueGet(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
+    
+    const T& X(void) const { return ValueGet(0); }
+    const T& Y(void) const { return ValueGet(1); }
+    const T& Z(void) const { return ValueGet(2); }
     
     bool EqualIs(const MushMeshVector<T, D>& b) const;
 
@@ -185,6 +192,16 @@ operator<<(std::ostream& ioOut, const MushMeshVector<T, D>& inVec)
     ioOut << ']';
     return ioOut;
 }
+
+// Convenient types
+namespace Mushware
+{
+    typedef MushMeshVector<Mushware::U32, 2> t2U32;
+    typedef MushMeshVector<Mushware::U32, 3> t3U32;
+
+    typedef MushMeshVector<Mushware::tVal, 2> t2Val;
+    typedef MushMeshVector<Mushware::tVal, 3> t3Val;
+};
 
 //%includeGuardEnd {
 #endif

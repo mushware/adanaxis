@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESH_H
-#define MUSHMESH_H
-//%includeGuardStart } ThUO79ZBnDYvVIfZtUlf4Q
+#ifndef MUSHMESHMATH_H
+#define MUSHMESHMATH_H
+//%includeGuardStart } ZghGN7KlqsaRqIda0rIylg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMesh.h
+ * File: src/MushMesh/MushMeshMath.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,22 +14,34 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xFo+XPP1GOS/msMIb9Dkcg
+//%Header } PQopC2ocIS4pbyIjqyy4SQ
 /*
- * $Id: MushMesh.h,v 1.2 2003/10/15 07:08:28 southa Exp $
- * $Log: MushMesh.h,v $
- * Revision 1.2  2003/10/15 07:08:28  southa
- * MushMeshArray creation
- *
- * Revision 1.1  2003/10/14 13:07:25  southa
- * MushMesh vector creation
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshArray.h"
-#include "MushMeshSubdivide.h"
-#include "MushMeshVector.h"
-#include "MushMeshUtils.h"
+#include "MushMeshStandard.h"
+
+#if 0
+template <class T>
+inline bool
+operator==(const MushwareValarray<T>& a, const MushwareValarray<T>& b)
+{
+    if (a.size() != b.size())
+    {
+        return false;
+    }
+
+    for (i=0; i < a.size(); ++i)
+    {
+        if (a[i] != b[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+#endif
 
 //%includeGuardEnd {
 #endif
