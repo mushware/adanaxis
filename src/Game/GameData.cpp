@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.16 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameData.cpp,v 1.17 2002/10/22 20:42:03 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.17  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.16  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -224,6 +227,12 @@ GameData::ContractGet(const string& inName) const
         throw(GameDataNotPresent("Access to non-existent contract '"+inName+"'"));
     }
     return p->second;
+}
+
+bool
+GameData::ContractExists(const string& inName) const
+{
+    return (m_contracts.find(inName) != m_contracts.end());
 }
 
 GameTraits *

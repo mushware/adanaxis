@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreFunction.cpp,v 1.9 2002/09/07 09:54:01 southa Exp $
+ * $Id: CoreFunction.cpp,v 1.10 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreFunction.cpp,v $
+ * Revision 1.10  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/09/07 09:54:01  southa
  * Tweaks to Mandrake RPM
  *
@@ -53,6 +56,14 @@ CoreFunction::Execute(void) const
             CoreApp::Instance().Process(m_commands[i]);
         }
         catch (CommandFail& e)
+        {
+            cerr << "*** Command failed: " << e.what() << endl;
+        }
+        catch (ExpressionFail& e)
+        {
+            cerr << "*** Command failed: " << e.what() << endl;
+        }
+        catch (FileFail& e)
         {
             cerr << "*** Command failed: " << e.what() << endl;
         }

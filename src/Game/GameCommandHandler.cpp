@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.7 2002/10/17 12:35:29 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.8 2002/10/22 20:42:02 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/17 12:35:29  southa
  * Save path and update check
  *
@@ -106,7 +109,41 @@ GameCommandHandler::UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+GameCommandHandler::ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams < 2 || numParams > 3)
+    {
+        throw(CommandFail("Usage: readdirectorytomenu(var name,dir name,[filter regexp])"));
+    }
+    string varName;
+    string dirName;
+    string filterRegExp="^.*$";
+    ioCommand.PopParam(varName);
+    ioCommand.PopParam(dirName);
+    if (numParams > 2) ioCommand.PopParam(filterRegExp);
 
+    vector<string> dirEntries;
+    PlatformMiscUtils::ReadDirectory(dirEntries, dirName);
+
+    CoreRegExp re(filterRegExp);
+    string menuStr;
+    U32 size=dirEntries.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        if (re.Search(dirEntries[i]))
+        {
+            if (menuStr.size() > 0)
+            {
+                menuStr+="&";
+            }
+            menuStr += dirEntries[i]+"="+dirEntries[i];
+        }
+    }
+    CoreGlobalConfig::Instance().Set(varName, menuStr);
+    return CoreScalar(0);
+}
 
 void
 GameCommandHandler::Install(void)
@@ -114,4 +151,5 @@ GameCommandHandler::Install(void)
     CoreApp::Instance().AddHandler("game", Game);
     CoreApp::Instance().AddHandler("setsavepath", SetSavePath);
     CoreApp::Instance().AddHandler("updatecheck", UpdateCheck);
+    CoreApp::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
 }

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.5 2002/11/14 17:29:07 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.6 2002/11/14 19:35:30 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.6  2002/11/14 19:35:30  southa
+ * Configuration work
+ *
  * Revision 1.5  2002/11/14 17:29:07  southa
  * Config database
  *
@@ -51,20 +54,26 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string values;
     ioCommand.PopParam(values);
 
-    CoreRegExp re("type=([^&]+)&");
+    CoreRegExp re("(^|&)type=([^&]+)($|&)");
     vector<string> matches;
     if (!re.Search(values, matches))
     {
         throw(CommandFail("No type= element in posted results '"+values+"'"));
     }
-    COREASSERT(matches.size() == 1);
-    if (matches[0] == "config1")
+    COREASSERT(matches.size() == 3);
+    if (matches[1] == "config1")
     {
-        GameConfig::Instance().PostDataHandle(values);;
+        GameConfig::Instance().PostDataHandle(values);
+    }
+    else if (matches[1] == "singleplayer")
+    {
+        GameConfig::Instance().PostDataHandle(values);
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        gameHandler.GameModeEnter(false);
     }
     else
     {
-        throw(CommandFail("Unknown config type value '"+matches[0]+"'"));
+        throw(CommandFail("Unknown config type value '"+matches[1]+"'"));
     }
     
     return CoreScalar(0);

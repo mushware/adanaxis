@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.15 2002/11/15 11:47:56 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.17 2002/11/15 18:58:34 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.17  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  * Revision 1.15  2002/11/15 11:47:56  southa
  * Web processing and error handling
  *
@@ -75,6 +78,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <dirent.h>
 
 OSStatus FSPathMakeFSSpec(const UInt8 *path, FSSpec *spec, Boolean *isDirectory);
 OSErr FinderLaunch(long nTargets, FSSpec *targetList);
@@ -152,6 +156,31 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
     {
         throw(CommandFail("mkdir "+inName+" failed: "+strerror(errno)));
     }
+}
+
+void
+PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inDirName)
+{
+    DIR *dirPtr = opendir(inDirName.c_str());
+    if (dirPtr == NULL)
+    {
+        throw(CommandFail("Cannot open drectory '" + inDirName + "'"));
+    }
+    struct dirent *entry;
+    while (entry = readdir(dirPtr), entry != NULL)
+    {
+        string name;
+        for (U32 i=0; i<entry->d_namlen; ++i)
+        {
+            name += entry->d_name[i];
+        }
+        COREASSERT(entry->d_name[name.size()] == '\0');
+        if (name != "." && name != ".." && name != "CVS")
+        {
+            outFilenames.push_back(name);
+        }
+    }
+    closedir(dirPtr);
 }
 
 void

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.h,v 1.7 2002/10/17 12:35:30 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.8 2002/10/22 20:42:02 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.8  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/17 12:35:30  southa
  * Save path and update check
  *
@@ -47,5 +50,6 @@ public:
     static CoreScalar Game(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv);
 };
 #endif

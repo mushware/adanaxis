@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.15 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameData.h,v 1.16 2002/10/22 20:42:03 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.16  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.15  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -90,6 +93,7 @@ public:
     GameFloorMap *FloorMapGet(const string& inName) const;
     GameContract *ContractGetOrCreate(const string& inName);
     GameContract *ContractGet(const string& inName) const;
+    bool ContractExists(const string& inName) const;
     GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
     GameTraits *TraitsGet(const string& inName) const;
     GameController *ControllerGetOrCreate(const string& inName);

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.12 2002/11/15 11:47:56 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.13 2002/11/15 12:59:26 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.13  2002/11/15 12:59:26  southa
+ * Auto-open configuration on startup
+ *
  * Revision 1.12  2002/11/15 11:47:56  southa
  * Web processing and error handling
  *
@@ -41,10 +44,11 @@ public:
     static string GetSystemPath(int argc, char *argv[]);
     static void TweakArgs(string& ioString);
     static void Initialise(void);
-    static void ErrorBox(const string& inStr);
-    static void MinorErrorBox(const string& inStr);
     static bool DirectoryExists(const string& inName);
     static void MakeDirectory(const string& inName);
+    static void ReadDirectory(vector<string>& outFilenames, const string& inDirName);
+    static void ErrorBox(const string& inStr);
+    static void MinorErrorBox(const string& inStr);
     static void UpdateCheck(void);
     static void LaunchFile(const string& inFile);
     static void LaunchURL(const string& inURL);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.31 2002/11/15 18:58:33 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.32 2002/11/16 12:43:20 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.32  2002/11/16 12:43:20  southa
+ * GameApp mode switching
+ *
  * Revision 1.31  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -140,8 +143,6 @@ void
 GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
-
-
 }
 
 void
@@ -225,7 +226,7 @@ GameAppHandler::SetupModeEnter(void)
 }
 
 void
-GameAppHandler::GameModeEnter(void)
+GameAppHandler::GameModeEnter(bool inResume)
 {
     switch (m_appState)
     {
@@ -234,8 +235,12 @@ GameAppHandler::GameModeEnter(void)
             m_pSetup->SwapOut();
             // Drop through
         case kAppStateStartup:
+            if (!inResume || !GameData::Instance().ContractExists("contract1"))
+            {
+                PrepareNewGame();
+            }
             m_pGame=GameData::Instance().ContractGet("contract1");
-            //m_pGame->ScriptFunction("load");
+                
             COREASSERT(m_pGame != NULL);
             m_pGame->SwapIn();
             m_appState=kAppStateGame;
@@ -247,4 +252,19 @@ GameAppHandler::GameModeEnter(void)
         default:
             throw(LogicFail("Bad value for m_appState"));
     }
+}
+
+void
+GameAppHandler::PrepareNewGame(void)
+{
+    // Needs to be done in GameContract
+    string contractRoot=CoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
+    string contractName=GameConfig::Instance().ParameterGet("contractname").StringGet();
+    string contractPath=contractRoot+"/"+contractName;
+    CoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
+
+    CoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
+    command.Execute();
+    m_pGame=GameData::Instance().ContractGet("contract1");
+    m_pGame->ScriptFunction("load");
 }

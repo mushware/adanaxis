@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.11 2002/11/15 18:58:33 southa Exp $
+ * $Id: GameAppHandler.h,v 1.12 2002/11/16 12:43:21 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.12  2002/11/16 12:43:21  southa
+ * GameApp mode switching
+ *
  * Revision 1.11  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -65,9 +68,11 @@ public:
     virtual void Idle(void);
 
     void SetupModeEnter(void);
-    void GameModeEnter(void);
+    void GameModeEnter(bool inResume);
     
 protected:
+    void PrepareNewGame(void);
+    
 private:
     enum tAppState
     {

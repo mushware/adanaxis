@@ -486,9 +486,11 @@
 		F512BC6403798C9201A80164 = {
 			children = (
 				F512BC6D0379C3B401A80164,
+				F5B37E460387C44801A80164,
 				F512BC6F0379C8C401A80164,
 				F512BC6303798C7D01A80164,
 				F512BC710379E4C301A80164,
+				F5B3796B0387A66A01A80164,
 				F512BC650379928F01A80164,
 				F512BC6C0379C0CE01A80164,
 			);
@@ -5841,6 +5843,18 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		F5B3796B0387A66A01A80164 = {
+			isa = PBXFileReference;
+			name = singleplayer.mhtml;
+			path = localweb/singleplayer.mhtml;
+			refType = 4;
+		};
+		F5B37E460387C44801A80164 = {
+			isa = PBXFileReference;
+			name = developer.mhtml;
+			path = localweb/developer.mhtml;
+			refType = 4;
 		};
 		F5B39DB10383F5FB01A80164 = {
 			isa = PBXFileReference;
