@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceConditioner.pl,v 1.7 2003/08/21 23:08:16 southa Exp $
-# $Log: SourceConditioner.pl,v $
+# $Id: SourceProcess.pm,v 1.1 2003/09/17 19:12:13 southa Exp $
+# $Log: SourceProcess.pm,v $
+# Revision 1.1  2003/09/17 19:12:13  southa
+# Created
+#
 # Revision 1.7  2003/08/21 23:08:16  southa
 # Fixed file headers
 #
@@ -138,6 +141,8 @@ sub ProcessDirectory($)
                             foreach (@contents)
                             {
                                 push @origContents, $_;
+                                s/\012//g;
+                                s/\015//g;        
                             }
                         }
                         $gProcessors[$i+1](\@contents, $filename);
@@ -203,8 +208,6 @@ sub ReadFile($$)
     open(FILE, $filename) or die "File open for read failed for $filename: $!";
     while (<FILE>)
     {
-        s/\012//g;
-        s/\015//g;        
         push(@$contentRef, $_);
     }
     close FILE;
