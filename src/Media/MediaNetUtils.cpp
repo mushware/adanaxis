@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.3 2002/11/08 11:54:40 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.4 2002/11/15 11:47:55 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.4  2002/11/15 11:47:55  southa
+ * Web processing and error handling
+ *
  * Revision 1.3  2002/11/08 11:54:40  southa
  * Web fixes
  *
@@ -122,7 +125,6 @@ MediaNetUtils::RemoveMeta(const string& inStr)
             istringstream hexStream(inStr.substr(i+1, 2));
             U32 charVal;
             hexStream >> hex >> charVal;
-            cerr << "Converted meta " << inStr.substr(i, 3) << " to '" << (U8) charVal << "'" << endl;
             if (charVal >= ' ')
             {
                 retStr += charVal;

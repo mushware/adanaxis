@@ -238,19 +238,20 @@ PlatformMiscUtils::LaunchFile(const string& inFile)
     }
 }
 
-// From Apple sample code SimpleDataQueueTool.c
 void
 PlatformMiscUtils::LaunchURL(const string& inURL)
 {
     CFStringRef destName = CFStringCreateWithCString(NULL, inURL.c_str(), kCFStringEncodingMacRoman);
-    CFURLRef pathRef;
-    pathRef = CFURLCreateWithString(NULL, destName, NULL);
-    if (pathRef)
+    if (destName)
     {
-        LSOpenCFURLRef(pathRef, NULL);
-        CFRelease(pathRef);
+        CFURLRef pathRef = CFURLCreateWithString(NULL, destName, NULL);
+        if (pathRef)
+        {
+            LSOpenCFURLRef(pathRef, NULL);
+            CFRelease(pathRef);
+        }
+        CFRelease(destName);
     }
-    CFRelease(destName);
 }
 
 // From Apple sample code MoreFilesX.c

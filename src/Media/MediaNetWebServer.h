@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetWebServer.h,v 1.1 2002/11/05 18:15:19 southa Exp $
+ * $Log: MediaNetWebServer.h,v $
+ * Revision 1.1  2002/11/05 18:15:19  southa
+ * Web server
+ *
  */
 
 #include "mushCore.h"
@@ -17,10 +20,12 @@ public:
     static MediaNetWebServer& Instance(void);
 
     void Connect(U32 inPort);
+    void Disconnect(void);
     void Accept(void);
-
+    bool IsConnected(void) const;
+    
 protected:
-        MediaNetWebServer();
+    MediaNetWebServer();
 
 private:
     TCPsocket m_tcpSocket;

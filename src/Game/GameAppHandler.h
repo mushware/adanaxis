@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.9 2002/08/27 08:56:22 southa Exp $
+ * $Id: GameAppHandler.h,v 1.10 2002/10/22 20:42:02 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.10  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -52,7 +55,8 @@ class GameBase;
 class GameAppHandler : public SDLAppHandler
 {
 public:
-    GameAppHandler(): m_pGame(NULL) {}
+    GameAppHandler();
+    virtual ~GameAppHandler();
     virtual void Initialise(void);
     virtual void Display(void);
     virtual void Idle(void);

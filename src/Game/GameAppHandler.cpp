@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.29 2002/10/17 12:35:29 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.30 2002/10/22 20:42:02 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.30  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.29  2002/10/17 12:35:29  southa
  * Save path and update check
  *
@@ -113,16 +116,28 @@
 #include "GameFloorMap.h"
 #include "GameData.h"
 #include "GameConfig.h"
+#include "GameSetup.h"
 
 #include "mushMedia.h"
+
+GameAppHandler::GameAppHandler() :
+    m_pGame(NULL)
+{
+}
+
+GameAppHandler::~GameAppHandler()
+{
+    if (m_pGame != NULL) delete m_pGame;
+}
 
 void
 GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
 
-    m_pGame=GameData::Instance().ContractGet("contract1");
-    m_pGame->ScriptFunction("load");
+    m_pGame=new GameSetup;
+    // m_pGame=GameData::Instance().ContractGet("contract1");
+    // m_pGame->ScriptFunction("load");
 
     try
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.90 2002/11/05 18:15:00 southa Exp $
+ * $Id: GameContract.cpp,v 1.91 2002/11/15 12:59:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.91  2002/11/15 12:59:25  southa
+ * Auto-open configuration on startup
+ *
  * Revision 1.90  2002/11/05 18:15:00  southa
  * Web server
  *
@@ -309,11 +312,12 @@
 #include "GameRewards.h"
 #include "GameSpacePoint.h"
 #include "GameConfig.h"
+#include "GameConfigDef.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
 GameContract::GameContract() :
-    m_gameState(kInit),
+    m_gameState(kGameStateInit),
     m_tileMap(NULL),
     m_player(NULL),
     m_fps(0),
@@ -337,29 +341,31 @@ GameContract::Process(void)
 {
     switch (m_gameState)
     {
-        case kInit:
+        case kGameStateInit:
             Init();
-            m_gameState=kRunning;
+            m_gameState=kGameStateRunning;
             GLUtils::PostRedisplay();
             break;
 
-        case kRunning:
+        case kGameStateRunning:
             Running();
             break;
 
-        case kDesigning:
+        case kGameStateDesigning:
             Designing();
             break;
 
-        case kOver:
+        case kGameStateOver:
             Running();
             Over();
             break;
 
-        case kPaused:
+        case kGameStatePaused:
             Paused();
             break;
-            
+
+        default:
+            throw(LogicFail("Bad value for m_gameState"));
     }
 }
 
@@ -367,20 +373,23 @@ void
 GameContract::Display(void)
 {
     switch (m_gameState)
-    {
-        case kInit:
+    {            
+        case kGameStateInit:
             InitDisplay();
             break;
         
-        case kRunning:
-        case kOver:
-        case kPaused:
+        case kGameStateRunning:
+        case kGameStateOver:
+        case kGameStatePaused:
             RunningDisplay();
             break;
 
-        case kDesigning:
+        case kGameStateDesigning:
             DesigningDisplay();
             break;
+
+        default:
+            throw(LogicFail("Bad value for m_gameState"));
     }
 }
 
@@ -418,8 +427,6 @@ GameContract::Init(void)
     GameDataUtils::NamedDialoguesAdd("^start");
     m_newMode=GameConfig::Instance().DisplayModeGet();
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
-
-    MediaNetWebServer::Instance().Connect(7200);
 }
 
 void
@@ -482,7 +489,7 @@ GameContract::RunningMove(void)
     GameData::Instance().TypeGet().Move();
     if (GameData::Instance().TypeGet().IsGameOver())
     {
-        if (m_gameState == kRunning) m_gameState = kOver;
+        if (m_gameState == kGameStateRunning) m_gameState = kGameStateOver;
     }
 }
 
@@ -522,7 +529,6 @@ GameContract::RunningDisplay(void)
     GLUtils::PerspectiveLookAt(lookAtPoint.pos, lookAtPoint.angle);
 
     GLUtils::PushMatrix();
-
     
     GLState::DepthSet(GLState::kDepthTest);
     
@@ -589,7 +595,7 @@ GameContract::RunningDisplay(void)
 
     GameData::Instance().TypeGet().Render();
 
-    if (m_gameState == kPaused)
+    if (m_gameState == kGameStatePaused)
     {
         static tVal rotateAdd=0;
         static tVal rotateTime=0;
@@ -665,14 +671,11 @@ GameContract::Running(void)
     {
         MediaNetServer::Instance().Connect(7121);
         CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
-        PlatformMiscUtils::LaunchURL("http://localhost:7200/");
     }
     else if (ctr > 100)
     {
         MediaNetServer::Instance().Accept();
         MediaNetRouter::Instance().ReceiveAll();
-        MediaNetWebServer::Instance().Accept();
-        MediaNetWebRouter::Instance().ReceiveAll();
     }
     
     if (timer.JudgementValid())
@@ -746,7 +749,7 @@ GameContract::Over(void)
     // Needs sorting out
     if (gameAppHandler.KeyStateGet(' '))
     {
-        m_gameState=kInit;
+        m_gameState=kGameStateInit;
     }
 }
 
@@ -758,18 +761,18 @@ GameContract::GlobalKeyControl(void)
 
     if (gameAppHandler.LatchedKeyStateTake('d'))
     {
-        if (m_gameState == kRunning)
+        if (m_gameState == kGameStateRunning)
         {
             GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.7);
             gameAppHandler.SetCursorState(true);
-            m_gameState=kDesigning;
+            m_gameState=kGameStateDesigning;
         }
         else
         {
             GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
             m_floorMap->SolidMapInvalidate();
             gameAppHandler.SetCursorState(false);
-            m_gameState=kRunning;
+            m_gameState=kGameStateRunning;
         }
         GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
         GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
@@ -779,19 +782,19 @@ GameContract::GlobalKeyControl(void)
     }
     if (gameAppHandler.LatchedKeyStateTake('p'))
     {
-        if (m_gameState == kRunning)
+        if (m_gameState == kGameStateRunning)
         {
-            m_gameState=kPaused;
+            m_gameState=kGameStatePaused;
         }
-        else if (m_gameState == kPaused)
+        else if (m_gameState == kGameStatePaused)
         {
-            m_gameState=kRunning;
+            m_gameState=kGameStateRunning;
         }
     }
     
     if (gameAppHandler.LatchedKeyStateTake('q'))
     {
-        m_gameState=kInit;
+        m_gameState=kGameStateInit;
     }
     
     if (gameAppHandler.LatchedKeyStateTake('m'))

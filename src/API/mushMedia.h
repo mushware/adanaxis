@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.16 2002/11/05 18:15:00 southa Exp $
+ * $Id: mushMedia.h,v 1.17 2002/11/15 11:47:55 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.17  2002/11/15 11:47:55  southa
+ * Web processing and error handling
+ *
  * Revision 1.16  2002/11/05 18:15:00  southa
  * Web server
  *
@@ -70,6 +73,7 @@
 #include "Media/MediaNet.h"
 #include "Media/MediaNetData.h"
 #include "Media/MediaNetLink.h"
+#include "Media/MediaNetLog.h"
 #include "Media/MediaNetProtocol.h"
 #include "Media/MediaNetRouter.h"
 #include "Media/MediaNetServer.h"

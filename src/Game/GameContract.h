@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.29 2002/10/17 15:50:59 southa Exp $
+ * $Id: GameContract.h,v 1.30 2002/10/22 20:42:03 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.30  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.29  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -128,13 +131,14 @@ public:
     static void Install(void);
 
 protected:
-    enum GameState
+    enum tGameState
     {
-        kInit,
-        kRunning,
-        kPaused,
-        kDesigning,
-        kOver
+        kGameStateInvalid,
+        kGameStateInit,
+        kGameStateRunning,
+        kGameStatePaused,
+        kGameStateDesigning,
+        kGameStateOver
     };
 
     virtual void Init(void);
@@ -187,7 +191,7 @@ private:
         kDiagnosticLast
     };
     
-    GameState m_gameState;
+    tGameState m_gameState;
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
     GamePiecePlayer *m_player;

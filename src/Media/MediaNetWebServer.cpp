@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.1 2002/11/05 18:15:18 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.2 2002/11/06 14:16:57 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.2  2002/11/06 14:16:57  southa
+ * Basic web server
+ *
  * Revision 1.1  2002/11/05 18:15:18  southa
  * Web server
  *
@@ -25,6 +28,11 @@ m_serving(false)
 void
 MediaNetWebServer::Connect(U32 inPort)
 {
+    if (m_serving)
+    {
+        Disconnect();
+    }
+    
     m_serverPort=inPort;
 
     MediaNet::Instance();
@@ -50,6 +58,17 @@ MediaNetWebServer::Connect(U32 inPort)
     m_serving=true;
 }
 
+void
+MediaNetWebServer::Disconnect(void)
+{
+    if (m_serving)
+    {
+        SDLNet_TCP_Close(m_tcpSocket);
+        m_tcpSocket = NULL;
+        m_serving=false;
+    }
+}
+        
 MediaNetWebServer::~MediaNetWebServer()
 {
     MediaNetLog::Instance().Log() << "Closing web server" << endl;
@@ -62,14 +81,25 @@ MediaNetWebServer::~MediaNetWebServer()
 void
 MediaNetWebServer::Accept(void)
 {
-    TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
-    if (newSocket != NULL)
+    if (m_serving)
     {
-        ostringstream name;
-        name << "web" << m_linkCtr;
-        CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket, m_serverPort));
-        m_linkCtr++;
-        MediaNetLog::Instance().Log() << "Accepted web connection " << name.str() << endl;
+        COREASSERT(m_tcpSocket != NULL);
+        TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
+        if (newSocket != NULL)
+        {
+            ostringstream name;
+            name << "web" << m_linkCtr;
+            CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket, m_serverPort));
+            m_linkCtr++;
+            MediaNetLog::Instance().Log() << "Accepted web connection " << name.str() << endl;
+        }
     }
 }
+
+bool
+MediaNetWebServer::IsConnected(void) const
+{
+    return m_serving;
+}
+
 
