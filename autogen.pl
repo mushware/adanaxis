@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.2 2004/01/06 20:46:48 southa Exp $
+# $Id: autogen.pl,v 1.3 2004/01/07 11:14:15 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.3  2004/01/07 11:14:15  southa
+# Snapshot fixes
+#
 # Revision 1.2  2004/01/06 20:46:48  southa
 # Build fixes
 #
@@ -420,7 +423,7 @@ sub Main()
     {
         die "No target named $gTarget (No file named '$targetFilename')";
     }
-    print "Configuring for target '$gTarget'\n";
+    print "Configuring for target '$gTarget'...\n";
     
     my @configFile;
     

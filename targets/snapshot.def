@@ -1,6 +1,9 @@
 # Target definition file
-# $Id$
-# $Log$
+# $Id: snapshot.def,v 1.1 2004/01/07 11:14:15 southa Exp $
+# $Log: snapshot.def,v $
+# Revision 1.1  2004/01/07 11:14:15  southa
+# Snapshot fixes
+#
 
 Name: Snapshot
 
@@ -11,12 +14,12 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 Create: src/Makefile.am
 
 Program: all
-Modules: API Game GL Infernal Main/SDLApp Media MeshMover Mushcore MushMesh MushPie Mustl MustlGame Platform Support TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: API Game GL Infernal Main Main/SDLApp Media MeshMover Mushcore MushMesh MushPie Mustl MustlGame Platform Support TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
-Modules: Main Platform +.*\.y$ +.*\.mkf$
+Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$
 
 Append: Makefile.am
 
 ExtraDist:
-Modules: targets/.*\.def targets/.*\.am targets/.*\.in macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh
+Modules: targets/.*\.def targets/.*\.am targets/.*\.in targets/.*\.m4 macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh
