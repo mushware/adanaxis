@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreScalar.h,v 1.9 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreScalar.h,v 1.10 2002/07/31 16:27:15 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.10  2002/07/31 16:27:15  southa
+ * Collision checking work
+ *
  * Revision 1.9  2002/07/06 18:04:16  southa
  * More designer work
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameAppHandler.cpp,v 1.22 2002/07/10 16:37:39 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.23 2002/07/19 15:44:40 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.23  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.22  2002/07/10 16:37:39  southa
  * Cursor removal
  *

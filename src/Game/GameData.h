@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameData.h,v 1.7 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameData.h,v 1.8 2002/07/18 11:40:35 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.8  2002/07/18 11:40:35  southa
+ * Overplotting and movement
+ *
  * Revision 1.7  2002/07/06 18:04:19  southa
  * More designer work
  *

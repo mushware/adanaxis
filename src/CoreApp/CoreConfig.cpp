@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreConfig.cpp,v 1.8 2002/07/02 14:27:12 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.9 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.9  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.8  2002/07/02 14:27:12  southa
  * First floor map designer build
  *

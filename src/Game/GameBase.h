@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameBase.h,v 1.6 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameBase.h,v 1.7 2002/07/06 18:04:18 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.7  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.6  2002/06/27 12:36:06  southa
  * Build process fixes
  *

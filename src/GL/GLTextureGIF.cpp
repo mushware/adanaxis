@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLTextureGIF.cpp,v 1.6 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.7 2002/07/19 15:44:39 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.7  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.6  2002/07/06 18:04:17  southa
  * More designer work
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameFloorDesigner.h,v 1.4 2002/07/07 11:16:07 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.5 2002/07/07 13:25:56 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.5  2002/07/07 13:25:56  southa
+ * Template designer
+ *
  * Revision 1.4  2002/07/07 11:16:07  southa
  * More designer work
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: SDLAppHandler.cpp,v 1.13 2002/08/02 15:20:54 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.14 2002/08/05 22:30:19 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.14  2002/08/05 22:30:19  southa
+ * Made mode selection more robust
+ *
  * Revision 1.13  2002/08/02 15:20:54  southa
  * Frame rate timing
  *

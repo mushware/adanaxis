@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.8 2002/06/27 12:36:08 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.9 2002/07/06 18:04:20 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.9  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.8  2002/06/27 12:36:08  southa
  * Build process fixes
  *

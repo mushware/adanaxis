@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreAppHandler.h,v 1.4 2002/06/27 12:36:02 southa Exp $
+ * $Id: CoreAppHandler.h,v 1.5 2002/07/06 18:04:14 southa Exp $
  * $Log: CoreAppHandler.h,v $
+ * Revision 1.5  2002/07/06 18:04:14  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:02  southa
  * Build process fixes
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameContract.cpp,v 1.41 2002/08/05 15:15:21 southa Exp $
+ * $Id: GameContract.cpp,v 1.42 2002/08/05 16:14:18 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.42  2002/08/05 16:14:18  southa
+ * Windback at low frame rates
+ *
  * Revision 1.41  2002/08/05 15:15:21  southa
  * Improved windback and released FPS limit
  *

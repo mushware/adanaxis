@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: WrangleCommandHandler.h,v 1.2 2002/06/27 12:36:09 southa Exp $
+ * $Id: WrangleCommandHandler.h,v 1.3 2002/07/06 18:04:21 southa Exp $
  * $Log: WrangleCommandHandler.h,v $
+ * Revision 1.3  2002/07/06 18:04:21  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:09  southa
  * Build process fixes
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CorePickle.cpp,v 1.3 2002/06/27 12:36:04 southa Exp $
+ * $Id: CorePickle.cpp,v 1.4 2002/07/06 18:04:16 southa Exp $
  * $Log: CorePickle.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:04  southa
  * Build process fixes
  *

@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLTest1AppHandler.h,v 1.5 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.6 2002/08/01 16:47:10 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.6  2002/08/01 16:47:10  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.5  2002/07/06 18:04:17  southa
  * More designer work
  *

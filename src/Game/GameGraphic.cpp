@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameGraphic.cpp,v 1.2 2002/06/27 12:36:07 southa Exp $
+ * $Id: GameGraphic.cpp,v 1.3 2002/07/06 18:04:19 southa Exp $
  * $Log: GameGraphic.cpp,v $
+ * Revision 1.3  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:07  southa
  * Build process fixes
  *

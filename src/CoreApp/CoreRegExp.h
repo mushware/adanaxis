@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreRegExp.h,v 1.2 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreRegExp.h,v 1.3 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreRegExp.h,v $
+ * Revision 1.3  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:04  southa
  * Build process fixes
  *

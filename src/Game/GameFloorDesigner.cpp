@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GameFloorDesigner.cpp,v 1.11 2002/07/16 19:30:08 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.12 2002/07/19 18:42:37 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.12  2002/07/19 18:42:37  southa
+ * Fix for middle button drags
+ *
  * Revision 1.11  2002/07/16 19:30:08  southa
  * Simplistic collision checking
  *

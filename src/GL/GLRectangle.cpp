@@ -10,9 +10,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLRectangle.cpp,v 1.5 2002/07/23 14:10:46 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.6 2002/08/01 16:47:10 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.6  2002/08/01 16:47:10  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.5  2002/07/23 14:10:46  southa
  * Added GameMotion
  *

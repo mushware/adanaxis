@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreCommand.h,v 1.5 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreCommand.h,v 1.6 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.6  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.5  2002/06/27 12:36:03  southa
  * Build process fixes
  *

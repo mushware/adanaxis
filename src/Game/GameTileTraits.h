@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameTileTraits.h,v 1.6 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameTileTraits.h,v 1.7 2002/07/16 17:48:09 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.7  2002/07/16 17:48:09  southa
+ * Collision and optimisation work
+ *
  * Revision 1.6  2002/07/06 18:04:19  southa
  * More designer work
  *

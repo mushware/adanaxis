@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreCommand.cpp,v 1.10 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.11 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.11  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.10  2002/06/27 12:36:03  southa
  * Build process fixes
  *

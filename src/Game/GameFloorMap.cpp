@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameFloorMap.cpp,v 1.16 2002/08/01 16:47:11 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.17 2002/08/02 15:20:55 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.17  2002/08/02 15:20:55  southa
+ * Frame rate timing
+ *
  * Revision 1.16  2002/08/01 16:47:11  southa
  * First multi-box collsion checking
  *

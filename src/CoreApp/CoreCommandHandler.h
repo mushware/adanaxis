@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreCommandHandler.h,v 1.2 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreCommandHandler.h,v 1.3 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreCommandHandler.h,v $
+ * Revision 1.3  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.2  2002/06/27 12:36:03  southa
  * Build process fixes
  *

@@ -1,6 +1,23 @@
+#ifndef GLTEXTUREDEF_H
+#define GLTEXTUREDEF_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureDef.h,v 1.1 2002/07/19 15:44:39 southa Exp $
+ * $Log: GLTextureDef.h,v $
+ * Revision 1.1  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  */
 
 #include "mushCore.h"
@@ -36,3 +53,4 @@ private:
     U32 *m_dataPtr;
     CoreAutoMonkey m_autoMonkey;
 };
+#endif

@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreApp.h,v 1.4 2002/07/02 14:27:12 southa Exp $
+ * $Id: CoreApp.h,v 1.5 2002/07/06 18:04:14 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.5  2002/07/06 18:04:14  southa
+ * More designer work
+ *
  * Revision 1.4  2002/07/02 14:27:12  southa
  * First floor map designer build
  *

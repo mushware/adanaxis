@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameSolidMap.cpp,v 1.12 2002/08/02 12:56:40 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.13 2002/08/05 16:14:18 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.13  2002/08/05 16:14:18  southa
+ * Windback at low frame rates
+ *
  * Revision 1.12  2002/08/02 12:56:40  southa
  * Working collision checking
  *

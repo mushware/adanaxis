@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreException.h,v 1.11 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreException.h,v 1.12 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.12  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.11  2002/06/27 12:36:03  southa
  * Build process fixes
  *

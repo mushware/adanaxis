@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreEnv.h,v 1.7 2002/07/07 13:44:18 southa Exp $
+ * $Id: CoreEnv.h,v 1.8 2002/07/31 16:27:15 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.8  2002/07/31 16:27:15  southa
+ * Collision checking work
+ *
  * Revision 1.7  2002/07/07 13:44:18  southa
  * Screen size config variables
  *

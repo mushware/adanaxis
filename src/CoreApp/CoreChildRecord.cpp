@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreChildRecord.cpp,v 1.1 2002/07/02 09:20:46 southa Exp $
+ * $Id: CoreChildRecord.cpp,v 1.2 2002/07/06 18:04:15 southa Exp $
  * $Log: CoreChildRecord.cpp,v $
+ * Revision 1.2  2002/07/06 18:04:15  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 09:20:46  southa
  * Name changed to CoreChildRecord
  *

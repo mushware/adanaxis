@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: Dataset.h,v 1.3 2002/06/27 12:36:05 southa Exp $
+ * $Id: Dataset.h,v 1.4 2002/07/06 18:04:17 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.4  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:05  southa
  * Build process fixes
  *

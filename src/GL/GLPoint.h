@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: GLPoint.h,v 1.7 2002/07/31 16:27:15 southa Exp $
+ * $Id: GLPoint.h,v 1.8 2002/08/01 16:47:09 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.8  2002/08/01 16:47:09  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.7  2002/07/31 16:27:15  southa
  * Collision checking work
  *

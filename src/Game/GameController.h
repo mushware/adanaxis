@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameController.h,v 1.3 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameController.h,v 1.4 2002/07/06 18:04:18 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.4  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:06  southa
  * Build process fixes
  *

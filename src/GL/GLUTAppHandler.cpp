@@ -12,9 +12,13 @@
 
 
 
+
 /*
- * $Id: GLUTAppHandler.cpp,v 1.6 2002/07/19 15:44:40 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.8 2002/08/02 15:20:54 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.8  2002/08/02 15:20:54  southa
+ * Frame rate timing
+ *
  * Revision 1.6  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *

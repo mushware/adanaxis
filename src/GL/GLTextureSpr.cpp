@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLTextureSpr.cpp,v 1.10 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.11 2002/07/19 15:44:39 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.11  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.10  2002/07/06 18:04:18  southa
  * More designer work
  *

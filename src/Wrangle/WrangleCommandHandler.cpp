@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.4 2002/06/27 12:36:09 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.5 2002/07/06 18:04:20 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:09  southa
  * Build process fixes
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameController.cpp,v 1.5 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameController.cpp,v 1.6 2002/07/19 15:44:41 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.6  2002/07/19 15:44:41  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/06 18:04:18  southa
  * More designer work
  *

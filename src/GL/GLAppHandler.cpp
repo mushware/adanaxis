@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLAppHandler.cpp,v 1.13 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.14 2002/07/06 18:04:17 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.14  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.13  2002/06/27 12:36:05  southa
  * Build process fixes
  *

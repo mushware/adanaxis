@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameTileTraits.cpp,v 1.9 2002/07/16 19:30:09 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.10 2002/07/18 11:40:36 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.10  2002/07/18 11:40:36  southa
+ * Overplotting and movement
+ *
  * Revision 1.9  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *

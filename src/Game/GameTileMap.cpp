@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameTileMap.cpp,v 1.9 2002/06/27 12:36:07 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.10 2002/07/06 18:04:19 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.10  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.9  2002/06/27 12:36:07  southa
  * Build process fixes
  *

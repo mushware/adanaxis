@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLUtils.h,v 1.18 2002/07/31 16:27:15 southa Exp $
+ * $Id: GLUtils.h,v 1.19 2002/08/01 16:47:10 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.19  2002/08/01 16:47:10  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.18  2002/07/31 16:27:15  southa
  * Collision checking work
  *

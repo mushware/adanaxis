@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: PlatformUtils.cpp,v 1.3 2002/06/27 12:36:08 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.4 2002/07/06 18:04:20 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:08  southa
  * Build process fixes
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameGraphicSprite.cpp,v 1.6 2002/07/19 15:44:41 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.7 2002/07/23 14:10:46 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.7  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.6  2002/07/19 15:44:41  southa
  * Graphic optimisations
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLCommandHandler.cpp,v 1.16 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.17 2002/07/19 15:44:39 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.17  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.16  2002/07/06 18:04:17  southa
  * More designer work
  *

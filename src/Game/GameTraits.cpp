@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameTraits.cpp,v 1.5 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameTraits.cpp,v 1.6 2002/07/08 14:22:03 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.6  2002/07/08 14:22:03  southa
+ * Rotated desks
+ *
  * Revision 1.5  2002/07/06 18:04:19  southa
  * More designer work
  *

@@ -12,9 +12,13 @@
  *
  ****************************************************************************/
 
+
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.1 2002/07/02 15:48:30 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.2 2002/07/06 18:04:20 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.2  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 15:48:30  southa
  * Floor map designer
  *

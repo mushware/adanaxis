@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GamePiece.h,v 1.4 2002/07/16 17:48:08 southa Exp $
+ * $Id: GamePiece.h,v 1.5 2002/07/18 11:40:35 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.5  2002/07/18 11:40:35  southa
+ * Overplotting and movement
+ *
  * Revision 1.4  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *

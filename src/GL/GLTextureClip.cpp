@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLTextureClip.cpp,v 1.4 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.5 2002/07/19 15:44:39 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.5  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.4  2002/07/06 18:04:17  southa
  * More designer work
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: mushMedia.h,v 1.3 2002/06/27 12:36:01 southa Exp $
+ * $Id: mushMedia.h,v 1.4 2002/07/06 18:04:14 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.4  2002/07/06 18:04:14  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:01  southa
  * Build process fixes
  *

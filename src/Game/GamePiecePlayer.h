@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GamePiecePlayer.h,v 1.9 2002/07/23 14:10:47 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.10 2002/08/05 13:37:29 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.10  2002/08/05 13:37:29  southa
+ * Windback work
+ *
  * Revision 1.9  2002/07/23 14:10:47  southa
  * Added GameMotion
  *

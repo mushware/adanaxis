@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: SDLAppHandler.h,v 1.7 2002/07/31 16:27:16 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.9 2002/08/02 15:20:54 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.9  2002/08/02 15:20:54  southa
+ * Frame rate timing
+ *
  * Revision 1.7  2002/07/31 16:27:16  southa
  * Collision checking work
  *

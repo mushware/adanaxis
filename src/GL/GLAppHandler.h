@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLAppHandler.h,v 1.13 2002/08/02 12:56:38 southa Exp $
+ * $Id: GLAppHandler.h,v 1.14 2002/08/02 15:20:53 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.14  2002/08/02 15:20:53  southa
+ * Frame rate timing
+ *
  * Revision 1.13  2002/08/02 12:56:38  southa
  * Working collision checking
  *

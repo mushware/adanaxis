@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLData.cpp,v 1.11 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLData.cpp,v 1.12 2002/07/19 15:44:39 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.12  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.11  2002/07/06 18:04:17  southa
  * More designer work
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLTextureTIFF.cpp,v 1.6 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.7 2002/07/19 15:44:39 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.7  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.6  2002/07/06 18:04:18  southa
  * More designer work
  *

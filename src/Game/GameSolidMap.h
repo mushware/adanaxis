@@ -1,6 +1,23 @@
+#ifndef GAMESOLIDMAP_H
+#define GAMESOLIDMAP_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameSolidMap.h,v 1.4 2002/08/01 16:47:12 southa Exp $
+ * $Id: GameSolidMap.h,v 1.5 2002/08/02 09:05:11 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.5  2002/08/02 09:05:11  southa
+ * Movement modification in collison checking
+ *
  * Revision 1.4  2002/08/01 16:47:12  southa
  * First multi-box collsion checking
  *
@@ -56,3 +73,4 @@ private:
     tVal m_ystep;
     tValarray<tVal> m_solidMap;
 };
+#endif

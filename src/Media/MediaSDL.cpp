@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: MediaSDL.cpp,v 1.5 2002/08/05 22:19:44 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.6 2002/08/05 22:31:45 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.6  2002/08/05 22:31:45  southa
+ * Removed debug code
+ *
  * Revision 1.5  2002/08/05 22:19:44  southa
  * Removed SDL_Quit for MacOS X
  *

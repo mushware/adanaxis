@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreStandard.h,v 1.12 2002/07/16 17:48:07 southa Exp $
+ * $Id: CoreStandard.h,v 1.13 2002/07/18 11:43:34 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.13  2002/07/18 11:43:34  southa
+ * Added M_PI
+ *
  * Revision 1.12  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *

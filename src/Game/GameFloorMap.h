@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameFloorMap.h,v 1.9 2002/07/16 19:30:09 southa Exp $
+ * $Id: GameFloorMap.h,v 1.10 2002/07/31 16:27:16 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.10  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.9  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *

@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: MediaSDL.h,v 1.4 2002/07/06 18:04:20 southa Exp $
+ * $Id: MediaSDL.h,v 1.5 2002/08/05 21:23:22 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.5  2002/08/05 21:23:22  southa
+ * Potential fix for missing SDL_Quit
+ *
  * Revision 1.4  2002/07/06 18:04:20  southa
  * More designer work
  *

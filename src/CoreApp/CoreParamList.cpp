@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreParamList.cpp,v 1.5 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreParamList.cpp,v 1.6 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreParamList.cpp,v $
+ * Revision 1.6  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.5  2002/06/27 12:36:04  southa
  * Build process fixes
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: DataSet.cpp,v 1.4 2002/06/27 12:36:04 southa Exp $
+ * $Id: DataSet.cpp,v 1.5 2002/07/06 18:04:17 southa Exp $
  * $Log: DataSet.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:04  southa
  * Build process fixes
  *

@@ -1,8 +1,23 @@
 #ifndef GAMETIMER_H
 #define GAMETIMER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameTimer.h,v 1.3 2002/08/05 15:15:21 southa Exp $
+ * $Id: GameTimer.h,v 1.4 2002/08/05 22:18:35 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.4  2002/08/05 22:18:35  southa
+ * Replaced assertions with error report
+ *
  * Revision 1.3  2002/08/05 15:15:21  southa
  * Improved windback and released FPS limit
  *

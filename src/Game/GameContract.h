@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameContract.h,v 1.15 2002/08/02 12:56:40 southa Exp $
+ * $Id: GameContract.h,v 1.16 2002/08/02 15:20:55 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.16  2002/08/02 15:20:55  southa
+ * Frame rate timing
+ *
  * Revision 1.15  2002/08/02 12:56:40  southa
  * Working collision checking
  *

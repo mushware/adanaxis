@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GameGraphicSprite.h,v 1.4 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameGraphicSprite.h,v 1.5 2002/07/08 14:22:03 southa Exp $
  * $Log: GameGraphicSprite.h,v $
+ * Revision 1.5  2002/07/08 14:22:03  southa
+ * Rotated desks
+ *
  * Revision 1.4  2002/07/06 18:04:19  southa
  * More designer work
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: Test.cpp,v 1.13 2002/07/02 15:48:30 southa Exp $
+ * $Id: Test.cpp,v 1.14 2002/07/06 18:04:20 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.14  2002/07/06 18:04:20  southa
+ * More designer work
+ *
  * Revision 1.13  2002/07/02 15:48:30  southa
  * Floor map designer
  *

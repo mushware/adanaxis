@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: GLUTAppHandler.h,v 1.7 2002/08/02 12:56:39 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.8 2002/08/02 15:20:54 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.8  2002/08/02 15:20:54  southa
+ * Frame rate timing
+ *
  * Revision 1.7  2002/08/02 12:56:39  southa
  * Working collision checking
  *

@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreStreamUtil.cpp,v 1.1 2002/07/02 09:24:10 southa Exp $
+ * $Id: CoreStreamUtil.cpp,v 1.2 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreStreamUtil.cpp,v $
+ * Revision 1.2  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.1  2002/07/02 09:24:10  southa
  * Name changed to CoreStreamUtil
  *

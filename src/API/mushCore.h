@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: mushCore.h,v 1.6 2002/07/02 15:48:29 southa Exp $
+ * $Id: mushCore.h,v 1.7 2002/07/06 18:04:14 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.7  2002/07/06 18:04:14  southa
+ * More designer work
+ *
  * Revision 1.6  2002/07/02 15:48:29  southa
  * Floor map designer
  *

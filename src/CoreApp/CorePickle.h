@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CorePickle.h,v 1.6 2002/06/27 12:36:04 southa Exp $
+ * $Id: CorePickle.h,v 1.7 2002/07/06 18:04:16 southa Exp $
  * $Log: CorePickle.h,v $
+ * Revision 1.7  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.6  2002/06/27 12:36:04  southa
  * Build process fixes
  *

@@ -13,9 +13,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreFlex.h,v 1.3 2002/06/27 12:36:03 southa Exp $
+ * $Id: CoreFlex.h,v 1.4 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreFlex.h,v $
+ * Revision 1.4  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:03  southa
  * Build process fixes
  *

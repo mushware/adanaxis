@@ -11,9 +11,13 @@
  ****************************************************************************/
 
 
+
 /*
- * $Id: CoreFunction.cpp,v 1.4 2002/07/06 18:04:16 southa Exp $
+ * $Id: CoreFunction.cpp,v 1.6 2002/07/16 17:48:07 southa Exp $
  * $Log: CoreFunction.cpp,v $
+ * Revision 1.6  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  * Revision 1.4  2002/07/06 18:04:16  southa
  * More designer work
  *
