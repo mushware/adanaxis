@@ -1,6 +1,9 @@
 /*
- * $Id: MediaSound.cpp,v 1.1 2002/08/15 13:39:31 southa Exp $
+ * $Id: MediaSound.cpp,v 1.2 2002/08/16 19:46:07 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.2  2002/08/16 19:46:07  southa
+ * MediaSound work
+ *
  * Revision 1.1  2002/08/15 13:39:31  southa
  * CoreData and CoreDatRef
  *
@@ -40,16 +43,6 @@ MediaSound::Load(void)
         throw(FileFail(m_filename, "Failed to load sound: "+string(Mix_GetError())));
     }
 }
-
-void
-MediaSound::Play(void)
-{
-    if (m_chunk == NULL)
-    {
-        Load();
-    }
-    MediaAudio::Instance().Play(*this);
-}    
 
 void
 MediaSound::Free(void)
@@ -103,7 +96,7 @@ MediaSound::ResidentSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: residentsound <name> <filename>"));
+        throw(CommandFail("Usage: residentsound('name','filename')"));
     }
     string name, filename;
     ioCommand.PopParam(name);
@@ -119,12 +112,12 @@ MediaSound::PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: playsound <name>"));
+        throw(CommandFail("Usage: playsound('name')"));
     }
     string name;
     ioCommand.PopParam(name);
     MediaSound *sound=CoreData<MediaSound>::Instance().DataGet(name);
-    sound->Play();
+    MediaAudio::Instance().Play(*sound);
     return CoreScalar(0);
 }
 

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: mushMedia.h,v 1.5 2002/08/07 13:36:43 southa Exp $
+ * $Id: mushMedia.h,v 1.6 2002/08/15 13:39:30 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.6  2002/08/15 13:39:30  southa
+ * CoreData and CoreDatRef
+ *
  * Revision 1.5  2002/08/07 13:36:43  southa
  * Conditioned source
  *
@@ -37,7 +40,8 @@
 
 
 #include "Media/MediaAudio.h"
-#include "Media/MediaSound.h"
 #include "Media/MediaSDL.h"
+#include "Media/MediaSoundStream.h"
+#include "Media/MediaSound.h"
 
 #endif

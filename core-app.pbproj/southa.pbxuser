@@ -1089,7 +1089,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7355;
+		rLoc = 9172;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 1991;
@@ -1149,7 +1149,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 13";
 		rLen = 0;
-		rLoc = 3078;
+		rLoc = 2969;
 		rType = 0;
 		vrLen = 266;
 		vrLoc = 0;
@@ -1159,7 +1159,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: Instance";
 		rLen = 0;
-		rLoc = 1265;
+		rLoc = 1311;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 319;
@@ -1169,7 +1169,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 85";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 1182;
@@ -1189,7 +1189,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 13";
 		rLen = 0;
-		rLoc = 3078;
+		rLoc = 2969;
 		rType = 0;
 		vrLen = 266;
 		vrLoc = 0;
@@ -1199,7 +1199,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 17";
 		rLen = 0;
-		rLoc = 588;
+		rLoc = 567;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 0;
@@ -1209,7 +1209,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 85";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 1182;
@@ -1229,7 +1229,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 14";
 		rLen = 0;
-		rLoc = 3078;
+		rLoc = 2969;
 		rType = 0;
 		vrLen = 350;
 		vrLoc = 0;
@@ -1249,7 +1249,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 15";
 		rLen = 0;
-		rLoc = 2501;
+		rLoc = 2371;
 		rType = 0;
 		vrLen = 441;
 		vrLoc = 0;
@@ -1259,7 +1259,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 84";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 1323;
@@ -1279,7 +1279,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 21";
 		rLen = 0;
-		rLoc = 895;
+		rLoc = 874;
 		rType = 0;
 		vrLen = 387;
 		vrLoc = 0;
@@ -1289,7 +1289,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 37";
 		rLen = 0;
-		rLoc = 2922;
+		rLoc = 2813;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 0;
@@ -1299,7 +1299,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7355;
+		rLoc = 9172;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 1991;
@@ -1319,7 +1319,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 44";
 		rLen = 0;
-		rLoc = 2008;
+		rLoc = 1878;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 0;
@@ -1339,7 +1339,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 33";
 		rLen = 0;
-		rLoc = 1589;
+		rLoc = 1459;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 0;
@@ -1369,7 +1369,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 17";
 		rLen = 0;
-		rLoc = 554;
+		rLoc = 533;
 		rType = 0;
 		vrLen = 430;
 		vrLoc = 0;
@@ -1379,7 +1379,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 31";
 		rLen = 0;
-		rLoc = 1891;
+		rLoc = 1945;
 		rType = 0;
 		vrLen = 1885;
 		vrLoc = 0;
@@ -1389,7 +1389,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 17";
 		rLen = 0;
-		rLoc = 554;
+		rLoc = 533;
 		rType = 0;
 		vrLen = 430;
 		vrLoc = 0;
@@ -1399,7 +1399,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 83";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 972;
@@ -1409,7 +1409,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: PlayMusic";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1428;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 165;
@@ -1439,7 +1439,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 91";
 		rLen = 0;
-		rLoc = 2812;
+		rLoc = 2682;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 1085;
@@ -1449,7 +1449,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 21";
 		rLen = 0;
-		rLoc = 736;
+		rLoc = 715;
 		rType = 0;
 		vrLen = 526;
 		vrLoc = 0;
@@ -1459,7 +1459,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 91";
 		rLen = 0;
-		rLoc = 2812;
+		rLoc = 2682;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 458;
@@ -1469,7 +1469,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 88";
 		rLen = 0;
-		rLoc = 5484;
+		rLoc = 5936;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 1097;
@@ -1479,7 +1479,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 20";
 		rLen = 0;
-		rLoc = 554;
+		rLoc = 533;
 		rType = 0;
 		vrLen = 560;
 		vrLoc = 0;
@@ -1489,7 +1489,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 73";
 		rLen = 0;
-		rLoc = 1568;
+		rLoc = 1438;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 1003;
@@ -1499,7 +1499,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 51";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1428;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 165;
@@ -1509,7 +1509,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 20";
 		rLen = 0;
-		rLoc = 554;
+		rLoc = 533;
 		rType = 0;
 		vrLen = 560;
 		vrLoc = 0;
@@ -1518,8 +1518,8 @@
 		fRef = F54E9EAE030BCA8901D67831;
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 48";
-		rLen = 11;
-		rLoc = 1030;
+		rLen = 0;
+		rLoc = 1008;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 165;
@@ -1529,7 +1529,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 89";
 		rLen = 0;
-		rLoc = 3687;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 1177;
@@ -1539,7 +1539,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: NameGet";
 		rLen = 0;
-		rLoc = 453;
+		rLoc = 432;
 		rType = 0;
 		vrLen = 612;
 		vrLoc = 0;
@@ -1549,7 +1549,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 52";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1428;
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 165;
@@ -1559,7 +1559,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: MixChunkGet";
 		rLen = 0;
-		rLoc = 486;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 630;
 		vrLoc = 0;
@@ -1569,7 +1569,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 67";
 		rLen = 0;
-		rLoc = 1511;
+		rLoc = 1381;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 1109;
@@ -1599,7 +1599,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 31";
 		rLen = 0;
-		rLoc = 899;
+		rLoc = 878;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 0;
@@ -1609,7 +1609,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: Play";
 		rLen = 0;
-		rLoc = 3687;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 1174;
@@ -1629,7 +1629,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: Play";
 		rLen = 0;
-		rLoc = 3687;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 1182;
@@ -1699,7 +1699,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 28";
 		rLen = 0;
-		rLoc = 827;
+		rLoc = 806;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 0;
@@ -1709,7 +1709,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 62";
 		rLen = 0;
-		rLoc = 1201;
+		rLoc = 1071;
 		rType = 0;
 		vrLen = 1105;
 		vrLoc = 291;
@@ -1719,7 +1719,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 57";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 1874;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 380;
@@ -1729,7 +1729,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 2749;
+		rLoc = 2798;
 		rType = 0;
 		vrLen = 1694;
 		vrLoc = 1181;
@@ -1739,7 +1739,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 57";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 1874;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 380;
@@ -1749,7 +1749,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 90";
 		rLen = 0;
-		rLoc = 3140;
+		rLoc = 3189;
 		rType = 0;
 		vrLen = 1861;
 		vrLoc = 1356;
@@ -1759,7 +1759,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 57";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1850;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 380;
@@ -1769,7 +1769,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5484;
+		rLoc = 5936;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 1943;
@@ -1779,7 +1779,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 55";
 		rLen = 0;
-		rLoc = 1446;
+		rLoc = 1492;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 433;
@@ -1789,7 +1789,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 273;
-		rLoc = 4911;
+		rLoc = 5363;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 2457;
@@ -1799,7 +1799,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: SetEndFlag";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1428;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 513;
@@ -1899,7 +1899,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 49";
 		rLen = 0;
-		rLoc = 1265;
+		rLoc = 1311;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 121;
@@ -1909,7 +1909,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: PlaySound";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1282;
 		vrLoc = 0;
@@ -1919,7 +1919,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 1260;
+		rLoc = 1351;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 1071;
@@ -1939,7 +1939,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: PlaySound";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1360;
 		vrLoc = 1195;
@@ -1949,7 +1949,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 1256;
+		rLoc = 1347;
 		rType = 0;
 		vrLen = 1880;
 		vrLoc = 0;
@@ -1979,7 +1979,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2949;
+		rLoc = 3628;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 0;
@@ -1989,7 +1989,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 85";
 		rLen = 0;
-		rLoc = 2544;
+		rLoc = 2770;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 0;
@@ -1999,7 +1999,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7355;
+		rLoc = 9172;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 7776;
@@ -2009,7 +2009,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 65";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2015;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 998;
@@ -2047,7 +2047,7 @@
 	F53DDAB0030D0D9D01AE23AC = {
 		fileReference = F5539E2B02B4CDA0010AB4A9;
 		isa = PBXFileBreakpoint;
-		lineNumber = 126;
+		lineNumber = 145;
 		state = 2;
 	};
 	F53DDAB3030D644C01AE23AC = {
@@ -2065,7 +2065,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5484;
+		rLoc = 5936;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 2833;
@@ -2075,7 +2075,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 65";
 		rLen = 0;
-		rLoc = 1751;
+		rLoc = 1845;
 		rType = 0;
 		vrLen = 1041;
 		vrLoc = 676;
@@ -2085,7 +2085,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 2661;
+		rLoc = 2710;
 		rType = 0;
 		vrLen = 1790;
 		vrLoc = 1322;
@@ -2095,7 +2095,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 68";
 		rLen = 0;
-		rLoc = 1858;
+		rLoc = 1952;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 679;
@@ -2105,7 +2105,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5484;
+		rLoc = 5936;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 2881;
@@ -2115,7 +2115,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 67";
 		rLen = 0;
-		rLoc = 1815;
+		rLoc = 1909;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 676;
@@ -2125,7 +2125,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 4751;
+		rLoc = 5203;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 3078;
@@ -2135,7 +2135,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: FilenameGet";
 		rLen = 0;
-		rLoc = 388;
+		rLoc = 386;
 		rType = 0;
 		vrLen = 731;
 		vrLoc = 0;
@@ -2145,7 +2145,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 72";
 		rLen = 0;
-		rLoc = 1418;
+		rLoc = 1288;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 481;
@@ -2155,7 +2155,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 67";
 		rLen = 0;
-		rLoc = 1815;
+		rLoc = 1909;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 676;
@@ -2164,8 +2164,8 @@
 		fRef = F5539E2B02B4CDA0010AB4A9;
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
-		rLen = 966;
-		rLoc = 3859;
+		rLen = 1369;
+		rLoc = 3908;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 3292;
@@ -2175,7 +2175,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: SampleHalt";
 		rLen = 0;
-		rLoc = 1397;
+		rLoc = 1443;
 		rType = 0;
 		vrLen = 1160;
 		vrLoc = 724;
@@ -2184,8 +2184,8 @@
 		fRef = F5539E2B02B4CDA0010AB4A9;
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
-		rLen = 90;
-		rLoc = 3860;
+		rLen = 493;
+		rLoc = 3909;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 3257;
@@ -2195,7 +2195,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: ChannelDone";
 		rLen = 0;
-		rLoc = 1387;
+		rLoc = 1433;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 724;
@@ -2205,7 +2205,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 99";
 		rLen = 0;
-		rLoc = 2037;
+		rLoc = 1907;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 1440;
@@ -2215,7 +2215,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: LoadSound";
 		rLen = 0;
-		rLoc = 554;
+		rLoc = 533;
 		rType = 0;
 		vrLen = 824;
 		vrLoc = 0;
@@ -2225,7 +2225,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 134";
 		rLen = 0;
-		rLoc = 3005;
+		rLoc = 2896;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 1750;
@@ -2235,7 +2235,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 36";
 		rLen = 0;
-		rLoc = 899;
+		rLoc = 878;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 0;
@@ -2245,7 +2245,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 76";
 		rLen = 0;
-		rLoc = 1466;
+		rLoc = 1336;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 1003;
@@ -2255,7 +2255,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: CurrentSampleSet";
 		rLen = 0;
-		rLoc = 1446;
+		rLoc = 1492;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 724;
@@ -2275,7 +2275,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3859;
+		rLoc = 3908;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 2901;
@@ -2283,7 +2283,7 @@
 	F53E6453030D79D701D92FBF = {
 		fileReference = F5539E2C02B4CDA0010AB4A9;
 		isa = PBXFileBreakpoint;
-		lineNumber = 52;
+		lineNumber = 54;
 		state = 2;
 	};
 	F53E6454030D8DDA01D92FBF = {
@@ -2291,7 +2291,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.h: 36";
 		rLen = 0;
-		rLoc = 899;
+		rLoc = 878;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 0;
@@ -2341,7 +2341,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5334;
+		rLoc = 5786;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 4260;
@@ -2351,7 +2351,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 81";
 		rLen = 0;
-		rLoc = 2008;
+		rLoc = 2126;
 		rType = 0;
 		vrLen = 1049;
 		vrLoc = 1032;
@@ -2361,7 +2361,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 70";
 		rLen = 0;
-		rLoc = 1418;
+		rLoc = 1288;
 		rType = 0;
 		vrLen = 932;
 		vrLoc = 948;
@@ -2381,7 +2381,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 40";
 		rLen = 0;
-		rLoc = 1856;
+		rLoc = 1945;
 		rType = 0;
 		vrLen = 2153;
 		vrLoc = 0;
@@ -2401,7 +2401,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 60";
 		rLen = 0;
-		rLoc = 1250;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 514;
@@ -2411,7 +2411,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3140;
+		rLoc = 3189;
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 2899;
@@ -2421,7 +2421,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: Ticker";
 		rLen = 0;
-		rLoc = 1446;
+		rLoc = 1492;
 		rType = 0;
 		vrLen = 1157;
 		vrLoc = 819;
@@ -2451,7 +2451,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 75";
 		rLen = 0;
-		rLoc = 1891;
+		rLoc = 1985;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 816;
@@ -2481,7 +2481,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 82";
 		rLen = 0;
-		rLoc = 2044;
+		rLoc = 2162;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 965;
@@ -2491,7 +2491,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 4449;
+		rLoc = 4901;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 3321;
@@ -2501,7 +2501,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 66";
 		rLen = 0;
-		rLoc = 1582;
+		rLoc = 1676;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 962;
@@ -2511,7 +2511,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3070;
+		rLoc = 3119;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 2906;
@@ -2531,7 +2531,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3115;
+		rLoc = 3164;
 		rType = 0;
 		vrLen = 1818;
 		vrLoc = 1594;
@@ -2551,9 +2551,9 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 89";
 		rLen = 0;
-		rLoc = 2072;
+		rLoc = 2190;
 		rType = 0;
-		vrLen = 1042;
+		vrLen = 1031;
 		vrLoc = 1117;
 	};
 	F53E646F030D8DDB01D92FBF = {
@@ -2561,7 +2561,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 4166;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 3451;
@@ -2571,7 +2571,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 62";
 		rLen = 0;
-		rLoc = 1307;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 1020;
@@ -2591,7 +2591,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 4166;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 2179;
@@ -2601,9 +2601,9 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 82";
 		rLen = 0;
-		rLoc = 2008;
+		rLoc = 2126;
 		rType = 0;
-		vrLen = 1162;
+		vrLen = 985;
 		vrLoc = 1163;
 	};
 	F53E6474030D8DDB01D92FBF = {
@@ -2611,7 +2611,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3137;
+		rLoc = 3186;
 		rType = 0;
 		vrLen = 1614;
 		vrLoc = 641;
@@ -2621,7 +2621,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 85";
 		rLen = 0;
-		rLoc = 2072;
+		rLoc = 2190;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 1035;
@@ -2681,7 +2681,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 1179;
+		rLoc = 1270;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 0;
@@ -2691,7 +2691,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 3115;
+		rLoc = 3164;
 		rType = 0;
 		vrLen = 1707;
 		vrLoc = 1834;
@@ -2701,7 +2701,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 62";
 		rLen = 0;
-		rLoc = 1307;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 653;
@@ -2711,7 +2711,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 85";
 		rLen = 0;
-		rLoc = 2072;
+		rLoc = 2190;
 		rType = 0;
 		vrLen = 1105;
 		vrLoc = 1032;
@@ -2741,7 +2741,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 2959;
+		rLoc = 3008;
 		rType = 0;
 		vrLen = 1689;
 		vrLoc = 2040;
@@ -2751,7 +2751,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 1179;
+		rLoc = 1270;
 		rType = 0;
 		vrLen = 1890;
 		vrLoc = 0;
@@ -2761,7 +2761,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5334;
+		rLoc = 5786;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 4260;
@@ -2771,7 +2771,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 81";
 		rLen = 0;
-		rLoc = 2008;
+		rLoc = 2126;
 		rType = 0;
 		vrLen = 1049;
 		vrLoc = 1032;
@@ -2781,7 +2781,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaSound.cpp: 70";
 		rLen = 0;
-		rLoc = 1418;
+		rLoc = 1288;
 		rType = 0;
 		vrLen = 932;
 		vrLoc = 948;
@@ -2801,7 +2801,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 40";
 		rLen = 0;
-		rLoc = 1856;
+		rLoc = 1945;
 		rType = 0;
 		vrLen = 2153;
 		vrLoc = 0;
@@ -2831,7 +2831,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 75";
 		rLen = 44;
-		rLoc = 1859;
+		rLoc = 1953;
 		rType = 0;
 		vrLen = 342;
 		vrLoc = 1671;
@@ -2860,7 +2860,7 @@
 		fRef = F5539E2B02B4CDA0010AB4A9;
 		isa = PBXTextBookmark;
 		rLen = 0;
-		rLoc = 157;
+		rLoc = 176;
 		rType = 1;
 	};
 	F53E648E030D8DDB01D92FBF = {
@@ -2868,7 +2868,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 75";
 		rLen = 44;
-		rLoc = 1859;
+		rLoc = 1953;
 		rType = 0;
 		vrLen = 342;
 		vrLoc = 1671;
@@ -2888,7 +2888,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 75";
 		rLen = 44;
-		rLoc = 1859;
+		rLoc = 1953;
 		rType = 0;
 		vrLen = 342;
 		vrLoc = 1671;
@@ -2908,7 +2908,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: 75";
 		rLen = 44;
-		rLoc = 1859;
+		rLoc = 1953;
 		rType = 0;
 		vrLen = 342;
 		vrLoc = 1671;
@@ -2918,7 +2918,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 5023;
+		rLoc = 5475;
 		rType = 0;
 		vrLen = 318;
 		vrLoc = 4655;
@@ -2948,7 +2948,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: MediaAudio";
 		rLen = 0;
-		rLoc = 4776;
+		rLoc = 5228;
 		rType = 0;
 		vrLen = 272;
 		vrLoc = 4767;
@@ -4260,7 +4260,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 8";
 		rLen = 0;
-		rLoc = 8646;
+		rLoc = 10463;
 		rType = 0;
 		vrLen = 52;
 		vrLoc = 0;
@@ -4270,7 +4270,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 40";
 		rLen = 0;
-		rLoc = 2480;
+		rLoc = 2574;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 0;
@@ -4290,7 +4290,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 31";
 		rLen = 0;
-		rLoc = 5010;
+		rLoc = 5691;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 0;
@@ -4300,7 +4300,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 40";
 		rLen = 0;
-		rLoc = 1649;
+		rLoc = 1737;
 		rType = 0;
 		vrLen = 982;
 		vrLoc = 0;
@@ -4310,7 +4310,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 32";
 		rLen = 0;
-		rLoc = 3197;
+		rLoc = 3225;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 0;
@@ -4390,7 +4390,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 4309;
+		rLoc = 4990;
 		rType = 0;
 		vrLen = 797;
 		vrLoc = 3;
@@ -4510,7 +4510,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 4309;
+		rLoc = 4990;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 0;
@@ -4520,7 +4520,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 45";
 		rLen = 0;
-		rLoc = 1657;
+		rLoc = 1745;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 0;
@@ -4540,7 +4540,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7048;
+		rLoc = 8865;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 734;
@@ -4550,7 +4550,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 33";
 		rLen = 0;
-		rLoc = 3236;
+		rLoc = 3264;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 0;
@@ -4560,7 +4560,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7048;
+		rLoc = 8865;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 734;
@@ -4570,7 +4570,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 45";
 		rLen = 0;
-		rLoc = 1657;
+		rLoc = 1745;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 0;
@@ -4580,7 +4580,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 4805;
+		rLoc = 5486;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 0;
@@ -4610,7 +4610,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 34";
 		rLen = 0;
-		rLoc = 3267;
+		rLoc = 3295;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 0;
@@ -4640,7 +4640,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 4805;
+		rLoc = 5486;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 0;
@@ -4650,7 +4650,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 48";
 		rLen = 0;
-		rLoc = 2122;
+		rLoc = 2210;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 0;
@@ -4660,7 +4660,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2497;
+		rLoc = 2505;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -4690,7 +4690,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 37";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 3797;
 		rType = 0;
 		vrLen = 1469;
 		vrLoc = 0;
@@ -4700,7 +4700,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2497;
+		rLoc = 2505;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -4710,7 +4710,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 35";
 		rLen = 0;
-		rLoc = 3405;
+		rLoc = 3433;
 		rType = 0;
 		vrLen = 1469;
 		vrLoc = 0;
@@ -4720,7 +4720,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6534;
+		rLoc = 8055;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 761;
@@ -4730,7 +4730,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 48";
 		rLen = 0;
-		rLoc = 2122;
+		rLoc = 2210;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 0;
@@ -4740,7 +4740,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2949;
+		rLoc = 3628;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 307;
@@ -4770,7 +4770,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2949;
+		rLoc = 3628;
 		rType = 0;
 		vrLen = 836;
 		vrLoc = 0;
@@ -4840,7 +4840,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 48";
 		rLen = 0;
-		rLoc = 2122;
+		rLoc = 2210;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 0;
@@ -4920,7 +4920,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 1279;
+		rLoc = 1283;
 		rType = 0;
 		vrLen = 859;
 		vrLoc = 0;
@@ -4940,7 +4940,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 1279;
+		rLoc = 1283;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 0;
@@ -4950,7 +4950,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 47";
 		rLen = 0;
-		rLoc = 1655;
+		rLoc = 1743;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 11;
@@ -4960,7 +4960,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 1279;
+		rLoc = 1283;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 0;
@@ -4990,7 +4990,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 49";
 		rLen = 0;
-		rLoc = 1734;
+		rLoc = 1822;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 20;
@@ -5000,7 +5000,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 2576;
+		rLoc = 2584;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 0;
@@ -5030,7 +5030,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 37";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 3797;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 0;
@@ -5320,7 +5320,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 28";
 		rLen = 0;
-		rLoc = 1122;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 0;
@@ -6311,7 +6311,7 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 51212938;
+			PBXPerProjectTemplateStateSaveDate = 51220364;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
@@ -10659,7 +10659,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 51212938;
+			PBXWorkspaceStateSaveDate = 51220364;
 		};
 		perUserProjectItems = {
 			F50F4E4002B50AB1014A78CB = F50F4E4002B50AB1014A78CB;
@@ -17990,7 +17990,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 31";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 0;
@@ -18020,7 +18020,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 31";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 0;
@@ -27342,7 +27342,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 0;
@@ -27582,7 +27582,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 0;
@@ -27602,7 +27602,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 0;
@@ -28392,7 +28392,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 0;
@@ -28592,7 +28592,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 30";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 0;
@@ -29112,7 +29112,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Move";
 		rLen = 0;
-		rLoc = 2397;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 1417;
@@ -29122,7 +29122,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 34";
 		rLen = 0;
-		rLoc = 3281;
+		rLoc = 3309;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 958;
@@ -29132,7 +29132,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 93";
 		rLen = 0;
-		rLoc = 2426;
+		rLoc = 2434;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1513;
@@ -29142,7 +29142,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 80";
 		rLen = 0;
-		rLoc = 2504;
+		rLoc = 2608;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 867;
@@ -29152,7 +29152,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7239;
+		rLoc = 9056;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 8176;
@@ -29232,7 +29232,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 32";
 		rLen = 0;
-		rLoc = 3196;
+		rLoc = 3224;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 958;
@@ -29252,7 +29252,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 39";
 		rLen = 0;
-		rLoc = 3428;
+		rLoc = 3456;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 958;
@@ -29642,7 +29642,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7239;
+		rLoc = 9056;
 		rType = 0;
 		vrLen = 1554;
 		vrLoc = 0;
@@ -29722,7 +29722,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 44";
 		rLen = 0;
-		rLoc = 2320;
+		rLoc = 2348;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 1071;
@@ -29732,7 +29732,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 118";
 		rLen = 0;
-		rLoc = 2949;
+		rLoc = 3628;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 2762;
@@ -29752,7 +29752,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 198";
 		rLen = 0;
-		rLoc = 6520;
+		rLoc = 5496;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 1071;
@@ -31122,7 +31122,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 1121;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 0;
@@ -31186,7 +31186,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 1121;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 0;
@@ -34566,7 +34566,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: Instance";
 		rLen = 0;
-		rLoc = 1265;
+		rLoc = 1311;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 42;
@@ -34576,7 +34576,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.cpp: 85";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 1182;
@@ -34586,7 +34586,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaAudio.h: Instance";
 		rLen = 0;
-		rLoc = 1265;
+		rLoc = 1311;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 42;
@@ -39119,7 +39119,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 28";
 		rLen = 0;
-		rLoc = 2137;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 0;
@@ -39159,7 +39159,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 2478;
+		rLoc = 2486;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 0;
@@ -39179,7 +39179,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 36";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 3797;
 		rType = 0;
 		vrLen = 1441;
 		vrLoc = 0;
@@ -39189,7 +39189,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 2948;
+		rLoc = 3627;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 0;
@@ -39209,7 +39209,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6951;
+		rLoc = 8768;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 1363;
@@ -39269,7 +39269,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6706;
+		rLoc = 8227;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 336;
@@ -39289,7 +39289,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6706;
+		rLoc = 8227;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 336;
@@ -39359,7 +39359,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 1353;
+		rLoc = 1357;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 0;
@@ -39439,7 +39439,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2061;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -39539,7 +39539,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 37";
 		rLen = 0;
-		rLoc = 3423;
+		rLoc = 3451;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 0;
@@ -39569,7 +39569,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 81";
 		rLen = 0;
-		rLoc = 4720;
+		rLoc = 5401;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 1045;
@@ -39609,7 +39609,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 81";
 		rLen = 0;
-		rLoc = 4720;
+		rLoc = 5401;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 1045;
@@ -39619,7 +39619,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 53";
 		rLen = 0;
-		rLoc = 2131;
+		rLoc = 2219;
 		rType = 0;
 		vrLen = 1463;
 		vrLoc = 24;
@@ -39629,7 +39629,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: HandleTextEnd";
 		rLen = 0;
-		rLoc = 2948;
+		rLoc = 3627;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 1044;
@@ -39639,7 +39639,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 37";
 		rLen = 0;
-		rLoc = 3425;
+		rLoc = 3453;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 0;
@@ -39649,7 +39649,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 1382;
+		rLoc = 1386;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 0;
@@ -39669,7 +39669,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: NullHandler";
 		rLen = 0;
-		rLoc = 3624;
+		rLoc = 4305;
 		rType = 0;
 		vrLen = 1498;
 		vrLoc = 1057;
@@ -39679,7 +39679,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 59";
 		rLen = 0;
-		rLoc = 2256;
+		rLoc = 2344;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 178;
@@ -39689,7 +39689,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 7028;
+		rLoc = 8845;
 		rType = 0;
 		vrLen = 1807;
 		vrLoc = 2967;
@@ -39699,7 +39699,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 56";
 		rLen = 0;
-		rLoc = 1946;
+		rLoc = 2034;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 178;
@@ -39709,7 +39709,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 746;
+		rLoc = 748;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 635;
@@ -39739,7 +39739,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: 132";
 		rLen = 0;
-		rLoc = 4309;
+		rLoc = 4990;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 2972;
@@ -39749,7 +39749,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 38";
 		rLen = 0;
-		rLoc = 3445;
+		rLoc = 3473;
 		rType = 0;
 		vrLen = 1608;
 		vrLoc = 0;
@@ -39759,7 +39759,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 1125;
+		rLoc = 1129;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 0;
@@ -39779,7 +39779,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6836;
+		rLoc = 8357;
 		rType = 0;
 		vrLen = 2015;
 		vrLoc = 4038;
@@ -39799,7 +39799,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 954;
+		rLoc = 958;
 		rType = 0;
 		vrLen = 1563;
 		vrLoc = 221;
@@ -39829,7 +39829,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 37";
 		rLen = 0;
-		rLoc = 3364;
+		rLoc = 3392;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 0;
@@ -39839,7 +39839,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: Render";
 		rLen = 0;
-		rLoc = 954;
+		rLoc = 958;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 160;
@@ -39849,7 +39849,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 75";
 		rLen = 0;
-		rLoc = 2268;
+		rLoc = 2356;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 724;
@@ -39859,7 +39859,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 6909;
+		rLoc = 8726;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 0;
@@ -39869,7 +39869,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDialogue.h: 64";
 		rLen = 0;
-		rLoc = 2017;
+		rLoc = 2105;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 715;
@@ -39909,7 +39909,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 15";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 520;
 		vrLoc = 0;
@@ -39939,7 +39939,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 15";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 525;
 		vrLoc = 0;
@@ -39999,7 +39999,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 15";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 525;
 		vrLoc = 0;
@@ -40029,7 +40029,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 15";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 525;
 		vrLoc = 0;
@@ -40219,7 +40219,7 @@
 		isa = PBXTextBookmark;
 		name = "contract.xml: 29";
 		rLen = 0;
-		rLoc = 3817;
+		rLoc = 3915;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 0;

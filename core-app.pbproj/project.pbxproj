@@ -3307,6 +3307,8 @@
 				F5539E3302B4CE24010AB4A9,
 				F54E9EAE030BCA8901D67831,
 				F54E9EAF030BCA8901D67831,
+				F5B96F1D030D9B5C015847EC,
+				F5B96F1E030D9B5C015847EC,
 			);
 			isa = PBXGroup;
 			name = Media;
@@ -4100,6 +4102,7 @@
 				F54E9EB1030BCA8901D67831,
 				F54E9EB3030BD58E01D67831,
 				F54E9EB5030BD59A01D67831,
+				F5B96F20030D9B5C015847EC,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -4203,6 +4206,7 @@
 				F54E9EB0030BCA8901D67831,
 				F54E9EB7030BD71401D67831,
 				F54E9EB9030BD72A01D67831,
+				F5B96F1F030D9B5C015847EC,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -4683,6 +4687,30 @@
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
 			refType = 4;
+		};
+		F5B96F1D030D9B5C015847EC = {
+			isa = PBXFileReference;
+			name = MediaSoundStream.cpp;
+			path = Media/MediaSoundStream.cpp;
+			refType = 4;
+		};
+		F5B96F1E030D9B5C015847EC = {
+			isa = PBXFileReference;
+			name = MediaSoundStream.h;
+			path = Media/MediaSoundStream.h;
+			refType = 4;
+		};
+		F5B96F1F030D9B5C015847EC = {
+			fileRef = F5B96F1D030D9B5C015847EC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B96F20030D9B5C015847EC = {
+			fileRef = F5B96F1E030D9B5C015847EC;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5D6A1A202FABD6701D854DA = {
 			isa = PBXFileReference;

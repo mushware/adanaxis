@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudio.cpp,v 1.8 2002/08/13 17:50:21 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.9 2002/08/16 19:46:07 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.9  2002/08/16 19:46:07  southa
+ * MediaSound work
+ *
  * Revision 1.8  2002/08/13 17:50:21  southa
  * Added playsound command
  *
@@ -44,10 +47,12 @@
 #include "MediaAudio.h"
 #include "MediaSDL.h"
 #include "MediaSound.h"
+#include "MediaSoundStream.h"
 
 auto_ptr<MediaAudio> MediaAudio::m_instance;
 
-MediaAudio::MediaAudio()
+MediaAudio::MediaAudio():
+    m_music(NULL)
 {
     MediaSDL::Instance().InitAudio();
 
@@ -116,6 +121,23 @@ MediaAudio::Play(MediaSound& inSound)
     }
     COREASSERT(channel < static_cast<S32>(m_softChannels));
     ChannelStateSet(channel, kChannelPlaying, &inSound);
+}
+
+void
+MediaAudio::Play(MediaSoundStream& inSoundStream)
+{
+    if (m_music != NULL)
+    {
+        Mix_FreeMusic(m_music);
+        m_music=NULL;
+    }
+    string filename(inSoundStream.FilenameGet());
+    m_music = Mix_LoadMUS(filename.c_str());
+    if (m_music == NULL)
+    {
+        throw(FileFail(filename, "Failed to load music: "+string(Mix_GetError()) ));
+    }
+    Mix_PlayMusic(m_music, 10000);
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.3 2002/08/13 18:29:04 southa Exp $
+ * $Id: GameDialogue.h,v 1.4 2002/08/15 13:39:31 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.4  2002/08/15 13:39:31  southa
+ * CoreData and CoreDatRef
+ *
  * Revision 1.3  2002/08/13 18:29:04  southa
  * Tidied GameDialogue code
  *
@@ -47,6 +50,8 @@ private:
     void HandleEndTimeEnd(CoreXML& inXML);
     void HandleFadeTimeEnd(CoreXML& inXML);
     void HandleMotionStart(CoreXML& inXML);
+    void HandleSoundEnd(CoreXML& inXML);
+    void HandleSoundStreamEnd(CoreXML& inXML);
     void HandleDialogueEnd(CoreXML& inXML);
 
     enum PickleState
@@ -85,14 +90,24 @@ private:
         tVal startTime;
     };
 
-//    class SoundSpec
-//    {
-//        MediaSoundRef soundRef;
-//        tVal startTime;
-//    };
-    
+    class SoundSpec
+    {
+    public:
+        CoreDataRef<MediaSound> soundRef;
+        tVal startTime;
+    };
+
+    class SoundStreamSpec
+    {
+    public:
+        CoreDataRef<MediaSoundStream> soundStreamRef;
+        tVal startTime;
+    };
+
     StringSpec m_currentSpec;
-    vector<StringSpec> m_specs;
+    vector<StringSpec> m_strings;
+    vector<SoundSpec> m_sounds;
+    vector<SoundStreamSpec> m_soundStreams;
     GLFontRef m_fontRef;
     GameMotion m_motion;
     tVal m_age;

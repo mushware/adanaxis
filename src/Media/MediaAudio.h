@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: MediaAudio.h,v 1.7 2002/08/13 17:50:21 southa Exp $
+ * $Id: MediaAudio.h,v 1.8 2002/08/16 19:46:07 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.8  2002/08/16 19:46:07  southa
+ * MediaSound work
+ *
  * Revision 1.7  2002/08/13 17:50:21  southa
  * Added playsound command
  *
@@ -41,8 +44,10 @@
  */
 
 #include "MediaStandard.h"
+#include "MediaSDL.h"
 
 class MediaSound;
+class MediaSoundStream;
 
 class MediaAudio
 {
@@ -53,6 +58,7 @@ public:
     static void InstanceDelete(void);
     void PlayMusic(const string& inName);
     void Play(MediaSound& inSound);
+    void Play(MediaSoundStream& inSoundStream);
     void SoundHalt(MediaSound& inSound);
     void Ticker(void);
 
@@ -72,6 +78,7 @@ private:
     U32 m_softChannels;
     vector<ChannelState> m_channelState;
     vector<MediaSound *> m_activeSamples;
+    Mix_Music *m_music;
     static auto_ptr<MediaAudio> m_instance;
 };
 

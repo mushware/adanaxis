@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.3 2002/08/13 17:50:21 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.4 2002/08/13 18:29:04 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.4  2002/08/13 18:29:04  southa
+ * Tidied GameDialogue code
+ *
  * Revision 1.3  2002/08/13 17:50:21  southa
  * Added playsound command
  *
@@ -23,7 +26,7 @@ GameDialogue::Render(void) const
 {
     GameTimer& timer(GameData::Instance().TimerGet());
    
-    U32 size=m_specs.size();
+    U32 size=m_strings.size();
     
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     tVal windbackValue=timer.WindbackValueGet(glAppHandler.MillisecondsGet());
@@ -31,7 +34,7 @@ GameDialogue::Render(void) const
     
     for (U32 i=0; i<size; ++i)
     {
-        const StringSpec& spec=m_specs[i];
+        const StringSpec& spec=m_strings[i];
         if (m_age >= spec.startTime && m_age < spec.endTime)
         {
             tVal startMult(0),midMult(0),endMult(0);
@@ -78,11 +81,11 @@ GameDialogue::Render(void) const
 void
 GameDialogue::Move(void)
 {
-    U32 size=m_specs.size();
+    U32 size=m_strings.size();
     bool expired=true;
     for (U32 i=0; i<size; ++i)
     {
-        StringSpec& spec=m_specs[i];
+        StringSpec& spec=m_strings[i];
 
         if (m_age < spec.endTime)
         {
@@ -93,6 +96,37 @@ GameDialogue::Move(void)
             }
         }
     }
+    
+    size=m_sounds.size();
+    
+    for (U32 i=0; i<size; ++i)
+    {
+        SoundSpec& spec=m_sounds[i];
+        if (m_age < spec.startTime)
+        {
+            expired = false;
+        }
+        if (m_age == spec.startTime)
+        {
+            MediaAudio::Instance().Play(*spec.soundRef.DataGet());
+        }
+    }
+
+    size=m_soundStreams.size();
+
+    for (U32 i=0; i<size; ++i)
+    {
+        SoundStreamSpec& spec=m_soundStreams[i];
+        if (m_age < spec.startTime)
+        {
+            expired = false;
+        }
+        if (m_age == spec.startTime)
+        {
+            MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet());
+        }
+    }
+    
     m_expired=expired;
     m_age++;
 }
@@ -107,7 +141,7 @@ GameDialogue::HandleTextEnd(CoreXML& inXML)
     inXML.GetAttrib(alignment, "align");
     m_currentSpec.string=GLString(inXML.TopData(), m_fontRef, alignment.ValGet());
     m_currentSpec.motionSpec=motionSpec;
-    m_specs.push_back(m_currentSpec);
+    m_strings.push_back(m_currentSpec);
     
     motionSpec.pos.y -= m_fontRef.SizeGet()*m_currentSpec.midSize;
     m_motion.MotionSpecSet(motionSpec);
@@ -185,6 +219,32 @@ GameDialogue::HandleMotionStart(CoreXML& inXML)
 }
 
 void
+GameDialogue::HandleSoundEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for sound.  Should be <sound>impressive<sound>";
+    string name;
+    SoundSpec soundSpec;
+    if (!(data >> name)) inXML.Throw(failMessage);
+    soundSpec.soundRef.NameSet(name);
+    soundSpec.startTime = m_currentSpec.startTime;
+    m_sounds.push_back(soundSpec);
+}
+
+void
+GameDialogue::HandleSoundStreamEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for soundstream.  Should be <sound>rate-music<sound>";
+    string name;
+    SoundStreamSpec streamSpec;
+    if (!(data >> name)) inXML.Throw(failMessage);
+    streamSpec.soundStreamRef.NameSet(name);
+    streamSpec.startTime = m_currentSpec.startTime;
+    m_soundStreams.push_back(streamSpec);
+}
+
+void
 GameDialogue::HandleDialogueEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
@@ -199,7 +259,7 @@ GameDialogue::NullHandler(CoreXML& inXML)
 void
 GameDialogue::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    if (m_specs.size() != 0)
+    if (m_strings.size() != 0)
     {
 // Fill me in
     }
@@ -229,6 +289,10 @@ GameDialogue::UnpicklePrologue(void)
     m_startTable[kPickleData]["sizes"] = &GameDialogue::NullHandler;
     m_endTable[kPickleData]["sizes"] = &GameDialogue::HandleSizesEnd;
     m_startTable[kPickleData]["motion"] = &GameDialogue::HandleMotionStart;
+    m_startTable[kPickleData]["sound"] = &GameDialogue::NullHandler;
+    m_endTable[kPickleData]["sound"] = &GameDialogue::HandleSoundEnd;
+    m_startTable[kPickleData]["soundstream"] = &GameDialogue::NullHandler;
+    m_endTable[kPickleData]["soundstream"] = &GameDialogue::HandleSoundStreamEnd;
     m_endTable[kPickleData]["dialogue"] = &GameDialogue::HandleDialogueEnd;
     m_pickleState=kPickleData;
     m_motion.MotionSpecSet(GameMotionSpec(GLPoint(0,0), 0));
