@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatformHeaders.h,v 1.2 2003/01/16 13:11:32 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.3 2003/01/16 15:58:02 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.3  2003/01/16 15:58:02  southa
+ * Mustl exception handling
+ *
  * Revision 1.2  2003/01/16 13:11:32  southa
  * Install and uninstall MustlPlatform
  *
@@ -73,15 +76,45 @@
 #define MUSTL_ERROR_FETCH wsaError = WSAGetLastError()
 #define MUSTL_ERROR_VALUE wsaError
 
-#define MUSTL_ERROR_ENETDOWN WSAENETDOWN
-#define MUSTL_ERROR_EFAULT WSAEFAULT
-#define MUSTL_ERROR_EINTR WSAEINTR
-#define MUSTL_ERROR_EBROADCAST WSAEBROADCAST
-#define MUSTL_ERROR_ENOBUFS WSAENOBUFS
-#define MUSTL_ERROR_EWOULDBLOCK WSAEINPROGRESS
-#define MUSTL_ERROR_EMSGSIZE WSAEMSGSIZE
-#define MUSTL_ERROR_EHOSTUNREACH WSAEHOSTUNREACH
-    
+/* non-blocking and interrupt i/o */
+#define MUSTL_ERROR_EINTR           WSAEINTR              /* Interrupted system call */
+#define MUSTL_ERROR_EACCES          WSAEACCES              /* Interrupted system call */
+#define MUSTL_ERROR_EINVAL          WSAEINVAL              /* Interrupted system call */
+#define MUSTL_ERROR_EAGAIN          WSAEWOULDBLOCK             /* Resource temporarily unavailable */
+#define MUSTL_ERROR_EWOULDBLOCK     WSAEWOULDBLOCK        /* Operation would block */
+#define MUSTL_ERROR_EINPROGRESS     WSAEINPROGRESS        /* Operation now in progress */
+#define MUSTL_ERROR_EALREADY        WSAEALREADY           /* Operation already in progress */
+
+/* ipc/network software -- argument errors */
+#define MUSTL_ERROR_ENOTSOCK        WSAENOTSOCK           /* Socket operation on non-socket */
+#define MUSTL_ERROR_EDESTADDRREQ    WSAEDESTADDRREQ       /* Destination address required */
+#define MUSTL_ERROR_EMSGSIZE        WSAEMSGSIZE           /* Message too long */
+#define MUSTL_ERROR_EPROTOTYPE      WSAEPROTOTYPE         /* Protocol wrong type for socket */
+#define MUSTL_ERROR_ENOPROTOOPT     WSAENOPROTOOPT        /* Protocol not available */
+#define MUSTL_ERROR_ENOTSUP         WSAEOPNOTSUPP         /* Operation not supported */
+#define MUSTL_ERROR_EOPNOTSUPP      WSAEOPNOTSUPP         /* Operation not supported */
+#define MUSTL_ERROR_EADDRINUSE      WSAEADDRINUSE         /* Address already in use */
+#define MUSTL_ERROR_EADDRNOTAVAIL   WSAEADDRNOTAVAIL      /* Can't assign requested address */
+
+/* ipc/network software -- operational errors */
+#define MUSTL_ERROR_ENETDOWN        WSAENETDOWN           /* Network is down */
+#define MUSTL_ERROR_ENETUNREACH     WSAENETUNREACH        /* Network is unreachable */
+#define MUSTL_ERROR_ENETRESET       WSAENETRESET          /* Network dropped connection on reset */
+#define MUSTL_ERROR_ECONNABORTED    WSAECONNABORTED       /* Software caused connection abort */
+#define MUSTL_ERROR_ECONNRESET      WSAECONNRESET         /* Connection reset by peer */
+#define MUSTL_ERROR_ENOBUFS         WSAENOBUFS            /* No buffer space available */
+#define MUSTL_ERROR_EISCONN         WSAEISCONN            /* Socket is already connected */
+#define MUSTL_ERROR_ENOTCONN        WSAENOTCONN           /* Socket is not connected */
+#define MUSTL_ERROR_ESHUTDOWN       WSAESHUTDOWN          /* Can't send after socket shutdown */
+#define MUSTL_ERROR_ETIMEDOUT       WSAETIMEDOUT          /* Operation timed out */
+#define MUSTL_ERROR_ECONNREFUSED    WSAECONNREFUSED       /* Connection refused */
+
+#define MUSTL_ERROR_EHOSTDOWN       WSAEHOSTDOWN          /* Host is down */
+#define MUSTL_ERROR_EHOSTUNREACH    WSAEHOSTUNREACH       /* No route to host */
+
+#define MUSTL_ERROR_NOTINITIALISED WSANOTINITIALISED
+#define MUSTL_ERROR_EDISCON         WSAEDISCON
+
 #define MUSTL_INVALID_SOCKET INVALID_SOCKET
 
 #else
@@ -124,6 +157,9 @@
 
 #define MUSTL_ERROR_EHOSTDOWN       EHOSTDOWN          /* Host is down */
 #define MUSTL_ERROR_EHOSTUNREACH    EHOSTUNREACH       /* No route to host */
+
+#define MUSTL_ERROR_ENOTINITIALISED ENOTINITIALISED
+#define MUSTL_ERROR_EDISCON         EDISCON
 
 #define MUSTL_INVALID_SOCKET -1
 

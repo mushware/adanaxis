@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MustlPlatformError.cpp,v 1.1 2003/01/16 15:58:02 southa Exp $
+ * $Log: MustlPlatformError.cpp,v $
+ * Revision 1.1  2003/01/16 15:58:02  southa
+ * Mustl exception handling
+ *
  */
 
 #include "MustlPlatformError.h"
@@ -48,6 +51,12 @@ MustlPlatformError::Throw(tErrorCode inSystemCode, const string& inPrefix)
         case MUSTL_ERROR_EINTR:
             throw(MustlTemporaryFail(prefixStr+"EINTR"));
 
+	case MUSTL_ERROR_EACCES:
+            throw(MustlTemporaryFail(prefixStr+"EACCES: Permission denied"));
+
+	case MUSTL_ERROR_EINVAL:
+            throw(MustlTemporaryFail(prefixStr+"EINVAL: Invalid operation"));
+
 #if MUSTL_ERROR_EWOULDBLOCK != MUSTL_ERROR_EAGAIN
         case MUSTL_ERROR_EAGAIN:
 #endif
@@ -85,7 +94,7 @@ MustlPlatformError::Throw(tErrorCode inSystemCode, const string& inPrefix)
             throw(MustlAddressFail(prefixStr+"EADDRINUSE: Address is already in use"));
             
         case MUSTL_ERROR_EADDRNOTAVAIL:
-            throw(MustlAddressFail(prefixStr+"EADDRNOTAVAIL: Address is not available"));
+            throw(MustlAddressFail(prefixStr+"EADDRNOTAVAIL: Address is invalid"));
 
         case MUSTL_ERROR_ENETDOWN:
             throw(MustlAddressFail(prefixStr+"ENETDOWN: Network is down"));
@@ -131,6 +140,17 @@ MustlPlatformError::Throw(tErrorCode inSystemCode, const string& inPrefix)
             
         case MUSTL_ERROR_EHOSTUNREACH:
             throw(MustlAddressFail(prefixStr+"EHOSTUNREACH: Target host is unreachable"));
+
+#ifdef MUSTL_WIN32
+        case MUSTL_ERROR_NOTINITIALISED:
+            throw(MustlPermanentFail(prefixStr+"MUSTL_ERROR_ENOTINITIALISED: Sockets system is not initialised"));
+
+        case MUSTL_ERROR_EDISCON:
+            throw(MustlSocketFail(prefixStr+"MUSTL_ERROR_EDISCON: Peer disconnected"));
+#endif
+
+	default:
+            throw(MustlAddressFail(prefixStr+"Unknown error"));
     }
 }
 #endif

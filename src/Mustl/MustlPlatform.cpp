@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.8 2003/01/16 13:11:32 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.9 2003/01/16 15:58:01 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.9  2003/01/16 15:58:01  southa
+ * Mustl exception handling
+ *
  * Revision 1.8  2003/01/16 13:11:32  southa
  * Install and uninstall MustlPlatform
  *
@@ -589,7 +592,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
     if (result != NO_ERROR)
     {
         ostringstream message;
-        message << "GetIpAddrTable failed (" << result << ")"
+        message << "GetIpAddrTable failed (" << result << ")";
         MustlPlatformError::Throw(message.str());
     }
     DWORD numEntries = ipAddrTable->dwNumEntries;
@@ -763,7 +766,7 @@ MustlPlatform::Install(void)
 #ifdef MUSTL_WIN32
     WORD wVersionRequested = MAKEWORD(2,2);
     WSADATA wsaData;
-    int result = WSAStartup(wVersionRequested, wsaData);
+    int result = WSAStartup(wVersionRequested, &wsaData);
     if (result != 0)
     {
         cerr << "WSAStartup failed (" << result << ")";
