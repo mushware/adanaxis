@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.8 2002/03/07 22:24:34 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.9 2002/03/18 22:22:15 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.9  2002/03/18 22:22:15  southa
+ * Initial wrangle command
+ *
  * Revision 1.8  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -28,10 +31,7 @@
  */
 
 #include "GLCommandHandler.hp"
-#include "CoreApp.hp"
-#include "CoreTest.hp"
-#include "CoreInstaller.hp"
-#include "CoreRegExp.hp"
+#include "mushCore.hp"
 #include "GLAppHandler.hp"
 #include "GLData.hp"
 #include "GLTextureSpr.hp"

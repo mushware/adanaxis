@@ -1,12 +1,15 @@
 /*
- * $Id: GLCommandHandler.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: GLCommandHandler.hp,v 1.2 2002/03/07 22:24:34 southa Exp $
  * $Log: GLCommandHandler.hp,v $
+ * Revision 1.2  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
  */
 
-#include "CoreCommandHandler.hp"
+#include "mushCore.hp"
 
 class GLCommandHandler
 {

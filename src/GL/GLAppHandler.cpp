@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.2 2002/02/24 22:49:33 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.3 2002/03/21 22:07:54 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.3  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  * Revision 1.2  2002/02/24 22:49:33  southa
  * Got working under cygwin
  *
@@ -11,7 +14,7 @@
 
 #include "GLAppHandler.hp"
 #include "GLStandard.hp"
-#include "CoreAppHandler.hp"
+#include "mushCore.hp"
 
 void
 GLAppHandler::CheckGLError(void)

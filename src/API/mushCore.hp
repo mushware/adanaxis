@@ -1,0 +1,19 @@
+/*
+ * $Id$
+ * $Log$
+ */
+#ifndef MUSHCORE_H
+#define MUSHCORE_H
+
+#include "CoreApp/AutoMonkey.hp"
+#include "CoreApp/CoreApp.hp"
+#include "CoreApp/CoreAppHandler.hp"
+#include "CoreApp/CoreCommandHandler.hp"
+#include "CoreApp/CoreException.hp"
+#include "CoreApp/CoreInstaller.hp"
+#include "CoreApp/CorePOSIX.hp"
+#include "CoreApp/CoreRegExp.hp"
+#include "CoreApp/CoreStandard.hp"
+#include "CoreApp/CoreTest.hp"
+
+#endif

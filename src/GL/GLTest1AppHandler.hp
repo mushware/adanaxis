@@ -1,13 +1,16 @@
 /*
- * $Id: GLTest1AppHandler.hp,v 1.1 2002/02/23 17:54:45 southa Exp $
+ * $Id: GLTest1AppHandler.hp,v 1.2 2002/03/07 22:24:34 southa Exp $
  * $Log: GLTest1AppHandler.hp,v $
+ * Revision 1.2  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.1  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
  */
 
 #include "GLAppHandler.hp"
-#include "CoreCommandHandler.hp"
+#include "mushCore.hp"
 
 class GLTest1AppHandler : public GLAppHandler
 {

@@ -1,17 +1,17 @@
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.1 2002/03/18 22:21:12 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.2 2002/03/21 22:07:54 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.2  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  * Revision 1.1  2002/03/18 22:21:12  southa
  * Initial wrangle command
  *
  */
 
 #include "WrangleCommandHandler.hp"
-#include "CoreApp.hp"
-#include "CoreAppHandler.hp"
-#include "CoreInstaller.hp"
-#include "GL/GLData.hp"
-#include "GL/GLTexture.hp"
+#include "mushCore.hp"
+#include "mushGL.hp"
 
 #include "GLWrangleAppHandler.hp"
 

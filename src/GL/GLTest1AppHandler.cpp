@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.5 2002/03/07 22:24:34 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.6 2002/03/18 22:22:15 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.6  2002/03/18 22:22:15  southa
+ * Initial wrangle command
+ *
  * Revision 1.5  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -21,11 +24,9 @@
 #include "GLTest1AppHandler.hp"
 
 #include "GLStandard.hp"
-#include "CoreAppHandler.hp"
+#include "mushCore.hp"
 #include "GLTexture.hp"
 #include "GLData.hp"
-#include "CoreApp.hp"
-#include "CoreInstaller.hp"
 
 CoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);

@@ -1,6 +1,9 @@
 /*
- * $Id: GLStandard.hp,v 1.7 2002/02/24 23:40:53 southa Exp $
+ * $Id: GLStandard.hp,v 1.8 2002/02/25 23:05:14 southa Exp $
  * $Log: GLStandard.hp,v $
+ * Revision 1.8  2002/02/25 23:05:14  southa
+ * Subclassed GLTexture
+ *
  * Revision 1.7  2002/02/24 23:40:53  southa
  * Tweaked for MacOS X
  *
@@ -42,7 +45,7 @@
 #include <GLUT/glut.h>
 #endif
 
-#include "CoreStandard.hp"
+#include "mushCore.hp"
 
 typedef Size TextureRef;
 

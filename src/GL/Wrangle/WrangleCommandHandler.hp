@@ -1,9 +1,12 @@
 /*
- * $Id$
- * $Log$
+ * $Id: WrangleCommandHandler.hp,v 1.1 2002/03/18 22:21:12 southa Exp $
+ * $Log: WrangleCommandHandler.hp,v $
+ * Revision 1.1  2002/03/18 22:21:12  southa
+ * Initial wrangle command
+ *
  */
 
-#include "CoreCommandHandler.hp"
+#include "mushCore.hp"
 
 class WrangleCommandHandler
 {

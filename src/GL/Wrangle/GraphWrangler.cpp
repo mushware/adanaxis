@@ -1,14 +1,17 @@
 /*
- * $Id: GraphWrangler.cpp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.2 2002/03/24 16:35:39 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.2  2002/03/24 16:35:39  southa
+ * Wrangler axis finder
+ *
  * Revision 1.1  2002/03/21 22:07:54  southa
  * Initial wrangle application handler
  *
  */
 
 #include "GraphWrangler.hp"
-#include "GL/GLTexture.hp"
-#include "CoreException.hp"
+#include "mushCore.hp"
+#include "mushGL.hp"
 
 void
 GraphWrangler::Process(bool &outDoQuit, bool &outRedraw)

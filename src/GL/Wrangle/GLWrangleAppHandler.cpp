@@ -1,17 +1,15 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLWrangleAppHandler.cpp,v 1.1 2002/03/21 22:07:54 southa Exp $
+ * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.1  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  */
 
 #include "GLWrangleAppHandler.hp"
 
-#include "CoreApp.hp"
-#include "CoreAppHandler.hp"
-#include "CorePOSIX.hp"
-
-#include "GL/GLStandard.hp"
-#include "GL/GLTexture.hp"
-#include "GL/GLData.hp"
+#include "mushCore.hp"
+#include "mushGL.hp"
 
 #include "GraphWrangler.hp"
 
