@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.26 2003/01/11 17:07:53 southa Exp $
+ * $Id: main.cpp,v 1.27 2003/01/13 23:05:22 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.27  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.26  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -120,9 +123,9 @@ int main(int argc, char *argv[])
 {
     PlatformMiscUtils::Initialise();
     MushcoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
-    cerr << "Application path is " << MushcoreGlobalConfig::Instance().Get("APPLPATH") << endl;
+    // cerr << "Application path is " << MushcoreGlobalConfig::Instance().Get("APPLPATH") << endl;
     MushcoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
-    cerr << "System path is " << MushcoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
+    // cerr << "System path is " << MushcoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
 
 
 
@@ -135,14 +138,21 @@ int main(int argc, char *argv[])
 
     PlatformMiscUtils::TweakArgs(str);
 
-    cout << "Command line was '" << str << "'" << endl;
     if (str == "")
     {
         str="load($SYSTEMPATH+'/start.txt')";
     }
     try
     {
-        MushcoreInterpreter::Instance().Execute(str);
+        try
+        {
+            MushcoreInterpreter::Instance().Execute(str);
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            cerr << "Exception: " << e.what() << endl;
+        }
+        
         MushcoreAppHandler::Instance().Initialise();
         MushcoreAppHandler::Instance().MainLoop();
     }

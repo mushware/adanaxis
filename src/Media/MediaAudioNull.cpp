@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioNull.cpp,v 1.7 2003/01/07 17:13:44 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.8 2003/01/13 14:32:01 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.8  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.7  2003/01/07 17:13:44  southa
  * Fixes for gcc 3.1
  *
@@ -43,7 +46,6 @@ using namespace std;
 
 MediaAudioNull::MediaAudioNull()
 {
-    cerr << "Created NULL audio device" << endl;
 }
 
 void

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.cpp,v 1.17 2003/01/13 14:32:01 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.18 2003/01/18 13:33:57 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.18  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.17  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -34,8 +37,8 @@
 #include "MediaAudio.h"
 #include "MediaAudioNull.h"
 #include "MediaAudioSDL.h"
-#include "MediaSound.h"
 #include "MediaSTL.h"
+#include "MediaSound.h"
 
 using namespace Mushware;
 using namespace std;
@@ -47,8 +50,21 @@ MediaAudio::~MediaAudio()
 {
     // Delete the MediaSound database before removing the audio services
     // that they're using
-    if (MushcoreData<MediaSound>::SingletonExists())
+    MushcoreData<MediaSound>::SingletonDestroy();
+}
+
+MediaAudio *
+MediaAudio::SingletonFactory(void)
+{
+    MediaAudio *pAudio;
+    try
     {
-        MushcoreData<MediaSound>::SingletonDelete();
+        pAudio = new MediaAudioSDL;
     }
+    catch (MushcoreNonFatalFail& e)
+    {
+        cerr << "Exception creating MediaAudioSDL: " << e.what() << endl;
+        pAudio = new  MediaAudioNull;
+    }
+    return pAudio;
 }

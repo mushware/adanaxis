@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.12 2003/01/13 14:32:01 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.13 2003/01/17 13:30:39 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.13  2003/01/17 13:30:39  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.12  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -144,8 +147,10 @@ MediaAudioSDL::MediaAudioSDL():
 
 MediaAudioSDL::~MediaAudioSDL()
 {
-    // First delete all sounds so that they can't interfere
-    MushcoreData<MediaSound>::Instance().Clear();
+    // Delete the MediaSound database before removing the audio services
+    // that they're using
+    MushcoreData<MediaSound>::SingletonDestroy();
+
     Mix_CloseAudio();
 }
 

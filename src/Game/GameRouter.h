@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.h,v 1.12 2003/01/17 13:30:39 southa Exp $
+ * $Id: GameRouter.h,v 1.13 2003/01/18 13:33:57 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.13  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.12  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -54,7 +57,7 @@
 #include "Mushcore.h"
 #include "Mustl.h"
 
-class GameRouter : public MustlMessageHandler, public MushcoreSingleton<GameRouter>
+class GameRouter : public MustlMessageHandler, public MushcoreSingletonConcrete<GameRouter>
 {
 public:
     void MessageHandle(MustlData& ioData, MustlLink& inLink, Mushware::U32 inType);

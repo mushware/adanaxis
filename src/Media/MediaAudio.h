@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.h,v 1.16 2002/12/29 20:30:55 southa Exp $
+ * $Id: MediaAudio.h,v 1.17 2003/01/18 13:33:57 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.17  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.16  2002/12/29 20:30:55  southa
  * Work for gcc 3.1 build
  *
@@ -52,7 +55,9 @@ public:
     virtual void Free(MediaSound& inSound) const = 0;
     virtual void Ticker(void) = 0;
 
-private:
+    static MediaAudio *SingletonFactory(void);
+    
+protected:
 };
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreDestroySingleton.h,v 1.1 2003/01/18 13:33:58 southa Exp $
+ * $Log: MushcoreDestroySingleton.h,v $
+ * Revision 1.1  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -34,6 +37,6 @@ template<class SingletonType>
 inline
 MushcoreDestroySingleton<SingletonType>::~MushcoreDestroySingleton(void)
 {
-    MushcoreSingleton<SingletonType>::SingletonDelete();
+    MushcoreSingleton<SingletonType>::SingletonDestroy();
 }
 #endif

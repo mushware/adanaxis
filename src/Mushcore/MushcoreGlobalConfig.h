@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.3 2003/01/15 13:27:32 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.4 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.4  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.3  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -51,9 +54,9 @@
 #include "MushcoreStandard.h"
 
 #include "MushcoreConfig.h"
-#include "MushcoreSingleton.h"
+#include "MushcoreSingletonConcrete.h"
 
-class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingleton<MushcoreGlobalConfig>
+class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingletonConcrete<MushcoreGlobalConfig>
 {
 public:
     ~MushcoreGlobalConfig() { cerr << "Destroyed MushcoreGlobalConfig" << endl; }

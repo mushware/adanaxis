@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mushcore.h,v 1.6 2003/01/17 13:30:40 southa Exp $
+ * $Id: Mushcore.h,v 1.7 2003/01/18 13:33:57 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.7  2003/01/18 13:33:57  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.6  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -55,6 +58,7 @@
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"
 #include "MushcoreSingleton.h"
+#include "MushcoreSingletonConcrete.h"
 #include "MushcoreStandard.h"
 #include "MushcoreStreamUtil.h"
 #include "MushcoreUninstaller.h"
