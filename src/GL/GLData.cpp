@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.cpp,v 1.23 2003/01/12 17:32:49 southa Exp $
+ * $Id: GLData.cpp,v 1.24 2003/01/13 14:31:54 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.24  2003/01/13 14:31:54  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.23  2003/01/12 17:32:49  southa
  * Mushcore work
  *
@@ -101,13 +104,13 @@ GLData::GLData() :
 
 GLData::~GLData()
 {
-    for (map<string, GLTexture *>::iterator p = m_textures.begin();
+    for (map<std::string, GLTexture *>::iterator p = m_textures.begin();
         p != m_textures.end(); ++p)
     {
         delete p->second;
     }
     
-    for (map<string, GLFont *>::iterator p = m_fonts.begin();
+    for (map<std::string, GLFont *>::iterator p = m_fonts.begin();
          p != m_fonts.end(); ++p)
     {
         delete p->second;
@@ -128,7 +131,7 @@ GLData::TextureAdd(const string& inName, const GLTexture& inTexture)
 GLTexture * 
 GLData::TextureFind(const string& inName)
 {
-    map<string, GLTexture*>::iterator p = m_textures.find(inName);
+    map<std::string, GLTexture*>::iterator p = m_textures.find(inName);
     if (p != m_textures.end())
     {
         return p->second;
@@ -142,7 +145,7 @@ GLData::TextureFind(const string& inName)
 GLFont *
 GLData::FontGive(const string& inName, GLFont *inFont)
 {
-    map<string, GLFont *>::iterator p = m_fonts.find(inName);
+    map<std::string, GLFont *>::iterator p = m_fonts.find(inName);
     if (p != m_fonts.end())
     {
         delete p->second;
@@ -158,7 +161,7 @@ GLData::FontGive(const string& inName, GLFont *inFont)
 GLFont *
 GLData::FontGet(const string& inName) const
 {
-    map<string, GLFont *>::const_iterator p = m_fonts.find(inName);
+    map<std::string, GLFont *>::const_iterator p = m_fonts.find(inName);
     if (p == m_fonts.end())
     {
         throw(MushcoreReferenceFail("Access to non-existent font '"+inName+"'"));
@@ -179,7 +182,7 @@ GLData::LightsGet(void)
 void
 GLData::Decache(void)
 {
-    for (map<string, GLTexture *>::iterator p = m_textures.begin();
+    for (map<std::string, GLTexture *>::iterator p = m_textures.begin();
          p != m_textures.end(); ++p)
     {
         p->second->Decache();
@@ -189,7 +192,7 @@ GLData::Decache(void)
 void
 GLData::DumpTextures(ostream& inOut)
 {
-    for (map<string, GLTexture*>::iterator p = m_textures.begin();
+    for (map<std::string, GLTexture*>::iterator p = m_textures.begin();
          p != m_textures.end(); ++p)
     {
         inOut << p->first << ": " << *p->second << endl;

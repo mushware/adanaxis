@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.cpp,v 1.4 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreConfig.cpp,v 1.5 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreConfig.cpp,v $
+ * Revision 1.5  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -72,7 +75,7 @@ using namespace std;
 const MushcoreScalar&
 MushcoreConfig::Get(const string& inName) const
 {
-    map<string, MushcoreScalar>::const_iterator p = m_config.find(inName);
+    map<std::string, MushcoreScalar>::const_iterator p = m_config.find(inName);
     
     if (p == m_config.end())
     {
@@ -86,7 +89,7 @@ MushcoreConfig::Get(const string& inName) const
 bool
 MushcoreConfig::GetIfExists(const MushcoreScalar *& outScalar, const string& inName) const
 {
-    map<string, MushcoreScalar>::const_iterator p = m_config.find(inName);
+    map<std::string, MushcoreScalar>::const_iterator p = m_config.find(inName);
     if (p == m_config.end())
     {
         return false;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.h,v 1.4 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.5 2003/01/20 17:03:22 southa Exp $
  * $Log: MushcoreFunction.h,v $
+ * Revision 1.5  2003/01/20 17:03:22  southa
+ * Command line expression evaluator enhancements
+ *
  * Revision 1.4  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -76,7 +79,7 @@ class MushcoreFunction
 public:
     MushcoreFunction() {}
     MushcoreFunction(const std::string& inStr): m_name(inStr) {}
-    MUSHCORE_DECLARE_INLINE void CommandAdd(const std::string& inStr);
+    inline void CommandAdd(const std::string& inStr);
     const std::string& NameGet(void) const { return m_name; }
     const std::string& CommandGet(Mushware::U32 inIndex) const { return m_commands[inIndex]; }
     Mushware::U32 SizeGet(void) const { return m_commands.size(); }

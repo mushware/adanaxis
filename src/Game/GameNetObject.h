@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.h,v 1.8 2003/01/09 14:57:02 southa Exp $
+ * $Id: GameNetObject.h,v 1.9 2003/01/11 13:03:14 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.9  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.8  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -73,7 +76,7 @@ protected:
     };
 
 private:
-    typedef std::map<string, void (GameNetObject::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameNetObject::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_pickleState;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.h,v 1.12 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameGraphicSprite.h,v 1.13 2003/01/09 14:57:02 southa Exp $
  * $Log: GameGraphicSprite.h,v $
+ * Revision 1.13  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -86,7 +89,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameGraphicSprite::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameGraphicSprite::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

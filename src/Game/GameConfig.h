@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.13 2003/01/11 13:03:12 southa Exp $
+ * $Id: GameConfig.h,v 1.14 2003/01/20 10:45:25 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.14  2003/01/20 10:45:25  southa
+ * Singleton tidying
+ *
  * Revision 1.13  2003/01/11 13:03:12  southa
  * Use Mushcore header
  *
@@ -106,7 +109,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameConfig::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameConfig::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

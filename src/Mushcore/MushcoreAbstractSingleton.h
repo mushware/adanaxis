@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.2 2003/01/20 15:38:27 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.3 2003/02/04 12:24:49 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.3  2003/02/04 12:24:49  southa
+ * Build fix
+ *
  * Revision 1.2  2003/01/20 15:38:27  southa
  * Created MushcoreTest
  *
@@ -43,24 +46,24 @@ public:
     class SingletonDestroyer
     {
     public:
-        MUSHCORE_DECLARE_INLINE ~SingletonDestroyer()
+        inline ~SingletonDestroyer()
 		{
 			SingletonDestroy();
 		}
     };
     
-    static MUSHCORE_DECLARE_INLINE SingletonType& Sgl(void);
+    static inline SingletonType& Sgl(void);
 
-    static MUSHCORE_DECLARE_INLINE void SingletonCreate(SingletonType *inObj);
-    static MUSHCORE_DECLARE_INLINE void SingletonMutate(SingletonType *inObj);
-    static MUSHCORE_DECLARE_INLINE void SingletonDestroy(void);
-    static MUSHCORE_DECLARE_INLINE bool SingletonExists(void);
+    static inline void SingletonCreate(SingletonType *inObj);
+    static inline void SingletonMutate(SingletonType *inObj);
+    static inline void SingletonDestroy(void);
+    static inline bool SingletonExists(void);
     
 protected:
-    static MUSHCORE_DECLARE_INLINE SingletonType *SingletonPtrGet(void);
-    static MUSHCORE_DECLARE_INLINE void SingletonPtrSet(SingletonType *inObj);
-    static MUSHCORE_DECLARE_INLINE void SingletonUncheckedNew(void);
-    static MUSHCORE_DECLARE_INLINE void SingletonUncheckedDelete(void);
+    static inline SingletonType *SingletonPtrGet(void);
+    static inline void SingletonPtrSet(SingletonType *inObj);
+    static inline void SingletonUncheckedNew(void);
+    static inline void SingletonUncheckedDelete(void);
 
 private:        
         

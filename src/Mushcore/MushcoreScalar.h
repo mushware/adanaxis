@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.6 2003/02/03 23:15:51 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.7 2003/02/04 00:11:05 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.7  2003/02/04 00:11:05  southa
+ * Build fixes
+ *
  * Revision 1.6  2003/02/03 23:15:51  southa
  * Build work for Visual C++
  *
@@ -99,38 +102,33 @@ public:
     MushcoreScalar();
     explicit MushcoreScalar(Mushware::tLongVal inVal);
     explicit MushcoreScalar(const std::string& inStr);
-    
 
-    MUSHCORE_DECLARE_INLINE std::string StringGet(void) const;
-    MUSHCORE_DECLARE_INLINE Mushware::tLongVal LongValGet(void) const;
-    MUSHCORE_DECLARE_INLINE Mushware::tVal ValGet(void) const;
-    MUSHCORE_DECLARE_INLINE Mushware::U32 U32Get(void) const;
-    MUSHCORE_DECLARE_INLINE Mushware::S32 S32Get(void) const;
-    MUSHCORE_DECLARE_INLINE bool BoolGet(void) const;
+    inline std::string StringGet(void) const;
+    inline Mushware::tLongVal LongValGet(void) const;
+    inline Mushware::tVal ValGet(void) const;
+    inline Mushware::U32 U32Get(void) const;
+    inline Mushware::S32 S32Get(void) const;
+    inline bool BoolGet(void) const;
 
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const std::string& inStr);
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const Mushware::tLongVal inVal);
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator+=(const MushcoreScalar& inScalar);
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator-=(const MushcoreScalar& inScalar);
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator*=(const MushcoreScalar& inScalar);
-    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator/=(const MushcoreScalar& inScalar);
+    inline const MushcoreScalar& operator=(const std::string& inStr);
+    inline const MushcoreScalar& operator=(const Mushware::tLongVal inVal);
+    inline const MushcoreScalar& operator+=(const MushcoreScalar& inScalar);
+    inline const MushcoreScalar& operator-=(const MushcoreScalar& inScalar);
+    inline const MushcoreScalar& operator*=(const MushcoreScalar& inScalar);
+    inline const MushcoreScalar& operator/=(const MushcoreScalar& inScalar);
 
-    MUSHCORE_DECLARE_INLINE bool Equals(const MushcoreScalar& inScalar) const;
+    inline bool Equals(const MushcoreScalar& inScalar) const;
     
     void Print(std::ostream &ioOut) const;
-        
-    // Catch-all for numeric types
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void Get(ParamType& outVal) const
-	{
-        Mushware::tLongVal longVal;
-        Get(longVal);
-        outVal = static_cast<ParamType>(longVal);
-	}
 
-    MUSHCORE_DECLARE_INLINE void Get(Mushware::tLongVal& outVal) const;
-    MUSHCORE_DECLARE_INLINE void Get(std::string& outStr) const;
-    MUSHCORE_DECLARE_INLINE void Get(bool& outBool) const;
-
+    inline void Get(MushcoreScalar& outScalar) const;
+    inline void Get(Mushware::tLongVal& outVal) const;
+    inline void Get(std::string& outStr) const;
+    inline void Get(bool& outBool) const;
+    inline void Get(Mushware::tVal& outVal) const;
+    inline void Get(Mushware::U32& outU32) const;
+    inline void Get(Mushware::S32& outS32) const;
+    
 private:
     enum eTypeTag
     {
@@ -168,72 +166,6 @@ MushcoreScalar::MushcoreScalar(const std::string& inStr) :
     m_typeTag(kTypeTagString),
     m_stringVal(inStr)
 {
-}
-
-inline void
-MushcoreScalar::Get(Mushware::tLongVal& outVal) const
-{
-    switch (m_typeTag)
-    {
-        case kTypeTagNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-
-        case kTypeTagLongVal:
-            outVal=m_longVal;
-            break;
-
-        case kTypeTagString:
-            StringAsValGet(outVal);
-            break;
-
-        default:
-            throw(MushcoreLogicFail("MushcoreScalar value fault"));
-    }
-}
-
-void
-MushcoreScalar::Get(std::string& outStr) const
-{
-    switch (m_typeTag)
-    {
-        case kTypeTagNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-
-        case kTypeTagLongVal:
-            ValAsStringGet(outStr);
-            break;
-
-        case kTypeTagString:
-            outStr=m_stringVal;
-            break;
-
-        default:
-            throw(MushcoreLogicFail("MushcoreScalar value fault"));
-    }
-}
-
-void
-MushcoreScalar::Get(bool& outBool) const
-{
-    switch (m_typeTag)
-    {
-        case kTypeTagNone:
-            throw(MushcoreDataFail("Use of undefined value"));
-            break;
-
-        case kTypeTagLongVal:
-            outBool=!(!m_longVal);
-            break;
-
-        case kTypeTagString:
-            StringAsBoolGet(outBool);
-            break;
-
-        default:
-            throw(MushcoreLogicFail("MushcoreScalar value fault"));
-    }
 }
 
 inline std::string
@@ -306,6 +238,96 @@ MushcoreScalar::BoolGet(void) const
     bool retVal;
     Get(retVal);
     return retVal;
+}
+
+inline void
+MushcoreScalar::Get(MushcoreScalar& outScalar) const
+{
+    outScalar = *this;
+}
+
+inline void
+MushcoreScalar::Get(Mushware::tLongVal& outVal) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            outVal=m_longVal;
+            break;
+
+        case kTypeTagString:
+            StringAsValGet(outVal);
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+inline void
+MushcoreScalar::Get(std::string& outStr) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            ValAsStringGet(outStr);
+            break;
+
+        case kTypeTagString:
+            outStr=m_stringVal;
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+inline void
+MushcoreScalar::Get(bool& outBool) const
+{
+    switch (m_typeTag)
+    {
+        case kTypeTagNone:
+            throw(MushcoreDataFail("Use of undefined value"));
+            break;
+
+        case kTypeTagLongVal:
+            outBool=!(!m_longVal);
+            break;
+
+        case kTypeTagString:
+            StringAsBoolGet(outBool);
+            break;
+
+        default:
+            throw(MushcoreLogicFail("MushcoreScalar value fault"));
+    }
+}
+
+inline void
+MushcoreScalar::Get(Mushware::tVal& outVal) const
+{
+    outVal = ValGet();
+}
+
+inline void
+MushcoreScalar::Get(Mushware::U32& outU32) const
+{
+    outU32 = U32Get();
+}
+
+inline void
+MushcoreScalar::Get(Mushware::S32& outS32) const
+{
+    outS32 = S32Get();
 }
 
 inline const MushcoreScalar&

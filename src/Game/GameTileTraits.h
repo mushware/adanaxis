@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.h,v 1.18 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameTileTraits.h,v 1.19 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.19  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.18  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -107,7 +110,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameTileTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameTileTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

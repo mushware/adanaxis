@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.10 2003/01/11 13:03:12 southa Exp $
+ * $Id: GameChequePoint.h,v 1.11 2003/01/11 17:07:51 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.11  2003/01/11 17:07:51  southa
+ * Mushcore library separation
+ *
  * Revision 1.10  2003/01/11 13:03:12  southa
  * Use Mushcore header
  *
@@ -88,7 +91,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameChequePoint::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameChequePoint::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

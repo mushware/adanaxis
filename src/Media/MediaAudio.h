@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.h,v 1.17 2003/01/18 13:33:57 southa Exp $
+ * $Id: MediaAudio.h,v 1.18 2003/01/18 17:05:46 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.18  2003/01/18 17:05:46  southa
+ * Singleton work
+ *
  * Revision 1.17  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -43,7 +46,7 @@
 class MediaSound;
 class MediaSoundStream;
 
-class MediaAudio : public MushcoreSingleton<MediaAudio>
+class MediaAudio : public MushcoreAbstractSingleton<MediaAudio>
 {
 public:
     virtual ~MediaAudio();

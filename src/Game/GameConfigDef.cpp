@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.14 2003/01/17 13:30:38 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.15 2003/01/18 13:33:56 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.15  2003/01/18 13:33:56  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.14  2003/01/17 13:30:38  southa
  * Source conditioning and build fixes
  *
@@ -104,8 +107,8 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]+)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches matches;
+    if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
         istringstream valueStream(matches[0]);
@@ -154,8 +157,8 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]*)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches matches;
+    if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
         m_value=MustlUtils::RemoveMeta(matches[0]);
@@ -223,8 +226,8 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]*)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches matches;
+    if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
         string newValue=MustlUtils::RemoveMeta(matches[0]);
@@ -276,8 +279,8 @@ GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
     MushcoreRegExp re("&"+inName+"=([^&$]+)");
-    vector<string> matches;
-    if (re.Search(inData, matches))
+    MushcoreRegExp::tMatches matches;
+    if (re.Search(matches, inData))
     {
         MUSHCOREASSERT(matches.size() == 1);
         istringstream valueStream(matches[0]);

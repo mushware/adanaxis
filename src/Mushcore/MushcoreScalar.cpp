@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.cpp,v 1.3 2003/01/18 13:33:59 southa Exp $
+ * $Id: MushcoreScalar.cpp,v 1.4 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreScalar.cpp,v $
+ * Revision 1.4  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.3  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -88,7 +91,6 @@ MushcoreScalar::StringAsValGet(tLongVal& outVal) const
         throw(MushcoreDataFail("Cannot get numeric value from '"+m_stringVal+"'"));
     }
 }
-
 
 void
 MushcoreScalar::StringAsBoolGet(bool& outBool) const

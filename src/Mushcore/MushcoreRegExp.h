@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreRegExp.h,v 1.3 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.4 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.4  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.3  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -67,8 +70,8 @@ public:
     typedef std::string tPattern;
     typedef std::vector<std::string> tMatches;
 
-    MUSHCORE_DECLARE_INLINE MushcoreRegExp();
-    explicit MUSHCORE_DECLARE_INLINE MushcoreRegExp(const tPattern& inPattern);
+    inline MushcoreRegExp();
+    explicit inline MushcoreRegExp(const tPattern& inPattern);
     ~MushcoreRegExp();
     
     void SearchPatternSet(const tPattern& inPattern);

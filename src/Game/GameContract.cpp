@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.116 2003/01/20 10:45:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.117 2003/01/20 12:23:21 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.117  2003/01/20 12:23:21  southa
+ * Code and interface tidying
+ *
  * Revision 1.116  2003/01/20 10:45:25  southa
  * Singleton tidying
  *
@@ -559,7 +562,7 @@ GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
     const GameData::DialogueMap& currentDialogues(GameData::Sgl().CurrentDialogueMapGet());
     string killName;
     
-    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+    for (map<std::string, GameDialogue *>::const_iterator p = currentDialogues.begin();
          p != currentDialogues.end(); ++p)
     {
         for (U32 i=0; i<inNumFrames; ++i)
@@ -759,7 +762,7 @@ GameContract::RenderText(void) const
     const GameData::DialogueMap currentDialogues(GameData::Sgl().CurrentDialogueMapGet());
 
     GLUtils::OrthoPrologue();
-    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+    for (map<std::string, GameDialogue *>::const_iterator p = currentDialogues.begin();
          p != currentDialogues.end(); ++p)
     {
         GLUtils::PushMatrix();

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.h,v 1.5 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.6 2003/02/03 23:15:49 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.6  2003/02/03 23:15:49  southa
+ * Build work for Visual C++
+ *
  * Revision 1.5  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -93,7 +96,7 @@ public:
     bool GetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
     bool Exists(const std::string& inName) const;
 
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void Set(const std::string& inName, const ParamType& inParam)
+    template<class ParamType> inline void Set(const std::string& inName, const ParamType& inParam)
 	{
 		m_config[inName] = MushcoreScalar(inParam);
 	}

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.cpp,v 1.4 2003/01/20 10:45:29 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.5 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.5  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.4  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -108,7 +111,7 @@ MushcoreXML::ProcessStartElement(const char *inName, const char **inAttribs)
 {
     m_tagStack.push(inName);
     m_dataStack.push(string());
-    m_attribStack.push(map<string, string>());
+    m_attribStack.push(map<std::string, string>());
     while (*inAttribs != NULL)
     {
         m_attribStack.top()[inAttribs[0]]=inAttribs[1];
@@ -166,7 +169,7 @@ MushcoreXML::CharacterDataHandler(void *inUserData, const XML_Char *inData, int 
 MushcoreScalar
 MushcoreXML::GetAttrib(const string& inName)
 {
-    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    map<std::string, string>::const_iterator p = TopAttrib().find(inName);
     if (p != TopAttrib().end())
     {
         return MushcoreScalar(p->second);
@@ -180,7 +183,7 @@ MushcoreXML::GetAttrib(const string& inName)
 void
 MushcoreXML::GetAttrib(MushcoreScalar& outScalar, const string& inName)
 {
-    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    map<std::string, string>::const_iterator p = TopAttrib().find(inName);
     if (p != TopAttrib().end())
     {
         outScalar=p->second;
@@ -191,7 +194,7 @@ MushcoreScalar
 MushcoreXML::GetAttribOrThrow(const string& inName)
 {
 
-    map<string, string>::const_iterator p = TopAttrib().find(inName);
+    map<std::string, string>::const_iterator p = TopAttrib().find(inName);
     if (p == TopAttrib().end())
     {
         ostringstream message;
@@ -220,7 +223,7 @@ MushcoreXML::DumpTops(ostream& inOut)
     if (!m_attribStack.empty())
     {
         inOut << "Attribs: " << endl;
-        for (map<string, string>::const_iterator p = TopAttrib().begin();
+        for (map<std::string, string>::const_iterator p = TopAttrib().begin();
              p != TopAttrib().end(); p++)
         {
             inOut << p->first << " = " << p->second << endl;

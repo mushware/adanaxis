@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.h,v 1.15 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameDefClient.h,v 1.16 2003/01/11 13:03:13 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.16  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.15  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -112,7 +115,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameDefClient::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameDefClient::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

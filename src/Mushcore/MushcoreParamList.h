@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreParamList.h,v 1.3 2003/01/20 12:23:23 southa Exp $
+ * $Id: MushcoreParamList.h,v 1.4 2003/02/03 23:15:51 southa Exp $
  * $Log: MushcoreParamList.h,v $
+ * Revision 1.4  2003/02/03 23:15:51  southa
+ * Build work for Visual C++
+ *
  * Revision 1.3  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -83,7 +86,7 @@ public:
     bool Empty(void) { return m_params.empty(); }
     void Print(std::ostream& ioOut) const;
 
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam)
+    template<class ParamType> inline void PopParam(ParamType& outParam)
 	{
 		if (m_params.empty())
 		{

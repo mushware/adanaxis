@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreSingleton.h,v 1.3 2003/01/20 10:45:29 southa Exp $
+ * $Log: MushcoreSingleton.h,v $
+ * Revision 1.3  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -22,10 +25,10 @@
 template<class SingletonType> class MushcoreSingleton : public MushcoreAbstractSingleton<SingletonType>
 {
 public:
-    static MUSHCORE_DECLARE_INLINE SingletonType& Sgl(void);
+    static inline SingletonType& Sgl(void);
     
 protected:
-    static MUSHCORE_DECLARE_INLINE void SingletonUncheckedNew(void);
+    static inline void SingletonUncheckedNew(void);
 };
 
 template<class SingletonType>

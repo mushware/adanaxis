@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.17 2003/01/20 10:45:24 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.18 2003/01/20 12:23:20 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.18  2003/01/20 12:23:20  southa
+ * Code and interface tidying
+ *
  * Revision 1.17  2003/01/20 10:45:24  southa
  * Singleton tidying
  *
@@ -154,7 +157,7 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
     ioCommand.PopParam(dirName);
     if (numParams > 2) ioCommand.PopParam(filterRegExp);
 
-    vector<string> dirEntries;
+    vector<std::string> dirEntries;
     PlatformMiscUtils::ReadDirectory(dirEntries, dirName);
 
     MushcoreRegExp re(filterRegExp);

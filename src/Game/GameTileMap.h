@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.18 2003/01/11 13:03:15 southa Exp $
+ * $Id: GameTileMap.h,v 1.19 2003/01/11 17:07:52 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.19  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.18  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -120,7 +123,7 @@ private:
 
     const GameTileSpec& LookupSpec(Mushware::U32 inNum);
 
-    typedef std::map<string, void (GameTileMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameTileMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_state;

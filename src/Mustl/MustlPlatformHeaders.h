@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatformHeaders.h,v 1.8 2003/02/04 19:07:12 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.9 2003/02/05 16:19:46 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.9  2003/02/05 16:19:46  southa
+ * Build fixes
+ *
  * Revision 1.8  2003/02/04 19:07:12  southa
  * Build fixes
  *
@@ -194,6 +197,10 @@
 
 #ifdef MUSTL_POSIX_NOT_MACOSX
 #define MUSTL_SOCKLEN_T             socklen_t
+#endif
+
+#if defined(MUSTL_MACOSX) || defined (HAVE_SOCKLEN_SA_LEN)
+#define MUSTL_HAVE_SOCKADDR_SA_LEN 1
 #endif
 
 #endif

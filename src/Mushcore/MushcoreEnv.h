@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.7 2003/01/20 17:03:21 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.8 2003/02/03 23:15:50 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.8  2003/02/03 23:15:50  southa
+ * Build work for Visual C++
+ *
  * Revision 1.7  2003/01/20 17:03:21  southa
  * Command line expression evaluator enhancements
  *
@@ -105,7 +108,7 @@ public:
     void OutSet(std::ostream& inOut);
     void OutReset(void);
 
-	template<class ParamType> MUSHCORE_DECLARE_INLINE bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const
+	template<class ParamType> inline bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const
 	{
 		const MushcoreScalar *pScalar;
 		if (VariableGetIfExists(pScalar, inName))
@@ -115,7 +118,7 @@ public:
 		}
 		return false;
 	}
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void VariableSet(const std::string& inName, const ParamType& inValue)
+    template<class ParamType> inline void VariableSet(const std::string& inName, const ParamType& inValue)
     {
 	    MUSHCOREASSERT(m_config.size() > 0);
 	    m_config.back()->Set(inName, inValue);

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.8 2003/01/20 10:45:29 southa Exp $
+ * $Id: MushcoreData.h,v 1.9 2003/02/03 23:15:49 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.9  2003/02/03 23:15:49  southa
+ * Build work for Visual C++
+ *
  * Revision 1.8  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -106,23 +109,23 @@ public:
     typedef MUSHCORE_TYPENAME tMap::iterator tMapIterator;
     typedef MUSHCORE_TYPENAME tMap::const_iterator tMapConstIterator;
 
-    MUSHCORE_DECLARE_INLINE MushcoreData();
-    MUSHCORE_DECLARE_INLINE ~MushcoreData();
+    inline MushcoreData();
+    inline ~MushcoreData();
 
-    MUSHCORE_DECLARE_INLINE RefType *Give(const std::string& inName, RefType *inData);
-    MUSHCORE_DECLARE_INLINE RefType *Get(const std::string& inName) const;
-    MUSHCORE_DECLARE_INLINE RefType *GetOrReturnNull(const std::string& inName) const;
-    MUSHCORE_DECLARE_INLINE bool GetIfExists(RefType *& outData, const std::string& inName) const;
-    MUSHCORE_DECLARE_INLINE void Delete(const std::string& inName);
-    MUSHCORE_DECLARE_INLINE void Delete(const tMapIterator& inIterator);
-    MUSHCORE_DECLARE_INLINE bool Exists(const std::string& inName) const;
-    MUSHCORE_DECLARE_INLINE void Clear(void);
-    MUSHCORE_DECLARE_INLINE Mushware::U32 Size(void);
-    MUSHCORE_DECLARE_INLINE void Iterate(void (*inFnPtr)(RefType&));
-    MUSHCORE_DECLARE_INLINE void Dump(std::ostream& ioOut);
-    MUSHCORE_DECLARE_INLINE tMapIterator Begin(void);
-    MUSHCORE_DECLARE_INLINE tMapIterator End(void);
-    MUSHCORE_DECLARE_INLINE Mushware::U32 SequenceNumGet(void) const;
+    inline RefType *Give(const std::string& inName, RefType *inData);
+    inline RefType *Get(const std::string& inName) const;
+    inline RefType *GetOrReturnNull(const std::string& inName) const;
+    inline bool GetIfExists(RefType *& outData, const std::string& inName) const;
+    inline void Delete(const std::string& inName);
+    inline void Delete(const tMapIterator& inIterator);
+    inline bool Exists(const std::string& inName) const;
+    inline void Clear(void);
+    inline Mushware::U32 Size(void);
+    inline void Iterate(void (*inFnPtr)(RefType&));
+    inline void Dump(std::ostream& ioOut);
+    inline tMapIterator Begin(void);
+    inline tMapIterator End(void);
+    inline Mushware::U32 SequenceNumGet(void) const;
     
 protected:
 

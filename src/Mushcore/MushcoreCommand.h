@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.h,v 1.4 2003/01/20 17:03:21 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.5 2003/02/03 23:15:49 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.5  2003/02/03 23:15:49  southa
+ * Build work for Visual C++
+ *
  * Revision 1.4  2003/01/20 17:03:21  southa
  * Command line expression evaluator enhancements
  *
@@ -98,7 +101,7 @@ public:
     std::string PopString(void);
     Mushware::tVal PopVal(void);
 
-    template<class ParamType> MUSHCORE_DECLARE_INLINE void PopParam(ParamType& outParam)
+    template<class ParamType> inline void PopParam(ParamType& outParam)
 	{
 		m_paramList.PopParam(outParam);
 	}

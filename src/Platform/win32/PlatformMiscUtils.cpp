@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.25 2003/01/12 17:33:02 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.26 2003/01/20 10:45:32 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.26  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.25  2003/01/12 17:33:02  southa
  * Mushcore work
  *
@@ -185,7 +188,7 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
 }
 
 void
-PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inDirName)
+PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const string& inDirName)
 {
     WIN32_FIND_DATA fileData;
     string findStr = inDirName+"/*";

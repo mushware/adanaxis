@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.26 2003/01/13 14:31:57 southa Exp $
+ * $Id: GameData.cpp,v 1.27 2003/01/18 13:33:56 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.27  2003/01/18 13:33:56  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.26  2003/01/13 14:31:57  southa
  * Build frameworks for Mac OS X
  *
@@ -126,56 +129,56 @@ GameData::~GameData()
 void
 GameData::Clear(void)
 {
-    for (map<string, GameTileMap *>::iterator p = m_tilemaps.begin();
+    for (map<std::string, GameTileMap *>::iterator p = m_tilemaps.begin();
          p != m_tilemaps.end(); ++p)
     {
         delete p->second;
     }
     m_tilemaps.clear();
     
-    for (map<string, GameFloorMap *>::iterator p = m_floormaps.begin();
+    for (map<std::string, GameFloorMap *>::iterator p = m_floormaps.begin();
          p != m_floormaps.end(); ++p)
     {
         delete p->second;
     }
     m_floormaps.clear();
 
-    for (map<string, GameContract *>::iterator p = m_contracts.begin();
+    for (map<std::string, GameContract *>::iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
     {
         delete p->second;
     }
     m_contracts.clear();
 
-    for (map<string, GameTraits *>::iterator p = m_traits.begin();
+    for (map<std::string, GameTraits *>::iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
         delete p->second;
     }
     m_traits.clear();
 
-    for (map<string, GameController *>::iterator p = m_controllers.begin();
+    for (map<std::string, GameController *>::iterator p = m_controllers.begin();
          p != m_controllers.end(); ++p)
     {
         delete p->second;
     }
     m_controllers.clear();
 
-    for (map<string, GamePiece *>::iterator p = m_templates.begin();
+    for (map<std::string, GamePiece *>::iterator p = m_templates.begin();
          p != m_templates.end(); ++p)
     {
         delete p->second;
     }
     m_templates.clear();
 
-    for (map<string, GameDialogue *>::iterator p = m_dialogues.begin();
+    for (map<std::string, GameDialogue *>::iterator p = m_dialogues.begin();
          p != m_dialogues.end(); ++p)
     {
         delete p->second;
     }
     m_dialogues.clear();
 
-    for (map<string, GameView *>::iterator p = m_views.begin();
+    for (map<std::string, GameView *>::iterator p = m_views.begin();
          p != m_views.end(); ++p)
     {
         delete p->second;
@@ -197,7 +200,7 @@ GameData::Clear(void)
         delete m_gameRewards;
         m_gameRewards=NULL;
     }
-    for (map<string, GameDialogue *>::iterator p = m_currentDialogues.begin();
+    for (map<std::string, GameDialogue *>::iterator p = m_currentDialogues.begin();
          p != m_currentDialogues.end(); ++p)
     {
         delete p->second;
@@ -210,7 +213,7 @@ GameData::Clear(void)
 GameTileMap *
 GameData::TileMapGetOrCreate(const string& inName)
 {
-    map<string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
+    map<std::string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
     if (p == m_tilemaps.end())
     {
         GameTileMap *pTileMap(new GameTileMap);
@@ -226,7 +229,7 @@ GameData::TileMapGetOrCreate(const string& inName)
 GameTileMap *
 GameData::TileMapGet(const string& inName) const
 {
-    map<string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
+    map<std::string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
     if (p == m_tilemaps.end())
     {
         throw(GameDataNotPresent("Access to non-existent tilemap '"+inName+"'"));
@@ -237,7 +240,7 @@ GameData::TileMapGet(const string& inName) const
 GameFloorMap *
 GameData::FloorMapGetOrCreate(const string& inName)
 {
-    map<string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
+    map<std::string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
     if (p == m_floormaps.end())
     {
         GameFloorMap *pFloorMap(new GameFloorMap);
@@ -253,7 +256,7 @@ GameData::FloorMapGetOrCreate(const string& inName)
 GameFloorMap *
 GameData::FloorMapGet(const string& inName) const
 {
-    map<string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
+    map<std::string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
     if (p == m_floormaps.end())
     {
         throw(GameDataNotPresent("Access to non-existent floormap '"+inName+"'"));
@@ -264,7 +267,7 @@ GameData::FloorMapGet(const string& inName) const
 GameContract *
 GameData::ContractGetOrCreate(const string& inName)
 {
-    map<string, GameContract *>::const_iterator p = m_contracts.find(inName);
+    map<std::string, GameContract *>::const_iterator p = m_contracts.find(inName);
     if (p == m_contracts.end())
     {
         GameContract *pContract(new GameContract);
@@ -280,7 +283,7 @@ GameData::ContractGetOrCreate(const string& inName)
 GameContract *
 GameData::ContractGet(const string& inName) const
 {
-    map<string, GameContract *>::const_iterator p = m_contracts.find(inName);
+    map<std::string, GameContract *>::const_iterator p = m_contracts.find(inName);
     if (p == m_contracts.end())
     {
         throw(GameDataNotPresent("Access to non-existent contract '"+inName+"'"));
@@ -297,7 +300,7 @@ GameData::ContractExists(const string& inName) const
 void
 GameData::ContractsClear(void)
 {
-    for (map<string, GameContract *>::iterator p = m_contracts.begin();
+    for (map<std::string, GameContract *>::iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
     {
         delete p->second;
@@ -309,7 +312,7 @@ GameData::ContractsClear(void)
 GameTraits *
 GameData::TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits)
 {
-    map<string, GameTraits *>::iterator p = m_traits.find(inName);
+    map<std::string, GameTraits *>::iterator p = m_traits.find(inName);
     if (p != m_traits.end())
     {
         delete p->second;
@@ -325,7 +328,7 @@ GameData::TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits)
 GameTraits *
 GameData::TraitsGet(const string& inName) const
 {
-    map<string, GameTraits *>::const_iterator p = m_traits.find(inName);
+    map<std::string, GameTraits *>::const_iterator p = m_traits.find(inName);
     if (p == m_traits.end())
     {
         throw(GameDataNotPresent("Access to non-existent trait '"+inName+"'"));
@@ -336,7 +339,7 @@ GameData::TraitsGet(const string& inName) const
 GameController *
 GameData::ControllerGetOrCreate(const string& inName)
 {
-    map<string, GameController *>::const_iterator p = m_controllers.find(inName);
+    map<std::string, GameController *>::const_iterator p = m_controllers.find(inName);
     if (p == m_controllers.end())
     {
         GameController *pController(new GameController);
@@ -352,7 +355,7 @@ GameData::ControllerGetOrCreate(const string& inName)
 GameController *
 GameData::ControllerGet(const string& inName) const
 {
-    map<string, GameController *>::const_iterator p = m_controllers.find(inName);
+    map<std::string, GameController *>::const_iterator p = m_controllers.find(inName);
     if (p == m_controllers.end())
     {
         throw(GameDataNotPresent("Access to non-existent controller '"+inName+"'"));
@@ -363,7 +366,7 @@ GameData::ControllerGet(const string& inName) const
 const GamePiece *
 GameData::TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece)
 {
-    map<string, GamePiece *>::iterator p = m_templates.find(inName);
+    map<std::string, GamePiece *>::iterator p = m_templates.find(inName);
     if (p != m_templates.end())
     {
         delete p->second;
@@ -379,7 +382,7 @@ GameData::TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece)
 const GamePiece *
 GameData::TemplateGet(const string& inName) const
 {
-    map<string, GamePiece *>::const_iterator p = m_templates.find(inName);
+    map<std::string, GamePiece *>::const_iterator p = m_templates.find(inName);
     if (p == m_templates.end())
     {
         throw(GameDataNotPresent("Access to non-existent template '"+inName+"'"));
@@ -390,7 +393,7 @@ GameData::TemplateGet(const string& inName) const
 GameDialogue *
 GameData::DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue)
 {
-    map<string, GameDialogue *>::iterator p = m_dialogues.find(inName);
+    map<std::string, GameDialogue *>::iterator p = m_dialogues.find(inName);
     if (p != m_dialogues.end())
     {
         delete p->second;
@@ -406,7 +409,7 @@ GameData::DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue
 GameDialogue *
 GameData::DialogueGet(const string& inName) const
 {
-    map<string, GameDialogue *>::const_iterator p = m_dialogues.find(inName);
+    map<std::string, GameDialogue *>::const_iterator p = m_dialogues.find(inName);
     if (p == m_dialogues.end())
     {
         throw(GameDataNotPresent("Access to non-existent dialogue '"+inName+"'"));
@@ -417,7 +420,7 @@ GameData::DialogueGet(const string& inName) const
 GameView *
 GameData::ViewGetOrCreate(const string& inName)
 {
-    map<string, GameView *>::const_iterator p = m_views.find(inName);
+    map<std::string, GameView *>::const_iterator p = m_views.find(inName);
     if (p == m_views.end())
     {
         GameView *pView(new GameView);
@@ -433,7 +436,7 @@ GameData::ViewGetOrCreate(const string& inName)
 GameView *
 GameData::ViewGet(const string& inName) const
 {
-    map<string, GameView *>::const_iterator p = m_views.find(inName);
+    map<std::string, GameView *>::const_iterator p = m_views.find(inName);
     if (p == m_views.end())
     {
         throw(GameDataNotPresent("Access to non-existent view '"+inName+"'"));
@@ -445,7 +448,7 @@ GameView *
 GameData::CurrentViewGet(void) const
 {
     // Just return the first one for now
-    for (map<string, GameView *>::const_iterator p = m_views.begin();
+    for (map<std::string, GameView *>::const_iterator p = m_views.begin();
          p != m_views.end(); ++p)
     {
         return p->second;
@@ -507,7 +510,7 @@ GameDialogue *
 GameData::CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue)
 {
     GameDialogue *newDialogue = new GameDialogue(inDialogue);
-    map<string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    map<std::string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
     if (p == m_currentDialogues.end())
     {
         m_currentDialogues[inName] = newDialogue;
@@ -523,7 +526,7 @@ GameData::CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogu
 void
 GameData::CurrentDialogueDelete(const string& inName)
 {
-    map<string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    map<std::string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
     if (p == m_currentDialogues.end())
     {
         throw(MushcoreLogicFail("Attempt to delete non-existent current dialogue '"+inName+"'"));
@@ -550,7 +553,7 @@ void
 GameData::DumpAll(ostream& inOut) const
 {
     inOut << "<chunk type=\"tilemap\">" << endl;
-    for (map<string, GameTileMap *>::const_iterator p = m_tilemaps.begin();
+    for (map<std::string, GameTileMap *>::const_iterator p = m_tilemaps.begin();
          p != m_tilemaps.end(); ++p)
     {
         inOut << "  <tilemap name=\"" << p->first << "\">" << endl;
@@ -559,7 +562,7 @@ GameData::DumpAll(ostream& inOut) const
     }
     inOut << "</chunk>" << endl;
     inOut << "<chunk type=\"floormap\">" << endl;
-    for (map<string, GameFloorMap *>::const_iterator p = m_floormaps.begin();
+    for (map<std::string, GameFloorMap *>::const_iterator p = m_floormaps.begin();
          p != m_floormaps.end(); ++p)
     {
         inOut << "  <floormap name=\"" << p->first << "\">" << endl;
@@ -568,7 +571,7 @@ GameData::DumpAll(ostream& inOut) const
     }
     inOut << "</chunk>" << endl;
     inOut << "<chunk type=\"contract\">" << endl;
-    for (map<string, GameContract *>::const_iterator p = m_contracts.begin();
+    for (map<std::string, GameContract *>::const_iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
     {
         inOut << "  <contract name=\"" << p->first << "\">" << endl;
@@ -577,7 +580,7 @@ GameData::DumpAll(ostream& inOut) const
     }
     inOut << "</chunk>" << endl;
     inOut << "<chunk type=\"traits\">" << endl;
-    for (map<string, GameTraits *>::const_iterator p = m_traits.begin();
+    for (map<std::string, GameTraits *>::const_iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
         inOut << "  <traits type=\"" << p->second->TypeNameGet() << "\" name=\"" << p->first << "\">" << endl;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.27 2003/01/11 13:03:13 southa Exp $
+ * $Id: GameFloorMap.h,v 1.28 2003/01/12 17:32:54 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.28  2003/01/12 17:32:54  southa
+ * Mushcore work
+ *
  * Revision 1.27  2003/01/11 13:03:13  southa
  * Use Mushcore header
  *
@@ -190,7 +193,7 @@ private:
     void RebuildSolidMap(void) const;
     void RebuildLightMap(void) const;
 
-    typedef std::map<string, void (GameFloorMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameFloorMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_state;

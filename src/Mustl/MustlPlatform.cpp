@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.13 2003/02/04 19:07:12 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.14 2003/02/05 16:19:45 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.14  2003/02/05 16:19:45  southa
+ * Build fixes
+ *
  * Revision 1.13  2003/02/04 19:07:12  southa
  * Build fixes
  *
@@ -732,9 +735,9 @@ MustlPlatform::LocalAddressesRetrieve(void)
     {
         struct ifreq *ifReq = reinterpret_cast<struct ifreq *>(dataPtr);
 
-#ifdef HAVE_SOCKADDR_SA_LEN
+#ifdef MUSTL_HAVE_SOCKADDR_SA_LEN
         U32 entryLength=ifReq->ifr_addr.sa_len;
-	if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
+        if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
 #else
         U32 entryLength=sizeof(struct sockaddr);
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.16 2003/01/11 17:07:52 southa Exp $
+ * $Id: GameTraits.h,v 1.17 2003/01/12 17:32:57 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.17  2003/01/12 17:32:57  southa
+ * Mushcore work
+ *
  * Revision 1.16  2003/01/11 17:07:52  southa
  * Mushcore library separation
  *
@@ -97,14 +100,14 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<std::string, void (GameTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
 
     void RebuildTraits(void) const;
         
-    std::vector<string> m_baseNames;
+    std::vector<std::string> m_baseNames;
     mutable std::string m_failMessage;
     mutable bool m_traitsValid;
     mutable std::vector<GameTraits *> m_baseTraits;

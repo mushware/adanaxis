@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreDataRef.h,v 1.4 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.5 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.5  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.4  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -59,20 +62,20 @@
 template<class RefType> class MushcoreDataRef
 {
 public:
-    MUSHCORE_DECLARE_INLINE MushcoreDataRef();
-    MUSHCORE_DECLARE_INLINE explicit MushcoreDataRef(MushcoreData<RefType> *inInstance);
-    MUSHCORE_DECLARE_INLINE explicit MushcoreDataRef(const std::string& inName);
-    MUSHCORE_DECLARE_INLINE MushcoreDataRef(const std::string& inName, MushcoreData<RefType> *inInstance);
+    inline MushcoreDataRef();
+    inline explicit MushcoreDataRef(MushcoreData<RefType> *inInstance);
+    inline explicit MushcoreDataRef(const std::string& inName);
+    inline MushcoreDataRef(const std::string& inName, MushcoreData<RefType> *inInstance);
     
     void NameSet(const std::string& inName) { m_name=inName; m_dataPtr=NULL; }
     const std::string& NameGet(void) const { return m_name; }
-    MUSHCORE_DECLARE_INLINE RefType *Get(void) const;
-    MUSHCORE_DECLARE_INLINE bool GetIfExists(RefType *& outRef) const;
-    MUSHCORE_DECLARE_INLINE bool Exists(void) const;
+    inline RefType *Get(void) const;
+    inline bool GetIfExists(RefType *& outRef) const;
+    inline bool Exists(void) const;
 
 private:
-    MUSHCORE_DECLARE_INLINE void ReferenceGet(void) const;
-    MUSHCORE_DECLARE_INLINE void DefaultDataPtrGet(void);
+    inline void ReferenceGet(void) const;
+    inline void DefaultDataPtrGet(void);
     
     std::string m_name;
     MushcoreData<RefType> *m_dataInstance;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.31 2003/01/13 14:32:03 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.32 2003/01/20 10:45:31 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.32  2003/01/20 10:45:31  southa
+ * Singleton tidying
+ *
  * Revision 1.31  2003/01/13 14:32:03  southa
  * Build frameworks for Mac OS X
  *
@@ -211,7 +214,7 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
 }
 
 void
-PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inDirName)
+PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const string& inDirName)
 {
     DIR *dirPtr = opendir(inDirName.c_str());
     if (dirPtr == NULL)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Test.cpp,v 1.21 2003/01/11 13:03:18 southa Exp $
+ * $Id: Test.cpp,v 1.22 2003/01/12 17:33:02 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.22  2003/01/12 17:33:02  southa
+ * Mushcore work
+ *
  * Revision 1.21  2003/01/11 13:03:18  southa
  * Use Mushcore header
  *
@@ -86,7 +89,7 @@ void
 Test::Test1(void)
 {
     MushcoreRegExp re;
-    vector<string> matches;
+    vector<std::string> matches;
 
     if (re.Search("dog", "cat")) throw MushcoreLogicFail("False positive");
     if (!re.Search("dog", "dog")) throw MushcoreLogicFail("False negative");
