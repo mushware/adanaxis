@@ -16,36 +16,61 @@
  ****************************************************************************/
 //%Header } W3kyDNAJV5Y8c9Vy1zFOEQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshStitchable.h,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Log: MushMeshStitchable.h,v $
+ * Revision 1.1  2003/10/19 12:41:42  southa
+ * Connectors
+ *
  */
 
 #include "MushMeshStandard.h"
 
 #include "MushMeshBox.h"
 #include "MushMeshPatchTypes.h"
+#include "MushMeshSelection.h"
 
+//:generate ostream
 class MushMeshStitchable
 {
 public:
-    MushMeshStitchable();    
+    MushMeshStitchable();
+
+    void SourceSet(const Mushware::tGeometryArray *inpGeometry,
+        const Mushware::tTexCoordArrayVector *inpTexVector,
+        const Mushware::t2BoxU32 *inpActiveBox)
+    {
+         m_pGeometry = inpGeometry;
+         m_pTexVector = inpTexVector;
+         m_pActiveBox = inpActiveBox;
+    }
+    void SelectionSet(const MushMeshSelection& inSelection) { m_selection = inSelection; }
+
 private:
     const Mushware::tGeometryArray *m_pGeometry;
-    const Mushware::tTexCoordArray *m_pTex;
+    const Mushware::tTexCoordArrayVector *m_pTexVector;
     const Mushware::t2BoxU32 *m_pActiveBox;
-    Mushware::t2U32 m_start;
-    Mushware::t2U32 m_stride;
+    MushMeshSelection m_selection;
+//%classPrototypes {
+public:
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
 };
 
 inline
 MushMeshStitchable::MushMeshStitchable() :
     m_pGeometry(NULL),
-    m_pTex(NULL),
+    m_pTexVector(NULL),
     m_pActiveBox(NULL)
 {
 }
-
-
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushMeshStitchable& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } Wx3nk1y5jLk1s+0OauoKGQ
 
 //%includeGuardEnd {
 #endif

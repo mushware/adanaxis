@@ -14,24 +14,17 @@ make  all-recursive
 make[1]: Entering directory `/home/mushware/core-app'
 Making all in src
 make[2]: Entering directory `/home/mushware/core-app/src'
-if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshConnector.lo -MD -MP -MF ".deps/MushMeshConnector.Tpo" \
-  -c -o MushMeshConnector.lo `test -f './MushMesh/MushMeshConnector.cpp' || echo './'`./MushMesh/MushMeshConnector.cpp; \
-then mv -f ".deps/MushMeshConnector.Tpo" ".deps/MushMeshConnector.Plo"; \
-else rm -f ".deps/MushMeshConnector.Tpo"; exit 1; \
+if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshPatchPipe.lo -MD -MP -MF ".deps/MushMeshPatchPipe.Tpo" \
+  -c -o MushMeshPatchPipe.lo `test -f './MushMesh/MushMeshPatchPipe.cpp' || echo './'`./MushMesh/MushMeshPatchPipe.cpp; \
+then mv -f ".deps/MushMeshPatchPipe.Tpo" ".deps/MushMeshPatchPipe.Plo"; \
+else rm -f ".deps/MushMeshPatchPipe.Tpo"; exit 1; \
 fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshConnector.lo -MD -MP -MF .deps/MushMeshConnector.Tpo -c ./MushMesh/MushMeshConnector.cpp -o MushMeshConnector.o
-echo timestamp > MushMeshConnector.lo
-if /bin/bash ../libtool --mode=compile g++ -DHAVE_CONFIG_H -I. -I. -I..   -g -Wall  -g -Wall -MT MushMeshStitchable.lo -MD -MP -MF ".deps/MushMeshStitchable.Tpo" \
-  -c -o MushMeshStitchable.lo `test -f './MushMesh/MushMeshStitchable.cpp' || echo './'`./MushMesh/MushMeshStitchable.cpp; \
-then mv -f ".deps/MushMeshStitchable.Tpo" ".deps/MushMeshStitchable.Plo"; \
-else rm -f ".deps/MushMeshStitchable.Tpo"; exit 1; \
-fi
-g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshStitchable.lo -MD -MP -MF .deps/MushMeshStitchable.Tpo -c ./MushMesh/MushMeshStitchable.cpp -o MushMeshStitchable.o
-echo timestamp > MushMeshStitchable.lo
-/bin/bash ../libtool --mode=link g++  -g -Wall   -o libmushmesh.la -rpath C:/MinGW/lib  MushMesh.lo MushMeshArray.lo MushMeshBox.lo MushMeshConnector.lo MushMeshMath.lo MushMeshPatch.lo MushMeshPatchPipe.lo MushMeshPatchTypes.lo MushMeshStandard.lo MushMeshStitchable.lo MushMeshSTL.lo MushMeshSubdivide.lo MushMeshUtils.lo MushMeshVector.lo MushMeshWorkspace.lo MushMeshWorkspaceBased.lo  
+g++ -DHAVE_CONFIG_H -I. -I. -I.. -g -Wall -g -Wall -MT MushMeshPatchPipe.lo -MD -MP -MF .deps/MushMeshPatchPipe.Tpo -c ./MushMesh/MushMeshPatchPipe.cpp -o MushMeshPatchPipe.o
+echo timestamp > MushMeshPatchPipe.lo
+/bin/bash ../libtool --mode=link g++  -g -Wall   -o libmushmesh.la -rpath C:/MinGW/lib  MushMesh.lo MushMeshArray.lo MushMeshBox.lo MushMeshConnector.lo MushMeshMath.lo MushMeshPatch.lo MushMeshPatchPipe.lo MushMeshPatchTypes.lo MushMeshSelection.lo MushMeshStandard.lo MushMeshStitchable.lo MushMeshSTL.lo MushMeshSubdivide.lo MushMeshUtils.lo MushMeshVector.lo MushMeshWorkspace.lo MushMeshWorkspaceBased.lo  
 libtool: link: warning: undefined symbols not allowed in i686-pc-cygwin shared libraries
 rm -fr .libs/libmushmesh.la .libs/libmushmesh.* .libs/libmushmesh.*
-ar cru .libs/libmushmesh.a  MushMesh.o MushMeshArray.o MushMeshBox.o MushMeshConnector.o MushMeshMath.o MushMeshPatch.o MushMeshPatchPipe.o MushMeshPatchTypes.o MushMeshStandard.o MushMeshStitchable.o MushMeshSTL.o MushMeshSubdivide.o MushMeshUtils.o MushMeshVector.o MushMeshWorkspace.o MushMeshWorkspaceBased.o 
+ar cru .libs/libmushmesh.a  MushMesh.o MushMeshArray.o MushMeshBox.o MushMeshConnector.o MushMeshMath.o MushMeshPatch.o MushMeshPatchPipe.o MushMeshPatchTypes.o MushMeshSelection.o MushMeshStandard.o MushMeshStitchable.o MushMeshSTL.o MushMeshSubdivide.o MushMeshUtils.o MushMeshVector.o MushMeshWorkspace.o MushMeshWorkspaceBased.o 
 ranlib .libs/libmushmesh.a
 creating libmushmesh.la
 (cd .libs && rm -f libmushmesh.la && ln -s ../libmushmesh.la libmushmesh.la)

@@ -18,14 +18,36 @@
 
 #include "MushMeshStandard.h"
 
+class MushMeshStitchable;
+
 class MushMeshPatch
 {
 public:
+    enum tEdgeSelector
+    {
+        kEdgeLeft,
+        kEdgeRight,
+        kEdgeBottom,
+        kEdgeTop,
+        kPointBottomLeft,
+        kPointBottomRight,
+        kPointTopLeft,
+        kPointTopRight,
+        kNumEdgeSelectors
+    };
 
+    MushMeshPatch();
     virtual ~MushMeshPatch() {}
     // virtual void Render(void /* some render context */) = 0;
     virtual void Subdivide(Mushware::tVal inLevel) = 0;
+    virtual void EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge) = 0;
+    virtual void NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge) = 0;
 
+    Mushware::U32 ModCountGet(void) { return m_modCount; }
+    void Touch(void);
+
+private:
+    Mushware::U32 m_modCount;
 };
 
 //%includeGuardEnd {

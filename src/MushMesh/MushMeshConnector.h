@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rkr6AHzeP46l9zTid8JO0g
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshConnector.h,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Log: MushMeshConnector.h,v $
+ * Revision 1.1  2003/10/19 12:41:42  southa
+ * Connectors
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -28,25 +31,15 @@
 class MushMeshConnector
 {
 public:
-    enum tEdgeSelector
-    {
-        kEdgeLeft,
-        kEdgeRight,
-        kEdgeBottom,
-        kEdgeTop,
-        kPointBottomLeft,
-        kPointBottomRight,
-        kPointTopLeft,
-        kPointTopRight
-    };
     MushMeshConnector();
-    MushMeshConnector(MushMeshPatch& ioPatch1, tEdgeSelector inEdge1, MushMeshPatch& ioPatch1, tEdgeSelector inEdge1);
+    MushMeshConnector(MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1,
+        MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1);
     
 private:
     struct tTarget
     {
         MushMeshPatch *pPatch;
-        tEdgeSelector edgeSelector;
+        MushMeshPatch::tEdgeSelector edgeSelector;
         Mushware::U32 modCounter;
         MushMeshStitchable stitchable;
     };

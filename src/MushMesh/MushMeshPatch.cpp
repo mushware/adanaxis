@@ -13,3 +13,18 @@
 //%Header } pkGKIq/15puCvphEejDZ0w
 
 #include "MushMeshPatch.h"
+
+MushMeshPatch::MushMeshPatch() :
+    m_modCount(1)
+{
+}
+
+void
+MushMeshPatch::Touch(void)
+{
+    ++m_modCount;
+    if (m_modCount == 0)
+    {
+        m_modCount = 1;
+    }
+}

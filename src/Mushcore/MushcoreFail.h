@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } dpOXDQ0Ct92SZ5D8UxuM+g
 /*
- * $Id: MushcoreFail.h,v 1.4 2003/08/21 23:09:11 southa Exp $
+ * $Id: MushcoreFail.h,v 1.5 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreFail.h,v $
+ * Revision 1.5  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.4  2003/08/21 23:09:11  southa
  * Fixed file headers
  *
@@ -66,7 +69,8 @@ public:
 class MushcoreLogicFail : public MushcoreFatalFail
 {
 public:
-    MushcoreLogicFail(const std::string &inMessage);};
+    MushcoreLogicFail(const std::string &inMessage);
+};
 
 // Fatal resource failure
 class MushcoreResourceFail : public MushcoreFatalFail
@@ -82,13 +86,15 @@ public:
 class MushcoreNonFatalFail : public MushcoreFail
 {
 public:
-    MushcoreNonFatalFail(const std::string& inMessage);};
+    MushcoreNonFatalFail(const std::string& inMessage);
+};
 
 // A MushcoreCommand failed
 class MushcoreCommandFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreCommandFail(const std::string &inMessage);};
+    MushcoreCommandFail(const std::string &inMessage);
+};
 
 // A data item, expression or value failed
 class MushcoreDataFail : public MushcoreNonFatalFail
@@ -101,7 +107,8 @@ public:
 class MushcoreDeviceFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreDeviceFail(const std::string &inMessage);};
+    MushcoreDeviceFail(const std::string &inMessage);
+};
 
 // All file-based failures
 class MushcoreFileFail: public MushcoreNonFatalFail

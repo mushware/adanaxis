@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } uaYx8y694rSAj4OsdDwc+Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshWorkspaceBased.h,v 1.1 2003/10/17 19:38:25 southa Exp $
+ * $Log: MushMeshWorkspaceBased.h,v $
+ * Revision 1.1  2003/10/17 19:38:25  southa
+ * Created
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -27,7 +30,8 @@ template<class T>
 class MushMeshWorkspaceBased : public MushMeshWorkspace<T>
 {
 public:
-    T& BaseWRefGet(void);
+    const T& BaseGet(void) { return m_base; }
+    T& BaseWRefGet(void) { return m_base; }
 
     void BaseToCurrentCopy(void);
 
@@ -36,13 +40,6 @@ private:
 public:
     void Print(std::ostream& ioOut) const;
 };
-
-template<class T>
-inline T&
-MushMeshWorkspaceBased<T>::BaseWRefGet(void)
-{
-    return m_base;
-}
 
 template<class T>
 inline void

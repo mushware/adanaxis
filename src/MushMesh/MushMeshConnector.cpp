@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } EpwjGbLj/pwQ7yhTL0oI3w
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshConnector.cpp,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Log: MushMeshConnector.cpp,v $
+ * Revision 1.1  2003/10/19 12:41:42  southa
+ * Connectors
+ *
  */
 
 #include "MushMeshConnector.h"
@@ -22,8 +25,8 @@ MushMeshConnector::MushMeshConnector()
 {
 }
 
-MushMeshConnector::MushMeshConnector(MushMeshPatch& ioPatch0, tEdgeSelector inEdge0,
-                                     MushMeshPatch& ioPatch1, tEdgeSelector inEdge1) :
+MushMeshConnector::MushMeshConnector(MushMeshPatch& ioPatch0, MushMeshPatch::tEdgeSelector inEdge0,
+                                     MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1) :
     m_targets(2)
 {
     m_targets[0].pPatch = &ioPatch0;

@@ -12,8 +12,20 @@
  ****************************************************************************/
 //%Header } n048YtHC+SqnvLYO4tdFrg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshStitchable.cpp,v 1.1 2003/10/19 12:41:42 southa Exp $
+ * $Log: MushMeshStitchable.cpp,v $
+ * Revision 1.1  2003/10/19 12:41:42  southa
+ * Connectors
+ *
  */
 
 #include "MushMeshStitchable.h"
+//%outOfLineFunctions {
+void
+MushMeshStitchable::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "selection=" << m_selection;
+    ioOut << "]";
+}
+//%outOfLineFunctions } h3Onb/ckx809sIFDZYadyA
