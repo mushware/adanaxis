@@ -404,6 +404,63 @@
 			settings = {
 			};
 		};
+		F5456B4D0289845101446FAA = {
+			children = (
+				F5456B4E0289852C01446FAA,
+				F5456B52028986FD01446FAA,
+			);
+			isa = PBXGroup;
+			name = API;
+			refType = 4;
+		};
+		F5456B4E0289852C01446FAA = {
+			isa = PBXFileReference;
+			name = mushGL.hp;
+			path = API/mushGL.hp;
+			refType = 4;
+		};
+		F5456B4F0289852C01446FAA = {
+			fileRef = F5456B4E0289852C01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5456B500289852C01446FAA = {
+			fileRef = F5456B4E0289852C01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5456B510289852C01446FAA = {
+			fileRef = F5456B4E0289852C01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5456B52028986FD01446FAA = {
+			isa = PBXFileReference;
+			name = mushCore.hp;
+			path = API/mushCore.hp;
+			refType = 4;
+		};
+		F5456B53028986FE01446FAA = {
+			fileRef = F5456B52028986FD01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5456B54028986FE01446FAA = {
+			fileRef = F5456B52028986FD01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5456B55028986FE01446FAA = {
+			fileRef = F5456B52028986FD01446FAA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F545A7D7022C0ED70152A3B7 = {
 			isa = PBXFileReference;
 			name = basicToC.pl;
@@ -834,6 +891,8 @@
 				F5461389023801F201507C92,
 				F546138D0238134B01507C92,
 				F54613940238166501507C92,
+				F5456B500289852C01446FAA,
+				F5456B54028986FE01446FAA,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1181,7 +1240,7 @@
 				F547E00702395BCC01A7C23C,
 			);
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "src src/CoreApp";
+				HEADER_SEARCH_PATHS = "src src/API";
 				INSTALL_PATH = "/Volumes/work/sandbox/core-app/avarisse";
 				LIBRARY_SEARCH_PATHS = "/Volumes/work/sandbox/core-app/macosx/lib /usr/lib/gcc/darwin/2.95.2 \"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O0";
@@ -1298,6 +1357,8 @@
 				F5442ECE024A717501F087D6,
 				F5442ED2024A7E1001F087D6,
 				F5442ED3024A7E1001F087D6,
+				F5456B510289852C01446FAA,
+				F5456B55028986FE01446FAA,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1859,6 +1920,8 @@
 				F5463B44023559EA01F17BDD,
 				F5461388023801F201507C92,
 				F54613930238166501507C92,
+				F5456B4F0289852C01446FAA,
+				F5456B53028986FE01446FAA,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -2463,6 +2526,7 @@
 		};
 		F5B25BCA02187072017E032D = {
 			children = (
+				F5456B4D0289845101446FAA,
 				F5921CDE021876D70127AF47,
 				F5B25BCB02187072017E032D,
 				F5B25BD102187072017E032D,

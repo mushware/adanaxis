@@ -10,7 +10,7 @@
 		fileReference = F5463A990230DCDC011D269C;
 		isa = PBXFileBreakpoint;
 		lineNumber = 21;
-		state = 2;
+		state = 1;
 	};
 	F53F7CC10230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
@@ -28,6 +28,8 @@
 		activeBuildStyle = F5431747020C310101449C4C;
 		activeTarget = F547DFD402395BCC01A7C23C;
 		addToTargets = (
+			F56090AD0217DFEF014AEE46,
+			F5463A9C0230EA58011D269C,
 			F547DFD402395BCC01A7C23C,
 		);
 		breakpoints = (
@@ -43,10 +45,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {819, 647}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{270, 0}, {549, 647}}";
 						Split0 = {
-							Frame = "{{0, 274}, {549, 373}}";
+							Frame = "{{0, 176}, {549, 471}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -124,6 +126,11 @@
 		};
 		wantsIndex = 1;
 		wantsSCM = -1;
+	};
+	F5456B52028986FD01446FAA = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{338, 117}, {750, 502}}";
+		};
 	};
 	F545A7D7022C0ED70152A3B7 = {
 		uiCtxt = {
