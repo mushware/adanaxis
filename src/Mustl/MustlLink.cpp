@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLink.cpp,v 1.2 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlLink.cpp,v 1.3 2002/12/13 01:06:53 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.3  2002/12/13 01:06:53  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -102,49 +105,37 @@ auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
 
 U32 MustlLink::m_linkNameNum=1;
 
-MustlLink::MustlLink(const MustlID& inID, const string& inServer, U32 inPort)
-{
-    // I am the client end of the link
-    m_netID = inID.Clone();
-    Initialise();
-    m_udpUseServerPort=false;
-    MustlLog::Instance().NetLog() << "Connecting to " << inServer << ":" << inPort << endl;
-    TCPConnect(inServer, inPort);
-    m_tcpState.linkState=kLinkStateConnecting;
-    
-    UDPConnect(inPort);
-    m_client.UDPRemotePortNetworkOrderSet(MustlPlatform::HostToNetworkOrderU16(inPort));
-    UDPLinkCheckSend();
-    m_targetName=inServer;
-}
-
 MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
 {
     // I am the client end of the link
+    MustlLog::Instance().NetLog() << "Connecting to " << inAddress << endl;
+
     m_netID = inID.Clone();
+
     Initialise();
     m_udpUseServerPort=false;
-    string serverName=inAddress.HostStringGet();
-    U32 portNum=inAddress.PortGetHostOrder();
-    MustlLog::Instance().NetLog() << "Connecting to " << serverName << ":" << portNum << endl;
-    TCPConnect(serverName, portNum);
-    m_tcpState.linkState=kLinkStateConnecting;
 
-    UDPConnect(portNum);
-    m_client.UDPRemotePortNetworkOrderSet(MustlPlatform::HostToNetworkOrderU16(portNum));
+
+    TCPConnect(inAddress);
+    m_tcpState.linkState=kLinkStateConnecting;
+    
+    UDPConnect(inAddress);
     UDPLinkCheckSend();
-    m_targetName=serverName;
 }
 
-MustlLink::MustlLink(tSocket inSocket, U32 inPort, const MustlAddress& inAddress)
+MustlLink::MustlLink(tSocket inSocket, const MustlAddress& inAddress)
 {
     // I am the server end of the link
     m_netID = NULL;
+
     Initialise();
     m_udpState.linkState=kLinkStateWaitingForPort;
     m_udpUseServerPort=true;
+
     TCPSocketTake(inSocket, inAddress);
-    m_client.UDPRemotePortNetworkOrderSet(0); // We don't know yet
+    MustlAddress udpAddress = inAddress;
+    udpAddress.PortSetNetworkOrder(0);
+    m_client.UDPAddressSet(udpAddress); // We don't know yet
 }
 
 void
@@ -188,9 +179,9 @@ MustlLink::~MustlLink()
 }
 
 void
-MustlLink::TCPConnect(const string& inServer, U32 inPort)
+MustlLink::TCPConnect(const MustlAddress& inAddress)
 {
-    m_client.TCPConnect(inServer, inPort);
+    m_client.TCPConnect(inAddress);
     m_targetIsServer=true;
 }
 
@@ -202,9 +193,33 @@ MustlLink::TCPSocketTake(tSocket inSocket, const MustlAddress& inAddress)
 }
 
 void
-MustlLink::UDPConnect(U32 inPort)
+MustlLink::UDPConnect(const MustlAddress& inAddress)
 {
-    m_client.UDPConnect(inPort);
+    MustlAddress localAddress = inAddress;
+    U32 failCtr=0;
+    do
+    {
+        try
+        {
+            // Think about unbound UDP socket?
+            m_client.UDPConnect(localAddress);
+            break;
+        }
+        catch (MustlFail& e)
+        {
+            if (++failCtr > 8)
+            {
+                throw;
+            }
+
+            localAddress.PortSetHostOrder(localAddress.PortGetHostOrder() + 1);
+        }
+    } while(1);
+
+    if (failCtr > 0)
+    {
+        MustlLog::Instance().NetLog() << "Selected local UDP port " << localAddress.PortGetHostOrder() << endl;
+    }
 }
 
 void
@@ -564,7 +579,7 @@ MustlLink::UDPSend(MustlData& ioData)
         }
         if (m_udpUseServerPort)
         {
-            MustlServer::Instance().UDPSend(m_client.RemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
+            MustlServer::Instance().UDPSend(m_client.UDPAddressGet(), ioData);
         }
         else
         {
@@ -662,9 +677,9 @@ MustlLink::ReliableSend(MustlData& ioData)
 bool
 MustlLink::UDPIfAddressMatchReceive(bool& outTakeMessage, MustlData& ioData)
 {
-    if (ioData.SourceHostGet() == UDPTargetIPGet() &&
-        (UDPTargetPortGet() == 0 ||
-         ioData.SourcePortGet() == UDPTargetPortGet())
+    if (ioData.SourceGet().HostGetNetworkOrder() == UDPAddressGet().HostGetNetworkOrder() &&
+        (UDPAddressGet().HostGetNetworkOrder() == 0 ||
+         ioData.SourceGet().PortGetNetworkOrder() == UDPAddressGet().PortGetNetworkOrder())
         )
     {
         // We receive if port and IP match.  Also if IP matches and our target port is 0,
@@ -813,13 +828,13 @@ MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
     U8 seqNum = ioData.MessageBytePop();
     if (!m_udpUseServerPort && !m_client.UDPConnectedGet())
     {
-        UDPConnect(MustlPlatform::NetworkToHostOrderU16(ioData.SourcePortGet()));
+        UDPConnect(ioData.SourceGet());
         m_udpState.linkState=kLinkStateUntested;
     }
     
     if (m_udpState.linkState == kLinkStateWaitingForPort)
     {
-        m_client.UDPRemotePortNetworkOrderSet(ioData.SourcePortGet());
+        m_client.UDPAddressSet(ioData.SourceGet());
         m_udpState.linkState = kLinkStateUntested;
     }
     MustlData replyData;
@@ -899,7 +914,7 @@ MustlLink::Print(ostream& ioOut) const
     ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState;
     ioOut << ", currentMsec=" << m_currentMsec << ", creationMsec =" << m_creationMsec;
     ioOut  << ", lastActivityMsec=" << m_lastActivityMsec << ", lastIDRequestMsec=" << m_lastIDRequestMsec;
-    ioOut << ", targetName=" << m_targetName << ", netID";
+    ioOut << ", netID";
     if (m_netID == NULL)
     {
         ioOut << " is NULL";
@@ -961,9 +976,14 @@ MustlLink::WebStatusPrint(ostream& ioOut) const
     {
         ioOut << *m_netID;
     }
-    ioOut << "</td><td>" << MustlUtils::IPAddressToString(m_client.RemoteIPGet());
-    ioOut << ":" << MustlPlatform::NetworkToHostOrderU16(m_client.TCPRemotePortGet());
-    ioOut << "/" << MustlPlatform::NetworkToHostOrderU16(m_client.UDPRemotePortGet());
+    ioOut << "</td><td>";
+    ioOut << MustlUtils::IPAddressToString(m_client.TCPAddressGet().HostGetNetworkOrder()) << ":";
+    ioOut << m_client.TCPAddressGet().PortGetHostOrder() << "/";
+    if (m_client.TCPAddressGet().HostGetNetworkOrder() != m_client.UDPAddressGet().HostGetNetworkOrder())
+    {
+        ioOut << MustlUtils::IPAddressToString(m_client.UDPAddressGet().HostGetNetworkOrder()) << ":";
+    }
+    ioOut << m_client.UDPAddressGet().PortGetHostOrder();
     if (m_targetIsServer)
     {
         ioOut << ":client";

@@ -1,8 +1,11 @@
 #ifndef MUSTLDATA_H
 #define MUSTLDATA_H
 /*
- * $Id: MustlData.h,v 1.1 2002/12/12 14:00:25 southa Exp $
+ * $Id: MustlData.h,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:25  southa
  * Created Mustl
  *
@@ -34,6 +37,7 @@
 
 #include "MustlStandard.h"
 #include "MustlAssert.h"
+#include "MustlAddress.h"
 
 class MustlData
 {
@@ -62,9 +66,8 @@ public:
     Mustl::U32 UnpackStateGet(void) const;
     void UnpackStateSet(Mustl::U32 inState);
 
-    Mustl::U32 SourceHostGet(void);
-    Mustl::U32 SourcePortGet(void);
-    void SourceSet(Mustl::U32 inHost, Mustl::U32 inPort);
+    const MustlAddress& SourceGet(void) const;
+    void SourceSet(const MustlAddress& inAddress);
     
     bool IsEmptyForRead(void) const;
 
@@ -89,8 +92,7 @@ private:
     Mustl::U32 m_messagePos;
     Mustl::U32 m_lengthPos;
     Mustl::U32 m_unpackState;
-    Mustl::U32 m_sourceHost;
-    Mustl::U32 m_sourcePort;
+    MustlAddress m_sourceAddress;
     bool m_sourceValid;
     vector<Mustl::U8> m_data;
 };
@@ -233,25 +235,17 @@ MustlData::UnpackStateSet(Mustl::U32 inState)
     m_unpackState=inState;
 }
 
-inline Mustl::U32
-MustlData::SourceHostGet(void)
+inline const MustlAddress&
+MustlData::SourceGet(void) const
 {
     MUSTLASSERT(m_sourceValid);
-    return m_sourceHost;
-}
-
-inline Mustl::U32
-MustlData::SourcePortGet(void)
-{
-    MUSTLASSERT(m_sourceValid);
-    return m_sourcePort;
+    return m_sourceAddress;
 }
 
 inline void
-MustlData::SourceSet(Mustl::U32 inHost, Mustl::U32 inPort)
+MustlData::SourceSet(const MustlAddress& inAddress)
 {
-    m_sourceHost=inHost;
-    m_sourcePort=inPort;
+    m_sourceAddress=inAddress;
     m_sourceValid=true;
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlServer.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlServer.cpp,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -156,7 +159,7 @@ MustlServer::Accept(void)
         {
             ostringstream name;
             name << "server" << m_linkCtr;
-            CoreData<MustlLink>::Instance().Give(name.str(), new MustlLink(newSocket, m_serverPortHostOrder, remoteAddress));
+            CoreData<MustlLink>::Instance().Give(name.str(), new MustlLink(newSocket, remoteAddress));
             m_linkCtr++;
     
             MustlLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;
@@ -165,7 +168,7 @@ MustlServer::Accept(void)
 }
 
 void
-MustlServer::UDPSend(U32 inHost, U32 inPort, MustlData& ioData)
+MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
 {
     if (ioData.ReadSizeGet() == 0)
     {
@@ -175,39 +178,38 @@ MustlServer::UDPSend(U32 inHost, U32 inPort, MustlData& ioData)
     {
         throw(MustlFail("Attempt to send on unconnected server"));
     }
-    if (inHost == 0 || inPort == 0)
+    if (inAddress.HostGetNetworkOrder() == 0 || inAddress.PortGetNetworkOrder() == 0)
     {
-        MustlLog::Instance().NetLog() << "UDPSend to bad address (" << MustlUtils::IPAddressToLogString(inHost) << ":" << MustlPlatform::NetworkToHostOrderU16(inPort) << ")" << endl;
+        MustlLog::Instance().NetLog() << "UDPSend (server) to bad address (" << inAddress << ")" << endl;
     }
     
     MUSTLASSERT(m_udpSocket != NULL);
 
-    U32 dataSize=ioData.ReadSizeGet();
-
-    MustlPlatform::UDPSend(inHost, inPort, m_udpSocket, ioData.ReadPtrGet(), dataSize);
+    U32 dataSize = MustlPlatform::UDPSend(inAddress, m_udpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     ioData.ReadPosAdd(dataSize);
+
     if (m_logTraffic)
     {
-        MustlLog::Instance().VerboseLog() << "UDPSend (server) to " << MustlUtils::IPAddressToLogString(inHost) << ":" << MustlPlatform::NetworkToHostOrderU16(inPort) << ": " << ioData << endl;
+        MustlLog::Instance().VerboseLog() << "UDPSend (server) to " << inAddress << ": " << ioData << endl;
     }
 }
 
 void
-MustlServer::UDPReceive(MustlData& outData)
+MustlServer::UDPReceive(MustlData& ioData)
 {
     if (m_serving)
     {
-        U32 netHost; // Network order
-        U32 netPort; // Network order
-        outData.PrepareForWrite();
-        U32 dataSize=MustlPlatform::UDPReceive(netHost, netPort, m_udpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+        MustlAddress sourceAddress;
+        // Need to set max packet size in PrepareForWrite
+        ioData.PrepareForWrite();
+        U32 dataSize=MustlPlatform::UDPReceive(sourceAddress, m_udpSocket, ioData.WritePtrGet(), ioData.WriteSizeGet());
         if (dataSize != 0)
         {
-            outData.WritePosAdd(dataSize);
-            outData.SourceSet(netHost, netPort);
+            ioData.WritePosAdd(dataSize);
+            ioData.SourceSet(sourceAddress);
             if (m_logTraffic)
             {
-                MustlLog::Instance().VerboseLog() << "UDPReceive (server) from " << MustlUtils::IPAddressToLogString(netHost) << ":" << MustlPlatform::NetworkToHostOrderU16(netPort) << ": " << outData << endl;
+                MustlLog::Instance().VerboseLog() << "UDPReceive (server) received " << ioData << endl;
             }
         }
     }

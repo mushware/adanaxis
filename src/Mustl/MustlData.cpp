@@ -1,6 +1,9 @@
 /*
- * $Id: MustlData.cpp,v 1.5 2002/11/23 14:39:06 southa Exp $
+ * $Id: MustlData.cpp,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlData.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.5  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -20,9 +23,11 @@
 
 #include "MustlData.h"
 
-#include "MustlUtils.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
-#include "mushPlatform.h"
+#include "MustlNamespace.h"
 
 ostream& operator<<(ostream &inOut, const MustlData& inData)
 {
@@ -33,18 +38,20 @@ ostream& operator<<(ostream &inOut, const MustlData& inData)
 void
 MustlData::Print(ostream& ioOut) const
 {
-    ioOut << "[data size=" << m_data.size() << ", readPos=" << m_readPos << ", writePos=" << m_writePos;
-    ioOut << ", messagePos=" << m_messagePos << ", sourceHost=";
+    ioOut << "size=" << m_data.size() << ", readPos=" << m_readPos << ", writePos=" << m_writePos;
+    ioOut << ", messagePos=" << m_messagePos << ", lengthPos=" << m_lengthPos;
+    ioOut <<", sourceAddress=";
     if (m_sourceValid)
     {
-        ioOut<< MustlUtils::IPAddressToString(m_sourceHost) << ":" << MustlPlatform::NetworkToHostOrderU16(m_sourcePort);
+        ioOut << m_sourceAddress;
     }
     else
     {
         ioOut << "invalid";
     }
     ioOut << ", unpackState=" << m_unpackState << ", data='";
-    for (U32 i=0; i<m_data.size() && i<m_writePos; ++i)
+    U32 size=m_data.size();
+    for (U32 i=0; i < size && i < m_writePos; ++i)
     {
         if (isprint(m_data[i]))
         {
@@ -55,5 +62,5 @@ MustlData::Print(ostream& ioOut) const
             ioOut << "[" << hex << static_cast<U32>(m_data[i]) << dec << "]";
         }
     }
-    ioOut << "']";
+    ioOut << "'";
 }

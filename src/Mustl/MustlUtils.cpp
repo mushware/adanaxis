@@ -1,6 +1,9 @@
 /*
- * $Id: MustlUtils.cpp,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -58,16 +61,13 @@ bool MustlUtils::m_truncateLog=true;
 bool
 MustlUtils::FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddress)
 {
-    U32 netIP=inAddress.HostGetNetworkOrder();
-    U32 netPort=inAddress.PortGetNetworkOrder();
-
     CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
 
     for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        if (p->second->TCPTargetPortGet() == netPort &&
-            p->second->TCPTargetIPGet() == netIP)
+        COREASSERT(p->second != NULL);
+        if (p->second->TCPAddressGet() == inAddress)
         {
             outLink = p->second;
             return true;
@@ -79,36 +79,15 @@ MustlUtils::FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddres
 bool
 MustlUtils::FindLinkToStation(string& outName, const MustlAddress& inAddress)
 {
-    U32 netIP=inAddress.HostGetNetworkOrder();
-    U32 netPort=inAddress.PortGetNetworkOrder();
-
     CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
 
     for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        if (p->second->TCPTargetPortGet() == netPort &&
-            p->second->TCPTargetIPGet() == netIP)
+        COREASSERT(p->second != NULL);
+        if (p->second->TCPAddressGet() == inAddress)
         {
             outName = p->first;
-            return true;
-        }
-    }
-    return false;
-}
-
-bool
-MustlUtils::FindLinkToStation(MustlLink *& outLink, const string& inName, U32 inPortNetworkOrder)
-{
-    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
-
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
-         p != endValue; ++p)
-    {
-        if (p->second->TCPTargetPortGet() == inPortNetworkOrder &&
-            p->second->TargetNameGet() == inName)
-        {
-            outLink = p->second;
             return true;
         }
     }

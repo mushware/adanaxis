@@ -1,8 +1,11 @@
 #ifndef MUSTLSERVER_H
 #define MUSTLSERVER_H
 /*
- * $Id: MustlServer.h,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlServer.h,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -46,6 +49,7 @@
 
 #include "MustlStandard.h"
 
+class MustlAddress;
 class MustlData;
 
 class MustlServer
@@ -58,8 +62,8 @@ public:
     void Connect(Mustl::U32 inPort);
     void Disconnect(void);
     void Accept(void);
-    void UDPSend(Mustl::U32 inHost, Mustl::U32 inPort, MustlData& inData);
-    void UDPReceive(MustlData& inData);
+    void UDPSend(const MustlAddress& inAddress, MustlData& ioData);
+    void UDPReceive(MustlData& ioData);
     void UDPHarvest(void);
     void UDPDiscard(void);
     bool IsServing(void) const { return m_serving; }

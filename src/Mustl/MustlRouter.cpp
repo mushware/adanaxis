@@ -1,6 +1,9 @@
 /*
- * $Id: MustlRouter.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -151,9 +154,7 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
             return;
         }
     }
-    MustlLog::Instance().VerboseLog() << "Discarding message from " <<
-        MustlUtils::IPAddressToLogString(ioData.SourceHostGet()) << ":" <<
-        MustlPlatform::NetworkToHostOrderU16(ioData.SourcePortGet()) << endl;
+    MustlLog::Instance().VerboseLog() << "Discarding message from " << ioData.SourceGet() << endl;
 }
 
 void

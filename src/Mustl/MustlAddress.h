@@ -1,8 +1,11 @@
 #ifndef MUSTLADDRESS_H
 #define MUSTLADDRESS_H
 /*
- * $Id: MustlAddress.h,v 1.1 2002/12/12 14:00:25 southa Exp $
+ * $Id: MustlAddress.h,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:25  southa
  * Created Mustl
  *
@@ -45,10 +48,12 @@ public:
     void Print(ostream& ioOut) const;
 
     bool Equals(const MustlAddress& inAddress) const;
+    bool LessThan(const MustlAddress& inAddress) const;
+    bool GreaterThan(const MustlAddress& inAddress) const;
     
 private:
-    Mustl::U32 m_ip;
-    Mustl::U32 m_port;
+    Mustl::U32 m_ip; // Network order
+    Mustl::U32 m_port; // Network order
 };
 
 inline bool
@@ -59,9 +64,43 @@ MustlAddress::Equals(const MustlAddress& inAddress) const
 }
 
 inline bool
+MustlAddress::LessThan(const MustlAddress& inAddress) const
+{
+    return m_ip < inAddress.HostGetNetworkOrder() ||
+    m_port < inAddress.PortGetNetworkOrder();
+}
+
+inline bool
+MustlAddress::GreaterThan(const MustlAddress& inAddress) const
+{
+    return m_ip > inAddress.HostGetNetworkOrder() ||
+    m_port > inAddress.PortGetNetworkOrder();
+}
+
+inline bool
 operator==(const MustlAddress& a, const MustlAddress& b)
 {
     return a.Equals(b);
+}
+
+inline bool
+operator!=(const MustlAddress& a, const MustlAddress& b)
+{
+    return !a.Equals(b);
+}
+
+// These are network order comparisons, provided so that the class can be
+// used as the key in maps, so not for mathematical comparisons
+inline bool
+operator<(const MustlAddress& a, const MustlAddress& b)
+{
+    return a.LessThan(b);
+}
+
+inline bool
+operator>(const MustlAddress& a, const MustlAddress& b)
+{
+    return a.GreaterThan(b);
 }
 
 inline ostream&

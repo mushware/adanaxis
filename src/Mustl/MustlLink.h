@@ -1,8 +1,11 @@
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
 /*
- * $Id: MustlLink.h,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlLink.h,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -88,9 +91,8 @@ class MustlID;
 class MustlLink
 {
 public:
-    MustlLink(const MustlID& inID, const string& inServer, Mustl::U32 inPort);
-    explicit MustlLink(const MustlID& inID, const MustlAddress& inAddress);
-    explicit MustlLink(Mustl::tSocket inSocket, Mustl::U32 inPort, const MustlAddress& inAddress);
+    MustlLink(const MustlID& inID, const MustlAddress& inAddress);
+    MustlLink(Mustl::tSocket inSocket, const MustlAddress& inAddress);
     ~MustlLink();
 
     void TouchLink(void);
@@ -103,29 +105,23 @@ public:
     bool ReadyIs(void) const;
     bool TargetServerIs(void) const { return m_targetIsServer; }
     void Disconnect(MustlProtocol::tReasonCode inCode);
-        
-
     void MessageHandle(Mustl::U32 inType, MustlData& ioData);
-
+    
     bool NetIDExists(void) const { return m_netID != NULL; }
     const MustlID& NetIDGet(void) const;
     void NetIDSet(const MustlID& inID);
     
-    const string& TargetNameGet(void) const { return m_targetName; }
-    Mustl::U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
-    Mustl::U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
-    MustlAddress TCPTargetAddressGet(void) const { return MustlAddress(m_client.RemoteIPGet(), m_client.TCPRemotePortGet()); }
-    Mustl::U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
-    Mustl::U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
+    const MustlAddress& TCPAddressGet(void) const { return m_client.TCPAddressGet(); }
+    const MustlAddress& UDPAddressGet(void) const { return m_client.UDPAddressGet(); }
+
     Mustl::tMsec CreationMsecGet(void) const { return m_creationMsec; }
     
-    void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
     void WebStatusPrint(ostream& ioOut) const;
 
     static void WebStatusHeaderPrint(ostream& ioOut);
     static string NextLinkNameTake(void);
-    
+
 private:
     enum tLinkState
     {
@@ -176,8 +172,8 @@ private:
     };
 
     void Initialise(void);
-    void TCPConnect(const string& inServer, Mustl::U32 inPort);
-    void UDPConnect(Mustl::U32 inPort);
+    void TCPConnect(const MustlAddress& inAddress);
+    void UDPConnect(const MustlAddress& inAddress);
     void TCPSocketTake(Mustl::tSocket inSocket, const MustlAddress& inAddress);
     void LinkChecksSend(void);
     void TCPLinkCheckSend(void);
@@ -201,6 +197,8 @@ private:
     void MessageKillLinkHandle(MustlData& ioData);
     void MessageIDRequestHandle(MustlData& ioData);
 
+    void LinkInfoLog(void) const;
+
     static string LinkStateToBG(const LinkState& inLinkState);
 
     LinkState m_tcpState;
@@ -210,7 +208,6 @@ private:
     Mustl::tMsec m_lastActivityMsec;
     Mustl::tMsec m_lastIDRequestMsec;
     
-    string m_targetName; // This should be exactly what the caller asked for
     MustlID *m_netID;
 
     bool m_syncedID;

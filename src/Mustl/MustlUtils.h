@@ -1,8 +1,11 @@
 #ifndef MUSTLUTILS_H
 #define MUSTLUTILS_H
 /*
- * $Id: MustlUtils.h,v 1.11 2002/12/05 13:20:13 southa Exp $
+ * $Id: MustlUtils.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -46,7 +49,6 @@ class MustlLink;
 class MustlUtils
 {
 public:
-    static bool FindLinkToStation(MustlLink *& outLink, const string& inName, U32 inPortNetworkOrder);
     static bool FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddress);
     static bool FindLinkToStation(string& outName, const MustlAddress& inAddress);
     static string IPAddressToString(U32 inAddress);

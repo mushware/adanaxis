@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatform.cpp,v 1.1 2002/12/12 18:38:58 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.2 2002/12/13 01:07:26 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.2  2002/12/13 01:07:26  southa
+ * Mustl work
+ *
  * Revision 1.1  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -85,241 +88,253 @@ MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
 }
 
 void
+MustlPlatform::SocketBlockingSet(tSocket inSocket)
+{
+    errno=0;
+    int flags = fcntl(inSocket, F_GETFL, 0);
+    if (flags < 0) flags = 0;
+    if (fcntl(inSocket, F_SETFL, flags & ~O_NONBLOCK) < 0)
+    {
+        ostringstream message;
+        message << "Failed to set socket blocking: " << errno;
+        throw(MustlFail(message.str()));
+    }
+}
+
+void
+MustlPlatform::SocketReuseAddressSet(tSocket inSocket)
+{
+    int value=1;
+    errno=0;
+    if (setsockopt(inSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
+    {
+        ostringstream message;
+        message << "Failed to set socket address reuse (" << errno << ")";
+        throw(MustlFail(message.str()));
+    }
+    
+}
+
+void
+MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
+{
+    int value = 1;
+    errno=0;
+    if (setsockopt(inSocket, IPPROTO_TCP, TCP_NODELAY, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
+    {
+        ostringstream message;
+        message << "Failed to set socket TCP delay (" << errno << ")";
+        throw(MustlFail(message.str()));
+    }
+}
+
+U32
 MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 {
-    MUSTLASSERT(inSize > 0);
-
     errno=0;
-    int result=send(inSocket, inBuffer, inSize, 0);
+    int result = send(inSocket, inBuffer, inSize, 0);
 
-    if (result < 0 || static_cast<U32>(result) != inSize)
+    if (result < 0)
     {
         ostringstream message;
         message << "TCP send failed (" << errno << ")";
         throw(MustlFail(message.str()));
     }
+    return static_cast<U32>(result);
 }
 
 U32
 MustlPlatform::TCPReceive(tSocket inSocket, void *outBuffer, U32 inSize)
 {
-    MUSTLASSERT(inSize > 0);
-    U32 dataSize=0;
-    for (U32 i=0; i<1; ++i) // Needs fixing to advance into outBuffer if you allow i>0
+    errno=0;
+
+    int result = recv(inSocket, outBuffer, inSize, 0);
+
+    if (result < 0)
     {
-        errno=0;
-        int result = recv(inSocket, outBuffer, inSize, 0);
-
-        if (result < 0)
+        if (errno == EINTR || errno == EAGAIN)
         {
-            if (errno == EAGAIN) break;
-
-            if (errno != EINTR)
-            {
-                ostringstream message;
-                message << "TCP receive failed (" << errno << ")";
-                throw(MustlFail(message.str()));
-            }
-        }
-        else if (result == 0)
-        {
-            break;
+            result = 0;
         }
         else
         {
-            dataSize += result;
+            ostringstream message;
+            message << "TCP receive failed (" << errno << ")";
+            throw(MustlFail(message.str()));
         }
     }
-    return dataSize;
+    return static_cast<U32>(result);
 }
 
-void
-MustlPlatform::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *inBuffer, U32 inSize)
+U32
+MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *inBuffer, U32 inSize)
 {
-    MUSTLASSERT(inSize > 0);
-
     struct sockaddr_in sockAddr;
-    sockAddr.sin_addr.s_addr = inHost;
-    sockAddr.sin_port = inPort;
+    sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
+    sockAddr.sin_port = inAddress.PortGetNetworkOrder();
     sockAddr.sin_family = AF_INET;
     
     errno=0;
     int result=sendto(inSocket, inBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
 
-    if (result < 0 || static_cast<U32>(result) != inSize)
+    if (result < 0)
     {
         ostringstream message;
-        message << "UDP send to port " << MustlPlatform::NetworkToHostOrderU16(inPort) << " failed (" << errno << ")";
+        message << "UDP send to " << inAddress << " failed (" << errno << ")";
         throw(MustlFail(message.str()));
     }
+    return static_cast<U32>(result);
 }
 
 U32
-MustlPlatform::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize)
+MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outBuffer, U32 inSize)
 {
-    MUSTLASSERT(inSize > 0);
-    U32 dataSize=0;
-    for (U32 i=0; i<1; ++i) // Needs fixing to advance into outBuffer if you allow i>0
-    {
-        struct sockaddr_in sockAddr;
+    struct sockaddr_in sockAddr;
+    int sockAddrSize=sizeof(sockAddr);
 
-        errno=0;
-        int sockAddrSize=sizeof(sockAddr);
-        int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
+    errno=0;
+    int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
+
+    outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
+    outAddress.PortSetNetworkOrder(sockAddr.sin_port);
     
-        outHost=sockAddr.sin_addr.s_addr;
-        outPort=sockAddr.sin_port;
-        
-        if (result < 0)
+    if (result < 0)
+    {
+        if (errno == EINTR || errno == EAGAIN)
         {
-            if (errno == EAGAIN) break;
-            
-            if (errno != EINTR)
-            {
-                ostringstream message;
-                message << "UDP receive failed (" << errno << ")";
-                throw(MustlFail(message.str()));
-            }
-        }
-        else if (result == 0)
-        {
-            break;
+            result = 0;
         }
         else
         {
-            dataSize += result;
+            ostringstream message;
+            message << "UDP receive failed (" << errno << ")";
+            throw(MustlFail(message.str()));
         }
     }
-    return dataSize;
+    return static_cast<U32>(result);
+}
+
+tSocket
+MustlPlatform::TCPUnboundSocketCreate(void)
+{
+    tSocket sockHandle;
+    sockHandle = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockHandle == -1)
+    {
+        throw(MustlFail("Couldn't create TCP socket"));
+    }
+    return sockHandle;
+}
+
+tSocket
+MustlPlatform::UDPUnboundSocketCreate(void)
+{
+    tSocket sockHandle;
+    sockHandle = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sockHandle == -1)
+    {
+        throw(MustlFail("Couldn't create UDP socket"));
+    }
+    return sockHandle;
 }
 
 tSocket
 MustlPlatform::TCPConnectNonBlocking(const MustlAddress& inAddress)
 {
-    tSocket socketHandle;
-    struct sockaddr_in sock_addr;
+    tSocket sockHandle = TCPUnboundSocketCreate();
+    SocketNonBlockingSet(sockHandle);
 
-    socketHandle = socket(AF_INET, SOCK_STREAM, 0);
-    if (socketHandle == -1)
-    {
-        throw(MustlFail("Couldn't create socket"));
-    }
-
-    SocketNonBlockingSet(socketHandle);
-    
-    memset(&sock_addr, 0, sizeof(sock_addr));
-    sock_addr.sin_family = AF_INET;
-    sock_addr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
-    sock_addr.sin_port = inAddress.PortGetNetworkOrder();
+    struct sockaddr_in sockAddr;
+    memset(&sockAddr, 0, sizeof(sockAddr));
+    sockAddr.sin_family = AF_INET;
+    sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
+    sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
     errno=0;
-    if (connect(socketHandle, (struct sockaddr *)&sock_addr,
-                 sizeof(sock_addr)) != 0)
+    if (connect(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
         if (errno != EINPROGRESS)
         {
-            close(socketHandle);
+            close(sockHandle);
             ostringstream message;
-            message << "Couldn't connect to remote host (" << errno << ")";
+            message << "Couldn't connect to remote host " << inAddress << " (" << errno << ")";
             throw(MustlFail(message.str()));
         }
     }
-    
-    {
-        int yes = 1;
-        setsockopt(socketHandle, IPPROTO_TCP, TCP_NODELAY, (char*)&yes, sizeof(yes));
-    }
 
-    return socketHandle;
+    SocketTCPNoDelaySet(sockHandle);
+    
+    return sockHandle;
 }
 
 tSocket
 MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
 {
-    tSocket socketHandle;
-    struct sockaddr_in sock_addr;
+    tSocket sockHandle = TCPUnboundSocketCreate();
+    SocketNonBlockingSet(sockHandle);
+    SocketReuseAddressSet(sockHandle);
 
-    socketHandle = socket(AF_INET, SOCK_STREAM, 0);
-    if (socketHandle == -1)
-    {
-        throw(MustlFail("Couldn't create socket"));
-    }
-
-    SocketNonBlockingSet(socketHandle);
-
-    int value = 1;
-    setsockopt(socketHandle, SOL_SOCKET, SO_REUSEADDR, (char *)&value, sizeof(value));
-    
-    memset(&sock_addr, 0, sizeof(sock_addr));
-    sock_addr.sin_family = AF_INET;
-    sock_addr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
-    sock_addr.sin_port = inAddress.PortGetNetworkOrder();
+    struct sockaddr_in sockAddr;
+    memset(&sockAddr, 0, sizeof(sockAddr));
+    sockAddr.sin_family = AF_INET;
+    sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
+    sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
     errno=0;
-    if (bind(socketHandle, (struct sockaddr *)&sock_addr,
-             sizeof(sock_addr)) != 0)
+    if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
-        close(socketHandle);
+        close(sockHandle);
         ostringstream message;
-        message << "Couldn't bind server address (" << errno << ")";
+        message << "Couldn't bind server address " << inAddress << " (" << errno << ")";
         throw(MustlFail(message.str()));
     }
     
-    if (listen(socketHandle, 8) != 0)
+    if (listen(sockHandle, 8) != 0)
     {
-        close(socketHandle);
+        close(sockHandle);
         ostringstream message;
-        message << "Couldn't listen on server socket (" << errno << ")";
+        message << "Couldn't listen on server socket " << inAddress << " (" << errno << ")";
         throw(MustlFail(message.str()));
     }
-    return socketHandle;
+    return sockHandle;
 }
 
 tSocket
 MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
 {
-    tSocket socketHandle;
-    struct sockaddr_in sock_addr;
-
-    socketHandle = socket(AF_INET, SOCK_DGRAM, 0);
-    if (socketHandle == -1)
-    {
-        throw(MustlFail("Couldn't create socket"));
-    }
-
-    SocketNonBlockingSet(socketHandle);
-
-    int value = 1;
-    setsockopt(socketHandle, SOL_SOCKET, SO_REUSEADDR, (char *)&value, sizeof(value));
+    tSocket sockHandle = UDPUnboundSocketCreate();
+    SocketNonBlockingSet(sockHandle);
+    SocketReuseAddressSet(sockHandle);    
     
-    memset(&sock_addr, 0, sizeof(sock_addr));
-    sock_addr.sin_family = AF_INET;
-    sock_addr.sin_addr.s_addr = 0; // Not used
-    sock_addr.sin_port = inPortNetworkOrder;
+    struct sockaddr_in sockAddr;
+
+    memset(&sockAddr, 0, sizeof(sockAddr));
+    sockAddr.sin_family = AF_INET;
+    sockAddr.sin_addr.s_addr = 0; // Not used
+    sockAddr.sin_port = inPortNetworkOrder;
 
     errno=0;
-    if (bind(socketHandle, (struct sockaddr *)&sock_addr,
-                sizeof(sock_addr)) != 0)
+    if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
         if (errno != EINPROGRESS)
         {
-            close(socketHandle);
+            close(sockHandle);
             ostringstream message;
-            message << "Couldn't connect to remote host (" << errno << ")";
+            message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder) << " (" << errno << ")";
             throw(MustlFail(message.str()));
         }
     }
 
-    return socketHandle;
+    return sockHandle;
 }
 
 bool
 MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSocket)
 {
-    struct sockaddr_in sockAddrIn;
-    int sockAddrLen = sizeof(sockAddrIn);
+    struct sockaddr_in sockAddr;
+    int sockAddrLen = sizeof(sockAddr);
     errno=0;
-    int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddrIn), &sockAddrLen);
+    int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddr), &sockAddrLen);
 
     if (newSocket == -1)
     {
@@ -332,8 +347,8 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
         throw(MustlFail(message.str()));
     }
     outSocket = newSocket;
-    outAddress.HostSetNetworkOrder(sockAddrIn.sin_addr.s_addr);
-    outAddress.PortSetNetworkOrder(sockAddrIn.sin_port);
+    outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
+    outAddress.PortSetNetworkOrder(sockAddr.sin_port);
     return true;
 }
 
@@ -349,10 +364,12 @@ MustlPlatform::TCPSocketConnectionCompleted(tSocket inSocket)
     struct timeval timeVal;
     timeVal.tv_sec = 0;
     timeVal.tv_usec = 0;
+    
     fd_set fdSet;
     FD_ZERO(&fdSet);
     FD_SET(inSocket, &fdSet);
-    int result=select(inSocket+1, NULL, &fdSet, NULL, &timeVal);
+
+    int result = select(inSocket+1, NULL, &fdSet, NULL, &timeVal);
 
     if (result < 0) return false;
     
@@ -369,6 +386,18 @@ U32
 MustlPlatform::NetworkToHostOrderU16(U32 inVal)
 {
     return ntohs(inVal);
+}
+
+U32
+MustlPlatform::HostToNetworkOrderU32(U32 inVal)
+{
+    return htonl(inVal);
+}
+
+U32
+MustlPlatform::NetworkToHostOrderU32(U32 inVal)
+{
+    return ntohl(inVal);
 }
 
 void

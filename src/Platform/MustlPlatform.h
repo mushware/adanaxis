@@ -2,8 +2,11 @@
 #define MUSTLPLATFORM_H
 
 /*
- * $Id: MustlPlatform.h,v 1.1 2002/12/12 18:38:58 southa Exp $
+ * $Id: MustlPlatform.h,v 1.2 2002/12/13 01:07:26 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.2  2002/12/13 01:07:26  southa
+ * Mustl work
+ *
  * Revision 1.1  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -41,20 +44,30 @@ class MustlPlatform
 {
 public:
     static void SocketNonBlockingSet(Mustl::tSocket inSocket);
-    static void SocketAsyncSet(Mustl::tSocket inSocket);
-    static void TCPSend(Mustl::tSocket inSocket, void *inBuffer, Mustl::U32 inSize);
-    static Mustl::U32 TCPReceive(Mustl::tSocket inSocket, void *outBuffer, Mustl::U32 inSize);
+    static void SocketBlockingSet(Mustl::tSocket inSocket);
+    static void SocketReuseAddressSet(Mustl::tSocket inSocket);
+    static void SocketTCPNoDelaySet(Mustl::tSocket inSocket);
 
-    static void UDPSend(Mustl::U32 inHost, Mustl::U32 inPort, Mustl::tSocket inSocket, void *outBuffer, Mustl::U32 inSize);
-    static Mustl::U32 UDPReceive(Mustl::U32& outHost, Mustl::U32& outPort, Mustl::tSocket inSocket, void *outBuffer, Mustl::U32 inSize);
+    static Mustl::U32 TCPSend(Mustl::tSocket inSocket, void *inBuffer, Mustl::U32 inSize);
+    static Mustl::U32 TCPReceive(Mustl::tSocket inSocket, void *outBuffer, Mustl::U32 inSize);
+    
+    static Mustl::U32 UDPSend(const MustlAddress& inAddress, Mustl::tSocket inSocket, void *inBuffer, Mustl::U32 inSize);
+    static Mustl::U32 UDPReceive(MustlAddress& outAddress, Mustl::tSocket inSocket, void *outBuffer, Mustl::U32 inSize);
+
+    static Mustl::tSocket TCPUnboundSocketCreate(void);
+    static Mustl::tSocket UDPUnboundSocketCreate(void);
+
     static Mustl::tSocket TCPConnectNonBlocking(const MustlAddress& inAddress);
     static Mustl::tSocket TCPBindNonBlocking(const MustlAddress& inAddress);
     static Mustl::tSocket UDPBindNonBlocking(Mustl::U32 inPortNetworkOrder);
+    
     static bool Accept(Mustl::tSocket& outSocket, MustlAddress& outAddress, Mustl::tSocket inSocket);
     static void SocketClose(Mustl::tSocket inSocket);
     static bool TCPSocketConnectionCompleted(Mustl::tSocket inSocket);
     static Mustl::U32 HostToNetworkOrderU16(Mustl::U32 inVal);
     static Mustl::U32 NetworkToHostOrderU16(Mustl::U32 inVal);
+    static Mustl::U32 HostToNetworkOrderU32(Mustl::U32 inVal);
+    static Mustl::U32 NetworkToHostOrderU32(Mustl::U32 inVal);
     static bool IsLocalAddress(Mustl::U32 inIPNetworkOrder);
     static void ResolveAddress(MustlAddress& outAddress, const std::string& inHostName, Mustl::U32 inPortHostOrder);
     static unsigned int DefaultTimer(void);

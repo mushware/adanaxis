@@ -43,7 +43,6 @@
 			children = (
 				F50F4E3C02B4EAE3014A78CB,
 				F50F4DFC02B4E9B1014A78CB,
-				F5B345E60370333201A80164,
 				F50F4E0202B4EA72014A78CB,
 				F50F4E0402B4EA9C014A78CB,
 				F50F4E0502B4EA9C014A78CB,
@@ -4437,7 +4436,6 @@
 				F595A941035B313D01A80166,
 				F593D560035C11BE01A80166,
 				F594083B035C7E4D01A80164,
-				F5B345EA0370338101A80164,
 				F59C48E2037A818201A80164,
 				F59C48E6037A83D401A80164,
 				F5B39DB30383F5FB01A80164,
@@ -4684,7 +4682,6 @@
 				F546F59302C1F7FD01173785,
 				F546F59402C1F7FD01173785,
 				F594084B035C7F6F01A80164,
-				F5B345E80370336501A80164,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6494,40 +6491,6 @@
 		};
 		F5B343AC039267A401A80164 = {
 			fileRef = F5B343AA039267A401A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5B345E60370333201A80164 = {
-			children = (
-				F5B345E70370336501A80164,
-				F5B345E90370338101A80164,
-			);
-			isa = PBXGroup;
-			name = SDL_net;
-			path = "";
-			refType = 4;
-		};
-		F5B345E70370336501A80164 = {
-			isa = PBXFileReference;
-			name = libSDL_net.a;
-			path = /usr/local/lib/libSDL_net.a;
-			refType = 0;
-		};
-		F5B345E80370336501A80164 = {
-			fileRef = F5B345E70370336501A80164;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5B345E90370338101A80164 = {
-			isa = PBXFileReference;
-			name = SDL_net.h;
-			path = /usr/local/include/SDL/SDL_net.h;
-			refType = 0;
-		};
-		F5B345EA0370338101A80164 = {
-			fileRef = F5B345E90370338101A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
