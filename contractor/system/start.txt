@@ -1,2 +1,0 @@
-game
-loadcontract("contract1",$APPLPATH+"/contracts/first-day/contract.xml")

@@ -1,8 +1,0 @@
-<?xml version="1.0" standalone="no"?>
-<!-- Tile map -->
-<contract version="0.0">
-<script type="text/core">
-loadtilemap('tiles',$MAPPATH+'/tilemap.xml')
-loadfloormap('floor',$MAPPATH+'/gamemap.xml')
-</script>
-</contract>
