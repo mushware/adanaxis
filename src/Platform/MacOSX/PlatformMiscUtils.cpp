@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.7 2002/08/27 08:56:29 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.7.4.1 2002/09/04 10:18:04 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.7.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
+ *
  * Revision 1.7  2002/08/27 08:56:29  southa
  * Source conditioning
  *
@@ -105,13 +108,14 @@ PlatformMiscUtils::VBLWait(void)
             for (U32 i=0;; ++i)
             {
                 if (CGDisplayBeamPosition(dispId) > cgrect.origin.y + cgrect.size.height - 1) break;
-                if (i > 10000) // 1 second
+                if (i > 1e6)
                 {
                     cerr << "Waited too long for VBL.  Disabling" << endl;
                     enabled=false;
                     break;
                 }
-                usleep(100);
+                // Possible detrimental effects with usleep
+                // usleep(100);
             }
             //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
         }
