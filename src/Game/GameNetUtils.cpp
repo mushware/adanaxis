@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.cpp,v 1.4 2002/12/05 23:52:51 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.5 2002/12/07 18:32:15 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.5  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.4  2002/12/05 23:52:51  southa
  * Network management and status
  *
@@ -20,6 +23,7 @@
 #include "GameConfig.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameNetID.h"
 #include "GameRouter.h"
 
 #include "mushGL.h"
@@ -125,7 +129,7 @@ GameNetUtils::CreateLink(CoreDataRef<MediaNetLink>& outLink, const string& inCli
     try
     {
         string linkName=MediaNetLink::NextLinkNameTake();
-        CoreData<MediaNetLink>::Instance().Give(linkName, new MediaNetLink(MediaNetIDString(inClientName), inAddress));
+        CoreData<MediaNetLink>::Instance().Give(linkName, new MediaNetLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
     catch (NetworkFail& e)
@@ -301,24 +305,4 @@ GameNetUtils::NetReceive(void)
     {
         MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }
-}
-
-bool
-GameNetUtils::FindClientDefForLink(string& outName, const MediaNetLink *inLink)
-{
-    CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
-
-    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin();
-         p != endValue; ++p)
-    {
-        if (p->second->ImageIs())
-        {
-            if (p->second->LinkMatch(inLink))
-            {
-                outName = p->first;
-                return true;
-            }
-        }
-    }
-    return false;    
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.9 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameRouter.cpp,v 1.10 2002/12/07 18:32:15 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.10  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.9  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -33,6 +36,8 @@
 #include "GameRouter.h"
 
 #include "GameData.h"
+#include "GameMessageControlData.h"
+#include "GameNetID.h"
 #include "GameNetObject.h"
 #include "GameNetUtils.h"
 #include "GamePiecePlayer.h"
@@ -67,7 +72,14 @@ GameRouter::MessageHandle(MediaNetData& ioData, MediaNetLink& inLink, U32 inType
 void
 GameRouter::IDTransferHandle(MediaNetData& ioData, MediaNetLink& inLink)
 {
-    inLink.NetIDSet(MediaNetIDString(ioData));
+    GameNetID netID(ioData);
+
+    // We add the -image suffix if the target of this link is a client.  Not rigourous
+    if (!inLink.TargetServerIs())
+    {
+        netID.NameSuffixAdd("-image");
+    }
+    inLink.NetIDSet(netID);
 }
 
 void
@@ -95,14 +107,42 @@ GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 {
     // Find object that relates to this control data
 
-    // Slow lookup of ClientDef for this link
-    string clientName;
-    if (!GameNetUtils::FindClientDefForLink(clientName, &inLink))
+    bool discard=true;
+    
+    if (inLink.NetIDExists())
     {
-        MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Discarding data for unknown ClientDef" << endl;
-        return;
+        const GameNetID& gameNetID = dynamic_cast<const GameNetID&>(inLink.NetIDGet());
+        if (gameNetID.DataRefGet().Exists())
+        {
+            GameDefClient *clientDef = gameNetID.DataRefGet().Get();
+            if (clientDef->PlayerRefGet().Exists())
+            {
+                GamePiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
+
+                GameMessageControlData controlData;
+                controlData.Unpack(ioData);
+
+                U32 size = controlData.DataSizeGet();
+                U32 startFrame = controlData.StartFrameGet();
+                
+                for (U32 i=0; i<size; ++i)
+                {
+                    const GameMessageControlData::DataEntry& dataEntry = controlData.DataEntryGet(i);
+                    piecePlayer->ControlFrameDefAdd(dataEntry.frameDef, startFrame + dataEntry.frameOffset);
+                }
+                
+                discard=false;
+            }
+        }
     }
 
+    if (discard)
+    {
+        MediaNetLog::Instance().NetLog() << ": Discarding ControlData for unknown target" << endl;
+    }
+
+    
+#if 0
     CoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
 
     if (playerData.Exists(clientName))
@@ -113,6 +153,7 @@ GameRouter::ControlDataHandle(MediaNetData& ioData, const MediaNetLink& inLink)
     {
        MediaNetLog::Instance().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
     }
+#endif
     // Apply or store the data
 
     // Resend object's MotionSpec to the clients as necessary

@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.h,v 1.6 2002/12/06 17:38:01 southa Exp $
+ * $Id: GameProtocol.h,v 1.7 2002/12/07 18:32:15 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.7  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.6  2002/12/06 17:38:01  southa
  * ControlData message unpacking
  *
@@ -26,8 +29,6 @@
 #include "GameControlFrameDef.h"
 
 class MediaNetData;
-
-
 
 class GameProtocol
 {

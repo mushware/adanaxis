@@ -75,7 +75,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 103";
 		rLen = 0;
-		rLoc = 17564;
+		rLoc = 17737;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 0;
@@ -295,7 +295,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkIsUp";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2681;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 0;
@@ -545,7 +545,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 51";
 		rLen = 0;
-		rLoc = 3592;
+		rLoc = 3761;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 355;
@@ -565,7 +565,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 50";
 		rLen = 0;
-		rLoc = 3578;
+		rLoc = 3747;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 355;
@@ -2161,7 +2161,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 731";
 		rLen = 0;
-		rLoc = 21947;
+		rLoc = 22120;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 18639;
@@ -2611,7 +2611,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 85";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 2408;
@@ -2641,7 +2641,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 85";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 99;
@@ -2651,7 +2651,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 74";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 566;
@@ -2691,7 +2691,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 98";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 1801;
@@ -2701,7 +2701,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 74";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 558;
@@ -2721,7 +2721,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 74";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 558;
@@ -2761,7 +2761,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 74";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 558;
@@ -2831,7 +2831,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 76";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 2557;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 538;
@@ -3311,7 +3311,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11637;
+		rLoc = 11706;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 3260;
@@ -3671,7 +3671,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 119";
 		rLen = 0;
-		rLoc = 5293;
+		rLoc = 5318;
 		rType = 0;
 		vrLen = 871;
 		vrLoc = 2111;
@@ -3681,7 +3681,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 47";
 		rLen = 0;
-		rLoc = 4109;
+		rLoc = 4278;
 		rType = 0;
 		vrLen = 827;
 		vrLoc = 162;
@@ -3701,7 +3701,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 47";
 		rLen = 0;
-		rLoc = 4109;
+		rLoc = 4278;
 		rType = 0;
 		vrLen = 831;
 		vrLoc = 158;
@@ -3731,7 +3731,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 100";
 		rLen = 0;
-		rLoc = 17564;
+		rLoc = 17737;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 1257;
@@ -9271,7 +9271,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 268";
 		rLen = 0;
-		rLoc = 7557;
+		rLoc = 7188;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 6010;
@@ -9281,7 +9281,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 2360;
+		rLoc = 2602;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 1091;
@@ -9301,7 +9301,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: MessageHandle";
 		rLen = 0;
-		rLoc = 1527;
+		rLoc = 1586;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 602;
@@ -9331,7 +9331,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 185";
 		rLen = 0;
-		rLoc = 5765;
+		rLoc = 5934;
 		rType = 0;
 		vrLen = 1590;
 		vrLoc = 4380;
@@ -9341,7 +9341,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 2495;
+		rLoc = 2755;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 1591;
@@ -9350,7 +9350,7 @@
 		fRef = F5A8A072039CE39901A80164;
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.h: 40";
-		rLen = 72;
+		rLen = 56;
 		rLoc = 1353;
 		rType = 0;
 		vrLen = 1543;
@@ -9360,8 +9360,8 @@
 		fRef = F5A8A073039CE39901A80164;
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
-		rLen = 65;
-		rLoc = 8249;
+		rLen = 48;
+		rLoc = 8265;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 7426;
@@ -9371,7 +9371,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.h: 40";
 		rLen = 0;
-		rLoc = 1424;
+		rLoc = 1409;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 0;
@@ -9381,7 +9381,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 2984;
+		rLoc = 4097;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 1591;
@@ -9391,7 +9391,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 268";
 		rLen = 0;
-		rLoc = 7557;
+		rLoc = 7188;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 999;
@@ -9401,7 +9401,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 3060;
+		rLoc = 4173;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 1892;
@@ -9411,7 +9411,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 8621;
+		rLoc = 8313;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 7426;
@@ -9421,7 +9421,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: Kill";
 		rLen = 0;
-		rLoc = 1331;
+		rLoc = 1498;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 293;
@@ -10641,7 +10641,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 1567;
@@ -10781,7 +10781,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 1567;
@@ -11571,137 +11571,14 @@
 			F5A8A079039CE91501A80164,
 			F5A8A07B039D065101A80164,
 			F5AED01803A016FA01A80164,
+			F54490DF03A5338501A80164,
 		);
 		executables = (
 			F547E00802395BCC01A7C23C,
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 61140067;
-			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
-				ContentSize = "{681, 436}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {681, 413}}";
-					Split0 = {
-						ActiveTab = 2;
-						Collapsed = NO;
-						Frame = "{{0, 0}, {681, 413}}";
-						Split0 = {
-							Frame = "{{0, 220}, {681, 193}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {952, 321}}";
-								Split0 = {
-									Frame = "{{0, 24}, {952, 297}}";
-									Split0 = {
-										Frame = "{{0, 0}, {468, 297}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											126.803,
-											Value,
-											150.074,
-											Summary,
-											172.123,
-										);
-										Frame = "{{477, 0}, {475, 297}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {952, 321}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {781, 452}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {781, 452}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {683, 148}}";
-							BuildTranscriptFrame = "{{0, 157}, {683, 59}}";
-							Frame = "{{0, 0}, {681, 214}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {300, 533}}";
-						GroupTreeTableConfiguration = (
-							SCMStatusColumn,
-							22,
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							245,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 100}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				StatusViewVisible = YES;
-				Template = F5314676015831810DCA290F;
-				ToolbarVisible = YES;
-				WindowLocation = "{31, 418}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 61157236;
 			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
 				ContentSize = "{594, 303}";
 				LeftSlideOut = {
@@ -11826,37 +11703,38 @@
 				ToolbarVisible = YES;
 				WindowLocation = "{4, 633}";
 			};
-			"PBXTemplateGeometry-F5CA7ECB015C094F0DCA290F" = {
-				ContentSize = "{668, 621}";
+			"PBXTemplateGeometry-F5CA7ECC015C09990DCA290F" = {
+				ContentSize = "{954, 693}";
 				LeftSlideOut = {
 					Collapsed = NO;
-					Frame = "{{0, 0}, {668, 621}}";
+					Frame = "{{0, 23}, {954, 670}}";
 					Split0 = {
+						ActiveTab = 0;
 						Collapsed = NO;
-						Frame = "{{0, 0}, {668, 621}}";
+						Frame = "{{24, 0}, {930, 670}}";
 						Split0 = {
-							Frame = "{{0, 0}, {668, 621}}";
+							Frame = "{{0, 273}, {930, 397}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								Collapsed = NO;
-								Frame = "{{0, 0}, {484, 208}}";
+								Frame = "{{0, 0}, {930, 267}}";
 								Split0 = {
-									Frame = "{{0, 24}, {484, 184}}";
+									Frame = "{{0, 24}, {930, 243}}";
 									Split0 = {
-										Frame = "{{0, 0}, {236, 184}}";
+										Frame = "{{0, 0}, {325, 243}}";
 									};
 									Split1 = {
 										DebugVariablesTableConfiguration = (
 											Name,
-											123,
+											307.803,
 											Value,
-											85,
+											116.074,
 											Summary,
-											62.123,
+											146.123,
 										);
-										Frame = "{{245, 0}, {239, 184}}";
+										Frame = "{{334, 0}, {596, 243}}";
 									};
 									SplitCount = 2;
 								};
@@ -11870,7 +11748,7 @@
 								TabCount = 2;
 								TabsVisible = YES;
 							};
-							Frame = "{{0, 0}, {484, 208}}";
+							Frame = "{{0, 0}, {930, 267}}";
 							LauncherConfigVersion = 7;
 						};
 						Tab1 = {
@@ -11895,12 +11773,10 @@
 					Tab0 = {
 						Frame = "{{0, 0}, {313, 531}}";
 						GroupTreeTableConfiguration = (
-							SCMStatusColumn,
-							22,
 							TargetStatusColumn,
 							18,
 							MainColumn,
-							258,
+							280,
 						);
 					};
 					Tab1 = {
@@ -11942,12 +11818,12 @@
 						Frame = "{{0, 0}, {250, 100}}";
 					};
 					TabCount = 5;
-					TabsVisible = NO;
+					TabsVisible = YES;
 				};
-				StatusViewVisible = NO;
-				Template = F5CA7ECB015C094F0DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{83, 94}";
+				StatusViewVisible = YES;
+				Template = F5CA7ECC015C09990DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{13, 237}";
 			};
 			PBXWorkspaceContents = (
 				{
@@ -21347,7 +21223,7 @@
 					WindowLocation = "{4, 633}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 61140067;
+			PBXWorkspaceStateSaveDate = 61157236;
 		};
 		perUserProjectItems = {
 			F500892C0373044701A80164 = F500892C0373044701A80164;
@@ -31657,6 +31533,12 @@
 		vrLen = 1569;
 		vrLoc = 4009;
 	};
+	F54490DF03A5338501A80164 = {
+		fileReference = F5B3598A039197E801A80164;
+		isa = PBXFileBreakpoint;
+		lineNumber = 1;
+		state = 2;
+	};
 	F54506D202CB36BD019E6518 = {
 		fRef = F546321D02AD04B701A7DA6B;
 		isa = PBXTextBookmark;
@@ -39736,7 +39618,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 9859;
+		rLoc = 9928;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2214;
@@ -39766,7 +39648,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 10314;
+		rLoc = 10383;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 2227;
@@ -45216,7 +45098,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9404;
+		rLoc = 9473;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 4448;
@@ -45246,7 +45128,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9470;
+		rLoc = 9539;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -45316,7 +45198,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 9470;
+		rLoc = 9539;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 4570;
@@ -45906,7 +45788,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 3519;
@@ -48440,7 +48322,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 7344;
+		rLoc = 7413;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 4565;
@@ -49290,7 +49172,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 1579;
@@ -53820,7 +53702,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 655";
 		rLen = 0;
-		rLoc = 22465;
+		rLoc = 22638;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 15432;
@@ -55310,7 +55192,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kLinkStateUntested";
 		rLen = 0;
-		rLoc = 2833;
+		rLoc = 3002;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 0;
@@ -55320,7 +55202,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 728";
 		rLen = 0;
-		rLoc = 21328;
+		rLoc = 21501;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 19013;
@@ -55350,7 +55232,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kLinkStateConnecting";
 		rLen = 0;
-		rLoc = 2833;
+		rLoc = 3002;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 0;
@@ -55400,7 +55282,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 4191;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 739;
@@ -55631,7 +55513,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 673";
 		rLen = 0;
-		rLoc = 22467;
+		rLoc = 22640;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 16632;
@@ -55671,7 +55553,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 673";
 		rLen = 0;
-		rLoc = 22467;
+		rLoc = 22640;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 16625;
@@ -55691,7 +55573,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 639";
 		rLen = 0;
-		rLoc = 20966;
+		rLoc = 21139;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 15767;
@@ -55751,7 +55633,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kLinkStateUntested";
 		rLen = 0;
-		rLoc = 2544;
+		rLoc = 2713;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 1047;
@@ -55791,7 +55673,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 578";
 		rLen = 0;
-		rLoc = 18913;
+		rLoc = 19086;
 		rType = 0;
 		vrLen = 1606;
 		vrLoc = 13880;
@@ -55815,7 +55697,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 122";
 		rLen = 0;
-		rLoc = 4219;
+		rLoc = 4388;
 		rType = 0;
 		vrLen = 1765;
 		vrLoc = 3114;
@@ -55825,7 +55707,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 681";
 		rLen = 0;
-		rLoc = 21334;
+		rLoc = 21507;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 0;
@@ -55835,7 +55717,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkIsUp";
 		rLen = 0;
-		rLoc = 4164;
+		rLoc = 4333;
 		rType = 0;
 		vrLen = 1698;
 		vrLoc = 2197;
@@ -55855,7 +55737,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 143";
 		rLen = 0;
-		rLoc = 4983;
+		rLoc = 5152;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 2732;
@@ -55875,7 +55757,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 125";
 		rLen = 0;
-		rLoc = 4290;
+		rLoc = 4459;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 2810;
@@ -55975,7 +55857,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 150";
 		rLen = 0;
-		rLoc = 5060;
+		rLoc = 5229;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 2881;
@@ -56065,7 +55947,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3878;
+		rLoc = 3956;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 1512;
@@ -56085,7 +55967,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3878;
+		rLoc = 3956;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1512;
@@ -56325,7 +56207,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 149";
 		rLen = 0;
-		rLoc = 5016;
+		rLoc = 5185;
 		rType = 0;
 		vrLen = 1739;
 		vrLoc = 3551;
@@ -56365,7 +56247,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 149";
 		rLen = 0;
-		rLoc = 5016;
+		rLoc = 5185;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 3511;
@@ -56405,7 +56287,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 149";
 		rLen = 0;
-		rLoc = 5060;
+		rLoc = 5229;
 		rType = 0;
 		vrLen = 1528;
 		vrLoc = 3008;
@@ -56595,7 +56477,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 4191;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 2047;
@@ -56635,7 +56517,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kErrorTotalLimit";
 		rLen = 0;
-		rLoc = 2937;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 1053;
@@ -56655,7 +56537,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kTCPSlowLinkCheckPeriod";
 		rLen = 0;
-		rLoc = 2775;
+		rLoc = 2944;
 		rType = 0;
 		vrLen = 933;
 		vrLoc = 1053;
@@ -56675,7 +56557,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 516";
 		rLen = 0;
-		rLoc = 19401;
+		rLoc = 19574;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 12334;
@@ -56805,7 +56687,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 547";
 		rLen = 0;
-		rLoc = 19801;
+		rLoc = 19974;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 12794;
@@ -56825,7 +56707,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 117";
 		rLen = 0;
-		rLoc = 4530;
+		rLoc = 4699;
 		rType = 0;
 		vrLen = 1550;
 		vrLoc = 2612;
@@ -56905,7 +56787,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 118";
 		rLen = 0;
-		rLoc = 4546;
+		rLoc = 4715;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 2612;
@@ -60404,7 +60286,7 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 1";
-		rLen = 6004;
+		rLen = 6173;
 		rLoc = 46;
 		rType = 0;
 		vrLen = 1926;
@@ -60424,7 +60306,7 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 1";
-		rLen = 6004;
+		rLen = 6173;
 		rLoc = 46;
 		rType = 0;
 		vrLen = 1954;
@@ -60454,7 +60336,7 @@
 		fRef = F5AB165E0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 1";
-		rLen = 20662;
+		rLen = 20835;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1327;
@@ -60734,7 +60616,7 @@
 		fRef = F5AAD5590375DDBE01A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: 1";
-		rLen = 4191;
+		rLen = 4269;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1461;
@@ -60985,7 +60867,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 3816;
+		rLoc = 4936;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 1560;
@@ -60995,7 +60877,7 @@
 		isa = PBXTextBookmark;
 		name = "GameProtocol.h: 32";
 		rLen = 95;
-		rLoc = 830;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -61035,7 +60917,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3643;
+		rLoc = 3721;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 2477;
@@ -61045,7 +60927,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 84;
-		rLoc = 2062;
+		rLoc = 2304;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 906;
@@ -63115,7 +62997,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 825";
 		rLen = 0;
-		rLoc = 24615;
+		rLoc = 24788;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 14790;
@@ -63265,7 +63147,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: ~GameNetObject";
 		rLen = 0;
-		rLoc = 2604;
+		rLoc = 2652;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 334;
@@ -63365,7 +63247,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 67";
 		rLen = 0;
-		rLoc = 2849;
+		rLoc = 2897;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 0;
@@ -63385,7 +63267,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 78";
 		rLen = 0;
-		rLoc = 2493;
+		rLoc = 2541;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 1434;
@@ -63415,7 +63297,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 152;
-		rLoc = 639;
+		rLoc = 687;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -63435,7 +63317,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 152;
-		rLoc = 639;
+		rLoc = 687;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -63455,7 +63337,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 73";
 		rLen = 0;
-		rLoc = 2295;
+		rLoc = 2497;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 473;
@@ -63465,7 +63347,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 93";
 		rLen = 0;
-		rLoc = 3156;
+		rLoc = 3238;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 1313;
@@ -63485,7 +63367,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 83";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 1313;
@@ -63515,7 +63397,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 119";
 		rLen = 0;
-		rLoc = 4106;
+		rLoc = 4154;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 2092;
@@ -63585,7 +63467,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 84";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 1155;
@@ -63615,7 +63497,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 663";
 		rLen = 0;
-		rLoc = 22885;
+		rLoc = 23058;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 6821;
@@ -63705,7 +63587,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: MessageUDPLinkCheckReplyHandle";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 725;
@@ -63715,7 +63597,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 663";
 		rLen = 0;
-		rLoc = 22885;
+		rLoc = 23058;
 		rType = 0;
 		vrLen = 1111;
 		vrLoc = 2140;
@@ -66229,7 +66111,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 775";
 		rLen = 0;
-		rLoc = 24096;
+		rLoc = 24269;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 19256;
@@ -66259,7 +66141,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3974;
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 2126;
@@ -66319,7 +66201,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3974;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 2124;
@@ -75468,7 +75350,7 @@
 		fRef = F5AAD5590375DDBE01A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: 1";
-		rLen = 4191;
+		rLen = 4269;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1461;
@@ -75709,7 +75591,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 55";
 		rLen = 0;
-		rLoc = 4096;
+		rLoc = 4265;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 416;
@@ -75729,7 +75611,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 87";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 1065;
@@ -75749,7 +75631,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 2468;
+		rLoc = 2532;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1033;
@@ -75859,7 +75741,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 162";
 		rLen = 0;
-		rLoc = 17549;
+		rLoc = 17722;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 2518;
@@ -75869,7 +75751,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 89";
 		rLen = 0;
-		rLoc = 4811;
+		rLoc = 4980;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1121;
@@ -76169,7 +76051,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 162";
 		rLen = 0;
-		rLoc = 17549;
+		rLoc = 17722;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 2518;
@@ -76309,7 +76191,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 89";
 		rLen = 0;
-		rLoc = 4811;
+		rLoc = 4980;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1121;
@@ -76539,7 +76421,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -76789,7 +76671,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -76859,7 +76741,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -77019,7 +76901,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 93";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -77069,7 +76951,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 93";
 		rLen = 0;
-		rLoc = 5156;
+		rLoc = 5325;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 1150;
@@ -77079,7 +76961,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 192";
 		rLen = 0;
-		rLoc = 20291;
+		rLoc = 20464;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -77359,7 +77241,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 184";
 		rLen = 0;
-		rLoc = 5525;
+		rLoc = 5694;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 4218;
@@ -77379,7 +77261,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: IDTransferHandle";
 		rLen = 0;
-		rLoc = 1873;
+		rLoc = 2115;
 		rType = 0;
 		vrLen = 1339;
 		vrLoc = 1414;
@@ -77409,7 +77291,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 816";
 		rLen = 0;
-		rLoc = 21723;
+		rLoc = 21896;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 20628;
@@ -77439,7 +77321,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 191";
 		rLen = 0;
-		rLoc = 5747;
+		rLoc = 5916;
 		rType = 0;
 		vrLen = 1488;
 		vrLoc = 4568;
@@ -77459,7 +77341,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 169";
 		rLen = 0;
-		rLoc = 4849;
+		rLoc = 5018;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 3556;
@@ -77529,7 +77411,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 47";
 		rLen = 0;
-		rLoc = 1134;
+		rLoc = 1193;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2223;
@@ -77559,7 +77441,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 184";
 		rLen = 0;
-		rLoc = 5525;
+		rLoc = 5694;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 4218;
@@ -77569,7 +77451,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 816";
 		rLen = 0;
-		rLoc = 21723;
+		rLoc = 21896;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 20628;
@@ -77589,7 +77471,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: IDTransferHandle";
 		rLen = 0;
-		rLoc = 1873;
+		rLoc = 2115;
 		rType = 0;
 		vrLen = 1339;
 		vrLoc = 1414;
@@ -77629,7 +77511,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 816";
 		rLen = 0;
-		rLoc = 21723;
+		rLoc = 21896;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 20628;
@@ -77648,7 +77530,7 @@
 		fRef = F5AB165E0371B43601A80164;
 		isa = PBXTextBookmark;
 		rLen = 1;
-		rLoc = 699;
+		rLoc = 709;
 		rType = 1;
 	};
 	F5A736D503A4F98301A80164 = {
@@ -77656,7 +77538,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 700";
 		rLen = 0;
-		rLoc = 18192;
+		rLoc = 18365;
 		rType = 0;
 		vrLen = 383;
 		vrLoc = 17993;
@@ -78095,7 +77977,7 @@
 		fRef = F54E9EB2030BD58E01D67831;
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 60";
-		rLen = 2059;
+		rLen = 2084;
 		rLoc = 1546;
 		rType = 0;
 		vrLen = 1145;
@@ -78386,7 +78268,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 84;
-		rLoc = 2062;
+		rLoc = 2304;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 870;
@@ -78406,7 +78288,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3643;
+		rLoc = 3721;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 2477;
@@ -78426,7 +78308,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: MessageHandle";
 		rLen = 0;
-		rLoc = 1578;
+		rLoc = 1637;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 462;
@@ -78706,7 +78588,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3643;
+		rLoc = 3721;
 		rType = 0;
 		vrLen = 1700;
 		vrLoc = 2897;
@@ -78716,7 +78598,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 73";
 		rLen = 0;
-		rLoc = 1850;
+		rLoc = 1898;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 1073;
@@ -78746,7 +78628,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 224";
 		rLen = 0;
-		rLoc = 5712;
+		rLoc = 5541;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 4764;
@@ -78756,7 +78638,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 185";
 		rLen = 0;
-		rLoc = 5765;
+		rLoc = 5934;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 1530;
@@ -78776,7 +78658,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 224";
 		rLen = 0;
-		rLoc = 5712;
+		rLoc = 5541;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 4764;
@@ -78786,7 +78668,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 104";
 		rLen = 0;
-		rLoc = 3097;
+		rLoc = 3266;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 1530;
@@ -78896,7 +78778,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 96";
 		rLen = 0;
-		rLoc = 2762;
+		rLoc = 2931;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 1530;
@@ -78906,7 +78788,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 215";
 		rLen = 26;
-		rLoc = 5421;
+		rLoc = 5503;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 4764;
@@ -78916,7 +78798,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: LinkMatch";
 		rLen = 0;
-		rLoc = 1286;
+		rLoc = 1453;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 1682;
@@ -78925,8 +78807,8 @@
 		fRef = F5A8A073039CE39901A80164;
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
-		rLen = 65;
-		rLoc = 8249;
+		rLen = 48;
+		rLoc = 8265;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 7426;
@@ -78936,7 +78818,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.h: FindClientDefForLink";
 		rLen = 0;
-		rLoc = 1424;
+		rLoc = 1409;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 0;
@@ -78956,7 +78838,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 62";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1865;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 635;
@@ -78966,7 +78848,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3643;
+		rLoc = 3721;
 		rType = 0;
 		vrLen = 1700;
 		vrLoc = 2897;
@@ -78976,7 +78858,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 2511;
+		rLoc = 2755;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 1892;
@@ -78986,7 +78868,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 8253;
+		rLoc = 8269;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 7374;
@@ -79006,7 +78888,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 8733;
+		rLoc = 8313;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 7499;
@@ -79016,7 +78898,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 73";
 		rLen = 0;
-		rLoc = 1850;
+		rLoc = 1898;
 		rType = 0;
 		vrLen = 1637;
 		vrLoc = 1073;
@@ -79026,7 +78908,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: NetObjectHandle";
 		rLen = 0;
-		rLoc = 2704;
+		rLoc = 2790;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 1637;
@@ -79136,7 +79018,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: Initialise";
 		rLen = 0;
-		rLoc = 4559;
+		rLoc = 4728;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 3360;
@@ -79264,7 +79146,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 163";
 		rLen = 0;
-		rLoc = 4133;
+		rLoc = 4158;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 3603;
@@ -79354,7 +79236,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 233";
 		rLen = 0;
-		rLoc = 5839;
+		rLoc = 5864;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 5280;
@@ -79394,7 +79276,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 233";
 		rLen = 0;
-		rLoc = 5839;
+		rLoc = 5864;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 5269;
@@ -79484,7 +79366,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 130";
 		rLen = 0;
-		rLoc = 3469;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 1886;
@@ -79494,7 +79376,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 95";
 		rLen = 0;
-		rLoc = 2740;
+		rLoc = 2942;
 		rType = 0;
 		vrLen = 1400;
 		vrLoc = 66;
@@ -79504,7 +79386,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 75";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 2018;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 1503;
@@ -79514,7 +79396,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 93";
 		rLen = 0;
-		rLoc = 2678;
+		rLoc = 2880;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 1199;
@@ -79524,7 +79406,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 119";
 		rLen = 0;
-		rLoc = 3236;
+		rLoc = 3318;
 		rType = 0;
 		vrLen = 1345;
 		vrLoc = 1897;
@@ -79564,7 +79446,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2696;
+		rLoc = 2719;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 657;
@@ -79584,7 +79466,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2696;
+		rLoc = 2719;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 1320;
@@ -79594,7 +79476,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 97";
 		rLen = 344;
-		rLoc = 2893;
+		rLoc = 2975;
 		rType = 0;
 		vrLen = 1345;
 		vrLoc = 1897;
@@ -79614,7 +79496,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2462;
+		rLoc = 2485;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 1367;
@@ -79644,7 +79526,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 233";
 		rLen = 0;
-		rLoc = 5839;
+		rLoc = 5864;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 1203;
@@ -79664,7 +79546,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 74";
 		rLen = 0;
-		rLoc = 1938;
+		rLoc = 1960;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 1587;
@@ -79674,7 +79556,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 84";
 		rLen = 0;
-		rLoc = 2437;
+		rLoc = 2639;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 1199;
@@ -79684,7 +79566,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 108";
 		rLen = 78;
-		rLoc = 2893;
+		rLoc = 2975;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 2246;
@@ -79694,7 +79576,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 3774;
+		rLoc = 3790;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 1728;
@@ -79704,7 +79586,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 803";
 		rLen = 0;
-		rLoc = 23433;
+		rLoc = 23606;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 20902;
@@ -79744,7 +79626,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 97";
 		rLen = 0;
-		rLoc = 2498;
+		rLoc = 2580;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 2603;
@@ -79754,7 +79636,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2593;
+		rLoc = 2616;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 1728;
@@ -79774,7 +79656,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2593;
+		rLoc = 2616;
 		rType = 0;
 		vrLen = 989;
 		vrLoc = 3;
@@ -79794,7 +79676,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 1840;
+		rLoc = 1863;
 		rType = 0;
 		vrLen = 1253;
 		vrLoc = 1634;
@@ -79804,7 +79686,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.h: KillClientsByType";
 		rLen = 0;
-		rLoc = 1442;
+		rLoc = 1409;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -79824,7 +79706,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 141";
 		rLen = 0;
-		rLoc = 3687;
+		rLoc = 3769;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 2636;
@@ -79834,7 +79716,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 53";
 		rLen = 0;
-		rLoc = 1583;
+		rLoc = 1785;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 1199;
@@ -79854,7 +79736,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 3221;
+		rLoc = 3237;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 2263;
@@ -79864,7 +79746,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 803";
 		rLen = 0;
-		rLoc = 23433;
+		rLoc = 23606;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 20902;
@@ -79894,7 +79776,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 97";
 		rLen = 0;
-		rLoc = 2737;
+		rLoc = 2939;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1249;
@@ -79914,7 +79796,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 3;
-		rLoc = 3467;
+		rLoc = 3483;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 2294;
@@ -79924,7 +79806,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 75";
 		rLen = 0;
-		rLoc = 1938;
+		rLoc = 1960;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 912;
@@ -79944,7 +79826,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 3;
-		rLoc = 3467;
+		rLoc = 3483;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 626;
@@ -79974,7 +79856,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 3;
-		rLoc = 3467;
+		rLoc = 3483;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 626;
@@ -80004,7 +79886,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 163";
 		rLen = 0;
-		rLoc = 4133;
+		rLoc = 4158;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 3603;
@@ -80034,7 +79916,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 83";
 		rLen = 0;
-		rLoc = 2387;
+		rLoc = 2589;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1249;
@@ -80064,7 +79946,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kErrorTotalLimit";
 		rLen = 0;
-		rLoc = 4073;
+		rLoc = 4242;
 		rType = 0;
 		vrLen = 1693;
 		vrLoc = 4732;
@@ -80084,7 +79966,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 75";
 		rLen = 0;
-		rLoc = 1938;
+		rLoc = 1960;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 912;
@@ -80094,7 +79976,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 93";
 		rLen = 0;
-		rLoc = 2658;
+		rLoc = 2860;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 1323;
@@ -80104,7 +79986,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 140";
 		rLen = 0;
-		rLoc = 3737;
+		rLoc = 3819;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 2883;
@@ -80114,7 +79996,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 79";
 		rLen = 0;
-		rLoc = 2329;
+		rLoc = 2531;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 1249;
@@ -80124,7 +80006,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 3142;
+		rLoc = 3158;
 		rType = 0;
 		vrLen = 1229;
 		vrLoc = 2294;
@@ -80144,7 +80026,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 86";
 		rLen = 0;
-		rLoc = 2445;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 1323;
@@ -80164,7 +80046,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 86";
 		rLen = 0;
-		rLoc = 2445;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1249;
@@ -80174,7 +80056,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 115";
 		rLen = 0;
-		rLoc = 2782;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 1258;
@@ -80184,7 +80066,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 86";
 		rLen = 0;
-		rLoc = 2445;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1249;
@@ -80670,7 +80552,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: Ticker";
 		rLen = 0;
-		rLoc = 1008;
+		rLoc = 1085;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 248;
@@ -80680,7 +80562,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 117";
 		rLen = 0;
-		rLoc = 3024;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 2708;
@@ -80700,7 +80582,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 8253;
+		rLoc = 8269;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 7489;
@@ -80890,7 +80772,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2526;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 1944;
@@ -80910,7 +80792,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: Ticker";
 		rLen = 0;
-		rLoc = 1008;
+		rLoc = 1085;
 		rType = 0;
 		vrLen = 1461;
 		vrLoc = 248;
@@ -80960,7 +80842,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: Ticker";
 		rLen = 0;
-		rLoc = 1008;
+		rLoc = 1085;
 		rType = 0;
 		vrLen = 1455;
 		vrLoc = 248;
@@ -80970,7 +80852,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 117";
 		rLen = 0;
-		rLoc = 3024;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 2708;
@@ -81010,7 +80892,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: DataEntryPush";
 		rLen = 579;
-		rLoc = 595;
+		rLoc = 775;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 240;
@@ -81030,7 +80912,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 2526;
+		rLoc = 2549;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 7229;
@@ -81100,7 +80982,7 @@
 		isa = PBXTextBookmark;
 		name = "GameProtocol.h: 37";
 		rLen = 0;
-		rLoc = 738;
+		rLoc = 736;
 		rType = 0;
 		vrLen = 1075;
 		vrLoc = 0;
@@ -81380,7 +81262,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 157";
 		rLen = 0;
-		rLoc = 4559;
+		rLoc = 4728;
 		rType = 0;
 		vrLen = 1682;
 		vrLoc = 4957;
@@ -81410,7 +81292,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 191";
 		rLen = 0;
-		rLoc = 5852;
+		rLoc = 6021;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 4917;
@@ -81430,7 +81312,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 187";
 		rLen = 7;
-		rLoc = 5782;
+		rLoc = 5951;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 4759;
@@ -81450,7 +81332,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: Initialise";
 		rLen = 0;
-		rLoc = 4559;
+		rLoc = 4728;
 		rType = 0;
 		vrLen = 1512;
 		vrLoc = 3278;
@@ -81500,7 +81382,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 834";
 		rLen = 0;
-		rLoc = 23375;
+		rLoc = 23548;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 22045;
@@ -81550,7 +81432,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 667";
 		rLen = 0;
-		rLoc = 18039;
+		rLoc = 18212;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 16816;
@@ -81570,7 +81452,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 74";
 		rLen = 0;
-		rLoc = 1806;
+		rLoc = 1865;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 921;
@@ -81660,7 +81542,7 @@
 		isa = PBXTextBookmark;
 		name = "GameProtocol.h: 37";
 		rLen = 0;
-		rLoc = 738;
+		rLoc = 736;
 		rType = 0;
 		vrLen = 1075;
 		vrLoc = 0;
@@ -81680,7 +81562,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 48";
 		rLen = 0;
-		rLoc = 1134;
+		rLoc = 1193;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 921;
@@ -81690,7 +81572,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 94";
 		rLen = 8;
-		rLoc = 2375;
+		rLoc = 2439;
 		rType = 0;
 		vrLen = 1755;
 		vrLoc = 1473;
@@ -81700,7 +81582,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 652";
 		rLen = 0;
-		rLoc = 17312;
+		rLoc = 17485;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 16209;
@@ -81710,7 +81592,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 94";
 		rLen = 0;
-		rLoc = 2390;
+		rLoc = 2454;
 		rType = 0;
 		vrLen = 1761;
 		vrLoc = 1473;
@@ -81800,7 +81682,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 94";
 		rLen = 0;
-		rLoc = 2390;
+		rLoc = 2454;
 		rType = 0;
 		vrLen = 1761;
 		vrLoc = 1473;
@@ -82460,7 +82342,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 739";
 		rLen = 0;
-		rLoc = 22465;
+		rLoc = 22638;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 19132;
@@ -82870,7 +82752,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 268";
 		rLen = 0;
-		rLoc = 7557;
+		rLoc = 7188;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 6010;
@@ -83150,7 +83032,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 192";
 		rLen = 0;
-		rLoc = 20291;
+		rLoc = 20464;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -83170,7 +83052,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 221";
 		rLen = 0;
-		rLoc = 17549;
+		rLoc = 17722;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 4038;
@@ -83380,7 +83262,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 118";
 		rLen = 0;
-		rLoc = 5293;
+		rLoc = 5318;
 		rType = 0;
 		vrLen = 856;
 		vrLoc = 2023;
@@ -83480,7 +83362,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 160";
 		rLen = 0;
-		rLoc = 5877;
+		rLoc = 5902;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 3022;
@@ -83884,7 +83766,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 2509;
+		rLoc = 2678;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 1258;
@@ -83904,7 +83786,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 2509;
+		rLoc = 2678;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 1258;
@@ -83924,7 +83806,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 2509;
+		rLoc = 2678;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 1428;
@@ -83984,7 +83866,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 85";
 		rLen = 0;
-		rLoc = 3992;
+		rLoc = 4161;
 		rType = 0;
 		vrLen = 829;
 		vrLoc = 292;
@@ -84244,7 +84126,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 17486;
+		rLoc = 17659;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 5243;
@@ -84264,7 +84146,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 17486;
+		rLoc = 17659;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 4622;
@@ -84294,7 +84176,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 17540;
+		rLoc = 17713;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 5312;
@@ -84344,7 +84226,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 289";
 		rLen = 0;
-		rLoc = 17540;
+		rLoc = 17713;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 5588;
@@ -84474,7 +84356,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.h: 28";
 		rLen = 0;
-		rLoc = 578;
+		rLoc = 630;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 0;
@@ -84494,7 +84376,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.h: 27";
 		rLen = 0;
-		rLoc = 507;
+		rLoc = 512;
 		rType = 0;
 		vrLen = 451;
 		vrLoc = 0;
@@ -84504,7 +84386,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: 8";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1948;
 		rType = 0;
 		vrLen = 62;
 		vrLoc = 0;
@@ -84524,7 +84406,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: 11";
 		rLen = 699;
-		rLoc = 358;
+		rLoc = 538;
 		rType = 0;
 		vrLen = 1559;
 		vrLoc = 85;
@@ -84534,7 +84416,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.h: 35";
 		rLen = 0;
-		rLoc = 578;
+		rLoc = 630;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 0;
@@ -84544,7 +84426,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: 36";
 		rLen = 0;
-		rLoc = 1139;
+		rLoc = 1319;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 0;
@@ -84574,7 +84456,7 @@
 		isa = PBXTextBookmark;
 		name = "GameProtocol.h: DataEntry";
 		rLen = 0;
-		rLoc = 977;
+		rLoc = 975;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 0;
@@ -84594,7 +84476,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: 29";
 		rLen = 0;
-		rLoc = 999;
+		rLoc = 1179;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 0;
@@ -84624,7 +84506,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: 11";
 		rLen = 22;
-		rLoc = 358;
+		rLoc = 538;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 0;
@@ -84654,7 +84536,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: Pack";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 532;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 0;
@@ -84694,7 +84576,7 @@
 		isa = PBXTextBookmark;
 		name = "GameMessageControlData.cpp: Unpack";
 		rLen = 0;
-		rLoc = 1139;
+		rLoc = 1319;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 246;
@@ -84714,7 +84596,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 94";
 		rLen = 0;
-		rLoc = 4675;
+		rLoc = 4844;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1523;
@@ -84734,7 +84616,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 94";
 		rLen = 0;
-		rLoc = 4675;
+		rLoc = 4844;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 1496;
@@ -84794,7 +84676,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 352";
 		rLen = 0;
-		rLoc = 19300;
+		rLoc = 19473;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 7431;
@@ -84804,7 +84686,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: MessageUDPLinkCheckReplyHandle";
 		rLen = 0;
-		rLoc = 4298;
+		rLoc = 4467;
 		rType = 0;
 		vrLen = 841;
 		vrLoc = 282;
@@ -85244,7 +85126,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11637;
+		rLoc = 11706;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 3260;
@@ -89012,7 +88894,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 598";
 		rLen = 0;
-		rLoc = 22812;
+		rLoc = 22985;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 14108;
@@ -89022,7 +88904,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 129";
 		rLen = 0;
-		rLoc = 5020;
+		rLoc = 5189;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 2647;
@@ -89032,7 +88914,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 622";
 		rLen = 0;
-		rLoc = 22581;
+		rLoc = 22754;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 14825;
@@ -89041,7 +88923,7 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 59";
-		rLen = 633;
+		rLen = 697;
 		rLoc = 1833;
 		rType = 0;
 		vrLen = 1358;
@@ -89052,7 +88934,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 618";
 		rLen = 44;
-		rLoc = 21754;
+		rLoc = 21927;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 14961;
@@ -89072,7 +88954,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 595";
 		rLen = 64;
-		rLoc = 20736;
+		rLoc = 20909;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 14934;
@@ -89082,7 +88964,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkStateToBG";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 1170;
@@ -89102,7 +88984,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 626";
 		rLen = 0;
-		rLoc = 22790;
+		rLoc = 22963;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 14961;
@@ -89132,7 +89014,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 628";
 		rLen = 0;
-		rLoc = 22801;
+		rLoc = 22974;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 14963;
@@ -89142,7 +89024,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkStateToBG";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1652;
 		vrLoc = 2698;
@@ -89162,7 +89044,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 626";
 		rLen = 0;
-		rLoc = 22686;
+		rLoc = 22859;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 14963;
@@ -89172,7 +89054,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkStateToBG";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1652;
 		vrLoc = 2698;
@@ -89262,7 +89144,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 621";
 		rLen = 0;
-		rLoc = 21951;
+		rLoc = 22124;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 14958;
@@ -89272,7 +89154,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 122";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1652;
 		vrLoc = 2698;
@@ -89282,7 +89164,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 623";
 		rLen = 0;
-		rLoc = 21951;
+		rLoc = 22124;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 15268;
@@ -89302,7 +89184,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 620";
 		rLen = 0;
-		rLoc = 21733;
+		rLoc = 21906;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 15267;
@@ -89392,7 +89274,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 122";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 2516;
@@ -89482,7 +89364,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 122";
 		rLen = 0;
-		rLoc = 4607;
+		rLoc = 4776;
 		rType = 0;
 		vrLen = 1834;
 		vrLoc = 2516;
@@ -89570,7 +89452,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 114";
 		rLen = 0;
-		rLoc = 2782;
+		rLoc = 2864;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 0;
@@ -89580,7 +89462,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 85";
 		rLen = 0;
-		rLoc = 2445;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 472;
@@ -89590,7 +89472,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 187";
 		rLen = 0;
-		rLoc = 5308;
+		rLoc = 5390;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 3153;
@@ -89600,7 +89482,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 112";
 		rLen = 0;
-		rLoc = 3360;
+		rLoc = 3408;
 		rType = 0;
 		vrLen = 1502;
 		vrLoc = 924;
@@ -89610,7 +89492,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 118";
 		rLen = 0;
-		rLoc = 3031;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 3972;
@@ -89640,7 +89522,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 73";
 		rLen = 0;
-		rLoc = 1890;
+		rLoc = 1938;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 874;
@@ -89650,7 +89532,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 118";
 		rLen = 0;
-		rLoc = 3031;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 0;
@@ -89660,7 +89542,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 85";
 		rLen = 0;
-		rLoc = 2445;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 1395;
@@ -89670,7 +89552,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 114";
 		rLen = 0;
-		rLoc = 2965;
+		rLoc = 3047;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 2168;
@@ -89680,7 +89562,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 81";
 		rLen = 0;
-		rLoc = 2364;
+		rLoc = 2566;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 1321;
@@ -89700,7 +89582,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 7596;
+		rLoc = 7612;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 2446;
@@ -89720,7 +89602,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 7516;
+		rLoc = 7532;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 3320;
@@ -89740,7 +89622,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 4594;
+		rLoc = 4610;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 3062;
@@ -89800,7 +89682,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 8148;
+		rLoc = 8164;
 		rType = 0;
 		vrLen = 1603;
 		vrLoc = 3043;
@@ -89820,7 +89702,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 16;
-		rLoc = 7578;
+		rLoc = 7594;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 6149;
@@ -89890,7 +89772,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 114";
 		rLen = 0;
-		rLoc = 2965;
+		rLoc = 3047;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 2168;
@@ -89910,7 +89792,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 15;
-		rLoc = 3270;
+		rLoc = 3286;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 2460;
@@ -89930,7 +89812,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 114";
 		rLen = 0;
-		rLoc = 2965;
+		rLoc = 3047;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 3088;
@@ -89940,7 +89822,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 49";
 		rLen = 0;
-		rLoc = 1402;
+		rLoc = 1604;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 709;
@@ -89950,7 +89832,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 147";
 		rLen = 0;
-		rLoc = 3737;
+		rLoc = 3819;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 2824;
@@ -89960,7 +89842,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 49";
 		rLen = 0;
-		rLoc = 1402;
+		rLoc = 1604;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 709;
@@ -89970,7 +89852,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 147";
 		rLen = 0;
-		rLoc = 3737;
+		rLoc = 3819;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 2785;
@@ -89979,8 +89861,8 @@
 		fRef = F5B3598A039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: ReliableSendToServer";
-		rLen = 102;
-		rLoc = 1350;
+		rLen = 145;
+		rLoc = 1509;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 709;
@@ -89990,7 +89872,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 203";
 		rLen = 0;
-		rLoc = 5181;
+		rLoc = 5263;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 4418;
@@ -90000,7 +89882,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetUtils.cpp: KillLinks";
 		rLen = 0;
-		rLoc = 4487;
+		rLoc = 4503;
 		rType = 0;
 		vrLen = 1581;
 		vrLoc = 3593;
@@ -90020,7 +89902,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 203";
 		rLen = 0;
-		rLoc = 5181;
+		rLoc = 5263;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 4883;
@@ -90030,7 +89912,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: JoinGame";
 		rLen = 0;
-		rLoc = 967;
+		rLoc = 1044;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 1511;
@@ -90040,7 +89922,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 229";
 		rLen = 0;
-		rLoc = 6562;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 4883;
@@ -90060,7 +89942,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 210";
 		rLen = 0;
-		rLoc = 5360;
+		rLoc = 5442;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 4878;
@@ -90070,7 +89952,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 100";
 		rLen = 0;
-		rLoc = 2776;
+		rLoc = 2978;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 1499;
@@ -90080,7 +89962,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 216";
 		rLen = 0;
-		rLoc = 6103;
+		rLoc = 5734;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 4967;
@@ -90090,7 +89972,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 100";
 		rLen = 17;
-		rLoc = 2759;
+		rLoc = 2961;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 1499;
@@ -90100,7 +89982,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 257";
 		rLen = 0;
-		rLoc = 7483;
+		rLoc = 7114;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 6085;
@@ -90120,7 +90002,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 238";
 		rLen = 16;
-		rLoc = 6636;
+		rLoc = 6267;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 6085;
@@ -90130,7 +90012,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 68";
 		rLen = 0;
-		rLoc = 1966;
+		rLoc = 2168;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 1499;
@@ -90150,7 +90032,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: HandleULBytesEnd";
 		rLen = 0;
-		rLoc = 1986;
+		rLoc = 2188;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 1499;
@@ -90520,7 +90402,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 167";
 		rLen = 18;
-		rLoc = 5300;
+		rLoc = 5469;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 3855;
@@ -90560,7 +90442,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: CreateObjectHandle";
 		rLen = 0;
-		rLoc = 1892;
+		rLoc = 2134;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 0;
@@ -90640,7 +90522,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3640;
+		rLoc = 3718;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 2638;
@@ -90690,7 +90572,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: AddressSet";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 764;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 337;
@@ -90740,7 +90622,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 3643;
+		rLoc = 3721;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 2497;
@@ -90980,7 +90862,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 764;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 434;
@@ -91000,7 +90882,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 764;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -91010,7 +90892,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 2669;
@@ -91030,7 +90912,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 2669;
@@ -91150,7 +91032,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 2669;
@@ -91190,7 +91072,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 3959;
@@ -91270,7 +91152,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 74;
-		rLoc = 6449;
+		rLoc = 6080;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 2729;
@@ -91290,7 +91172,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 3184;
+		rLoc = 3266;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 1505;
@@ -91300,7 +91182,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 764;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -91310,7 +91192,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4390;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 1505;
@@ -91320,7 +91202,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: ~GameNetObject";
 		rLen = 0;
-		rLoc = 2604;
+		rLoc = 2652;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 336;
@@ -91330,7 +91212,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4390;
+		rLoc = 4472;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 1505;
@@ -91350,7 +91232,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 69";
 		rLen = 67;
-		rLoc = 2209;
+		rLoc = 2411;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -91370,7 +91252,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 30";
 		rLen = 152;
-		rLoc = 639;
+		rLoc = 687;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 433;
@@ -91676,7 +91558,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 140";
 		rLen = 0;
-		rLoc = 6281;
+		rLoc = 5912;
 		rType = 0;
 		vrLen = 1234;
 		vrLoc = 0;
@@ -91726,7 +91608,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 140";
 		rLen = 0;
-		rLoc = 6281;
+		rLoc = 5912;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 1477;
@@ -91756,7 +91638,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 77";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 2557;
 		rType = 0;
 		vrLen = 1403;
 		vrLoc = 535;
@@ -91766,7 +91648,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 68";
 		rLen = 0;
-		rLoc = 1805;
+		rLoc = 1799;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 1477;
@@ -91786,7 +91668,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 68";
 		rLen = 0;
-		rLoc = 1805;
+		rLoc = 1799;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 1457;
@@ -91806,7 +91688,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 129";
 		rLen = 0;
-		rLoc = 4336;
+		rLoc = 4418;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 2963;
@@ -91816,7 +91698,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 77";
 		rLen = 0;
-		rLoc = 2355;
+		rLoc = 2557;
 		rType = 0;
 		vrLen = 1403;
 		vrLoc = 535;
@@ -91826,7 +91708,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 127";
 		rLen = 0;
-		rLoc = 3914;
+		rLoc = 3996;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 2768;
@@ -91856,7 +91738,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 124";
 		rLen = 305;
-		rLoc = 3609;
+		rLoc = 3691;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 2768;
@@ -91866,7 +91748,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 71";
 		rLen = 0;
-		rLoc = 2256;
+		rLoc = 2458;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 535;
@@ -91876,7 +91758,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 154";
 		rLen = 0;
-		rLoc = 4675;
+		rLoc = 4757;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 3009;
@@ -91886,7 +91768,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 40";
 		rLen = 0;
-		rLoc = 1068;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 535;
@@ -91986,7 +91868,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 40";
 		rLen = 0;
-		rLoc = 1068;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 535;
@@ -92006,7 +91888,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 69";
 		rLen = 0;
-		rLoc = 1946;
+		rLoc = 1994;
 		rType = 0;
 		vrLen = 1545;
 		vrLoc = 877;
@@ -92026,7 +91908,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 89";
 		rLen = 0;
-		rLoc = 2745;
+		rLoc = 2914;
 		rType = 0;
 		vrLen = 1786;
 		vrLoc = 3292;
@@ -92036,7 +91918,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 825";
 		rLen = 0;
-		rLoc = 24615;
+		rLoc = 24788;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 2826;
@@ -92056,7 +91938,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 71";
 		rLen = 0;
-		rLoc = 2204;
+		rLoc = 2406;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 737;
@@ -92066,7 +91948,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 101";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1567;
 		vrLoc = 1916;
@@ -92086,7 +91968,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 88";
 		rLen = 357;
-		rLoc = 2536;
+		rLoc = 2618;
 		rType = 0;
 		vrLen = 1572;
 		vrLoc = 1911;
@@ -92116,7 +91998,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 70";
 		rLen = 0;
-		rLoc = 1946;
+		rLoc = 1994;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 877;
@@ -92196,7 +92078,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 90";
 		rLen = 357;
-		rLoc = 2536;
+		rLoc = 2618;
 		rType = 0;
 		vrLen = 1586;
 		vrLoc = 1838;
@@ -92276,7 +92158,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 162";
 		rLen = 0;
-		rLoc = 4514;
+		rLoc = 4596;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 3241;
@@ -92376,7 +92258,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 111";
 		rLen = 0;
-		rLoc = 3216;
+		rLoc = 3298;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 2663;
@@ -92386,7 +92268,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: UpdateServer";
 		rLen = 0;
-		rLoc = 1482;
+		rLoc = 1684;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 946;
@@ -92406,7 +92288,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 128";
 		rLen = 0;
-		rLoc = 3469;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 1911;
@@ -92456,7 +92338,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: UDPTargetPortGet";
 		rLen = 0;
-		rLoc = 2745;
+		rLoc = 2914;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 3275;
@@ -92466,7 +92348,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 796";
 		rLen = 36;
-		rLoc = 23068;
+		rLoc = 23241;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 20939;
@@ -92476,7 +92358,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: NextLinkNameTake";
 		rLen = 0;
-		rLoc = 2973;
+		rLoc = 3142;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 1332;
@@ -92506,7 +92388,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 796";
 		rLen = 0;
-		rLoc = 23104;
+		rLoc = 23277;
 		rType = 0;
 		vrLen = 1500;
 		vrLoc = 20939;
@@ -92516,7 +92398,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: NextLinkNameTake";
 		rLen = 0;
-		rLoc = 2993;
+		rLoc = 3162;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 1332;
@@ -92526,7 +92408,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 826";
 		rLen = 5;
-		rLoc = 24379;
+		rLoc = 24552;
 		rType = 0;
 		vrLen = 1527;
 		vrLoc = 20939;
@@ -92566,7 +92448,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 183";
 		rLen = 0;
-		rLoc = 5658;
+		rLoc = 5827;
 		rType = 0;
 		vrLen = 1760;
 		vrLoc = 4452;
@@ -92586,7 +92468,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 801";
 		rLen = 0;
-		rLoc = 23433;
+		rLoc = 23606;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 20939;
@@ -94002,7 +93884,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 167";
 		rLen = 0;
-		rLoc = 5258;
+		rLoc = 5283;
 		rType = 0;
 		vrLen = 892;
 		vrLoc = 3292;
@@ -94212,7 +94094,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 21";
 		rLen = 0;
-		rLoc = 1601;
+		rLoc = 1660;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 0;
@@ -94302,7 +94184,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: 27";
 		rLen = 0;
-		rLoc = 1047;
+		rLoc = 1106;
 		rType = 0;
 		vrLen = 605;
 		vrLoc = 0;
@@ -94392,7 +94274,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: CreateObjectHandle";
 		rLen = 0;
-		rLoc = 1047;
+		rLoc = 1106;
 		rType = 0;
 		vrLen = 807;
 		vrLoc = 0;
@@ -94422,7 +94304,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 104";
 		rLen = 0;
-		rLoc = 5169;
+		rLoc = 5217;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 0;
@@ -94442,7 +94324,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: CreateObjectHandle";
 		rLen = 0;
-		rLoc = 1028;
+		rLoc = 1087;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 0;
@@ -94482,7 +94364,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -94532,7 +94414,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 60";
 		rLen = 0;
-		rLoc = 2021;
+		rLoc = 2223;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 208;
@@ -94542,7 +94424,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4439;
+		rLoc = 4521;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 2463;
@@ -94552,7 +94434,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: HandleGameDefClientEnd";
 		rLen = 0;
-		rLoc = 1119;
+		rLoc = 1196;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 208;
@@ -94602,7 +94484,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 56";
 		rLen = 0;
-		rLoc = 3567;
+		rLoc = 3615;
 		rType = 0;
 		vrLen = 1531;
 		vrLoc = 461;
@@ -94622,7 +94504,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4439;
+		rLoc = 4521;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 2463;
@@ -94642,7 +94524,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 53";
 		rLen = 0;
-		rLoc = 1851;
+		rLoc = 2053;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 208;
@@ -95502,7 +95384,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 124";
 		rLen = 20;
-		rLoc = 3762;
+		rLoc = 3931;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 2720;
@@ -96082,7 +95964,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 9690;
@@ -96452,7 +96334,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 1";
 		rLen = 0;
-		rLoc = 0;
+		rLoc = 48;
 		rType = 0;
 		vrLen = 188;
 		vrLoc = 0;
@@ -96512,7 +96394,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 75";
 		rLen = 0;
-		rLoc = 1816;
+		rLoc = 2018;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 509;
@@ -96532,7 +96414,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 116";
 		rLen = 0;
-		rLoc = 8497;
+		rLoc = 8128;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 2092;
@@ -96582,7 +96464,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 24";
 		rLen = 0;
-		rLoc = 1578;
+		rLoc = 1780;
 		rType = 0;
 		vrLen = 646;
 		vrLoc = 0;
@@ -96652,7 +96534,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 9642;
@@ -96762,7 +96644,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 157";
 		rLen = 0;
-		rLoc = 7734;
+		rLoc = 7365;
 		rType = 0;
 		vrLen = 1354;
 		vrLoc = 2817;
@@ -96791,8 +96673,8 @@
 		fRef = F5B3598A039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: TypeNameGet";
-		rLen = 1109;
-		rLoc = 465;
+		rLen = 1263;
+		rLoc = 513;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 11;
@@ -96811,8 +96693,8 @@
 		fRef = F5B3598B039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 83";
-		rLen = 5526;
-		rLoc = 2971;
+		rLen = 5075;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 3852;
@@ -97032,7 +96914,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 87";
 		rLen = 0;
-		rLoc = 2833;
+		rLoc = 3002;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 0;
@@ -97072,7 +96954,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 87";
 		rLen = 0;
-		rLoc = 2833;
+		rLoc = 3002;
 		rType = 0;
 		vrLen = 1545;
 		vrLoc = 1108;
@@ -97252,7 +97134,7 @@
 		isa = PBXTextBookmark;
 		name = "GameProtocol.h: 29";
 		rLen = 0;
-		rLoc = 757;
+		rLoc = 755;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 0;
@@ -97282,7 +97164,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2218;
+		rLoc = 2240;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 846;
@@ -97292,7 +97174,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 740";
 		rLen = 0;
-		rLoc = 22465;
+		rLoc = 22638;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 9335;
@@ -98972,7 +98854,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 143";
 		rLen = 0;
-		rLoc = 4562;
+		rLoc = 4588;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 2487;
@@ -99922,7 +99804,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4439;
+		rLoc = 4521;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 0;
@@ -99932,7 +99814,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 59";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2129;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 276;
@@ -99972,7 +99854,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2279;
+		rLoc = 2361;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 0;
@@ -100132,7 +100014,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4492;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 1118;
@@ -100152,7 +100034,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4492;
 		rType = 0;
 		vrLen = 1651;
 		vrLoc = 1118;
@@ -100202,7 +100084,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1409;
 		vrLoc = 1118;
@@ -100332,7 +100214,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 3161;
+		rLoc = 3243;
 		rType = 0;
 		vrLen = 1480;
 		vrLoc = 1118;
@@ -100352,7 +100234,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: CreateObjectHandle";
 		rLen = 0;
-		rLoc = 1809;
+		rLoc = 1868;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 0;
@@ -100362,7 +100244,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 44";
 		rLen = 0;
-		rLoc = 2604;
+		rLoc = 2652;
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 345;
@@ -100402,7 +100284,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 59";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2129;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 276;
@@ -100432,7 +100314,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 58";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2129;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 276;
@@ -100452,7 +100334,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 58";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2129;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 276;
@@ -100511,7 +100393,7 @@
 		fRef = F5B3598B039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
-		rLen = 1575;
+		rLen = 1657;
 		rLoc = 1396;
 		rType = 0;
 		vrLen = 1492;
@@ -100532,7 +100414,7 @@
 		isa = PBXTextBookmark;
 		name = "GameNetObject.cpp: 45";
 		rLen = 0;
-		rLoc = 2604;
+		rLoc = 2652;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 336;
@@ -100612,7 +100494,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 740";
 		rLen = 0;
-		rLoc = 22465;
+		rLoc = 22638;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 19355;
@@ -100661,7 +100543,7 @@
 		fRef = F5B3598B039197E801A80164;
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
-		rLen = 1575;
+		rLen = 1657;
 		rLoc = 1396;
 		rType = 0;
 		vrLen = 1492;
@@ -100672,7 +100554,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 59";
 		rLen = 121;
-		rLoc = 1928;
+		rLoc = 2130;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 276;
@@ -100732,7 +100614,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 53";
 		rLen = 82;
-		rLoc = 1844;
+		rLoc = 2046;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 276;
@@ -100762,7 +100644,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 1421;
@@ -100902,7 +100784,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 170";
 		rLen = 0;
-		rLoc = 5413;
+		rLoc = 5582;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 3695;
@@ -100922,7 +100804,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 170";
 		rLen = 0;
-		rLoc = 5413;
+		rLoc = 5582;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 3695;
@@ -100952,7 +100834,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 1421;
@@ -100962,7 +100844,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 53";
 		rLen = 82;
-		rLoc = 1844;
+		rLoc = 2046;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 276;
@@ -100982,7 +100864,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 1421;
@@ -100992,7 +100874,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 28";
 		rLen = 0;
-		rLoc = 705;
+		rLoc = 753;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 350;
@@ -101102,7 +100984,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: GameDefClient";
 		rLen = 0;
-		rLoc = 2971;
+		rLoc = 3053;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 2673;
@@ -102196,7 +102078,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -102216,7 +102098,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -102236,7 +102118,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 11019;
+		rLoc = 11088;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 9642;
@@ -102286,7 +102168,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11664;
+		rLoc = 11733;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 9969;
@@ -102336,7 +102218,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: LoadPlayer";
 		rLen = 0;
-		rLoc = 11637;
+		rLoc = 11706;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 9969;
@@ -102736,7 +102618,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 357";
 		rLen = 0;
-		rLoc = 19251;
+		rLoc = 19424;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 7251;
@@ -102816,7 +102698,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 72";
 		rLen = 0;
-		rLoc = 3219;
+		rLoc = 3388;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 1044;
@@ -102866,7 +102748,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 72";
 		rLen = 0;
-		rLoc = 3219;
+		rLoc = 3388;
 		rType = 0;
 		vrLen = 862;
 		vrLoc = 495;
@@ -102886,7 +102768,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 72";
 		rLen = 0;
-		rLoc = 3219;
+		rLoc = 3388;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 1703;
@@ -102906,7 +102788,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 72";
 		rLen = 0;
-		rLoc = 3219;
+		rLoc = 3388;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 1703;
@@ -102916,7 +102798,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 386";
 		rLen = 0;
-		rLoc = 20468;
+		rLoc = 20641;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 7645;
@@ -102926,7 +102808,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 72";
 		rLen = 0;
-		rLoc = 3219;
+		rLoc = 3388;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 1703;
@@ -102936,7 +102818,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 386";
 		rLen = 0;
-		rLoc = 20467;
+		rLoc = 20640;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 7645;
@@ -102966,7 +102848,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 103";
 		rLen = 0;
-		rLoc = 4756;
+		rLoc = 4925;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 1612;
@@ -102976,7 +102858,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 405";
 		rLen = 0;
-		rLoc = 20586;
+		rLoc = 20759;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 6920;
@@ -102986,7 +102868,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 104";
 		rLen = 0;
-		rLoc = 4756;
+		rLoc = 4925;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 1682;
@@ -103006,7 +102888,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 104";
 		rLen = 0;
-		rLoc = 4756;
+		rLoc = 4925;
 		rType = 0;
 		vrLen = 849;
 		vrLoc = 220;
@@ -103026,7 +102908,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 131";
 		rLen = 0;
-		rLoc = 5863;
+		rLoc = 6032;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 2112;
@@ -103046,7 +102928,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 77";
 		rLen = 218;
-		rLoc = 3257;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 1502;
@@ -103076,7 +102958,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 77";
 		rLen = 218;
-		rLoc = 3257;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1502;
@@ -103096,7 +102978,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 77";
 		rLen = 218;
-		rLoc = 3257;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1502;
@@ -103116,7 +102998,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 77";
 		rLen = 218;
-		rLoc = 3257;
+		rLoc = 3426;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1502;
@@ -103136,7 +103018,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 75";
 		rLen = 0;
-		rLoc = 3216;
+		rLoc = 3385;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1502;
@@ -103156,7 +103038,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 75";
 		rLen = 0;
-		rLoc = 3216;
+		rLoc = 3385;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 1502;
@@ -103176,7 +103058,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: kSlowLinkCheckPeriod";
 		rLen = 0;
-		rLoc = 2647;
+		rLoc = 2816;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 1031;
@@ -103216,7 +103098,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 128";
 		rLen = 0;
-		rLoc = 3744;
+		rLoc = 3769;
 		rType = 0;
 		vrLen = 970;
 		vrLoc = 2680;
@@ -103236,7 +103118,7 @@
 		isa = PBXTextBookmark;
 		name = "CoreData.h: 141";
 		rLen = 0;
-		rLoc = 5025;
+		rLoc = 5050;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 2680;
@@ -104366,7 +104248,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1177;
 		vrLoc = 1520;
@@ -104386,7 +104268,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: HandleGraphicStart";
 		rLen = 0;
-		rLoc = 6873;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 1520;
@@ -104856,7 +104738,7 @@
 		isa = PBXTextBookmark;
 		name = "GameRouter.cpp: MessageHandle";
 		rLen = 0;
-		rLoc = 1601;
+		rLoc = 1660;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 447;
@@ -104906,7 +104788,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.cpp: 130";
 		rLen = 0;
-		rLoc = 3469;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 1886;
@@ -104916,7 +104798,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDefClient.h: 48";
 		rLen = 0;
-		rLoc = 1482;
+		rLoc = 1684;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 554;
@@ -105566,7 +105448,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: 132";
 		rLen = 0;
-		rLoc = 7822;
+		rLoc = 7891;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 729;
@@ -106306,7 +106188,7 @@
 		isa = PBXTextBookmark;
 		name = "GamePiecePlayer.cpp: UnpicklePrologue";
 		rLen = 0;
-		rLoc = 8117;
+		rLoc = 8186;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 0;

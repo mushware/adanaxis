@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.12 2002/12/03 20:28:14 southa Exp $
+ * $Id: CoreData.h,v 1.13 2002/12/05 13:20:10 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.13  2002/12/05 13:20:10  southa
+ * Client link handling
+ *
  * Revision 1.12  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -131,6 +134,7 @@ CoreData<RefType>::Give(const string& inName, RefType *inData)
     map<string, RefType *>::iterator p = m_data.find(inName);
     if (p != m_data.end())
     {
+        ++m_sequenceNum;
         delete p->second;
         p->second=inData;
     }
@@ -174,9 +178,9 @@ CoreData<RefType>::Delete(const string& inName)
     {
         throw(ReferenceFail("Delete of non-existent data '"+inName+"'"));
     }
+    ++m_sequenceNum;
     delete p->second;
     m_data.erase(p);
-    ++m_sequenceNum;
 }
 
 template<class RefType>
@@ -184,9 +188,9 @@ inline void
 CoreData<RefType>::Delete(const map<string, RefType *>::iterator& inIterator)
 {
     COREASSERT(inIterator->second != NULL);
+    ++m_sequenceNum;
     delete inIterator->second;
     m_data.erase(inIterator);
-    ++m_sequenceNum;
 }
 
 template<class RefType>
@@ -218,13 +222,13 @@ template<class RefType>
 inline void
 CoreData<RefType>::Clear(void)
 {
+    ++m_sequenceNum;
     for (map<string, RefType *>::iterator p = m_data.begin();
          p != m_data.end(); ++p)
     {
         delete p->second;
     }
     m_data.clear();
-    ++m_sequenceNum;
 }
 
 template<class RefType>

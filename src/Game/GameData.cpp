@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.19 2002/11/18 18:55:57 southa Exp $
+ * $Id: GameData.cpp,v 1.20 2002/12/03 20:28:16 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.20  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.19  2002/11/18 18:55:57  southa
  * Game resume and quit
  *
@@ -565,5 +568,4 @@ GameData::DumpAll(ostream& inOut) const
     }
     inOut << "</chunk>" << endl;
     inOut << "<!-- Incomplete -->" << endl;
-
-}    
+}

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.8 2002/12/05 13:20:13 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.9 2002/12/07 18:32:16 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.9  2002/12/07 18:32:16  southa
+ * Network ID stuff
+ *
  * Revision 1.8  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -111,6 +114,8 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& 
         bool outTakeMessage;
         if (p->second->UDPIfAddressMatchReceive(outTakeMessage, ioData))
         {
+            // cerr << "Received on " << p->first << ": " << ioData << endl;
+
             if (outTakeMessage)
             {
                 U32 messageType = ioData.MessageBytePop();

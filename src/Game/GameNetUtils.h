@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.h,v 1.4 2002/12/05 23:52:52 southa Exp $
+ * $Id: GameNetUtils.h,v 1.5 2002/12/07 18:32:15 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.5  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.4  2002/12/05 23:52:52  southa
  * Network management and status
  *
@@ -37,7 +40,6 @@ public:
     static void NetTicker(void);
     static void WebReceive(void);
     static void NetReceive(void);
-    static bool FindClientDefForLink(string& outName, const MediaNetLink *inLink);
     
 private:
     enum

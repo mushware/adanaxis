@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.9 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.10 2002/12/05 23:52:51 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.10  2002/12/05 23:52:51  southa
+ * Network management and status
+ *
  * Revision 1.9  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -67,6 +70,7 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
         bool isUpdate = CoreData<GameDefClient>::Instance().Exists(dataName);
         GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
         gameDefClient->ImageIsSet(true);
+        gameDefClient->PlayerNameSet(dataName);
         gameDefClient->AddressSet(m_address);
         gameDefClient->Unpickle(inXML);
 

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameMessageControlData.cpp,v 1.1 2002/12/06 17:38:00 southa Exp $
+ * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.1  2002/12/06 17:38:00  southa
+ * ControlData message unpacking
+ *
  */
 
 #include "GameMessageControlData.h"
@@ -8,6 +11,13 @@
 #include "GameProtocol.h"
 
 #include "mushMedia.h"
+
+const GameMessageControlData::DataEntry&
+GameMessageControlData::DataEntryGet(U32 inEntryNum) const
+{
+    COREASSERT(inEntryNum < m_data.size());
+    return m_data[inEntryNum];
+}
 
 void
 GameMessageControlData::DataEntryPush(U32 inFrameOffset, const GameControlFrameDef& inDef)
@@ -39,8 +49,8 @@ GameMessageControlData::Pack(MediaNetData& ioData) const
 void
 GameMessageControlData::Unpack(MediaNetData& ioData)
 {
-    m_startFrame = ioData.BytePop() << 8;
-    m_startFrame |= ioData.BytePop();
+    m_startFrame = ioData.MessageBytePop() << 8;
+    m_startFrame |= ioData.MessageBytePop();
 
     U32 messageSize = ioData.MessageSizeGet();
     U32 numEntries = messageSize / 4;
@@ -55,10 +65,10 @@ GameMessageControlData::Unpack(MediaNetData& ioData)
 
     for (U32 i=0; i<numEntries; ++i)
     {
-        m_data[i].frameOffset = ioData.BytePop();
-        m_data[i].frameDef.mouseDeltaX = ioData.BytePop();
-        m_data[i].frameDef.mouseDeltaY = ioData.BytePop();
-        m_data[i].frameDef.keyState = ioData.BytePop();
+        m_data[i].frameOffset = ioData.MessageBytePop();
+        m_data[i].frameDef.mouseDeltaX = ioData.MessageBytePop();
+        m_data[i].frameDef.mouseDeltaY = ioData.MessageBytePop();
+        m_data[i].frameDef.keyState = ioData.MessageBytePop();
     }
 }
 

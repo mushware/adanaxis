@@ -1,6 +1,11 @@
+#ifndef GAMEDEFCLIENT_H
+#define GAMEDEFCLIENT_H
 /*
- * $Id: GameDefClient.h,v 1.9 2002/12/05 23:52:51 southa Exp $
+ * $Id: GameDefClient.h,v 1.10 2002/12/07 18:32:14 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.10  2002/12/07 18:32:14  southa
+ * Network ID stuff
+ *
  * Revision 1.9  2002/12/05 23:52:51  southa
  * Network management and status
  *
@@ -33,6 +38,7 @@
 #include "mushCore.h"
 
 #include "GameDef.h"
+#include "GamePiecePlayer.h"
 
 #include "mushMedia.h"
 
@@ -45,8 +51,9 @@ public:
     
     void JoinGame(const string& inServer, U32 inPort);
     void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
+    void PlayerNameSet(const string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
     const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
-    bool LinkMatch(const MediaNetLink *inLink) const;
+    const CoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
@@ -104,7 +111,9 @@ private:
     U32 m_lastLinkNum;
     U32 m_numLinks;
     U32 m_uplinkBandwidth;
+    CoreDataRef<GamePiecePlayer> m_playerRef;
     bool m_killed;
     bool m_joined;
     bool m_linkGood;
 };
+#endif

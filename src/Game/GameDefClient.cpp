@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.15 2002/12/05 23:52:51 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.16 2002/12/07 18:32:14 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.16  2002/12/07 18:32:14  southa
+ * Network ID stuff
+ *
  * Revision 1.15  2002/12/05 23:52:51  southa
  * Network management and status
  *
@@ -66,6 +69,7 @@
 #include "GameDefClient.h"
 
 #include "GameAppHandler.h"
+#include "GameData.h"
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 #include "GameProtocol.h"
@@ -82,6 +86,7 @@ GameDefClient::GameDefClient(const string& inName) :
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
+    m_playerRef(inName, &GameData::Instance().PlayerGet()),
     m_killed(false),
     m_joined(false)
 {
@@ -209,25 +214,6 @@ GameDefClient::FastSendToServer(MediaNetData& ioData)
 {
     m_uplinkBandwidth += ioData.ReadSizeGet();
     GameNetUtils::FastSend(m_lastLinkNum, m_netLinks, m_numLinks, ioData);
-}
-
-bool
-GameDefClient::LinkMatch(const MediaNetLink *inLink) const
-{
-    // Can check the link address itself rather than the IP address
-    COREASSERT(m_numLinks <= m_netLinks.size());
-    for (U32 i=0; i<m_numLinks; ++i)
-    {
-        MediaNetLink *linkPtr = NULL;
-        if (m_netLinks[i].GetIfExists(linkPtr))
-        {
-            if (linkPtr == inLink)
-            {
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 void

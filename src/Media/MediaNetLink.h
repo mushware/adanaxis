@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.19 2002/12/07 18:32:15 southa Exp $
+ * $Id: MediaNetLink.h,v 1.20 2002/12/09 16:18:00 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.20  2002/12/09 16:18:00  southa
+ * Link ID transfer
+ *
  * Revision 1.19  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -84,16 +87,19 @@ public:
     void FastSend(MediaNetData& ioData);
     void ReliableSend(MediaNetData& ioData);
     bool UDPIfAddressMatchReceive(bool& outTakeMessage, MediaNetData& ioData);
-    bool Receive(MediaNetData * & outData);
+    bool Receive(MediaNetData *& outData);
     void Tick(void);
     bool IsDead(void);
     bool ReadyIs(void) const;
+    bool TargetServerIs(void) const { return m_targetIsServer; }
     void Disconnect(MediaNetProtocol::tReasonCode inCode);
         
     void LinkChecksSend(void);
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
+    bool NetIDExists(void) const { return m_netID != NULL; }
+    const MediaNetID& NetIDGet(void) const;
     void NetIDSet(const MediaNetID& inID);
     
     const string& TargetNameGet(void) const { return m_targetName; }

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.24 2002/12/07 18:32:15 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.25 2002/12/09 16:18:00 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.25  2002/12/09 16:18:00  southa
+ * Link ID transfer
+ *
  * Revision 1.24  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -659,6 +662,16 @@ MediaNetLink::Receive(MediaNetData * & outData)
     }
     
     return false;
+}
+
+const MediaNetID&
+MediaNetLink::NetIDGet(void) const
+{
+    if (m_netID == NULL)
+    {
+        throw(ReferenceFail("Net ID for link not set"));
+    }
+    return *m_netID;
 }
 
 void
