@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.7 2002/08/02 09:05:10 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.8 2002/08/02 09:47:37 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.8  2002/08/02 09:47:37  southa
+ * Added corner escapes
+ *
  * Revision 1.7  2002/08/02 09:05:10  southa
  * Movement modification in collison checking
  *
@@ -208,6 +211,21 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
             perm=MotionSpecPermeabilityGet(trialSpec);
         }
     }
+
+    if (perm <= 0)
+    {
+        // Try some angle tweaks
+        for (tVal deltaAngle=0.01; deltaAngle<0.1; deltaAngle *= 2)
+        {
+            trialSpec=inSpec;
+            trialSpec.deltaAngle=deltaAngle;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+            trialSpec.deltaAngle=-deltaAngle;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+            if (perm > 0) break;
+        }
+    }    
     
     if (perm <= 0)
     {
