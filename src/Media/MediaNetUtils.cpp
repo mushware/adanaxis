@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.11 2002/11/27 13:23:27 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.12 2002/11/28 18:05:36 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.12  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.11  2002/11/27 13:23:27  southa
  * Server and client data exchange
  *
@@ -58,6 +61,27 @@ MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const MediaNetAddress&
             p->second->TCPTargetIPGet() == netIP)
         {
             outLink = p->second;
+            return true;
+        }
+    }
+    return false;
+}
+
+bool
+MediaNetUtils::FindLinkToStation(string& outName, const MediaNetAddress& inAddress)
+{
+    U32 netIP=inAddress.HostGetNetworkOrder();
+    U32 netPort=inAddress.PortGetNetworkOrder();
+
+    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+
+    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        if (p->second->TCPTargetPortGet() == netPort &&
+            p->second->TCPTargetIPGet() == netIP)
+        {
+            outName = p->first;
             return true;
         }
     }

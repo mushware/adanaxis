@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.7 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameRouter.cpp,v 1.8 2002/12/04 15:39:58 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.8  2002/12/04 15:39:58  southa
+ * Multiplayer work
+ *
  * Revision 1.7  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -34,7 +37,6 @@ auto_ptr<GameRouter> GameRouter::m_instance;
 void
 GameRouter::MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 inType)
 {
-#if 0
     switch (inType)
     {
         case GameProtocol::kMessageTypeCreateObject:
@@ -50,8 +52,6 @@ GameRouter::MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 
             MediaNetLog::Instance().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
-#endif
-    NetObjectHandle(ioData, inLink);
 }
 
 void

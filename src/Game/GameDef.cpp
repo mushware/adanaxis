@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.12 2002/11/28 15:14:13 southa Exp $
+ * $Id: GameDef.cpp,v 1.13 2002/11/28 15:33:31 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.13  2002/11/28 15:33:31  southa
+ * Pass GameDef status over link
+ *
  * Revision 1.12  2002/11/28 15:14:13  southa
  * Multiplayer setup timing
  *
@@ -68,19 +71,6 @@ GameDef::StatusWebStringGet(void) const
 
         case kStatusNoServer:
             return "<font class=\"bgred\">NO SERVER</font>";
-    }
-}
-
-void
-GameDef::CreateNewLink(const MediaNetAddress& inAddress) const
-{
-    try
-    {
-        CoreData<MediaNetLink>::Instance().DataGive(MediaNetLink::NextLinkNameTake(), new MediaNetLink(inAddress));
-    }
-    catch (NetworkFail& e)
-    {
-        MediaNetLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
     }
 }
 

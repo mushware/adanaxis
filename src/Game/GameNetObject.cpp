@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.7 2002/11/28 15:33:31 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.8 2002/12/04 12:54:41 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.8  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.7  2002/11/28 15:33:31  southa
  * Pass GameDef status over link
  *
@@ -49,7 +52,7 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     {
         try
         {
-            CoreData<GameDefClient>::Instance().DataDelete(dataName);
+            CoreData<GameDefClient>::Instance().Delete(dataName);
         }
         catch (ReferenceFail& e)
         {
@@ -58,7 +61,7 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     }
     else
     {
-        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(dataName, new GameDefClient(elementName));
+        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
         gameDefClient->ImageIsSet(true);
         gameDefClient->AddressSet(m_address);
         gameDefClient->Unpickle(inXML);
@@ -86,7 +89,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
     {
         try
         {
-            CoreData<GameDefServer>::Instance().DataDelete(dataName);
+            CoreData<GameDefServer>::Instance().Delete(dataName);
         }
         catch (ReferenceFail& e)
         {
@@ -95,7 +98,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
     }
     else
     {
-        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().DataGive(dataName, new GameDefServer(elementName));
+        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().Give(dataName, new GameDefServer(elementName));
         gameDefServer->ImageIsSet(true);
         gameDefServer->AddressSet(m_address);
         gameDefServer->Unpickle(inXML);

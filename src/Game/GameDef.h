@@ -1,8 +1,11 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
 /*
- * $Id: GameDef.h,v 1.9 2002/11/28 15:33:31 southa Exp $
+ * $Id: GameDef.h,v 1.10 2002/12/04 12:54:41 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.10  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.9  2002/11/28 15:33:31  southa
  * Pass GameDef status over link
  *
@@ -62,7 +65,6 @@ public:
     U32 CreationMsecGet(void) const { return m_creationMsec; }
     
 protected:
-    void CreateNewLink(const MediaNetAddress& inAddress) const;
     void StatusSet(tStatus inStatus) { m_status = inStatus; }
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);

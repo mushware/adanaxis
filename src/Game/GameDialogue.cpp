@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.12 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.13 2002/11/24 23:18:16 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.13  2002/11/24 23:18:16  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.12  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -145,7 +148,7 @@ GameDialogue::Move(void)
         }
         if (m_age == spec.startTime)
         {
-            MediaAudio::Instance().Play(*spec.soundRef.DataGet());
+            MediaAudio::Instance().Play(*spec.soundRef.Get());
         }
     }
 
@@ -160,7 +163,7 @@ GameDialogue::Move(void)
         }
         if (m_age == spec.startTime)
         {
-            MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet(), spec.loop);
+            MediaAudio::Instance().Play(*spec.soundStreamRef.Get(), spec.loop);
         }
     }
     
@@ -198,14 +201,14 @@ void GameDialogue::ExpireNow(void)
 
     if (m_killSound != "")
     {    
-        MediaAudio::Instance().Play(*CoreDataRef<MediaSound>(m_killSound).DataGet());
+        MediaAudio::Instance().Play(*CoreDataRef<MediaSound>(m_killSound).Get());
     }
     
     if (latestFound)
     {
         COREASSERT(latestIndex < m_soundStreams.size());
         SoundStreamSpec& spec=m_soundStreams[latestIndex];
-        MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet());
+        MediaAudio::Instance().Play(*spec.soundStreamRef.Get());
     }
 }
     

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.12 2002/11/28 18:05:35 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.13 2002/12/04 12:54:41 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.13  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.12  2002/11/28 18:05:35  southa
  * Print link ages
  *
@@ -58,6 +61,7 @@
 
 #include "GameAppHandler.h"
 #include "GameDefServer.h"
+#include "GameNetUtils.h"
 #include "GameProtocol.h"
 
 #include "mushPlatform.h"
@@ -68,6 +72,9 @@ GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),
     m_lastLinkMsec(0),
     m_lastRegistrationMsec(0),
+    m_netLinks(kMaxLinks, CoreDataRef<MediaNetLink>("invalid-link")),
+    m_lastLinkNum(0),
+    m_numLinks(kNumSetupModeLinks),
     m_killed(false),
     m_joined(false)
 {
@@ -82,40 +89,49 @@ GameDefClient::JoinGame(const string& inServer, U32 inPort)
     StatusSet(GameDef::kStatusTesting);
     m_joined=true;
     m_lastRegistrationMsec=0; // Schedule immediate registration
+
+    string linkName;
+    if (MediaNetUtils::FindLinkToStation(linkName, m_netAddress))
+    {
+        COREASSERT(m_netLinks.size() > 0);
+        m_netLinks[0].NameSet(linkName);
+        cerr << "Grabbed link " << linkName << endl;
+    }
 }
 
 void
 GameDefClient::Ticker(void)
 {
+    // Needs calling at least once per second
     if (!m_joined) return;
-    
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    m_currentMsec=gameAppHandler.MillisecondsGet();
 
-    MediaNetLink *netLink=NULL;
-    if (MediaNetUtils::FindLinkToStation(netLink, m_netAddress))
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    if (gameAppHandler.GameRunningIs())
     {
-        COREASSERT(netLink != NULL);
-        if (m_currentMsec > m_lastRegistrationMsec + kRegistrationMsec &&
-            m_currentMsec > netLink->CreationMsecGet() + kLinkSetupWaitMsec)
-        {
-            UpdateServer(*netLink);
-            m_lastRegistrationMsec = m_currentMsec;
-        }
+        m_numLinks=kNumGameModeLinks;
     }
     else
     {
-        if (m_lastLinkMsec + kLinkSetupIntervalMsec < m_currentMsec)
+        m_numLinks=kNumSetupModeLinks;
+    }
+    
+    m_linkGood = GameNetUtils::MaintainLinks(m_netLinks, m_netAddress, m_numLinks);
+    
+
+    m_currentMsec=gameAppHandler.MillisecondsGet();
+
+    if (m_linkGood)
+    {
+        if (m_currentMsec > m_lastRegistrationMsec + kRegistrationMsec)
         {
-            CreateNewLink(m_netAddress);
-            m_lastLinkMsec = m_currentMsec;
+            UpdateServer();
         }
     }
-    UpdateStatus(); // Need to call this a bit less often
+    UpdateStatus();
 }
 
 void
-GameDefClient::UpdateServer(MediaNetLink& ioLink)
+GameDefClient::UpdateServer(void)
 {
     MediaNetData netData;
     if (m_killed)
@@ -131,7 +147,8 @@ GameDefClient::UpdateServer(MediaNetLink& ioLink)
     
     try
     {
-        ioLink.ReliableSend(netData);
+        GameNetUtils::ReliableSend(m_lastLinkNum, m_netLinks, netData);
+        m_lastRegistrationMsec = m_currentMsec;
     }
     catch (NetworkFail& e)
     {
@@ -143,13 +160,8 @@ void
 GameDefClient::Kill(void)
 {
     m_killed=true;
-    // Schedule an immediate update on the ticker
-    MediaNetLink *netLink=NULL;
-    if (MediaNetUtils::FindLinkToStation(netLink, m_netAddress))
-    {
-        COREASSERT(netLink != NULL);
-        UpdateServer(*netLink);
-    }
+
+    UpdateServer();
 }
 
 void

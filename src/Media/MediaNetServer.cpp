@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.18 2002/11/27 17:44:20 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.19 2002/11/27 20:17:28 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.19  2002/11/27 20:17:28  southa
+ * Basic network cleardown
+ *
  * Revision 1.18  2002/11/27 17:44:20  southa
  * Network fixes
  *
@@ -168,7 +171,7 @@ MediaNetServer::Accept(void)
         {
             ostringstream name;
             name << "server" << m_linkCtr;
-            CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPortHostOrder));
+            CoreData<MediaNetLink>::Instance().Give(name.str(), new MediaNetLink(newSocket, m_serverPortHostOrder));
             m_linkCtr++;
     
             MediaNetLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;

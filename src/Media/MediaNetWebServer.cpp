@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.7 2002/11/24 00:29:08 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.8 2002/11/24 12:57:02 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.8  2002/11/24 12:57:02  southa
+ * Added configuration host protection
+ *
  * Revision 1.7  2002/11/24 00:29:08  southa
  * Serve web pages to local addresses only
  *
@@ -114,7 +117,7 @@ MediaNetWebServer::Accept(void)
             {
                 ostringstream name;
                 name << "web" << m_linkCtr;
-                CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket));
+                CoreData<MediaNetWebLink>::Instance().Give(name.str(), new MediaNetWebLink(newSocket));
                 m_linkCtr++;
                 MediaNetLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
             }

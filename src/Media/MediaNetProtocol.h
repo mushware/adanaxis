@@ -1,8 +1,11 @@
 #ifndef MEDIANETPROTOCOL_H
 #define MEDIANETPROTOCOL_H
 /*
- * $Id: MediaNetProtocol.h,v 1.8 2002/11/27 16:35:10 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.9 2002/11/27 20:17:27 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.9  2002/11/27 20:17:27  southa
+ * Basic network cleardown
+ *
  * Revision 1.8  2002/11/27 16:35:10  southa
  * Client and server image handling
  *
@@ -46,9 +49,10 @@ public:
         kMessageTypeUDPLinkCheckReply,
         kMessageTypeKillLink,
         kMessageTypeMaxLinkLayer, // Subsequent messages are for the application
-        kMessageTypeLongApp,
-        kMessageTypeShortApp,
-        kMessageTypeNextLayerStart='a'
+        kMessageTypeLongAppStart=128,
+        kMessageTypeLongAppEnd=191,
+        kMessageTypeShortAppStart=192,
+        kMessageTypeShortAppEnd=224,
     };
 
     enum tReasonCode
@@ -77,6 +81,7 @@ public:
 
     static void Unpack(MediaNetData& ioData);
     static void RemoveLength(MediaNetData& ioData, U32 inType);
+    static U32 LinkToAppType(U32 inType);
     static bool MessageTake(MediaNetData& ioData);
     static bool MessageTypeIsLinkLayer(U32 inType);
 

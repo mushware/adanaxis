@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.18 2002/11/18 18:55:58 southa Exp $
+ * $Id: GameData.h,v 1.19 2002/12/03 20:28:16 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.19  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.18  2002/11/18 18:55:58  southa
  * Game resume and quit
  *
@@ -120,7 +123,7 @@ public:
     GameView *ViewGet(const string& inName) const;
     GameView *CurrentViewGet(void) const;
 
-    CoreData<GamePiecePlayer>& PlayerDataGet(void) { return *m_playerData; }
+    CoreData<GamePiecePlayer>& PlayerGet(void) { return *m_playerData; }
     
     GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;

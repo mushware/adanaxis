@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.3 2002/08/27 08:56:29 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.4 2002/10/22 20:42:07 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.4  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/27 08:56:29  southa
  * Source conditioning
  *
@@ -47,7 +50,7 @@ MediaSoundStream::SoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    CoreData<MediaSoundStream>::Instance().DataGive(name, new MediaSoundStream(filename));
+    CoreData<MediaSoundStream>::Instance().Give(name, new MediaSoundStream(filename));
     return CoreScalar(0);
 }
 
@@ -60,7 +63,7 @@ MediaSoundStream::PlaySoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSoundStream *soundStream=CoreData<MediaSoundStream>::Instance().DataGet(name);
+    MediaSoundStream *soundStream=CoreData<MediaSoundStream>::Instance().Get(name);
     MediaAudio::Instance().Play(*soundStream) ;
     return CoreScalar(0);
 }

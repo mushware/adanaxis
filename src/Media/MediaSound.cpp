@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.6 2002/08/27 08:56:28 southa Exp $
+ * $Id: MediaSound.cpp,v 1.7 2002/10/22 20:42:07 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.7  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:28  southa
  * Source conditioning
  *
@@ -90,7 +93,7 @@ MediaSound::TransientSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=CoreData<MediaSound>::Instance().DataGive(name, new MediaSound(filename));
+    MediaSound *sound=CoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
     sound->ResidenceSet(false);
     return CoreScalar(0);
 }
@@ -105,7 +108,7 @@ MediaSound::ResidentSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=CoreData<MediaSound>::Instance().DataGive(name, new MediaSound(filename));
+    MediaSound *sound=CoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
     sound->ResidenceSet(true);
     sound->Load();
     return CoreScalar(0);
@@ -120,7 +123,7 @@ MediaSound::PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSound *sound=CoreData<MediaSound>::Instance().DataGet(name);
+    MediaSound *sound=CoreData<MediaSound>::Instance().Get(name);
     MediaAudio::Instance().Play(*sound);
     return CoreScalar(0);
 }

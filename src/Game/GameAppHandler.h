@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.15 2002/11/18 18:55:57 southa Exp $
+ * $Id: GameAppHandler.h,v 1.16 2002/12/03 20:28:15 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.16  2002/12/03 20:28:15  southa
+ * Network, player and control work
+ *
  * Revision 1.15  2002/11/18 18:55:57  southa
  * Game resume and quit
  *
@@ -84,6 +87,7 @@ public:
     bool ServerPresent(void) const { return m_gameType == kGameTypeServer; }
     bool NetworkActive(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
     bool MultiplayerIs(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
+    bool GameRunningIs(void) const { return m_appState == kAppStateGame; }
     
 protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);

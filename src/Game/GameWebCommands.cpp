@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.17 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.18 2002/12/04 12:54:41 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.18  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.17  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -158,7 +161,7 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         GameConfig::Instance().PostDataHandle(values);
         string clientName = GameConfig::Instance().ParameterGet("mpplayername").StringGet();
-        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(clientName, new GameDefClient(clientName));
+        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().Give(clientName, new GameDefClient(clientName));
         try
         {
             gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
@@ -178,7 +181,7 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         GameConfig::Instance().PostDataHandle(values);
         string serverName=GameConfig::Instance().ParameterGet("mpservername").StringGet();
         string serverMessage=GameConfig::Instance().ParameterGet("mpservermessage").StringGet();
-        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().DataGive(serverName, new GameDefServer(serverName));
+        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().Give(serverName, new GameDefServer(serverName));
         gameDefServer->ServerMessageSet(serverMessage);
         gameDefServer->HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
                                GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
@@ -241,11 +244,11 @@ GameWebCommands::GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string dataName;
     ioCommand.PopParam(dataName);
 
-    if (!CoreData<GameConfigDef>::Instance().DataExists(dataName))
+    if (!CoreData<GameConfigDef>::Instance().Exists(dataName))
     {
         throw(CommandFail("Config value '"+dataName+"' does not exist"));
     }
-    CoreData<GameConfigDef>::Instance().DataGet(dataName)->WebInputPrint(ioEnv.Out(), dataName);
+    CoreData<GameConfigDef>::Instance().Get(dataName)->WebInputPrint(ioEnv.Out(), dataName);
     
     return CoreScalar(0);
 }

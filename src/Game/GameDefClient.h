@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.6 2002/11/28 15:14:14 southa Exp $
+ * $Id: GameDefClient.h,v 1.7 2002/11/28 16:19:25 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.7  2002/11/28 16:19:25  southa
+ * Fix delete object messaging
+ *
  * Revision 1.6  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -40,13 +43,14 @@ public:
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
     void UpdateStatus(void);
+    void SendToServer(MediaNetData& ioData);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
 protected:
-    void UpdateServer(MediaNetLink& ioLink);
+    void UpdateServer(void);
         
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
@@ -73,9 +77,11 @@ private:
     enum
     {
         kLinkSetupIntervalMsec=7000,
-        kLinkSetupWaitMsec=1000,
         kRegistrationMsec=10000,
-        kServerTimeoutMsec=5000
+        kServerTimeoutMsec=5000,
+        kNumSetupModeLinks=1,
+        kNumGameModeLinks=2,
+        kMaxLinks=2
     };
 
     U32 m_lastLinkMsec;
@@ -83,6 +89,10 @@ private:
     U32 m_currentMsec;
     string m_serverName;
     MediaNetAddress m_netAddress;
+    vector< CoreDataRef<MediaNetLink> > m_netLinks;
+    U32 m_lastLinkNum;
+    U32 m_numLinks;
     bool m_killed;
     bool m_joined;
+    bool m_linkGood;
 };

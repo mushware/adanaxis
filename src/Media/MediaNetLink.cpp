@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.21 2002/11/27 20:17:27 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.22 2002/11/28 18:05:36 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.22  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.21  2002/11/27 20:17:27  southa
  * Basic network cleardown
  *
@@ -415,6 +418,15 @@ MediaNetLink::IsDead(void)
 {
     return m_tcpState.linkState == kLinkStateDead &&
            m_udpState.linkState == kLinkStateDead;
+}
+
+bool
+MediaNetLink::ReadyIs(void) const
+{
+    return (m_tcpState.linkState == kLinkStateTesting ||
+            m_tcpState.linkState == kLinkStateIdle ||
+            m_udpState.linkState == kLinkStateTesting ||
+            m_udpState.linkState == kLinkStateIdle);
 }
 
 void

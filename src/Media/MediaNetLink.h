@@ -1,8 +1,11 @@
 #ifndef MEDIANETLINK_H
 #define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.16 2002/11/28 15:14:14 southa Exp $
+ * $Id: MediaNetLink.h,v 1.17 2002/11/28 18:05:36 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.17  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.16  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -77,6 +80,7 @@ public:
     bool Receive(MediaNetData * & outData);
     void Tick(void);
     bool IsDead(void);
+    bool ReadyIs(void) const;
     void Disconnect(MediaNetProtocol::tReasonCode inCode);
         
     void LinkChecksSend(void);
@@ -127,7 +131,7 @@ private:
         kLinkCheckDeadTime=500, // Time after sending link check when we can't send another
         kLinkInitTimeoutMsec=6000, // Timeout to kill link if not up for send
         kLinkIdleTimeoutMsec=35000, // Timeout to disconnect if no activity
-        kErrorTotalLimit=100,
+        kErrorTotalLimit=10,
         kErrorsSinceGoodLimit=4
     };
     

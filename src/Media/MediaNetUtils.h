@@ -1,8 +1,11 @@
 #ifndef MEDIANETUTILS_H
 #define MEDIANETUTILS_H
 /*
- * $Id: MediaNetUtils.h,v 1.9 2002/11/27 13:23:27 southa Exp $
+ * $Id: MediaNetUtils.h,v 1.10 2002/11/28 18:05:36 southa Exp $
  * $Log: MediaNetUtils.h,v $
+ * Revision 1.10  2002/11/28 18:05:36  southa
+ * Print link ages
+ *
  * Revision 1.9  2002/11/27 13:23:27  southa
  * Server and client data exchange
  *
@@ -42,6 +45,7 @@ class MediaNetUtils
 public:
     static bool FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPortNetworkOrder);
     static bool FindLinkToStation(MediaNetLink *& outLink, const MediaNetAddress& inAddress);
+    static bool FindLinkToStation(string& outName, const MediaNetAddress& inAddress);
     static string IPAddressToString(U32 inAddress);
     static string IPAddressToLogString(U32 inAddress);
     static string MsecDurationToString(U32 inMsec);

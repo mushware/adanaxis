@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.18 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameSetup.cpp,v 1.19 2002/12/04 12:54:41 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.19  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.18  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -165,7 +168,7 @@ GLUtils::RotateAboutZ(5*sin(msecNow/151));
 void
 GameSetup::ConfigInit(void)
 {
-    U32 webPort=CoreData<GameConfigDef>::Instance().DataGet("configport")->ValueGet().U32Get();
+    U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
     try
     {
         MediaNetWebServer::Instance().Connect(webPort);
@@ -249,7 +252,7 @@ GameSetup::Ticker(void)
         }
         if (killValue != CoreData<GameDefClient>::Instance().End())
         {
-            CoreData<GameDefClient>::Instance().DataDelete(killValue);
+            CoreData<GameDefClient>::Instance().Delete(killValue);
         }
     }
 
@@ -281,7 +284,7 @@ GameSetup::Ticker(void)
         }
         if (killValue != CoreData<GameDefServer>::Instance().End())
         {
-            CoreData<GameDefServer>::Instance().DataDelete(killValue);
+            CoreData<GameDefServer>::Instance().Delete(killValue);
         }
     }
     
@@ -324,7 +327,7 @@ GameSetup::KeyControl(void)
     {
         if (!MediaNetWebServer::Instance().IsConnected())
         {
-            U32 webPort=CoreData<GameConfigDef>::Instance().DataGet("configport")->ValueGet().U32Get();
+            U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
             try
             {
                 MediaNetWebServer::Instance().Connect(webPort);

@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreDataRef.h,v 1.3 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreDataRef.h,v 1.4 2002/12/03 20:28:14 southa Exp $
  * $Log: CoreDataRef.h,v $
+ * Revision 1.4  2002/12/03 20:28:14  southa
+ * Network, player and control work
+ *
  * Revision 1.3  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -43,7 +46,8 @@ public:
     
     void NameSet(const string& inName) { m_name=inName; m_dataPtr=NULL; }
     const string& NameGet(void) const { return m_name; }
-    RefType *DataGet(void) const;
+    RefType *Get(void) const;
+    bool GetIfExists(RefType *& outRef) const;
     bool Exists(void) const;
 
 private:
@@ -53,12 +57,14 @@ private:
     string m_name;
     CoreData<RefType> *m_dataInstance;
     mutable RefType *m_dataPtr;
+    mutable U32 m_sequenceNum;
 };
 
 template<class RefType>
 inline
 CoreDataRef<RefType>::CoreDataRef() :
-    m_dataPtr(NULL)
+    m_dataPtr(NULL),
+    m_sequenceNum(1)
 {
     DefaultDataPtrGet();
 }
@@ -67,7 +73,8 @@ template<class RefType>
 inline
 CoreDataRef<RefType>::CoreDataRef(CoreData<RefType> *inInstance) :
     m_dataInstance(inInstance),
-    m_dataPtr(NULL)
+    m_dataPtr(NULL),
+    m_sequenceNum(1)
 {
 }
 
@@ -75,7 +82,8 @@ template<class RefType>
 inline
 CoreDataRef<RefType>::CoreDataRef(const string& inName) :
     m_name(inName),
-    m_dataPtr(NULL)
+    m_dataPtr(NULL),
+    m_sequenceNum(1)
 {
     DefaultDataPtrGet();
 }
@@ -86,7 +94,8 @@ inline
 CoreDataRef<RefType>::CoreDataRef(const string& inName, CoreData<RefType> *inInstance) :
     m_name(inName),
     m_dataInstance(inInstance),
-    m_dataPtr(NULL)
+    m_dataPtr(NULL),
+    m_sequenceNum(1)
 {
 }
 
@@ -103,14 +112,15 @@ CoreDataRef<RefType>::ReferenceGet(void) const
 {
     COREASSERT(m_dataInstance != NULL);
     
-    m_dataPtr=m_dataInstance->DataGet(m_name);
+    m_dataPtr = m_dataInstance->GetOrReturnNull(m_name);
+    m_sequenceNum = m_dataInstance->SequenceNumGet();
 }
 
 template<class RefType>
 inline RefType *
-CoreDataRef<RefType>::DataGet(void) const
+CoreDataRef<RefType>::Get(void) const
 {
-    if (m_dataPtr == NULL)
+    if (m_dataPtr == NULL || m_sequenceNum != m_dataInstance->SequenceNumGet())
     {
         ReferenceGet();
         if (m_dataPtr == NULL)
@@ -123,9 +133,25 @@ CoreDataRef<RefType>::DataGet(void) const
 
 template<class RefType>
 inline bool
+CoreDataRef<RefType>::GetIfExists(RefType *& outRef) const
+{
+    if (m_dataPtr == NULL || m_sequenceNum != m_dataInstance->SequenceNumGet())
+    {
+        ReferenceGet();
+        if (m_dataPtr == NULL)
+        {
+            return false;
+        }
+    }
+    outRef = m_dataPtr;
+    return true;
+}
+
+template<class RefType>
+inline bool
 CoreDataRef<RefType>::Exists(void) const
 {
-    if (m_dataPtr != NULL) return true;
+    if (m_dataPtr != NULL && m_sequenceNum == m_dataInstance->SequenceNumGet()) return true;
     ReferenceGet();
     return (m_dataPtr != NULL);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebRouter.cpp,v 1.2 2002/11/12 17:05:01 southa Exp $
+ * $Id: MediaNetWebRouter.cpp,v 1.3 2002/11/23 17:23:45 southa Exp $
  * $Log: MediaNetWebRouter.cpp,v $
+ * Revision 1.3  2002/11/23 17:23:45  southa
+ * Sleep in setup
+ *
  * Revision 1.2  2002/11/12 17:05:01  southa
  * Tidied localweb server
  *
@@ -52,7 +55,7 @@ MediaNetWebRouter::ReceiveAll(void)
 
     if (killValue != CoreData<MediaNetWebLink>::Instance().End())
     {
-        CoreData<MediaNetWebLink>::Instance().DataDelete(killValue->first);
+        CoreData<MediaNetWebLink>::Instance().Delete(killValue->first);
     }
     
     for (CoreData<MediaNetWebLink>::tMapIterator p=CoreData<MediaNetWebLink>::Instance().Begin();

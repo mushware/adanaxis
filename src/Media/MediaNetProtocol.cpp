@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.8 2002/11/25 10:43:28 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.9 2002/11/25 12:06:18 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.9  2002/11/25 12:06:18  southa
+ * Received net message routing
+ *
  * Revision 1.8  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -197,25 +200,41 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
     }
 }
 
-
-
 void
 MediaNetProtocol::RemoveLength(MediaNetData& ioData, U32 inType)
 {
-    switch (inType)
+    if (inType >= kMessageTypeLongAppStart && inType < kMessageTypeLongAppEnd)
     {
-        case kMessageTypeLongApp:
-            ioData.MessagePosSet(ioData.MessagePosGet() + 2);
-            break;
-
-        case kMessageTypeShortApp:
-            ioData.MessagePosSet(ioData.MessagePosGet() + 1);
-            break;
-
-        default:
-            MediaNetLog::Instance().NetLog() << "RemoveLength called on message type without length (" << inType << ")" << endl;
-            break;
+        ioData.MessagePosSet(ioData.MessagePosGet() + 2);
     }
+    else if (inType >= kMessageTypeShortAppStart && inType < kMessageTypeShortAppEnd)
+    {
+        ioData.MessagePosSet(ioData.MessagePosGet() + 1);
+    }
+    else
+    {
+        MediaNetLog::Instance().NetLog() << "RemoveLength called on message type without length (" << inType << ")" << endl;
+    }
+}
+
+U32
+MediaNetProtocol::LinkToAppType(U32 inType)
+{
+    U32 retType;
+    if (inType >= kMessageTypeLongAppStart && inType < kMessageTypeLongAppEnd)
+    {
+        retType = inType - kMessageTypeLongAppStart;
+    }
+    else if (inType >= kMessageTypeShortAppStart && inType < kMessageTypeShortAppEnd)
+    {
+        retType = inType - kMessageTypeShortAppStart;
+    }
+    else
+    {
+        MediaNetLog::Instance().NetLog() << "LinkToAppType called non-app message (" << inType << ")" << endl;
+        retType=0;
+    }
+    return retType;
 }
 
 bool
@@ -238,9 +257,11 @@ MediaNetProtocol::MessageTypeIsLinkLayer(U32 inType)
 void
 MediaNetProtocol::LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType)
 {
+    U32 messageType=kMessageTypeLongAppStart+inType;
+    COREASSERT(messageType < kMessageTypeLongAppEnd);
     ioData.BytePush(kSyncByte1);
     ioData.BytePush(kSyncByte2);
-    ioData.BytePush(kMessageTypeLongApp);
+    ioData.BytePush(messageType);
     ioData.LengthPosSet(ioData.WritePosGet());
     ioData.BytePush(0); // Length byte MSB
     ioData.BytePush(0); // Length byte LSB    

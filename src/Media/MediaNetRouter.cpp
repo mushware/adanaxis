@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.6 2002/11/25 12:06:18 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.7 2002/11/27 16:35:10 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.7  2002/11/27 16:35:10  southa
+ * Client and server image handling
+ *
  * Revision 1.6  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -75,7 +78,8 @@ MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
                 // netData->SourcePortSet(p->second->TCPTargetPortGet());
                 
                 MediaNetProtocol::RemoveLength(*netData, messageType);
-                inHandler.MessageHandle(*netData, *p->second, messageType);
+                U32 appMessageType = MediaNetProtocol::LinkToAppType(messageType);
+                inHandler.MessageHandle(*netData, *p->second, appMessageType);
             }
         }
         if (callTick)
@@ -89,7 +93,7 @@ MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
     }
     if (killValue != CoreData<MediaNetLink>::Instance().End())
     {
-        CoreData<MediaNetLink>::Instance().DataDelete(killValue->first);
+        CoreData<MediaNetLink>::Instance().Delete(killValue->first);
     }
 }
 
@@ -117,7 +121,8 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& 
                     //ioData.SourcePortSet(p->second->TCPTargetPortGet());
 
                     MediaNetProtocol::RemoveLength(ioData, messageType);
-                    inHandler.MessageHandle(ioData, *p->second, messageType);
+                    U32 appMessageType = MediaNetProtocol::LinkToAppType(messageType);
+                    inHandler.MessageHandle(ioData, *p->second, appMessageType);
                 }
             }
             // Message handled so return

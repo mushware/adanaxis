@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.11 2002/11/24 23:18:05 southa Exp $
+ * $Id: GameConfig.cpp,v 1.12 2002/11/25 18:02:55 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.12  2002/11/25 18:02:55  southa
+ * Mushware ID work
+ *
  * Revision 1.11  2002/11/24 23:18:05  southa
  * Added type name accessor to CorePickle
  *
@@ -65,13 +68,13 @@ GameConfig::GameConfig()
 U32
 GameConfig::DisplayModeGet(void) const
 {
-    return CoreData<GameConfigDef>::Instance().DataGet("displaymode")->ValueGet().U32Get();
+    return CoreData<GameConfigDef>::Instance().Get("displaymode")->ValueGet().U32Get();
 }
 
 void
 GameConfig::DisplayModeSet(U32 inMode)
 {
-    CoreData<GameConfigDef>::Instance().DataGet("displaymode")->ValueSet(CoreScalar(inMode));
+    CoreData<GameConfigDef>::Instance().Get("displaymode")->ValueSet(CoreScalar(inMode));
     
     try
     {
@@ -92,19 +95,19 @@ GameConfig::DisplayModeSetDefault(void)
 CoreScalar
 GameConfig::ParameterGet(const string& inName) const
 {
-    return CoreData<GameConfigDef>::Instance().DataGet(inName)->ValueGet();
+    return CoreData<GameConfigDef>::Instance().Get(inName)->ValueGet();
 }
 
 bool
 GameConfig::ParameterExists(const string& inName) const
 {
-    return CoreData<GameConfigDef>::Instance().DataExists(inName);
+    return CoreData<GameConfigDef>::Instance().Exists(inName);
 }
 
 void
 GameConfig::ParameterSet(const string& inName, const CoreScalar& inValue)
 {
-    CoreData<GameConfigDef>::Instance().DataGet(inName)->ValueSet(inValue);
+    CoreData<GameConfigDef>::Instance().Get(inName)->ValueSet(inValue);
 }
 
 void
@@ -202,11 +205,11 @@ void
 GameConfig::HandleValueEnd(CoreXML& inXML)
 {
     string dataName=inXML.GetAttribOrThrow("name").StringGet();
-    if (!CoreData<GameConfigDef>::Instance().DataExists(dataName))
+    if (!CoreData<GameConfigDef>::Instance().Exists(dataName))
     {
         inXML.Throw("Config value '"+dataName+"' does not exist");
     }
-    CoreData<GameConfigDef>::Instance().DataGet(dataName)->ValueSet(CoreScalar(inXML.TopData()));
+    CoreData<GameConfigDef>::Instance().Get(dataName)->ValueSet(CoreScalar(inXML.TopData()));
 }
 
 void
@@ -399,7 +402,7 @@ GameConfig::GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(defaultValue);
     ioCommand.PopParam(lowLimit);
     ioCommand.PopParam(highLimit);
-    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefU32(defaultValue, lowLimit, highLimit));
+    CoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefU32(defaultValue, lowLimit, highLimit));
     return CoreScalar(0);
 }
 
@@ -415,7 +418,7 @@ GameConfig::GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
     if (numParams >= 3) ioCommand.PopParam(menuStr);
-    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefString(defaultValue, menuStr));
+    CoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefString(defaultValue, menuStr));
     return CoreScalar(0);
 }
 
@@ -430,7 +433,7 @@ GameConfig::GameConfigPasswordAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefPassword(defaultValue));
+    CoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefPassword(defaultValue));
     return CoreScalar(0);
 }
 
@@ -446,14 +449,14 @@ GameConfig::GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefBool(defaultValue));
+    CoreData<GameConfigDef>::Instance().Give(name, new GameConfigDefBool(defaultValue));
     return CoreScalar(0);
 }
 
 CoreScalar
 GameConfig::GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
-    CoreData<GameConfigDef>::Instance().DataGive("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
+    CoreData<GameConfigDef>::Instance().Give("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
     return CoreScalar(0);
 }
 
