@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshSubdivide.cpp,v 1.3 2003/10/17 12:27:20 southa Exp $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.4 2003/10/17 19:33:11 southa Exp $
  * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.4  2003/10/17 19:33:11  southa
+ * Mesh patches
+ *
  * Revision 1.3  2003/10/17 12:27:20  southa
  * Line end fixes and more mesh work
  *
@@ -31,42 +34,124 @@ using namespace std;
 
 MushcoreInstaller TestMushMeshSubdivideInstaller(TestMushMeshSubdivide::Install);
 
+void
+TestMushMeshSubdivide::ArrayPrint(const MushMeshArray<tVal>& inArray)
+{
+    for (U32 y=inArray.SizeGet().Y(); y>0;)
+    {
+        --y;
+        cout << "[";
+        for (U32 x=0; x<inArray.SizeGet().X(); ++x)
+        {
+            cout << inArray.Get(x, y);
+            if (x+1 != inArray.SizeGet().X())
+            {
+                cout << ", ";
+            }
+        }
+        cout << "]" << endl;
+    }
+}
+
+bool
+TestMushMeshSubdivide::VerifySingle1(const MushMeshArray<tVal>& inArray, const t2U32& inCentre, tVal inProp)
+{
+    const tVal AOfN6 = (5.0/8.0) - pow(3.0+2.0*cos(2.0*M_PI/6.0), 2.0)/64.0;
+    const tVal Alpha6 = 6.0*(1.0-AOfN6)/AOfN6;
+    const tVal A = 1.0/(Alpha6+6.0);
+    const tVal B = 1.0/8.0;
+    const tVal C = 3.0/8.0;
+    const tVal D = Alpha6/(Alpha6+6.0);
+
+    const tVal Single1Prop0[5][5] =
+    {
+        {0, 0, 0, 0, 0},
+        {0, 0, 0.5, 0.5, 0},
+        {0, 0.5, 1, 0.5, 0},
+        {0, 0.5, 0.5, 0, 0},
+        {0, 0, 0, 0, 0}
+    };
+
+    const tVal Single1Prop1[5][5] =
+    {
+        {0, 0, A, B, A},
+        {0, B, C, C, B},
+        {A, C, D, C, A},
+        {B, C, C, B, 0},
+        {A, B, A, 0, 0}
+    };
+
+    bool success = true;
+    for (U32 x=0; x<inArray.SizeGet().X(); ++x)
+    {
+        for (U32 y=0; y<inArray.SizeGet().Y(); ++y)
+        {
+            tVal expected;
+
+            if (x + 2 < inCentre.X() ||
+                x > inCentre.X() + 2 ||
+                y + 2 < inCentre.Y() ||
+                y > inCentre.Y() + 2)
+            {
+                expected = 0;
+            }
+            else
+            {
+                MUSHCOREASSERT(x + 2 - inCentre.X() < 5);
+                MUSHCOREASSERT(y + 2 - inCentre.Y() < 5);
+                expected = inProp * Single1Prop1[x + 2 - inCentre.X()][2 + inCentre.Y() - y] +
+                    (1 - inProp) * Single1Prop0[x + 2 - inCentre.X()][2 + inCentre.Y() - y];
+            }
+            if (fabs(inArray.Get(x, y) - expected) > 0.0001)
+            {
+                cout << "Fault at (" << x << ", " << y << ") : expected " << expected << ", got " << inArray.Get(x, y) << endl;
+                success = false;
+            }
+        }
+    }
+    return success;
+}
+
 MushcoreScalar
 TestMushMeshSubdivide::TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-#if 0
     enum
     {
-        kXMax = 3,
-        kYMax = 4
+        kXMax = 5,
+        kYMax = 5
     };
     MushMeshArray<tVal> meshArray(kXMax, kYMax);
 
-    for (U32 x=0; x<3; ++x)
+    for (U32 x=0; x<kXMax; ++x)
     {
-        for (U32 y=0; y<4; ++y)
+        for (U32 y=0; y<kYMax; ++y)
         {
-            meshArray.Set(x+5*y, x, y);
+            meshArray.Set(0, x, y);
         }
     }
-    MushMeshArray<tVal> movedArray(kXMax, kYMax);
-    MushMeshSubdivide<tVal>::Move(movedArray, meshArray, 0);
-    if (movedArray != meshArray)
+    meshArray.Set(1, 2, 2);
+
+    MushMeshArray<tVal> subbedArray;
+    t2BoxU32 activeBox(1,1,4,4);
+    MushMeshSubdivide<tVal>::RectangularSubdivide(subbedArray, meshArray, activeBox, 0);
+
+    if (!VerifySingle1(subbedArray, t2U32(3, 3), 0))
     {
-        throw MushcoreLogicFail("Move of proportion 0 does not copy array");
-    }
-    MushMeshSubdivide<tVal>::Move(movedArray, meshArray, 1);
-    if (movedArray == meshArray)
-    {
-        throw MushcoreLogicFail("Move of proportion 1 just copies array");
+        throw MushcoreLogicFail("Subdivision failed to verify");
     }
 
-    MushMeshArray<tVal> subbedArray(kXMax*2, kYMax*2);
-    MushMeshSubdivide<tVal>::Subdivide(subbedArray, meshArray, 0);
+    MushMeshSubdivide<tVal>::RectangularSubdivide(subbedArray, meshArray, activeBox, 1);
     
-    cout << "Orig mesh = " << meshArray << endl;
-    cout << "Moved mesh = " << subbedArray << endl;
-#endif
+    cout << "Orig mesh = " << endl;
+    ArrayPrint(meshArray);
+    cout << "Moved mesh = " << endl;
+    ArrayPrint(subbedArray);
+
+    if (!VerifySingle1(subbedArray, t2U32(3, 3), 1))
+    {
+        throw MushcoreLogicFail("Subdivision failed to verify");
+    }
+
     return MushcoreScalar(0);
 }
 

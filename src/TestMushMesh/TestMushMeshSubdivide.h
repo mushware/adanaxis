@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cpsh/PUv+N7hZwaE5of9Kg
 /*
- * $Id: TestMushMeshArray.h,v 1.1 2003/10/15 07:08:29 southa Exp $
- * $Log: TestMushMeshArray.h,v $
+ * $Id: TestMushMeshSubdivide.h,v 1.1 2003/10/15 11:54:55 southa Exp $
+ * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.1  2003/10/15 11:54:55  southa
+ * MushMeshArray neighbour testing and subdivision
+ *
  */
 
 #include "TestMushMeshStandard.h"
@@ -27,6 +30,9 @@ class TestMushMeshSubdivide
 public:
     static MushcoreScalar TestSubdivide(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+private:
+    static void ArrayPrint(const MushMeshArray<Mushware::tVal>& inArray);
+    static bool VerifySingle1(const MushMeshArray<Mushware::tVal>& inArray, const Mushware::t2U32& inCentre, Mushware::tVal inProp);
 };
 //%includeGuardEnd {
 #endif

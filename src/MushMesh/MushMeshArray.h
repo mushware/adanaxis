@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.4 2003/10/17 12:27:18 southa Exp $
+ * $Id: MushMeshArray.h,v 1.5 2003/10/17 19:33:10 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.5  2003/10/17 19:33:10  southa
+ * Mesh patches
+ *
  * Revision 1.4  2003/10/17 12:27:18  southa
  * Line end fixes and more mesh work
  *
@@ -36,14 +39,16 @@
 #include "MushMeshVector.h"
 #include "MushMeshMath.h"
 
+#define MUSHMESHARRAY_VERBOSE_DEBUG
+
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+#include "MushMeshSTL.h"
+#endif
+
 template <class T>
 class MushMeshArray
 {
 public:
-    enum
-    {
-        kMaxVerts = 6
-    };
     MushMeshArray();
     MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
@@ -77,13 +82,22 @@ MushMeshArray<T>::MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize) :
     m_ySize(inYSize),
     m_values(inXSize*inYSize)
 {
-    MUSHCOREASSERT(inXSize > 0 && inYSize > 0);
 }
 
 template <class T>
 inline const T&
 MushMeshArray<T>::Get(Mushware::U32 inX, Mushware::U32 inY) const
 {
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+    if (inX >= m_xSize || inY >= m_ySize)
+    {
+        std::ostringstream message;
+        message << "MushMeshArray::Get failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
+        throw MushcoreLogicFail(message.str());
+    }
+#else
+    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
+#endif
     return m_values[inX + m_xSize * inY];
 }
 
@@ -91,6 +105,16 @@ template <class T>
 inline const T&
 MushMeshArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
 {
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+    if (inX >= m_xSize || inY >= m_ySize)
+    {
+        std::ostringstream message;
+        message << "MushMeshArray::RefGet failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
+        throw MushcoreLogicFail(message.str());
+    }
+#else
+    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
+#endif
     return m_values[inX + m_xSize * inY];
 }
 
@@ -98,6 +122,16 @@ template <class T>
 inline void
 MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+    if (inX >= m_xSize || inY >= m_ySize)
+    {
+        std::ostringstream message;
+        message << "MushMeshArray::Set failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
+        throw MushcoreLogicFail(message.str());
+    }
+#else
+    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
+#endif
     m_values[inX + m_xSize * inY] = inValue;
 }
 
@@ -114,10 +148,9 @@ MushMeshArray<T>::SizeSet(const Mushware::t2U32& inSize)
 {
     if (Mushware::t2U32(m_xSize, m_ySize) != inSize)
     {
-        m_values.resize(m_xSize * m_ySize);
         m_xSize = inSize.X();
         m_ySize = inSize.Y();
-        MUSHCOREASSERT(m_xSize > 0 && m_ySize > 0);
+        m_values.resize(m_xSize * m_ySize);
     }
 }
 
