@@ -1,5 +1,29 @@
 // !$*UTF8*$!
 {
+	F5175CBC0227E6F401F76013 = {
+		fileReference = F5175CB80227D55C01F76013;
+		isa = PBXFileBreakpoint;
+		lineNumber = 17;
+		state = 2;
+	};
+	F5175CBD0227E81701F76013 = {
+		fileReference = F56F91AB0221AC0F011355B6;
+		isa = PBXFileBreakpoint;
+		lineNumber = 71;
+		state = 2;
+	};
+	F5175CBE0227E8E601F76013 = {
+		fileReference = F56F91AB0221AC0F011355B6;
+		isa = PBXFileBreakpoint;
+		lineNumber = 104;
+		state = 1;
+	};
+	F5175CBF0227E94701F76013 = {
+		fileReference = F56122510227A6DF0100557C;
+		isa = PBXFileBreakpoint;
+		lineNumber = 48;
+		state = 1;
+	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F5431747020C310101449C4C;
 		activeTarget = F56090AD0217DFEF014AEE46;
@@ -7,57 +31,61 @@
 			F56090AD0217DFEF014AEE46,
 		);
 		breakpoints = (
+			F5175CBC0227E6F401F76013,
+			F5175CBD0227E81701F76013,
+			F5175CBE0227E8E601F76013,
+			F5175CBF0227E94701F76013,
 		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
-				ContentSize = "{982, 641}";
+				ContentSize = "{965, 618}";
 				LeftSlideOut = {
 					ActiveTab = 0;
-					Frame = "{{0, 23}, {982, 618}}";
+					Frame = "{{0, 23}, {965, 595}}";
 					Split0 = {
 						ActiveTab = 1;
-						Frame = "{{224, 0}, {758, 618}}";
+						Frame = "{{243, 0}, {722, 595}}";
 						Split0 = {
-							Frame = "{{0, 232}, {758, 386}}";
+							Frame = "{{0, 232}, {722, 363}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {758, 208}}";
+								Frame = "{{0, 0}, {739, 322}}";
 								Split0 = {
-									Frame = "{{0, 164}, {758, 44}}";
+									Frame = "{{0, 164}, {739, 158}}";
 									Split0 = {
-										Frame = "{{0, 0}, {369, 44}}";
+										Frame = "{{0, 0}, {359, 158}}";
 									};
 									Split1 = {
-										Frame = "{{378, 0}, {380, 44}}";
+										Frame = "{{368, 0}, {371, 158}}";
 									};
 									SplitCount = 2;
 								};
 								SplitCount = 1;
 								Tab0 = {
-									Frame = "{{0, 0}, {758, 50}}";
+									Frame = "{{0, 0}, {739, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {758, 140}}";
+									Frame = "{{0, 0}, {739, 140}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {758, 208}}";
+							Frame = "{{0, 0}, {739, 322}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {758, 208}}";
+							Frame = "{{0, 0}, {722, 208}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {758, 208}}";
+								Frame = "{{0, 0}, {722, 208}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {760, 108}}";
-							BuildTranscriptFrame = "{{0, 117}, {760, 77}}";
-							Frame = "{{0, 0}, {758, 192}}";
+							BuildMessageFrame = "{{0, 0}, {724, 108}}";
+							BuildTranscriptFrame = "{{0, 117}, {724, 77}}";
+							Frame = "{{0, 0}, {722, 192}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {612, 295}}";
@@ -66,7 +94,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {200, 618}}";
+						Frame = "{{0, 0}, {219, 595}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {202, 56}}";
@@ -108,11 +136,12 @@
 		};
 	};
 	F56090B30217E00A014AEE46 = {
-		activeArgIndex = 1;
+		activeArgIndex = 3;
 		argumentStrings = (
 			"launch /bin/ls;initGL;",
 			"initGL;loadPixmap test.gif",
 			test3,
+			glTest1,
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";
