@@ -272,6 +272,14 @@
 			settings = {
 			};
 		};
+		7A5353C705AE013000097C96 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = BaseMaterials.xml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		7A5FA8C905A4CC1F00AA22E5 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -13031,6 +13039,7 @@
 				7ABA726A05AC812900454BCE,
 				7ABA726B05AC812900454BCE,
 				7ABA737E05AC97A200454BCE,
+				7A5353C705AE013000097C96,
 			);
 			isa = PBXGroup;
 			path = spaces;

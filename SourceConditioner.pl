@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.23 2004/01/04 14:36:37 southa Exp $
+# $Id: SourceConditioner.pl,v 1.24 2004/01/06 00:34:56 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.24  2004/01/06 00:34:56  southa
+# MushPie testing
+#
 # Revision 1.23  2004/01/04 14:36:37  southa
 # Handle 'inline' in source conditioner
 #
@@ -483,11 +486,11 @@ sub StandardFunctionGenerate($$)
 "}",
 "namespace",
 "{",
-"void Install(void)",
+"void $gConfig{AUTO_PREFIX}Install(void)",
 "{",
 "    MushcoreFactory::Sgl().FactoryAdd(\"${className}\", ${className}::$gConfig{AUTO_PREFIX}VirtualFactory);",
 "}",
-"MushcoreInstaller Installer(Install);",
+"MushcoreInstaller $gConfig{AUTO_PREFIX}Installer($gConfig{AUTO_PREFIX}Install);",
 "} // end anonymous namespace";
 }
 

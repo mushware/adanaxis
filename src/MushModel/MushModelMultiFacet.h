@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } TX3nuuL5kxBkNIyARfQDOA
 /*
- * $Id$
- * $Log$
+ * $Id: MushModelMultiFacet.h,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Log: MushModelMultiFacet.h,v $
+ * Revision 1.1  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  */
 
 #include "MushModelStandard.h"
@@ -31,6 +34,12 @@ public:
     MushModelMultiFacet() {}
     virtual ~MushModelMultiFacet() {}
 
+    static MushcoreScalar MushModelMultiFacetLoad(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar MushModelMultiFacetSave(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar MushModelMultiFacetPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static void Install(void);
+    static void NullFunction(void);
+    
 private:
     std::vector<MushModelFacet> m_facets; //:readwrite
 //%classPrototypes {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.19 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.20 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.20  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.19  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -91,7 +94,9 @@ public:
 
     std::string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
-
+    Mushware::U8 ByteGet(void);
+    Mushware::U8 ByteTake(void);
+    
     template<class T> void ObjectRead(T *& outpObj);
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
@@ -113,8 +118,7 @@ public:
     void Throw(const std::string& inMessage) const;
     
 protected:
-    Mushware::U8 ByteGet(void);
-    Mushware::U8 ByteTake(void);
+
     Mushware::U32 TagGet(std::string& outTag, const std::string& inStr, Mushware::U32 inPos = 0);
     const std::string& TagDataGet(void) const { return m_tagData; }
     

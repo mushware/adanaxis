@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.11 2004/01/07 18:01:19 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.12 2004/01/08 16:06:11 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.12  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.11  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *
@@ -113,6 +116,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         MushcoreXMLOStream xmlOStream(testOStream);
         TestMushcoreObject testObject(1);
 
+        xmlOStream.OStreamGet() << "<!-- Single line comment --><!-- Single line comment -->" << endl;
+        xmlOStream.OStreamGet() << "<!-- Multi line comment" << endl;
+        xmlOStream.OStreamGet() << endl;
+        xmlOStream.OStreamGet() << "...close multiline comment -->" << endl;
+        
         xmlOStream << testObject;
 
         MushcoreXMLOStream xmlCout(cout);

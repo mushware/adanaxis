@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.14 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.15 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.15  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.14  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -242,23 +245,53 @@ MushcoreXMLIStream::ObjectRead(string& outStr)
 void
 MushcoreXMLIStream::InputFetch(void)
 {
-    if (m_inStream.eof())
+    U32 originalSize = m_contentStr.size();
+    do
     {
-        Throw("Unexpected end of input");
-    }
-    
-    string newStr;
-    std::getline(m_inStream, newStr);
-    
-    if (m_inStream.bad())
-    {
-        Throw("Read failure");
-    }
+        if (m_inStream.eof())
+        {
+            Throw("Unexpected end of input");
+        }
+        
+        string newStr;
 
-    // if m_contentStart == m_contentStr.size() {m_contentStr.erase(); m_contentStart=0}
-    
-    m_contentStr += newStr;
-    ++m_contentLineNum;
+        std::getline(m_inStream, newStr);
+        ++m_contentLineNum;
+
+        if (m_inStream.bad())
+        {
+            Throw("Read failure");
+        }
+        
+        U32 startPos;
+        while (startPos = newStr.find("<!--"), startPos != string::npos)
+        {
+            m_contentStr += newStr.substr(0, startPos);
+        
+            U32 endPos;
+            
+            while (endPos = newStr.find("-->", startPos), endPos == string::npos)
+            {
+                startPos = 0;
+                
+                if (m_inStream.eof())
+                {
+                    Throw("Unexpected end of input");
+                }
+                
+                std::getline(m_inStream, newStr);
+                ++m_contentLineNum;                
+
+                if (m_inStream.bad())
+                {
+                    Throw("Read failure");
+                }
+            }
+            newStr =  newStr.substr(endPos+3);
+        }
+        m_contentStr += newStr;
+    }
+    while (m_contentStr.size() == originalSize);
 }
 
 string
@@ -303,14 +336,17 @@ MushcoreXMLIStream::CompositePrologue(void)
     {
         if (DataUntilTake(">") != "<obj")
         {
-            Throw("Bad tag at start of composite");
+            Throw("Bad tag at start of composite.  Expecting <obj>");
         }
         ByteTake(); // Consume >
         hasTag = true;
     }
-    if (ByteTake() != '(')
+    U8 byteValue = ByteTake();
+    if (byteValue != '(')
     {
-        Throw("Bad first character in map");
+        ostringstream message;
+        message << "Bad first character in composite.  Should be '(', was '" << byteValue << "'";
+        Throw(message.str());
     }
     return hasTag;
 }
@@ -324,7 +360,7 @@ MushcoreXMLIStream::CompositeEpilogue(bool inHasTag)
         {
             if (DataUntilTake(">") != "</obj")
             {
-                Throw("Bad tag at end of composite");
+                Throw("Bad tag at end of composite.  Expecting </obj>");
             }
             ByteTake(); // Consume >
         }                
@@ -335,6 +371,6 @@ void
 MushcoreXMLIStream::Throw(const string& inMessage) const
 {
     ostringstream message;
-    message << "XML parsing failure within '" << m_contentStr.substr(m_contentStart) << "' in element ending at line " << m_contentLineNum << ": " << inMessage;
+    message << "XML parsing failure around '" << m_contentStr.substr(m_contentStart) << "' in element ending at line " << m_contentLineNum << ": " << inMessage;
     throw(MushcoreSyntaxFail(message.str()));
 }

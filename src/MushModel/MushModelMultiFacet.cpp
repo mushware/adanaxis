@@ -12,15 +12,100 @@
  ****************************************************************************/
 //%Header } nzBRybN+TNZbotLpZcw3Eg
 /*
- * $Id$
- * $Log$
+ * $Id: MushModelMultiFacet.cpp,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Log: MushModelMultiFacet.cpp,v $
+ * Revision 1.1  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  */
 
 #include "MushModelMultiFacet.h"
 
 #include "MushModelIO.h"
 
+using namespace Mushware;
+using namespace std;
+
 MUSHCORE_DATA_INSTANCE(MushModelMultiFacet);
+
+MushcoreScalar 
+MushModelMultiFacet::MushModelMultiFacetLoad(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
+{
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(MushcoreCommandFail("Usage: MushModelMultiFacetLoad(name, filename)"));
+    }
+    std::string nameStr;
+    std::string filename;
+    ioCommand.PopParam(nameStr);
+    ioCommand.PopParam(filename);
+    
+    ifstream fileStream(filename.c_str());
+    if (!fileStream) throw(MushcoreFileFail(filename, "Could not load file"));
+    
+    MushcoreXMLIStream fileXML(fileStream);
+    
+    // Ignore name for the moment
+    fileXML >> MushcoreData<MushModelMultiFacet>::Sgl();
+    
+    return MushcoreScalar(0);
+}
+
+MushcoreScalar 
+MushModelMultiFacet::MushModelMultiFacetSave(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
+{
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(MushcoreCommandFail("Usage: MushModelMultiFacetSave(name, filename)"));
+    }
+    std::string nameStr;
+    std::string filename;
+    ioCommand.PopParam(nameStr);
+    ioCommand.PopParam(filename);
+    
+    ofstream fileStream(filename.c_str());
+    if (!fileStream) throw(MushcoreFileFail(filename, "Could not open file for write"));
+    
+    MushcoreXMLOStream fileXML(fileStream);
+    
+    // Ignore name for the moment
+    fileXML << MushcoreData<MushModelMultiFacet>::Sgl();
+    
+    return MushcoreScalar(0);
+}
+
+MushcoreScalar 
+MushModelMultiFacet::MushModelMultiFacetPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
+{
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(MushcoreCommandFail("Usage: MushModelMultiFacetPrint(name)"));
+    }
+    std::string nameStr;
+    ioCommand.PopParam(nameStr);
+    
+    MushcoreXMLOStream fileXML(ioEnv.Out());
+    
+    // Ignore name for the moment
+    fileXML << MushcoreData<MushModelMultiFacet>::Sgl();
+    
+    return MushcoreScalar(0);
+}
+
+void
+MushModelMultiFacet::Install(void)
+{
+    MushcoreInterpreter::Sgl().HandlerAdd("MushModelMultiFacetLoad", MushModelMultiFacetLoad);
+    MushcoreInterpreter::Sgl().HandlerAdd("MushModelMultiFacetSave", MushModelMultiFacetSave);
+    MushcoreInterpreter::Sgl().HandlerAdd("MushModelMultiFacetPrint", MushModelMultiFacetPrint);
+}
+
+namespace { MushcoreInstaller Installer(MushModelMultiFacet::Install); }
+
+void
+MushModelMultiFacet::NullFunction(void)
+{
+}
 
 //%outOfLineFunctions {
 const char *MushModelMultiFacet::AutoNameGet(void) const
@@ -41,11 +126,11 @@ MushcoreVirtualObject *MushModelMultiFacet::AutoVirtualFactory(void)
 }
 namespace
 {
-void Install(void)
+void AutoInstall(void)
 {
     MushcoreFactory::Sgl().FactoryAdd("MushModelMultiFacet", MushModelMultiFacet::AutoVirtualFactory);
 }
-MushcoreInstaller Installer(Install);
+MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
 MushModelMultiFacet::AutoPrint(std::ostream& ioOut) const
@@ -77,4 +162,4 @@ MushModelMultiFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facets");
     ioOut << m_facets;
 }
-//%outOfLineFunctions } PhRUMR0c8U9HaTQlLS+FEg
+//%outOfLineFunctions } NqaydEnsjyuNScPmkLzWeA

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 0niOQpG0nEHxTZPccDWOjQ
 /*
- * $Id: MushPiePosicity.cpp,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushPiePosicity.cpp,v 1.2 2004/01/06 00:34:56 southa Exp $
  * $Log: MushPiePosicity.cpp,v $
+ * Revision 1.2  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.1  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -26,10 +29,15 @@ using namespace Mushware;
 void
 operator>>(MushcoreXMLIStream& ioIn, MushPiePosicity& outObj)
 {
+    if (ioIn.ByteTake() != '(') ioIn.Throw("Expecting '('");
     ioIn >> outObj.angPos;
+    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
     ioIn >> outObj.angVel;
+    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
     ioIn >> outObj.pos;
+    if (ioIn.ByteTake() != ',') ioIn.Throw("Expecting ','");
     ioIn >> outObj.vel;
+    if (ioIn.ByteTake() != ')') ioIn.Throw("Expecting ')'");
 }
 
 MushcoreXMLOStream&
@@ -37,10 +45,15 @@ operator<<(MushcoreXMLOStream& ioOut, const MushPiePosicity& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite();
     
+    ioOut.OStreamGet() << '(';
     ioOut << inObj.angPos;
+    ioOut.OStreamGet() << ',';
     ioOut << inObj.angVel;
+    ioOut.OStreamGet() << ',';
     ioOut << inObj.pos;
+    ioOut.OStreamGet() << ',';
     ioOut << inObj.vel;
+    ioOut.OStreamGet() << ')';
 
     ioOut.ClosingTagWrite(localTag);
     

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NPCsJXr5ecNdynBZmJZGJg
 /*
- * $Id$
- * $Log$
+ * $Id: MushModelMaterial.h,v 1.1 2004/01/07 18:01:19 southa Exp $
+ * $Log: MushModelMaterial.h,v $
+ * Revision 1.1  2004/01/07 18:01:19  southa
+ * MushModel and Infernal work
+ *
  */
 
 #include "MushModelStandard.h"
@@ -28,6 +31,12 @@ class MushModelMaterial : public MushcoreVirtualObject
 public:
     MushModelMaterial() {}
     virtual ~MushModelMaterial() {}
+    
+    static MushcoreScalar MushModelMaterialLoad(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar MushModelMaterialSave(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar MushModelMaterialPrint(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static void Install(void);
+    static void NullFunction(void);
     
 private:
     std::string m_textureName; //:readwrite
