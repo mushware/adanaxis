@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.7 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameContract.cpp,v 1.8 2002/05/31 15:18:16 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.8  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.7  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -139,7 +142,21 @@ GameContract::Running(void)
     {
         cerr << "(right)" << endl;
     }
-GLUtils::PostRedisplay();
+    GLUtils::PostRedisplay();
+    {
+        static U32 frames=0;
+        static U32 lastPrint=0;
+        ++frames;
+        U32 timeNow=glutGet(GLUT_ELAPSED_TIME);
+        if (timeNow - lastPrint > 5000)
+        {
+            // Print FPS every 5 seconds
+            cout << "FPS " << (((tVal) frames * 1000) / ((tVal) timeNow - lastPrint)) << endl;
+            lastPrint=timeNow;
+            frames=0;
+        }
+    }
+        
 }
 
 void
