@@ -1,6 +1,9 @@
 /*
- * $Id: GameType.h,v 1.1 2002/08/18 20:44:35 southa Exp $
+ * $Id: GameType.h,v 1.2 2002/08/19 11:09:56 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.2  2002/08/19 11:09:56  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.1  2002/08/18 20:44:35  southa
  * Initial chequepoint work
  *
@@ -17,10 +20,9 @@ public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual string TypeNameGet(void) const = 0;
-    virtual void Move(void) {}
-    virtual void EventHandler(GameEvent& inEvent) {}
-    virtual void SequenceAdvance(void) {}
-    virtual void Render(void) const {}
+    virtual void Move(void) = 0;
+    virtual void EventHandler(const GameEvent& inEvent) = 0;
+    virtual void Render(void) const = 0;
     
 protected:
     void UnpicklePrologue(void) {}

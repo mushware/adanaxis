@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.10 2002/08/21 10:12:21 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.11 2002/08/21 15:39:01 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.11  2002/08/21 15:39:01  southa
+ * GameTypeRace states
+ *
  * Revision 1.10  2002/08/21 10:12:21  southa
  * Time down counter
  *
@@ -54,16 +57,20 @@ GameTypeRace::GameTypeRace():
 }
 
 void
-GameTypeRace::EventHandler(GameEvent& inEvent)
+GameTypeRace::EventHandler(const GameEvent& inEvent)
 {
     if (typeid(inEvent) == typeid(GameEventStandingOn))
     {
-        StandingOnHandler(dynamic_cast<GameEventStandingOn&>(inEvent));
+        StandingOnHandler(dynamic_cast<const GameEventStandingOn&>(inEvent));
+    }
+    else if (typeid(inEvent) == typeid(GameEventSequenceAdvance))
+    {
+        SequenceAdvance();
     }
 }
 
 void
-GameTypeRace::StandingOnHandler(GameEventStandingOn& inEvent)
+GameTypeRace::StandingOnHandler(const GameEventStandingOn& inEvent)
 {
     U32 size=m_chequePoints.size();
     for (U32 i=0; i<size; ++i)
@@ -178,20 +185,39 @@ GameTypeRace::SequenceAdvance(void)
     }
 }
 
+
 void
-GameTypeRace::Render(void)
+GameTypeRace::Move(void)
 {
     switch (m_raceState)
     {
         case kPrelude:
         case kRunning:
             UpdateTimes();
+            break;
+
+        case kResult:
+            break;
+
+        case kInvalid:
+            throw(LogicFail("m_raceState"));
+    }    
+}
+
+void
+GameTypeRace::Render(void) const
+{
+    switch (m_raceState)
+    {
+        case kPrelude:
+        case kRunning:
             RenderTimes();
             break;
 
         case kResult:
             RenderTimes();
-
+            break;
+            
         case kInvalid:
             throw(LogicFail("m_raceState"));
     }
@@ -227,6 +253,7 @@ GameTypeRace::UpdateTimes(void)
 void
 GameTypeRace::RenderTimes(void) const
 {
+    cerr << "RederTimes" << endl;
     GLUtils::OrthoPrologue();
     GLUtils::ColourSet(1.0,1.0,1.0,0.75);
     GLUtils orthoGL;
@@ -256,7 +283,7 @@ GameTypeRace::RenderTimes(void) const
     orthoGL.MoveRelative(0.03,-0.03);
 
     ostringstream lapMessage;
-    lapMessage << "LAP " << m_lapCount << " (" << m_laps << ")";
+    lapMessage << "LAP " << m_lapCount << ":" << m_laps;
     GLString lapStr(lapMessage.str(),
                     GLFontRef("font-mono1", 0.02), -1.0);
     lapStr.Render();

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.5 2002/08/21 10:12:21 southa Exp $
+ * $Id: GameTypeRace.h,v 1.6 2002/08/21 15:39:01 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.6  2002/08/21 15:39:01  southa
+ * GameTypeRace states
+ *
  * Revision 1.5  2002/08/21 10:12:21  southa
  * Time down counter
  *
@@ -38,10 +41,9 @@ public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual string TypeNameGet(void) const;
-    virtual void Move(void) {}
-    virtual void EventHandler(GameEvent& inEvent);
-    virtual void SequenceAdvance(void);
-    virtual void Render(void);
+    virtual void Move(void);
+    virtual void EventHandler(const GameEvent& inEvent);
+    virtual void Render(void) const;
     
 protected:
     void UnpicklePrologue(void);
@@ -50,7 +52,7 @@ protected:
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
 
-    void StandingOnHandler(GameEventStandingOn& inEvent);
+    void StandingOnHandler(const GameEventStandingOn& inEvent);
     
 private:
     void HandleGameEnd(CoreXML& inXML);
@@ -86,6 +88,7 @@ private:
         kResult
     };
 
+    void SequenceAdvance(void);
     void UpdateTimes(void);
     void RenderTimes(void) const;
     

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.55 2002/08/19 11:09:55 southa Exp $
+ * $Id: GameContract.cpp,v 1.56 2002/08/20 11:43:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.56  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.55  2002/08/19 11:09:55  southa
  * GameTypeRace rendering
  *
@@ -341,6 +344,8 @@ GameContract::RunningMove(void)
         }
     }
 
+    GameData::Instance().TypeGet().Move();
+    
     m_masterScale+=(0.05 - m_masterScale)/30;
 
 #if 0

@@ -1,6 +1,9 @@
 /*
- * $Id: GameChequePoint.cpp,v 1.3 2002/08/20 15:00:56 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.4 2002/08/21 10:12:21 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.4  2002/08/21 10:12:21  southa
+ * Time down counter
+ *
  * Revision 1.3  2002/08/20 15:00:56  southa
  * Reward tweaks
  *
@@ -35,8 +38,8 @@ GameChequePoint::StandingOnHandler(const GameEventStandingOn& inEvent)
 void
 GameChequePoint::Triggered(void)
 {
-    if (m_action != "") GameDataUtils::NamedDialoguesAdd(m_action);
-    GameData::Instance().TypeGet().SequenceAdvance();
+    GameDataUtils::NamedDialoguesAdd(m_action);
+    GameData::Instance().TypeGet().EventHandler(GameEventSequenceAdvance());
 }
 
 void
