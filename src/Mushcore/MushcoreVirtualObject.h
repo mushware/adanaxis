@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHCOREXMLCONSUMER_H
-#define MUSHCOREXMLCONSUMER_H
-//%includeGuardStart } Om7O0WB7UcmsV/6FWuIz6g
+#ifndef MUSHCOREVIRTUALOBJECT_H
+#define MUSHCOREVIRTUALOBJECT_H
+//%includeGuardStart } A9fCmryMnprUYlvNkdoI2g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreXMLConsumer.h
+ * File: src/Mushcore/MushcoreVirtualObject.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,33 +14,39 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } npITgZT+9cJbbZswb9CV2A
+//%Header } gEh/hbSKsNzMvyNOGorB3w
 /*
- * $Id: MushcoreXMLConsumer.h,v 1.3 2003/09/21 23:15:08 southa Exp $
- * $Log: MushcoreXMLConsumer.h,v $
- * Revision 1.3  2003/09/21 23:15:08  southa
- * XML input stream improvements
- *
- * Revision 1.2  2003/09/21 18:49:41  southa
- * XML input stream work
- *
- * Revision 1.1  2003/09/21 15:57:31  southa
- * XML autogenerator work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushcoreStandard.h"
 
+#include "MushcoreObject.h"
+
 class MushcoreXMLIStream;
 class MushcoreXMLOStream;
 
-class MushcoreXMLConsumer
+// General base class for objects with virtual functions
+
+class MushcoreVirtualObject : public MushcoreObject
 {
 public:
+    virtual const char *AutoNameGet(void) const = 0;
+    virtual MushcoreVirtualObject *AutoClone(void) const = 0;
+    virtual MushcoreVirtualObject *AutoCreate(void) const = 0;
+
+    virtual void AutoPrint(std::ostream& ioOut) const = 0;
     virtual void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr) = 0;
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const = 0;
-    virtual const char *AutoNameGet(void) const = 0;
 };
+
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreVirtualObject& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
 
 //%includeGuardEnd {
 #endif

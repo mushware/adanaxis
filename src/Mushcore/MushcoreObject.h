@@ -16,14 +16,19 @@
  ****************************************************************************/
 //%Header } 4YtnF+/qxzOf8b2BtMu7/Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreObject.h,v 1.1 2003/09/21 09:51:09 southa Exp $
+ * $Log: MushcoreObject.h,v $
+ * Revision 1.1  2003/09/21 09:51:09  southa
+ * Stream autogenerators
+ *
  */
 
-// All-purpose base class
+#include "MushcoreStandard.h"
+
+// General base class
 class MushcoreObject
 {
-
+public:
 };
 //%includeGuardEnd {
 #endif

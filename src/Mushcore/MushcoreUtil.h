@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hKnIrVXIQdJQRS47018TCg
 /*
- * $Id: MushcoreUtil.h,v 1.8 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.9 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.9  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.8  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -82,6 +85,7 @@ public:
     static std::string TranslateFilename(const std::string& inStr);
     static std::string XMLMetaInsert(const std::string& inStr);
     static std::string XMLMetaRemove(const std::string& inStr);
+    static bool XMLAttributeExtract(std::string& outTypeStr, const std::string& inTagData, const std::string& inAttrName);
     static std::istream *IStringStreamNew(const std::string& inStr);
 };
 //%includeGuardEnd {

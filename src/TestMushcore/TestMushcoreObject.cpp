@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.13 2003/09/30 22:11:30 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.14 2003/10/01 23:18:28 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.14  2003/10/01 23:18:28  southa
+ * XML object handling
+ *
  * Revision 1.13  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -74,10 +77,18 @@ TestMushcoreObject *TestMushcoreObject::AutoCreate(void) const
 {
     return new TestMushcoreObject;
 }
-TestMushcoreObject *TestMushcoreObject::AutoFactory(void)
+MushcoreVirtualObject *TestMushcoreObject::AutoVirtualFactory(void)
 {
     return new TestMushcoreObject;
 }
+namespace
+{
+void Install(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("TestMushcoreObject", TestMushcoreObject::AutoVirtualFactory);
+}
+MushcoreInstaller Installer(Install);
+} // end anonymous namespace
 bool
 TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
 {
@@ -143,11 +154,19 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     }
     if (m_testObject == NULL)
     {
-        ioOut << "testObject=NULL" ;
+        ioOut << "testObject=NULL"  << ", ";
     }
     else
     {
-        ioOut << "testObject=" << *m_testObject;
+        ioOut << "testObject=" << *m_testObject << ", ";
+    }
+    if (m_polymorph == NULL)
+    {
+        ioOut << "polymorph=NULL" ;
+    }
+    else
+    {
+        ioOut << "polymorph=" << *m_polymorph;
     }
     ioOut << "]";
 }
@@ -226,6 +245,10 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_testObject;
     }
+    else if (inTagStr == "polymorph")
+    {
+        ioIn >> m_polymorph;
+    }
     else
     {
         ioIn.Throw("Unrecognised tag '"+inTagStr+"'");
@@ -268,5 +291,7 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_pNull << "\n";
     ioOut.TagSet("testObject");
     ioOut << m_testObject << "\n";
+    ioOut.TagSet("polymorph");
+    ioOut << m_polymorph << "\n";
 }
-//%outOfLineFunctions } gH6Z+Z8o0b2w7eH3IbPTuA
+//%outOfLineFunctions } 0x+McV4h7y7E2B1iO+HlnA

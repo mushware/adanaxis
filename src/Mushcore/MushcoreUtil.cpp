@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.10 2003/09/24 19:03:22 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.11 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.11  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.10  2003/09/24 19:03:22  southa
  * XML map IO
  *
@@ -83,8 +86,9 @@
  */
 
 #include "MushcoreUtil.h"
-#include "MushcoreGlobalConfig.h"
 
+#include "MushcoreGlobalConfig.h"
+#include "MushcoreRegExp.h"
 #include "MushcoreSTL.h"
 
 using namespace Mushware;
@@ -161,6 +165,19 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
     }
     
     return retStr;
+}
+
+bool
+MushcoreUtil::XMLAttributeExtract(string& outTypeStr, const string& inTagData, const string& inAttrName)
+{
+    MushcoreRegExp regExp(inAttrName+"=\"([^\"]*)\"");
+    MushcoreRegExp::tMatches matches;
+    if (regExp.Search(matches, inTagData))
+    {
+        outTypeStr = matches[0];
+        return true;
+    }
+    return false;
 }
 
 std::istream *

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.13 2003/09/30 22:11:26 southa Exp $
+# $Id: SourceConditioner.pl,v 1.14 2003/10/01 23:18:24 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.14  2003/10/01 23:18:24  southa
+# XML object handling
+#
 # Revision 1.13  2003/09/30 22:11:26  southa
 # XML objects within objects
 #
@@ -190,12 +193,21 @@ sub ClassLineRead($$)
 {
     my ($infoRef, $line) = @_;
     
-    unless ($line =~ s/class\s+(\S+)\s*//)
+    unless ($line =~ /class\s+(\S+)\s*/)
     {
         die "Couldn't detect class name from $line";
     }
     
     $$infoRef{CLASSNAME} = $1;
+    
+    if ($line =~ /class\s+\S+\s*:\s*(\S.+)/)
+    {
+        $$infoRef{BASES} = $1;
+    }
+    else
+    {
+        $$infoRef{BASES} = "";
+    }
 }
 
 sub CommandsAdd($$)
@@ -229,7 +241,7 @@ sub HeaderInfoPrint($)
     my $className = $$infoRef{CLASSNAME};
     print "Class: $className\n" if defined($className);
 
-    foreach ('CLOSING_LINE', 'LAST_LINE', 'EOF_LINE', 'ARRAY_ELEMENTS')
+    foreach ('CLOSING_LINE', 'LAST_LINE', 'EOF_LINE', 'ARRAY_ELEMENTS', 'BASES')
     {
         my $value = $$infoRef{$_};
         print "$_: $value\n" if defined($value);
@@ -321,7 +333,7 @@ sub StandardPrototypeGenerate($$)
     push @$outputRef, "$gConfig{INDENT}virtual const char *$gConfig{AUTO_PREFIX}NameGet(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Create(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}static $className *$gConfig{AUTO_PREFIX}Factory(void);"; 
+    push @$outputRef, "$gConfig{INDENT}static MushcoreVirtualObject *$gConfig{AUTO_PREFIX}VirtualFactory(void);"; 
 }
 
 sub StandardFunctionGenerate($$)
@@ -332,7 +344,7 @@ sub StandardFunctionGenerate($$)
 
     die "No class found for standard functions" unless defined ($className);
     
-    push @$outputRef,    
+    push @$outputRef,
 "const char *".
 "${className}::$gConfig{AUTO_PREFIX}NameGet(void) const",
 "{",
@@ -348,11 +360,19 @@ sub StandardFunctionGenerate($$)
 "{",
 "    return new $className;",
 "}",
-"$className *".
-"${className}::$gConfig{AUTO_PREFIX}Factory(void)",
+"MushcoreVirtualObject *".
+"${className}::$gConfig{AUTO_PREFIX}VirtualFactory(void)",
 "{",
 "    return new $className;",
-"}";
+"}",
+"namespace",
+"{",
+"void Install(void)",
+"{",
+"    MushcoreFactory::Sgl().FactoryAdd(\"${className}\", ${className}::$gConfig{AUTO_PREFIX}VirtualFactory);",
+"}",
+"MushcoreInstaller Installer(Install);",
+"} // end anonymous namespace";
 }
 
 ##########################################################

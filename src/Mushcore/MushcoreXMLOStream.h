@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.11 2003/09/30 22:11:30 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.12 2003/10/01 23:18:27 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.12  2003/10/01 23:18:27  southa
+ * XML object handling
+ *
  * Revision 1.11  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -53,12 +56,13 @@
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
 #include "MushcoreUtil.h"
-#include "MushcoreXMLConsumer.h"
+#include "MushcoreVirtualObject.h"
 
 class MushcoreXMLOStream : public MushcoreXMLStream
 {
 public:
     explicit MushcoreXMLOStream(std::ostream& inPStream);
+    virtual ~MushcoreXMLOStream() {}
     std::ostream& OStreamGet() { return m_pStream; }
     std::string OpeningTagWrite(const std::string& inType="");
     void ClosingTagWrite(const std::string& inStr);
@@ -99,7 +103,7 @@ MushcoreXMLOStream::ClosingTagWrite(const std::string& inStr)
 }
 
 inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushcoreXMLConsumer& inObj)
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreVirtualObject& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite(inObj.AutoNameGet());
     inObj.AutoXMLPrint(ioOut);

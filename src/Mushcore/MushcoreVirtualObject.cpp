@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreXMLConsumer.cpp
+ * File: src/Mushcore/MushcoreVirtualObject.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,11 +10,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HzewUqRb/7A+k5DbNiP31A
+//%Header } EgkcoOJnfz9rYLhLH8pxnQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreObject.cpp,v 1.1 2003/09/21 09:51:09 southa Exp $
+ * $Log: MushcoreObject.cpp,v $
  */
 
-#include "MushcoreXMLConsumer.h"
-
+#include "MushcoreObject.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l5tY/TDG7oXfdjv1zFKmuQ
 /*
- * $Id: Mushcore.h,v 1.14 2003/09/21 11:46:10 southa Exp $
+ * $Id: Mushcore.h,v 1.15 2003/09/21 15:57:11 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.15  2003/09/21 15:57:11  southa
+ * XML autogenerator work
+ *
  * Revision 1.14  2003/09/21 11:46:10  southa
  * XML input stream
  *
@@ -73,6 +76,7 @@
 #include "MushcoreDataRef.h"
 #include "MushcoreEnv.h"
 #include "MushcoreEnvOutput.h"
+#include "MushcoreFactory.h"
 #include "MushcoreFail.h"
 #include "MushcoreGlobalConfig.h"
 #include "MushcoreHistory.h"
@@ -90,8 +94,8 @@
 #include "MushcoreStreamUtil.h"
 #include "MushcoreUninstaller.h"
 #include "MushcoreUtil.h"
+#include "MushcoreVirtualObject.h"
 #include "MushcoreXML.h"
-#include "MushcoreXMLConsumer.h"
 #include "MushcoreXMLIStream.h"
 #include "MushcoreXMLOStream.h"
 #include "MushcoreXMLStream.h"

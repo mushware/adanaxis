@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.8 2003/09/29 21:48:37 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.9 2003/09/30 22:11:30 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.9  2003/09/30 22:11:30  southa
+ * XML objects within objects
+ *
  * Revision 1.8  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -42,10 +45,11 @@
 
 #include "MushcoreXMLIStream.h"
 
+#include "MushcoreFactory.h"
 #include "MushcoreFail.h"
 #include "MushcoreSTL.h"
 #include "MushcoreUtil.h"
-#include "MushcoreXMLConsumer.h"
+#include "MushcoreVirtualObject.h"
 
 using namespace std;
 using namespace Mushware;
@@ -59,11 +63,10 @@ MushcoreXMLIStream::MushcoreXMLIStream(std::istream& inStream) :
 
 MushcoreXMLIStream::~MushcoreXMLIStream()
 {
-    // delete m_pStream;
 }
 
 void
-MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject& inObj)
 {
     string tagStr;
     do
@@ -84,7 +87,8 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
             // m_contentStart = dataStartPos;
             break;
         }
-        
+        // Store tag data for attributes
+        m_tagData = tagStr;
         tagStr = tagStr.substr(0, tagStr.find(' '));
         
         m_contentStart = dataStartPos;
@@ -109,6 +113,30 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 
         m_contentStart = dataStartPos;     
     } while (tagStr != "obj");
+}
+
+void
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *inpObj)
+{
+    if (m_contentStr.substr(m_contentStart, 4) == "NULL")
+    {
+        inpObj = NULL;
+        m_contentStart += 4;;
+    }
+    else
+    {
+        string typeStr;
+        if (!MushcoreUtil::XMLAttributeExtract(typeStr, TagDataGet(), "type"))
+        {
+            Throw("No type= attribute for polymorphic object '"+TagDataGet()+"'");
+        }
+        if (inpObj != NULL)
+        {
+            delete inpObj;
+        }
+        inpObj = dynamic_cast<MushcoreVirtualObject *>(MushcoreFactory::Sgl().ObjectCreate(typeStr));
+        *this >> *inpObj;
+    }
 }
 
 void

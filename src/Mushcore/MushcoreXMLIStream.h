@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.10 2003/09/29 21:48:37 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.11 2003/09/30 22:11:30 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.11  2003/09/30 22:11:30  southa
+ * XML objects within objects
+ *
  * Revision 1.10  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -54,7 +57,7 @@
 #include "MushcoreXMLStream.h"
 #include "MushcoreUtil.h"
 
-class MushcoreXMLConsumer;
+class MushcoreVirtualObject;
 
 class MushcoreXMLIStream : public MushcoreXMLStream
 {
@@ -65,16 +68,17 @@ public:
     std::string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
 
-    void ObjectRead(MushcoreXMLConsumer& inObj);
-    void ObjectRead(MushcoreXMLConsumer *inObj) { ObjectRead(*inObj); }
-    void ObjectRead(Mushware::U32& outU32);
-    void ObjectRead(Mushware::U8& outU8);
-    void ObjectRead(std::string& outStr);
-
     template<class T> void ObjectRead(T *& inpObj);
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
     template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
+
+    void ObjectRead(MushcoreVirtualObject *inpObj);
+    void ObjectRead(MushcoreVirtualObject& inObj);
+
+    void ObjectRead(Mushware::U32& outU32);
+    void ObjectRead(Mushware::U8& outU8);
+    void ObjectRead(std::string& outStr);
 
     void Throw(const std::string& inMessage) const;
     
@@ -82,7 +86,8 @@ protected:
     Mushware::U8 ByteGet(void);
     Mushware::U8 ByteTake(void);
     Mushware::U32 TagGet(std::string& outTag, const std::string& inStr, Mushware::U32 inPos = 0);
-
+    const std::string& TagDataGet(void) const { return m_tagData; }
+    
     void InputFetch(void);
 
 private:    
@@ -90,6 +95,7 @@ private:
     std::string m_tagName;
     std::string m_contentStr;
     std::string m_indentStr;
+    std::string m_tagData;
     Mushware::U32 m_contentStart;
     Mushware::U32 m_contentLineNum;
 };
@@ -118,6 +124,12 @@ MushcoreXMLIStream::ByteTake(void)
 template<class T>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, T& inObj)
+{
+    ioIn.ObjectRead(inObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& inObj)
 {
     ioIn.ObjectRead(inObj);
 }
@@ -279,7 +291,6 @@ MushcoreXMLIStream::ObjectRead(map<T, U>& inMap)
         }
     }
 }
-
 
 //%includeGuardEnd {
 #endif
