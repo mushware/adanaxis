@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.7 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.8 2002/11/04 15:50:32 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.8  2002/11/04 15:50:32  southa
+ * Network log
+ *
  * Revision 1.7  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -80,9 +83,13 @@ MediaNetServer::Connect(U32 inPort)
 
 MediaNetServer::~MediaNetServer()
 {
-    MediaNetLog::Instance().Log() << "Closed server" << endl;
+    MediaNetLog::Instance().Log() << "Closing server" << endl;
+    // Close all of the links first
+    CoreData<MediaNetLink>::Instance().Clear();
+    
     SDLNet_TCP_Close(m_tcpSocket);
     SDLNet_UDP_Close(m_udpSocket);
+    MediaNetLog::Instance().Log() << "Closed server" << endl;
 }
 
 void

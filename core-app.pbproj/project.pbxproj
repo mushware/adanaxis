@@ -3430,6 +3430,12 @@
 				F5ABEB920371802C01A80164,
 				F5A7314803757EA301A80164,
 				F5A7314703757EA301A80164,
+				F57C8853037832DC01A80164,
+				F57C8852037832DC01A80164,
+				F57C885703783D1801A80164,
+				F57C885603783D1801A80164,
+				F57C884F03782FEE01A80164,
+				F57C884E03782FEE01A80164,
 				F5539E3102B4CDCF010AB4A9,
 				F546F59502C206E801173785,
 				F5539E3302B4CE24010AB4A9,
@@ -3911,6 +3917,78 @@
 			settings = {
 			};
 		};
+		F57C884E03782FEE01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebServer.h;
+			path = Media/MediaNetWebServer.h;
+			refType = 4;
+		};
+		F57C884F03782FEE01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebServer.cpp;
+			path = Media/MediaNetWebServer.cpp;
+			refType = 4;
+		};
+		F57C885003782FEE01A80164 = {
+			fileRef = F57C884E03782FEE01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57C885103782FEE01A80164 = {
+			fileRef = F57C884F03782FEE01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57C8852037832DC01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebLink.h;
+			path = Media/MediaNetWebLink.h;
+			refType = 4;
+		};
+		F57C8853037832DC01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebLink.cpp;
+			path = Media/MediaNetWebLink.cpp;
+			refType = 4;
+		};
+		F57C8854037832DC01A80164 = {
+			fileRef = F57C8852037832DC01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57C8855037832DC01A80164 = {
+			fileRef = F57C8853037832DC01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57C885603783D1801A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebRouter.h;
+			path = Media/MediaNetWebRouter.h;
+			refType = 4;
+		};
+		F57C885703783D1801A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetWebRouter.cpp;
+			path = Media/MediaNetWebRouter.cpp;
+			refType = 4;
+		};
+		F57C885803783D1801A80164 = {
+			fileRef = F57C885603783D1801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57C885903783D1801A80164 = {
+			fileRef = F57C885703783D1801A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5909DAE022822A9013B17EF = {
 			children = (
 				F5909DAF022822A9013B17EF,
@@ -4332,6 +4410,9 @@
 				F5A7314903757EA301A80164,
 				F5AAD55A0375DDBE01A80164,
 				F5C6B43C0376BD6B01A80164,
+				F57C885003782FEE01A80164,
+				F57C8854037832DC01A80164,
+				F57C885803783D1801A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4468,6 +4549,9 @@
 				F5A7314A03757EA301A80164,
 				F5AAD55B0375DDBE01A80164,
 				F5C6B43D0376BD6B01A80164,
+				F57C885103782FEE01A80164,
+				F57C8855037832DC01A80164,
+				F57C885903783D1801A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,11 @@
+#ifndef MEDIANETCLIENT_H
+#define MEDIANETCLIENT_H
 /*
- * $Id: MediaNetClient.h,v 1.5 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetClient.h,v 1.6 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetClient.h,v $
+ * Revision 1.6  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.5  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -67,3 +72,4 @@ operator<<(ostream &ioOut, const MediaNetClient& inClient)
     inClient.Print(ioOut);
     return ioOut;
 }
+#endif

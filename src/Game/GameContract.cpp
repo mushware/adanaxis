@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.88 2002/11/04 01:02:37 southa Exp $
+ * $Id: GameContract.cpp,v 1.89 2002/11/04 13:11:57 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.89  2002/11/04 13:11:57  southa
+ * Link setup work
+ *
  * Revision 1.88  2002/11/04 01:02:37  southa
  * Link checks
  *
@@ -386,12 +389,12 @@ GameContract::Init(void)
     GameData::Instance().TimerGet().Reset();
     if (m_tileMap == NULL)
     {
-    m_tileMap=GameData::Instance().TileMapGet("tiles");
-    m_floorMap=GameData::Instance().FloorMapGet("floor");
-    COREASSERT(m_tileMap != NULL);
-    COREASSERT(m_floorMap != NULL);
-    m_floorMap->AttachTileMap(m_tileMap);
-    m_tileMap->Load();
+        m_tileMap=GameData::Instance().TileMapGet("tiles");
+        m_floorMap=GameData::Instance().FloorMapGet("floor");
+        COREASSERT(m_tileMap != NULL);
+        COREASSERT(m_floorMap != NULL);
+        m_floorMap->AttachTileMap(m_tileMap);
+        m_tileMap->Load();
     }
     GameData::Instance().ControllerGetOrCreate("controller1");
     if (m_player != NULL) delete m_player;
@@ -412,6 +415,8 @@ GameContract::Init(void)
     GameDataUtils::NamedDialoguesAdd("^start");
     m_newMode=GameConfig::Instance().DisplayModeGet();
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
+
+    MediaNetWebServer::Instance().Connect(7200);
 }
 
 void
@@ -662,6 +667,8 @@ GameContract::Running(void)
     {
         MediaNetServer::Instance().Accept();
         MediaNetRouter::Instance().ReceiveAll();
+        MediaNetWebServer::Instance().Accept();
+        MediaNetWebRouter::Instance().ReceiveAll();
     }
     
     if (timer.JudgementValid())
