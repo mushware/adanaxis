@@ -1,6 +1,9 @@
 /*
- * $Id: CoreScript.cpp,v 1.2 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreScript.cpp,v 1.3 2002/05/24 16:23:10 southa Exp $
  * $Log: CoreScript.cpp,v $
+ * Revision 1.3  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.2  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -12,39 +15,69 @@
 #include "CoreScript.h"
 #include "CoreException.h"
 
-CoreScript::CoreScript(const string& inFilename)
+CoreScript::CoreScript()
 {
-    ifstream inFile(inFilename.c_str());
-    if (!inFile)
-    {
-        throw (FileFail(inFilename, "Failed to open"));
-    }
-    ReadFromStream(inFile);
+}
+
+CoreScript::CoreScript(const string& inContent)
+{
+    istringstream strm(inContent);
+    ReadFromStream(strm);
 }
 
 void
 CoreScript::ReadFromStream(istream& inIn)
 {
-    m_functions.push_back(CoreFunction("_global"));
+    pair<map<string, CoreFunction>::iterator, bool> p =
+        m_functions.insert(pair<string, CoreFunction>("_global", CoreFunction("_global")));
+    if (!p.second)
+    {
+        throw(LogicFail("Duplicated function name _global"));
+    }
     while (!inIn.eof())
     {
         string line;
         if (!inIn.good()) throw "Stream went bad";
         getline(inIn, line);
-        m_functions.back().AddCommand(line);
+        p.first->second.AddCommand(line);
     }
+}
+
+
+const CoreFunction&
+CoreScript::FunctionGet(const string& inName) const
+{
+    map<string, CoreFunction>::const_iterator p = m_functions.find(inName);
+
+    if (p == m_functions.end())
+    {
+        throw(LogicFail("Request for unknown function '"+inName+"'"));
+    }
+    return p->second;
+}
+
+void
+CoreScript::Execute(void) const
+{
+    map<string, CoreFunction>::const_iterator p = m_functions.find("_global");
+    if (p == m_functions.end())
+    {
+        cerr << "Warning: Execution of script with no contents" << endl;
+        return;
+    }
+    p->second.Execute();
 }
 
 void
 CoreScript::ostreamPrint(ostream& inOut) const
 {
-    for (tSize i=0; i<m_functions.size(); ++i)
+    for (map<string, CoreFunction>::const_iterator p = m_functions.begin();
+         p != m_functions.end(); ++p)
     {
-        const CoreFunction& func=m_functions[i];
-        inOut << "Function " << func.Name() << ":" << endl;
-        for (tSize j=0; j<func.SizeGet(); ++j)
+        inOut << "Function " << p->second.Name() << ":" << endl;
+        for (tSize j=0; j<p->second.SizeGet(); ++j)
         {
-            inOut << func.Command(j) << endl;
+            inOut << p->second.Command(j) << endl;
         }
         inOut << endl;
     }

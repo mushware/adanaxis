@@ -1,6 +1,11 @@
+#ifndef GAMEMAP_H
+#define GAMEMAP_H
 /*
- * $Id: GameMap.h,v 1.3 2002/05/26 16:08:49 southa Exp $
+ * $Id: GameMap.h,v 1.4 2002/05/28 13:05:55 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.4  2002/05/28 13:05:55  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.3  2002/05/26 16:08:49  southa
  * CoreXML loader
  *
@@ -51,3 +56,4 @@ private:
     tSize m_xsize;
     tSize m_ysize;
 };
+#endif

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.cpp,v 1.3 2002/05/26 16:08:48 southa Exp $
+ * $Id: CoreXML.cpp,v 1.4 2002/05/28 13:05:56 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.4  2002/05/28 13:05:56  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.3  2002/05/26 16:08:48  southa
  * CoreXML loader
  *
@@ -170,6 +173,7 @@ CoreXML::ParseStream(CoreXMLHandler& inHandler)
     do
     {
         getline(*m_inStream, str);
+        if (!m_inStream->eof()) str.append("\n");
         if (!XML_Parse(m_parser, str.data(), str.length(), m_inStream->eof()))
         {
             ostringstream message;

@@ -1,8 +1,11 @@
 #ifndef CORESCRIPT_HP
 #define CORESCRIPT_HP
 /*
- * $Id: CoreScript.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreScript.h,v 1.2 2002/05/24 16:23:08 southa Exp $
  * $Log: CoreScript.h,v $
+ * Revision 1.2  2002/05/24 16:23:08  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -23,15 +26,16 @@
 class CoreScript
 {
 public:
-    CoreScript(const string& inFilename);
+    CoreScript();
+    CoreScript(const string& inContent);
     CoreScript(istream& inIn) {ReadFromStream(inIn);}
     void ostreamPrint(ostream& inOut) const;
-    tSize SizeGet(void) const {return m_functions[0].SizeGet();}
-    const string& Line(tSize inNum) const {return m_functions[0].Line(inNum);}
+    const CoreFunction& FunctionGet(const string& inName) const;
+    void Execute(void) const;
     
 private:
     void ReadFromStream(istream& inIn);
-    vector<CoreFunction> m_functions;
+    map<string, CoreFunction> m_functions;
 };
 
 inline ostream& operator<<(ostream &inOut, const CoreScript& inCoreScript)

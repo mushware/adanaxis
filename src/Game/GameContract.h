@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.1 2002/05/27 12:58:43 southa Exp $
+ * $Id: GameContract.h,v 1.2 2002/05/28 13:05:55 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.2  2002/05/28 13:05:55  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.1  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *
@@ -11,6 +14,7 @@
 #include "GameBase.h"
 
 class GameMap;
+class GameTileMap;
 
 class GameContract: public GameBase
 {
@@ -34,5 +38,6 @@ protected:
 
 private:
     State m_state;
-    GameMap *m_gameMap;
+    auto_ptr<GameMap> m_gameMap;
+    auto_ptr<GameTileMap> m_tileMap;
 };

@@ -1,6 +1,9 @@
 #
-# $Id$
-# $Log$
+# $Id: ParserMake.mkf,v 1.1 2002/03/02 20:33:21 southa Exp $
+# $Log: ParserMake.mkf,v $
+# Revision 1.1  2002/03/02 20:33:21  southa
+# Created
+#
 #
 
 MAKEFILE=ParserMake.mkf
@@ -11,6 +14,6 @@ default:$(OBJECTS)
 %.cpp:%.flex $(MAKEFILE)
 	flex -PCoreFlex_ -L -o$@ $<
 
-%.cpp %.hp:%.y $(MAKEFILE)
+%.cpp %.h:%.y $(MAKEFILE)
 	bison --debug --name-prefix=CoreBison_ --no-lines --defines --output-file=$@ $<
-	mv $@.h $(patsubst %.cpp,%Defs.hp,$@)
+	mv $@.h $(patsubst %.cpp,%Defs.h,$@)

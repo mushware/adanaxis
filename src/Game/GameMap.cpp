@@ -1,6 +1,9 @@
 /*
- * $Id: GameMap.cpp,v 1.3 2002/05/26 16:08:48 southa Exp $
+ * $Id: GameMap.cpp,v 1.4 2002/05/28 13:05:55 southa Exp $
  * $Log: GameMap.cpp,v $
+ * Revision 1.4  2002/05/28 13:05:55  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.3  2002/05/26 16:08:48  southa
  * CoreXML loader
  *
@@ -22,8 +25,8 @@ GameMap::NullHandler(CoreXML& inXML)
 void
 GameMap::HandleGameMapStart(CoreXML& inXML)
 {
-    m_xsize=inXML.GetAttribOrThrow("xsize").Val();
-    m_ysize=inXML.GetAttribOrThrow("ysize").Val();
+    m_xsize=inXML.GetAttribOrThrow("xsize").U32Get();
+    m_ysize=inXML.GetAttribOrThrow("ysize").U32Get();
     m_state=kData;
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreEnv.cpp,v 1.3 2002/05/10 16:39:39 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.4 2002/05/24 16:23:09 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.4  2002/05/24 16:23:09  southa
+ * Config and typenames
+ *
  * Revision 1.3  2002/05/10 16:39:39  southa
  * Changed .hp files to .h
  *
@@ -15,12 +18,3 @@
 #include "CoreEnv.h"
 #include "CoreApp.h"
 
-void
-CoreEnv::Enter(const CoreScript& inScript)
-{
-    cerr << "Entered script" << endl << inScript << endl;
-    for (tSize i=0; i<inScript.SizeGet(); ++i)
-    {
-        CoreApp::Instance().Process(inScript.Line(i));
-    }
-}

@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.2 2002/05/28 13:05:55 southa Exp $
+ * $Id: GameContract.cpp,v 1.3 2002/05/28 16:37:36 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.3  2002/05/28 16:37:36  southa
+ * Texture references and decomposer
+ *
  * Revision 1.2  2002/05/28 13:05:55  southa
  * Command parser extensions and TIFF loader
  *
@@ -15,9 +18,10 @@
 #include "mushGL.h"
 
 #include "GameMap.h"
+#include "GameTileMap.h"
 #include "GameGlobalConfig.h"
 
-GameContract::GameContract(): m_state(kInit), m_gameMap(NULL)
+GameContract::GameContract(): m_state(kInit)
 {
     string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").String());
     GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
@@ -26,10 +30,6 @@ GameContract::GameContract(): m_state(kInit), m_gameMap(NULL)
 
 GameContract::~GameContract()
 {
-    if (m_gameMap != NULL)
-    {
-        delete m_gameMap;
-    }
 }
 
 void
@@ -80,7 +80,8 @@ GameContract::InitDisplay(void)
 void
 GameContract::RunningDisplay(void)
 {
-    COREASSERT(m_gameMap != NULL);
+    // COREASSERT(m_gameMap != NULL);
+    // COREASSERT(m_tileMap != NULL);
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
@@ -106,20 +107,29 @@ void
 GameContract::Init(void)
 {
     string filename;
-    // Load and decompose the pixel maps
-    filename=GameGlobalConfig::Instance().Get("IMAGEPATH").String() + "/gra1.tiff";
-    CoreApp::Instance().Process("loadpixmap gra1 "+filename);
-    CoreApp::Instance().Process("decompose gra1 gra1-@ 32 32");
-    GLData::Instance().DumpTextures(cerr);
+    // Load the tile map
+    {
+        m_tileMap.reset(new GameTileMap);
+        filename=GameGlobalConfig::Instance().Get("MAPPATH").String() + "/TileMap.xml";
+        ifstream inStream(filename.c_str());
+        if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+        CoreXML xml(inStream, filename);
+        m_tileMap->Unpickle(xml);
+        m_tileMap->Pickle(cout);
+    }
     
     // Load the game map
-    m_gameMap=new GameMap;
-    filename=GameGlobalConfig::Instance().Get("MAPPATH").String() + "/GameMap.xml";
-    ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-    CoreXML xml(inStream, filename);
-    m_gameMap->Unpickle(xml);
-    m_gameMap->Pickle(cout);
+    {
+        m_gameMap.reset(new GameMap);
+        filename=GameGlobalConfig::Instance().Get("MAPPATH").String() + "/GameMap.xml";
+        ifstream inStream(filename.c_str());
+        if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+        CoreXML xml(inStream, filename);
+        m_gameMap->Unpickle(xml);
+        m_gameMap->Pickle(cout);
+    }
+
+    m_tileMap->Load();
 }
 
 void

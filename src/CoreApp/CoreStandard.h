@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.4 2002/05/25 17:17:18 southa Exp $
+ * $Id: CoreStandard.h,v 1.5 2002/05/28 16:37:36 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.5  2002/05/28 16:37:36  southa
+ * Texture references and decomposer
+ *
  * Revision 1.4  2002/05/25 17:17:18  southa
  * CoreXML implementation
  *
@@ -48,6 +51,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <memory>
 
 #ifdef HAVE_SSTREAM
 #include <sstream>
