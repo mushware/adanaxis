@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.10 2002/07/18 13:53:48 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.11 2002/07/19 15:44:41 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.11  2002/07/19 15:44:41  southa
+ * Graphic optimisations
+ *
  * Revision 1.10  2002/07/18 13:53:48  southa
  * Tuned player motion
  *
@@ -76,7 +79,7 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     GameControllerState controlState;
     m_controller->StateGet(controlState);
 
-    outSpec = m_motion;
+    outSpec = m_motion.MotionSpecGet();
     
     outSpec.deltaAngle+=m_adhesion * M_PI * controlState.mouseXDelta;
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
@@ -119,25 +122,20 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     }
     
     outSpec.deltaPos.RotateAboutZ(newAngle);
-
-    // Add overplot line
-    GameData::Instance().CurrentViewGet()->OverPlotGet().
-        RenderableAdd(GLLine(outSpec.pos,
-                             outSpec.pos+outSpec.deltaPos*10),
-                      GLColour(1,1,0));
 }
 
 void
 GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
 {
-    m_motion = inSpec;
-    m_motion.pos += m_motion.deltaPos;
-    m_motion.angle += m_motion.deltaAngle;
+    GameMotionSpec motionSpec = inSpec;
+    motionSpec.pos += motionSpec.deltaPos;
+    motionSpec.angle += motionSpec.deltaAngle;
 
-    GLPoint retardPos(m_motion.deltaPos);
+    GLPoint retardPos(motionSpec.deltaPos);
     retardPos.ConstrainMagnitude(m_adhesion);
-    m_motion.deltaPos -= retardPos*0.5;
-    m_motion.deltaAngle *= 1.0-(m_adhesion*0.5);
+    motionSpec.deltaPos -= retardPos*0.5;
+    motionSpec.deltaAngle *= 1.0-(m_adhesion*0.5);
+    m_motion.MotionSpecSet(motionSpec);
 }
 
 void
@@ -160,23 +158,16 @@ GamePiecePlayer::HandleGraphicStart(CoreXML& inXML)
 }
 
 void
+GamePiecePlayer::HandleMotionStart(CoreXML& inXML)
+{
+    m_motion.Unpickle(inXML);
+}
+
+void
 GamePiecePlayer::HandlePlayerEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
-}
-
-void
-GamePiecePlayer::HandlePositionEnd(CoreXML& inXML)
-{
-    istringstream data(inXML.TopData());
-    const char *failMessage="Bad format for position.  Should be <position>64,96,45</position>";
-    char comma;
-    if (!(data >> m_motion.pos.x)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> m_motion.pos.y)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> m_motion.angle)) inXML.Throw(failMessage);
 }
 
 void
@@ -194,7 +185,7 @@ GamePiecePlayer::Pickle(ostream& inOut, const string& inPrefix="") const
         m_graphics[i]->Pickle(inOut, inPrefix+"  ");
         inOut << inPrefix << "</graphic>" << endl;
     }
-    inOut << inPrefix << "<position>" << m_motion.pos.x << "," << m_motion.pos.y << "," << m_motion.angle << "</position>" << endl;
+    m_motion.Pickle(inOut, inPrefix);
 }
 
 void
@@ -206,10 +197,9 @@ GamePiecePlayer::UnpicklePrologue(void)
     m_startTable[kPickleInit]["player"] = &GamePiecePlayer::HandlePlayerStart;
     m_startTable[kPickleData]["name"] = &GamePiecePlayer::NullHandler;
     m_startTable[kPickleData]["graphic"] = &GamePiecePlayer::HandleGraphicStart;
-    m_startTable[kPickleData]["position"] = &GamePiecePlayer::NullHandler;
+    m_startTable[kPickleData]["motion"] = &GamePiecePlayer::HandleMotionStart;
     m_endTable[kPickleData]["name"] = &GamePiecePlayer::HandleNameEnd;
     m_endTable[kPickleData]["player"] = &GamePiecePlayer::HandlePlayerEnd;
-    m_endTable[kPickleData]["position"] = &GamePiecePlayer::HandlePositionEnd;
     m_pickleState=kPickleInit;
     m_baseThreaded=0;
 }

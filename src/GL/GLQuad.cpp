@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLQuad.cpp,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Log: GLQuad.cpp,v $
+ * Revision 1.1  2002/07/16 17:48:07  southa
+ * Collision and optimisation work
+ *
  */
 
 #include "GLQuad.h"
@@ -19,6 +22,17 @@ GLQuad::GLQuad(const GLRectangle& inRectangle)
     m_points[3].x=inRectangle.xmin;
     m_points[3].y=inRectangle.ymax;
 }    
+
+const GLQuad&
+GLQuad::operator+=(const GLPoint& inPoint)
+{
+    for (U32 i=0; i<4; ++i)
+    {
+        m_points[i].x += inPoint.x;
+        m_points[i].y += inPoint.y;
+    }
+    return *this;
+}
 
 void
 GLQuad::CentreGet(GLPoint& outPoint) const

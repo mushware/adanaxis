@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.2 2002/07/16 19:30:09 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.3 2002/07/19 17:51:11 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.3  2002/07/19 17:51:11  southa
+ * Texture tweaks
+ *
  * Revision 1.2  2002/07/16 19:30:09  southa
  * Simplistic collision checking
  *
@@ -13,6 +16,8 @@
 
 #include "mushGL.h"
 
+#include "GameData.h"
+#include "GameView.h"
 #include "GameMapArea.h"
 
 void
@@ -66,6 +71,8 @@ GameSolidMap::RenderCollisionSet(const GLRectangle& inRect, tVal inAngle)
 {
     GLQuad quad(inRect);
     quad.RotateAboutCentre(inAngle);
+    GameData::Instance().CurrentViewGet()->OverPlotGet().
+        RenderableAdd(quad, GLColour(0,0,1));
 }
 
 void

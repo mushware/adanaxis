@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.32 2002/07/19 15:52:34 southa Exp $
+ * $Id: GameContract.cpp,v 1.33 2002/07/19 17:51:10 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.33  2002/07/19 17:51:10  southa
+ * Texture tweaks
+ *
  * Revision 1.32  2002/07/19 15:52:34  southa
  * Fixed
  *
@@ -213,6 +216,7 @@ GameContract::RunningDisplay(void)
         m_player->MoveGet(motion);
         // m_floorMap->SolidMapGet().TrimMotion(motion);
         m_player->MoveConfirm(motion);
+        motion.Render();
     }
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     GameMapArea visibleArea;

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.7 2002/07/18 11:40:36 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.8 2002/07/18 13:53:48 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.8  2002/07/18 13:53:48  southa
+ * Tuned player motion
+ *
  * Revision 1.7  2002/07/18 11:40:36  southa
  * Overplotting and movement
  *
@@ -40,7 +43,7 @@
  */
 
 #include "GamePiece.h"
-#include "GameMotionSpec.h"
+#include "GameMotion.h"
 
 class GameGraphic;
 class GameController;
@@ -60,10 +63,10 @@ public:
     virtual void Render(void);
     virtual string TypeNameGet(void) const {return "player";};
 
-    tVal XGet(void) {return m_motion.pos.x;}
-    tVal YGet(void) {return m_motion.pos.y;}
-    const GLPoint& PositionGet(void) { return m_motion.pos; }
-    tVal AngleGet(void) {return m_motion.angle;}
+    tVal XGet(void) {return m_motion.MotionSpecGet().pos.x;}
+    tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}
+    const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
+    tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
 
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
@@ -76,11 +79,11 @@ protected:
     void XMLDataHandler(CoreXML& inXML);
 
 private:
+    void HandleMotionStart(CoreXML& inXML);
     void HandlePlayerStart(CoreXML& inXML);
     void HandlePlayerEnd(CoreXML& inXML);
     void HandleGraphicStart(CoreXML& inXML);
     void HandleNameEnd(CoreXML& inXML);
-    void HandlePositionEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
     
     enum PickleState
@@ -97,7 +100,7 @@ private:
     PickleState m_pickleState;
     bool m_baseThreaded;
 
-    GameMotionSpec m_motion;
+    GameMotion m_motion;
     tVal m_adhesion;
     vector <GameGraphic *> m_graphics;
     string m_controllerName;

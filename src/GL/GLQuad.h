@@ -1,6 +1,9 @@
 /*
- * $Id: GLQuad.h,v 1.1 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLQuad.h,v 1.2 2002/07/18 11:40:34 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.2  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.1  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -25,6 +28,7 @@ public:
     void RotateAboutCentre(tVal inAngle);
     const GLPoint& GetPoint(U32 inWhich) const;
 
+    const GLQuad& operator+=(const GLPoint& inPoint);
 
 private:
     GLPoint m_points[4];

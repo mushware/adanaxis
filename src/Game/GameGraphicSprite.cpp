@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.5 2002/07/08 14:22:02 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.6 2002/07/19 15:44:41 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.6  2002/07/19 15:44:41  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -63,18 +66,7 @@ GameGraphicSprite::HandleNameEnd(CoreXML& inXML)
 void
 GameGraphicSprite::HandleRectEnd(CoreXML& inXML)
 {
-    istringstream data(inXML.TopData());
-    const char *failMessage="Bad format for rect.  Should be <rect>0,0,1,1</rect>";
-    tVal x,y,width,height;
-    char comma;
-    if (!(data >> x)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> y)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> width)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
-    if (!(data >> height)) inXML.Throw(failMessage);
-    m_rectangle=GLRectangle(x, y, x+width, y+height);
+    m_rectangle.Unpickle(inXML);
 }
 
 void
@@ -100,7 +92,8 @@ void
 GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<name>" << m_texRef.NameGet() << "</name>" << endl;
-    inOut << inPrefix << "<!-- Not fully implemented -->" << endl;
+    m_rectangle.Pickle(inOut, inPrefix);
+    inOut << inPrefix << "<rotate>" << m_rotation << "</rotate>" << endl;
 }
 
 void

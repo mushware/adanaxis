@@ -2970,6 +2970,30 @@
 			path = player.xml;
 			refType = 4;
 		};
+		F549083802ED8ACC01F581B4 = {
+			isa = PBXFileReference;
+			name = GameMotion.cpp;
+			path = Game/GameMotion.cpp;
+			refType = 4;
+		};
+		F549083902ED8ACC01F581B4 = {
+			isa = PBXFileReference;
+			name = GameMotion.h;
+			path = Game/GameMotion.h;
+			refType = 4;
+		};
+		F549083A02ED8ACC01F581B4 = {
+			fileRef = F549083802ED8ACC01F581B4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F549083B02ED8ACC01F581B4 = {
+			fileRef = F549083902ED8ACC01F581B4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F54ACE7302B642C401F28026 = {
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
@@ -3620,6 +3644,8 @@
 				F54020C602A25BFC01F0D71D,
 				F545A43202E4771E015FC162,
 				F545A43302E4771E015FC162,
+				F549083802ED8ACC01F581B4,
+				F549083902ED8ACC01F581B4,
 				F546082602E5EDA30166357B,
 				F546082702E5EDA30166357B,
 				F5463ACE02E6CD91018842E0,
@@ -3824,6 +3850,7 @@
 				F5463AD502E6D2A7018842E0,
 				F5463AD902E6D60D018842E0,
 				F5483C4E02E836CD0163105D,
+				F549083B02ED8ACC01F581B4,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -3917,6 +3944,7 @@
 				F5463AD402E6D2A7018842E0,
 				F5463AD802E6D60D018842E0,
 				F5483C4D02E836CD0163105D,
+				F549083A02ED8ACC01F581B4,
 			);
 			isa = PBXSourcesBuildPhase;
 		};

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.3 2002/07/16 17:48:07 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.4 2002/07/18 11:40:34 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.4  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.3  2002/07/16 17:48:07  southa
  * Collision and optimisation work
  *
@@ -98,6 +101,36 @@ GLRectangle::FixUp(void)
 {
     if (xmin > xmax) swap(xmin, xmax);
     if (ymin > ymax) swap(ymin, ymax);
+}
+
+void
+GLRectangle::Pickle(ostream& inOut, const string& inPrefix="") const
+{
+    inOut << inPrefix << "<rect>" << xmin << "," << ymin << "," << xmax << "," << ymax << "</rect>" << endl;
+}
+
+void
+GLRectangle::Unpickle(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for rect.  Should be <rect>10,10,30,+20</rect>";
+    char comma, plus;
+    if (!(data >> xmin)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    
+    if (!(data >> ymin)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    
+    if (!(data >> plus)) inXML.Throw(failMessage);
+    if (plus != '+') data.putback(plus);
+    if (!(data >> xmax)) inXML.Throw(failMessage);
+    if (plus == '+') xmax += xmin;
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    
+    if (!(data >> plus)) inXML.Throw(failMessage);
+    if (plus != '+') data.putback(plus);
+    if (!(data >> ymax)) inXML.Throw(failMessage);
+    if (plus == '+') ymax += ymin;
 }
 
 void
