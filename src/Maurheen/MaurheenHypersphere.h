@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MAURHEENHYPERCUBE_H
-#define MAURHEENHYPERCUBE_H
-//%includeGuardStart } b6sC03eXI4CBCNiLtDRVIg
+#ifndef MAURHEENHYPERSPHERE_H
+#define MAURHEENHYPERSPHERE_H
+//%includeGuardStart } qUVaaJM6O/D2oxciTypL4A
 //%Header {
 /*****************************************************************************
  *
- * File: src/Maurheen/MaurheenHypercube.h
+ * File: src/Maurheen/MaurheenHypersphere.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,16 +14,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FU79ttZJMqjIVWpj0CtP6A
+//%Header } slFPFhapfdncvvpyGmZQIQ
 /*
- * $Id: MaurheenHypercube.h,v 1.2 2005/01/26 00:48:46 southa Exp $
- * $Log: MaurheenHypercube.h,v $
- * Revision 1.2  2005/01/26 00:48:46  southa
- * MushMeshGroup and rendering
- *
- * Revision 1.1  2004/10/31 23:34:06  southa
- * Hypercube rendering test
- *
+ * $Id: MaurheenHypersphere.h,v 1.2 2005/01/26 00:48:46 southa Exp $
+ * $Log: MaurheenHypersphere.h,v $
  */
 
 #include "MaurheenStandard.h"
@@ -31,21 +25,19 @@
 #include "mushMushGL.h"
 #include "mushMushMesh.h"
 
-class MaurheenHypercube
+class MaurheenHypersphere
 {
 public:
     typedef Mushware::t4Val tVertex;
     typedef MushMeshGroup tFacetGroup;
     
-    MaurheenHypercube() {}
+    MaurheenHypersphere() {}
     void Create(Mushware::tVal frame);
     void Render(Mushware::tVal frame);
     
 private:
     std::vector<tVertex> m_vertices;
-    tFacetGroup m_facetGroup;
 };
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

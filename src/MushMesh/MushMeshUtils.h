@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0wfuXnSBCMb2QK1DMdaKSw
 /*
- * $Id: MushMeshUtils.h,v 1.8 2004/12/13 11:09:11 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.9 2005/01/26 00:48:47 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.9  2005/01/26 00:48:47  southa
+ * MushMeshGroup and rendering
+ *
  * Revision 1.8  2004/12/13 11:09:11  southa
  * Quaternion and vector tweaks
  *
@@ -46,6 +49,8 @@
 
 #include "MushMeshStandard.h"
 
+class MushMeshGroup;
+
 template<class T, Mushware::U32 D> class MushMeshVector;
 
 class MushMeshUtils
@@ -59,6 +64,8 @@ public:
     static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN);
     static Mushware::U32 TriangleLimitGet(Mushware::U32 inX, Mushware::U32 inOrder);
 
+    static void SimpleDivide4Mesh(MushMeshGroup& outGroup, const MushMeshGroup& inGroup, const Mushware::tVal inShrink);
+    
     template<class T> static bool EqualIs(const MushwareValarray<T>& a, const MushwareValarray<T>& b);
 
 private:

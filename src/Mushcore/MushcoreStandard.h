@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.17 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.18 2004/12/06 20:44:18 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.18  2004/12/06 20:44:18  southa
+ * Quaternion and matrix operations
+ *
  * Revision 1.17  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *
@@ -213,6 +216,7 @@ namespace Mushware
     typedef signed char S8;
     typedef unsigned char U8;
     typedef double tXMLVal;
+    typedef std::size_t tSize;
 };
 
 #ifdef MUSHCORE_MIMIC_VALARRAY

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.5 2004/10/31 23:34:06 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.6 2005/01/26 00:48:46 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.6  2005/01/26 00:48:46  southa
+ * MushMeshGroup and rendering
+ *
  * Revision 1.5  2004/10/31 23:34:06  southa
  * Hypercube rendering test
  *
@@ -44,7 +47,8 @@ using namespace std;
 
 MaurheenGame::MaurheenGame()
 {
-
+    m_hypercube.Create(0);
+    m_hypersphere.Create(0);
 }
 
 MaurheenGame::~MaurheenGame()
@@ -106,21 +110,23 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     GLState::BlendSet(GLState::kBlendLine);
     GLState::ModulationSet(GLState::kModulationNone);
 
+    glEnable(GL_POINT_SMOOTH);
+    glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
     glEnable(GL_LINE_SMOOTH);
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     
     glDisable(GL_MULTISAMPLE);
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
     glLineWidth(1.0);
+    glPointSize(2.0);
     
     GLState::TextureDisable();
     //GLTextureRef texRef("font-system1");
     
     //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
     
-    MaurheenHypercube hypercube;
-    hypercube.Create(msecNow / 1000);
-    hypercube.Render(msecNow / 1000);
+    m_hypersphere.Render(msecNow / 2000);
+    m_hypercube.Render(msecNow / 2000);
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
@@ -173,6 +179,7 @@ void
 MaurheenGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    //ioOut << "hypercube=" << m_hypercube;
     ioOut << "]";
 }
 bool
@@ -181,6 +188,10 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     if (inTagStr == "obj")
     {
         ioIn >> *this;
+    }
+    else if (inTagStr == "hypercube")
+    {
+        //ioIn >> m_hypercube;
     }
     else
     {
@@ -191,5 +202,7 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MaurheenGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("hypercube");
+    //ioOut << m_hypercube;
 }
-//%outOfLineFunctions } SfHuX8OxfbXq+qZe7FVjog
+//%outOfLineFunctions } lr1PSjWBxotxvzFu2xyvwA

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 3XzxqUPWd6V+FRewD4IMHw
 /*
- * $Id: MushMeshUtils.cpp,v 1.6 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.7 2004/12/13 11:09:11 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.7  2004/12/13 11:09:11  southa
+ * Quaternion and vector tweaks
+ *
  * Revision 1.6  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -37,6 +40,7 @@
 #include "MushMeshUtils.h"
 
 #include "MushMeshBox.h"
+#include "MushMeshGroup.h"
 #include "MushMeshSTL.h"
 
 using namespace Mushware;
@@ -81,3 +85,41 @@ MushMeshUtils::SubdivisionAlphaCalculate(Mushware::U32 inN)
 
     return inN * (1.0 - a) / a;
 }
+
+void
+MushMeshUtils::SimpleDivide4Mesh(MushMeshGroup& outGroup, const MushMeshGroup& inGroup, const tVal inScale)
+{
+    outGroup.OrderResize(2);
+    
+    U32 destFace = 0;
+    U32 destFacet = 0;
+    U32 destVertex = 0;
+    
+    for (U32 i=0; i < inGroup.SuperGroupSize(1); ++i)
+    {
+        
+        for (U32 j=0; j < inGroup.GroupSize(1, i); ++j)
+        {
+            MushMeshGroup::tValue value;
+            
+            value = inGroup.Value(1, i, j);
+            
+            outGroup.ValueAdd(value, 1, i, j);
+        }
+    }
+    
+    for (U32 i=0; i < inGroup.SuperGroupSize(0); ++i)
+    {
+        for (U32 j=0; j < inGroup.GroupSize(0, i); ++j)
+        {
+            MushMeshGroup::tValue value;
+            
+            value = inGroup.Value(0, i, j);
+            
+            outGroup.ValueAdd(value, 0, i, j);
+        }
+    }
+    
+}
+
+

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PPS/HIYTNx/xF3BnuxBKdQ
 /*
- * $Id: MaurheenGame.h,v 1.1 2004/03/06 14:01:42 southa Exp $
+ * $Id: MaurheenGame.h,v 1.2 2004/03/07 12:05:56 southa Exp $
  * $Log: MaurheenGame.h,v $
+ * Revision 1.2  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.1  2004/03/06 14:01:42  southa
  * Maurheen created
  *
@@ -26,6 +29,9 @@
 #include "mushMushcore.h"
 #include "mushGame.h"
 #include "mushGL.h"
+
+#include "MaurheenHypercube.h"
+#include "MaurheenHypersphere.h"
 
 //:generate standard xml1 ostream
 class MaurheenGame : public GameBase
@@ -45,6 +51,8 @@ public:
 protected:
     
 private:
+    MaurheenHypercube m_hypercube;
+    MaurheenHypersphere m_hypersphere;
 
 //%classPrototypes {
 public:
