@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.16 2002/10/07 17:49:46 southa Exp $
+ * $Id: GameFloorMap.h,v 1.17 2002/10/08 17:13:18 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.17  2002/10/08 17:13:18  southa
+ * Tiered maps
+ *
  * Revision 1.16  2002/10/07 17:49:46  southa
  * Multiple values per map element
  *
@@ -86,6 +89,8 @@
 #include "mushCore.h"
 #include "mushGL.h"
 #include "GameSolidMap.h"
+#include "GameMap.h"
+#include "GameLightLinks.h"
 
 class GameTileMap;
 class GameMapArea;
@@ -115,7 +120,8 @@ public:
     
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
-    
+    void RenderLightMap(const GameMapArea& inArea) const;
+        
     const tMapVector& ElementGet(const GLPoint &inPoint) const;
     const tMapVector& ElementGet(const GameSpacePoint &inPoint) const;
     const tMapVector& ElementGet(const GameMapPoint &inPoint) const;
@@ -149,12 +155,13 @@ protected:
 
 private:
     void RebuildSolidMap(void) const;
+    void RebuildLightMap(void) const;
 
     typedef map<string, void (GameFloorMap::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     U32 m_state;
-
+    
     vector< vector< tMapVector > > m_map;
     tSize m_xsize;
     tSize m_ysize;
@@ -163,6 +170,10 @@ private:
     mutable GameSolidMap m_solidMap;
     mutable bool m_solidMapValid;
     GameTileMap *m_tileMap;
+    
+    mutable GameMap<GameLightLinks> m_lightMap;
+    mutable bool m_lightMapValid;
+    
     static tMapVector m_emptyMapVector;
 };
 

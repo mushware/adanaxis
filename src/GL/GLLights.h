@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.h,v 1.2 2002/10/08 11:58:52 southa Exp $
+ * $Id: GLLights.h,v 1.3 2002/10/08 17:13:16 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.3  2002/10/08 17:13:16  southa
+ * Tiered maps
+ *
  * Revision 1.2  2002/10/08 11:58:52  southa
  * Light cache
  *
@@ -24,6 +27,7 @@ public:
     };
     GLLights();
     void LightAdd(U32 inNum, const GLLightDef& inDef);
+    const GLLightDef& LightGet(U32 inNum);
     void LightEnable(U32 inNum);
     void LightDisable(U32 inNum);
     void DisableAll(void);

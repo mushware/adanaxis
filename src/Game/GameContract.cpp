@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.68 2002/10/08 17:13:17 southa Exp $
+ * $Id: GameContract.cpp,v 1.69 2002/10/08 21:44:09 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.69  2002/10/08 21:44:09  southa
+ * 3D maps
+ *
  * Revision 1.68  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -451,7 +454,7 @@ GameContract::RunningDisplay(void)
 
     if (m_renderDiagnostics)
     {
-        m_floorMap->RenderSolidMap(visibleArea);
+        m_floorMap->RenderLightMap(visibleArea);
     }
 
     GLUtils::PopMatrix();
@@ -618,7 +621,7 @@ GameContract::GlobalKeyControl(void)
         }
         else
         {
-            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.2);
+            GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.02);
             m_floorMap->SolidMapInvalidate();
             gameAppHandler.SetCursorState(false);
             m_gameState=kRunning;

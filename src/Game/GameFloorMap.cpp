@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.27 2002/10/08 21:44:10 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.28 2002/10/10 13:51:16 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.28  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.27  2002/10/08 21:44:10  southa
  * 3D maps
  *
@@ -151,9 +154,13 @@ GameFloorMap::MapToSpace(const GameMapPoint inPoint) const
 void
 GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight)
 {
-#if 1
     COREASSERT(m_tileMap != NULL);
 
+    if (!m_lightMapValid)
+    {
+        RebuildLightMap();
+    }
+    
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     U32 timeNow=glAppHandler.MillisecondsGet();
     tVal xv=50*cos(timeNow/450.0);
@@ -203,6 +210,8 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                 inArea.IsWithin(GLPoint(x,y));
         }
     }
+
+    GLLights *pLights=GLData::Instance().LightsGet();
     
     U32 m_numTiers=5;
     U32 tierHighlightSize=inTierHighlight.size();
@@ -253,20 +262,30 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                             }
                         }
                         
-                        gl.MoveTo(x, y);
 
                         GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
                             (*m_tileMap->TraitsPtrGet(mapVector[tier]));
-                        // glPushMatrix();
+
+                        const GameLightLinks& links=m_lightMap.ElementGet(x,y);
+                        for (U32 link=0; link<links.SizeGet(); ++link)
+                        {
+                            gl.MoveTo(0,0);                            
+                            pLights->LightEnable(links.LinkGet(link));
+                        }
+
+                        gl.MoveTo(x, y);
                         tileTraits.Render();
-                        // glPopMatrix();
+
+                        for (U32 link=0; link<links.SizeGet(); ++link)
+                        {
+                            pLights->LightDisable(links.LinkGet(link));
+                        }
                     }
                 }
             }
         }
     }
     glPopMatrix();
-#endif
 }
 
 void
@@ -364,7 +383,6 @@ GameFloorMap::SolidMapGet(void) const
     }
     return m_solidMap;
 }
-
 void
 GameFloorMap::RebuildSolidMap(void) const
 {
@@ -383,7 +401,7 @@ GameFloorMap::RebuildSolidMap(void) const
             for (U32 i=0; i<size; ++i)
             {
                 GameTileTraits& tileTraits=
-                   dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
+                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
 
                 tVal value;
                 if (tileTraits.PermeabilityGet(value))
@@ -409,7 +427,7 @@ GameFloorMap::RebuildSolidMap(void) const
                     message << mapVec[i];
                     if (i+1 != size) message << ",";
                 }
-                message << "] missing adhesion or permeability value at (" << x << "," << y << ")";  
+                message << "] missing adhesion or permeability value at (" << x << "," << y << ")";
                 throw(ReferenceFail(message.str()));
             }
             m_solidMap.PermeabilitySet(permeability, x, y);
@@ -417,6 +435,141 @@ GameFloorMap::RebuildSolidMap(void) const
         }
     }
     m_solidMapValid=true;
+}
+
+void
+GameFloorMap::RebuildLightMap(void) const
+{
+    COREASSERT(m_tileMap != NULL);
+
+    m_lightMap.SizeSet(m_xsize, m_ysize);
+
+    vector<GLLightDef> lightDefs;
+    
+    // Collect lights
+    for (U32 x=0; x<m_xsize; ++x)
+    {
+        for (U32 y=0; y<m_ysize; ++y)
+        {
+            const tMapVector& mapVec=ElementGet(GLPoint(x,y));
+            U32 size=mapVec.size();
+
+            for (U32 i=0; i<size; ++i)
+            {
+                GameTileTraits& tileTraits=
+                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
+
+                GLLightDef lightDef;
+                if (tileTraits.LightGet(lightDef))
+                {
+                    lightDef.pos += GLVector(x,y,0);
+                    cerr << "Light at " << lightDef.pos << endl;
+                    GLData::Instance().LightsGet()->LightAdd(lightDefs.size(), lightDef);
+                    lightDefs.push_back(lightDef);
+                }
+            }
+        }
+    }
+    // cerr << "Num lights=" << lightDefs.size() << endl;
+    // Link each tile position to the nearest lights
+    GameLightLinks lightLinks;
+    U32 linksSize=lightLinks.SizeGet();
+    
+    U32 lightDefsSize=lightDefs.size();
+    
+    for (U32 x=0; x<m_xsize; ++x)
+    {
+        for (U32 y=0; y<m_ysize; ++y)
+        {
+            // Looping over the map
+            lightLinks=GameLightLinks();
+            GLVector here(x,y,0);
+            for (U32 light=0; light<lightDefsSize; ++light)
+            {
+                // Looping over each light which we read into the lightDefs above
+                tVal distance = (here - lightDefs[light].pos).Magnitude();
+
+                bool slotFound=false;
+                bool linkSlot=0;
+                tVal linkDistance;
+                
+                for (U32 link=0; link<linksSize; ++link)
+                {
+                    // Looping over each light link slot for this map position
+                    if (!lightLinks.ValidGet(link) ||
+                        distance < lightLinks.DistanceGet(link))
+                    {
+                        // If we could replace this link because we're closer...
+                        if (!slotFound ||
+                            lightLinks.DistanceGet(link) > lightLinks.DistanceGet(linkSlot))
+                        {
+                            // If this slot is weaker than the current slot we had in mind...
+                            slotFound=true;
+                            linkSlot=link;
+                            linkDistance=distance;
+                        }
+                    }
+                }
+                if (slotFound)
+                {
+                    lightLinks.LinkSet(linkSlot, light);
+                    lightLinks.DistanceSet(linkSlot, distance);
+                    lightLinks.ValidSet(linkSlot, true);
+                }
+            }
+            m_lightMap.ElementSet(lightLinks, x, y);
+        }
+    }
+    m_lightMapValid=true;
+}
+
+void
+GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
+{
+    if (!m_lightMapValid)
+    {
+        RebuildLightMap();
+    }
+    GLUtils::PushMatrix();
+    GLUtils::Scale(m_xstep, m_ystep, 1);
+    GLPoint minPoint=inArea.MinPointGet();
+    GLPoint maxPoint=inArea.MaxPointGet();
+
+    GLRectangle wholeMap(0, 0, m_xsize, m_ysize);
+    wholeMap.ConstrainPoint(minPoint);
+    wholeMap.ConstrainPoint(maxPoint);
+
+    minPoint.MakeInteger();
+    maxPoint.MakeInteger();
+
+    GLPoint point;
+    GLUtils::BlendSet(GLUtils::kBlendLine);
+    GLUtils::ModulationSet(GLUtils::kModulationColour);
+    GLUtils::ColourSet(1, 1, 1, 0.2);
+    
+    for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
+    {
+        for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
+        {
+            if (inArea.IsWithin(point))
+            {
+                const GameLightLinks& links=m_lightMap.ElementGet(point);
+                for (U32 i=0; i<links.SizeGet(); ++i)
+                {
+                    if (links.ValidGet(i))
+                    {
+                        U32 lightNum=links.LinkGet(i);
+
+                        GLVector linkVec=GLData::Instance().LightsGet()->LightGet(lightNum).pos;
+                        GLLine line(point, GLPoint(linkVec.x, linkVec.y));
+
+                        line.Render();
+                    }
+                }
+            }
+        }
+    }
+    GLUtils::PopMatrix();
 }
 
 /* --- XML stuff --- */

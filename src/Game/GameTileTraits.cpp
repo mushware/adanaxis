@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.12 2002/08/18 15:13:16 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.13 2002/08/27 08:56:26 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.13  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.12  2002/08/18 15:13:16  southa
  * Adhesion handling
  *
@@ -103,14 +106,6 @@ GameTileTraits::PermeabilityGet(tVal& outPermeability) const
         }
     }
 
-    // This logic is flawed.  Only works at the top level
-    static bool notWarnedYet=true;
-    if (!foundPerm && notWarnedYet)
-    {
-        cerr << "Warning: GameTileTrait with unknown permeability:" << endl;
-        Pickle(cerr);
-        notWarnedYet=false;
-    }
     return foundPerm;
 }
 
@@ -123,11 +118,32 @@ GameTileTraits::AdhesionGet(tVal& outAdhesion) const
         outAdhesion=m_adhesion;
         return true;
     }
-    
+
     for (U32 i=0; i<NumberOfTraitsGet(); ++i)
     {
         GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
         if (traits.AdhesionGet(outAdhesion))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool
+GameTileTraits::LightGet(GLLightDef& outLight) const
+{
+    if (m_hasLight)
+    {
+        outLight=m_light;
+        return true;
+    }
+
+    for (U32 i=0; i<NumberOfTraitsGet(); ++i)
+    {
+        GameTileTraits& traits=dynamic_cast<GameTileTraits&>(TraitsGet(i));
+        if (traits.LightGet(outLight))
         {
             return true;
         }
@@ -167,6 +183,13 @@ GameTileTraits::HandleAdhesionEnd(CoreXML& inXML)
 }
 
 void
+GameTileTraits::HandleLightEnd(CoreXML& inXML)
+{
+    m_light.Unpickle(inXML);
+    m_hasLight=true;
+}
+
+void
 GameTileTraits::HandleTraitsEnd(CoreXML& inXML)
 {
     inXML.StopHandler();
@@ -186,6 +209,7 @@ GameTileTraits::Pickle(ostream& inOut, const string& inPrefix="") const
     {
         inOut << inPrefix << "<permeability>" << m_permeability << "</permeability>" << endl;
     }
+    inOut << inPrefix << "<!-- Incomplete -->" << endl;
 }
 
 void
@@ -199,6 +223,8 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_endTable[kPickleData]["permeability"] = &GameTileTraits::HandlePermeabilityEnd;
     m_startTable[kPickleData]["adhesion"] = &GameTileTraits::NullHandler;
     m_endTable[kPickleData]["adhesion"] = &GameTileTraits::HandleAdhesionEnd;
+    m_startTable[kPickleData]["light"] = &GameTileTraits::NullHandler;
+    m_endTable[kPickleData]["light"] = &GameTileTraits::HandleLightEnd;
     m_endTable[kPickleData]["traits"] = &GameTileTraits::HandleTraitsEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
@@ -206,6 +232,8 @@ GameTileTraits::Unpickle(CoreXML& inXML)
     m_hasPermeability=false;
     m_adhesion=1.001;
     m_hasAdhesion=false;
+    m_hasLight=false;
+    
     inXML.ParseStream(*this);
 }
 

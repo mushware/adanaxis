@@ -1,6 +1,9 @@
 /*
- * $Id: GLLights.cpp,v 1.4 2002/10/08 11:58:52 southa Exp $
+ * $Id: GLLights.cpp,v 1.5 2002/10/08 17:13:16 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.5  2002/10/08 17:13:16  southa
+ * Tiered maps
+ *
  * Revision 1.4  2002/10/08 11:58:52  southa
  * Light cache
  *
@@ -60,7 +63,7 @@ GLLights::LightAdd(U32 inNum, const GLLightDef& inDef)
     GLint numLights;
     glGetIntegerv(GL_MAX_LIGHTS, &numLights);
     COREASSERT(numLights >= kMaxLights);
-    
+
     if (inNum < m_lights.size())
     {
         CacheInvalidate(inNum);
@@ -71,7 +74,17 @@ GLLights::LightAdd(U32 inNum, const GLLightDef& inDef)
     }
     m_lights[inNum]=inDef;
 }
-    
+
+const GLLightDef&
+GLLights::LightGet(U32 inNum)
+{
+    if (inNum >= m_lights.size())
+    {
+        throw(ReferenceFail("Light number too big"));
+    }
+    return m_lights[inNum];
+}
+
 void
 GLLights::LightEnable(U32 inNum)
 {
@@ -107,21 +120,21 @@ GLLights::LightEnable(U32 inNum)
         glLightf(lightEnum, GL_SPOT_EXPONENT, 4);
         glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.01);
         glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
-        glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 0.4);
+        glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 0.01);
         m_cache[slot].modified=false;
         cerr << "Wrote data for light " << inNum << " to slot " << slot << endl;
     }        
 
     COREASSERT(m_cache[slot].value == inNum);
-    
+
     const GLLightDef& def = m_lights[inNum];
     GLfloat position[4]={def.pos.x, def.pos.y, def.pos.z, 1};
     glLightfv(lightEnum, GL_POSITION, position);
-
+    
     if (!m_cache[slot].enabled)
     {
         m_cache[slot].enabled=true;
-        glEnable(GL_LIGHT0+inNum);
+        glEnable(lightEnum);
     }
     GLUtils::CheckGLError();
 }    
@@ -186,6 +199,7 @@ GLLights::LightDisable(U32 inNum)
         {
             glDisable(GL_LIGHT0+i);
             m_cache[i].enabled=false;
+            return;
         }
     }
     throw(LogicFail("Disable of light not in cache"));

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.33 2002/10/08 23:03:55 southa Exp $
+ * $Id: GLUtils.cpp,v 1.34 2002/10/10 13:51:16 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.34  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.33  2002/10/08 23:03:55  southa
  * Widen z clipping on OrthoLookAt
  *
@@ -551,10 +554,10 @@ GLUtils::ModulationSet(tModulationType inValue)
                     GLfloat specular[4]={1.0,1.0,1.0,1};
                     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
-                    GLfloat diffuse[4]={0.0,0.0,0.0,1};
+                    GLfloat diffuse[4]={0.2,0.2,0.2,1};
                     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 
-                    glMaterialf(GL_FRONT, GL_SHININESS, 20);
+                    glMaterialf(GL_FRONT, GL_SHININESS, 50);
 
                     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                     glEnable(GL_LIGHTING);

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameTileTraits.h,v 1.9 2002/08/18 15:13:16 southa Exp $
+ * $Id: GameTileTraits.h,v 1.10 2002/08/27 08:56:26 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.10  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/18 15:13:16  southa
  * Adhesion handling
  *
@@ -47,8 +50,10 @@
  *
  */
 
+#include "mushGL.h"
 #include "GameTraits.h"
 #include "GameGraphic.h"
+
 
 class GameTileTraits : public GameTraits
 {
@@ -57,6 +62,7 @@ public:
     void Render(void);
     bool PermeabilityGet(tVal& outPermeability) const;
     bool AdhesionGet(tVal& outAdhesion) const;
+    bool LightGet(GLLightDef& outLight) const;
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual string TypeNameGet(void) {return "tile";}
@@ -71,6 +77,7 @@ private:
     void HandleGraphicStart(CoreXML& inXML);
     void HandlePermeabilityEnd(CoreXML& inXML);
     void HandleAdhesionEnd(CoreXML& inXML);
+    void HandleLightEnd(CoreXML& inXML);
     void HandleTraitsEnd(CoreXML& inXML);
 
     enum PickleState
@@ -92,6 +99,8 @@ private:
     bool m_hasPermeability;
     tVal m_adhesion;
     bool m_hasAdhesion;
+    GLLightDef m_light;
+    bool m_hasLight;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTileTraits& inObj)

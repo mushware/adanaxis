@@ -4054,6 +4054,10 @@
 				F546321E02AD04B701A7DA6B,
 				F54020C502A25BFC01F0D71D,
 				F54020C602A25BFC01F0D71D,
+				F59560E30355D77D01A80166,
+				F59560E20355D77D01A80166,
+				F59560DF0355CA2301A80166,
+				F59560DE0355CA2301A80166,
 				F545A43202E4771E015FC162,
 				F545A43302E4771E015FC162,
 				F54AC49802F8438001726764,
@@ -4298,6 +4302,8 @@
 				F59516430350B22F01A80166,
 				F59516480350B32201A80166,
 				F595C5710351E76E01A80166,
+				F59560E00355CA2301A80166,
+				F59560E40355D77D01A80166,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4413,6 +4419,9 @@
 				F59516440350B22F01A80166,
 				F595C5720351E76E01A80166,
 				F5956CBA03557BF201A80166,
+				F59560E10355CA2301A80166,
+				F59560E50355D77D01A80166,
+				F59560E70355EC9D01A80166,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4821,6 +4830,65 @@
 			settings = {
 			};
 		};
+		F59560DE0355CA2301A80166 = {
+			isa = PBXFileReference;
+			name = GameMap.h;
+			path = Game/GameMap.h;
+			refType = 4;
+		};
+		F59560DF0355CA2301A80166 = {
+			isa = PBXFileReference;
+			name = GameMap.cpp;
+			path = Game/GameMap.cpp;
+			refType = 4;
+		};
+		F59560E00355CA2301A80166 = {
+			fileRef = F59560DE0355CA2301A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59560E10355CA2301A80166 = {
+			fileRef = F59560DF0355CA2301A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59560E20355D77D01A80166 = {
+			isa = PBXFileReference;
+			name = GameLightLinks.h;
+			path = Game/GameLightLinks.h;
+			refType = 4;
+		};
+		F59560E30355D77D01A80166 = {
+			isa = PBXFileReference;
+			name = GameLightLinks.cpp;
+			path = Game/GameLightLinks.cpp;
+			refType = 4;
+		};
+		F59560E40355D77D01A80166 = {
+			fileRef = F59560E20355D77D01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59560E50355D77D01A80166 = {
+			fileRef = F59560E30355D77D01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59560E60355EC9D01A80166 = {
+			isa = PBXFileReference;
+			path = GLLightDef.cpp;
+			refType = 4;
+		};
+		F59560E70355EC9D01A80166 = {
+			fileRef = F59560E60355EC9D01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5956CBA03557BF201A80166 = {
 			fileRef = F540BCBC022BAEFD01C02155;
 			isa = PBXBuildFile;
@@ -4912,9 +4980,10 @@
 				F548CF55030291D7011728CE,
 				F54B58D202A7AD5901E2A684,
 				F54B58D302A7AD5901E2A684,
+				F59560E60355EC9D01A80166,
 				F59516470350B32201A80166,
-				F59516410350B22F01A80166,
 				F59516420350B22F01A80166,
+				F59516410350B22F01A80166,
 				F545A42E02E46058015FC162,
 				F545A42F02E46058015FC162,
 				F5463ACC02E6CC4B018842E0,
