@@ -1,6 +1,9 @@
 /*
- * $Id: GameRecords.cpp,v 1.1 2002/08/19 21:42:38 southa Exp $
+ * $Id: GameRecords.cpp,v 1.2 2002/08/22 10:11:11 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.2  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.1  2002/08/19 21:42:38  southa
  * Display of records and lap/split times
  *
@@ -174,7 +177,7 @@ void
 GameRecords::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<records>" << endl;
-    if (m_splitTimes.size() > 0)
+    if (m_splitTimes.size() > 0 && SplitTimeValid(0))
     {
         inOut << inPrefix << "  <splittime>";
         for (U32 i=0; i<m_splitTimes.size(); ++i)
