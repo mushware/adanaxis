@@ -1,11 +1,15 @@
 /*
- * $Id$
- * $Log$
+ * $Id: Test.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: Test.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "Test.hp"
 #include "Dataset.hp"
 #include "RegExp.hp"
+#include "AutoMonkey.hp"
 
 void
 Test::Test1(void)
@@ -77,3 +81,47 @@ Test::Test2(void)
     }
 }
 
+void
+Test::Test3(void)
+{
+    AutoMonkey& monkey1=*new AutoMonkey;
+    if (monkey1.ReferenceCountGet() != 1)
+    {
+        TestFail("AutoMonkey fault 1");
+    }
+
+    if (!monkey1.FreeInDestructor())
+    {
+        TestFail("AutoMonkey fault 2");
+    }
+    AutoMonkey& monkey2=*new AutoMonkey(monkey1);
+    if (monkey1.ReferenceCountGet() != 2)
+    {
+        TestFail("AutoMonkey fault 3");
+    }
+    if (monkey2.ReferenceCountGet() != 2)
+    {
+        TestFail("AutoMonkey fault 4");
+    }
+    if (monkey1.FreeInDestructor())
+    {
+        TestFail("AutoMonkey fault 5");
+    }
+    if (monkey2.FreeInDestructor())
+    {
+        TestFail("AutoMonkey fault 6");
+    }
+    // Next line should not compile
+    // monkey1=monkey2;
+    
+    delete &monkey1;
+    if (monkey2.ReferenceCountGet() != 1)
+    {
+        TestFail("AutoMonkey fault 7");
+    }
+    if (!monkey2.FreeInDestructor())
+    {
+        TestFail("AutoMonkey fault 8");
+    }
+    delete &monkey2;
+}

@@ -1,0 +1,18 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+class AutoMonkey
+{
+public:
+    AutoMonkey():m_refCtrPtr(new int(1)) {}
+    ~AutoMonkey();
+    AutoMonkey(const AutoMonkey& inMonkey);
+    bool FreeInDestructor(void) const; // Call in destructor, free shared area if returns true
+    int ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
+    
+private:
+    void operator=(const AutoMonkey&); // No assignment support
+    int *m_refCtrPtr;
+};

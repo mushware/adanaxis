@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: TestCommandHandler.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
  
 #include "TestCommandHandler.hp"
@@ -20,6 +23,7 @@ TestCommandHandler::HandleCommand(const string& str)
     {
         if (str == "test1") Test::Test1();
         else if (str == "test2") Test::Test2();
+        else if (str == "test3") Test::Test3();
         else return false;
     }
     catch (TestFail& f)

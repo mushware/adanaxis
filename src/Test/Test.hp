@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: Test.hp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Log: Test.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:09  southa
+ * Created
+ *
  */
 
 #include "CoreStandard.hp"
@@ -10,6 +13,7 @@ class Test
 public:
     static void Test1(void);
     static void Test2(void);
+    static void Test3(void);
 
 private:
 };
