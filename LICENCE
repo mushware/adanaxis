@@ -1,0 +1,43 @@
+This software is provided WITHOUT WARRANTY of any kind.
+
+This distribution inherits various licences to form an indecipherable
+mess, but the upshot is that you can use and distribute it free of
+charge.
+
+Original C++ source code has been placed in the Public Domain by the
+author and Mushware Limited.  Build configuration scripts follow the usual
+licence conditions and carry notices to that effect.
+
+Data files are copyrighted by or licenced by Mushware Limited.
+Mushware Limited grants you a licence to use and distribute these files
+only as part of an unmodified Infernal Contractor II application.  This
+condition exists to cover sound and graphics obtained from commercial
+sources which cannot be distributed freely.  Should you wish to distribute
+these data files in a modified distribution, please contact Mushware
+Limited for advice.
+
+This distribution includes or uses libraries with the following licences,
+which are reproduced in the file COPYING within the system directory of
+the application:
+
+expat           expat licence
+glut            glut licence
+libogg          Xiphophorus licence
+libSDL          GNU LIBRARY GENERAL PUBLIC LICENSE
+libSDL_mixer    GNU LIBRARY GENERAL PUBLIC LICENSE
+libtiff         libtiff licence
+libungif        libungif licence
+libvorbis       Xiphophorus licence
+libvorbisfile   Xiphophorus licence
+mingw32         GNU LIBRARY GENERAL PUBLIC LICENSE
+pcre            pcre licence
+smpeg           GNU LIBRARY GENERAL PUBLIC LICENSE
+zlib            zlib licence
+
+Mushware Limited is a limited liability company registered
+in England.  Registered no. 3410722.  Registered office
+43 Lower Brook St, Ipswich, UK.
+
+For correspondance please see http://www.mushware.co.uk or contact
+info@mushware.co.uk.
+
