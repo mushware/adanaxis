@@ -48,34 +48,21 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             TIFFReadRGBAImage(pTiff, width, height, tiffData, 0);
 
             uint32 *srcData=tiffData;
-            U32 *destData=def.DataPtr();
+            U8 *destBytes=reinterpret_cast<U8 *>(def.DataPtr());
             COREASSERT(srcData != NULL);
-            COREASSERT(destData != NULL);
-            // Convert from ABGR (from tifflib) into RGBA
+            COREASSERT(destBytes != NULL);
+            // Convert from ABGR words (from tifflib) into RGBA bytes.  Has to work on big
+            // and little endian machines
             for (U32 i=0; i<numPixels; i++)
             {
                 U32 col=*srcData++;
-                U8 *bytePtr=(U8 *)destData;
-                *bytePtr++=col;
-                *bytePtr++=col>>8;
-                *bytePtr++=col>>16;
-                *bytePtr++=col>>24;
-                destData++;
-#if 0
-#ifdef WORDS_BIGENDIAN
-                *destData++=
-                    (col & 0xff) << 24 |
-                    (col & 0xff00) << 8 |
-                    (col & 0xff0000) >> 8 |
-                    (col & 0xff000000)>> 24;
-#else
-                *destData++=col;
-#endif
-#endif
-                    
+                *destBytes++=col;     // Red
+                *destBytes++=col>>8;  // Green
+                *destBytes++=col>>16; // Blue
+                *destBytes++=col>>24; // Alpha
             }
             COREASSERT(srcData == tiffData+width*height);
-            COREASSERT(destData == def.DataPtr()+width*height);
+            COREASSERT(destBytes == reinterpret_cast<U8 *>(def.DataPtr()+width*height));
             _TIFFfree(tiffData);
             tiffData=NULL;
             AddTextureDef(def);
