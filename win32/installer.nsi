@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.3 2002/06/25 18:05:49 southa Exp $
+; $Id: installer.nsi,v 1.4 2002/06/26 15:52:27 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.4  2002/06/26 15:52:27  southa
+; Licence fixes
+;
 ; Revision 1.3  2002/06/25 18:05:49  southa
 ; Path and icon fixes
 ;
@@ -10,7 +13,7 @@
 ; NOTE: this .NSI script is designed for NSIS v1.8+
 
 Name "Infernal Contractor II"
-OutFile "IC2setup.exe"
+OutFile "IC2-win32-setup-0_0_0.exe"
 
 LicenseText "You must agree to this licence before installing."
 LicenseData "..\LICENCE"
@@ -100,10 +103,10 @@ WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninst
 WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "UninstallString" '"$INSTDIR\uninst.exe"'
 
 SetOutPath "$INSTDIR\system"
-CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 0
-CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 0
+CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
+CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateDirectory "$STARTMENU\Programs\Mushware"
-CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 
+CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 
 CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\uninst.exe"
 SetOutPath "$INSTDIR"
 
