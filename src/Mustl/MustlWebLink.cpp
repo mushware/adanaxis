@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } daCXMv+Y5SoIY5jtzphSpA
 /*
- * $Id: MustlWebLink.cpp,v 1.23 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.24 2003/10/06 22:23:45 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.24  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.23  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -449,9 +452,9 @@ MustlWebLink::GetProcess(const string& inFilename)
             {
                 SendErrorPage(e.what());
             }
-            catch (MushcoreNonFatalFail &e)
+            catch (MushcoreNonFatalFail &e2)
             {
-                MustlLog::Sgl().WebLog() << "Exception sending error page: " << e.what() << endl;
+                MustlLog::Sgl().WebLog() << "Exception sending error page: " << e2.what() << endl;
             }
         }
     }

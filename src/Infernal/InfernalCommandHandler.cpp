@@ -12,13 +12,17 @@
  ****************************************************************************/
 //%Header } nqq1CPmR9xGTAak2YjDXjg
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalCommandHandler.cpp,v 1.1 2003/10/04 15:32:10 southa Exp $
+ * $Log: InfernalCommandHandler.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:10  southa
+ * Module split
+ *
  */
 
 #include "InfernalCommandHandler.h"
 
 #include "InfernalAppHandler.h"
+#include "InfernalInfo.h"
 
 #include "Mushcore.h"
 #include "mushPlatform.h"
@@ -32,6 +36,8 @@ MushcoreScalar
 InfernalCommandHandler::Infernal(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     MushcoreAppHandler::Sgl().Mutate(new InfernalAppHandler);
+    MushcoreInfo::SingletonMutate(new InfernalInfo);
+
     return MushcoreScalar(0);
 }
 

@@ -12,13 +12,17 @@
  ****************************************************************************/
 //%Header } BxOnlErwZmYPV94xYv3gTQ
 /*
- * $Id$
- * $Log$
+ * $Id: MeshMoverCommandHandler.cpp,v 1.1 2003/10/07 22:40:06 southa Exp $
+ * $Log: MeshMoverCommandHandler.cpp,v $
+ * Revision 1.1  2003/10/07 22:40:06  southa
+ * Created MeshMover
+ *
   */
 
 #include "MeshMoverCommandHandler.h"
 
 #include "MeshMoverAppHandler.h"
+#include "MeshMoverInfo.h"
 
 #include "Mushcore.h"
 #include "mushPlatform.h"
@@ -32,6 +36,8 @@ MushcoreScalar
 MeshMoverCommandHandler::MeshMover(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     MushcoreAppHandler::Sgl().Mutate(new MeshMoverAppHandler);
+    MushcoreInfo::SingletonMutate(new MeshMoverInfo);
+
     return MushcoreScalar(0);
 }
 

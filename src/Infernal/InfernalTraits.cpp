@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } ZjK/+n4rA32V+xyOYYeoXw
 /*
- * $Id: InfernalTraits.cpp,v 1.22 2003/10/04 12:23:03 southa Exp $
+ * $Id: InfernalTraits.cpp,v 1.1 2003/10/04 15:32:12 southa Exp $
  * $Log: InfernalTraits.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:12  southa
+ * Module split
+ *
  * Revision 1.22  2003/10/04 12:23:03  southa
  * File renaming
  *
@@ -202,11 +205,11 @@ InfernalTraits::Unpickle(MushcoreXML& inXML)
 void
 InfernalTraits::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -225,11 +228,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 InfernalTraits::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

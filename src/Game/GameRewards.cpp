@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 4sQPw+sMpDcotQDyxdjHoQ
 /*
- * $Id: GameRewards.cpp,v 1.15 2003/10/04 18:12:13 southa Exp $
+ * $Id: GameRewards.cpp,v 1.16 2003/10/07 22:40:05 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.16  2003/10/07 22:40:05  southa
+ * Created MeshMover
+ *
  * Revision 1.15  2003/10/04 18:12:13  southa
  * Readded
  *
@@ -186,11 +189,11 @@ GameRewards::Unpickle(MushcoreXML& inXML)
 void
 GameRewards::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -209,11 +212,11 @@ GameRewards::XMLStartHandler(MushcoreXML& inXML)
 void
 GameRewards::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } D/TTKukzTYTQ9KA0lxxwDw
 /*
- * $Id: InfernalTileMap.cpp,v 1.2 2003/10/04 12:44:36 southa Exp $
+ * $Id: InfernalTileMap.cpp,v 1.3 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalTileMap.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:36  southa
  * File renaming
  *
@@ -309,11 +312,11 @@ InfernalTileMap::Unpickle(MushcoreXML& inXML)
 void
 InfernalTileMap::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_state].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_state].find(inXML.TopTag());
 
-    if (p != m_startTable[m_state].end())
+    if (p2 != m_startTable[m_state].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -332,11 +335,11 @@ InfernalTileMap::XMLStartHandler(MushcoreXML& inXML)
 void
 InfernalTileMap::XMLEndHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_endTable[m_state].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_endTable[m_state].find(inXML.TopTag());
 
-    if (p != m_endTable[m_state].end())
+    if (p2 != m_endTable[m_state].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

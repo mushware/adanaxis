@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.52 2003/10/06 23:06:31 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.53 2003/10/07 22:40:05 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.53  2003/10/07 22:40:05  southa
+ * Created MeshMover
+ *
  * Revision 1.52  2003/10/06 23:06:31  southa
  * Include fixes
  *
@@ -273,16 +276,18 @@ GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
 
-    MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
-
-    for (MushcoreData<MustlGameServer>::tMapIterator p = MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
     {
-        if (!p->second->ImageIs())
+        MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
+
+        for (MushcoreData<MustlGameServer>::tMapIterator p = MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
         {
-            m_gameType = kGameTypeServer;
+            if (!p->second->ImageIs())
+            {
+                m_gameType = kGameTypeServer;
+            }
         }
     }
-
+    
     if (m_gameType == kGameTypeInvalid)
     {
         MushcoreData<MustlGameClient>::tMapIterator endValue = MushcoreData<MustlGameClient>::Sgl().End();

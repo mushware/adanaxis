@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7aw6V/9lK++dZ0qJ8aUG7g
 /*
- * $Id: MushcoreStandard.h,v 1.12 2003/09/23 22:57:57 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.13 2003/10/04 15:32:12 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.13  2003/10/04 15:32:12  southa
+ * Module split
+ *
  * Revision 1.12  2003/09/23 22:57:57  southa
  * XML vector handling
  *
@@ -185,12 +188,12 @@ namespace Mushware
     typedef unsigned char U8;
 };
 
-#ifdef HAVE_VALARRAY
-#include <valarray>
-#define MushwareValarray std::valarray
-#else
+#ifdef MIMIC_VALARRAY
 // Mimic valarray using vector
 #define MushwareValarray std::vector
+#else
+#include <valarray>
+#define MushwareValarray std::valarray
 #endif
 
 

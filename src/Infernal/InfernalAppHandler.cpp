@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yB2CF+PPYTrD169gsJTpKg
 /*
- * $Id$
- * $Log$
+ * $Id: InfernalAppHandler.cpp,v 1.1 2003/10/04 15:32:09 southa Exp $
+ * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:09  southa
+ * Module split
+ *
  */
 
 #include "InfernalAppHandler.h"
@@ -21,6 +24,7 @@
 #include "InfernalContract.h"
 #include "InfernalData.h"
 #include "InfernalFloorMap.h"
+#include "InfernalInfo.h"
 #include "InfernalSTL.h"
 
 #include "Mushcore.h"
@@ -40,6 +44,13 @@ InfernalAppHandler::InfernalAppHandler() :
 InfernalAppHandler::~InfernalAppHandler()
 {
     if (m_pGame != NULL) delete m_pGame;
+}
+
+void
+InfernalAppHandler::Initialise(void)
+{
+    GameAppHandler::Initialise();
+    MushcoreInfo::SingletonMutate(new InfernalInfo);
 }
 
 void

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1dCuFYPrHsHxblXz2jpYjg
 /*
- * $Id: TestMushcoreMain.cpp,v 1.2 2003/08/21 23:09:37 southa Exp $
+ * $Id: TestMushcoreMain.cpp,v 1.3 2003/09/17 19:40:39 southa Exp $
  * $Log: TestMushcoreMain.cpp,v $
+ * Revision 1.3  2003/09/17 19:40:39  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.2  2003/08/21 23:09:37  southa
  * Fixed file headers
  *
@@ -29,7 +32,7 @@
 using namespace Mushware;
 using namespace std;
 
-int main(int argc, char *argv[])
+int TestMushcoreMain(int argc, char *argv[])
 {
     try
     {

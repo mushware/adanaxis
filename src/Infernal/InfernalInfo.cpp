@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e3W1FfVgqdAMpRyS3JQ/oQ
 /*
- * $Id: InfernalInfo.cpp,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalInfo.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalInfo.cpp,v $
+ * Revision 1.2  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *
@@ -71,5 +74,4 @@ InfernalInfo::PackageVersionGet(void)
 void
 InfernalInfo::Install(void)
 {
-   MushcoreInfo::SingletonMutate(new InfernalInfo);
 }

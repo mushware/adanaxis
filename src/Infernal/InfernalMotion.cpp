@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } QaBXlfcICd5ALRSMTQImmQ
 /*
- * $Id: InfernalMotion.cpp,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalMotion.cpp,v 1.3 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalMotion.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *
@@ -157,11 +160,11 @@ InfernalMotion::UnpickleEpilogue(void)
 void
 InfernalMotion::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -180,11 +183,11 @@ InfernalMotion::XMLStartHandler(MushcoreXML& inXML)
 void
 InfernalMotion::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

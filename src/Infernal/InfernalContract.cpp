@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } oMQ1VLZnjYUkw29lLBIRAQ
 /*
- * $Id: InfernalContract.cpp,v 1.4 2003/10/06 22:23:45 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.5 2003/10/07 22:40:05 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.5  2003/10/07 22:40:05  southa
+ * Created MeshMover
+ *
  * Revision 1.4  2003/10/06 22:23:45  southa
  * Game to GameMustl move
  *
@@ -1076,7 +1079,7 @@ InfernalContract::HandleGameStart(MushcoreXML& inXML)
     string type(inXML.GetAttribOrThrow("type").StringGet());
     if (type == "race")
     {
-    MushcoreAbstractSingleton<GameType>::Sgl().SingletonMutate(new InfernalTypeRace);
+        MushcoreAbstractSingleton<GameType>::SingletonMutate(new InfernalTypeRace);
     }
     else
     {
@@ -1120,11 +1123,11 @@ InfernalContract::Unpickle(MushcoreXML& inXML)
 void
 InfernalContract::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -1143,11 +1146,11 @@ InfernalContract::XMLStartHandler(MushcoreXML& inXML)
 void
 InfernalContract::XMLEndHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } FXkWdh9/G3FsFbeou4nGWw
 /*
- * $Id: InfernalDialogue.cpp,v 1.25 2003/10/04 12:22:59 southa Exp $
+ * $Id: InfernalDialogue.cpp,v 1.1 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalDialogue.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.25  2003/10/04 12:22:59  southa
  * File renaming
  *
@@ -468,11 +471,11 @@ InfernalDialogue::Unpickle(MushcoreXML& inXML)
 void
 InfernalDialogue::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -491,11 +494,11 @@ InfernalDialogue::XMLStartHandler(MushcoreXML& inXML)
 void
 InfernalDialogue::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

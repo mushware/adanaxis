@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } hu5+CQDupViMzWYdaLkYDA
 /*
- * $Id: InfernalChequePoint.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalChequePoint.cpp,v 1.4 2003/10/07 22:40:05 southa Exp $
  * $Log: InfernalChequePoint.cpp,v $
+ * Revision 1.4  2003/10/07 22:40:05  southa
+ * Created MeshMover
+ *
  * Revision 1.3  2003/10/04 15:32:10  southa
  * Module split
  *
@@ -90,11 +93,11 @@ using namespace std;
 void
 InfernalChequePoint::StandingOnHandler(const InfernalEventStandingOn& inEvent)
 {
-    U32 size=m_mapValues.size();
-    for (U32 i=0; i<size; ++i)
+    U32 isize=m_mapValues.size();
+    for (U32 i=0; i<isize; ++i)
     {
-        U32 size=inEvent.mapValues.size();
-        for (U32 j=0; j<size; ++j)
+        U32 jsize=inEvent.mapValues.size();
+        for (U32 j=0; j<jsize; ++j)
         {
             if (inEvent.mapValues[j] == m_mapValues[i])
             {
@@ -213,11 +216,11 @@ InfernalChequePoint::UnpickleEpilogue(void)
 void
 InfernalChequePoint::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -245,11 +248,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 InfernalChequePoint::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {

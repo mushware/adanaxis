@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } yeuO0kZZevx142QRdFnXSQ
 /*
- * $Id: MushMeshArray.h,v 1.9 2003/10/20 13:02:53 southa Exp $
- * $Log: MushMeshArray.h,v $
+ * $Id: MushMeshTriangularArray.h,v 1.1 2003/10/23 20:03:58 southa Exp $
+ * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.1  2003/10/23 20:03:58  southa
+ * End mesh work
+ *
  * Revision 1.9  2003/10/20 13:02:53  southa
  * Patch fixes and testing
  *
@@ -209,7 +212,7 @@ MushMeshTriangularArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "order=" << m_order << ", ";
-    ioOut << "values=" << m_values;
+// FIXME!    ioOut << "values=" << m_values;
     ioOut << "]";
 }
 

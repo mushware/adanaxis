@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EEaZ1vjndQRXjGZYADcVMQ
 /*
- * $Id: MushMeshArray.h,v 1.9 2003/10/20 13:02:53 southa Exp $
+ * $Id: MushMeshArray.h,v 1.10 2003/10/23 20:03:57 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.10  2003/10/23 20:03:57  southa
+ * End mesh work
+ *
  * Revision 1.9  2003/10/20 13:02:53  southa
  * Patch fixes and testing
  *
@@ -215,7 +218,7 @@ MushMeshArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "ySize=" << m_ySize << ", ";
-    ioOut << "values=" << m_values;
+// FIXME!    ioOut << "values=" << m_values;
     ioOut << "]";
 }
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XOlHJtYQGjJw7ayofXG12w
 /*
- * $Id: GameAppHandler.h,v 1.21 2003/09/17 19:40:31 southa Exp $
- * $Log: GameAppHandler.h,v $
+ * $Id: InfernalAppHandler.h,v 1.1 2003/10/04 15:32:10 southa Exp $
+ * $Log: InfernalAppHandler.h,v $
+ * Revision 1.1  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.21  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -91,6 +94,8 @@ class InfernalAppHandler : public GameAppHandler
 public:
     InfernalAppHandler();
     virtual ~InfernalAppHandler();
+    
+    virtual void Initialise(void);
     virtual void GameModeEnter(bool inResume);
     virtual void CurrentGameEnd(void);
     

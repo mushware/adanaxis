@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xuJGvWxsHVCLYzltYkcAbg
 /*
- * $Id: TestMustlMain.cpp,v 1.7 2003/08/21 23:09:39 southa Exp $
+ * $Id: TestMustlMain.cpp,v 1.8 2003/09/17 19:40:39 southa Exp $
  * $Log: TestMustlMain.cpp,v $
+ * Revision 1.8  2003/09/17 19:40:39  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.7  2003/08/21 23:09:39  southa
  * Fixed file headers
  *
@@ -44,7 +47,7 @@
 using namespace Mushware;
 using namespace std;
 
-int main(int argc, char *argv[])
+int TestMustlMain(int argc, char *argv[])
 {
     try
     {

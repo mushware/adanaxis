@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } nV7YSoKMChDizhkIJRn1jA
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshMain.cpp,v 1.1 2003/10/14 13:07:26 southa Exp $
+ * $Log: TestMushMeshMain.cpp,v $
+ * Revision 1.1  2003/10/14 13:07:26  southa
+ * MushMesh vector creation
+ *
  */
 
 
@@ -24,7 +27,7 @@
 using namespace Mushware;
 using namespace std;
 
-int main(int argc, char *argv[])
+int TestMushMeshMain(int argc, char *argv[])
 {
     try
     {

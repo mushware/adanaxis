@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wI7Mmthp2jlPbJtXZQ2kuA
 /*
- * $Id$
- * $Log$
+ * $Id: MeshMoverInfo.cpp,v 1.1 2003/10/07 22:40:06 southa Exp $
+ * $Log: MeshMoverInfo.cpp,v $
+ * Revision 1.1  2003/10/07 22:40:06  southa
+ * Created MeshMover
+ *
  */
 
 #include "MeshMoverInfo.h"
@@ -54,5 +57,4 @@ MeshMoverInfo::PackageVersionGet(void)
 void
 MeshMoverInfo::Install(void)
 {
-    MushcoreInfo::SingletonMutate(new MeshMoverInfo);
 }

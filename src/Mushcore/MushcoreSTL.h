@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } R50LoW9d2MyCM0eN10Ob1A
 /*
- * $Id: MushcoreSTL.h,v 1.4 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreSTL.h,v 1.5 2003/10/06 22:50:02 southa Exp $
  * $Log: MushcoreSTL.h,v $
+ * Revision 1.5  2003/10/06 22:50:02  southa
+ * Added M_PI
+ *
  * Revision 1.4  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -39,10 +42,10 @@
 #include <iomanip>
 #include <iostream>
 
-#ifdef HAVE_SSTREAM
-#include <sstream>
-#else
+#ifdef MIMIC_SSTREAM
 #include "sstream"
+#else
+#include <sstream>
 #endif
 
 #include <typeinfo>

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } +XLEcakXamiI0hfaBRIOBA
 /*
- * $Id: main.cpp,v 1.31 2003/09/17 19:40:34 southa Exp $
+ * $Id: main.cpp,v 1.32 2003/10/04 12:23:08 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.32  2003/10/04 12:23:08  southa
+ * File renaming
+ *
  * Revision 1.31  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -175,9 +178,9 @@ int main(int argc, char *argv[])
         PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
         return 1;
     }
-    catch (string& str)
+    catch (string& ex_str)
     {
-        cerr << "Exception: " << str << endl;
+        cerr << "Exception: " << ex_str << endl;
         return 1;
     }
     catch (const char *c_str)

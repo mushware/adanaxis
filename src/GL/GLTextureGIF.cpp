@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KXOLnBup+jHRz6M6+9ERFg
 /*
- * $Id: GLTextureGIF.cpp,v 1.17 2003/08/21 23:08:31 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.18 2003/09/17 19:40:30 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.18  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:31  southa
  * Fixed file headers
  *
@@ -69,13 +72,12 @@
 
 #include "GLTextureGIF.h"
 
+namespace libgif
+{
 extern "C"
 {
-// Prevent clash with windows.h
-#define DrawTextA gif_lib_DrawTextA
 #include "gif_lib.h"
-
-#undef DrawTextA
+}
 }
 
 #include "GLSTL.h"
@@ -85,28 +87,28 @@ using namespace std;
 
 GLTextureGIF::GLTextureGIF(const string& inFilename)
 {
-    GifFileType *gif;
+    libgif::GifFileType *gif;
     FilenameSet(inFilename);
 
-    gif = DGifOpenFileName(inFilename.c_str());
+    gif = libgif::DGifOpenFileName(inFilename.c_str());
 
     if (gif == NULL)
     {
-        ThrowGifError(inFilename, GifLastError());
+        ThrowGifError(inFilename, libgif::GifLastError());
     }
     
     // Try block calls DGifCloseFile on fault
     try
     {
-        if (DGifSlurp(gif) != GIF_OK)
+        if (libgif::DGifSlurp(gif) != GIF_OK)
         {
-            ThrowGifError(inFilename, GifLastError());
+            ThrowGifError(inFilename, libgif::GifLastError());
         }
 
         for (int imageNum=0; imageNum < gif->ImageCount; ++imageNum)
         {
-            struct SavedImage *image = &gif->SavedImages[imageNum];
-            ColorMapObject *colorMap = image->ImageDesc.ColorMap;
+            struct libgif::SavedImage *image = &gif->SavedImages[imageNum];
+            libgif::ColorMapObject *colorMap = image->ImageDesc.ColorMap;
 
             if (colorMap == NULL) colorMap=gif->SColorMap;
             if (colorMap == NULL)
@@ -114,7 +116,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                 throw(MushcoreFileFail(inFilename, "GIF with no colorMap"));
             }
 
-            GifColorType *colors=colorMap->Colors;
+            libgif::GifColorType *colors=colorMap->Colors;
             int colIndexLimit=1 << colorMap->BitsPerPixel;
             U32 u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
 

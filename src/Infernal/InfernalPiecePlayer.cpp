@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } umPUFlJuImupR0wuprty+w
 /*
- * $Id: InfernalPiecePlayer.cpp,v 1.46 2003/10/04 12:23:01 southa Exp $
+ * $Id: InfernalPiecePlayer.cpp,v 1.2 2003/10/04 15:32:11 southa Exp $
  * $Log: InfernalPiecePlayer.cpp,v $
+ * Revision 1.2  2003/10/04 15:32:11  southa
+ * Module split
+ *
  * Revision 1.46  2003/10/04 12:23:01  southa
  * File renaming
  *
@@ -406,11 +409,11 @@ InfernalPiecePlayer::UnpickleEpilogue(void)
 void
 InfernalPiecePlayer::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_startTable[m_pickleState].end())
+    if (p2 != m_startTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
@@ -438,11 +441,11 @@ InfernalPiecePlayer::XMLStartHandler(MushcoreXML& inXML)
 void
 InfernalPiecePlayer::XMLEndHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p != m_endTable[m_pickleState].end())
+    if (p2 != m_endTable[m_pickleState].end())
     {
-        (this->*p->second)(inXML);
+        (this->*p2->second)(inXML);
     }
     else
     {
