@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YgKXUj/EEsggmRKVn+PRWA
 /*
- * $Id: SDLAppHandler.cpp,v 1.39 2005/01/26 00:48:46 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.40 2005/03/13 00:34:46 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.40  2005/03/13 00:34:46  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.39  2005/01/26 00:48:46  southa
  * MushMeshGroup and rendering
  *
@@ -159,6 +162,7 @@ SDLAppHandler::SDLAppHandler():
     m_unboundedMouseX(0),
     m_unboundedMouseY(0),
     m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
+    m_controlBufferIndex(0),
     m_firstDelta(true)
 {}
 

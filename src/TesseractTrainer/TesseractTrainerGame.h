@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.7 2005/03/08 01:24:10 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.8 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.8  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.7  2005/03/08 01:24:10  southa
  * Quaternion slerp between orientations
  *
@@ -80,6 +83,9 @@ private:
     Mushware::U32 m_previous;
     std::vector<Mushware::t4GLVal> m_colours;
     Mushware::tVal m_lastChangeMsec;
+    
+    MushcoreData<GameDialogue> m_dialogues;
+    
     Mushware::tVal m_ttRotationChangeMsec;
     Mushware::tVal m_ttRealignMsec;
     Mushware::tVal m_ttLineWidth;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.13 2004/01/08 22:41:10 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.14 2004/01/18 18:25:29 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.14  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.13  2004/01/08 22:41:10  southa
  * MushModel commands
  *
@@ -68,7 +71,6 @@ MushcoreInstaller TestMushcoreIOInstaller(TestMushcoreIO::Install);
 MushcoreScalar
 TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-#if 1
     {
         vector<U8> testVector;	
         testVector.push_back(4);
@@ -115,7 +117,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             throw MushcoreCommandFail("MushcoreIO fault '"+testStream.str()+"'");
         }
     }
-
+    
     // serial stream test
     {
         ostringstream testOStream;
@@ -129,7 +131,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         xmlOStream << testObject;
 
-        MushcoreXMLOStream xmlCout(cout);
+        // MushcoreXMLOStream xmlCout(cout);
         // xmlCout << testObject;
 
         TestMushcoreObject readBackObject;
@@ -158,8 +160,8 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         xmlOStream << testData;
         
-        MushcoreXMLOStream xmlCout(cout);
-        xmlCout << testData;
+        ///MushcoreXMLOStream xmlCout(cout);
+        //xmlCout << testData;
 
         MushcoreData<TestMushcoreObject> readBackData;
         
@@ -167,8 +169,6 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         MushcoreXMLIStream xmlIStream(testIStream);
         
         xmlIStream >> readBackData;
-        
-        cout << "++++++++Done it" << endl;
         
         if (testData != readBackData)
         {
@@ -242,7 +242,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             throw MushcoreCommandFail(message.str());
         }
     }
-#endif
+    
     {
         ostringstream testOStream;
         MushcoreXMLOStream xmlOStream(testOStream);
@@ -268,9 +268,6 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         }
     }
 
-    
-
-    
     return MushcoreScalar(0);
 }
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } lXlUcR6hArOlUOSzmITEkA
 /*
- * $Id$
- * $Log$
+ * $Id: GameDialogue.h,v 1.21 2005/03/25 19:13:49 southa Exp $
+ * $Log: GameDialogue.h,v $
+ * Revision 1.21  2005/03/25 19:13:49  southa
+ * GameDialogue work
+ *
  */
 
 #include "mushMushcore.h"
@@ -48,8 +51,6 @@ private:
     std::vector<GameStringSpec> m_strings;
     std::vector<GameSoundSpec> m_sounds;
     std::vector<GameSoundStreamSpec> m_soundStreams;
-    Mushware::t2Val m_pos;
-    Mushware::tVal m_angle;
     std::string m_killSound;
     Mushware::tVal m_age;
     bool m_expired;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NIe0QMaHvcEig3hdTHyffw
 /*
- * $Id$
- * $Log$
+ * $Id: GameStringSpec.h,v 1.1 2005/03/25 19:13:49 southa Exp $
+ * $Log: GameStringSpec.h,v $
+ * Revision 1.1  2005/03/25 19:13:49  southa
+ * GameDialogue work
+ *
  */
 
 #include "mushMushcore.h"
@@ -25,7 +28,7 @@
 #include "mushGL.h"
 #include "mushMushPie.h"
 
-//: generate virtual standard ostream xml1
+//:generate virtual standard ostream xml1
 class GameStringSpec : public MushcoreVirtualObject
 {
 public:

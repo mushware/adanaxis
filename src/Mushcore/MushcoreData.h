@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.19 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushcoreData.h,v 1.20 2005/03/25 19:13:50 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.20  2005/03/25 19:13:50  southa
+ * GameDialogue work
+ *
  * Revision 1.19  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *
@@ -147,7 +150,9 @@ class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
 {
 public:
     typedef typename std::map<KeyType, RefType *> tMap;
+    typedef typename tMap::iterator tIterator;
     typedef typename tMap::iterator tMapIterator;
+    typedef typename tMap::const_iterator tConstIterator;
     typedef typename tMap::const_iterator tMapConstIterator;
 
     inline MushcoreData();
@@ -407,6 +412,14 @@ MushcoreData<RefType, KeyType>::Print(std::ostream& ioOut) const
 }
 
 template<class RefType, class KeyType>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreData<RefType, KeyType>& inObj)
+{
+    inObj.Print(ioOut);
+    return ioOut;
+}
+
+template<class RefType, class KeyType>
 inline bool
 MushcoreData<RefType, KeyType>::Equals(const MushcoreData<RefType, KeyType>& inObj) const
 {
@@ -441,9 +454,6 @@ operator!=(const MushcoreData<RefType, KeyType>& inA, const MushcoreData<RefType
 {
     return !inA.Equals(inB);
 }
-
-
-// inlineHeader }
 
 //%includeGuardEnd {
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQoHFnQLMF2y8QhfOFHB/A
 /*
- * $Id$
- * $Log$
+ * $Id: GameDialogue.cpp,v 1.27 2005/03/25 19:13:48 southa Exp $
+ * $Log: GameDialogue.cpp,v $
+ * Revision 1.27  2005/03/25 19:13:48  southa
+ * GameDialogue work
+ *
  */
 
 #include "GameDialogue.h"
@@ -226,8 +229,6 @@ GameDialogue::AutoPrint(std::ostream& ioOut) const
     ioOut << "strings=" << m_strings << ", ";
     ioOut << "sounds=" << m_sounds << ", ";
     ioOut << "soundStreams=" << m_soundStreams << ", ";
-    ioOut << "pos=" << m_pos << ", ";
-    ioOut << "angle=" << m_angle << ", ";
     ioOut << "killSound=" << m_killSound << ", ";
     ioOut << "age=" << m_age << ", ";
     ioOut << "expired=" << m_expired;
@@ -251,14 +252,6 @@ GameDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     else if (inTagStr == "soundStreams")
     {
         ioIn >> m_soundStreams;
-    }
-    else if (inTagStr == "pos")
-    {
-        ioIn >> m_pos;
-    }
-    else if (inTagStr == "angle")
-    {
-        ioIn >> m_angle;
     }
     else if (inTagStr == "killSound")
     {
@@ -287,10 +280,6 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_sounds;
     ioOut.TagSet("soundStreams");
     ioOut << m_soundStreams;
-    ioOut.TagSet("pos");
-    ioOut << m_pos;
-    ioOut.TagSet("angle");
-    ioOut << m_angle;
     ioOut.TagSet("killSound");
     ioOut << m_killSound;
     ioOut.TagSet("age");
@@ -298,4 +287,4 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } +70rRVB1lQQw7brt/9O9CA
+//%outOfLineFunctions } y4OiVChZ45VHS4b05bz8dA

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.7 2005/03/13 00:34:48 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.8 2005/03/25 19:13:51 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.8  2005/03/25 19:13:51  southa
+ * GameDialogue work
+ *
  * Revision 1.7  2005/03/13 00:34:48  southa
  * Build fixes, key support and stereo
  *
@@ -154,6 +157,17 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
         RenderView(inAppHandler, 0.0);
     }
     
+    GLUtils::OrthoPrologue();
+    
+    for (MushcoreData<GameDialogue>::tConstIterator p = MushcoreData<GameDialogue>::Sgl().Begin();
+         p != MushcoreData<GameDialogue>::Sgl().End(); ++p)
+    {
+        GLUtils::PushMatrix();
+        p->second->Render();
+        GLUtils::PopMatrix();
+    }
+    GLUtils::OrthoEpilogue();
+    
     GLUtils::DisplayEpilogue();
 }
 
@@ -163,7 +177,7 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     
     GLUtils::IdentityPrologue();
     
-    GLUtils::PerspectiveLookAt(GLVector(m_ttStereoImageSeparation*inStereo,0,-m_ttObjectDistance), GLVector(m_ttStereoImageSeparation*inStereo,0,0), 0);
+    GLUtils::PerspectiveLookAt(GLVector(m_ttStereoImageSeparation*inStereo, 0, -m_ttObjectDistance), GLVector(m_ttStereoImageSeparation*inStereo, 0, 0), 0);
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
     GLColour white(1,1,1,1);
@@ -325,9 +339,7 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     }
     
     MushcoreXMLOStream xmlOut(std::cout);
-    
-    GameDialogue *dialogue = new GameDialogue;
-    MushcoreData<GameDialogue>::Sgl().Give("test", dialogue);
+
     xmlOut << MushcoreData<GameDialogue>::Sgl();
 }
 
@@ -374,6 +386,7 @@ TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "previous=" << m_previous << ", ";
     ioOut << "colours=" << m_colours << ", ";
     ioOut << "lastChangeMsec=" << m_lastChangeMsec << ", ";
+    ioOut << "dialogues=" << m_dialogues << ", ";
     ioOut << "ttRotationChangeMsec=" << m_ttRotationChangeMsec << ", ";
     ioOut << "ttRealignMsec=" << m_ttRealignMsec << ", ";
     ioOut << "ttLineWidth=" << m_ttLineWidth << ", ";
@@ -420,6 +433,10 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "lastChangeMsec")
     {
         ioIn >> m_lastChangeMsec;
+    }
+    else if (inTagStr == "dialogues")
+    {
+        ioIn >> m_dialogues;
     }
     else if (inTagStr == "ttRotationChangeMsec")
     {
@@ -498,6 +515,8 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_colours;
     ioOut.TagSet("lastChangeMsec");
     ioOut << m_lastChangeMsec;
+    ioOut.TagSet("dialogues");
+    ioOut << m_dialogues;
     ioOut.TagSet("ttRotationChangeMsec");
     ioOut << m_ttRotationChangeMsec;
     ioOut.TagSet("ttRealignMsec");
@@ -527,4 +546,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("ttStereoImageSeparation");
     ioOut << m_ttStereoImageSeparation;
 }
-//%outOfLineFunctions } Vyy2ggRedblg8a4ACRQ54Q
+//%outOfLineFunctions } LrHnP3aLyI6tSXhq9VcwLw

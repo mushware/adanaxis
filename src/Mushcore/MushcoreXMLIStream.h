@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.22 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.23 2004/01/18 18:25:29 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.23  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.22  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -242,32 +245,35 @@ template<class T>
 inline void
 MushcoreXMLIStream::ObjectRead(T *& outpObj)
 {
-    if (m_contentStr.substr(m_contentStart, 4) == "NULL")
+    if (VirtualIs(outpObj))
     {
-        outpObj = NULL;
-        m_contentStart += 4;;
+        ObjectReadVirtual(reinterpret_cast<MushcoreVirtualObject *&>(outpObj));
     }
     else
     {
-        if (outpObj == NULL)
+        if (m_contentStr.substr(m_contentStart, 4) == "NULL")
         {
-            std::string typeStr;
-            if (VirtualIs(outpObj)) // Function resolves whether MushcoreVirtualObject is a base
-            {
-                outpObj = reinterpret_cast<T *>(AllocateVirtual());
-            }
-            else
+            outpObj = NULL;
+            m_contentStart += 4;;
+        }
+        else
+        {
+            if (outpObj == NULL)
             {
                 outpObj = new T;
             }
+            *this >> *outpObj;
         }
-        *this >> *outpObj;
     }
 }
 
+/* Specialises the above.  The above still catches all cases derived from
+ * MushcoreVirtualObject, but the above won't compile for plain
+ * MushcoreVirtualObject because it it can't be allocated by the new.
+ */
 template<>
 inline void
-MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *& outpObj) // Specialises the above
+MushcoreXMLIStream::ObjectRead(MushcoreVirtualObject *& outpObj)
 {
     ObjectReadVirtual(outpObj);
 }
@@ -391,7 +397,6 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
             {
                 Throw("Bad separator in map");
             }
-
             // Read completely before setting the map, in case of exception
             U valueValue;
             *this >> valueValue;
@@ -407,7 +412,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
             }
             else
             {
-                Throw("Bad delimiter in vector");
+                Throw("Bad delimiter in map");
             }
         }
     }
@@ -452,7 +457,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
             }
             else
             {
-                Throw("Bad delimiter in vector");
+                Throw("Bad delimiter in map");
             }
         }
     }

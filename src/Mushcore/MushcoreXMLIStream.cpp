@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.19 2005/02/10 12:34:19 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.20 2005/03/25 19:13:50 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.20  2005/03/25 19:13:50  southa
+ * GameDialogue work
+ *
  * Revision 1.19  2005/02/10 12:34:19  southa
  * Template fixes
  *
@@ -81,7 +84,9 @@
 #include "MushcoreUtil.h"
 #include "MushcoreVirtualObject.h"
 
-#if MUSHCORE_XMLITESTING
+// #define MUSHCORE_XMLITESTING
+
+#ifdef MUSHCORE_XMLITESTING
 #define MUSHCOREXMLISTREAM_DEBUG(a) a
 #else
 #define MUSHCOREXMLISTREAM_DEBUG(a)

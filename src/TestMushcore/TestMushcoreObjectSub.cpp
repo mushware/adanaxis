@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } oqxNy4x7iWPXWGYg7HWL+w
 /*
- * $Id: TestMushcoreObjectSub.cpp,v 1.1 2004/01/18 18:25:29 southa Exp $
+ * $Id: TestMushcoreObjectSub.cpp,v 1.2 2005/02/10 12:34:24 southa Exp $
  * $Log: TestMushcoreObjectSub.cpp,v $
+ * Revision 1.2  2005/02/10 12:34:24  southa
+ * Template fixes
+ *
  * Revision 1.1  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -50,14 +53,6 @@ void AutoInstall(void)
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
-bool
-TestMushcoreObjectSub::AutoEquals(const TestMushcoreObjectSub& inObj) const
-{
-    return 1
-        && TestMushcoreObjectBase::AutoEquals(inObj)
-        && (m_subObjectValue == inObj.m_subObjectValue)
-    ;
-}
 void
 TestMushcoreObjectSub::AutoPrint(std::ostream& ioOut) const
 {
@@ -94,4 +89,4 @@ TestMushcoreObjectSub::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subObjectValue");
     ioOut << m_subObjectValue;
 }
-//%outOfLineFunctions } eiXLzIRyOmvnK4RyFfGvyQ
+//%outOfLineFunctions } QqG9neq9C3ew57Pvz02Tcw
