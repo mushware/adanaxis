@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.1 2004/03/06 14:01:42 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.2 2004/03/07 12:05:56 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.2  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  * Revision 1.1  2004/03/06 14:01:42  southa
  * Maurheen created
  *
@@ -45,29 +48,6 @@ MaurheenGame::Process(GameAppHandler& inAppHandler)
 void
 MaurheenGame::Display(GameAppHandler& inAppHandler)
 {
-    GLColour white(1,1,1,1);
-    GLColour black(1,1,1,1);
-
-    U32 lightEnum = GL_LIGHT0;
-    glLightfv(lightEnum, GL_AMBIENT, black.ArrayGet());
-    glLightfv(lightEnum, GL_DIFFUSE, white.ArrayGet());
-    glLightfv(lightEnum, GL_SPECULAR, white.ArrayGet());
-    
-    glLightf(lightEnum, GL_SPOT_CUTOFF, 180);
-
-    GLfloat direction[3]={0,0,1};
-    glLightfv(lightEnum, GL_SPOT_DIRECTION, direction);
-    glLightf(lightEnum, GL_SPOT_EXPONENT, 0);
-    glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.0001);
-    glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
-    glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 1);
-    
-    GLfloat position[4]={4, 4, -4, 1};
-    glLightfv(lightEnum, GL_POSITION, position);
-
-    glEnable(lightEnum);
-
-    GLUtils::CheckGLError();
     
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -80,30 +60,32 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     tVal msecNow = gameAppHandler.MillisecondsGet();
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
+    GLColour white(1,1,1,1);
+    GLColour black(0,0,0,1);
     
-#if 0
-    GLUtils orthoGL;
+    GLState::AmbientLightSet(0.1);
+    GLState::LightingAlphaSet(1.0);
     
-    {
-        orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
-        glStr.Render();
-    }
+    U32 lightEnum = GL_LIGHT0;
+    glLightfv(lightEnum, GL_AMBIENT, black.ArrayGet());
+    glLightfv(lightEnum, GL_DIFFUSE, white.ArrayGet());
+    glLightfv(lightEnum, GL_SPECULAR, white.ArrayGet());
     
-    {
-        GLState::ColourSet(0.8,0.8,1.0,1);
-        orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
-        glStr.Render();
-    }
+    glLightf(lightEnum, GL_SPOT_CUTOFF, 180);
     
-    {
-        GLState::ColourSet(1.0,1.0,1.0,1.0);
-        orthoGL.MoveRelative(0, -0.12);
-        GLString glStr("Configuration mode", GLFontRef("font-system1", 0.03), 0);
-        glStr.Render();
-    }
-#endif
+    GLfloat direction[3]={0,0,-1};
+    glLightfv(lightEnum, GL_SPOT_DIRECTION, direction);
+    glLightf(lightEnum, GL_SPOT_EXPONENT, 127);
+    glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.0001);
+    glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
+    glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 0.08);
+    
+    GLfloat position[4]={0, 0, 2, 1};
+    glLightfv(lightEnum, GL_POSITION, position);
+    
+    glEnable(lightEnum);
+    
+    GLUtils::CheckGLError();
     
     glRotated(msecNow/50, 0, 0, 1);
     glRotated(msecNow/45, 0, 1, 0);
@@ -113,7 +95,11 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     GLState::BlendSet(GLState::kBlendSolid);
     GLState::ModulationSet(GLState::kModulationLighting);
 
-    GLState::TextureDisable();
+    GLState::TextureEnable();
+    GLTextureRef texRef("font-system1");
+    
+    GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
+    
     MaurheenWorm worm;
     worm.Create(msecNow / 1000);
     worm.Render();

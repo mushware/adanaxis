@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ab2Pj3ndh37+YDdurQvQLQ
 /*
-* $Id$
-* $Log$
+* $Id: MaurheenWorm.h,v 1.1 2004/03/07 12:05:56 southa Exp $
+* $Log: MaurheenWorm.h,v $
+* Revision 1.1  2004/03/07 12:05:56  southa
+* Rendering work
+*
 */
 
 #include "MaurheenStandard.h"
@@ -33,6 +36,8 @@ public:
     
 private:
     MushMeshArray<Mushware::t3GLVal> m_vertices;
+    MushMeshArray<Mushware::t3GLVal> m_normals;
+    MushMeshArray<Mushware::t2GLVal> m_texCoords;
     Mushware::U32 m_length;
     Mushware::U32 m_order;
 };
