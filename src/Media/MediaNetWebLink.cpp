@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.8 2002/11/12 17:05:01 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.9 2002/11/12 18:02:13 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.9  2002/11/12 18:02:13  southa
+ * POST handling and handlepostvalues command
+ *
  * Revision 1.8  2002/11/12 17:05:01  southa
  * Tidied localweb server
  *
@@ -314,12 +317,23 @@ MediaNetWebLink::GetProcess(const string& inFilename)
 void
 MediaNetWebLink::PostProcess(const string& inValues)
 {
-    if (inValues.find("'") != inValues.npos)
+    try
     {
-        throw(NetworkFail("Dodgy POST values"));
+        if (inValues.find("'") != inValues.npos)
+        {
+            throw(NetworkFail("Dodgy POST values"));
+        }
+        CoreCommand command(string("handlepostvalues('")+inValues+"')");
+        command.Execute();
+    }    
+    catch (NetworkFail &e)
+    {
+        MediaNetLog::Instance().Log() << "Network exception: " << e.what() << endl;
     }
-    CoreCommand command(string("handlepostvalues('")+inValues+"')");
-    command.Execute();
+    catch (CommandFail &e)
+    {
+        MediaNetLog::Instance().Log() << "Command failed: " << e.what() << endl;
+    }
 }
 
 void
