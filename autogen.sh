@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.14 2003/04/06 12:35:15 southa Exp $
+# $Id: autogen.sh,v 1.15 2003/07/17 19:06:59 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.15  2003/07/17 19:06:59  southa
+# Screen out hidden files
+#
 # Revision 1.14  2003/04/06 12:35:15  southa
 # Fixes for release
 #
@@ -52,7 +55,7 @@
 # Created
 #
 
-chmod +x autogen.sh
+chmod +x autogen.sh prebuild.sh
 chmod +x install-sh
 
 switch ($1)
