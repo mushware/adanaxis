@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.2 2002/11/16 12:43:23 southa Exp $
+ * $Id: GameSetup.cpp,v 1.3 2002/11/20 22:35:26 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.3  2002/11/20 22:35:26  southa
+ * Multiplayer setup
+ *
  * Revision 1.2  2002/11/16 12:43:23  southa
  * GameApp mode switching
  *
@@ -13,6 +16,7 @@
 
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
+#include "GameDef.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"
@@ -133,7 +137,7 @@ GameSetup::Config(void)
     MediaNetWebRouter::Instance().ReceiveAll();
     static U32 ctr=0;
     ++ctr;
-    if (ctr == 1000)
+    if (ctr == 500)
     {
         try
         {
@@ -158,6 +162,13 @@ GameSetup::Config(void)
         {
             MediaNetLog::Instance().Log() << "Network exception: " << e.what();
         }
+    }
+
+    GameDef *gameDef = NULL;
+    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "client"))
+    {
+        COREASSERT(gameDef != NULL);
+        gameDef->Ticker();
     }
     
     KeyControl();

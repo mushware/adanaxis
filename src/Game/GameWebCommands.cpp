@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.2 2002/11/18 18:55:58 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.3 2002/11/20 22:35:27 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.3  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.2  2002/11/18 18:55:58  southa
  * Game resume and quit
  *
@@ -47,6 +50,7 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
+#include "GameDef.h"
 
 #include "mushCore.h"
 #include "mushMedia.h"
@@ -90,6 +94,14 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
         gameHandler.CurrentGameEnd(); // End the game
+    }
+    else if (matches[1] == "joingame")
+    {
+        GameConfig::Instance().PostDataHandle(values);
+        GameDef *gameDef = CoreData<GameDef>::Instance().DataGive("client", new GameDef);
+
+        gameDef->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
+                          GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
     }
     else if (matches[1] == "quit")
     {

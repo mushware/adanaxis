@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.8 2002/11/14 17:29:07 southa Exp $
+ * $Id: CoreData.h,v 1.9 2002/11/18 18:55:56 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.9  2002/11/18 18:55:56  southa
+ * Game resume and quit
+ *
  * Revision 1.8  2002/11/14 17:29:07  southa
  * Config database
  *
@@ -59,6 +62,7 @@ public:
     inline RefType *DataGet(const string& inName) const;
     inline void DataDelete(const string& inName);
     inline bool DataExists(const string& inName) const;
+    inline bool DataGetIfExists(RefType *& outData, const string& inName) const;
     inline void Clear(void);
     inline U32 Size(void);
     inline void Iterate(void (*inFnPtr)(RefType&));
@@ -144,6 +148,19 @@ CoreData<RefType>::DataExists(const string& inName) const
     {
         return false;
     }
+    return true;
+}
+
+template<class RefType>
+inline bool
+CoreData<RefType>::DataGetIfExists(RefType *& outData, const string& inName) const
+{
+    map<string, RefType *>::const_iterator p = m_data.find(inName);
+    if (p == m_data.end())
+    {
+        return false;
+    }
+    outData=p->second;
     return true;
 }
 

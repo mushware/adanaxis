@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.9 2002/11/18 21:02:39 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.10 2002/11/20 22:35:27 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.10  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.9  2002/11/18 21:02:39  southa
  * Prevent crash on exit
  *
@@ -49,6 +52,8 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     UDPConnect(inPort);
     m_client.UDPRemotePortSet(inPort);
     LinkChecksSend();
+    m_targetName=inServer;
+    m_targetPort=inPort;
 }
 
 MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
@@ -229,8 +234,11 @@ MediaNetLink::Tick(void)
         {
             ++m_tcpState.linkErrorTotal;
             ++m_tcpState.linkErrorsSinceGood;
-            if (LinkDeathCheck(m_tcpState)) Disconnect(MediaNetProtocol::kReasonCodeTCPLinkCheckFail);
-
+            if (LinkDeathCheck(m_tcpState))
+            {
+                m_client.TCPDisconnect();
+                m_tcpState.linkState=kLinkStateDead;
+            }
             if (LinkIsUp(m_tcpState.linkState))
             {
                 TCPLinkCheckSend();
@@ -243,7 +251,11 @@ MediaNetLink::Tick(void)
         }
     }
 
-    if (LinkDeathCheck(m_tcpState)) Disconnect(MediaNetProtocol::kReasonCodeTCPBadLink);
+    if (LinkDeathCheck(m_tcpState))
+    {
+        m_client.TCPDisconnect();
+        m_tcpState.linkState=kLinkStateDead;
+    }
     
     U32 udpLinkCheckPeriod=kUDPFastLinkCheckPeriod;
     if (m_udpState.linkState == kLinkStateIdle && m_udpState.linkErrorsSinceGood == 0)
@@ -328,7 +340,8 @@ MediaNetLink::TCPReceive(MediaNetData& outData)
     {
         if (!LinkIsUp(m_tcpState.linkState))
         {
-            throw(NetworkFail("TCPReceive on dead link"));
+            // Receive on dead link.  Don't raise an exception for this
+            return;
         }
         m_client.TCPReceive(outData);
         ++m_tcpState.linkReceiveCtr;
@@ -375,7 +388,7 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
     {
         if (!LinkIsUp(m_udpState.linkState))
         {
-            // Don't report an exception for this
+            // Receive on dead link.  Don't raise an exception for this
             return;
         }
         if (m_udpUseServerPort)
@@ -635,16 +648,16 @@ MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
 void
 MediaNetLink::WebStatusPrint(ostream& ioOut) const
 {
-    ioOut << "<td>";
+    ioOut << "<td>" << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet());
     if (m_targetIsServer)
     {
-        ioOut << "Server for ";
+        ioOut << " client";
     }
     else
     {
-        ioOut << "Client of ";
+        ioOut << " server";
     }
-    ioOut << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet())<< "</td>";
+    ioOut << "</td>";
     ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_tcpState);
     ioOut << "\">TCP:" << m_client.TCPRemotePortGet() << "</font></td><td>" << m_tcpState.linkPingTime;

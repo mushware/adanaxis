@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.5 2002/11/04 13:11:58 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.6 2002/11/18 21:02:40 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.6  2002/11/18 21:02:40  southa
+ * Prevent crash on exit
+ *
  * Revision 1.5  2002/11/04 13:11:58  southa
  * Link setup work
  *
@@ -23,6 +26,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <fcntl.h>
 
 void
@@ -96,3 +100,58 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
     }
     return dataSize;
 }
+
+TCPsocket
+PlatformNet::TCPConnectNonBlocking(IPaddress *ip)
+{
+    TCPsocket sock;
+    struct sockaddr_in sock_addr;
+
+    sock = reinterpret_cast<TCPsocket>(malloc(sizeof(*sock)));
+    if (sock == NULL)
+    {
+        throw(NetworkFail("Couldn't create socket"));
+    }
+
+    sock->channel = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock->channel == -1)
+    {
+        free(sock);
+        throw(NetworkFail("Couldn't create socket"));
+    }
+
+    SocketNonBlockingSet(sock->channel);
+    
+    // Use the SDL function for listening sockets
+    COREASSERT((ip->host != INADDR_NONE) && (ip->host != INADDR_ANY));
+
+    memset(&sock_addr, 0, sizeof(sock_addr));
+    sock_addr.sin_family = AF_INET;
+    sock_addr.sin_addr.s_addr = ip->host;
+    sock_addr.sin_port = ip->port;
+
+    errno=0;
+    if (connect(sock->channel, (struct sockaddr *)&sock_addr,
+                 sizeof(sock_addr)) != 0)
+    {
+        if (errno != EINPROGRESS)
+        {
+            ostringstream message;
+            message << "Couldn't connect to remote host (" << errno << ")";
+            throw(NetworkFail(message.str()));
+        }
+    }
+    sock->sflag = 0;
+    sock->ready = 0;
+
+    {
+        int yes = 1;
+        setsockopt(sock->channel, IPPROTO_TCP, TCP_NODELAY, (char*)&yes, sizeof(yes));
+    }
+
+    sock->remoteAddress.host = sock_addr.sin_addr.s_addr;
+    sock->remoteAddress.port = sock_addr.sin_port;
+
+    return(sock);
+}
+

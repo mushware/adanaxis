@@ -1,6 +1,11 @@
+#ifndef MEDIANETSERVER_H
+#define MEDIANETSERVER_H
 /*
- * $Id: MediaNetServer.h,v 1.5 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetServer.h,v 1.6 2002/11/20 22:35:28 southa Exp $
  * $Log: MediaNetServer.h,v $
+ * Revision 1.6  2002/11/20 22:35:28  southa
+ * Multiplayer setup
+ *
  * Revision 1.5  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -59,3 +64,4 @@ MediaNetServer::Instance(void)
     m_instance.reset(new MediaNetServer);
     return *m_instance;
 }
+#endif

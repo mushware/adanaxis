@@ -1,6 +1,11 @@
+#ifndef MEDIANETWEBSERVER_H
+#define MEDIANETWEBSERVER_H
 /*
- * $Id: MediaNetWebServer.h,v 1.1 2002/11/05 18:15:19 southa Exp $
+ * $Id: MediaNetWebServer.h,v 1.2 2002/11/15 18:58:34 southa Exp $
  * $Log: MediaNetWebServer.h,v $
+ * Revision 1.2  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  * Revision 1.1  2002/11/05 18:15:19  southa
  * Web server
  *
@@ -43,3 +48,4 @@ MediaNetWebServer::Instance(void)
     m_instance.reset(new MediaNetWebServer);
     return *m_instance;
 }
+#endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.9 2002/10/21 10:54:33 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.10 2002/10/22 20:42:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.10  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/10/21 10:54:33  southa
  * X11 build updates
  *
@@ -70,6 +73,11 @@ PlatformMiscUtils::Initialise(void)
     if (home != NULL)
     {
         CoreGlobalConfig::Instance().Set("HOME", home);
+    }
+    // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
+    if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
+    {
+        cerr << "Failed to attach signal handler" << endl;
     }
 }
 

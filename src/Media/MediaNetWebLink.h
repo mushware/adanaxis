@@ -1,6 +1,11 @@
+#ifndef MEDIANETWEBLINK_H
+#define MEDIANETWEBLINK_H
 /*
- * $Id: MediaNetWebLink.h,v 1.6 2002/11/12 17:05:01 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.7 2002/11/12 18:02:13 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.7  2002/11/12 18:02:13  southa
+ * POST handling and handlepostvalues command
+ *
  * Revision 1.6  2002/11/12 17:05:01  southa
  * Tidied localweb server
  *
@@ -101,3 +106,4 @@ operator<<(ostream &ioOut, const MediaNetWebLink& inLink)
     inLink.Print(ioOut);
     return ioOut;
 }
+#endif

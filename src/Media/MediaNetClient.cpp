@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.10 2002/11/07 00:53:34 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.11 2002/11/20 22:35:27 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.11  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.10  2002/11/07 00:53:34  southa
  * localweb work
  *
@@ -74,7 +77,8 @@ MediaNetClient::TCPConnect(const string& inServer, U32 inPort)
         throw(NetworkFail(message.str()));
     }
     
-    m_tcpSocket = SDLNet_TCP_Open(&remoteIP);
+    // m_tcpSocket = SDLNet_TCP_Open(&remoteIP);
+    m_tcpSocket = PlatformNet::TCPConnectNonBlocking(&remoteIP);
     if (m_tcpSocket == 0)
     {
         ostringstream message;

@@ -1,6 +1,11 @@
+#ifndef MEDIANETLINK_H
+#define MEDIANETLINK_H
 /*
- * $Id: MediaNetLink.h,v 1.8 2002/11/04 19:34:46 southa Exp $
+ * $Id: MediaNetLink.h,v 1.9 2002/11/20 22:35:27 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.9  2002/11/20 22:35:27  southa
+ * Multiplayer setup
+ *
  * Revision 1.8  2002/11/04 19:34:46  southa
  * Network link maintenance
  *
@@ -52,6 +57,9 @@ public:
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
+    const string& TargetNameGet(void) const { return m_targetName; }
+    U32 TargetPortGet(void) const { return m_targetPort; }
+    
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
     void WebStatusPrint(ostream& ioOut) const;
@@ -126,6 +134,10 @@ private:
     LinkState m_udpState;
     MediaNetClient m_client;
     U32 m_currentMsec;
+    
+    string m_targetName; // These should be exactly what the caller asked for
+    U32 m_targetPort;
+
     bool m_targetIsServer;
     bool m_udpUseServerPort;
     mutable bool m_loggedLinkInfo;
@@ -152,3 +164,4 @@ operator<<(ostream &ioOut, const MediaNetLink::LinkState& inLinkState)
     ioOut << "linkCheckSeqNum=" << static_cast<U32>(inLinkState.linkCheckSeqNum) << "]";
     return ioOut;
 }
+#endif

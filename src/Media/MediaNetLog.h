@@ -1,6 +1,11 @@
+#ifndef MEDIANETLOG_H
+#define MEDIANETLOG_H
 /*
- * $Id: MediaNetLog.h,v 1.2 2002/11/07 00:53:37 southa Exp $
+ * $Id: MediaNetLog.h,v 1.3 2002/11/08 11:54:40 southa Exp $
  * $Log: MediaNetLog.h,v $
+ * Revision 1.3  2002/11/08 11:54:40  southa
+ * Web fixes
+ *
  * Revision 1.2  2002/11/07 00:53:37  southa
  * localweb work
  *
@@ -29,3 +34,4 @@ private:
     ofstream *m_outStream;
 
 };
+#endif

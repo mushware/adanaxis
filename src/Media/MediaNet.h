@@ -1,6 +1,11 @@
+#ifndef MEDIANET_H
+#define MEDIANET_H
 /*
- * $Id: MediaNet.h,v 1.2 2002/11/02 11:22:51 southa Exp $
+ * $Id: MediaNet.h,v 1.3 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNet.h,v $
+ * Revision 1.3  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.2  2002/11/02 11:22:51  southa
  * Simplified UDP send and receive
  *
@@ -31,3 +36,4 @@ MediaNet::Instance(void)
     m_instance.reset(new MediaNet);
     return *m_instance;
 }
+#endif

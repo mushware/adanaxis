@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.4 2002/11/15 11:47:55 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.5 2002/11/15 18:58:34 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.5  2002/11/15 18:58:34  southa
+ * Configuration mode
+ *
  * Revision 1.4  2002/11/15 11:47:55  southa
  * Web processing and error handling
  *
@@ -16,6 +19,26 @@
  */
 
 #include "MediaNetUtils.h"
+
+#include "MediaNetLink.h"
+
+bool
+MediaNetUtils::FindLinkToStation(MediaNetLink *& outLink, const string& inName, U32 inPort)
+{
+    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+
+    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        if (p->second->TargetPortGet() == inPort &&
+            p->second->TargetNameGet() == inName)
+        {
+            outLink = p->second;
+            return true;
+        }
+    }
+    return false;
+}
 
 string
 MediaNetUtils::IPAddressToString(U32 inAddress)
