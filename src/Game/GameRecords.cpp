@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e2PHR6Xz+yz+YtTyuBFEgA
 /*
- * $Id: GameRecords.cpp,v 1.15 2003/08/21 23:08:53 southa Exp $
+ * $Id: GameRecords.cpp,v 1.16 2003/09/17 19:40:33 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.16  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.15  2003/08/21 23:08:53  southa
  * Fixed file headers
  *
@@ -74,7 +77,7 @@ GameRecords::GameRecords()
 }
 
 void
-GameRecords::SplitTimeSet(U32 inWhich, GameTimer::tMsec inMsec)
+GameRecords::SplitTimeSet(U32 inWhich, InfernalTimer::tMsec inMsec)
 {
     if (inWhich >= m_splitTimes.size())
     {
@@ -89,7 +92,7 @@ GameRecords::SplitTimeSet(U32 inWhich, GameTimer::tMsec inMsec)
 }
 
 void
-GameRecords::SplitTimePropose(U32 inWhich, GameTimer::tMsec inMsec)
+GameRecords::SplitTimePropose(U32 inWhich, InfernalTimer::tMsec inMsec)
 {
     if (!SplitTimeValid(inWhich) || inMsec < SplitTimeGet(inWhich))
     {
@@ -97,7 +100,7 @@ GameRecords::SplitTimePropose(U32 inWhich, GameTimer::tMsec inMsec)
     }
 }
 
-GameTimer::tMsec
+InfernalTimer::tMsec
 GameRecords::SplitTimeGet(U32 inWhich) const
 {
     MUSHCOREASSERT(inWhich < m_splitTimes.size());
@@ -116,14 +119,14 @@ GameRecords::SplitTimeValid(U32 inWhich) const
 }
 
 void
-GameRecords::LapTimeSet(GameTimer::tMsec inMsec)
+GameRecords::LapTimeSet(InfernalTimer::tMsec inMsec)
 {
     m_lapTime = inMsec;
     m_lapTimeValid = true;
 }
 
 void
-GameRecords::LapTimePropose(GameTimer::tMsec inMsec)
+GameRecords::LapTimePropose(InfernalTimer::tMsec inMsec)
 {
     if (!LapTimeValid() || inMsec < LapTimeGet())
     {
@@ -131,7 +134,7 @@ GameRecords::LapTimePropose(GameTimer::tMsec inMsec)
     }
 }
 
-GameTimer::tMsec
+InfernalTimer::tMsec
 GameRecords::LapTimeGet(void) const
 {
     MUSHCOREASSERT(m_lapTimeValid);
@@ -145,14 +148,14 @@ GameRecords::LapTimeValid(void) const
 }
 
 void
-GameRecords::RaceTimeSet(GameTimer::tMsec inMsec)
+GameRecords::RaceTimeSet(InfernalTimer::tMsec inMsec)
 {
     m_raceTime = inMsec;
     m_raceTimeValid = true;
 }
 
 void
-GameRecords::RaceTimePropose(GameTimer::tMsec inMsec)
+GameRecords::RaceTimePropose(InfernalTimer::tMsec inMsec)
 {
     if (!RaceTimeValid() || inMsec < RaceTimeGet())
     {
@@ -160,7 +163,7 @@ GameRecords::RaceTimePropose(GameTimer::tMsec inMsec)
     }
 }
 
-GameTimer::tMsec
+InfernalTimer::tMsec
 GameRecords::RaceTimeGet(void) const
 {
     MUSHCOREASSERT(m_raceTimeValid);

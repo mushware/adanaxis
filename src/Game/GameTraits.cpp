@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 63OX9wqN5hCMvxdSz74nvQ
 /*
- * $Id: GameTraits.cpp,v 1.20 2003/08/21 23:08:57 southa Exp $
+ * $Id: GameTraits.cpp,v 1.21 2003/09/17 19:40:33 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.21  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.20  2003/08/21 23:08:57  southa
  * Fixed file headers
  *
@@ -78,7 +81,7 @@
 
 #include "GameTraits.h"
 
-#include "GameData.h"
+#include "InfernalData.h"
 #include "GameSTL.h"
 
 using namespace Mushware;
@@ -114,7 +117,7 @@ GameTraits::RebuildTraits(void) const
     {
         try
         {
-            m_baseTraits.push_back(GameData::Sgl().TraitsGet(m_baseNames[i]));
+            m_baseTraits.push_back(InfernalData::Sgl().TraitsGet(m_baseNames[i]));
         }
         catch (MushcoreDataFail& e)
         {

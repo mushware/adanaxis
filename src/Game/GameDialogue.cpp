@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } cy727gv31nGt0TV89Axaow
 /*
- * $Id: GameDialogue.cpp,v 1.23 2003/08/21 23:08:43 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.24 2003/09/17 19:40:31 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.24  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.23  2003/08/21 23:08:43  southa
  * Fixed file headers
  *
@@ -87,11 +90,11 @@
 
 #include "GameDialogue.h"
 
-#include "GameData.h"
-#include "GameDataUtils.h"
-#include "GameMotion.h"
+#include "InfernalData.h"
+#include "InfernalDataUtils.h"
+#include "InfernalMotion.h"
 #include "GameSTL.h"
-#include "GameTimer.h"
+#include "InfernalTimer.h"
 
 using namespace Mushware;
 using namespace std;
@@ -99,7 +102,7 @@ using namespace std;
 void
 GameDialogue::Render(void) const
 {
-    GameTimer& timer(GameData::Sgl().TimerGet());
+    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
    
     U32 size=m_strings.size();
     
@@ -131,7 +134,7 @@ GameDialogue::Render(void) const
                 endMult=1;
             }
             
-            GameMotionSpec motionSpec(spec.motionSpec);
+            InfernalMotionSpec motionSpec(spec.motionSpec);
             motionSpec.Windback(windbackValue);
             GLUtils::PushMatrix();
             GLUtils gl;
@@ -254,7 +257,7 @@ GameDialogue::HandleTextEnd(MushcoreXML& inXML)
 {
     MushcoreScalar alignment(MushcoreScalar(0));
 
-    GameMotionSpec motionSpec=m_motion.MotionSpecGet();
+    InfernalMotionSpec motionSpec=m_motion.MotionSpecGet();
 
     inXML.GetAttrib(alignment, "align");
     m_currentSpec.string=GLString(inXML.TopData(), m_fontRef, alignment.ValGet());
@@ -429,7 +432,7 @@ GameDialogue::UnpicklePrologue(void)
     m_endTable[kPickleData]["killsound"] = &GameDialogue::HandleKillSoundEnd;
     m_endTable[kPickleData]["dialogue"] = &GameDialogue::HandleDialogueEnd;
     m_pickleState=kPickleData;
-    m_motion.MotionSpecSet(GameMotionSpec(GLPoint(0,0), 0));
+    m_motion.MotionSpecSet(InfernalMotionSpec(GLPoint(0,0), 0));
     m_currentSpec.startColour=GLColour(0,0,0,0);
     m_currentSpec.midColour=GLColour(0,0,0,0);
     m_currentSpec.endColour=GLColour(0,0,0,0);

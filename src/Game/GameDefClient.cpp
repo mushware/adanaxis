@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } m88+th2pONGD/3Tj10JOUg
 /*
- * $Id: GameDefClient.cpp,v 1.30 2003/08/21 23:08:42 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.31 2003/09/17 19:40:31 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.31  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.30  2003/08/21 23:08:42  southa
  * Fixed file headers
  *
@@ -124,7 +127,7 @@
 #include "GameDefClient.h"
 
 #include "GameAppHandler.h"
-#include "GameData.h"
+#include "InfernalData.h"
 #include "GameDefServer.h"
 #include "GameNetUtils.h"
 #include "GameProtocol.h"
@@ -145,7 +148,7 @@ GameDefClient::GameDefClient(const string& inName) :
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
-    m_playerRef(inName, &GameData::Sgl().PlayerGet()),
+    m_playerRef(inName, &InfernalData::Sgl().PlayerGet()),
     m_killed(false),
     m_joined(false)
 {

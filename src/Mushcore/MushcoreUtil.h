@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hKnIrVXIQdJQRS47018TCg
 /*
- * $Id: MushcoreUtil.h,v 1.9 2003/09/29 21:48:37 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.10 2003/10/02 23:33:38 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.10  2003/10/02 23:33:38  southa
+ * XML polymorphic objects
+ *
  * Revision 1.9  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -67,7 +70,7 @@
  * Build process fixes
  *
  * Revision 1.2  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h

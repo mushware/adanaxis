@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } BEJLVYM9iDJn434I1VE2jw
 /*
- * $Id: GamePiecePlayer.cpp,v 1.44 2003/08/21 23:08:51 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.45 2003/09/17 19:40:33 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.45  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.44  2003/08/21 23:08:51  southa
  * Fixed file headers
  *
@@ -111,7 +114,7 @@
  * Windback work
  *
  * Revision 1.12  2002/07/23 14:10:47  southa
- * Added GameMotion
+ * Added InfernalMotion
  *
  * Revision 1.11  2002/07/19 15:44:41  southa
  * Graphic optimisations
@@ -151,13 +154,13 @@
 #include "GamePiecePlayer.h"
 
 #include "GameControlFrameDef.h"
-#include "GameData.h"
-#include "GameFloorMap.h"
+#include "InfernalData.h"
+#include "InfernalFloorMap.h"
 #include "GameGraphic.h"
 #include "GameGraphicSprite.h"
 #include "GameSTL.h"
-#include "GameSpacePoint.h"
-#include "GameView.h"
+#include "InfernalSpacePoint.h"
+#include "InfernalView.h"
 
 #include "mushGL.h"
 
@@ -181,16 +184,16 @@ GamePiecePlayer::Render(void)
 }
 
 void
-GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
+GamePiecePlayer::EnvironmentRead(const InfernalFloorMap& inFloorMap)
 {
-    GameSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
+    InfernalSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
     m_adhesion=inFloorMap.AdhesionGet(spacePoint);
 
     m_standingOn=inFloorMap.ElementGet(spacePoint);
 }
 
 void
-GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const
+GamePiecePlayer::MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const
 {
     outSpec = m_motion.MotionSpecGet();
     // Retard the current motion
@@ -253,9 +256,9 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inD
 }
 
 void
-GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
+GamePiecePlayer::MoveConfirm(const InfernalMotionSpec& inSpec)
 {
-    GameMotionSpec motionSpec(inSpec);
+    InfernalMotionSpec motionSpec(inSpec);
     motionSpec.pos += motionSpec.deltaPos;
     motionSpec.angle += motionSpec.deltaAngle;
     // m_motion is the motionSpec used for windbacks
@@ -491,7 +494,7 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GamePiecePlayer *newPlayer=new GamePiecePlayer;
-    GameData::Sgl().TemplateDeleteAndCreate("player1", newPlayer);
+    InfernalData::Sgl().TemplateDeleteAndCreate("player1", newPlayer);
     newPlayer->Unpickle(xml);
     return MushcoreScalar(0);
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } qN8XY++gnazR/H/0JEVVKQ
 /*
- * $Id: GLUtils.h,v 1.38 2003/08/21 23:08:33 southa Exp $
+ * $Id: GLUtils.h,v 1.39 2003/09/17 19:40:30 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.39  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.38  2003/08/21 23:08:33  southa
  * Fixed file headers
  *
@@ -127,7 +130,7 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.2  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.1  2002/05/10 22:38:23  southa
  * Checkpoint

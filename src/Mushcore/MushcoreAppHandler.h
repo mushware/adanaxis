@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xZL9X2ullDZgaogXaMs+hQ
 /*
- * $Id: MushcoreAppHandler.h,v 1.5 2003/08/21 23:09:04 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.6 2003/09/17 19:40:34 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.6  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.5  2003/08/21 23:09:04  southa
  * Fixed file headers
  *
@@ -55,7 +58,7 @@
  * Keyboard reading
  *
  * Revision 1.2  2002/05/30 14:41:13  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  * Revision 1.1  2002/05/10 16:39:37  southa
  * Changed .hp files to .h

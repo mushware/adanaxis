@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } jf6GWFJXxfTcPlgswDQl8g
 /*
- * $Id: MushcoreGlobalConfig.cpp,v 1.6 2003/08/21 23:09:12 southa Exp $
+ * $Id: MushcoreGlobalConfig.cpp,v 1.7 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreGlobalConfig.cpp,v $
+ * Revision 1.7  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.6  2003/08/21 23:09:12  southa
  * Fixed file headers
  *
@@ -54,7 +57,7 @@
  * Build process fixes
  *
  * Revision 1.2  2002/05/30 14:41:15  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  * Revision 1.1  2002/05/28 13:07:04  southa
  * Command parser extensions and TIFF loader

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nvXZRnl1q6KAg5yZslhO+w
 /*
- * $Id: GamePiece.h,v 1.17 2003/08/21 23:08:51 southa Exp $
+ * $Id: GamePiece.h,v 1.18 2003/09/17 19:40:33 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.18  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:51  southa
  * Fixed file headers
  *
@@ -75,8 +78,8 @@
 
 class GLPoint;
 class GameControlFrameDef;
-class GameMotionSpec;
-class GameFloorMap;
+class InfernalMotionSpec;
+class InfernalFloorMap;
 
 class GamePiece: public MushcorePickle, protected MushcoreXMLHandler
 {
@@ -86,9 +89,9 @@ public:
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
     virtual void Unpickle(MushcoreXML& inXML) = 0;
     virtual void Render(void) = 0;
-    virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
-    virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const = 0;
-    virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
+    virtual void EnvironmentRead(const InfernalFloorMap& inFloorMap) {}
+    virtual void MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const = 0;
+    virtual void MoveConfirm(const InfernalMotionSpec& inSpec) = 0;
     virtual char *TypeNameGet(void) const = 0;
     
 protected:

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } UyVhKIxLmWPxUn/+gvv8zQ
 /*
- * $Id: GLStandard.h,v 1.15 2003/08/21 23:08:29 southa Exp $
+ * $Id: GLStandard.h,v 1.16 2003/09/17 19:40:30 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.16  2003/09/17 19:40:30  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.15  2003/08/21 23:08:29  southa
  * Fixed file headers
  *
@@ -52,7 +55,7 @@
  * Build process fixes
  *
  * Revision 1.4  2002/05/30 16:20:53  southa
- * Pickleable GameContract
+ * Pickleable InfernalContract
  *
  * Revision 1.3  2002/05/28 16:37:39  southa
  * Texture references and decomposer

@@ -30,8 +30,11 @@
 #define	NEG	263
 
  /*
- * $Id: MushcoreBison.cpp,v 1.10 2003/08/21 23:09:05 southa Exp $
+ * $Id: MushcoreBison.cpp,v 1.11 2003/09/17 19:40:34 southa Exp $
  * $Log: MushcoreBison.cpp,v $
+ * Revision 1.11  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:09:05  southa
  * Fixed file headers
  *
@@ -66,7 +69,7 @@
  * Fixes to mac project
  *
  * Revision 1.8  2002/05/30 14:41:13  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  */
 

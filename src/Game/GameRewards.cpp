@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 4sQPw+sMpDcotQDyxdjHoQ
 /*
- * $Id: GameRewards.cpp,v 1.11 2003/08/21 23:08:53 southa Exp $
+ * $Id: GameRewards.cpp,v 1.12 2003/09/17 19:40:33 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.12  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.11  2003/08/21 23:08:53  southa
  * Fixed file headers
  *
@@ -51,7 +54,7 @@
 
 #include "GameRewards.h"
 
-#include "GameDataUtils.h"
+#include "InfernalDataUtils.h"
 #include "GameSTL.h"
 
 using namespace Mushware;
@@ -68,7 +71,7 @@ GameRewards::JudgementPass(tVal inRatio)
     {
         if (inRatio < m_judgements[i].ratio)
         {
-GameDataUtils::NamedDialoguesAdd(m_judgements[i].dialogueName);
+InfernalDataUtils::NamedDialoguesAdd(m_judgements[i].dialogueName);
             found=true;
             break;
         }
@@ -89,7 +92,7 @@ GameRewards::TimeCountdownPass(tVal inTime)
             if (inTime <= m_times[i].time &&
                 m_lastTime > m_times[i].time)
             {
-                GameDataUtils::NamedDialoguesAdd(m_times[i].dialogueName);
+                InfernalDataUtils::NamedDialoguesAdd(m_times[i].dialogueName);
                 found=true;
             }
         }

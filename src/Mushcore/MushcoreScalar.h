@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } R/EcZMaAhfo/Rjfa3VimbQ
 /*
- * $Id: MushcoreScalar.h,v 1.9 2003/08/21 23:09:16 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.10 2003/09/17 19:40:36 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.10  2003/09/17 19:40:36  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.9  2003/08/21 23:09:16  southa
  * Fixed file headers
  *
@@ -82,7 +85,7 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.4  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.3  2002/05/26 16:35:07  southa
  * MushcoreXML work

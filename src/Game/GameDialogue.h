@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rDXN7pdHwwX5Yl2cJ7TVig
 /*
- * $Id: GameDialogue.h,v 1.17 2003/08/21 23:08:43 southa Exp $
+ * $Id: GameDialogue.h,v 1.18 2003/09/17 19:40:31 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.18  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:43  southa
  * Fixed file headers
  *
@@ -71,7 +74,7 @@
  *
  */
 
-#include "GameMotion.h"
+#include "InfernalMotion.h"
 #include "Mushcore.h"
 #include "mushGL.h"
 #include "mushMedia.h"
@@ -132,7 +135,7 @@ private:
     {
     public:
         GLString string;
-        GameMotionSpec motionSpec;
+        InfernalMotionSpec motionSpec;
         GLColour startColour;
         GLColour midColour;
         GLColour endColour;
@@ -171,7 +174,7 @@ private:
     std::vector<SoundSpec> m_sounds;
     std::vector<SoundStreamSpec> m_soundStreams;
     GLFontRef m_fontRef;
-    GameMotion m_motion;
+    InfernalMotion m_motion;
     std::string m_killSound;
     Mushware::tVal m_age;
     bool m_expired;

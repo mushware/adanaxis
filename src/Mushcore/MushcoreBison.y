@@ -13,8 +13,11 @@
 ****************************************************************************/
 //%Header } /xS9B0abPPKxSkLhcISQjg
 /*
- * $Id: MushcoreBison.y,v 1.9 2003/08/21 23:09:06 southa Exp $
+ * $Id: MushcoreBison.y,v 1.10 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.10  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.9  2003/08/21 23:09:06  southa
  * Fixed file headers
  *
@@ -49,7 +52,7 @@
  * Fixes to mac project
  *
  * Revision 1.8  2002/05/30 14:41:13  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  */
 

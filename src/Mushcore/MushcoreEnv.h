@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Ddd/Ct2ZCXc4glb/wGI71A
 /*
- * $Id: MushcoreEnv.h,v 1.10 2003/08/21 23:09:10 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.11 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.11  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:09:10  southa
  * Fixed file headers
  *
@@ -82,7 +85,7 @@
  * Build process fixes
  *
  * Revision 1.3  2002/05/30 14:41:13  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  * Revision 1.2  2002/05/28 22:36:44  southa
  * Script loader and tile map

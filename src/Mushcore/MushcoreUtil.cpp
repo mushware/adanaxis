@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.11 2003/09/29 21:48:37 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.12 2003/10/02 23:33:38 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.12  2003/10/02 23:33:38  southa
+ * XML polymorphic objects
+ *
  * Revision 1.11  2003/09/29 21:48:37  southa
  * XML work
  *
@@ -72,7 +75,7 @@
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
  * Revision 1.4  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.3  2002/05/10 16:39:37  southa
  * Changed .hp files to .h

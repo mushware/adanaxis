@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 6tYZhhB2yratArR2jK6xew
 /*
- * $Id: GLQuad.cpp,v 1.13 2003/08/21 23:08:25 southa Exp $
+ * $Id: GLQuad.cpp,v 1.14 2003/09/17 19:40:29 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.14  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.13  2003/08/21 23:08:25  southa
  * Fixed file headers
  *
@@ -48,7 +51,7 @@
  * Rotation fix
  *
  * Revision 1.2  2002/07/23 14:10:46  southa
- * Added GameMotion
+ * Added InfernalMotion
  *
  * Revision 1.1  2002/07/16 17:48:07  southa
  * Collision and optimisation work

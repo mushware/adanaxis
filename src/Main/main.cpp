@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } +XLEcakXamiI0hfaBRIOBA
 /*
- * $Id: main.cpp,v 1.30 2003/08/21 23:08:59 southa Exp $
+ * $Id: main.cpp,v 1.31 2003/09/17 19:40:34 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.31  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.30  2003/08/21 23:08:59  southa
  * Fixed file headers
  *
@@ -81,7 +84,7 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.7  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.6  2002/05/10 16:40:38  southa
  * Changed .hp files to .h

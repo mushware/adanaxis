@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } B0xigx7uJcQrVowiNoFNZw
 /*
- * $Id: GameNetUtils.cpp,v 1.17 2003/08/21 23:08:50 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.18 2003/09/17 19:40:32 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.18  2003/09/17 19:40:32  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:50  southa
  * Fixed file headers
  *
@@ -72,7 +75,6 @@
 #include "GameConfig.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
-#include "GameException.h"
 #include "GameNetID.h"
 #include "GameRouter.h"
 #include "GameSTL.h"
@@ -211,7 +213,7 @@ GameNetUtils::ReliableSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >&
             }
         }
     }
-    throw(NetworkFail("Send failed because no links were available"));
+    throw(MustlFail("Send failed because no links were available"));
 }
 
 void
@@ -233,7 +235,7 @@ GameNetUtils::FastSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inL
             }
         }
     }
-    throw(NetworkFail("Send failed because no links were available"));
+    throw(MustlFail("Send failed because no links were available"));
 }
 
 void

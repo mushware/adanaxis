@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } q9YHSr6l2KoH/DTfVMnSEA
 /*
- * $Id: MushcorePickle.h,v 1.3 2003/08/21 23:09:15 southa Exp $
+ * $Id: MushcorePickle.h,v 1.4 2003/09/17 19:40:36 southa Exp $
  * $Log: MushcorePickle.h,v $
+ * Revision 1.4  2003/09/17 19:40:36  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.3  2003/08/21 23:09:15  southa
  * Fixed file headers
  *
@@ -55,7 +58,7 @@
  * Traits loader first stage
  *
  * Revision 1.4  2002/05/27 12:58:42  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.3  2002/05/26 16:35:07  southa
  * MushcoreXML work

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.47 2003/08/21 23:08:34 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.48 2003/09/17 19:40:31 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.48  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.47  2003/08/21 23:08:34  southa
  * Fixed file headers
  *
@@ -132,10 +135,10 @@
  * Keyboard reading
  *
  * Revision 1.8  2002/05/30 16:21:53  southa
- * Pickleable GameContract
+ * Pickleable InfernalContract
  *
  * Revision 1.7  2002/05/27 12:58:43  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.6  2002/05/26 16:08:48  southa
  * MushcoreXML loader
@@ -164,11 +167,11 @@
 #include "mushPlatform.h"
 
 #include "GameConfig.h"
-#include "GameContract.h"
-#include "GameData.h"
+#include "InfernalContract.h"
+#include "InfernalData.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
-#include "GameFloorMap.h"
+#include "InfernalFloorMap.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
 #include "GameSTL.h"
@@ -260,11 +263,11 @@ GameAppHandler::GameModeEnter(bool inResume)
             m_pCurrent->SwapOut(*this);
         }
 
-        if (!inResume || !GameData::Sgl().ContractExists("contract1"))
+        if (!inResume || !InfernalData::Sgl().ContractExists("contract1"))
         {
             PrepareNewGame();
         }
-        m_pGame=GameData::Sgl().ContractGet("contract1");
+        m_pGame=InfernalData::Sgl().ContractGet("contract1");
 
         MUSHCOREASSERT(m_pGame != NULL);
         m_pCurrent=m_pGame;
@@ -325,7 +328,7 @@ GameAppHandler::PrepareNewGame(void)
     GameTypeDetermine();
 
     // Delete the old contract and all of its data
-    GameData::Sgl().Clear();
+    InfernalData::Sgl().Clear();
 
     // Create the contract path
     string contractRoot=MushcoreGlobalConfig::Sgl().Get("CONTRACT_ROOT").StringGet();
@@ -345,7 +348,7 @@ GameAppHandler::PrepareNewGame(void)
     command.Execute();
     
     // Get a pointer to the newly created contract
-    m_pGame=GameData::Sgl().ContractGet("contract1");
+    m_pGame=InfernalData::Sgl().ContractGet("contract1");
 }
 
 void
@@ -371,5 +374,5 @@ GameAppHandler::CurrentGameEnd(void)
 {
     SetupModeEnter();
     m_pGame=NULL;
-    GameData::Sgl().Clear();
+    InfernalData::Sgl().Clear();
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nvrbZFDV7YheQ90YFwIWJA
 /*
- * $Id: GLRectangle.h,v 1.14 2003/08/21 23:08:26 southa Exp $
+ * $Id: GLRectangle.h,v 1.15 2003/09/17 19:40:29 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.15  2003/09/17 19:40:29  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.14  2003/08/21 23:08:26  southa
  * Fixed file headers
  *
@@ -46,7 +49,7 @@
  * First multi-box collsion checking
  *
  * Revision 1.5  2002/07/23 14:10:46  southa
- * Added GameMotion
+ * Added InfernalMotion
  *
  * Revision 1.4  2002/07/18 11:40:34  southa
  * Overplotting and movement

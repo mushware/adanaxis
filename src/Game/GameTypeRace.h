@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nfAugSgHwldSQ5P+g0PQzA
 /*
- * $Id: GameTypeRace.h,v 1.21 2003/08/21 23:08:58 southa Exp $
+ * $Id: GameTypeRace.h,v 1.22 2003/09/17 19:40:34 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.22  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.21  2003/08/21 23:08:58  southa
  * Fixed file headers
  *
@@ -87,11 +90,11 @@
  */
 
 #include "GameRecords.h"
-#include "GameTimer.h"
+#include "InfernalTimer.h"
 #include "GameType.h"
 #include "Mushcore.h"
 
-class GameChequePoint;
+class InfernalChequePoint;
 class GameEvent;
 class GameEventStandingOn;
 
@@ -164,18 +167,18 @@ private:
     void SaveRecords(const GameRecords& inRecords) const;
 
     Mushware::U32 m_sequence;
-    std::vector<GameChequePoint *> m_chequePoints;
+    std::vector<InfernalChequePoint *> m_chequePoints;
     GameRecords m_records;
     GameRecords m_worldRecords;
-    GameTimer::tMsec m_startTime;
-    GameTimer::tMsec m_endTime;
-    GameTimer::tMsec m_lapStartTime;
-    GameTimer::tMsec m_chequePointTime;
-    GameTimer::tMsec m_dispRemaining;
-    GameTimer::tMsec m_dispLap;
-    GameTimer::tMsec m_dispSplit;
-    GameTimer::tMsec m_lapParTime;
-    GameTimer::tMsec m_timeAllowance;
+    InfernalTimer::tMsec m_startTime;
+    InfernalTimer::tMsec m_endTime;
+    InfernalTimer::tMsec m_lapStartTime;
+    InfernalTimer::tMsec m_chequePointTime;
+    InfernalTimer::tMsec m_dispRemaining;
+    InfernalTimer::tMsec m_dispLap;
+    InfernalTimer::tMsec m_dispSplit;
+    InfernalTimer::tMsec m_lapParTime;
+    InfernalTimer::tMsec m_timeAllowance;
     RaceState m_raceState;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;

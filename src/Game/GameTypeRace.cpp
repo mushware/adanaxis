@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } eJJXnixZPEpA+0E2cnyEOw
 /*
- * $Id: GameTypeRace.cpp,v 1.38 2003/08/21 23:08:58 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.39 2003/09/17 19:40:34 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.39  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.38  2003/08/21 23:08:58  southa
  * Fixed file headers
  *
@@ -136,9 +139,9 @@
 #include "GameTypeRace.h"
 
 #include "GameAppHandler.h"
-#include "GameChequePoint.h"
-#include "GameData.h"
-#include "GameDataUtils.h"
+#include "InfernalChequePoint.h"
+#include "InfernalData.h"
+#include "InfernalDataUtils.h"
 #include "GameDialogue.h"
 #include "GameEvent.h"
 #include "GameRewards.h"
@@ -205,8 +208,8 @@ GameTypeRace::StandingOnHandler(const GameEventStandingOn& inEvent)
 void
 GameTypeRace::SequenceAdvance(void)
 {
-    GameTimer& timer(GameData::Sgl().TimerGet());
-    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     tVal judgementRatio=0.0;
 
@@ -215,7 +218,7 @@ GameTypeRace::SequenceAdvance(void)
         case kPrelude:
             m_startTime=gameTime;
             m_raceState=kRunning;
-            GameDataUtils::NamedDialoguesAdd(m_startAction);
+            InfernalDataUtils::NamedDialoguesAdd(m_startAction);
             break;
 
         default:
@@ -243,23 +246,23 @@ GameTypeRace::SequenceAdvance(void)
         ++m_lapCount;
         if (m_lapCount == m_laps)
         {
-            GameDataUtils::NamedDialoguesAdd(m_finalLapAction);
+            InfernalDataUtils::NamedDialoguesAdd(m_finalLapAction);
         }
         if (m_lapStartTimeValid)
         {
-            GameTimer::tMsec lapTime = m_dispLap;
+            InfernalTimer::tMsec lapTime = m_dispLap;
             if (m_records.LapTimeValid())
             {
-                GameTimer::tMsec oldLapTime = m_records.LapTimeGet();
+                InfernalTimer::tMsec oldLapTime = m_records.LapTimeGet();
                 GameDialogue *lapDifference =
-                    GameData::Sgl().CurrentDialogueAdd("lapdifference",
-                        *GameData::Sgl().DialogueGet("lapdifference"));
-                lapDifference->TextSet(0, GameTimer::MsecDifferenceToString(lapTime - oldLapTime));
+                    InfernalData::Sgl().CurrentDialogueAdd("lapdifference",
+                        *InfernalData::Sgl().DialogueGet("lapdifference"));
+                lapDifference->TextSet(0, InfernalTimer::MsecDifferenceToString(lapTime - oldLapTime));
             }
             GameDialogue *lapDisplay =
-                GameData::Sgl().CurrentDialogueAdd("lapdisplay",
-                    *GameData::Sgl().DialogueGet("lapdisplay"));
-            lapDisplay->TextSet(0, GameTimer::MsecToLongString(lapTime));
+                InfernalData::Sgl().CurrentDialogueAdd("lapdisplay",
+                    *InfernalData::Sgl().DialogueGet("lapdisplay"));
+            lapDisplay->TextSet(0, InfernalTimer::MsecToLongString(lapTime));
 
             m_records.LapTimePropose(lapTime);
             if (judgementRatio == 0.0)
@@ -272,20 +275,20 @@ GameTypeRace::SequenceAdvance(void)
     }
     if (m_chequePointTimeValid)
     {
-        GameTimer::tMsec splitTime = m_dispSplit;
+        InfernalTimer::tMsec splitTime = m_dispSplit;
         if (m_records.SplitTimeValid(previousSequence))
         {
-            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
+            InfernalTimer::tMsec oldSplitTime = m_records.SplitTimeGet(previousSequence);
             GameDialogue *splitDialogue =
-                GameData::Sgl().CurrentDialogueAdd("splitdifference",
-                                        *GameData::Sgl().DialogueGet("splitdifference"));
-            splitDialogue->TextSet(0, GameTimer::MsecDifferenceToString(splitTime - oldSplitTime));
+                InfernalData::Sgl().CurrentDialogueAdd("splitdifference",
+                                        *InfernalData::Sgl().DialogueGet("splitdifference"));
+            splitDialogue->TextSet(0, InfernalTimer::MsecDifferenceToString(splitTime - oldSplitTime));
 
         }
         GameDialogue *splitDialogue =
-            GameData::Sgl().CurrentDialogueAdd("splitdisplay",
-                                    *GameData::Sgl().DialogueGet("splitdisplay"));
-        splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
+            InfernalData::Sgl().CurrentDialogueAdd("splitdisplay",
+                                    *InfernalData::Sgl().DialogueGet("splitdisplay"));
+        splitDialogue->TextSet(0, InfernalTimer::MsecToString(splitTime));
 
         m_records.SplitTimePropose(previousSequence, splitTime);
         if (judgementRatio == 0.0)
@@ -304,15 +307,15 @@ GameTypeRace::SequenceAdvance(void)
 
     if (judgementRatio != 0.0)
     {
-        GameData::Sgl().RewardsGet().JudgementPass(judgementRatio);
+        InfernalData::Sgl().RewardsGet().JudgementPass(judgementRatio);
     }
 }
   
 void
 GameTypeRace::RaceFinished(void)
 {
-    GameTimer& timer(GameData::Sgl().TimerGet());
-    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
+    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
     m_raceState = kPreResult;
     m_endTime = gameTime;
 
@@ -320,12 +323,12 @@ GameTypeRace::RaceFinished(void)
     {
         // Race won
         m_records.RaceTimePropose(m_endTime - m_startTime);
-        GameDataUtils::NamedDialoguesAdd(m_winAction);
+        InfernalDataUtils::NamedDialoguesAdd(m_winAction);
     }
     else
     {
         // Race lost
-        GameDataUtils::NamedDialoguesAdd(m_loseAction);
+        InfernalDataUtils::NamedDialoguesAdd(m_loseAction);
     }
     // Calculate the new records and save, but leave m_worldRecords intact
     // so that we can display the old records
@@ -354,9 +357,9 @@ GameTypeRace::Move(void)
             if (m_dispRemaining <= 0.0)
             {
                 RaceFinished();
-                GameData::Sgl().RewardsGet().JudgementPass((m_laps+2) / (m_lapCount+1));
+                InfernalData::Sgl().RewardsGet().JudgementPass((m_laps+2) / (m_lapCount+1));
             }
-            GameData::Sgl().RewardsGet().TimeCountdownPass(m_dispRemaining);    
+            InfernalData::Sgl().RewardsGet().TimeCountdownPass(m_dispRemaining);    
             break;
 
 	case kPreResult:
@@ -398,9 +401,9 @@ GameTypeRace::Render(void) const
 void
 GameTypeRace::UpdateTimes(void)
 {
-    GameTimer& timer(GameData::Sgl().TimerGet());
+    InfernalTimer& timer(InfernalData::Sgl().TimerGet());
     if (!timer.JudgementValid()) return;
-    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
+    InfernalTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     switch (m_raceState)
     {
@@ -431,21 +434,21 @@ GameTypeRace::RenderTimes(void) const
     GLUtils orthoGL;
     orthoGL.MoveToEdge(1,1);
     orthoGL.MoveRelative(-0.03,-0.03);
-    GLString remainingStr(GameTimer::MsecToLongString(m_dispRemaining),
+    GLString remainingStr(InfernalTimer::MsecToLongString(m_dispRemaining),
                           GLFontRef("font-mono1", 0.03), 1.0);
     remainingStr.Render();
     GLState::ColourSet(1.0,1.0,0.0,0.75);
     if (m_records.LapTimeValid())
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString lapRecordStr(GameTimer::MsecToLongString(m_records.LapTimeGet()),
+        GLString lapRecordStr(InfernalTimer::MsecToLongString(m_records.LapTimeGet()),
                               GLFontRef("font-mono1", 0.02), 1.0);
         lapRecordStr.Render();
     }
     if (m_lapStartTimeValid)
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString lapTimeStr(GameTimer::MsecToLongString(m_dispLap),
+        GLString lapTimeStr(InfernalTimer::MsecToLongString(m_dispLap),
                               GLFontRef("font-mono1", 0.02), 1.0);
         lapTimeStr.Render();
     }
@@ -468,7 +471,7 @@ GameTypeRace::RenderTimes(void) const
     if (m_records.SplitTimeValid(prevSequence))
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitRecordStr(GameTimer::MsecToString(m_records.SplitTimeGet(prevSequence)),
+        GLString splitRecordStr(InfernalTimer::MsecToString(m_records.SplitTimeGet(prevSequence)),
                               GLFontRef("font-mono1", 0.02), -1.0);
         splitRecordStr.Render();
     }
@@ -476,7 +479,7 @@ GameTypeRace::RenderTimes(void) const
     if (m_chequePointTimeValid)
     {
         orthoGL.MoveRelative(0, -0.025);
-        GLString splitTimeStr(GameTimer::MsecToString(m_dispSplit),
+        GLString splitTimeStr(InfernalTimer::MsecToString(m_dispSplit),
                             GLFontRef("font-mono1", 0.02), -1.0);
         splitTimeStr.Render();
     }
@@ -508,13 +511,13 @@ GameTypeRace::RenderResult(void) const
         timeStr.Render();
         if (m_records.RaceTimeValid())
         {
-            timeStr.TextSet(GameTimer::MsecToLongString(m_records.RaceTimeGet()));
+            timeStr.TextSet(InfernalTimer::MsecToLongString(m_records.RaceTimeGet()));
             orthoGL.MoveTo(column2,row1);
             timeStr.Render();
         }
         if (m_worldRecords.RaceTimeValid())
         {
-            timeStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.RaceTimeGet()));
+            timeStr.TextSet(InfernalTimer::MsecToLongString(m_worldRecords.RaceTimeGet()));
             orthoGL.MoveTo(column3,row1);
             timeStr.Render();
         }
@@ -533,12 +536,12 @@ GameTypeRace::RenderResult(void) const
         GLString lapRecordStr("Lap :", GLFontRef("font-mono1", 0.03), 1);
         orthoGL.MoveTo(column1, row1+2*rowSpacing);
         lapRecordStr.Render();
-        lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
+        lapRecordStr.TextSet(InfernalTimer::MsecToLongString(m_records.LapTimeGet()));
         orthoGL.MoveTo(column2, row1+2*rowSpacing);
         lapRecordStr.Render();
         if (m_worldRecords.LapTimeValid())
         {
-            lapRecordStr.TextSet(GameTimer::MsecToLongString(m_worldRecords.LapTimeGet()));
+            lapRecordStr.TextSet(InfernalTimer::MsecToLongString(m_worldRecords.LapTimeGet()));
             orthoGL.MoveTo(column3, row1+2*rowSpacing);
             lapRecordStr.Render();
         }
@@ -558,13 +561,13 @@ GameTypeRace::RenderResult(void) const
             orthoGL.MoveTo(column1, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
-            splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(i)));
+            splitRecordStr.TextSet(InfernalTimer::MsecToString(m_records.SplitTimeGet(i)));
             orthoGL.MoveTo(column2, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
 
             if (m_worldRecords.SplitTimeValid(i))
             {
-                splitRecordStr.TextSet(GameTimer::MsecToString(m_worldRecords.SplitTimeGet(i)));
+                splitRecordStr.TextSet(InfernalTimer::MsecToString(m_worldRecords.SplitTimeGet(i)));
                 orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
                 splitRecordStr.Render();
             }
@@ -687,7 +690,7 @@ GameTypeRace::HandleLapsEnd(MushcoreXML& inXML)
 void
 GameTypeRace::HandleChequePointStart(MushcoreXML& inXML)
 {
-    GameChequePoint *chequePoint=new GameChequePoint;
+    InfernalChequePoint *chequePoint=new InfernalChequePoint;
     m_chequePoints.push_back(chequePoint);
     chequePoint->Unpickle(inXML);
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } wtaCfE3Bg2cWSVhLCRxLsA
 /*
- * $Id: GameEvent.h,v 1.8 2003/08/21 23:08:43 southa Exp $
+ * $Id: GameEvent.h,v 1.9 2003/09/17 19:40:31 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.9  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.8  2003/08/21 23:08:43  southa
  * Fixed file headers
  *
@@ -46,7 +49,7 @@
 
 #include "Mushcore.h"
 
-#include "GameFloorMap.h"
+#include "InfernalFloorMap.h"
 
 class GameEvent
 {
@@ -59,8 +62,8 @@ protected:
 class GameEventStandingOn : public GameEvent
 {
 public:
-    explicit GameEventStandingOn(const GameFloorMap::tMapVector& inValues) { mapValues = inValues; }
-    GameFloorMap::tMapVector mapValues;
+    explicit GameEventStandingOn(const InfernalFloorMap::tMapVector& inValues) { mapValues = inValues; }
+    InfernalFloorMap::tMapVector mapValues;
 };
 
 class GameEventSequenceAdvance : public GameEvent

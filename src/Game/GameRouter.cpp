@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wEGV1dv23L0/XdO/oScH6A
 /*
- * $Id: GameRouter.cpp,v 1.23 2003/08/21 23:08:53 southa Exp $
+ * $Id: GameRouter.cpp,v 1.24 2003/09/17 19:40:33 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.24  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.23  2003/08/21 23:08:53  southa
  * Fixed file headers
  *
@@ -87,9 +90,8 @@
 
 #include "GameRouter.h"
 
-#include "GameData.h"
-#include "GameException.h"
-#include "GameMessageControlData.h"
+#include "InfernalData.h"
+#include "InfernalMessageControlData.h"
 #include "GameNetID.h"
 #include "GameNetObject.h"
 #include "GameNetUtils.h"
@@ -155,7 +157,7 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     }
     catch (MushcoreSyntaxFail& e)
     {
-        throw(NetworkFail(e.what()));
+        throw(MustlFail(e.what()));
     }
 }
 
@@ -176,7 +178,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
             {
                 GamePiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
 
-                GameMessageControlData controlData;
+                InfernalMessageControlData controlData;
                 controlData.Unpack(ioData);
 
                 U32 size = controlData.DataSizeGet();
@@ -184,7 +186,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
                 
                 for (U32 i=0; i<size; ++i)
                 {
-                    const GameMessageControlData::DataEntry& dataEntry = controlData.DataEntryGet(i);
+                    const InfernalMessageControlData::DataEntry& dataEntry = controlData.DataEntryGet(i);
                     piecePlayer->ControlFrameDefAdd(dataEntry.frameDef, startFrame + dataEntry.frameOffset);
                 }
                 
@@ -200,7 +202,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 
     
 #if 0
-    MushcoreData<GamePiecePlayer>& playerData = GameData::Sgl().PlayerGet();
+    MushcoreData<GamePiecePlayer>& playerData = InfernalData::Sgl().PlayerGet();
 
     if (playerData.Exists(clientName))
     {

@@ -30,12 +30,22 @@ my @fileList =
 
 foreach my $suffix (@fileList)
 {
-    my $command = "mv Game/Game$suffix.cpp Infernal/Infernal$suffix.cpp";
+    my $command = "rm Game/Game$suffix.cpp";
     if (system($command) != 0)
     {
         print "'$command' failed\n";
     }
-    my $command = "mv Game/Game$suffix.h Infernal/Infernal$suffix.h";
+    $command = "rm Game/Game$suffix.h";
+    if (system($command) != 0)
+    {
+        print "'$command' failed\n";
+    }
+    $command = "cvs remove Game/Game$suffix.cpp";
+    if (system($command) != 0)
+    {
+        print "'$command' failed\n";
+    }
+    $command = "cvs remove Game/Game$suffix.h";
     if (system($command) != 0)
     {
         print "'$command' failed\n";

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } yszaFQ9oNdjXSfiPpCzRmg
 /*
- * $Id: MushcoreConfig.h,v 1.8 2003/08/21 23:09:09 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.9 2003/09/17 19:40:35 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.9  2003/09/17 19:40:35  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.8  2003/08/21 23:09:09  southa
  * Fixed file headers
  *
@@ -76,13 +79,13 @@
  * Traits loader first stage
  *
  * Revision 1.6  2002/05/30 14:41:13  southa
- * GameData and loadtilemap command
+ * InfernalData and loadtilemap command
  *
  * Revision 1.5  2002/05/28 13:07:03  southa
  * Command parser extensions and TIFF loader
  *
  * Revision 1.4  2002/05/27 12:58:42  southa
- * GameContract and global configs added
+ * InfernalContract and global configs added
  *
  * Revision 1.3  2002/05/26 16:35:07  southa
  * MushcoreXML work

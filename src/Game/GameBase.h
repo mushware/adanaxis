@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } gHA35O9ZXgj5/Ndmbfe+IQ
 /*
- * $Id: GameBase.h,v 1.17 2003/08/21 23:08:34 southa Exp $
+ * $Id: GameBase.h,v 1.18 2003/09/17 19:40:31 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.18  2003/09/17 19:40:31  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.17  2003/08/21 23:08:34  southa
  * Fixed file headers
  *
@@ -58,7 +61,7 @@
  * Keyboard reading
  *
  * Revision 1.4  2002/05/30 16:21:53  southa
- * Pickleable GameContract
+ * Pickleable InfernalContract
  *
  * Revision 1.3  2002/05/10 22:38:22  southa
  * Checkpoint

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } zz9sxjYwiLC/+U5klXlNsg
 /*
- * $Id: GameRecords.h,v 1.12 2003/08/21 23:08:53 southa Exp $
+ * $Id: GameRecords.h,v 1.13 2003/09/17 19:40:33 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.13  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.12  2003/08/21 23:08:53  southa
  * Fixed file headers
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "GameTimer.h"
+#include "InfernalTimer.h"
 #include "Mushcore.h"
 
 class GameRecords : public MushcorePickle, protected MushcoreXMLHandler
@@ -68,17 +71,17 @@ public:
     virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    void SplitTimeSet(Mushware::U32 inWhich, GameTimer::tMsec inMsec);
-    void SplitTimePropose(Mushware::U32 inWhich, GameTimer::tMsec inMsec);
-    GameTimer::tMsec SplitTimeGet(Mushware::U32 inWhich) const;
+    void SplitTimeSet(Mushware::U32 inWhich, InfernalTimer::tMsec inMsec);
+    void SplitTimePropose(Mushware::U32 inWhich, InfernalTimer::tMsec inMsec);
+    InfernalTimer::tMsec SplitTimeGet(Mushware::U32 inWhich) const;
     bool SplitTimeValid(Mushware::U32 inWhich) const;
-    void LapTimeSet(GameTimer::tMsec inMsec);
-    void LapTimePropose(GameTimer::tMsec inMsec);
-    GameTimer::tMsec LapTimeGet(void) const;
+    void LapTimeSet(InfernalTimer::tMsec inMsec);
+    void LapTimePropose(InfernalTimer::tMsec inMsec);
+    InfernalTimer::tMsec LapTimeGet(void) const;
     bool LapTimeValid(void) const;
-    void RaceTimeSet(GameTimer::tMsec inMsec);
-    void RaceTimePropose(GameTimer::tMsec inMsec);
-    GameTimer::tMsec RaceTimeGet(void) const;
+    void RaceTimeSet(InfernalTimer::tMsec inMsec);
+    void RaceTimePropose(InfernalTimer::tMsec inMsec);
+    InfernalTimer::tMsec RaceTimeGet(void) const;
     bool RaceTimeValid(void) const;
     bool RecordsPropose(const GameRecords& inRecords);
     void Reset(void);
@@ -111,11 +114,11 @@ private:
     PickleState m_pickleState;
     // End of pickle
     
-    std::vector<GameTimer::tMsec> m_splitTimes;
+    std::vector<InfernalTimer::tMsec> m_splitTimes;
     std::vector<bool> m_splitTimeValid;
-    GameTimer::tMsec m_lapTime;
+    InfernalTimer::tMsec m_lapTime;
     bool m_lapTimeValid;
-    GameTimer::tMsec m_raceTime;
+    InfernalTimer::tMsec m_raceTime;
     bool m_raceTimeValid;
 };
 //%includeGuardEnd {

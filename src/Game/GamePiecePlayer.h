@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Xkb9AaqPPoJ778vYkqsb9Q
 /*
- * $Id: GamePiecePlayer.h,v 1.30 2003/08/21 23:08:51 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.31 2003/09/17 19:40:33 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.31  2003/09/17 19:40:33  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.30  2003/08/21 23:08:51  southa
  * Fixed file headers
  *
@@ -82,7 +85,7 @@
  * Windback work
  *
  * Revision 1.9  2002/07/23 14:10:47  southa
- * Added GameMotion
+ * Added InfernalMotion
  *
  * Revision 1.8  2002/07/18 13:53:48  southa
  * Tuned player motion
@@ -113,8 +116,8 @@
 #include "Mushcore.h"
 
 #include "GameControlFrameDef.h"
-#include "GameFloorMap.h"
-#include "GameMotion.h"
+#include "InfernalFloorMap.h"
+#include "InfernalMotion.h"
 #include "GamePiece.h"
 
 class GameGraphic;
@@ -126,9 +129,9 @@ public:
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(MushcoreXML& inXML);
-    virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
-    virtual void MoveConfirm(const GameMotionSpec& inSpec);
-    virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
+    virtual void MoveGet(InfernalMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
+    virtual void MoveConfirm(const InfernalMotionSpec& inSpec);
+    virtual void EnvironmentRead(const InfernalFloorMap& inFloorMap);
     virtual void Render(void);
     virtual char *TypeNameGet(void) const;
 
@@ -136,8 +139,8 @@ public:
     Mushware::tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}
     const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
     Mushware::tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
-    const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
-    const GameFloorMap::tMapVector& StandingOnGet(void) { return m_standingOn; }
+    const InfernalMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
+    const InfernalFloorMap::tMapVector& StandingOnGet(void) { return m_standingOn; }
     
     bool ImageIs(void) const { return m_imageIs; }
     void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
@@ -185,12 +188,12 @@ private:
         kFrameDefBufferSize=100
     };
 
-    GameMotion m_motion;
+    InfernalMotion m_motion;
     Mushware::tVal m_adhesion;
     std::vector <GameGraphic *> m_graphics;
     Mushware::tVal m_speedLim;
     Mushware::tVal m_acceleration;
-    GameFloorMap::tMapVector m_standingOn;
+    InfernalFloorMap::tMapVector m_standingOn;
     MushcoreHistory<Mushware::U32, GameControlFrameDef> m_frameDefHistory;
     bool m_imageIs;
 };
