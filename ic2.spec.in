@@ -1,0 +1,47 @@
+%define name @PACKAGE@
+%define version @VERSION@
+%define release 0
+
+Summary: Infernal Contractor II
+Name: %{name}
+Version: %{version}
+Release: %{release}
+Source0: %{name}-%{version}.tar.gz
+URL: http://www.mushware.com/
+Copyright: Public Domain
+Group: Amusements/Game/Action/Arcade
+BuildRoot: /var/tmp/%{name}-buildroot
+Prefix: %{_prefix}
+
+%description
+Take on the role of the Infernal Contractor and raise mayhem in this
+fast-moving office simulation. This episode sees you racing round the
+office against the clock in an attempt to prove your fitness to the
+demanding recruiters. Slippery floors and dodgy ergonomics are all that
+stand between you and gainful employment. Hear encouraging phone calls
+from your agent, the harsh judgements of the recruiters, and the final
+countdown as you race for the finish line in this interactive simulation.
+
+%prep
+rm -rf ${RPM_BUILD_ROOT}
+
+%setup -q
+
+%build
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix}
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install prefix=$RPM_BUILD_ROOT/%{prefix}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc README COPYING
+
+%changelog
+
+# end of file
