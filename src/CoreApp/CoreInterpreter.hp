@@ -1,29 +1,31 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreInterpreter.hp,v 1.1 2002/03/02 12:08:23 southa Exp $
+ * $Log: CoreInterpreter.hp,v $
+ * Revision 1.1  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
  */
 
 #include "CoreStandard.hp"
+#include "CoreScalar.hp"
 #include "CoreEnv.hp"
 #include "CoreCommand.hp"
 
-class CommandHandler;
+class CoreCommandHandler;
 
 class CoreInterpreter
 {
 public:
-    
-    CoreInterpreter() {m_envs.push_back(CoreEnv());}
     virtual ~CoreInterpreter() {}
 
     static CoreInterpreter& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreInterpreter:m_instance);}
     
-    virtual void Execute(const string& inStr);
-    virtual void AddHandler(CommandHandler& inHandler);
+    virtual CoreScalar Execute(CoreCommand& ioCommand);
+    virtual void AddHandler(const string& inName, CoreCommandHandler& inHandler);
     
 private:
-    virtual void ExecuteSub(const string& inStr);
-    vector<CoreEnv> m_envs;
-    vector<CommandHandler *> m_handlers;
+    CoreEnv m_env;
+    map<string, CoreCommandHandler *> m_handlers;
     static CoreInterpreter *m_instance;
 };

@@ -1,19 +1,21 @@
 /*
- * $Id$
- * $Log$
+ * $Id: LaunchCommandHandler.hp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Log: LaunchCommandHandler.hp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
  */
  
-#include "CommandHandler.hp"
+#include "CoreCommandHandler.hp"
  
-class LaunchCommandHandler : public CommandHandler
+class LaunchCommandHandler : public CoreCommandHandler
 {
 public:
-    bool HandleCommand(const string& str);
+    CoreScalar Execute(CoreCommand& ioCommand, CoreEnv &ioEnv);
     static void Install(void);
     static LaunchCommandHandler& Instance(void) {return *((m_instance==NULL)?m_instance=new LaunchCommandHandler:m_instance);}
     
 protected:    
-    void Launch(const string& inStr);
     LaunchCommandHandler() {} // Prevent construction by client
 
 private:

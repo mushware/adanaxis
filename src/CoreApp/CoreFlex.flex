@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.1 2002/03/02 20:35:08 southa Exp $
+ // $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.1 2002/03/02 20:35:08 southa Exp $
+ * $Id: CoreFlex.flex,v 1.2 2002/03/04 22:30:49 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.2  2002/03/04 22:30:49  southa
+ * Interpreter work
+ *
  * Revision 1.1  2002/03/02 20:35:08  southa
  * Added flex and bison parser
  *
@@ -57,7 +60,7 @@ eos	    [;\n]
 
 {string} {
     IFFLEXTESTING(cerr << "string='" << yytext << "'" << endl);
-    *outScalar=yytext;
+    *outScalar=string(&yytext[1], strlen(yytext)-2);
     return STRING;
 }
 

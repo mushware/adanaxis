@@ -1,65 +1,35 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreInterpreter.cpp,v 1.1 2002/03/02 12:08:23 southa Exp $
+ * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.1  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
  */
 
 #include "CoreInterpreter.hp"
-#include "CommandHandler.hp"
+#include "CoreCommandHandler.hp"
 
 CoreInterpreter *CoreInterpreter::m_instance = NULL;
 
-void
-CoreInterpreter::Execute(const string& inStr)
+CoreScalar
+CoreInterpreter::Execute(CoreCommand& ioCommand)
 {
-    Size start=0;
-    Size i;
-    for (i=0; i<inStr.size(); i++)
+    CoreEnv ioEnv;
+    CoreScalar retScalar(0);
+    if (m_handlers.find(ioCommand.Name()) != m_handlers.end())
     {
-        switch (inStr[i])
-        {
-            case ';':
-            case 10:
-            case 13:
-                if (start < i)
-                {
-                    string command(inStr, start, i-start);
-                    ExecuteSub(command);
-                }
-                start=i+1;
-                break;
-        }
+        retScalar=m_handlers[ioCommand.Name()]->Execute(ioCommand, ioEnv);
     }
-    if (start < i)
+    else
     {
-        string command(inStr, start, i-start);
-        ExecuteSub(command);
+        cerr << "Unknown command '" << ioCommand.Name() << "'" << endl;
     }
+    return retScalar;
 }
 
 void
-CoreInterpreter::ExecuteSub(const string& inStr)
+CoreInterpreter::AddHandler(const string& inName, CoreCommandHandler& inHandler)
 {
-    for (Size i=0; i<m_handlers.size(); i++)
-    {
-        try
-        {
-            if (m_handlers[i]->HandleCommand(inStr))
-            {
-                // Command was handled
-                return;
-            }
-        }
-        catch (CommandFail& cf)
-        {
-            cerr << "Command failed: " << cf << endl;
-            return;
-        }	
-    }	
-    cerr << "Unknown command '" << inStr << "'" << endl;
-}
-
-void
-CoreInterpreter::AddHandler(CommandHandler& inHandler)
-{
-    m_handlers.push_back(&inHandler);
+    m_handlers[inName]=&inHandler;
 }

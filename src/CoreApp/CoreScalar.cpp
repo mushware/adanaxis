@@ -1,9 +1,54 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreScalar.cpp,v 1.1 2002/03/04 22:30:49 southa Exp $
+ * $Log: CoreScalar.cpp,v $
+ * Revision 1.1  2002/03/04 22:30:49  southa
+ * Interpreter work
+ *
  */
 
 #include "CoreScalar.hp"
+
+void
+CoreScalar::Get(Val& outVal)
+{
+    switch (m_tag)
+    {
+        case kVal:
+            outVal=m_val;
+            break;
+
+        case kString:
+            outVal=atof(m_string.c_str());
+            break;
+            
+        default:
+            throw "CoreScalar value fault";
+    }
+}
+
+void
+CoreScalar::Get(string& outStr)
+{
+    switch (m_tag)
+    {
+        case kVal:
+        {
+            char buf[256];
+            buf[sizeof(buf)-1]='\0';
+            ostrstream out(buf, sizeof(buf)-1);
+            out << m_val;
+            outStr=buf;
+        }
+        break;
+            
+        case kString:
+            outStr=m_string;
+            break;
+            
+        default:
+            throw "CoreScalar value fault";
+    }
+}
 
 void
 CoreScalar::ostreamPrint(ostream& inOut) const

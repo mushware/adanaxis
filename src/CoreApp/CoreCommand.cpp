@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.2 2002/03/02 20:35:07 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.3 2002/03/04 22:30:48 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.3  2002/03/04 22:30:48  southa
+ * Interpreter work
+ *
  * Revision 1.2  2002/03/02 20:35:07  southa
  * Added flex and bison parser
  *
@@ -25,6 +28,35 @@ CoreCommand::Execute(void)
 void
 CoreCommand::Execute(CoreEnv& ioEnv)
 {
-    m_bison.Parse();
- //   CoreInterpreter::Instance().Execute(m_string);
+    m_bison.Parse(*this);
+}
+
+string
+CoreCommand::AllParams(void)
+{
+    string retStr;
+    bool first=true;
+    while (!m_paramList.Empty())
+    {
+        if (first)
+        {
+            first=false;
+        }
+        else
+        {
+            retStr.append(" ");
+        }
+        string str;
+        m_paramList.PopParam(str);
+        retStr.append(str);
+    }
+    return retStr;
+}
+
+CoreScalar
+CoreCommand::Despatch(void)
+{
+    cerr << "Command was " << Name() << "(";
+    cerr << m_paramList << ")" << endl;
+    return CoreInterpreter::Instance().Execute(*this);
 }

@@ -1,6 +1,10 @@
 /*
- * $Id: CoreApp.hp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Id: CoreApp.hp,v 1.2 2002/03/02 12:08:23 southa Exp $
  * $Log: CoreApp.hp,v $
+ * Revision 1.2  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:08  southa
  * Created
  *
@@ -8,7 +12,8 @@
 
 #include "CoreStandard.hp"
 #include "ChildRecord.hp"
-class CommandHandler;
+
+class CoreCommandHandler;
 
 class CoreApp
 {
@@ -17,7 +22,7 @@ public:
     static CoreApp& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreApp:m_instance);}
     virtual ~CoreApp() {}
     void Process(const string& inStr);
-    void AddHandler(CommandHandler& inHandler);
+    void AddHandler(const string& inName, CoreCommandHandler& inHandler);
     void AddChild(int pid, int inPipe, int outPipe);
     void ServiceChildren(int &outCount);
 

@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreException.hp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Log: CoreException.hp,v $
+ * Revision 1.1  2002/03/01 12:21:25  southa
+ * Added first CoreScript code
+ *
  */
 
 class FileFail: public exception
@@ -22,6 +25,24 @@ private:
 inline ostream& operator<<(ostream &s, FileFail f)
 {
     return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
+
+
+
+class CommandFail: public exception
+{
+public:
+    CommandFail(const string &inMessage) {m_message=inMessage;}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, CommandFail f)
+{
+    return s << f.StringGet();
 }
 
 #endif

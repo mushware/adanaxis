@@ -1,6 +1,10 @@
 /*
- * $Id: CoreApp.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Id: CoreApp.cpp,v 1.2 2002/03/02 12:08:23 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.2  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:08  southa
  * Created
  *
@@ -8,7 +12,7 @@
 
 #include "CoreApp.hp"
 #include "CorePOSIX.hp"
-#include "CommandHandler.hp"
+#include "CoreCommandHandler.hp"
 #include "CoreCommand.hp"
 #include "CoreInterpreter.hp"
 
@@ -61,8 +65,9 @@ CoreApp::AddChild(int pid, int inPipe, int outPipe)
     m_children.push_back(ChildRecord(pid, inPipe, outPipe));
 }
 
-void CoreApp::AddHandler(CommandHandler& inHandler)
+void
+CoreApp::AddHandler(const string& inName, CoreCommandHandler& inHandler)
 {
-    CoreInterpreter::Instance().AddHandler(inHandler);
+    CoreInterpreter::Instance().AddHandler(inName, inHandler);
 }
 

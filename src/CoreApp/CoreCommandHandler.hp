@@ -1,0 +1,26 @@
+/*
+ * $Id: CommandHandler.hp,v 1.2 2002/03/02 12:08:23 southa Exp $
+ * $Log: CommandHandler.hp,v $
+ * Revision 1.2  2002/03/02 12:08:23  southa
+ * First stage rework of command handler
+ * Added core target
+ *
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
+ */
+
+#include "CoreStandard.hp"
+#include "CoreScalar.hp"
+
+class CoreCommand;
+class CoreEnv;
+
+class CoreCommandHandler
+{
+public:
+    virtual CoreScalar Execute(CoreCommand& ioCommand, CoreEnv& ioEnv) = 0;
+
+private:
+};
+

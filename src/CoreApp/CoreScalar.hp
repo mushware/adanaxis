@@ -1,8 +1,11 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id$
- * $Log$
+ * $Id: CoreScalar.hp,v 1.1 2002/03/04 22:30:49 southa Exp $
+ * $Log: CoreScalar.hp,v $
+ * Revision 1.1  2002/03/04 22:30:49  southa
+ * Interpreter work
+ *
  */
 
 #include "CoreStandard.hp"
@@ -14,9 +17,18 @@ public:
     CoreScalar(Val inVal): m_tag(kVal), m_val(inVal) {}
     CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
 
+    void Get(Val &outVal);
+    void Get(string& outStr);
+    
     CoreScalar& operator=(const char* inChar)
     {
         m_string=inChar;
+        m_tag=kString;
+        return *this;
+    }
+    CoreScalar& operator=(const string &inStr)
+    {
+        m_string=inStr;
         m_tag=kString;
         return *this;
     }
@@ -26,7 +38,7 @@ public:
         m_tag=kVal;
         return *this;
     }
-
+    
     void ostreamPrint(ostream &inOut) const;
 
 private:

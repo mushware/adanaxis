@@ -1,29 +1,25 @@
 /*
- * $Id$
- * $Log$
+ * $Id: LaunchCommandHandler.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
  */
  
 #include "LaunchCommandHandler.hp"
 #include "CoreApp.hp"
 #include "Installer.hp"
 #include "CorePOSIX.hp"
+#include "CoreCommand.hp"
 
 LaunchCommandHandler *LaunchCommandHandler::m_instance = NULL;
 
 Installer LaunchCommandHandlerInstaller(LaunchCommandHandler::Install);
 
-bool
-LaunchCommandHandler::HandleCommand(const string& str)
+CoreScalar
+LaunchCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv &ioEnv)
 {
-    if (str.substr(0,6) == "launch") Launch(str.substr(6));
-    else return false;
-    
-    return true;
-}
-
-void
-LaunchCommandHandler::Launch(const string& inStr)
-{
+    string funcName(ioCommand.AllParams());
     typedef enum
     {
         kStdin=0,
@@ -45,45 +41,45 @@ LaunchCommandHandler::Launch(const string& inStr)
 
         vector<char *> argvector;
         // Condition input string
-        char *args=new char[inStr.size()+3];
+        char *args=new char[funcName.size()+3];
         char inQuotes='\0';
-        char lastInStr=' ';
+        char lastFuncName=' ';
         Size j=0;
-        for (Size i=0; i<inStr.size(); i++)
+        for (Size i=0; i<funcName.size(); i++)
         {
             if (inQuotes != '\0')
             {
-                if (inStr[i] == inQuotes)
+                if (funcName[i] == inQuotes)
                 {
                     inQuotes = '\0';
                     args[j++]='\0';
                 }
                 else
                 {
-                    args[j++]=inStr[i];
+                    args[j++]=funcName[i];
                 }
             }
-            else if (inStr[i] == '"' || inStr[i] == '\'')
+            else if (funcName[i] == '"' || funcName[i] == '\'')
             {
                 argvector.push_back(&args[j]);
-                inQuotes=inStr[i];
+                inQuotes=funcName[i];
             }
-            else if (inStr[i] > ' ' && lastInStr <= ' ')
+            else if (funcName[i] > ' ' && lastFuncName <= ' ')
             {
                 // Start of new arg
                 argvector.push_back(&args[j]);
-                args[j++]=inStr[i];
+                args[j++]=funcName[i];
             }
-            else if (inStr[i] <= ' ' && lastInStr > ' ')
+            else if (funcName[i] <= ' ' && lastFuncName > ' ')
             {
                 // End of word
                 args[j++]='\0'; // Null terminate arg
             }
             else
             {
-                args[j++]=inStr[i];
+                args[j++]=funcName[i];
             }
-            lastInStr=inStr[i];
+            lastFuncName=funcName[i];
         }
         args[j++]='\0';
         argvector.push_back(0);
@@ -91,7 +87,7 @@ LaunchCommandHandler::Launch(const string& inStr)
         if (inQuotes != '\0')
         {
             // Message to be picked up by the parent
-            cout << "Launch of '" << inStr << "' failed: Mismatched " << inQuotes << endl;
+            cout << "Launch of '" << funcName << "' failed: Mismatched " << inQuotes << endl;
             _exit(1);
         }
         char **argv=new (char *)[argvector.size()];
@@ -103,7 +99,7 @@ LaunchCommandHandler::Launch(const string& inStr)
         errno=0;
         execve(argv[0], &argv[0], 0);
         // Message to be picked up by the parent
-        cout << "Launch of '" << inStr << "' failed: " << strerror(errno) << endl;
+        cout << "Launch of '" << funcName << "' failed: " << strerror(errno) << endl;
         _exit(1);
     }
     else
@@ -111,10 +107,11 @@ LaunchCommandHandler::Launch(const string& inStr)
         close(p[kStdout]);
         CoreApp::Instance().AddChild(cpid, p[kStdin], NULL);
     }
+    return CoreScalar(0);
 }
 
 void
 LaunchCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler(Instance());
+    CoreApp::Instance().AddHandler("launch", Instance());
 }
