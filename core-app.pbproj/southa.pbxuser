@@ -9,13 +9,13 @@
 	F53F7CC00230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
 		isa = PBXFileBreakpoint;
-		lineNumber = 20;
+		lineNumber = 21;
 		state = 2;
 	};
 	F53F7CC10230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
 		isa = PBXFileBreakpoint;
-		lineNumber = 20;
+		lineNumber = 21;
 		state = 1;
 	};
 	F53F7CE2023167A101633C4B = {
@@ -26,7 +26,7 @@
 	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F5431747020C310101449C4C;
-		activeTarget = F5463A9C0230EA58011D269C;
+		activeTarget = F56090AD0217DFEF014AEE46;
 		addToTargets = (
 			F56090AD0217DFEF014AEE46,
 			F5463A9C0230EA58011D269C,
@@ -147,10 +147,11 @@
 		};
 	};
 	F5463AC30230EA58011D269C = {
-		activeArgIndex = 1;
+		activeArgIndex = 0;
 		argumentStrings = (
-			"test1;test2 \\\"hello!\\\";test3",
+			"test 1;test 2;test 3",
 			"launch \\\"/bin/ls\\\"",
+			"load ../test/test1.txt",
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";
@@ -179,7 +180,7 @@
 			"launch /bin/ls;initGL;",
 			"loadPixmap ../test/test.spr",
 			test3,
-			glTest1,
+			gltest1,
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";
