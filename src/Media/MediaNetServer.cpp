@@ -20,7 +20,7 @@ MediaNetServer::MediaNetServer(U32 inPort)
     {
         ostringstream message;
         message << "Server creation failed: " << SDLNet_GetError();
-        throw(DeviceFail(message.str()));
+        throw(NetworkFail(message.str()));
     }
 
     m_tcpSocket=SDLNet_TCP_Open(&ip);
@@ -29,7 +29,7 @@ MediaNetServer::MediaNetServer(U32 inPort)
     {
         ostringstream message;
         message << "Server creation failed: " << SDLNet_GetError();
-        throw(DeviceFail(message.str()));
+        throw(NetworkFail(message.str()));
     }
 }
 
@@ -45,18 +45,30 @@ MediaNetServer::Accept(void)
     TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
     if (newSocket != NULL)
     {
-        IPaddress *remoteIP = SDLNet_TCP_GetPeerAddress(m_tcpSocket);
+        IPaddress *remoteIP = SDLNet_TCP_GetPeerAddress(newSocket);
         if (remoteIP != NULL)
         {
             m_clients.push_back();
             m_clients.back().remoteIP = *remoteIP;
+            m_clients.back().remoteSocket = newSocket;
+            char *remoteName=SDLNet_ResolveIP(remoteIP);
+            cout << "Connection from ";
+            if (remoteName != NULL)
+            {
+                cout << remoteName;
+            }
+            else
+            {
+                cout << "unknown";
+            }
+            cout << " accepted" << endl;
         }
         else
         {
             static U32 errCtr=0;
             if (errCtr++ < 100)
             {
-                cerr << "Couldn't get IP for connection attempt" << endl;
+                cerr << "Couldn't get IP for connection attempt: " << SDLNet_GetError() << endl;
             }
         }
     }

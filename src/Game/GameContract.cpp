@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.79 2002/10/17 16:41:20 southa Exp $
+ * $Id: GameContract.cpp,v 1.80 2002/10/22 20:42:02 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.80  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.79  2002/10/17 16:41:20  southa
  * Initialisation fix and player facet
  *
@@ -385,6 +388,11 @@ GameContract::Init(void)
     GameDataUtils::NamedDialoguesAdd("^start");
     m_newMode=GameConfig::Instance().DisplayModeGet();
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
+
+    MediaNetServer server(7121);
+    MediaNetClient client;
+    client.Connect("localhost", 7121);
+    server.Accept();
 }
 
 void

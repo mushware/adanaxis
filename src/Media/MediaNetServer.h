@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetServer.h,v 1.1 2002/10/31 15:52:15 southa Exp $
+ * $Log: MediaNetServer.h,v $
+ * Revision 1.1  2002/10/31 15:52:15  southa
+ * First network code
+ *
  */
 
 #include "mushCore.h"
@@ -19,6 +22,7 @@ private:
     class ClientDef
     {
     public:
+        TCPsocket remoteSocket;
         IPaddress remoteIP;
     };
         

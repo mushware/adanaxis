@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreException.h,v 1.16 2002/10/12 11:22:20 southa Exp $
+ * $Id: CoreException.h,v 1.17 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.17  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.16  2002/10/12 11:22:20  southa
  * GraphicModel work
  *
@@ -337,6 +340,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, SyntaxFail f)
+{
+    return s<<f.SPrint();
+}
+
+class NetworkFail: public exception
+{
+public:
+    NetworkFail(const string &inMessage) {m_message=inMessage;}
+    ~NetworkFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, NetworkFail f)
 {
     return s<<f.SPrint();
 }

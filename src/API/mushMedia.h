@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.9 2002/10/22 20:41:56 southa Exp $
+ * $Id: mushMedia.h,v 1.10 2002/10/31 15:52:14 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.10  2002/10/31 15:52:14  southa
+ * First network code
+ *
  * Revision 1.9  2002/10/22 20:41:56  southa
  * Source conditioning
  *
@@ -48,6 +51,8 @@
 
 #include "Media/MediaAudio.h"
 #include "Media/MediaNet.h"
+#include "Media/MediaNetClient.h"
+#include "Media/MediaNetServer.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSoundStream.h"
 #include "Media/MediaSound.h"

@@ -3412,6 +3412,8 @@
 				F56CBBD40317A679017AE398,
 				F5B345E30370218B01A80164,
 				F5B345E20370218B01A80164,
+				F5ABEB9703718C3C01A80164,
+				F5ABEB9603718C3C01A80164,
 				F5ABEB930371802C01A80164,
 				F5ABEB920371802C01A80164,
 				F5539E3102B4CDCF010AB4A9,
@@ -4308,6 +4310,7 @@
 				F5B345E40370218B01A80164,
 				F5B345EA0370338101A80164,
 				F5ABEB940371802C01A80164,
+				F5ABEB9803718C3C01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4436,6 +4439,7 @@
 				F5955437035EC93201A80164,
 				F5B345E50370218B01A80164,
 				F5ABEB950371802C01A80164,
+				F5ABEB9903718C3C01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5219,6 +5223,30 @@
 		};
 		F5ABEB950371802C01A80164 = {
 			fileRef = F5ABEB930371802C01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5ABEB9603718C3C01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetClient.h;
+			path = Media/MediaNetClient.h;
+			refType = 4;
+		};
+		F5ABEB9703718C3C01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetClient.cpp;
+			path = Media/MediaNetClient.cpp;
+			refType = 4;
+		};
+		F5ABEB9803718C3C01A80164 = {
+			fileRef = F5ABEB9603718C3C01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5ABEB9903718C3C01A80164 = {
+			fileRef = F5ABEB9703718C3C01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};
