@@ -1,19 +1,38 @@
 /*
- * $Id$
- * $Log$
+ * $Id: mushCore.hp,v 1.1 2002/05/08 16:31:23 southa Exp $
+ * $Log: mushCore.hp,v $
+ * Revision 1.1  2002/05/08 16:31:23  southa
+ * Created API directory
+ *
  */
 #ifndef MUSHCORE_H
 #define MUSHCORE_H
 
+// Utility for memory management
 #include "CoreApp/AutoMonkey.hp"
+
+// Application class required by main()
 #include "CoreApp/CoreApp.hp"
+
+// Application handler subclassed to provide different application types
 #include "CoreApp/CoreAppHandler.hp"
+
+// Command handler to be subclassed to provide new commands
 #include "CoreApp/CoreCommandHandler.hp"
+
+// Exception classes to be thrown
 #include "CoreApp/CoreException.hp"
+
+// Used as a hook to register classes and commands at startup
 #include "CoreApp/CoreInstaller.hp"
+
+// POSIX utilities
 #include "CoreApp/CorePOSIX.hp"
+
+// Regular expression utility
 #include "CoreApp/CoreRegExp.hp"
+
+// Standard typedefs
 #include "CoreApp/CoreStandard.hp"
-#include "CoreApp/CoreTest.hp"
 
 #endif

@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.hp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Id: CoreException.hp,v 1.2 2002/03/05 22:44:45 southa Exp $
  * $Log: CoreException.hp,v $
+ * Revision 1.2  2002/03/05 22:44:45  southa
+ * Changes to command handling
+ *
  * Revision 1.1  2002/03/01 12:21:25  southa
  * Added first CoreScript code
  *
@@ -43,6 +46,22 @@ private:
 inline ostream& operator<<(ostream &s, CommandFail f)
 {
     return s << f.StringGet();
+}
+
+class TestFail: public exception
+{
+public:
+    TestFail(const string &inMessage) {m_message=inMessage;}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, TestFail f)
+{
+    return s<<f.SPrint();
 }
 
 #endif

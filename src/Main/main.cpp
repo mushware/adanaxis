@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.3 2002/03/04 22:30:47 southa Exp $
+ * $Id: main.cpp,v 1.4 2002/03/07 22:24:35 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.4  2002/03/07 22:24:35  southa
+ * Command interpreter working
+ *
  * Revision 1.3  2002/03/04 22:30:47  southa
  * Interpreter work
  *
@@ -12,9 +15,7 @@
  *
  */
 
-#include "CoreStandard.hp"
-#include "CoreApp.hp"
-#include "CoreAppHandler.hp"
+#include "mushCore.hp"
 
 int main(int argc, char *argv[])
 {
