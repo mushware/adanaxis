@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.21 2002/08/18 20:44:34 southa Exp $
+ * $Id: GameContract.h,v 1.22 2002/08/20 11:43:25 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.22  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.21  2002/08/18 20:44:34  southa
  * Initial chequepoint work
  *
@@ -109,12 +112,14 @@ protected:
     {
         kInit,
         kRunning,
-        kDesigning
+        kDesigning,
+        kOver
     };
 
     virtual void Init(void);
     virtual void Running(void);
     virtual void Designing(void);
+    virtual void Over(void);
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
     virtual void RenderText(void) const;

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.17 2002/08/22 10:59:49 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.18 2002/08/24 10:52:47 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.18  2002/08/24 10:52:47  southa
+ * World records
+ *
  * Revision 1.17  2002/08/22 10:59:49  southa
  * Correction to lapCount race finished test
  *
@@ -78,6 +81,13 @@ void
 GameTypeRace::Initialise(void)
 {
     LoadRecords();
+    m_lapStartTimeValid=false;
+    m_chequePointTimeValid=false;
+    m_sequence=0;
+    m_lapCount=0;
+    m_resultAlpha=0;
+    m_raceState=kPrelude;
+    
 }
 
 void

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.57 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameContract.cpp,v 1.58 2002/08/22 10:11:11 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.58  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.57  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -245,6 +248,11 @@ GameContract::Process(void)
         case kDesigning:
             Designing();
             break;
+
+        case kOver:
+            Running();
+            Over();
+            break;
     }
 }
 
@@ -258,6 +266,7 @@ GameContract::Display(void)
             break;
         
         case kRunning:
+        case kOver:
             RunningDisplay();
             break;
 
@@ -292,6 +301,7 @@ GameContract::Init(void)
 
     GameData::Instance().TypeGet().Initialise();
 
+    GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
 }
 
@@ -549,6 +559,18 @@ GameContract::Running(void)
         // CoreUtils::Sleep(timer.SleepTimeGet());
     }
     MediaAudio::Instance().Ticker();
+}
+
+void
+GameContract::Over(void)
+{
+    // Expects Running to have been called as well
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    // Needs sorting out
+    if (gameAppHandler.KeyStateGet(' '))
+    {
+        m_gameState=kInit;
+    }
 }
 
 void
