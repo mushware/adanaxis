@@ -1,6 +1,9 @@
 /*
- * $Id: GLData.cpp,v 1.5 2002/02/25 23:05:14 southa Exp $
+ * $Id: GLData.cpp,v 1.6 2002/03/21 22:07:54 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.6  2002/03/21 22:07:54  southa
+ * Initial wrangle application handler
+ *
  * Revision 1.5  2002/02/25 23:05:14  southa
  * Subclassed GLTexture
  *
@@ -18,7 +21,7 @@
  *
  */
 
-#include "GLData.hp"
+#include "GLData.h"
 
 GLData *GLData::m_instance=NULL;
 

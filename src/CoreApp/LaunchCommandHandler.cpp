@@ -1,6 +1,9 @@
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.2 2002/03/05 22:44:46 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.3 2002/03/07 22:24:34 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.3  2002/03/07 22:24:34  southa
+ * Command interpreter working
+ *
  * Revision 1.2  2002/03/05 22:44:46  southa
  * Changes to command handling
  *
@@ -9,11 +12,11 @@
  *
  */
  
-#include "LaunchCommandHandler.hp"
-#include "CoreApp.hp"
-#include "CoreInstaller.hp"
-#include "CorePOSIX.hp"
-#include "CoreCommand.hp"
+#include "LaunchCommandHandler.h"
+#include "CoreApp.h"
+#include "CoreInstaller.h"
+#include "CorePOSIX.h"
+#include "CoreCommand.h"
 
 CoreInstaller LaunchCommandHandlerInstaller(LaunchCommandHandler::Install);
 

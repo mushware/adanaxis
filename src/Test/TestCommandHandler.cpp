@@ -1,6 +1,9 @@
 /*
- * $Id: TestCommandHandler.cpp,v 1.3 2002/03/07 22:24:34 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.4 2002/05/09 18:01:39 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.4  2002/05/09 18:01:39  southa
+ * Rebuild under cygwin
+ *
  * Revision 1.3  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -12,10 +15,10 @@
  *
  */
  
-#include "TestCommandHandler.hp"
-#include "mushCore.hp"
+#include "TestCommandHandler.h"
+#include "mushCore.h"
 
-#include "Test.hp"
+#include "Test.h"
 
 CoreInstaller testCommandHandlerInstaller(TestCommandHandler::Install);
 

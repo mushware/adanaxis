@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.7 2002/02/25 23:05:14 southa Exp $
+ * $Id: GLTexture.cpp,v 1.8 2002/02/26 17:01:38 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.8  2002/02/26 17:01:38  southa
+ * Completed Sprite loader
+ *
  * Revision 1.7  2002/02/25 23:05:14  southa
  * Subclassed GLTexture
  *
@@ -24,7 +27,7 @@
  *
  */
 
-#include "GLTexture.hp"
+#include "GLTexture.h"
 
 ostream&
 GLTexture::ostreamPrint(ostream& inOut) const

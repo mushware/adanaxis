@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureSpr.cpp,v 1.2 2002/03/07 22:24:34 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.3 2002/05/09 17:08:07 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.3  2002/05/09 17:08:07  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.2  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -9,8 +12,8 @@
  *
  */
 
-#include "GLTextureSpr.hp"
-#include "mushCore.hp"
+#include "GLTextureSpr.h"
+#include "mushCore.h"
 
 GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 

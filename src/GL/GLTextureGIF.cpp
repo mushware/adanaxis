@@ -1,9 +1,12 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLTextureGIF.cpp,v 1.1 2002/02/25 23:03:51 southa Exp $
+ * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.1  2002/02/25 23:03:51  southa
+ * Subclassed GLTexture
+ *
  */
 
-#include "GLTextureGIF.hp"
+#include "GLTextureGIF.h"
 
 extern "C"
 {

@@ -1,6 +1,9 @@
 /*
- * $Id: GraphWrangler.cpp,v 1.3 2002/05/08 16:31:21 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.1 2002/05/09 17:08:07 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.1  2002/05/09 17:08:07  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.3  2002/05/08 16:31:21  southa
  * Created API directory
  *
@@ -12,9 +15,9 @@
  *
  */
 
-#include "GraphWrangler.hp"
-#include "mushCore.hp"
-#include "mushGL.hp"
+#include "GraphWrangler.h"
+#include "mushCore.h"
+#include "mushGL.h"
 
 void
 GraphWrangler::Process(bool &outDoQuit, bool &outRedraw)

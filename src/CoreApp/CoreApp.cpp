@@ -1,6 +1,9 @@
 /*
- * $Id: CoreApp.cpp,v 1.3 2002/03/05 22:44:45 southa Exp $
+ * $Id: CoreApp.cpp,v 1.4 2002/03/07 22:24:32 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.4  2002/03/07 22:24:32  southa
+ * Command interpreter working
+ *
  * Revision 1.3  2002/03/05 22:44:45  southa
  * Changes to command handling
  *
@@ -13,11 +16,11 @@
  *
  */
 
-#include "CoreApp.hp"
-#include "CorePOSIX.hp"
-#include "CoreCommandHandler.hp"
-#include "CoreCommand.hp"
-#include "CoreInterpreter.hp"
+#include "CoreApp.h"
+#include "CorePOSIX.h"
+#include "CoreCommandHandler.h"
+#include "CoreCommand.h"
+#include "CoreInterpreter.h"
 
 CoreApp *CoreApp::m_instance = NULL;
 

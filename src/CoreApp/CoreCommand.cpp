@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.4 2002/03/05 22:44:45 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.5 2002/03/07 22:24:33 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.5  2002/03/07 22:24:33  southa
+ * Command interpreter working
+ *
  * Revision 1.4  2002/03/05 22:44:45  southa
  * Changes to command handling
  *
@@ -16,10 +19,10 @@
  *
  */
 
-#include "CoreCommand.hp"
-#include "CoreEnv.hp"
-#include "CoreInterpreter.hp"
-#include "CoreFlex.hp"
+#include "CoreCommand.h"
+#include "CoreEnv.h"
+#include "CoreInterpreter.h"
+#include "CoreFlex.h"
 
 void
 CoreCommand::Execute(void)

@@ -1,6 +1,9 @@
 /*
- * $Id: AutoMonkey.cpp,v 1.4 2002/03/07 22:24:32 southa Exp $
+ * $Id: AutoMonkey.cpp,v 1.5 2002/05/09 17:10:38 southa Exp $
  * $Log: AutoMonkey.cpp,v $
+ * Revision 1.5  2002/05/09 17:10:38  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.4  2002/03/07 22:24:32  southa
  * Command interpreter working
  *
@@ -15,9 +18,9 @@
  *
  */
 
-#include "AutoMonkey.hp"
-#include "CoreStandard.hp"
-#include "CoreSwitches.hp"
+#include "AutoMonkey.h"
+#include "CoreStandard.h"
+#include "CoreSwitches.h"
 
 AutoMonkey::~AutoMonkey()
 {

@@ -1,11 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTest.cpp,v 1.1 2002/05/10 15:35:27 southa Exp $
+ * $Log: GameTest.cpp,v $
+ * Revision 1.1  2002/05/10 15:35:27  southa
+ * Added Game group
+ *
  */
 
 #include "GameTest.h"
-#include "mushCore.hp"
-// #include "mushGL.hp"
+#include "mushCore.h"
+// #include "mushGL.h"
 
 void
 GameTest::Process(bool &outDoQuit, bool &outRedraw)

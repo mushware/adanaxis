@@ -1,11 +1,14 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreAppHandler.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.1.1.1  2002/02/11 22:30:08  southa
+ * Created
+ *
  */
 
-#include "CoreAppHandler.hp"
-#include "CorePOSIX.hp"
-#include "CoreApp.hp"
+#include "CoreAppHandler.h"
+#include "CorePOSIX.h"
+#include "CoreApp.h"
 
 CoreAppHandler *CoreAppHandler::m_instance = NULL;
 

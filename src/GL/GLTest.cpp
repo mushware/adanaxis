@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest.cpp,v 1.2 2002/03/07 22:24:34 southa Exp $
+ * $Id: GLTest.cpp,v 1.3 2002/05/08 16:31:21 southa Exp $
  * $Log: GLTest.cpp,v $
+ * Revision 1.3  2002/05/08 16:31:21  southa
+ * Created API directory
+ *
  * Revision 1.2  2002/03/07 22:24:34  southa
  * Command interpreter working
  *
@@ -9,8 +12,8 @@
  *
  */
 
-#include "GLTest.hp"
+#include "GLTest.h"
 
-#include "GLStandard.hp"
-#include "GLTest1AppHandler.hp"
+#include "GLStandard.h"
+#include "GLTest1AppHandler.h"
 

@@ -1,0 +1,96 @@
+#ifndef COREEXCEPTION_HP
+#define COREEXCEPTION_HP
+/*
+ * $Id: CoreException.h,v 1.4 2002/05/09 17:10:38 southa Exp $
+ * $Log: CoreException.h,v $
+ * Revision 1.4  2002/05/09 17:10:38  southa
+ * Fixed for gcc 3.0
+ *
+ * Revision 1.3  2002/05/08 17:26:35  southa
+ * API tidying
+ *
+ * Revision 1.2  2002/03/05 22:44:45  southa
+ * Changes to command handling
+ *
+ * Revision 1.1  2002/03/01 12:21:25  southa
+ * Added first CoreScript code
+ *
+ */
+
+class FileFail: public exception
+{
+public:
+    FileFail(const string& inFilename, const string& inMessage):
+    m_filename(inFilename), m_message(inMessage) {}
+    ~FileFail() throw() {}
+    const string& FilenameGet(void) const throw () {return m_filename;}
+    const string& MessageGet(void) const throw() {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_filename;
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, FileFail f)
+{
+    return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
+
+
+
+class CommandFail: public exception
+{
+public:
+    CommandFail(const string &inMessage) {m_message=inMessage;}
+    ~CommandFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, CommandFail f)
+{
+    return s << f.StringGet();
+}
+
+class TestFail: public exception
+{
+public:
+    TestFail(const string &inMessage) {m_message=inMessage;}
+    ~TestFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, TestFail f)
+{
+    return s<<f.SPrint();
+}
+
+class LoaderFail: public exception
+{
+public:
+    LoaderFail(const string& inFilename, const string& inMessage):
+    m_filename(inFilename), m_message(inMessage) {}
+    ~LoaderFail() throw() {}
+    const string& FilenameGet(void) {return m_filename;}
+    const string& MessageGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_filename;
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, LoaderFail f)
+{
+    return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
+
+#endif

@@ -1,6 +1,9 @@
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.3 2002/05/08 16:31:20 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.1 2002/05/09 17:08:08 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.1  2002/05/09 17:08:08  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.3  2002/05/08 16:31:20  southa
  * Created API directory
  *
@@ -12,11 +15,11 @@
  *
  */
 
-#include "WrangleCommandHandler.hp"
-#include "mushCore.hp"
-#include "mushGL.hp"
+#include "WrangleCommandHandler.h"
+#include "mushCore.h"
+#include "mushGL.h"
 
-#include "GLWrangleAppHandler.hp"
+#include "GLWrangleAppHandler.h"
 
 CoreInstaller WrangleCommandHandlerInstaller(WrangleCommandHandler::Install);
 

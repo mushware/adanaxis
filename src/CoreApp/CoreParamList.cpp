@@ -1,9 +1,12 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreParamList.cpp,v 1.1 2002/03/05 22:44:46 southa Exp $
+ * $Log: CoreParamList.cpp,v $
+ * Revision 1.1  2002/03/05 22:44:46  southa
+ * Changes to command handling
+ *
  */
 
-#include "CoreParamList.hp"
+#include "CoreParamList.h"
 
 void
 CoreParamList::PopParam(Val& outVal)

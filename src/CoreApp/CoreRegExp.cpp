@@ -1,12 +1,15 @@
 /*
- * $Id: CoreRegExp.cpp,v 1.1 2002/03/18 22:21:12 southa Exp $
+ * $Id: CoreRegExp.cpp,v 1.2 2002/05/09 17:10:38 southa Exp $
  * $Log: CoreRegExp.cpp,v $
+ * Revision 1.2  2002/05/09 17:10:38  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.1  2002/03/18 22:21:12  southa
  * Initial wrangle command
  *
  */
 
-#include "CoreRegExp.hp"
+#include "CoreRegExp.h"
 
 void CoreRegExp::SearchPatternSet(const std::string& inPattern)
 {

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreInterpreter.cpp,v 1.2 2002/03/05 22:44:46 southa Exp $
+ * $Id: CoreInterpreter.cpp,v 1.3 2002/03/07 22:24:33 southa Exp $
  * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.3  2002/03/07 22:24:33  southa
+ * Command interpreter working
+ *
  * Revision 1.2  2002/03/05 22:44:46  southa
  * Changes to command handling
  *
@@ -10,9 +13,9 @@
  *
  */
 
-#include "CoreInterpreter.hp"
-#include "CoreCommandHandler.hp"
-#include "CoreException.hp"
+#include "CoreInterpreter.h"
+#include "CoreCommandHandler.h"
+#include "CoreException.h"
 
 CoreInterpreter *CoreInterpreter::m_instance = NULL;
 

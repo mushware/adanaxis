@@ -1,12 +1,15 @@
 /*
- * $Id: StreamUtil.cpp,v 1.1 2002/02/26 17:01:40 southa Exp $
+ * $Id: StreamUtil.cpp,v 1.2 2002/05/09 17:10:38 southa Exp $
  * $Log: StreamUtil.cpp,v $
+ * Revision 1.2  2002/05/09 17:10:38  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.1  2002/02/26 17:01:40  southa
  * Completed Sprite loader
  *
  */
 
-#include "StreamUtil.hp"
+#include "StreamUtil.h"
 
 U32
 StreamUtil::BigEndianU32Get(u8istream& inIn)

@@ -1,12 +1,15 @@
 /*
- * $Id: CoreUtil.cpp,v 1.1 2002/02/26 17:01:40 southa Exp $
+ * $Id: CoreUtil.cpp,v 1.2 2002/05/09 17:10:38 southa Exp $
  * $Log: CoreUtil.cpp,v $
+ * Revision 1.2  2002/05/09 17:10:38  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.1  2002/02/26 17:01:40  southa
  * Completed Sprite loader
  *
  */
 
-#include "CoreUtil.hp"
+#include "CoreUtil.h"
 
 U32
 CoreUtil::BigEndianU32Get(istream& inIn)

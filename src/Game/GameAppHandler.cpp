@@ -1,12 +1,15 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameAppHandler.cpp,v 1.1 2002/05/10 15:35:27 southa Exp $
+ * $Log: GameAppHandler.cpp,v $
+ * Revision 1.1  2002/05/10 15:35:27  southa
+ * Added Game group
+ *
  */
 
 #include "GameAppHandler.h"
 
-#include "mushCore.hp"
-#include "mushGL.hp"
+#include "mushCore.h"
+#include "mushGL.h"
 
 #include "GameTest.h"
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.3 2002/03/21 22:07:54 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.4 2002/05/08 16:31:20 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.4  2002/05/08 16:31:20  southa
+ * Created API directory
+ *
  * Revision 1.3  2002/03/21 22:07:54  southa
  * Initial wrangle application handler
  *
@@ -12,9 +15,9 @@
  *
  */
 
-#include "GLAppHandler.hp"
-#include "GLStandard.hp"
-#include "mushCore.hp"
+#include "GLAppHandler.h"
+#include "GLStandard.h"
+#include "mushCore.h"
 
 void
 GLAppHandler::CheckGLError(void)

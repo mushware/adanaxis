@@ -1,10 +1,13 @@
 /*
- * $Id$
- * $Log$
+ * $Id: CoreScript.cpp,v 1.1 2002/03/01 12:21:25 southa Exp $
+ * $Log: CoreScript.cpp,v $
+ * Revision 1.1  2002/03/01 12:21:25  southa
+ * Added first CoreScript code
+ *
  */
 
-#include "CoreScript.hp"
-#include "CoreException.hp"
+#include "CoreScript.h"
+#include "CoreException.h"
 
 CoreScript::CoreScript(const string& inFilename)
 {

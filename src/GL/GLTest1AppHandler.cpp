@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.6 2002/03/18 22:22:15 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.7 2002/05/08 16:31:21 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.7  2002/05/08 16:31:21  southa
+ * Created API directory
+ *
  * Revision 1.6  2002/03/18 22:22:15  southa
  * Initial wrangle command
  *
@@ -21,12 +24,12 @@
  *
  */
 
-#include "GLTest1AppHandler.hp"
+#include "GLTest1AppHandler.h"
 
-#include "GLStandard.hp"
-#include "mushCore.hp"
-#include "GLTexture.hp"
-#include "GLData.hp"
+#include "GLStandard.h"
+#include "mushCore.h"
+#include "GLTexture.h"
+#include "GLData.h"
 
 CoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);

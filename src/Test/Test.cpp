@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.4 2002/02/26 17:01:39 southa Exp $
+ * $Id: Test.cpp,v 1.5 2002/05/09 18:01:39 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.5  2002/05/09 18:01:39  southa
+ * Rebuild under cygwin
+ *
  * Revision 1.4  2002/02/26 17:01:39  southa
  * Completed Sprite loader
  *
@@ -15,8 +18,8 @@
  *
  */
 
-#include "Test.hp"
-#include "mushCore.hp"
+#include "Test.h"
+#include "mushCore.h"
 
 void
 Test::Test1(void)

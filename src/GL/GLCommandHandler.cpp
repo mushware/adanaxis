@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.9 2002/03/18 22:22:15 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.10 2002/05/08 16:31:20 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.10  2002/05/08 16:31:20  southa
+ * Created API directory
+ *
  * Revision 1.9  2002/03/18 22:22:15  southa
  * Initial wrangle command
  *
@@ -30,13 +33,13 @@
  *
  */
 
-#include "GLCommandHandler.hp"
-#include "mushCore.hp"
-#include "GLAppHandler.hp"
-#include "GLData.hp"
-#include "GLTextureSpr.hp"
-#include "GLTextureGIF.hp"
-#include "GLTest.hp"
+#include "GLCommandHandler.h"
+#include "mushCore.h"
+#include "GLAppHandler.h"
+#include "GLData.h"
+#include "GLTextureSpr.h"
+#include "GLTextureGIF.h"
+#include "GLTest.h"
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
 

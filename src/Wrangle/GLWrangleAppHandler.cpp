@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.2 2002/05/08 16:31:20 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.1 2002/05/09 17:08:07 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.1  2002/05/09 17:08:07  southa
+ * Fixed for gcc 3.0
+ *
  * Revision 1.2  2002/05/08 16:31:20  southa
  * Created API directory
  *
@@ -9,12 +12,12 @@
  *
  */
 
-#include "GLWrangleAppHandler.hp"
+#include "GLWrangleAppHandler.h"
 
-#include "mushCore.hp"
-#include "mushGL.hp"
+#include "mushCore.h"
+#include "mushGL.h"
 
-#include "GraphWrangler.hp"
+#include "GraphWrangler.h"
 
 void
 GLWrangleAppHandler::Initialise(void)
