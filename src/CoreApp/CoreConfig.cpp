@@ -1,5 +1,5 @@
 /*
- * $Id: CoreConfig.cpp,v 1.1 2002/05/24 16:23:09 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.2 2002/05/25 17:17:18 southa Exp $
  * $%Log$
  */
 
@@ -37,5 +37,5 @@ CoreConfig::Pickle(ostream& inOut) const
 {}
 
 void
-CoreConfig::Unpickle(istream& inIn)
+CoreConfig::Unpickle(CoreXML& inXML)
 {}

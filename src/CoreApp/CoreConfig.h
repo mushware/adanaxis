@@ -1,6 +1,9 @@
 /*
- * $Id: CoreConfig.h,v 1.1 2002/05/24 16:23:09 southa Exp $
+ * $Id: CoreConfig.h,v 1.2 2002/05/25 17:17:18 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.2  2002/05/25 17:17:18  southa
+ * CoreXML implementation
+ *
  * Revision 1.1  2002/05/24 16:23:09  southa
  * Config and typenames
  *
@@ -20,7 +23,7 @@ public:
     const CoreScalar& Get(const string& inName) const;
     bool ConfigExists(const string& inName) const;
     virtual void Pickle(ostream& inOut) const;
-    virtual void Unpickle(istream& inIn);
+    virtual void Unpickle(CoreXML& inXML);
     
 private:
     map<string, CoreScalar> m_config;

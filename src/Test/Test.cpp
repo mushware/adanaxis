@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.7 2002/05/24 18:09:39 southa Exp $
+ * $Id: Test.cpp,v 1.8 2002/05/25 17:17:18 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.8  2002/05/25 17:17:18  southa
+ * CoreXML implementation
+ *
  * Revision 1.7  2002/05/24 18:09:39  southa
  * CoreXML and game map
  *
@@ -292,7 +295,7 @@ Test::Test4(void)
 
     config.Set("elem3", CoreScalar(2));
     
-    if (config.Get("elem3") != 2)
+    if (config.Get("elem3").Val() != 2)
     {
         throw TestFail("Config fault 6");
     }

@@ -1,8 +1,11 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id: CoreScalar.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreScalar.h,v 1.2 2002/05/24 16:23:10 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.2  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -64,6 +67,9 @@ public:
         return *this;
     }
 
+    // Conversion operators
+    operator tVal() const { return Val(); }
+    
     void ostreamPrint(ostream &inOut) const;
 
 private:
