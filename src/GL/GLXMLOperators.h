@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4oyuaAIZhw3W7rwbERri6A
 /*
- * $Id: GLXMLOperators.h,v 1.2 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLXMLOperators.h,v 1.3 2005/02/03 21:02:52 southa Exp $
  * $Log: GLXMLOperators.h,v $
+ * Revision 1.3  2005/02/03 21:02:52  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *
@@ -28,6 +31,8 @@
 
 #include "GLStandard.h"
 
+#ifndef HAVE_GLENUM_IS_UNSIGNED_INT
+
 inline void
 operator>>(MushcoreXMLIStream& ioIn, GLenum& outObj)
 {
@@ -35,6 +40,8 @@ operator>>(MushcoreXMLIStream& ioIn, GLenum& outObj)
     ioIn.ObjectRead(xmlVal);
     outObj = static_cast<GLenum>(xmlVal);
 }
+
+#endif
 
 //%includeGuardEnd {
 #endif

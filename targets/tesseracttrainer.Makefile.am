@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: tesseracttrainer.Makefile.am,v 1.7 2003/11/13 23:25:29 southa Exp $
+# $Id: tesseracttrainer.Makefile.am,v 1.1 2005/03/30 20:57:52 southa Exp $
 # $Log: tesseracttrainer.Makefile.am,v $
+# Revision 1.1  2005/03/30 20:57:52  southa
+# Created
+#
 
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
@@ -25,7 +28,7 @@ DATAMAKEFILE=tesseracttrainerdata/Makefile.am
 all:prebuild-script
 
 prebuild-script:
-	$(SHELL) -c 'if [ -f prebuild.sh ];then ./prebuild.sh;fi'
+	$(SHELL) -c 'if [ -f prebuild.sh ];then sh ./prebuild.sh;fi'
 
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)

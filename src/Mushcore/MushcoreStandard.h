@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.18 2004/12/06 20:44:18 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.19 2005/01/27 21:00:39 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.19  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  * Revision 1.18  2004/12/06 20:44:18  southa
  * Quaternion and matrix operations
  *
@@ -202,6 +205,10 @@
 #include <string>
 #include <utility>
 #include <vector>
+
+#ifdef HAVE_SSTREAM_NOT_IN_IOSFWD
+#include <sstream>
+#endif
 
 #include <assert.h>
 

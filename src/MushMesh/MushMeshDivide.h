@@ -16,15 +16,17 @@
  ****************************************************************************/
 //%Header } qw6ZsSxCKmjN/7vy8/i7zg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshDivide.h,v 1.1 2005/01/27 21:00:39 southa Exp $
+ * $Log: MushMeshDivide.h,v $
+ * Revision 1.1  2005/01/27 21:00:39  southa
+ * Division and rendering
+ *
  */
 
 #include "MushMeshStandard.h"
 #include "MushMeshMushcoreIO.h"
 
 #include "MushMeshGroup.h"
-#include <ostream>
 
 class MushMeshDivide
 {
