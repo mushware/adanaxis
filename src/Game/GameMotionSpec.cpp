@@ -1,6 +1,9 @@
 /*
- * $Id: GameMotionSpec.cpp,v 1.2 2002/07/23 14:10:47 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.3 2002/07/31 16:27:16 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.3  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.2  2002/07/23 14:10:47  southa
  * Added GameMotion
  *
@@ -20,6 +23,21 @@ GameMotionSpec::GameMotionSpec() :
     deltaPos(GLPoint(0,0)),
     deltaAngle(0)
 {
+}
+
+void
+GameMotionSpec::Windback(tVal inScale)
+{
+    pos -= deltaPos * inScale;
+    angle -= deltaAngle * inScale;
+}
+
+const GameMotionSpec
+GameMotionSpec::WindbackGet(tVal inScale) const
+{
+    GameMotionSpec retSpec(*this);
+    retSpec.Windback(inScale);
+    return retSpec;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTimer.cpp,v 1.1 2002/08/02 15:20:55 southa Exp $
+ * $Log: GameTimer.cpp,v $
+ * Revision 1.1  2002/08/02 15:20:55  southa
+ * Frame rate timing
+ *
  */
 
 #include "GameTimer.h"
@@ -13,14 +16,20 @@ GameTimer::GameTimer():
 }
 
 void
-GameTimer::CurrentMsecSet(tMsec inMsec)
+GameTimer::CurrentMsecSet(U32 inMsec)
 {
-    m_currentTime = inMsec*1000;
     if (!m_timesValid)
     {
+        m_currentTime = inMsec*1000;
         Reset();
         m_timesValid=true;
     }
+    else
+    {
+        // Increment currentTime in a wraparound-safe way
+        m_currentTime += 1000 * (inMsec - m_lastMsec);
+    }
+    m_lastMsec = inMsec;
 }
 
 void
@@ -42,6 +51,7 @@ GameTimer::JudgementValid(void) const
 tVal
 GameTimer::MotionFramesGet(void) const
 {
+    // Return the integer part of the frame counter
     double frames;
     modf((m_currentTime - m_motionFrameTime) / m_motionFrameInterval, &frames);
     return frames;
@@ -67,12 +77,9 @@ GameTimer::MotionFramesDone(tVal inFrames)
 tVal
 GameTimer::PartialMotionFrameGet(void) const
 {
-    return 0;
-}
-
-void
-GameTimer::PartialMotionFrameDone(tVal inFrame)
-{
+    // Return the fractional part of the frame counter
+    double frames;
+    return modf((m_currentTime - m_motionFrameTime) / m_motionFrameInterval, &frames);
 }
 
 bool

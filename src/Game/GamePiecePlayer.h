@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.8 2002/07/18 13:53:48 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.9 2002/07/23 14:10:47 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.9  2002/07/23 14:10:47  southa
+ * Added GameMotion
+ *
  * Revision 1.8  2002/07/18 13:53:48  southa
  * Tuned player motion
  *
@@ -67,7 +70,8 @@ public:
     tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}
     const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
     tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
-
+    const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
+    
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

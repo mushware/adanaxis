@@ -3688,6 +3688,8 @@
 				F5F2C66402A410DA01CB7A62,
 				F54631EF02ACC78201A7DA6B,
 				F54631F002ACC78201A7DA6B,
+				F5D6A1A202FABD6701D854DA,
+				F5D6A1A302FABD6701D854DA,
 				F54631EB02ACC53801A7DA6B,
 				F54631EC02ACC53801A7DA6B,
 				F54668B402AE2A590163596F,
@@ -3879,6 +3881,7 @@
 				F549083B02ED8ACC01F581B4,
 				F54AC49502F841D801726764,
 				F54AC49902F8438001726764,
+				F5D6A1A502FABD6701D854DA,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -3973,6 +3976,7 @@
 				F5463AD802E6D60D018842E0,
 				F5483C4D02E836CD0163105D,
 				F549083A02ED8ACC01F581B4,
+				F5D6A1A402FABD6701D854DA,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -4447,6 +4451,30 @@
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
 			refType = 4;
+		};
+		F5D6A1A202FABD6701D854DA = {
+			isa = PBXFileReference;
+			name = GameTimer.cpp;
+			path = Game/GameTimer.cpp;
+			refType = 4;
+		};
+		F5D6A1A302FABD6701D854DA = {
+			isa = PBXFileReference;
+			name = GameTimer.h;
+			path = Game/GameTimer.h;
+			refType = 4;
+		};
+		F5D6A1A402FABD6701D854DA = {
+			fileRef = F5D6A1A202FABD6701D854DA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5D6A1A502FABD6701D854DA = {
+			fileRef = F5D6A1A302FABD6701D854DA;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5F06F0602AE531801B05200 = {
 			isa = PBXFileReference;

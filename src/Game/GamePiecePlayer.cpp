@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.11 2002/07/19 15:44:41 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.12 2002/07/23 14:10:47 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.12  2002/07/23 14:10:47  southa
+ * Added GameMotion
+ *
  * Revision 1.11  2002/07/19 15:44:41  southa
  * Graphic optimisations
  *
@@ -72,14 +75,19 @@ GamePiecePlayer::Render(void)
 void
 GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 {
+    outSpec = m_motion.MotionSpecGet();
+    // Retard the current motion
+    GLPoint retardPos(outSpec.deltaPos);
+    retardPos.ConstrainMagnitude(m_adhesion);
+    outSpec.deltaPos -= retardPos*0.5;
+    outSpec.deltaAngle *= 1.0-(m_adhesion*0.5);
+    
     if (m_controller == NULL)
     {
         m_controller=GameData::Instance().ControllerGet(m_controllerName);
     }
     GameControllerState controlState;
     m_controller->StateGet(controlState);
-
-    outSpec = m_motion.MotionSpecGet();
     
     outSpec.deltaAngle+=m_adhesion * M_PI * controlState.mouseXDelta;
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
@@ -106,19 +114,19 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
     tVal magnitude;
     if (outSpec.deltaPos.y > 0)
     {
-	magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
+        magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
                        0.5*outSpec.deltaPos.y*outSpec.deltaPos.y);
     }
     else
     {
-	magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
+        magnitude=sqrt(outSpec.deltaPos.x*outSpec.deltaPos.x +
                        outSpec.deltaPos.y*outSpec.deltaPos.y);
     }
 	    
     if (magnitude > 2)
     {
-	// Constrain magnitude to 2
-	outSpec.deltaPos *= 2/magnitude;
+        // Constrain magnitude to 2
+        outSpec.deltaPos *= 2/magnitude;
     }
     
     outSpec.deltaPos.RotateAboutZ(newAngle);
@@ -127,14 +135,10 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 void
 GamePiecePlayer::MoveConfirm(const GameMotionSpec& inSpec)
 {
-    GameMotionSpec motionSpec = inSpec;
+    GameMotionSpec motionSpec(inSpec);
     motionSpec.pos += motionSpec.deltaPos;
     motionSpec.angle += motionSpec.deltaAngle;
-
-    GLPoint retardPos(motionSpec.deltaPos);
-    retardPos.ConstrainMagnitude(m_adhesion);
-    motionSpec.deltaPos -= retardPos*0.5;
-    motionSpec.deltaAngle *= 1.0-(m_adhesion*0.5);
+    // m_motion is the motionSpec used for windbacks
     m_motion.MotionSpecSet(motionSpec);
 }
 

@@ -1,8 +1,11 @@
 #ifndef GAMETIMER_H
 #define GAMETIMER_H
 /*
- * $Id$
- * $Log$
+ * $Id: GameTimer.h,v 1.1 2002/08/02 15:20:55 southa Exp $
+ * $Log: GameTimer.h,v $
+ * Revision 1.1  2002/08/02 15:20:55  southa
+ * Frame rate timing
+ *
  */
 
 #include "mushCore.h"
@@ -15,14 +18,13 @@ public:
 
     GameTimer();
     
-    void CurrentMsecSet(tMsec inMsec);
+    void CurrentMsecSet(U32 inMsec);
     void Reset(void);
     bool JudgementValid(void) const;
     tVal MotionFramesGet(void) const;
     void MotionFramesDiscard(void);
     void MotionFramesDone(tVal inFrames);
     tVal PartialMotionFrameGet(void) const;
-    void PartialMotionFrameDone(tVal inFrame);
     bool RedisplayGet(void) const;
     void RedisplayDone(void);
     tVal Periodic10msGet(void) const;
@@ -40,6 +42,7 @@ private:
     tUsec m_motionFrameInterval;
     tUsec m_currentMotionFrame;
     tUsec m_lastRedisplayMotionFrame;
+    U32 m_lastMsec;
     bool m_timesValid;
 };
 #endif
