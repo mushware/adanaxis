@@ -344,6 +344,66 @@
 			path = "";
 			refType = 4;
 		};
+		F5442ECC024A717501F087D6 = {
+			isa = PBXFileReference;
+			name = GLWrangleAppHandler.cpp;
+			path = Wrangle/GLWrangleAppHandler.cpp;
+			refType = 4;
+		};
+		F5442ECD024A717501F087D6 = {
+			isa = PBXFileReference;
+			name = GLWrangleAppHandler.hp;
+			path = Wrangle/GLWrangleAppHandler.hp;
+			refType = 4;
+		};
+		F5442ECE024A717501F087D6 = {
+			fileRef = F5442ECD024A717501F087D6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5442ECF024A717501F087D6 = {
+			fileRef = F5442ECC024A717501F087D6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5442ED0024A7E1001F087D6 = {
+			isa = PBXFileReference;
+			name = Wrangler.hp;
+			path = Wrangle/Wrangler.hp;
+			refType = 4;
+		};
+		F5442ED1024A7E1001F087D6 = {
+			isa = PBXFileReference;
+			name = GraphWrangler.hp;
+			path = Wrangle/GraphWrangler.hp;
+			refType = 4;
+		};
+		F5442ED2024A7E1001F087D6 = {
+			fileRef = F5442ED0024A7E1001F087D6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5442ED3024A7E1001F087D6 = {
+			fileRef = F5442ED1024A7E1001F087D6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5442ED4024A81F801F087D6 = {
+			isa = PBXFileReference;
+			name = GraphWrangler.cpp;
+			path = Wrangle/GraphWrangler.cpp;
+			refType = 4;
+		};
+		F5442ED5024A81F901F087D6 = {
+			fileRef = F5442ED4024A81F801F087D6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F545A7D7022C0ED70152A3B7 = {
 			isa = PBXFileReference;
 			name = basicToC.pl;
@@ -379,8 +439,13 @@
 		};
 		F545B09602439E5A01CBA783 = {
 			children = (
+				F5442ECC024A717501F087D6,
+				F5442ECD024A717501F087D6,
 				F545B09702439EEC01CBA783,
 				F545B09902439F2001CBA783,
+				F5442ED0024A7E1001F087D6,
+				F5442ED1024A7E1001F087D6,
+				F5442ED4024A81F801F087D6,
 			);
 			isa = PBXGroup;
 			name = Wrangle;
@@ -1230,6 +1295,9 @@
 				F545B0A10243A00601CBA783,
 				F545B0A20243A00601CBA783,
 				F545B0A30243A00601CBA783,
+				F5442ECE024A717501F087D6,
+				F5442ED2024A7E1001F087D6,
+				F5442ED3024A7E1001F087D6,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1433,6 +1501,8 @@
 				F545B0A90243A00601CBA783,
 				F545B0AA0243A00601CBA783,
 				F545B0AB0243A00601CBA783,
+				F5442ECF024A717501F087D6,
+				F5442ED5024A81F901F087D6,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
