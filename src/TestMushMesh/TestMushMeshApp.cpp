@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8XvmBalkJaw8zlwB0njizA
 /*
- * $Id: TestMushMeshApp.cpp,v 1.6 2003/10/20 13:02:54 southa Exp $
+ * $Id: TestMushMeshApp.cpp,v 1.7 2003/10/23 20:03:58 southa Exp $
  * $Log: TestMushMeshApp.cpp,v $
+ * Revision 1.7  2003/10/23 20:03:58  southa
+ * End mesh work
+ *
  * Revision 1.6  2003/10/20 13:02:54  southa
  * Patch fixes and testing
  *
@@ -54,7 +57,7 @@ TestMushMeshApp::EnterInstance(void)
     RunTest("testtriangulararray", "MushMeshTriangularArray");
     RunTest("testutils", "MushMeshUtils");
     RunTest("testpatch", "MushMeshPatch");
-    // RunTest("testsubdivide", "MushMeshSubdivide");
+    RunTest("testsubdivide", "MushMeshSubdivide");
 }
 
 void

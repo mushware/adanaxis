@@ -206,7 +206,8 @@ MushMeshPatchEnd::Subdivide(tVal inLevel)
             m_geometry.CurrentWRefGet(),
             m_geometry.PreviousGet(),
             m_activeBox,
-            proportion);
+            proportion,
+            m_order);
 
         m_texCoords.Swap();
         for (U32 i=0; i<m_texCoords.BaseGet().size(); ++i)
@@ -215,7 +216,8 @@ MushMeshPatchEnd::Subdivide(tVal inLevel)
                 m_texCoords.CurrentWRefGet()[i],
                 m_texCoords.PreviousGet()[i],
                 m_activeBox,
-                proportion);
+                proportion,
+                m_order);
         }
     }
 }
@@ -228,8 +230,9 @@ MushMeshPatchEnd::AutoPrint(std::ostream& ioOut) const
     ioOut << "geometry=" << m_geometry << ", ";
     ioOut << "texCoords=" << m_texCoords << ", ";
     ioOut << "activeBox=" << m_activeBox << ", ";
+    ioOut << "order=" << m_order << ", ";
     ioOut << "edgeDefs=" << m_edgeDefs << ", ";
     ioOut << "neighbourDefs=" << m_neighbourDefs;
     ioOut << "]";
 }
-//%outOfLineFunctions } 99TW/Vu5cM7v1mWz6v7pxA
+//%outOfLineFunctions } ys6Tm/G/NVjeFJ62/Lps4Q

@@ -33,6 +33,11 @@ class MushMeshPatchEnd : public MushMeshPatch
 public:
     typedef Mushware::t2BoxU32 tActiveBox;
 
+    MushMeshPatchEnd() : m_order(3) {}
+
+    Mushware::U32 OrderGet(void) const { return m_order; }
+    void OrderSet(Mushware::U32 inOrder) { m_order = inOrder; }
+
     virtual const Mushware::tGeometryArray& GeometryGet(void);
     virtual void GeometrySet(const Mushware::tGeometryArray& inArray);
     virtual const Mushware::tTexCoordArray& TexCoordGet(Mushware::U32 inIndex);
@@ -51,6 +56,8 @@ private:
     MushMeshWorkspaceBased<Mushware::tTexCoordArrayVector> m_texCoords;
 
     tActiveBox m_activeBox;
+
+    Mushware::U32 m_order;
 
     std::vector<MushMeshSelection> m_edgeDefs;
     std::vector<MushMeshSelection> m_neighbourDefs;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 32mFSsTNLHJgXJZJxCfxrQ
 /*
- * $Id: MushMeshUtils.cpp,v 1.3 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.4 2003/10/23 20:03:58 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.4  2003/10/23 20:03:58  southa
+ * End mesh work
+ *
  * Revision 1.3  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -27,6 +30,7 @@
 
 #include "MushMeshUtils.h"
 
+#include "MushMeshBox.h"
 #include "MushMeshSTL.h"
 
 using namespace Mushware;
@@ -59,6 +63,25 @@ MushMeshUtils::BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mus
     message << "Access out of bounds (" << inValue1 << " >= " << inLimit1 << " or " << inValue2 << " >= " << inLimit2 << ')';
     throw MushcoreLogicFail(message.str()) ;
 }
+
+#if 0
+// Doesn't work
+Mushware::U32
+MushMeshUtils::TriangleOrderGet(const Mushware::t2U32& inSize)
+{
+    MUSHCOREASSERT(inSize.X() > 2);
+    MUSHCOREASSERT(inSize.Y() > 1);
+
+    U32 order = inSize.Y() / (inSize.X() - 2);
+    if (order * (inSize.X() - 2) != inSize.Y())
+    {
+        ostringstream message;
+        message << "Bad triangle size: x=" << inSize.X() << ", y=" << inSize.Y() << ", y != n(x-2)";
+        throw MushcoreDataFail(message.str());
+    }
+    return order;
+}
+#endif
 
 tVal
 MushMeshUtils::SubdivisionAlphaCalculate(Mushware::U32 inN)

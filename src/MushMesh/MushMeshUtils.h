@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } E6hzk2Z9M26wAK6ICXOBXw
 /*
- * $Id: MushMeshUtils.h,v 1.4 2003/10/15 12:26:59 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.5 2003/10/23 20:03:58 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.5  2003/10/23 20:03:58  southa
+ * End mesh work
+ *
  * Revision 1.4  2003/10/15 12:26:59  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -34,15 +37,19 @@
 
 #include "MushMeshStandard.h"
 
+template<class T, Mushware::U32 D> class MushMeshVector;
+
 class MushMeshUtils
 {
 public:
     static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
     static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
     static Mushware::tVal SubdivisionAlphaGet(Mushware::U32 inN);
-    static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN); // for testing
+    static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN);
+    // static Mushware::U32 TriangleOrderGet(const MushMeshVector<Mushware::U32, 2>& inSize);
+    static Mushware::U32 TriangleLimitGet(Mushware::U32 inX, Mushware::U32 inOrder);
 
-    template <class T> static bool EqualIs(const MushwareValarray<T>& a, const MushwareValarray<T>& b);
+    template<class T> static bool EqualIs(const MushwareValarray<T>& a, const MushwareValarray<T>& b);
 
 private:
     enum
@@ -62,6 +69,12 @@ MushMeshUtils::SubdivisionAlphaGet(Mushware::U32 inN)
         return SubdivisionAlphaCalculate(inN);
     }
     return m_alphaTable[inN];
+}
+
+inline Mushware::U32
+MushMeshUtils::TriangleLimitGet(Mushware::U32 inX, Mushware::U32 inOrder)
+{
+    return inX*inOrder;
 }
 
 template <class T>

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id: MushMeshSubdivide.h,v 1.6 2003/10/18 20:28:38 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.7 2003/10/23 20:03:58 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.7  2003/10/23 20:03:58  southa
+ * End mesh work
+ *
  * Revision 1.6  2003/10/18 20:28:38  southa
  * Subdivision speed tests
  *
@@ -39,8 +42,10 @@
  */
 
 #include "MushMeshStandard.h"
+
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
+#include "MushMeshUtils.h"
 
 template <class T>
 class MushMeshSubdivide
@@ -49,7 +54,8 @@ public:
     static void RectangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
                                     Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp);
     static void TriangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
-                                    Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp);
+                                    Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp,
+                                    Mushware::U32 inOrder);
 private:
     static Mushware::U32 M1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
     static Mushware::U32 P1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap);
@@ -406,29 +412,25 @@ MushMeshSubdivide<T>::P1Wrap(Mushware::U32 inValue, Mushware::U32 inWrap)
 template <class T>
 inline void
 MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const MushMeshArray<T>& inArray,
-                                           Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp)
+                                           Mushware::t2BoxU32 inActiveBox, Mushware::tVal inProp,
+                                           Mushware::U32 inOrder)
 {
     // class T is usually some flavour of MushMeshVector, not a simple arithmetic type
 
-    /* Check that the active box is regular, and that we have at least 1 row or column
-     * on the right hand side
+    /* Check that the active box is regular, that the active box is withing the array,
+     * and that we have at least 1 extra row on the right hand side
      */
     MUSHCOREASSERT(inActiveBox.RegularIs());
     MUSHCOREASSERT(inActiveBox.EndGet().X() < inArray.XSizeGet());
+    MUSHCOREASSERT(inActiveBox.EndGet().Y() <= inArray.YSizeGet());
 
-    // These are start and end points for the first pass
+    // These are start and end points for passes through the source array
     Mushware::t2U32 startPoint(inActiveBox.StartGet());
-    Mushware::t2U32 endPoint(inActiveBox.EndGet());
+    Mushware::t2U32 endPoint(inActiveBox.EndGet()); // + (1,0)?
     Mushware::t2U32 sizeVec = inActiveBox.SizeGet();
 
-    // Calculate the order, i.e. how many points connect to the apex
-    MUSHCOREASSERT(inActiveBox.SizeGet().X() > 2);
-    MUSHCOREASSERT(inActiveBox.SizeGet().Y() > 1);
-
-    Mushware::U32 order = (sizeVec.Y() - 1) / (sizeVec.X() - 2);
-
     // Size the output array appropriately for the active box
-    outArray.SizeSet(2 * sizeVec + Mushware::t2U32(1,0));
+    outArray.SizeSet(2 * sizeVec);
 
     /* destOffset is used to translate from input array indices to output array.
      * destPoint = 2*srcPoint - destOffset
@@ -445,15 +447,16 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
     Mushware::tVal inverseProp = 1 - inProp;
     Mushware::tVal propOver4 = inProp/4;
 
-    Mushware::U32 xDefect = endPoint.X()-2; // Column which holds the defects
+    MUSHCOREASSERT(inOrder > 0);
+    Mushware::U32 xDefect = startPoint.X() + (sizeVec.Y() / inOrder); // Column which holds the defects
 
     // Calculate the apex
     {
         const T& n_z0z0 = inArray.Get(0, 0);
 
-        Mushware::U32 xeq1Wrap = order + 1;
+        Mushware::U32 xeq1Wrap = inOrder;
 
-        Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(order);
+        Mushware::tVal alpha = MushMeshUtils::SubdivisionAlphaGet(inOrder);
 
         T value0 = n_z0z0;
         value0 *= alpha;
@@ -463,7 +466,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             /* The apex point connects to each of the second row vertices, so
              * valency=order.  It generates order+1 vertices
              */
-            const T& n_p1z0 = inArray.Get(1, y);
+            const T& n_p1z0 = inArray.Get(1, startPoint.Y()+y);
             
             value0 += n_p1z0;
 
@@ -475,7 +478,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             value1 *= propOver4;
             value1 += (n_z0z0 + n_p1z0) * inverseProp;
             value1 /= 2;
-            
+
             outArray.Set(value1, 1, y);
         }
 
@@ -484,11 +487,38 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
         value0 += n_z0z0 * inverseProp;
         outArray.Set(value0, 0, 0);
     }
-    for (Mushware::U32 x=1; x < endPoint.X(); ++x)
+
+    for (Mushware::U32 x=1; x < sizeVec.X(); ++x)
     {
-        Mushware::U32 xz0Wrap = order*x + 1;
-        Mushware::U32 xm1Wrap = xz0Wrap - order;
-        Mushware::U32 xp1Wrap = xz0Wrap + order;
+        Mushware::U32 xz0Wrap = inOrder*x;
+        Mushware::U32 xp1Wrap = xz0Wrap + inOrder;
+
+
+        if (xz0Wrap > sizeVec.Y())
+        {
+            // Special case for right hand edge
+            xz0Wrap = sizeVec.Y();
+        }
+
+        if (xp1Wrap > sizeVec.Y())
+        {
+            // Special case for right hand edge
+            xp1Wrap = sizeVec.Y();
+        }
+
+        Mushware::U32 xm1Wrap;
+
+        if (x <= 1)
+        {
+            // Special case for apex
+            xm1Wrap = 1;
+        }
+        else
+        {
+            xm1Wrap = (x-1)*inOrder;
+            MUSHCOREASSERT(xm1Wrap <= sizeVec.Y());
+        }
+
 
         for (Mushware::U32 y=0; y < xz0Wrap; ++y)
         {
@@ -555,9 +585,9 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                     value4 /= 2;
                     
                     // Wrapping point in the output array
-                    Mushware::U32 outXp1Wrap = (x+1)*2*order + 1;
+                    Mushware::U32 outXp1Wrap = (x+1)*2*inOrder;
 
-                    outArray.Set(value4, outX+1, M1Wrap(outY, outXp1Wrap));
+                    outArray.Set(value4, outX+1, M1Wrap(outY+skew, outXp1Wrap));
                 }
                 else
                 {
@@ -591,7 +621,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                 value1 += (n_z0z0 + n_p1z0) * inverseProp;
                 value1 /= 2;
                 
-                outArray.Set(value1, outX+1, outY);
+                outArray.Set(value1, outX+1, outY+skew);
                 
                 T value2 = n_z0z0;
                 value2 += n_z0p1;
@@ -613,7 +643,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                 value3 += (n_z0z0 + n_p1p1) * inverseProp;
                 value3 /= 2;
                 
-                outArray.Set(value3, outX+1, outY+1);
+                outArray.Set(value3, outX+1, outY+skew+1);
             }
             else if (x > xDefect)
             {
@@ -683,7 +713,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
             }
             else // x == xDefect
             {
-                // Values to the right of x are not skewed
+                // Values to the left of x are skewed
                 const T& n_m1m1 = inArray.Get(x-1, M1Wrap(y-skew, xm1Wrap));
                 const T& n_z0m1 = inArray.Get(x,   M1Wrap(y, xz0Wrap));
                 // n_p1m1 not used
@@ -692,6 +722,7 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
                 const T& n_z0z0 = inArray.Get(x,   y);
                 const T& n_p1z0 = inArray.Get(x+1, y);
                 
+                // Values to the right of x are not skewed
                 // n_m1p1 not used
                 const T& n_z0p1 = inArray.Get(x,   P1Wrap(y, xz0Wrap));
                 const T& n_p1p1 = inArray.Get(x+1, P1Wrap(y, xp1Wrap));

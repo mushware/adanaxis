@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cpsh/PUv+N7hZwaE5of9Kg
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.2 2003/10/18 12:58:39 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.3 2003/10/18 20:28:39 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.3  2003/10/18 20:28:39  southa
+ * Subdivision speed tests
+ *
  * Revision 1.2  2003/10/18 12:58:39  southa
  * Subdivision implementation
  *
@@ -35,8 +38,11 @@ public:
     static void Install(void);
 private:
     static void ArrayPrint(const MushMeshArray<Mushware::tVal>& inArray);
-    static bool VerifySingle1(const MushMeshArray<Mushware::tVal>& inArray, const Mushware::t2U32& inCentre, Mushware::tVal inProp);
-    static void SubdivideSingle1(Mushware::U32 inX, Mushware::U32 inY);
+    static void TrianglePrint(const MushMeshArray<Mushware::tVal>& inArray, Mushware::U32 inOrder);
+    static bool VerifyRectangle1(const MushMeshArray<Mushware::tVal>& inArray, const Mushware::t2U32& inCentre, Mushware::tVal inProp);
+    static bool VerifyTriangle1(const MushMeshArray<Mushware::tVal>& inArray, const Mushware::t2U32& inCentre, Mushware::tVal inProp, Mushware::U32 inOrder);
+    static void SubdivideRectangle1(Mushware::U32 inX, Mushware::U32 inY);
+    static void SubdivideTriangle1(Mushware::U32 inX, Mushware::U32 inY);
     template<class T> static void TimeTest(MushMeshWorkspace< MushMeshArray<T> >& inWorkspace, const std::string& inName);
     template<class T> static void ValueTimeTest(const std::string& inName);
     template<class T> static void VectorTimeTest(const std::string& inName);
