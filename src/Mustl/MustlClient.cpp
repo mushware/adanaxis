@@ -58,16 +58,17 @@
  */
 
 #include "MustlClient.h"
-#include "MustlData.h"
-#include "MustlLog.h"
-#include "MustlUtils.h"
 
-#include "mushPlatform.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 MustlClient::MustlClient() :
     m_tcpSocket(NULL),
     m_udpSocket(NULL),
-    m_remoteIP(0),
+    m_remoteAddress(0,0),
     m_tcpConnected(false),
     m_udpConnected(false)
 {
@@ -87,37 +88,22 @@ MustlClient::TCPConnect(const string& inServer, U32 inPort)
         TCPDisconnect();
     }
 
-    char buffer[strlen(inServer.c_str())+1];
-    strncpy(buffer, inServer.c_str(), strlen(inServer.c_str())+1);
+    MustlAddress hostAddress;
+    hostAddress.ResolveFrom(inServer, inPort);
 
-    IPaddress remoteIP;
-    if (SDLNet_ResolveHost(&remoteIP, buffer, inPort) == -1)
-    {
-        ostringstream message;
-        message << "Client connection failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-    
-    // m_tcpSocket = SDLNet_TCP_Open(&remoteIP);
-    m_tcpSocket = PlatformNet::TCPConnectNonBlocking(&remoteIP);
-    if (m_tcpSocket == 0)
-    {
-        ostringstream message;
-        message << "Client connection failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-    PlatformNet::SocketNonBlockingSet(m_tcpSocket->channel);
+    m_tcpSocket = MustlPlatform::TCPConnectNonBlocking(hostAddress);
+
+    MustlPlatform::SocketNonBlockingSet(m_tcpSocket);
 
     // These are set again if ResolveTargetName is successful
-    m_remoteIP = remoteIP.host;
-    m_tcpRemotePort = remoteIP.port;
+    m_remoteAddress = hostAddress;
+    m_tcpRemotePort = hostAddress.PortGetNetworkOrder();
 
-    ResolveTargetName();
     m_tcpConnected=true;
 }
 
 void
-MustlClient::TCPSocketTake(TCPsocket inSocket)
+MustlClient::TCPSocketTake(tSocket inSocket, const MustlAddress& inAddress)
 {
     try
     {
@@ -126,35 +112,15 @@ MustlClient::TCPSocketTake(TCPsocket inSocket)
             TCPDisconnect();
         }
         m_tcpSocket = inSocket;
-        PlatformNet::SocketNonBlockingSet(m_tcpSocket->channel);
-        ResolveTargetName();
+        MustlPlatform::SocketNonBlockingSet(m_tcpSocket);
+        m_remoteAddress = inAddress;
+        m_tcpRemotePort = inAddress.PortGetNetworkOrder();
         m_tcpConnected=true;
     }
     catch (...)
     {
-        SDLNet_TCP_Close(inSocket);
+        MustlPlatform::SocketClose(inSocket);
         throw;
-    }
-}
-
-void
-MustlClient::ResolveTargetName(void)
-{
-    IPaddress *remoteIP;
-    
-    remoteIP = SDLNet_TCP_GetPeerAddress(m_tcpSocket);
-    if (remoteIP != NULL)
-    {
-        m_remoteIP = remoteIP->host;
-        m_tcpRemotePort = remoteIP->port;
-    }
-    else
-    {
-        static U32 errCtr=0;
-        if (errCtr++ < 100)
-        {
-            MustlLog::Instance().NetLog() << "Couldn't get hostname for IP: " << SDLNet_GetError() << endl;
-        }
     }
 }
 
@@ -163,7 +129,7 @@ MustlClient::UDPConnect(U32 inPort)
 {
     if (!m_tcpConnected)
     {
-        throw(NetworkFail("Cannot connect UDP without TCP"));
+        throw(MustlFail("Cannot connect UDP without TCP"));
     }
     
     if (m_udpConnected)
@@ -171,23 +137,31 @@ MustlClient::UDPConnect(U32 inPort)
         UDPDisconnect();
     }
     U32 localPort;
-    for (localPort=inPort; localPort < inPort+8; ++localPort)
+    for (localPort=inPort; ; ++localPort)
     {
-        m_udpSocket = SDLNet_UDP_Open(localPort);
-        if (m_udpSocket != 0) break;
+        try
+        {
+            m_udpSocket = MustlPlatform::UDPBindNonBlocking(localPort);
+            break;
+        }
+        catch (MustlFail& e)
+        {
+            if (localPort > inPort+8)
+            {
+                throw;
+            }
+            // else try again
+        }
     }
-    if (m_udpSocket == 0)
-    {
-        throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
-    }
+
     if (localPort != inPort)
     {
         MustlLog::Instance().NetLog() << "Selected local UDP port " << localPort << endl;
     }
 
-    m_udpLocalPort = PlatformNet::HostToNetworkOrderU16(localPort);
+    m_udpLocalPort = MustlPlatform::HostToNetworkOrderU16(localPort);
 
-    PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
+    MustlPlatform::SocketNonBlockingSet(m_udpSocket);
     m_udpRemotePort=0; // We don't know
     m_udpConnected=true;
 }
@@ -203,8 +177,8 @@ MustlClient::TCPDisconnect(void)
 {
     if (m_tcpConnected)
     {
-        COREASSERT(m_tcpSocket != NULL);
-        SDLNet_TCP_Close(m_tcpSocket);
+        MUSTLASSERT(m_tcpSocket != NULL);
+        MustlPlatform::SocketClose(m_tcpSocket);
         m_tcpSocket=NULL;
         m_tcpConnected=false;
     }
@@ -215,8 +189,8 @@ MustlClient::UDPDisconnect(void)
 {
     if (m_udpConnected)
     {
-        COREASSERT(m_udpSocket != NULL);
-        SDLNet_UDP_Close(m_udpSocket);
+        MUSTLASSERT(m_udpSocket != NULL);
+        MustlPlatform::SocketClose(m_udpSocket);
         m_udpSocket=NULL;
         m_udpConnected=false;
     }
@@ -227,10 +201,10 @@ MustlClient::TCPConnectionCompleted(void)
 {
     if (!m_tcpConnected)
     {
-        throw(NetworkFail("CommnectionCompleted call on unconnected link"));
+        throw(MustlFail("CommnectionCompleted call on unconnected link"));
     }
-    COREASSERT(m_tcpSocket != NULL);
-    bool retVal=PlatformNet::TCPSocketConnectionCompleted(m_tcpSocket->channel);
+    MUSTLASSERT(m_tcpSocket != NULL);
+    bool retVal=MustlPlatform::TCPSocketConnectionCompleted(m_tcpSocket);
     return retVal;
 }
 
@@ -243,23 +217,16 @@ MustlClient::TCPSend(MustlData& ioData)
     }
     if (!m_tcpConnected)
     {
-        throw(NetworkFail("TCP send on closed socket"));
+        throw(MustlFail("TCP send on closed socket"));
     }
-    COREASSERT(m_tcpSocket != NULL);
+    MUSTLASSERT(m_tcpSocket != NULL);
     
     errno=0;
-    int result=SDLNet_TCP_Send(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
+    U32 sentSize = ioData.ReadSizeGet();
 
-    if (result <= 0)
-    {
-        ostringstream message;
-        message << "TCP send failed (" << errno << "): " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-    else
-    {
-        ioData.ReadPosAdd(result);
-    }
+    MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sentSize);
+
+    ioData.ReadPosAdd(sentSize);
 }
 
 void
@@ -267,30 +234,24 @@ MustlClient::TCPReceive(MustlData& outData)
 {
     if (!m_tcpConnected)
     {
-        throw(NetworkFail("TCP receive on closed socket"));
+        throw(MustlFail("TCP receive on closed socket"));
     }
-    COREASSERT(m_tcpSocket != NULL);
+    MUSTLASSERT(m_tcpSocket != NULL);
 
     for (U32 i=0; i<256; ++i)
     {
         outData.PrepareForWrite();
         errno=0;
-        int result=SDLNet_TCP_Recv(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
+        int receiveSize = MustlPlatform::TCPReceive(m_tcpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
 
-        if (result <= 0)
+        if (receiveSize == 0)
         {
-            if (errno != 0 && errno != EINTR && errno != EAGAIN)
-            {
-                ostringstream message;
-                message << "TCP receive failed (" << errno << "): " << SDLNet_GetError();
-                throw(NetworkFail(message.str()));
-            }
             break;
         }
         else
         {
-            outData.WritePosAdd(result);
-            outData.SourceSet(m_remoteIP, m_tcpRemotePort);
+            outData.WritePosAdd(receiveSize);
+            outData.SourceSet(m_remoteAddress.HostGetNetworkOrder(), m_tcpRemotePort);
         }
     }
 }
@@ -304,16 +265,16 @@ MustlClient::UDPSend(MustlData& ioData)
     }
     if (!m_udpConnected)
     {
-        throw(NetworkFail("UDP send on closed socket"));
+        throw(MustlFail("UDP send on closed socket"));
     }
-    COREASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_udpSocket != NULL);
 
     U32 dataSize=ioData.ReadSizeGet();
 
-    PlatformNet::UDPSend(m_remoteIP, m_udpRemotePort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
+    MustlPlatform::UDPSend(m_remoteAddress.HostGetNetworkOrder(), m_udpRemotePort, m_udpSocket, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
 
-    MustlLog::Instance().VerboseLog() << "UDPSend to " << MustlUtils::IPAddressToLogString(m_remoteIP) << ":" << PlatformNet:: NetworkToHostOrderU16(m_udpRemotePort) << ": " << ioData << endl;
+    MustlLog::Instance().VerboseLog() << "UDPSend to " << MustlUtils::IPAddressToLogString(m_remoteAddress.HostGetNetworkOrder()) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_udpRemotePort) << ": " << ioData << endl;
 }
 
 void
@@ -321,19 +282,19 @@ MustlClient::UDPReceive(MustlData& outData)
 {
     if (!m_udpConnected)
     {
-        throw(NetworkFail("UDP receive on closed socket"));
+        throw(MustlFail("UDP receive on closed socket"));
     }
-    COREASSERT(m_udpSocket != NULL);
+    MUSTLASSERT(m_udpSocket != NULL);
 
     outData.PrepareForWrite();
     U32 netHost, netPort;
-    U32 dataSize=PlatformNet::UDPReceive(netHost, netPort, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
+    U32 dataSize=MustlPlatform::UDPReceive(netHost, netPort, m_udpSocket, outData.WritePtrGet(), outData.WriteSizeGet());
 
     if (dataSize != 0)
     {
         outData.WritePosAdd(dataSize);
         outData.SourceSet(netHost, netPort);
-MustlLog::Instance().VerboseLog() << "UDPReceive from " << MustlUtils::IPAddressToLogString(netHost) << ":" << PlatformNet:: NetworkToHostOrderU16(netPort) << ": " << outData << endl;
+        MustlLog::Instance().VerboseLog() << "UDPReceive from " << MustlUtils::IPAddressToLogString(netHost) << ":" << MustlPlatform:: NetworkToHostOrderU16(netPort) << ": " << outData << endl;
     }
 }
 
@@ -347,7 +308,7 @@ MustlClient::Print(ostream& ioOut) const
     }
     else
     {
-        ioOut << m_tcpSocket->channel;
+        ioOut << m_tcpSocket;
     }
     ioOut << ", udpSocket=";
     if (m_udpSocket == NULL)
@@ -356,10 +317,10 @@ MustlClient::Print(ostream& ioOut) const
     }
     else
     {
-        ioOut << m_udpSocket->channel;
+        ioOut << m_udpSocket;
     }
-    ioOut << ", udpLocalPort=" << PlatformNet:: NetworkToHostOrderU16(m_udpLocalPort);
-    ioOut << ", remoteIP=" << MustlUtils::IPAddressToLogString(m_remoteIP) << ", tcpRemotePort=" << PlatformNet:: NetworkToHostOrderU16(m_tcpRemotePort) << ", udpRemotePort=" << PlatformNet:: NetworkToHostOrderU16(m_udpRemotePort);
+    ioOut << ", udpLocalPort=" << MustlPlatform:: NetworkToHostOrderU16(m_udpLocalPort);
+    ioOut << ", remoteIP=" << MustlUtils::IPAddressToLogString(m_remoteAddress.HostGetNetworkOrder()) << ", tcpRemotePort=" << MustlPlatform:: NetworkToHostOrderU16(m_tcpRemotePort) << ", udpRemotePort=" << MustlPlatform:: NetworkToHostOrderU16(m_udpRemotePort);
     ioOut << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected << "]";
 }
 

@@ -1,6 +1,11 @@
+#ifndef MUSTLWEBROUTER_H
+#define MUSTLWEBROUTER_H
 /*
- * $Id: MustlWebRouter.h,v 1.3 2002/11/25 10:43:28 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.3  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -44,3 +49,4 @@ MustlWebRouter::Instance(void)
     m_instance.reset(new MustlWebRouter);
     return *m_instance;
 }
+#endif

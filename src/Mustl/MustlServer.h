@@ -1,8 +1,11 @@
 #ifndef MUSTLSERVER_H
 #define MUSTLSERVER_H
 /*
- * $Id: MustlServer.h,v 1.11 2002/11/25 10:43:28 southa Exp $
+ * $Id: MustlServer.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -38,9 +41,7 @@
  *
  */
 
-#include "mushCore.h"
-
-#include "MediaSDL.h"
+#include "MustlStandard.h"
 
 class MustlData;
 
@@ -51,24 +52,24 @@ public:
 
     static inline MustlServer& Instance(void);
 
-    void Connect(U32 inPort);
+    void Connect(Mustl::U32 inPort);
     void Disconnect(void);
     void Accept(void);
-    void UDPSend(U32 inHost, U32 inPort, MustlData& inData);
+    void UDPSend(Mustl::U32 inHost, Mustl::U32 inPort, MustlData& inData);
     void UDPReceive(MustlData& inData);
     void UDPHarvest(void);
     void UDPDiscard(void);
     bool IsServing(void) const { return m_serving; }
-    U32 ServerPortHostOrderGet(void) const { return m_serverPortHostOrder; }
+    Mustl::U32 ServerPortHostOrderGet(void) const { return m_serverPortHostOrder; }
     
 protected:
     MustlServer();
     
 private:
-    TCPsocket m_tcpSocket;
-    UDPsocket m_udpSocket;
-    U32 m_serverPortHostOrder;
-    U32 m_linkCtr;
+    Mustl::tSocket m_tcpSocket;
+    Mustl::tSocket m_udpSocket;
+    Mustl::U32 m_serverPortHostOrder;
+    Mustl::U32 m_linkCtr;
     bool m_serving;
 
     static auto_ptr<MustlServer> m_instance;

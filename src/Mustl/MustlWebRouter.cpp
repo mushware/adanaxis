@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebRouter.cpp,v 1.4 2002/12/05 13:20:13 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.4  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -17,10 +20,11 @@
 
 #include "MustlWebRouter.h"
 
-#include "MustlLog.h"
-#include "MustlProtocol.h"
-#include "MustlUtils.h"
-#include "MustlWebLink.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 auto_ptr<MustlWebRouter> MustlWebRouter::m_instance;
 
@@ -32,7 +36,8 @@ m_lastTickMsec(0)
 void
 MustlWebRouter::ReceiveAll(void)
 {
-    U32 currentMsec = SDL_GetTicks();
+    U32 currentMsec = MustlTimer::Instance().CurrentMsecGet();
+;
     bool callTick=false;;
     if (m_lastTickMsec + kTickPeriod < currentMsec)
     {

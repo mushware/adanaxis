@@ -1,8 +1,11 @@
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
 /*
- * $Id: MustlClient.h,v 1.11 2002/12/07 18:32:15 southa Exp $
+ * $Id: MustlClient.h,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlClient.h,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -38,9 +41,8 @@
  *
  */
 
-#include "mushCore.h"
-
-#include "MediaSDL.h"
+#include "MustlStandard.h"
+#include "MustlAddress.h"
 
 class MustlData;
 
@@ -50,9 +52,9 @@ public:
     MustlClient();
     ~MustlClient();
 
-    void TCPConnect(const string& inServer, U32 inPort);
-    void TCPSocketTake(TCPsocket inSocket);
-    void UDPConnect(U32 inPort);
+    void TCPConnect(const string& inServer, Mustl::U32 inPort);
+    void TCPSocketTake(Mustl::tSocket inSocket, const MustlAddress& inAddress);
+    void UDPConnect(Mustl::U32 inPort);
     void TCPDisconnect(void);
     void UDPDisconnect(void);
 
@@ -61,24 +63,24 @@ public:
     void UDPSend(MustlData& inData);
     void UDPReceive(MustlData& inData);
 
-    U32 TCPRemotePortGet(void) const { return m_tcpRemotePort; }
+    Mustl::U32 TCPRemotePortGet(void) const { return m_tcpRemotePort; }
 
     bool TCPConnectionCompleted(void);
     void ResolveTargetName(void);
     bool UDPConnectedGet(void) const { return m_udpConnected; }
-    U32 UDPRemotePortGet(void) const { return m_udpRemotePort; }
-    void UDPRemotePortNetworkOrderSet(U32 inPort);
-    U32 RemoteIPGet(void) const { return m_remoteIP; }
+    Mustl::U32 UDPRemotePortGet(void) const { return m_udpRemotePort; }
+    void UDPRemotePortNetworkOrderSet(Mustl::U32 inPort);
+    Mustl::U32 RemoteIPGet(void) const { return m_remoteAddress.HostGetNetworkOrder(); }
     void Print(ostream& ioOut) const;
     
 private:
 
-    TCPsocket m_tcpSocket;
-    UDPsocket m_udpSocket;
-    U32 m_udpLocalPort;
-    U32 m_remoteIP;
-    U32 m_tcpRemotePort;
-    U32 m_udpRemotePort;
+    Mustl::tSocket m_tcpSocket;
+    Mustl::tSocket m_udpSocket;
+    Mustl::U32 m_udpLocalPort;
+    MustlAddress m_remoteAddress;
+    Mustl::U32 m_tcpRemotePort;
+    Mustl::U32 m_udpRemotePort;
     bool m_tcpConnected;
     bool m_udpConnected;
 };

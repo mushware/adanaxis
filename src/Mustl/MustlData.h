@@ -1,8 +1,11 @@
 #ifndef MUSTLDATA_H
 #define MUSTLDATA_H
 /*
- * $Id: MustlData.h,v 1.8 2002/11/25 15:44:03 southa Exp $
+ * $Id: MustlData.h,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.8  2002/11/25 15:44:03  southa
  * CreateObject message decoding
  *
@@ -29,7 +32,8 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
+#include "MustlAssert.h"
 
 class MustlData
 {
@@ -37,40 +41,40 @@ public:
     MustlData();
     explicit MustlData(const string& inStr);
 
-    U32 ReadPosGet(void) const;
-    U32 ReadSizeGet(void) const;
-    void ReadPosAdd(U32 inAdd);
-    U8 *ReadPtrGet(void);
+    Mustl::U32 ReadPosGet(void) const;
+    Mustl::U32 ReadSizeGet(void) const;
+    void ReadPosAdd(Mustl::U32 inAdd);
+    Mustl::U8 *ReadPtrGet(void);
 
-    U32 WritePosGet(void) const;
-    U32 WriteSizeGet(void) const;
-    void WritePosAdd(U32 inAdd);
-    U8 *WritePtrGet(void);
+    Mustl::U32 WritePosGet(void) const;
+    Mustl::U32 WriteSizeGet(void) const;
+    void WritePosAdd(Mustl::U32 inAdd);
+    Mustl::U8 *WritePtrGet(void);
     void Write(const string& inStr);
     
-    U32 MessagePosGet(void) const;
-    void MessagePosSet(U32 inPos);
-    U32 MessageSizeGet(void) const;
-    U8 *MessagePtrGet(void);
+    Mustl::U32 MessagePosGet(void) const;
+    void MessagePosSet(Mustl::U32 inPos);
+    Mustl::U32 MessageSizeGet(void) const;
+    Mustl::U8 *MessagePtrGet(void);
 
-    void LengthPosSet(U32 inPos);
+    void LengthPosSet(Mustl::U32 inPos);
 
-    U32 UnpackStateGet(void) const;
-    void UnpackStateSet(U32 inState);
+    Mustl::U32 UnpackStateGet(void) const;
+    void UnpackStateSet(Mustl::U32 inState);
 
-    U32 SourceHostGet(void);
-    U32 SourcePortGet(void);
-    void SourceSet(U32 inHost, U32 inPort);
+    Mustl::U32 SourceHostGet(void);
+    Mustl::U32 SourcePortGet(void);
+    void SourceSet(Mustl::U32 inHost, Mustl::U32 inPort);
     
     bool IsEmptyForRead(void) const;
 
-    U8 BytePop(void);
-    U8 MessageBytePop(void);
-    void BytePush(U8 inByte); // Slow operation
-    void LengthBytePush(U8 inByte);
+    Mustl::U8 BytePop(void);
+    Mustl::U8 MessageBytePop(void);
+    void BytePush(Mustl::U8 inByte); // Slow operation
+    void LengthBytePush(Mustl::U8 inByte);
 
     void PrepareForWrite(void);
-    void PrepareForWrite(U32 inSize);
+    void PrepareForWrite(Mustl::U32 inSize);
 
     void Print(ostream& ioOut) const;
     
@@ -80,15 +84,15 @@ private:
         kChunkSize=1024
     };
 
-    U32 m_readPos;
-    U32 m_writePos;
-    U32 m_messagePos;
-    U32 m_lengthPos;
-    U32 m_unpackState;
-    U32 m_sourceHost;
-    U32 m_sourcePort;
+    Mustl::U32 m_readPos;
+    Mustl::U32 m_writePos;
+    Mustl::U32 m_messagePos;
+    Mustl::U32 m_lengthPos;
+    Mustl::U32 m_unpackState;
+    Mustl::U32 m_sourceHost;
+    Mustl::U32 m_sourcePort;
     bool m_sourceValid;
-    vector<U8> m_data;
+    vector<Mustl::U8> m_data;
 };
 
 ostream& operator<<(ostream &inOut, const MustlData& inData);
@@ -116,135 +120,135 @@ MustlData::MustlData(const string& inStr) :
     Write(inStr);
 }
 
-inline U32
+inline Mustl::U32
 MustlData::ReadPosGet(void) const
 {
-    COREASSERT(m_readPos <= m_data.size());
+    MUSTLASSERT(m_readPos <= m_data.size());
     return m_readPos;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::ReadSizeGet(void) const
 {
-    COREASSERT(m_readPos <= m_writePos);
+    MUSTLASSERT(m_readPos <= m_writePos);
     return m_writePos - m_readPos;
 }
 
 inline void
-MustlData::ReadPosAdd(U32 inAdd)
+MustlData::ReadPosAdd(Mustl::U32 inAdd)
 {
     m_readPos += inAdd;
-    COREASSERT(m_readPos <= m_data.size());
+    MUSTLASSERT(m_readPos <= m_data.size());
 }
 
-inline U8 *
+inline Mustl::U8 *
 MustlData::ReadPtrGet(void)
 {
-    COREASSERT(m_readPos < m_data.size());
+    MUSTLASSERT(m_readPos < m_data.size());
     return &m_data[m_readPos];
 }
 
-inline U32
+inline Mustl::U32
 MustlData::WritePosGet(void) const
 {
-    COREASSERT(m_writePos <= m_data.size());
+    MUSTLASSERT(m_writePos <= m_data.size());
     return m_writePos;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::WriteSizeGet(void) const
 {
-    COREASSERT(m_writePos <= m_data.size());
+    MUSTLASSERT(m_writePos <= m_data.size());
     return m_data.size() - m_writePos;
 }
 
 inline void
-MustlData::WritePosAdd(U32 inAdd)
+MustlData::WritePosAdd(Mustl::U32 inAdd)
 {
     m_writePos += inAdd;
-    COREASSERT(m_writePos <= m_data.size());
+    MUSTLASSERT(m_writePos <= m_data.size());
 }
 
-inline U8 *
+inline Mustl::U8 *
 MustlData::WritePtrGet(void)
 {
-    COREASSERT(m_writePos < m_data.size());
+    MUSTLASSERT(m_writePos < m_data.size());
     return &m_data[m_writePos];
 }
 
 inline void
 MustlData::Write(const string& inStr)
 {
-    U32 size=inStr.size();
+    Mustl::U32 size=inStr.size();
     PrepareForWrite(size);
     memcpy(WritePtrGet(), inStr.c_str(), size);
     WritePosAdd(size);
 }
 
-inline U32
+inline Mustl::U32
 MustlData::MessagePosGet(void) const
 {
-    COREASSERT(m_messagePos <= m_data.size());
+    MUSTLASSERT(m_messagePos <= m_data.size());
     return m_messagePos;
 }
 
 inline void
-MustlData::MessagePosSet(U32 inPos)
+MustlData::MessagePosSet(Mustl::U32 inPos)
 {
-    COREASSERT(inPos <= m_data.size());
+    MUSTLASSERT(inPos <= m_data.size());
     m_messagePos=inPos;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::MessageSizeGet(void) const
 {
-    COREASSERT(m_messagePos <= m_writePos);
+    MUSTLASSERT(m_messagePos <= m_writePos);
     return m_writePos - m_messagePos;
 
 }
 
-inline U8 *
+inline Mustl::U8 *
 MustlData::MessagePtrGet(void)
 {
-    COREASSERT(m_messagePos < m_data.size());
+    MUSTLASSERT(m_messagePos < m_data.size());
     return &m_data[m_messagePos];
 }
 
 inline void
-MustlData::LengthPosSet(U32 inPos)
+MustlData::LengthPosSet(Mustl::U32 inPos)
 {
-    COREASSERT(inPos <= m_data.size());
+    MUSTLASSERT(inPos <= m_data.size());
     m_lengthPos=inPos;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::UnpackStateGet(void) const
 {
     return m_unpackState;
 }
 
 inline void
-MustlData::UnpackStateSet(U32 inState)
+MustlData::UnpackStateSet(Mustl::U32 inState)
 {
     m_unpackState=inState;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::SourceHostGet(void)
 {
-    COREASSERT(m_sourceValid);
+    MUSTLASSERT(m_sourceValid);
     return m_sourceHost;
 }
 
-inline U32
+inline Mustl::U32
 MustlData::SourcePortGet(void)
 {
-    COREASSERT(m_sourceValid);
+    MUSTLASSERT(m_sourceValid);
     return m_sourcePort;
 }
 
 inline void
-MustlData::SourceSet(U32 inHost, U32 inPort)
+MustlData::SourceSet(Mustl::U32 inHost, Mustl::U32 inPort)
 {
     m_sourceHost=inHost;
     m_sourcePort=inPort;
@@ -257,35 +261,35 @@ MustlData::IsEmptyForRead(void) const
     return m_readPos >= m_writePos;
 }
 
-inline U8
+inline Mustl::U8
 MustlData::BytePop(void)
 {
-    COREASSERT(m_readPos < m_data.size());
+    MUSTLASSERT(m_readPos < m_data.size());
     return m_data[m_readPos++];
 }
 
-inline U8
+inline Mustl::U8
 MustlData::MessageBytePop(void)
 {
-    COREASSERT(m_messagePos < m_data.size());
+    MUSTLASSERT(m_messagePos < m_data.size());
     return m_data[m_messagePos++];
 }
 
 inline void
-MustlData::BytePush(U8 inByte)
+MustlData::BytePush(Mustl::U8 inByte)
 {
     PrepareForWrite();
 
-    COREASSERT(m_writePos < m_data.size());
+    MUSTLASSERT(m_writePos < m_data.size());
     m_data[m_writePos++]=inByte;
 }
 
 inline void
-MustlData::LengthBytePush(U8 inByte)
+MustlData::LengthBytePush(Mustl::U8 inByte)
 {
     PrepareForWrite(m_lengthPos+3);
 
-    COREASSERT(m_lengthPos < m_data.size());
+    MUSTLASSERT(m_lengthPos < m_data.size());
     m_data[m_lengthPos++]=inByte;
 }
 
@@ -305,7 +309,7 @@ MustlData::PrepareForWrite(void)
 }
 
 inline void
-MustlData::PrepareForWrite(U32 inSize)
+MustlData::PrepareForWrite(Mustl::U32 inSize)
 {
     if (m_writePos == m_readPos)
     {

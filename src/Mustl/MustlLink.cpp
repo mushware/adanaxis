@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLink.cpp,v 1.27 2002/12/10 20:38:05 southa Exp $
+ * $Id: MustlLink.cpp,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.27  2002/12/10 20:38:05  southa
  * Server timing
  *
@@ -86,13 +89,11 @@
 
 #include "MustlLink.h"
 
-#include "MustlID.h"
-#include "MustlLog.h"
-#include "MustlProtocol.h"
-#include "MustlServer.h"
-#include "MustlUtils.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
-#include "mushPlatform.h"
+#include "MustlNamespace.h"
 
 auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
 
@@ -109,7 +110,7 @@ MustlLink::MustlLink(const MustlID& inID, const string& inServer, U32 inPort)
     m_tcpState.linkState=kLinkStateConnecting;
     
     UDPConnect(inPort);
-    m_client.UDPRemotePortNetworkOrderSet(PlatformNet::HostToNetworkOrderU16(inPort));
+    m_client.UDPRemotePortNetworkOrderSet(MustlPlatform::HostToNetworkOrderU16(inPort));
     UDPLinkCheckSend();
     m_targetName=inServer;
 }
@@ -127,26 +128,27 @@ MustlLog::Instance().NetLog() << "Connecting to " << serverName << ":" << portNu
     m_tcpState.linkState=kLinkStateConnecting;
 
     UDPConnect(portNum);
-    m_client.UDPRemotePortNetworkOrderSet(PlatformNet::HostToNetworkOrderU16(portNum));
+    m_client.UDPRemotePortNetworkOrderSet(MustlPlatform::HostToNetworkOrderU16(portNum));
     UDPLinkCheckSend();
     m_targetName=serverName;
 }
 
-MustlLink::MustlLink(TCPsocket inSocket, U32 inPort)
+MustlLink::MustlLink(tSocket inSocket, U32 inPort, const MustlAddress& inAddress)
 {
     // I am the server end of the link
     m_netID = NULL;
     Initialise();
     m_udpState.linkState=kLinkStateWaitingForPort;
     m_udpUseServerPort=true;
-    TCPSocketTake(inSocket);
+    TCPSocketTake(inSocket, inAddress);
     m_client.UDPRemotePortNetworkOrderSet(0); // We don't know yet
 }
 
 void
 MustlLink::Initialise(void)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    
     m_creationMsec=m_currentMsec;
     m_lastActivityMsec=m_currentMsec;
     m_lastIDRequestMsec=m_currentMsec;
@@ -189,9 +191,9 @@ MustlLink::TCPConnect(const string& inServer, U32 inPort)
 }
 
 void
-MustlLink::TCPSocketTake(TCPsocket inSocket)
+MustlLink::TCPSocketTake(tSocket inSocket, const MustlAddress& inAddress)
 {
-    m_client.TCPSocketTake(inSocket);
+    m_client.TCPSocketTake(inSocket, inAddress);
     m_targetIsServer=false;
 }
 
@@ -262,7 +264,7 @@ MustlLink::LinkIsUpForSend(tLinkState inState)
         case kLinkStateIdle:
             return true;
     }
-    COREASSERT(false);
+    MUSTLASSERT(false);
     return false;
 }
 
@@ -283,7 +285,7 @@ MustlLink::LinkIsUpForReceive(tLinkState inState)
         case kLinkStateIdle:
             return true;
     }
-    COREASSERT(false);
+    MUSTLASSERT(false);
     return false;
 }
 
@@ -337,7 +339,7 @@ MustlLink::IDRequestSend(void)
 void
 MustlLink::Tick(void)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
     
     if (m_currentMsec > m_lastActivityMsec + kLinkIdleTimeoutMsec)
     {
@@ -476,12 +478,12 @@ MustlLink::TCPSend(MustlData& ioData)
     {
         if (!LinkIsUpForSend(m_tcpState.linkState))
         {
-            throw(NetworkFail("TCPSend on down link"));
+            throw(MustlFail("TCPSend on down link"));
         }
         m_client.TCPSend(ioData);
         ++m_tcpState.linkSendCtr;
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "TCPSend exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
@@ -506,7 +508,7 @@ MustlLink::TCPReceive(MustlData& outData)
         m_client.TCPReceive(outData);
         ++m_tcpState.linkReceiveCtr;
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "TCPReceive exception: " << e.what() << endl;
         if (m_tcpState.linkErrorTotal == 0)
@@ -525,7 +527,7 @@ MustlLink::UDPSend(MustlData& ioData)
     {
         if (!LinkIsUpForSend(m_udpState.linkState))
         {
-            throw(NetworkFail("UDPSend on down link"));
+            throw(MustlFail("UDPSend on down link"));
         }
         if (m_udpUseServerPort)
         {
@@ -537,7 +539,7 @@ MustlLink::UDPSend(MustlData& ioData)
             ++m_udpState.linkSendCtr;
         }
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "UDPSend exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)
@@ -569,7 +571,7 @@ MustlLink::UDPReceive(MustlData& outData)
             ++m_udpState.linkReceiveCtr;
         }
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "UDPReceive exception: " << e.what() << endl;
         if (m_udpState.linkErrorTotal == 0)
@@ -584,7 +586,8 @@ MustlLink::UDPReceive(MustlData& outData)
 void
 MustlLink::TouchLink(void)
 {
-    m_lastActivityMsec = SDL_GetTicks();
+    m_lastActivityMsec = MustlTimer::Instance().CurrentMsecGet();
+;
 }
 
 void
@@ -600,7 +603,7 @@ MustlLink::FastSend(MustlData& ioData)
     }
     else
     {
-        throw(NetworkFail("Send on dead link"));
+        throw(MustlFail("Send on dead link"));
     }
     TouchLink();
 }
@@ -618,7 +621,7 @@ MustlLink::ReliableSend(MustlData& ioData)
     }
     else
     {
-        throw(NetworkFail("Send on dead link"));
+        throw(MustlFail("Send on dead link"));
     }
     TouchLink();
 }
@@ -749,7 +752,7 @@ MustlLink::MessageTCPLinkCheckHandle(MustlData& ioData)
 void
 MustlLink::MessageTCPLinkCheckReplyHandle(MustlData& ioData)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
 
     U32 seqNum = ioData.MessageBytePop();
     if (seqNum == m_tcpState.linkCheckSeqNum &&
@@ -774,7 +777,7 @@ MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
     U8 seqNum = ioData.MessageBytePop();
     if (!m_udpUseServerPort && !m_client.UDPConnectedGet())
     {
-        UDPConnect(PlatformNet::NetworkToHostOrderU16(ioData.SourcePortGet()));
+        UDPConnect(MustlPlatform::NetworkToHostOrderU16(ioData.SourcePortGet()));
         m_udpState.linkState=kLinkStateUntested;
     }
     
@@ -796,7 +799,7 @@ MustlLink::MessageUDPLinkCheckHandle(MustlData& ioData)
 void
 MustlLink::MessageUDPLinkCheckReplyHandle(MustlData& ioData)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
 
     U32 seqNum = ioData.MessageBytePop();
     if (seqNum == m_udpState.linkCheckSeqNum &&
@@ -926,8 +929,8 @@ MustlLink::WebStatusPrint(ostream& ioOut) const
         ioOut << *m_netID;
     }
     ioOut << "</td><td>" << MustlUtils::IPAddressToString(m_client.RemoteIPGet());
-    ioOut << ":" << PlatformNet::NetworkToHostOrderU16(m_client.TCPRemotePortGet());
-    ioOut << "/" << PlatformNet::NetworkToHostOrderU16(m_client.UDPRemotePortGet());
+    ioOut << ":" << MustlPlatform::NetworkToHostOrderU16(m_client.TCPRemotePortGet());
+    ioOut << "/" << MustlPlatform::NetworkToHostOrderU16(m_client.UDPRemotePortGet());
     if (m_targetIsServer)
     {
         ioOut << ":client";
@@ -944,7 +947,7 @@ ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_udpState);
     ioOut << "\">" << m_udpState.linkPingTime << "ms</font></td>";
 
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
     ioOut << "<td>" << MustlUtils::MsecDurationToString(m_currentMsec - m_creationMsec) << "</td>";
     ioOut << endl;
 }

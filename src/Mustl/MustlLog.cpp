@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLog.cpp,v 1.5 2002/11/25 10:43:28 southa Exp $
+ * $Id: MustlLog.cpp,v 1.1 2002/12/12 14:00:26 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:26  southa
+ * Created Mustl
+ *
  * Revision 1.5  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -20,7 +23,11 @@
 
 #include "MustlLog.h"
 
-#include "MediaSDL.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 MustlLog MustlLog::m_gMustlLogInstance;
 
@@ -50,7 +57,7 @@ MustlLog::Log(void)
     {
         retStream = m_outStream;
     }
-    *retStream << SDL_GetTicks() << ": ";
+    *retStream << MustlTimer::Instance().CurrentMsecGet() << ": ";
     return *retStream;
 }
 
@@ -99,7 +106,7 @@ MustlLog::VerboseLog(void)
 void
 MustlLog::OpenFile(const string& inName)
 {
-    COREASSERT(false);
+    MUSTLASSERT(false);
 }
 
 void

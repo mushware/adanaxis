@@ -1,6 +1,9 @@
 /*
- * $Id: MustlUtils.cpp,v 1.13 2002/12/05 13:20:13 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.13  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -44,8 +47,11 @@
 
 #include "MustlUtils.h"
 
-#include "MustlAddress.h"
-#include "MustlLink.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 bool MustlUtils::m_truncateLog=true;
 

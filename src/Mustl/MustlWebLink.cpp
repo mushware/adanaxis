@@ -47,19 +47,17 @@
 
 #include "MustlWebLink.h"
 
-#include "MustlData.h"
+#include "Mustl.h"
 #include "MustlHTTP.h"
-#include "MustlLog.h"
-#include "MustlProtocol.h"
-#include "MustlServer.h"
-#include "MustlUtils.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
-#include "mushPlatform.h"
+#include "MustlNamespace.h"
 
 auto_ptr< CoreData<MustlWebLink> > CoreData<MustlWebLink>::m_instance;
 string MustlWebLink::m_webPath="";
 
-MustlWebLink::MustlWebLink(TCPsocket inSocket) :
+MustlWebLink::MustlWebLink(tSocket inSocket) :
     m_receiveState(kReceiveInitial),
     m_linkErrors(0),
     m_isDead(false)
@@ -68,15 +66,15 @@ MustlWebLink::MustlWebLink(TCPsocket inSocket) :
     try
     {
         m_tcpSocket = inSocket;
-        PlatformNet::SocketNonBlockingSet(m_tcpSocket->channel);
+        MustlPlatform::SocketNonBlockingSet(m_tcpSocket);
     }
     catch (...)
     {
-        SDLNet_TCP_Close(inSocket);
+        MustlPlatform::SocketClose(inSocket);
         throw;
     }
     m_linkState=kLinkStateNew;
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
     m_creationMsec=m_currentMsec;
     m_lastAccessMsec=m_currentMsec; // Not used
 }
@@ -99,7 +97,7 @@ MustlWebLink::Disconnect(void)
 {
     if (m_tcpSocket != NULL)
     {
-        SDLNet_TCP_Close(m_tcpSocket);
+        MustlPlatform::SocketClose(m_tcpSocket);
         m_tcpSocket=NULL;
     }
     m_isDead = true;
@@ -108,13 +106,13 @@ MustlWebLink::Disconnect(void)
 void
 MustlWebLink::Tick(void)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
 }
 
 bool
 MustlWebLink::IsDead(void)
 {
-    m_currentMsec=SDL_GetTicks();
+    m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
     if (m_isDead ||
         m_currentMsec > m_creationMsec + kLinkLifetime ||
         m_linkErrors > kErrorLimit)
@@ -134,7 +132,7 @@ MustlWebLink::Receive(string& outStr)
     outStr="";
     do
     {
-        result=SDLNet_TCP_Recv(m_tcpSocket, &byte, 1);
+        result=MustlPlatform::TCPReceive(m_tcpSocket, &byte, 1);
 
         if (result == 1)
         {
@@ -153,18 +151,12 @@ MustlWebLink::Send(MustlData& ioData)
 {
     if (m_isDead)
     {
-        throw(NetworkFail("Attempt to send on dead WebLink"));
+        throw(MustlFail("Attempt to send on dead WebLink"));
     }
-    int result=SDLNet_TCP_Send(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
-    if (result < 0 || static_cast<U32>(result) != ioData.ReadSizeGet())
-    {
-        MustlLog::Instance().WebLog() << "Failed to send data on WebLink (" << result << "): " << SDLNet_GetError() << endl;
-        ++m_linkErrors;
-    }
-    else
-    {
-        ioData.ReadPosAdd(result);
-    }
+    U32 sendSize = ioData.ReadSizeGet();
+    MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
+    ioData.ReadPosAdd(sendSize);
+
     // MustlLog::Instance().Log() << "Sending " << ioData << endl;
 }
 
@@ -289,7 +281,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             {
                 if (dotCount > 0)
                 {
-                    throw(NetworkFail("Bad filename (dots)"));
+                    throw(MustlFail("Bad filename (dots)"));
                 }
                 ++dotCount;
                 localFilename+=byte;
@@ -298,7 +290,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             {
                 if (slashCount > 0)
                 {
-                    throw(NetworkFail("Bad filename (slashes)"));
+                    throw(MustlFail("Bad filename (slashes)"));
                 }
                 ++slashCount;
             }
@@ -326,13 +318,13 @@ MustlWebLink::GetProcess(const string& inFilename)
             }
             if (m_webPath == "")
             {
-                throw(NetworkFail("Path to web files (LOCALWEB_PATH) not set"));
+                throw(MustlFail("Path to web files (LOCALWEB_PATH) not set"));
             }
             localFilename = m_webPath+"/"+localFilename;
             SendFile(localFilename);
         }
     }
-    catch (NetworkFail &e)
+    catch (MustlFail &e)
     {
         MustlLog::Instance().WebLog() << "ReceivedProcess exception: " << e.what() << endl;
         SendErrorPage(e.what());
@@ -346,12 +338,12 @@ MustlWebLink::PostProcess(const string& inValues)
     {
         if (inValues.find("'") != inValues.npos)
         {
-            throw(NetworkFail("Dodgy POST values"));
+            throw(MustlFail("Dodgy POST values"));
         }
         CoreCommand command(string("handlepostvalues('")+inValues+"')");
         command.Execute();
     }    
-    catch (NetworkFail &e)
+    catch (MustlFail &e)
     {
         MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
     }
@@ -369,7 +361,7 @@ MustlWebLink::SendFile(const string& inFilename)
     ifstream fileStream(inFilename.c_str());
     if (!fileStream)
     {
-        throw(NetworkFail("File not found: "+inFilename));
+        throw(MustlFail("File not found: "+inFilename));
     }
     
     MustlHTTP http;
@@ -407,7 +399,7 @@ MustlWebLink::SendFile(const string& inFilename)
     }
     else
     {
-        throw(NetworkFail("Unknown file type: "+inFilename));
+        throw(MustlFail("Unknown file type: "+inFilename));
     }
         
     if (processFile)
@@ -446,7 +438,7 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
             U32 endPos = dataStr.find("?>", startPos);
             if (endPos == dataStr.npos)
             {
-                throw(NetworkFail("Unterminated <?mush (expecting ?>)"));
+                throw(MustlFail("Unterminated <?mush (expecting ?>)"));
             }
 
             string content=dataStr.substr(startPos+6, endPos - startPos - 6);

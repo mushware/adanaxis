@@ -1,8 +1,11 @@
 #ifndef MUSTLADDRESS_H
 #define MUSTLADDRESS_H
 /*
- * $Id: MustlAddress.h,v 1.3 2002/11/28 15:14:14 southa Exp $
+ * $Id: MustlAddress.h,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.3  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -14,7 +17,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlAddress
 {
@@ -24,25 +27,28 @@ public:
         m_port(0)
     {}
 
-    MustlAddress(U32 inHostNetworkOrder, U32 inPortNetworkOrder) :
+    MustlAddress(Mustl::U32 inHostNetworkOrder, Mustl::U32 inPortNetworkOrder) :
         m_ip(inHostNetworkOrder),
         m_port(inPortNetworkOrder)
     {}
 
-    string HostStringGet(void) const;
-    U32 HostGetNetworkOrder(void) const { return m_ip; }
-    U32 PortGetNetworkOrder(void) const { return m_port; }
-    U32 PortGetHostOrder(void) const;
+    std::string HostStringGet(void) const;
+    Mustl::U32 HostGetNetworkOrder(void) const { return m_ip; }
+    void HostSetNetworkOrder(Mustl::U32 inIP) { m_ip = inIP; }
+    Mustl::U32 PortGetNetworkOrder(void) const { return m_port; }
+    Mustl::U32 PortGetHostOrder(void) const;
+    void PortSetNetworkOrder(Mustl::U32 inPortNetworkOrder) { m_port = inPortNetworkOrder; }
+    void PortSetHostOrder(Mustl::U32 inPortHostOrder);
 
-    void ResolveFrom(const string& inHost, U32 inPortHostOrder);
+    void ResolveFrom(const std::string& inHostName, Mustl::U32 inPortHostOrder);
     
     void Print(ostream& ioOut) const;
 
     bool Equals(const MustlAddress& inAddress) const;
     
 private:
-    U32 m_ip;
-    U32 m_port;
+    Mustl::U32 m_ip;
+    Mustl::U32 m_port;
 };
 
 inline bool

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.20 2002/12/05 23:52:52 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.21 2002/12/12 14:00:40 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.21  2002/12/12 14:00:40  southa
+ * Created Mustl
+ *
  * Revision 1.20  2002/12/05 23:52:52  southa
  * Network management and status
  *
@@ -173,7 +176,7 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
             gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
                                     GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
         }
-        catch (NetworkFail& e)
+        catch (MustlFail& e)
         {
             ostringstream message;
             message << "Join game failed: " << e.what() << endl;

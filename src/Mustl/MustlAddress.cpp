@@ -1,6 +1,9 @@
 /*
- * $Id: MustlAddress.cpp,v 1.2 2002/11/28 12:05:45 southa Exp $
+ * $Id: MustlAddress.cpp,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlAddress.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.2  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -11,15 +14,16 @@
 
 #include "MustlAddress.h"
 
-#include "MustlUtils.h"
-#include "MediaSDL.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
-#include "mushPlatform.h"
+#include "MustlNamespace.h"
 
 void
 MustlAddress::Print(ostream& ioOut) const
 {
-    ioOut << MustlUtils::IPAddressToLogString(m_ip) << ":" << PlatformNet:: NetworkToHostOrderU16(m_port);
+    ioOut << MustlUtils::IPAddressToLogString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
 }
 
 string
@@ -31,23 +35,17 @@ MustlAddress::HostStringGet(void) const
 U32
 MustlAddress::PortGetHostOrder(void) const
 {
-    return PlatformNet::NetworkToHostOrderU16(m_port);
+    return MustlPlatform::NetworkToHostOrderU16(m_port);
 }
 
 void
-MustlAddress::ResolveFrom(const string& inHost, U32 inPortHostOrder)
+MustlAddress::PortSetHostOrder(U32 inPortHostOrder)
 {
+    m_port = MustlPlatform::HostToNetworkOrderU16(inPortHostOrder);
+}
 
-    char buffer[strlen(inHost.c_str())+1];
-    strncpy(buffer, inHost.c_str(), strlen(inHost.c_str())+1);
-
-    IPaddress remoteIP;
-    if (SDLNet_ResolveHost(&remoteIP, buffer, inPortHostOrder) == -1)
-    {
-        ostringstream message;
-        message << "Address resolution failed for " << inHost << ":" << inPortHostOrder << ": " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-    m_ip=remoteIP.host;
-    m_port=remoteIP.port;
+void
+MustlAddress::ResolveFrom(const std::string& inHostName, U32 inPortHostOrder)
+{
+    MustlPlatform::ResolveAddress(*this, inHostName, inPortHostOrder);
 }

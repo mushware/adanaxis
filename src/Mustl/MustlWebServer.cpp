@@ -33,10 +33,14 @@
 #include "MustlWebServer.h"
 
 #include "Mustl.h"
-#include "MustlLog.h"
-#include "MustlWebLink.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
+#include "MustlNamespace.h"
+
+// This needs to go
 #include "mushPlatform.h"
+
 
 auto_ptr<MustlWebServer> MustlWebServer::m_instance;
 
@@ -55,25 +59,12 @@ MustlWebServer::Connect(U32 inPort)
         Disconnect();
     }
 
-    Mustl::Instance();
+    MustlAddress netAddress;
 
-    IPaddress ip;
-    if (SDLNet_ResolveHost(&ip, NULL, inPort) == -1)
-    {
-        ostringstream message;
-        message << "Server creation failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
+    MustlPlatform::ResolveAddress(netAddress, "", inPort);
 
-    m_tcpSocket=SDLNet_TCP_Open(&ip);
-
-    if (m_tcpSocket == NULL)
-    {
-        ostringstream message;
-        message << "Server creation failed: " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-
+    m_tcpSocket = MustlPlatform::TCPBindNonBlocking(netAddress);
+    
     MustlLog::Instance().WebLog() << "Created web server on port " << inPort << endl;
     m_serving=true;
 }
@@ -83,7 +74,8 @@ MustlWebServer::Disconnect(void)
 {
     if (m_serving)
     {
-        SDLNet_TCP_Close(m_tcpSocket);
+        MUSTLASSERT(m_tcpSocket != NULL);
+        MustlPlatform::SocketClose(m_tcpSocket);
         m_tcpSocket = NULL;
         m_serving=false;
     }
@@ -93,8 +85,8 @@ MustlWebServer::~MustlWebServer()
 {
     if (m_serving)
     {
-        COREASSERT(m_tcpSocket != NULL);
-        SDLNet_TCP_Close(m_tcpSocket);
+        MUSTLASSERT(m_tcpSocket != NULL);
+        MustlPlatform::SocketClose(m_tcpSocket);
     }
     MustlLog::Instance().WebLog() << "Closed web server" << endl;
 }
@@ -104,18 +96,12 @@ MustlWebServer::Accept(void)
 {
     if (m_serving)
     {
-        COREASSERT(m_tcpSocket != NULL);
-        TCPsocket newSocket=SDLNet_TCP_Accept(m_tcpSocket);
-        if (newSocket != NULL)
+        MUSTLASSERT(m_tcpSocket != NULL);
+        MustlAddress remoteAddress;
+        tSocket newSocket;
+        if (MustlPlatform::Accept(newSocket, remoteAddress, m_tcpSocket))
         {
-            IPaddress *remoteIP;
-
-            remoteIP = SDLNet_TCP_GetPeerAddress(newSocket);
-            if (remoteIP == NULL)
-            {
-                throw(NetworkFail(string("Couldn't resolve IP for socket: ")+SDLNet_GetError()));
-            }
-            U32 remoteHost=remoteIP->host;
+            U32 remoteHost=remoteAddress.HostGetNetworkOrder();
             if (CheckIPAddressAllowed(remoteHost))
             {
                 ostringstream name;
@@ -126,7 +112,7 @@ MustlWebServer::Accept(void)
             }
             else
             {
-                SDLNet_TCP_Close(newSocket);
+                MustlPlatform::SocketClose(newSocket);
                 MustlLog::Instance().WebLog() << "Rejected web connection from prohibited IP address " << MustlUtils::IPAddressToLogString(remoteHost) << endl;
             }
         }
@@ -146,19 +132,19 @@ MustlWebServer::ExtraAllowedAddrSet(const string& inAddr)
     {
         m_extraAllowedAddr=inAddr;
 
-        IPaddress remoteIP;
-        char buffer[strlen(inAddr.c_str())+1];
-        strncpy(buffer, inAddr.c_str(), strlen(inAddr.c_str())+1);
-
-        if (SDLNet_ResolveHost(&remoteIP, buffer, 0) == -1)
+        MustlAddress netAddress;
+        try
         {
-            PlatformMiscUtils::MinorErrorBox("Could not resolve host name '"+inAddr+"', entered as the Extra Allowed Configuration address");
+            MustlPlatform::ResolveAddress(netAddress, inAddr, 0);
+            m_extraAllowedIP = netAddress.HostGetNetworkOrder();
+        }
+        catch (MustlFail& e)
+        {
+            // Need to pass this to an external handler
+            PlatformMiscUtils::MinorErrorBox("Could not resolve host name '"+inAddr+"', entered as the Extra Allowed Configuration address: " + e.what());
             m_extraAllowedIP = 0;
         }
-        else
-        {
-            m_extraAllowedIP = remoteIP.host;
-        }
+
     }
 }
 
@@ -175,7 +161,7 @@ MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
             break;
 
         case kPermissionLocal:
-            if (PlatformNet::IsLocalAddress(inIPNetworkOrder))
+            if (MustlPlatform::IsLocalAddress(inIPNetworkOrder))
             {
                 retVal=true;
             }
@@ -209,12 +195,13 @@ MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
             }
             else
             {
+                // Needs a handler external to Mustl
                 ostringstream message;
                 message << "A computer with IP address " << MustlUtils::IPAddressToString(inIPNetworkOrder);
                 message << " is attempting to connect to the " << CoreInfo::ApplicationNameGet() << " localweb server.  Would you like to allow this?  If in doubt, choose Deny.";
                 retVal=PlatformMiscUtils::PermissionBox(message.str(), false);
     
-                if (!retVal && PlatformNet::IsLocalAddress(inIPNetworkOrder))
+                if (!retVal && MustlPlatform::IsLocalAddress(inIPNetworkOrder))
                 {
                     // Don't store denied permission for local addresses
                 }

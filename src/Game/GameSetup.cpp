@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.21 2002/12/05 23:52:52 southa Exp $
+ * $Id: GameSetup.cpp,v 1.22 2002/12/12 14:00:40 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.22  2002/12/12 14:00:40  southa
+ * Created Mustl
+ *
  * Revision 1.21  2002/12/05 23:52:52  southa
  * Network management and status
  *
@@ -180,7 +183,7 @@ GameSetup::ConfigInit(void)
     {
         MustlWebServer::Instance().Connect(webPort);
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
@@ -236,7 +239,7 @@ GameSetup::KeyControl(void)
             {
                 MustlWebServer::Instance().Connect(webPort);
             }
-            catch (NetworkFail& e)
+            catch (MustlFail& e)
             {
                 MustlLog::Instance().WebLog() << e.what() << endl;
             }

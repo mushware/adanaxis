@@ -1,8 +1,11 @@
 #ifndef MUSTLWEBSERVER_H
 #define MUSTLWEBSERVER_H
 /*
- * $Id: MustlWebServer.h,v 1.6 2002/11/25 10:43:28 southa Exp $
+ * $Id: MustlWebServer.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -23,9 +26,7 @@
  *
  */
 
-#include "mushCore.h"
-
-#include "MediaSDL.h"
+#include "MustlStandard.h"
 
 class MustlData;
 
@@ -44,7 +45,7 @@ public:
 
     static inline MustlWebServer& Instance(void);
 
-    void Connect(U32 inPort);
+    void Connect(Mustl::U32 inPort);
     void Disconnect(void);
     void Accept(void);
     bool IsConnected(void) const;
@@ -53,14 +54,14 @@ public:
     
 protected:
     MustlWebServer();
-    bool CheckIPAddressAllowed(U32 inIPNetworkOrder);
+    bool CheckIPAddressAllowed(Mustl::U32 inIPNetworkOrder);
 
 private:
-    TCPsocket m_tcpSocket;
-    U32 m_linkCtr;
-    map<U32, bool> m_permissionMap;
+    Mustl::tSocket m_tcpSocket;
+    Mustl::U32 m_linkCtr;
+    map<Mustl::U32, bool> m_permissionMap;
     string m_extraAllowedAddr;
-    U32 m_extraAllowedIP;
+    Mustl::U32 m_extraAllowedIP;
     tPermission m_permission;
     
     bool m_serving;
@@ -68,7 +69,7 @@ private:
     static auto_ptr<MustlWebServer> m_instance;
 };
 
-inline  MustlWebServer&
+inline MustlWebServer&
 MustlWebServer::Instance(void)
 {
     if (m_instance.get() != NULL) return *m_instance;

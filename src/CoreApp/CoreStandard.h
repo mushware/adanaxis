@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.20 2002/11/01 16:15:26 southa Exp $
+ * $Id: CoreStandard.h,v 1.21 2002/12/04 00:37:10 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.21  2002/12/04 00:37:10  southa
+ * ControlFrameDef work
+ *
  * Revision 1.20  2002/11/01 16:15:26  southa
  * Network send and receive
  *
@@ -144,35 +147,30 @@
 #define tValarray vector
 #endif
 
-using namespace std;
-
-typedef float tVal;
-typedef double tLongVal;
-typedef signed int S32;
-typedef unsigned int U32;
-typedef signed short S16;
-typedef unsigned short U16;
-typedef signed char S8;
-typedef unsigned char U8;
-typedef unsigned int tSize;
-
 #ifndef M_PI
 #define M_PI 3.14159265358979
 #endif
 
-#if 0
-// This didn't work
-typedef std::basic_istream<U8> u8istream;
-typedef std::basic_ostream<U8> u8ostream;
+using namespace std;
 
-typedef std::basic_ifstream<U8> u8ifstream;
-typedef std::basic_ofstream<U8> u8ofstream;
-#endif
+namespace MushCore
+{
+    typedef float tVal;
+    typedef double tLongVal;
+    typedef signed int S32;
+    typedef unsigned int U32;
+    typedef signed short S16;
+    typedef unsigned short U16;
+    typedef signed char S8;
+    typedef unsigned char U8;
+    typedef unsigned int tSize;
+    typedef istream u8istream;
+    typedef ostream u8ostream;
+    typedef ifstream u8ifstream;
+    typedef ofstream u8ofstream;
+};
 
-typedef istream u8istream;
-typedef ostream u8ostream;
-typedef ifstream u8ifstream;
-typedef ofstream u8ofstream;
+using namespace MushCore;
 
 #define COREASSERT(exp) assert(exp)
 

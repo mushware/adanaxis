@@ -1,6 +1,9 @@
 /*
- * $Id: MustlProtocol.cpp,v 1.12 2002/12/09 16:18:01 southa Exp $
+ * $Id: MustlProtocol.cpp,v 1.1 2002/12/12 14:00:26 southa Exp $
  * $Log: MustlProtocol.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:26  southa
+ * Created Mustl
+ *
  * Revision 1.12  2002/12/09 16:18:01  southa
  * Link ID transfer
  *
@@ -52,10 +55,12 @@
  ************************************/
 
 #include "MustlProtocol.h"
-#include "MustlData.h"
-#include "MustlID.h"
-#include "MustlLog.h"
-#include "MustlUtils.h"
+
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 void
 MustlProtocol::TCPLinkCheckCreate(MustlData& outData, U32 inSequenceNumber)
@@ -195,7 +200,7 @@ MustlProtocol::Unpack(MustlData& ioData)
 
             case kUnpackStateMessageDone:
                 // I think not
-                COREASSERT(false);
+                MUSTLASSERT(false);
                 break;
 
             case kUnpackStateMessageReady:
@@ -203,7 +208,7 @@ MustlProtocol::Unpack(MustlData& ioData)
 
             case kUnpackStateInvalid:
             // default:
-                COREASSERT(false);
+                MUSTLASSERT(false);
                 unpackState=kUnpackStateSync1;
                 break;
         }
@@ -285,7 +290,7 @@ void
 MustlProtocol::LongAppMessageHeaderCreate(MustlData& ioData, U32 inType)
 {
     U32 messageType=kMessageTypeLongAppStart + inType;
-    COREASSERT(messageType < kMessageTypeLongAppEnd);
+    MUSTLASSERT(messageType < kMessageTypeLongAppEnd);
     ioData.BytePush(kSyncByte1);
     ioData.BytePush(kSyncByte2);
     ioData.BytePush(messageType);

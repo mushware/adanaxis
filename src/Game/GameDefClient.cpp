@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.17 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.18 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.18  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.17  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -100,7 +103,7 @@ void
 GameDefClient::JoinGame(const string& inServer, U32 inPort)
 {
     StatusSet(GameDef::kStatusNoServer);
-    m_netAddress.ResolveFrom(inServer, inPort); // throws NetworkFail
+    m_netAddress.ResolveFrom(inServer, inPort); // throws MustlFail
     StatusSet(GameDef::kStatusTesting);
     m_joined=true;
     m_lastRegistrationMsec=0; // Schedule immediate registration
@@ -159,7 +162,7 @@ GameDefClient::UpdateServer(void)
         ReliableSendToServer(netData);
         m_lastRegistrationMsec = m_currentMsec;
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
     }

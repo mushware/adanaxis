@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.10 2002/10/31 15:52:15 southa Exp $
+ * $Id: MediaSDL.h,v 1.11 2002/11/02 11:22:51 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.11  2002/11/02 11:22:51  southa
+ * Simplified UDP send and receive
+ *
  * Revision 1.10  2002/10/31 15:52:15  southa
  * First network code
  *
@@ -72,16 +75,6 @@
 #endif
 #endif
 
-#if defined(HAVE_SDL_SDL_NET_H)
-#include <SDL/SDL_net.h>
-#else
-#if defined(HAVE_SDL_NET_H)
-#include <SDL_net.h>
-#else
-#include "SDL_net.h"
-#endif
-#endif
-
 #include "mushCore.h"
 
 class MediaSDL
@@ -108,8 +101,5 @@ private:
     U32 m_inited;
     bool m_firstInitCalled;
 };
-
-ostream&
-operator<<(ostream &ioOut, const IPaddress& inAddress);
 
 #endif

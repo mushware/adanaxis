@@ -1,8 +1,11 @@
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
 /*
- * $Id: MustlLink.h,v 1.22 2002/12/10 20:38:06 southa Exp $
+ * $Id: MustlLink.h,v 1.1 2002/12/12 14:00:26 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.1  2002/12/12 14:00:26  southa
+ * Created Mustl
+ *
  * Revision 1.22  2002/12/10 20:38:06  southa
  * Server timing
  *
@@ -71,23 +74,20 @@
  *
  */
 
-#include "mushCore.h"
-
 #include "MustlAddress.h"
 #include "MustlClient.h"
 #include "MustlData.h"
 #include "MustlProtocol.h"
-#include "MediaSDL.h"
+#include "MustlStandard.h"
 
-class MustlAddress;
 class MustlID;
 
 class MustlLink
 {
 public:
-    MustlLink(const MustlID& inID, const string& inServer, U32 inPort);
+    MustlLink(const MustlID& inID, const string& inServer, Mustl::U32 inPort);
     explicit MustlLink(const MustlID& inID, const MustlAddress& inAddress);
-    explicit MustlLink(TCPsocket inSocket, U32 inPort);
+    explicit MustlLink(Mustl::tSocket inSocket, Mustl::U32 inPort, const MustlAddress& inAddress);
     ~MustlLink();
 
     void TouchLink(void);
@@ -103,19 +103,19 @@ public:
         
     void LinkChecksSend(void);
 
-    void MessageHandle(U32 inType, MustlData& ioData);
+    void MessageHandle(Mustl::U32 inType, MustlData& ioData);
 
     bool NetIDExists(void) const { return m_netID != NULL; }
     const MustlID& NetIDGet(void) const;
     void NetIDSet(const MustlID& inID);
     
     const string& TargetNameGet(void) const { return m_targetName; }
-    U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
-    U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
+    Mustl::U32 TCPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
+    Mustl::U32 TCPTargetPortGet(void) const { return m_client.TCPRemotePortGet(); }
     MustlAddress TCPTargetAddressGet(void) const { return MustlAddress(m_client.RemoteIPGet(), m_client.TCPRemotePortGet()); }
-    U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
-    U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
-    U32 CreationMsecGet(void) const { return m_creationMsec; }
+    Mustl::U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
+    Mustl::U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
+    Mustl::U32 CreationMsecGet(void) const { return m_creationMsec; }
     
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
@@ -161,22 +161,22 @@ private:
     class LinkState
     {
     public:
-        U32 linkCheckTime;
+        Mustl::U32 linkCheckTime;
         tLinkState linkState;
         tLinkCheckState linkCheckState;
-        U32 linkPingTime;
-        U32 linkErrorsSinceGood;
-        U32 linkErrorTotal;
-        U32 linkSendCtr;
-        U32 linkReceiveCtr;
+        Mustl::U32 linkPingTime;
+        Mustl::U32 linkErrorsSinceGood;
+        Mustl::U32 linkErrorTotal;
+        Mustl::U32 linkSendCtr;
+        Mustl::U32 linkReceiveCtr;
         MustlData linkData;
-        U8 linkCheckSeqNum;
+        Mustl::U8 linkCheckSeqNum;
     };
 
     void Initialise(void);
-    void TCPConnect(const string& inServer, U32 inPort);
-    void UDPConnect(U32 inPort);
-    void TCPSocketTake(TCPsocket inSocket);
+    void TCPConnect(const string& inServer, Mustl::U32 inPort);
+    void UDPConnect(Mustl::U32 inPort);
+    void TCPSocketTake(Mustl::tSocket inSocket, const MustlAddress& inAddress);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
     void IDRequestSend(void);
@@ -201,9 +201,9 @@ private:
     LinkState m_tcpState;
     LinkState m_udpState;
     MustlClient m_client;
-    U32 m_creationMsec;
-    U32 m_lastActivityMsec;
-    U32 m_lastIDRequestMsec;
+    Mustl::U32 m_creationMsec;
+    Mustl::U32 m_lastActivityMsec;
+    Mustl::U32 m_lastIDRequestMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
     MustlID *m_netID;
@@ -211,10 +211,10 @@ private:
     bool m_targetIsServer;
     bool m_udpUseServerPort;
 
-    mutable U32 m_currentMsec;
+    mutable Mustl::U32 m_currentMsec;
     mutable bool m_loggedLinkInfo;
 
-    static U32 m_linkNameNum;
+    static Mustl::U32 m_linkNameNum;
 };
 
 inline ostream&
@@ -235,7 +235,7 @@ operator<<(ostream &ioOut, const MustlLink::LinkState& inLinkState)
     ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
     ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";
     ioOut << "linkReceiveCtr=" << inLinkState.linkReceiveCtr << ", ";
-    ioOut << "linkCheckSeqNum=" << static_cast<U32>(inLinkState.linkCheckSeqNum) << "]";
+    ioOut << "linkCheckSeqNum=" << static_cast<Mustl::U32>(inLinkState.linkCheckSeqNum) << "]";
     return ioOut;
 }
 #endif

@@ -38,15 +38,11 @@
 
 #include "MustlRouter.h"
 
-#include "MustlData.h"
-#include "MustlHandler.h"
-#include "MustlLog.h"
-#include "MustlLink.h"
-#include "MustlProtocol.h"
-#include "MustlServer.h"
-#include "MustlUtils.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
 
-#include "mushPlatform.h"
+#include "MustlNamespace.h"
 
 auto_ptr<MustlRouter> MustlRouter::m_instance;
 
@@ -58,7 +54,7 @@ MustlRouter::MustlRouter() :
 void
 MustlRouter::ReceiveAll(MustlHandler& inHandler)
 {
-    U32 currentMsec = SDL_GetTicks();
+    U32 currentMsec = MustlTimer::Instance().CurrentMsecGet();
     bool callTick=false;;
     if (m_lastTickMsec + kTickPeriod < currentMsec)
     {
@@ -77,7 +73,7 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
         MustlData *netData=NULL;
         if (p->second->Receive(netData))
         {
-            COREASSERT(netData != NULL);
+            MUSTLASSERT(netData != NULL);
             // cerr << "Received on " << p->first << ": " << *netData << endl;
             U32 messageType = netData->MessageBytePop();
             if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
@@ -143,7 +139,7 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
     }
     MustlLog::Instance().VerboseLog() << "Discarding message from " <<
         MustlUtils::IPAddressToLogString(ioData.SourceHostGet()) << ":" <<
-        PlatformNet::NetworkToHostOrderU16(ioData.SourcePortGet()) << endl;
+        MustlPlatform::NetworkToHostOrderU16(ioData.SourcePortGet()) << endl;
 }
 
 void

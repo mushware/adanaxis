@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformUtils.cpp,v 1.9 2002/11/01 16:56:49 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.10 2002/11/01 17:24:49 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.10  2002/11/01 17:24:49  southa
+ * Network links on win32
+ *
  * Revision 1.9  2002/11/01 16:56:49  southa
  * Fixed platform inclusion
  *
@@ -47,5 +50,5 @@
 
 #include "PlatformInputUtils.cpp"
 #include "PlatformMiscUtils.cpp"
-#include "PlatformNet.cpp"
+#include "MustlPlatform.cpp"
 #include "PlatformVideoUtils.cpp"

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushPlatform.h,v 1.9 2002/10/22 20:41:56 southa Exp $
+ * $Id: mushPlatform.h,v 1.10 2002/11/01 16:56:49 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.10  2002/11/01 16:56:49  southa
+ * Fixed platform inclusion
+ *
  * Revision 1.9  2002/10/22 20:41:56  southa
  * Source conditioning
  *
@@ -51,7 +54,7 @@
 #include "Platform/PlatformMiscUtils.h"
 
 // Network
-#include "Platform/PlatformNet.h"
+#include "Platform/MustlPlatform.h"
 
 // Video utilities
 #include "Platform/PlatformVideoUtils.h"

@@ -37,7 +37,7 @@ MustlData::Print(ostream& ioOut) const
     ioOut << ", messagePos=" << m_messagePos << ", sourceHost=";
     if (m_sourceValid)
     {
-        ioOut<< MustlUtils::IPAddressToString(m_sourceHost) << ":" << PlatformNet::NetworkToHostOrderU16(m_sourcePort);
+        ioOut<< MustlUtils::IPAddressToString(m_sourceHost) << ":" << MustlPlatform::NetworkToHostOrderU16(m_sourcePort);
     }
     else
     {

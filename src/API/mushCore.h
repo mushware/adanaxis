@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.14 2002/11/22 11:42:05 southa Exp $
+ * $Id: mushCore.h,v 1.15 2002/12/04 12:54:40 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.15  2002/12/04 12:54:40  southa
+ * Network control work
+ *
  * Revision 1.14  2002/11/22 11:42:05  southa
  * Added developer controls
  *
@@ -115,6 +118,9 @@
 
 // Command interpreter
 #include "CoreApp/CoreInterpreter.h"
+
+// Core namespace
+#include "CoreApp/CoreNamespace.h"
 
 // POSIX utilities
 #include "CoreApp/CorePOSIX.h"

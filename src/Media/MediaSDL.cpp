@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.14 2002/10/31 15:52:15 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.15 2002/11/02 11:22:51 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.15  2002/11/02 11:22:51  southa
+ * Simplified UDP send and receive
+ *
  * Revision 1.14  2002/10/31 15:52:15  southa
  * First network code
  *
@@ -106,12 +109,3 @@ MediaSDL::QuitIfRequired(U32 inWhich)
     m_inited &= ~inWhich;
 }
 
-ostream&
-operator<<(ostream &ioOut, const IPaddress& inAddress)
-{
-    U32 ip=inAddress.host;
-    U8 *ipPtr=reinterpret_cast<U8 *>(&ip);
-    ioOut << static_cast<U32>(ipPtr[0]) << "." << static_cast<U32>(ipPtr[1]) << "." << static_cast<U32>(ipPtr[2]) << "." << static_cast<U32>(ipPtr[3]);
-    ioOut << ":" << inAddress.port;
-    return ioOut;
-}

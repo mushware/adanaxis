@@ -1,8 +1,11 @@
 #ifndef MUSTL_H
 #define MUSTL_H
 /*
- * $Id: Mustl.h,v 1.5 2002/11/25 10:43:28 southa Exp $
+ * $Id: Mustl.h,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.5  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -22,6 +25,7 @@
 
 #include "MustlAddress.h"
 #include "MustlData.h"
+#include "MustlFail.h"
 #include "MustlHandler.h"
 #include "MustlID.h"
 #include "MustlIDNull.h"
@@ -31,32 +35,10 @@
 #include "MustlProtocol.h"
 #include "MustlRouter.h"
 #include "MustlServer.h"
+#include "MustlTimer.h"
 #include "MustlUtils.h"
 #include "MustlWebLink.h"
 #include "MustlWebRouter.h"
 #include "MustlWebServer.h"
 
-#include "mushCore.h"
-// This'll Go
-
-class Mustl
-{
-public:
-    static inline Mustl& Instance(void);
-    ~Mustl();
-
-protected:
-    Mustl();
-
-private:
-    static auto_ptr<Mustl> m_instance;
-};
-
-inline Mustl&
-Mustl::Instance(void)
-{
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new Mustl);
-    return *m_instance;
-}
 #endif

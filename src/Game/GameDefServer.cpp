@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.12 2002/12/07 18:32:14 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.13 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.13  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.12  2002/12/07 18:32:14  southa
  * Network ID stuff
  *
@@ -120,7 +123,7 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
         {
             netLink->ReliableSend(netData);
         }
-        catch (NetworkFail& e)
+        catch (MustlFail& e)
         {
             MustlLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
         }

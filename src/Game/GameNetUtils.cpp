@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.cpp,v 1.6 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.7 2002/12/12 14:00:39 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.7  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -135,7 +138,7 @@ GameNetUtils::CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClient
         CoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
     }
@@ -261,7 +264,7 @@ GameNetUtils::NetTicker(void)
             {
                 MustlServer::Instance().Connect(portNum);
             }
-            catch (NetworkFail& e)
+            catch (MustlFail& e)
             {
                 static U32 failedPortNum=65536;
                 if (portNum != failedPortNum)
@@ -290,7 +293,7 @@ GameNetUtils::WebReceive(void)
         MustlWebServer::Instance().Accept();
         MustlWebRouter::Instance().ReceiveAll();
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
     }
@@ -304,7 +307,7 @@ GameNetUtils::NetReceive(void)
         MustlServer::Instance().Accept();
         MustlRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
-    catch (NetworkFail& e)
+    catch (MustlFail& e)
     {
         MustlLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
     }

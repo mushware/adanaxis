@@ -1,8 +1,11 @@
 #ifndef MUSTLWEBLINK_H
 #define MUSTLWEBLINK_H
 /*
- * $Id: MustlWebLink.h,v 1.9 2002/11/23 14:39:06 southa Exp $
+ * $Id: MustlWebLink.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.9  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -32,9 +35,7 @@
  *
  */
 
-#include "mushCore.h"
-
-#include "MediaSDL.h"
+#include "MustlStandard.h"
 
 class MustlHTTP;
 class MustlData;
@@ -42,7 +43,7 @@ class MustlData;
 class MustlWebLink
 {
 public:
-    explicit MustlWebLink(TCPsocket inSocket);
+    explicit MustlWebLink(Mustl::tSocket inSocket);
     ~MustlWebLink();
 
     void Tick(void);
@@ -91,19 +92,19 @@ private:
 
     void GetProcess(const string& inFilename);
     void PostProcess(const string& inValues);
-    
-    string m_requestLine;
+
+    std::string m_requestLine;
     tRequestType m_requestType;
     tLinkState m_linkState;
     tReceiveState m_receiveState;
-    TCPsocket m_tcpSocket;
-    U32 m_currentMsec;
-    U32 m_creationMsec;
-    U32 m_lastAccessMsec;
-    U32 m_linkErrors;
+    Mustl::tSocket m_tcpSocket;
+    Mustl::U32 m_currentMsec;
+    Mustl::U32 m_creationMsec;
+    Mustl::U32 m_lastAccessMsec;
+    Mustl::U32 m_linkErrors;
     bool m_isDead;
 
-    static string m_webPath;
+    static std::string m_webPath;
 };
 
 inline ostream&
