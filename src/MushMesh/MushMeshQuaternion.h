@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.3 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.4 2004/12/06 20:44:17 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.4  2004/12/06 20:44:17  southa
+ * Quaternion and matrix operations
+ *
  * Revision 1.3  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -38,6 +41,7 @@ class MushMeshQuaternion : public MushMeshVector<T, 4>
 {
 public:
     MushMeshQuaternion() {}
+    MushMeshQuaternion(const MushMeshVector<T, 4>& inVec);
     MushMeshQuaternion(const T& in0, const T& in1, const T& in2, const T& in3)
     {
         m_value[0] = in0;
@@ -48,11 +52,22 @@ public:
     
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
+    MushMeshQuaternion<T> ConjugateGet(void);
     
     static MushMeshQuaternion AdditiveIdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
     static MushMeshQuaternion MultiplicativeIdentityGet(void) { return MushMeshQuaternion(1,0,0,0); }
     
 };
+
+template <class T>
+inline
+MushMeshQuaternion<T>::MushMeshQuaternion(const MushMeshVector<T, 4>& inVec)
+{
+    m_value[0] = inVec.Get(0);
+    m_value[1] = inVec.Get(1);
+    m_value[2] = inVec.Get(2);
+    m_value[3] = inVec.Get(3);
+}
 
 template <class T>
 inline void
@@ -92,6 +107,13 @@ MushMeshQuaternion<T>::PostMultiplyBy(const MushMeshQuaternion<T>& inQuat)
     m_value[1] = a*f + b*e + c*h - d*g;
     m_value[2] = a*g + c*e - b*h + d*f;
     m_value[3] = a*h + d*e + b*g - c*f;
+}
+
+template <class T>
+inline MushMeshQuaternion<T>
+MushMeshQuaternion<T>::ConjugateGet(void)
+{
+    return MushMeshQuaternion<T>(m_value[0], -m_value[1], -m_value[2], -m_value[3]);
 }
 
 // Free operators

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0u0Dmc4oDcZxueU4XtX+Cw
 /*
- * $Id: MushMeshPreMatrix.h,v 1.2 2004/10/31 23:34:06 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.3 2004/12/06 20:44:17 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.3  2004/12/06 20:44:17  southa
+ * Quaternion and matrix operations
+ *
  * Revision 1.2  2004/10/31 23:34:06  southa
  * Hypercube rendering test
  *
@@ -80,9 +83,10 @@ public:
     
     const tThisVec& RowGet(Mushware::U32 inIndex) const { return m_value[inIndex]; }
     tThisVec& RowGet(Mushware::U32 inIndex) { return m_value[inIndex]; }
+    void RowSet(const tThisVec& inVec, Mushware::U32 inIndex) { m_value[inIndex] = inVec; }
     
 private:
-    MushMeshVector<T, C> m_value[R];
+    tThisVec m_value[R];
     
     //template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Y0heUUMv/8rG89Ya6G1wZg
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshQuaternion.cpp,v 1.1 2004/12/06 20:44:18 southa Exp $
+ * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.1  2004/12/06 20:44:18  southa
+ * Quaternion and matrix operations
+ *
  */
 
 #include "TestMushMeshQuaternion.h"
@@ -24,20 +27,20 @@ using namespace std;
 MushcoreInstaller TestMushMeshQuaternion(TestMushMeshQuaternion::Install);
 
 void
-TestMushMeshQuaternion::RandomRotationGet(t4x4Val& outMatrix, tVal inSeed)
+TestMushMeshQuaternion::PseudoRandomRotationGet(t4x4Val& outMatrix, tVal inSeed)
 {
     t4x4Val aMatrix =
         t4x4Val(t4Val( cos(2*inSeed), -sin(2*inSeed),              0,             0),
                 t4Val( sin(2*inSeed),  cos(2*inSeed),              0,             0),
-                t4Val(             0,              0,  cos(5*inSeed), -sin(5*inSeed)),
-                t4Val(             0,              0,  sin(5*inSeed),  cos(5*inSeed))
+                t4Val(             0,              0,       cos(5*inSeed), -sin(5*inSeed)),
+                t4Val(             0,              0,       sin(5*inSeed),  cos(5*inSeed))
                 );
   
     t4x4Val bMatrix =
-        t4x4Val(t4Val( cos(3*inSeed), -sin(3*inSeed),              0,             0),
-                t4Val( sin(3*inSeed),  cos(3*inSeed),              0,             0),
-                t4Val(             0,              0,  cos(7*inSeed), -sin(7*inSeed)),
-                t4Val(             0,              0,  sin(7*inSeed),  cos(7*inSeed))
+        t4x4Val(t4Val( cos(3*inSeed), 0,              -sin(3*inSeed),             0),
+                t4Val(             0,  cos(7*inSeed),              0, -sin(7*inSeed)),
+                t4Val( sin(3*inSeed),              0,  cos(3*inSeed),             0),
+                t4Val(             0,  sin(7*inSeed),              0,  cos(7*inSeed))
                 );
     
     outMatrix = aMatrix * bMatrix;                
@@ -99,7 +102,23 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
     }
     
     tQValPair aQuatPair;
+    t4x4Val aMatrix, bMatrix;
     
+    for (tVal i=0; i<100; ++i)
+    {
+        PseudoRandomRotationGet(aMatrix, i);
+        
+        MushMeshOps::RotationMatrixToQuaternionPair(aQuatPair, aMatrix);
+        MushMeshOps::QuaternionPairToRotationMatrix(bMatrix, aQuatPair);
+        
+        if (!MushMeshOps::ApproxEquals(aMatrix, bMatrix))
+        {
+            ostringstream message;
+            message << "QuatPair/Matrix conversion failed : " << aMatrix << " != " << bMatrix;
+            message << " (quaternions were " << aQuatPair.first << ", " << aQuatPair.second << ")";
+            throw MushcoreLogicFail(message.str());
+        }
+    }
     return MushcoreScalar(0);
 }
 
