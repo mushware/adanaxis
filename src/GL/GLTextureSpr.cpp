@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.7 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.8 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.8  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.7  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *
@@ -43,7 +46,7 @@ GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 
 GLTextureSpr::GLTextureSpr(const string& inFilename)
 {
-    StreamUtil sUtil;
+    CoreStreamUtil sUtil;
     FilenameSet(inFilename);
 
     u8ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());

@@ -452,12 +452,6 @@
 			settings = {
 			};
 		};
-		F51389FA02395E5401A31E05 = {
-			isa = PBXFileReference;
-			name = test1.ava;
-			path = avarisse/script/test1.ava;
-			refType = 4;
-		};
 		F51389FB0239602101A31E05 = {
 			fileRef = F53F7CC602311A0801633C4B;
 			isa = PBXBuildFile;
@@ -503,24 +497,6 @@
 			path = /System/Library/Frameworks/QuickTime.framework;
 			refType = 0;
 		};
-		F52AA35B02A00A2E013C570C = {
-			children = (
-				F52AA35C02A00A5F013C570C,
-				F5F2C66202A3F83901CB7A62,
-				F5553E9502A4E0F20174C831,
-				F545EEA502A68662018FABF3,
-			);
-			isa = PBXGroup;
-			name = game;
-			path = "";
-			refType = 4;
-		};
-		F52AA35C02A00A5F013C570C = {
-			isa = PBXFileReference;
-			name = GameMap.xml;
-			path = game/GameMap.xml;
-			refType = 4;
-		};
 		F52B3BF8028C25CF0179D0A8 = {
 			isa = PBXFileReference;
 			name = mushCore.h;
@@ -559,17 +535,17 @@
 		};
 		F52B3C01028C26530179D0A8 = {
 			isa = PBXFileReference;
-			path = AutoMonkey.h;
+			path = CoreAutoMonkey.h;
 			refType = 4;
 		};
 		F52B3C02028C26530179D0A8 = {
 			isa = PBXFileReference;
-			path = BuiltinHandler.h;
+			path = CoreBuiltinHandler.h;
 			refType = 4;
 		};
 		F52B3C03028C26530179D0A8 = {
 			isa = PBXFileReference;
-			path = ChildRecord.h;
+			path = CoreChildRecord.h;
 			refType = 4;
 		};
 		F52B3C04028C26530179D0A8 = {
@@ -689,7 +665,7 @@
 		};
 		F52B3C1B028C26530179D0A8 = {
 			isa = PBXFileReference;
-			path = StreamUtil.h;
+			path = CoreStreamUtil.h;
 			refType = 4;
 		};
 		F52B3C1C028C26530179D0A8 = {
@@ -1407,7 +1383,7 @@
 		};
 		F540BCBC022BAEFD01C02155 = {
 			isa = PBXFileReference;
-			path = StreamUtil.cpp;
+			path = CoreStreamUtil.cpp;
 			refType = 4;
 		};
 		F5431745020C310101449C4C = {
@@ -1429,13 +1405,12 @@
 		};
 		F5431746020C310101449C4C = {
 			children = (
-				F545CC5102B8E1C4011D56AF,
-				F547DFD102395B6001A7C23C,
+				F5483A8E02D19E6101480ACF,
 				F5B25BCA02187072017E032D,
 				F543174C020C336601449C4C,
 				F56065780216D2C3015AFBD9,
 				F5431766020C372901449C4C,
-				F52AA35B02A00A2E013C570C,
+				F5483A8A02D19C6B01480ACF,
 				F5909DAE022822A9013B17EF,
 				F545A7D8022C4F440152A3B7,
 			);
@@ -1485,7 +1460,6 @@
 				F56090E00217E2C7014AEE46,
 				F56090D70217E16B014AEE46,
 				F543177A020C8D6601449C4C,
-				F54506E502CB469F019E6518,
 			);
 			isa = PBXGroup;
 			name = Libraries;
@@ -1888,7 +1862,7 @@
 		};
 		F545CC4E02B8E15B011D56AF = {
 			isa = PBXFileReference;
-			path = AutoMonkey.cpp;
+			path = CoreAutoMonkey.cpp;
 			refType = 4;
 		};
 		F545CC4F02B8E15B011D56AF = {
@@ -1902,28 +1876,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F545CC5102B8E1C4011D56AF = {
-			children = (
-				F545CC5202B8E1D7011D56AF,
-			);
-			isa = PBXGroup;
-			name = contractor;
-			refType = 4;
-		};
-		F545CC5202B8E1D7011D56AF = {
-			children = (
-				F545CC5302B8E245011D56AF,
-			);
-			isa = PBXGroup;
-			name = system;
-			refType = 4;
-		};
-		F545CC5302B8E245011D56AF = {
-			isa = PBXFileReference;
-			name = start.txt;
-			path = contractor/system/start.txt;
-			refType = 4;
 		};
 		F545E49A02A28F030197F408 = {
 			children = (
@@ -2020,15 +1972,9 @@
 			settings = {
 			};
 		};
-		F545EEA502A68662018FABF3 = {
-			isa = PBXFileReference;
-			name = Contract.xml;
-			path = game/Contract.xml;
-			refType = 4;
-		};
 		F54613840238008401507C92 = {
 			isa = PBXFileReference;
-			path = BuiltinHandler.cpp;
+			path = CoreBuiltinHandler.cpp;
 			refType = 4;
 		};
 		F546138A0238116F01507C92 = {
@@ -2325,25 +2271,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F547DFD102395B6001A7C23C = {
-			children = (
-				F57BD7BB028AECBF01AD87C4,
-				F547DFD202395B6001A7C23C,
-			);
-			isa = PBXGroup;
-			name = avarisse;
-			path = "";
-			refType = 4;
-		};
-		F547DFD202395B6001A7C23C = {
-			children = (
-				F51389FA02395E5401A31E05,
-			);
-			isa = PBXGroup;
-			name = script;
-			path = "";
-			refType = 4;
 		};
 		F547DFD302395BCB01A7C23C = {
 			isa = PBXApplicationReference;
@@ -2646,6 +2573,189 @@
 			);
 			isa = PBXRezBuildPhase;
 		};
+		F5483A8A02D19C6B01480ACF = {
+			children = (
+				F54506E502CB469F019E6518,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = "";
+			refType = 4;
+		};
+		F5483A8E02D19E6101480ACF = {
+			children = (
+				F5483A8F02D19E6101480ACF,
+				F5483A9302D19E6101480ACF,
+				F5483A9602D19E6101480ACF,
+				F5483A9902D19E6101480ACF,
+				F5483A9E02D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = ic2data;
+			refType = 2;
+		};
+		F5483A8F02D19E6101480ACF = {
+			children = (
+				F5483A9002D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = contracts;
+			refType = 4;
+		};
+		F5483A9002D19E6101480ACF = {
+			children = (
+				F5483A9102D19E6101480ACF,
+				F5483AB402D1BEA701480ACF,
+			);
+			isa = PBXGroup;
+			path = "first-day";
+			refType = 4;
+		};
+		F5483A9102D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = contract.xml;
+			refType = 4;
+		};
+		F5483A9302D19E6101480ACF = {
+			children = (
+				F5483A9402D19E6101480ACF,
+				F5483A9502D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = pixels;
+			refType = 4;
+		};
+		F5483A9402D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = floor1.tiff;
+			refType = 4;
+		};
+		F5483A9502D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = wall1.tiff;
+			refType = 4;
+		};
+		F5483A9602D19E6101480ACF = {
+			children = (
+				F5483A9802D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = spaces;
+			refType = 4;
+		};
+		F5483A9802D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = tilemap.xml;
+			refType = 4;
+		};
+		F5483A9902D19E6101480ACF = {
+			children = (
+				F5483A9A02D19E6101480ACF,
+				F5483A9B02D19E6101480ACF,
+				F5483A9C02D19E6101480ACF,
+				F5483A9D02D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = system;
+			refType = 4;
+		};
+		F5483A9A02D19E6101480ACF = {
+			isa = PBXApplicationReference;
+			path = ic2.app;
+			refType = 4;
+		};
+		F5483A9B02D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = contractor.ico;
+			refType = 4;
+		};
+		F5483A9C02D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = start.txt;
+			refType = 4;
+		};
+		F5483A9D02D19E6101480ACF = {
+			isa = PBXExecutableFileReference;
+			path = ic2;
+			refType = 4;
+		};
+		F5483A9E02D19E6101480ACF = {
+			children = (
+				F5483A9F02D19E6101480ACF,
+			);
+			isa = PBXGroup;
+			path = waves;
+			refType = 4;
+		};
+		F5483A9F02D19E6101480ACF = {
+			isa = PBXFileReference;
+			path = loop_test.ogg;
+			refType = 4;
+		};
+		F5483AB002D1B9E501480ACF = {
+			isa = PBXFileReference;
+			name = MediaAudioCommandHandler.cpp;
+			path = Media/MediaAudioCommandHandler.cpp;
+			refType = 4;
+		};
+		F5483AB102D1B9E501480ACF = {
+			isa = PBXFileReference;
+			name = MediaAudioCommandHandler.h;
+			path = Media/MediaAudioCommandHandler.h;
+			refType = 4;
+		};
+		F5483AB202D1B9E501480ACF = {
+			fileRef = F5483AB002D1B9E501480ACF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5483AB302D1B9E501480ACF = {
+			fileRef = F5483AB102D1B9E501480ACF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5483AB402D1BEA701480ACF = {
+			isa = PBXFileReference;
+			path = floormap.xml;
+			refType = 4;
+		};
+		F5483AB702D1D95801480ACF = {
+			isa = PBXFileReference;
+			name = GameFloorDesigner.cpp;
+			path = Game/GameFloorDesigner.cpp;
+			refType = 4;
+		};
+		F5483AB802D1D95801480ACF = {
+			isa = PBXFileReference;
+			name = GameFloorDesigner.h;
+			path = Game/GameFloorDesigner.h;
+			refType = 4;
+		};
+		F5483AB902D1D95801480ACF = {
+			fileRef = F5483AB702D1D95801480ACF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5483ABA02D1D95801480ACF = {
+			fileRef = F5483AB802D1D95801480ACF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5483ABB02D1DD3401480ACF = {
+			isa = PBXFileReference;
+			path = GLRectangle.h;
+			refType = 4;
+		};
+		F5483ABC02D1DD3401480ACF = {
+			fileRef = F5483ABB02D1DD3401480ACF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F548851B022F992901D6DA80 = {
 			isa = PBXFileReference;
 			path = CoreScript.cpp;
@@ -2733,6 +2843,8 @@
 			children = (
 				F5539E2B02B4CDA0010AB4A9,
 				F5539E2C02B4CDA0010AB4A9,
+				F5483AB002D1B9E501480ACF,
+				F5483AB102D1B9E501480ACF,
 				F5539E3102B4CDCF010AB4A9,
 				F546F59502C206E801173785,
 				F5539E3302B4CE24010AB4A9,
@@ -2800,12 +2912,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F5553E9502A4E0F20174C831 = {
-			isa = PBXFileReference;
-			name = gra1.tiff;
-			path = game/gra1.tiff;
-			refType = 4;
 		};
 		F5580896029E5A2B01DA4293 = {
 			isa = PBXFileReference;
@@ -3128,20 +3234,6 @@
 			settings = {
 			};
 		};
-		F57BD7BB028AECBF01AD87C4 = {
-			children = (
-				F57BD7BC028AECE001AD87C4,
-			);
-			isa = PBXGroup;
-			name = test;
-			refType = 4;
-		};
-		F57BD7BC028AECE001AD87C4 = {
-			isa = PBXFileReference;
-			name = graph1.gif;
-			path = avarisse/test/graph1.gif;
-			refType = 4;
-		};
 		F5909DAE022822A9013B17EF = {
 			children = (
 				F5909DAF022822A9013B17EF,
@@ -3226,7 +3318,7 @@
 		};
 		F5921CEA021876D70127AF47 = {
 			isa = PBXFileReference;
-			path = ChildRecord.cpp;
+			path = CoreChildRecord.cpp;
 			refType = 4;
 		};
 		F5921CEB021876D70127AF47 = {
@@ -3267,6 +3359,8 @@
 				F5F06F1302AE5D2001B05200,
 				F545EE7B02A66359018FABF3,
 				F545EE7C02A66359018FABF3,
+				F5483AB702D1D95801480ACF,
+				F5483AB802D1D95801480ACF,
 				F545EEA102A67378018FABF3,
 				F545EEA202A67378018FABF3,
 				F546321902AD022D01A7DA6B,
@@ -3457,6 +3551,9 @@
 				F546F6F702C211F901173785,
 				F546F6FB02C2120701173785,
 				F546F6FC02C22D6601173785,
+				F5483AB302D1B9E501480ACF,
+				F5483ABA02D1D95801480ACF,
+				F5483ABC02D1DD3401480ACF,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -3536,6 +3633,8 @@
 				F546F6F602C211F901173785,
 				F546F6FA02C2120701173785,
 				F5473FB802C38AA801C31ED5,
+				F5483AB202D1B9E501480ACF,
+				F5483AB902D1D95801480ACF,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -3585,7 +3684,6 @@
 				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = ic2;
 				SECTORDER_FLAGS = "";
@@ -3926,6 +4024,7 @@
 				F52B3C54028C267B0179D0A8,
 				F54B58D202A7AD5901E2A684,
 				F54B58D302A7AD5901E2A684,
+				F5483ABB02D1DD3401480ACF,
 				F52B3C55028C267B0179D0A8,
 				F5175CB60227D48F01F76013,
 				F52B3C56028C267B0179D0A8,
@@ -4149,12 +4248,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F5F2C66202A3F83901CB7A62 = {
-			isa = PBXFileReference;
-			name = TileMap.xml;
-			path = game/TileMap.xml;
-			refType = 4;
 		};
 		F5F2C66302A410DA01CB7A62 = {
 			isa = PBXFileReference;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.4 2002/05/30 16:20:53 southa Exp $
+ * $Id: mushCore.h,v 1.5 2002/06/27 12:36:01 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.5  2002/06/27 12:36:01  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/30 16:20:53  southa
  * Pickleable GameContract
  *
@@ -42,7 +45,7 @@
 #define MUSHCORE_H
 
 // Utility for memory management
-#include "CoreApp/AutoMonkey.h"
+#include "CoreApp/CoreAutoMonkey.h"
 
 // Application class required by main()
 #include "CoreApp/CoreApp.h"
@@ -81,7 +84,7 @@
 #include "CoreApp/CoreStandard.h"
 
 // Stream utilities
-#include "CoreApp/StreamUtil.h"
+#include "CoreApp/CoreStreamUtil.h"
 
 // Compilation switches
 #include "CoreApp/CoreSwitches.h"

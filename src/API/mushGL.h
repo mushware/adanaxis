@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushGL.h,v 1.4 2002/06/20 15:50:29 southa Exp $
+ * $Id: mushGL.h,v 1.5 2002/06/27 12:36:01 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.5  2002/06/27 12:36:01  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/06/20 15:50:29  southa
  * Subclassed GLAppHandler
  *
@@ -32,13 +35,14 @@
 #ifndef MUSHGL_H
 #define MUSHGL_H
 
+#include "GL/GLAppHandler.h"
+#include "GL/GLData.h"
+#include "GL/GLRectangle.h"
 #include "GL/GLStandard.h"
 #include "GL/GLTexture.h"
 #include "GL/GLTextureRef.h"
-#include "GL/GLData.h"
-#include "GL/GLAppHandler.h"
+#include "GL/GLUtils.h"
 #include "GL/GLUTAppHandler.h"
 #include "GL/SDLAppHandler.h"
-#include "GL/GLUtils.h"
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Test.cpp,v 1.11 2002/06/04 20:28:39 southa Exp $
+ * $Id: Test.cpp,v 1.12 2002/06/27 12:36:08 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.12  2002/06/27 12:36:08  southa
+ * Build process fixes
+ *
  * Revision 1.11  2002/06/04 20:28:39  southa
  * Pickles for game traits and graphics.  Removed mac libraries from archive.
  *
@@ -41,7 +44,7 @@
  * Added GIF loader and GL tests
  *
  * Revision 1.2  2002/02/23 11:43:36  southa
- * Added AutoMonkey
+ * Added CoreAutoMonkey
  *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
@@ -129,160 +132,160 @@ Test::Test3(void)
 {
     char workspace[]="hello";
     
-    AutoMonkey& monkey1=*new AutoMonkey;
+    CoreAutoMonkey& monkey1=*new CoreAutoMonkey;
     if (monkey1.ReferenceCountGet() != 1)
     {
-        throw TestFail("AutoMonkey fault 1");
+        throw TestFail("CoreAutoMonkey fault 1");
     }
 
     if (!monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 2");
+        throw TestFail("CoreAutoMonkey fault 2");
     }
-    AutoMonkey& monkey2=*new AutoMonkey(monkey1);
+    CoreAutoMonkey& monkey2=*new CoreAutoMonkey(monkey1);
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 3");
+        throw TestFail("CoreAutoMonkey fault 3");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 4");
+        throw TestFail("CoreAutoMonkey fault 4");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 5");
+        throw TestFail("CoreAutoMonkey fault 5");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 6");
+        throw TestFail("CoreAutoMonkey fault 6");
     }
     monkey1=monkey1;
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 7");
+        throw TestFail("CoreAutoMonkey fault 7");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 8");
+        throw TestFail("CoreAutoMonkey fault 8");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 9");
+        throw TestFail("CoreAutoMonkey fault 9");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 10");
+        throw TestFail("CoreAutoMonkey fault 10");
     }
     monkey1=monkey2;
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 11");
+        throw TestFail("CoreAutoMonkey fault 11");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 12");
+        throw TestFail("CoreAutoMonkey fault 12");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 13");
+        throw TestFail("CoreAutoMonkey fault 13");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 14");
+        throw TestFail("CoreAutoMonkey fault 14");
     }
-    AutoMonkey& monkey3=*new AutoMonkey;
-    AutoMonkey& monkey4=*new AutoMonkey(monkey3);
+    CoreAutoMonkey& monkey3=*new CoreAutoMonkey;
+    CoreAutoMonkey& monkey4=*new CoreAutoMonkey(monkey3);
     if (monkey3.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 40");
+        throw TestFail("CoreAutoMonkey fault 40");
     }
     if (monkey4.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 41");
+        throw TestFail("CoreAutoMonkey fault 41");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 42");
+        throw TestFail("CoreAutoMonkey fault 42");
     }
     if (monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 43");
+        throw TestFail("CoreAutoMonkey fault 43");
     }
     monkey3=monkey2;
     if (monkey4.ReferenceCountGet() != 1)
     {
-        throw TestFail("AutoMonkey fault 44");
+        throw TestFail("CoreAutoMonkey fault 44");
     }
     if (!monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 45");
+        throw TestFail("CoreAutoMonkey fault 45");
     }
     if (monkey3.ReferenceCountGet() != 3)
     {
-        throw TestFail("AutoMonkey fault 46");
+        throw TestFail("CoreAutoMonkey fault 46");
     }
     if (monkey2.ReferenceCountGet() != 3)
     {
-        throw TestFail("AutoMonkey fault 47");
+        throw TestFail("CoreAutoMonkey fault 47");
     }
     if (monkey1.ReferenceCountGet() != 3)
     {
-        throw TestFail("AutoMonkey fault 48");
+        throw TestFail("CoreAutoMonkey fault 48");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 49");
+        throw TestFail("CoreAutoMonkey fault 49");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 50");
+        throw TestFail("CoreAutoMonkey fault 50");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 51");
+        throw TestFail("CoreAutoMonkey fault 51");
     }
     delete &monkey1;
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 80");
+        throw TestFail("CoreAutoMonkey fault 80");
     }
     if (monkey3.ReferenceCountGet() != 2)
     {
-        throw TestFail("AutoMonkey fault 81");
+        throw TestFail("CoreAutoMonkey fault 81");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 82");
+        throw TestFail("CoreAutoMonkey fault 82");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 83");
+        throw TestFail("CoreAutoMonkey fault 83");
     }
     delete &monkey2;
     if (monkey3.ReferenceCountGet() != 1)
     {
-        throw TestFail("AutoMonkey fault 84");
+        throw TestFail("CoreAutoMonkey fault 84");
     }
     if (!monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 85");
+        throw TestFail("CoreAutoMonkey fault 85");
     }
     delete &monkey3;
     if (monkey4.ReferenceCountGet() != 1)
     {
-        throw TestFail("AutoMonkey fault 86");
+        throw TestFail("CoreAutoMonkey fault 86");
     }
     if (!monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("AutoMonkey fault 87");
+        throw TestFail("CoreAutoMonkey fault 87");
     }
     delete &monkey4;
     // All monkeys gone
-    AutoMonkey& monkey5=*new AutoMonkey;
+    CoreAutoMonkey& monkey5=*new CoreAutoMonkey;
     
     if (monkey5.FreeInDestructor(NULL))
     {
-        throw TestFail("AutoMonkey fault 100");
+        throw TestFail("CoreAutoMonkey fault 100");
     }
     delete &monkey5;
 }

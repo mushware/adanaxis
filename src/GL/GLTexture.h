@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.h,v 1.4 2002/06/02 15:18:52 southa Exp $
+ * $Id: GLTexture.h,v 1.5 2002/06/27 12:36:05 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/06/02 15:18:52  southa
  * Texture bitmap renderer
  *
@@ -108,7 +111,7 @@ protected:
         GLenum m_pixelFormat;
         GLenum m_pixelType;
         U32 *m_dataPtr;
-        AutoMonkey m_autoMonkey;
+        CoreAutoMonkey m_autoMonkey;
     };
 
     virtual const char *FiletypeName(void) const = 0;
