@@ -1,8 +1,11 @@
 #ifndef MEDIANETWEBSERVER_H
 #define MEDIANETWEBSERVER_H
 /*
- * $Id: MediaNetWebServer.h,v 1.3 2002/11/21 18:06:18 southa Exp $
+ * $Id: MediaNetWebServer.h,v 1.4 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetWebServer.h,v $
+ * Revision 1.4  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.3  2002/11/21 18:06:18  southa
  * Non-blocking network connection
  *
@@ -23,6 +26,14 @@ class MediaNetData;
 class MediaNetWebServer
 {
 public:
+    enum tPermission
+    {
+        kPermissionInvalid,
+        kPermissionNone,
+        kPermissionLocal,
+        kPermissionAll
+    };
+
     ~MediaNetWebServer();
 
     static MediaNetWebServer& Instance(void);
@@ -31,13 +42,21 @@ public:
     void Disconnect(void);
     void Accept(void);
     bool IsConnected(void) const;
+    void PermissionSet(tPermission inPermission) { m_permission=inPermission; }
+    void ExtraAllowedAddrSet(const string& inAddr);
     
 protected:
     MediaNetWebServer();
+    bool CheckIPAddressAllowed(U32 inIPNetworkOrder);
 
 private:
     TCPsocket m_tcpSocket;
     U32 m_linkCtr;
+    map<U32, bool> m_permissionMap;
+    string m_extraAllowedAddr;
+    U32 m_extraAllowedIP;
+    tPermission m_permission;
+    
     bool m_serving;
 
     static auto_ptr<MediaNetWebServer> m_instance;

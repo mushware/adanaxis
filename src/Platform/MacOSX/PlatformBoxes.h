@@ -13,12 +13,17 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformBoxes.h,v 1.1 2002/10/15 18:16:41 southa Exp $
+ * $Id: PlatformBoxes.h,v 1.2 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformBoxes.h,v $
+ * Revision 1.2  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.1  2002/10/15 18:16:41  southa
  * Mac error box
  *
  */
 
-#define kPlatformAboutBox	200
+#define kPlatformFatalErrorBox	200
+#define kPlatformMinorErrorBox	201
+#define kPlatformQuestionBox	300
 #endif

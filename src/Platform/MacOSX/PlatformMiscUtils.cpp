@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.21 2002/11/20 22:35:28 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.22 2002/11/23 17:23:45 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.22  2002/11/23 17:23:45  southa
+ * Sleep in setup
+ *
  * Revision 1.21  2002/11/20 22:35:28  southa
  * Multiplayer setup
  *
@@ -210,7 +213,7 @@ PlatformMiscUtils::ErrorBox(const string& inStr)
     Str255 messageP;
     CopyCStringToPascal(inStr.c_str(), messageP);
     ParamText(messageP, "\p", "\p", "\p");
-    StopAlert(kPlatformAboutBox, nil);
+    StopAlert(kPlatformFatalErrorBox, nil);
 }
 
 void
@@ -220,7 +223,56 @@ PlatformMiscUtils::MinorErrorBox(const string& inStr)
     Str255 messageP;
     CopyCStringToPascal(inStr.c_str(), messageP);
     ParamText(messageP, "\p", "\p", "\p");
-    NoteAlert(kPlatformAboutBox, nil);
+    NoteAlert(kPlatformMinorErrorBox, nil);
+}
+
+bool
+PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
+{
+    AlertStdAlertParamRec param;
+    SInt16			alertType=kAlertNoteAlert;
+    Str255			title;
+    CopyCStringToPascal(CoreInfo::ApplicationNameGet().c_str(), title);
+    Str255          desc;
+    CopyCStringToPascal(inStr.c_str(), desc);    
+    SInt16			itemHit;
+
+    param.movable 		= true;
+    param.filterProc 	= nil;
+    param.defaultText 	= "\pAllow";
+    param.cancelText 	= "\pDeny";
+    param.otherText 	= NULL;
+    param.helpButton 	= false;
+    if (inDefault)
+    {
+        param.defaultButton = kAlertStdAlertOKButton;
+        param.cancelButton 	= kAlertStdAlertCancelButton;
+    }
+    else
+    {
+        param.defaultButton = kAlertStdAlertCancelButton;
+        param.cancelButton 	= 0;
+    }        
+    param.position 		= kWindowDefaultPosition;
+
+    bool retVal=false;
+    
+    if (StandardAlert(alertType, title, desc, &param, &itemHit) == noErr)
+    {
+        switch (itemHit)
+        {
+            case kAlertStdAlertOKButton:
+            default:
+                retVal=true;
+                break;
+
+            case kAlertStdAlertCancelButton:
+                retVal=false;
+                break;
+        }
+    }
+
+    return retVal;
 }
 
 void

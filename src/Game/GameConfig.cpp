@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.8 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameConfig.cpp,v 1.9 2002/11/22 15:00:32 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.9  2002/11/22 15:00:32  southa
+ * Network connection handling
+ *
  * Revision 1.8  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -158,8 +161,33 @@ GameConfig::Update(void)
     }
     if (ParameterExists("devlogfullip"))
     {
-        MediaNetUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
+MediaNetUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
     }
+    if (ParameterExists("configperms"))
+    {
+        string configPerms=ParameterGet("configperms").StringGet();
+        if (configPerms == "none")
+        {
+            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionNone);
+        }
+        else if (configPerms == "local")
+        {
+            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionLocal);
+        }
+        else if (configPerms == "all")
+        {
+            MediaNetWebServer::Instance().PermissionSet(MediaNetWebServer::kPermissionAll);
+        }
+        else
+        {
+            MediaNetLog::Instance().WebLog() << "Unknown value for configerms '" << configPerms << "'" << endl;
+        }
+    }
+    if (ParameterExists("configextra"))
+    {
+        MediaNetWebServer::Instance().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
+    }
+    
 }
 
 // ----- XML stuff -----

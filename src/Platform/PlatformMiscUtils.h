@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.14 2002/11/17 13:38:31 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.15 2002/11/23 17:23:45 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.15  2002/11/23 17:23:45  southa
+ * Sleep in setup
+ *
  * Revision 1.14  2002/11/17 13:38:31  southa
  * Game selection
  *
@@ -52,6 +55,7 @@ public:
     static void ReadDirectory(vector<string>& outFilenames, const string& inDirName);
     static void ErrorBox(const string& inStr);
     static void MinorErrorBox(const string& inStr);
+    static bool PermissionBox(const string& inStr, bool inDefault);
     static void UpdateCheck(void);
     static void LaunchFile(const string& inFile);
     static void LaunchURL(const string& inURL);
