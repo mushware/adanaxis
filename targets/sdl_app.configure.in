@@ -131,6 +131,7 @@ esac
 AC_CHECK_LIB(PCRE, main,, AC_CHECK_LIB(pcre, main,, AC_MSG_ERROR([PCRE library not found - home is ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/])))
 AC_CHECK_LIB(expat, main,, AC_MSG_ERROR([expat library not found - home is http://expat.sourceforge.net/]))
 AC_CHECK_LIB(ungif, main,, AC_MSG_ERROR([libungif library not found - home is ftp://prtr-13.ucsc.edu/pub/libungif/]))
+AC_CHECK_LIB(jpeg, main,, AC_MSG_ERROR([libjpeg library not found - home is http://www.ijg.org/]))
 AC_CHECK_LIB(tiff, main,, AC_MSG_ERROR([libtiff library not found - home is http://www.libtiff.org/]))
 AC_CHECK_LIB(SDL-1.1, main,, AC_CHECK_LIB(SDL, main,, AC_MSG_ERROR([libSDL library not found - home is http://www.libsdl.org/])))
 AC_CHECK_LIB(smpeg, main,, AC_MSG_NOTICE([libsmpeg library not found - mp3 support disabled - home is http://www.lokigames.com/development/]))
@@ -194,7 +195,7 @@ AC_TRY_COMPILE([
 #include <iosfwd>
 #undef main
 ],[
-std::ostringstream test;
+extern std::ostringstream test;
 ],,[
 AC_MSG_NOTICE([iosfwd does not contain stringstream])
 AC_DEFINE(HAVE_SSTREAM_NOT_IN_IOSFWD,1,[Define if including iosfwd doesn't bring in stringstream])

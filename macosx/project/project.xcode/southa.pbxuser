@@ -6,7 +6,6 @@
 		activeTarget = 7AAE6BAC07AFC4250085C60F;
 		addToTargets = (
 			7AAE6BAC07AFC4250085C60F,
-			7A62B6F805A49C0B002A5F1C,
 		);
 		breakpoints = (
 			7A64F649070816B80089CD14,
@@ -170,7 +169,7 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 133907879;
+			PBXPerProjectTemplateStateSaveDate = 133912192;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -2354,7 +2353,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "503 295 723 466 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 133907879;
+			PBXWorkspaceStateSaveDate = 133912192;
 			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <40b047970756463747275616d618308e481004484848e0e435d457471626c656142727169700484870e435142727169700484880e435f426a656364700584810960068>;
 		};
 		perUserProjectItems = {
@@ -2512,9 +2511,10 @@
 			7A45EB9007F4941000773CF6 = 7A45EB9007F4941000773CF6;
 			7A45EB9207F4941000773CF6 = 7A45EB9207F4941000773CF6;
 			7A53C8EA07A71CA600864B84 = 7A53C8EA07A71CA600864B84;
-			7A5BE6A907FB496C00306E18 = 7A5BE6A907FB496C00306E18;
-			7A5BE6AA07FB496D00306E18 = 7A5BE6AA07FB496D00306E18;
-			7A5BEC1F07FA1C620011A947 = 7A5BEC1F07FA1C620011A947;
+			7A5BE70207FB545300306E18 = 7A5BE70207FB545300306E18;
+			7A5BE70807FB546800306E18 = 7A5BE70807FB546800306E18;
+			7A5BE77407FB708C00306E18 = 7A5BE77407FB708C00306E18;
+			7A5BE77507FB708C00306E18 = 7A5BE77507FB708C00306E18;
 			7A5D77CD0767A00D00BD00AA = 7A5D77CD0767A00D00BD00AA;
 			7A6032DC07BE529D00E781D4 = 7A6032DC07BE529D00E781D4;
 			7A6032F607BE569B00E781D4 = 7A6032F607BE569B00E781D4;
@@ -3022,7 +3022,6 @@
 			7A76692407F4B89200E01DB0 = 7A76692407F4B89200E01DB0;
 			7A76692807F4BAD800E01DB0 = 7A76692807F4BAD800E01DB0;
 			7A76694E07F4BCD600E01DB0 = 7A76694E07F4BCD600E01DB0;
-			7A76695607F4BD9F00E01DB0 = 7A76695607F4BD9F00E01DB0;
 			7A76695C07F4BFE200E01DB0 = 7A76695C07F4BFE200E01DB0;
 			7A76696507F4BFE300E01DB0 = 7A76696507F4BFE300E01DB0;
 			7A76696707F4BFE300E01DB0 = 7A76696707F4BFE300E01DB0;
@@ -3096,8 +3095,6 @@
 			7A936BB507F88785000484B9 = 7A936BB507F88785000484B9;
 			7A936BCC07F88947000484B9 = 7A936BCC07F88947000484B9;
 			7A936BCD07F88947000484B9 = 7A936BCD07F88947000484B9;
-			7A936BD307F8899F000484B9 = 7A936BD307F8899F000484B9;
-			7A936BD507F8899F000484B9 = 7A936BD507F8899F000484B9;
 			7A93853107D12DC20061E491 = 7A93853107D12DC20061E491;
 			7A93853307D12DC20061E491 = 7A93853307D12DC20061E491;
 			7A93854807D143CA0061E491 = 7A93854807D143CA0061E491;
@@ -4894,17 +4891,17 @@
 		vrLen = 778;
 		vrLoc = 0;
 	};
-	7A5BE6A907FB496C00306E18 = {
+	7A5BE70207FB545300306E18 = {
 		fRef = 7AAE6BA007AFC36C0085C60F;
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 593";
 		rLen = 0;
 		rLoc = 18016;
 		rType = 0;
-		vrLen = 1880;
-		vrLoc = 10481;
+		vrLen = 1499;
+		vrLoc = 10393;
 	};
-	7A5BE6AA07FB496D00306E18 = {
+	7A5BE70807FB546800306E18 = {
 		fRef = 7AAE6BA007AFC36C0085C60F;
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 596";
@@ -4914,12 +4911,22 @@
 		vrLen = 654;
 		vrLoc = 4673;
 	};
-	7A5BEC1F07FA1C620011A947 = {
+	7A5BE77407FB708C00306E18 = {
 		fRef = 7AAE6BA007AFC36C0085C60F;
 		isa = PBXTextBookmark;
-		name = "TesseractTrainerGame.cpp: 596";
+		name = "TesseractTrainerGame.cpp: 357";
 		rLen = 0;
-		rLoc = 18101;
+		rLoc = 10861;
+		rType = 0;
+		vrLen = 1498;
+		vrLoc = 10393;
+	};
+	7A5BE77507FB708C00306E18 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 180";
+		rLen = 0;
+		rLoc = 4887;
 		rType = 0;
 		vrLen = 654;
 		vrLoc = 4673;
@@ -4947,13 +4954,6 @@
 			sepNavSelRange = "{1195, 0}";
 			sepNavVisRect = "{{0, 46}, {689, 696}}";
 			sepNavWindowFrame = "{{107, 355}, {750, 558}}";
-		};
-	};
-	7A5FB77B07F438C30076C301 = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {689, 4732}}";
-			sepNavSelRange = "{720, 0}";
-			sepNavVisRect = "{{0, 0}, {689, 696}}";
 		};
 	};
 	7A6032DC07BE529D00E781D4 = {
@@ -5125,14 +5125,6 @@
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 3575;
-	};
-	7A60840F07BF555700E8BFEE = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {689, 1610}}";
-			sepNavSelRange = "{1483, 0}";
-			sepNavVisRect = "{{0, 914}, {689, 696}}";
-			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
-		};
 	};
 	7A60841107BF55DE00E8BFEE = {
 		fRef = 7A62B79C05A49D04002A5F1C;
@@ -14114,16 +14106,6 @@
 		vrLen = 1056;
 		vrLoc = 1262;
 	};
-	7A76695607F4BD9F00E01DB0 = {
-		fRef = 7A5FB77B07F438C30076C301;
-		isa = PBXTextBookmark;
-		name = "objects.xml: 48";
-		rLen = 0;
-		rLoc = 1822;
-		rType = 0;
-		vrLen = 1153;
-		vrLoc = 346;
-	};
 	7A76695C07F4BFE200E01DB0 = {
 		fRef = 7AAE6BA207AFC36C0085C60F;
 		isa = PBXTextBookmark;
@@ -14889,26 +14871,6 @@
 		vrLen = 1561;
 		vrLoc = 954;
 	};
-	7A936BD307F8899F000484B9 = {
-		fRef = 7A5FB77B07F438C30076C301;
-		isa = PBXTextBookmark;
-		name = "objects.xml: 26";
-		rLen = 0;
-		rLoc = 720;
-		rType = 0;
-		vrLen = 1300;
-		vrLoc = 0;
-	};
-	7A936BD507F8899F000484B9 = {
-		fRef = 7AAE6BA007AFC36C0085C60F;
-		isa = PBXTextBookmark;
-		name = "TesseractTrainerGame.cpp: 593";
-		rLen = 0;
-		rLoc = 18016;
-		rType = 0;
-		vrLen = 1757;
-		vrLoc = 10555;
-	};
 	7A93852A07D124DA0061E491 = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.fortran;
@@ -15037,9 +14999,9 @@
 	};
 	7AAE6BA007AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {881, 8358}}";
-			sepNavSelRange = "{18101, 0}";
-			sepNavVisRect = "{{0, 2352}, {881, 363}}";
+			sepNavIntBoundsRect = "{{0, 0}, {689, 8470}}";
+			sepNavSelRange = "{10861, 0}";
+			sepNavVisRect = "{{0, 4886}, {689, 482}}";
 		};
 	};
 	7AAE6BA107AFC36C0085C60F = {
@@ -15162,7 +15124,7 @@
 		);
 		sourceDirectories = (
 		);
-		startupPath = "/Users/southa/core-app/data/tesseracttrainer/system";
+		startupPath = "/Users/southa/core-app/data-tesseracttrainer/system";
 	};
 	7AAE6CDD07AFC4C70085C60F = {
 		fRef = 7A654C8E07A9713200DE4A9D;
@@ -15855,9 +15817,9 @@
 	};
 	7ABCE97005AB463800A00CC6 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {689, 3234}}";
-			sepNavSelRange = "{542, 0}";
-			sepNavVisRect = "{{0, 0}, {689, 482}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 3836}}";
+			sepNavSelRange = "{6073, 0}";
+			sepNavVisRect = "{{0, 1871}, {711, 443}}";
 			sepNavWindowFrame = "{{61, 333}, {750, 558}}";
 		};
 	};

@@ -79,7 +79,7 @@
 		};
 		20286C29FDCF999611CA2CEA = {
 			children = (
-				7A60840C07BF555700E8BFEE,
+				7A5BE75607FB56AF00306E18,
 				7A4FA55A05F9EBCA00297E23,
 				7ABA723E05AC812900454BCE,
 				7A62B70B05A49D04002A5F1C,
@@ -109,6 +109,7 @@
 		};
 		20286C32FDCF999611CA2CEA = {
 			children = (
+				7A5BE6DD07FB503B00306E18,
 				7A710CA405A4A07700A58F05,
 				7A710CA705A4A07B00A58F05,
 				7A710CAA05A4A08100A58F05,
@@ -657,6 +658,120 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		7A5BE6DD07FB503B00306E18 = {
+			children = (
+				7A5BE6EE07FB53DA00306E18,
+			);
+			isa = PBXGroup;
+			name = libjpeg;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE6EE07FB53DA00306E18 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.ar;
+			name = libjpeg.a;
+			path = /usr/local/lib/libjpeg.a;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A5BE6EF07FB53DA00306E18 = {
+			fileRef = 7A5BE6EE07FB53DA00306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5BE6F007FB53DA00306E18 = {
+			fileRef = 7A5BE6EE07FB53DA00306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5BE75607FB56AF00306E18 = {
+			children = (
+				7A5BE75707FB56AF00306E18,
+				7A5BE75A07FB56AF00306E18,
+			);
+			isa = PBXGroup;
+			name = "data-tesseracttrainer";
+			path = "/Users/southa/core-app/data-tesseracttrainer";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A5BE75707FB56AF00306E18 = {
+			children = (
+				7A5BE75807FB56AF00306E18,
+				7A5BE75907FB56AF00306E18,
+			);
+			isa = PBXGroup;
+			path = pixels;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75807FB56AF00306E18 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = "font-mono1.tiff";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75907FB56AF00306E18 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = "plane-target1.tiff";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75A07FB56AF00306E18 = {
+			children = (
+				7A5BE75B07FB56AF00306E18,
+				7A5BE75C07FB56B000306E18,
+			);
+			isa = PBXGroup;
+			path = system;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75B07FB56AF00306E18 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = objects.xml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75C07FB56B000306E18 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = start.txt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5BE75D07FB56B000306E18 = {
+			fileRef = 7A5BE75807FB56AF00306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5BE75E07FB56B000306E18 = {
+			fileRef = 7A5BE75907FB56AF00306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5BE75F07FB56B000306E18 = {
+			fileRef = 7A5BE75B07FB56AF00306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5BE76007FB56B000306E18 = {
+			fileRef = 7A5BE75C07FB56B000306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A5FA8C905A4CC1F00AA22E5 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -698,14 +813,6 @@
 			shellPath = /bin/sh;
 			shellScript = "date\ncd ../..\n./prebuild.sh";
 		};
-		7A5FB77B07F438C30076C301 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text.xml;
-			path = objects.xml;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		7A6033AB07A6B23700350109 = {
 			fileRef = 7A61B10A07A68FEA00C6B670;
 			isa = PBXBuildFile;
@@ -717,43 +824,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		7A60840C07BF555700E8BFEE = {
-			children = (
-				7A60840D07BF555700E8BFEE,
-			);
-			isa = PBXGroup;
-			name = data;
-			path = "/Users/southa/core-app/data";
-			refType = 0;
-			sourceTree = "<absolute>";
-		};
-		7A60840D07BF555700E8BFEE = {
-			children = (
-				7A60840E07BF555700E8BFEE,
-			);
-			isa = PBXGroup;
-			path = tesseracttrainer;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A60840E07BF555700E8BFEE = {
-			children = (
-				7A5FB77B07F438C30076C301,
-				7A60840F07BF555700E8BFEE,
-			);
-			isa = PBXGroup;
-			path = system;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A60840F07BF555700E8BFEE = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = start.txt;
-			refType = 4;
-			sourceTree = "<group>";
 		};
 		7A61B10A07A68FEA00C6B670 = {
 			fileEncoding = 4;
@@ -1798,6 +1868,7 @@
 				7ACC2F3B05AB0FCC001A0873,
 				7ACC2FB605AB10A8001A0873,
 				7ACC305705AB10D0001A0873,
+				7A5BE6F007FB53DA00306E18,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15674,6 +15745,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AAE6C5A07AFC4250085C60F,
+				7A5BE75D07FB56B000306E18,
+				7A5BE75E07FB56B000306E18,
+				7A5BE75F07FB56B000306E18,
+				7A5BE76007FB56B000306E18,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16278,6 +16353,7 @@
 				7AAE6CCE07AFC4250085C60F,
 				7AAE6CCF07AFC4250085C60F,
 				7A8FBC9707F4566700BAAFBE,
+				7A5BE6EF07FB53DA00306E18,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
