@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.14 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.15 2002/08/08 18:20:30 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.15  2002/08/08 18:20:30  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.14  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -171,7 +174,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
         perm=MotionSpecPermeabilityGet(trialSpec);
     }
     
-    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.1 && !deltaAngleSignificant)
+    if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.01 && !deltaAngleSignificant)
     {
         // Try some angle tweaks to move us into gaps
         for (tVal deltaAngle=0.005; deltaAngle<=0.01; deltaAngle *= 2)
