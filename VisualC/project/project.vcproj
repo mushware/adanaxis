@@ -72,9 +72,11 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
-				UsePrecompiledHeader="3"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE"
+				RuntimeLibrary="5"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"/>
@@ -82,10 +84,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="libexpat.lib libpcre.a"
 				OutputFile="$(OutDir)/project.exe"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;"
+				IgnoreAllDefaultLibraries="FALSE"
 				GenerateDebugInformation="TRUE"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"/>
@@ -461,6 +466,12 @@
 						<Tool
 							Name="VCCLCompilerTool"/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\src\Main\PrimaryMain.h">
@@ -479,6 +490,12 @@
 					Filter="">
 					<File
 						RelativePath="..\..\src\Main\CommandLineApp\SecondaryMain.cpp">
+						<FileConfiguration
+							Name="Debug|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/"/>
+						</FileConfiguration>
 					</File>
 				</Filter>
 				<Filter
@@ -494,13 +511,208 @@
 								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 						</FileConfiguration>
 						<FileConfiguration
-							Name="Release|Win32">
+							Name="Release|Win32"
+							ExcludedFromBuild="TRUE">
 							<Tool
 								Name="VCCLCompilerTool"
 								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 						</FileConfiguration>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="MushMesh"
+				Filter="">
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshArray.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshArray.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshBox.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshBox.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshConnector.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshConnector.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshMath.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshMath.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshMushcoreIO.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshMushcoreIO.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatch.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatch.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchEnd.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchEnd.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchPipe.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchPipe.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchTypes.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshPatchTypes.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshQuaternion.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshQuaternion.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSelection.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSelection.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshStitchable.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshStitchable.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSTL.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSTL.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSubdivide.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshSubdivide.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshTriangularArray.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshTriangularArray.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshUtils.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshUtils.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshVector.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshVector.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshWorkspace.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshWorkspace.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshWorkspaceBased.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMeshWorkspaceBased.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="TestMushMesh"
+				Filter="">
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshApp.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshApp.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshArray.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshArray.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshBox.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshBox.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshMain.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshMain.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshPatch.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshPatch.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshSubdivide.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshSubdivide.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshTriangularArray.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshTriangularArray.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshUtils.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshUtils.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshVector.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMushMesh\TestMushMeshVector.h">
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

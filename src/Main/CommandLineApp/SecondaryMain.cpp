@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } a4QmG9GUot9BdRziHdwp7A
 /*
- * $Id: SecondaryMain.cpp,v 1.2 2004/01/05 20:13:15 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.3 2004/01/06 20:46:51 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.3  2004/01/06 20:46:51  southa
+ * Build fixes
+ *
  * Revision 1.2  2004/01/05 20:13:15  southa
  * Target and test updates
  *
@@ -22,7 +25,7 @@
  *
  */
 
-#include "SecondaryMain.h"
+#include "Main/SecondaryMain.h"
 
 #include "mushMushcore.h"
 

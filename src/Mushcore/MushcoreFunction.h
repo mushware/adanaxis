@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Kp4Jl1oHU4Rjlx1Kd3Z5/w
 /*
- * $Id: MushcoreFunction.h,v 1.8 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.9 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreFunction.h,v $
+ * Revision 1.9  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -96,7 +99,7 @@ public:
     inline void CommandAdd(const std::string& inStr);
     const std::string& NameGet(void) const { return m_name; }
     const std::string& CommandGet(Mushware::U32 inIndex) const { return m_commands[inIndex]; }
-    Mushware::U32 SizeGet(void) const { return m_commands.size(); }
+	std::size_t SizeGet(void) const { return m_commands.size(); }
     
     void ThrowErrorExecute(void) const;
     void CoalesceErrorsExecute(void) const;

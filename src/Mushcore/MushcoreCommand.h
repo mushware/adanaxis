@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } b2giwVnFFCmno+TrCr9WSA
 /*
- * $Id: MushcoreCommand.h,v 1.8 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.9 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.9  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -110,7 +113,7 @@ public:
     void Execute(void);
     const std::string& Name(void) const { return m_name; }
     const MushcoreParamList& ParamListGet(void) const { return m_paramList; }
-    Mushware::U32 NumParams(void) { return m_paramList.NumParams(); }
+	std::size_t NumParams(void) { return m_paramList.NumParams(); }
     std::string AllParams(void);
     std::string PopString(void);
     Mushware::tVal PopVal(void);

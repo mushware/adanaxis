@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.10 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushMeshVector.h,v 1.11 2004/01/06 00:34:56 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.11  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.10  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -110,12 +113,19 @@ public:
 protected:
     void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushMeshUtils::BoundaryThrow(i, D); }
 
+#ifdef MUSHWARE_NO_TEMPLATE_FRIENDS
+	/* Make private data public if template friends are not allowed.
+	 * Other builds will catch disallowed access
+	 */
+public:
+#endif
     T m_value[D]; // Data values.  Subclasses allowed to access for efficiency
-    
+
 private:
 
+#ifndef MUSHWARE_NO_TEMPLATE_FRIENDS
     // Declare various operators which need acess to m_value as friends
-    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    friend template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator-=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const fnI& b);
@@ -125,6 +135,7 @@ private:
     template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
     template <class fnT, Mushware::U32 fnD> friend bool operator==(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
     template <class fnT, Mushware::U32 fnD> friend bool operator!=(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+#endif
 };
 
 // Operator helper functions

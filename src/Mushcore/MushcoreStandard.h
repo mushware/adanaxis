@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.15 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.16 2004/01/04 17:02:30 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.16  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.15  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -171,6 +174,19 @@
 #include "config.h"
 #endif
 
+#ifdef _MSC_VER
+/* Disable type truncation warnings */
+#pragma warning(disable: 4244 4305 4267)
+
+/* MSVC doesn't support template friend functions */
+#define MUSHWARE_NO_TEMPLATE_FRIENDS 1
+
+/* MSVC std::valarray doesn't have const T& operator[] const,
+ * so use the mimic instead
+ */
+#define MUSHCORE_MIMIC_VALARRAY 1
+#endif
+
 #include <iosfwd>
 #include <list>
 #include <map>
@@ -195,7 +211,7 @@ namespace Mushware
     typedef double tXMLVal;
 };
 
-#ifdef MIMIC_VALARRAY
+#ifdef MUSHCORE_MIMIC_VALARRAY
 // Mimic valarray using vector
 #define MushwareValarray std::vector
 #else
@@ -205,12 +221,6 @@ namespace Mushware
 
 
 #define MUSHCOREASSERT(exp) assert(exp)
-
-#ifdef _MSC_VER
-#define MUSHCORE_TYPENAME
-#else
-#define MUSHCORE_TYPENAME typename
-#endif
 
 //%includeGuardEnd {
 #endif

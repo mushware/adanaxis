@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cZY3DRAbHGzPb8Rixe5igw
 /*
- * $Id: MushMeshConnector.h,v 1.3 2003/10/20 13:02:53 southa Exp $
+ * $Id: MushMeshConnector.h,v 1.4 2004/01/02 21:13:10 southa Exp $
  * $Log: MushMeshConnector.h,v $
+ * Revision 1.4  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/20 13:02:53  southa
  * Patch fixes and testing
  *
@@ -38,7 +41,7 @@ class MushMeshConnector
 {
 public:
     MushMeshConnector();
-    MushMeshConnector(MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1,
+    MushMeshConnector(MushMeshPatch& ioPatch0, MushMeshPatch::tEdgeSelector inEdge0,
         MushMeshPatch& ioPatch1, MushMeshPatch::tEdgeSelector inEdge1);
 
     void StitchingUpdate(void);

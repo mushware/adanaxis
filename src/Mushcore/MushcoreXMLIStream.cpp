@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.16 2004/01/08 22:41:10 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.17 2004/01/18 18:25:29 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.17  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.16  2004/01/08 22:41:10  southa
  * MushModel commands
  *
@@ -264,12 +267,12 @@ MushcoreXMLIStream::InputFetch(void)
             Throw("Read failure");
         }
         
-        U32 startPos;
+		std::size_t startPos;
         while (startPos = newStr.find("<!--"), startPos != string::npos)
         {
             m_contentStr += newStr.substr(0, startPos);
         
-            U32 endPos;
+			std::size_t endPos;
             
             while (endPos = newStr.find("-->", startPos), endPos == string::npos)
             {
@@ -317,9 +320,9 @@ MushcoreXMLIStream::DataUntilTake(const string& inStr)
 U32
 MushcoreXMLIStream::TagGet(string& outTag, const string& inStr, U32 inPos)
 {
-    U32 startPos = inStr.find('<', inPos);
+	std::size_t startPos = inStr.find('<', inPos);
     if (startPos == string::npos) return 0;
-    U32 endPos = inStr.find('>', startPos);
+    std::size_t endPos = inStr.find('>', startPos);
     if (endPos == string::npos)
     {
         Throw("Unclosed tag");

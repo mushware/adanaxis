@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l6e5pdefOkqZRS3BnyRMLA
 /*
- * $Id: MushMeshTriangularArray.h,v 1.4 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushMeshTriangularArray.h,v 1.5 2004/01/05 14:27:41 southa Exp $
  * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.5  2004/01/05 14:27:41  southa
+ * MushPie work and build fixes
+ *
  * Revision 1.4  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -106,7 +109,7 @@ private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_order;
 
-    MushwareValarray<T> m_values;
+	MushwareValarray<T> m_values;
 };
 
 template <class T>

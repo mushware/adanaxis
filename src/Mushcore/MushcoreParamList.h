@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 9AoMJ3ATUg0igHSlgy6ufg
 /*
- * $Id: MushcoreParamList.h,v 1.7 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreParamList.h,v 1.8 2004/01/02 21:13:13 southa Exp $
  * $Log: MushcoreParamList.h,v $
+ * Revision 1.8  2004/01/02 21:13:13  southa
+ * Source conditioning
+ *
  * Revision 1.7  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -95,7 +98,7 @@ public:
     
     void PushParam(const MushcoreScalar& inScalar) { m_params.push_back(inScalar); }
  
-    Mushware::U32 NumParams(void) { return m_params.size(); }
+	std::size_t NumParams(void) { return m_params.size(); }
     void Clear(void) { m_params.clear(); };
     bool Empty(void) { return m_params.empty(); }
     void Print(std::ostream& ioOut) const;

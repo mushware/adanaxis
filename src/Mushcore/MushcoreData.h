@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.17 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushcoreData.h,v 1.18 2004/01/18 18:25:29 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.18  2004/01/18 18:25:29  southa
+ * XML stream upgrades
+ *
  * Revision 1.17  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -140,9 +143,9 @@ template<class RefType, class KeyType = std::string>
 class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
 {
 public:
-    typedef MUSHCORE_TYPENAME std::map<KeyType, RefType *> tMap;
-    typedef MUSHCORE_TYPENAME tMap::iterator tMapIterator;
-    typedef MUSHCORE_TYPENAME tMap::const_iterator tMapConstIterator;
+    typedef typename std::map<KeyType, RefType *> tMap;
+    typedef typename tMap::iterator tMapIterator;
+    typedef typename tMap::const_iterator tMapConstIterator;
 
     inline MushcoreData();
     inline ~MushcoreData();
@@ -325,28 +328,28 @@ MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut)
 }
 
 template<class RefType, class KeyType>
-inline MUSHCORE_TYPENAME MushcoreData<RefType, KeyType>::tMapIterator
+inline typename MushcoreData<RefType, KeyType>::tMapIterator
 MushcoreData<RefType, KeyType>::Begin(void)
 {
     return m_data.begin();
 }
 
 template<class RefType, class KeyType>
-inline MUSHCORE_TYPENAME MushcoreData<RefType, KeyType>::tMapIterator
+inline typename MushcoreData<RefType, KeyType>::tMapIterator
 MushcoreData<RefType, KeyType>::End(void)
 {
     return m_data.end();
 }
 
 template<class RefType, class KeyType>
-inline MUSHCORE_TYPENAME MushcoreData<RefType, KeyType>::tMapConstIterator
+inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
 MushcoreData<RefType, KeyType>::Begin(void) const
 {
     return m_data.begin();
 }
 
 template<class RefType, class KeyType>
-inline MUSHCORE_TYPENAME MushcoreData<RefType, KeyType>::tMapConstIterator
+inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
 MushcoreData<RefType, KeyType>::End(void) const
 {
     return m_data.end();

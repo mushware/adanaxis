@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } AqRkhzf74kOxwRFo7CMCSw
 /*
- * $Id: MushcoreIO.h,v 1.7 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreIO.h,v 1.8 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.8  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.7  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -107,7 +110,7 @@ operator<<(std::ostream& ioOut, const std::vector<T *>& inObj)
     return ioOut;
 }
 
-#ifndef MIMIC_VALARRAY
+#ifndef MUSHCORE_MIMIC_VALARRAY
 // valarray output
 template <class T>
 inline std::ostream&
