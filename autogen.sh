@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/csh
 #
 ##############################################################################
 #
@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.10 2003/01/15 11:19:37 southa Exp $
+# $Id: autogen.sh,v 1.12 2003/01/20 17:03:19 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.12  2003/01/20 17:03:19  southa
+# Command line expression evaluator enhancements
+#
 # Revision 1.10  2003/01/15 11:19:37  southa
 # Fixed library linking
 #
@@ -46,21 +49,22 @@
 chmod +x autogen.sh
 chmod +x install-sh
 
-case "$1" in
-ic2)
+switch ($1)
+case ic2:
     echo Building configuration for package ic2
     echo
     cp -f ic2.configure.in configure.in
     cp -f ic2.Makefile.am Makefile.am
     chmod +x ic2
-    
+
     cd src
     echo Building Makefile.am in `pwd`
     echo 'bin_PROGRAMS=ic2binary' > Makefile.am
     echo -n 'ic2binary_SOURCES=' >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name '*.cpp' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name '*.h' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    foreach module ( Game GL Media Platform Mushcore Mustl Main API)
+    find $module -path 'Platform/*/*' -prune -o \( -name '*.cpp' -o -name '*.h' \) -exec echo -n " " {} \;  >> Makefile.am
+    end
+    find Support -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
     echo INCLUDES=-I\$\{srcdir\}/API >> Makefile.am
     echo -n 'EXTRA_DIST=' >> Makefile.am
@@ -68,7 +72,7 @@ ic2)
     find . -path './Platform/*/*' -a -name '*.cpp' -exec echo -n " " {} \;  >> Makefile.am
     echo '' >> Makefile.am
     cd ..
-    
+
     cd ic2data
     echo Building data Makefile.am in `pwd`
     rm -f Makefile.am
@@ -76,9 +80,9 @@ ic2)
     find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
     echo '' >> Makefile.am
     cd ..
-    ;;
-    
-mustl)
+breaksw
+
+case mustl:
     echo Building configuration for package mustl
     echo
     cp -f mustl.configure.in configure.in
@@ -91,12 +95,12 @@ mustl)
     find . -name 'Mustl*.h' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
-    
+
     echo 'library_includedir=$(includedir)/Mustl' >> Makefile.am
     echo -n 'library_include_HEADERS=' >> Makefile.am
     find . -name 'Mustl*.h' -exec echo -n " " {} \;  >> Makefile.am
     echo '' >> Makefile.am
-    
+
     echo 'bin_PROGRAMS=test_mustl' >> Makefile.am
     echo -n 'test_mustl_SOURCES=' >> Makefile.am
     find . -name 'TestMustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
@@ -104,7 +108,7 @@ mustl)
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
     echo 'test_mustl_LDADD=libmustl.la -lmushcore -lexpat -lpcre' >> Makefile.am
-    # Make sure that Mustl is in the include path for the test application    
+    # Make sure that Mustl is in the include path for the test application
     echo 'test_mustl_CXXFLAGS=-I${srcdir}/Mustl $(AM_CXXFLAGS)' >> Makefile.am
 
     cd ..
@@ -113,10 +117,9 @@ mustl)
     find test/mustl -name '*.html' -exec echo -n " " {} \;  >> Makefile.am
     find test/mustl -name '*.css' -exec echo -n " " {} \;  >> Makefile.am
     echo '' >> Makefile.am
+breaksw
 
-    ;;
-
-mushcore)
+case mushcore:
     echo Building configuration for package mushcore
     echo
     cp -f mushcore.configure.in configure.in
@@ -131,7 +134,7 @@ mushcore)
     find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
-    
+
     echo 'library_includedir=$(includedir)/Mushcore' >> Makefile.am
     echo -n 'library_include_HEADERS=' >> Makefile.am
     find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
@@ -156,14 +159,16 @@ mushcore)
     echo '' >> Makefile.am
 
     cd ..
+breaksw
 
-    ;;
 
+default:
+    echo Please supply a package name to build.  Choices are ic2, mustl, 
+mushcore.
+    exit 1
+breaksw
 
-*)
-echo Please supply a package name to build.  Choices are ic2, mustl, mushcore.
-exit 1
-esac
+endsw
 
 
 aclocal

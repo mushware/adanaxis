@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.30 2003/01/14 17:38:20 southa Exp $
+ * $Id: GameSetup.cpp,v 1.31 2003/01/20 10:45:27 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.31  2003/01/20 10:45:27  southa
+ * Singleton tidying
+ *
  * Revision 1.30  2003/01/14 17:38:20  southa
  * Mustl web configuration
  *
@@ -282,7 +285,15 @@ GameSetup::KeyControl(void)
                 MustlLog::Sgl().WebLog() << e.what() << endl;
             }
         }
-        PlatformMiscUtils::LaunchURL(m_configURL);
+        try
+        {
+            PlatformMiscUtils::LaunchURL(m_configURL);
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            cerr << "Exception: " << e.what() << endl;
+            cerr << "Please open the URL manually if necessary." << endl;
+        }
         m_windowClicked=true;
     }
 }

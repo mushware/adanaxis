@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.9 2003/01/12 17:33:02 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.10 2003/01/20 10:45:32 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.10  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.9  2003/01/12 17:33:02  southa
  * Mushcore work
  *
@@ -53,17 +56,24 @@ PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
 PlatformVideoUtils::PlatformVideoUtils()
 {
-    m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, 
+GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, 
+GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
 
-    m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, 
+GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
-    m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, 
+GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
-    m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, 
+GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
-    m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, 
+GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, 
+GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 ;
 }
 
@@ -79,7 +89,8 @@ PlatformVideoUtils::ModeDefGet(U32 inNum)
     if (inNum >= m_modeDefs.size())
     {
         ostringstream message;
-        message << "Mode number " << inNum << " too high (max " << m_modeDefs.size() << ")";
+        message << "Mode number " << inNum << " too high (max " << 
+m_modeDefs.size() << ")";
         throw(MushcoreReferenceFail(message.str()));
     }
     return m_modeDefs[inNum];
@@ -132,6 +143,11 @@ PlatformVideoUtils::VBLWait(void)
 
 void
 PlatformVideoUtils::ForceShowCursor(void)
+{
+}
+
+void
+PlatformVideoUtils::AppActivate(void)
 {
 }
 

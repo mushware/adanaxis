@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.16 2003/01/20 10:45:32 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.17 2003/02/05 18:49:52 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.17  2003/02/05 18:49:52  southa
+ * Build fixes
+ *
  * Revision 1.16  2003/01/20 10:45:32  southa
  * Singleton tidying
  *
@@ -113,7 +116,8 @@ PlatformMiscUtils::GetApplPath(int argc, char *argv[])
     pos = systemPath.rfind('/', pos-1);
     if (pos==string::npos || pos == 0)
     {
-        cerr << "Couldn't decode application path from '" << systemPath << "'" << endl;
+        cerr << "Couldn't decode application path from '" << systemPath << "'" 
+<< endl;
         exit(1);
     }
     systemPath.resize(pos);
@@ -171,7 +175,38 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
 }
 
 void
+PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const 
+string& inDirName)
+{
+    DIR *dirPtr = opendir(inDirName.c_str());
+    if (dirPtr == NULL)
+    {
+        throw(MushcoreCommandFail("Cannot open directory '" + inDirName + "'"));
+    }
+    struct dirent *entry;
+    while (entry = readdir(dirPtr), entry != NULL)
+    {
+        struct stat statInfo;
+        lstat(entry->d_name, &statInfo);
+        if(S_ISDIR(statInfo.st_mode))
+        {
+            string name=entry->d_name;
+            if (name != "." && name != ".." && name != "CVS")
+            {
+                outFilenames.push_back(name);
+            }
+        }
+    }
+    closedir(dirPtr);
+}
+
+void
 PlatformMiscUtils::ErrorBox(const string& inStr)
+{
+}
+
+void
+PlatformMiscUtils::MinorErrorBox(const string& inStr)
 {
 }
 
@@ -192,4 +227,40 @@ PlatformMiscUtils::ShowUpdateAlert(void)
 void
 PlatformMiscUtils::LaunchFile(const string& inFile)
 {
+}
+
+void
+PlatformMiscUtils::LaunchURL(const string& inURL)
+{
+    // Try various URL openers until we find one that works
+    vector<string> browserCommands;
+    
+    char *browserVar=getenv("BROWSER");
+    if (browserVar != NULL)
+    {
+        browserCommands.push_back(browserVar);
+    }
+    browserCommands.push_back("kfmclient openURL");
+    browserCommands.push_back("galeon --new-window");
+    browserCommands.push_back("opera -newbrowser");
+    browserCommands.push_back("mozilla");
+    browserCommands.push_back("konqueror");
+    browserCommands.push_back("netscape");
+
+    for (U32 i=0; i < browserCommands.size(); ++i)
+    {
+        string launchCommand = browserCommands[i];
+        launchCommand += " '"+inURL+"' &";
+        if (system(launchCommand.c_str()) == 0)
+        {
+            return;
+        }
+    }
+    throw MushcoreRequestFail("Could not open URL '"+inURL+"'");
+}
+
+void
+PlatformMiscUtils::SleepMsec(U32 inMsec)
+{
+    usleep(inMsec*1000);
 }
