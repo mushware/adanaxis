@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.4 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameTypeRace.h,v 1.5 2002/08/21 10:12:21 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.5  2002/08/21 10:12:21  southa
+ * Time down counter
+ *
  * Revision 1.4  2002/08/20 11:43:25  southa
  * GameRewards added
  *
@@ -38,7 +41,7 @@ public:
     virtual void Move(void) {}
     virtual void EventHandler(GameEvent& inEvent);
     virtual void SequenceAdvance(void);
-    virtual void Render(void) const;
+    virtual void Render(void);
     
 protected:
     void UnpicklePrologue(void);
@@ -53,6 +56,8 @@ private:
     void HandleGameEnd(CoreXML& inXML);
     void HandleLapTimeEnd(CoreXML& inXML);
     void HandleStartActionEnd(CoreXML& inXML);
+    void HandleFinalLapActionEnd(CoreXML& inXML);
+    void HandleEndActionEnd(CoreXML& inXML);
     void HandleInitialTimeEnd(CoreXML& inXML);
     void HandleLapsEnd(CoreXML& inXML);
     void HandleChequePointStart(CoreXML& inXML);
@@ -65,27 +70,45 @@ private:
         kPickleWithinBase,
         kPickleNumStates
     };
-
+    
     typedef map<string, void (GameTypeRace::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
 
+    // End of pickle
+    enum RaceState
+    {
+        kInvalid,
+        kPrelude,
+        kRunning,
+        kResult
+    };
+
+    void UpdateTimes(void);
+    void RenderTimes(void) const;
+    
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
     GameTimer::tMsec m_startTime;
     GameRecords m_records;
     GameTimer::tMsec m_lapStartTime;
     GameTimer::tMsec m_chequePointTime;
+    GameTimer::tMsec m_dispRemaining;
+    GameTimer::tMsec m_dispLap;
+    GameTimer::tMsec m_dispSplit;
     GameTimer::tMsec m_lapParTime;
     GameTimer::tMsec m_timeAllowance;
-    bool m_raceStarted;
+    RaceState m_raceState;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
     string m_startAction;
+    string m_endAction;
+    string m_finalLapAction;
     U32 m_laps;
     U32 m_lapCount;
+    tVal m_initialTime;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)
