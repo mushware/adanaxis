@@ -1,6 +1,9 @@
 /*
- * $Id: GLTexture.cpp,v 1.11 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTexture.cpp,v 1.12 2002/06/02 15:18:52 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.12  2002/06/02 15:18:52  southa
+ * Texture bitmap renderer
+ *
  * Revision 1.11  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *
@@ -93,6 +96,9 @@ GLTexture::BindTexture(void) const
     COREASSERT(!m_bound);
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+
     glTexImage2D(
 	GL_TEXTURE_2D, // target
 	0, // level
