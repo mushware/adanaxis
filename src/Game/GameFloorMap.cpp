@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.15 2002/07/31 16:27:16 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.16 2002/08/01 16:47:11 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.16  2002/08/01 16:47:11  southa
+ * First multi-box collsion checking
+ *
  * Revision 1.15  2002/07/31 16:27:16  southa
  * Collision checking work
  *
@@ -91,7 +94,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
     COREASSERT(m_tileMap != NULL);
 
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    U32 timeNow=glAppHandler.GetMilliseconds();
+    U32 timeNow=glAppHandler.MillisecondsGet();
     tVal xv=50*cos(timeNow/450.0);
     tVal yv=50*sin(timeNow/450.0);
     

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.37 2002/08/02 09:05:10 southa Exp $
+ * $Id: GameContract.cpp,v 1.38 2002/08/02 12:56:39 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.38  2002/08/02 12:56:39  southa
+ * Working collision checking
+ *
  * Revision 1.37  2002/08/02 09:05:10  southa
  * Movement modification in collison checking
  *
@@ -140,6 +143,7 @@
 #include "GameMapArea.h"
 #include "GameMotionSpec.h"
 #include "GameView.h"
+#include "GameTimer.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -210,37 +214,42 @@ GameContract::InitDisplay(void)
     GLUtils::DisplayEpilogue();
 }
 
+
+void
+GameContract::RunningMove(tVal inStep)
+{
+    GameMotionSpec motion;
+    m_player->MoveGet(motion);
+    if (m_renderDiagnostics)
+    {
+        m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
+    }
+    m_floorMap->SolidMapGet().TrimMotion(motion);
+    m_player->MoveConfirm(motion);
+    if (m_renderDiagnostics)
+    {
+        motion.Render();
+    }
+}
+
 void
 GameContract::RunningDisplay(void)
 {
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
 
-    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
     GLPoint aimingPoint=GLPoint(m_player->XGet() / m_floorMap->XStep(),
                                 m_player->YGet() / m_floorMap->YStep());
-    {
-        GameMotionSpec motion;
-        m_player->MoveGet(motion);
-        if (m_renderDiagnostics)
-        {
-            m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
-        }
-        m_floorMap->SolidMapGet().TrimMotion(motion);
-        m_player->MoveConfirm(motion);
-        if (m_renderDiagnostics)
-        {
-            motion.Render();
-        }
-    }
+
     GLUtils::OrthoLookAt(m_player->XGet(), m_player->YGet(), m_player->AngleGet());
     GameMapArea visibleArea;
-    tVal xRadius=(gameHandler.WidthGet() / 2) / m_floorMap->XStep();
-    tVal yRadius=(gameHandler.HeightGet() / 2) / m_floorMap->YStep();
+    tVal xRadius=(gameAppHandler.WidthGet() / 2) / m_floorMap->XStep();
+    tVal yRadius=(gameAppHandler.HeightGet() / 2) / m_floorMap->YStep();
     tVal circleRadius=1+sqrt(xRadius*xRadius + yRadius*yRadius);
     visibleArea.CircleAdd(aimingPoint, circleRadius);
 
@@ -284,6 +293,10 @@ GameContract::RunningDisplay(void)
     GLUtils::BitmapText(message.str());
     GLUtils::OrthoEpilogue();
     GLUtils::DisplayEpilogue();
+
+    // Register displayed time
+
+    m_timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
     ++m_frames;
 }
 
@@ -320,29 +333,86 @@ GameContract::Init(void)
 void
 GameContract::Running(void)
 {
-    GLUtils::PostRedisplay();
-    {
-        static U32 lastPrint=0;
-        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
-        U32 timeNow=glAppHandler.GetMilliseconds();
-        //srand(timeNow);
-        if (timeNow > lastPrint && timeNow - lastPrint > 5000)
-        {
-            // Print FPS every 5 seconds
-            m_fps=(((double) m_frames * 1000) / (timeNow - lastPrint));
-            cout << "FPS " << m_fps << endl;
-            lastPrint=timeNow;
-            m_frames=0;
-        }
-    }
-    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameHandler.KeyStateGet('d'))
+    m_timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+    
+    if (m_timer.JudgementValid())
     {
-        gameHandler.SetCursorState(true);
+        tVal numMotionFrames=m_timer.MotionFramesGet();
+        // cerr << "numMotionFrames=" << numMotionFrames << endl;
+        if (numMotionFrames > 4) numMotionFrames=4;
+        for (tVal i=0; i<numMotionFrames; ++i)
+        {
+            // Perform a motion frame
+            RunningMove();
+        }
+        m_timer.MotionFramesDone(numMotionFrames);
+        
+        tVal partialMotionFrame=m_timer.PartialMotionFrameGet();
+
+        if (partialMotionFrame > 0)
+        {
+            RunningMove(partialMotionFrame);
+            m_timer.PartialMotionFrameDone(partialMotionFrame);
+        }
+
+        // Discard any motion frames we haven't caught up with
+        m_timer.MotionFramesDiscard();
+
+        if (m_timer.RedisplayGet())
+        {
+            GLUtils::PostRedisplay();
+            m_timer.RedisplayDone();
+        }
+
+        tVal numPeriodic10ms=m_timer.Periodic10msGet();
+        // cerr << "numPeriodic10ms=" << numPeriodic10ms << endl;
+        for (tVal i=0; i<numPeriodic10ms; ++i)
+        {
+            if (i == 0)
+            {
+                GlobalKeyControl();
+            }
+        }
+        m_timer.Periodic10msDone(numPeriodic10ms);
+        
+        tVal numPeriodic1s=m_timer.Periodic1sGet();
+        // cerr << "numPeriodic1s=" << numPeriodic1s << endl;
+        for (tVal i=0; i<numPeriodic1s; ++i)
+        {
+            static U32 lastPrint=0;
+            //srand(timeNow);
+            if (++lastPrint >= 5)
+            {
+                // Print FPS every 5 seconds
+                m_fps=m_frames/5.0;
+                cout << "FPS " << m_fps << endl;
+                lastPrint=0;
+                m_frames=0;
+            }
+            m_timer.Periodic1sDone(1);
+        }
+        m_timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+        // CoreUtils::Sleep(m_timer.SleepTimeGet());
+    }
+}
+
+void
+GameContract::GlobalKeyControl(void)
+{
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    if (gameAppHandler.KeyStateGet('p'))
+    {
+        gameAppHandler.SetCursorState(false);
+        m_gameState=kRunning;
+    }
+    if (gameAppHandler.KeyStateGet('d'))
+    {
+        gameAppHandler.SetCursorState(true);
         m_gameState=kDesigning;
     }
-    if (gameHandler.LatchedKeyStateTake('m'))
+    if (gameAppHandler.LatchedKeyStateTake('m'))
     {
         m_renderDiagnostics=!m_renderDiagnostics;
     }
@@ -353,12 +423,7 @@ GameContract::Designing(void)
 {
     m_floorDesigner->Move();
     GLUtils::PostRedisplay();
-    GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameHandler.KeyStateGet('p'))
-    {
-        gameHandler.SetCursorState(false);
-        m_gameState=kRunning;
-    }
+    GlobalKeyControl();
 }
 
 void

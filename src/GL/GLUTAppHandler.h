@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.6 2002/07/19 15:44:40 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.7 2002/08/02 12:56:39 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.7  2002/08/02 12:56:39  southa
+ * Working collision checking
+ *
  * Revision 1.6  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *
@@ -56,7 +59,7 @@ public:
     virtual void SwapBuffers(void);
     virtual U32 WidthGet(void) const {return m_width;}
     virtual U32 HeightGet(void) const {return m_height;}
-    virtual U32 GetMilliseconds(void) const;
+    virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     
 protected:

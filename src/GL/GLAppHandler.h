@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.12 2002/07/19 15:44:39 southa Exp $
+ * $Id: GLAppHandler.h,v 1.13 2002/08/02 12:56:38 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.13  2002/08/02 12:56:38  southa
+ * Working collision checking
+ *
  * Revision 1.12  2002/07/19 15:44:39  southa
  * Graphic optimisations
  *
@@ -91,7 +94,7 @@ public:
     virtual void SwapBuffers(void) = 0;
     virtual U32 WidthGet(void) const = 0;
     virtual U32 HeightGet(void) const = 0;
-    virtual U32 GetMilliseconds(void) const = 0;
+    virtual U32 MillisecondsGet(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
 };
 #endif

@@ -59,7 +59,7 @@ public:
     virtual void SwapBuffers(void);
     virtual U32 WidthGet(void) const {return m_width;}
     virtual U32 HeightGet(void) const {return m_height;}
-    virtual U32 GetMilliseconds(void) const;
+    virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     
 protected:

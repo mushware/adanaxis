@@ -235,7 +235,7 @@ SDLAppHandler::SwapBuffers(void)
 }
 
 U32
-SDLAppHandler::GetMilliseconds(void) const
+SDLAppHandler::MillisecondsGet(void) const
 {
     return SDL_GetTicks();
 }

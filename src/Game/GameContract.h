@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.14 2002/07/18 11:40:34 southa Exp $
+ * $Id: GameContract.h,v 1.15 2002/08/02 12:56:40 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.15  2002/08/02 12:56:40  southa
+ * Working collision checking
+ *
  * Revision 1.14  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -60,6 +63,7 @@
 #include "mushCore.h"
 
 #include "GameBase.h"
+#include "GameTimer.h"
 
 class GameFloorMap;
 class GameTileMap;
@@ -95,7 +99,8 @@ protected:
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
     virtual void DesigningDisplay(void);
-
+    virtual void GlobalKeyControl(void);
+    virtual void RunningMove(tVal inStep=1.0);
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
@@ -129,6 +134,7 @@ private:
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
     bool m_renderDiagnostics;
+    GameTimer m_timer;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

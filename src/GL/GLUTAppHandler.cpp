@@ -190,7 +190,7 @@ GLUTAppHandler::SwapBuffers(void)
 }
 
 U32
-GLUTAppHandler::GetMilliseconds(void) const
+GLUTAppHandler::MillisecondsGet(void) const
 {
     return glutGet(GLUT_ELAPSED_TIME);
 }
