@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.5 2002/11/22 11:42:06 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.6 2002/11/23 14:45:34 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.6  2002/11/23 14:45:34  southa
+ * Replaced access to server port
+ *
  * Revision 1.5  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -106,10 +109,16 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     else if (matches[1] == "joingame")
     {
         GameConfig::Instance().PostDataHandle(values);
-        GameDef *gameDef = CoreData<GameDef>::Instance().DataGive("client", new GameDef);
-
-        gameDef->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
-                          GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
+        GameDefClient& gameDefClient = dynamic_cast<GameDefClient&>(*CoreData<GameDef>::Instance().DataGive("client", new GameDefClient));
+        gameDefClient.JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
+                               GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
+    }
+    else if (matches[1] == "hostgame")
+    {
+        GameConfig::Instance().PostDataHandle(values);
+        GameDefServer& gameDefServer = dynamic_cast<GameDefServer&>(*CoreData<GameDef>::Instance().DataGive("server", new GameDefServer));
+        gameDefServer.HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
+                               GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
     }
     else if (matches[1] == "quit")
     {
@@ -177,7 +186,26 @@ GameWebCommands::GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
         ioEnv.Out() << "Not active";
     }
     ioEnv.Out() << endl;
-    ioEnv.Out() << "<br><br><font class=\"boldtitle\">Link status</font>" << endl;
+
+    // Server state
+    GameDef *gameDef=NULL;
+    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "server"))
+    {
+        ioEnv.Out() << "<br><br><font class=\"boldtitle\">Hosting Game</font><br><br>" << endl;
+        COREASSERT(gameDef != NULL);
+        gameDef->WebPrint(ioEnv.Out());
+    }
+
+    // Client state
+    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "client"))
+    {
+        ioEnv.Out() << "<br><br><font class=\"boldtitle\">Joining Game</font><br><br>" << endl;
+        COREASSERT(gameDef != NULL);
+        gameDef->WebPrint(ioEnv.Out());
+    }
+
+    // Link status
+    ioEnv.Out() << "<br><br><font class=\"boldtitle\">Link Status</font>" << endl;
 
     ioEnv.Out() << "<br><br><table class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
     ioEnv.Out() << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";

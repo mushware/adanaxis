@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.7 2002/11/23 17:23:44 southa Exp $
+ * $Id: GameSetup.cpp,v 1.8 2002/11/24 00:29:08 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.8  2002/11/24 00:29:08  southa
+ * Serve web pages to local addresses only
+ *
  * Revision 1.7  2002/11/23 17:23:44  southa
  * Sleep in setup
  *
@@ -27,6 +30,7 @@
 #include "GameSetup.h"
 
 #include "GameAppHandler.h"
+#include "GameConfig.h"
 #include "GameConfigDef.h"
 #include "GameDef.h"
 
@@ -147,41 +151,50 @@ GameSetup::Config(void)
 {
     MediaNetWebServer::Instance().Accept();
     MediaNetWebRouter::Instance().ReceiveAll();
-    static U32 ctr=0;
-    ++ctr;
-    if (ctr == 500)
-    {
-        try
-        {
-            MediaNetServer::Instance().Connect(7121);
-            CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
-        }
-        catch (NetworkFail& e)
-        {
-            MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what();
-            PlatformMiscUtils::MinorErrorBox(e.what());
-        }
-            
-    }
-    else if (ctr > 100)
-    {
-        try
-        {
-            MediaNetServer::Instance().Accept();
-            MediaNetRouter::Instance().ReceiveAll();
-        }
-        catch (NetworkFail& e)
-        {
-            MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
-        }
-    }
 
+    try
+    {
+        MediaNetServer::Instance().Accept();
+        MediaNetRouter::Instance().ReceiveAll();
+    }
+    catch (NetworkFail& e)
+    {
+        MediaNetLog::Instance().NetLog() << "Network exception: " << e.what() << endl;
+    }
+   
+    bool netActive=false;
     GameDef *gameDef = NULL;
     if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "client"))
     {
+        netActive=true;
         COREASSERT(gameDef != NULL);
         gameDef->Ticker();
     }
+    if (CoreData<GameDef>::Instance().DataGetIfExists(gameDef, "server"))
+    {
+        netActive=true;
+        COREASSERT(gameDef != NULL);
+        gameDef->Ticker();
+    }
+
+    if (netActive)
+    {
+        if (!MediaNetServer::Instance().IsServing())
+        {
+            U32 portNum=GameConfig::Instance().ParameterGet("multiport").U32Get();
+            
+            try
+            {
+                MediaNetServer::Instance().Connect(portNum);
+            }
+            catch (NetworkFail& e)
+            {
+                MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what();
+                PlatformMiscUtils::MinorErrorBox(e.what());
+            }
+        }
+    }
+
     
     KeyControl();
     GLUtils::PostRedisplay();
