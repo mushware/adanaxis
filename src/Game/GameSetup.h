@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.h,v 1.9 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameSetup.h,v 1.10 2003/01/11 13:03:14 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.10  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.9  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -61,6 +64,8 @@ protected:
     void Config(void);
     void Ticker(void);
     void KeyControl(void);
+
+    static bool MustlPermissionFunction(const std::string& inAddress);
     
 private:
     enum

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.31 2003/01/20 10:45:27 southa Exp $
+ * $Id: GameSetup.cpp,v 1.32 2003/02/06 18:55:27 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.32  2003/02/06 18:55:27  southa
+ * Linux build fixes
+ *
  * Revision 1.31  2003/01/20 10:45:27  southa
  * Singleton tidying
  *
@@ -222,6 +225,7 @@ GameSetup::ConfigInit(void)
     U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
     try
     {
+        MustlWebServer::Sgl().PermissionFunctionSet(MustlPermissionFunction);
         MustlWebServer::Sgl().Connect(webPort);
     }
     catch (MushcoreNonFatalFail& e)
@@ -313,4 +317,10 @@ GameSetup::SwapIn(GameAppHandler& inAppHandler)
 void
 GameSetup::SwapOut(GameAppHandler& inAppHandler)
 {
+}
+
+bool
+GameSetup::MustlPermissionFunction(const std::string& inAddress)
+{
+    return PlatformMiscUtils::PermissionBox("A connection is being attempted from address "+inAddress+".  Would you like to allow this?", false);
 }
