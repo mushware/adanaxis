@@ -2,12 +2,53 @@
 <!-- Tile map -->
 <tilemap version="0.0">
 <script type="text/core">
-	loadpixmap('floor1',$IMAGEPATH+'/images/floor1.tiff')
-	loadpixmap('wall1',$IMAGEPATH+'/images/wall1.tiff')
+loadpixmap('floor1',$IMAGEPATH+'/images/floor1.tiff')
+loadpixmap('wall1',$IMAGEPATH+'/images/wall1.tiff')
 	
 <!-- decompose options are src, dest, xsize, ysize, xstart, ystart, xnum, ynum -->
 decompose('floor1','floor_@',32,32)
 decompose('wall1','wall_@',32,32)
+<!-- Idealised command set
+pixmapflags('floor1',1,1); /* pixmapflags(<name>,<tesellates x>,<tesellates y>) */
+
+<traits type="tile">
+<name>openspace</name>
+<collision>0</collision>
+<transparent>1</transparent>
+</traits>
+
+<traits type="tile">
+<name>slippery</name>
+<adhesion>0.2</adhesion>
+</traits>
+
+<traits type="tile" name="landmine">
+<object type="static" name="landmine">
+<offset>0.3,0.3</offset>
+</object>
+</traits>
+
+<traits type="tile" name="tiledfloor">
+<base>openspace,slippery</base>
+<stepsound>clomp1</stepsound>
+</traits>
+
+<tile number="10">
+<pixmap>floor_0_1</pixmap>
+<traits>tiledfloor</traits>
+</tile>
+
+<tile number="11">
+<animate type="dingdong">
+<duration>0.5s</duration>
+</animate>
+
+<pixmap>floor_0_1</pixmap>
+<traits>tiledfloor</traits>
+</tile>
+
+-->
+
 </script>
 <map>10 floor_0_1</map>
 <map>11 floor_1_1</map>
