@@ -85,7 +85,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 103";
 		rLen = 0;
-		rLoc = 6577;
+		rLoc = 7097;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 0;
@@ -105,7 +105,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 10864;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 9971;
@@ -165,7 +165,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 990";
 		rLen = 0;
-		rLoc = 27192;
+		rLoc = 26573;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 9949;
@@ -245,7 +245,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 103";
 		rLen = 0;
-		rLoc = 3010;
+		rLoc = 3273;
 		rType = 0;
 		vrLen = 767;
 		vrLoc = 1642;
@@ -305,7 +305,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: LinkIsUp";
 		rLen = 0;
-		rLoc = 1436;
+		rLoc = 1404;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 0;
@@ -315,7 +315,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 58";
 		rLen = 0;
-		rLoc = 1616;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 680;
 		vrLoc = 500;
@@ -355,7 +355,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11034;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 9931;
@@ -365,7 +365,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 34";
 		rLen = 0;
-		rLoc = 963;
+		rLoc = 990;
 		rType = 0;
 		vrLen = 839;
 		vrLoc = 0;
@@ -415,7 +415,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 34";
 		rLen = 0;
-		rLoc = 963;
+		rLoc = 990;
 		rType = 0;
 		vrLen = 839;
 		vrLoc = 0;
@@ -465,7 +465,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 68";
 		rLen = 0;
-		rLoc = 1785;
+		rLoc = 1817;
 		rType = 0;
 		vrLen = 760;
 		vrLoc = 815;
@@ -485,7 +485,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 115";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3355;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 0;
@@ -545,7 +545,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 115";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3355;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 0;
@@ -555,7 +555,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 51";
 		rLen = 0;
-		rLoc = 1705;
+		rLoc = 1673;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 355;
@@ -565,7 +565,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 115";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3355;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 0;
@@ -575,7 +575,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 50";
 		rLen = 0;
-		rLoc = 1687;
+		rLoc = 1659;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 355;
@@ -605,7 +605,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 32";
 		rLen = 0;
-		rLoc = 963;
+		rLoc = 990;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 0;
@@ -1417,7 +1417,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: SocketTake";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 0;
@@ -1427,7 +1427,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 31";
 		rLen = 0;
-		rLoc = 871;
+		rLoc = 898;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 0;
@@ -1447,7 +1447,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: SocketTake";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 0;
@@ -1467,7 +1467,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 10791;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 8888;
@@ -1527,7 +1527,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 10954;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 9059;
@@ -1577,7 +1577,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 31";
 		rLen = 0;
-		rLoc = 871;
+		rLoc = 898;
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 690;
@@ -1597,7 +1597,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11085;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 9971;
@@ -1627,7 +1627,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 47";
 		rLen = 0;
-		rLoc = 2100;
+		rLoc = 2043;
 		rType = 0;
 		vrLen = 827;
 		vrLoc = 162;
@@ -1647,7 +1647,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 47";
 		rLen = 0;
-		rLoc = 2100;
+		rLoc = 2043;
 		rType = 0;
 		vrLen = 831;
 		vrLoc = 158;
@@ -1677,7 +1677,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 100";
 		rLen = 0;
-		rLoc = 6577;
+		rLoc = 7097;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 1257;
@@ -1887,7 +1887,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 532;
-		rLoc = 23850;
+		rLoc = 23231;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 16749;
@@ -2407,7 +2407,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11647;
+		rLoc = 10681;
 		rType = 0;
 		vrLen = 1916;
 		vrLoc = 8457;
@@ -2807,7 +2807,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 16948;
+		rLoc = 15982;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 13017;
@@ -3057,7 +3057,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 17394;
+		rLoc = 16428;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 13674;
@@ -3627,7 +3627,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 20196;
+		rLoc = 19577;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 14786;
@@ -3647,7 +3647,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 21572;
+		rLoc = 20953;
 		rType = 0;
 		vrLen = 1576;
 		vrLoc = 15914;
@@ -4017,7 +4017,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19119;
+		rLoc = 18500;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 14914;
@@ -4307,7 +4307,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 25062;
+		rLoc = 24443;
 		rType = 0;
 		vrLen = 1553;
 		vrLoc = 6468;
@@ -4477,7 +4477,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 107;
-		rLoc = 13869;
+		rLoc = 12903;
 		rType = 0;
 		vrLen = 1197;
 		vrLoc = 11603;
@@ -4497,7 +4497,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22958;
+		rLoc = 22339;
 		rType = 0;
 		vrLen = 1620;
 		vrLoc = 15818;
@@ -5357,7 +5357,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18866;
+		rLoc = 18247;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 14717;
@@ -5547,7 +5547,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18866;
+		rLoc = 18247;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 15794;
@@ -5607,7 +5607,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18866;
+		rLoc = 18247;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 6142;
@@ -5637,7 +5637,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 636;
-		rLoc = 24649;
+		rLoc = 24030;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 18420;
@@ -7267,7 +7267,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 24187;
+		rLoc = 23568;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 5334;
@@ -7287,7 +7287,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 70;
-		rLoc = 12534;
+		rLoc = 11568;
 		rType = 0;
 		vrLen = 1174;
 		vrLoc = 9249;
@@ -7327,7 +7327,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13882;
+		rLoc = 12916;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 9808;
@@ -7497,7 +7497,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18583;
+		rLoc = 17964;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 13275;
@@ -7807,7 +7807,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18583;
+		rLoc = 17964;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 13287;
@@ -7897,7 +7897,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18583;
+		rLoc = 17964;
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 11066;
@@ -8007,7 +8007,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13739;
+		rLoc = 12773;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 9991;
@@ -8027,7 +8027,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13643;
+		rLoc = 12677;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 9991;
@@ -8147,7 +8147,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 8834;
@@ -9387,138 +9387,14 @@
 			F59396D7028C0CA6016230BF,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 58052799;
-			"PBXTemplateGeometry-F5CA7ECC015C09990DCA290F" = {
-				ContentSize = "{773, 558}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 23}, {773, 535}}";
-					Split0 = {
-						ActiveTab = 0;
-						Collapsed = NO;
-						Frame = "{{24, 0}, {749, 535}}";
-						Split0 = {
-							Frame = "{{0, 273}, {749, 262}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {749, 267}}";
-								Split0 = {
-									Frame = "{{0, 24}, {749, 243}}";
-									Split0 = {
-										Frame = "{{0, 0}, {366, 243}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											93.80298,
-											Value,
-											116.074,
-											Summary,
-											138.123,
-										);
-										Frame = "{{375, 0}, {374, 243}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {749, 267}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 208}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {666, 43}}";
-							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
-							Frame = "{{0, 0}, {664, 50}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							SCMStatusColumn,
-							22,
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							258,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = YES;
-				};
-				StatusViewVisible = YES;
-				Template = F5CA7ECC015C09990DCA290F;
-				ToolbarVisible = YES;
-				WindowLocation = "{13, 372}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 58103407;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F5AAD5F20375FE7001A80164;
+									bookmark = F5AAF1E00376A95801A80164;
 									history = (
 										F57BD7CC028AF27C01AD87C4,
 										F57B3132028C66AB0195BBD7,
@@ -9859,19 +9735,19 @@
 										F5AAD5620375FE7001A80164,
 										F5AAD5630375FE7001A80164,
 										F5AAD5640375FE7001A80164,
-										F5AAD5650375FE7001A80164,
-										F5AAD5660375FE7001A80164,
-										F5AAD5670375FE7001A80164,
-										F5AAD5680375FE7001A80164,
 										F5AAD5690375FE7001A80164,
 										F5AAD56A0375FE7001A80164,
-										F5AAD56B0375FE7001A80164,
-										F5AAD56C0375FE7001A80164,
-										F5AAD56D0375FE7001A80164,
 										F5AAD56E0375FE7001A80164,
 										F5AAD56F0375FE7001A80164,
-										F5AAD5700375FE7001A80164,
-										F5AAD5710375FE7001A80164,
+										F5AAF1C50376A95801A80164,
+										F5AAF1C60376A95801A80164,
+										F5AAF1C70376A95801A80164,
+										F5AAF1C80376A95801A80164,
+										F5AAF1C90376A95801A80164,
+										F5AAF1CA0376A95801A80164,
+										F5AAF1CB0376A95801A80164,
+										F5AAF1CC0376A95801A80164,
+										F5AAF1CD0376A95801A80164,
 									);
 									prevStack = (
 										F57BD7D1028AF27C01AD87C4,
@@ -15739,6 +15615,24 @@
 										F5AAD5EF0375FE7001A80164,
 										F5AAD5F00375FE7001A80164,
 										F5AAD5F10375FE7001A80164,
+										F5AAF1CE0376A95801A80164,
+										F5AAF1CF0376A95801A80164,
+										F5AAF1D00376A95801A80164,
+										F5AAF1D10376A95801A80164,
+										F5AAF1D20376A95801A80164,
+										F5AAF1D30376A95801A80164,
+										F5AAF1D40376A95801A80164,
+										F5AAF1D50376A95801A80164,
+										F5AAF1D60376A95801A80164,
+										F5AAF1D70376A95801A80164,
+										F5AAF1D80376A95801A80164,
+										F5AAF1D90376A95801A80164,
+										F5AAF1DA0376A95801A80164,
+										F5AAF1DB0376A95801A80164,
+										F5AAF1DC0376A95801A80164,
+										F5AAF1DD0376A95801A80164,
+										F5AAF1DE0376A95801A80164,
+										F5AAF1DF0376A95801A80164,
 									);
 								};
 								NavCount = 1;
@@ -15812,18 +15706,18 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F5AAD60E0375FE7001A80164;
+									bookmark = F5AAF1E80376A95801A80164;
 									history = (
 										F5A732120375BA3301A80164,
 										F5A732140375BA3301A80164,
-										F5A732150375BA3301A80164,
 										F5AAD5F30375FE7001A80164,
-										F5AAD5F40375FE7001A80164,
 										F5AAD5F50375FE7001A80164,
 										F5AAD5F60375FE7001A80164,
 										F5AAD5F70375FE7001A80164,
 										F5AAD5F80375FE7001A80164,
-										F5AAD5F90375FE7001A80164,
+										F5AAF1E10376A95801A80164,
+										F5AAF1E20376A95801A80164,
+										F5AAF1E30376A95801A80164,
 									);
 									prevStack = (
 										F5A732170375BA3301A80164,
@@ -15853,6 +15747,10 @@
 										F5AAD60B0375FE7001A80164,
 										F5AAD60C0375FE7001A80164,
 										F5AAD60D0375FE7001A80164,
+										F5AAF1E40376A95801A80164,
+										F5AAF1E50376A95801A80164,
+										F5AAF1E60376A95801A80164,
+										F5AAF1E70376A95801A80164,
 									);
 								};
 								NavCount = 1;
@@ -16022,7 +15920,7 @@
 							Collapsed = YES;
 							Frame = "{{0, 0}, {934, 853}}";
 							Split0 = {
-								Frame = "{{1e+06, 1e+06}, {594, 0}}";
+								Frame = "{{1e+06, 1e+06}, {934, 0}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -16261,7 +16159,7 @@
 					WindowLocation = "{170, 363}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 58052799;
+			PBXWorkspaceStateSaveDate = 58103407;
 		};
 		perUserProjectItems = {
 			F500892C0373044701A80164 = F500892C0373044701A80164;
@@ -21549,7 +21447,6 @@
 			F5A732100375BA3301A80164 = F5A732100375BA3301A80164;
 			F5A732120375BA3301A80164 = F5A732120375BA3301A80164;
 			F5A732140375BA3301A80164 = F5A732140375BA3301A80164;
-			F5A732150375BA3301A80164 = F5A732150375BA3301A80164;
 			F5A732170375BA3301A80164 = F5A732170375BA3301A80164;
 			F5A732180375BA3301A80164 = F5A732180375BA3301A80164;
 			F5A732190375BA3301A80164 = F5A732190375BA3301A80164;
@@ -21625,19 +21522,10 @@
 			F5AAD5620375FE7001A80164 = F5AAD5620375FE7001A80164;
 			F5AAD5630375FE7001A80164 = F5AAD5630375FE7001A80164;
 			F5AAD5640375FE7001A80164 = F5AAD5640375FE7001A80164;
-			F5AAD5650375FE7001A80164 = F5AAD5650375FE7001A80164;
-			F5AAD5660375FE7001A80164 = F5AAD5660375FE7001A80164;
-			F5AAD5670375FE7001A80164 = F5AAD5670375FE7001A80164;
-			F5AAD5680375FE7001A80164 = F5AAD5680375FE7001A80164;
 			F5AAD5690375FE7001A80164 = F5AAD5690375FE7001A80164;
 			F5AAD56A0375FE7001A80164 = F5AAD56A0375FE7001A80164;
-			F5AAD56B0375FE7001A80164 = F5AAD56B0375FE7001A80164;
-			F5AAD56C0375FE7001A80164 = F5AAD56C0375FE7001A80164;
-			F5AAD56D0375FE7001A80164 = F5AAD56D0375FE7001A80164;
 			F5AAD56E0375FE7001A80164 = F5AAD56E0375FE7001A80164;
 			F5AAD56F0375FE7001A80164 = F5AAD56F0375FE7001A80164;
-			F5AAD5700375FE7001A80164 = F5AAD5700375FE7001A80164;
-			F5AAD5710375FE7001A80164 = F5AAD5710375FE7001A80164;
 			F5AAD5720375FE7001A80164 = F5AAD5720375FE7001A80164;
 			F5AAD5730375FE7001A80164 = F5AAD5730375FE7001A80164;
 			F5AAD5740375FE7001A80164 = F5AAD5740375FE7001A80164;
@@ -21766,14 +21654,11 @@
 			F5AAD5EF0375FE7001A80164 = F5AAD5EF0375FE7001A80164;
 			F5AAD5F00375FE7001A80164 = F5AAD5F00375FE7001A80164;
 			F5AAD5F10375FE7001A80164 = F5AAD5F10375FE7001A80164;
-			F5AAD5F20375FE7001A80164 = F5AAD5F20375FE7001A80164;
 			F5AAD5F30375FE7001A80164 = F5AAD5F30375FE7001A80164;
-			F5AAD5F40375FE7001A80164 = F5AAD5F40375FE7001A80164;
 			F5AAD5F50375FE7001A80164 = F5AAD5F50375FE7001A80164;
 			F5AAD5F60375FE7001A80164 = F5AAD5F60375FE7001A80164;
 			F5AAD5F70375FE7001A80164 = F5AAD5F70375FE7001A80164;
 			F5AAD5F80375FE7001A80164 = F5AAD5F80375FE7001A80164;
-			F5AAD5F90375FE7001A80164 = F5AAD5F90375FE7001A80164;
 			F5AAD5FA0375FE7001A80164 = F5AAD5FA0375FE7001A80164;
 			F5AAD5FB0375FE7001A80164 = F5AAD5FB0375FE7001A80164;
 			F5AAD5FC0375FE7001A80164 = F5AAD5FC0375FE7001A80164;
@@ -21794,7 +21679,42 @@
 			F5AAD60B0375FE7001A80164 = F5AAD60B0375FE7001A80164;
 			F5AAD60C0375FE7001A80164 = F5AAD60C0375FE7001A80164;
 			F5AAD60D0375FE7001A80164 = F5AAD60D0375FE7001A80164;
-			F5AAD60E0375FE7001A80164 = F5AAD60E0375FE7001A80164;
+			F5AAF1C50376A95801A80164 = F5AAF1C50376A95801A80164;
+			F5AAF1C60376A95801A80164 = F5AAF1C60376A95801A80164;
+			F5AAF1C70376A95801A80164 = F5AAF1C70376A95801A80164;
+			F5AAF1C80376A95801A80164 = F5AAF1C80376A95801A80164;
+			F5AAF1C90376A95801A80164 = F5AAF1C90376A95801A80164;
+			F5AAF1CA0376A95801A80164 = F5AAF1CA0376A95801A80164;
+			F5AAF1CB0376A95801A80164 = F5AAF1CB0376A95801A80164;
+			F5AAF1CC0376A95801A80164 = F5AAF1CC0376A95801A80164;
+			F5AAF1CD0376A95801A80164 = F5AAF1CD0376A95801A80164;
+			F5AAF1CE0376A95801A80164 = F5AAF1CE0376A95801A80164;
+			F5AAF1CF0376A95801A80164 = F5AAF1CF0376A95801A80164;
+			F5AAF1D00376A95801A80164 = F5AAF1D00376A95801A80164;
+			F5AAF1D10376A95801A80164 = F5AAF1D10376A95801A80164;
+			F5AAF1D20376A95801A80164 = F5AAF1D20376A95801A80164;
+			F5AAF1D30376A95801A80164 = F5AAF1D30376A95801A80164;
+			F5AAF1D40376A95801A80164 = F5AAF1D40376A95801A80164;
+			F5AAF1D50376A95801A80164 = F5AAF1D50376A95801A80164;
+			F5AAF1D60376A95801A80164 = F5AAF1D60376A95801A80164;
+			F5AAF1D70376A95801A80164 = F5AAF1D70376A95801A80164;
+			F5AAF1D80376A95801A80164 = F5AAF1D80376A95801A80164;
+			F5AAF1D90376A95801A80164 = F5AAF1D90376A95801A80164;
+			F5AAF1DA0376A95801A80164 = F5AAF1DA0376A95801A80164;
+			F5AAF1DB0376A95801A80164 = F5AAF1DB0376A95801A80164;
+			F5AAF1DC0376A95801A80164 = F5AAF1DC0376A95801A80164;
+			F5AAF1DD0376A95801A80164 = F5AAF1DD0376A95801A80164;
+			F5AAF1DE0376A95801A80164 = F5AAF1DE0376A95801A80164;
+			F5AAF1DF0376A95801A80164 = F5AAF1DF0376A95801A80164;
+			F5AAF1E00376A95801A80164 = F5AAF1E00376A95801A80164;
+			F5AAF1E10376A95801A80164 = F5AAF1E10376A95801A80164;
+			F5AAF1E20376A95801A80164 = F5AAF1E20376A95801A80164;
+			F5AAF1E30376A95801A80164 = F5AAF1E30376A95801A80164;
+			F5AAF1E40376A95801A80164 = F5AAF1E40376A95801A80164;
+			F5AAF1E50376A95801A80164 = F5AAF1E50376A95801A80164;
+			F5AAF1E60376A95801A80164 = F5AAF1E60376A95801A80164;
+			F5AAF1E70376A95801A80164 = F5AAF1E70376A95801A80164;
+			F5AAF1E80376A95801A80164 = F5AAF1E80376A95801A80164;
 			F5AB16640371C20001A80164 = F5AB16640371C20001A80164;
 			F5AB16670371C20001A80164 = F5AB16670371C20001A80164;
 			F5AB166E0371C20001A80164 = F5AB166E0371C20001A80164;
@@ -22651,7 +22571,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13671;
+		rLoc = 12705;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 10313;
@@ -23311,7 +23231,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 25579;
+		rLoc = 24960;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 13217;
@@ -23721,7 +23641,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22808;
+		rLoc = 22189;
 		rType = 0;
 		vrLen = 1475;
 		vrLoc = 5149;
@@ -24585,7 +24505,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1496;
 		vrLoc = 4349;
@@ -24785,7 +24705,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 4349;
@@ -24935,7 +24855,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1435;
 		vrLoc = 4349;
@@ -26285,7 +26205,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 234";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 2413;
@@ -27324,8 +27244,8 @@
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
-		rLen = 994;
-		rLoc = 17589;
+		rLen = 1341;
+		rLoc = 16623;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 6872;
@@ -27505,7 +27425,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 3674;
@@ -28485,7 +28405,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 147";
 		rLen = 0;
-		rLoc = 16974;
+		rLoc = 16008;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 2185;
@@ -29685,7 +29605,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 185";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 2606;
@@ -29705,7 +29625,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 185";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 2606;
@@ -31405,7 +31325,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22808;
+		rLoc = 22189;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 8890;
@@ -31945,7 +31865,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 2815;
@@ -32035,7 +31955,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 5404;
@@ -33045,7 +32965,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 17644;
+		rLoc = 16678;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 3141;
@@ -36205,7 +36125,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 23262;
+		rLoc = 22643;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 5140;
@@ -36335,7 +36255,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11486;
+		rLoc = 10520;
 		rType = 0;
 		vrLen = 1770;
 		vrLoc = 5140;
@@ -36434,7 +36354,7 @@
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
-		rLen = 4224;
+		rLen = 3258;
 		rLoc = 9189;
 		rType = 0;
 		vrLen = 1338;
@@ -36625,7 +36545,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 9600;
@@ -37645,7 +37565,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1526;
 		vrLoc = 4439;
@@ -37705,7 +37625,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 4439;
@@ -38055,7 +37975,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22672;
+		rLoc = 22053;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 3793;
@@ -38205,7 +38125,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15540;
+		rLoc = 14574;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 6632;
@@ -38245,7 +38165,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 5527;
@@ -38345,7 +38265,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 23655;
+		rLoc = 23036;
 		rType = 0;
 		vrLen = 1636;
 		vrLoc = 4883;
@@ -38755,7 +38675,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13810;
+		rLoc = 12844;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 9874;
@@ -38885,7 +38805,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13698;
+		rLoc = 12732;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 6609;
@@ -38935,7 +38855,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13698;
+		rLoc = 12732;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 6609;
@@ -39015,7 +38935,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13698;
+		rLoc = 12732;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 11124;
@@ -39295,7 +39215,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14080;
+		rLoc = 13114;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 5197;
@@ -40025,7 +39945,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12366;
+		rLoc = 11400;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 7884;
@@ -40115,7 +40035,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12328;
+		rLoc = 11362;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 7884;
@@ -40145,7 +40065,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1429;
 		vrLoc = 7884;
@@ -40225,7 +40145,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 7884;
@@ -40509,7 +40429,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11746;
+		rLoc = 10780;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 6393;
@@ -40539,7 +40459,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11869;
+		rLoc = 10903;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 7501;
@@ -40679,7 +40599,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12524;
+		rLoc = 11558;
 		rType = 0;
 		vrLen = 1468;
 		vrLoc = 8324;
@@ -40719,7 +40639,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1744;
 		vrLoc = 7848;
@@ -40749,7 +40669,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11788;
+		rLoc = 10822;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 7848;
@@ -40779,7 +40699,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 7098;
@@ -40829,7 +40749,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 8758;
@@ -40859,7 +40779,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1912;
 		vrLoc = 7009;
@@ -40909,7 +40829,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11941;
+		rLoc = 10975;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 7910;
@@ -40929,7 +40849,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12067;
+		rLoc = 11101;
 		rType = 0;
 		vrLen = 1486;
 		vrLoc = 8586;
@@ -40949,7 +40869,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 24187;
+		rLoc = 23568;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 5334;
@@ -46989,7 +46909,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11656;
+		rLoc = 10690;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 4024;
@@ -47018,7 +46938,7 @@
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
-		rLen = 2628;
+		rLen = 1662;
 		rLoc = 9093;
 		rType = 0;
 		vrLen = 1383;
@@ -47038,7 +46958,7 @@
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
-		rLen = 2628;
+		rLen = 1662;
 		rLoc = 9093;
 		rType = 0;
 		vrLen = 1383;
@@ -47379,7 +47299,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 1638;
 		vrLoc = 4413;
@@ -48986,7 +48906,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18220;
+		rLoc = 17254;
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 14214;
@@ -49116,7 +49036,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 25505;
+		rLoc = 24886;
 		rType = 0;
 		vrLen = 1486;
 		vrLoc = 6443;
@@ -49306,7 +49226,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13335;
+		rLoc = 12369;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 8818;
@@ -49466,7 +49386,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13335;
+		rLoc = 12369;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 8818;
@@ -49546,7 +49466,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13744;
+		rLoc = 12778;
 		rType = 0;
 		vrLen = 1608;
 		vrLoc = 6786;
@@ -50196,7 +50116,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12413;
+		rLoc = 11447;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 5832;
@@ -51542,7 +51462,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 26745;
+		rLoc = 26126;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 8147;
@@ -51562,7 +51482,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 21446;
+		rLoc = 20827;
 		rType = 0;
 		vrLen = 1929;
 		vrLoc = 17970;
@@ -51662,7 +51582,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 142;
-		rLoc = 15296;
+		rLoc = 14330;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 13601;
@@ -52042,7 +51962,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 20834;
+		rLoc = 20215;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 18426;
@@ -52202,7 +52122,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 20944;
+		rLoc = 20325;
 		rType = 0;
 		vrLen = 1648;
 		vrLoc = 18666;
@@ -52222,7 +52142,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 20944;
+		rLoc = 20325;
 		rType = 0;
 		vrLen = 1014;
 		vrLoc = 6462;
@@ -52262,7 +52182,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15886;
+		rLoc = 14920;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 14315;
@@ -52282,7 +52202,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 13584;
@@ -52342,7 +52262,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 13584;
@@ -52362,7 +52282,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15229;
+		rLoc = 14263;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 14401;
@@ -52382,7 +52302,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15285;
+		rLoc = 14319;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 13782;
@@ -52502,7 +52422,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15285;
+		rLoc = 14319;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 13782;
@@ -52532,7 +52452,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 11968;
@@ -52632,7 +52552,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 11968;
@@ -52652,7 +52572,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 13530;
@@ -52802,7 +52722,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15310;
+		rLoc = 14344;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 13530;
@@ -53806,7 +53726,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 26346;
+		rLoc = 25727;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 11015;
@@ -53826,7 +53746,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 26346;
+		rLoc = 25727;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 11015;
@@ -54006,7 +53926,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22024;
+		rLoc = 21405;
 		rType = 0;
 		vrLen = 2065;
 		vrLoc = 16818;
@@ -54416,7 +54336,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22024;
+		rLoc = 21405;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 17131;
@@ -54906,7 +54826,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22024;
+		rLoc = 21405;
 		rType = 0;
 		vrLen = 1494;
 		vrLoc = 17597;
@@ -54926,7 +54846,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22024;
+		rLoc = 21405;
 		rType = 0;
 		vrLen = 1489;
 		vrLoc = 17597;
@@ -54946,7 +54866,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 18653;
+		rLoc = 18034;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 15234;
@@ -54966,7 +54886,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 22485;
+		rLoc = 21866;
 		rType = 0;
 		vrLen = 1620;
 		vrLoc = 17530;
@@ -55066,7 +54986,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 39;
-		rLoc = 22273;
+		rLoc = 21654;
 		rType = 0;
 		vrLen = 1450;
 		vrLoc = 17842;
@@ -55156,7 +55076,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 16484;
+		rLoc = 15518;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 13451;
@@ -55626,7 +55546,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14858;
+		rLoc = 13892;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 7246;
@@ -55936,7 +55856,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12436;
+		rLoc = 11470;
 		rType = 0;
 		vrLen = 1827;
 		vrLoc = 10475;
@@ -55986,7 +55906,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12564;
+		rLoc = 11598;
 		rType = 0;
 		vrLen = 1987;
 		vrLoc = 10493;
@@ -56026,7 +55946,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13676;
+		rLoc = 12710;
 		rType = 0;
 		vrLen = 1588;
 		vrLoc = 11141;
@@ -56066,7 +55986,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13671;
+		rLoc = 12705;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 11141;
@@ -56096,7 +56016,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13899;
+		rLoc = 12933;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 12000;
@@ -56338,7 +56258,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: 798";
 		rLen = 0;
-		rLoc = 25712;
+		rLoc = 25093;
 		rType = 0;
 		vrLen = 1545;
 		vrLoc = 13078;
@@ -56786,7 +56706,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13413;
+		rLoc = 12447;
 		rType = 0;
 		vrLen = 2147;
 		vrLoc = 10643;
@@ -56896,7 +56816,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13646;
+		rLoc = 12680;
 		rType = 0;
 		vrLen = 1014;
 		vrLoc = 16931;
@@ -57076,7 +56996,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13646;
+		rLoc = 12680;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 16931;
@@ -58720,7 +58640,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13916;
+		rLoc = 12950;
 		rType = 0;
 		vrLen = 1252;
 		vrLoc = 2250;
@@ -58750,7 +58670,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13916;
+		rLoc = 12950;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 2250;
@@ -58800,7 +58720,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13916;
+		rLoc = 12950;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 11340;
@@ -59000,7 +58920,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19704;
+		rLoc = 19085;
 		rType = 0;
 		vrLen = 1567;
 		vrLoc = 15758;
@@ -59020,7 +58940,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13614;
+		rLoc = 12648;
 		rType = 0;
 		vrLen = 719;
 		vrLoc = 11088;
@@ -59348,7 +59268,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12777;
+		rLoc = 11811;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 10271;
@@ -60398,7 +60318,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12161;
+		rLoc = 11195;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 9474;
@@ -60478,7 +60398,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12161;
+		rLoc = 11195;
 		rType = 0;
 		vrLen = 1858;
 		vrLoc = 9544;
@@ -60508,7 +60428,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12161;
+		rLoc = 11195;
 		rType = 0;
 		vrLen = 1858;
 		vrLoc = 9544;
@@ -60558,7 +60478,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12161;
+		rLoc = 11195;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 12749;
@@ -60578,7 +60498,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19732;
+		rLoc = 19113;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 15100;
@@ -60618,7 +60538,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19732;
+		rLoc = 19113;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 15100;
@@ -60638,7 +60558,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 390;
-		rLoc = 19724;
+		rLoc = 19105;
 		rType = 0;
 		vrLen = 1716;
 		vrLoc = 15529;
@@ -60678,7 +60598,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19580;
+		rLoc = 18961;
 		rType = 0;
 		vrLen = 1659;
 		vrLoc = 15529;
@@ -60818,7 +60738,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15255;
+		rLoc = 14289;
 		rType = 0;
 		vrLen = 1715;
 		vrLoc = 9342;
@@ -60898,7 +60818,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15255;
+		rLoc = 14289;
 		rType = 0;
 		vrLen = 1683;
 		vrLoc = 9342;
@@ -61930,7 +61850,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13325;
+		rLoc = 12359;
 		rType = 0;
 		vrLen = 1665;
 		vrLoc = 10420;
@@ -62030,7 +61950,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12534;
+		rLoc = 11568;
 		rType = 0;
 		vrLen = 1640;
 		vrLoc = 10016;
@@ -62254,7 +62174,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12777;
+		rLoc = 11811;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 10215;
@@ -64028,7 +63948,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15563;
+		rLoc = 14597;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 12676;
@@ -64098,7 +64018,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15631;
+		rLoc = 14665;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 13199;
@@ -64624,7 +64544,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 55";
 		rLen = 0;
-		rLoc = 2087;
+		rLoc = 2030;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 416;
@@ -64634,7 +64554,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 91";
 		rLen = 0;
-		rLoc = 2391;
+		rLoc = 2742;
 		rType = 0;
 		vrLen = 737;
 		vrLoc = 1720;
@@ -64644,7 +64564,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 87";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 952;
 		vrLoc = 1065;
@@ -64654,7 +64574,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 43";
 		rLen = 0;
-		rLoc = 1190;
+		rLoc = 1222;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 357;
@@ -64664,7 +64584,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 1392;
+		rLoc = 1360;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1033;
@@ -64674,7 +64594,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 100";
 		rLen = 0;
-		rLoc = 2280;
+		rLoc = 2369;
 		rType = 0;
 		vrLen = 847;
 		vrLoc = 1612;
@@ -64683,8 +64603,8 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 52";
-		rLen = 28;
-		rLoc = 1158;
+		rLen = 9;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 199;
@@ -64694,7 +64614,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 34";
 		rLen = 0;
-		rLoc = 963;
+		rLoc = 990;
 		rType = 0;
 		vrLen = 804;
 		vrLoc = 296;
@@ -64703,8 +64623,8 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 52";
-		rLen = 28;
-		rLoc = 1158;
+		rLen = 9;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 1141;
@@ -64714,7 +64634,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 144";
 		rLen = 0;
-		rLoc = 3154;
+		rLoc = 3417;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 2518;
@@ -64763,8 +64683,8 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 52";
-		rLen = 28;
-		rLoc = 1158;
+		rLen = 9;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1121;
@@ -64774,7 +64694,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 162";
 		rLen = 0;
-		rLoc = 6562;
+		rLoc = 7082;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 2518;
@@ -64784,7 +64704,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 89";
 		rLen = 0;
-		rLoc = 2342;
+		rLoc = 2435;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1121;
@@ -65084,7 +65004,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 162";
 		rLen = 0;
-		rLoc = 6562;
+		rLoc = 7082;
 		rType = 0;
 		vrLen = 840;
 		vrLoc = 2518;
@@ -65224,7 +65144,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 89";
 		rLen = 0;
-		rLoc = 2342;
+		rLoc = 2435;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 1121;
@@ -65264,7 +65184,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 36";
 		rLen = 0;
-		rLoc = 962;
+		rLoc = 989;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 97;
@@ -65354,7 +65274,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 46";
 		rLen = 0;
-		rLoc = 1049;
+		rLoc = 1046;
 		rType = 0;
 		vrLen = 815;
 		vrLoc = 373;
@@ -65364,7 +65284,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 167";
 		rLen = 0;
-		rLoc = 4141;
+		rLoc = 4067;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 2819;
@@ -65374,7 +65294,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 46";
 		rLen = 0;
-		rLoc = 1049;
+		rLoc = 1046;
 		rType = 0;
 		vrLen = 815;
 		vrLoc = 373;
@@ -65424,7 +65344,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 167";
 		rLen = 0;
-		rLoc = 4141;
+		rLoc = 4067;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 2913;
@@ -65454,7 +65374,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -65704,7 +65624,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -65714,7 +65634,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 167";
 		rLen = 0;
-		rLoc = 4141;
+		rLoc = 4067;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 2913;
@@ -65774,7 +65694,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: operator<<";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -65894,7 +65814,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 149";
 		rLen = 0;
-		rLoc = 3288;
+		rLoc = 3551;
 		rType = 0;
 		vrLen = 719;
 		vrLoc = 2625;
@@ -65934,7 +65854,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 93";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 1170;
@@ -65944,7 +65864,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 38";
 		rLen = 0;
-		rLoc = 914;
+		rLoc = 941;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 357;
@@ -65954,7 +65874,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 10938;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1487;
 		vrLoc = 9837;
@@ -65984,7 +65904,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 93";
 		rLen = 0;
-		rLoc = 2606;
+		rLoc = 2699;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 1150;
@@ -65994,7 +65914,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 192";
 		rLen = 0;
-		rLoc = 6774;
+		rLoc = 8525;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -66004,7 +65924,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: kSyncByte1";
 		rLen = 0;
-		rLoc = 504;
+		rLoc = 510;
 		rType = 0;
 		vrLen = 497;
 		vrLoc = 0;
@@ -66014,7 +65934,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: unpackState";
 		rLen = 0;
-		rLoc = 778;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 545;
@@ -66034,7 +65954,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 27";
 		rLen = 0;
-		rLoc = 796;
+		rLoc = 1078;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 0;
@@ -66044,7 +65964,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: kStateLengthMSB";
 		rLen = 0;
-		rLoc = 778;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 1039;
 		vrLoc = 545;
@@ -66064,7 +65984,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 27";
 		rLen = 0;
-		rLoc = 796;
+		rLoc = 1078;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 0;
@@ -66074,7 +65994,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: unpackState";
 		rLen = 0;
-		rLoc = 1147;
+		rLoc = 1713;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 459;
@@ -66094,7 +66014,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 27";
 		rLen = 0;
-		rLoc = 796;
+		rLoc = 1078;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 0;
@@ -66104,7 +66024,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 778;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 1238;
 		vrLoc = 458;
@@ -66114,7 +66034,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 42";
 		rLen = 0;
-		rLoc = 1041;
+		rLoc = 1323;
 		rType = 0;
 		vrLen = 613;
 		vrLoc = 166;
@@ -66124,7 +66044,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 3378;
+		rLoc = 4067;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 1913;
@@ -66134,7 +66054,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 42";
 		rLen = 0;
-		rLoc = 1034;
+		rLoc = 1316;
 		rType = 0;
 		vrLen = 689;
 		vrLoc = 166;
@@ -66154,7 +66074,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 3443;
+		rLoc = 4132;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 2168;
@@ -66164,7 +66084,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 42";
 		rLen = 0;
-		rLoc = 1034;
+		rLoc = 1316;
 		rType = 0;
 		vrLen = 689;
 		vrLoc = 166;
@@ -66174,7 +66094,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 3443;
+		rLoc = 4132;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 2131;
@@ -66183,8 +66103,8 @@
 		fRef = F5A731430375512201A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 19";
-		rLen = 190;
-		rLoc = 512;
+		rLen = 466;
+		rLoc = 518;
 		rType = 0;
 		vrLen = 806;
 		vrLoc = 166;
@@ -66194,7 +66114,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 116";
 		rLen = 0;
-		rLoc = 3629;
+		rLoc = 4318;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 2282;
@@ -66204,7 +66124,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 20";
 		rLen = 0;
-		rLoc = 672;
+		rLoc = 787;
 		rType = 0;
 		vrLen = 811;
 		vrLoc = 166;
@@ -66214,7 +66134,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 117";
 		rLen = 0;
-		rLoc = 3695;
+		rLoc = 4384;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 2610;
@@ -66224,7 +66144,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: MessageHandledSet";
 		rLen = 0;
-		rLoc = 690;
+		rLoc = 972;
 		rType = 0;
 		vrLen = 805;
 		vrLoc = 166;
@@ -66234,7 +66154,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 123";
 		rLen = 0;
-		rLoc = 3764;
+		rLoc = 4453;
 		rType = 0;
 		vrLen = 1129;
 		vrLoc = 2609;
@@ -66279,16 +66199,6 @@
 		vrLen = 529;
 		vrLoc = 425;
 	};
-	F5A732150375BA3301A80164 = {
-		fRef = F5A731440375512201A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetProtocol.cpp: 117";
-		rLen = 0;
-		rLoc = 3695;
-		rType = 0;
-		vrLen = 587;
-		vrLoc = 3103;
-	};
 	F5A732170375BA3301A80164 = {
 		fRef = F5ABEB920371802C01A80164;
 		isa = PBXTextBookmark;
@@ -66304,7 +66214,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 192";
 		rLen = 0;
-		rLoc = 6774;
+		rLoc = 8525;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 3540;
@@ -66314,7 +66224,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 3194;
+		rLoc = 3883;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 1045;
@@ -66334,7 +66244,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: Unpack";
 		rLen = 0;
-		rLoc = 3625;
+		rLoc = 4314;
 		rType = 0;
 		vrLen = 613;
 		vrLoc = 1999;
@@ -66354,7 +66264,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 117";
 		rLen = 0;
-		rLoc = 3695;
+		rLoc = 4384;
 		rType = 0;
 		vrLen = 587;
 		vrLoc = 3103;
@@ -67032,60 +66942,6 @@
 	F5AAD5640375FE7001A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F59396D5028C0CA6016230BF;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {551, 389}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {218, 526}}";
-			TOCViewSelectedItems = (
-				PBXTargetGccCompilerSettingsModule,
-			);
-		};
-	};
-	F5AAD5650375FE7001A80164 = {
-		fRef = F5A731430375512201A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetProtocol.h: 30";
-		rLen = 0;
-		rLoc = 722;
-		rType = 0;
-		vrLen = 782;
-		vrLoc = 146;
-	};
-	F5AAD5660375FE7001A80164 = {
-		fRef = F54020AE02A2423901F0D71D;
-		isa = PBXTextBookmark;
-		name = "GameContract.h: 200";
-		rLen = 0;
-		rLoc = 5370;
-		rType = 0;
-		vrLen = 1047;
-		vrLoc = 4348;
-	};
-	F5AAD5670375FE7001A80164 = {
-		fRef = F54020AD02A2423901F0D71D;
-		isa = PBXTextBookmark;
-		name = "GameContract.cpp: GameContract";
-		rLen = 0;
-		rLoc = 11363;
-		rType = 0;
-		vrLen = 1258;
-		vrLoc = 10500;
-	};
-	F5AAD5680375FE7001A80164 = {
-		fRef = F5A731440375512201A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetProtocol.cpp: LinkCheckCreate";
-		rLen = 0;
-		rLoc = 1008;
-		rType = 0;
-		vrLen = 1201;
-		vrLoc = 509;
 	};
 	F5AAD5690375FE7001A80164 = {
 		fRef = F5ABEB9603718C3C01A80164;
@@ -67107,36 +66963,6 @@
 		vrLen = 639;
 		vrLoc = 4362;
 	};
-	F5AAD56B0375FE7001A80164 = {
-		fRef = F5AAD5590375DDBE01A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetRouter.cpp: ReceiveAll";
-		rLen = 0;
-		rLoc = 869;
-		rType = 0;
-		vrLen = 1043;
-		vrLoc = 0;
-	};
-	F5AAD56C0375FE7001A80164 = {
-		fRef = F5ABEB9703718C3C01A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetClient.cpp: TCPReceive";
-		rLen = 0;
-		rLoc = 5952;
-		rType = 0;
-		vrLen = 1060;
-		vrLoc = 6536;
-	};
-	F5AAD56D0375FE7001A80164 = {
-		fRef = F5C4435D0372B4BE01A80164;
-		isa = PBXTextBookmark;
-		name = "PlatformNet.cpp: i";
-		rLen = 0;
-		rLoc = 1532;
-		rType = 0;
-		vrLen = 1115;
-		vrLoc = 1312;
-	};
 	F5AAD56E0375FE7001A80164 = {
 		fRef = F5A70F4803729AF201A80164;
 		isa = PBXTextBookmark;
@@ -67157,32 +66983,12 @@
 		vrLen = 1005;
 		vrLoc = 1861;
 	};
-	F5AAD5700375FE7001A80164 = {
-		fRef = F5AB165D0371B43601A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetLink.h: 57";
-		rLen = 19;
-		rLoc = 1194;
-		rType = 0;
-		vrLen = 1242;
-		vrLoc = 1458;
-	};
-	F5AAD5710375FE7001A80164 = {
-		fRef = F5AB165E0371B43601A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetLink.cpp: 289";
-		rLen = 0;
-		rLoc = 6553;
-		rType = 0;
-		vrLen = 943;
-		vrLoc = 5588;
-	};
 	F5AAD5720375FE7001A80164 = {
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11002;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1741;
 		vrLoc = 9663;
@@ -67202,7 +67008,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11157;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 10622;
@@ -67222,7 +67028,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11367;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1250;
 		vrLoc = 10622;
@@ -67232,7 +67038,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: MessageToHandle";
 		rLen = 0;
-		rLoc = 3764;
+		rLoc = 4453;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 2555;
@@ -67242,7 +67048,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 192";
 		rLen = 0;
-		rLoc = 6774;
+		rLoc = 8525;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -67262,7 +67068,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 221";
 		rLen = 0;
-		rLoc = 6562;
+		rLoc = 7082;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 4038;
@@ -67282,7 +67088,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 224";
 		rLen = 0;
-		rLoc = 4950;
+		rLoc = 4876;
 		rType = 0;
 		vrLen = 850;
 		vrLoc = 4321;
@@ -67302,7 +67108,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 220";
 		rLen = 0;
-		rLoc = 4903;
+		rLoc = 4829;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 4239;
@@ -67322,7 +67128,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 22";
 		rLen = 0;
-		rLoc = 700;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 146;
@@ -67332,7 +67138,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 120";
 		rLen = 0;
-		rLoc = 3741;
+		rLoc = 4430;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 2531;
@@ -67342,7 +67148,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: MessageTake";
 		rLen = 0;
-		rLoc = 700;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 146;
@@ -67402,7 +67208,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: MessageTake";
 		rLen = 0;
-		rLoc = 700;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 146;
@@ -67462,7 +67268,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11198;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 10622;
@@ -67532,7 +67338,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: 20";
 		rLen = 0;
-		rLoc = 1053;
+		rLoc = 999;
 		rType = 0;
 		vrLen = 277;
 		vrLoc = 0;
@@ -67552,7 +67358,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 1053;
+		rLoc = 999;
 		rType = 0;
 		vrLen = 603;
 		vrLoc = 0;
@@ -67602,7 +67408,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11198;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 10500;
@@ -67622,7 +67428,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: LinkCheckCreate";
 		rLen = 0;
-		rLoc = 800;
+		rLoc = 806;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 293;
@@ -67630,27 +67436,13 @@
 	F5AAD59F0375FE7001A80164 = {
 		isa = PBXTargetBookmark;
 		trg = F59396D5028C0CA6016230BF;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {551, 389}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {218, 526}}";
-			TOCViewSelectedItems = (
-				PBXTargetGccCompilerSettingsModule,
-			);
-		};
 	};
 	F5AAD5A00375FE7001A80164 = {
 		fRef = F5AB165E0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 220";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 771;
 		vrLoc = 4233;
@@ -67680,7 +67472,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: LinkCheckCreate";
 		rLen = 0;
-		rLoc = 800;
+		rLoc = 806;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 293;
@@ -67690,7 +67482,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 220";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 769;
 		vrLoc = 4233;
@@ -67730,7 +67522,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 220";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 4297;
@@ -67760,7 +67552,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: LinkCheckCreate";
 		rLen = 0;
-		rLoc = 800;
+		rLoc = 806;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 2554;
@@ -67780,7 +67572,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 178";
 		rLen = 0;
-		rLoc = 4099;
+		rLoc = 4025;
 		rType = 0;
 		vrLen = 871;
 		vrLoc = 3459;
@@ -67800,7 +67592,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: MessageTake";
 		rLen = 0;
-		rLoc = 700;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 146;
@@ -67820,7 +67612,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 1032;
+		rLoc = 978;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 0;
@@ -67840,7 +67632,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 23";
 		rLen = 22;
-		rLoc = 739;
+		rLoc = 1021;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 146;
@@ -67850,7 +67642,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 133";
 		rLen = 0;
-		rLoc = 4080;
+		rLoc = 4768;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 2208;
@@ -67860,7 +67652,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 35";
 		rLen = 0;
-		rLoc = 863;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 146;
@@ -67870,7 +67662,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 133";
 		rLen = 0;
-		rLoc = 4080;
+		rLoc = 4768;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 2208;
@@ -67880,7 +67672,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 35";
 		rLen = 0;
-		rLoc = 863;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 146;
@@ -67890,7 +67682,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 136";
 		rLen = 0;
-		rLoc = 4083;
+		rLoc = 4774;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 2730;
@@ -67909,7 +67701,7 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: Print";
-		rLen = 58;
+		rLen = 55;
 		rLoc = 820;
 		rType = 0;
 		vrLen = 865;
@@ -67920,7 +67712,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 237";
 		rLen = 0;
-		rLoc = 5256;
+		rLoc = 5516;
 		rType = 0;
 		vrLen = 736;
 		vrLoc = 4339;
@@ -67940,7 +67732,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 919;
+		rLoc = 922;
 		rType = 0;
 		vrLen = 970;
 		vrLoc = 0;
@@ -67950,7 +67742,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 35";
 		rLen = 0;
-		rLoc = 863;
+		rLoc = 1145;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 146;
@@ -67970,7 +67762,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: 136";
 		rLen = 0;
-		rLoc = 4083;
+		rLoc = 4774;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 2687;
@@ -67980,7 +67772,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 240";
 		rLen = 0;
-		rLoc = 5596;
+		rLoc = 5868;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 4339;
@@ -67990,7 +67782,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 1433;
+		rLoc = 1401;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 1258;
@@ -68000,7 +67792,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 243";
 		rLen = 0;
-		rLoc = 5596;
+		rLoc = 5868;
 		rType = 0;
 		vrLen = 919;
 		vrLoc = 4527;
@@ -68010,7 +67802,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 1433;
+		rLoc = 1401;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 1258;
@@ -68019,7 +67811,7 @@
 		fRef = F5AB165E0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 32";
-		rLen = 38;
+		rLen = 68;
 		rLoc = 734;
 		rType = 0;
 		vrLen = 948;
@@ -68030,7 +67822,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 68";
 		rLen = 15;
-		rLoc = 1433;
+		rLoc = 1401;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 1428;
@@ -68040,7 +67832,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 263";
 		rLen = 0;
-		rLoc = 5994;
+		rLoc = 6306;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5264;
@@ -68050,7 +67842,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.h: 30";
 		rLen = 0;
-		rLoc = 722;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 146;
@@ -68060,7 +67852,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: LinkCheckCreate";
 		rLen = 0;
-		rLoc = 1008;
+		rLoc = 1017;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 509;
@@ -68080,7 +67872,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 11363;
+		rLoc = 10516;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 10500;
@@ -68090,7 +67882,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 85";
 		rLen = 0;
-		rLoc = 1988;
+		rLoc = 1925;
 		rType = 0;
 		vrLen = 829;
 		vrLoc = 292;
@@ -68110,7 +67902,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 919;
+		rLoc = 922;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 0;
@@ -68130,7 +67922,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetProtocol.cpp: LinkCheckCreate";
 		rLen = 0;
-		rLoc = 1008;
+		rLoc = 1017;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 509;
@@ -68140,7 +67932,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 869;
+		rLoc = 872;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -68150,7 +67942,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 262";
 		rLen = 0;
-		rLoc = 5741;
+		rLoc = 6274;
 		rType = 0;
 		vrLen = 1012;
 		vrLoc = 5100;
@@ -68180,7 +67972,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 262";
 		rLen = 0;
-		rLoc = 5873;
+		rLoc = 6299;
 		rType = 0;
 		vrLen = 811;
 		vrLoc = 1114;
@@ -68200,7 +67992,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 259";
 		rLen = 37;
-		rLoc = 5704;
+		rLoc = 6237;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 5060;
@@ -68220,7 +68012,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 259";
 		rLen = 0;
-		rLoc = 5739;
+		rLoc = 6272;
 		rType = 0;
 		vrLen = 900;
 		vrLoc = 5060;
@@ -68250,7 +68042,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 51";
 		rLen = 44;
-		rLoc = 1201;
+		rLoc = 1233;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 369;
@@ -68270,7 +68062,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 261";
 		rLen = 0;
-		rLoc = 5791;
+		rLoc = 6299;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 1366;
@@ -68310,7 +68102,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 262";
 		rLen = 0;
-		rLoc = 5791;
+		rLoc = 6299;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 5303;
@@ -68320,7 +68112,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 869;
+		rLoc = 872;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -68350,7 +68142,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 6485;
+		rLoc = 7005;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 5243;
@@ -68360,7 +68152,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 869;
+		rLoc = 872;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -68370,7 +68162,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 6485;
+		rLoc = 7005;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 4622;
@@ -68400,7 +68192,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 280";
 		rLen = 0;
-		rLoc = 6553;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 5312;
@@ -68430,7 +68222,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 163";
 		rLen = 0;
-		rLoc = 3526;
+		rLoc = 3697;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 5588;
@@ -68450,7 +68242,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 289";
 		rLen = 0;
-		rLoc = 6553;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 5588;
@@ -68460,20 +68252,10 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 57";
 		rLen = 19;
-		rLoc = 1194;
+		rLoc = 1162;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 1458;
-	};
-	F5AAD5F20375FE7001A80164 = {
-		fRef = F5AB165E0371B43601A80164;
-		isa = PBXTextBookmark;
-		name = "MediaNetLink.cpp: 289";
-		rLen = 0;
-		rLoc = 6533;
-		rType = 0;
-		vrLen = 994;
-		vrLoc = 5569;
 	};
 	F5AAD5F30375FE7001A80164 = {
 		fRef = F5A70F4803729AF201A80164;
@@ -68484,16 +68266,6 @@
 		rType = 0;
 		vrLen = 557;
 		vrLoc = 319;
-	};
-	F5AAD5F40375FE7001A80164 = {
-		fRef = F54020AD02A2423901F0D71D;
-		isa = PBXTextBookmark;
-		name = "GameContract.cpp: GameContract";
-		rLen = 122;
-		rLoc = 10500;
-		rType = 0;
-		vrLen = 862;
-		vrLoc = 10180;
 	};
 	F5AAD5F50375FE7001A80164 = {
 		fRef = F52B3BF8028C25CF0179D0A8;
@@ -68535,13 +68307,6 @@
 		vrLen = 335;
 		vrLoc = 0;
 	};
-	F5AAD5F90375FE7001A80164 = {
-		fRef = F5AB165E0371B43601A80164;
-		isa = PBXTextBookmark;
-		rLen = 1;
-		rLoc = 288;
-		rType = 1;
-	};
 	F5AAD5FA0375FE7001A80164 = {
 		fRef = F5A70F4803729AF201A80164;
 		isa = PBXTextBookmark;
@@ -68557,7 +68322,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 80";
 		rLen = 44;
-		rLoc = 1884;
+		rLoc = 1821;
 		rType = 0;
 		vrLen = 654;
 		vrLoc = 1429;
@@ -68566,7 +68331,7 @@
 		fRef = F54020AD02A2423901F0D71D;
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
-		rLen = 122;
+		rLen = 16;
 		rLoc = 10500;
 		rType = 0;
 		vrLen = 862;
@@ -68577,7 +68342,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 233";
 		rLen = 0;
-		rLoc = 5209;
+		rLoc = 5155;
 		rType = 0;
 		vrLen = 380;
 		vrLoc = 4013;
@@ -68617,7 +68382,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 1053;
+		rLoc = 999;
 		rType = 0;
 		vrLen = 468;
 		vrLoc = 135;
@@ -68647,7 +68412,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 228";
 		rLen = 40;
-		rLoc = 5109;
+		rLoc = 5047;
 		rType = 0;
 		vrLen = 513;
 		vrLoc = 4588;
@@ -68657,7 +68422,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 1048;
+		rLoc = 994;
 		rType = 0;
 		vrLen = 451;
 		vrLoc = 172;
@@ -68697,7 +68462,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetRouter.cpp: ReceiveAll";
 		rLen = 0;
-		rLoc = 1051;
+		rLoc = 997;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 172;
@@ -68707,7 +68472,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 261";
 		rLen = 0;
-		rLoc = 5788;
+		rLoc = 6299;
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 5209;
@@ -68727,7 +68492,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 221";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 4804;
 		rType = 0;
 		vrLen = 443;
 		vrLoc = 4527;
@@ -68742,15 +68507,362 @@
 		vrLen = 335;
 		vrLoc = 0;
 	};
-	F5AAD60E0375FE7001A80164 = {
+	F5AAF1C50376A95801A80164 = {
+		fRef = F5A731430375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.h: LinkCheckCreate";
+		rLen = 0;
+		rLoc = 627;
+		rType = 0;
+		vrLen = 1053;
+		vrLoc = 416;
+	};
+	F5AAF1C60376A95801A80164 = {
+		fRef = F5A731440375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.cpp: 163";
+		rLen = 0;
+		rLoc = 4782;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 3592;
+	};
+	F5AAF1C70376A95801A80164 = {
+		fRef = F5AB165D0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.h: MessageUDPLinkCheckReplyHandle";
+		rLen = 0;
+		rLoc = 2127;
+		rType = 0;
+		vrLen = 841;
+		vrLoc = 282;
+	};
+	F5AAF1C80376A95801A80164 = {
+		fRef = F5C4435D0372B4BE01A80164;
+		isa = PBXTextBookmark;
+		name = "PlatformNet.cpp: result";
+		rLen = 0;
+		rLoc = 1853;
+		rType = 0;
+		vrLen = 887;
+		vrLoc = 0;
+	};
+	F5AAF1C90376A95801A80164 = {
 		fRef = F5AB165E0371B43601A80164;
 		isa = PBXTextBookmark;
-		name = "MediaNetLink.cpp: 289";
+		name = "MediaNetLink.cpp: 169";
 		rLen = 0;
-		rLoc = 6520;
+		rLoc = 3578;
 		rType = 0;
-		vrLen = 627;
-		vrLoc = 6147;
+		vrLen = 1098;
+		vrLoc = 4893;
+	};
+	F5AAF1CA0376A95801A80164 = {
+		fRef = F5ABEB9703718C3C01A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetClient.cpp: TCPReceive";
+		rLen = 0;
+		rLoc = 5952;
+		rType = 0;
+		vrLen = 848;
+		vrLoc = 715;
+	};
+	F5AAF1CB0376A95801A80164 = {
+		fRef = F5AAD5590375DDBE01A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetRouter.cpp: ReceiveAll";
+		rLen = 0;
+		rLoc = 754;
+		rType = 0;
+		vrLen = 975;
+		vrLoc = 168;
+	};
+	F5AAF1CC0376A95801A80164 = {
+		fRef = F54020AE02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.h: 200";
+		rLen = 0;
+		rLoc = 5370;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 4348;
+	};
+	F5AAF1CD0376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 10516;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 9908;
+	};
+	F5AAF1CE0376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 277";
+		rLen = 0;
+		rLoc = 6509;
+		rType = 0;
+		vrLen = 995;
+		vrLoc = 5363;
+	};
+	F5AAF1CF0376A95801A80164 = {
+		fRef = F5AB165D0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.h: 94";
+		rLen = 0;
+		rLoc = 2334;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 1523;
+	};
+	F5AAF1D00376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 117";
+		rLen = 0;
+		rLoc = 2407;
+		rType = 0;
+		vrLen = 989;
+		vrLoc = 2262;
+	};
+	F5AAF1D10376A95801A80164 = {
+		fRef = F5AB165D0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.h: 94";
+		rLen = 0;
+		rLoc = 2334;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 1496;
+	};
+	F5AAF1D20376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 125";
+		rLen = 0;
+		rLoc = 2663;
+		rType = 0;
+		vrLen = 949;
+		vrLoc = 2262;
+	};
+	F5AAF1D30376A95801A80164 = {
+		fRef = F5AB165D0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.h: RequestLinkChecks";
+		rLen = 0;
+		rLoc = 871;
+		rType = 0;
+		vrLen = 864;
+		vrLoc = 282;
+	};
+	F5AAF1D40376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 302";
+		rLen = 0;
+		rLoc = 6753;
+		rType = 0;
+		vrLen = 1164;
+		vrLoc = 6164;
+	};
+	F5AAF1D50376A95801A80164 = {
+		fRef = F5A731430375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.h: LinkCheckCreate";
+		rLen = 0;
+		rLoc = 627;
+		rType = 0;
+		vrLen = 1053;
+		vrLoc = 416;
+	};
+	F5AAF1D60376A95801A80164 = {
+		fRef = F5A731440375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.cpp: 163";
+		rLen = 0;
+		rLoc = 4782;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 3592;
+	};
+	F5AAF1D70376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 352";
+		rLen = 0;
+		rLoc = 8336;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 7431;
+	};
+	F5AAF1D80376A95801A80164 = {
+		fRef = F5AB165D0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.h: MessageUDPLinkCheckReplyHandle";
+		rLen = 0;
+		rLoc = 2127;
+		rType = 0;
+		vrLen = 841;
+		vrLoc = 282;
+	};
+	F5AAF1D90376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 148";
+		rLen = 0;
+		rLoc = 3186;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 2247;
+	};
+	F5AAF1DA0376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 17896;
+		rType = 0;
+		vrLen = 1171;
+		vrLoc = 17994;
+	};
+	F5AAF1DB0376A95801A80164 = {
+		fRef = F5C4435D0372B4BE01A80164;
+		isa = PBXTextBookmark;
+		name = "PlatformNet.cpp: result";
+		rLen = 0;
+		rLoc = 1853;
+		rType = 0;
+		vrLen = 887;
+		vrLoc = 0;
+	};
+	F5AAF1DC0376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 169";
+		rLen = 0;
+		rLoc = 3578;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 4893;
+	};
+	F5AAF1DD0376A95801A80164 = {
+		fRef = F5ABEB9703718C3C01A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetClient.cpp: TCPReceive";
+		rLen = 0;
+		rLoc = 5952;
+		rType = 0;
+		vrLen = 848;
+		vrLoc = 715;
+	};
+	F5AAF1DE0376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 10516;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 9908;
+	};
+	F5AAF1DF0376A95801A80164 = {
+		fRef = F54020AE02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.h: 200";
+		rLen = 0;
+		rLoc = 5370;
+		rType = 0;
+		vrLen = 1047;
+		vrLoc = 4348;
+	};
+	F5AAF1E00376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 17624;
+		rType = 0;
+		vrLen = 969;
+		vrLoc = 16939;
+	};
+	F5AAF1E10376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 131";
+		rLen = 0;
+		rLoc = 2801;
+		rType = 0;
+		vrLen = 478;
+		vrLoc = 2614;
+	};
+	F5AAF1E20376A95801A80164 = {
+		fRef = F5A731440375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.cpp: Unpack";
+		rLen = 0;
+		rLoc = 3202;
+		rType = 0;
+		vrLen = 809;
+		vrLoc = 2539;
+	};
+	F5AAF1E30376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		rLen = 0;
+		rLoc = 413;
+		rType = 1;
+	};
+	F5AAF1E40376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 290";
+		rLen = 0;
+		rLoc = 7040;
+		rType = 0;
+		vrLen = 516;
+		vrLoc = 6109;
+	};
+	F5AAF1E50376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 10516;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 10855;
+	};
+	F5AAF1E60376A95801A80164 = {
+		fRef = F5AB165E0371B43601A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetLink.cpp: 131";
+		rLen = 0;
+		rLoc = 2801;
+		rType = 0;
+		vrLen = 478;
+		vrLoc = 2614;
+	};
+	F5AAF1E70376A95801A80164 = {
+		fRef = F5A731440375512201A80164;
+		isa = PBXTextBookmark;
+		name = "MediaNetProtocol.cpp: Unpack";
+		rLen = 0;
+		rLoc = 3202;
+		rType = 0;
+		vrLen = 809;
+		vrLoc = 2539;
+	};
+	F5AAF1E80376A95801A80164 = {
+		fRef = F54020AD02A2423901F0D71D;
+		isa = PBXTextBookmark;
+		name = "GameContract.cpp: GameContract";
+		rLen = 0;
+		rLoc = 10516;
+		rType = 0;
+		vrLen = 570;
+		vrLoc = 10244;
 	};
 	F5AB16620371BF8201A80164 = {
 		fileReference = F54020AD02A2423901F0D71D;
@@ -68803,7 +68915,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 19";
 		rLen = 0;
-		rLoc = 973;
+		rLoc = 970;
 		rType = 0;
 		vrLen = 255;
 		vrLoc = 0;
@@ -68853,7 +68965,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 22";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 255;
 		vrLoc = 0;
@@ -68893,7 +69005,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 18";
 		rLen = 0;
-		rLoc = 973;
+		rLoc = 970;
 		rType = 0;
 		vrLen = 282;
 		vrLoc = 0;
@@ -68973,7 +69085,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 9";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1335;
 		rType = 0;
 		vrLen = 119;
 		vrLoc = 0;
@@ -69023,7 +69135,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 9";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1335;
 		rType = 0;
 		vrLen = 119;
 		vrLoc = 0;
@@ -69073,7 +69185,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 18";
 		rLen = 0;
-		rLoc = 973;
+		rLoc = 970;
 		rType = 0;
 		vrLen = 282;
 		vrLoc = 0;
@@ -69103,7 +69215,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 21";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1335;
 		rType = 0;
 		vrLen = 344;
 		vrLoc = 0;
@@ -69163,7 +69275,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 21";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1335;
 		rType = 0;
 		vrLen = 344;
 		vrLoc = 0;
@@ -69203,7 +69315,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 36";
 		rLen = 0;
-		rLoc = 1303;
+		rLoc = 1335;
 		rType = 0;
 		vrLen = 558;
 		vrLoc = 0;
@@ -69213,7 +69325,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 28";
 		rLen = 0;
-		rLoc = 959;
+		rLoc = 956;
 		rType = 0;
 		vrLen = 537;
 		vrLoc = 0;
@@ -69223,7 +69335,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 45";
 		rLen = 0;
-		rLoc = 1301;
+		rLoc = 1333;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 51;
@@ -69253,7 +69365,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 33";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 591;
 		vrLoc = 0;
@@ -69272,7 +69384,7 @@
 		fRef = F5AB165D0371B43601A80164;
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 1";
-		rLen = 985;
+		rLen = 982;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 628;
@@ -69303,7 +69415,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.h: 34";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 982;
 		rType = 0;
 		vrLen = 628;
 		vrLoc = 0;
@@ -69313,7 +69425,7 @@
 		isa = PBXTextBookmark;
 		name = "MediaNetLink.cpp: 35";
 		rLen = 0;
-		rLoc = 871;
+		rLoc = 898;
 		rType = 0;
 		vrLen = 721;
 		vrLoc = 24;
@@ -69841,7 +69953,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 19704;
+		rLoc = 19085;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 15757;
@@ -70511,7 +70623,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 26745;
+		rLoc = 26126;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 8150;
@@ -71405,7 +71517,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14333;
+		rLoc = 13367;
 		rType = 0;
 		vrLen = 1497;
 		vrLoc = 11279;
@@ -71465,7 +71577,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 13372;
+		rLoc = 12406;
 		rType = 0;
 		vrLen = 1640;
 		vrLoc = 10422;
@@ -71495,7 +71607,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14190;
+		rLoc = 13224;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 11442;
@@ -72015,7 +72127,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12225;
+		rLoc = 11259;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 6519;
@@ -72095,7 +72207,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 12244;
+		rLoc = 11278;
 		rType = 0;
 		vrLen = 1695;
 		vrLoc = 7029;
@@ -72135,7 +72247,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15587;
+		rLoc = 14621;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 9064;
@@ -72155,7 +72267,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 14;
-		rLoc = 15629;
+		rLoc = 14663;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 10483;
@@ -72215,7 +72327,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 15116;
+		rLoc = 14150;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 9203;
@@ -72235,7 +72347,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14395;
+		rLoc = 13429;
 		rType = 0;
 		vrLen = 1531;
 		vrLoc = 8760;
@@ -72285,7 +72397,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 23804;
+		rLoc = 23185;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 8796;
@@ -72315,7 +72427,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14080;
+		rLoc = 13114;
 		rType = 0;
 		vrLen = 1597;
 		vrLoc = 8382;
@@ -72455,7 +72567,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14826;
+		rLoc = 13860;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 11439;
@@ -72475,7 +72587,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14858;
+		rLoc = 13892;
 		rType = 0;
 		vrLen = 687;
 		vrLoc = 12136;
@@ -72585,7 +72697,7 @@
 		isa = PBXTextBookmark;
 		name = "GameContract.cpp: GameContract";
 		rLen = 0;
-		rLoc = 14858;
+		rLoc = 13892;
 		rType = 0;
 		vrLen = 687;
 		vrLoc = 12136;

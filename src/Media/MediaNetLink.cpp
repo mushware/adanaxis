@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.4 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.5 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.5  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.4  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -27,19 +30,21 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
 {
     // I am the client end of the link
     Initialise();
+    m_udpUseServerPort=false;
     TCPConnect(inServer, inPort);
     UDPConnect(inPort);
     m_client.UDPRemotePortSet(inPort);
-    RequestLinkChecks();
+    LinkChecksSend();
 }
 
 MediaNetLink::MediaNetLink(TCPsocket inSocket, U32 inPort)
 {
     // I am the server end of the link
     Initialise();
+    m_udpUseServerPort=true;
     TCPSocketTake(inSocket);
-    m_client.UDPRemotePortSet(0);
-    m_udpState.linkState=kLinkStateUseServer;
+    m_client.UDPRemotePortSet(0); // We don't know yet
+
 }
 
 void
@@ -89,7 +94,6 @@ MediaNetLink::LinkIsUp(tLinkState inState)
             
         case kLinkStateUntested:
         case kLinkStateIdle:
-        case kLinkStateUseServer:
             return true;
     }
     COREASSERT(false);
@@ -97,29 +101,39 @@ MediaNetLink::LinkIsUp(tLinkState inState)
 }
 
 void
-MediaNetLink::RequestLinkChecks(void)
+MediaNetLink::LinkChecksSend(void)
+{
+    TCPLinkCheckSend();
+    UDPLinkCheckSend();
+}
+
+void
+MediaNetLink::TCPLinkCheckSend(void)
 {
     m_currentMsec=SDL_GetTicks();
     {
         MediaNetData data;
-        BuildLinkCheck(data, m_tcpState);
+        m_tcpState.linkCheckSeqNum++;
+        MediaNetProtocol::TCPLinkCheckCreate(data, m_tcpState.linkCheckSeqNum);
+        m_tcpState.linkCheckState=kLinkCheckStateAwaitingReply;
+        m_tcpState.linkCheckTime=m_currentMsec;
         TCPSend(data);
     }
+}
+
+void
+MediaNetLink::UDPLinkCheckSend(void)
+{
+    m_currentMsec=SDL_GetTicks();
     {
         MediaNetData data;
-        BuildLinkCheck(data, m_udpState);
+        m_udpState.linkCheckSeqNum++;
+        MediaNetProtocol::UDPLinkCheckCreate(data, m_udpState.linkCheckSeqNum);
+        m_udpState.linkCheckState=kLinkCheckStateAwaitingReply;
+        m_udpState.linkCheckTime=m_currentMsec;
         UDPSend(data);
     }
 }    
-
-void
-MediaNetLink::BuildLinkCheck(MediaNetData& outData, LinkState& ioState)
-{
-    ioState.linkCheckSeqNum++;
-    MediaNetProtocol::LinkCheckCreate(outData, ioState.linkCheckSeqNum);
-    ioState.linkCheckState=kLinkCheckStateAwaitingReply;
-    ioState.linkCheckTime=m_currentMsec;
-}
 
 void
 MediaNetLink::TCPSend(MediaNetData& ioData)
@@ -151,17 +165,14 @@ MediaNetLink::UDPSend(MediaNetData& ioData)
         // UDPLinkMake();
         COREASSERT(false);
     }
-    if (m_udpState.linkState == kLinkStateUseServer)
+    if (m_udpUseServerPort)
     {
-        cerr << "Sending via server; client=" << m_client << endl;
         MediaNetServer::Instance().UDPSend(m_client.UDPRemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
     }
     else
     {
         m_client.UDPSend(ioData);
     }
-    cerr << endl << "*** Using client " << m_client << endl;
-    cerr << "Sent " << ioData << " to " << MediaNetUtils::IPAddressToString(m_client.UDPRemoteIPGet()) << ":" << m_client.UDPRemotePortGet() << endl << endl; 
 }
 
 void
@@ -172,7 +183,7 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
         // UDPLinkMake();
         COREASSERT(false);
     }
-    if (m_udpState.linkState == kLinkStateUseServer)
+    if (m_udpUseServerPort)
     {
         U32 host, port;
         MediaNetServer::Instance().UDPReceive(host, port, outData);
@@ -222,16 +233,28 @@ MediaNetLink::ReliableSend(MediaNetData& ioData)
 bool
 MediaNetLink::Receive(MediaNetData * & outData)
 {
-    UDPReceive(m_udpState.data);
-    if (!m_udpState.data.IsEmptyForRead())
+    UDPReceive(m_udpState.linkData);
+    if (!m_udpState.linkData.IsEmptyForRead())
     {
-        MediaNetProtocol::Unpack(m_udpState.data);
-        if (MediaNetProtocol::MessageTake(m_udpState.data))
+        MediaNetProtocol::Unpack(m_udpState.linkData);
+        if (MediaNetProtocol::MessageTake(m_udpState.linkData))
         {
-            outData = &m_udpState.data;
+            outData = &m_udpState.linkData;
             return true;
         }
     }
+    
+    TCPReceive(m_tcpState.linkData);
+    if (!m_tcpState.linkData.IsEmptyForRead())
+    {
+        MediaNetProtocol::Unpack(m_tcpState.linkData);
+        if (MediaNetProtocol::MessageTake(m_tcpState.linkData))
+        {
+            outData = &m_tcpState.linkData;
+            return true;
+        }
+    }
+    
     return false;
 }
 
@@ -240,12 +263,20 @@ MediaNetLink::MessageHandle(U32 inType, MediaNetData& ioData)
 {
     switch (inType)
     {
-        case MediaNetProtocol::kMessageTypeLinkCheck:
-            MessageLinkCheckHandle(ioData);
+        case MediaNetProtocol::kMessageTypeTCPLinkCheck:
+            MessageTCPLinkCheckHandle(ioData);
             break;
 
-        case MediaNetProtocol::kMessageTypeLinkCheckReply:
-            MessageLinkCheckReplyHandle(ioData);
+        case MediaNetProtocol::kMessageTypeTCPLinkCheckReply:
+            MessageTCPLinkCheckReplyHandle(ioData);
+            break;
+
+        case MediaNetProtocol::kMessageTypeUDPLinkCheck:
+            MessageUDPLinkCheckHandle(ioData);
+            break;
+
+        case MediaNetProtocol::kMessageTypeUDPLinkCheckReply:
+            MessageUDPLinkCheckReplyHandle(ioData);
             break;
 
         default:
@@ -254,34 +285,75 @@ MediaNetLink::MessageHandle(U32 inType, MediaNetData& ioData)
 }
 
 void
-MediaNetLink::MessageLinkCheckHandle(MediaNetData& ioData)
+MediaNetLink::MessageTCPLinkCheckHandle(MediaNetData& ioData)
 {
     U8 seqNum = ioData.MessageBytePop();
-    if (!m_client.UDPConnectedGet())
-    {
-        UDPConnect(ioData.SourcePortGet());
-        m_udpState.linkState=kLinkStateUntested;
-    }
-    // This needs analysing
-    m_client.UDPRemotePortSet(ioData.SourcePortGet());
-
+    
     MediaNetData replyData;
-    MediaNetProtocol::LinkCheckReplyCreate(replyData, seqNum);
-    UDPSend(replyData);
+    MediaNetProtocol::TCPLinkCheckReplyCreate(replyData, seqNum);
+    TCPSend(replyData);
 
-    if (m_udpState.linkState == kLinkStateUntested)
+    if (m_tcpState.linkState == kLinkStateUntested)
     {
-        RequestLinkChecks();
+        TCPLinkCheckSend();
     }
 }
 
 void
-MediaNetLink::MessageLinkCheckReplyHandle(MediaNetData& ioData)
+MediaNetLink::MessageTCPLinkCheckReplyHandle(MediaNetData& ioData)
 {
+    m_currentMsec=SDL_GetTicks();
+
     U32 seqNum = ioData.MessageBytePop();
-    if (seqNum == m_udpState.linkCheckSeqNum)
+    if (seqNum == m_tcpState.linkCheckSeqNum &&
+        m_tcpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        cerr << "Received valid UDP link check reply" << endl;
+        U32 pingTime=m_currentMsec - m_tcpState.linkCheckTime;
+        cerr << "Received valid TCP link check reply with ping time " << pingTime << "ms" << endl;
+        if (m_tcpState.linkState == kLinkStateUntested)
+        {
+            m_tcpState.linkState = kLinkStateIdle;
+        }
+        m_tcpState.linkCheckState = kLinkCheckStateIdle;
+    }
+}
+
+void
+MediaNetLink::MessageUDPLinkCheckHandle(MediaNetData& ioData)
+{
+    U8 seqNum = ioData.MessageBytePop();
+    if (!m_udpUseServerPort && !m_client.UDPConnectedGet())
+    {
+        UDPConnect(ioData.SourcePortGet());
+        m_udpState.linkState=kLinkStateUntested;
+    }
+
+    if (m_client.UDPRemotePortGet() == 0)
+    {
+        m_client.UDPRemotePortSet(ioData.SourcePortGet());
+    }
+
+    MediaNetData replyData;
+    MediaNetProtocol::UDPLinkCheckReplyCreate(replyData, seqNum);
+    UDPSend(replyData);
+
+    if (m_udpState.linkState == kLinkStateUntested)
+    {
+        UDPLinkCheckSend();
+    }
+}
+
+void
+MediaNetLink::MessageUDPLinkCheckReplyHandle(MediaNetData& ioData)
+{
+    m_currentMsec=SDL_GetTicks();
+
+    U32 seqNum = ioData.MessageBytePop();
+    if (seqNum == m_udpState.linkCheckSeqNum &&
+        m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
+    {
+        U32 pingTime=m_currentMsec - m_udpState.linkCheckTime;
+        cerr << "Received valid UDP link check reply with ping time " << pingTime << "ms" << endl;
         if (m_udpState.linkState == kLinkStateUntested)
         {
             m_udpState.linkState = kLinkStateIdle;

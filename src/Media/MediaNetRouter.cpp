@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetRouter.cpp,v 1.1 2002/11/04 01:02:38 southa Exp $
+ * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.1  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  */
 
 #include "MediaNetRouter.h"
@@ -26,11 +29,10 @@ MediaNetRouter::ReceiveAll(void)
         if (p->second->Receive(netData))
         {
             COREASSERT(netData != NULL);
-            cerr << "Received on " << p->first << ": " << *netData << endl;
+            // cerr << "Received on " << p->first << ": " << *netData << endl;
             U32 messageType = netData->MessageBytePop();
             if (MediaNetProtocol::MessageTypeIsLinkLayer(messageType))
             {
-                cerr << "Handled at link layer" << endl;
                 p->second->MessageHandle(messageType, *netData);
             }
             else

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.h,v 1.4 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetLink.h,v 1.5 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.5  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.4  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -34,7 +37,7 @@ public:
     void ReliableSend(MediaNetData& ioData);
     bool Receive(MediaNetData * & outData);
     
-    void RequestLinkChecks(void);
+    void LinkChecksSend(void);
 
     void MessageHandle(U32 inType, MediaNetData& ioData);
 
@@ -47,8 +50,7 @@ private:
         kLinkStateNotMade,
         kLinkStateUntested,
         kLinkStateIdle,
-        kLinkStateDead,
-        kLinkStateUseServer
+        kLinkStateDead
     };
 
     enum tLinkCheckState
@@ -64,7 +66,7 @@ private:
         U32 linkCheckTime;
         tLinkState linkState;
         tLinkCheckState linkCheckState;
-        MediaNetData data;
+        MediaNetData linkData;
         U8 linkCheckSeqNum;
     };
 
@@ -72,8 +74,8 @@ private:
     void TCPConnect(const string& inServer, U32 inPort);
     void UDPConnect(U32 inPort);
     void TCPSocketTake(TCPsocket inSocket);
-    void RequestLinkCheck(void);
-    void BuildLinkCheck(MediaNetData& outData, LinkState& ioState);
+    void TCPLinkCheckSend(void);
+    void UDPLinkCheckSend(void);
     bool LinkIsUp(tLinkState inState);
 
     void TCPSend(MediaNetData& inData);
@@ -81,14 +83,17 @@ private:
     void UDPSend(MediaNetData& inData);
     void UDPReceive(MediaNetData& outData);
 
-    void MessageLinkCheckHandle(MediaNetData& ioData);
-    void MessageLinkCheckReplyHandle(MediaNetData& ioData);
+    void MessageTCPLinkCheckHandle(MediaNetData& ioData);
+    void MessageTCPLinkCheckReplyHandle(MediaNetData& ioData);
+    void MessageUDPLinkCheckHandle(MediaNetData& ioData);
+    void MessageUDPLinkCheckReplyHandle(MediaNetData& ioData);
     
     LinkState m_tcpState;
     LinkState m_udpState;
     MediaNetClient m_client;
     U32 m_currentMsec;
     bool m_targetIsServer;
+    bool m_udpUseServerPort;
 };
 
 inline ostream&

@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.3 2002/11/02 11:22:51 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.4 2002/11/04 01:02:38 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.4  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.3  2002/11/02 11:22:51  southa
  * Simplified UDP send and receive
  *
@@ -64,7 +67,6 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
         errno=0;
         int sockAddrSize=sizeof(sockAddr);
         int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
-        cerr << "recv " << result << endl;
     
         outHost=sockAddr.sin_addr.s_addr;
         outPort=sockAddr.sin_port;

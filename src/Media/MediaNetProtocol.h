@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.h,v 1.2 2002/11/03 20:10:00 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.3 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.3  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.2  2002/11/03 20:10:00  southa
  * Initial message unpacking
  *
@@ -19,12 +22,17 @@ public:
     enum tMessageType
     {
         kMessageTypeInvalid,
-        kMessageTypeLinkCheck='A',
-        kMessageTypeLinkCheckReply
+        kMessageTypeTCPLinkCheck='A',
+        kMessageTypeTCPLinkCheckReply,
+        kMessageTypeUDPLinkCheck,
+        kMessageTypeUDPLinkCheckReply,
+        kMessageTypeMaxLinkLayer
     };
-    
-    static void LinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);
-    static void LinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
+
+    static void TCPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);
+    static void TCPLinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
+    static void UDPLinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);
+    static void UDPLinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
 
     static void Unpack(MediaNetData& ioData);
     static bool MessageTake(MediaNetData& ioData);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.87 2002/11/03 20:09:59 southa Exp $
+ * $Id: GameContract.cpp,v 1.88 2002/11/04 01:02:37 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.88  2002/11/04 01:02:37  southa
+ * Link checks
+ *
  * Revision 1.87  2002/11/03 20:09:59  southa
  * Initial message unpacking
  *
@@ -409,30 +412,6 @@ GameContract::Init(void)
     GameDataUtils::NamedDialoguesAdd("^start");
     m_newMode=GameConfig::Instance().DisplayModeGet();
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
-
-    MediaNetServer::Instance().Connect(7121);
-    MediaNetLink *clientLink=CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
-    MediaNetServer::Instance().Accept();
-    MediaNetData dataIn("Hello from the network link");
-    MediaNetData dataReply("Hello yourself");
-    MediaNetData dataOut;
-    cout << "dataIn " << dataIn << endl;
-    cout << "dataReply " << dataReply << endl;
-    cout << "dataOut " << dataOut << endl;
-    MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("server0");
-    COREASSERT(serverLink != NULL);
-    // clientLink.UDPSend(dataIn);
-    // serverLink->UDPSend(dataReply);
-    for (U32 i=0; i<1e6; ++i)
-        {}
-
-MediaNetRouter::Instance().ReceiveAll();
-MediaNetRouter::Instance().ReceiveAll();
-MediaNetRouter::Instance().ReceiveAll();
-MediaNetRouter::Instance().ReceiveAll();
-MediaNetRouter::Instance().ReceiveAll();
-    
-    CoreData<MediaNetLink>::Instance().Dump(cerr);
 }
 
 void
@@ -671,6 +650,19 @@ GameContract::Running(void)
     GameTimer& timer(GameData::Instance().TimerGet());
     
     timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+
+    static U32 ctr=0;
+    ++ctr;
+    if (ctr == 100)
+    {
+        MediaNetServer::Instance().Connect(7121);
+        CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
+    }
+    else if (ctr > 100)
+    {
+        MediaNetServer::Instance().Accept();
+        MediaNetRouter::Instance().ReceiveAll();
+    }
     
     if (timer.JudgementValid())
     {
