@@ -1,6 +1,9 @@
 /*
- * $Id: GameTimer.cpp,v 1.3 2002/08/05 15:15:21 southa Exp $
+ * $Id: GameTimer.cpp,v 1.4 2002/08/05 16:14:18 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.4  2002/08/05 16:14:18  southa
+ * Windback at low frame rates
+ *
  * Revision 1.3  2002/08/05 15:15:21  southa
  * Improved windback and released FPS limit
  *
@@ -17,7 +20,8 @@
 GameTimer::GameTimer():
     m_motionFrameInterval(10000),
     m_averageFrameDuration(0),
-    m_timesValid(false)
+    m_timesValid(false),
+    m_jitterReported(false)
 {
 
 }
@@ -83,7 +87,7 @@ void
 GameTimer::MotionFramesDone(tVal inFrames)
 {
     m_motionFrameTime += inFrames * m_motionFrameInterval;
-    COREASSERT(m_motionFrameTime <= m_currentTime + m_motionMargin);
+    if (m_motionFrameTime > m_currentTime + m_motionMargin) ReportJitter();
     m_currentMotionFrame+=inFrames;
 }
 
@@ -119,7 +123,7 @@ void
 GameTimer::Periodic10msDone(tVal inNum)
 {
     m_periodic10msTime += 10000*inNum;
-    COREASSERT(m_periodic10msTime <= m_currentTime);
+    if (m_periodic10msTime > m_currentTime) ReportJitter();
 }
 
 tVal
@@ -133,7 +137,7 @@ void
 GameTimer::Periodic1sDone(tVal inNum)
 {
     m_periodic1sTime += 1000000*inNum;
-    COREASSERT(m_periodic1sTime <= m_currentTime);
+    if (m_periodic1sTime > m_currentTime) ReportJitter();
 }
 
 GameTimer::tMsec
@@ -191,7 +195,7 @@ GameTimer::WindbackValueGet(tMsec inMSec)
 
     // Restrict to sensible values
     if (windbackValue > 1.0) windbackValue = 1.0;
-    if (windbackValue < -0.25) windbackValue = -0.25;
+    if (windbackValue < 0) windbackValue = 0;
 
     //if (m_motionMargin < 0) m_motionMargin = 0;
     if (m_motionMargin > 200000)
@@ -204,4 +208,12 @@ GameTimer::WindbackValueGet(tMsec inMSec)
     return windbackValue;
 }
 
-    
+void
+GameTimer::ReportJitter(void)
+{
+    if (!m_jitterReported)
+    {
+        cerr << "Timing jitter detected" << endl;
+        m_jitterReported = true;
+    }
+}

@@ -1,8 +1,11 @@
 #ifndef GAMETIMER_H
 #define GAMETIMER_H
 /*
- * $Id: GameTimer.h,v 1.2 2002/08/05 13:37:29 southa Exp $
+ * $Id: GameTimer.h,v 1.3 2002/08/05 15:15:21 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.3  2002/08/05 15:15:21  southa
+ * Improved windback and released FPS limit
+ *
  * Revision 1.2  2002/08/05 13:37:29  southa
  * Windback work
  *
@@ -39,6 +42,8 @@ public:
     tVal WindbackValueGet(tMsec inMSec);
 
 private:
+    void ReportJitter(void);
+    
     tUsec m_currentTime;
     tUsec m_motionFrameTime;
     tUsec m_periodic10msTime;
@@ -51,5 +56,6 @@ private:
     tUsec m_motionMargin;
     U32 m_lastMsec;
     bool m_timesValid;
+    bool m_jitterReported;
 };
 #endif
