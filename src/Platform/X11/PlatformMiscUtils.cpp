@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.17 2003/02/05 18:49:52 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.18 2003/02/06 18:55:27 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.18  2003/02/06 18:55:27  southa
+ * Linux build fixes
+ *
  * Revision 1.17  2003/02/05 18:49:52  southa
  * Build fixes
  *
@@ -208,6 +211,12 @@ PlatformMiscUtils::ErrorBox(const string& inStr)
 void
 PlatformMiscUtils::MinorErrorBox(const string& inStr)
 {
+}
+
+bool
+PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
+{
+    return inDefault;
 }
 
 void
