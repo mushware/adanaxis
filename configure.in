@@ -16,52 +16,57 @@ AC_PATH_PROG(ac_prog_find, find)
 
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)
-if test "x$ac_cv_header_windows_h" = "xyes" ; then
-AC_CHECK_LIB(opengl32, main)
-AC_CHECK_LIB(glu32, main)
-AC_CHECK_LIB(glut32, main)
-else
-AC_CHECK_LIB(gl, main,, AC_CHECK_LIB(GL, main))
-AC_CHECK_LIB(glu, main,, AC_CHECK_LIB(GLU, main))
-AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main))
-fi
-AC_CHECK_LIB(PCRE, main)
-AC_CHECK_LIB(expat, main)
-AC_CHECK_LIB(ungif, main)
-AC_CHECK_LIB(tiff, main)
 
-dnl Checks for header files.
-AC_CHECK_HEADERS(sstream)
-AC_CHECK_HEADERS(unistd.h)
+dnl Get GL
+case "$target" in
+    powerpc-apple-darwin*)
+        AC_MSG_NOTICE([Using frameworks for Darwin])
+        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT"
+        AC_CHECK_HEADERS(OpenGL/gl.h)
+        AC_CHECK_HEADERS(OpenGL/glu.h)
+        AC_CHECK_HEADERS(GLUT/glut.h)
+        ;;
+    *)
+        if test "x$ac_cv_header_windows_h" = "xyes" ; then
+            AC_CHECK_LIB(opengl32, main)
+            AC_CHECK_LIB(glu32, main)
+            AC_CHECK_LIB(glut32, main)
+        else
+            AC_PATH_X 
+            AC_CHECK_LIB(gl, main,, AC_CHECK_LIB(GL, main))
+            AC_CHECK_LIB(glu, main,, AC_CHECK_LIB(GLU, main))
+            AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main))
+        fi
+        AC_CHECK_HEADERS(GLUT/glut.h)
+        AC_CHECK_HEADERS(GL/gl.h)
+        AC_CHECK_HEADERS(GL/glut.h)
+        ;;
+esac
 
-AC_CHECK_HEADERS(OpenGL/gl.h)
-AC_CHECK_HEADERS(OpenGL/glu.h)
+AC_CHECK_LIB(PCRE, main,, AC_MSG_ERROR([PCRE library not found - try ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/]))
+AC_CHECK_LIB(expat, main,, AC_MSG_ERROR([expat library not found - try http://expat.sourceforge.net/]))
+AC_CHECK_LIB(ungif, main,, AC_MSG_ERROR([libungif library not found - try ftp://prtr-13.ucsc.edu/pub/libungif/]))
+AC_CHECK_LIB(tiff, main,, AC_MSG_ERROR([libtiff library not found - try http://www.libtiff.org/]))
 
-AC_CHECK_HEADERS(GLUT/glut.h)
-AC_CHECK_HEADERS(GL/gl.h)
-AC_CHECK_HEADERS(GL/glut.h)
+dnl Checks for header files
+AC_CHECK_HEADERS(sstream,,[
+AC_MSG_WARN([sstream not found.  Using copy from distribution])
+CPPFLAGS="$CPPFLAGS -ISupport/gcc-2.95.2"
+])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
 
 dnl Checks for library functions.
 
-dnl Die if we can't build
-case "$target" in
-powerpc-apple-darwin*)
-echo
-echo Target powerpc-apple-darwin : Please use Project Builder to build for MacOS X, ;
-echo OpenGL libraries inaccessible.  Abandoned
-exit ;;
-esac
 dnl Automatically generate src/makefile.am if it's not there
 AC_CHECK_FILE(src/Makefile.am,,
 echo Building src/Makefile.am
 cd src
 echo 'bin_PROGRAMS=coreapp' > Makefile.am
 echo -n 'coreapp_SOURCES=' >> Makefile.am
-$ac_prog_find . -name '*.cpp' -printf " %p" >> Makefile.am
-$ac_prog_find . -name '*.h' -printf " %p" >> Makefile.am
+$ac_prog_find . -name '*.cpp' -exec echo $ECHO_N " " {} \;  >> Makefile.am
+$ac_prog_find . -name '*.h' -exec echo $ECHO_N " " {} \;  >> Makefile.am
 echo >> Makefile.am
 echo INCLUDES=-IAPI >> Makefile.am
 cd ..
