@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.7 2002/12/29 20:30:57 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.8 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.8  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.7  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -82,6 +85,13 @@
 #include "MustlFail.h"
 #include "MustlSTL.h"
 
+#ifdef WIN32
+// win32 includes
+#include <iphlpapi.h>
+#include <windows.h>
+
+#else
+// POSIX includes
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
@@ -95,6 +105,7 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#endif
 
 using namespace Mustl;
 using namespace std;
@@ -102,16 +113,51 @@ using namespace std;
 bool MustlPlatform::m_localAddressesValid=false;
 map<U32, bool> MustlPlatform::m_localAddressMap;
 
+#ifdef WIN32
+
+#define MUSTL_ERROR_PREFIX int wsaError
+#define MUSTL_ERROR_RESET
+#define MUSTL_ERROR_FETCH wsaError = WSAGetLastError()
+#define MUSTL_ERROR_VALUE wsaError
+#define MUSTL_ERROR_EAGAIN WSAEAGAIN
+#define MUSTL_ERROR_EINTR WSAEINTR
+#define MUSTL_ERROR_EWOULDBLOCK WSAEWOULDBLOCK
+#define MUSTL_ERROR_EINPROGRESS WSAEINPROGRESS
+
+#else
+
+#define MUSTL_ERROR_PREFIX
+#define MUSTL_ERROR_RESET errno=0
+#define MUSTL_ERROR_FETCH
+#define MUSTL_ERROR_VALUE errno
+#define MUSTL_ERROR_EAGAIN EAGAIN
+#define MUSTL_ERROR_EINTR EINTR
+#define MUSTL_ERROR_EWOULDBLOCK EWOULDBLOCK
+#define MUSTL_ERROR_EINPROGRESS EINPROGRESS
+
+#endif
+
 void
 MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
 {
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+
+#ifdef WIN32
+    u_long mode = 1;
+    int result = ioctlsocket(inSocket, FIONBIO, &mode);
+#else
     int flags = fcntl(inSocket, F_GETFL, 0);
     if (flags < 0) flags = 0;
-    if (fcntl(inSocket, F_SETFL, flags | O_NONBLOCK) < 0)
+    int result = fcntl(inSocket, F_SETFL, flags | O_NONBLOCK);
+#endif
+        
+    if (result < 0)
     {
+        MUSTL_ERROR_FETCH;
+        
         ostringstream message;
-        message << "Failed to set socket non-blocking: " << errno;
+        message << "Failed to set socket non-blocking (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
 }
@@ -119,13 +165,25 @@ MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
 void
 MustlPlatform::SocketBlockingSet(tSocket inSocket)
 {
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+
+#ifdef WIN32
+    u_long mode = 1;
+    int result = ioctlsocket(inSocket, FIONBIO, &mode);
+#else
+    
     int flags = fcntl(inSocket, F_GETFL, 0);
     if (flags < 0) flags = 0;
-    if (fcntl(inSocket, F_SETFL, flags & ~O_NONBLOCK) < 0)
+    int result = fcntl(inSocket, F_SETFL, flags & ~O_NONBLOCK);
+#endif
+    
+    if (result < 0)
     {
+        MUSTL_ERROR_FETCH;
+
         ostringstream message;
-        message << "Failed to set socket blocking: " << errno;
+        message << "Failed to set socket blocking (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
 }
@@ -134,11 +192,15 @@ void
 MustlPlatform::SocketReuseAddressSet(tSocket inSocket)
 {
     int value=1;
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+    
     if (setsockopt(inSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
     {
+        MUSTL_ERROR_FETCH;
+
         ostringstream message;
-        message << "Failed to set socket address reuse (" << errno << ")";
+        message << "Failed to set socket address reuse (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     
@@ -148,11 +210,15 @@ void
 MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
 {
     int value = 1;
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+    
     if (setsockopt(inSocket, IPPROTO_TCP, TCP_NODELAY, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
     {
+        MUSTL_ERROR_FETCH;
+
         ostringstream message;
-        message << "Failed to set socket TCP delay (" << errno << ")";
+        message << "Failed to set socket TCP delay (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
 }
@@ -160,13 +226,15 @@ MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
 U32
 MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 {
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     int result = send(inSocket, inBuffer, inSize, 0);
 
     if (result < 0)
     {
+        MUSTL_ERROR_FETCH;
         ostringstream message;
-        message << "TCP send failed (" << errno << ")";
+        message << "TCP send failed (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     return static_cast<U32>(result);
@@ -175,20 +243,23 @@ MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
 U32
 MustlPlatform::TCPReceive(tSocket inSocket, void *outBuffer, U32 inSize)
 {
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
 
     int result = recv(inSocket, outBuffer, inSize, 0);
 
     if (result < 0)
     {
-        if (errno == EINTR || errno == EAGAIN)
+        MUSTL_ERROR_FETCH;
+
+        if (MUSTL_ERROR_VALUE == MUSTL_ERROR_EINTR || MUSTL_ERROR_VALUE == MUSTL_ERROR_EAGAIN)
         {
             result = 0;
         }
         else
         {
             ostringstream message;
-            message << "TCP receive failed (" << errno << ")";
+            message << "TCP receive failed (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
         }
     }
@@ -202,14 +273,17 @@ MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *in
     sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
     sockAddr.sin_family = AF_INET;
-    
-    errno=0;
+
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     int result=sendto(inSocket, inBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
 
     if (result < 0)
     {
+        MUSTL_ERROR_FETCH;
+
         ostringstream message;
-        message << "UDP send to " << inAddress << " failed (" << errno << ")";
+        message << "UDP send to " << inAddress << " failed (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     return static_cast<U32>(result);
@@ -221,7 +295,8 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
     struct sockaddr_in sockAddr;
     int sockAddrSize=sizeof(sockAddr);
 
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
 
     outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
@@ -229,14 +304,16 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
     
     if (result < 0)
     {
-        if (errno == EINTR || errno == EAGAIN)
+        MUSTL_ERROR_FETCH;
+
+        if (MUSTL_ERROR_VALUE == MUSTL_ERROR_EINTR || MUSTL_ERROR_VALUE == MUSTL_ERROR_EAGAIN)
         {
             result = 0;
         }
         else
         {
             ostringstream message;
-            message << "UDP receive failed (" << errno << ")";
+            message << "UDP receive failed (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
         }
     }
@@ -279,14 +356,18 @@ MustlPlatform::TCPConnectNonBlocking(const MustlAddress& inAddress)
     sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
+
     if (connect(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
-        if (errno != EINPROGRESS)
+        MUSTL_ERROR_FETCH;
+
+        if (MUSTL_ERROR_VALUE != MUSTL_ERROR_EINPROGRESS)
         {
             close(sockHandle);
             ostringstream message;
-            message << "Couldn't connect to remote host " << inAddress << " (" << errno << ")";
+            message << "Couldn't connect to remote host " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
         }
     }
@@ -309,20 +390,25 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
     sockAddr.sin_addr.s_addr = inAddress.HostGetNetworkOrder();
     sockAddr.sin_port = inAddress.PortGetNetworkOrder();
 
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
+        MUSTL_ERROR_FETCH;
+
         close(sockHandle);
         ostringstream message;
-        message << "Couldn't bind server address " << inAddress << " (" << errno << ")";
+        message << "Couldn't bind server address " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     
     if (listen(sockHandle, 8) != 0)
     {
+        MUSTL_ERROR_FETCH;
+        
         close(sockHandle);
         ostringstream message;
-        message << "Couldn't listen on server socket " << inAddress << " (" << errno << ")";
+        message << "Couldn't listen on server socket " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     return sockHandle;
@@ -342,14 +428,17 @@ MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
     sockAddr.sin_addr.s_addr = 0; // Not used
     sockAddr.sin_port = inPortNetworkOrder;
 
-    errno=0;
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
-        if (errno != EINPROGRESS)
+        MUSTL_ERROR_FETCH;
+
+        if (MUSTL_ERROR_VALUE != MUSTL_ERROR_EINPROGRESS)
         {
             close(sockHandle);
             ostringstream message;
-            message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder) << " (" << errno << ")";
+            message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder) << " (" << MUSTL_ERROR_VALUE << ")";
             throw(MustlFail(message.str()));
         }
     }
@@ -362,17 +451,21 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
 {
     struct sockaddr_in sockAddr;
     int sockAddrLen = sizeof(sockAddr);
-    errno=0;
+
+    MUSTL_ERROR_PREFIX;
+    MUSTL_ERROR_RESET;
     int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddr), &sockAddrLen);
 
     if (newSocket == -1)
     {
-        if (errno == EWOULDBLOCK)
+        MUSTL_ERROR_FETCH;
+
+        if (MUSTL_ERROR_VALUE == MUSTL_ERROR_EWOULDBLOCK)
         {
             return false;
         }
         ostringstream message;
-        message << "Accept failed (" << errno << ")";
+        message << "Accept failed (" << MUSTL_ERROR_VALUE << ")";
         throw(MustlFail(message.str()));
     }
     outSocket = newSocket;
@@ -427,56 +520,6 @@ U32
 MustlPlatform::NetworkToHostOrderU32(U32 inVal)
 {
     return ntohl(inVal);
-}
-
-void
-MustlPlatform::LocalAddressesRetrieve(void)
-{
-    m_localAddressMap.clear();
-    
-    struct ifconf ifConf;
-    U8 ipBuffer[16384];
-    ifConf.ifc_buf = reinterpret_cast<char *>(ipBuffer);
-    ifConf.ifc_len = sizeof(ipBuffer)-256;
-    int testSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (testSocket == -1)
-    {
-        throw(MustlFail("Socket creation failed"));
-    }
-    errno=0;
-    if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
-    {
-        close(testSocket);
-        ostringstream message;
-        message << "ioctl SIOCGIFCONF fail (" << errno << ")";
-        throw(MustlFail(message.str()));
-    }
-    U8 *dataPtr=ipBuffer;
-    
-    while (dataPtr < ipBuffer+ifConf.ifc_len)
-    {
-        struct ifreq *ifReq = reinterpret_cast<struct ifreq *>(dataPtr);
-
-        U32 entryLength=ifReq->ifr_addr.sa_len;
-        if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
-        if (ifReq->ifr_addr.sa_family == AF_INET)
-        {
-            if (ioctl(testSocket, SIOCGIFFLAGS, ifReq) == 0)
-            {
-                if (ifReq->ifr_flags & IFF_UP)
-                {
-                    if (ioctl(testSocket, SIOCGIFADDR, ifReq) == 0)
-                    {
-                        struct in_addr ipAddr = ((struct sockaddr_in *)&(ifReq->ifr_addr))->sin_addr;
-                        m_localAddressMap[ipAddr.s_addr]=true;
-                    }
-                }
-            }
-        }
-        dataPtr += sizeof(ifReq->ifr_name) + entryLength;
-    }
-    close(testSocket);
-    m_localAddressesValid=true;
 }
 
 bool
@@ -572,3 +615,93 @@ MustlPlatform::DefaultTimer(void)
         return 0;
     }
 }
+
+
+#ifdef WIN32
+
+void
+PlatformNet::LocalAddressesRetrieve(void)
+{
+    m_localAddressMap.clear();
+
+    U8 ipBuffer[16384];
+    PMIB_IPADDRTABLE ipAddrTable = reinterpret_cast<PMIB_IPADDRTABLE>(ipBuffer);
+    ULONG bufSize=sizeof(ipBuffer)-256;
+    DWORD result = GetIpAddrTable(ipAddrTable, &bufSize, 0);
+
+    if (result != NO_ERROR)
+    {
+        ostringstream message;
+        message << "GetIpAddrTable failed (" << result << ")";
+        throw(NetworkFail(message.str()));
+    }
+    DWORD numEntries = ipAddrTable->dwNumEntries;
+
+    if (numEntries > 256)
+    {
+        ostringstream message;
+        message << "Too many entries from GetIpAddrTable (" << numEntries << ")";
+        throw(NetworkFail(message.str()));
+    }
+
+    for (U32 i=0; i<numEntries; ++i)
+    {
+        MIB_IPADDRROW *ipAddrRow = &ipAddrTable->table[i];
+        m_localAddressMap[ipAddrRow->dwAddr]=true;
+    }
+    m_localAddressesValid=true;
+}
+
+#else
+
+void
+MustlPlatform::LocalAddressesRetrieve(void)
+{
+    m_localAddressMap.clear();
+
+    struct ifconf ifConf;
+    U8 ipBuffer[16384];
+    ifConf.ifc_buf = reinterpret_cast<char *>(ipBuffer);
+    ifConf.ifc_len = sizeof(ipBuffer)-256;
+    int testSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (testSocket == -1)
+    {
+        throw(MustlFail("Socket creation failed"));
+    }
+    errno=0;
+    if (ioctl(testSocket, SIOCGIFCONF, &ifConf) != 0)
+    {
+        close(testSocket);
+        ostringstream message;
+        message << "ioctl SIOCGIFCONF fail (" << errno << ")";
+        throw(MustlFail(message.str()));
+    }
+    U8 *dataPtr=ipBuffer;
+
+    while (dataPtr < ipBuffer+ifConf.ifc_len)
+    {
+        struct ifreq *ifReq = reinterpret_cast<struct ifreq *>(dataPtr);
+
+        U32 entryLength=ifReq->ifr_addr.sa_len;
+        if (entryLength < sizeof(struct sockaddr)) entryLength=sizeof(struct sockaddr);
+        if (ifReq->ifr_addr.sa_family == AF_INET)
+        {
+            if (ioctl(testSocket, SIOCGIFFLAGS, ifReq) == 0)
+            {
+                if (ifReq->ifr_flags & IFF_UP)
+                {
+                    if (ioctl(testSocket, SIOCGIFADDR, ifReq) == 0)
+                    {
+                        struct in_addr ipAddr = ((struct sockaddr_in *)&(ifReq->ifr_addr))->sin_addr;
+                        m_localAddressMap[ipAddr.s_addr]=true;
+                    }
+                }
+            }
+        }
+        dataPtr += sizeof(ifReq->ifr_name) + entryLength;
+    }
+    close(testSocket);
+    m_localAddressesValid=true;
+}
+
+#endif

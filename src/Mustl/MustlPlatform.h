@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.h,v 1.5 2002/12/17 00:58:29 southa Exp $
+ * $Id: MustlPlatform.h,v 1.6 2002/12/20 13:17:47 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.6  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/12/17 00:58:29  southa
  * Added support for libmustl target
  *
