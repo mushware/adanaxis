@@ -9,13 +9,13 @@
 	F53F7CC00230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
 		isa = PBXFileBreakpoint;
-		lineNumber = 26;
-		state = 1;
+		lineNumber = 20;
+		state = 2;
 	};
 	F53F7CC10230F54F01633C4B = {
 		fileReference = F5463A990230DCDC011D269C;
 		isa = PBXFileBreakpoint;
-		lineNumber = 35;
+		lineNumber = 20;
 		state = 1;
 	};
 	F53F7CE2023167A101633C4B = {
@@ -39,15 +39,15 @@
 		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
-				ContentSize = "{819, 633}";
+				ContentSize = "{819, 670}";
 				LeftSlideOut = {
 					ActiveTab = 0;
-					Frame = "{{0, 23}, {819, 610}}";
+					Frame = "{{0, 23}, {819, 647}}";
 					Split0 = {
-						ActiveTab = 2;
-						Frame = "{{270, 0}, {549, 610}}";
+						ActiveTab = 1;
+						Frame = "{{270, 0}, {549, 647}}";
 						Split0 = {
-							Frame = "{{0, 216}, {549, 394}}";
+							Frame = "{{0, 176}, {549, 471}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -84,9 +84,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {551, 108}}";
-							BuildTranscriptFrame = "{{0, 117}, {551, 77}}";
-							Frame = "{{0, 0}, {549, 192}}";
+							BuildMessageFrame = "{{0, 0}, {551, 145}}";
+							BuildTranscriptFrame = "{{0, 154}, {551, 98}}";
+							Frame = "{{0, 0}, {549, 250}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {549, 295}}";
@@ -95,7 +95,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {246, 610}}";
+						Frame = "{{0, 0}, {246, 647}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {203, 360}}";
@@ -107,12 +107,12 @@
 						Frame = "{{0, 0}, {200, 610}}";
 					};
 					Tab3 = {
-						Frame = "{{0, 0}, {200, 610}}";
+						Frame = "{{0, 0}, {200, 647}}";
 						Split0 = {
-							Frame = "{{0, 0}, {200, 295}}";
+							Frame = "{{0, 0}, {200, 313}}";
 						};
 						Split1 = {
-							Frame = "{{0, 304}, {200, 306}}";
+							Frame = "{{0, 322}, {200, 325}}";
 						};
 						SplitCount = 2;
 					};
@@ -147,9 +147,10 @@
 		};
 	};
 	F5463AC30230EA58011D269C = {
-		activeArgIndex = 0;
+		activeArgIndex = 1;
 		argumentStrings = (
 			"test1;test2 \\\"hello!\\\";test3",
+			"launch \\\"/bin/ls\\\"",
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";

@@ -510,6 +510,7 @@
 				F53F7CDE023155BC01633C4B,
 				F53F7CE102315C2701633C4B,
 				F567B160023414E001FBD387,
+				F5463B45023559EA01F17BDD,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -659,6 +660,7 @@
 				F53F7CC802311A0801633C4B,
 				F53F7CDB02314F1301633C4B,
 				F567B1630234179C01FBD387,
+				F5463B4802355AAB01F17BDD,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -785,6 +787,40 @@
 		};
 		F5463AC90230F310011D269C = {
 			fileRef = F5B25BD202187072017E032D;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5463B43023559EA01F17BDD = {
+			isa = PBXFileReference;
+			path = CoreParamList.hp;
+			refType = 4;
+		};
+		F5463B44023559EA01F17BDD = {
+			fileRef = F5463B43023559EA01F17BDD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5463B45023559EA01F17BDD = {
+			fileRef = F5463B43023559EA01F17BDD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5463B4602355AAB01F17BDD = {
+			isa = PBXFileReference;
+			path = CoreParamList.cpp;
+			refType = 4;
+		};
+		F5463B4702355AAB01F17BDD = {
+			fileRef = F5463B4602355AAB01F17BDD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5463B4802355AAB01F17BDD = {
+			fileRef = F5463B4602355AAB01F17BDD;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -972,6 +1008,7 @@
 				F53F7CDD023155BC01633C4B,
 				F53F7CE002315C2601633C4B,
 				F567B15F023414E001FBD387,
+				F5463B44023559EA01F17BDD,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1005,6 +1042,7 @@
 				F53F7CC702311A0801633C4B,
 				F53F7CDA02314F1301633C4B,
 				F567B1620234179C01FBD387,
+				F5463B4702355AAB01F17BDD,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -1353,6 +1391,8 @@
 				F548851F022F9B1601D6DA80,
 				F5463A990230DCDC011D269C,
 				F5463A930230D95C011D269C,
+				F5463B4602355AAB01F17BDD,
+				F5463B43023559EA01F17BDD,
 				F5921CE3021876D70127AF47,
 				F567B1610234179C01FBD387,
 				F567B15E023414E001FBD387,
@@ -1384,7 +1424,7 @@
 		};
 		F5921CE0021876D70127AF47 = {
 			isa = PBXFileReference;
-			path = CommandHandler.hp;
+			path = CoreCommandHandler.hp;
 			refType = 4;
 		};
 		F5921CE1021876D70127AF47 = {
