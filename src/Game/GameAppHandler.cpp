@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.8 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.9 2002/05/31 15:18:16 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.9  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.8  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -51,6 +54,7 @@ GameAppHandler::Initialise(void)
     m_pGame->ScriptFunction("load");
     
     GLUtils::StandardInit();
+    //GLUtils::GameInit();
 
     RegisterHandlers();
 

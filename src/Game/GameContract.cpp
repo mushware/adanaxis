@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.9 2002/05/31 16:05:55 southa Exp $
+ * $Id: GameContract.cpp,v 1.10 2002/05/31 17:46:46 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.10  2002/05/31 17:46:46  southa
+ * FPS tweaks
+ *
  * Revision 1.9  2002/05/31 16:05:55  southa
  * FPS printout
  *
@@ -98,6 +101,8 @@ GameContract::InitDisplay(void)
 void
 GameContract::RunningDisplay(void)
 {
+    static tVal angle=0;
+    angle+=0.05;
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
     GLUtils::DisplayPrologue();
@@ -113,12 +118,12 @@ GameContract::RunningDisplay(void)
             U32 mapVal=m_floorMap->At(x,y);
             S32 basex=32*x;
             S32 basey=32*y;
-            basex+=(double(rand())/RAND_MAX)*4;
-            basey+=(double(rand())/RAND_MAX)*4;
+            //basex+=(double(rand())/RAND_MAX)*4;
+            //basey+=(double(rand())/RAND_MAX)*4;
             GLTextureRef texRef(m_tileMap->NameGet(mapVal));
             if (texRef.Exists())
             {
-                GLUtils::DrawBitmap(*texRef.TextureGet(), basex, basey);
+                GLUtils::DrawRotatedSprite(*texRef.TextureGet(), basex, basey,angle);
             }
         }
     }

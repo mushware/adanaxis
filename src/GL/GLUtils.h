@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.h,v 1.4 2002/05/29 08:56:16 southa Exp $
+ * $Id: GLUtils.h,v 1.5 2002/05/31 15:18:16 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.5  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.4  2002/05/29 08:56:16  southa
  * Tile display
  *
@@ -35,7 +38,8 @@ public:
     static void DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3);
     static void RasterPos(tVal inX, tVal inY);
     static void BitmapText(const string& inStr);
-    static void DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY);
+    static void DrawSprite(const GLTexture& inTex, tVal inX, tVal inY);
+    static void DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAngle);
     static void PostRedisplay(void);
     
 private:

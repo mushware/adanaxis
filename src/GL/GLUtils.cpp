@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.6 2002/05/31 15:18:16 southa Exp $
+ * $Id: GLUtils.cpp,v 1.7 2002/06/02 15:18:52 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.7  2002/06/02 15:18:52  southa
+ * Texture bitmap renderer
+ *
  * Revision 1.6  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -109,33 +112,65 @@ GLUtils::BitmapText(const string& inStr)
     }
 }
 
+
 void
-GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
+GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
 {
-    GLuint name;
+    tVal width=inTex.Width();
+    tVal height=inTex.Height();
     glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
     glEnable(GL_TEXTURE_2D);
-
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(inX,inY);
     glTexCoord2f(0,1);
-    glVertex2f(inX,inY+inTex.Height());
+    glVertex2f(inX,inY+width);
     glTexCoord2f(1,1);
-    glVertex2f(inX+inTex.Width(),inY+inTex.Height());
+    glVertex2f(inX+height,inY+width);
     glTexCoord2f(1,0);
-    glVertex2f(inX+inTex.Width(),inY);
+    glVertex2f(inX+height,inY);
     glEnd();
-    
     glDisable(GL_TEXTURE_2D);
-    CheckGLError();
+}
+
+void
+GLUtils::DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAngle)
+{
+    tVal width=inTex.Width();
+    tVal height=inTex.Height();
+    glBindTexture(GL_TEXTURE_2D, inTex.BindingNameGet());
+    glEnable(GL_TEXTURE_2D);
+    glPushMatrix();
+    tVal xCentre=inX+width/2;
+    tVal yCentre=inY+height/2;
+    glTranslatef(xCentre, yCentre,0);
+    glRotatef(inAngle,0,0,1);
+    glTranslatef(-xCentre, -yCentre,0);
+    glBegin(GL_QUADS);
+    glTexCoord2f(0,0);
+    glVertex2f(inX,inY);
+    glTexCoord2f(0,1);
+    glVertex2f(inX,inY+width);
+    glTexCoord2f(1,1);
+    glVertex2f(inX+height,inY+width);
+    glTexCoord2f(1,0);
+    glVertex2f(inX+height,inY);
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+// Slow version
 #if 0
+void
+GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
+{
     GLUtils::RasterPos(0, 0);
     glBitmap(0,0,0,0,inX,inY,NULL);
     glDrawPixels(inTex.Width(), inTex.Height(), inTex.PixelFormat(),
              inTex.PixelType(), inTex.DataPtr());
-#endif
 }
+#endif
 
 void GLUtils::PostRedisplay(void)
 {
