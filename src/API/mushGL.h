@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushGL.h,v 1.5 2002/06/27 12:36:01 southa Exp $
+ * $Id: mushGL.h,v 1.6 2002/07/02 15:48:29 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.6  2002/07/02 15:48:29  southa
+ * Floor map designer
+ *
  * Revision 1.5  2002/06/27 12:36:01  southa
  * Build process fixes
  *
@@ -37,6 +40,7 @@
 
 #include "GL/GLAppHandler.h"
 #include "GL/GLData.h"
+#include "GL/GLPoint.h"
 #include "GL/GLRectangle.h"
 #include "GL/GLStandard.h"
 #include "GL/GLTexture.h"

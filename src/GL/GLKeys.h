@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLKeys.h,v 1.1 2002/05/31 15:18:16 southa Exp $
+ * $Id: GLKeys.h,v 1.2 2002/06/27 12:36:05 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.2  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.1  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -49,6 +52,11 @@ public:
         kKeyHome,
         kKeyEnd,
         kKeyInsert,
+        kKeyMouse1,
+        kKeyMouse2,
+        kKeyMouse3,
+        kKeyMouse4,
+        kKeyMouse5,    
         kNumberOfKeys
     };
     GLKeys(U32 inKeyValue): m_keyValue(static_cast<tKeyValue>(inKeyValue)) {}

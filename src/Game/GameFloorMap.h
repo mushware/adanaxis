@@ -15,8 +15,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.4 2002/06/27 12:36:07 southa Exp $
+ * $Id: GameFloorMap.h,v 1.5 2002/07/02 14:27:10 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.5  2002/07/02 14:27:10  southa
+ * First floor map designer build
+ *
  * Revision 1.4  2002/06/27 12:36:07  southa
  * Build process fixes
  *
@@ -59,6 +62,8 @@ public:
     U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
     U32 XSize(void) {return m_xsize;}
     U32 YSize(void) {return m_ysize;}
+    tVal XStep(void) {return m_xstep;}
+    tVal YStep(void) {return m_ystep;}
     void Render(const GameTileMap& inTileMap);
     void Render(const GameTileMap& inTileMap, const GLRectangle& inHighlight);
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
@@ -90,6 +95,8 @@ private:
     vector< vector<U32> > m_map;
     tSize m_xsize;
     tSize m_ysize;
+    tVal m_xstep;
+    tVal m_ystep;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)

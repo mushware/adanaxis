@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.3 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.4 2002/07/02 14:27:10 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.4  2002/07/02 14:27:10  southa
+ * First floor map designer build
+ *
  * Revision 1.3  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -60,8 +63,8 @@ GameFloorMap::Render(const GameTileMap& inTileMap)
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=At(x,y);
-            S32 basex=32*x;
-            S32 basey=32*y;
+            tVal basex=32*x;
+            tVal basey=32*y;
             gl.MoveTo(basex,basey);
             GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
             tileTraits.Render();
@@ -76,7 +79,7 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
 
     U32 timeNow=glAppHandler.GetMilliseconds();
-    tVal brightness=0.4+0.4*sin(timeNow/100.0);
+    tVal brightness=0.4+0.4*sin(timeNow/250.0);
     glMatrixMode(GL_MODELVIEW);
     U32 xsize=XSize();
     U32 ysize=YSize();
@@ -86,14 +89,13 @@ GameFloorMap::Render(const GameTileMap& inTileMap, const GLRectangle& inHighligh
         for (U32 y=0; y<ysize; y++)
         {
             U32 mapVal=At(x,y);
-            S32 basex=32*x;
-            S32 basey=32*y;
+            tVal basex=m_xstep*x;
+            tVal basey=m_ystep*y;
             gl.MoveTo(basex,basey);
             GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>(*inTileMap.TraitsPtrGet(mapVal));
             if (x>=inHighlight.xmin && x < inHighlight.xmax &&
                 y>=inHighlight.ymin && y < inHighlight.ymax)
             {
-                
                 GLUtils::SetColour(brightness, brightness, brightness);
             }
             else
@@ -115,6 +117,17 @@ GameFloorMap::HandleGameFloorMapStart(CoreXML& inXML)
 {
     m_xsize=inXML.GetAttribOrThrow("xsize").U32Get();
     m_ysize=inXML.GetAttribOrThrow("ysize").U32Get();
+    CoreScalar temp;
+    temp=CoreScalar(32.0);
+    inXML.GetAttrib(temp, "xstep");
+    m_xstep=temp.ValGet();
+    temp=CoreScalar(32.0);
+    inXML.GetAttrib(temp, "ystep");
+    m_ystep=temp.ValGet();
+    if (m_xstep == 0 || m_ystep == 0)
+    {
+        inXML.Throw("Bad values for x/ystep");
+    }
     m_state=kData;
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.2 2002/06/23 10:42:33 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.3 2002/06/27 12:36:06 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.3  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/06/23 10:42:33  southa
  * SDL input
  *
@@ -64,6 +67,7 @@ SDLAppHandler::Display(void)
 void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
+
     COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
     m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
 
@@ -137,59 +141,12 @@ SDLAppHandler::SwapBuffers(void)
 {
     SDL_GL_SwapBuffers();
 }
+
 U32
 SDLAppHandler::GetMilliseconds(void) const
 {
     return SDL_GetTicks();
 }
-
-#if 0
-
-void
-SDLAppHandler::VisibilityHandler(int inState)
-{
-    if (inState == GLUT_NOT_VISIBLE)
-    {
-        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
-    }
-    else if (inState == GLUT_VISIBLE)
-    {
-        Instance().Signal(GLAppSignal(GLAppSignal::kVisible));
-    }
-}
-
-void
-SDLAppHandler::PassiveMotionHandler(int inX, int inY)
-{
-    S32 deltaX=0;
-    S32 deltaY=0;
-    
-    if (!m_lastMouseValid)
-    {
-        m_lastMouseX=inX;
-        m_lastMouseY=inY;
-    }
-    
-    if (PlatformInputUtils::MouseDeltaPrologue(inX, inY, m_lastMouseX, m_lastMouseY))
-    {
-    	PlatformInputUtils::GetMouseDeltas(deltaX, deltaY, inX, inY, m_lastMouseX, m_lastMouseY);
-    	PlatformInputUtils::MouseDeltaEpilogue(inX, inY, m_lastMouseX, m_lastMouseY);
-    }
-    if (m_lastMouseValid)
-    {
-        m_mouseXDelta+=deltaX;
-        m_mouseYDelta+=deltaY;
-    }
-    else
-    {
-        m_lastMouseValid=true;
-    }
-
-    m_mouseX=inX;
-    m_mouseY=inY;
-}
-
-#endif
 
 void
 SDLAppHandler::Signal(const CoreAppSignal& inSignal)
@@ -250,6 +207,24 @@ SDLAppHandler::MainLoop(void)
                     m_mouseXDelta+=event.motion.xrel;
                     m_mouseYDelta+=event.motion.yrel;
                     break;
+
+                case SDL_MOUSEBUTTONDOWN:
+                case SDL_MOUSEBUTTONUP:
+                {
+                    U32 button=event.button.button-1;
+                    if (event.button.button < 1 ||
+                        button > (GLKeys::kKeyMouse5 - GLKeys::kKeyMouse1))
+                    {
+                        cerr << "Button index " << button << " ignored" << endl;
+                        break;
+                    }
+                    m_mouseX=event.button.x;
+                    m_mouseY=event.button.y;
+                    Signal(GLKeyboardSignal((event.button.state == SDL_PRESSED),
+                                       GLKeys(GLKeys::kKeyMouse1+button),
+                                       event.button.x, event.button.y));
+                }
+                break;
                     
                 case SDL_QUIT:
                     doQuit=true;

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.h,v 1.9 2002/06/20 15:50:30 southa Exp $
+ * $Id: GLUtils.h,v 1.10 2002/06/27 12:36:06 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.10  2002/06/27 12:36:06  southa
+ * Build process fixes
+ *
  * Revision 1.9  2002/06/20 15:50:30  southa
  * Subclassed GLAppHandler
  *
@@ -60,8 +63,6 @@ public:
     static void OrthoEpilogue(void);
     static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
     static void CheckGLError(void);
-    // static void StandardInit(void);
-    // static void GameInit(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);

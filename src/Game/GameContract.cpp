@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.20 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameContract.cpp,v 1.21 2002/07/02 14:27:08 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.21  2002/07/02 14:27:08  southa
+ * First floor map designer build
+ *
  * Revision 1.20  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -182,8 +185,6 @@ GameContract::DesigningDisplay(void)
     m_floorDesigner->Display();
 }
 
-
-
 void
 GameContract::Init(void)
 {
@@ -226,6 +227,7 @@ GameContract::Running(void)
 void
 GameContract::Designing(void)
 {
+    m_floorDesigner->Move();
     GLUtils::PostRedisplay();
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     if (gameHandler.KeyStateGet('r')) m_gameState=kRunning;
