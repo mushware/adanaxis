@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.6 2002/08/19 11:09:56 southa Exp $
+ * $Id: GameTimer.h,v 1.7 2002/08/19 12:54:54 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.7  2002/08/19 12:54:54  southa
+ * Added time format
+ *
  * Revision 1.6  2002/08/19 11:09:56  southa
  * GameTypeRace rendering
  *
@@ -64,6 +67,7 @@ public:
     void DisplayedFrameAt(tMsec inMsec);
     tVal WindbackValueGet(tMsec inMSec);
     static string MsecToString(tMsec inMsec);
+    static string MsecDifferenceToString(tMsec inMsec);
     static string MsecToLongString(tMsec inMsec);
     
 private:

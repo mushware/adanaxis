@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.7 2002/08/19 11:09:56 southa Exp $
+ * $Id: GameTimer.cpp,v 1.8 2002/08/19 12:54:54 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.8  2002/08/19 12:54:54  southa
+ * Added time format
+ *
  * Revision 1.7  2002/08/19 11:09:56  southa
  * GameTypeRace rendering
  *
@@ -268,6 +271,7 @@ GameTimer::MsecToString(tMsec inMsec)
     double minutes = msec / 60000.0;
     double seconds = 60*modf(minutes, &minutes);
     double centiseconds = 100*modf(seconds, &seconds);
+    modf(centiseconds, &centiseconds);
     
     char buffer[256];
     if (inMsec < 0.0)
@@ -296,6 +300,43 @@ GameTimer::MsecToString(tMsec inMsec)
 }
 
 string
+GameTimer::MsecDifferenceToString(tMsec inMsec)
+{
+    tVal msec=inMsec;
+    if (msec < 0) msec=-msec;
+
+    double minutes = msec / 60000.0;
+    double seconds = 60*modf(minutes, &minutes);
+    double centiseconds = 100*modf(seconds, &seconds);
+    modf(centiseconds, &centiseconds);
+    
+    char buffer[256];
+    if (inMsec < 0.0)
+    {
+        if (minutes > 0.0)
+        {
+            sprintf(buffer, "-%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+        }
+        else
+        {
+            sprintf(buffer, "-%.0f.%02.0f", seconds, centiseconds);
+        }
+    }
+    else
+    {
+        if (minutes > 0.0)
+        {
+            sprintf(buffer, "+%.0f:%02.0f.%02.0f", minutes, seconds, centiseconds);
+        }
+        else
+        {
+            sprintf(buffer, "+%.0f.%02.0f", seconds, centiseconds);
+        }
+    }        
+    return string(buffer);
+}
+
+string
 GameTimer::MsecToLongString(tMsec inMsec)
 {
     tVal msec=inMsec;
@@ -304,7 +345,8 @@ GameTimer::MsecToLongString(tMsec inMsec)
     double minutes = msec / 60000.0;
     double seconds = 60*modf(minutes, &minutes);
     double centiseconds = 100*modf(seconds, &seconds);
-
+    modf(centiseconds, &centiseconds);
+    
     char buffer[256];
     if (inMsec < 0.0)
     {
