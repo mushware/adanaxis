@@ -46,14 +46,17 @@ else
     CPPFLAGS="$CPPFLAGS `$ac_prog_sdl_config --cflags`"
     LIBS="$LIBS `$ac_prog_sdl_config --libs`"
     
-    case "$LIBS" in
-        *-lSDLmain*)
-            SDL_EXTRA_LIBS="-lSDLmain"
+    AC_ARG_WITH(nosdlmain, AC_HELP_STRING([--with-nosdlmain        Remove -lSDLmain from configure's tests]),[] , [    
+        case "$LIBS" in
+            *-lSDLmain*)
+                SDL_EXTRA_LIBS="-lSDLmain"
+                AC_MSG_NOTICE([Temporarily removed -lSDLmain from LIBS])
             ;;
-    esac
+        esac
     
-    LIBS=`echo $LIBS | sed -e 's/-lSDLmain//'`
-    
+        LIBS=`echo $LIBS | sed -e 's/-lSDLmain//'`
+    ])
+
     AC_MSG_NOTICE([sdl-config set CPPFLAGS to $CPPFLAGS])
     AC_MSG_NOTICE([sdl-config set LIBS to $LIBS])
 fi
