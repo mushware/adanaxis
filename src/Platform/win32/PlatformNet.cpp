@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.4 2002/11/08 00:41:10 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.5 2002/11/21 18:48:52 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.5  2002/11/21 18:48:52  southa
+ * Added TCPConnectNonBlocking
+ *
  * Revision 1.4  2002/11/08 00:41:10  southa
  * Removed debug
  *
@@ -157,3 +160,18 @@ PlatformNet::TCPConnectNonBlocking(IPaddress *ip)
     return(sock);
 }
 
+bool
+PlatformNet::TCPSocketConnectionCompleted(tSocket inSocket)
+{
+    struct timeval timeVal;
+    timeVal.tv_sec = 0;
+    timeVal.tv_usec = 0;
+    fd_set fdSet;
+    FD_ZERO(&fdSet);
+    FD_SET(inSocket, &fdSet);
+    int result=select(inSocket+1, NULL, &fdSet, NULL, &timeVal);
+
+    if (result == SOCKET_ERROR) return false;
+    
+    return (FD_ISSET(inSocket, &fdSet));
+}
