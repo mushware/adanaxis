@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.h,v 1.1 2002/07/23 14:10:47 southa Exp $
+ * $Id: GameMotion.h,v 1.2 2002/08/07 13:36:50 southa Exp $
  * $Log: GameMotion.h,v $
+ * Revision 1.2  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/23 14:10:47  southa
  * Added GameMotion
  *
@@ -49,6 +52,7 @@ private:
     void NullHandler(CoreXML& inXML);
     void HandleRectEnd(CoreXML& inXML);
     void HandlePositionEnd(CoreXML& inXML);
+    void HandleDeltaEnd(CoreXML& inXML);
     void HandleMotionEnd(CoreXML& inXML);
 
     enum PickleState

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.21 2002/08/08 13:39:09 southa Exp $
+ * $Id: GLUtils.h,v 1.22 2002/08/08 18:20:29 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.22  2002/08/08 18:20:29  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.21  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -83,10 +86,10 @@
  */
 
 #include "GLStandard.h"
+#include "GLPoint.h"
 
 class GLTexture;
 class GLRectangle;
-class GLPoint;
 
 class GLUtils
 {
@@ -112,6 +115,7 @@ public:
     GLUtils(): m_x(0), m_y(0) {}
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(tVal inX, tVal inY);
+    void MoveTo(const GLPoint& inPoint) { MoveTo(inPoint.x, inPoint.y); }
     void MoveRelative(tVal inX, tVal inY);
     void MoveToEdge(tVal inX, tVal inY);
 
@@ -150,6 +154,8 @@ public:
     static void TextureParamsReset(void);
     static tDisplayQuality DisplayQualityGet(void);
     static void PolygonSmoothingSet(bool inValue);
+    static void PushMatrix(void) { glPushMatrix(); }
+    static void PopMatrix(void) { glPopMatrix(); }
     
 private:            
     static void SafetyHandler(void);

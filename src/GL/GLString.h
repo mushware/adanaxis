@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLString.h,v 1.1 2002/08/08 13:39:09 southa Exp $
+ * $Log: GLString.h,v $
+ * Revision 1.1  2002/08/08 13:39:09  southa
+ * Text rendering
+ *
  */
 
 #include "mushCore.h"
@@ -11,11 +14,13 @@
 class GLString : public GLRenderable
 {
 public:
-    GLString(const string& inFont, const string& inValue);
+    GLString(const string& inValue, const GLFontRef& inFont, tVal inAlign);
+    void AlignmentSet(tVal inAlign) { m_alignment=inAlign; }
     virtual void Render(void) const;
     virtual GLRenderable *Clone(void) const { return new GLString(*this); }
 
 private:
-    const GLFontRef m_fontRef;
+    GLFontRef m_fontRef;
     string m_value;
+    tVal m_alignment;
 };

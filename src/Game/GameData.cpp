@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.9 2002/07/18 11:40:35 southa Exp $
+ * $Id: GameData.cpp,v 1.10 2002/08/07 13:36:49 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.10  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.9  2002/07/18 11:40:35  southa
  * Overplotting and movement
  *
@@ -52,8 +55,14 @@
 #include "GameController.h"
 #include "GamePiece.h"
 #include "GameView.h"
+#include "GameTimer.h"
 
 GameData *GameData::m_instance=NULL;
+
+GameData::GameData():
+    m_timer(NULL)
+{
+}
 
 GameData::~GameData()
 {
@@ -91,6 +100,10 @@ GameData::~GameData()
          p != m_views.end(); ++p)
     {
         delete p->second;
+    }
+    if (m_timer != NULL)
+    {
+        delete m_timer;
     }
 }
 
@@ -293,6 +306,16 @@ GameData::CurrentViewGet(void) const
         return p->second;
     }
     throw(GameDataNotPresent("Access to non-existent current view"));
+}
+
+GameTimer&
+GameData::TimerGet(void)
+{
+    if (m_timer == NULL)
+    {
+        m_timer = new GameTimer;
+    }
+    return *m_timer;
 }
 
 void

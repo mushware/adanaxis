@@ -1,7 +1,5 @@
 #ifndef GLRENDERABLE_H
 #define GLRENDERABLE_H
-#ifndef GL_RENDERABLE_H
-#define GL_RENDERABLE_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.0)
@@ -15,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRenderable.h,v 1.1 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLRenderable.h,v 1.2 2002/08/07 13:36:47 southa Exp $
  * $Log: GLRenderable.h,v $
+ * Revision 1.2  2002/08/07 13:36:47  southa
+ * Conditioned source
+ *
  * Revision 1.1  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -28,7 +29,5 @@ public:
     virtual ~GLRenderable() {}
     virtual void Render(void) const = 0;
     virtual GLRenderable *Clone(void) const = 0;
-    
 };
-#endif
 #endif

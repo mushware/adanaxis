@@ -1,6 +1,9 @@
 /*
- * $Id: GLFont.cpp,v 1.1 2002/08/08 13:39:09 southa Exp $
+ * $Id: GLFont.cpp,v 1.2 2002/08/08 18:20:29 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.2  2002/08/08 18:20:29  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.1  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -61,16 +64,26 @@ GLFont::RenderCharacter(U32 inChar) const
 }
 
 void
-GLFont::RenderString(const string& inStr) const
+GLFont::RenderString(const string& inStr, tVal inAlign=-1.0) const
 {
     GLUtils gl;
+    tVal length=StringLengthGet(inStr);
+    tVal offset=(1+inAlign)*length/2;
     U32 size=inStr.size();
     for (U32 i=0; i<size; ++i)
     {
-        gl.MoveTo(i, 0);
+        // Characters are rendered with their centre at the position given,
+        // hence the +0.5
+        gl.MoveTo(i+0.5-offset, 0);
         RenderCharacter(inStr[i]);
     }
     gl.MoveTo(0,0);
+}
+
+tVal
+GLFont::StringLengthGet(const string& inStr) const
+{
+    return inStr.size();
 }
 
 CoreScalar

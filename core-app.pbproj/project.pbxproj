@@ -1386,6 +1386,30 @@
 			path = CoreStreamUtil.cpp;
 			refType = 4;
 		};
+		F5412BCB0303E7D701F8C327 = {
+			isa = PBXFileReference;
+			name = GameDialogue.cpp;
+			path = Game/GameDialogue.cpp;
+			refType = 4;
+		};
+		F5412BCC0303E7D701F8C327 = {
+			isa = PBXFileReference;
+			name = GameDialogue.h;
+			path = Game/GameDialogue.h;
+			refType = 4;
+		};
+		F5412BCD0303E7D701F8C327 = {
+			fileRef = F5412BCB0303E7D701F8C327;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5412BCE0303E7D701F8C327 = {
+			fileRef = F5412BCC0303E7D701F8C327;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5431745020C310101449C4C = {
 			buildStyles = (
 				F5431747020C310101449C4C,
@@ -2819,6 +2843,9 @@
 			children = (
 				F5483A9402D19E6101480ACF,
 				F5483A9502D19E6101480ACF,
+				F548CF580302BFF3011728CE,
+				F548CF590302BFF3011728CE,
+				F548CF5A0302BFF3011728CE,
 			);
 			isa = PBXGroup;
 			path = pixels;
@@ -3035,6 +3062,21 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		F548CF580302BFF3011728CE = {
+			isa = PBXFileReference;
+			path = desk1.tiff;
+			refType = 4;
+		};
+		F548CF590302BFF3011728CE = {
+			isa = PBXFileReference;
+			path = "font-mono1.tiff";
+			refType = 4;
+		};
+		F548CF5A0302BFF3011728CE = {
+			isa = PBXFileReference;
+			path = standing1.tiff;
+			refType = 4;
 		};
 		F549083802ED8ACC01F581B4 = {
 			isa = PBXFileReference;
@@ -3722,6 +3764,8 @@
 				F5F06F1302AE5D2001B05200,
 				F545EE7B02A66359018FABF3,
 				F545EE7C02A66359018FABF3,
+				F5412BCB0303E7D701F8C327,
+				F5412BCC0303E7D701F8C327,
 				F5483AB702D1D95801480ACF,
 				F5483AB802D1D95801480ACF,
 				F545EEA102A67378018FABF3,
@@ -3951,6 +3995,7 @@
 				F548CF4D0302813C011728CE,
 				F548CF5303029076011728CE,
 				F548CF57030291D7011728CE,
+				F5412BCE0303E7D701F8C327,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -4049,6 +4094,7 @@
 				F548CF4C0302813C011728CE,
 				F548CF5203029076011728CE,
 				F548CF56030291D7011728CE,
+				F5412BCD0303E7D701F8C327,
 			);
 			isa = PBXSourcesBuildPhase;
 		};

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.17 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameContract.h,v 1.18 2002/08/08 18:20:30 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.18  2002/08/08 18:20:30  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.17  2002/08/07 13:36:49  southa
  * Conditioned source
  *
@@ -77,6 +80,7 @@ class GameTileMap;
 class GamePiecePlayer;
 class GameFloorDesigner;
 class GameView;
+class GameDialogue;
 
 class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
@@ -105,9 +109,11 @@ protected:
     virtual void Designing(void);
     virtual void InitDisplay(void);
     virtual void RunningDisplay(void);
+    virtual void RenderText(void) const;
+    virtual void RenderFastDiagnostics(void) const;
     virtual void DesigningDisplay(void);
     virtual void GlobalKeyControl(void);
-    virtual void RunningMove(tVal inStep=1.0);
+    virtual void RunningMove(void);
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
@@ -116,6 +122,7 @@ protected:
     void HandleContractEnd(CoreXML& inXML);
     void HandleScriptStart(CoreXML& inXML);
     void HandleScriptEnd(CoreXML& inXML);
+    void HandleDialogueStart(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
     enum PickleState
@@ -141,8 +148,9 @@ private:
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
     bool m_renderDiagnostics;
-    GameTimer m_timer;
     tVal m_masterScale;
+    bool m_fastDiagnostics;
+    map<string, GameDialogue *> m_dialogues;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

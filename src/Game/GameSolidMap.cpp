@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.18 2002/08/08 18:38:16 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.19 2002/08/08 18:42:05 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.19  2002/08/08 18:42:05  southa
+ * More motion escape tweaks
+ *
  * Revision 1.18  2002/08/08 18:38:16  southa
  * More motion escape tweaks
  *
@@ -186,7 +189,7 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
     if (perm <= 0 && inSpec.deltaPos.Magnitude() > 0.001 && !deltaAngleSignificant)
     {
         // Try some angle tweaks to move us into gaps
-        for (tVal deltaAngle=0.05; deltaAngle<=0.1; deltaAngle *= 2)
+        for (tVal deltaAngle=0.01; deltaAngle<=0.05; deltaAngle *= 2)
         {
             trialSpec=inSpec;
             trialSpec.deltaAngle=deltaAngle;
@@ -398,7 +401,7 @@ GameSolidMap::CollisionElementCheck(const GameMapPoint& inPoint, const GLQuad& i
 {
     for (U32 i=0; i<4; ++i)
     {
-        // if (inQuad.PointGet(i) == inPoint) return true;
+        if (inQuad.PointGet(i) == inPoint) return true;
     }
 
     // Build set of test lines and test rectangle

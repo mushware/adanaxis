@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.h,v 1.3 2002/08/05 13:37:29 southa Exp $
+ * $Id: GameMotionSpec.h,v 1.4 2002/08/07 13:36:50 southa Exp $
  * $Log: GameMotionSpec.h,v $
+ * Revision 1.4  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.3  2002/08/05 13:37:29  southa
  * Windback work
  *
@@ -32,9 +35,11 @@
 class GameMotionSpec
 {
 public:
-    GameMotionSpec();
+    GameMotionSpec() {}
+    GameMotionSpec(const GLPoint& inPoint, tVal inAngle);
     void Windback(tVal inScale);
     const GameMotionSpec WindbackGet(tVal inScale) const;
+    void ApplyDelta(void);
     void Render(void) const;
     
     GLPoint pos;

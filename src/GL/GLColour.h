@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLColour.h,v 1.2 2002/08/01 16:47:09 southa Exp $
+ * $Id: GLColour.h,v 1.3 2002/08/07 13:36:46 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.3  2002/08/07 13:36:46  southa
+ * Conditioned source
+ *
  * Revision 1.2  2002/08/01 16:47:09  southa
  * First multi-box collsion checking
  *
@@ -37,6 +40,29 @@ public:
         m_alpha(inAlpha)
         {}
     void Apply(void) const { GLUtils::ColourSet(m_red, m_green, m_blue, m_alpha); }
+    tVal RedGet(void) const { return m_red; }
+    tVal GreenGet(void) const { return m_green; }
+    tVal BlueGet(void) const { return m_blue; }
+    tVal AlphaGet(void) const { return m_alpha; }
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Unpickle(CoreXML& inXML);
+
+    const GLColour& operator+=(const GLColour& inCol)
+    {
+        m_red+=inCol.m_red;
+        m_green+=inCol.m_green;
+        m_blue+=inCol.m_blue;
+        m_alpha+=inCol.m_alpha;
+        return *this;
+    }
+    const GLColour& operator*=(tVal inVal)
+    {
+        m_red*=inVal;
+        m_green*=inVal;
+        m_blue*=inVal;
+        m_alpha*=inVal;
+        return *this;
+    }
 
 private:
     tVal m_red;
@@ -44,4 +70,23 @@ private:
     tVal m_blue;
     tVal m_alpha;
 };
+
+inline const GLColour operator+(const GLColour& a, const GLColour& b)
+{
+    GLColour retCol(a);
+    return retCol+=b;
+}
+
+inline const GLColour operator*(const GLColour& a, tVal b)
+{
+    GLColour retCol(a);
+    return retCol*=b;
+}
+
+inline const GLColour operator*(tVal a, const GLColour& b)
+{
+    GLColour retCol(b);
+    return retCol*=a;
+}
+
 #endif

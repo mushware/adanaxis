@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.8 2002/07/18 11:40:35 southa Exp $
+ * $Id: GameData.h,v 1.9 2002/08/07 13:36:49 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.9  2002/08/07 13:36:49  southa
+ * Conditioned source
+ *
  * Revision 1.8  2002/07/18 11:40:35  southa
  * Overplotting and movement
  *
@@ -52,6 +55,7 @@ class GameTraits;
 class GameController;
 class GamePiece;
 class GameView;
+class GameTimer;
 
 class GameData
 {
@@ -72,13 +76,13 @@ public:
     GamePiece *PieceGet(const string& inName) const;
     GameView *ViewGetOrCreate(const string& inName);
     GameView *ViewGet(const string& inName) const;
-
     GameView *CurrentViewGet(void) const;
-
+    GameTimer& TimerGet(void);
+    
     void DumpAll(ostream& inOut) const;
 
 private:
-    GameData() {}
+    GameData();
     map<string, GameTileMap *> m_tilemaps;
     map<string, GameFloorMap *> m_floormaps;
     map<string, GameContract *> m_contracts;
@@ -86,7 +90,9 @@ private:
     map<string, GameController *> m_controllers;
     map<string, GamePiece *> m_pieces;
     map<string, GameView *> m_views;
-    
+
+    GameTimer *m_timer;
+
     static GameData *m_instance;
 };
 

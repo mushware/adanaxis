@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.44 2002/08/08 13:39:09 southa Exp $
+ * $Id: GameContract.cpp,v 1.45 2002/08/08 18:20:29 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.45  2002/08/08 18:20:29  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.44  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -164,6 +167,7 @@
 #include "GameView.h"
 #include "GameTimer.h"
 #include "GameMapPoint.h"
+#include "GameDialogue.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -172,7 +176,8 @@ GameContract::GameContract() :
     m_fps(0),
     m_frames(0),
     m_currentView(NULL),
-    m_renderDiagnostics(false)
+    m_renderDiagnostics(false),
+    m_fastDiagnostics(false)
 {
 }
 
@@ -259,7 +264,7 @@ GameContract::InitDisplay(void)
 }
 
 void
-GameContract::RunningMove(tVal inStep)
+GameContract::RunningMove(void)
 {
     GameMotionSpec motion;
     m_player->MoveGet(motion);
@@ -273,6 +278,11 @@ GameContract::RunningMove(tVal inStep)
     {
         motion.Render();
     }
+    for (map<string, GameDialogue *>::const_iterator p = m_dialogues.begin();
+         p != m_dialogues.end(); ++p)
+    {
+        p->second->Move();
+    }
     m_masterScale+=(0.05 - m_masterScale)/30;
 }
 
@@ -283,6 +293,7 @@ GameContract::RunningDisplay(void)
     COREASSERT(m_floorMap != NULL);
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameTimer& timer(GameData::Instance().TimerGet());
     
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -291,7 +302,7 @@ GameContract::RunningDisplay(void)
     
     GameMotionSpec playerSpec(m_player->MotionSpecGet());
 
-    playerSpec.Windback(m_timer.WindbackValueGet(gameAppHandler.MillisecondsGet()));
+    playerSpec.Windback(timer.WindbackValueGet(gameAppHandler.MillisecondsGet()));
     
     GameMapPoint aimingPoint(GLPoint(playerSpec.pos.x / m_floorMap->XStep(),
                                      playerSpec.pos.y / m_floorMap->YStep()));
@@ -345,6 +356,25 @@ GameContract::RunningDisplay(void)
     m_currentView->OverPlotGet().Clear();
     GLUtils::IdentityEpilogue();
 
+    RenderText();
+    
+    if (m_fastDiagnostics)
+    {
+        RenderFastDiagnostics();
+    }
+    
+    GLUtils::DisplayEpilogue();
+
+    // Register displayed time
+
+    timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
+    ++m_frames;
+
+}
+
+void
+GameContract::RenderFastDiagnostics(void) const
+{
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
@@ -352,18 +382,23 @@ GameContract::RunningDisplay(void)
     GLUtils orthoGL;
     orthoGL.MoveToEdge(-1,-1);
     orthoGL.MoveRelative(0.02,0.02);
-    GLUtils::Scale(0.02,0.02,1);
-
-    GLString fpsStr("font-mono1",message.str());
+    GLString fpsStr(message.str(), GLFontRef("font-mono1", 0.02), -1.0);
     fpsStr.Render();
     GLUtils::OrthoEpilogue();
-    GLUtils::DisplayEpilogue();
+}
 
-    // Register displayed time
-
-    m_timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
-    ++m_frames;
-
+void
+GameContract::RenderText(void) const
+{
+    GLUtils::OrthoPrologue();
+    for (map<string, GameDialogue *>::const_iterator p = m_dialogues.begin();
+         p != m_dialogues.end(); ++p)
+    {
+        GLUtils::PushMatrix();
+        p->second->Render();
+        GLUtils::PopMatrix();
+    }
+    GLUtils::OrthoEpilogue();
 }
 
 void
@@ -378,11 +413,13 @@ GameContract::Running(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
-    m_timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+    GameTimer& timer(GameData::Instance().TimerGet());
     
-    if (m_timer.JudgementValid())
+    timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+    
+    if (timer.JudgementValid())
     {
-        tVal numMotionFrames=m_timer.MotionFramesGet();
+        tVal numMotionFrames=timer.MotionFramesGet();
         // cerr << "numMotionFrames=" << numMotionFrames << endl;
         if (numMotionFrames > 6) numMotionFrames=6;
         for (tVal i=0; i<numMotionFrames; ++i)
@@ -390,18 +427,18 @@ GameContract::Running(void)
             // Perform a motion frame
             RunningMove();
         }
-        m_timer.MotionFramesDone(numMotionFrames);
+        timer.MotionFramesDone(numMotionFrames);
         
         // Discard any motion frames we haven't caught up with
-        m_timer.MotionFramesDiscard();
+        timer.MotionFramesDiscard();
 
-        if (m_timer.RedisplayGet())
+        if (timer.RedisplayGet())
         {
             GLUtils::PostRedisplay();
-            m_timer.RedisplayDone();
+            timer.RedisplayDone();
         }
 
-        tVal numPeriodic10ms=m_timer.Periodic10msGet();
+        tVal numPeriodic10ms=timer.Periodic10msGet();
         // cerr << "numPeriodic10ms=" << numPeriodic10ms << endl;
         for (tVal i=0; i<numPeriodic10ms; ++i)
         {
@@ -410,26 +447,26 @@ GameContract::Running(void)
                 GlobalKeyControl();
             }
         }
-        m_timer.Periodic10msDone(numPeriodic10ms);
+        timer.Periodic10msDone(numPeriodic10ms);
         
-        tVal numPeriodic1s=m_timer.Periodic1sGet();
+        tVal numPeriodic1s=timer.Periodic1sGet();
         // cerr << "numPeriodic1s=" << numPeriodic1s << endl;
         for (tVal i=0; i<numPeriodic1s; ++i)
         {
             static U32 lastPrint=0;
-            //srand(timeNow);
+            m_fps=m_frames;
+            m_frames=0;
             if (++lastPrint >= 5)
             {
                 // Print FPS every 5 seconds
-                m_fps=m_frames/5.0;
+
                 cout << "FPS " << m_fps << endl;
                 lastPrint=0;
-                m_frames=0;
             }
-            m_timer.Periodic1sDone(1);
+            timer.Periodic1sDone(1);
         }
-        m_timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
-        // CoreUtils::Sleep(m_timer.SleepTimeGet());
+        timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+        // CoreUtils::Sleep(timer.SleepTimeGet());
     }
 }
 
@@ -450,6 +487,10 @@ GameContract::GlobalKeyControl(void)
     if (gameAppHandler.LatchedKeyStateTake('m'))
     {
         m_renderDiagnostics=!m_renderDiagnostics;
+    }
+    if (gameAppHandler.LatchedKeyStateTake('n'))
+    {
+        m_fastDiagnostics=!m_fastDiagnostics;
     }
 }
 
@@ -496,6 +537,19 @@ GameContract::HandleScriptEnd(CoreXML& inXML)
 }
 
 void
+GameContract::HandleDialogueStart(CoreXML& inXML)
+{
+    string name(inXML.GetAttribOrThrow("name").StringGet());
+
+    GameDialogue *pDialogue(m_dialogues[name]);
+    if (pDialogue != NULL) delete pDialogue;
+
+    pDialogue=new GameDialogue;
+    m_dialogues[name]=pDialogue;
+    pDialogue->Unpickle(inXML);
+}
+
+void
 GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
@@ -510,9 +564,10 @@ GameContract::Unpickle(CoreXML& inXML)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleInit]["contract"] = &GameContract::HandleContractStart;
     m_startTable[kPickleData]["script"] = &GameContract::HandleScriptStart;
+    m_startTable[kPickleData]["dialogue"] = &GameContract::HandleDialogueStart;
     m_endTable[kPickleData]["contract"] = &GameContract::HandleContractEnd;
     m_endTable[kPickleData]["script"] = &GameContract::HandleScriptEnd;
-
+    
     m_pickleState=kPickleInit;
     inXML.ParseStream(*this);
 }

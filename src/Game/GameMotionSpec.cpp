@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.4 2002/08/05 13:37:28 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.5 2002/08/07 13:36:50 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.5  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
  * Revision 1.4  2002/08/05 13:37:28  southa
  * Windback work
  *
@@ -31,9 +34,9 @@
 #include "GameData.h"
 #include "GameView.h"
 
-GameMotionSpec::GameMotionSpec() :
-    pos(GLPoint(0,0)),
-    angle(0),
+GameMotionSpec::GameMotionSpec(const GLPoint& inPoint, tVal inAngle) :
+    pos(inPoint),
+    angle(inAngle),
     shape(GLRectangle(0,0,0,0)),
     deltaPos(GLPoint(0,0)),
     deltaAngle(0)
@@ -53,6 +56,13 @@ GameMotionSpec::WindbackGet(tVal inScale) const
     GameMotionSpec retSpec(*this);
     retSpec.Windback(inScale);
     return retSpec;
+}
+
+void
+GameMotionSpec::ApplyDelta(void)
+{
+    pos += deltaPos;
+    angle += deltaAngle;
 }
 
 void
@@ -79,8 +89,8 @@ GameMotionSpec::Render(void) const
     GLPoint angleVec(deltaAngle,0);
     angleVec.RotateAboutZ(newAngle);
     GameData::Instance().CurrentViewGet()->OverPlotGet().
-        RenderableAdd(GLLine(newPos+deltaPos*10, newPos+deltaPos*10+angleVec*10), GLColour(1,0,0));
-
+        RenderableAdd(GLLine(newPos+deltaPos*10, newPos+deltaPos*10+angleVec*10),
+                      GLColour(1,0,0));
 
     GameData::Instance().CurrentViewGet()->OverPlotGet().
         RenderableAdd(GLLine(newPos, newPos+deltaPos*10), GLColour(1,1,0));
