@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameInfo.cpp,v 1.1 2003/03/11 22:15:09 southa Exp $
+ * $Log: GameInfo.cpp,v $
+ * Revision 1.1  2003/03/11 22:15:09  southa
+ * Added GameInfo
+ *
  */
 
 #include "GameInfo.h"
@@ -38,12 +41,6 @@ string
 GameInfo::PackageVersionGet(void)
 {
     return VERSION;
-}
-
-string
-GameInfo::PackageIDGet(void)
-{
-    return PackageNameGet()+"-"+PackageVersionGet();
 }
 
 void

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.cpp,v 1.3 2003/01/12 17:33:00 southa Exp $
+ * $Id: MushcoreInfo.cpp,v 1.4 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreInfo.cpp,v $
+ * Revision 1.4  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.3  2003/01/12 17:33:00  southa
  * Mushcore work
  *
@@ -49,6 +52,20 @@ using namespace std;
 MUSHCORE_SINGLETON_INSTANCE(MushcoreInfo);
 
 string
+MushcoreInfo::PlatformNameGet(void)
+{
+#if defined(WIN32) || defined(_WIN32)
+    return "win32";
+#else
+#if defined(__APPLE__) || defined(MACOSX)
+    return "macosx";
+#else
+    return "x11";
+#endif
+#endif
+}
+
+string
 MushcoreInfo::ApplicationNameGet(void)
 {
     return PackageNameGet()+" "+PackageVersionGet();
@@ -69,5 +86,5 @@ MushcoreInfo::PackageVersionGet(void)
 string
 MushcoreInfo::PackageIDGet(void)
 {
-    return PackageNameGet()+"-"+PackageVersionGet();
+    return PackageNameGet()+"-"+PlatformNameGet()+"-"+PackageVersionGet();
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.10 2003/01/12 17:33:01 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.11 2003/01/20 10:45:32 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.11  2003/01/20 10:45:32  southa
+ * Singleton tidying
+ *
  * Revision 1.10  2003/01/12 17:33:01  southa
  * Mushcore work
  *
@@ -66,8 +69,14 @@ PlatformVideoUtils::PlatformVideoUtils()
     m_modeDefs.push_back(GLModeDef("800x600 hard sync",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
     m_modeDefs.push_back(GLModeDef("1024x768 soft sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("1024x768 hard sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1280x768 soft sync",1280,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x768 hard sync",1280,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1280x854 soft sync",1280,854,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x854 hard sync",1280,854,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
     m_modeDefs.push_back(GLModeDef("1280x1024 soft sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("1280x1024 hard sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1440x900 soft sync",1440,900,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1440x900 hard sync",1440,900,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
     m_modeDefs.push_back(GLModeDef("1600x1200 no sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncNone));
     m_modeDefs.push_back(GLModeDef("1600x1200 soft sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("1600x1200 hard sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));

@@ -792,6 +792,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7A7B223103D1EEC800A80164,
+				7AB53C48043256A900A80164,
 				7A7B223703D1F2DA00A80164,
 				7A7B223903D1F38800A80164,
 				7AB8558D03D2EC8A00A80164,
@@ -1533,6 +1534,19 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = networkstatus.mhtml;
+			refType = 4;
+		};
+		7AB53C48043256A900A80164 = {
+			fileRef = 7AB855DE03D2FD4F00A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AB53C5804325F7E00A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			name = title.mhtml;
+			path = localweb/title.mhtml;
 			refType = 4;
 		};
 		7AB5517C041E943100A80164 = {
@@ -5077,7 +5091,7 @@
 				F5B33B1A0389570F01A80164,
 				F5B3796B0387A66A01A80164,
 				F512BC650379928F01A80164,
-				F512BC6C0379C0CE01A80164,
+				7AB53C5804325F7E00A80164,
 			);
 			isa = PBXGroup;
 			name = localweb;
@@ -5088,13 +5102,6 @@
 			isa = PBXFileReference;
 			name = style.css;
 			path = localweb/style.css;
-			refType = 4;
-		};
-		F512BC6C0379C0CE01A80164 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			name = title.html;
-			path = localweb/title.html;
 			refType = 4;
 		};
 		F512BC6D0379C3B401A80164 = {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.h,v 1.4 2003/01/20 10:45:29 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.5 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.5  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.4  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -46,6 +49,7 @@
 class MushcoreInfo : public MushcoreSingleton<MushcoreInfo>
 {
 public:
+    virtual std::string PlatformNameGet(void);
     virtual std::string ApplicationNameGet(void);
     virtual std::string PackageNameGet(void);
     virtual std::string PackageVersionGet(void);

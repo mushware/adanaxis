@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebCommands.cpp,v 1.5 2003/01/20 10:45:31 southa Exp $
+ * $Id: MustlWebCommands.cpp,v 1.6 2003/01/20 12:23:24 southa Exp $
  * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.6  2003/01/20 12:23:24  southa
+ * Code and interface tidying
+ *
  * Revision 1.5  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -142,6 +145,13 @@ MustlWebCommands::MustlLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& 
     return MushcoreScalar(0);
 }
 
+MushcoreScalar
+MustlWebCommands::MustlPrintPackageID(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    ioEnv.Out() << MushcoreInfo::Sgl().PackageIDGet();
+    return MushcoreScalar(0);
+}
+
 void
 MustlWebCommands::Install(void)
 {
@@ -149,6 +159,7 @@ MustlWebCommands::Install(void)
     MushcoreInterpreter::Sgl().HandlerAdd("mustlinputwrite", MustlInputWrite);
     MushcoreInterpreter::Sgl().HandlerAdd("mustlserverstatuswrite", MustlServerStatusWrite);
     MushcoreInterpreter::Sgl().HandlerAdd("mustllinkstatuswrite", MustlLinkStatusWrite);
+    MushcoreInterpreter::Sgl().HandlerAdd("mustlprintpackageid", MustlPrintPackageID);
 }
 
 void

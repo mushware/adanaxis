@@ -10,9 +10,9 @@ Unix/POSIX/Linux/FreeBSD
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf ic2-src-0_0_4.tar.gz
-cd ic2-0.0.4
-tar xvzf ic2-data-0_0_4.tar.gz
+tar xvzf ic2-src-0_1_1.tar.gz
+cd ic2-0.1.1
+tar xvzf ic2-data-0_1_1.tar.gz
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make

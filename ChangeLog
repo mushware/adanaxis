@@ -1,3 +1,6 @@
+2003-03-26
+Release 0.1.1 adds a prototype browser-based configuration, and fixes compilation for gcc 3.2
+
 2002-10-20
 Release 0.1.0 adds a new 3D renderer and display mode control.  Improved timing
 and added udevgames details on MacOS X.  Updated and stripped MacOS X libraries.

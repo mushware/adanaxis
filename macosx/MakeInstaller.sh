@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.4 2002/10/20 17:53:19 southa Exp $
+# $Id: MakeInstaller.sh,v 1.5 2002/11/20 12:18:51 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.5  2002/11/20 12:18:51  southa
+# Remove installer for macosx
+#
 # Revision 1.4  2002/10/20 17:53:19  southa
 # Preparation for 0.1.0
 #
@@ -66,22 +69,22 @@ done
 # cd back to macosx
 cd ..
 
-for filename in *.txt
-do
-ditto -rsrcFork "$filename" "${releaseDir}/$filename"
-done
+# for filename in *.txt
+# do
+# ditto -rsrcFork "$filename" "${releaseDir}/$filename"
+# done
 
 ditto -rsrcFork "Mushware web site.url" "${releaseDir}/Mushware web site.url"
 ditto -rsrcFork "UpdateCheck.url" "${releaseDir}/system/UpdateCheck.url"
 
 # Special for udevgames
-echo "*** Appending udevgames to contract.xml"
-sed -e "s/<\/contract>//" ../release/contracts/first-day/contract.xml > tmpfile$$
-cat tmpfile$$ contract-append.xml > ../release/contracts/first-day/contract.xml
-rm tmpfile$$
+# echo "*** Appending udevgames to contract.xml"
+# sed -e "s/<\/contract>//" ../release/contracts/first-day/contract.xml > tmpfile$$
+# cat tmpfile$$ contract-append.xml > ../release/contracts/first-day/contract.xml
+# rm tmpfile$$
 
 echo Fixing up file types
-find ${releaseDir} -name '*.txt' -exec $SetFile -a E {} \;
+# find ${releaseDir} -name '*.txt' -exec $SetFile -a E {} \;
 find ${releaseDir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
 ln -s 'system/ic2.app' "${releaseDir}/Infernal Contractor II"
 

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.12 2003/01/20 17:03:19 southa Exp $
+# $Id: autogen.sh,v 1.13 2003/02/06 18:55:27 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.13  2003/02/06 18:55:27  southa
+# Linux build fixes
+#
 # Revision 1.12  2003/01/20 17:03:19  southa
 # Command line expression evaluator enhancements
 #
@@ -55,6 +58,7 @@ case ic2:
     echo
     cp -f ic2.configure.in configure.in
     cp -f ic2.Makefile.am Makefile.am
+    rm -f acinclude.m4
     chmod +x ic2
 
     cd src
@@ -87,6 +91,7 @@ case mustl:
     echo
     cp -f mustl.configure.in configure.in
     cp -f lib.Makefile.am Makefile.am
+    cp -f lib.acinclude.m4 acinclude.m4
     cd src
     echo Building Makefile.am in `pwd`
     echo 'lib_LTLIBRARIES=libmustl.la' > Makefile.am
@@ -124,6 +129,8 @@ case mushcore:
     echo
     cp -f mushcore.configure.in configure.in
     cp -f lib.Makefile.am Makefile.am
+    cp -f lib.acinclude.m4 acinclude.m4
+
     cd src
     echo Building Makefile.am in `pwd`
 
