@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.10 2002/10/31 15:52:14 southa Exp $
+ * $Id: mushMedia.h,v 1.11 2002/10/31 16:41:32 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.11  2002/10/31 16:41:32  southa
+ * Network client
+ *
  * Revision 1.10  2002/10/31 15:52:14  southa
  * First network code
  *
@@ -51,7 +54,7 @@
 
 #include "Media/MediaAudio.h"
 #include "Media/MediaNet.h"
-#include "Media/MediaNetClient.h"
+#include "Media/MediaNetLink.h"
 #include "Media/MediaNetServer.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSoundStream.h"

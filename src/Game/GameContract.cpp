@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.80 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameContract.cpp,v 1.81 2002/10/31 16:41:32 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.81  2002/10/31 16:41:32  southa
+ * Network client
+ *
  * Revision 1.80  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -390,8 +393,7 @@ GameContract::Init(void)
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
 
     MediaNetServer server(7121);
-    MediaNetClient client;
-    client.Connect("localhost", 7121);
+    MediaNetLink link("localhost", 7121);
     server.Accept();
 }
 
