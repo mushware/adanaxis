@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.7 2002/05/24 18:10:43 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.8 2002/05/31 15:18:15 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.8  2002/05/31 15:18:15  southa
+ * Keyboard reading
+ *
  * Revision 1.7  2002/05/24 18:10:43  southa
  * CoreXML and game map
  *
@@ -28,6 +31,9 @@
 #include "GLStandard.h"
 #include "GLUtils.h"
 #include "GLAppSignal.h"
+
+S32 GLAppHandler::m_mouseX=0;
+S32 GLAppHandler::m_mouseY=0;
 
 void
 GLAppHandler::Initialise(void)
@@ -69,6 +75,13 @@ GLAppHandler::KeyStateGet(const GLKeys& inKey) const
 }
 
 void
+GLAppHandler::MouseStateGet(S32& outX, S32& outY) const
+{
+    outX=m_mouseX;
+    outY=m_mouseY;
+}
+
+void
 GLAppHandler::RegisterHandlers(void)
 {
     glutVisibilityFunc(VisibilityHandler);
@@ -78,6 +91,7 @@ GLAppHandler::RegisterHandlers(void)
     glutKeyboardUpFunc(KeyboardUpHandler);
     glutSpecialFunc(SpecialHandler);
     glutSpecialUpFunc(SpecialUpHandler);
+    glutPassiveMotionFunc(PassiveMotionHandler);
     glutIgnoreKeyRepeat(1);
 }
 
@@ -128,6 +142,13 @@ void
 GLAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
 {
     Instance().Signal(GLKeyboardSignal(0, TranslateSpecialKey(inKey), inX, inY));
+}
+
+void
+GLAppHandler::PassiveMotionHandler(int inX, int inY)
+{
+    m_mouseX=inX;
+    m_mouseY=inY;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameController.h,v 1.1 2002/06/05 15:53:25 southa Exp $
+ * $Log: GameController.h,v $
+ * Revision 1.1  2002/06/05 15:53:25  southa
+ * Player and keyboard control
+ *
  */
 
 #include "mushCore.h"
@@ -13,6 +16,8 @@ public:
     bool rightPressed;
     bool upPressed;
     bool downPressed;
+    tVal mouseX;
+    tVal mouseY;
     tVal mouseXDelta;
     tVal mouseYDelta;
 };

@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.h,v 1.2 2002/05/10 22:38:23 southa Exp $
+ * $Id: GLAppHandler.h,v 1.3 2002/05/31 15:18:15 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.3  2002/05/31 15:18:15  southa
+ * Keyboard reading
+ *
  * Revision 1.2  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -35,6 +38,7 @@ public:
     GLAppHandler(): m_visible(true), m_keyState(GLKeys::kNumberOfKeys) {}
     virtual ~GLAppHandler() {}
     bool KeyStateGet(const GLKeys& inKey) const;
+    void MouseStateGet(S32& outX, S32& outY) const;
     
 protected:
     virtual void Initialise(void);
@@ -56,6 +60,9 @@ private:
     static void KeyboardUpHandler(unsigned char inKey, int inX, int inY);
     static void SpecialHandler(int inKey, int inX, int inY);
     static void SpecialUpHandler(int inKey, int inX, int inY);
+    static void PassiveMotionHandler(int inX, int inY);
     bool m_visible;
     vector<bool> m_keyState;
+    static S32 m_mouseX;
+    static S32 m_mouseY;
 };

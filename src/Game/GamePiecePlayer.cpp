@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GamePiecePlayer.cpp,v 1.1 2002/06/05 15:53:26 southa Exp $
+ * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.1  2002/06/05 15:53:26  southa
+ * Player and keyboard control
+ *
  */
 
 #include "GamePiecePlayer.h"
@@ -27,8 +30,18 @@ GamePiecePlayer::Move(void)
     GameControllerState controlState;
     m_controller->StateGet(controlState);
 
-    if (controlState.leftPressed) m_angle-=0.05;
-    if (controlState.rightPressed) m_angle+=0.05;
+    m_angle+=0.01*controlState.mouseXDelta;
+    
+    if (controlState.leftPressed)
+    {
+        m_x -= cos(m_angle);
+        m_y += sin(m_angle);
+    }
+    if (controlState.rightPressed)
+    {
+        m_x += cos(m_angle);
+        m_y -= sin(m_angle);
+    }
     if (controlState.upPressed)
     {
         m_x += sin(m_angle);
