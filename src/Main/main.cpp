@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: main.cpp,v 1.16 2002/08/07 13:36:51 southa Exp $
+ * $Id: main.cpp,v 1.17 2002/08/27 08:56:28 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.17  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.16  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -90,6 +93,7 @@
 
 int main(int argc, char *argv[])
 {
+    PlatformMiscUtils::Initialise();
     CoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
     cerr << "Application path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
     CoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));

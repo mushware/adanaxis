@@ -32,5 +32,6 @@ public:
     static string GetApplPath(int argc, char *argv[]);
     static string GetSystemPath(int argc, char *argv[]);
     static void TweakArgs(string& ioString);
+    static void Initialise(void);
 };
 #endif

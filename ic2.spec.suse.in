@@ -6,7 +6,7 @@
 Summary: Infernal Contractor II
 Name: %{name}
 Version: %{version}
-Release: %{release}
+Release: %{release}suse8.0
 Source0: %{name}-%{version}.tar.bz2
 URL: http://www.mushware.com/
 Copyright: distributable
@@ -30,13 +30,13 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %build
 %configure --program-transform-name=""
-%make
+make
 
 %install
 %makeinstall
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
@@ -49,6 +49,7 @@ rm -f %{RUNFILE}
 echo #!/bin/sh > %{RUNFILE}
 echo cd %{_datadir}/%{name}/system >> %{RUNFILE}
 echo exec %{_bindir}/ic2binary >> %{RUNFILE}
+echo '[ -d $HOME/.ic2 ] || mkdir $HOME/.ic2' >> %{RUNFILE}
 chmod 0755 %{RUNFILE}
 
 %changelog

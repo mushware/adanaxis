@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.6 2002/09/01 22:00:38 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.7 2002/09/02 14:48:02 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.7  2002/09/02 14:48:02  southa
+ * RPM building
+ *
  * Revision 1.6  2002/09/01 22:00:38  southa
  * Moved to real install paths
  *
@@ -53,6 +56,15 @@
 
 #include "mushPlatform.h"
 
+void
+PlatformMiscUtils::Initialise(void)
+{
+    char *home = getenv("HOME");
+    if (home != NULL)
+    {
+        CoreGlobalConfig::Instance().Set("HOME", home);
+    }
+}
 
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])

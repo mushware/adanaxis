@@ -2,7 +2,7 @@
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
-RUNFILE=${bindir}/ic2
+RUNFILE=${DESTDIR}${bindir}/ic2
 GZIPFILE=ic2-@IC_VERSION@.tar.gz
 BZIPFILE=ic2-@IC_VERSION@.tar.bz2
 
@@ -54,24 +54,24 @@ $(BZIPFILE):$(GZIPFILE)
 
 mdk-rpm:
 	cp -f ic2.spec.mdk ic2.spec
-	make $(BZIPFILE)
+	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
-redhat-rpm:$(BZIPFILE)
+redhat-rpm:
 	cp -f ic2.spec.redhat ic2.spec
-	make $(BZIPFILE)
+	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
-suse-rpm:$(BZIPFILE)
+suse-rpm:
 	cp -f ic2.spec.suse ic2.spec
-	make $(BZIPFILE)
+	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
 install-exec-hook:
 	rm -f $(RUNFILE)
 	echo #!/bin/sh > $(RUNFILE)
-	echo cd $(pkgdatadir)/system >> $(RUNFILE)
-	echo $(bindir)/ic2binary >> $(RUNFILE)
+	echo cd $(DESTDIR)$(pkgdatadir)/system >> $(RUNFILE)
+	echo $(DESTDIR)$(bindir)/ic2binary >> $(RUNFILE)
 	chmod 0755 $(RUNFILE)
 
 
