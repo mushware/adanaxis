@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.2 2002/07/01 15:16:40 southa Exp $
+# $Id: MakeInstaller.sh,v 1.3 2002/08/07 10:47:44 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.3  2002/08/07 10:47:44  southa
+# Preparation for release 0.0.3
+#
 # Revision 1.2  2002/07/01 15:16:40  southa
 # MacOS X installer fixes
 #
@@ -23,6 +26,9 @@
 
 # Script for generating the MacOS X installer.  Needs a bit of manual
 # intervention
+
+CpMac=/Developer/Tools/CpMac
+SetFile=/Developer/Tools/SetFile
 
 if test "x$1" = "x"
 then
@@ -58,14 +64,50 @@ done
 cd ..
 
 # Copy executable files
-install -c -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_install
-install -c -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_upgrade
+install -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_install
+install -m 0775 IC2-macosx-setup.post resources/IC2-macosx-setup-$version.post_upgrade
 
 # Copy non-executable files
-for filename in *.html
+for filename in *.html *.url
 do
-cp -pR $filename resources/$filename
-chmod 0664 resources/$filename
+cp -pR "$filename" "resources/$filename"
+chmod 0664 "resources/$filename"
+done
+
+# Special for udevgames
+echo "*** Appending udevgames to contract.xml"
+sed -e "s/<\/contract>//" ../release/contracts/first-day/contract.xml > tmpfile$$
+cat tmpfile$$ contract-append.xml > ../release/contracts/first-day/contract.xml
+rm tmpfile$$
+
+cd ../release
+for filename in *.txt
+do
+cp "$filename" "../macosx/resources/$filename"
+done
+
+cd ../macosx
+for filename in *.txt
+do
+cp "$filename" "resources/$filename"
+done
+
+cd resources
+
+# Fix the types
+for filename in *.txt
+do
+$SetFile -a E "$filename"
+done
+
+for filename in *.url
+do
+$SetFile -a E -t LINK -c MSIE "$filename"
+done
+
+for filename in *.txt *.url
+do
+chmod 0664 "$filename"
 done
 
 echo 'Done.  Please build the package using macosx/package-spec.pmsp'

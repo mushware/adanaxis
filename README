@@ -18,9 +18,15 @@ run around the office.
 They've set up various observation points around the office, which you have
 pass in the order 1-2-3-1-2... and so on.
 
-Arrow keys - move forward, backward, left and right
-Mouse - rotate player
-Escape - exit
+Arrow keys : move forward, backward, left and right
+Mouse      : rotate player
+Escape     : Exit back to the desktop
+- and =    : Change display mode
+p          : Pause
+q          : Quit the current game to start a new one
+
+Displays
+--------
 
 The complicated profusion of time displays are:
 
@@ -40,7 +46,7 @@ Task completion times:
   Small yellow: Split time
   Big yellow:   Difference between split time and best so far
 
-Game options can be altered by changing the configuration file directly,
+Some game options can be altered by changing the configuration file directly,
 named system/start.txt in the installation directory.  Installers will create
 a link to the configuration file.
 
@@ -63,7 +69,9 @@ If things go wrong, diagnostic output is written to the terminal which
 started the application (if there is one), the console (MacOS X), or the
 files stderr.txt and stdout.txt in the ic2 system directory (win32).
 
-Pressing the m key will toggle the collision checking diagnostic overlay.
+Pressing the m key will cycle through the diagnostic overlay.  Displays are
+collision checking, the permeabiliy map, adhesion map and lighting maps.
+
 Pressing the n key with toggle the frame rate display.
 
 Contract Designer Manual
@@ -75,17 +83,19 @@ designer).  Contracts are edited using copy and paste.
 Key controls
 ------------
 
-d - enter designer from game
-p - return to game from designer
+d - enter and exit the designer from the game
 F1 - editing screen for the contract
 F2 - second copy of the contract
 F3 - template screen
 F4 - scratch screen
+1,2,3, etc. - Toggle the active tiers
 z - undo
 v - redo
 s - save the contract
+p - dump data to the console
 arrow keys - move around
 - and = - zoom
+, and . - move selected area up and down tiers
 left mouse button - paste (select in screens F2 upwards)
 middle mouse button - move map around by dragging
 right mouse button - select area by dragging
@@ -118,3 +128,23 @@ selected are will flash.
 6.  Save the contract by pressing s.
 7.  Press p to return to gameplay to test the contract.
 
+Tiers
+-----
+
+Tiers take a bit of getting used to.  Map details are seperated into tiers like this:
+
+1 - floor
+2 - floor details
+3 - tables
+4 - table details
+5 - walls and lights
+
+So when you cut and paste, only the active tiers are pasted, which is handy for
+putting details on the floor and so on.
+
+You can move things up and down tiers, but then things are getting tricky.
+
+Lights
+------
+
+Lights are currently invisible tiles on tier 5.

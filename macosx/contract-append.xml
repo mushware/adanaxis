@@ -1,0 +1,17 @@
+<dialogue name="start-udev">
+  <font size="0.02">font-mono1</font>
+  <startcolour>1,1,1,0.8</startcolour >  
+  <midcolour>1,1,1,0.8</midcolour>  
+  <endcolour>1,1,1,0.0</endcolour >  
+  <starttime>0</starttime>
+  <endtime>1000</endtime>
+  <fadetime>300</fadetime>
+  <motion>
+    <position>0,-0.10,0</position>
+    <delta>0,0,0</delta>
+  </motion>
+  <text align="0">uDevGame 2002 Entry</text>
+  <text align="0">Visit iDevGames.com for more games!</text>
+</dialogue>
+
+</contract>

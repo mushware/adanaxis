@@ -1533,6 +1533,7 @@
 				F5431766020C372901449C4C,
 				F5483A8A02D19C6B01480ACF,
 				F5909DAE022822A9013B17EF,
+				F5B82F820362DD0A01A80164,
 			);
 			isa = PBXGroup;
 			refType = 4;
@@ -4475,12 +4476,13 @@
 				F5461B2502B6340701EABA85,
 			);
 			buildSettings = {
+				DEBUGGING_SYMBOLS = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "src src/API";
 				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
-				OPTIMIZATION_CFLAGS = "-O";
+				OPTIMIZATION_CFLAGS = "-O3";
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = ic2;
@@ -4521,7 +4523,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.1d1</string>
+	<string>0.1.0</string>
 </dict>
 </plist>
 ";
@@ -5319,6 +5321,12 @@
 		F5B25BE802187072017E032D = {
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
+			refType = 4;
+		};
+		F5B82F820362DD0A01A80164 = {
+			isa = PBXFileReference;
+			name = "contract-append.xml";
+			path = "macosx/contract-append.xml";
 			refType = 4;
 		};
 		F5B96F1D030D9B5C015847EC = {

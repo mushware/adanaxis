@@ -3,7 +3,7 @@
 ##############################################################################
 #
 # This file contains original work by Andy Southgate.  Contact details can be
-# found at http://www.mushware.co.uk.  This file was placed in the Public
+# found at http://www.mushware.com.  This file was placed in the Public
 # Domain by Andy Southgate and Mushware Limited in 2002.
 #
 # This software carries NO WARRANTY of any kind.
@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: IC2-macosx-setup-0_0_1.post_install,v 1.2 2002/06/30 23:37:09 southa Exp $
-# $Log: IC2-macosx-setup-0_0_1.post_install,v $
+# $Id: IC2-macosx-setup.post,v 1.1 2002/07/01 15:16:40 southa Exp $
+# $Log: IC2-macosx-setup.post,v $
+# Revision 1.1  2002/07/01 15:16:40  southa
+# MacOS X installer fixes
+#
 # Revision 1.2  2002/06/30 23:37:09  southa
 # Installer work for MacOS X
 #
@@ -31,13 +34,31 @@ resources="$1/Contents/Resources"
 cd $resources
 for filename in *.dylib
 do
-if [ ! -e /usr/local/lib/$filename ]
+# We copy if either the file does not exist in /usr/local/lib, or ours is newer
+if [ ! /usr/local/lib/$filename -nt $filename ]
 then
+echo Installing $filename in /usr/local/lib/
 /bin/cp -R $filename /usr/local/lib/
 fi
 done
+
+# Copy the multi-fork files into place
+for filename in *.txt
+do
+ditto -rsrcFork "$filename" "$2/$filename"
+chmod 0664 "$2/$filename"
+done
+
+ditto -rsrcFork "Mushware web site.url" "$2/Mushware web site.url"
+chmod 0664 "$2/Mushware web site.url"
+ditto -rsrcFork "UpdateCheck.url" "$2/system/UpdateCheck.url"
+chmod 0664 "$2/system/UpdateCheck.url"
+
 # Place the link to the application
 cd "$2"
 ln -s system/ic2.app 'Infernal Contractor II'
+ln -s "$2/system/ic2.app" "$HOME/Desktop/Infernal Contractor II"
+ln -s "$2/Mushware web site.url" "$HOME/Desktop/Mushware web site"
+
 # Leave the application directory +w so that user can delete it 
 chmod g+w "$2"

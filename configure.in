@@ -26,13 +26,12 @@ SDL_EXTRA_LIBS=""
 dnl Checks for programs.
 AC_PROG_MAKE_SET
 AC_PROG_CXX
-AC_LANG(C++)
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PATH_PROG(ac_prog_find, find)
-AC_PATH_PROG(ac_prog_sdl_config, sdl11-config, "", [[$PATH:/usr/local/bin]])
+AC_PATH_PROG(ac_prog_sdl_config, sdl-config)
 if test "x$ac_prog_sdl_config" = "x"; then
-    AC_PATH_PROG(ac_prog_sdl_config2, sdl-config, "", [[$PATH:/usr/local/bin]])
+    AC_PATH_PROG(ac_prog_sdl_config2, sdl11-config, "", [[$PATH:/usr/local/bin]])
     ac_prog_sdl_config="$ac_prog_sdl_config2"
 fi
 if test "x$ac_prog_sdl_config" = "x"; then
@@ -91,6 +90,8 @@ case "$target" in
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
             AC_MSG_NOTICE([* Using platform pack from src/Platform/X11.])
+
+            AC_LANG(C++)
             
             dnl We need the following for GL to link
             AC_PATH_XTRA
@@ -166,6 +167,8 @@ AC_TRY_COMPILE([
 #include "SDL_mixer.h"
 #endif
 #endif
+
+#undef main
 ],[
 Mix_ChannelFinished(0)
 ],

@@ -1,3 +1,7 @@
+2002-10-20
+Release 0.1.0 adds a new 3D renderer and display mode control.  Improved timing
+and added udevgames details on MacOS X.  Updated and stripped MacOS X libraries.
+
 2002-08-26
 Release 0.0.4 adds racing game functionality, text and audio dialogues,
 WAV audio handling, and resolves some timing issues.
