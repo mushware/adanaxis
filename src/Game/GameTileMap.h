@@ -1,8 +1,11 @@
 #ifndef GAMETILEMAP_H
 #define GAMETILEMAP_H
 /*
- * $Id: GameTileMap.h,v 1.2 2002/05/29 08:56:16 southa Exp $
+ * $Id: GameTileMap.h,v 1.3 2002/05/30 14:41:12 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.3  2002/05/30 14:41:12  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.2  2002/05/29 08:56:16  southa
  * Tile display
  *
@@ -17,7 +20,7 @@ class GameTileMap : public CorePickle, private CoreXMLHandler
 {
 public:
     GameTileMap(): m_state(kInit) {}
-    virtual void Pickle(ostream& inOut) const;
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     const string& NameGet(U32 inNum) const;
     void Load(void);
@@ -34,6 +37,8 @@ protected:
     void HandleTileMapEnd(CoreXML& inXML);
     void HandleScriptStart(CoreXML& inXML);
     void HandleScriptEnd(CoreXML& inXML);
+    void HandleTraitsStart(CoreXML& inXML);
+    void HandleTraitsEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
     enum

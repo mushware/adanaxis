@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.h,v 1.1 2002/05/30 14:41:12 southa Exp $
+ * $Id: GameData.h,v 1.2 2002/05/30 16:21:53 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.2  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.1  2002/05/30 14:41:12  southa
  * GameData and loadtilemap command
  *
@@ -11,6 +14,7 @@
 class GameTileMap;
 class GameFloorMap;
 class GameContract;
+class GameTraits;
 
 class GameData
 {
@@ -23,6 +27,8 @@ public:
     GameFloorMap *FloorMapGet(const string& inName) const;
     GameContract *ContractGetOrCreate(const string& inName);
     GameContract *ContractGet(const string& inName) const;
+    GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
+    GameTraits *TraitsGet(const string& inName) const;
     // void Dump(ostream& inOut);
 
 private:
@@ -30,5 +36,24 @@ private:
     map<string, GameTileMap *> m_tilemaps;
     map<string, GameFloorMap *> m_floormaps;
     map<string, GameContract *> m_contracts;
+    map<string, GameTraits *> m_traits;
     static GameData *m_instance;
 };
+
+class GameDataNotPresent: public exception
+{
+public:
+    GameDataNotPresent(const string &inMessage) {m_message=inMessage;}
+    ~GameDataNotPresent() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, GameDataNotPresent f)
+{
+    return s << f.StringGet();
+}
+

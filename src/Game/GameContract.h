@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.5 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameContract.h,v 1.6 2002/05/31 15:18:16 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.6  2002/05/31 15:18:16  southa
+ * Keyboard reading
+ *
  * Revision 1.5  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -31,7 +34,7 @@ public:
     virtual void Display(void);
     virtual void ScriptFunction(const string& inName) const;
 
-    virtual void Pickle(ostream& inOut) const;
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     static CoreScalar LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);

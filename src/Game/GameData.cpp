@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.cpp,v 1.1 2002/05/30 14:41:12 southa Exp $
+ * $Id: GameData.cpp,v 1.2 2002/05/30 16:21:53 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.2  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.1  2002/05/30 14:41:12  southa
  * GameData and loadtilemap command
  *
@@ -10,6 +13,7 @@
 #include "GameTileMap.h"
 #include "GameFloorMap.h"
 #include "GameContract.h"
+#include "GameTraits.h"
 
 GameData *GameData::m_instance=NULL;
 
@@ -27,6 +31,11 @@ GameData::~GameData()
     }
     for (map<string, GameContract *>::iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
+    {
+        delete p->second;
+    }
+    for (map<string, GameTraits *>::iterator p = m_traits.begin();
+         p != m_traits.end(); ++p)
     {
         delete p->second;
     }
@@ -54,7 +63,7 @@ GameData::TileMapGet(const string& inName) const
     map<string, GameTileMap *>::const_iterator p = m_tilemaps.find(inName);
     if (p == m_tilemaps.end())
     {
-        throw(LogicFail("Access to non-existent tilemap '"+inName+"'"));
+        throw(GameDataNotPresent("Access to non-existent tilemap '"+inName+"'"));
     }
     return p->second;
 }
@@ -81,7 +90,7 @@ GameData::FloorMapGet(const string& inName) const
     map<string, GameFloorMap *>::const_iterator p = m_floormaps.find(inName);
     if (p == m_floormaps.end())
     {
-        throw(LogicFail("Access to non-existent floormap '"+inName+"'"));
+        throw(GameDataNotPresent("Access to non-existent floormap '"+inName+"'"));
     }
     return p->second;
 }
@@ -108,7 +117,34 @@ GameData::ContractGet(const string& inName) const
     map<string, GameContract *>::const_iterator p = m_contracts.find(inName);
     if (p == m_contracts.end())
     {
-        throw(LogicFail("Access to non-existent contract '"+inName+"'"));
+        throw(GameDataNotPresent("Access to non-existent contract '"+inName+"'"));
+    }
+    return p->second;
+}
+
+GameTraits *
+GameData::TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits)
+{
+    map<string, GameTraits *>::iterator p = m_traits.find(inName);
+    if (p != m_traits.end())
+    {
+        delete p->second;
+        p->second=inTraits;
+    }
+    else
+    {
+        m_traits[inName]=inTraits;
+    }
+    return inTraits;
+}
+
+GameTraits *
+GameData::TraitsGet(const string& inName) const
+{
+    map<string, GameTraits *>::const_iterator p = m_traits.find(inName);
+    if (p == m_traits.end())
+    {
+        throw(GameDataNotPresent("Access to non-existent trait '"+inName+"'"));
     }
     return p->second;
 }

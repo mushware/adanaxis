@@ -12,44 +12,84 @@ decompose('wall1','wall_@',32,32)
 pixmapflags('floor1',1,1); /* pixmapflags(<name>,<tesellates x>,<tesellates y>) */
 
 <traits type="tile">
-<name>openspace</name>
-<collision>0</collision>
-<transparent>1</transparent>
+  <name>openspace</name>
+  <collision>0</collision>
+  <transparent>1</transparent>
 </traits>
 
 <traits type="tile">
-<name>slippery</name>
-<adhesion>0.2</adhesion>
+  <name>slippery</name>
+  <adhesion>0.2</adhesion>
 </traits>
 
 <traits type="tile" name="landmine">
-<object type="static" name="landmine">
-<offset>0.3,0.3</offset>
-</object>
+  <object type="static" name="landmine">
+    <offset>0.3,0.3</offset>
+  </object>
 </traits>
 
 <traits type="tile" name="tiledfloor">
-<base>openspace,slippery</base>
-<stepsound>clomp1</stepsound>
+  <base>openspace,slippery</base>
+  <stepsound>clomp1</stepsound>
 </traits>
 
 <tile number="10">
-<pixmap>floor_0_1</pixmap>
-<traits>tiledfloor</traits>
+  <graphic type="pixmap">
+    <name>floor_0_1</name>
+  </graphic>
+  <traits>
+    <base>tiledfloor</base>
+  </traits>
 </tile>
 
 <tile number="11">
-<animate type="dingdong">
-<duration>0.5s</duration>
-</animate>
+  <graphic type="pixmap">
+    <name>floor_0_1</name>
+    <rectangle>32,32,96,96</rectangle>
+    <tesellate>1,1</tesellate>
+    <animate>
+      <sequence duration="1.0s">0,1,2,3,4,3,2,1</sequence>
+    </animate>
+  </graphic>
 
-<pixmap>floor_0_1</pixmap>
-<traits>tiledfloor</traits>
+  <graphic type="pixmap">
+    <name>landmine</name>
+    <tesellate>1,1</tesellate>
+    <animate type="rotate">
+      <initial>0,0,1,0</initial>
+      <increment highlimit="0,0,0,3.14">0,0,1,1.57</increment>
+      <increment timelimit="0.5s">0,0,1,0</increment>
+      <audio>softping</audio>
+      <increment lowlimit="0,0,0,0">0,0,1,1.57</increment>
+      <increment timelimit="0.5s">0,0,1,0</increment>
+      <audio>softping</audio>
+    </animate>
+    <animate type="colour">
+      <initial>1,1,1,0.5</initial>
+      <increment highlimit="0.2,1,1,1">0.2,0,0,0</increment>
+      <increment lowlimit="0.0,0,0,0">-0.2,0,0,0</increment>
+    </animate>
+  </graphic>
+
+  <traits>
+    <base>tiledfloor,slippery</base>
+    <onenter>
+      <script type="text/core">
+adjustmap($THISX,$THISY,13)
+      </script>
+    </onenter>
+  </traits>
 </tile>
 
 -->
 
 </script>
+
+<traits type="tile">
+  <base>tiledfloor,slippery</base>
+  <graphic></graphic>
+</traits>
+
 <map>10 floor_0_1</map>
 <map>11 floor_1_1</map>
 <map>12 floor_2_1</map>

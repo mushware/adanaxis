@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.10 2002/05/31 17:46:46 southa Exp $
+ * $Id: GameContract.cpp,v 1.11 2002/06/02 16:41:18 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.11  2002/06/02 16:41:18  southa
+ * Rotated sprite plotting
+ *
  * Revision 1.10  2002/05/31 17:46:46  southa
  * FPS tweaks
  *
@@ -189,7 +192,7 @@ GameContract::HandleContractStart(CoreXML& inXML)
 void
 GameContract::HandleContractEnd(CoreXML& inXML)
 {
-    inXML.Stop();
+    inXML.StopHandler();
 }
 
 void
@@ -204,7 +207,7 @@ GameContract::HandleScriptEnd(CoreXML& inXML)
 }
 
 void
-GameContract::Pickle(ostream& inOut) const
+GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << "<contract version=\"0.0\">" << endl;
     inOut << "<script type=\"text/core\">" << endl;

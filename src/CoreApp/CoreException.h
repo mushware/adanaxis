@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.5 2002/05/28 13:07:03 southa Exp $
+ * $Id: CoreException.h,v 1.6 2002/05/28 16:37:36 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.6  2002/05/28 16:37:36  southa
+ * Texture references and decomposer
+ *
  * Revision 1.5  2002/05/28 13:07:03  southa
  * Command parser extensions and TIFF loader
  *
@@ -82,6 +85,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, ConfigFail f)
+{
+    return s << f.StringGet();
+}
+
+class VerifyFail: public exception
+{
+public:
+    VerifyFail(const string &inMessage) {m_message=inMessage;}
+    ~VerifyFail() throw() {}
+    const string& StringGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, VerifyFail f)
 {
     return s << f.StringGet();
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.cpp,v 1.4 2002/05/28 13:05:56 southa Exp $
+ * $Id: CoreXML.cpp,v 1.5 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.5  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.4  2002/05/28 13:05:56  southa
  * Command parser extensions and TIFF loader
  *
@@ -20,7 +23,7 @@
 
 
 CoreXML::CoreXML(istream& inStream, const string& inName = "<unknown stream>", U32 inLine=1):
-    m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_line(inLine)
+    m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_threaded(false), m_line(inLine)
 {
     m_parser = XML_ParserCreate(NULL);
     if (m_parser == NULL) throw(XMLFail("Couldn't create parser"));
@@ -164,28 +167,49 @@ CoreXML::DumpTops(ostream& inOut)
 }
 
 void
-CoreXML::ParseStream(CoreXMLHandler& inHandler)
+CoreXML::NewHandler(CoreXMLHandler& inHandler)
 {
-    string str;    
+    m_handlers.push(&inHandler);
     m_currentHandler=&inHandler;
-    m_continue=true;
-    
-    do
-    {
-        getline(*m_inStream, str);
-        if (!m_inStream->eof()) str.append("\n");
-        if (!XML_Parse(m_parser, str.data(), str.length(), m_inStream->eof()))
-        {
-            ostringstream message;
-            message << XML_ErrorString(XML_GetErrorCode(m_parser)) << " at line " <<
-                XML_GetCurrentLineNumber(m_parser);
-            throw (XMLFail(message.str()));
-        }
-        m_line++;
-    } while (m_continue && !m_inStream->eof());
 }
 
-void CoreXML::Stop(void)
+void
+CoreXML::ParseStream(CoreXMLHandler& inHandler)
 {
-    m_continue=false;
+    NewHandler(inHandler);
+    if (!m_threaded)
+    {
+        string str;
+        m_threaded=true;
+        m_continue=true;
+
+        do
+        {
+            getline(*m_inStream, str);
+            if (!m_inStream->eof()) str.append("\n");
+            if (!XML_Parse(m_parser, str.data(), str.length(), m_inStream->eof()))
+            {
+                ostringstream message;
+                message << XML_ErrorString(XML_GetErrorCode(m_parser)) << " at line " <<
+                    XML_GetCurrentLineNumber(m_parser);
+                throw (XMLFail(message.str()));
+            }
+            m_line++;
+        } while (m_continue && !m_inStream->eof());
+        m_threaded=false;
+    }
+}
+
+void CoreXML::StopHandler(void)
+{
+    if (m_handlers.empty())
+    {
+        // Should set a null handler really
+        m_continue=false;
+    }
+    else
+    {
+        m_currentHandler=m_handlers.top();
+        m_handlers.pop();
+    }
 }

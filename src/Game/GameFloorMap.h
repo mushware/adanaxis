@@ -1,8 +1,11 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 /*
- * $Id: GameFloorMap.h,v 1.5 2002/05/28 22:36:44 southa Exp $
+ * $Id: GameFloorMap.h,v 1.1 2002/05/30 16:21:53 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.1  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.5  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -26,7 +29,7 @@ class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
 public:
     GameFloorMap(): m_state(kInit) {}
-    virtual void Pickle(ostream& inOut) const;
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
     U32 XSize(void) {return m_xsize;}

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileMap.cpp,v 1.3 2002/05/30 14:41:12 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.4 2002/05/30 16:21:53 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.4  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.3  2002/05/30 14:41:12  southa
  * GameData and loadtilemap command
  *
@@ -14,6 +17,7 @@
 
 #include "GameTileMap.h"
 #include "GameData.h"
+#include "GameTileTraits.h"
 
 CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 
@@ -53,7 +57,7 @@ GameTileMap::HandleTileMapStart(CoreXML& inXML)
 void
 GameTileMap::HandleTileMapEnd(CoreXML& inXML)
 {
-    inXML.Stop();
+    inXML.StopHandler();
 }
 
 void
@@ -68,6 +72,20 @@ GameTileMap::HandleScriptEnd(CoreXML& inXML)
 }
 
 void
+GameTileMap::HandleTraitsStart(CoreXML& inXML)
+{
+    GameTileTraits *pTraits(new GameTileTraits);
+    GameData::Instance().TraitsDeleteAndCreate("trait", pTraits);
+    pTraits->Unpickle(inXML);
+}
+
+void
+GameTileMap::HandleTraitsEnd(CoreXML& inXML)
+{
+    cerr << "Traits end handler" << endl;
+}
+
+void
 GameTileMap::HandleMapEnd(CoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
@@ -78,17 +96,17 @@ GameTileMap::HandleMapEnd(CoreXML& inXML)
 }
 
 void
-GameTileMap::Pickle(ostream& inOut) const
+GameTileMap::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << "<tilemap version=\"0.0\">" << endl;
-    inOut << "<script type=\"text/core\">" << endl;
+    inOut << inPrefix << "<tilemap version=\"0.0\">" << endl;
+    inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_loaderScript;
-    inOut << "</script>" << endl;
+    inOut << inPrefix << "</script>" << endl;
     for (map<U32, string>::const_iterator p = m_map.begin(); p != m_map.end(); ++p)
     {
-        inOut << "<map>" << p->first << " " << p->second << "</map>" << endl;
+        inOut << inPrefix << "<map>" << p->first << " " << p->second << "</map>" << endl;
     }
-    inOut << "</tilemap>";
+    inOut << inPrefix << "</tilemap>";
 }
 
 void
@@ -99,9 +117,11 @@ GameTileMap::Unpickle(CoreXML& inXML)
     m_startTable[kInit]["tilemap"] = &GameTileMap::HandleTileMapStart;
     m_startTable[kData]["script"] = &GameTileMap::HandleScriptStart;
     m_startTable[kData]["map"] = &GameTileMap::NullHandler;
+    m_startTable[kData]["traits"] = &GameTileMap::HandleTraitsStart;
     m_endTable[kData]["tilemap"] = &GameTileMap::HandleTileMapEnd;
     m_endTable[kData]["script"] = &GameTileMap::HandleScriptEnd;
     m_endTable[kData]["map"] = &GameTileMap::HandleMapEnd;
+    m_endTable[kData]["traits"] = &GameTileMap::HandleTraitsEnd;
 
     m_map.clear();
     inXML.ParseStream(*this);

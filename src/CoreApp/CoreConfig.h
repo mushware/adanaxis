@@ -1,8 +1,11 @@
 #ifndef CORECONFIG_H
 #define CORECONFIG_H
 /*
- * $Id: CoreConfig.h,v 1.5 2002/05/28 13:07:03 southa Exp $
+ * $Id: CoreConfig.h,v 1.6 2002/05/30 14:41:13 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.6  2002/05/30 14:41:13  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.5  2002/05/28 13:07:03  southa
  * Command parser extensions and TIFF loader
  *
@@ -34,7 +37,7 @@ public:
     const CoreScalar& Get(const string& inName) const;
     bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool ConfigExists(const string& inName) const;
-    virtual void Pickle(ostream& inOut) const;
+    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     
 private:

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.h,v 1.3 2002/05/25 17:17:18 southa Exp $
+ * $Id: CoreXML.h,v 1.4 2002/05/26 16:08:49 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.4  2002/05/26 16:08:49  southa
+ * CoreXML loader
+ *
  * Revision 1.3  2002/05/25 17:17:18  southa
  * CoreXML implementation
  *
@@ -48,7 +51,7 @@ public:
     const string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
     map<string, string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
     void DumpTops(ostream& inOut);
-    void Stop(void);
+    void StopHandler(void);
     CoreScalar GetAttrib(const string& inName);
     void GetAttrib(CoreScalar& outScalar, const string& inName);
     CoreScalar GetAttribOrThrow(const string& inName);
@@ -59,11 +62,13 @@ private:
     void ProcessStartElement(const char *inName, const char **inAttribs);
     void ProcessEndElement(const char *inName);
     void ProcessCharacterData(const char *inData, tSize inLen);
+    void NewHandler(CoreXMLHandler& inHandler);
     static void StartElementHandler(void *inUserData, const char *inName, const char **inAttribs);
     static void EndElementHandler(void *inUserData, const char *inName);
     static void CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen);
 
     CoreXMLHandler *m_currentHandler;
+    stack<CoreXMLHandler *> m_handlers;
     XML_Parser m_parser;
     stack< map<string, string> > m_attribStack;
     stack<string> m_dataStack;
@@ -71,5 +76,6 @@ private:
     istream *m_inStream;
     string m_name;
     bool m_continue;
+    bool m_threaded;
     U32 m_line;
 };

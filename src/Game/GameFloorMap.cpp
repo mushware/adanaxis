@@ -1,6 +1,9 @@
 /*
- * $Id: GameFloorMap.cpp,v 1.5 2002/05/28 22:36:44 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.1 2002/05/30 16:21:53 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.1  2002/05/30 16:21:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.5  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *
@@ -39,7 +42,7 @@ GameFloorMap::HandleGameFloorMapStart(CoreXML& inXML)
 void
 GameFloorMap::HandleGameFloorMapEnd(CoreXML& inXML)
 {
-    inXML.Stop();
+    inXML.StopHandler();
 }
 
 void
@@ -70,12 +73,12 @@ GameFloorMap::HandleDataEnd(CoreXML& inXML)
 }
 
 void
-GameFloorMap::Pickle(ostream& inOut) const
+GameFloorMap::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << "<gamemap xsize=\"" << m_xsize << "\" ysize=\"" << m_ysize << "\">" << endl;
+    inOut << inPrefix << "<gamemap xsize=\"" << m_xsize << "\" ysize=\"" << m_ysize << "\">" << endl;
     for (vector< vector<U32> >::const_reverse_iterator x_it = m_map.rbegin(); x_it != m_map.rend(); x_it++)
     {
-        inOut << "<data>";
+        inOut << inPrefix << "  <data>";
         for (vector<U32>::const_iterator y_it = x_it->begin(); y_it != x_it->end(); y_it++)
         {
             inOut << *y_it;
@@ -86,7 +89,7 @@ GameFloorMap::Pickle(ostream& inOut) const
         }
         inOut << "</data>" << endl;
     }
-    inOut << "</gamemap>" << endl;
+    inOut << inPrefix << "</gamemap>" << endl;
 }
 
 void

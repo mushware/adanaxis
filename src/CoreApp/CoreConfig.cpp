@@ -1,6 +1,9 @@
 /*
- * $Id: CoreConfig.cpp,v 1.4 2002/05/30 14:41:13 southa Exp $
- * $Log$
+ * $Id: CoreConfig.cpp,v 1.5 2002/05/31 15:18:15 southa Exp $
+ * $Log: CoreConfig.cpp,v $
+ * Revision 1.5  2002/05/31 15:18:15  southa
+ * Keyboard reading
+ *
  */
 
 #include "CoreConfig.h"
@@ -49,7 +52,7 @@ CoreConfig::ConfigExists(const string& inName) const
 }
 
 void
-CoreConfig::Pickle(ostream& inOut) const
+CoreConfig::Pickle(ostream& inOut, const string& inPrefix="") const
 {}
 
 void
