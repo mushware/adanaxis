@@ -1,8 +1,11 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id: GLTexture.hp,v 1.5 2002/02/23 17:54:45 southa Exp $
+ * $Id: GLTexture.hp,v 1.6 2002/02/23 23:58:45 southa Exp $
  * $Log: GLTexture.hp,v $
+ * Revision 1.6  2002/02/23 23:58:45  southa
+ * Made buildable for cygwin
+ *
  * Revision 1.5  2002/02/23 17:54:45  southa
  * Added GIF loader and GL tests
  *
@@ -45,33 +48,48 @@ inline ostream& operator<<(ostream &s, LoaderFail f)
 class GLTexture
 {
 public:
-    GLTexture(const string& inFilename);
-    GLsizei Width(TextureRef inRef) const {return m_textureDefs[inRef].width;}
-    GLsizei Height(TextureRef inRef) const {return m_textureDefs[inRef].height;}
-    GLenum PixelFormat(TextureRef inRef) const {return m_textureDefs[inRef].pixelFormat;}
-    GLenum PixelType(TextureRef inRef) const {return m_textureDefs[inRef].pixelType;}
-    void *DataPtr(TextureRef inRef) const {return m_textureDefs[inRef].dataPtr;}
-    ostream& ostreamPrint(ostream& inOut) const;
+    virtual ~GLTexture() {}
+    virtual GLTexture *Clone(void) const = 0;
+    virtual GLsizei Width(const TextureRef& inRef) const {return m_textureDefs[inRef].Width();}
+    virtual GLsizei Height(const TextureRef& inRef) const {return m_textureDefs[inRef].Height();}
+    virtual GLenum PixelFormat(const TextureRef& inRef) const {return m_textureDefs[inRef].PixelFormat();}
+    virtual GLenum PixelType(const TextureRef& inRef) const {return m_textureDefs[inRef].PixelType();}
+    virtual void *DataPtr(const TextureRef& inRef) const {return m_textureDefs[inRef].DataPtr();}
+    virtual ostream& ostreamPrint(ostream& inOut) const;
     
 protected:
     class TextureDef
     {
     public:
-        TextureDef(U8 *inDataPtr):dataPtr(inDataPtr) {}
-        ~TextureDef() {if (m_autoMonkey.FreeInDestructor()) delete[]dataPtr;}
-        GLsizei width;
-        GLsizei height;
-        GLenum pixelFormat;
-        GLenum pixelType;
-        U8 *dataPtr;
+        TextureDef(U8 *inDataPtr):m_dataPtr(inDataPtr) {}
+        ~TextureDef() {if (m_autoMonkey.FreeInDestructor()) delete[]m_dataPtr;}
+        void WidthSet(GLsizei inWidth) {m_width=inWidth;}
+        void HeightSet(GLsizei inHeight) {m_height=inHeight;}
+        void PixelFormatSet(GLenum inPixelFormat) {m_pixelFormat=inPixelFormat;}
+        void PixelTypeSet(GLenum inPixelType) {m_pixelType=inPixelType;}
+        GLsizei Width(void) const {return m_width;}
+        GLsizei Height(void) const {return m_height;}
+        GLenum PixelFormat(void) const {return m_pixelFormat;}
+        GLenum PixelType(void) const {return m_pixelType;}
+        U8 *DataPtr(void) const {return m_dataPtr;}
+        
+    private:
+        GLsizei m_width;
+        GLsizei m_height;
+        GLenum m_pixelFormat;
+        GLenum m_pixelType;
+        U8 *m_dataPtr;
         AutoMonkey m_autoMonkey;
     };
 
+    virtual const char *FiletypeName(void) const = 0;
+    void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
+    const string& Filename(void) const {return m_inFilename;}
+    void AddTextureDef(TextureDef& inDef) {m_textureDefs.push_back(inDef);}
     
 private:
-    void ThrowGifError(const string& inFilename, int inRC);
-//    string m_inFilename;
     vector<TextureDef> m_textureDefs;
+    string m_inFilename;
 };
 
 inline ostream& operator<<(ostream &inOut, const GLTexture& inTex)
