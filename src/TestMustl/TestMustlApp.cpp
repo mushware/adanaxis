@@ -9,14 +9,19 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: TestMustlApp.cpp,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Log: TestMustlApp.cpp,v $
+ * Revision 1.1  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  */
 
 #include "TestMustlApp.h"
 
 using namespace Mushware;
 using namespace std;
+
+auto_ptr<TestMustlApp> TestMustlApp::m_instance;
 
 void
 TestMustlApp::Enter(void)
@@ -31,7 +36,7 @@ TestMustlApp::Enter(void)
 
     ostringstream configURL;
     configURL << "http://127.0.0.1:" << webPort << "/";
-
+    MustlPlatform::LaunchURL(configURL.str());
     m_doQuit = false;
 
     while (!m_doQuit)
@@ -40,3 +45,9 @@ TestMustlApp::Enter(void)
         MustlWebRouter::Instance().ReceiveAll();
     }
 }
+
+void
+TestMustlApp::DoQuit(void)
+{
+    m_doQuit = true;
+}    

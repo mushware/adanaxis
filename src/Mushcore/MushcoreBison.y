@@ -1,7 +1,10 @@
 %{
 /*
- * $Id: MushcoreBison.y,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreBison.y,v 1.2 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.2  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -49,9 +52,8 @@ input:    /* empty */
 end: EOS
 | END_OF_FILE
 ;
-command: IDENTIFIER {
-    INBISON->ClearParams();
-}
+command: IDENTIFIER { INBISON->ClearParams(); }
+| VARIABLE {$$=MushcoreEnv::Instance().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
 ;
 scalar: VARIABLE {$$=MushcoreEnv::Instance().VariableGet($1.StringGet().substr(1)).StringGet();}
 | STRING {$$ = $1.StringGet();}
@@ -78,7 +80,7 @@ statement: end
 
 int yyerror(char *s)
 {
-    cerr << "Bison error: " << s << endl;
+    cerr << "Syntax error: " << s << endl;
     return 0;
 }
 

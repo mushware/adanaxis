@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDef.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDef.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDef.h"
@@ -29,21 +32,6 @@ auto_ptr< MushcoreData<MustlConfigDef> > MushcoreData<MustlConfigDef>::m_instanc
 MustlConfigDef::~MustlConfigDef()
 {
 }
-
-
-// -----
-
-// -----
-
-// -----
-
-
-// -----
-
-// -----
-
-
-// -----
 
 void
 MustlConfigDef::SelectPrologue(ostream& ioOut, const string& inName)

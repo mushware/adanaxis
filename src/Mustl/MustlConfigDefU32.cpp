@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefU32.cpp,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Log: MustlConfigDefU32.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefU32.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefU32(MustlConfigDefU32::Install);
+MushcoreInstaller MustlConfigDefU32Installer(MustlConfigDefU32::Install);
 
 MustlConfigDefU32::MustlConfigDefU32(U32 inValue, U32 inLowLimit, U32 inHighLimit) :
     m_value(inValue),

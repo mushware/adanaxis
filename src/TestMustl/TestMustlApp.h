@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: TestMustlApp.h,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Log: TestMustlApp.h,v $
+ * Revision 1.1  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  */
 
 #include "TestMustlStandard.h"
@@ -21,10 +24,22 @@ class TestMustlApp
 {
 public:
     void Enter(void);
+    void DoQuit(void);
+
+    static inline TestMustlApp& Instance(void);
 
 private:
     bool m_doQuit;
+
+    static std::auto_ptr<TestMustlApp> m_instance;
 };
 
+inline TestMustlApp&
+TestMustlApp::Instance(void)
+{
+    if (m_instance.get() != NULL) return *m_instance;
+    m_instance.reset(new TestMustlApp);
+    return *m_instance;
+}
 
 #endif

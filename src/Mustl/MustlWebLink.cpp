@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.13 2003/01/13 23:05:22 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.14 2003/01/14 17:38:22 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.14  2003/01/14 17:38:22  southa
+ * Mustl web configuration
+ *
  * Revision 1.13  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -380,7 +383,7 @@ MustlWebLink::GetProcess(const string& inFilename)
     }
     catch (MushcoreNonFatalFail &e)
     {
-        MustlLog::Instance().WebLog() << "ReceivedProcess exception: " << e.what() << endl;
+        MustlLog::Instance().WebLog() << "Exception: " << e.what() << endl;
         SendErrorPage(e.what());
     }
 }
@@ -562,5 +565,17 @@ MustlWebLink::SendErrorPage(const string& inText)
 void
 MustlWebLink::Print(ostream& ioOut) const
 {
-
+    ioOut << "[";
+    ioOut << "requestLine=" << m_requestLine;
+    ioOut << ", requestType=" << m_requestType;
+    ioOut << ", linkState=" << m_linkState;
+    ioOut << ", receiveState=" << m_receiveState;
+    ioOut << ", tcpSocket=" << m_tcpSocket;
+    ioOut << ", currentMsec=" << m_currentMsec;
+    ioOut << ", creationMsec=" << m_creationMsec;
+    ioOut << ", lastAccessMsec=" << m_lastAccessMsec;
+    ioOut << ", linkErrors=" << m_linkErrors;
+    ioOut << ", isDead=" << m_isDead;
+    ioOut << ", webPath=" << m_webPath;
+    ioOut << "]";
 }

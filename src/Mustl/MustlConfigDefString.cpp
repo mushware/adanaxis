@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefString.cpp,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Log: MustlConfigDefString.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefString.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefString(MustlConfigDefString::Install);
+MushcoreInstaller MustlConfigDefStringInstaller(MustlConfigDefString::Install);
 
 MustlConfigDefString::MustlConfigDefString(const string& inValue) :
 m_value(inValue)

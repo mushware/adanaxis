@@ -1,14 +1,4 @@
 
-/*****************************************************************************
- *
- * (Mushware file header version 1.2)
- *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
- *
- ****************************************************************************/
-
 /*  A Bison parser, made from MushcoreBison.y
     by GNU Bison version 1.28  */
 
@@ -30,8 +20,8 @@
 
 
 /*
- * $Id: MushcoreBison.cpp,v 1.2 2003/01/12 17:32:58 southa Exp $
- * $Log: MushcoreBison.cpp,v $
+ * $Id: MushcoreBison.y,v 1.2 2003/01/12 17:32:58 southa Exp $
+ * $Log: MushcoreBison.y,v $
  * Revision 1.2  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -82,7 +72,7 @@ int yyerror( char *s);
 
 
 
-#define	YYFINAL		23
+#define	YYFINAL		24
 #define	YYFLAG		-32768
 #define	YYNTBASE	13
 
@@ -120,23 +110,24 @@ static const char yytranslate[] = {     0,
 
 #if YYDEBUG != 0
 static const short yyprhs[] = {     0,
-     0,     1,     4,     6,     8,    10,    12,    14,    16,    20,
-    22,    23,    25,    29,    30,    34,    36
+     0,     1,     4,     6,     8,    10,    12,    14,    16,    18,
+    22,    24,    25,    27,    31,    32,    36,    38
 };
 
 static const short yyrhs[] = {    -1,
     13,    20,     0,     7,     0,     8,     0,     5,     0,     4,
-     0,     6,     0,     3,     0,    16,     9,    16,     0,    16,
-     0,     0,    17,     0,    18,    10,    17,     0,     0,    11,
-    18,    12,     0,    14,     0,    15,    19,    14,     0
+     0,     4,     0,     6,     0,     3,     0,    16,     9,    16,
+     0,    16,     0,     0,    17,     0,    18,    10,    17,     0,
+     0,    11,    18,    12,     0,    14,     0,    15,    19,    14,
+     0
 };
 
 #endif
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    47,    48,    49,    50,    52,    56,    57,    58,    59,    61,
-    65,    66,    67,    69,    70,    72,    73
+    50,    51,    52,    53,    55,    56,    58,    59,    60,    61,
+    63,    67,    68,    69,    71,    72,    74,    75
 };
 #endif
 
@@ -151,47 +142,47 @@ static const char * const yytname[] = {   "$","error","$undefined.","NUMBER",
 #endif
 
 static const short yyr1[] = {     0,
-    13,    13,    14,    14,    15,    16,    16,    16,    16,    17,
-    18,    18,    18,    19,    19,    20,    20
+    13,    13,    14,    14,    15,    15,    16,    16,    16,    16,
+    17,    18,    18,    18,    19,    19,    20,    20
 };
 
 static const short yyr2[] = {     0,
-     0,     2,     1,     1,     1,     1,     1,     1,     3,     1,
-     0,     1,     3,     0,     3,     1,     3
+     0,     2,     1,     1,     1,     1,     1,     1,     1,     3,
+     1,     0,     1,     3,     0,     3,     1,     3
 };
 
 static const short yydefact[] = {     1,
-     0,     5,     3,     4,    16,    14,     2,    11,     0,     8,
-     6,     7,    10,    12,     0,    17,     0,     0,    15,     9,
-    13,     0,     0
+     0,     6,     5,     3,     4,    17,    15,     2,    12,     0,
+     9,     7,     8,    11,    13,     0,    18,     0,     0,    16,
+    10,    14,     0,     0
 };
 
 static const short yydefgoto[] = {     1,
-     5,     6,    13,    14,    15,     9,     7
+     6,     7,    14,    15,    16,    10,     8
 };
 
 static const short yypact[] = {-32768,
-     0,-32768,-32768,-32768,-32768,    -8,-32768,    -2,     5,-32768,
--32768,-32768,    -3,-32768,    -1,-32768,    -2,    -2,-32768,    -3,
--32768,    10,-32768
+     0,-32768,-32768,-32768,-32768,-32768,    -5,-32768,     6,     7,
+-32768,-32768,-32768,    -7,-32768,    -9,-32768,     6,     6,-32768,
+    -7,-32768,    11,-32768
 };
 
 static const short yypgoto[] = {-32768,
-     6,-32768,     1,    -4,-32768,-32768,-32768
+     3,-32768,    -2,    -1,-32768,-32768,-32768
 };
 
 
 #define	YYLAST		18
 
 
-static const short yytable[] = {    22,
-    10,    11,     8,    12,     2,    17,     3,     4,    18,    23,
-    19,     3,     4,    21,    16,     0,     0,    20
+static const short yytable[] = {    23,
+    19,    18,    20,     2,     3,     9,     4,     5,    11,    12,
+    24,    13,    17,     4,     5,    21,     0,    22
 };
 
 static const short yycheck[] = {     0,
-     3,     4,    11,     6,     5,     9,     7,     8,    10,     0,
-    12,     7,     8,    18,     9,    -1,    -1,    17
+    10,     9,    12,     4,     5,    11,     7,     8,     3,     4,
+     0,     6,    10,     7,     8,    18,    -1,    19
 };
 #define YYPURE 1
 
@@ -246,8 +237,6 @@ static const short yycheck[] = {     0,
 #if 0 /* No need for malloc.h, which pollutes the namespace;
 	 instead, just don't use alloca.  */
 #include <malloc.h>
-
-using namespace Mushware;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)
@@ -741,28 +730,29 @@ yyreduce:
   switch (yyn) {
 
 case 5:
-{
-    INBISON->ClearParams();
-;
+{ INBISON->ClearParams(); ;
     break;}
 case 6:
-{yyval=MushcoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet();;
+{yyval=MushcoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet(); INBISON->ClearParams(); ;
     break;}
 case 7:
-{yyval = yyvsp[0].StringGet();;
+{yyval=MushcoreEnv::Instance().VariableGet(yyvsp[0].StringGet().substr(1)).StringGet();;
     break;}
 case 8:
-{yyval = yyvsp[0].ValGet();;
+{yyval = yyvsp[0].StringGet();;
     break;}
 case 9:
-{yyval = yyvsp[-2].StringGet()+yyvsp[0].StringGet(); /* Enhance me */ ;
+{yyval = yyvsp[0].ValGet();;
     break;}
 case 10:
+{yyval = yyvsp[-2].StringGet()+yyvsp[0].StringGet(); /* Enhance me */ ;
+    break;}
+case 11:
 {
     INBISON->PushParam(yyvsp[0]);
 ;
     break;}
-case 17:
+case 18:
 {
     yyval=INBISON->Despatch(yyvsp[-2]);
 ;
@@ -993,7 +983,7 @@ yyerrhandle:
 
 int yyerror(char *s)
 {
-    cerr << "Bison error: " << s << endl;
+    cerr << "Syntax error: " << s << endl;
     return 0;
 }
 

@@ -1,8 +1,11 @@
- // $Id: MushcoreFlex.flex,v 1.1 2003/01/09 14:57:07 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.2 2003/01/12 17:33:00 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.2 2003/01/12 17:33:00 southa Exp $
  * $Log: MushcoreFlex.flex,v $
+ * Revision 1.2  2003/01/12 17:33:00  southa
+ * Mushcore work
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -43,10 +46,12 @@
  */
 
 #include "MushcoreFlex.h"
+
+#include "MushcoreBisonDefs.h"
+#include "MushcoreFail.h"
+#include "MushcoreScalar.h"
 #include "MushcoreStandard.h"
 #include "MushcoreSwitches.h"
-#include "MushcoreBisonDefs.h"
-#include "MushcoreScalar.h"
 
 #include "MushcoreSTL.h"
 
@@ -156,6 +161,6 @@ comment     ^[ \t]*#.*
 MushcoreFlex::MushcoreFlex(const string& inStr): m_scalar(0), m_eofFound(false)
 {
     m_buffer_state=yy_scan_bytes(inStr.c_str(), inStr.size());
-    if (m_buffer_state == NULL) throw "Flex failed";
+    if (m_buffer_state == NULL) throw(MushcoreLogicFail("Flex failed"));
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.4 2003/01/14 12:40:10 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.5 2003/01/14 17:38:21 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.5  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.4  2003/01/14 12:40:10  southa
  * Moved ConfigDefs into Mustl
  *
@@ -37,6 +40,8 @@ using namespace Mustl;
 using namespace std;
 
 auto_ptr<MustlConfig> MustlConfig::m_instance;
+
+MushcoreInstaller MustlConfigInstaller(MustlConfig::Install);
 
 MustlConfig::MustlConfig()
 {
@@ -78,4 +83,19 @@ MustlConfig::PostDataHandle(const string& inData)
     {
         throw(MustlFail("Bad parameters:"+failStr));
     }
+}
+
+void
+MustlConfig::Install(void)
+{
+    // Add default values to global configuration
+
+    // This function contains details of all mustl variables
+
+    // MUSTL_WEB_PATH      Path to files served by the built-in web server
+
+    // Name of the command used to handle non-mustlonly POST data, i.e. any
+    // POST data from HTML forms where the value of the type field doesn't
+    // start with the string mustlonly
+    MushcoreGlobalConfig::Instance().Set("MUSTL_POST_HANDLER", "posthandler");
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.h,v 1.3 2003/01/14 12:40:10 southa Exp $
+ * $Id: MustlConfig.h,v 1.4 2003/01/14 17:38:21 southa Exp $
  * $Log: MustlConfig.h,v $
+ * Revision 1.4  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.3  2003/01/14 12:40:10  southa
  * Moved ConfigDefs into Mustl
  *
@@ -36,7 +39,8 @@ public:
     void PostDataHandle(const std::string& inData);
     
     static MustlConfig& Instance(void);
-
+    static void Install(void);
+    
 protected:
     MustlConfig();
     

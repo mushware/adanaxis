@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MustlWebCommands.cpp,v 1.1 2003/01/14 17:38:21 southa Exp $
+ * $Log: MustlWebCommands.cpp,v $
+ * Revision 1.1  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  */
 
 #include "MustlWebCommands.h"
@@ -43,7 +46,7 @@ MustlWebCommands::MustlPostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 
     if (typeStr.substr(0,9) != "mustlonly")
     {
-        MushcoreInterpreter::Instance().Execute("$MUSTL_POST_HANDLER('"+valueStr+"')");
+        MushcoreInterpreter::Instance().Execute("$MUSTL_POST_HANDLER('"+typeStr+"','"+valueStr+"')");
     }
     
     return MushcoreScalar(0);

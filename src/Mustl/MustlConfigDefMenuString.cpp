@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefMenuString.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDefMenuString.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefMenuString.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefMenuString(MustlConfigDefMenuString::Install);
+MushcoreInstaller MustlConfigDefMenuStringInstaller(MustlConfigDefMenuString::Install);
 
 MustlConfigDefMenuString::MustlConfigDefMenuString(const string& inValue, const string& inMenu) :
 MustlConfigDefString(inValue),

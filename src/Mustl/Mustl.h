@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mustl.h,v 1.4 2003/01/13 23:05:22 southa Exp $
+ * $Id: Mustl.h,v 1.5 2003/01/14 17:38:21 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.5  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.4  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -59,6 +62,7 @@
 #include "MustlIDString.h"
 #include "MustlLink.h"
 #include "MustlLog.h"
+#include "MustlPlatform.h"
 #include "MustlProtocol.h"
 #include "MustlRouter.h"
 #include "MustlServer.h"

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefPassword.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDefPassword.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefPassword.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefPassword(MustlConfigDefPassword::Install);
+MushcoreInstaller MustlConfigDefPasswordInstaller(MustlConfigDefPassword::Install);
 
 MustlConfigDefPassword::MustlConfigDefPassword(const string& inValue) :
 MustlConfigDefString(inValue)

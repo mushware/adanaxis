@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefBool.cpp,v 1.1 2003/01/14 12:40:10 southa Exp $
+ * $Log: MustlConfigDefBool.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:10  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefBool.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefBool(MustlConfigDefBool::Install);
+MushcoreInstaller MustlConfigDefBoolInstaller(MustlConfigDefBool::Install);
 
 MustlConfigDefBool::MustlConfigDefBool(bool inValue) :
 m_value(inValue)

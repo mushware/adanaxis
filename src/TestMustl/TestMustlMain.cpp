@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMustlMain.cpp,v 1.1 2003/01/13 23:05:22 southa Exp $
+ * $Id: TestMustlMain.cpp,v 1.2 2003/01/14 17:38:22 southa Exp $
  * $Log: TestMustlMain.cpp,v $
+ * Revision 1.2  2003/01/14 17:38:22  southa
+ * Mustl web configuration
+ *
  * Revision 1.1  2003/01/13 23:05:22  southa
  * Mustl test application
  *
@@ -47,9 +50,8 @@ int main(int argc, char *argv[])
         }
     
         MushcoreInterpreter::Instance().Execute("load($MUSTL_START_FILE)");
-    
-        TestMustlApp mustlApp;
-        mustlApp.Enter();
+
+        TestMustlApp::Instance().Enter();
     }
     catch (exception& e)
     {

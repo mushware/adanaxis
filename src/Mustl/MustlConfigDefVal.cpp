@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: MustlConfigDefVal.cpp,v 1.1 2003/01/14 12:40:11 southa Exp $
+ * $Log: MustlConfigDefVal.cpp,v $
+ * Revision 1.1  2003/01/14 12:40:11  southa
+ * Moved ConfigDefs into Mustl
+ *
  */
 
 #include "MustlConfigDefVal.h"
@@ -24,7 +27,7 @@
 using namespace Mustl;
 using namespace std;
 
-MushcoreInstaller MustlConfigDefVak(MustlConfigDefVal::Install);
+MushcoreInstaller MustlConfigDefValInstaller(MustlConfigDefVal::Install);
 
 MustlConfigDefVal::MustlConfigDefVal(tVal inValue, tVal inLowLimit, tVal inHighLimit) :
 m_value(inValue),

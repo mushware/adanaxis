@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.h,v 1.6 2002/12/20 13:17:47 southa Exp $
+ * $Id: MustlPlatform.h,v 1.1 2003/01/13 15:52:43 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.1  2003/01/13 15:52:43  southa
+ * Merged MustlPlatform
+ *
  * Revision 1.6  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -93,8 +96,8 @@ public:
     static bool IsLocalAddress(Mustl::U32 inIPNetworkOrder);
     static bool ResolveIPAddressString(MustlAddress& outAddress, const std::string& inIPStr, Mustl::U32 inPortHostOrder);
     static void ResolveHostName(MustlAddress& outAddress, const std::string& inHostName, Mustl::U32 inPortHostOrder);
- 
-        
+
+    static void LaunchURL(const string& inURL);    
     static unsigned int DefaultTimer(void);
     
     // Only call this if the local IP address(es) might have changed

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.2 2003/01/13 16:50:48 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.3 2003/01/13 23:05:22 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.3  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.2  2003/01/13 16:50:48  southa
  * win32 support
  *
@@ -91,13 +94,30 @@
 #include "MustlFail.h"
 #include "MustlSTL.h"
 
+#if !defined(WIN32) && defined(_WIN32)
+#define WIN32
+#endif
+
+#if defined(__APPLE__) && !defined(MACOSX)
+#define MACOSX
+#endif
+
 #ifdef WIN32
 // win32 includes
 #include <iphlpapi.h>
 #include <windows.h>
-
 #else
-// POSIX includes
+#ifdef MACOSX
+// Mac OS X includes
+#include <Carbon/Carbon.h>
+#define POSIX_OR_MACOSX
+#else
+#define POSIX_NOT_MACOSX
+#endif
+#endif
+
+#ifndef WIN32
+// POSIX includes (including Mac OS X)
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
@@ -601,7 +621,7 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
 }
 
 #ifdef WIN32
-
+// Start of win32 block
 void
 MustlPlatform::LocalAddressesRetrieve(void)
 {
@@ -656,8 +676,48 @@ MustlPlatform::DefaultTimer(void)
     }
 }
 
-#else
+void
+MustlPlatform::LaunchURL(const string& inURL)
+{
+    int status = reinterpret_cast<int>(ShellExecute(NULL, "open", inURL.c_str(), NULL, NULL, SW_SHOWDEFAULT));
+    if (status < 32)
+    {
+        ostringstream message;
+        message << "URL launch failed for '" << inURL << "': " << status;
+        throw(MustlFail(message.str()));
+    }
+}
+// End of win32 block
+#endif
 
+#ifdef MACOSX
+// Start of Mac OS X only block
+void
+MustlPlatform::LaunchURL(const string& inURL)
+{
+    CFStringRef destName = CFStringCreateWithCString(NULL, inURL.c_str(), kCFStringEncodingMacRoman);
+    if (destName)
+    {
+        CFURLRef pathRef = CFURLCreateWithString(NULL, destName, NULL);
+        if (pathRef)
+        {
+            LSOpenCFURLRef(pathRef, NULL);
+            CFRelease(pathRef);
+        }
+        CFRelease(destName);
+    }
+}
+// End of Mac OS X only block
+#endif
+
+#ifdef POSIX_NOT_MACOSX
+// Start of POSIX only block (not including Mac OS X)
+
+// End of POSIX only block
+#endif
+
+#ifdef POSIX_OR_MACOSX
+// Start of POSIX or Mac OS X block
 void
 MustlPlatform::LocalAddressesRetrieve(void)
 {
@@ -733,5 +793,5 @@ MustlPlatform::DefaultTimer(void)
         return 0;
     }
 }
-
+// End of POSIX or Mac OS X block
 #endif
