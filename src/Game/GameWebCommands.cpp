@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.13 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.14 2002/11/28 12:05:45 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.14  2002/11/28 12:05:45  southa
+ * Server name work
+ *
  * Revision 1.13  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -172,6 +175,18 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     else if (matches[1] == "hostcleardown")
     {
+        // Kill server first so that it can tell anything with a client image that it's going
+        {
+            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+    
+            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+            {
+                if (!p->second->IsImage())
+                {
+                    p->second->Kill();
+                }
+            }
+        }
         {
             CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
     
@@ -183,20 +198,10 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
                 }
             }
         }
-        {
-            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
-
-            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
-            {
-                if (!p->second->IsImage())
-                {
-                    p->second->Kill();
-                }
-            }
-        }
     }
     else if (matches[1] == "joincleardown")
     {
+        // Kill clients first so that they can tell the servers with images that they're going
         {
             CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
     

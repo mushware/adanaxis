@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.14 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameSetup.cpp,v 1.15 2002/11/28 15:51:21 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.15  2002/11/28 15:51:21  southa
+ * Kill image defs as well
+ *
  * Revision 1.14  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -238,7 +241,6 @@ GameSetup::Config(void)
             {
                 p->second->Ticker();
                 serverNeeded=true;
-
             }
             if (p->second->IsDead())
             {
@@ -250,7 +252,6 @@ GameSetup::Config(void)
             CoreData<GameDefServer>::Instance().DataDelete(killValue);
         }
     }
-    
     
     if (serverNeeded)
     {
@@ -274,7 +275,13 @@ GameSetup::Config(void)
             }
         }
     }
-
+    else
+    {
+        if (MediaNetServer::Instance().IsServing())
+        {
+            MediaNetServer::Instance().Disconnect();
+        }
+    }
     
     KeyControl();
     GLUtils::PostRedisplay();

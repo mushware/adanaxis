@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.9 2002/11/28 15:14:14 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.10 2002/11/28 15:33:31 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.10  2002/11/28 15:33:31  southa
+ * Pass GameDef status over link
+ *
  * Revision 1.9  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -90,25 +93,7 @@ GameDefClient::Ticker(void)
         if (m_currentMsec > m_lastRegistrationMsec + kRegistrationMsec &&
             m_currentMsec > netLink->CreationMsecGet() + kLinkSetupWaitMsec)
         {
-            MediaNetData netData;
-            if (m_killed)
-            {
-                // Remove the image of this client on the server remote station
-                GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
-            }
-            else
-            {
-                // Update the client image on the remote station
-                GameProtocol::CreateObjectCreate(netData, *this, NameGet());
-            }
-            try
-            {
-                netLink->ReliableSend(netData);
-            }
-            catch (NetworkFail& e)
-            {
-                MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
-            }
+            UpdateServer(*netLink);
             m_lastRegistrationMsec = m_currentMsec;
         }
     }
@@ -120,7 +105,31 @@ GameDefClient::Ticker(void)
             m_lastLinkMsec = m_currentMsec;
         }
     }
-    UpdateStatus();
+    UpdateStatus(); // Need to call this a bit less often
+}
+
+void
+GameDefClient::UpdateServer(MediaNetLink& ioLink)
+{
+    MediaNetData netData;
+    if (m_killed)
+    {
+        // Remove the image of this client on the server remote station
+        GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
+    }
+    else
+    {
+        // Update the client image on the remote station
+        GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+    }
+    try
+    {
+        ioLink.ReliableSend(netData);
+    }
+    catch (NetworkFail& e)
+    {
+        MediaNetLog::Instance().NetLog() << "GameDefClient ticker send failed: " << e.what() << endl;
+    }
 }
 
 void
@@ -128,7 +137,12 @@ GameDefClient::Kill(void)
 {
     m_killed=true;
     // Schedule an immediate update on the ticker
-    m_lastRegistrationMsec=0;
+    MediaNetLink *netLink=NULL;
+    if (MediaNetUtils::FindLinkToStation(netLink, m_netAddress))
+    {
+        COREASSERT(netLink != NULL);
+        UpdateServer(*netLink);
+    }
 }
 
 void

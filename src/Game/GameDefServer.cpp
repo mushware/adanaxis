@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.7 2002/11/28 15:14:14 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.8 2002/11/28 15:33:31 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.8  2002/11/28 15:33:31  southa
+ * Pass GameDef status over link
+ *
  * Revision 1.7  2002/11/28 15:14:14  southa
  * Multiplayer setup timing
  *
@@ -115,9 +118,7 @@ void
 GameDefServer::Kill(void)
 {
     m_killed=true;
-
-    // Schedule an immediate update on the ticker
-    m_lastUpdateMsec=0;
+    UpdateClients();
 }
 
 void

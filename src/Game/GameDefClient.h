@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.5 2002/11/28 12:05:45 southa Exp $
+ * $Id: GameDefClient.h,v 1.6 2002/11/28 15:14:14 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.6  2002/11/28 15:14:14  southa
+ * Multiplayer setup timing
+ *
  * Revision 1.5  2002/11/28 12:05:45  southa
  * Server name work
  *
@@ -43,6 +46,8 @@ public:
     virtual char *TypeNameGet(void) const;
 
 protected:
+    void UpdateServer(MediaNetLink& ioLink);
+        
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);
     void XMLDataHandler(CoreXML& inXML);
