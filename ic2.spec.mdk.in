@@ -35,7 +35,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %configure --program-transform-name=""
 # App segfaults when throwing an exception if omit-frame-pointers is used
 CXXFLAGS=`echo $CXXFLAGS | sed 's/-fomit-frame-pointer//'`
-make CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS"
+make CXXFLAGS="$CXXFLAGS"
 
 %install
 %makeinstall
@@ -59,4 +59,4 @@ chmod 0755 %{RUNFILE}
 
 %changelog
 * Mon Sep  2 2002 Andy Southgate <andy.southgate@mushware.com>
-- Initial Mandrake RPM.
+- Initial Mandrake 8.2 RPM.
