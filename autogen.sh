@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id$
-# $Log$
+# $Id: autogen.sh,v 1.1 2002/09/01 22:04:37 southa Exp $
+# $Log: autogen.sh,v $
+# Revision 1.1  2002/09/01 22:04:37  southa
+# Created
+#
 
 chmod +x autogen.sh
 chmod +x ic2
@@ -36,7 +39,7 @@ cd ic2data
 echo Building data Makefile.am in `pwd`
 rm -f Makefile.am
 echo -n 'nobase_dist_pkgdata_DATA =' >> Makefile.am
-find -path '*CVS' -prune -o -name 'Makefile*' -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
+find . -path '*CVS' -prune -o -name 'Makefile*' -prune -o -type f -exec echo -n " " {} \; | sed -e "s/\.\///g" >> Makefile.am
 echo >> Makefile.am
 cd ..
 
