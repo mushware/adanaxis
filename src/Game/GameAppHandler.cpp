@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.21 2002/07/08 14:22:02 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.22 2002/07/10 16:37:39 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.22  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.21  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -102,7 +105,7 @@ GameAppHandler::Initialise(void)
     CoreEnv::Instance().VariableGetIfExists(displayType, "DISPLAY_TYPE");
     if (displayType == "fullscreen")
     {
-        EnterScreen(kGame);
+        EnterScreen(kFullScreen);
     }
     else if (displayType == "window")
     {

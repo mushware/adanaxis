@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.15 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.16 2002/07/06 18:04:17 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.16  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.15  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -173,10 +176,18 @@ GLCommandHandler::Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+GLCommandHandler::DumpTextures(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    GLData::Instance().DumpTextures(cout);
+    return CoreScalar(0);
+}
+
 void
 GLCommandHandler::Install(void)
 {
     CoreApp::Instance().AddHandler("initgl", InitGL);
     CoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
     CoreApp::Instance().AddHandler("decompose", Decompose);
+    CoreApp::Instance().AddHandler("dumptextures", DumpTextures);
 }

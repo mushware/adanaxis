@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.4 2002/07/06 18:04:19 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.5 2002/07/08 14:22:02 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.5  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.4  2002/07/06 18:04:19  southa
  * More designer work
  *
@@ -38,6 +41,14 @@ GameGraphicSprite::Render(void)
         if (m_rotation != 0)
         {
             GLUtils::RotateAboutZ(m_rotation);
+        }
+        if (m_texRef.TextureGet()->NeedsAlpha())
+        {
+            GLUtils::BlendSet(GLUtils::kBlendTransparent);
+        }
+        else
+        {
+            GLUtils::BlendSet(GLUtils::kBlendSolid);
         }
         GLUtils::DrawSprite(*m_texRef.TextureGet(), m_rectangle);
     }    

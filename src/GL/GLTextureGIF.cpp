@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTextureGIF.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.6 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.6  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.5  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -76,7 +79,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
             int colIndexLimit=1 << colorMap->BitsPerPixel;
             tSize u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
 
-            TextureDef def(new U32[u32Size]);
+            GLTextureDef def(new U32[u32Size]);
 
             def.WidthSet(image->ImageDesc.Width);
             def.HeightSet(image->ImageDesc.Height);

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.11 2002/07/16 17:48:08 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.12 2002/07/16 19:30:09 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.12  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.11  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *
@@ -85,8 +88,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
+
     gl.SetPosition(0,0);
     GLUtils::Scale(m_xstep, m_ystep, 1);
     GLUtils::SetColour(1,1,1);

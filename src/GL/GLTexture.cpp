@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTexture.cpp,v 1.14 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTexture.cpp,v 1.15 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.15  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.14  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -82,6 +85,7 @@ GLTexture::ostreamPrint(ostream& inOut) const
             inOut << " height=" << Height(i);
             inOut << " pixelFormat=" << PixelFormat(i);
             inOut << " pixelType=" << PixelType(i);
+            inOut << " needsAlpha=" << NeedsAlpha(i);
             inOut << " dataPtr=" << DataPtr(i) << "] ";
         }
         else
@@ -93,7 +97,7 @@ GLTexture::ostreamPrint(ostream& inOut) const
 }
 
 void
-GLTexture::AddTextureDef(TextureDef& inDef, tSize inWhere)
+GLTexture::AddTextureDef(GLTextureDef& inDef, tSize inWhere)
 {
     if (m_textureDefs.size() < inWhere+1)
     {
@@ -115,19 +119,17 @@ GLTexture::BindTexture(void) const
     COREASSERT(!m_bound);
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 
     glTexImage2D(
 	GL_TEXTURE_2D, // target
-	0, // level
-	GL_RGBA, // internal format
-	Width(), // width
-	Height(), // height
-	0, //border
+	0,             // level
+	GL_RGBA,       // internal format
+	Width(),       // width
+	Height(),      // height
+	0,             // border
 	PixelFormat(), // format
-	PixelType(), // type
-	DataPtr() // pointer to data
+	PixelType(),   // type
+	DataPtr()      // pointer to data
 	);
     m_bound=true;
 }

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.4 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.5 2002/07/10 16:37:39 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.5  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.4  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -93,10 +96,10 @@ GLUTAppHandler::MousePositionGet(S32& outX, S32& outY) const
 }
 
 void
-GLUTAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta)
+GLUTAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
 {
-    outXDelta=m_mouseXDelta;
-    outYDelta=m_mouseYDelta; 
+    outXDelta=m_mouseXDelta/m_width;
+    outYDelta=m_mouseYDelta/m_width; 
     m_mouseXDelta=0;
     m_mouseYDelta=0;
 }
@@ -132,7 +135,7 @@ GLUTAppHandler::EnterScreen(tInitType inType)
 
     switch (inType)
     {
-        case kGame:
+        case kFullScreen:
             m_width=1024;
             m_height=768;
             glutGameModeString("1024x768:32@85");

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameController.cpp,v 1.4 2002/06/27 12:36:06 southa Exp $
+ * $Id: GameController.cpp,v 1.5 2002/07/06 18:04:18 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.5  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.4  2002/06/27 12:36:06  southa
  * Build process fixes
  *
@@ -51,7 +54,8 @@ GameController::StateGet(GameControllerState& outState)
     outState.rightPressed=gameHandler.KeyStateGet(m_rightKey);
     outState.upPressed=gameHandler.KeyStateGet(m_upKey);
     outState.downPressed=gameHandler.KeyStateGet(m_downKey);
-    S32 mouseX, mouseY, mouseXDelta, mouseYDelta;
+    S32 mouseX, mouseY;
+    tVal mouseXDelta, mouseYDelta;
     gameHandler.MousePositionGet(mouseX, mouseY);
     gameHandler.MouseDeltaGet(mouseXDelta, mouseYDelta);
     outState.mouseX=mouseX;

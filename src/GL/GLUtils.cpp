@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.15 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLUtils.cpp,v 1.16 2002/07/08 14:22:02 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.16  2002/07/08 14:22:02  southa
+ * Rotated desks
+ *
  * Revision 1.15  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -65,6 +68,10 @@
 #include "GLTexture.h"
 #include "GLAppHandler.h"
 #include "GLRectangle.h"
+
+GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
+GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
+bool GLUtils::m_polygonSmoothing=false;
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -308,6 +315,106 @@ GLUtils::RotateAboutZ(tVal inAngle)
     glRotated(inAngle, 0, 0, 1);
 }
 
+void
+GLUtils::BlendSet(tBlendType inValue)
+{
+    if (m_blendState != inValue)
+    {
+        switch (inValue)
+        {
+            case kBlendTransparent:
+                glDisable(GL_POLYGON_SMOOTH);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glEnable(GL_BLEND);
+                break;
+
+            case kBlendNone:
+                glDisable(GL_POLYGON_SMOOTH);
+                glDisable(GL_BLEND);
+                break;
+
+            case kBlendSolid:
+                if (m_polygonSmoothing)
+                {
+                    // Set up polygon anti-aliasing
+                    glEnable(GL_POLYGON_SMOOTH);
+                    glBlendFunc(GL_SRC_ALPHA_SATURATE, GL_ONE);
+                    glEnable(GL_BLEND);
+                }
+                else
+                {
+                    glDisable(GL_BLEND);
+                }
+                break;
+
+            default:
+                throw(LogicFail("Invalid value to GLUtils::BlendSet"));
+                break;
+        }
+        m_blendState = inValue;
+    }
+}
+
+GLUtils::tDisplayQuality
+GLUtils::DisplayQualityGet(void)
+{
+    if (m_displayQuality == kQualityNotSet)
+    {
+        string displayQuality("low");
+        CoreEnv::Instance().VariableGetIfExists(displayQuality, "DISPLAY_QUALITY");
+        if (displayQuality == "low")
+        {
+            m_displayQuality = kQualityLow;
+        }
+        else if (displayQuality == "medium")
+        {
+            m_displayQuality = kQualityMedium;
+        }
+        else if (displayQuality == "high")
+        {
+            m_displayQuality = kQualityHigh;
+        }
+        else
+        {
+            throw(CommandFail("Bad value for DISPLAY_QUALITY: should be low, medium or high"));
+        }
+    }
+    return m_displayQuality;
+}
+
+void
+GLUtils::Reset(void)
+{
+    switch (DisplayQualityGet())
+    {
+        case kQualityLow:
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+            break;
+            
+        case kQualityMedium:    
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            break;
+
+        case kQualityHigh:
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            glEnable(GL_POINT_SMOOTH);
+            glEnable(GL_LINE_SMOOTH);
+            break;
+
+        default:
+            throw(LogicFail("Bad value for m_displayQuality"));
+    }
+}
+
+void
+GLUtils::PolygonSmoothingSet(bool inValue)
+{
+    m_polygonSmoothing=inValue;
+}
+    
 void
 GLUtils::CheckGLError(void)
 {

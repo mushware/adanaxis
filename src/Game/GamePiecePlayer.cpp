@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.9 2002/07/18 11:40:36 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.10 2002/07/18 13:53:48 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.10  2002/07/18 13:53:48  southa
+ * Tuned player motion
+ *
  * Revision 1.9  2002/07/18 11:40:36  southa
  * Overplotting and movement
  *
@@ -75,7 +78,7 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 
     outSpec = m_motion;
     
-    outSpec.deltaAngle+=m_adhesion * 0.01 * controlState.mouseXDelta;
+    outSpec.deltaAngle+=m_adhesion * M_PI * controlState.mouseXDelta;
     tVal newAngle=outSpec.angle+outSpec.deltaAngle;
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);

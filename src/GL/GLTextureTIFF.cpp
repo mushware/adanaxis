@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTextureTIFF.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.6 2002/07/06 18:04:18 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.6  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.5  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -57,7 +60,7 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
             tiffData=reinterpret_cast<uint32 *>(_TIFFmalloc(sizeof(uint32)*width*height));
 
             // TextureDef takes ownership of the block
-            TextureDef def(new U32[u32Size]);
+            GLTextureDef def(new U32[u32Size]);
            
             def.WidthSet(width);
             def.HeightSet(height);

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.13 2002/07/08 14:22:02 southa Exp $
+ * $Id: GLUtils.h,v 1.14 2002/07/18 11:40:34 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.14  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.13  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -65,6 +68,23 @@ class GLRectangle;
 class GLUtils
 {
 public:
+    enum tBlendType
+    {
+        kBlendInvalid,
+        kBlendNone,
+        kBlendTransparent,
+        kBlendSolid
+    };
+    
+    enum tDisplayQuality
+    {
+        kQualityInvalid,
+        kQualityNotSet,
+        kQualityLow,
+        kQualityMedium,
+        kQualityHigh
+    };
+    
     void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(tVal inX, tVal inY);
 
@@ -94,10 +114,18 @@ public:
     static void PostRedisplay(void);
     static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
     static void RotateAboutZ(tVal inAngle);
+    static void BlendSet(tBlendType inType);
+    static void Reset(void);
+    static tDisplayQuality DisplayQualityGet(void);
+    static void PolygonSmoothingSet(bool inValue);
     
-private:
+private:            
     static void SafetyHandler(void);
     tVal m_x;
     tVal m_y;
+
+    static tBlendType m_blendState;
+    static tDisplayQuality m_displayQuality;
+    static bool m_polygonSmoothing;
 };
 #endif

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLData.cpp,v 1.10 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLData.cpp,v 1.11 2002/07/06 18:04:17 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.11  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.10  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -92,5 +95,5 @@ GLData::DumpTextures(ostream& inOut)
         inOut << p->first << ": " << *p->second << endl;
     }
 }
-    
+
     

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.4 2002/07/06 18:04:18 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.5 2002/07/10 16:37:39 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.5  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.4  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -43,7 +46,7 @@ public:
     virtual ~GLUTAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual void MousePositionGet(S32& outX, S32& outY) const;
-    virtual void MouseDeltaGet(S32& outX, S32& outY);
+    virtual void MouseDeltaGet(tVal& outX, tVal& outY);
     virtual void EnterScreen(tInitType inType);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);

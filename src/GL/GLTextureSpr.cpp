@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.9 2002/07/02 15:48:30 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.10 2002/07/06 18:04:18 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.10  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.9  2002/07/02 15:48:30  southa
  * Floor map designer
  *
@@ -121,7 +124,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
 
         if (mode.PixelDouble()) u32Size *= pixelMult*pixelMult;
         
-        TextureDef def(new U32[u32Size]);
+        GLTextureDef def(new U32[u32Size]);
 
         def.WidthSet(width*pixelMult);
         def.HeightSet(height*pixelMult);

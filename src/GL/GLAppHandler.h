@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.10 2002/07/06 18:04:17 southa Exp $
+ * $Id: GLAppHandler.h,v 1.11 2002/07/10 16:37:39 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.11  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.10  2002/07/06 18:04:17  southa
  * More designer work
  *
@@ -72,13 +75,13 @@ public:
     enum tInitType
     {
         kInvalid,
-        kGame,
+        kFullScreen,
         kWindow
     };
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual void MousePositionGet(S32& outX, S32& outY) const = 0;
-    virtual void MouseDeltaGet(S32& outX, S32& outY) = 0;
+    virtual void MouseDeltaGet(tVal& outX, tVal& outY) = 0;
     virtual void EnterScreen(tInitType inType) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;

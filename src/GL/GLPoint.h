@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.4 2002/07/18 11:40:34 southa Exp $
+ * $Id: GLPoint.h,v 1.5 2002/07/18 13:53:48 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.5  2002/07/18 13:53:48  southa
+ * Tuned player motion
+ *
  * Revision 1.4  2002/07/18 11:40:34  southa
  * Overplotting and movement
  *
@@ -62,11 +65,11 @@ public:
     void ConstrainMagnitude(tVal inMagnitude)
     {
         tVal magnitude=Magnitude();
-	if (magnitude > inMagnitude)
-	{
-	    x *= inMagnitude/magnitude;
-	    y *= inMagnitude/magnitude;
-	}
+        if (magnitude > inMagnitude)
+        {
+            x *= inMagnitude/magnitude;
+            y *= inMagnitude/magnitude;
+        }
     }
     void MakeInteger(void)
     {

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTexture.h,v 1.6 2002/07/02 15:48:29 southa Exp $
+ * $Id: GLTexture.h,v 1.7 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.7  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.6  2002/07/02 15:48:29  southa
  * Floor map designer
  *
@@ -71,6 +74,7 @@
 
 #include "mushCore.h"
 #include "GLStandard.h"
+#include "GLTextureDef.h"
 
 class GLTexture
 {
@@ -82,6 +86,7 @@ public:
     virtual GLsizei Height(U32 inRef=0) const {return TextureDefGet(inRef).Height();}
     virtual GLenum PixelFormat(U32 inRef=0) const {return TextureDefGet(inRef).PixelFormat();}
     virtual GLenum PixelType(U32 inRef=0) const {return TextureDefGet(inRef).PixelType();}
+    virtual bool NeedsAlpha(U32 inRef=0) const {return TextureDefGet(inRef).NeedsAlpha();}
     virtual U32 *DataPtr(U32 inRef=0) const {return TextureDefGet(inRef).DataPtr();}
     virtual bool Valid(U32 inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
     virtual tSize NumberOf(void) const {return m_textureDefs.size();}
@@ -92,41 +97,15 @@ public:
     void BindTexture(void) const;
     
 protected:
-    class TextureDef
-    {
-    public:
-        TextureDef(): m_dataPtr(NULL) {}
-        TextureDef(U32 *inDataPtr): m_dataPtr(inDataPtr) {}
-        ~TextureDef() {if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete[]m_dataPtr;}
-        void WidthSet(GLsizei inWidth) {m_width=inWidth;}
-        void HeightSet(GLsizei inHeight) {m_height=inHeight;}
-        void PixelFormatSet(GLenum inPixelFormat) {m_pixelFormat=inPixelFormat;}
-        void PixelTypeSet(GLenum inPixelType) {m_pixelType=inPixelType;}
-        bool Valid(void) const {return (m_dataPtr != NULL);}
-        GLsizei Width(void) const {return m_width;}
-        GLsizei Height(void) const {return m_height;}
-        GLenum PixelFormat(void) const {return m_pixelFormat;}
-        GLenum PixelType(void) const {return m_pixelType;}
-        U32 *DataPtr(void) const {return m_dataPtr;}
-        
-    private:
-        GLsizei m_width;
-        GLsizei m_height;
-        GLenum m_pixelFormat;
-        GLenum m_pixelType;
-        U32 *m_dataPtr;
-        CoreAutoMonkey m_autoMonkey;
-    };
-
     virtual const char *FiletypeName(void) const = 0;
     void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
-    void AddTextureDef(TextureDef& inDef) {m_textureDefs.push_back(inDef);}
-    void AddTextureDef(TextureDef& inDef, tSize inWhere);
+    void AddTextureDef(GLTextureDef& inDef) {m_textureDefs.push_back(inDef);}
+    void AddTextureDef(GLTextureDef& inDef, tSize inWhere);
     bool TextureDefValid(tSize inWhere) const;
-    const TextureDef& TextureDefGet(tSize inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
+    const GLTextureDef& TextureDefGet(tSize inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
-    vector<TextureDef> m_textureDefs;
+    vector<GLTextureDef> m_textureDefs;
     string m_inFilename;
     mutable bool m_bound;
     mutable GLuint m_bindingName;

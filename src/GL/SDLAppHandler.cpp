@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.7 2002/07/08 14:22:02 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.8 2002/07/10 16:37:39 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.8  2002/07/10 16:37:39  southa
+ * Cursor removal
+ *
  * Revision 1.7  2002/07/08 14:22:02  southa
  * Rotated desks
  *
@@ -107,10 +110,10 @@ SDLAppHandler::MousePositionGet(S32& outX, S32& outY) const
 }
 
 void
-SDLAppHandler::MouseDeltaGet(S32& outXDelta, S32& outYDelta)
+SDLAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
 {
-    outXDelta=m_mouseXDelta;
-    outYDelta=-m_mouseYDelta;
+    outXDelta=m_mouseXDelta/m_width;
+    outYDelta=-m_mouseYDelta/m_width;
     m_mouseXDelta=0;
     m_mouseYDelta=0;
 }
@@ -122,6 +125,14 @@ SDLAppHandler::EnterScreen(tInitType inType)
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+    if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
+    {
+        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+    }
+    else
+    {
+        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
+    }
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
@@ -131,7 +142,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
     
     switch (inType)
     {
-        case kGame:
+        case kFullScreen:
             CoreEnv::Instance().VariableGetIfExists(m_width, "FULLSCREEN_DISPLAY_WIDTH");
             CoreEnv::Instance().VariableGetIfExists(m_height, "FULLSCREEN_DISPLAY_HEIGHT");
             CoreEnv::Instance().VariableGetIfExists(m_bpp, "FULLSCREEN_DISPLAY_BPP");
@@ -148,7 +159,27 @@ SDLAppHandler::EnterScreen(tInitType inType)
         default:
             throw(LogicFail("Bad value to SDLAppHandler::EnterScreen"));
     }
-   
+
+
+    int alphaSize;
+    SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &alphaSize);
+    if (GLUtils::DisplayQualityGet() == GLUtils::kQualityHigh)
+    {
+        if (alphaSize > 0)
+        {
+            GLUtils::PolygonSmoothingSet(true);
+        }
+        else
+        {
+            GLUtils::PolygonSmoothingSet(false);
+            cerr << "Disabling polygon smoothing (no alpha buffer)" << endl;
+        }
+    }
+    else
+    {
+        GLUtils::PolygonSmoothingSet(false);
+    }
+    GLUtils::Reset();
 }
 
 void

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLTextureClip.cpp,v 1.3 2002/06/27 12:36:05 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.4 2002/07/06 18:04:17 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:17  southa
+ * More designer work
+ *
  * Revision 1.3  2002/06/27 12:36:05  southa
  * Build process fixes
  *
@@ -66,7 +69,7 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
         tSize u32Size=numPixels;
 
         // TextureDef takes ownership of the block
-        TextureDef def(new U32[u32Size]);
+        GLTextureDef def(new U32[u32Size]);
 
         def.WidthSet(xsize);
         def.HeightSet(ysize);
