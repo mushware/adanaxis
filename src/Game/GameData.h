@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.11 2002/08/10 12:34:48 southa Exp $
+ * $Id: GameData.h,v 1.12 2002/08/18 20:44:34 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.12  2002/08/18 20:44:34  southa
+ * Initial chequepoint work
+ *
  * Revision 1.11  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
@@ -64,6 +67,7 @@ class GameDialogue;
 class GameView;
 class GameTimer;
 class GameType;
+class GameRewards;
 
 class GameData
 {
@@ -93,6 +97,8 @@ public:
     GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;
     void TypeSet(GameType *inType);
+    GameRewards& RewardsGet(void) const;
+    void RewardsSet(GameRewards *inRewards);
 
     GameDialogue *CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue);
     void CurrentDialogueDelete(const string& inName);
@@ -113,6 +119,7 @@ private:
 
     GameTimer *m_timer;
     GameType *m_gameType;
+    GameRewards *m_gameRewards;
     
     DialogueMap m_currentDialogues;
 

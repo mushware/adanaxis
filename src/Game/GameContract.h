@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.20 2002/08/10 12:34:48 southa Exp $
+ * $Id: GameContract.h,v 1.21 2002/08/18 20:44:34 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.21  2002/08/18 20:44:34  southa
+ * Initial chequepoint work
+ *
  * Revision 1.20  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
@@ -129,6 +132,7 @@ protected:
     void HandleScriptEnd(CoreXML& inXML);
     void HandleDialogueStart(CoreXML& inXML);
     void HandleGameStart(CoreXML& inXML);
+    void HandleRewardsStart(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
     enum PickleState

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.6 2002/08/19 22:18:36 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.7 2002/08/19 23:11:22 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.7  2002/08/19 23:11:22  southa
+ * Lap and split time tweaks
+ *
  * Revision 1.6  2002/08/19 22:18:36  southa
  * Display of time differences
  *
@@ -30,6 +33,7 @@
 #include "GameAppHandler.h"
 #include "GameData.h"
 #include "GameDialogue.h"
+#include "GameRewards.h"
 
 #include <typeinfo>
 
@@ -66,6 +70,9 @@ GameTypeRace::SequenceAdvance(void)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
     GameTimer::tMsec gameTime=timer.GameMsecGet();
+
+    tVal judgementRatio=0.0;
+    
     if (!m_raceStarted)
     {
         m_startTime=gameTime;
@@ -96,6 +103,7 @@ GameTypeRace::SequenceAdvance(void)
             lapDisplay->TextSet(0, GameTimer::MsecToLongString(lapTime));
 
             m_records.LapTimePropose(lapTime);
+            judgementRatio = lapTime / m_lapParTime;
         }
         m_lapStartTime = gameTime;
         m_lapStartTimeValid = true;
@@ -118,9 +126,17 @@ GameTypeRace::SequenceAdvance(void)
         splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
 
         m_records.SplitTimePropose(m_sequence, splitTime);
+        if (judgementRatio == 0.0)
+        {
+            judgementRatio = splitTime / m_chequePoints[m_sequence]->TimeGet();
+        }
     }
     m_chequePointTime = gameTime;
-    m_chequePointTimeValid = true;    
+    m_chequePointTimeValid = true;
+    if (judgementRatio != 0.0)
+    {
+        GameData::Instance().RewardsGet().JudgementPass(judgementRatio);
+    }
 }
 
 void
@@ -192,6 +208,15 @@ GameTypeRace::HandleGameEnd(CoreXML& inXML)
 }
 
 void
+GameTypeRace::HandleLapTimeEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for laptime.  Should be <laptime>45.0</laptime>";
+
+    if (!(data >> m_lapParTime)) inXML.Throw(failMessage);
+}
+
+void
 GameTypeRace::HandleChequePointStart(CoreXML& inXML)
 {
     GameChequePoint *chequePoint=new GameChequePoint;
@@ -218,6 +243,8 @@ GameTypeRace::UnpicklePrologue(void)
     m_endTable.resize(kPickleNumStates);
     m_startTable[kPickleData]["chequepoint"] = &GameTypeRace::HandleChequePointStart;
     m_endTable[kPickleData]["chequepoint"] = &GameTypeRace::NullHandler;
+    m_startTable[kPickleData]["laptime"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["laptime"] = &GameTypeRace::HandleLapTimeEnd;
     m_endTable[kPickleData]["game"] = &GameTypeRace::HandleGameEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;

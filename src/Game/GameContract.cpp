@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.54 2002/08/18 21:47:53 southa Exp $
+ * $Id: GameContract.cpp,v 1.55 2002/08/19 11:09:55 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.55  2002/08/19 11:09:55  southa
+ * GameTypeRace rendering
+ *
  * Revision 1.54  2002/08/18 21:47:53  southa
  * Added temporary sound test
  *
@@ -199,6 +202,7 @@
 #include "GameDataUtils.h"
 #include "GameTypeRace.h"
 #include "GameEvent.h"
+#include "GameRewards.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -627,6 +631,13 @@ GameContract::HandleGameStart(CoreXML& inXML)
 }
 
 void
+GameContract::HandleRewardsStart(CoreXML& inXML)
+{
+    GameData::Instance().RewardsSet(new GameRewards);
+    GameData::Instance().RewardsGet().Unpickle(inXML);
+}
+
+void
 GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
@@ -643,6 +654,7 @@ GameContract::Unpickle(CoreXML& inXML)
     m_startTable[kPickleData]["script"] = &GameContract::HandleScriptStart;
     m_startTable[kPickleData]["dialogue"] = &GameContract::HandleDialogueStart;
     m_startTable[kPickleData]["game"] = &GameContract::HandleGameStart;
+    m_startTable[kPickleData]["rewards"] = &GameContract::HandleRewardsStart;
     m_endTable[kPickleData]["contract"] = &GameContract::HandleContractEnd;
     m_endTable[kPickleData]["script"] = &GameContract::HandleScriptEnd;
     

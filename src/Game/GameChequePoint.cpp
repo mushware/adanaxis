@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameChequePoint.cpp,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Log: GameChequePoint.cpp,v $
+ * Revision 1.1  2002/08/18 20:44:33  southa
+ * Initial chequepoint work
+ *
  */
 
 #include "GameChequePoint.h"
@@ -26,7 +29,7 @@ GameChequePoint::StandingOnHandler(const GameEventStandingOn& inEvent)
 void
 GameChequePoint::Triggered(void)
 {
-    GameDataUtils::NamedDialoguesAdd(m_action);
+    if (m_action != "") GameDataUtils::NamedDialoguesAdd(m_action);
     GameData::Instance().TypeGet().SequenceAdvance();
 }
 

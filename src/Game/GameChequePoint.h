@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameChequePoint.h,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Log: GameChequePoint.h,v $
+ * Revision 1.1  2002/08/18 20:44:33  southa
+ * Initial chequepoint work
+ *
  */
 
 #include "mushCore.h"
@@ -15,6 +18,7 @@ public:
     virtual void Unpickle(CoreXML& inXML);
     virtual string TypeNameGet(void) const;
     U32 SequenceGet(void) { return m_sequence; }
+    tVal TimeGet(void) { return m_time; }
     void StandingOnHandler(const GameEventStandingOn& inEvent);
     
 protected:

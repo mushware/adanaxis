@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.12 2002/08/10 12:34:48 southa Exp $
+ * $Id: GameData.cpp,v 1.13 2002/08/18 20:44:34 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.13  2002/08/18 20:44:34  southa
+ * Initial chequepoint work
+ *
  * Revision 1.12  2002/08/10 12:34:48  southa
  * Added current dialogues
  *
@@ -64,6 +67,7 @@
 #include "GameView.h"
 #include "GameTimer.h"
 #include "GameType.h"
+#include "GameRewards.h"
 
 GameData *GameData::m_instance=NULL;
 
@@ -122,6 +126,10 @@ GameData::~GameData()
     if (m_gameType != NULL)
     {
         delete m_gameType;
+    }
+    if (m_gameRewards != NULL)
+    {
+        delete m_gameRewards;
     }
     for (map<string, GameDialogue *>::iterator p = m_currentDialogues.begin();
          p != m_currentDialogues.end(); ++p)
@@ -386,6 +394,26 @@ GameData::TypeSet(GameType *inType)
         delete m_gameType;
     }
     m_gameType=inType;
+}
+
+GameRewards&
+GameData::RewardsGet(void) const
+{
+    if (m_gameRewards == NULL)
+    {
+        throw(GameDataNotPresent("Access to non-existent rewards"));
+    }
+    return *m_gameRewards;
+}
+
+void
+GameData::RewardsSet(GameRewards *inRewards)
+{
+    if (m_gameRewards == NULL)
+    {
+        delete m_gameRewards;
+    }
+    m_gameRewards=inRewards;
 }
 
 GameDialogue *

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.2 2002/08/19 11:09:56 southa Exp $
+ * $Id: GameTypeRace.h,v 1.3 2002/08/19 21:42:38 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.3  2002/08/19 21:42:38  southa
+ * Display of records and lap/split times
+ *
  * Revision 1.2  2002/08/19 11:09:56  southa
  * GameTypeRace rendering
  *
@@ -45,6 +48,7 @@ protected:
     
 private:
     void HandleGameEnd(CoreXML& inXML);
+    void HandleLapTimeEnd(CoreXML& inXML);
     void HandleChequePointStart(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
@@ -68,6 +72,7 @@ private:
     GameRecords m_records;
     GameTimer::tMsec m_lapStartTime;
     GameTimer::tMsec m_chequePointTime;
+    GameTimer::tMsec m_lapParTime;
     bool m_raceStarted;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
