@@ -1,8 +1,11 @@
 #ifndef COREPARAMLIST_HP
 #define COREPARAMLIST_HP
 /*
- * $Id: CoreParamList.h,v 1.3 2002/05/28 13:07:04 southa Exp $
+ * $Id: CoreParamList.h,v 1.4 2002/05/28 16:37:36 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.4  2002/05/28 16:37:36  southa
+ * Texture references and decomposer
+ *
  * Revision 1.3  2002/05/28 13:07:04  southa
  * Command parser extensions and TIFF loader
  *
@@ -43,3 +46,4 @@ inline ostream& operator<<(ostream &inOut, CoreParamList inCoreParamList)
 }
 
 #endif
+
