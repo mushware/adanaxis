@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.6 2002/11/14 20:24:43 southa Exp $
+ * $Id: GameConfig.h,v 1.7 2002/11/22 11:42:06 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.7  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.6  2002/11/14 20:24:43  southa
  * Configurable config elements
  *
@@ -61,7 +64,8 @@ public:
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    
+    virtual char *TypeNameGet(void) const;
+   
 protected:
     GameConfig();
 

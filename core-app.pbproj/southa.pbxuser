@@ -10671,6 +10671,7 @@
 		activeExecutable = F59396D7028C0CA6016230BF;
 		activeTarget = F59396D5028C0CA6016230BF;
 		addToTargets = (
+			F59396D5028C0CA6016230BF,
 		);
 		breakpoints = (
 			F5A8F2850385624101A80164,
@@ -10683,6 +10684,128 @@
 		);
 		perUserDictionary = {
 			PBXPerProjectTemplateStateSaveDate = 59864947;
+			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
+				ContentSize = "{738, 529}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {738, 506}}";
+					Split0 = {
+						ActiveTab = 2;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {738, 506}}";
+						Split0 = {
+							Frame = "{{0, 221}, {738, 285}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {952, 321}}";
+								Split0 = {
+									Frame = "{{0, 24}, {952, 297}}";
+									Split0 = {
+										Frame = "{{0, 0}, {468, 297}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											126.803,
+											Value,
+											150.074,
+											Summary,
+											172.123,
+										);
+										Frame = "{{477, 0}, {475, 297}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {952, 321}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {781, 452}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {781, 452}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {740, 149}}";
+							BuildTranscriptFrame = "{{0, 158}, {740, 59}}";
+							Frame = "{{0, 0}, {738, 215}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 100}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				StatusViewVisible = YES;
+				Template = F5314676015831810DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{19, 298}";
+			};
 			"PBXTemplateGeometry-F5534CB2020F3F8A0DCA290F" = {
 				ContentSize = "{594, 303}";
 				LeftSlideOut = {
@@ -74061,7 +74184,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 48";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 169;
@@ -74071,7 +74194,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.h: 32";
 		rLen = 0;
-		rLoc = 471;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
@@ -74221,7 +74344,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 48";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 169;
@@ -74231,7 +74354,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.h: 32";
 		rLen = 0;
-		rLoc = 471;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
@@ -76825,7 +76948,7 @@
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: HandlePostValues";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6665;
 		rType = 0;
 		vrLen = 1726;
 		vrLoc = 4320;
@@ -76845,7 +76968,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 48";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 182;
@@ -79370,7 +79493,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.h: 14";
 		rLen = 0;
-		rLoc = 471;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 85;
 		vrLoc = 0;
@@ -79420,7 +79543,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79430,7 +79553,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.h: 16";
 		rLen = 0;
-		rLoc = 471;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 121;
 		vrLoc = 0;
@@ -79460,7 +79583,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.h: 16";
 		rLen = 0;
-		rLoc = 471;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 121;
 		vrLoc = 0;
@@ -79470,7 +79593,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79650,7 +79773,7 @@
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: GameConfigInputWrite";
 		rLen = 0;
-		rLoc = 6524;
+		rLoc = 7131;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 3656;
@@ -79660,7 +79783,7 @@
 		isa = PBXTextBookmark;
 		name = "GameDef.cpp: 8";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 0;
@@ -79780,7 +79903,7 @@
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: GameConfigInputWrite";
 		rLen = 0;
-		rLoc = 6490;
+		rLoc = 7097;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 3922;
@@ -79980,7 +80103,7 @@
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: GameConfigInputWrite";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6665;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 3414;
@@ -80538,7 +80661,7 @@
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: 130";
 		rLen = 0;
-		rLoc = 6651;
+		rLoc = 7258;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 978;

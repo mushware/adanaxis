@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.h,v 1.4 2002/08/27 08:56:24 southa Exp $
+ * $Id: GameMotion.h,v 1.5 2002/10/22 20:42:05 southa Exp $
  * $Log: GameMotion.h,v $
+ * Revision 1.5  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:24  southa
  * Source conditioning
  *
@@ -45,8 +48,8 @@ public:
 
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) {return "motion";}
-
+    virtual char *TypeNameGet(void) const;
+    
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.h,v 1.12 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreConfig.h,v 1.13 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.13  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.12  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -69,7 +72,8 @@ public:
     bool Exists(const string& inName) const;
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    
+    virtual char *TypeNameGet(void) const;
+
 private:
     map<string, CoreScalar> m_config;
 };

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.21 2002/10/22 20:42:04 southa Exp $
+ * $Id: GameFloorMap.h,v 1.22 2002/11/18 11:31:14 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.22  2002/11/18 11:31:14  southa
+ * Return to game mode
+ *
  * Revision 1.21  2002/10/22 20:42:04  southa
  * Source conditioning
  *
@@ -115,6 +118,8 @@ public:
     GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL), m_lightMapValid(false) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
+    
     const tMapVector& At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
     U32 XSize(void) {return m_xsize;}
     U32 YSize(void) {return m_ysize;}

@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.h,v 1.5 2002/10/10 22:47:57 southa Exp $
+ * $Id: GLLightDef.h,v 1.6 2002/10/22 20:42:00 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.6  2002/10/22 20:42:00  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -60,6 +63,7 @@ public:
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
     
 protected:
     void UnpicklePrologue(void);

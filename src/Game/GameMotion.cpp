@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.cpp,v 1.5 2002/10/17 16:41:21 southa Exp $
+ * $Id: GameMotion.cpp,v 1.6 2002/10/22 20:42:05 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.6  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/10/17 16:41:21  southa
  * Initialisation fix and player facet
  *
@@ -164,4 +167,11 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 void
 GameMotion::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+
+char *
+GameMotion::TypeNameGet(void) const
+{
+    return "gamemotion";
 }

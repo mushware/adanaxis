@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.16 2002/10/08 11:58:53 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.17 2002/10/22 20:42:05 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.17  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.16  2002/10/08 11:58:53  southa
  * Light cache
  *
@@ -86,7 +89,7 @@ public:
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
     virtual void Render(void);
-    virtual string TypeNameGet(void) const {return "player";};
+    virtual char *TypeNameGet(void) const;
 
     tVal XGet(void) {return m_motion.MotionSpecGet().pos.x;}
     tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}

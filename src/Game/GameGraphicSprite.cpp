@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.11 2002/10/12 15:25:18 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.12 2002/10/22 20:42:05 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.12  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/12 15:25:18  southa
  * Facet renderer
  *
@@ -227,4 +230,10 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 void
 GameGraphicSprite::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GameGraphicSprite::TypeNameGet(void) const
+{
+    return "gamegraphicsprite";
 }

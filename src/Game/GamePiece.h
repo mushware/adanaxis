@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.8 2002/08/27 08:56:25 southa Exp $
+ * $Id: GamePiece.h,v 1.9 2002/10/22 20:42:05 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.9  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -58,7 +61,7 @@ public:
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
     virtual void MoveGet(GameMotionSpec& outSpec) const = 0;
     virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
-    virtual string TypeNameGet(void) const = 0;
+    virtual char *TypeNameGet(void) const = 0;
     
 protected:
     void UnpicklePrologue(void) {}

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.cpp,v 1.11 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.12 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.12  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -88,3 +91,9 @@ CoreConfig::Pickle(ostream& inOut, const string& inPrefix="") const
 void
 CoreConfig::Unpickle(CoreXML& inXML)
 {}
+
+char *
+CoreConfig::TypeNameGet(void) const
+{
+    return "coreconfig";
+}

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.h,v 1.14 2002/10/14 15:13:40 southa Exp $
+ * $Id: GameTileTraits.h,v 1.15 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.15  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -74,8 +77,8 @@ public:
     bool LightGet(GLLightDef& outLight) const;
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) {return "tile";}
-
+    virtual char *TypeNameGet(void) const;
+    
 protected:
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);

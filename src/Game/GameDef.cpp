@@ -122,6 +122,5 @@ GameDefServer::WebPrint(ostream& ioOut) const
     ioOut << "<td>" << m_playerLimit << "</td>";
     ioOut << "<td><font class=\"bggreen\">" << "GO" << "</font></td>";
     ioOut << "</tr></table>" << endl;
-
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.19 2002/10/14 15:13:40 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.20 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.20  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.19  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -330,4 +333,10 @@ GameTileTraits::XMLEndHandler(CoreXML& inXML)
 void
 GameTileTraits::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GameTileTraits::TypeNameGet(void) const
+{
+    return "gametiletraits";
 }

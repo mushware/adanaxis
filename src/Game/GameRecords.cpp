@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.6 2002/08/27 08:56:25 southa Exp $
+ * $Id: GameRecords.cpp,v 1.7 2002/10/22 20:42:05 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.7  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -329,3 +332,10 @@ void
 GameRecords::XMLDataHandler(CoreXML& inXML)
 {
 }
+
+char *
+GameRecords::TypeNameGet(void) const
+{
+    return "gamerecords";
+}
+

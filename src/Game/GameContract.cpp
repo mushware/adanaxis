@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.96 2002/11/19 18:43:26 southa Exp $
+ * $Id: GameContract.cpp,v 1.97 2002/11/20 22:35:25 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.97  2002/11/20 22:35:25  southa
+ * Multiplayer setup
+ *
  * Revision 1.96  2002/11/19 18:43:26  southa
  * Fixed macosx dynamic libraries
  *
@@ -1030,6 +1033,12 @@ GameContract::XMLEndHandler(CoreXML& inXML)
 void
 GameContract::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GameContract::TypeNameGet(void) const
+{
+    return "gamecontract";
 }
 
 CoreScalar

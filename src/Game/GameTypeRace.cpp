@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.26 2002/10/12 15:25:21 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.27 2002/10/22 20:42:07 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.27  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.26  2002/10/12 15:25:21  southa
  * Facet renderer
  *
@@ -782,10 +785,8 @@ GameTypeRace::XMLDataHandler(CoreXML& inXML)
 {
 }
 
-string
+char *
 GameTypeRace::TypeNameGet(void) const
 {
-    return "race";
+    return "gametyperace";
 }
-
-  

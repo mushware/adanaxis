@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.14 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.15 2002/11/18 11:31:14 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.15  2002/11/18 11:31:14  southa
+ * Return to game mode
+ *
  * Revision 1.14  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -302,6 +305,12 @@ GameTileMap::XMLEndHandler(CoreXML& inXML)
 void
 GameTileMap::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GameTileMap::TypeNameGet(void) const
+{
+    return "gametilemap";
 }
 
 CoreScalar

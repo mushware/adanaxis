@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CorePickle.h,v 1.9 2002/08/27 08:56:17 southa Exp $
+ * $Id: CorePickle.h,v 1.10 2002/10/22 20:41:59 southa Exp $
  * $Log: CorePickle.h,v $
+ * Revision 1.10  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -54,6 +57,7 @@ public:
     virtual ~CorePickle() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
+    virtual char *TypeNameGet(void) const = 0;
     void Unpickle(const string& inFilename);
 };
 #endif

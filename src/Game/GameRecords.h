@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.h,v 1.4 2002/08/27 08:56:25 southa Exp $
+ * $Id: GameRecords.h,v 1.5 2002/10/22 20:42:05 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.5  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -39,6 +42,7 @@ public:
 
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
     
     void SplitTimeSet(U32 inWhich, GameTimer::tMsec inMsec);
     void SplitTimePropose(U32 inWhich, GameTimer::tMsec inMsec);

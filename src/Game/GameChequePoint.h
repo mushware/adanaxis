@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.4 2002/08/27 08:56:22 southa Exp $
+ * $Id: GameChequePoint.h,v 1.5 2002/10/22 20:42:02 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.5  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -39,7 +42,8 @@ public:
     virtual ~GameChequePoint() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) const;
+    virtual char *TypeNameGet(void) const;
+
     U32 SequenceGet(void) { return m_sequence; }
     tVal ParTimeGet(void) { return m_parTime; }
     tVal AddTimeGet(void) { return m_addTime; }

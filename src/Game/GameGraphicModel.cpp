@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.7 2002/10/17 16:41:21 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.8 2002/10/22 20:42:04 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/17 16:41:21  southa
  * Initialisation fix and player facet
  *
@@ -364,4 +367,10 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 void
 GameGraphicModel::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GameGraphicModel::TypeNameGet(void) const
+{
+    return "gamegraphicmodel";
 }

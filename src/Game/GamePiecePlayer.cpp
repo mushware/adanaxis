@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.25 2002/10/12 11:22:21 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.26 2002/10/22 20:42:05 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.26  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.25  2002/10/12 11:22:21  southa
  * GraphicModel work
  *
@@ -375,6 +378,12 @@ GamePiecePlayer::XMLEndHandler(CoreXML& inXML)
 void
 GamePiecePlayer::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+char *
+GamePiecePlayer::TypeNameGet(void) const
+{
+    return "gamepieceplayer";
 }
 
 CoreScalar

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.h,v 1.7 2002/10/12 11:22:21 southa Exp $
+ * $Id: GameGraphic.h,v 1.8 2002/10/22 20:42:04 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.8  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/12 11:22:21  southa
  * GraphicModel work
  *
@@ -48,7 +51,7 @@ public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
-    virtual string TypeNameGet(void) const = 0;
+    virtual char *TypeNameGet(void) const = 0;
 
     static GameGraphic& NewFromType(const string& inName);
     

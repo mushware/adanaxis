@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.h,v 1.3 2002/08/27 08:56:25 southa Exp $
+ * $Id: GameRewards.h,v 1.4 2002/10/22 20:42:05 southa Exp $
  * $Log: GameRewards.h,v $
+ * Revision 1.4  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -34,8 +37,9 @@ public:
     GameRewards(): m_lastTimeValid(false) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) {return "rewards";}
+    virtual char *TypeNameGet(void) const;
 
+    
     bool JudgementPass(tVal inRatio);
     bool TimeCountdownPass(tVal inTime);
     

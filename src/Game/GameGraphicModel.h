@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.h,v 1.4 2002/10/15 14:02:31 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.5 2002/10/22 20:42:05 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.5  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/15 14:02:31  southa
  * Mode changes
  *
@@ -40,7 +43,7 @@ public:
     virtual void Render(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) const {return "sprite";}
+    virtual char *TypeNameGet(void) const;
     
 protected:
     void UnpicklePrologue(void);

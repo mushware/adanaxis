@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.cpp,v 1.3 2002/08/27 08:56:25 southa Exp $
+ * $Id: GameRewards.cpp,v 1.4 2002/10/22 20:42:05 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.4  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -193,4 +196,9 @@ GameRewards::XMLDataHandler(CoreXML& inXML)
 {
 }
 
+char *
+GameRewards::TypeNameGet(void) const
+{
+    return "gamerewards";
+}
 

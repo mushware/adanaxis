@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.h,v 1.13 2002/08/27 08:56:28 southa Exp $
+ * $Id: GameTypeRace.h,v 1.14 2002/10/22 20:42:07 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.14  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/08/27 08:56:28  southa
  * Source conditioning
  *
@@ -75,7 +78,8 @@ public:
     virtual ~GameTypeRace() {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-    virtual string TypeNameGet(void) const;
+    virtual char *TypeNameGet(void) const;
+    
     virtual void Move(void);
     virtual void EventHandler(const GameEvent& inEvent);
     virtual void Render(void) const;

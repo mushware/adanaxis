@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.31 2002/11/15 18:58:34 southa Exp $
+ * $Id: GameContract.h,v 1.32 2002/11/16 12:43:22 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.32  2002/11/16 12:43:22  southa
+ * GameApp mode switching
+ *
  * Revision 1.31  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -132,6 +135,8 @@ public:
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
+
     static CoreScalar LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 

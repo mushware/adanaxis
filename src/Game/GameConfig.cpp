@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.9 2002/11/22 15:00:32 southa Exp $
+ * $Id: GameConfig.cpp,v 1.10 2002/11/24 12:57:02 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.10  2002/11/24 12:57:02  southa
+ * Added configuration host protection
+ *
  * Revision 1.9  2002/11/22 15:00:32  southa
  * Network connection handling
  *
@@ -435,3 +438,10 @@ GameConfig::Install(void)
     CoreApp::Instance().AddHandler("configbooladd", GameConfigBoolAdd);
     CoreApp::Instance().AddHandler("gameconfigspecial", GameConfigSpecial);
 }
+
+char *
+GameConfig::TypeNameGet(void) const
+{
+    return "gameconfig";
+}
+

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.7 2002/10/08 11:58:52 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.8 2002/10/22 20:42:02 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/08 11:58:52  southa
  * Light cache
  *
@@ -237,8 +240,8 @@ GameChequePoint::XMLDataHandler(CoreXML& inXML)
 {
 }
 
-string
+char *
 GameChequePoint::TypeNameGet(void) const
 {
-    return "chequepoint";
+    return "gamechequepoint";
 }

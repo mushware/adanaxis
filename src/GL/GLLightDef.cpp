@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.cpp,v 1.2 2002/10/10 22:47:57 southa Exp $
+ * $Id: GLLightDef.cpp,v 1.3 2002/10/22 20:42:00 southa Exp $
  * $Log: GLLightDef.cpp,v $
+ * Revision 1.3  2002/10/22 20:42:00  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -266,3 +269,10 @@ void
 GLLightDef::XMLDataHandler(CoreXML& inXML)
 {
 }
+
+char *
+GLLightDef::TypeNameGet(void) const
+{
+    return "gllightdef";
+}
+

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.12 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTileMap.h,v 1.13 2002/11/18 11:31:14 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.13  2002/11/18 11:31:14  southa
+ * Return to game mode
+ *
  * Revision 1.12  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -64,6 +67,8 @@ public:
     GameTileMap(): m_state(kInit), m_warned(false) {}
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
+    
     const string& NameGet(U32 inNum) const;
     bool TraitsExist(U32 inNum) const;
     const GameTileSpec& TileSpecGet(U32 inNum);

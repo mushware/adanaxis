@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.11 2002/10/10 13:51:16 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.12 2002/10/22 20:42:03 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.12  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/10 13:51:16  southa
  * Speed fixes and various others
  *
@@ -467,4 +470,8 @@ GameDialogue::XMLDataHandler(CoreXML& inXML)
 {
 }
 
-
+char *
+GameDialogue::TypeNameGet(void) const
+{
+    return "gamedialogue";
+}

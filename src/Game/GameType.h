@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameType.h,v 1.6 2002/08/27 08:56:28 southa Exp $
+ * $Id: GameType.h,v 1.7 2002/10/22 20:42:07 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.7  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:28  southa
  * Source conditioning
  *
@@ -43,9 +46,7 @@ class GameType : public CorePickle, protected CoreXMLHandler
 {
 public:
     virtual ~GameType() {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const = 0;
-    virtual void Unpickle(CoreXML& inXML) = 0;
-    virtual string TypeNameGet(void) const = 0;
+
     virtual void Move(void) = 0;
     virtual void EventHandler(const GameEvent& inEvent) = 0;
     virtual void Render(void) const = 0;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.36 2002/10/22 20:42:04 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.37 2002/11/18 11:31:14 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.37  2002/11/18 11:31:14  southa
+ * Return to game mode
+ *
  * Revision 1.36  2002/10/22 20:42:04  southa
  * Source conditioning
  *
@@ -824,6 +827,13 @@ ElementFunctionMap::iterator p = m_endTable[m_state].begin();
 void
 GameFloorMap::XMLDataHandler(CoreXML& inXML)
 {
+}
+
+
+char *
+GameFloorMap::TypeNameGet(void) const
+{
+    return "gamefloormap";
 }
 
 CoreScalar

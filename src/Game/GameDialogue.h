@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.h,v 1.9 2002/08/27 08:56:23 southa Exp $
+ * $Id: GameDialogue.h,v 1.10 2002/10/22 20:42:03 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.10  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:23  southa
  * Source conditioning
  *
@@ -54,6 +57,8 @@ class GameDialogue : public GLRenderable, public CorePickle, protected CoreXMLHa
 public:
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual char *TypeNameGet(void) const;
+    
     virtual string TypeNameGet(void) {return "dialogue";}
     virtual void Render(void) const;
     virtual void Move(void);
