@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLData.h,v 1.7 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLData.h,v 1.8 2002/10/08 17:13:16 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.8  2002/10/08 17:13:16  southa
+ * Tiered maps
+ *
  * Revision 1.7  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -68,6 +71,7 @@ class GLLights;
 class GLData
 {
 public:
+    GLData();
     ~GLData();
     static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
     void TextureAdd(const string& inName, const GLTexture& inTexture);

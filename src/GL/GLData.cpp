@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLData.cpp,v 1.15 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLData.cpp,v 1.16 2002/10/08 17:13:16 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.16  2002/10/08 17:13:16  southa
+ * Tiered maps
+ *
  * Revision 1.15  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -69,6 +72,11 @@
 #include "GLLights.h"
 
 GLData *GLData::m_instance=NULL;
+
+GLData::GLData() :
+    m_lights(NULL)
+{
+}
 
 GLData::~GLData()
 {
