@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.4 2003/09/21 18:49:41 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.5 2003/09/21 23:15:08 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.5  2003/09/21 23:15:08  southa
+ * XML input stream improvements
+ *
  * Revision 1.4  2003/09/21 18:49:41  southa
  * XML input stream work
  *
@@ -39,7 +42,8 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
-    ioOut << "u32=" << m_u32;
+    ioOut << "u32=" << m_u32 << ", ";
+    ioOut << "string=" << m_string;
     ioOut << "]";
 }
 void
@@ -57,6 +61,10 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_u32;
     }
+    else if (ioIn.TagNameGet() == "string")
+    {
+        ioIn >> m_string;
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
@@ -69,6 +77,7 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << ">\n";
     ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
     ioOut << "<u32>" << m_u32 << "</u32>\n";
+    ioOut << "<string>" << m_string << "</string>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } 77cabLe7N26aRqAZzZquqg
+//%outOfLineFunctions } CyhXtASqJZgr6bspQC/thw

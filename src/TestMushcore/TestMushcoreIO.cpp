@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.4 2003/09/21 11:46:11 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.5 2003/09/21 23:15:08 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.5  2003/09/21 23:15:08  southa
+ * XML input stream improvements
+ *
  * Revision 1.4  2003/09/21 11:46:11  southa
  * XML input stream
  *
@@ -88,25 +91,26 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
     // serial stream test
     {
-        MushcoreXMLOStream xmlOStream;
+        ostringstream testOStream;
+        MushcoreXMLOStream xmlOStream(testOStream);
         TestMushcoreObject testObject;
 
         Mushcore::Pickle(xmlOStream, testObject, "testobject");
-        ostringstream testOutStream;
-        testOutStream << xmlOStream;
-
-        if (testOutStream.str() != "")
-        {
-            // throw MushcoreLogicFail("MushcoreIO fault '"+testOutStream.str()+"'");
-        }
 
         TestMushcoreObject readBackObject(0);
 
-        istringstream testInStream(testOutStream.str());
-        MushcoreXMLIStream xmlIStream(&testInStream);
+        istringstream testIStream(testOStream.str());
+        MushcoreXMLIStream xmlIStream(testIStream);
 
         xmlIStream >> readBackObject;
-        cout << readBackObject << endl;
+
+        if (testObject != readBackObject)
+        {
+            ostringstream message;
+            message << "MushcoreIO readback fault '"+testOStream.str()+"' (" << readBackObject << ")";
+            throw MushcoreLogicFail(message.str());
+        }
+        
     } 
     
     return MushcoreScalar(0);

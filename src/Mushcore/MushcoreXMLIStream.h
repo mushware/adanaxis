@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.3 2003/09/21 18:49:41 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.4 2003/09/21 23:15:08 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.4  2003/09/21 23:15:08  southa
+ * XML input stream improvements
+ *
  * Revision 1.3  2003/09/21 18:49:41  southa
  * XML input stream work
  *
@@ -37,7 +40,7 @@ class MushcoreXMLConsumer;
 class MushcoreXMLIStream : public MushcoreXMLStream
 {
 public:
-    explicit MushcoreXMLIStream(std::istream *inPStream);
+    explicit MushcoreXMLIStream(std::istream& inPStream);
     virtual ~MushcoreXMLIStream();
 
     std::string DataGet(void) const;
@@ -46,13 +49,14 @@ public:
     void ObjectRead(MushcoreXMLConsumer& inObj);
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
+    void ObjectRead(std::string& outStr);
 
 protected:
     void Throw(const std::string& inMessage);
     void InputFetch(void);
 
 private:    
-    std::istream *m_pInputStream;
+    std::istream& m_inStream;
     std::string m_tagName;
     std::string m_contentStr;
     Mushware::U32 m_contentStart;

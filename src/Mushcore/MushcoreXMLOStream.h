@@ -5,7 +5,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreXMLOStream.h
+ * File: src/Mushcore/MushcoreXMLOstream.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,10 +14,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } f2F46K8LXdioFTimaPJHmQ
+//%Header } loPhY3Ka3xrO9I8KESgPPA
 /*
- * $Id: MushcoreXMLOstream.h,v 1.1 2003/09/21 09:51:09 southa Exp $
- * $Log: MushcoreXMLOstream.h,v $
+ * $Id: MushcoreXMLOStream.h,v 1.3 2003/09/21 09:56:38 southa Exp $
+ * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.3  2003/09/21 09:56:38  southa
+ * Re-added
+ *
  * Revision 1.1  2003/09/21 09:51:09  southa
  * Stream autogenerators
  *
@@ -25,23 +28,16 @@
 
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
+#include "MushcoreUtil.h"
 
-//:generate
-class MushcoreXMLOStream
+class MushcoreXMLOStream : public MushcoreXMLStream
 {
 public:
-    MushcoreXMLOStream();
-    virtual ~MushcoreXMLOStream();
-    
-    std::ostream& OStreamGet() { return *m_pStream; }
-    void Print(std::ostream& ioOut) const;
+    explicit MushcoreXMLOStream(std::ostream& inPStream);
+    std::ostream& OStreamGet() { return m_pStream; }
     
 private:
-    std::ostream *m_pStream;
-
-//%classPrototypes {
-public:
-//%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
+    std::ostream& m_pStream;
 };
 
 template<class T>
@@ -52,10 +48,11 @@ operator<<(MushcoreXMLOStream& ioOut, const T& inObj)
     return ioOut;
 }
 
-inline std::ostream&
-operator<<(std::ostream& ioOut, const MushcoreXMLOStream& inObj)
+template<>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::string& inStr)
 {
-    inObj.Print(ioOut);
+    ioOut.OStreamGet() << MushcoreUtil::XMLMetaInsert(inStr);
     return ioOut;
 }
 

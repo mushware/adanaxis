@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.4 2003/09/21 11:45:46 southa Exp $
+# $Id: SourceConditioner.pl,v 1.5 2003/09/21 23:15:06 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.5  2003/09/21 23:15:06  southa
+# XML input stream improvements
+#
 # Revision 1.4  2003/09/21 11:45:46  southa
 # XML input stream
 #
@@ -307,6 +310,72 @@ sub OstreamOperatorGenerate($$)
 "    inObj.$gConfig{AUTO_PREFIX}Print(ioOut);",
 "    return ioOut;",
 "}";
+}
+
+##########################################################
+#
+#    Basic operators
+#
+##########################################################
+sub BasicOperatorsPrototypeGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for BasicOperators writer" unless defined ($className);
+    
+    push @$outputRef, "$gConfig{INDENT}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
+}
+
+sub BasicOperatorsInlineGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for BasicOperators writer" unless defined ($className);
+    
+    push @$outputRef,
+"inline bool",
+"${className}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
+"{";
+    my $attributesRef = $$infoRef{ATTRIBUTES};
+    if (defined($attributesRef))
+    {
+        for (my $i=0; $i < @$attributesRef; $i += 3)
+        {
+            my $attr = $$attributesRef[$i+1];
+            my $line;
+            if ($i == 0)
+            {
+                $line = "    return ";
+            }
+            else
+            {
+                $line = "           ";
+            }
+            $line .= "($attr == inObj.$attr)";
+            if ($i + 3 < @$attributesRef)
+            {
+                $line .= " &&";
+            }
+            else
+            {
+                $line .= ";";
+            }
+            push @$outputRef, $line;
+        }
+    }
+    push @$outputRef,
+"}";
+
+    push @$outputRef,
+"inline bool",
+"operator==(const $className& inA, const $className& inB)",
+"{",
+"    return inA.$gConfig{AUTO_PREFIX}Equals(inB);",
+"}",
 }
 
 ##########################################################
@@ -613,21 +682,29 @@ sub ProcessHeader($$)
         
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # BasicOperators
+            if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
+            {            
+                BasicOperatorsPrototypeGenerate(\@classPrototypes, \%headerInfo);
+                BasicOperatorsInlineGenerate(\@inlineHeader, \%headerInfo);
+            }
             # std::ostream
             if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
             {
-                OstreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
-                OstreamOperatorGenerate(\@inlineHeader, \%headerInfo)
+                OstreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
+                OstreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
  
             # MushcoreXMLOstream
             if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
             {
-                XMLIStreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
+                XMLIStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
-                XMLOStreamWritePrototypeGenerate(\@ classPrototypes, \%headerInfo);
+                XMLOStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 XMLOStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
             }
+            
+
         }
     }
     

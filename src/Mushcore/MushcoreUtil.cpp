@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.6 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.7 2003/09/21 15:57:11 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.7  2003/09/21 15:57:11  southa
+ * XML autogenerator work
+ *
  * Revision 1.6  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -96,3 +99,62 @@ MushcoreUtil::TagGet(string& outTag, const string& inStr, U32 inPos)
     outTag = string(inStr, startPos+1, endPos-startPos-1);
     return endPos + 1;
 }
+
+string
+MushcoreUtil::XMLMetaInsert(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+
+        if (byte == '<')
+        {
+            retStr+="&lt;";
+        }
+        else if (byte == '>')
+        {
+            retStr+="&gt;";
+        }
+        else if (byte == '&')
+        {
+            retStr+="&amp;";
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
+}
+
+string
+MushcoreUtil::XMLMetaRemove(const string& inStr)
+{
+    string retStr(inStr);
+    U32 replacePos;
+    replacePos = 0;
+    while (replacePos = retStr.find("&lt;", replacePos), replacePos != string::npos)
+    {
+        retStr = retStr.substr(0, replacePos) + "<" + retStr.substr(replacePos + 4, string::npos);
+        ++replacePos;
+    }
+    replacePos = 0;
+    while (replacePos = retStr.find("&gt;", replacePos), replacePos != string::npos)
+    {
+        retStr = retStr.substr(0, replacePos) + ">" + retStr.substr(replacePos + 4, string::npos);
+        ++replacePos;
+    }
+    replacePos = 0;
+    while (replacePos = retStr.find("&amp;", replacePos), replacePos != string::npos)
+    {
+        // Ampersands last.  Tricky because of &amp;amp; possibility
+        retStr = retStr.substr(0, replacePos) + "&" + retStr.substr(replacePos + 5, string::npos);
+        ++replacePos;
+    }
+    
+    return retStr;
+}
+
+

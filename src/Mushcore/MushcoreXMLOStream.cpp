@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } SW5J6spEp5jvZeyT03E1UA
 /*
- * $Id: MushcoreXMLOStream.cpp,v 1.3 2003/09/21 09:56:39 southa Exp $
+ * $Id: MushcoreXMLOStream.cpp,v 1.4 2003/09/21 11:46:11 southa Exp $
  * $Log: MushcoreXMLOStream.cpp,v $
+ * Revision 1.4  2003/09/21 11:46:11  southa
+ * XML input stream
+ *
  * Revision 1.3  2003/09/21 09:56:39  southa
  * Re-added
  *
@@ -24,21 +27,7 @@
 
 #include "MushcoreXMLOstream.h"
 
-#include "MushcoreSTL.h"
-MushcoreXMLOStream::MushcoreXMLOStream()
+MushcoreXMLOStream::MushcoreXMLOStream(std::ostream& inStream) :
+    m_pStream(inStream)
 {
-    m_pStream = new std::ostringstream;
-}
-
-MushcoreXMLOStream::~MushcoreXMLOStream()
-{
-    delete m_pStream;
-}
-
-void
-MushcoreXMLOStream::Print(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "*m_pStream=" << dynamic_cast<std::ostringstream *>(m_pStream)->str();
-    ioOut << "]";
 }
