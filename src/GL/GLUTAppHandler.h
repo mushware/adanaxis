@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.11 2002/08/27 08:56:22 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.12 2002/10/14 18:13:17 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.12  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  * Revision 1.11  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -56,6 +59,7 @@
 #include "mushCore.h"
 #include "GLKeys.h"
 #include "GLAppHandler.h"
+#include "GLModeDef.h"
 
 class GLKeyboardSignal;
 
@@ -75,7 +79,8 @@ public:
     virtual U32 HeightGet(void) const {return m_height;}
     virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
-    
+    virtual const GLModeDef& CurrentModeDefGet(void);
+            
 protected:
     virtual void Initialise(void);
     virtual void Idle(void);
@@ -104,6 +109,8 @@ private:
     U32 m_width;
     U32 m_height;
     U32 m_bpp;
+    GLModeDef m_modeDef;
+
     static S32 m_mouseX;
     static S32 m_mouseY;
     static S32 m_lastMouseX;
@@ -111,6 +118,5 @@ private:
     static S32 m_mouseXDelta;
     static S32 m_mouseYDelta;
     static bool m_lastMouseValid;
-
 };
 #endif

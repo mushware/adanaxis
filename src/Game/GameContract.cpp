@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.75 2002/10/13 12:26:46 southa Exp $
+ * $Id: GameContract.cpp,v 1.76 2002/10/14 15:13:39 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.76  2002/10/14 15:13:39  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.75  2002/10/13 12:26:46  southa
  * Facetised map rendering
  *
@@ -245,6 +248,7 @@
 #include "mushCore.h"
 #include "mushGL.h"
 #include "mushMedia.h"
+#include "mushPlatform.h"
 
 #include "GameFloorMap.h"
 #include "GameData.h"
@@ -265,6 +269,7 @@
 #include "GameEvent.h"
 #include "GameRewards.h"
 #include "GameSpacePoint.h"
+#include "GameConfig.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -276,6 +281,8 @@ GameContract::GameContract() :
     m_frames(0),
     m_floorDesigner(),
     m_currentView(NULL),
+    m_modeKeypressTime(0),
+    m_newMode(0),
     m_renderDiagnostics(false),
     m_fastDiagnostics(false)
 {
@@ -364,6 +371,8 @@ GameContract::Init(void)
 
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
+    m_newMode=GameConfig::Instance().DisplayModeGet();
+    GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
 }
 
 void
@@ -435,6 +444,11 @@ GameContract::RunningDisplay(void)
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     GameTimer& timer(GameData::Instance().TimerGet());
+
+    GLState::AmbientLightSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+    GLData::Instance().LightsGet()->AmbientLightingSet(GameData::Instance().CurrentViewGet()->AmbientLightingGet());
+    GLData::Instance().LightsGet()->LightingFactorSet(GameData::Instance().CurrentViewGet()->LightingFactorGet());
+    
     
     GLUtils::DisplayPrologue();
 
@@ -518,8 +532,7 @@ GameContract::RenderFastDiagnostics(void) const
 {
     ostringstream message;
 
-    GameTimer& timer(GameData::Instance().TimerGet());
-    message << "FPS " << m_fps << " from " << timer.FrameRateGet();
+    message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
     GLState::ColourSet(0.0,0.0,1.0,0.5);
     GLUtils orthoGL;
@@ -542,6 +555,10 @@ GameContract::RenderText(void) const
         GLUtils::PushMatrix();
         p->second->Render();
         GLUtils::PopMatrix();
+    }
+    if (m_modeKeypressTime != 0)
+    {
+        PlatformVideoUtils::Instance().RenderModeInfo(m_newMode);
     }
     GLUtils::OrthoEpilogue();
 }
@@ -632,6 +649,8 @@ void
 GameContract::GlobalKeyControl(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameTimer& timer(GameData::Instance().TimerGet());
+
     if (gameAppHandler.LatchedKeyStateTake('d'))
     {
         if (m_gameState == kRunning)
@@ -662,6 +681,31 @@ GameContract::GlobalKeyControl(void)
     if (gameAppHandler.LatchedKeyStateTake(' '))
     {
         GameData::Instance().CurrentDialoguesClear();
+    }
+    if (gameAppHandler.LatchedKeyStateTake('-'))
+    {
+        if (m_modeKeypressTime != 0)
+        {
+            m_newMode=PlatformVideoUtils::Instance().PreviousModeDef(m_newMode);
+        }
+        m_modeKeypressTime=timer.CurrentMsecGet();
+    }
+    if (gameAppHandler.LatchedKeyStateTake('='))
+    {
+        if (m_modeKeypressTime != 0)
+        {
+            m_newMode=PlatformVideoUtils::Instance().NextModeDef(m_newMode);
+        }
+        m_modeKeypressTime=timer.CurrentMsecGet();
+    }
+    if (m_modeKeypressTime != 0 && m_modeKeypressTime +3000 < timer.CurrentMsecGet())
+    {
+        if (m_newMode != GameConfig::Instance().DisplayModeGet())
+        {
+            gameAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(m_newMode));
+        }
+        GameConfig::Instance().DisplayModeSet(m_newMode);
+        m_modeKeypressTime=0;
     }
 }
 

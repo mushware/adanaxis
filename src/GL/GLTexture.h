@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLTexture.h,v 1.9 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLTexture.h,v 1.10 2002/08/27 08:56:20 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.10  2002/08/27 08:56:20  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -103,6 +106,7 @@ public:
 
     GLuint BindingNameGet(U32 inRef=0) const {if (m_bound) return m_bindingName; BindTexture(); return m_bindingName;}
     void BindTexture(void) const;
+    void Decache(void);
     
 protected:
     virtual const char *FiletypeName(void) const = 0;

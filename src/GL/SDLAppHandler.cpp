@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.22 2002/10/12 15:25:11 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.23 2002/10/14 18:13:17 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.23  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  * Revision 1.22  2002/10/12 15:25:11  southa
  * Facet renderer
  *
@@ -195,26 +198,22 @@ SDLAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
 void
 SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
+    GLUtils::Decache();
+
     MediaSDL::Instance().QuitVideoIfRequired();
     MediaSDL::Instance().InitVideo();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-    if (GLState::DisplayQualityGet() == GLState::kQualityHigh)
-    {
-        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-    }
-    else
-    {
-        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
-    }
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
+
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
     m_width=inDef.WidthGet();
     m_height=inDef.HeightGet();
     m_bpp=inDef.BPPGet();
-    m_showCursor=false;
+    m_showCursor=inDef.CursorShowGet();
     U32 sdlFlags=0;
     if (inDef.FullScreenGet())
     {
@@ -229,12 +228,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     if (surface == NULL)
     {
-        cerr << "SDL video mode failed - trying without alpha" << endl;
-        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
-        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
-    }
-    if (surface == NULL)
-    {
         cerr << "SDL video mode failed again - trying for any mode" << endl;
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
@@ -247,25 +240,9 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
     if (surface == NULL) throw(DeviceFail("Could not select a video mode"));
-    
-    int alphaSize;
-    SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &alphaSize);
-    if (GLState::DisplayQualityGet() == GLState::kQualityHigh)
-    {
-        if (alphaSize > 0)
-        {
-            GLState::PolygonSmoothingSet(true);
-        }
-        else
-        {
-            GLState::PolygonSmoothingSet(false);
-            cerr << "Disabling polygon smoothing (no alpha buffer)" << endl;
-        }
-    }
-    else
-    {
-        GLState::PolygonSmoothingSet(false);
-    }
+
+    GLState::PolygonSmoothingSet(false);
+
     // Got video mode
     if (m_width > m_height)
     {
@@ -275,7 +252,16 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     {
         m_greatestDimension=m_height;
     }
+    SetCursorState(m_showCursor);
     GLState::Reset();
+    m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false),
+    m_modeDef=inDef;
+}
+
+const GLModeDef&
+SDLAppHandler::CurrentModeDefGet(void)
+{
+    return m_modeDef;
 }
 
 void

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.11 2002/08/27 08:56:21 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.12 2002/10/14 18:13:17 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.12  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  * Revision 1.11  2002/08/27 08:56:21  southa
  * Source conditioning
  *
@@ -190,6 +193,13 @@ GLUTAppHandler::EnterScreen(const GLModeDef& inDef)
     }
     RegisterHandlers();
     GLUtils::CheckGLError();
+    m_modeDef = inDef;
+}
+
+const GLModeDef&
+GLUTAppHandler::CurrentModeDefGet(void)
+{
+    return m_modeDef;
 }
 
 void

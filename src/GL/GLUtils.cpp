@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.42 2002/10/14 15:12:31 southa Exp $
+ * $Id: GLUtils.cpp,v 1.43 2002/10/14 18:13:17 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.43  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  * Revision 1.42  2002/10/14 15:12:31  southa
  * Frame rate tweaks for Mac
  *
@@ -153,10 +156,14 @@
 #include "GLPoint.h"
 #include "GLRectangle.h"
 #include "GLState.h"
+#include "GLModeDef.h"
+#include "GLData.h"
 #include "mushPlatform.h"
 
 tVal GLUtils::m_eyeDistance=60; // Controls how much perspective there is
 tVal GLUtils::m_screenScale=20;  // m_screenScale axis units cover the longest screen axis
+U32 GLUtils::m_context=1;
+bool GLUtils::m_swapValid=false;
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -302,12 +309,20 @@ GLUtils::LongestScreenAxis(void)
 void
 GLUtils::DisplayPrologue(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    // glFinish();
-    PlatformMiscUtils::VBLWait();
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
 
-    glHandler.SwapBuffers();
-    
+    if (m_swapValid)
+    {
+        switch (glAppHandler.CurrentModeDefGet().SyncGet())
+        {
+            case GLModeDef::kSyncHard:
+                glFinish();
+            case GLModeDef::kSyncSoft:
+                PlatformVideoUtils::VBLWait();
+            default:
+                glAppHandler.SwapBuffers();
+        }
+    }
 }
 
 void
@@ -315,6 +330,7 @@ GLUtils::DisplayEpilogue(void)
 {
     glDrawBuffer(GL_BACK);
     glFlush();
+    m_swapValid=true;
 }
 
 void
@@ -490,8 +506,12 @@ GLUtils::RotateAboutZ(tVal inAngle)
     glRotated(inAngle, 0, 0, 1);
 }
 
+void GLUtils::Decache(void)
+{
+    GLData::Instance().Decache();
+    ++m_context;
+}
 
-    
 void
 GLUtils::CheckGLError(void)
 {

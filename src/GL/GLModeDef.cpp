@@ -9,6 +9,11 @@
 
 #include "GLModeDef.h"
 
+GLModeDef::GLModeDef()
+{
+    *this = Default();
+}
+
 GLModeDef
 GLModeDef::Default(void)
 {

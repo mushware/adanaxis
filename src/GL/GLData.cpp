@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLData.cpp,v 1.16 2002/10/08 17:13:16 southa Exp $
+ * $Id: GLData.cpp,v 1.17 2002/10/08 22:47:07 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.17  2002/10/08 22:47:07  southa
+ * Fixed initialisation bug
+ *
  * Revision 1.16  2002/10/08 17:13:16  southa
  * Tiered maps
  *
@@ -153,6 +156,16 @@ GLData::LightsGet(void)
         m_lights = new GLLights;
     }
     return m_lights;
+}
+
+void
+GLData::Decache(void)
+{
+    for (map<string, GLTexture *>::iterator p = m_textures.begin();
+         p != m_textures.end(); ++p)
+    {
+        p->second->Decache();
+    }
 }
 
 void

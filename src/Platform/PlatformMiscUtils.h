@@ -12,16 +12,9 @@
  *
  ****************************************************************************/
 
-
-
-
 /*
- *  PlatformMiscUtils.h
- *  core-app
- *
- *  Created by Southa on Tue Jun 11 2002.
- *  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
 #include "mushCore.h"
@@ -33,6 +26,5 @@ public:
     static string GetSystemPath(int argc, char *argv[]);
     static void TweakArgs(string& ioString);
     static void Initialise(void);
-    static void VBLWait(void);
 };
 #endif

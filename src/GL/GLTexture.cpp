@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTexture.cpp,v 1.20 2002/08/27 08:56:20 southa Exp $
+ * $Id: GLTexture.cpp,v 1.21 2002/10/12 15:25:09 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.21  2002/10/12 15:25:09  southa
+ * Facet renderer
+ *
  * Revision 1.20  2002/08/27 08:56:20  southa
  * Source conditioning
  *
@@ -167,3 +170,12 @@ GLTexture::BindTexture(void) const
     m_bound=true;
 }
 
+void
+GLTexture::Decache(void)
+{
+    if (m_bound)
+    {
+        glDeleteTextures(1, &m_bindingName);
+        m_bound=false;
+    }
+}

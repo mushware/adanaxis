@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.17 2002/08/27 08:56:18 southa Exp $
+ * $Id: GLAppHandler.h,v 1.18 2002/10/14 18:13:17 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.18  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  * Revision 1.17  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -106,5 +109,6 @@ public:
     virtual U32 HeightGet(void) const = 0;
     virtual U32 MillisecondsGet(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
+    virtual const GLModeDef& CurrentModeDefGet(void) = 0;
 };
 #endif

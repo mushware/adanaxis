@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: SDLAppHandler.h,v 1.12 2002/08/27 08:56:22 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.13 2002/10/14 18:13:18 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.13  2002/10/14 18:13:18  southa
+ * GLModeDef work
+ *
  * Revision 1.12  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -56,6 +59,7 @@
 #include "mushCore.h"
 #include "GLKeys.h"
 #include "GLAppHandler.h"
+#include "GLModeDef.h"
 
 class GLKeyboardSignal;
 
@@ -75,6 +79,7 @@ public:
     virtual U32 HeightGet(void) const {return m_height;}
     virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
+    virtual const GLModeDef& CurrentModeDefGet(void);
     
 protected:
     virtual void Initialise(void);
@@ -101,5 +106,6 @@ private:
     tVal m_mouseYDelta;
     bool m_firstDelta;
     tVal m_greatestDimension;
+    GLModeDef m_modeDef;
 };
 #endif

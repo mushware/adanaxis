@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.31 2002/10/12 15:25:11 southa Exp $
+ * $Id: GLUtils.h,v 1.32 2002/10/14 15:12:31 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.32  2002/10/14 15:12:31  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.31  2002/10/12 15:25:11  southa
  * Facet renderer
  *
@@ -165,7 +168,10 @@ public:
     static void PopMatrix(void) { glPopMatrix(); }
     static void Translate(const GLVector& inVec) { glTranslatef(inVec.x, inVec.y, inVec.z); }
     static void Flush(void) { glFlush(); }
-    
+    static void Decache(void);
+    static U32 ListContextGet(void) { return m_context; }
+    static U32 TextureContextGet(void) { return m_context; }
+
 private:            
     static void SafetyHandler(void);
     tVal m_x;
@@ -175,5 +181,7 @@ private:
 
     static tVal m_eyeDistance;
     static tVal m_screenScale;
+    static U32 m_context;
+    static bool m_swapValid;
 };
 #endif

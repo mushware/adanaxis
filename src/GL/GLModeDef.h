@@ -1,6 +1,12 @@
+#ifndef GLMODEDEF_H
+#define GLMODEDEF_H
+
 /*
- * $Id$
- * $Log$
+ * $Id: GLModeDef.h,v 1.1 2002/10/14 18:13:17 southa Exp $
+ * $Log: GLModeDef.h,v $
+ * Revision 1.1  2002/10/14 18:13:17  southa
+ * GLModeDef work
+ *
  */
 
 #include "mushCore.h"
@@ -29,6 +35,9 @@ public:
         kCursorHide,
         kCursorShow
     };
+
+    GLModeDef();
+    
     GLModeDef(const string& inName, U32 inWidth, U32 inHeight,
               U32 inBpp, U32 inHz, tScreen inScreen, tCursor inCursor, tSync inSync) :
         m_name(inName),
@@ -49,6 +58,7 @@ public:
     bool FullScreenGet(void) const { return m_screen == kScreenFull; }
     bool CursorShowGet(void) const { return m_cursor == kCursorShow; }
     bool HardSyncGet(void) const { return m_sync == kSyncHard; }
+    tSync SyncGet(void) const { return m_sync; }
 
     static GLModeDef Default(void);
 
@@ -62,3 +72,4 @@ private:
     tCursor m_cursor;
     tSync m_sync;
 };
+#endif

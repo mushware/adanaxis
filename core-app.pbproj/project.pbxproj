@@ -1868,6 +1868,7 @@
 			children = (
 				F5457BA902AFB19401E3BBF3,
 				F5A0E55302B65A870115E516,
+				F593D564035C56EE01A80166,
 			);
 			isa = PBXGroup;
 			name = win32;
@@ -4035,6 +4036,8 @@
 				F53E0FB803101AA401E1DB74,
 				F5939689028C01AE016230BF,
 				F593968A028C01AE016230BF,
+				F593D55F035C11BE01A80166,
+				F593D55E035C11BE01A80166,
 				F54020AD02A2423901F0D71D,
 				F54020AE02A2423901F0D71D,
 				F5F06F1202AE5D2001B05200,
@@ -4317,6 +4320,7 @@
 				F5957EC5035982EC01A80166,
 				F595A93E035B30C101A80166,
 				F595A941035B313D01A80166,
+				F593D560035C11BE01A80166,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4442,6 +4446,7 @@
 				F5957EC6035982EC01A80166,
 				F595A93F035B30C101A80166,
 				F595A943035B316401A80166,
+				F593D561035C11BE01A80166,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4797,10 +4802,45 @@
 			settings = {
 			};
 		};
+		F593D55E035C11BE01A80166 = {
+			isa = PBXFileReference;
+			name = GameConfig.h;
+			path = Game/GameConfig.h;
+			refType = 4;
+		};
+		F593D55F035C11BE01A80166 = {
+			isa = PBXFileReference;
+			name = GameConfig.cpp;
+			path = Game/GameConfig.cpp;
+			refType = 4;
+		};
+		F593D560035C11BE01A80166 = {
+			fileRef = F593D55E035C11BE01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F593D561035C11BE01A80166 = {
+			fileRef = F593D55F035C11BE01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F593D564035C56EE01A80166 = {
+			isa = PBXFileReference;
+			path = PlatformVideoUtils.cpp;
+			refType = 4;
+		};
+		F593D565035C56FD01A80166 = {
+			isa = PBXFileReference;
+			path = PlatformVideoUtils.cpp;
+			refType = 4;
+		};
 		F5950F3F03504F6501A80166 = {
 			children = (
 				F5950F4003504F6501A80166,
 				F5950F4103504F6501A80166,
+				F593D565035C56FD01A80166,
 			);
 			isa = PBXGroup;
 			name = X11;

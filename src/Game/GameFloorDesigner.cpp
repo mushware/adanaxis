@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.22 2002/10/11 14:01:12 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.23 2002/10/12 15:25:13 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.23  2002/10/12 15:25:13  southa
+ * Facet renderer
+ *
  * Revision 1.22  2002/10/11 14:01:12  southa
  * Lighting work
  *
@@ -378,11 +381,11 @@ GameFloorDesigner::Move(void)
     m_primaryButtonState = primaryState;
     m_secondaryButtonState = secondaryState;
 
-    if (glHandler.KeyStateGet('='))
+    if (glHandler.KeyStateGet('I'))
     {
         m_masterScale += (m_masterScale / 100);
     }
-    if (glHandler.KeyStateGet('-'))
+    if (glHandler.KeyStateGet('O'))
     {
         m_masterScale -= (m_masterScale / 100);
     }

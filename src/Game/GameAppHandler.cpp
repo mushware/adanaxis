@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameAppHandler.cpp,v 1.25 2002/08/27 08:56:22 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.26 2002/10/14 18:13:18 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.26  2002/10/14 18:13:18  southa
+ * GLModeDef work
+ *
  * Revision 1.25  2002/08/27 08:56:22  southa
  * Source conditioning
  *
@@ -103,6 +106,8 @@
 #include "GameGlobalConfig.h"
 #include "GameFloorMap.h"
 #include "GameData.h"
+#include "GameConfig.h"
+
 #include "mushMedia.h"
 
 void
@@ -113,13 +118,16 @@ GameAppHandler::Initialise(void)
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
 
-    U32 displayMode=0;
-    CoreEnv::Instance().VariableGetIfExists(displayMode, "DISPLAY_MODE");
 
-    EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(displayMode));
-    
-    // SetCursorState(false);
-
+    try
+    {
+        EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(GameConfig::Instance().DisplayModeGet()));
+    }
+    catch (...)
+    {
+        GameConfig::Instance().DisplayModeSetDefault();
+        throw;
+    }
     GLUtils::CheckGLError();
 }
 

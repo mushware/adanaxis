@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLData.h,v 1.8 2002/10/08 17:13:16 southa Exp $
+ * $Id: GLData.h,v 1.9 2002/10/08 22:47:07 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.9  2002/10/08 22:47:07  southa
+ * Fixed initialisation bug
+ *
  * Revision 1.8  2002/10/08 17:13:16  southa
  * Tiered maps
  *
@@ -79,6 +82,7 @@ public:
     GLFont *FontGive(const string& inName, GLFont *inFont);
     GLFont *FontGet(const string& inName) const;
     GLLights *LightsGet(void);
+    void Decache(void);
     void DumpTextures(ostream& inOut);
     
 private:

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.4 2002/10/14 13:03:00 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.5 2002/10/14 15:13:39 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.5  2002/10/14 15:13:39  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.4  2002/10/14 13:03:00  southa
  * Display list test
  *
@@ -31,7 +34,7 @@
 
 GameGraphicModel::~GameGraphicModel()
 {
-    if (m_listValid)
+    if (m_listContext != 0)
     {
         U32 size=m_listName.size();
         for (U32 i=0; i<size; ++i)
@@ -62,7 +65,7 @@ GameGraphicModel::Render(void)
             }
             GLState::BindTexture(facetDef.texRef.BindingNameGet());
             GLState::TextureEnable();
-            if (m_listValid)
+            if (m_listContext == GLUtils::ListContextGet())
             {
                 COREASSERT(glIsList(m_listName[i]));
                 glCallList(m_listName[i]);
@@ -80,7 +83,7 @@ GameGraphicModel::Render(void)
             }
         }
     }
-    m_listValid=true;
+    m_listContext=GLUtils::ListContextGet();
 }
 
 void

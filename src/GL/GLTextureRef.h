@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLTextureRef.h,v 1.7 2002/08/27 08:56:21 southa Exp $
+ * $Id: GLTextureRef.h,v 1.8 2002/10/12 15:25:09 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.8  2002/10/12 15:25:09  southa
+ * Facet renderer
+ *
  * Revision 1.7  2002/08/27 08:56:21  southa
  * Source conditioning
  *
@@ -43,13 +46,14 @@
 
 #include "mushCore.h"
 #include "GLStandard.h"
+#include "GLUtils.h"
 
 class GLTexture;
 
 class GLTextureRef
 {
 public:
-    GLTextureRef(): m_texPtr(NULL), m_bindingName(0) {}
+    GLTextureRef(): m_texPtr(NULL), m_bindingNameContext(0) {}
     GLTextureRef(const string& inName): m_name(inName), m_texPtr(NULL) {}
     void NameSet(const string& inName) {m_name=inName;m_texPtr=NULL;}
     const string& NameGet(void) const {return m_name;}
@@ -64,6 +68,7 @@ private:
     string m_name;
     mutable GLTexture *m_texPtr;
     mutable GLuint m_bindingName;
+    mutable U32 m_bindingNameContext;
 };
 
 inline GLTexture *
@@ -77,8 +82,9 @@ GLTextureRef::TextureGet(void) const
 inline GLuint
 GLTextureRef::BindingNameGet(void) const
 {
-    if (m_bindingName != 0) return m_bindingName;
+    // if (m_bindingNameContext == GLUtils::TextureContextGet()) return m_bindingName;
     BindingNameFetch();
+    m_bindingNameContext = GLUtils::TextureContextGet();
     return m_bindingName;
 }
 #endif

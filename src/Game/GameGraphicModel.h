@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.h,v 1.2 2002/10/12 17:34:21 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.3 2002/10/14 15:13:40 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.3  2002/10/14 15:13:40  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.2  2002/10/12 17:34:21  southa
  * Wall edges
  *
@@ -29,7 +32,7 @@
 class GameGraphicModel: public GameGraphic
 {
 public:
-    GameGraphicModel(): m_listValid(false) {}
+    GameGraphicModel(): m_listContext(0) {}
     virtual ~GameGraphicModel();
     virtual void Render(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
@@ -86,9 +89,9 @@ private:
     GLTextureRef m_currentTexRef;
     
     vector<FacetDef> m_facets;
-
     vector<GLuint> m_listName;
-    bool m_listValid;
+    
+    U32 m_listContext;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameGraphicModel& inObj)

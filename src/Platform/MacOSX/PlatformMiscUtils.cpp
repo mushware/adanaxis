@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.9 2002/10/10 13:51:17 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.10 2002/10/14 15:13:40 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.10  2002/10/14 15:13:40  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.9  2002/10/10 13:51:17  southa
  * Speed fixes and various others
  *
@@ -52,9 +55,6 @@
  */
 
 #include "mushPlatform.h"
-
-#include <ApplicationServices/ApplicationServices.h>
-
 
 void
 PlatformMiscUtils::Initialise(void)
@@ -106,39 +106,5 @@ void
 PlatformMiscUtils::TweakArgs(string& ioStr)
 {
     if (ioStr.substr(0, 4) == "-psn") ioStr="";
-}
-
-void
-PlatformMiscUtils::VBLWait(void)
-{
-    static bool enabled=true;
-    if (!enabled) return;
-    CGPoint point;
-    CGDisplayCount dispCount;
-    point.x=0;
-    point.y=0;
-    CGDirectDisplayID dispId;
-    if (CGGetDisplaysWithPoint(point, 1, &dispId, &dispCount) == kCGErrorSuccess)
-    {
-        if (dispCount == 1)
-        {
-            CGRect cgrect=CGDisplayBounds(dispId);
-            CGDisplayWaitForBeamPositionOutsideLines(dispId, 0, 
-                static_cast<CGBeamPosition>(cgrect.origin.y + cgrect.size.height - 1));
-            for (U32 i=0;; ++i)
-            {
-                if (CGDisplayBeamPosition(dispId) > cgrect.origin.y + cgrect.size.height - 1) break;
-                if (i > 1e6)
-                {
-                    cerr << "Waited too long for VBL.  Disabling" << endl;
-                    enabled=false;
-                    break;
-                }
-                // Possible detrimental effects with usleep
-                // usleep(100);
-            }
-            //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
-        }
-    }
 }
 

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.26 2002/10/07 17:49:45 southa Exp $
+ * $Id: GameContract.h,v 1.27 2002/10/08 17:13:17 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.27  2002/10/08 17:13:17  southa
+ * Tiered maps
+ *
  * Revision 1.26  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -176,8 +179,11 @@ private:
     U32 m_frames;
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
+    GameTimer::tMsec m_modeKeypressTime;
+    U32 m_newMode;
     bool m_renderDiagnostics;
     bool m_fastDiagnostics;
+    
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
