@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.5 2004/12/12 10:55:37 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.6 2005/02/03 21:03:01 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.6  2005/02/03 21:03:01  southa
+ * Build fixes
+ *
  * Revision 1.5  2004/12/12 10:55:37  southa
  * Quaternion conversions
  *
@@ -57,7 +60,7 @@ public:
     
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
-    MushMeshQuaternion<T> ConjugateGet(void);
+    MushMeshQuaternion<T> ConjugateGet(void) const;
     void PreMultiplyVector(tBase& ioVec) const;
     void PostMultiplyVector(tBase& ioVec) const;
 
@@ -159,7 +162,7 @@ MushMeshQuaternion<T>::PostMultiplyVector(tBase& ioVec) const
 
 template <class T>
 inline MushMeshQuaternion<T>
-MushMeshQuaternion<T>::ConjugateGet(void)
+MushMeshQuaternion<T>::ConjugateGet(void) const
 {
     return MushMeshQuaternion<T>(m_value[0], -m_value[1], -m_value[2], -m_value[3]);
 }

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.16 2004/12/13 11:09:11 southa Exp $
+ * $Id: MushMeshVector.h,v 1.17 2005/02/26 17:53:39 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.17  2005/02/26 17:53:39  southa
+ * Plane sets and pairs
+ *
  * Revision 1.16  2004/12/13 11:09:11  southa
  * Quaternion and vector tweaks
  *
@@ -124,6 +127,8 @@ public:
 
     void InPlaceElementwiseMultiply(const tThis& inB);
     tThis ElementwiseProduct(const tThis& inB) const;
+    Mushware::tVal Magnitude(void) const;
+    void InPlaceNormalise(void);
     
     // Unchecked array operators
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
@@ -392,7 +397,26 @@ MushMeshVector<T, D>::ElementwiseProduct(const tThis& inB) const
     {
         retVal.Set(m_value[i] * inB[i], i);
     }
-    return retVal;;
+    return retVal;
+}
+
+template <class T, Mushware::U32 D>
+inline Mushware::tVal
+MushMeshVector<T, D>::Magnitude(void) const
+{
+    Mushware::tVal retVal2 = 0;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retVal2 += m_value[i] * m_value[i];
+    }
+    return std::sqrt(retVal2);
+}
+
+template <class T, Mushware::U32 D>
+inline void
+MushMeshVector<T, D>::InPlaceNormalise(void)
+{
+    *this /= Magnitude();
 }
 
 

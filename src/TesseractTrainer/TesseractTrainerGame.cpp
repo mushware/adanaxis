@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.4 2005/02/26 17:53:44 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.4  2005/02/26 17:53:44  southa
+ * Plane sets and pairs
+ *
  * Revision 1.3  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -112,21 +115,8 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
 
     if (msecNow > m_lastChangeMsec + 30000 || m_lastChangeMsec == 0)
     {
+        Reorientate();
         m_lastChangeMsec = msecNow;
-        tVal frame = msecNow / 2000;
-
-        m_angVel = tQValPair::RotationIdentityGet();
-    
-        for (U32 i=0; i<6; ++i)
-        {
-            m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i,
-                cos((i+1)*(1.0+frame/30.0))*0.02*sin((frame+0.02)/4)));
-        }
-        
-        // Need to find invariant planes
-        
-        //m_planepair.Create(0, m_colours);
-        //m_planepair.Rotate(m_angVel);
     }
     
     m_orientation.OuterMultiplyBy(m_angVel);
@@ -141,6 +131,27 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
+}
+
+void
+TesseractTrainerGame::Reorientate(void)
+{
+    tQValPair orientation = MushMeshTools::RandomOrientation();
+    
+    m_orientation = tQValPair::RotationIdentityGet();
+    m_angVel = tQValPair::RotationIdentityGet();
+    
+    m_angVel.OuterMultiplyBy(orientation);
+    
+    m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                             (0, MushMeshTools::Random(-0.03, 0.03)));
+    m_angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                             (1, MushMeshTools::Random(-0.03, 0.03)));
+    
+    m_angVel.OuterMultiplyBy(orientation.ConjugateGet());
+    
+    m_planepair.Create(0, m_colours);
+    m_planepair.Rotate(orientation.ConjugateGet());
 }
 
 void

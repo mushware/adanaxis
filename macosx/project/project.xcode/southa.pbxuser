@@ -172,7 +172,7 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 131126419;
+			PBXPerProjectTemplateStateSaveDate = 131133458;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -2356,8 +2356,8 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "503 295 723 466 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 131126419;
-			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <40b047970756463747275616d618308e481004484848e0e435d457471626c656142727169700484870e435142727169700484880e435f426a656364700584810960068>;
+			PBXWorkspaceStateSaveDate = 131133458;
+			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <040b747970656473747265616d8103e88401408484840e4e534d757461626c654172726179008484074e534172726179008484084e534f626a65637400858401690086>;
 		};
 		perUserProjectItems = {
 			7A06736607B27F830067AA64 = 7A06736607B27F830067AA64;
@@ -2913,6 +2913,148 @@
 			7A802D240764FBB9001C1A1F = 7A802D240764FBB9001C1A1F;
 			7A802D2A0764FBB9001C1A1F = 7A802D2A0764FBB9001C1A1F;
 			7A802D320764FBB9001C1A1F = 7A802D320764FBB9001C1A1F;
+			7A93850907D105D70061E491 = 7A93850907D105D70061E491;
+			7A93850C07D105D70061E491 = 7A93850C07D105D70061E491;
+			7A93851107D106600061E491 = 7A93851107D106600061E491;
+			7A93851207D106600061E491 = 7A93851207D106600061E491;
+			7A93851307D11EC70061E491 = 7A93851307D11EC70061E491;
+			7A93851407D11EC70061E491 = 7A93851407D11EC70061E491;
+			7A93851507D11ED60061E491 = 7A93851507D11ED60061E491;
+			7A93851607D11ED60061E491 = 7A93851607D11ED60061E491;
+			7A93851707D11EF60061E491 = 7A93851707D11EF60061E491;
+			7A93851807D11EF60061E491 = 7A93851807D11EF60061E491;
+			7A93851907D122A40061E491 = 7A93851907D122A40061E491;
+			7A93851A07D122A40061E491 = 7A93851A07D122A40061E491;
+			7A93851C07D123840061E491 = 7A93851C07D123840061E491;
+			7A93851D07D123840061E491 = 7A93851D07D123840061E491;
+			7A93851E07D123920061E491 = 7A93851E07D123920061E491;
+			7A93851F07D123920061E491 = 7A93851F07D123920061E491;
+			7A93852007D123BB0061E491 = 7A93852007D123BB0061E491;
+			7A93852107D123BB0061E491 = 7A93852107D123BB0061E491;
+			7A93852207D1242A0061E491 = 7A93852207D1242A0061E491;
+			7A93852307D1242A0061E491 = 7A93852307D1242A0061E491;
+			7A93852407D124450061E491 = 7A93852407D124450061E491;
+			7A93852507D124460061E491 = 7A93852507D124460061E491;
+			7A93852607D1244A0061E491 = 7A93852607D1244A0061E491;
+			7A93852707D1244A0061E491 = 7A93852707D1244A0061E491;
+			7A93852807D124DA0061E491 = 7A93852807D124DA0061E491;
+			7A93852907D124DA0061E491 = 7A93852907D124DA0061E491;
+			7A93852B07D124DA0061E491 = 7A93852B07D124DA0061E491;
+			7A93852C07D124DA0061E491 = 7A93852C07D124DA0061E491;
+			7A93852E07D124DA0061E491 = 7A93852E07D124DA0061E491;
+			7A93852F07D12D6D0061E491 = 7A93852F07D12D6D0061E491;
+			7A93853007D12D6D0061E491 = 7A93853007D12D6D0061E491;
+			7A93853107D12DC20061E491 = 7A93853107D12DC20061E491;
+			7A93853207D12DC20061E491 = 7A93853207D12DC20061E491;
+			7A93853307D12DC20061E491 = 7A93853307D12DC20061E491;
+			7A93853407D12DC20061E491 = 7A93853407D12DC20061E491;
+			7A93853507D12DC20061E491 = 7A93853507D12DC20061E491;
+			7A93853607D12E170061E491 = 7A93853607D12E170061E491;
+			7A93853707D12E170061E491 = 7A93853707D12E170061E491;
+			7A93853807D130A40061E491 = 7A93853807D130A40061E491;
+			7A93853907D130A50061E491 = 7A93853907D130A50061E491;
+			7A93853C07D13C0F0061E491 = 7A93853C07D13C0F0061E491;
+			7A93853D07D13C0F0061E491 = 7A93853D07D13C0F0061E491;
+			7A93853E07D13C0F0061E491 = 7A93853E07D13C0F0061E491;
+			7A93853F07D13C0F0061E491 = 7A93853F07D13C0F0061E491;
+			7A93854007D13C0F0061E491 = 7A93854007D13C0F0061E491;
+			7A93854107D13C0F0061E491 = 7A93854107D13C0F0061E491;
+			7A93854207D13C330061E491 = 7A93854207D13C330061E491;
+			7A93854307D13C330061E491 = 7A93854307D13C330061E491;
+			7A93854407D143CA0061E491 = 7A93854407D143CA0061E491;
+			7A93854507D143CA0061E491 = 7A93854507D143CA0061E491;
+			7A93854607D143CA0061E491 = 7A93854607D143CA0061E491;
+			7A93854707D143CA0061E491 = 7A93854707D143CA0061E491;
+			7A93854807D143CA0061E491 = 7A93854807D143CA0061E491;
+			7A93854907D143CA0061E491 = 7A93854907D143CA0061E491;
+			7A93854A07D143CA0061E491 = 7A93854A07D143CA0061E491;
+			7A93854B07D143CA0061E491 = 7A93854B07D143CA0061E491;
+			7A93854C07D143CA0061E491 = 7A93854C07D143CA0061E491;
+			7A93854D07D143CA0061E491 = 7A93854D07D143CA0061E491;
+			7A93854E07D143CA0061E491 = 7A93854E07D143CA0061E491;
+			7A93854F07D143CA0061E491 = 7A93854F07D143CA0061E491;
+			7A93855007D143CA0061E491 = 7A93855007D143CA0061E491;
+			7A93855107D143CA0061E491 = 7A93855107D143CA0061E491;
+			7A93855207D143CA0061E491 = 7A93855207D143CA0061E491;
+			7A93855307D143CA0061E491 = 7A93855307D143CA0061E491;
+			7A93855407D143CA0061E491 = 7A93855407D143CA0061E491;
+			7A93855507D143CA0061E491 = 7A93855507D143CA0061E491;
+			7A93855607D143CA0061E491 = 7A93855607D143CA0061E491;
+			7A93855707D143CA0061E491 = 7A93855707D143CA0061E491;
+			7A93855807D143CA0061E491 = 7A93855807D143CA0061E491;
+			7A93855907D143CA0061E491 = 7A93855907D143CA0061E491;
+			7A93855A07D143CA0061E491 = 7A93855A07D143CA0061E491;
+			7A93855B07D143CA0061E491 = 7A93855B07D143CA0061E491;
+			7A93855C07D143CA0061E491 = 7A93855C07D143CA0061E491;
+			7A93855D07D143CA0061E491 = 7A93855D07D143CA0061E491;
+			7A93855E07D143CA0061E491 = 7A93855E07D143CA0061E491;
+			7A93855F07D143CA0061E491 = 7A93855F07D143CA0061E491;
+			7A93856007D143CA0061E491 = 7A93856007D143CA0061E491;
+			7A93856107D143CA0061E491 = 7A93856107D143CA0061E491;
+			7A93856207D143CA0061E491 = 7A93856207D143CA0061E491;
+			7A93856307D143CA0061E491 = 7A93856307D143CA0061E491;
+			7A93856407D143CA0061E491 = 7A93856407D143CA0061E491;
+			7A93856507D143EB0061E491 = 7A93856507D143EB0061E491;
+			7A93856607D1441E0061E491 = 7A93856607D1441E0061E491;
+			7A93856707D1441E0061E491 = 7A93856707D1441E0061E491;
+			7A93856807D1441E0061E491 = 7A93856807D1441E0061E491;
+			7A93856907D1441E0061E491 = 7A93856907D1441E0061E491;
+			7A93856A07D1441E0061E491 = 7A93856A07D1441E0061E491;
+			7A93856B07D1441E0061E491 = 7A93856B07D1441E0061E491;
+			7A93856C07D1441E0061E491 = 7A93856C07D1441E0061E491;
+			7A93856D07D144750061E491 = 7A93856D07D144750061E491;
+			7A93856E07D144750061E491 = 7A93856E07D144750061E491;
+			7A93856F07D144750061E491 = 7A93856F07D144750061E491;
+			7A93857007D144750061E491 = 7A93857007D144750061E491;
+			7A93857107D144750061E491 = 7A93857107D144750061E491;
+			7A93857207D144750061E491 = 7A93857207D144750061E491;
+			7A93857307D144750061E491 = 7A93857307D144750061E491;
+			7A93857407D144750061E491 = 7A93857407D144750061E491;
+			7A93857507D145C50061E491 = 7A93857507D145C50061E491;
+			7A93857607D145C50061E491 = 7A93857607D145C50061E491;
+			7A93857707D145C50061E491 = 7A93857707D145C50061E491;
+			7A93857807D145C50061E491 = 7A93857807D145C50061E491;
+			7A93857907D145C50061E491 = 7A93857907D145C50061E491;
+			7A93857A07D145C50061E491 = 7A93857A07D145C50061E491;
+			7A93857B07D145C50061E491 = 7A93857B07D145C50061E491;
+			7A93857C07D145C50061E491 = 7A93857C07D145C50061E491;
+			7A93857D07D145C50061E491 = 7A93857D07D145C50061E491;
+			7A93857E07D145C50061E491 = 7A93857E07D145C50061E491;
+			7A93857F07D145C50061E491 = 7A93857F07D145C50061E491;
+			7A93858007D145C50061E491 = 7A93858007D145C50061E491;
+			7A93858107D1464C0061E491 = 7A93858107D1464C0061E491;
+			7A93858207D146900061E491 = 7A93858207D146900061E491;
+			7A93858307D146900061E491 = 7A93858307D146900061E491;
+			7A93858407D146900061E491 = 7A93858407D146900061E491;
+			7A93858507D146900061E491 = 7A93858507D146900061E491;
+			7A93858607D146900061E491 = 7A93858607D146900061E491;
+			7A93858707D146900061E491 = 7A93858707D146900061E491;
+			7A93858807D146900061E491 = 7A93858807D146900061E491;
+			7A93858907D146900061E491 = 7A93858907D146900061E491;
+			7A93858A07D146900061E491 = 7A93858A07D146900061E491;
+			7A93858B07D146900061E491 = 7A93858B07D146900061E491;
+			7A93858C07D146900061E491 = 7A93858C07D146900061E491;
+			7A93858D07D146900061E491 = 7A93858D07D146900061E491;
+			7A93858E07D146900061E491 = 7A93858E07D146900061E491;
+			7A93858F07D146C30061E491 = 7A93858F07D146C30061E491;
+			7A93859007D146C60061E491 = 7A93859007D146C60061E491;
+			7A93859107D146E80061E491 = 7A93859107D146E80061E491;
+			7A93859207D146E80061E491 = 7A93859207D146E80061E491;
+			7A93859307D147530061E491 = 7A93859307D147530061E491;
+			7A93859407D147C90061E491 = 7A93859407D147C90061E491;
+			7A93859507D147C90061E491 = 7A93859507D147C90061E491;
+			7A93859607D147C90061E491 = 7A93859607D147C90061E491;
+			7A93859707D147C90061E491 = 7A93859707D147C90061E491;
+			7A93859807D147C90061E491 = 7A93859807D147C90061E491;
+			7A93859907D147C90061E491 = 7A93859907D147C90061E491;
+			7A93859A07D147C90061E491 = 7A93859A07D147C90061E491;
+			7A93859B07D147C90061E491 = 7A93859B07D147C90061E491;
+			7A93859C07D14A940061E491 = 7A93859C07D14A940061E491;
+			7A93859D07D14A950061E491 = 7A93859D07D14A950061E491;
+			7A93859E07D14AA40061E491 = 7A93859E07D14AA40061E491;
+			7A93859F07D14AA40061E491 = 7A93859F07D14AA40061E491;
+			7A9385A207D152FF0061E491 = 7A9385A207D152FF0061E491;
+			7A9385A307D152FF0061E491 = 7A9385A307D152FF0061E491;
 			7AAE6CDD07AFC4C70085C60F = 7AAE6CDD07AFC4C70085C60F;
 			7AAE6CEF07AFC4C70085C60F = 7AAE6CEF07AFC4C70085C60F;
 			7AAE6CF007AFC4C70085C60F = 7AAE6CF007AFC4C70085C60F;
@@ -3125,9 +3267,9 @@
 	};
 	7A0673B207B284E00067AA64 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 2618}}";
-			sepNavSelRange = "{912, 9}";
-			sepNavVisRect = "{{0, 151}, {693, 524}}";
+			sepNavIntBoundsRect = "{{0, 0}, {881, 2912}}";
+			sepNavSelRange = "{3717, 0}";
+			sepNavVisRect = "{{0, 1168}, {881, 363}}";
 		};
 	};
 	7A0673B307B284E00067AA64 = {
@@ -3324,16 +3466,16 @@
 	};
 	7A0D78B107358A2B00D06F24 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 686}}";
-			sepNavSelRange = "{934, 0}";
-			sepNavVisRect = "{{0, 28}, {693, 524}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 756}}";
+			sepNavSelRange = "{1323, 22}";
+			sepNavVisRect = "{{0, 0}, {693, 756}}";
 		};
 	};
 	7A0D78B207358A2B00D06F24 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 2352}}";
-			sepNavSelRange = "{6058, 0}";
-			sepNavVisRect = "{{0, 1758}, {693, 524}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 2646}}";
+			sepNavSelRange = "{6588, 0}";
+			sepNavVisRect = "{{0, 1767}, {693, 756}}";
 		};
 	};
 	7A36A12F0735910F00ED2D78 = {
@@ -3716,7 +3858,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshQuaternion.h: 142";
 		rLen = 0;
-		rLoc = 4741;
+		rLoc = 4753;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 1076;
@@ -4821,7 +4963,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshQuaternion.h: 189";
 		rLen = 0;
-		rLoc = 4815;
+		rLoc = 4827;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 1024;
@@ -4872,7 +5014,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshQuaternionPair.h: 177";
 		rLen = 0;
-		rLoc = 4745;
+		rLoc = 5149;
 		rType = 0;
 		vrLen = 1140;
 		vrLoc = 56;
@@ -7900,9 +8042,9 @@
 	};
 	7A62B86B05A49D05002A5F1C = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 6664}}";
-			sepNavSelRange = "{10382, 0}";
-			sepNavVisRect = "{{0, 5051}, {914, 441}}";
+			sepNavIntBoundsRect = "{{0, 0}, {881, 7000}}";
+			sepNavSelRange = "{11285, 32}";
+			sepNavVisRect = "{{0, 5577}, {881, 363}}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
@@ -9360,7 +9502,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 223";
 		rLen = 0;
-		rLoc = 6546;
+		rLoc = 6547;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 2002;
@@ -9380,7 +9522,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.h: tQValPair";
 		rLen = 0;
-		rLoc = 2078;
+		rLoc = 2101;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 1236;
@@ -9390,7 +9532,7 @@
 		isa = PBXTextBookmark;
 		name = "return new TesseractTrainerGame(*this)";
 		rLen = 38;
-		rLoc = 5415;
+		rLoc = 5416;
 		rType = 0;
 		vrLen = 558;
 		vrLoc = 4685;
@@ -9400,7 +9542,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.h: tQValPair";
 		rLen = 0;
-		rLoc = 2081;
+		rLoc = 2104;
 		rType = 0;
 		vrLen = 924;
 		vrLoc = 1112;
@@ -10245,8 +10387,8 @@
 	7A651DA305A8622D0026CBAE = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {693, 2702}}";
-			sepNavSelRange = "{4815, 0}";
-			sepNavVisRect = "{{0, 423}, {693, 524}}";
+			sepNavSelRange = "{4381, 0}";
+			sepNavVisRect = "{{0, 1946}, {693, 756}}";
 			sepNavWindowFrame = "{{84, 376}, {750, 558}}";
 		};
 	};
@@ -10780,9 +10922,9 @@
 	};
 	7A66E04C074C06AC00759E06 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 2604}}";
-			sepNavSelRange = "{3398, 0}";
-			sepNavVisRect = "{{0, 875}, {693, 756}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 2646}}";
+			sepNavSelRange = "{3676, 0}";
+			sepNavVisRect = "{{0, 946}, {693, 756}}";
 			sepNavWindowFrame = "{{387, 69}, {750, 558}}";
 		};
 	};
@@ -10976,7 +11118,7 @@
 		fRef = 7A62B86B05A49D05002A5F1C;
 		isa = PBXTextBookmark;
 		name = "protected:\n    void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushMeshUtils::BoundaryThrow(i, D); }\n";
-		rLen = 107;
+		rLen = 182;
 		rLoc = 3724;
 		rType = 0;
 		vrLen = 2522;
@@ -11101,9 +11243,9 @@
 	};
 	7A69DF0707626B89004F23F7 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 3486}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 3528}}";
 			sepNavSelRange = "{8273, 0}";
-			sepNavVisRect = "{{0, 2744}, {693, 725}}";
+			sepNavVisRect = "{{0, 2772}, {693, 756}}";
 			sepNavWindowFrame = "{{15, 439}, {750, 558}}";
 		};
 	};
@@ -12755,6 +12897,1435 @@
 			sepNavVisRect = "{{0, 0}, {693, 725}}";
 		};
 	};
+	7A93850907D105D70061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 121";
+		rLen = 0;
+		rLoc = 3208;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93850C07D105D70061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 217";
+		rLen = 0;
+		rLoc = 6193;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851107D106600061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851207D106600061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851307D11EC70061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851407D11EC70061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851507D11ED60061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851607D11ED60061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851707D11EF60061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851807D11EF60061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851907D122A40061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851A07D122A40061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851C07D123840061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851D07D123840061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93851E07D123920061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93851F07D123920061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852007D123BB0061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93852107D123BB0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852207D1242A0061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93852307D1242A0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852407D124450061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852507D124460061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852607D1244A0061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93852707D1244A0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852807D124DA0061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93852907D124DA0061E491 = {
+		fRef = 7A93852A07D124DA0061E491;
+		isa = PBXTextBookmark;
+		rLen = 0;
+		rLoc = 2147483647;
+		rType = 0;
+	};
+	7A93852A07D124DA0061E491 = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.fortran;
+		name = eigmain.f;
+		path = "/Users/southa/construct/eigenplane-0.2.1/eigmain.f";
+		refType = 0;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 14532}}";
+			sepNavSelRange = "{1047, 0}";
+			sepNavVisRect = "{{0, 13362}, {693, 756}}";
+		};
+	};
+	7A93852B07D124DA0061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 232";
+		rLen = 0;
+		rLoc = 6383;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 0;
+	};
+	7A93852C07D124DA0061E491 = {
+		fRef = 7A93852D07D124DA0061E491;
+		isa = PBXTextBookmark;
+		name = "(null): 23";
+		rLen = 0;
+		rLoc = 1047;
+		rType = 0;
+		vrLen = 1445;
+		vrLoc = 25316;
+	};
+	7A93852D07D124DA0061E491 = {
+		isa = PBXFileReference;
+		name = eigmain.f;
+		path = "/Users/southa/construct/eigenplane-0.2.1/eigmain.f";
+		refType = 0;
+		sourceTree = "<absolute>";
+	};
+	7A93852E07D124DA0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93852F07D12D6D0061E491 = {
+		fRef = 7A93852A07D124DA0061E491;
+		isa = PBXTextBookmark;
+		name = "eigmain.f: 23";
+		rLen = 0;
+		rLoc = 1047;
+		rType = 0;
+		vrLen = 1578;
+		vrLoc = 24509;
+	};
+	7A93853007D12D6D0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93853107D12DC20061E491 = {
+		fRef = 7A93852A07D124DA0061E491;
+		isa = PBXTextBookmark;
+		name = "eigmain.f: 23";
+		rLen = 0;
+		rLoc = 1047;
+		rType = 0;
+		vrLen = 1578;
+		vrLoc = 24509;
+	};
+	7A93853207D12DC20061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 138";
+		rLen = 0;
+		rLoc = 3753;
+		rType = 0;
+		vrLen = 1643;
+		vrLoc = 3143;
+	};
+	7A93853307D12DC20061E491 = {
+		fRef = 7A93852A07D124DA0061E491;
+		isa = PBXTextBookmark;
+		name = "eigmain.f: 23";
+		rLen = 0;
+		rLoc = 1047;
+		rType = 0;
+		vrLen = 1578;
+		vrLoc = 24509;
+	};
+	7A93853407D12DC20061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 138";
+		rLen = 0;
+		rLoc = 3753;
+		rType = 0;
+		vrLen = 1645;
+		vrLoc = 3143;
+	};
+	7A93853507D12DC20061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93853607D12E170061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 141";
+		rLen = 0;
+		rLoc = 3907;
+		rType = 0;
+		vrLen = 1645;
+		vrLoc = 3143;
+	};
+	7A93853707D12E170061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93853807D130A40061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93853907D130A50061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93853C07D13C0F0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 267";
+		rLen = 0;
+		rLoc = 7174;
+		rType = 0;
+		vrLen = 1645;
+		vrLoc = 3143;
+	};
+	7A93853D07D13C0F0061E491 = {
+		fRef = 7A0D78B107358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.h: 44";
+		rLen = 0;
+		rLoc = 1437;
+		rType = 0;
+		vrLen = 1520;
+		vrLoc = 0;
+	};
+	7A93853E07D13C0F0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 267";
+		rLen = 0;
+		rLoc = 7174;
+		rType = 0;
+		vrLen = 1645;
+		vrLoc = 3143;
+	};
+	7A93853F07D13C0F0061E491 = {
+		fRef = 7A0D78B107358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.h: 44";
+		rLen = 0;
+		rLoc = 1437;
+		rType = 0;
+		vrLen = 1520;
+		vrLoc = 0;
+	};
+	7A93854007D13C0F0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 173";
+		rLen = 0;
+		rLoc = 6303;
+		rType = 0;
+		vrLen = 1420;
+		vrLoc = 4817;
+	};
+	7A93854107D13C0F0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93854207D13C330061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 171";
+		rLen = 0;
+		rLoc = 6190;
+		rType = 0;
+		vrLen = 1436;
+		vrLoc = 4817;
+	};
+	7A93854307D13C330061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93854407D143CA0061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 111";
+		rLen = 0;
+		rLoc = 3520;
+		rType = 0;
+		vrLen = 1408;
+		vrLoc = 2505;
+	};
+	7A93854507D143CA0061E491 = {
+		fRef = 7A651DA305A8622D0026CBAE;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternion.h: 189";
+		rLen = 0;
+		rLoc = 4827;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 818;
+	};
+	7A93854607D143CA0061E491 = {
+		fRef = 7A66E04C074C06AC00759E06;
+		isa = PBXTextBookmark;
+		name = "MushMeshOps.h: 97";
+		rLen = 0;
+		rLoc = 3676;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 2639;
+	};
+	7A93854707D143CA0061E491 = {
+		fRef = 7A62B86B05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushMeshVector.h: 130";
+		rLen = 0;
+		rLoc = 3797;
+		rType = 0;
+		vrLen = 2326;
+		vrLoc = 2857;
+	};
+	7A93854807D143CA0061E491 = {
+		fRef = 7A69DF0707626B89004F23F7;
+		isa = PBXTextBookmark;
+		name = "TestMushMeshQuaternion.cpp: 238";
+		rLen = 0;
+		rLoc = 8273;
+		rType = 0;
+		vrLen = 1588;
+		vrLoc = 6748;
+	};
+	7A93854907D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 189";
+		rLen = 0;
+		rLoc = 6588;
+		rType = 0;
+		vrLen = 1487;
+		vrLoc = 4917;
+	};
+	7A93854A07D143CA0061E491 = {
+		fRef = 7A0D78B107358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = QuaternionRotateInAxis;
+		rLen = 22;
+		rLoc = 1323;
+		rType = 0;
+		vrLen = 1614;
+		vrLoc = 0;
+	};
+	7A93854B07D143CA0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "Reorientate(void)";
+		rLen = 17;
+		rLoc = 3702;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 3418;
+	};
+	7A93854C07D143CA0061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 111";
+		rLen = 0;
+		rLoc = 3520;
+		rType = 0;
+		vrLen = 1489;
+		vrLoc = 2090;
+	};
+	7A93854D07D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 177";
+		rLen = 0;
+		rLoc = 6371;
+		rType = 0;
+		vrLen = 1539;
+		vrLoc = 4846;
+	};
+	7A93854E07D143CA0061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 111";
+		rLen = 0;
+		rLoc = 3520;
+		rType = 0;
+		vrLen = 1408;
+		vrLoc = 2505;
+	};
+	7A93854F07D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 175";
+		rLen = 0;
+		rLoc = 6286;
+		rType = 0;
+		vrLen = 1416;
+		vrLoc = 5048;
+	};
+	7A93855007D143CA0061E491 = {
+		fRef = 7A651DA305A8622D0026CBAE;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternion.h: 189";
+		rLen = 0;
+		rLoc = 4827;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 818;
+	};
+	7A93855107D143CA0061E491 = {
+		fRef = 7A62B86B05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushMeshVector.h: 465";
+		rLen = 0;
+		rLoc = 12970;
+		rType = 0;
+		vrLen = 1824;
+		vrLoc = 2529;
+	};
+	7A93855207D143CA0061E491 = {
+		fRef = 7A66E04C074C06AC00759E06;
+		isa = PBXTextBookmark;
+		name = "MushMeshOps.h: 97";
+		rLen = 0;
+		rLoc = 3676;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 2639;
+	};
+	7A93855307D143CA0061E491 = {
+		fRef = 7A62B86B05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushMeshVector.h: 130";
+		rLen = 0;
+		rLoc = 3797;
+		rType = 0;
+		vrLen = 2326;
+		vrLoc = 2857;
+	};
+	7A93855407D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 178";
+		rLen = 0;
+		rLoc = 6322;
+		rType = 0;
+		vrLen = 1622;
+		vrLoc = 4484;
+	};
+	7A93855507D143CA0061E491 = {
+		fRef = 7A69DF0707626B89004F23F7;
+		isa = PBXTextBookmark;
+		name = "TestMushMeshQuaternion.cpp: 238";
+		rLen = 0;
+		rLoc = 8273;
+		rType = 0;
+		vrLen = 1588;
+		vrLoc = 6748;
+	};
+	7A93855607D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 178";
+		rLen = 0;
+		rLoc = 6322;
+		rType = 0;
+		vrLen = 1576;
+		vrLoc = 4478;
+	};
+	7A93855707D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 189";
+		rLen = 0;
+		rLoc = 6588;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 5247;
+	};
+	7A93855807D143CA0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "Reorientate(void)";
+		rLen = 17;
+		rLoc = 3702;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 3418;
+	};
+	7A93855907D143CA0061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: Reorientate";
+		rLen = 0;
+		rLoc = 1947;
+		rType = 0;
+		vrLen = 1838;
+		vrLoc = 1111;
+	};
+	7A93855A07D143CA0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93855B07D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 183";
+		rLen = 0;
+		rLoc = 6410;
+		rType = 0;
+		vrLen = 570;
+		vrLoc = 5908;
+	};
+	7A93855C07D143CA0061E491 = {
+		fRef = 7A62B86B05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "    Mushware::tVal retVal2 = 0;\n";
+		rLen = 32;
+		rLoc = 11285;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 10897;
+	};
+	7A93855D07D143CA0061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 62";
+		rLen = 0;
+		rLoc = 1947;
+		rType = 0;
+		vrLen = 997;
+		vrLoc = 1185;
+	};
+	7A93855E07D143CA0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 148;
+		rType = 1;
+	};
+	7A93855F07D143CA0061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 225";
+		rLen = 0;
+		rLoc = 6265;
+		rType = 0;
+		vrLen = 555;
+		vrLoc = 2725;
+	};
+	7A93856007D143CA0061E491 = {
+		fRef = 7A0D78B207358A2B00D06F24;
+		isa = PBXTextBookmark;
+		name = "MushMeshTools.cpp: 183";
+		rLen = 0;
+		rLoc = 6410;
+		rType = 0;
+		vrLen = 570;
+		vrLoc = 5908;
+	};
+	7A93856107D143CA0061E491 = {
+		fRef = 7A62B86B05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "    Mushware::tVal retVal2 = 0;\n";
+		rLen = 32;
+		rLoc = 11285;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 10897;
+	};
+	7A93856207D143CA0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "{
+";
+		rLen = 1;
+		rLoc = 3793;
+		rType = 0;
+		vrLen = 807;
+		vrLoc = 3371;
+	};
+	7A93856307D143CA0061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 62";
+		rLen = 0;
+		rLoc = 1947;
+		rType = 0;
+		vrLen = 997;
+		vrLoc = 1185;
+	};
+	7A93856407D143CA0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "                             (1, MushMeshTools::Random(-0.1, 0.1)));\n";
+		rLen = 234;
+		rLoc = 4188;
+		rType = 0;
+		vrLen = 812;
+		vrLoc = 3454;
+	};
+	7A93856507D143EB0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 267";
+		rLen = 0;
+		rLoc = 7469;
+		rType = 0;
+		vrLen = 812;
+		vrLoc = 3454;
+	};
+	7A93856607D1441E0061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 95";
+		rLen = 0;
+		rLoc = 3082;
+		rType = 0;
+		vrLen = 1838;
+		vrLoc = 1111;
+	};
+	7A93856707D1441E0061E491 = {
+		fRef = 7AAE6BA207AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerHypercube.cpp: 79";
+		rLen = 0;
+		rLoc = 2365;
+		rType = 0;
+		vrLen = 1765;
+		vrLoc = 1667;
+	};
+	7A93856807D1441E0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "    m_planepair.Create(0, m_colours);";
+		rLen = 37;
+		rLoc = 5306;
+		rType = 0;
+		vrLen = 1773;
+		vrLoc = 3407;
+	};
+	7A93856907D1441E0061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 95";
+		rLen = 0;
+		rLoc = 3082;
+		rType = 0;
+		vrLen = 1838;
+		vrLoc = 1111;
+	};
+	7A93856A07D1441E0061E491 = {
+		fRef = 7AAE6BA207AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerHypercube.cpp: 79";
+		rLen = 0;
+		rLoc = 2365;
+		rType = 0;
+		vrLen = 1765;
+		vrLoc = 1667;
+	};
+	7A93856B07D1441E0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 148";
+		rLen = 0;
+		rLoc = 4331;
+		rType = 0;
+		vrLen = 1713;
+		vrLoc = 3407;
+	};
+	7A93856C07D1441E0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 269";
+		rLen = 0;
+		rLoc = 7469;
+		rType = 0;
+		vrLen = 752;
+		vrLoc = 3454;
+	};
+	7A93856D07D144750061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 151";
+		rLen = 0;
+		rLoc = 4416;
+		rType = 0;
+		vrLen = 1724;
+		vrLoc = 3407;
+	};
+	7A93856E07D144750061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93856F07D144750061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 112";
+		rLen = 0;
+		rLoc = 3097;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 2802;
+	};
+	7A93857007D144750061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 151";
+		rLen = 0;
+		rLoc = 4416;
+		rType = 0;
+		vrLen = 1724;
+		vrLoc = 3407;
+	};
+	7A93857107D144750061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93857207D144750061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 112";
+		rLen = 0;
+		rLoc = 3097;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 2802;
+	};
+	7A93857307D144750061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 153;
+		rType = 1;
+	};
+	7A93857407D144750061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "    m_planepair.Rotate(orientation);\n";
+		rLen = 52;
+		rLoc = 4365;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 3758;
+	};
+	7A93857507D145C50061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 112";
+		rLen = 0;
+		rLoc = 3097;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 2802;
+	};
+	7A93857607D145C50061E491 = {
+		fRef = 7A651DA305A8622D0026CBAE;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternion.h: ConjugateGet";
+		rLen = 0;
+		rLoc = 4381;
+		rType = 0;
+		vrLen = 1133;
+		vrLoc = 3757;
+	};
+	7A93857707D145C50061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 120";
+		rLen = 0;
+		rLoc = 3713;
+		rType = 0;
+		vrLen = 1211;
+		vrLoc = 3127;
+	};
+	7A93857807D145C50061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 112";
+		rLen = 0;
+		rLoc = 3097;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 2802;
+	};
+	7A93857907D145C50061E491 = {
+		fRef = 7A651DA305A8622D0026CBAE;
+		isa = PBXTextBookmark;
+		name = "    MushMeshQuaternion<T> ConjugateGet(void);";
+		rLen = 51;
+		rLoc = 1820;
+		rType = 0;
+		vrLen = 1458;
+		vrLoc = 818;
+	};
+	7A93857A07D145C50061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: AdditiveIdentityGet";
+		rLen = 0;
+		rLoc = 1535;
+		rType = 0;
+		vrLen = 1953;
+		vrLoc = 1056;
+	};
+	7A93857B07D145C50061E491 = {
+		fRef = 7A651DA305A8622D0026CBAE;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternion.h: ConjugateGet";
+		rLen = 0;
+		rLoc = 4381;
+		rType = 0;
+		vrLen = 1133;
+		vrLoc = 3757;
+	};
+	7A93857C07D145C50061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 120";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 1290;
+		vrLoc = 3127;
+	};
+	7A93857D07D145C50061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 150";
+		rLen = 0;
+		rLoc = 4309;
+		rType = 0;
+		vrLen = 741;
+		vrLoc = 3613;
+	};
+	7A93857E07D145C50061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 119;
+		rType = 1;
+	};
+	7A93857F07D145C50061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 150";
+		rLen = 0;
+		rLoc = 4309;
+		rType = 0;
+		vrLen = 741;
+		vrLoc = 3613;
+	};
+	7A93858007D145C50061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 120";
+		rLen = 0;
+		rLoc = 3703;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93858107D1464C0061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 120";
+		rLen = 0;
+		rLoc = 3703;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93858207D146900061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 1290;
+		vrLoc = 3127;
+	};
+	7A93858307D146900061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93858407D146900061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 103";
+		rLen = 0;
+		rLoc = 2907;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 2802;
+	};
+	7A93858507D146900061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 119";
+		rLen = 0;
+		rLoc = 3206;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 2331;
+	};
+	7A93858607D146900061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 95";
+		rLen = 0;
+		rLoc = 3082;
+		rType = 0;
+		vrLen = 1838;
+		vrLoc = 1111;
+	};
+	7A93858707D146900061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = 1;
+		rLen = 2;
+		rLoc = 4108;
+		rType = 0;
+		vrLen = 1739;
+		vrLoc = 3407;
+	};
+	7A93858807D146900061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 1290;
+		vrLoc = 3127;
+	};
+	7A93858907D146900061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93858A07D146900061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: 103";
+		rLen = 0;
+		rLoc = 2907;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 2802;
+	};
+	7A93858B07D146900061E491 = {
+		fRef = 7AB6288007D0EB6A0035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlaneSet.cpp: 119";
+		rLen = 0;
+		rLoc = 3206;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 2331;
+	};
+	7A93858C07D146900061E491 = {
+		fRef = 7AAE6BA107AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.h: 95";
+		rLen = 0;
+		rLoc = 3082;
+		rType = 0;
+		vrLen = 1838;
+		vrLoc = 1111;
+	};
+	7A93858D07D146900061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 153";
+		rLen = 0;
+		rLoc = 4400;
+		rType = 0;
+		vrLen = 1758;
+		vrLoc = 3407;
+	};
+	7A93858E07D146900061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93858F07D146C30061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93859007D146C60061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93859107D146E80061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 164";
+		rLen = 0;
+		rLoc = 4751;
+		rType = 0;
+		vrLen = 1562;
+		vrLoc = 4275;
+	};
+	7A93859207D146E80061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93859307D147530061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 208";
+		rLen = 0;
+		rLoc = 5714;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 3400;
+	};
+	7A93859407D147C90061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93859507D147C90061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: Rotate";
+		rLen = 0;
+		rLoc = 3163;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 2518;
+	};
+	7A93859607D147C90061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = m_orientation.;
+		rLen = 14;
+		rLoc = 3361;
+		rType = 0;
+		vrLen = 1644;
+		vrLoc = 3287;
+	};
+	7A93859707D147C90061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 274";
+		rLen = 0;
+		rLoc = 7464;
+		rType = 0;
+		vrLen = 1562;
+		vrLoc = 4275;
+	};
+	7A93859807D147C90061E491 = {
+		fRef = 7AB627CA07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.h: Rotate";
+		rLen = 0;
+		rLoc = 1438;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	7A93859907D147C90061E491 = {
+		fRef = 7AB627CB07D0D4D00035D7F1;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerPlanePair.cpp: Rotate";
+		rLen = 0;
+		rLoc = 3163;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 2518;
+	};
+	7A93859A07D147C90061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 140";
+		rLen = 0;
+		rLoc = 3826;
+		rType = 0;
+		vrLen = 1651;
+		vrLoc = 3287;
+	};
+	7A93859B07D147C90061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 122";
+		rLen = 0;
+		rLoc = 3717;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2808;
+	};
+	7A93859C07D14A940061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 122";
+		rLen = 0;
+		rLoc = 3717;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2808;
+	};
+	7A93859D07D14A950061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 122";
+		rLen = 0;
+		rLoc = 3717;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2808;
+	};
+	7A93859E07D14AA40061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 128";
+		rLen = 0;
+		rLoc = 3559;
+		rType = 0;
+		vrLen = 1649;
+		vrLoc = 3287;
+	};
+	7A93859F07D14AA40061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 122";
+		rLen = 0;
+		rLoc = 3717;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2808;
+	};
+	7A9385A207D152FF0061E491 = {
+		fRef = 7AAE6BA007AFC36C0085C60F;
+		isa = PBXTextBookmark;
+		name = "TesseractTrainerGame.cpp: 275";
+		rLen = 0;
+		rLoc = 7464;
+		rType = 0;
+		vrLen = 1649;
+		vrLoc = 3287;
+	};
+	7A9385A307D152FF0061E491 = {
+		fRef = 7A0673B207B284E00067AA64;
+		isa = PBXTextBookmark;
+		name = "MushMeshQuaternionPair.h: 122";
+		rLen = 0;
+		rLoc = 3717;
+		rType = 0;
+		vrLen = 662;
+		vrLoc = 2808;
+	};
 	7AAE6B9C07AFC36C0085C60F = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {693, 1008}}";
@@ -12785,23 +14356,23 @@
 	};
 	7AAE6BA007AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 3724}}";
-			sepNavSelRange = "{3598, 0}";
-			sepNavVisRect = "{{0, 1215}, {693, 756}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 3878}}";
+			sepNavSelRange = "{7464, 0}";
+			sepNavVisRect = "{{0, 1645}, {693, 756}}";
 		};
 	};
 	7AAE6BA107AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 1288}}";
-			sepNavSelRange = "{2199, 0}";
-			sepNavVisRect = "{{0, 504}, {693, 756}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 1344}}";
+			sepNavSelRange = "{3082, 0}";
+			sepNavVisRect = "{{0, 490}, {693, 756}}";
 		};
 	};
 	7AAE6BA207AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 3934}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 3976}}";
 			sepNavSelRange = "{2365, 0}";
-			sepNavVisRect = "{{0, 173}, {693, 756}}";
+			sepNavVisRect = "{{0, 873}, {693, 756}}";
 		};
 	};
 	7AAE6BA307AFC36C0085C60F = {
@@ -13034,16 +14605,16 @@
 	};
 	7AB627CA07D0D4D00035D7F1 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 756}}";
-			sepNavSelRange = "{1311, 56}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 784}}";
+			sepNavSelRange = "{1438, 0}";
 			sepNavVisRect = "{{0, 0}, {693, 756}}";
 		};
 	};
 	7AB627CB07D0D4D00035D7F1 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {881, 3108}}";
-			sepNavSelRange = "{6200, 0}";
-			sepNavVisRect = "{{0, 1338}, {881, 363}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 3150}}";
+			sepNavSelRange = "{3163, 0}";
+			sepNavVisRect = "{{0, 1249}, {693, 756}}";
 		};
 	};
 	7AB627D207D0DF1F0035D7F1 = {
@@ -13061,7 +14632,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshVector.h: 466";
 		rLen = 0;
-		rLoc = 12507;
+		rLoc = 12970;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 10158;
@@ -13091,7 +14662,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 256";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1458;
 		vrLoc = 2490;
@@ -13171,7 +14742,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshVector.h: 454";
 		rLen = 0;
-		rLoc = 12525;
+		rLoc = 12988;
 		rType = 0;
 		vrLen = 1195;
 		vrLoc = 10171;
@@ -13238,6 +14809,7 @@
 	};
 	7AB627EA07D0DF1F0035D7F1 = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = basic_file.h;
 		path = "/usr/include/gcc/darwin/3.3/c++/ppc-darwin/bits/basic_file.h";
 		refType = 0;
@@ -13305,6 +14877,7 @@
 	};
 	7AB627F307D0DF1F0035D7F1 = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = basic_file.h;
 		path = "/usr/include/gcc/darwin/3.3/c++/ppc-darwin/bits/basic_file.h";
 		refType = 0;
@@ -13366,7 +14939,7 @@
 		name = "{
 ";
 		rLen = 0;
-		rLoc = 10668;
+		rLoc = 10743;
 		rType = 0;
 		vrLen = 611;
 		vrLoc = 10436;
@@ -13386,7 +14959,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshVector.h: 397";
 		rLen = 0;
-		rLoc = 11033;
+		rLoc = 11108;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 10551;
@@ -13476,7 +15049,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.h: 68";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2222;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 1092;
@@ -13486,7 +15059,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 220";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 2288;
@@ -13596,7 +15169,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 219";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 3652;
@@ -13616,7 +15189,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 219";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 3652;
@@ -13626,7 +15199,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.h: tQValPair";
 		rLen = 0;
-		rLoc = 2031;
+		rLoc = 2054;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 1092;
@@ -13636,7 +15209,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 259";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 4013;
@@ -13646,7 +15219,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.h: 68";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2222;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 1092;
@@ -13656,7 +15229,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshVector.h: 466";
 		rLen = 0;
-		rLoc = 12507;
+		rLoc = 12970;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 10500;
@@ -13666,7 +15239,7 @@
 		isa = PBXTextBookmark;
 		name = "MushMeshVector.h: 466";
 		rLen = 0;
-		rLoc = 12507;
+		rLoc = 12970;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 10500;
@@ -13676,7 +15249,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 259";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 4013;
@@ -13690,7 +15263,7 @@
 	7AB6283E07D0E33E0035D7F1 = {
 		fileReference = 7AB627CB07D0D4D00035D7F1;
 		isa = PBXFileBreakpoint;
-		lineNumber = 103;
+		lineNumber = 105;
 		state = 1;
 	};
 	7AB6284707D0E3970035D7F1 = {
@@ -13708,7 +15281,7 @@
 	7AB6284B07D0E3D20035D7F1 = {
 		fileReference = 7A62B86B05A49D05002A5F1C;
 		isa = PBXFileBreakpoint;
-		lineNumber = 371;
+		lineNumber = 373;
 		state = 1;
 	};
 	7AB6284E07D0E4310035D7F1 = {
@@ -13748,7 +15321,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 219";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1758;
@@ -13758,7 +15331,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 259";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 851;
@@ -13768,7 +15341,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 228";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 2052;
@@ -13782,9 +15355,9 @@
 	};
 	7AB6288007D0EB6A0035D7F1 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 3206}}";
-			sepNavSelRange = "{3247, 0}";
-			sepNavVisRect = "{{0, 0}, {693, 756}}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 3220}}";
+			sepNavSelRange = "{3206, 0}";
+			sepNavVisRect = "{{0, 1110}, {693, 756}}";
 		};
 	};
 	7AB6288407D0EC9B0035D7F1 = {
@@ -13802,7 +15375,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 259";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1511;
 		vrLoc = 2805;
@@ -13871,7 +15444,7 @@
 		fRef = 7AB627CB07D0D4D00035D7F1;
 		isa = PBXTextBookmark;
 		name = "//%Header {\n/*****************************************************************************\n *\n * File: src/TesseractTrainer/TesseractTrainerPlanePair.cpp\n *\n * This file contains original work by Andy Southgate.  Contact details can be\n * found at http://www.mushware.com/.  This file was placed in the Public\n * Domain by Andy Southgate and Mushware Limited in 2002-2004.\n *\n * This software carries NO WARRANTY of any kind.\n *\n ****************************************************************************/\n//%Header } e50mVxNYmM7sWR8WfslVyg\n/*\n * $Id: TesseractTrainerPlanePair.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $\n * $Log: TesseractTrainerPlanePair.cpp,v $\n */\n\n#include \"TesseractTrainerPlanePair.h\"\n\n#include \"TesseractTrainerPixelSource.h\"\n\n#include \"mushMushcore.h\"\n\n#include \"MushMeshDivide.h\"\n\nusing namespace Mushware;\nusing namespace std;\n\nvoid\nTesseractTrainerPlanePair::Create(tVal frame, const std::vector<Mushware::t4GLVal>& inColours)\n{\n    m_colours = inColours;\n    \n    t4Val scale(0.25,0.25,0.25,0.25);\n    MushMeshGroup buildGroup;\n    std::vector<tVertex> buildVertices;\n    std::vector<t2Val> buildTexCoords;\n    \n    // 24 vertices, four for each plane\n    for (U32 i=0; i<4; ++i)\n    {\n        for (U32 j=i+1; j<4; ++j)\n        {\n            tVertex vert(0,0,0,0);\n            \n            vert.Set(-1, i);\n            vert.Set(-1, j);\n            buildVertices.push_back(vert.ElementwiseProduct(scale));\n            \n            vert.Set( 1, i);\n            vert.Set(-1, j);\n            buildVertices.push_back(vert.ElementwiseProduct(scale));\n            \n            vert.Set( 1, i);\n            vert.Set( 1, j);\n            buildVertices.push_back(vert.ElementwiseProduct(scale));\n            \n            vert.Set(-1, i);\n            vert.Set( 1, j);\n            buildVertices.push_back(vert.ElementwiseProduct(scale)); \n        }\n    }\n    \n    // File the zero order group (vertices in facets)\n    buildGroup.SuperGroupPush();\n    for (U32 face=0; face<6; ++face)\n    {\n        for (U32 facet=0; facet<1; ++facet)\n        {\n            buildGroup.GroupPush();\n            \n            U32 base=face*4;\n            buildGroup.ValuePush(base);\n            buildGroup.ValuePush(base+1);\n            buildGroup.ValuePush(base+2);\n            buildGroup.ValuePush(base+3);\n        }\n    }\n    \n    \n    // fill the first order group (facets in facets)\n    buildGroup.SuperGroupPush();\n\n#if 0    \n    buildGroup.GroupPush();\n    buildGroup.ValuePush(0);\n    buildGroup.GroupPush();\n    buildGroup.ValuePush(5);\n\n#else\n    for (U32 face=0; face<6; ++face)\n    {\n        buildGroup.GroupPush();\n        for (U32 facet=0; facet<1; ++facet)\n        {\n            buildGroup.ValuePush(face);\n        }\n    }\n#endif\n    \n    for (U32 i=0; i<buildVertices.size(); i += 4)\n    {\n        m_texCoords.push_back(t2Val(0,0));\n        m_texCoords.push_back(t2Val(0,1));\n        m_texCoords.push_back(t2Val(1,1));\n        m_texCoords.push_back(t2Val(1,0));\n    }\n    \n    MushMeshGroup buildGroup2;\n    std::vector<tVertex> buildVertices2;\n    \n    m_vertices = buildVertices;\n    m_facetGroup = buildGroup;\n    \n    cout << m_facetGroup << endl;\n    \n    // Create texture reference\n    m_textureRef.NameSet(\"plane-target1\");\n}\n\nvoid\nTesseractTrainerPlanePair::Render(tVal frame)\n{\n    tVal ang0=0.0;\n    tVal ang1=M_PI*(2.0/3);\n    tVal ang2=M_PI*(4.0/3);\n    \n    \n    MushMeshVector<tVal, 4> vec0(cos(ang0), cos(ang1), cos(ang2), 0);\n    MushMeshVector<tVal, 4> vec1(sin(ang0), sin(ang1), sin(ang2), 0);\n    MushMeshVector<tVal, 4> vec2(0, 0, 0, 1);\n    \n    if ((int)frame % 60 > 60)\n    {\n        vec0 = MushMeshVector<tVal, 4>(1,0,0,0);\n        vec1 = MushMeshVector<tVal, 4>(0,1,0,0);\n        vec2 = MushMeshVector<tVal, 4>(0,0,0,1);\n    }        \n    \n    MushMeshPreMatrix<tVal, 4, 3> preMatrix\n        (\n         vec0, vec1, vec2\n         );\n    \n#if 1\n    \n    std::vector<tVertex> vertices(m_vertices);\n    \n    for (U32 j=0; j<vertices.size(); ++j)\n    {\n        m_orientation.InPlaceRotate(vertices[j]);\n    }\n    \n    const MushMeshGroup::tSuperGroup& srcOne  = m_facetGroup.SuperGroup(1);\n    const MushMeshGroup::tSuperGroup& srcZero = m_facetGroup.SuperGroup(0);\n    \n    glDisable(GL_CULL_FACE);\n    float black[4] = {0,0,0,0};\n    glEnable(GL_FOG);\n    glFogfv(GL_FOG_COLOR, black);\n    glFogf(GL_FOG_START, 3.7);\n    glFogf(GL_FOG_END, 4.3);\n    glFogi(GL_FOG_MODE, GL_LINEAR);\n    glShadeModel(GL_SMOOTH);\n    glEnable(GL_DITHER);\n    \n    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);\n    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);\n    GLState::BindTexture(m_textureRef.BindingNameGet());\n    \n    U32 colourNum=0;\n    \n    for (U32 i=0; i<srcOne.size(); ++i)\n    {\n        for (U32 j=0; j<srcOne[i].size(); ++j)\n        {\n            U32 zeroIndex = srcOne[i][j];\n\n                \n#if 1            \n            GLState::ModulationSet(GLState::kModulationNone);\n            GLState::BlendSet(GLState::kBlendAccumulate);\n            GLState::TextureDisable();\n            glEnable(GL_FOG);\n            glBegin(GL_LINE_LOOP);\n            \n            for (U32 k=0; k<srcZero[zeroIndex].size(); ++k)\n            {\n                t3GLVal vert = preMatrix * vertices[srcZero[zeroIndex][k]];\n                glColor4fv(&m_colours[colourNum].X());\n                glVertex3fv(&vert.X());\n            }\n            glEnd(); \n#endif\n#if 1\n            \n            GLState::ModulationSet(GLState::kModulationColour);\n            GLState::BlendSet(GLState::kBlendAccumulate);\n            glEnable(GL_FOG);\n            GLState::TextureEnable();\n            glDisableClientState(GL_TEXTURE_COORD_ARRAY);\n            glBegin(GL_TRIANGLE_FAN);\n            \n            for (U32 k=0; k<srcZero[zeroIndex].size(); ++k)\n            {\n                t3GLVal vert = preMatrix * vertices[srcZero[zeroIndex][k]];\n                t2GLVal texCoord = m_texCoords[srcZero[zeroIndex][k]];\n                \n                glColor4fv(&m_colours[colourNum].X());\n                glTexCoord2fv(&texCoord.X());\n                glVertex3fv(&vert.X());\n            }\n            glEnd(); \n            \n            GLState::TextureDisable();\n            \n#endif\n            \n        }\n        if (colourNum+1 < m_colours.size())\n        {\n            ++colourNum;\n        }\n    }\n#endif\n}\n\n";
-		rLen = 6200;
+		rLen = 6193;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1222;
@@ -13882,7 +15455,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlaneSet.cpp: 123";
 		rLen = 0;
-		rLoc = 3247;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 0;
@@ -13912,7 +15485,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 112";
 		rLen = 0;
-		rLoc = 3104;
+		rLoc = 3097;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 2767;
@@ -13922,7 +15495,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: Render";
 		rLen = 0;
-		rLoc = 2952;
+		rLoc = 2945;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 1997;
@@ -13942,7 +15515,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: Render";
 		rLen = 0;
-		rLoc = 2952;
+		rLoc = 2945;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 2357;
@@ -13962,7 +15535,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 112";
 		rLen = 0;
-		rLoc = 3104;
+		rLoc = 3097;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 2767;
@@ -13979,7 +15552,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 126";
 		rLen = 0;
-		rLoc = 3598;
+		rLoc = 3477;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 2460;
@@ -13989,7 +15562,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlaneSet.cpp: 119";
 		rLen = 0;
-		rLoc = 3247;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -13999,7 +15572,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 262";
 		rLen = 0;
-		rLoc = 7101;
+		rLoc = 7102;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2460;
@@ -14009,7 +15582,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlaneSet.cpp: 119";
 		rLen = 0;
-		rLoc = 3247;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -14019,7 +15592,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerGame.cpp: 126";
 		rLen = 0;
-		rLoc = 3598;
+		rLoc = 3477;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 2460;
@@ -14029,7 +15602,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlaneSet.cpp: 119";
 		rLen = 0;
-		rLoc = 3247;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -14039,7 +15612,7 @@
 		isa = PBXTextBookmark;
 		name = "TesseractTrainerPlanePair.cpp: 222";
 		rLen = 0;
-		rLoc = 6200;
+		rLoc = 6193;
 		rType = 0;
 		vrLen = 516;
 		vrLoc = 2730;

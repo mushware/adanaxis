@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } R8PJKwqR61qEAsXpbOlPGQ
 /*
- * $Id: MushMeshTools.h,v 1.2 2005/02/03 15:46:53 southa Exp $
+ * $Id: MushMeshTools.h,v 1.3 2005/02/03 21:03:02 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.3  2005/02/03 21:03:02  southa
+ * Build fixes
+ *
  * Revision 1.2  2005/02/03 15:46:53  southa
  * Quaternion work
  *
@@ -38,6 +41,8 @@ public:
     static Mushware::t3x3Val RotateInXY(Mushware::tVal inAngle);
     static Mushware::t4x4Val MatrixRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
     static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
+    static Mushware::tQValPair RandomOrientation(void);
+    static Mushware::tVal Random(const Mushware::tVal inMin, const Mushware::tVal inMax);
 };
 //%includeGuardEnd {
 #endif

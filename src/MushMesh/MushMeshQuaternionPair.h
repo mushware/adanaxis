@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7ZSBQbATpwtej064t1GYDw
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.1 2005/02/03 21:03:01 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.2 2005/02/10 12:34:06 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.2  2005/02/10 12:34:06  southa
+ * Template fixes
+ *
  * Revision 1.1  2005/02/03 21:03:01  southa
  * Build fixes
  *
@@ -42,7 +45,10 @@ public:
     void OuterMultiplyBy(const MushMeshQuaternionPair& inVal);
     
     void InPlaceRotate(Mushware::t4Val& ioVec) const;
+    void Normalise();
     
+    MushMeshQuaternionPair<T> ConjugateGet(void) const;
+        
     static MushMeshQuaternionPair AdditiveIdentityGet()
     {
         return MushMeshQuaternionPair(MushMeshQuaternion<T>::AdditiveIdentityGet(),
@@ -98,6 +104,22 @@ MushMeshQuaternionPair<T>::InPlaceRotate(Mushware::t4Val& ioVec) const
     m_first.PreMultiplyVector(ioVec);
     m_second.PostMultiplyVector(ioVec);
 }
+
+template<class T>
+inline void
+MushMeshQuaternionPair<T>::Normalise()
+{
+    m_first.Normalise();
+    m_second.Normalise();
+}
+
+template<class T>
+inline MushMeshQuaternionPair<T>
+MushMeshQuaternionPair<T>::ConjugateGet(void) const
+{
+    return MushMeshQuaternionPair(m_first.ConjugateGet(), m_second.ConjugateGet());
+}
+
 
 // Stream operators
 

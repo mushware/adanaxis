@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 6or7cGI6GTbVWHPnRbyYCA
 /*
- * $Id: TesseractTrainerPlaneSet.cpp,v 1.3 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerPlaneSet.cpp,v 1.1 2005/02/26 17:53:49 southa Exp $
  * $Log: TesseractTrainerPlaneSet.cpp,v $
+ * Revision 1.1  2005/02/26 17:53:49  southa
+ * Plane sets and pairs
+ *
  */
 
 #include "TesseractTrainerPlaneSet.h"
@@ -112,8 +115,6 @@ TesseractTrainerPlaneSet::Create(tVal frame, const std::vector<Mushware::t4GLVal
     
     m_vertices = buildVertices;
     m_facetGroup = buildGroup;
-    
-    cout << m_facetGroup << endl;
     
     // Create texture reference
     m_textureRef.NameSet("plane-target1");

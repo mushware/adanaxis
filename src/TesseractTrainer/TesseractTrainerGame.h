@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.4 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.5 2005/02/26 17:53:45 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.5  2005/02/26 17:53:45  southa
+ * Plane sets and pairs
+ *
  * Revision 1.4  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -56,6 +59,7 @@ public:
     static void Install(void);
     
 protected:
+    void Reorientate(void);
     
 private:
     TesseractTrainerHypercube m_hypercube; //:ignore

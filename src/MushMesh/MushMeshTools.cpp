@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } iBl6/bhvcrVVWDxtT03+yg
 /*
- * $Id: MushMeshTools.cpp,v 1.1 2004/10/31 23:34:07 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.2 2005/02/03 15:46:53 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.2  2005/02/03 15:46:53  southa
+ * Quaternion work
+ *
  * Revision 1.1  2004/10/31 23:34:07  southa
  * Hypercube rendering test
  *
@@ -162,3 +165,24 @@ MushMeshTools::QuaternionRotateInAxis(U32 inAxis, tVal inAngle)
     }
 }
 
+Mushware::tQValPair
+MushMeshTools::RandomOrientation(void)
+{
+    tQVal q1, q2;
+    for (U32 i=0; i<4; ++i)
+    {
+        q1.Set(Random(-1,1), i);
+        q2.Set(Random(-1,1), i);
+    }
+    
+    q1.InPlaceNormalise();
+    q2.InPlaceNormalise();
+    
+    return tQValPair(q1, q2);
+}    
+
+Mushware::tVal
+MushMeshTools::Random(const Mushware::tVal inMin, const Mushware::tVal inMax)
+{
+    return inMin + (inMax - inMin) * static_cast<double>(std::rand())/RAND_MAX;
+}
