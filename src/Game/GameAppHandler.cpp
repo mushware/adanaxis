@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.32 2002/11/16 12:43:20 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.33 2002/11/17 13:38:30 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.33  2002/11/17 13:38:30  southa
+ * Game selection
+ *
  * Revision 1.32  2002/11/16 12:43:20  southa
  * GameApp mode switching
  *
@@ -267,4 +270,22 @@ GameAppHandler::PrepareNewGame(void)
     command.Execute();
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
+}
+
+void
+GameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
+{
+    bool keyHandled=false;
+    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    {
+        if (m_appState == kAppStateGame)
+        {
+            SetupModeEnter();
+            keyHandled=true;
+        }
+    }
+    if (!keyHandled)
+    {
+        SDLAppHandler::KeyboardSignal(inSignal);
+    }
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreAppHandler.cpp,v 1.8 2002/08/27 08:56:15 southa Exp $
+ * $Id: CoreAppHandler.cpp,v 1.9 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.9  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -86,7 +89,7 @@ CoreAppHandler::Signal(const CoreAppSignal& inSignal)
             break;
 
         case CoreAppSignal::kEscape:
-            Instance().Signal(CoreAppSignal(CoreAppSignal::kQuit));
+            Signal(CoreAppSignal(CoreAppSignal::kQuit));
             break;
             
         default:

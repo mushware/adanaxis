@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.35 2002/10/17 15:50:59 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.36 2002/10/22 20:42:04 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.36  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.35  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -754,6 +757,7 @@ GameFloorMap::Unpickle(CoreXML& inXML)
     m_endTable[kData]["gamemap"] = &GameFloorMap::HandleGameFloorMapEnd;
     m_endTable[kData]["data"] = &GameFloorMap::HandleDataEnd;
 
+    m_state=kInit;
     m_map.clear();
     inXML.ParseStream(*this);
     if (m_map.size() != m_ysize)

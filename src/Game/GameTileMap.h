@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.11 2002/10/13 12:26:47 southa Exp $
+ * $Id: GameTileMap.h,v 1.12 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.12  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/13 12:26:47  southa
  * Facetised map rendering
  *
@@ -84,6 +87,7 @@ protected:
 
     enum
     {
+        kInvalid,
         kInit,
         kData,
         kNumStates

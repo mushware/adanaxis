@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.12 2002/11/16 12:43:21 southa Exp $
+ * $Id: GameAppHandler.h,v 1.13 2002/11/17 13:38:30 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.13  2002/11/17 13:38:30  southa
+ * Game selection
+ *
  * Revision 1.12  2002/11/16 12:43:21  southa
  * GameApp mode switching
  *
@@ -71,6 +74,8 @@ public:
     void GameModeEnter(bool inResume);
     
 protected:
+    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
+        
     void PrepareNewGame(void);
     
 private:

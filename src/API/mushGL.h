@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushGL.h,v 1.17 2002/10/14 18:13:17 southa Exp $
+ * $Id: mushGL.h,v 1.18 2002/10/22 20:41:56 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.18  2002/10/22 20:41:56  southa
+ * Source conditioning
+ *
  * Revision 1.17  2002/10/14 18:13:17  southa
  * GLModeDef work
  *
@@ -73,6 +76,7 @@
 
 #include "GL/GLArray.h"
 #include "GL/GLAppHandler.h"
+#include "GL/GLAppSignal.h"
 #include "GL/GLColour.h"
 #include "GL/GLData.h"
 #include "GL/GLLightDef.h"

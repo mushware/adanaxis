@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.20 2002/10/17 15:50:59 southa Exp $
+ * $Id: GameFloorMap.h,v 1.21 2002/10/22 20:42:04 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.21  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.20  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -159,6 +162,7 @@ protected:
 
     enum
     {
+        kInvalid,
         kInit,
         kData,
         kNumStates

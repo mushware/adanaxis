@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.13 2002/10/13 12:26:47 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.14 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.14  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/10/13 12:26:47  southa
  * Facetised map rendering
  *
@@ -244,6 +247,8 @@ GameTileMap::Unpickle(CoreXML& inXML)
     m_endTable[kData]["script"] = &GameTileMap::HandleScriptEnd;
     m_endTable[kData]["map"] = &GameTileMap::HandleMapEnd;
 
+    m_state=kInit;
+    m_traits.clear();
     m_map.clear();
     inXML.ParseStream(*this);
 }

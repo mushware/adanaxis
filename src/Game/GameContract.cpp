@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.92 2002/11/15 18:58:33 southa Exp $
+ * $Id: GameContract.cpp,v 1.93 2002/11/16 12:43:21 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.93  2002/11/16 12:43:21  southa
+ * GameApp mode switching
+ *
  * Revision 1.92  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -522,6 +525,7 @@ GameContract::RunningDisplay(void)
 {
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
+    m_floorMap->AttachTileMap(m_tileMap);
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     GameTimer& timer(GameData::Instance().TimerGet());
