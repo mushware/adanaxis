@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } RALAx/jADryC5GEZJ6YVLw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.36 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.37 2005/01/29 14:06:12 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.37  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.36  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -504,6 +507,15 @@ PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string&
         success = true;
     }
     return success;
+}
+
+void
+PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
+{
+    if (!FunctionPointerGetIfExists(outPtr, inName))
+    {
+        throw MushcoreRequestFail("Unknown symbol '"+inName+"'");
+    }
 }
 
 

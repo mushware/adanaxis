@@ -797,6 +797,46 @@
 			settings = {
 			};
 		};
+		7A62431607ABEE79006BCF7E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushcoreLog.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A62431707ABEE79006BCF7E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushcoreLog.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A62431807ABEE79006BCF7E = {
+			fileRef = 7A62431607ABEE79006BCF7E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A62431907ABEE79006BCF7E = {
+			fileRef = 7A62431707ABEE79006BCF7E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A62431A07ABEE79006BCF7E = {
+			fileRef = 7A62431607ABEE79006BCF7E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A62431B07ABEE79006BCF7E = {
+			fileRef = 7A62431707ABEE79006BCF7E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A6252EE05AC1A8D006A2161 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1159,6 +1199,7 @@
 				7A654B9B07A9402200DE4A9D,
 				7A654C9107A9713200DE4A9D,
 				7A620FCD07ABA3DD00347A99,
+				7A62431807ABEE79006BCF7E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1449,6 +1490,7 @@
 				7A654B9C07A9402200DE4A9D,
 				7A654C9207A9713200DE4A9D,
 				7A620FCE07ABA3DD00347A99,
+				7A62431907ABEE79006BCF7E,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3607,6 +3649,8 @@
 				7A62B82105A49D05002A5F1C,
 				7A62B82205A49D05002A5F1C,
 				7A62B82305A49D05002A5F1C,
+				7A62431707ABEE79006BCF7E,
+				7A62431607ABEE79006BCF7E,
 				7A62B82405A49D05002A5F1C,
 				7A62B82505A49D05002A5F1C,
 				7A62B82605A49D05002A5F1C,
@@ -12650,6 +12694,7 @@
 				7A71971B05A99A7300C42A20,
 				7A71972305A99AA300C42A20,
 				7A71972705A99AA800C42A20,
+				7A62431A07ABEE79006BCF7E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12707,6 +12752,7 @@
 				7A71970105A99A6E00C42A20,
 				7A71970C05A99A7000C42A20,
 				7A71971105A99A7100C42A20,
+				7A62431B07ABEE79006BCF7E,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

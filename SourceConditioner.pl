@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.27 2004/09/27 22:42:08 southa Exp $
+# $Id: SourceConditioner.pl,v 1.28 2005/01/29 14:06:11 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.28  2005/01/29 14:06:11  southa
+# OpenGL buffers and extensions
+#
 # Revision 1.27  2004/09/27 22:42:08  southa
 # MSVC compilation fixes
 #
@@ -555,7 +558,7 @@ sub OstreamWriteFunctionGenerate($$)
             $comma = " << \", \"" unless ($i+3 == @$attributesRef);
            
             my $line = "    ioOut << \"$trimmedAttr=\" << ";
-            if ($comment =~ /:aspointer\b/)
+            if ($comment =~ /:fnpointer\b/)
             {
                 $line .= '(void *)';   
             }

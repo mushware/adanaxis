@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.7 2005/01/27 21:00:39 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.8 2005/01/29 14:06:12 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.8  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.7  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -50,8 +53,6 @@ using namespace std;
 
 MaurheenGame::MaurheenGame()
 {
-    m_hypercube.Create(0);
-    m_hypersphere.Create(0);
 }
 
 MaurheenGame::~MaurheenGame()
@@ -145,6 +146,9 @@ MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0)); // 13
     MushGLV::Sgl().Acquaint();
+    m_hypercube.Create(0);
+    m_hypersphere.Create(0);
+
     cout << MushGLV::Sgl() << endl;
 }
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 3XIr5cTD30rcFqo9UL9xaQ
 /*
- * $Id: MushGLV.cpp,v 1.1 2004/09/20 21:50:47 southa Exp $
+ * $Id: MushGLV.cpp,v 1.2 2005/01/29 14:06:12 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.2  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.1  2004/09/20 21:50:47  southa
  * Added GLV
  *
@@ -30,7 +33,14 @@ using namespace std;
 MUSHCORE_SINGLETON_INSTANCE(MushGLV);
 
 MushGLV::MushGLV() :
-    m_fpBindBuffer(NULL)
+    m_hasVertexBuffer(false),
+    m_fpBindBuffer(NULL),
+    m_fpBufferData(NULL),
+    m_fpBufferSubData(NULL),
+    m_fpDeleteBuffers(NULL),
+    m_fpGenBuffers(NULL),
+    m_fpMapBuffer(NULL),
+    m_fpUnmapBuffer(NULL)
 {
 }
 
@@ -40,17 +50,35 @@ MushGLV::Acquaint()
     m_vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     m_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-    m_extensions = reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS));
+    m_extensions = std::string(" ")+reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS))+" ";
     
     void *fnPtr;
-    if (PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, "glBindBuffer"))
+
+    if (m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
-        m_fpBindBuffer = (tfpBindBuffer)fnPtr;
-        cout << "Found function at " << fnPtr << endl;
-    }
-    else
-    {
-        cout << "failed to find function" << endl;
+        try
+        {
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBindBuffer");
+            m_fpBindBuffer = (tfpBindBuffer)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBufferData");
+            m_fpBufferData = (tfpBufferData)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBufferSubData");
+            m_fpBufferSubData = (tfpBufferSubData)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glDeleteBuffers");
+            m_fpDeleteBuffers = (tfpDeleteBuffers)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glGenBuffers");
+            m_fpGenBuffers = (tfpGenBuffers)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glMapBuffer");
+            m_fpMapBuffer = (tfpMapBuffer)fnPtr;
+            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glUnmapBuffer");
+            m_fpUnmapBuffer = (tfpUnmapBuffer)fnPtr;
+
+            m_hasVertexBuffer = true;
+        }
+        catch (MushcoreNonFatalFail &e)
+        {
+            MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+        }
     }
 }
 
@@ -59,11 +87,18 @@ void
 MushGLV::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "hasVertexBuffer=" << m_hasVertexBuffer << ", ";
     ioOut << "fpBindBuffer=" << (void *)m_fpBindBuffer << ", ";
+    ioOut << "fpBufferData=" << (void *)m_fpBufferData << ", ";
+    ioOut << "fpBufferSubData=" << (void *)m_fpBufferSubData << ", ";
+    ioOut << "fpDeleteBuffers=" << (void *)m_fpDeleteBuffers << ", ";
+    ioOut << "fpGenBuffers=" << (void *)m_fpGenBuffers << ", ";
+    ioOut << "fpMapBuffer=" << (void *)m_fpMapBuffer << ", ";
+    ioOut << "fpUnmapBuffer=" << (void *)m_fpUnmapBuffer << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions;
     ioOut << "]";
 }
-//%outOfLineFunctions } ltALzkImmeRSCMstKHzgCg
+//%outOfLineFunctions } GqUEday1JoJOy0E+UqZFFQ

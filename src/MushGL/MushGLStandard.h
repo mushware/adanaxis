@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JAwZoKzI2b5H44hJsgMLvA
 /*
- * $Id: MushGLStandard.h,v 1.3 2004/09/27 22:42:09 southa Exp $
+ * $Id: MushGLStandard.h,v 1.4 2004/10/31 23:34:06 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.4  2004/10/31 23:34:06  southa
+ * Hypercube rendering test
+ *
  * Revision 1.3  2004/09/27 22:42:09  southa
  * MSVC compilation fixes
  *
@@ -40,6 +43,7 @@
 #if defined(__APPLE__) || defined(MACOSX)
 #define HAVE_OPENGL_GL_H
 #define HAVE_OPENGL_GLU_H
+#define HAVE_OPENGL_GLEXT_H
 #endif
 
 #ifdef HAVE_GL_GL_H
@@ -61,22 +65,44 @@
 
 #ifdef HAVE_GLEXT_H
 #include <glext.h>
-#endif
-
-#ifdef HAVE_GL_GLEXT_H
+#elif defined(HAVE_GL_GLEXT_H)
 #include <GL/glext.h>
-#endif
-
-#ifdef HAVE_OPENGL_GLEXT_H
+#elif defined(HAVE_OPENGL_GLEXT_H)
 #include <OpenGL/glext.h>
 #endif
 
+#ifndef GL_VERSION_1_5
+#include <stddef.h>
+#include <memory.h>
+
+#define GL_ARRAY_BUFFER            0x8892
+#define GL_ELEMENT_ARRAY_BUFFER    0x8893
+#define GL_READ_ONLY               0x88B8
+#define GL_WRITE_ONLY              0x88B9
+#define GL_READ_WRITE              0x88BA
+#define GL_BUFFER_ACCESS           0x88BB
+#define GL_BUFFER_MAPPED           0x88BC
+#define GL_BUFFER_MAP_POINTER      0x88BD
+#define GL_STREAM_DRAW             0x88E0
+#define GL_STREAM_READ             0x88E1
+#define GL_STREAM_COPY             0x88E2
+#define GL_STATIC_DRAW             0x88E4
+#define GL_STATIC_READ             0x88E5
+#define GL_STATIC_COPY             0x88E6
+#define GL_DYNAMIC_DRAW            0x88E8
+#define GL_DYNAMIC_READ            0x88E9
+#define GL_DYNAMIC_COPY            0x88EA
+#define GL_SAMPLES_PASSED          0x8914
+
+typedef ptrdiff_t GLsizeiptr;
+typedef ptrdiff_t GLintptr;
+#endif
 
 #include "mushMushcore.h"
 #include "mushMushMesh.h"
  
 #include <cmath>
- 
+
 namespace Mushware
 {
      typedef GLfloat tGLVal;

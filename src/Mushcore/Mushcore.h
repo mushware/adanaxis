@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0fdTqg9vFtF3oFat0HJ4HA
 /*
- * $Id: Mushcore.h,v 1.17 2004/01/02 21:13:11 southa Exp $
+ * $Id: Mushcore.h,v 1.18 2004/01/04 17:02:30 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.18  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.17  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -89,6 +92,7 @@
 #include "MushcoreInfo.h"
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
+#include "MushcoreLog.h"
 // #include "MushcoreIO.h"
 #include "MushcoreObject.h"
 #include "MushcorePickle.h"

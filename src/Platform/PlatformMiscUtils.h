@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4UPdmxdhcOYTSSiCCkQrtg
 /*
- * $Id: PlatformMiscUtils.h,v 1.24 2004/01/06 20:46:52 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.25 2005/01/29 14:06:12 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.25  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.24  2004/01/06 20:46:52  southa
  * Build fixes
  *
@@ -92,6 +95,7 @@ public:
     static void ShowUpdateAlert(void);
     static void SleepMsec(Mushware::U32 inMsec);
     static bool FunctionPointerGetIfExists(void *& outPtr, const std::string& inName);
+    static void FunctionPointerGet(void *& outPtr, const std::string& inName);
 };
 //%includeGuardEnd {
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xxX+iSBjqDjjRTp/Knkivw
 /*
- * $Id: MaurheenHypersphere.cpp,v 1.1 2005/01/27 21:00:39 southa Exp $
+ * $Id: MaurheenHypersphere.cpp,v 1.2 2005/01/29 14:06:12 southa Exp $
  * $Log: MaurheenHypersphere.cpp,v $
+ * Revision 1.2  2005/01/29 14:06:12  southa
+ * OpenGL buffers and extensions
+ *
  * Revision 1.1  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -73,11 +76,18 @@ MaurheenHypersphere::Create(tVal frame)
     }
     
     t4GLVal colourOffset = t4GLVal(0.5, 0.5, 0.5, 0.5);
-    for (U32 i=0; i<kNumVertices; ++i)
+    
+    for (U32 attempts=0;;)
     {
-        t4GLVal colour = m_vertices[i]*1 + colourOffset;
-        colour.WSet(1);
-        m_colourBuffer.Set(colour, i);
+        m_colourBuffer.MapReadWrite();
+        for (U32 i=0; i<kNumVertices; ++i)
+        {
+            t4GLVal colour = m_vertices[i]*1 + colourOffset;
+            colour.WSet(1);
+            m_colourBuffer.Set(colour, i);
+        }
+        if (m_colourBuffer.AttemptUnmap()) break;
+        if (attempts++ > 100) throw MushcoreRequestFail("Cannot unmap");
     }
 }
 
@@ -110,10 +120,11 @@ MaurheenHypersphere::Render(tVal frame)
     }
     
     if ((U32)(frame*4) % 16 > 7)
-    {    for (U32 j=0; j<vertices.size(); ++j)
     {
-        vertices[j] = rotate * m_vertices[j];
-    }
+        for (U32 j=0; j<vertices.size(); ++j)
+        {
+            vertices[j] = rotate * m_vertices[j];
+        }
     }
     
     MushMeshPreMatrix<tVal, 4, 3> preMatrix
@@ -135,11 +146,22 @@ MaurheenHypersphere::Render(tVal frame)
 
     if ((U32)(frame*4) % 8 > 3)
     {
-        for (U32 i=0; i<kNumVertices; ++i)
+        for (U32 attempts=0;;)
         {
-            m_vertexBuffer.Set(vertOffset + preMatrix * vertices[i], i);
+            m_vertexBuffer.MapReadWrite();
+            for (U32 i=0; i<kNumVertices; ++i)
+            {
+                m_vertexBuffer.Set(vertOffset + preMatrix * vertices[i], i);
+            }
+            if (m_vertexBuffer.AttemptUnmap())
+            {
+                break;
+            }
+            if (attempts++ > 100) throw MushcoreRequestFail("Cannot unmap");
         }
-            
+        
+        cout << "yes=" << m_vertexBuffer;
+
         glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
         glVertexPointer(3, GL_FLOAT, 0, m_vertexBuffer.AddrForGLGet());
         
@@ -154,6 +176,9 @@ MaurheenHypersphere::Render(tVal frame)
     else
     {
         glBegin(GL_POINTS);
+        m_vertexBuffer.MapReadWrite();
+        m_colourBuffer.MapReadWrite();
+        cout << "no=" << m_vertexBuffer;
         Mushware::tSize verticesSize = vertices.size();
         
         const tGLVal *pColour = &m_colourBuffer.Ref(0).X();
@@ -167,7 +192,8 @@ MaurheenHypersphere::Render(tVal frame)
             glVertex3fv(pVertex);
             pColour += 1;
         }
-        
+        m_vertexBuffer.AttemptUnmap();
+        m_colourBuffer.AttemptUnmap();
         glEnd();
     }    
 }
