@@ -4121,6 +4121,8 @@
 				F52B3C0D028C26530179D0A8,
 				F54020BF02A2551701F0D71D,
 				F54020C002A2551701F0D71D,
+				F5B39DB80384029501A80164,
+				F5B39DB70384029501A80164,
 				F52B3C0E028C26530179D0A8,
 				F5463A990230DCDC011D269C,
 				F52B3C0F028C26530179D0A8,
@@ -4194,6 +4196,8 @@
 				F593968A028C01AE016230BF,
 				F593D55F035C11BE01A80166,
 				F593D55E035C11BE01A80166,
+				F5B39DB20383F5FB01A80164,
+				F5B39DB10383F5FB01A80164,
 				F54020AD02A2423901F0D71D,
 				F54020AE02A2423901F0D71D,
 				F5F06F1202AE5D2001B05200,
@@ -4496,6 +4500,8 @@
 				F512BC61037973D101A80164,
 				F59C48E2037A818201A80164,
 				F59C48E6037A83D401A80164,
+				F5B39DB30383F5FB01A80164,
+				F5B39DB90384029501A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4638,6 +4644,8 @@
 				F512BC62037973D101A80164,
 				F59C48E3037A818201A80164,
 				F59C48E7037A83D401A80164,
+				F5B39DB40383F5FB01A80164,
+				F5B39DBA0384029501A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5802,6 +5810,52 @@
 		};
 		F5B345EA0370338101A80164 = {
 			fileRef = F5B345E90370338101A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B39DB10383F5FB01A80164 = {
+			isa = PBXFileReference;
+			name = GameConfigDef.h;
+			path = Game/GameConfigDef.h;
+			refType = 4;
+		};
+		F5B39DB20383F5FB01A80164 = {
+			isa = PBXFileReference;
+			name = GameConfigDef.cpp;
+			path = Game/GameConfigDef.cpp;
+			refType = 4;
+		};
+		F5B39DB30383F5FB01A80164 = {
+			fileRef = F5B39DB10383F5FB01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B39DB40383F5FB01A80164 = {
+			fileRef = F5B39DB20383F5FB01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B39DB70384029501A80164 = {
+			isa = PBXFileReference;
+			path = CoreInfo.h;
+			refType = 4;
+		};
+		F5B39DB80384029501A80164 = {
+			isa = PBXFileReference;
+			path = CoreInfo.cpp;
+			refType = 4;
+		};
+		F5B39DB90384029501A80164 = {
+			fileRef = F5B39DB70384029501A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B39DBA0384029501A80164 = {
+			fileRef = F5B39DB80384029501A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

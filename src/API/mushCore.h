@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.11 2002/10/22 20:41:56 southa Exp $
+ * $Id: mushCore.h,v 1.12 2002/11/07 11:59:02 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.12  2002/11/07 11:59:02  southa
+ * Web commands
+ *
  * Revision 1.11  2002/10/22 20:41:56  southa
  * Source conditioning
  *
@@ -94,6 +97,9 @@
 
 // Global configuration
 #include "CoreApp/CoreGlobalConfig.h"
+
+// Package and version information
+#include "CoreApp/CoreInfo.h"
 
 // Used as a hook to register classes and commands at startup
 #include "CoreApp/CoreInstaller.h"

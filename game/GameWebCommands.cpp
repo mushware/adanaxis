@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.3 2002/11/12 18:02:13 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.4 2002/11/14 11:40:28 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.4  2002/11/14 11:40:28  southa
+ * Configuration handling
+ *
  * Revision 1.3  2002/11/12 18:02:13  southa
  * POST handling and handlepostvalues command
  *
@@ -53,7 +56,7 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     COREASSERT(matches.size() == 1);
     if (matches[0] == "config1")
     {
-        ProcessConfig1(values);
+        GameConfig::Instance().PostDataHandle(values);;
     }
     else
     {
@@ -61,42 +64,6 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     
     return CoreScalar(0);
-}
-
-void
-GameWebCommands::ProcessConfig1(const string& inValues)
-{
-    U32 value;
-    if (PostU32Retrieve(value, inValues, "displaymode", PlatformVideoUtils::PlatformVideoUtils::Instance().NumModesGet()))
-    {
-        GameConfig::Instance().DisplayModeSet(value);
-    }
-}
-
-bool
-GameWebCommands::PostU32Retrieve(U32& outValue, const string& inValues, const string& inName, U32 inHighLimit)
-{
-    bool found=false;
-    CoreRegExp re(inName+"=([^&]+)&");
-    vector<string> matches;
-    if (re.Search(inValues, matches))
-    {
-        COREASSERT(matches.size() == 1);
-        istringstream valueStream(matches[0]);
-        U32 value;
-        if (valueStream >> value)
-        {
-            if (value >= inHighLimit)
-            {
-                ostringstream message;
-                message << "Value for " << inName <<" too large (" << value << " > " << inHighLimit << ")";
-                throw(CommandFail(message.str()));
-            }
-            outValue = value;
-            found=true;
-        }
-    }
-    return found;
 }
 
 CoreScalar

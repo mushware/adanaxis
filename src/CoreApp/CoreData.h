@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.6 2002/11/04 01:02:37 southa Exp $
+ * $Id: CoreData.h,v 1.7 2002/11/04 19:34:46 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.7  2002/11/04 19:34:46  southa
+ * Network link maintenance
+ *
  * Revision 1.6  2002/11/04 01:02:37  southa
  * Link checks
  *
@@ -52,6 +55,7 @@ public:
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
     inline void DataDelete(const string& inName);
+    inline bool DataExists(const string& inName) const;
     inline void Clear(void);
     inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(ostream& ioOut);
@@ -125,6 +129,18 @@ CoreData<RefType>::DataDelete(const string& inName)
     }
     delete p->second;
     m_data.erase(p);
+}
+
+template<class RefType>
+inline bool
+CoreData<RefType>::DataExists(const string& inName) const
+{
+    map<string, RefType *>::const_iterator p = m_data.find(inName);
+    if (p == m_data.end())
+    {
+        return false;
+    }
+    return true;
 }
 
 template<class RefType>

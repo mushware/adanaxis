@@ -1,6 +1,9 @@
 /*
- * $Id: GameWebCommands.h,v 1.2 2002/11/12 18:02:13 southa Exp $
+ * $Id: GameWebCommands.h,v 1.3 2002/11/14 11:40:28 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.3  2002/11/14 11:40:28  southa
+ * Configuration handling
+ *
  * Revision 1.2  2002/11/12 18:02:13  southa
  * POST handling and handlepostvalues command
  *
@@ -16,8 +19,6 @@ class GameWebCommands
 public:
     static void Install(void);
     static CoreScalar HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static void ProcessConfig1(const string& inValues);
-    static bool PostU32Retrieve(U32& outValue, const string& inValues, const string& inName, U32 inHighLimit);
     static CoreScalar DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
 };
 
