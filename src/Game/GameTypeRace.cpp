@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.7 2002/08/19 23:11:22 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.8 2002/08/20 11:43:25 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.8  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.7  2002/08/19 23:11:22  southa
  * Lap and split time tweaks
  *
@@ -78,6 +81,7 @@ GameTypeRace::SequenceAdvance(void)
         m_startTime=gameTime;
         m_raceStarted=true;
     }
+    U32 lastSequence = m_sequence;
     m_sequence++;
     if (m_sequence >= m_chequePoints.size())
     {
@@ -128,7 +132,7 @@ GameTypeRace::SequenceAdvance(void)
         m_records.SplitTimePropose(m_sequence, splitTime);
         if (judgementRatio == 0.0)
         {
-            judgementRatio = splitTime / m_chequePoints[m_sequence]->TimeGet();
+            judgementRatio = splitTime / m_chequePoints[lastSequence]->TimeGet();
         }
     }
     m_chequePointTime = gameTime;
@@ -214,6 +218,7 @@ GameTypeRace::HandleLapTimeEnd(CoreXML& inXML)
     const char *failMessage="Bad format for laptime.  Should be <laptime>45.0</laptime>";
 
     if (!(data >> m_lapParTime)) inXML.Throw(failMessage);
+    m_lapParTime *= 1000;
 }
 
 void

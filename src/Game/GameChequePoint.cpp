@@ -1,6 +1,9 @@
 /*
- * $Id: GameChequePoint.cpp,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.2 2002/08/20 11:43:25 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.2  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.1  2002/08/18 20:44:33  southa
  * Initial chequepoint work
  *
@@ -66,6 +69,7 @@ GameChequePoint::HandleTimeEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_time)) inXML.Throw("Bad format for time.  Should be <time>10</time>");
+    m_time *=1000;
 }
 
 void

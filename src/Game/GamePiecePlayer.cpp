@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.18 2002/08/18 15:13:16 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.19 2002/08/18 20:44:35 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.19  2002/08/18 20:44:35  southa
+ * Initial chequepoint work
+ *
  * Revision 1.18  2002/08/18 15:13:16  southa
  * Adhesion handling
  *
@@ -128,22 +131,27 @@ GamePiecePlayer::MoveGet(GameMotionSpec& outSpec) const
 
     outSpec.deltaPos.RotateAboutZ(-newAngle);
     
+    GLPoint keyMovement(0,0);
     if (controlState.leftPressed)
     {
-        outSpec.deltaPos.x -= m_adhesion*m_acceleration;
+        keyMovement.x -= 1;
     }
     if (controlState.rightPressed)
     {
-        outSpec.deltaPos.x += m_adhesion*m_acceleration;
+        keyMovement.x += 1;
     }
     if (controlState.upPressed)
     {
-        outSpec.deltaPos.y += m_adhesion*m_acceleration;
+        keyMovement.y += 1;
     }
     if (controlState.downPressed)
     {
-        outSpec.deltaPos.y -= m_adhesion*m_acceleration;
+        keyMovement.y -= 1;
     }
+    keyMovement.ConstrainMagnitude(m_adhesion*m_acceleration);
+
+    outSpec.deltaPos += keyMovement;
+
     // Constrain magnitude to an egg-ellipse thing
     tVal magnitude;
     if (outSpec.deltaPos.y > 0)
