@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.6 2002/07/16 17:53:48 southa Exp $
+; $Id: installer.nsi,v 1.7 2002/08/07 10:47:44 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.7  2002/08/07 10:47:44  southa
+; Preparation for release 0.0.3
+;
 ; Revision 1.6  2002/07/16 17:53:48  southa
 ; Added ReadMe file link
 ;
@@ -114,6 +117,7 @@ CreateDirectory "$STARTMENU\Programs\Mushware"
 CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\Uninstall IC2.exe"
 CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk" "$INSTDIR\README.txt"
+CreateShortCut "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
 CreateShortCut "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk" "$INSTDIR\"
 CreateShortCut "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
 CreateShortCut "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
@@ -122,6 +126,7 @@ CreateShortCut "$STARTMENU\Programs\Mushware\Register IC2 RateWare!.lnk" "http:/
 CreateShortCut "$INSTDIR\Mushware IC2 Web Site.lnk" "http://www.mushware.co.uk/ic2/"
 CreateShortCut "$INSTDIR\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
 CreateShortCut "$INSTDIR\Register IC2 RateWare!.lnk" "http://www.mushware.co.uk/ic2/rateware"
+CreateShortCut "$INSTDIR\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
 
 SetOutPath "$INSTDIR"
 
@@ -142,6 +147,7 @@ Delete "$DESKTOP\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk"
 Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk"
+Delete "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk"
 Delete "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk"
 Delete "$STARTMENU\Programs\Mushware\Mushware IC2 Web Site.lnk"
 Delete "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk"

@@ -14,6 +14,22 @@ Arrow keys - move forward, backward, left and right
 Mouse x axis - rotate player
 Escape - exit
 
+Game options can be altered by changing the configuration file directly,
+named system/start.txt in the installation directory.  Installers will create
+a link to the configuration file.
+
+System requirements
+===================
+
+IC2 uses OpenGL for rendering, so will benefit greatly from a 3D graphics
+card.  If performance is slow, there are two things to try:
+
+1. Reduce the display quality to low in the configuration file.
+2. Reduce the display size.
+
+On a fast machine with 3D graphics support, display size can be increased
+and display quality set to high.
+
 Diagnostic output
 =================
 

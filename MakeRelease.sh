@@ -15,5 +15,6 @@ cp ../COPYING $DEST/COPYING.txt
 cp ../INSTALL $DEST/INSTALL.txt
 cp ../NEWS $DEST/NEWS.txt
 cp ../README $DEST/README.txt
+cp system/start.txt system/start_backup.txt
 chmod -R g+w $DEST
 echo Done
