@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: main.cpp,v 1.17 2002/08/27 08:56:28 southa Exp $
+ * $Id: main.cpp,v 1.18 2002/09/03 10:34:38 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.18  2002/09/03 10:34:38  southa
+ * Converted save path to Unix
+ *
  * Revision 1.17  2002/08/27 08:56:28  southa
  * Source conditioning
  *
@@ -121,7 +124,9 @@ int main(int argc, char *argv[])
     }
     catch (exception& e)
     {
-        cerr << "Standard exception: " << e.what() << endl;
+        cerr << "Exception: " << e.what() << endl;
+
+        PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
         return 1;
     }
     catch (string& str)

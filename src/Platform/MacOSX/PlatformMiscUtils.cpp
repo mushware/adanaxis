@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.10 2002/10/14 15:13:40 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.11 2002/10/15 14:02:31 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.11  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  * Revision 1.10  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -55,6 +58,11 @@
  */
 
 #include "mushPlatform.h"
+#include "mushMedia.h"
+
+#include <Carbon/Carbon.h>
+
+#include "PlatformBoxes.h"
 
 void
 PlatformMiscUtils::Initialise(void)
@@ -102,9 +110,22 @@ PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
 
     return appPath;
 }
+
 void
 PlatformMiscUtils::TweakArgs(string& ioStr)
 {
     if (ioStr.substr(0, 4) == "-psn") ioStr="";
+}
+
+void
+PlatformMiscUtils::ErrorBox(const string& inStr)
+{
+    SDL_ShowCursor(SDL_ENABLE);
+    MediaSDL::Instance().QuitVideoIfRequired();
+    ShowCursor();
+    Str255 messageP;
+    CopyCStringToPascal(inStr.c_str(), messageP);
+    ParamText(messageP, "\p", "\p", "\p");
+    StopAlert(kPlatformAboutBox, nil);
 }
 

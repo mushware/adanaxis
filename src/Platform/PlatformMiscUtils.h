@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: PlatformMiscUtils.h,v 1.8 2002/10/15 14:02:31 southa Exp $
+ * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.8  2002/10/15 14:02:31  southa
+ * Mode changes
+ *
  */
 
 #include "mushCore.h"
@@ -26,5 +29,6 @@ public:
     static string GetSystemPath(int argc, char *argv[]);
     static void TweakArgs(string& ioString);
     static void Initialise(void);
+    static void ErrorBox(const string& inStr);
 };
 #endif

@@ -1830,11 +1830,13 @@
 		};
 		F5457BA302AFB19401E3BBF3 = {
 			children = (
+				F594083A035C7E4D01A80164,
 				F5457BA402AFB19401E3BBF3,
 				F54ACE7302B642C401F28026,
 				F595A942035B316401A80166,
 				F546F21602C1F66E01173785,
 				F546F21702C1F66E01173785,
+				F594084C035C800101A80164,
 			);
 			isa = PBXGroup;
 			name = MacOSX;
@@ -4321,6 +4323,7 @@
 				F595A93E035B30C101A80166,
 				F595A941035B313D01A80166,
 				F593D560035C11BE01A80166,
+				F594083B035C7E4D01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4473,6 +4476,7 @@
 				F5461B0702B6148C01EABA85,
 				F546F59302C1F7FD01173785,
 				F546F59402C1F7FD01173785,
+				F594084B035C7F6F01A80164,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4480,6 +4484,7 @@
 		F59396D4028C0CA6016230BF = {
 			buildActionMask = 2147483647;
 			files = (
+				F594084D035C800101A80164,
 			);
 			isa = PBXRezBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4835,6 +4840,35 @@
 			isa = PBXFileReference;
 			path = PlatformVideoUtils.cpp;
 			refType = 4;
+		};
+		F594083A035C7E4D01A80164 = {
+			isa = PBXFileReference;
+			name = PlatformBoxes.h;
+			path = src/Platform/MacOSX/PlatformBoxes.h;
+			refType = 2;
+		};
+		F594083B035C7E4D01A80164 = {
+			fileRef = F594083A035C7E4D01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F594084B035C7F6F01A80164 = {
+			fileRef = F52A41C702B3B4CF0109140E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F594084C035C800101A80164 = {
+			isa = PBXFileReference;
+			path = PlatformBoxes.r;
+			refType = 4;
+		};
+		F594084D035C800101A80164 = {
+			fileRef = F594084C035C800101A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5950F3F03504F6501A80166 = {
 			children = (
