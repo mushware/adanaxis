@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebRouter.cpp,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.2 2002/12/12 18:38:26 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:26  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -29,15 +32,15 @@
 auto_ptr<MustlWebRouter> MustlWebRouter::m_instance;
 
 MustlWebRouter::MustlWebRouter() :
-m_lastTickMsec(0)
+    m_lastTickMsec(0)
 {
 }
 
 void
 MustlWebRouter::ReceiveAll(void)
 {
-    U32 currentMsec = MustlTimer::Instance().CurrentMsecGet();
-;
+    tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    
     bool callTick=false;;
     if (m_lastTickMsec + kTickPeriod < currentMsec)
     {
@@ -47,40 +50,40 @@ MustlWebRouter::ReceiveAll(void)
 
     CoreData<MustlWebLink>::tMapIterator endValue=CoreData<MustlWebLink>::Instance().End();
     CoreData<MustlWebLink>::tMapIterator killValue=CoreData<MustlWebLink>::Instance().End();
-
-    if (callTick)
-    {
-        for (CoreData<MustlWebLink>::tMapIterator p=CoreData<MustlWebLink>::Instance().Begin();
-             p != endValue; ++p)
-        {
-            p->second->Tick();
-            if (p->second->IsDead())
-            {
-                killValue=p;
-            }
-        }
-    }
-
-    if (killValue != CoreData<MustlWebLink>::Instance().End())
-    {
-        CoreData<MustlWebLink>::Instance().Delete(killValue->first);
-    }
     
     for (CoreData<MustlWebLink>::tMapIterator p=CoreData<MustlWebLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        string data;
-        for (U32 i=0; i<kMaxReceivesPerCall; ++i)
+        MUSTLASSERT(p->second != NULL);
+        MustlWebLink& webLink = *p->second;
+        if (callTick)
         {
-            if (p->second->Receive(data))
+            webLink.Tick();
+        }
+
+        if (webLink.IsDead())
+        {
+            killValue=p;
+        }
+        else
+        {
+            string linkData;
+            for (U32 i=0; i<kMaxReceivesPerCall; ++i)
             {
-                // MustlLog::Instance().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
-                p->second->ReceivedProcess(data);
-            }
-            else
-            {
-                break;
+                if (webLink.Receive(linkData))
+                {
+                    // MustlLog::Instance().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
+                    webLink.ReceivedProcess(linkData);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
+    }
+    if (killValue != CoreData<MustlWebLink>::Instance().End())
+    {
+        CoreData<MustlWebLink>::Instance().Delete(killValue);
     }
 }

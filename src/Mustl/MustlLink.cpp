@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLink.cpp,v 1.1 2002/12/12 14:00:25 southa Exp $
+ * $Id: MustlLink.cpp,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:25  southa
  * Created Mustl
  *
@@ -123,7 +126,7 @@ MustlLink::MustlLink(const MustlID& inID, const MustlAddress& inAddress)
     m_udpUseServerPort=false;
     string serverName=inAddress.HostStringGet();
     U32 portNum=inAddress.PortGetHostOrder();
-MustlLog::Instance().NetLog() << "Connecting to " << serverName << ":" << portNum << endl;
+    MustlLog::Instance().NetLog() << "Connecting to " << serverName << ":" << portNum << endl;
     TCPConnect(serverName, portNum);
     m_tcpState.linkState=kLinkStateConnecting;
 
@@ -153,25 +156,26 @@ MustlLink::Initialise(void)
     m_lastActivityMsec=m_currentMsec;
     m_lastIDRequestMsec=m_currentMsec;
     
-    m_tcpState.linkCheckTime=0;
+    m_tcpState.linkCheckMsec=0;
     m_tcpState.linkState=kLinkStateUntested;
     m_tcpState.linkCheckState=kLinkCheckStateIdle;
-    m_tcpState.linkPingTime=0;
+    m_tcpState.linkPingMsec=0;
     m_tcpState.linkErrorsSinceGood=0;
     m_tcpState.linkErrorTotal=0;
     m_tcpState.linkSendCtr=0;
     m_tcpState.linkReceiveCtr=0;
     m_tcpState.linkCheckSeqNum='A';
 
-    m_udpState.linkCheckTime=0;
+    m_udpState.linkCheckMsec=0;
     m_udpState.linkState=kLinkStateUntested;
     m_udpState.linkCheckState=kLinkCheckStateIdle;
-    m_udpState.linkPingTime=0;
+    m_udpState.linkPingMsec=0;
     m_udpState.linkErrorsSinceGood=0;
     m_udpState.linkErrorTotal=0;
     m_udpState.linkSendCtr=0;
     m_udpState.linkReceiveCtr=0;
     m_udpState.linkCheckSeqNum='M';
+    m_syncedID=false;
     m_loggedLinkInfo=false;
 }
 
@@ -299,13 +303,14 @@ MustlLink::LinkChecksSend(void)
 void
 MustlLink::TCPLinkCheckSend(void)
 {
-    if (m_currentMsec > m_tcpState.linkCheckTime + kLinkCheckDeadTime)
+    if (m_currentMsec > m_tcpState.linkCheckMsec + kLinkCheckDeadTime ||
+        m_currentMsec == 0)
     {
         MustlData data;
         m_tcpState.linkCheckSeqNum++;
         MustlProtocol::TCPLinkCheckCreate(data, m_tcpState.linkCheckSeqNum);
         m_tcpState.linkCheckState = kLinkCheckStateAwaitingReply;
-        m_tcpState.linkCheckTime = m_currentMsec;
+        m_tcpState.linkCheckMsec = m_currentMsec;
         TCPSend(data);
     }
 }
@@ -313,13 +318,14 @@ MustlLink::TCPLinkCheckSend(void)
 void
 MustlLink::UDPLinkCheckSend(void)
 {
-    if (m_currentMsec > m_udpState.linkCheckTime + kLinkCheckDeadTime)
+    if (m_currentMsec > m_udpState.linkCheckMsec + kLinkCheckDeadTime ||
+        m_currentMsec == 0)
     {
         MustlData data;
         m_udpState.linkCheckSeqNum++;
         MustlProtocol::UDPLinkCheckCreate(data, m_udpState.linkCheckSeqNum);
         m_udpState.linkCheckState = kLinkCheckStateAwaitingReply;
-        m_udpState.linkCheckTime = m_currentMsec;
+        m_udpState.linkCheckMsec = m_currentMsec;
         UDPSend(data);
     }
 }    
@@ -327,13 +333,25 @@ MustlLink::UDPLinkCheckSend(void)
 void
 MustlLink::IDRequestSend(void)
 {
-    if (m_currentMsec > m_lastIDRequestMsec + kIDRequestPeriod)
+    MustlData data;
+    MustlProtocol::IDRequestCreate(data);
+    ReliableSend(data);
+    m_lastIDRequestMsec = m_currentMsec;
+}
+
+bool
+MustlLink::TCPConnectingCheck(void)
+{
+    if (m_tcpState.linkState == kLinkStateConnecting)
     {
-        MustlData data;
-        MustlProtocol::IDRequestCreate(data);
-        ReliableSend(data);
-        m_lastIDRequestMsec = m_currentMsec;
+        if (m_client.TCPConnectionCompleted())
+        {
+            m_tcpState.linkState = kLinkStateUntested;
+            TCPLinkCheckSend();
+            return true;
+        }
     }
+    return false;
 }
 
 void
@@ -346,15 +364,8 @@ MustlLink::Tick(void)
         // Idle timer expired
         Disconnect(MustlProtocol::kReasonCodeIdleTimeout);
     }
-    
-    if (m_tcpState.linkState == kLinkStateConnecting)
-    {
-        if (m_client.TCPConnectionCompleted())
-        {
-            m_tcpState.linkState = kLinkStateUntested;
-            TCPLinkCheckSend();
-        }
-    }
+
+    TCPConnectingCheck();
     
     U32 tcpLinkCheckPeriod=kTCPFastLinkCheckPeriod;
     if (m_tcpState.linkState == kLinkStateIdle && m_tcpState.linkErrorsSinceGood == 0)
@@ -363,7 +374,7 @@ MustlLink::Tick(void)
     }
 
     if (LinkIsUpForSend(m_tcpState.linkState) &&
-        m_currentMsec > m_tcpState.linkCheckTime + tcpLinkCheckPeriod)
+        m_currentMsec > m_tcpState.linkCheckMsec + tcpLinkCheckPeriod)
     {
         m_tcpState.linkState = kLinkStateTesting;
 
@@ -401,7 +412,7 @@ MustlLink::Tick(void)
     }
 
     if (LinkIsUpForSend(m_udpState.linkState) &&
-        m_currentMsec > m_udpState.linkCheckTime + udpLinkCheckPeriod)
+        m_currentMsec > m_udpState.linkCheckMsec + udpLinkCheckPeriod)
     {
         m_udpState.linkState = kLinkStateTesting;
         
@@ -435,10 +446,29 @@ MustlLink::Tick(void)
         m_udpState.linkState=kLinkStateDead;
     }
 
+    // Request ID if necessary
+    if (m_netID == NULL && LinkIsUpForSend(m_tcpState.linkState))
+    {
+        if (m_currentMsec > m_lastIDRequestMsec + kIDRequestPeriod)
+        {
+            IDRequestSend();
+        }        
+    }
+}
+
+void
+MustlLink::TCPLinkEnteredIdle(void)
+{
+    // Called once as the link enters the idle state
     if (m_netID == NULL && LinkIsUpForSend(m_tcpState.linkState))
     {
         IDRequestSend();
     }
+}
+
+void
+MustlLink::UDPLinkEnteredIdle(void)
+{
 }
 
 bool
@@ -465,7 +495,7 @@ MustlLink::IsDead(void)
 bool
 MustlLink::ReadyIs(void) const
 {
-    return (m_tcpState.linkState == kLinkStateTesting ||
+    return m_syncedID && (m_tcpState.linkState == kLinkStateTesting ||
             m_tcpState.linkState == kLinkStateIdle ||
             m_udpState.linkState == kLinkStateTesting ||
             m_udpState.linkState == kLinkStateIdle);
@@ -502,8 +532,11 @@ MustlLink::TCPReceive(MustlData& outData)
     {
         if (!LinkIsUpForReceive(m_tcpState.linkState))
         {
-            // Receive on dead link.  Don't raise an exception for this
-            return;
+            if (!TCPConnectingCheck())
+            {
+                // Receive on dead link.  Don't raise an exception for this
+                return;
+            }
         }
         m_client.TCPReceive(outData);
         ++m_tcpState.linkReceiveCtr;
@@ -684,7 +717,7 @@ MustlLink::NetIDGet(void) const
 {
     if (m_netID == NULL)
     {
-        throw(ReferenceFail("Net ID for link not set"));
+        throw(MustlFail("Net ID for link not set"));
     }
     return *m_netID;
 }
@@ -697,6 +730,8 @@ MustlLink::NetIDSet(const MustlID& inID)
         delete m_netID;
     }
     m_netID = inID.Clone();
+    // Assume that this ID is ready to go
+    m_syncedID = true;
 }
 
 void
@@ -758,12 +793,13 @@ MustlLink::MessageTCPLinkCheckReplyHandle(MustlData& ioData)
     if (seqNum == m_tcpState.linkCheckSeqNum &&
         m_tcpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        m_tcpState.linkPingTime=m_currentMsec - m_tcpState.linkCheckTime;
+        m_tcpState.linkPingMsec=m_currentMsec - m_tcpState.linkCheckMsec;
         if (m_tcpState.linkState == kLinkStateUntested ||
             m_tcpState.linkState == kLinkStateTesting)
         {
             m_tcpState.linkState = kLinkStateIdle;
             if (m_udpState.linkState == kLinkStateIdle) LinkInfoLog();
+            TCPLinkEnteredIdle();
         }
         m_tcpState.linkCheckState = kLinkCheckStateIdle;
         m_tcpState.linkErrorsSinceGood=0;
@@ -805,12 +841,13 @@ MustlLink::MessageUDPLinkCheckReplyHandle(MustlData& ioData)
     if (seqNum == m_udpState.linkCheckSeqNum &&
         m_udpState.linkCheckState == kLinkCheckStateAwaitingReply)
     {
-        m_udpState.linkPingTime=m_currentMsec - m_udpState.linkCheckTime;
+        m_udpState.linkPingMsec=m_currentMsec - m_udpState.linkCheckMsec;
         if (m_udpState.linkState == kLinkStateUntested ||
             m_udpState.linkState == kLinkStateTesting)
         {
             m_udpState.linkState = kLinkStateIdle;
             if (m_tcpState.linkState == kLinkStateIdle) LinkInfoLog();
+            UDPLinkEnteredIdle();
         }
         m_udpState.linkCheckState = kLinkCheckStateIdle;
         m_udpState.linkErrorsSinceGood=0;
@@ -834,13 +871,15 @@ MustlLink::MessageIDRequestHandle(MustlData& ioData)
 {
     if (m_netID == NULL)
     {
-                    MustlLog::Instance().NetLog() << "No ID present to answer to ID request" << endl;
+        MustlLog::Instance().NetLog() << "No ID present to answer to ID request" << endl;
     }
     else
     {
         MustlData netData;
         MustlProtocol::IDTransferCreate(netData, *m_netID);
         ReliableSend(netData);
+        // Once we send our ID the link should be ready
+        m_syncedID = true;
     }
 }
 
@@ -869,6 +908,7 @@ MustlLink::Print(ostream& ioOut) const
     {
         ioOut << "=" << *m_netID;
     }
+    ioOut << ", syncedID=" << m_syncedID;
     ioOut << ", targetIsServer=" << m_targetIsServer;
     ioOut << ", udpUseServerPort=" << m_udpUseServerPort;
     ioOut << ", client=" << m_client << "]";
@@ -894,14 +934,7 @@ MustlLink::LinkStateToBG(const LinkState& inLinkState)
             
         case kLinkStateTesting:
         case kLinkStateIdle:
-            if (inLinkState.linkPingTime > 0)
-            {
-                return "bggreen";
-            }
-            else
-            {
-                return "bgyellow";
-            }
+            return "bggreen";
     }
 }
 
@@ -942,10 +975,10 @@ MustlLink::WebStatusPrint(ostream& ioOut) const
     ioOut << "</td>";
     ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_tcpState);
-    ioOut << "\">" << m_tcpState.linkPingTime << "ms</font></td>";
+    ioOut << "\">" << m_tcpState.linkPingMsec << "ms</font></td>";
 ioOut << "<td><font class=\"";
     ioOut << LinkStateToBG(m_udpState);
-    ioOut << "\">" << m_udpState.linkPingTime << "ms</font></td>";
+    ioOut << "\">" << m_udpState.linkPingMsec << "ms</font></td>";
 
     m_currentMsec = MustlTimer::Instance().CurrentMsecGet();
     ioOut << "<td>" << MustlUtils::MsecDurationToString(m_currentMsec - m_creationMsec) << "</td>";

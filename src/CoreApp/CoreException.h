@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreException.h,v 1.18 2002/10/31 16:41:32 southa Exp $
+ * $Id: CoreException.h,v 1.19 2002/11/14 17:29:07 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.19  2002/11/14 17:29:07  southa
+ * Config database
+ *
  * Revision 1.18  2002/10/31 16:41:32  southa
  * Network client
  *
@@ -343,23 +346,6 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, SyntaxFail f)
-{
-    return s<<f.SPrint();
-}
-
-class NetworkFail: public exception
-{
-public:
-    NetworkFail(const string &inMessage) {m_message=inMessage;}
-    ~NetworkFail() throw() {}
-    const string& SPrint(void) {return m_message;}
-    const char* what() const throw() {return m_message.c_str();}
-
-private:
-    string m_message;
-};
-
-inline ostream& operator<<(ostream &s, NetworkFail f)
 {
     return s<<f.SPrint();
 }

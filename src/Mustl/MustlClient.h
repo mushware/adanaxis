@@ -1,8 +1,11 @@
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
 /*
- * $Id: MustlClient.h,v 1.1 2002/12/12 14:00:25 southa Exp $
+ * $Id: MustlClient.h,v 1.2 2002/12/12 18:38:24 southa Exp $
  * $Log: MustlClient.h,v $
+ * Revision 1.2  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:25  southa
  * Created Mustl
  *
@@ -83,6 +86,7 @@ private:
     Mustl::U32 m_udpRemotePort;
     bool m_tcpConnected;
     bool m_udpConnected;
+    bool m_logTraffic;
 };
 
 inline ostream&

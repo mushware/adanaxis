@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.13 2002/12/05 13:20:11 southa Exp $
+ * $Id: GameConfig.cpp,v 1.14 2002/12/12 14:00:39 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.14  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.13  2002/12/05 13:20:11  southa
  * Client link handling
  *
@@ -58,6 +61,7 @@
 
 #include "GameConfigDef.h"
 
+#include "Mustl.h"
 #include "mushPlatform.h"
 
 GameConfig *GameConfig::m_instance=NULL;

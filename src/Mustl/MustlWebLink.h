@@ -1,8 +1,11 @@
 #ifndef MUSTLWEBLINK_H
 #define MUSTLWEBLINK_H
 /*
- * $Id: MustlWebLink.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlWebLink.h,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -98,9 +101,9 @@ private:
     tLinkState m_linkState;
     tReceiveState m_receiveState;
     Mustl::tSocket m_tcpSocket;
-    Mustl::U32 m_currentMsec;
-    Mustl::U32 m_creationMsec;
-    Mustl::U32 m_lastAccessMsec;
+    Mustl::tMsec m_currentMsec;
+    Mustl::tMsec m_creationMsec;
+    Mustl::tMsec m_lastAccessMsec;
     Mustl::U32 m_linkErrors;
     bool m_isDead;
 

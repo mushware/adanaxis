@@ -1,6 +1,9 @@
 /*
- * $Id: MustlServer.cpp,v 1.20 2002/12/05 13:20:13 southa Exp $
+ * $Id: MustlServer.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.20  2002/12/05 13:20:13  southa
  * Client link handling
  *
@@ -69,7 +72,8 @@ auto_ptr<MustlServer> MustlServer::m_instance;
 
 MustlServer::MustlServer() :
     m_linkCtr(0),
-    m_serving(false)
+    m_serving(false),
+    m_logTraffic(false)
 {
 }
 
@@ -182,7 +186,10 @@ MustlServer::UDPSend(U32 inHost, U32 inPort, MustlData& ioData)
 
     MustlPlatform::UDPSend(inHost, inPort, m_udpSocket, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
-    MustlLog::Instance().VerboseLog() << "UDPSend (server) to " << MustlUtils::IPAddressToLogString(inHost) << ":" << MustlPlatform::NetworkToHostOrderU16(inPort) << ": " << ioData << endl;
+    if (m_logTraffic)
+    {
+        MustlLog::Instance().VerboseLog() << "UDPSend (server) to " << MustlUtils::IPAddressToLogString(inHost) << ":" << MustlPlatform::NetworkToHostOrderU16(inPort) << ": " << ioData << endl;
+    }
 }
 
 void
@@ -198,7 +205,10 @@ MustlServer::UDPReceive(MustlData& outData)
         {
             outData.WritePosAdd(dataSize);
             outData.SourceSet(netHost, netPort);
-            MustlLog::Instance().VerboseLog() << "UDPReceive (server) from " << MustlUtils::IPAddressToLogString(netHost) << ":" << MustlPlatform::NetworkToHostOrderU16(netPort) << ": " << outData << endl;
+            if (m_logTraffic)
+            {
+                MustlLog::Instance().VerboseLog() << "UDPReceive (server) from " << MustlUtils::IPAddressToLogString(netHost) << ":" << MustlPlatform::NetworkToHostOrderU16(netPort) << ": " << outData << endl;
+            }
         }
     }
 }

@@ -1,6 +1,12 @@
+#ifndef MUSTLTIMER_H
+#define MUSTLTIMER_H
+
 /*
- * $Id$
- * $Log$
+ * $Id: MustlTimer.h,v 1.1 2002/12/12 18:38:25 southa Exp $
+ * $Log: MustlTimer.h,v $
+ * Revision 1.1  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  */
 
 #include "MustlStandard.h"
@@ -9,21 +15,22 @@ class MustlTimer
 {
 public:
     typedef unsigned int (*tTimerFunction)(void);
-    typedef unsigned long tMsec;
 
     static inline MustlTimer& Instance(void);
 
-    tMsec CurrentMsecGet(void) const;
-    void CurrentMsecSet(tMsec inMsec) { m_currentMsec = inMsec; }
+    Mustl::tMsec CurrentMsecGet(void);
+    void CurrentMsecSet(Mustl::tMsec inMsec) { m_currentMsec = inMsec; }
     void TimerFunctionSet(tTimerFunction inFunction) { m_timerFunction = inFunction; }
     
 protected:
-    MustlTimer() : m_timerFunction(NULL) {}
+    MustlTimer();
 
 private:
+        
     tTimerFunction m_timerFunction;
-    tMsec m_currentMsec;
-
+    Mustl::tMsec m_currentMsec;
+    unsigned int m_lastU32Msec;
+    
     static auto_ptr<MustlTimer> m_instance;
 };
 
@@ -35,12 +42,18 @@ MustlTimer::Instance(void)
     return *m_instance;
 }
 
-inline MustlTimer::tMsec
-MustlTimer::CurrentMsecGet(void) const
+inline Mustl::tMsec
+MustlTimer::CurrentMsecGet(void)
 {
     if (m_timerFunction != NULL)
     {
-        return m_timerFunction();
+        unsigned int u32MsecNow = m_timerFunction();
+
+        // This method takes care of 32 bit wrapping
+        m_currentMsec += u32MsecNow - m_lastU32Msec;
+        m_lastU32Msec = u32MsecNow;
     }
     return m_currentMsec;
 }
+
+#endif

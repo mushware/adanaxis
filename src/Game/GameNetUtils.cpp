@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetUtils.cpp,v 1.7 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.8 2002/12/12 18:38:57 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.8  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.7  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -29,6 +32,7 @@
 #include "GameConfig.h"
 #include "GameDefClient.h"
 #include "GameDefServer.h"
+#include "GameException.h"
 #include "GameNetID.h"
 #include "GameRouter.h"
 

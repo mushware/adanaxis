@@ -1,6 +1,9 @@
 /*
- * $Id: MustlRouter.cpp,v 1.11 2002/12/10 20:38:06 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.11  2002/12/10 20:38:06  southa
  * Server timing
  *
@@ -54,9 +57,11 @@ MustlRouter::MustlRouter() :
 void
 MustlRouter::ReceiveAll(MustlHandler& inHandler)
 {
-    U32 currentMsec = MustlTimer::Instance().CurrentMsecGet();
-    bool callTick=false;;
-    if (m_lastTickMsec + kTickPeriod < currentMsec)
+    tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
+    bool callTick=false;
+    
+    if (m_lastTickMsec + kTickPeriod < currentMsec ||
+        currentMsec == 0)
     {
         m_lastTickMsec = currentMsec;
         callTick = true;
@@ -66,42 +71,49 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
     
     CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
     CoreData<MustlLink>::tMapIterator killValue=CoreData<MustlLink>::Instance().End();
-    
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
-         p != endValue; ++p)
+
+    if (callTick)
     {
+        for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+        {
+            MUSTLASSERT(p->second != NULL);
+            MustlLink& linkRef = *p->second;
+            linkRef.Tick();
+            if (linkRef.IsDead())
+            {
+                killValue=p;
+            }
+        }
+    }
+
+    if (killValue != CoreData<MustlLink>::Instance().End())
+    {
+        CoreData<MustlLink>::Instance().Delete(killValue);
+    }
+    
+    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+    {
+        MUSTLASSERT(p->second != NULL);
+        MustlLink& linkRef = *p->second;
+
         MustlData *netData=NULL;
-        if (p->second->Receive(netData))
+        if (linkRef.Receive(netData))
         {
             MUSTLASSERT(netData != NULL);
             // cerr << "Received on " << p->first << ": " << *netData << endl;
             U32 messageType = netData->MessageBytePop();
             if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
             {
-                p->second->MessageHandle(messageType, *netData);
+                linkRef.MessageHandle(messageType, *netData);
             }
             else
             {
-                // Make data look like it came from the TCP address in all cases
-                // netData->SourcePortSet(p->second->TCPTargetPortGet());
-                p->second->TouchLink(); // Reset inactivity timer
+                linkRef.TouchLink(); // Reset inactivity timer
                 MustlProtocol::RemoveLength(*netData, messageType);
                 U32 appMessageType = MustlProtocol::LinkToAppType(messageType);
-                inHandler.MessageHandle(*netData, *p->second, appMessageType);
+                inHandler.MessageHandle(*netData, linkRef, appMessageType);
             }
         }
-        if (callTick)
-        {
-            p->second->Tick();
-            if (p->second->IsDead())
-            {
-                killValue=p;
-            }
-        }
-    }
-    if (killValue != CoreData<MustlLink>::Instance().End())
-    {
-        CoreData<MustlLink>::Instance().Delete(killValue);
     }
 }
 
@@ -113,8 +125,10 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
     for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
+        MUSTLASSERT(p->second != NULL);
+        MustlLink& linkRef = *p->second;
         bool outTakeMessage;
-        if (p->second->UDPIfAddressMatchReceive(outTakeMessage, ioData))
+        if (linkRef.UDPIfAddressMatchReceive(outTakeMessage, ioData))
         {
             // cerr << "Received on " << p->first << ": " << ioData << endl;
 
@@ -123,14 +137,14 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
                 U32 messageType = ioData.MessageBytePop();
                 if (MustlProtocol::MessageTypeIsLinkLayer(messageType))
                 {
-                    p->second->MessageHandle(messageType, ioData);
+                    linkRef.MessageHandle(messageType, ioData);
                 }
                 else
                 {
-                    p->second->TouchLink(); // Reset inactivity timer
+                    linkRef.TouchLink(); // Reset inactivity timer
                     MustlProtocol::RemoveLength(ioData, messageType);
                     U32 appMessageType = MustlProtocol::LinkToAppType(messageType);
-                    inHandler.MessageHandle(ioData, *p->second, appMessageType);
+                    inHandler.MessageHandle(ioData, linkRef, appMessageType);
                 }
             }
             // Message handled so return

@@ -4142,6 +4142,8 @@
 				F5412BCB0303E7D701F8C327,
 				F5412BCC0303E7D701F8C327,
 				F53E0FBB03102A8E01E1DB74,
+				F5AAE0D503A94DE901A80164,
+				F5AAE0D403A94DE901A80164,
 				F5483AB702D1D95801480ACF,
 				F5483AB802D1D95801480ACF,
 				F545EEA102A67378018FABF3,
@@ -4482,6 +4484,7 @@
 				F5A934E103A8E96001A80164,
 				F5A934E803A8ED7A01A80164,
 				F5A934EC03A8FD0D01A80164,
+				F5AAE0D603A94DE901A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4653,6 +4656,7 @@
 				F5A934E203A8E96001A80164,
 				F5A934E903A8ED7A01A80164,
 				F5A934ED03A8FD0D01A80164,
+				F5AAE0D703A94DE901A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6199,6 +6203,30 @@
 		};
 		F5AAB6D603A8D97F01A80164 = {
 			fileRef = F5AAB6D403A8D97F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAE0D403A94DE901A80164 = {
+			isa = PBXFileReference;
+			name = GameException.h;
+			path = Game/GameException.h;
+			refType = 4;
+		};
+		F5AAE0D503A94DE901A80164 = {
+			isa = PBXFileReference;
+			name = GameException.cpp;
+			path = Game/GameException.cpp;
+			refType = 4;
+		};
+		F5AAE0D603A94DE901A80164 = {
+			fileRef = F5AAE0D403A94DE901A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAE0D703A94DE901A80164 = {
+			fileRef = F5AAE0D503A94DE901A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

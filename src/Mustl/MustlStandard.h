@@ -1,8 +1,11 @@
 #ifndef MUSTLSTANDARD_H
 #define MUSTLSTANDARD_H
 /*
- * $Id$
- * $Log$
+ * $Id: MustlStandard.h,v 1.1 2002/12/12 18:38:25 southa Exp $
+ * $Log: MustlStandard.h,v $
+ * Revision 1.1  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  */
 
 #include <iosfwd>
@@ -22,6 +25,7 @@ namespace Mustl
     typedef unsigned short U16;
     typedef signed char S8;
     typedef unsigned char U8;
+    typedef double tMsec;
 };
 
 #endif

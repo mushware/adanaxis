@@ -2,8 +2,11 @@
 #define MUSTLPLATFORM_H
 
 /*
- * $Id: PlatformNet.h,v 1.8 2002/11/24 00:29:08 southa Exp $
- * $Log: PlatformNet.h,v $
+ * $Id: MustlPlatform.h,v 1.1 2002/12/12 18:38:58 southa Exp $
+ * $Log: MustlPlatform.h,v $
+ * Revision 1.1  2002/12/12 18:38:58  southa
+ * Mustl separation
+ *
  * Revision 1.8  2002/11/24 00:29:08  southa
  * Serve web pages to local addresses only
  *
@@ -54,6 +57,7 @@ public:
     static Mustl::U32 NetworkToHostOrderU16(Mustl::U32 inVal);
     static bool IsLocalAddress(Mustl::U32 inIPNetworkOrder);
     static void ResolveAddress(MustlAddress& outAddress, const std::string& inHostName, Mustl::U32 inPortHostOrder);
+    static unsigned int DefaultTimer(void);
 
 private:
     static void LocalAddressesRetrieve(void);

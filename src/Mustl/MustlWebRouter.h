@@ -1,8 +1,11 @@
 #ifndef MUSTLWEBROUTER_H
 #define MUSTLWEBROUTER_H
 /*
- * $Id: MustlWebRouter.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.2 2002/12/12 18:38:26 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.2  2002/12/12 18:38:26  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -17,7 +20,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlLink;
 
@@ -37,7 +40,7 @@ private:
         kMaxReceivesPerCall=20
     };
 
-    U32 m_lastTickMsec;
+    Mustl::tMsec m_lastTickMsec;
 
     static auto_ptr<MustlWebRouter> m_instance;
 };

@@ -1,6 +1,9 @@
 /*
- * $Id: MustlPlatform.cpp,v 1.14 2002/12/03 20:28:18 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.1 2002/12/12 18:38:58 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.1  2002/12/12 18:38:58  southa
+ * Mustl separation
+ *
  * Revision 1.14  2002/12/03 20:28:18  southa
  * Network, player and control work
  *
@@ -315,8 +318,9 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
 {
     struct sockaddr_in sockAddrIn;
     int sockAddrLen = sizeof(sockAddrIn);
-    int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddrIn), &sockAddrLen);
     errno=0;
+    int newSocket = accept(inSocket, reinterpret_cast<struct sockaddr *>(&sockAddrIn), &sockAddrLen);
+
     if (newSocket == -1)
     {
         if (errno == EWOULDBLOCK)
@@ -458,4 +462,10 @@ MustlPlatform::ResolveAddress(MustlAddress& outAddress, const string& inHostName
         }
     }
     outAddress.PortSetHostOrder(inPortHostOrder);
+}
+
+unsigned int
+MustlPlatform::DefaultTimer(void)
+{
+    return static_cast<unsigned int>(clock() * (double) 1000.0 / CLOCKS_PER_SEC);
 }

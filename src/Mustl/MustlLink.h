@@ -1,8 +1,11 @@
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
 /*
- * $Id: MustlLink.h,v 1.1 2002/12/12 14:00:26 southa Exp $
+ * $Id: MustlLink.h,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:26  southa
  * Created Mustl
  *
@@ -101,7 +104,6 @@ public:
     bool TargetServerIs(void) const { return m_targetIsServer; }
     void Disconnect(MustlProtocol::tReasonCode inCode);
         
-    void LinkChecksSend(void);
 
     void MessageHandle(Mustl::U32 inType, MustlData& ioData);
 
@@ -115,7 +117,7 @@ public:
     MustlAddress TCPTargetAddressGet(void) const { return MustlAddress(m_client.RemoteIPGet(), m_client.TCPRemotePortGet()); }
     Mustl::U32 UDPTargetIPGet(void) const { return m_client.RemoteIPGet(); }
     Mustl::U32 UDPTargetPortGet(void) const { return m_client.UDPRemotePortGet(); }
-    Mustl::U32 CreationMsecGet(void) const { return m_creationMsec; }
+    Mustl::tMsec CreationMsecGet(void) const { return m_creationMsec; }
     
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
@@ -161,10 +163,10 @@ private:
     class LinkState
     {
     public:
-        Mustl::U32 linkCheckTime;
+        Mustl::tMsec linkCheckMsec;
         tLinkState linkState;
         tLinkCheckState linkCheckState;
-        Mustl::U32 linkPingTime;
+        Mustl::tMsec linkPingMsec;
         Mustl::U32 linkErrorsSinceGood;
         Mustl::U32 linkErrorTotal;
         Mustl::U32 linkSendCtr;
@@ -177,13 +179,16 @@ private:
     void TCPConnect(const string& inServer, Mustl::U32 inPort);
     void UDPConnect(Mustl::U32 inPort);
     void TCPSocketTake(Mustl::tSocket inSocket, const MustlAddress& inAddress);
+    void LinkChecksSend(void);
     void TCPLinkCheckSend(void);
     void UDPLinkCheckSend(void);
     void IDRequestSend(void);
     bool LinkIsUpForSend(tLinkState inState);
     bool LinkIsUpForReceive(tLinkState inState);
     bool LinkDeathCheck(LinkState& ioLinkState);
-
+    bool TCPConnectingCheck(void);
+    void TCPLinkEnteredIdle(void);
+    void UDPLinkEnteredIdle(void);
     void TCPSend(MustlData& inData);
     void TCPReceive(MustlData& outData);
     void UDPSend(MustlData& inData);
@@ -201,17 +206,18 @@ private:
     LinkState m_tcpState;
     LinkState m_udpState;
     MustlClient m_client;
-    Mustl::U32 m_creationMsec;
-    Mustl::U32 m_lastActivityMsec;
-    Mustl::U32 m_lastIDRequestMsec;
+    Mustl::tMsec m_creationMsec;
+    Mustl::tMsec m_lastActivityMsec;
+    Mustl::tMsec m_lastIDRequestMsec;
     
     string m_targetName; // This should be exactly what the caller asked for
     MustlID *m_netID;
-    
+
+    bool m_syncedID;
     bool m_targetIsServer;
     bool m_udpUseServerPort;
 
-    mutable Mustl::U32 m_currentMsec;
+    mutable Mustl::tMsec m_currentMsec;
     mutable bool m_loggedLinkInfo;
 
     static Mustl::U32 m_linkNameNum;
@@ -227,10 +233,10 @@ operator<<(ostream &ioOut, const MustlLink& inLink)
 inline ostream&
 operator<<(ostream &ioOut, const MustlLink::LinkState& inLinkState)
 {
-    ioOut << "[linkCheckTime=" << inLinkState.linkCheckTime << ", ";
+    ioOut << "[linkCheckMsec=" << inLinkState.linkCheckMsec << ", ";
     ioOut << "linkState=" << inLinkState.linkState << ", ";
     ioOut << "linkCheckState=" << inLinkState.linkCheckState << ", ";
-    ioOut << "linkPingTime=" << inLinkState.linkPingTime << ", ";
+    ioOut << "linkPingMsec=" << inLinkState.linkPingMsec << ", ";
     ioOut << "linkErrorsSinceGood=" << inLinkState.linkErrorsSinceGood << ", ";
     ioOut << "linkErrorTotal=" << inLinkState.linkErrorTotal << ", ";
     ioOut << "linkSendCtr=" << inLinkState.linkSendCtr << ", ";

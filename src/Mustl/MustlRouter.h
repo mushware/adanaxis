@@ -1,8 +1,11 @@
 #ifndef MUSTLROUTER_H
 #define MUSTLROUTER_H
 /*
- * $Id: MustlRouter.h,v 1.6 2002/11/25 12:06:19 southa Exp $
+ * $Id: MustlRouter.h,v 1.1 2002/12/12 14:00:27 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.1  2002/12/12 14:00:27  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/11/25 12:06:19  southa
  * Received net message routing
  *
@@ -23,7 +26,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlData;
 class MustlLink;
@@ -47,7 +50,7 @@ private:
         kUDPReceivePacketLimit=100
     };
     
-    U32 m_lastTickMsec;
+    Mustl::tMsec m_lastTickMsec;
     
     static auto_ptr<MustlRouter> m_instance;
 }; 

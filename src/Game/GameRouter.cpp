@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.11 2002/12/09 23:59:59 southa Exp $
+ * $Id: GameRouter.cpp,v 1.12 2002/12/12 14:00:40 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.12  2002/12/12 14:00:40  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/09 23:59:59  southa
  * Network control
  *
@@ -39,6 +42,7 @@
 #include "GameRouter.h"
 
 #include "GameData.h"
+#include "GameException.h"
 #include "GameMessageControlData.h"
 #include "GameNetID.h"
 #include "GameNetObject.h"

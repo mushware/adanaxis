@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.14 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameDef.cpp,v 1.15 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.15  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.14  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -47,6 +50,7 @@
 #include "GameAppHandler.h"
 #include "GameProtocol.h"
 
+#include "Mustl.h"
 #include "mushPlatform.h"
 
 GameDef::GameDef(const string& inName) :

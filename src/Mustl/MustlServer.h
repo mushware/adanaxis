@@ -1,8 +1,11 @@
 #ifndef MUSTLSERVER_H
 #define MUSTLSERVER_H
 /*
- * $Id: MustlServer.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlServer.h,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -71,6 +74,7 @@ private:
     Mustl::U32 m_serverPortHostOrder;
     Mustl::U32 m_linkCtr;
     bool m_serving;
+    bool m_logTraffic;
 
     static auto_ptr<MustlServer> m_instance;
 };
