@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetWebRouter.cpp,v 1.1 2002/11/06 14:16:57 southa Exp $
+ * $Log: MediaNetWebRouter.cpp,v $
+ * Revision 1.1  2002/11/06 14:16:57  southa
+ * Basic web server
+ *
  */
 
 #include "MediaNetWebRouter.h"
@@ -37,7 +40,7 @@ MediaNetWebRouter::ReceiveAll(void)
         string data;
         if (p->second->Receive(data))
         {
-            MediaNetLog::Instance().Log() << "Received on " << p->first << ": '" << MediaNetUtils::MakePrintable(data) << "'" << endl;
+            // MediaNetLog::Instance().Log() << "Received on " << p->first << ": '" << MediaNetUtils::MakePrintable(data) << "'" << endl;
             p->second->ReceivedProcess(data);
         }
         if (callTick)

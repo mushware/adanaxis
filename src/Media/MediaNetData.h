@@ -1,8 +1,11 @@
 #ifndef MEDIANETDATA_H
 #define MEDIANETDATA_H
 /*
- * $Id: MediaNetData.h,v 1.3 2002/11/03 20:10:00 southa Exp $
+ * $Id: MediaNetData.h,v 1.4 2002/11/04 01:02:38 southa Exp $
  * $Log: MediaNetData.h,v $
+ * Revision 1.4  2002/11/04 01:02:38  southa
+ * Link checks
+ *
  * Revision 1.3  2002/11/03 20:10:00  southa
  * Initial message unpacking
  *
@@ -31,7 +34,8 @@ public:
     U32 WriteSizeGet(void) const;
     void WritePosAdd(U32 inAdd);
     U8 *WritePtrGet(void);
-
+    void Write(const string& inStr);
+    
     U32 MessagePosGet(void) const;
     void MessagePosSet(U32 inPos);
     U32 MessageSizeGet(void) const;
@@ -103,7 +107,7 @@ m_data(kChunkSize)
 inline U32
 MediaNetData::ReadPosGet(void) const
 {
-    COREASSERT(m_readPos < m_data.size());
+    COREASSERT(m_readPos <= m_data.size());
     return m_readPos;
 }
 
@@ -118,7 +122,7 @@ inline void
 MediaNetData::ReadPosAdd(U32 inAdd)
 {
     m_readPos += inAdd;
-    COREASSERT(m_readPos < m_data.size());
+    COREASSERT(m_readPos <= m_data.size());
 }
 
 inline U8 *
@@ -131,7 +135,7 @@ MediaNetData::ReadPtrGet(void)
 inline U32
 MediaNetData::WritePosGet(void) const
 {
-    COREASSERT(m_writePos < m_data.size());
+    COREASSERT(m_writePos <= m_data.size());
     return m_writePos;
 }
 
@@ -146,7 +150,7 @@ inline void
 MediaNetData::WritePosAdd(U32 inAdd)
 {
     m_writePos += inAdd;
-    COREASSERT(m_writePos < m_data.size());
+    COREASSERT(m_writePos <= m_data.size());
 }
 
 inline U8 *
@@ -156,17 +160,26 @@ MediaNetData::WritePtrGet(void)
     return &m_data[m_writePos];
 }
 
+inline void
+MediaNetData::Write(const string& inStr)
+{
+    U32 size=inStr.size();
+    PrepareForWrite(size);
+    memcpy(WritePtrGet(), inStr.c_str(), size);
+    WritePosAdd(size);
+}
+
 inline U32
 MediaNetData::MessagePosGet(void) const
 {
-    COREASSERT(m_messagePos < m_data.size());
+    COREASSERT(m_messagePos <= m_data.size());
     return m_messagePos;
 }
 
 inline void
 MediaNetData::MessagePosSet(U32 inPos)
 {
-    COREASSERT(inPos < m_data.size());
+    COREASSERT(inPos <= m_data.size());
     m_messagePos=inPos;
 }
 
@@ -269,9 +282,9 @@ MediaNetData::PrepareForWrite(U32 inSize)
         m_writePos=0;
         m_readPos=0;
     }
-    if (inSize >= m_data.size())
+    if (m_writePos+inSize >= m_data.size())
     {
-        m_data.resize(inSize+1);
+        m_data.resize(m_writePos+inSize+1);
     }
 }
 

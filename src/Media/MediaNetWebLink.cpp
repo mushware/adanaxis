@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.6 2002/11/08 11:54:40 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.7 2002/11/12 11:49:22 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.7  2002/11/12 11:49:22  southa
+ * Initial MHTML processing
+ *
  * Revision 1.6  2002/11/08 11:54:40  southa
  * Web fixes
  *
@@ -23,6 +26,7 @@
 
 #include "MediaNetWebLink.h"
 
+#include "MediaNetData.h"
 #include "MediaNetHTTP.h"
 #include "MediaNetLog.h"
 #include "MediaNetProtocol.h"
@@ -51,7 +55,8 @@ MediaNetWebLink::MediaNetWebLink(TCPsocket inSocket, U32 inPort) :
     }
     m_linkState=kLinkStateNew;
     m_currentMsec=SDL_GetTicks();
-    m_lastAccessMsec=m_currentMsec;
+    m_creationMsec=m_currentMsec;
+    m_lastAccessMsec=m_currentMsec; // Not used
 }
 
 MediaNetWebLink::~MediaNetWebLink()
@@ -88,7 +93,9 @@ bool
 MediaNetWebLink::IsDead(void)
 {
     m_currentMsec=SDL_GetTicks();
-    if (m_isDead || m_currentMsec > m_lastAccessMsec + kTimeoutIdle)
+    if (m_isDead ||
+        m_currentMsec > m_creationMsec + kLinkLifetime ||
+        m_linkErrors > kErrorLimit)
     {
         return true;
     }
@@ -118,46 +125,46 @@ MediaNetWebLink::Receive(string& outStr)
 }
 
 void
-MediaNetWebLink::Send(vector<U8>& inBytes)
+MediaNetWebLink::Send(MediaNetData& ioData)
 {
     if (m_isDead)
     {
         throw(NetworkFail("Attempt to send on dead WebLink"));
     }
-    int result=SDLNet_TCP_Send(m_tcpSocket, &inBytes[0], inBytes.size());
-    if (result >= 0 && static_cast<U32>(result) != inBytes.size())
+    int result=SDLNet_TCP_Send(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
+    if (result >= 0 && static_cast<U32>(result) != ioData.ReadSizeGet())
     {
         MediaNetLog::Instance().Log() << "Failed to send data on WebLink: " << SDLNet_GetError();
         ++m_linkErrors;
     }
-
-    MediaNetLog::Instance().Log() << "Sending " << MediaNetUtils::MakePrintable(inBytes) << endl;
+    else
+    {
+        ioData.ReadPosAdd(result);
+    }
+    // MediaNetLog::Instance().Log() << "Sending " << ioData << endl;
 }
 
 void
 MediaNetWebLink::Send(const string& inStr)
 {
-    vector<U8> bytes;
-    U32 size=inStr.size();
-    bytes.resize(size);
-    for (U32 i=0; i<size; ++i)
-    {
-        bytes[i]=inStr[i];
-    }
-    Send(bytes);
+    MediaNetData netData;;
+    netData.Write(inStr);
+    Send(netData);
 }
 
 void
 MediaNetWebLink::Send(istream& ioStream)
 {
-    vector<U8> bytes;
+    MediaNetData netData;
     while (ioStream.good() && !ioStream.eof())
     {
-        U8 byte;
-        ioStream.get(byte);
-        bytes.push_back(byte);
+        netData.PrepareForWrite();
+        ioStream.read(netData.WritePtrGet(), netData.WriteSizeGet());
+        U32 length=ioStream.gcount();
+        netData.WritePosAdd(length);
+        if (length == 0) break;
     }
-    Send(bytes);
+    Send(netData);
 }
 
 void
@@ -166,12 +173,22 @@ MediaNetWebLink::ReceivedProcess(const string& inStr)
     if (inStr.substr(0,3) == "GET")
     {
         m_requestLine = inStr;
+        m_requestType = kRequestGet;
     }
     else if (inStr.size() > 0 &&
              (inStr[0] == 0xd || inStr[0] == 0xa))
     {
         // Blank line received
-        GetProcess();
+        switch (m_requestType)
+        {
+            case kRequestGet:
+                GetProcess();
+                break;
+
+            default:
+                SendErrorPage("Unrecognised request");
+                break;
+        }
     }
 }
 
@@ -181,7 +198,9 @@ MediaNetWebLink::GetProcess(void)
     string filename;
     U32 dotCount=0;
     U32 slashCount=0;
-    
+
+    MediaNetLog::Instance().Log() << "Serving GET request for " << MediaNetUtils::MakePrintable(m_requestLine) << endl;
+
     try
     {
         for (U32 i=4; i<m_requestLine.size(); ++i)
@@ -268,18 +287,22 @@ MediaNetWebLink::SendFile(const string& inFilename)
     }
     else if (re.Search(inFilename, "\\.(jpg|jpeg)$"))
     {
+        http.AllowCachingSet();
         http.ContentType("image/jpeg");
     }
     else if (re.Search(inFilename, "\\.(tif|tiff)$"))
     {
+        http.AllowCachingSet();
         http.ContentType("image/tiff");
     }
     else if (re.Search(inFilename, "\\.png$"))
     {
+        http.AllowCachingSet();
         http.ContentType("image/png");
     }
     else if (re.Search(inFilename, "\\.css$"))
     {
+        http.AllowCachingSet();
         http.ContentType("text/css");
     }
     else
@@ -294,7 +317,9 @@ MediaNetWebLink::SendFile(const string& inFilename)
     else
     {
         http.Endl();
-        Send(http.ContentGet().str());
+        MediaNetData netData;
+        http.ContentGet(netData);
+        Send(netData);
         Send(fileStream);
     }
     Disconnect();
@@ -303,98 +328,40 @@ MediaNetWebLink::SendFile(const string& inFilename)
 void
 MediaNetWebLink::SendMHTML(istream& ioStream, MediaNetHTTP& ioHTTP)
 {
+    MediaNetData netData;
+    
     ioHTTP.Endl();
-    Send(ioHTTP.ContentGet().str());
-    vector<U8> bytes;
-
-    enum
-    {
-        kCharIdle,
-        kCharSequence,
-        kCharCommand,
-        kCharEnd
-    } charState=kCharIdle;
-
-    string mushSequence;
-    string mushMagic="<?mush";
-    string mushContent;
+    ioHTTP.ContentGet(netData);
+    Send(netData);
     
     while (ioStream.good() && !ioStream.eof())
     {
-        U8 byte;
-        ioStream.get(byte);
+        string dataStr;
+        getline(ioStream, dataStr, '\0');
 
-        switch (charState)
+        U32 startPos;
+        
+        while (startPos = dataStr.find("<?mush"), startPos != dataStr.npos)
         {
-            case kCharIdle:
+            U32 endPos = dataStr.find("?>", startPos);
+            if (endPos == dataStr.npos)
             {
-                if (byte == '<')
-                {
-                    charState=kCharSequence;
-                    mushSequence=byte;
-                }
-                else
-                {
-                    bytes.push_back(byte);
-                }
+                throw(NetworkFail("Unterminated <?mush (expecting ?>)"));
             }
-            break;
 
-            case kCharSequence:
+            string content=dataStr.substr(startPos+6, endPos - startPos - 6);
+            // MediaNetLog::Instance().Log() << "Found mush command '" << content << "'" << endl;
+        
+            CoreCommand command(content);
+            ostringstream commandOutput;
             {
-                mushSequence += byte;
-
-                if (mushSequence.size() >= mushMagic.size())
-                {
-                    if (mushSequence == mushMagic)
-                    {
-                        mushContent="";
-                        mushSequence="";
-                        charState=kCharCommand;
-                    }
-                    else
-                    {
-                        for (U32 i=0; i<mushSequence.size(); ++i)
-                        {
-                            bytes.push_back(mushSequence[i]);
-                        }
-                        mushSequence="";
-                        charState=kCharIdle;
-                    }
-                }
+                CoreEnvOutput envOutput(CoreEnv::Instance(), commandOutput);
+                command.Execute();
             }
-            break;
-
-            case kCharCommand:
-                if (byte == '?')
-                {
-                    charState = kCharEnd;
-                }
-                else
-                {
-                    mushContent += byte;
-                }
-                break;
-
-            case kCharEnd:
-            {
-                CoreCommand command(mushContent);
-                ostringstream commandOutput;
-                {
-                    CoreEnvOutput envOutput(CoreEnv::Instance(), commandOutput);
-                    command.Execute();
-                }
-                for (U32 i=0; i<commandOutput.str().size(); ++i)
-                {
-                    bytes.push_back(commandOutput.str()[i]);
-                }
-                charState = kCharIdle;
-            }
-            break;
-
+            dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
         }
+        Send(dataStr);
     }
-    Send(bytes);
 }
 
 void
@@ -406,13 +373,13 @@ MediaNetWebLink::SendTestPage(void)
     http.Endl();
     http.Header();
 
-
     http.Out() << "Infernal Contractor II test page";
-    
     
     http.Endl();
     http.Footer();
-    Send(http.ContentGet().str());
+    MediaNetData netData;
+    http.ContentGet(netData);
+    Send(netData);
     Disconnect();
 }
 
@@ -430,7 +397,10 @@ MediaNetWebLink::SendErrorPage(const string& inText)
 
     http.Endl();
     http.Footer();
-    Send(http.ContentGet().str());
+
+    MediaNetData netData;
+    http.ContentGet(netData);
+    Send(netData);
     Disconnect();
 }
 
