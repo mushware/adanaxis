@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.84 2002/11/01 17:24:49 southa Exp $
+ * $Id: GameContract.cpp,v 1.85 2002/11/01 18:46:24 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.85  2002/11/01 18:46:24  southa
+ * UDP Links
+ *
  * Revision 1.84  2002/11/01 17:24:49  southa
  * Network links on win32
  *
@@ -401,9 +404,9 @@ GameContract::Init(void)
     m_newMode=GameConfig::Instance().DisplayModeGet();
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
 
-    MediaNetServer server(7121);
+    MediaNetServer::Instance().Connect(7121);
     MediaNetLink clientLink("localhost", 7121);
-    server.Accept();
+    MediaNetServer::Instance().Accept();
     MediaNetData dataIn("Hello from the network link");
     MediaNetData dataReply("Hello yourself");
     MediaNetData dataOut;
@@ -412,8 +415,8 @@ GameContract::Init(void)
     cout << "dataOut " << dataOut << endl;
     MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("link0");
     COREASSERT(serverLink != NULL);
-    clientLink.UDPSend(dataIn);
-    serverLink->UDPSend(dataReply);
+    // clientLink.UDPSend(dataIn);
+    // serverLink->UDPSend(dataReply);
     for (U32 i=0; i<1e6; ++i)
         {}
     MediaNetData dataBack;

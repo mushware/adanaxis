@@ -3420,8 +3420,12 @@
 				F5A70F4703729AF201A80164,
 				F5AB165E0371B43601A80164,
 				F5AB165D0371B43601A80164,
+				F5A731440375512201A80164,
+				F5A731430375512201A80164,
 				F5ABEB930371802C01A80164,
 				F5ABEB920371802C01A80164,
+				F5A7314803757EA301A80164,
+				F5A7314703757EA301A80164,
 				F5539E3102B4CDCF010AB4A9,
 				F546F59502C206E801173785,
 				F5539E3302B4CE24010AB4A9,
@@ -4320,6 +4324,8 @@
 				F5AB165F0371B43601A80164,
 				F5A70F4903729AF201A80164,
 				F5C4435C0372B3AA01A80164,
+				F5A731450375512201A80164,
+				F5A7314903757EA301A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4452,6 +4458,8 @@
 				F5AB16600371B43601A80164,
 				F5A70F4A03729AF201A80164,
 				F5C4435E0372B4BE01A80164,
+				F5A731460375512201A80164,
+				F5A7314A03757EA301A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5211,6 +5219,54 @@
 		};
 		F5A70F4A03729AF201A80164 = {
 			fileRef = F5A70F4803729AF201A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A731430375512201A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetProtocol.h;
+			path = Media/MediaNetProtocol.h;
+			refType = 4;
+		};
+		F5A731440375512201A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetProtocol.cpp;
+			path = Media/MediaNetProtocol.cpp;
+			refType = 4;
+		};
+		F5A731450375512201A80164 = {
+			fileRef = F5A731430375512201A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A731460375512201A80164 = {
+			fileRef = F5A731440375512201A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A7314703757EA301A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetUtils.h;
+			path = Media/MediaNetUtils.h;
+			refType = 4;
+		};
+		F5A7314803757EA301A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetUtils.cpp;
+			path = Media/MediaNetUtils.cpp;
+			refType = 4;
+		};
+		F5A7314903757EA301A80164 = {
+			fileRef = F5A7314703757EA301A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A7314A03757EA301A80164 = {
+			fileRef = F5A7314803757EA301A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetData.cpp,v 1.1 2002/11/01 16:15:27 southa Exp $
+ * $Log: MediaNetData.cpp,v $
+ * Revision 1.1  2002/11/01 16:15:27  southa
+ * Network send and receive
+ *
  */
 
 #include "MediaNetData.h"
@@ -23,7 +26,7 @@ MediaNetData::Print(ostream& ioOut) const
         }
         else
         {
-            ioOut << "[" << hex << m_data[i] << dec << "]";
+            ioOut << "[" << hex << static_cast<U32>(m_data[i]) << dec << "]";
         }
     }
     ioOut << "'";

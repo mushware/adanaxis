@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.5 2002/11/01 18:46:25 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.6 2002/11/02 11:22:51 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.6  2002/11/02 11:22:51  southa
+ * Simplified UDP send and receive
+ *
  * Revision 1.5  2002/11/01 18:46:25  southa
  * UDP Links
  *
@@ -20,22 +23,9 @@
 
 #include "MediaNetClient.h"
 #include "MediaNetData.h"
+#include "MediaNetUtils.h"
 
 #include "mushPlatform.h"
-
-// Need to peek into socket structure to set nonblocking.  A bit nasty
-struct _TCPsocket
-{
-    int ready;
-    int channel;
-};
-
-// This one's just for debug printouts
-struct _UDPsocket
-{
-    int ready;
-    int channel;
-};
 
 MediaNetClient::MediaNetClient() :
     m_tcpConnected(false),
@@ -61,15 +51,16 @@ MediaNetClient::TCPConnect(const string& inServer, U32 inPort)
 
     char buffer[strlen(inServer.c_str())+1];
     strncpy(buffer, inServer.c_str(), strlen(inServer.c_str())+1);
-    
-    if (SDLNet_ResolveHost(&m_remoteIP, buffer, inPort) == -1)
+
+    IPaddress remoteIP;
+    if (SDLNet_ResolveHost(&remoteIP, buffer, inPort) == -1)
     {
         ostringstream message;
         message << "Client connection failed: " << SDLNet_GetError();
         throw(NetworkFail(message.str()));
     }
     
-    m_tcpSocket = SDLNet_TCP_Open(&m_remoteIP);
+    m_tcpSocket = SDLNet_TCP_Open(&remoteIP);
     if (m_tcpSocket == 0)
     {
         ostringstream message;
@@ -77,6 +68,11 @@ MediaNetClient::TCPConnect(const string& inServer, U32 inPort)
         throw(NetworkFail(message.str()));
     }
     PlatformNet::SocketNonBlockingSet(m_tcpSocket->channel);
+
+    // These are set again if ResolveTargetName is successful
+    m_remoteIP = remoteIP.host;
+    m_tcpRemotePort = remoteIP.port;
+
     ResolveTargetName();
     m_tcpConnected=true;
 }
@@ -110,8 +106,9 @@ MediaNetClient::ResolveTargetName(void)
     remoteIP = SDLNet_TCP_GetPeerAddress(m_tcpSocket);
     if (remoteIP != NULL)
     {
-        m_remoteIP = *remoteIP;
-
+        m_remoteIP = remoteIP->host;
+        m_tcpRemotePort = remoteIP->port;
+        
         char *remoteName=SDLNet_ResolveIP(remoteIP);
         if (remoteName != NULL)
         {
@@ -145,20 +142,24 @@ MediaNetClient::UDPConnect(U32 inPort)
         UDPDisconnect();
     }
     
-    for (m_udpPort=inPort; m_udpPort < inPort+8; ++m_udpPort)
+    for (m_udpLocalPort=inPort; m_udpLocalPort < inPort+8; ++m_udpLocalPort)
     {
-        m_udpSocket = SDLNet_UDP_Open(m_udpPort);
+        m_udpSocket = SDLNet_UDP_Open(m_udpLocalPort);
         if (m_udpSocket != 0) break;
     }
     if (m_udpSocket == 0)
     {
         throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
     }
-    cout << "Selected local UDP port " << m_udpPort << endl;
+    cout << "Selected local UDP port " << m_udpLocalPort << endl;
 
     // Since we've replaced SDLNet_UDP_Send we don't use this bound address,
     // but let's bind it anyway
-    int result=SDLNet_UDP_Bind(m_udpSocket, -1, &m_remoteIP);
+    IPaddress remoteIP;
+    remoteIP.host=m_remoteIP;
+    remoteIP.port=m_udpRemotePort;
+    
+    int result=SDLNet_UDP_Bind(m_udpSocket, -1, &remoteIP);
 
     if (result == -1)
     {
@@ -166,10 +167,15 @@ MediaNetClient::UDPConnect(U32 inPort)
     }
 
     PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
-    
+    m_udpRemotePort=0; // We don't know
     m_udpConnected=true;
 }
 
+void
+MediaNetClient::UDPRemotePortSet(U32 inPort)
+{
+    m_udpRemotePort=inPort;
+}
 
 void
 MediaNetClient::TCPDisconnect(void)
@@ -265,7 +271,7 @@ MediaNetClient::UDPSend(MediaNetData& ioData)
 
     U32 dataSize=ioData.ReadSizeGet();
 
-    PlatformNet::UDPSend(m_remoteIP.host, m_remoteIP.port, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
+    PlatformNet::UDPSend(m_remoteIP, m_udpRemotePort, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
     ioData.ReadPosAdd(dataSize);
 }
 
@@ -288,8 +294,26 @@ MediaNetClient::UDPReceive(MediaNetData& outData)
 void
 MediaNetClient::Print(ostream& ioOut) const
 {
-    ioOut << "tcpSocket=" << m_tcpSocket->channel << ", udpSocket=" << m_udpSocket->channel << ", udpPort=" << m_udpPort;
-    ioOut << ", remoteIP=" << m_remoteIP;
-    ioOut << ", remoteName=" << m_remoteName << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected;
+    ioOut << "[tcpSocket=";
+    if (m_tcpSocket == NULL)
+    {
+        ioOut << "NULL";
+    }
+    else
+    {
+        ioOut << m_tcpSocket->channel;
+    }
+    ioOut << ", udpSocket=";
+    if (m_udpSocket == NULL)
+    {
+        ioOut << "NULL";
+    }
+    else
+    {
+        ioOut << m_udpSocket->channel;
+    }
+    ioOut << ", udpLocalPort=" << m_udpLocalPort;
+    ioOut << ", remoteIP=" << MediaNetUtils::IPAddressToString(m_remoteIP) << ", tcpRemotePort=" << m_tcpRemotePort << ", udpRemotePort=" << m_udpRemotePort;
+    ioOut << ", remoteName=" << m_remoteName << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected << "]";
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNet.h,v 1.1 2002/10/31 15:52:15 southa Exp $
+ * $Id: MediaNet.h,v 1.2 2002/11/02 11:22:51 southa Exp $
  * $Log: MediaNet.h,v $
+ * Revision 1.2  2002/11/02 11:22:51  southa
+ * Simplified UDP send and receive
+ *
  * Revision 1.1  2002/10/31 15:52:15  southa
  * First network code
  *
@@ -20,7 +23,6 @@ protected:
 private:
     static auto_ptr<MediaNet> m_instance;
 };
-
 
 inline MediaNet&
 MediaNet::Instance(void)
