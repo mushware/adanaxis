@@ -1,0 +1,16 @@
+#
+# $Id$
+# $Log$
+#
+
+MAKEFILE=ParserMake.mkf
+OBJECTS=CoreFlex.cpp CoreBison.cpp
+
+default:$(OBJECTS)
+
+%.cpp:%.flex $(MAKEFILE)
+	flex -PCoreFlex_ -L -o$@ $<
+
+%.cpp %.hp:%.y $(MAKEFILE)
+	bison --debug --name-prefix=CoreBison_ --no-lines --defines --output-file=$@ $<
+	mv $@.h $(patsubst %.cpp,%Defs.hp,$@)
