@@ -1,0 +1,21 @@
+# Target definition file
+# $Id$
+# $Log$
+
+Name: MushCore
+
+Use: lib.Makefile.am as Makefile.am
+Use: lib.acinclude.m4 as acinclude.m4
+
+Create: src/Makefile.am
+
+Library: mushcore
+Modules: MushCore
+
+Program: test_mushcore
+Modules: TestMushCore
+
+Output: test_mushcore_LDADD=libmushcore.la -lexpat -lpcre
+# Output: test_mushcore_CXXFLAGS=-I${srcdir}/MushCore $(AM_CXXFLAGS)
+
+Test:

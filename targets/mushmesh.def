@@ -1,0 +1,22 @@
+# Target definition file
+# $Id$
+# $Log$
+
+Name: MushMesh
+
+Use: mushmesh.configure.in as configure.in
+Use: lib.Makefile.am as Makefile.am
+Use: lib.acinclude.m4 as acinclude.m4
+
+Create: src/Makefile.am
+
+Library: mushmesh
+Modules: MushMesh
+
+Program: test_mushmesh
+Modules: TestMushMesh
+
+Output: test_mushmesh_LDADD=libmushmesh.la -lmushcore -lexpat -lpcre
+Output: test_mushmesh_CXXFLAGS=-I${srcdir}/MushMesh $(AM_CXXFLAGS)
+
+Test:
