@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.9 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreStandard.h,v 1.10 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.10  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.9  2002/06/27 12:36:04  southa
  * Build process fixes
  *
@@ -95,6 +98,7 @@
 #include <map>
 #include <stack>
 #include <stdexcept>
+#include <ctime>
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>

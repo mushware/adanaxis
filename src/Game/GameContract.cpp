@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.22 2002/07/02 18:36:56 southa Exp $
+ * $Id: GameContract.cpp,v 1.23 2002/07/06 18:04:18 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.23  2002/07/06 18:04:18  southa
+ * More designer work
+ *
  * Revision 1.22  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -234,7 +237,7 @@ GameContract::Designing(void)
     m_floorDesigner->Move();
     GLUtils::PostRedisplay();
     GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
-    if (gameHandler.KeyStateGet('r')) m_gameState=kRunning;
+    if (gameHandler.KeyStateGet('p')) m_gameState=kRunning;
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.3 2002/07/02 19:29:01 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.4 2002/07/06 18:04:19 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.4  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.3  2002/07/02 19:29:01  southa
  * Tidied up selection effect in designer
  *
@@ -44,7 +47,7 @@ GameFloorDesigner::Init(void)
     m_tileMap=GameData::Instance().TileMapGet("tiles");
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
-    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
+    m_floorMaps.push_back(GameData::Instance().FloorMapGet("floormap-template"));
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMaps[0] != NULL);
@@ -56,9 +59,16 @@ GameFloorDesigner::Init(void)
         m_xPos.push_back(glHandler.WidthGet()/2);
         m_yPos.push_back(glHandler.HeightGet()/2);
     }
+    for (U32 i=0; i<kUndoBufferSize; ++i)
+    {
+        m_undoBuffer.push_back(*m_floorMaps[0]);
+    }
+        
     m_highlight=GLRectangle();
     m_highlightMap=0;
     m_currentMap=0;
+    m_currentUndoBuffer=0;
+    m_lastUndoBuffer=0;
     m_primaryButtonState=false;
     m_secondaryButtonState=false;
     m_lastUndoKeyState=false;
@@ -113,6 +123,13 @@ GameFloorDesigner::Move(void)
     bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse3));
     bool tertiaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2));
 
+    // Make all maps apart from 0 read-only
+    if (m_currentMap != 0)
+    {
+        secondaryState |= primaryState;
+        primaryState=false;
+    }
+    
     if (m_secondaryButtonState != secondaryState)
     {
         if (secondaryState)
@@ -148,7 +165,7 @@ GameFloorDesigner::Move(void)
                                 TranslateWindowToMap(end));
         m_highlight.FixUp();
         m_highlightMap=m_currentMap;
-#if 1
+#if 0
         cerr << "Start was " << start.x << ", " << start.y;
         cerr << ", end was " << end.x << ", " << end.y << endl;
         cerr << "Translation was " << m_highlight.xmin << ", " <<
@@ -193,6 +210,12 @@ GameFloorDesigner::Move(void)
         Undo();
     }
     m_lastUndoKeyState=undoKeyState;
+    bool redoKeyState=glHandler.KeyStateGet('v');
+    if (redoKeyState && !m_lastRedoKeyState)
+    {
+        Redo();
+    }
+    m_lastRedoKeyState=redoKeyState;
     bool saveKeyState=glHandler.KeyStateGet('s');
     if (saveKeyState && !m_lastSaveKeyState)
     {
@@ -217,8 +240,16 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
 {
     COREASSERT(m_currentMap < m_floorMaps.size());
     COREASSERT(m_highlightMap < m_floorMaps.size());
-
-    GameFloorMap *srcMap=m_floorMaps[m_highlightMap];
+    GameFloorMap *srcMap;
+    if (m_currentMap == m_highlightMap)
+    {
+        // Read from the undo buffer if we're copying back to the same map
+        srcMap=&m_undoBuffer[m_lastUndoBuffer];
+    }
+    else
+    {
+        srcMap=m_floorMaps[m_highlightMap];
+    }
     GameFloorMap *destMap=m_floorMaps[m_currentMap];
     
     GLRectangle src(m_highlight); // Source rectangle
@@ -235,7 +266,7 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
         for (S32 y=0; y<src.YSize() && y<dest.YSize(); ++y)
         {
             GLPoint offset(x,y);
-            cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
+            // cerr << "Copying from " << (src.MinPoint()+offset) << " to " << (dest.MinPoint()+offset) << endl;
             destMap->ElementSet(dest.MinPoint()+offset,
                                 srcMap->ElementGet(src.MinPoint()+offset));
         }
@@ -245,13 +276,25 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
 void
 GameFloorDesigner::SaveForUndo(void)
 {
-    cerr << "saveforundo" << endl;
+    m_lastUndoBuffer=m_currentUndoBuffer;
+    m_undoBuffer[m_currentUndoBuffer]=*m_floorMaps[m_currentMap];
+    m_lastUndoBuffer=m_currentUndoBuffer;
+    m_currentUndoBuffer = (m_currentUndoBuffer+1) % kUndoBufferSize;
 }
 
 void
 GameFloorDesigner::Undo(void)
 {
-    cerr << "undo" << endl;
+    m_undoBuffer[m_currentUndoBuffer]=*m_floorMaps[m_currentMap]; // save for redo
+    m_currentUndoBuffer = (m_currentUndoBuffer+kUndoBufferSize-1) % kUndoBufferSize;
+    *m_floorMaps[m_currentMap]=m_undoBuffer[m_currentUndoBuffer];
+}
+
+void
+GameFloorDesigner::Redo(void)
+{
+    m_currentUndoBuffer = (m_currentUndoBuffer+1) % kUndoBufferSize;
+    *m_floorMaps[m_currentMap]=m_undoBuffer[m_currentUndoBuffer];
 }
 
 void
@@ -271,6 +314,9 @@ GameFloorDesigner::Save(void)
 
     ofstream outputFile(filename.c_str());
     if (!outputFile) throw(LoaderFail(filename, "Could not open file"));
+    time_t now(time(NULL));
+    outputFile << "<!-- Map saved by designer " << ctime(&now) << " -->" << endl;
+    m_floorMaps[0]->Pickle(outputFile);
     // m_floorMap[0]->Save(fileStream);
 }
 

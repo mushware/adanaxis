@@ -3,3 +3,16 @@ Infernal Contractor II
 
 A video game reflecting the insidious world of the software contractor.
 
+Game Manual
+===========
+
+There's no gameplay as yet, but a few keys will work.
+
+Arrow keys - move forward, backward, left and right
+Mouse x axis - rotate player
+Escape - exit
+
+Level Designer Manual
+=====================
+
+IC2 contains an in-game level designer.  Design is done through copy and paste.

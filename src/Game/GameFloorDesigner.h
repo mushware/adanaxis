@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.h,v 1.2 2002/07/02 18:36:56 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.3 2002/07/06 18:04:19 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.3  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.2  2002/07/02 18:36:56  southa
  * Selection in designer, mouse buttons
  *
@@ -39,10 +42,17 @@ public:
     void Init(void);
     
 private:
+
+    enum
+    {
+        kUndoBufferSize=8
+    };
+    
     const GLPoint TranslateWindowToMap(const GLPoint& inPoint);
     void Paste(const GLPoint& inDest);
     void SaveForUndo(void);
     void Undo(void);
+    void Redo(void);
     void Save(void);
     
     vector<tVal> m_xPos;
@@ -60,6 +70,10 @@ private:
     tVal m_width;
     tVal m_height;
     bool m_lastUndoKeyState;
+    bool m_lastRedoKeyState;
     bool m_lastSaveKeyState;
+    vector<GameFloorMap> m_undoBuffer;
+    U32 m_currentUndoBuffer;
+    U32 m_lastUndoBuffer;
 };
 #endif

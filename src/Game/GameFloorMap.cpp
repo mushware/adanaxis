@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.6 2002/07/02 19:29:02 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.7 2002/07/06 18:04:19 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.7  2002/07/06 18:04:19  southa
+ * More designer work
+ *
  * Revision 1.6  2002/07/02 19:29:02  southa
  * Tidied up selection effect in designer
  *
@@ -134,12 +137,12 @@ GameFloorMap::ElementSet(const GLPoint &inPoint, U32 inValue)
     COREASSERT(inPoint.y < m_ysize);
     if (m_map.size() < inPoint.y)
     {
-        cerr << "Had to grow map vector to accomodate y=" << inPoint.y << endl;
+        cerr << "Warning: Had to grow map vector to accomodate y=" << inPoint.y << endl;
         m_map.resize(inPoint.y+1);
     }
     if (m_map[inPoint.y].size() < inPoint.x)
     {
-        cerr << "Had to grow map vector to accomodate x=" << inPoint.x << endl;
+        cerr << "Warning: Had to grow map vector to accomodate x=" << inPoint.x << endl;
         m_map[inPoint.y].resize(inPoint.x+1);
     }
     m_map[inPoint.y][inPoint.x]=inValue;
@@ -194,11 +197,6 @@ GameFloorMap::HandleDataEnd(CoreXML& inXML)
             break;
         }
     }
-    if (vec.size() != m_xsize)
-    {
-        cerr << "Warning: Data size does not match map size" << endl;
-        vec.resize(m_xsize);
-    }
     m_map.insert(m_map.begin(), vec);
 }
 
@@ -236,8 +234,16 @@ GameFloorMap::Unpickle(CoreXML& inXML)
     inXML.ParseStream(*this);
     if (m_map.size() != m_ysize)
     {
-        cerr << "Warning: Data size does not match map size" << endl;
+        cerr << "Warning: Data y size does not match map size" << endl;
         m_map.resize(m_ysize);
+    }
+    for (U32 i=0; i<m_ysize; ++i)
+    {
+        if (m_map[i].size() != m_xsize)
+        {
+            cerr << "Warning: Data x size does not match map size at line " << i << endl;
+            m_map[i].resize(m_xsize);
+        }
     }
 }
 

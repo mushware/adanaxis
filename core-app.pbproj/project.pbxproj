@@ -1412,7 +1412,6 @@
 				F5431766020C372901449C4C,
 				F5483A8A02D19C6B01480ACF,
 				F5909DAE022822A9013B17EF,
-				F545A7D8022C4F440152A3B7,
 			);
 			isa = PBXGroup;
 			refType = 4;
@@ -1757,27 +1756,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F545A7D7022C0ED70152A3B7 = {
-			isa = PBXFileReference;
-			name = basicToC.pl;
-			path = riscos/basicToC.pl;
-			refType = 4;
-		};
-		F545A7D8022C4F440152A3B7 = {
-			children = (
-				F545A7D7022C0ED70152A3B7,
-				F545A7D9022C4F440152A3B7,
-			);
-			isa = PBXGroup;
-			name = riscos;
-			refType = 4;
-		};
-		F545A7D9022C4F440152A3B7 = {
-			isa = PBXFileReference;
-			name = BasText.txt;
-			path = riscos/BasText.txt;
-			refType = 4;
 		};
 		F545B09602439E5A01CBA783 = {
 			children = (
@@ -2638,6 +2616,7 @@
 		F5483A9602D19E6101480ACF = {
 			children = (
 				F5483A9802D19E6101480ACF,
+				F570DF8802D84F0B01CE3369,
 			);
 			isa = PBXGroup;
 			path = spaces;
@@ -3111,6 +3090,11 @@
 		F56F91AB0221AC0F011355B6 = {
 			isa = PBXFileReference;
 			path = GLTexture.cpp;
+			refType = 4;
+		};
+		F570DF8802D84F0B01CE3369 = {
+			isa = PBXFileReference;
+			path = "floormap-template.xml";
 			refType = 4;
 		};
 		F57B3120028C51470195BBD7 = {
@@ -4022,14 +4006,14 @@
 		};
 		F5B25BCA02187072017E032D = {
 			children = (
-				F5539E2A02B4CD53010AB4A9,
-				F5939688028C0053016230BF,
-				F57BD757028ADEEF01AD87C4,
 				F5456B4D0289845101446FAA,
 				F5921CDE021876D70127AF47,
+				F5939688028C0053016230BF,
 				F5B25BCB02187072017E032D,
 				F5B25BD102187072017E032D,
+				F5539E2A02B4CD53010AB4A9,
 				F5457BA202AFB16701E3BBF3,
+				F57BD757028ADEEF01AD87C4,
 				F5B25BE502187072017E032D,
 				F545B09602439E5A01CBA783,
 			);
