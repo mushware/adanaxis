@@ -1805,6 +1805,7 @@
 			children = (
 				F5457BA502AFB19401E3BBF3,
 				F54ACE7502B643D401F28026,
+				F5C4435B0372B3AA01A80164,
 				F595A940035B313D01A80166,
 				F5457BA602AFB19401E3BBF3,
 				F5457BA702AFB19401E3BBF3,
@@ -1822,6 +1823,7 @@
 				F594083A035C7E4D01A80164,
 				F5457BA402AFB19401E3BBF3,
 				F5955436035EC93201A80164,
+				F5C4435D0372B4BE01A80164,
 				F595A942035B316401A80166,
 				F546F21602C1F66E01173785,
 				F546F21702C1F66E01173785,
@@ -3414,6 +3416,8 @@
 				F5B345E20370218B01A80164,
 				F5ABEB9703718C3C01A80164,
 				F5ABEB9603718C3C01A80164,
+				F5A70F4803729AF201A80164,
+				F5A70F4703729AF201A80164,
 				F5AB165E0371B43601A80164,
 				F5AB165D0371B43601A80164,
 				F5ABEB930371802C01A80164,
@@ -4314,6 +4318,8 @@
 				F5ABEB940371802C01A80164,
 				F5ABEB9803718C3C01A80164,
 				F5AB165F0371B43601A80164,
+				F5A70F4903729AF201A80164,
+				F5C4435C0372B3AA01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4444,6 +4450,8 @@
 				F5ABEB950371802C01A80164,
 				F5ABEB9903718C3C01A80164,
 				F5AB16600371B43601A80164,
+				F5A70F4A03729AF201A80164,
+				F5C4435E0372B4BE01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5183,6 +5191,30 @@
 			path = PlatformMiscUtils.cpp;
 			refType = 4;
 		};
+		F5A70F4703729AF201A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetData.h;
+			path = Media/MediaNetData.h;
+			refType = 4;
+		};
+		F5A70F4803729AF201A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetData.cpp;
+			path = Media/MediaNetData.cpp;
+			refType = 4;
+		};
+		F5A70F4903729AF201A80164 = {
+			fileRef = F5A70F4703729AF201A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A70F4A03729AF201A80164 = {
+			fileRef = F5A70F4803729AF201A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5AA63C8031193CA01442A89 = {
 			isa = PBXFileReference;
 			name = GameRecords.cpp;
@@ -5491,6 +5523,29 @@
 		};
 		F5B96F20030D9B5C015847EC = {
 			fileRef = F5B96F1E030D9B5C015847EC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5C4435B0372B3AA01A80164 = {
+			isa = PBXFileReference;
+			name = PlatformNet.h;
+			path = src/Platform/PlatformNet.h;
+			refType = 2;
+		};
+		F5C4435C0372B3AA01A80164 = {
+			fileRef = F5C4435B0372B3AA01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5C4435D0372B4BE01A80164 = {
+			isa = PBXFileReference;
+			path = PlatformNet.cpp;
+			refType = 4;
+		};
+		F5C4435E0372B4BE01A80164 = {
+			fileRef = F5C4435D0372B4BE01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.81 2002/10/31 16:41:32 southa Exp $
+ * $Id: GameContract.cpp,v 1.82 2002/10/31 19:55:53 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.82  2002/10/31 19:55:53  southa
+ * Network links
+ *
  * Revision 1.81  2002/10/31 16:41:32  southa
  * Network client
  *
@@ -393,8 +396,27 @@ GameContract::Init(void)
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
 
     MediaNetServer server(7121);
-    MediaNetLink link("localhost", 7121);
+    MediaNetLink clientLink("localhost", 7121);
     server.Accept();
+    MediaNetData dataIn("Hello from the network link");
+    MediaNetData dataReply("Hello yourself");
+    MediaNetData dataOut;
+    cout << "dataIn " << dataIn << endl;
+    cout << "dataReply " << dataReply << endl;
+    cout << "dataOut " << dataOut << endl;
+    MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("link0");
+    COREASSERT(serverLink != NULL);
+    clientLink.SendTCP(dataIn);
+    serverLink->SendTCP(dataReply);
+    sleep(1);
+    MediaNetData dataBack;
+    clientLink.ReceiveTCP(dataBack);
+    serverLink->ReceiveTCP(dataOut);
+    cout << "dataIn " << dataIn << endl;
+    cout << "dataOut " << dataOut << endl;
+    cout << "dataBack " << dataBack << endl;
+    cerr << clientLink << endl;
+    CoreData<MediaNetLink>::Instance().Dump(cerr);
 }
 
 void

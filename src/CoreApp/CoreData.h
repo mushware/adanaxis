@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.3 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreData.h,v 1.4 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.4  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -39,6 +42,8 @@ public:
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
     inline void Clear(void);
+    inline void Dump(ostream& ioOut);
+    
 protected:
     CoreData() {}
 
@@ -105,6 +110,18 @@ CoreData<RefType>::Clear(void)
         delete p->second;
     }
     m_data.clear();
+}
+
+template<class RefType>
+inline void
+CoreData<RefType>::Dump(ostream& ioOut)
+{
+    ioOut << "Dumping data for CoreData<" << typeid(RefType).name() << ">" << endl;
+    for (map<string, RefType *>::iterator p = m_data.begin();
+         p != m_data.end(); ++p)
+    {
+        ioOut << p->first << ": " << *p->second << endl;
+    }
 }
 
 

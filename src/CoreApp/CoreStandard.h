@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.18 2002/10/10 13:51:16 southa Exp $
+ * $Id: CoreStandard.h,v 1.19 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.19  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.18  2002/10/10 13:51:16  southa
  * Speed fixes and various others
  *
@@ -121,6 +124,8 @@
 #include <list>
 #include <map>
 #include <stack>
+
+#include <typeinfo>
 
 #include <stdexcept>
 #include <ctime>

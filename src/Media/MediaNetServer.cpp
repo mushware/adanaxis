@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetServer.cpp,v 1.3 2002/10/31 19:55:54 southa Exp $
+ * $Log: MediaNetServer.cpp,v $
+ * Revision 1.3  2002/10/31 19:55:54  southa
+ * Network links
+ *
  */
 
 #include "MediaNetServer.h"
@@ -43,9 +46,8 @@ MediaNetServer::Accept(void)
     if (newSocket != NULL)
     {
         ostringstream name;
-        name << "newlink" << m_linkCtr;
+        name << "link" << m_linkCtr;
         CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket));
         m_linkCtr++;
     }
 }
-        
