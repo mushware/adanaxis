@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.3 2004/03/07 20:33:54 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.4 2004/09/20 21:50:47 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.4  2004/09/20 21:50:47  southa
+ * Added GLV
+ *
  * Revision 1.3  2004/03/07 20:33:54  southa
  * Graphics tuning
  *
@@ -27,6 +30,7 @@
 
 #include "MaurheenGame.h"
 
+#include "MaurheenHypercube.h"
 #include "MaurheenWorm.h"
 
 #include "mushPlatform.h"
@@ -91,22 +95,24 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     
     GLUtils::CheckGLError();
     
-    glRotated(msecNow/50, 0, 0, 1);
-    glRotated(msecNow/45, 0, 1, 0);
-    glRotated(msecNow/40, 1, 0, 0);
+    //glRotated(msecNow/50, 0, 0, 1);
+    //glRotated(msecNow/45, 0, 1, 0);
+    //glRotated(msecNow/40, 1, 0, 0);
 
-    GLState::UseLightingSet(true);
-    GLState::BlendSet(GLState::kBlendSolid);
-    GLState::ModulationSet(GLState::kModulationLighting);
-
-    GLState::TextureEnable();
-    GLTextureRef texRef("font-system1");
+    GLState::UseLightingSet(false);
+    GLState::BlendSet(GLState::kBlendLine);
+    GLState::ModulationSet(GLState::kModulationNone);
+    glEnable(GL_POINT_SMOOTH);
+    glEnable(GL_LINE_SMOOTH);
     
-    GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
+    GLState::TextureDisable();
+    //GLTextureRef texRef("font-system1");
     
-    MaurheenWorm worm;
-    worm.Create(msecNow / 1000);
-    worm.Render();
+    //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
+    
+    MaurheenHypercube hypercube;
+    hypercube.Create(msecNow / 1000);
+    hypercube.Render(msecNow / 1000);
     
     GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
@@ -120,10 +126,9 @@ void
 MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0));
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(13));
     MushGLV glv;
     glv.Acquaint();
-    cout << glv << endl;
 }
 
 void

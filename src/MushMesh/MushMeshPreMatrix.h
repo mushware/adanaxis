@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0u0Dmc4oDcZxueU4XtX+Cw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshPreMatrix.h,v 1.1 2004/10/31 09:22:51 southa Exp $
+ * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.1  2004/10/31 09:22:51  southa
+ * Added MushMeshPreMatrix
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -79,7 +82,7 @@ private:
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
 inline MushMeshVector<T, R>
-operator*(const MushMeshPreMatrix<T, C, R>& a, const MushMeshVector<T, R>& b)
+operator*(const MushMeshPreMatrix<T, C, R>& a, const MushMeshVector<T, C>& b)
 {
     MushMeshVector<T, R> retValue;
     for (Mushware::U32 i = 0; i < R; ++i)

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5G48h21GSab1hBFmr8Licg
 /*
- * $Id: GLStandard.h,v 1.20 2004/03/07 12:05:56 southa Exp $
+ * $Id: GLStandard.h,v 1.21 2004/09/27 22:42:08 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.21  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.20  2004/03/07 12:05:56  southa
  * Rendering work
  *
@@ -113,6 +116,11 @@
 
 #if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
 #include <windows.h>
+#endif
+
+#if defined(__APPLE__) || defined(MACOSX)
+#define HAVE_OPENGL_GL_H
+#define HAVE_OPENGL_GLU_H
 #endif
 
 #ifdef HAVE_GL_GL_H

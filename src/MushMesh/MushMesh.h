@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.12 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushMesh.h,v 1.13 2004/10/31 09:22:51 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.13  2004/10/31 09:22:51  southa
+ * Added MushMeshPreMatrix
+ *
  * Revision 1.12  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *
@@ -65,6 +68,7 @@
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
 // MushMeshSubdivide.h excluded
+#include "MushMeshTools.h"
 #include "MushMeshTriangularArray.h"
 #include "MushMeshVector.h"
 #include "MushMeshUtils.h"

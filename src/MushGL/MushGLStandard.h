@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } JAwZoKzI2b5H44hJsgMLvA
 /*
- * $Id: MushGLStandard.h,v 1.2 2004/09/20 21:50:47 southa Exp $
+ * $Id: MushGLStandard.h,v 1.3 2004/09/27 22:42:09 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.3  2004/09/27 22:42:09  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.2  2004/09/20 21:50:47  southa
  * Added GLV
  *
@@ -32,6 +35,11 @@
  
 #if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
 #include <windows.h>
+#endif
+
+#if defined(__APPLE__) || defined(MACOSX)
+#define HAVE_OPENGL_GL_H
+#define HAVE_OPENGL_GLU_H
 #endif
 
 #ifdef HAVE_GL_GL_H

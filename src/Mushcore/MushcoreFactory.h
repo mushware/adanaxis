@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PCqvrnn/p0THwedPuNPI9g
 /*
- * $Id: MushcoreFactory.h,v 1.5 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.6 2004/09/27 22:42:10 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.6  2004/09/27 22:42:10  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.5  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -50,6 +53,8 @@ class MushcoreFactory : public MushcoreSingleton<MushcoreFactory>
 public:
     typedef MushcoreVirtualObject *(* tFactoryPtr)(void) ;
     typedef std::map<std::string, tFactoryPtr> tFactoryMap;
+
+    virtual ~MushcoreFactory () {}
     
     void FactoryAdd(const std::string& inName, tFactoryPtr inPtr);
     MushcoreVirtualObject *ObjectCreate(const std::string& inName) const;
