@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } 4BtU5wMfOU8YYOqXOouT8w
 /*
- * $Id: MustlData.h,v 1.8 2003/09/17 19:40:37 southa Exp $
+ * $Id: MustlData.h,v 1.9 2004/01/02 21:13:14 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.9  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:37  southa
  * Source conditioning upgrades
  *
@@ -86,8 +89,8 @@ public:
     Mustl::U8 *ReadPtrGet(void);
 
     Mustl::U32 WritePosGet(void) const;
-    Mustl::U32 WriteSizeGet(void) const;
-    void WritePosAdd(Mustl::U32 inAdd);
+	std::size_t WriteSizeGet(void) const;
+	void WritePosAdd(std::size_t inAdd);
     Mustl::U8 *WritePtrGet(void);
     void Write(const std::string& inStr);
     
@@ -112,7 +115,7 @@ public:
     void LengthBytePush(Mustl::U8 inByte);
 
     void PrepareForWrite(void);
-    void PrepareForWrite(Mustl::U32 inSize);
+	void PrepareForWrite(std::size_t inSize);
 
     void Print(std::ostream& ioOut) const;
     
@@ -192,7 +195,7 @@ MustlData::WritePosGet(void) const
     return m_writePos;
 }
 
-inline Mustl::U32
+inline std::size_t
 MustlData::WriteSizeGet(void) const
 {
     MUSTLASSERT(m_writePos <= m_data.size());
@@ -200,7 +203,7 @@ MustlData::WriteSizeGet(void) const
 }
 
 inline void
-MustlData::WritePosAdd(Mustl::U32 inAdd)
+MustlData::WritePosAdd(std::size_t inAdd)
 {
     m_writePos += inAdd;
     MUSTLASSERT(m_writePos <= m_data.size());
@@ -216,7 +219,7 @@ MustlData::WritePtrGet(void)
 inline void
 MustlData::Write(const std::string& inStr)
 {
-    Mustl::U32 size=inStr.size();
+	std::size_t size=inStr.size();
     PrepareForWrite(size);
     memcpy(WritePtrGet(), inStr.c_str(), size);
     WritePosAdd(size);
@@ -338,7 +341,7 @@ MustlData::PrepareForWrite(void)
 }
 
 inline void
-MustlData::PrepareForWrite(Mustl::U32 inSize)
+MustlData::PrepareForWrite(std::size_t inSize)
 {
     if (m_writePos == m_readPos)
     {

@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } rQYYs6H5wr6GWkvXSe4Ezw
 /*
- * $Id: MustlMushcoreSingleton.h,v 1.5 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlMushcoreSingleton.h,v 1.6 2004/01/02 21:13:15 southa Exp $
  * $Log: MustlMushcoreSingleton.h,v $
+ * Revision 1.6  2004/01/02 21:13:15  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -39,14 +42,13 @@
 
 #include "MustlStandard.h"
 
-
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/MushcoreSingleton.h>
 #else
 #if defined(HAVE_MUSHCORE_H)
 #include <MushcoreSingleton.h>
 #else
-#include "MushcoreSingleton.h"
+#include "Mushcore/MushcoreSingleton.h"
 #endif
 #endif
 //%includeGuardEnd {

@@ -25,6 +25,7 @@
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
+				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -33,7 +34,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpat.lib libpcre.a"
+				AdditionalDependencies="WS2_32.lib Winmm.lib Iphlpapi.lib libexpat.lib libpcre.a"
 				ShowProgress="0"
 				OutputFile="$(OutDir)/project.exe"
 				LinkIncremental="2"
@@ -76,6 +77,7 @@
 				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE"
 				RuntimeLibrary="5"
+				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -84,7 +86,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpat.lib libpcre.a"
+				AdditionalDependencies="WS2_32.lib libexpat.lib libpcre.a"
 				OutputFile="$(OutDir)/project.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;"
@@ -712,6 +714,260 @@
 				</File>
 				<File
 					RelativePath="..\..\src\TestMushMesh\TestMushMeshVector.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Mustl"
+				Filter="">
+				<File
+					RelativePath="..\..\src\Mustl\Mustl.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\Mustl.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlAddress.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlAddress.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlAssert.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlAssert.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlClient.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlClient.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfig.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfig.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDef.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDef.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefBool.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefBool.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefMenuString.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefMenuString.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefPassword.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefPassword.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefString.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefString.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefU32.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefU32.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefVal.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlConfigDefVal.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlData.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlData.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlFail.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlFail.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlHTTP.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlHTTP.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlID.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlID.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlIDNull.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlIDNull.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlIDString.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlIDString.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlLink.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlLink.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlLog.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlLog.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMessageHandler.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMessageHandler.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMushcore.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMushcore.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMushcoreSingleton.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlMushcoreSingleton.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatform.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatform.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatformError.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatformError.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatformHeaders.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlPlatformHeaders.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlProtocol.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlProtocol.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlRouter.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlRouter.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlServer.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlServer.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlSTL.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlSTL.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlTimer.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlTimer.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlUtils.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlUtils.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebCommands.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebCommands.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebLink.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebLink.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebRouter.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebRouter.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebServer.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Mustl\MustlWebServer.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="TestMustl"
+				Filter="">
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlApp.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlApp.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlMain.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlMain.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlPostHandler.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlPostHandler.h">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\TestMustl\TestMustlStandard.h">
 				</File>
 			</Filter>
 		</Filter>

@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } 9z0X5Nz7BBik209q4454nw
 /*
- * $Id: MustlWebLink.cpp,v 1.25 2004/01/01 21:15:46 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.26 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.26  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.25  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -230,11 +233,13 @@ MustlWebLink::Receive(string& outStr)
         }
         catch (MustlPermanentFail &e)
         {
+			(void) e;
             Disconnect();
             throw;
         }
         catch (MustlTemporaryFail &e)
         {
+			(void) e;
             ++m_linkErrors;
             throw;
         }
@@ -266,11 +271,13 @@ MustlWebLink::Send(MustlData& ioData)
     }
     catch (MustlPermanentFail &e)
     {
+		(void) e;
         Disconnect();
         throw;
     }
     catch (MustlTemporaryFail &e)
     {
+		(void) e;
         ++m_linkErrors;
         throw;
     }
