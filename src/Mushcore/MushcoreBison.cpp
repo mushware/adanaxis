@@ -30,8 +30,11 @@
 
 
 /*
- * $Id: MushcoreBison.cpp,v 1.5 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreBison.cpp,v 1.6 2003/01/20 10:45:28 southa Exp $
  * $Log: MushcoreBison.cpp,v $
+ * Revision 1.6  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.5  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -1001,7 +1004,9 @@ yyerrhandle:
 
 int yyerror(char *s)
 {
-    cerr << "Syntax error: " << s << endl;
+#ifdef MUSHCORE_DEBUG
+    cerr << "Bison syntax error: " << s << endl;
+#endif
     return 0;
 }
 

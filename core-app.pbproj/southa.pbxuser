@@ -1509,7 +1509,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebCommands.cpp: 7";
 		rLen = 0;
-		rLoc = 3474;
+		rLoc = 3492;
 		rType = 0;
 		vrLen = 55;
 		vrLoc = 0;
@@ -1528,10 +1528,10 @@
 		fRef = F59C48E1037A815D01A80164;
 		isa = PBXTextBookmark;
 		name = "GameWebCommands.cpp: GameWebCommandsInstaller";
-		rLen = 11295;
+		rLen = 11049;
 		rLoc = 3557;
 		rType = 0;
-		vrLen = 1726;
+		vrLen = 1491;
 		vrLoc = 13115;
 	};
 	7A78009303D4823B00A80164 = {
@@ -1559,7 +1559,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebCommands.cpp: 126";
 		rLen = 0;
-		rLoc = 3457;
+		rLoc = 3475;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 0;
@@ -2911,7 +2911,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefVal.cpp: FromPostRetrieve";
 		rLen = 48;
-		rLoc = 3054;
+		rLoc = 3112;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 1786;
@@ -2941,7 +2941,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2596;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1263;
@@ -2951,7 +2951,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefString.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2525;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 1334;
 		vrLoc = 1217;
@@ -2961,7 +2961,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefU32.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 3096;
+		rLoc = 3154;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 1758;
@@ -3261,7 +3261,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebCommands.cpp: MustlPostValues";
 		rLen = 30;
-		rLoc = 3710;
+		rLoc = 3728;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 2375;
@@ -3501,7 +3501,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefVal.cpp: FromPostRetrieve";
 		rLen = 48;
-		rLoc = 3054;
+		rLoc = 3112;
 		rType = 0;
 		vrLen = 1316;
 		vrLoc = 1786;
@@ -3521,7 +3521,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefU32.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 3121;
+		rLoc = 3179;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 1794;
@@ -3531,7 +3531,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefString.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2550;
+		rLoc = 2584;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 1252;
@@ -3541,7 +3541,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2454;
+		rLoc = 2488;
 		rType = 0;
 		vrLen = 1283;
 		vrLoc = 1299;
@@ -3561,7 +3561,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2862;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 1448;
@@ -3581,7 +3581,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2562;
+		rLoc = 2596;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1263;
@@ -3591,7 +3591,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefString.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 2525;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 1334;
 		vrLoc = 1217;
@@ -3601,7 +3601,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefU32.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 3096;
+		rLoc = 3154;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 1758;
@@ -4431,7 +4431,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 1788;
+		rLoc = 1846;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 1044;
@@ -4611,7 +4611,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefBool.cpp: FromPostRetrieve";
 		rLen = 0;
-		rLoc = 1788;
+		rLoc = 1846;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 1044;
@@ -5149,7 +5149,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 122";
 		rLen = 0;
-		rLoc = 3121;
+		rLoc = 3157;
 		rType = 0;
 		vrLen = 1071;
 		vrLoc = 1323;
@@ -5439,7 +5439,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlWebCommands.cpp: MustlPostValues";
 		rLen = 401;
-		rLoc = 3233;
+		rLoc = 3251;
 		rType = 0;
 		vrLen = 1595;
 		vrLoc = 2025;
@@ -6835,7 +6835,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefU32.cpp: 8";
 		rLen = 0;
-		rLoc = 2460;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 57;
 		vrLoc = 0;
@@ -6875,7 +6875,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefU32.cpp: 17";
 		rLen = 0;
-		rLoc = 2460;
+		rLoc = 2518;
 		rType = 0;
 		vrLen = 199;
 		vrLoc = 0;
@@ -7005,7 +7005,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefString.cpp: 19";
 		rLen = 0;
-		rLoc = 1881;
+		rLoc = 1915;
 		rType = 0;
 		vrLen = 274;
 		vrLoc = 0;
@@ -7015,7 +7015,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: 19";
 		rLen = 0;
-		rLoc = 1908;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 280;
 		vrLoc = 0;
@@ -7035,7 +7035,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefBool.cpp: 19";
 		rLen = 0;
-		rLoc = 2223;
+		rLoc = 2281;
 		rType = 0;
 		vrLen = 268;
 		vrLoc = 0;
@@ -7055,7 +7055,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefVal.cpp: 98";
 		rLen = 0;
-		rLoc = 2437;
+		rLoc = 2495;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 0;
@@ -7075,7 +7075,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefString.cpp: 82";
 		rLen = 0;
-		rLoc = 1881;
+		rLoc = 1915;
 		rType = 0;
 		vrLen = 979;
 		vrLoc = 0;
@@ -7115,7 +7115,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: 79";
 		rLen = 0;
-		rLoc = 1908;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 532;
@@ -7135,7 +7135,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefBool.cpp: 90";
 		rLen = 0;
-		rLoc = 2141;
+		rLoc = 2199;
 		rType = 0;
 		vrLen = 1529;
 		vrLoc = 685;
@@ -7225,7 +7225,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDefPassword.cpp: 79";
 		rLen = 0;
-		rLoc = 1908;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 447;
@@ -8067,7 +8067,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFunction.h: 87";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2486;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1207;
@@ -8157,7 +8157,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 131";
 		rLen = 0;
-		rLoc = 3167;
+		rLoc = 3212;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 2763;
@@ -8177,7 +8177,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5826;
+		rLoc = 5745;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5548;
@@ -8357,7 +8357,7 @@
 		rLen = 0;
 		rLoc = 2409;
 		rType = 0;
-		vrLen = 993;
+		vrLen = 74;
 		vrLoc = 3133;
 	};
 	7AB45A0803D8EB6500A80164 = {
@@ -8395,7 +8395,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 116";
 		rLen = 0;
-		rLoc = 3500;
+		rLoc = 3440;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 2062;
@@ -8415,7 +8415,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 327";
 		rLen = 0;
-		rLoc = 7983;
+		rLoc = 8058;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6829;
@@ -8424,7 +8424,7 @@
 		fRef = 7A05C3EF03CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.cpp: Get";
-		rLen = 78;
+		rLen = 77;
 		rLoc = 3003;
 		rType = 0;
 		vrLen = 810;
@@ -8454,8 +8454,8 @@
 		fRef = 7A05C3F003CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 124";
-		rLen = 111;
-		rLoc = 3604;
+		rLen = 170;
+		rLoc = 3544;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 2990;
@@ -8475,7 +8475,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 170";
 		rLen = 0;
-		rLoc = 4622;
+		rLoc = 4541;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 4346;
@@ -8495,7 +8495,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 229";
 		rLen = 0;
-		rLoc = 5634;
+		rLoc = 5553;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6915;
@@ -8515,7 +8515,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 223";
 		rLen = 0;
-		rLoc = 5528;
+		rLoc = 5447;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 5235;
@@ -8535,7 +8535,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 214";
 		rLen = 0;
-		rLoc = 5528;
+		rLoc = 5447;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 4815;
@@ -9129,7 +9129,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5812;
+		rLoc = 5731;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 5344;
@@ -9159,7 +9159,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5826;
+		rLoc = 5745;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 5548;
@@ -9389,7 +9389,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFunction.h: 87";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2486;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1207;
@@ -9649,7 +9649,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 131";
 		rLen = 0;
-		rLoc = 3167;
+		rLoc = 3212;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 2763;
@@ -9679,7 +9679,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5826;
+		rLoc = 5745;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5548;
@@ -11973,6 +11973,20 @@
 		path = "/Users/southa/core-app/mustl.configure.in";
 		refType = 0;
 	};
+	7AB562CF03D1E11D00A80164 = {
+		fileEncoding = 4;
+		isa = PBXFileReference;
+		name = GameSTL.h;
+		path = "/Users/southa/core-app/src/Game/GL/GameSTL.h";
+		refType = 0;
+	};
+	7AB562D003D1E11D00A80164 = {
+		fileEncoding = 4;
+		isa = PBXFileReference;
+		name = GameSTL.cpp;
+		path = "/Users/southa/core-app/src/Game/GL/GameSTL.cpp";
+		refType = 0;
+	};
 	7AB562FA03D1E9EB00A80164 = {
 		fRef = 7AB5643703D1E9EC00A80164;
 		glyphRangeLength = 0;
@@ -11984,7 +11998,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreAutoMonkey.cpp: 113";
 		rLen = 0;
-		rLoc = 2999;
+		rLoc = 3035;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 1720;
@@ -13094,7 +13108,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreAutoMonkey.cpp: 108";
 		rLen = 0;
-		rLoc = 2835;
+		rLoc = 2862;
 		rType = 0;
 		vrLen = 1466;
 		vrLoc = 0;
@@ -13178,7 +13192,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreAutoMonkey.cpp: 113";
 		rLen = 0;
-		rLoc = 2999;
+		rLoc = 3035;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 1720;
@@ -14586,7 +14600,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.cpp: 109";
 		rLen = 0;
-		rLoc = 2500;
+		rLoc = 2527;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 1940;
@@ -14606,7 +14620,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreXML.cpp: MushcoreXML";
 		rLen = 0;
-		rLoc = 3279;
+		rLoc = 3379;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 2721;
@@ -14870,7 +14884,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.cpp: 109";
 		rLen = 0;
-		rLoc = 2500;
+		rLoc = 2527;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 1940;
@@ -14890,7 +14904,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreXML.cpp: MushcoreXML";
 		rLen = 0;
-		rLoc = 3279;
+		rLoc = 3379;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 2721;
@@ -15310,7 +15324,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.h: Get";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1802;
 		rType = 0;
 		vrLen = 595;
 		vrLoc = 1519;
@@ -15320,7 +15334,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.cpp: ZeroIndex";
 		rLen = 0;
-		rLoc = 3057;
+		rLoc = 3247;
 		rType = 0;
 		vrLen = 261;
 		vrLoc = 2283;
@@ -15330,7 +15344,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreXML.cpp: MushcoreXML";
 		rLen = 0;
-		rLoc = 3390;
+		rLoc = 3490;
 		rType = 0;
 		vrLen = 461;
 		vrLoc = 3165;
@@ -15410,7 +15424,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.cpp: 136";
 		rLen = 0;
-		rLoc = 3026;
+		rLoc = 3214;
 		rType = 0;
 		vrLen = 343;
 		vrLoc = 2844;
@@ -15420,7 +15434,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.h: Get";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1802;
 		rType = 0;
 		vrLen = 595;
 		vrLoc = 1519;
@@ -15430,7 +15444,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreStreamUtil.cpp: ZeroIndex";
 		rLen = 0;
-		rLoc = 3057;
+		rLoc = 3247;
 		rType = 0;
 		vrLen = 261;
 		vrLoc = 2283;
@@ -15440,7 +15454,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreXML.cpp: MushcoreXML";
 		rLen = 0;
-		rLoc = 3390;
+		rLoc = 3490;
 		rType = 0;
 		vrLen = 461;
 		vrLoc = 3165;
@@ -15583,7 +15597,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreRegExp.h: 105";
 		rLen = 0;
-		rLoc = 2791;
+		rLoc = 2304;
 		rType = 0;
 		vrLen = 1310;
 		vrLoc = 1489;
@@ -15633,7 +15647,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.h: 48";
 		rLen = 0;
-		rLoc = 1318;
+		rLoc = 1308;
 		rType = 0;
 		vrLen = 1111;
 		vrLoc = 422;
@@ -15643,7 +15657,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.cpp: ApplicationNameGet";
 		rLen = 0;
-		rLoc = 1245;
+		rLoc = 1166;
 		rType = 0;
 		vrLen = 734;
 		vrLoc = 720;
@@ -15733,7 +15747,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreRegExp.h: 105";
 		rLen = 0;
-		rLoc = 2791;
+		rLoc = 2304;
 		rType = 0;
 		vrLen = 1310;
 		vrLoc = 1489;
@@ -16343,7 +16357,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.cpp: 39";
 		rLen = 0;
-		rLoc = 1480;
+		rLoc = 1373;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 0;
@@ -16352,7 +16366,7 @@
 		fRef = 7A05C3E203CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.h: 44";
-		rLen = 189;
+		rLen = 179;
 		rLoc = 1129;
 		rType = 0;
 		vrLen = 1202;
@@ -16363,7 +16377,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.cpp: 35";
 		rLen = 0;
-		rLoc = 1040;
+		rLoc = 1039;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 444;
@@ -16373,7 +16387,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.h: 48";
 		rLen = 0;
-		rLoc = 1318;
+		rLoc = 1308;
 		rType = 0;
 		vrLen = 1111;
 		vrLoc = 422;
@@ -16383,7 +16397,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.cpp: 48";
 		rLen = 0;
-		rLoc = 1242;
+		rLoc = 1166;
 		rType = 0;
 		vrLen = 815;
 		vrLoc = 519;
@@ -16403,7 +16417,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreInfo.cpp: ApplicationNameGet";
 		rLen = 0;
-		rLoc = 1245;
+		rLoc = 1166;
 		rType = 0;
 		vrLen = 734;
 		vrLoc = 720;
@@ -16875,6 +16889,32 @@
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 1194;
+	};
+	7AF8B14F03DC3B1800A80164 = {
+		activeExec = 0;
+		executables = (
+			7AF8B16403DC3B1800A80164,
+		);
+	};
+	7AF8B16403DC3B1800A80164 = {
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		configStateDict = {
+		};
+		debuggerPlugin = GDBDebugging;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		isa = PBXExecutable;
+		name = TestMushcore;
+		shlibInfoDictList = (
+		);
+		sourceDirectories = (
+		);
 	};
 	F50089460373044701A80164 = {
 		fRef = F5457B9602AF8D8501E3BBF3;
@@ -18752,6 +18792,55 @@
 		vrLen = 783;
 		vrLoc = 0;
 	};
+	F53E0FAF031015CD01E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameType.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameType.cpp";
+		refType = 0;
+	};
+	F53E0FB0031015CD01E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameType.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameType.h";
+		refType = 0;
+	};
+	F53E0FB703101AA401E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameChequePoint.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameChequePoint.cpp";
+		refType = 0;
+	};
+	F53E0FB803101AA401E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameChequePoint.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameChequePoint.h";
+		refType = 0;
+	};
+	F53E0FBB03102A8E01E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameEvent.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameEvent.h";
+		refType = 0;
+	};
+	F53E0FBD0310411501E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTypeRace.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTypeRace.cpp";
+		refType = 0;
+	};
+	F53E0FBE0310411501E1DB74 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTypeRace.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTypeRace.h";
+		refType = 0;
+	};
 	F53E14C1031056CA01E1DB74 = {
 		fRef = F50F4E1202B4EA9C014A78CB;
 		isa = PBXTextBookmark;
@@ -20131,6 +20220,20 @@
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 1550;
+	};
+	F53E490A031257DD01989694 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRewards.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameRewards.cpp";
+		refType = 0;
+	};
+	F53E490B031257DD01989694 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRewards.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameRewards.h";
+		refType = 0;
 	};
 	F53E4DF80312D46101989694 = {
 		fRef = F548C8DF03052D3A01B83DAD;
@@ -21542,6 +21645,34 @@
 		vrLen = 1116;
 		vrLoc = 0;
 	};
+	F54020AD02A2423901F0D71D = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameContract.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameContract.cpp";
+		refType = 0;
+	};
+	F54020AE02A2423901F0D71D = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameContract.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameContract.h";
+		refType = 0;
+	};
+	F54020C502A25BFC01F0D71D = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGlobalConfig.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameGlobalConfig.cpp";
+		refType = 0;
+	};
+	F54020C602A25BFC01F0D71D = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGlobalConfig.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameGlobalConfig.h";
+		refType = 0;
+	};
 	F54020F302A2646501F0D71D = {
 		fRef = F593968D028C0342016230BF;
 		isa = PBXTextBookmark;
@@ -22161,6 +22292,20 @@
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 293;
+	};
+	F5412BCB0303E7D701F8C327 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDialogue.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameDialogue.cpp";
+		refType = 0;
+	};
+	F5412BCC0303E7D701F8C327 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDialogue.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameDialogue.h";
+		refType = 0;
 	};
 	F5412BEB0304096601F8C327 = {
 		fRef = F54689F302E3048501CF937A;
@@ -24114,16 +24259,17 @@
 	};
 	F5431745020C310101449C4C = {
 		activeBuildStyle = F57BD755028ADAEF01AD87C4;
-		activeExecutable = 7AB45DB703D3610100A80164;
-		activeTarget = 7AB45DB503D3610100A80164;
+		activeExecutable = 7AF8B16403DC3B1800A80164;
+		activeTarget = 7AF8B14F03DC3B1800A80164;
 		addToTargets = (
-			7AEACAD603D1B87F00A80164,
+			7AF8B14F03DC3B1800A80164,
 		);
 		breakpoints = (
 		);
 		executables = (
 			F59396D7028C0CA6016230BF,
 			7AB45DB703D3610100A80164,
+			7AF8B16403DC3B1800A80164,
 		);
 		perUserDictionary = {
 			PBXPerProjectTemplateStateSaveDate = 64751556;
@@ -42262,6 +42408,20 @@
 		vrLen = 1569;
 		vrLoc = 4009;
 	};
+	F54490DA03A52FD301A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetID.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetID.h";
+		refType = 0;
+	};
+	F54490DB03A52FD301A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetID.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetID.cpp";
+		refType = 0;
+	};
 	F54490E703A5660D01A80164 = {
 		fRef = F54490DA03A52FD301A80164;
 		isa = PBXTextBookmark;
@@ -44086,6 +44246,20 @@
 		vrLen = 1017;
 		vrLoc = 951;
 	};
+	F545A43202E4771E015FC162 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMapArea.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameMapArea.cpp";
+		refType = 0;
+	};
+	F545A43302E4771E015FC162 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMapArea.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMapArea.h";
+		refType = 0;
+	};
 	F545A45302E49344015FC162 = {
 		fRef = F5F06F0E02AE554301B05200;
 		isa = PBXTextBookmark;
@@ -45756,6 +45930,34 @@
 		vrLen = 570;
 		vrLoc = 50;
 	};
+	F545EE7B02A66359018FABF3 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameData.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameData.cpp";
+		refType = 0;
+	};
+	F545EE7C02A66359018FABF3 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameData.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameData.h";
+		refType = 0;
+	};
+	F545EEA102A67378018FABF3 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFloorMap.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameFloorMap.cpp";
+		refType = 0;
+	};
+	F545EEA202A67378018FABF3 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFloorMap.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameFloorMap.h";
+		refType = 0;
+	};
 	F545EED602A68859018FABF3 = {
 		fRef = F52B3C55028C267B0179D0A8;
 		isa = PBXTextBookmark;
@@ -47056,6 +47258,20 @@
 		vrLen = 1734;
 		vrLoc = 609;
 	};
+	F546082602E5EDA30166357B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMotionSpec.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameMotionSpec.cpp";
+		refType = 0;
+	};
+	F546082702E5EDA30166357B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMotionSpec.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMotionSpec.h";
+		refType = 0;
+	};
 	F546083602E601FE0166357B = {
 		fRef = F54631EF02ACC78201A7DA6B;
 		isa = PBXTextBookmark;
@@ -47746,6 +47962,62 @@
 		vrLen = 1192;
 		vrLoc = 1015;
 	};
+	F54631EB02ACC53801A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTraits.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTraits.cpp";
+		refType = 0;
+	};
+	F54631EC02ACC53801A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTraits.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTraits.h";
+		refType = 0;
+	};
+	F54631EF02ACC78201A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileTraits.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileTraits.cpp";
+		refType = 0;
+	};
+	F54631F002ACC78201A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileTraits.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileTraits.h";
+		refType = 0;
+	};
+	F546321902AD022D01A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphic.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphic.cpp";
+		refType = 0;
+	};
+	F546321A02AD022D01A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphic.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphic.h";
+		refType = 0;
+	};
+	F546321D02AD04B701A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphicSprite.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphicSprite.cpp";
+		refType = 0;
+	};
+	F546321E02AD04B701A7DA6B = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphicSprite.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphicSprite.h";
+		refType = 0;
+	};
 	F546389302DD8F11015FEFB6 = {
 		fRef = F546F6F402C211F901173785;
 		isa = PBXTextBookmark;
@@ -47755,6 +48027,34 @@
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 5225;
+	};
+	F5463ACE02E6CD91018842E0 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameOverPlot.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameOverPlot.cpp";
+		refType = 0;
+	};
+	F5463ACF02E6CD91018842E0 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameOverPlot.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameOverPlot.h";
+		refType = 0;
+	};
+	F5463AD602E6D60D018842E0 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameView.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameView.cpp";
+		refType = 0;
+	};
+	F5463AD702E6D60D018842E0 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameView.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameView.h";
+		refType = 0;
 	};
 	F5463AED02E721D4018842E0 = {
 		fRef = F5463ACF02E6CD91018842E0;
@@ -48716,6 +49016,13 @@
 		vrLen = 1395;
 		vrLoc = 880;
 	};
+	F54668B402AE2A590163596F = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSwitches.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameSwitches.h";
+		refType = 0;
+	};
 	F54668B602AE3B0A0163596F = {
 		fRef = F5450B7F02AD78D8010FCD91;
 		isa = PBXTextBookmark;
@@ -49254,6 +49561,20 @@
 		isa = PBXFileReference;
 		name = Dialogs.h;
 		path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Dialogs.h;
+		refType = 0;
+	};
+	F54689F302E3048501CF937A = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSolidMap.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameSolidMap.cpp";
+		refType = 0;
+	};
+	F54689F402E3048501CF937A = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSolidMap.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameSolidMap.h";
 		refType = 0;
 	};
 	F5468A0402E3330301CF937A = {
@@ -51099,6 +51420,20 @@
 		rType = 0;
 		vrLen = 1426;
 		vrLoc = 3471;
+	};
+	F5483AB702D1D95801480ACF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFloorDesigner.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameFloorDesigner.cpp";
+		refType = 0;
+	};
+	F5483AB802D1D95801480ACF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFloorDesigner.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameFloorDesigner.h";
+		refType = 0;
 	};
 	F5483C5602E893150163105D = {
 		fRef = F5F2C65D02A3D8C001CB7A62;
@@ -53950,6 +54285,20 @@
 		vrLen = 1442;
 		vrLoc = 1099;
 	};
+	F548C8DE03052D3A01B83DAD = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDataUtils.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameDataUtils.cpp";
+		refType = 0;
+	};
+	F548C8DF03052D3A01B83DAD = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDataUtils.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameDataUtils.h";
+		refType = 0;
+	};
 	F548C8F303053F7801B83DAD = {
 		fRef = F5483A9102D19E6101480ACF;
 		isa = PBXTextBookmark;
@@ -56074,6 +56423,20 @@
 		vrLen = 1649;
 		vrLoc = 1402;
 	};
+	F549083802ED8ACC01F581B4 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMotion.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameMotion.cpp";
+		refType = 0;
+	};
+	F549083902ED8ACC01F581B4 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMotion.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMotion.h";
+		refType = 0;
+	};
 	F549085802EDA45E01F581B4 = {
 		fRef = F5483A9C02D19E6101480ACF;
 		isa = PBXTextBookmark;
@@ -56883,6 +57246,20 @@
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 146;
+	};
+	F54AC49402F841D801726764 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSpacePoint.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameSpacePoint.h";
+		refType = 0;
+	};
+	F54AC49802F8438001726764 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMapPoint.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMapPoint.h";
+		refType = 0;
 	};
 	F54AC4AC02F846EF01726764 = {
 		fRef = F55FF7D202D2112001F9DCD1;
@@ -62815,6 +63192,20 @@
 		path = "/Users/southa/core-app/autogen.sh";
 		refType = 0;
 	};
+	F57FF20C039D829001A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameControlFrameDef.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameControlFrameDef.h";
+		refType = 0;
+	};
+	F57FF20D039D829001A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameControlFrameDef.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameControlFrameDef.cpp";
+		refType = 0;
+	};
 	F57FF21C039D856101A80164 = {
 		fRef = F5F06F1302AE5D2001B05200;
 		isa = PBXTextBookmark;
@@ -65445,6 +65836,55 @@
 		vrLen = 1580;
 		vrLoc = 1021;
 	};
+	F5939689028C01AE016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameCommandHandler.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameCommandHandler.cpp";
+		refType = 0;
+	};
+	F593968A028C01AE016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameCommandHandler.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameCommandHandler.h";
+		refType = 0;
+	};
+	F593968D028C0342016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameAppHandler.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameAppHandler.cpp";
+		refType = 0;
+	};
+	F593968E028C0342016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameAppHandler.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameAppHandler.h";
+		refType = 0;
+	};
+	F5939691028C0629016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameBase.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameBase.h";
+		refType = 0;
+	};
+	F5939693028C067F016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTest.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTest.cpp";
+		refType = 0;
+	};
+	F5939694028C067F016230BF = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTest.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTest.h";
+		refType = 0;
+	};
 	F59396D5028C0CA6016230BF = {
 		activeExec = 0;
 		executables = (
@@ -65721,6 +66161,20 @@
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
+	};
+	F593D55E035C11BE01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameConfig.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameConfig.h";
+		refType = 0;
+	};
+	F593D55F035C11BE01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameConfig.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameConfig.cpp";
+		refType = 0;
 	};
 	F593D573035C574401A80166 = {
 		fRef = F5F2C65702A3C0B201CB7A62;
@@ -69270,6 +69724,34 @@
 		path = /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Dialogs.h;
 		refType = 0;
 	};
+	F59560DE0355CA2301A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMap.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMap.h";
+		refType = 0;
+	};
+	F59560DF0355CA2301A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMap.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameMap.cpp";
+		refType = 0;
+	};
+	F59560E20355D77D01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameLightLinks.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameLightLinks.h";
+		refType = 0;
+	};
+	F59560E30355D77D01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameLightLinks.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameLightLinks.cpp";
+		refType = 0;
+	};
 	F59560FF0355FD6D01A80166 = {
 		fRef = F5483ABB02D1DD3401480ACF;
 		isa = PBXTextBookmark;
@@ -70560,6 +71042,20 @@
 		isa = PBXFileReference;
 		name = MakeRelease.sh;
 		path = "/Users/southa/core-app/MakeRelease.sh";
+		refType = 0;
+	};
+	F5957EC3035982EC01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileSpec.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileSpec.h";
+		refType = 0;
+	};
+	F5957EC4035982EC01A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileSpec.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileSpec.cpp";
 		refType = 0;
 	};
 	F5957EDB03599DD301A80166 = {
@@ -73636,6 +74132,20 @@
 		vrLen = 1460;
 		vrLoc = 11090;
 	};
+	F595FD83035821F601A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphicModel.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphicModel.cpp";
+		refType = 0;
+	};
+	F595FD84035821F601A80166 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameGraphicModel.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameGraphicModel.h";
+		refType = 0;
+	};
 	F595FD9C03583D3301A80166 = {
 		fRef = F55FF7D202D2112001F9DCD1;
 		isa = PBXTextBookmark;
@@ -74952,6 +75462,20 @@
 		vrLen = 778;
 		vrLoc = 0;
 	};
+	F59C48E0037A815D01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameWebCommands.h;
+		path = "/Users/southa/core-app/src/Game/GameWebCommands.h";
+		refType = 0;
+	};
+	F59C48E1037A815D01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameWebCommands.cpp;
+		path = "/Users/southa/core-app/src/Game/GameWebCommands.cpp";
+		refType = 0;
+	};
 	F59C48F2037A8CF701A80164 = {
 		fRef = F512BC6D0379C3B401A80164;
 		isa = PBXTextBookmark;
@@ -76098,6 +76622,20 @@
 		vrLen = 1668;
 		vrLoc = 4319;
 	};
+	F5A79F0703A6603F01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFrameTimer.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameFrameTimer.h";
+		refType = 0;
+	};
+	F5A79F0803A6603F01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameFrameTimer.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameFrameTimer.cpp";
+		refType = 0;
+	};
 	F5A79F0C03A6723201A80164 = {
 		fRef = F54020AE02A2423901F0D71D;
 		isa = PBXTextBookmark;
@@ -76748,6 +77286,20 @@
 		vrLen = 1540;
 		vrLoc = 0;
 	};
+	F5A8A072039CE39901A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetUtils.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetUtils.h";
+		refType = 0;
+	};
+	F5A8A073039CE39901A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetUtils.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetUtils.cpp";
+		refType = 0;
+	};
 	F5A8E69C039F89DA01A80164 = {
 		fRef = F5B39DB20383F5FB01A80164;
 		isa = PBXTextBookmark;
@@ -77277,6 +77829,20 @@
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 1249;
+	};
+	F5A8F280038560DB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSetup.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameSetup.h";
+		refType = 0;
+	};
+	F5A8F281038560DB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameSetup.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameSetup.cpp";
+		refType = 0;
 	};
 	F5A9351C03A90F3901A80164 = {
 		fRef = F5457BA702AFB19401E3BBF3;
@@ -78788,6 +79354,20 @@
 		vrLen = 1256;
 		vrLoc = 0;
 	};
+	F5AA63C8031193CA01442A89 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRecords.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameRecords.cpp";
+		refType = 0;
+	};
+	F5AA63C9031193CA01442A89 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRecords.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameRecords.h";
+		refType = 0;
+	};
 	F5AA68C20311B52E01442A89 = {
 		fRef = F53E0FBD0310411501E1DB74;
 		isa = PBXTextBookmark;
@@ -79447,6 +80027,27 @@
 		rType = 0;
 		vrLen = 1445;
 		vrLoc = 2784;
+	};
+	F5AA9AD3039E935801A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameBase.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameBase.cpp";
+		refType = 0;
+	};
+	F5AA9AD5039E93F001A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePlayerUtils.h;
+		path = "/Users/southa/core-app/src/Game/Game/GamePlayerUtils.h";
+		refType = 0;
+	};
+	F5AA9AD6039E93F001A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePlayerUtils.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GamePlayerUtils.cpp";
+		refType = 0;
 	};
 	F5AAA6CB03B34F8A01A80164 = {
 		fRef = F5AAB68A03A8C8CC01A80164;
@@ -81346,6 +81947,20 @@
 		path = "/Users/southa/core-app/mustl.configure.in";
 		refType = 0;
 	};
+	F5AAE0D403A94DE901A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameException.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameException.h";
+		refType = 0;
+	};
+	F5AAE0D503A94DE901A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameException.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameException.cpp";
+		refType = 0;
+	};
 	F5AAE0F603A969D501A80164 = {
 		fRef = F5AAB69A03A8C8CC01A80164;
 		isa = PBXTextBookmark;
@@ -82065,6 +82680,20 @@
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 855;
+	};
+	F5AAE43503A1122B01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMessageControlData.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameMessageControlData.h";
+		refType = 0;
+	};
+	F5AAE43603A1122B01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameMessageControlData.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameMessageControlData.cpp";
+		refType = 0;
 	};
 	F5AAE44203A117C101A80164 = {
 		fRef = F5AA9AD5039E93F001A80164;
@@ -84643,6 +85272,20 @@
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 7581;
+	};
+	F5ADDCF9038C19B701A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDef.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameDef.h";
+		refType = 0;
+	};
+	F5ADDCFA038C19B701A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDef.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameDef.cpp";
+		refType = 0;
 	};
 	F5ADDD03038C464901A80164 = {
 		fRef = F5ADDD98038C464B01A80164;
@@ -88088,6 +88731,20 @@
 		path = "/usr/include/gcc/darwin/3.1/g++-v3/bits/istream.tcc";
 		refType = 0;
 	};
+	F5B33B1B03895F4701A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameQuit.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameQuit.cpp";
+		refType = 0;
+	};
+	F5B33B1C03895F4701A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameQuit.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameQuit.h";
+		refType = 0;
+	};
 	F5B33B3503896EF901A80164 = {
 		fRef = F5B33B1C03895F4701A80164;
 		isa = PBXTextBookmark;
@@ -88737,6 +89394,20 @@
 		rType = 0;
 		vrLen = 286;
 		vrLoc = 0;
+	};
+	F5B343A9039267A401A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetObject.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetObject.h";
+		refType = 0;
+	};
+	F5B343AA039267A401A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameNetObject.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameNetObject.cpp";
+		refType = 0;
 	};
 	F5B343B503929D0801A80164 = {
 		fRef = F546321A02AD022D01A7DA6B;
@@ -89569,6 +90240,48 @@
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 6069;
+	};
+	F5B3598603918CD501A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameProtocol.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameProtocol.h";
+		refType = 0;
+	};
+	F5B3598703918CD501A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameProtocol.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameProtocol.cpp";
+		refType = 0;
+	};
+	F5B3598A039197E801A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDefClient.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameDefClient.h";
+		refType = 0;
+	};
+	F5B3598B039197E801A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDefClient.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameDefClient.cpp";
+		refType = 0;
+	};
+	F5B3598E039197FB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDefServer.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameDefServer.h";
+		refType = 0;
+	};
+	F5B3598F039197FB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameDefServer.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameDefServer.cpp";
+		refType = 0;
 	};
 	F5B359A303919DDE01A80164 = {
 		fRef = F549083902ED8ACC01F581B4;
@@ -90700,6 +91413,20 @@
 		vrLen = 1440;
 		vrLoc = 1864;
 	};
+	F5B36CFA039229BF01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRouter.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameRouter.h";
+		refType = 0;
+	};
+	F5B36CFB039229BF01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameRouter.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameRouter.cpp";
+		refType = 0;
+	};
 	F5B36D2303924A7201A80164 = {
 		fRef = F54631EC02ACC53801A7DA6B;
 		isa = PBXTextBookmark;
@@ -91369,6 +92096,20 @@
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 5171;
+	};
+	F5B39DB10383F5FB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameConfigDef.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameConfigDef.h";
+		refType = 0;
+	};
+	F5B39DB20383F5FB01A80164 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameConfigDef.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameConfigDef.cpp";
+		refType = 0;
 	};
 	F5B39DBE0384323901A80164 = {
 		fRef = F595FD84035821F601A80166;
@@ -95302,6 +96043,20 @@
 		vrLen = 1149;
 		vrLoc = 4006;
 	};
+	F5D6A1A202FABD6701D854DA = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTimer.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTimer.cpp";
+		refType = 0;
+	};
+	F5D6A1A302FABD6701D854DA = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTimer.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTimer.h";
+		refType = 0;
+	};
 	F5D6A1BC02FAE88701D854DA = {
 		fRef = F546F6F802C2120701173785;
 		isa = PBXTextBookmark;
@@ -96481,6 +97236,48 @@
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 655;
+	};
+	F5F06F0602AE531801B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePiece.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GamePiece.cpp";
+		refType = 0;
+	};
+	F5F06F0702AE531801B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePiece.h;
+		path = "/Users/southa/core-app/src/Game/Game/GamePiece.h";
+		refType = 0;
+	};
+	F5F06F0E02AE554301B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePiecePlayer.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GamePiecePlayer.cpp";
+		refType = 0;
+	};
+	F5F06F0F02AE554301B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GamePiecePlayer.h;
+		path = "/Users/southa/core-app/src/Game/Game/GamePiecePlayer.h";
+		refType = 0;
+	};
+	F5F06F1202AE5D2001B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameController.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameController.cpp";
+		refType = 0;
+	};
+	F5F06F1302AE5D2001B05200 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameController.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameController.h";
+		refType = 0;
 	};
 	F5F06F1A02AE6A7E01B05200 = {
 		fRef = F5939694028C067F016230BF;
@@ -97694,6 +98491,20 @@
 		isa = PBXFileReference;
 		name = IOHIDTypes.h;
 		path = /System/Library/Frameworks/IOKit.framework/Versions/A/Headers/hidsystem/IOHIDTypes.h;
+		refType = 0;
+	};
+	F5F2C66302A410DA01CB7A62 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileMap.cpp;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileMap.cpp";
+		refType = 0;
+	};
+	F5F2C66402A410DA01CB7A62 = {
+		fileEncoding = 30;
+		isa = PBXFileReference;
+		name = GameTileMap.h;
+		path = "/Users/southa/core-app/src/Game/Game/GameTileMap.h";
 		refType = 0;
 	};
 	F5F2C6CB02A43D4501CB7A62 = {

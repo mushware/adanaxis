@@ -10,8 +10,11 @@
  ****************************************************************************/
 
  /*
- * $Id: MushcoreBison.y,v 1.4 2003/01/18 13:33:57 southa Exp $
+ * $Id: MushcoreBison.y,v 1.5 2003/01/20 10:45:28 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.5  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.4  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -104,7 +107,9 @@ statement: end
 
 int yyerror(char *s)
 {
-    cerr << "Syntax error: " << s << endl;
+#ifdef MUSHCORE_DEBUG
+    cerr << "Bison syntax error: " << s << endl;
+#endif
     return 0;
 }
 

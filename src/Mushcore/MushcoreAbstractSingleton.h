@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.2 2003/01/18 17:05:47 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.1 2003/01/20 10:45:28 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.1  2003/01/20 10:45:28  southa
+ * Singleton tidying
+ *
  * Revision 1.2  2003/01/18 17:05:47  southa
  * Singleton work
  *
@@ -22,8 +25,6 @@
  */
 
 #include "MushcoreStandard.h"
-
-#define MUSHCORE_SINGLETON_TESTING 1
 
 #ifdef MUSHCORE_SINGLETON_TESTING
 #include <typeinfo>

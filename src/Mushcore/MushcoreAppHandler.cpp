@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppHandler.cpp,v 1.3 2003/01/11 17:44:27 southa Exp $
+ * $Id: MushcoreAppHandler.cpp,v 1.4 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreAppHandler.cpp,v $
+ * Revision 1.4  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.3  2003/01/11 17:44:27  southa
  * Mushcore fixes
  *
@@ -106,7 +109,9 @@ MushcoreAppHandler::Signal(const MushcoreAppSignal& inSignal)
             break;
             
         default:
+#ifdef MUSHCORE_DEBUG
             cerr << "Unhandled MushcoreApp signal 0x" << hex << inSignal.SigNumberGet() << dec << endl;
+#endif
             break;
     }
 }

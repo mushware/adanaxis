@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.5 2003/01/18 17:05:47 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.6 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.6  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.5  2003/01/18 17:05:47  southa
  * Singleton work
  *
@@ -62,7 +65,6 @@
 class MushcoreGlobalConfig : public MushcoreConfig, public MushcoreSingleton<MushcoreGlobalConfig>
 {
 public:
-    ~MushcoreGlobalConfig() { cerr << "Destroyed MushcoreGlobalConfig" << endl; }
     static void Install(void);
     static void NullFunction(void);
 

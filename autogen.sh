@@ -10,8 +10,11 @@
 #
 ##############################################################################
 #
-# $Id: autogen.sh,v 1.9 2003/01/14 22:02:10 southa Exp $
+# $Id: autogen.sh,v 1.10 2003/01/15 11:19:37 southa Exp $
 # $Log: autogen.sh,v $
+# Revision 1.10  2003/01/15 11:19:37  southa
+# Fixed library linking
+#
 # Revision 1.9  2003/01/14 22:02:10  southa
 # Command line build fixes
 #
@@ -89,6 +92,11 @@ mustl)
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am
     
+    echo 'library_includedir=$(includedir)/Mustl' >> Makefile.am
+    echo -n 'library_include_HEADERS=' >> Makefile.am
+    find . -name 'Mustl*.h' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+    
     echo 'bin_PROGRAMS=test_mustl' >> Makefile.am
     echo -n 'test_mustl_SOURCES=' >> Makefile.am
     find . -name 'TestMustl*.cpp' -exec echo -n " " {} \;  >> Makefile.am
@@ -98,7 +106,6 @@ mustl)
     echo 'test_mustl_LDADD=libmustl.la -lmushcore -lexpat -lpcre' >> Makefile.am
     # Make sure that Mustl is in the include path for the test application    
     echo 'test_mustl_CXXFLAGS=-I${srcdir}/Mustl $(AM_CXXFLAGS)' >> Makefile.am
-    # echo 'test_mustl_LIBS=-lmushcore -lexpat -lpcre $(AM_LIBS)' >> Makefile.am
 
     cd ..
     echo -n 'EXTRA_DIST=' >> Makefile.am
@@ -120,16 +127,35 @@ mushcore)
     echo 'lib_LTLIBRARIES=libmushcore.la' > Makefile.am
 
     echo -n 'libmushcore_la_SOURCES=' >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    find . -name 'Mushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
     echo '' >> Makefile.am    
     
     echo 'library_includedir=$(includedir)/Mushcore' >> Makefile.am
-
     echo -n 'library_include_HEADERS=' >> Makefile.am
-    find . -path './Platform/*/*' -prune -o -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
-    echo '' >> Makefile.am    
+    find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
+    echo '' >> Makefile.am
+
+    
+    echo 'bin_PROGRAMS=test_mushcore' >> Makefile.am
+    echo -n 'test_mushcore_SOURCES=' >> Makefile.am
+    find . -name 'TestMushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'TestMushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
+    find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
+    echo '' >> Makefile.am
+    echo 'test_mushcore_LDADD=libmushcore.la -lexpat -lpcre' >> Makefile.am
+    echo 'test_mushcore_CXXFLAGS=-I${srcdir}/Mushcore $(AM_CXXFLAGS)' >> Makefile.am
+    echo '' >> Makefile.am
+
+
+    echo 'test: test_@PACKAGE@' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	@echo Launching test application...' >> Makefile.am
+    echo '	@echo' >> Makefile.am
+    echo '	./test_@PACKAGE@' >> Makefile.am
+    echo '' >> Makefile.am
+    echo '' >> Makefile.am
 
     cd ..
 
