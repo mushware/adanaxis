@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.h,v 1.5 2003/01/14 17:38:21 southa Exp $
+ * $Id: MustlFail.h,v 1.6 2003/01/16 15:58:01 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.6  2003/01/16 15:58:01  southa
+ * Mustl exception handling
+ *
  * Revision 1.5  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -45,7 +48,7 @@
 class MustlFail : public MushcoreNonFatalFail
 {
 public:
-    MustlFail(const std::string &inMessage);
+    MustlFail(const std::string& inMessage);
 };
 
 // PermanentFail indicates that the requested operation will never succeed in
@@ -54,21 +57,21 @@ public:
 class MustlPermanentFail : public MustlFail
 {
 public:
-    MustlPermanentFail(const std::string &inMessage);
+    MustlPermanentFail(const std::string& inMessage);
 };
 
 // TemporaryFail implies that the operation may succeed if retried later
 class MustlTemporaryFail : public MustlFail
 {
 public:
-    MustlTemporaryFail(const std::string &inMessage);
+    MustlTemporaryFail(const std::string& inMessage);
 };
 
 // Address is not contactable
 class MustlAddressFail : public MustlPermanentFail
 {
 public:
-    MustlAddressFail(const std::string &inMessage);
+    MustlAddressFail(const std::string& inMessage);
 };
 
 // The process of connecting a socket failed.  Dropped connections are reported
@@ -76,7 +79,7 @@ public:
 class MustlConnectionFail : public MustlPermanentFail
 {
 public:
-    MustlConnectionFail(const std::string &inMessage);
+    MustlConnectionFail(const std::string& inMessage);
 };
 
 // A send operation failed becuase of a problem with the message, such as it
@@ -84,14 +87,14 @@ public:
 class MustlMessageFail : public MustlPermanentFail
 {
 public:
-    MustlMessageFail(const std::string &inMessage);
+    MustlMessageFail(const std::string& inMessage);
 };
 
 // The socket is not usable and should be closed
 class MustlSocketFail : public MustlPermanentFail
 {
 public:
-    MustlSocketFail(const std::string &inMessage);
+    MustlSocketFail(const std::string& inMessage);
 };
 
 // Indicates a dropped connection or, for a UDP sockets on some platforms,
@@ -99,7 +102,7 @@ public:
 class MustlSocketOrUDPFail : public MustlSocketFail
 {
 public:
-    MustlSocketOrUDPFail(const std::string &inMessage);
+    MustlSocketOrUDPFail(const std::string& inMessage);
 };
 
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.13 2003/01/17 13:30:41 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.14 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.14  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.13  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *
@@ -191,21 +194,23 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& in
     MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Sgl().End();
 
     // Check for an exact address match
-    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
-         p != endValue; ++p)
     {
-        MUSTLASSERT(p->second != NULL);
-        MustlLink& linkRef = *p->second;
-        if (linkRef.UDPAddressMatchDoes(ioData))
-        {
-            if (MustlLog::Sgl().TrafficLogGet())
-            {
-                MustlLog::Sgl().TrafficLog() << "received on link " << p->first << endl;
-            }
-            ProcessMessage(ioData, linkRef, inHandler);
-            return;
-        }
-    }
+		for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Sgl().Begin();
+		p != endValue; ++p)
+		{
+			MUSTLASSERT(p->second != NULL);
+			MustlLink& linkRef = *p->second;
+			if (linkRef.UDPAddressMatchDoes(ioData))
+			{
+				if (MustlLog::Sgl().TrafficLogGet())
+				{
+					MustlLog::Sgl().TrafficLog() << "received on link " << p->first << endl;
+				}
+				ProcessMessage(ioData, linkRef, inHandler);
+				return;
+			}
+		}
+	}
 
     // Check for a host match where the port number is zero.  This caters for link
     // establishment messages where the port number of the remote end is not yet known

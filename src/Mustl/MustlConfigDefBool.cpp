@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDefBool.cpp,v 1.4 2003/01/20 10:45:29 southa Exp $
+ * $Id: MustlConfigDefBool.cpp,v 1.5 2003/01/20 12:23:24 southa Exp $
  * $Log: MustlConfigDefBool.cpp,v $
+ * Revision 1.5  2003/01/20 12:23:24  southa
+ * Code and interface tidying
+ *
  * Revision 1.4  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -56,7 +59,7 @@ MustlConfigDefBool::ValueGet(void) const
 void
 MustlConfigDefBool::ValueSet(const MushcoreScalar& inValue)
 {
-    m_value = inValue.U32Get();
+    m_value = !(!inValue.U32Get());
 }
 
 bool
@@ -102,7 +105,7 @@ MustlConfigDefBool::MustlConfigBool(MushcoreCommand& ioCommand, MushcoreEnv& ioE
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefBool(defaultValue));
+    MushcoreData<MustlConfigDef>::Sgl().Give(name, new MustlConfigDefBool(!(!defaultValue)));
     return MushcoreScalar(0);
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.10 2003/01/16 16:38:36 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.11 2003/01/18 13:33:59 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.11  2003/01/18 13:33:59  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.10  2003/01/16 16:38:36  southa
  * Error codes for win32
  *
@@ -585,6 +588,7 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
 void
 MustlPlatform::LocalAddressesRetrieve(void)
 {
+#if 0
     m_localAddressMap.clear();
 
     U8 ipBuffer[16384];
@@ -615,6 +619,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
         m_localAddressMap[ipAddrRow->dwAddr]=true;
     }
     m_localAddressesValid=true;
+#endif
 }
 
 unsigned int

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatformHeaders.h,v 1.5 2003/01/17 00:41:04 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.6 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.6  2003/01/17 13:30:41  southa
+ * Source conditioning and build fixes
+ *
  * Revision 1.5  2003/01/17 00:41:04  southa
  * Configuration updates from POST data
  *
@@ -53,7 +56,7 @@
 
 // win32 includes
 #ifdef MUSTL_WIN32
-#include <iphlpapi.h>
+//#include <iphlpapi.h>
 #include <windows.h>
 #endif
 
