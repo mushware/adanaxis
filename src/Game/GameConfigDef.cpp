@@ -1,12 +1,17 @@
 /*
- * $Id: GameConfigDef.cpp,v 1.1 2002/11/14 17:29:08 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.2 2002/11/14 19:35:30 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.2  2002/11/14 19:35:30  southa
+ * Configuration work
+ *
  * Revision 1.1  2002/11/14 17:29:08  southa
  * Config database
  *
  */
 
 #include "GameConfigDef.h"
+
+#include "mushMedia.h"
 
 auto_ptr< CoreData<GameConfigDef> > CoreData<GameConfigDef>::m_instance;
 
@@ -57,13 +62,7 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
         U32 value;
         if (valueStream >> value)
         {
-            if (value < m_lowLimit || value >= m_highLimit)
-            {
-                ostringstream message;
-                message << "Value for " << inName <<" out of range (" << m_lowLimit << " < " << value << " < " << m_highLimit << ")";
-                throw(CommandFail(message.str()));
-            }
-            m_value=value;
+            ValueSet(CoreScalar(value));
             found=true;
         }
     }
@@ -73,7 +72,7 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 void
 GameConfigDefU32::WebInputPrint(ostream& ioOut, const string& inName)
 {
-    ioOut << "<input name=\"" << inName << "\" type=\"text\" size=\"6\" value=\"" << m_value << "\">" << endl;
+    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"6\" value=\"" << MediaNetUtils::MakeWebSafe(m_value) << "\">" << endl;
 }
 
 // -----
@@ -109,7 +108,7 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
     if (re.Search(inData, matches))
     {
         COREASSERT(matches.size() == 1);
-        m_value=matches[0];
+        m_value=MediaNetUtils::RemoveMeta(matches[0]);
         found=true;
     }
     return found;
@@ -121,7 +120,7 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
 
     if (m_menu.size() == 0)
     {
-        ioOut << "<input name=\"" << inName << "\" type=\"text\" size=\"20\" value=\"" << m_value << "\">" << endl;
+        ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"text\" size=\"20\" value=\"" << MediaNetUtils::MakeWebSafe(m_value) << "\">" << endl;
     }
     else
     {
@@ -149,7 +148,7 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
 void
 GameConfigDef::SelectPrologue(ostream& ioOut, const string& inName)
 {
-    ioOut << "<select name=\"" << inName << "\">" << endl;
+    ioOut << "<select name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\">" << endl;
 }
 
 void
@@ -157,8 +156,8 @@ GameConfigDef::SelectOption(ostream& ioOut, const string& inName, const string& 
 {
     ioOut << "<option ";
     if (inSelected) ioOut << "selected ";
-    ioOut << "value=\"" << inValue << "\">";
-    ioOut << inName;
+    ioOut << "value=\"" << MediaNetUtils::MakeWebSafe(inValue) << "\">";
+    ioOut << MediaNetUtils::MakeWebSafe(inName);
     ioOut << "</option>" << endl;
 }
 

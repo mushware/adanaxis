@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.10 2002/10/17 12:35:30 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.11 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.11  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/10/17 12:35:30  southa
  * Save path and update check
  *
@@ -36,6 +39,7 @@ public:
     static void TweakArgs(string& ioString);
     static void Initialise(void);
     static void ErrorBox(const string& inStr);
+    static void MinorErrorBox(const string& inStr);
     static bool DirectoryExists(const string& inName);
     static void MakeDirectory(const string& inName);
     static void UpdateCheck(void);

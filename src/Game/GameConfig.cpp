@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.5 2002/11/14 19:35:30 southa Exp $
+ * $Id: GameConfig.cpp,v 1.6 2002/11/14 20:24:43 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.6  2002/11/14 20:24:43  southa
+ * Configurable config elements
+ *
  * Revision 1.5  2002/11/14 19:35:30  southa
  * Configuration work
  *
@@ -35,7 +38,6 @@
 #include "GameConfigDef.h"
 
 #include "mushPlatform.h"
-
 
 GameConfig *GameConfig::m_instance=NULL;
 
@@ -94,7 +96,14 @@ GameConfig::PostDataHandle(const string& inData)
     for (CoreData<GameConfigDef>::tMapIterator p=CoreData<GameConfigDef>::Instance().Begin();
          p != endValue; ++p)
     {
-        if (p->second->FromPostRetrieve(p->first, inData)) found=true;
+        try
+        {
+            if (p->second->FromPostRetrieve(p->first, inData)) found=true;
+        }
+        catch (ValueFail& e)
+        {
+            PlatformMiscUtils::MinorErrorBox(e.what());
+        }
     }
 
     if (found)

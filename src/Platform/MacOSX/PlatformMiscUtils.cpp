@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.13 2002/10/17 12:35:30 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.14 2002/10/22 20:42:07 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.14  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/10/17 12:35:30  southa
  * Save path and update check
  *
@@ -158,6 +161,16 @@ PlatformMiscUtils::ErrorBox(const string& inStr)
     CopyCStringToPascal(inStr.c_str(), messageP);
     ParamText(messageP, "\p", "\p", "\p");
     StopAlert(kPlatformAboutBox, nil);
+}
+
+void
+PlatformMiscUtils::MinorErrorBox(const string& inStr)
+{
+    SDL_ShowCursor(SDL_ENABLE);
+    Str255 messageP;
+    CopyCStringToPascal(inStr.c_str(), messageP);
+    ParamText(messageP, "\p", "\p", "\p");
+    NoteAlert(kPlatformAboutBox, nil);
 }
 
 void

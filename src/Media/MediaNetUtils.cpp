@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetUtils.cpp,v 1.2 2002/11/04 19:34:47 southa Exp $
+ * $Id: MediaNetUtils.cpp,v 1.3 2002/11/08 11:54:40 southa Exp $
  * $Log: MediaNetUtils.cpp,v $
+ * Revision 1.3  2002/11/08 11:54:40  southa
+ * Web fixes
+ *
  * Revision 1.2  2002/11/04 19:34:47  southa
  * Network link maintenance
  *
@@ -62,4 +65,74 @@ MediaNetUtils::MakePrintable(const vector<U8> inBytes)
         }
     }
     return retStream.str();
+}
+
+string
+MediaNetUtils::MakeWebSafe(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte == '"' ||
+            byte == '\'')
+        {
+            // Discard
+        }
+        else if (byte < ' ')
+        {
+            retStr+=" ";
+        }
+        else if (byte == '<')
+        {
+            retStr+="&lt;";
+        }
+        else if (byte == '>')
+        {
+            retStr+="&gt;";
+        }
+        else if (byte == '&')
+        {
+            retStr+="&amp;";
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
+}
+
+string
+MediaNetUtils::RemoveMeta(const string& inStr)
+{
+    string retStr;
+    U32 size=inStr.size();
+    for (U32 i=0; i<size; ++i)
+    {
+        U8 byte=inStr[i];
+        if (byte == '+' || byte < ' ')
+        {
+            retStr+=" ";
+        }
+        else if (byte == '%')
+        {
+            if (i+2 >= size) break;
+            istringstream hexStream(inStr.substr(i+1, 2));
+            U32 charVal;
+            hexStream >> hex >> charVal;
+            cerr << "Converted meta " << inStr.substr(i, 3) << " to '" << (U8) charVal << "'" << endl;
+            if (charVal >= ' ')
+            {
+                retStr += charVal;
+            }
+            i+=2;
+        }
+        else
+        {
+            retStr+=byte;
+        }
+    }
+    return retStr;
 }

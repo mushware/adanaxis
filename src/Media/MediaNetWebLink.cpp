@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.9 2002/11/12 18:02:13 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.10 2002/11/14 11:40:28 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.10  2002/11/14 11:40:28  southa
+ * Configuration handling
+ *
  * Revision 1.9  2002/11/12 18:02:13  southa
  * POST handling and handlepostvalues command
  *
@@ -425,15 +428,22 @@ MediaNetWebLink::SendMHTML(istream& ioStream, MediaNetHTTP& ioHTTP)
             }
 
             string content=dataStr.substr(startPos+6, endPos - startPos - 6);
-            // MediaNetLog::Instance().Log() << "Found mush command '" << content << "'" << endl;
-        
-            CoreCommand command(content);
-            ostringstream commandOutput;
+            // MediaNetLog::Instance().Log() << "Found mush command '" << content << "'" << endl;        
+
+            try
             {
+                CoreCommand command(content);
+                ostringstream commandOutput;
                 CoreEnvOutput envOutput(CoreEnv::Instance(), commandOutput);
                 command.Execute();
+                dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
             }
-            dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
+            catch (exception& e)
+            {
+                ostringstream errorOutput;
+                errorOutput << "<pre>Command '" << content << "' failed: " << e.what() << "</pre>" << endl;
+                dataStr.replace(startPos, endPos - startPos + 2, errorOutput.str());
+            }
         }
         Send(dataStr);
     }
