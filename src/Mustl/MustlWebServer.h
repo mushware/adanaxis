@@ -1,8 +1,11 @@
 #ifndef MUSTLWEBSERVER_H
 #define MUSTLWEBSERVER_H
 /*
- * $Id: MustlWebServer.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlWebServer.h,v 1.2 2002/12/12 18:38:26 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.2  2002/12/12 18:38:26  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -33,6 +36,8 @@ class MustlData;
 class MustlWebServer
 {
 public:
+    typedef bool (*tPermissionFunction)(const std::string& inAddress);
+    
     enum tPermission
     {
         kPermissionInvalid,
@@ -51,7 +56,8 @@ public:
     bool IsConnected(void) const;
     void PermissionSet(tPermission inPermission) { m_permission=inPermission; }
     void ExtraAllowedAddrSet(const string& inAddr);
-    
+    void PermissionFunctionSet(tPermissionFunction inFunction); 
+
 protected:
     MustlWebServer();
     bool CheckIPAddressAllowed(Mustl::U32 inIPNetworkOrder);
@@ -63,6 +69,7 @@ private:
     string m_extraAllowedAddr;
     Mustl::U32 m_extraAllowedIP;
     tPermission m_permission;
+    tPermissionFunction m_permissionFunction;
     
     bool m_serving;
 

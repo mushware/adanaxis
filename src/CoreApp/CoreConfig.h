@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.h,v 1.13 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreConfig.h,v 1.14 2002/11/24 23:18:03 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.14  2002/11/24 23:18:03  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.13  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -58,9 +61,8 @@
 
 #include "CoreStandard.h"
 #include "CoreScalar.h"
-#include "CorePickle.h"
 
-class CoreConfig : public CorePickle
+class CoreConfig
 {
 public:
     virtual ~CoreConfig() {}
@@ -70,9 +72,6 @@ public:
     const CoreScalar& Get(const string& inName) const;
     bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool Exists(const string& inName) const;
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
-    virtual char *TypeNameGet(void) const;
 
 private:
     map<string, CoreScalar> m_config;

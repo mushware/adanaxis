@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.13 2002/12/05 13:20:10 southa Exp $
+ * $Id: CoreData.h,v 1.14 2002/12/09 23:59:57 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.14  2002/12/09 23:59:57  southa
+ * Network control
+ *
  * Revision 1.13  2002/12/05 13:20:10  southa
  * Client link handling
  *
@@ -79,19 +82,19 @@ public:
     bool Exists(const string& inName) const;
     bool GetIfExists(RefType *& outData, const string& inName) const;
     void Clear(void);
-    U32 Size(void);
+    Mushware::U32 Size(void);
     void Iterate(void (*inFnPtr)(RefType&));
     void Dump(ostream& ioOut);
     tMapIterator Begin(void);
     tMapIterator End(void);
-    U32 SequenceNumGet(void) const;
+    Mushware::U32 SequenceNumGet(void) const;
     
 protected:
     CoreData();
 
 private:
     tMap m_data;
-    U32 m_sequenceNum; // Incremented when anything is deleted
+    Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
     static auto_ptr< CoreData<RefType> > m_instance;
 };
 
@@ -232,7 +235,7 @@ CoreData<RefType>::Clear(void)
 }
 
 template<class RefType>
-inline U32
+inline Mushware::U32
 CoreData<RefType>::Size(void)
 {
     return m_data.size();
@@ -276,7 +279,7 @@ CoreData<RefType>::End(void)
 }
 
 template<class RefType>
-inline U32
+inline Mushware::U32
 CoreData<RefType>::SequenceNumGet(void) const
 {
     return m_sequenceNum;

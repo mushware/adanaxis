@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreDataRef.h,v 1.4 2002/12/03 20:28:14 southa Exp $
+ * $Id: CoreDataRef.h,v 1.5 2002/12/05 13:20:10 southa Exp $
  * $Log: CoreDataRef.h,v $
+ * Revision 1.5  2002/12/05 13:20:10  southa
+ * Client link handling
+ *
  * Revision 1.4  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -29,8 +32,6 @@
  * CoreData and CoreDatRef
  *
  */
-
-#include "mushCore.h"
 
 #include "CoreStandard.h"
 #include "CoreData.h"
@@ -57,7 +58,7 @@ private:
     string m_name;
     CoreData<RefType> *m_dataInstance;
     mutable RefType *m_dataPtr;
-    mutable U32 m_sequenceNum;
+    mutable Mushware::U32 m_sequenceNum;
 };
 
 template<class RefType>

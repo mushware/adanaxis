@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.21 2002/12/04 00:37:10 southa Exp $
+ * $Id: CoreStandard.h,v 1.22 2002/12/12 18:38:57 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.22  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.21  2002/12/04 00:37:10  southa
  * ControlFrameDef work
  *
@@ -151,9 +154,7 @@
 #define M_PI 3.14159265358979
 #endif
 
-using namespace std;
-
-namespace MushCore
+namespace Mushware
 {
     typedef float tVal;
     typedef double tLongVal;
@@ -169,8 +170,6 @@ namespace MushCore
     typedef ifstream u8ifstream;
     typedef ofstream u8ofstream;
 };
-
-using namespace MushCore;
 
 #define COREASSERT(exp) assert(exp)
 

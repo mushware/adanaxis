@@ -1,14 +1,17 @@
 #ifndef MUSTLID_H
 #define MUSTLID_H
 /*
- * $Id: MustlID.h,v 1.1 2002/12/07 18:32:15 southa Exp $
+ * $Id: MustlID.h,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlID.h,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.1  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlData;
 
@@ -24,10 +27,6 @@ public:
 private:
 };
 
-inline ostream&
-operator<<(ostream &ioOut, const MustlID& inObj)
-{
-    inObj.Print(ioOut);
-    return ioOut;
-}
+ostream& operator<<(ostream &ioOut, const MustlID& inObj);
+
 #endif

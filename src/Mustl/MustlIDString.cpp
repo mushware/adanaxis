@@ -1,6 +1,9 @@
 /*
- * $Id: MustlIDString.cpp,v 1.2 2002/12/09 16:18:00 southa Exp $
+ * $Id: MustlIDString.cpp,v 1.1 2002/12/12 14:00:25 southa Exp $
  * $Log: MustlIDString.cpp,v $
+ * Revision 1.1  2002/12/12 14:00:25  southa
+ * Created Mustl
+ *
  * Revision 1.2  2002/12/09 16:18:00  southa
  * Link ID transfer
  *
@@ -11,7 +14,11 @@
 
 #include "MustlIDString.h"
 
-#include "MustlData.h"
+#include "Mustl.h"
+#include "MustlPlatform.h"
+#include "MustlSTL.h"
+
+#include "MustlNamespace.h"
 
 MustlIDString::MustlIDString(MustlData& ioData)
 {

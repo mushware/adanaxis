@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebServer.cpp,v 1.2 2002/12/12 18:38:26 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.3 2002/12/17 00:58:29 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.3  2002/12/17 00:58:29  southa
+ * Added support for libmustl target
+ *
  * Revision 1.2  2002/12/12 18:38:26  southa
  * Mustl separation
  *
@@ -39,17 +42,16 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
+#include "mustlCore.h"
+
 #include "MustlNamespace.h"
-
-// This needs to go
-#include "mushPlatform.h"
-
 
 auto_ptr<MustlWebServer> MustlWebServer::m_instance;
 
 MustlWebServer::MustlWebServer() :
     m_linkCtr(0),
     m_permission(kPermissionLocal),
+    m_permissionFunction(NULL),
     m_serving(false)
 {
 }
@@ -109,7 +111,7 @@ MustlWebServer::Accept(void)
             {
                 ostringstream name;
                 name << "web" << m_linkCtr;
-                CoreData<MustlWebLink>::Instance().Give(name.str(), new MustlWebLink(newSocket));
+                Mushware::CoreData<MustlWebLink>::Instance().Give(name.str(), new MustlWebLink(newSocket));
                 m_linkCtr++;
                 MustlLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
             }
@@ -143,18 +145,22 @@ MustlWebServer::ExtraAllowedAddrSet(const string& inAddr)
         }
         catch (MustlFail& e)
         {
-            // Need to pass this to an external handler
-            PlatformMiscUtils::MinorErrorBox("Could not resolve host name '"+inAddr+"', entered as the Extra Allowed Configuration address: " + e.what());
             m_extraAllowedIP = 0;
+            throw(MustlFail("Could not resolve host name '"+inAddr+"', entered as the Extra Allowed Configuration address: " + e.what()));
         }
-
     }
+}
+
+void
+MustlWebServer::PermissionFunctionSet(tPermissionFunction inFunction)
+{
+    m_permissionFunction = inFunction;
 }
 
 bool
 MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
 {
-    bool retVal;
+    bool retVal=false;
     bool askUser=false;
     
     switch (m_permission)
@@ -179,7 +185,7 @@ MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
             break;
 
         default:
-            throw(LogicFail("Bad value for MustlWebServer::m_permission"));
+            throw(MustlFail("Bad value for MustlWebServer::m_permission"));
     }
 
     if (askUser)
@@ -198,12 +204,15 @@ MustlWebServer::CheckIPAddressAllowed(U32 inIPNetworkOrder)
             }
             else
             {
-                // Needs a handler external to Mustl
-                ostringstream message;
-                message << "A computer with IP address " << MustlUtils::IPAddressToString(inIPNetworkOrder);
-                message << " is attempting to connect to the " << CoreInfo::ApplicationNameGet() << " localweb server.  Would you like to allow this?  If in doubt, choose Deny.";
-                retVal=PlatformMiscUtils::PermissionBox(message.str(), false);
-    
+                if (m_permissionFunction == NULL)
+                {
+                    retVal = false;
+                }
+                else
+                {
+                    retVal = m_permissionFunction(MustlUtils::IPAddressToString(inIPNetworkOrder));
+                }
+
                 if (!retVal && MustlPlatform::IsLocalAddress(inIPNetworkOrder))
                 {
                     // Don't store denied permission for local addresses

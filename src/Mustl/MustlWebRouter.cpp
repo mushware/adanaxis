@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebRouter.cpp,v 1.2 2002/12/12 18:38:26 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:26  southa
  * Mustl separation
  *
@@ -27,7 +30,11 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
+#include "mustlCore.h"
+
 #include "MustlNamespace.h"
+
+using Mushware::CoreData;
 
 auto_ptr<MustlWebRouter> MustlWebRouter::m_instance;
 

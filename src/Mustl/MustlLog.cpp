@@ -1,6 +1,9 @@
 /*
- * $Id: MustlLog.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlLog.cpp,v 1.3 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.3  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -42,11 +45,13 @@ MustlLog::MustlLog() :
     m_trafficLog(false),
     m_logFullIP(false)
 {
+    m_nullStream = new ostringstream;
 }
 
 MustlLog::~MustlLog()
 {
     if (m_outStream != NULL) delete m_outStream;
+    delete m_nullStream;
 }
 
 ostream&
@@ -74,8 +79,8 @@ MustlLog::NetLog(void)
     }
     else
     {
-        m_nullStream.clear();
-        return m_nullStream;
+        m_nullStream->clear();
+        return *m_nullStream;
     }
 }
 
@@ -88,8 +93,8 @@ MustlLog::WebLog(void)
     }
     else
     {
-        m_nullStream.clear();
-        return m_nullStream;
+        m_nullStream->clear();
+        return *m_nullStream;
     }
 }
 
@@ -102,8 +107,8 @@ MustlLog::VerboseLog(void)
     }
     else
     {
-        m_nullStream.clear();
-        return m_nullStream;
+        m_nullStream->clear();
+        return *m_nullStream;
     }
 }
 
@@ -116,8 +121,8 @@ MustlLog::TrafficLog(void)
     }
     else
     {
-        m_nullStream.clear();
-        return m_nullStream;
+        m_nullStream->clear();
+        return *m_nullStream;
     }
 }
 

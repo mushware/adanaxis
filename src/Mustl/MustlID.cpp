@@ -1,11 +1,13 @@
 /*
- *  MustlID.cpp
- *  core-app
- *
- *  Created by Andy Southgate on Sat Dec 07 2002.
- *  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MustlID.h"
 
+ostream&
+operator<<(ostream &ioOut, const MustlID& inObj)
+{
+    inObj.Print(ioOut);
+    return ioOut;
+}

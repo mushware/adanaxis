@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreParamList.h,v 1.9 2002/08/27 08:56:17 southa Exp $
+ * $Id: CoreParamList.h,v 1.10 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.10  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -55,9 +58,9 @@ class CoreParamList
 public:
     void PushParam(const CoreScalar& inScalar)
         {m_params.push_back(inScalar);}
-    void PopParam(tVal& outVal);
+    void PopParam(Mushware::tVal& outVal);
     void PopParam(string& outStr);
-    void PopParam(U32& outU32);
+    void PopParam(Mushware::U32& outU32);
     tSize NumParams(void) {return m_params.size();}
     void Clear(void) {m_params.clear();};
     bool Empty(void) {return m_params.empty();}

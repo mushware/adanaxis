@@ -1,6 +1,9 @@
 /*
- * $Id: MustlProtocol.cpp,v 1.1 2002/12/12 14:00:26 southa Exp $
+ * $Id: MustlProtocol.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlProtocol.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.1  2002/12/12 14:00:26  southa
  * Created Mustl
  *
@@ -204,7 +207,7 @@ MustlProtocol::Unpack(MustlData& ioData)
                 break;
 
             case kUnpackStateMessageReady:
-                throw(LogicFail("Caller of Unpack failed to handle returned message"));
+                throw(MustlFail("Caller of Unpack failed to handle returned message"));
 
             case kUnpackStateInvalid:
             // default:

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreException.h,v 1.19 2002/11/14 17:29:07 southa Exp $
+ * $Id: CoreException.h,v 1.20 2002/12/13 01:07:25 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.20  2002/12/13 01:07:25  southa
+ * Mustl work
+ *
  * Revision 1.19  2002/11/14 17:29:07  southa
  * Config database
  *
@@ -85,6 +88,8 @@
  * Added first CoreScript code
  *
  */
+
+#include "CoreStandard.h"
 
 class FileFail: public exception
 {

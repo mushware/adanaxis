@@ -1,6 +1,9 @@
 /*
- * $Id: MustlRouter.cpp,v 1.4 2002/12/13 19:03:05 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.5 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.5  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.4  2002/12/13 19:03:05  southa
  * Mustl interface cleanup
  *
@@ -52,6 +55,9 @@
 #include "MustlSTL.h"
 
 #include "MustlNamespace.h"
+
+#include "mustlCore.h"
+using Mushware::CoreData;
 
 auto_ptr<MustlRouter> MustlRouter::m_instance;
 

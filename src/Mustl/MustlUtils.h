@@ -1,8 +1,11 @@
 #ifndef MUSTLUTILS_H
 #define MUSTLUTILS_H
 /*
- * $Id: MustlUtils.h,v 1.1 2002/12/12 14:00:27 southa Exp $
+ * $Id: MustlUtils.h,v 1.2 2002/12/13 19:03:06 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.2  2002/12/13 19:03:06  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.1  2002/12/12 14:00:27  southa
  * Created Mustl
  *
@@ -41,7 +44,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlAddress;
 class MustlLink;
@@ -51,14 +54,14 @@ class MustlUtils
 public:
     static bool FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddress);
     static bool FindLinkToStation(string& outName, const MustlAddress& inAddress);
-    static string IPAddressToString(U32 inAddress);
-    static string IPAddressToLogString(U32 inAddress);
-    static string MsecDurationToString(U32 inMsec);
+    static string IPAddressToString(Mustl::U32 inAddress);
+    static string IPAddressToLogString(Mustl::U32 inAddress);
+    static string MsecDurationToString(Mustl::U32 inMsec);
     static string MakePrintable(const string& inStr);
-    static string MakePrintable(const vector<U8> inBytes);
+    static string MakePrintable(const vector<Mustl::U8> inBytes);
     static string MakeXMLSafe(const string& inStr);
     static string MakeWebSafe(const string& inStr);
-    static U32 MakeWebSafe(U32 inValue) { return inValue; }
+    static Mustl::U32 MakeWebSafe(Mustl::U32 inValue) { return inValue; }
     static string RemoveMeta(const string& inStr);
     static void TruncateLogSet(bool inTruncate) { m_truncateLog=inTruncate; }
     

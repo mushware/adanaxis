@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreScalar.h,v 1.12 2002/08/27 08:56:17 southa Exp $
+ * $Id: CoreScalar.h,v 1.13 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.13  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.12  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -63,24 +66,23 @@
  */
 
 #include "CoreStandard.h"
-using namespace std;
 
 class CoreScalar
 {
 public:
     CoreScalar(): m_tag(kNone) {}
     // CoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
-    CoreScalar(tVal inVal): m_tag(kVal), m_val(inVal) {}
+    CoreScalar(Mushware::tVal inVal): m_tag(kVal), m_val(inVal) {}
     // CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
     CoreScalar(const string& inStr): m_tag(kString), m_string(inStr) {}
 
-    void Get(tVal &outVal) const;
+    void Get(Mushware::tVal &outVal) const;
     void Get(string& outStr) const;
     void Get(bool& outBool) const;
 
     string StringGet(void) const {string outStr; Get(outStr); return outStr;}
-    tVal ValGet(void) const {tVal outVal; Get(outVal); return outVal;}
-    U32 U32Get(void) const {tVal outVal; Get(outVal); return static_cast<U32>(outVal);}
+    Mushware::tVal ValGet(void) const {Mushware::tVal outVal; Get(outVal); return outVal;}
+    Mushware::U32 U32Get(void) const {Mushware::tVal outVal; Get(outVal); return static_cast<Mushware::U32>(outVal);}
     bool BoolGet(void) const {bool outVal; Get(outVal); return outVal;}
 
     inline bool Equals(const CoreScalar& inScalar) const
@@ -100,7 +102,7 @@ public:
         m_tag=kString;
         return *this;
     }
-    CoreScalar& operator=(tVal inVal)
+    CoreScalar& operator=(Mushware::tVal inVal)
     {
         m_val=inVal;
         m_tag=kVal;
@@ -121,7 +123,7 @@ private:
         kString
     };
     Tag m_tag;
-    tVal m_val;
+    Mushware::tVal m_val;
     string m_string;
 };
 

@@ -1,8 +1,11 @@
 #ifndef MUSTLPROTOCOL_H
 #define MUSTLPROTOCOL_H
 /*
- * $Id: MustlProtocol.h,v 1.11 2002/12/07 18:32:16 southa Exp $
+ * $Id: MustlProtocol.h,v 1.1 2002/12/12 14:00:26 southa Exp $
  * $Log: MustlProtocol.h,v $
+ * Revision 1.1  2002/12/12 14:00:26  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/07 18:32:16  southa
  * Network ID stuff
  *
@@ -38,7 +41,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlData;
 class MustlID;
@@ -79,24 +82,24 @@ public:
         kReasonCodeUserDisconnect=73
     };
     
-    static void TCPLinkCheckCreate(MustlData& outData, U32 inSequenceNumber);
-    static void TCPLinkCheckReplyCreate(MustlData& outData, U32 inSequenceNumber);
-    static void UDPLinkCheckCreate(MustlData& outData, U32 inSequenceNumber);
-    static void UDPLinkCheckReplyCreate(MustlData& outData, U32 inSequenceNumber);
+    static void TCPLinkCheckCreate(MustlData& outData, Mustl::U32 inSequenceNumber);
+    static void TCPLinkCheckReplyCreate(MustlData& outData, Mustl::U32 inSequenceNumber);
+    static void UDPLinkCheckCreate(MustlData& outData, Mustl::U32 inSequenceNumber);
+    static void UDPLinkCheckReplyCreate(MustlData& outData, Mustl::U32 inSequenceNumber);
     static void KillLinkCreate(MustlData& outData, tReasonCode inReason);
     static void IDRequestCreate(MustlData& outData);
 
     static void IDTransferCreate(MustlData& outData, const MustlID& inID);
 
-    static void LongAppMessageCreate(MustlData& ioData, U32 inType, const string& inStr);
-    static void LongAppMessageHeaderCreate(MustlData& ioData, U32 inType);
+    static void LongAppMessageCreate(MustlData& ioData, Mustl::U32 inType, const string& inStr);
+    static void LongAppMessageHeaderCreate(MustlData& ioData, Mustl::U32 inType);
     static void LongAppMessageFinish(MustlData& ioData);
 
     static void Unpack(MustlData& ioData);
-    static void RemoveLength(MustlData& ioData, U32 inType);
-    static U32 LinkToAppType(U32 inType);
+    static void RemoveLength(MustlData& ioData, Mustl::U32 inType);
+    static Mustl::U32 LinkToAppType(Mustl::U32 inType);
     static bool MessageTake(MustlData& ioData);
-    static bool MessageTypeIsLinkLayer(U32 inType);
+    static bool MessageTypeIsLinkLayer(Mustl::U32 inType);
 
     
 private:

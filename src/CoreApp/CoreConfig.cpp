@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.cpp,v 1.12 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.13 2002/11/24 23:18:03 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.13  2002/11/24 23:18:03  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.12  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -77,23 +80,8 @@ CoreConfig::GetIfExists(const CoreScalar **outScalar, const string& inName) cons
     }
 }
 
-
 bool
 CoreConfig::Exists(const string& inName) const
 {
     return m_config.find(inName) != m_config.end();
-}
-
-void
-CoreConfig::Pickle(ostream& inOut, const string& inPrefix="") const
-{}
-
-void
-CoreConfig::Unpickle(CoreXML& inXML)
-{}
-
-char *
-CoreConfig::TypeNameGet(void) const
-{
-    return "coreconfig";
 }

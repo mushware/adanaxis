@@ -1,8 +1,11 @@
 #ifndef MUSTLLOG_H
 #define MUSTLLOG_H
 /*
- * $Id: MustlLog.h,v 1.1 2002/12/12 14:00:26 southa Exp $
+ * $Id: MustlLog.h,v 1.2 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.2  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.1  2002/12/12 14:00:26  southa
  * Created Mustl
  *
@@ -26,7 +29,7 @@
  *
  */
 
-#include "mushCore.h"
+#include "MustlStandard.h"
 
 class MustlLog
 {
@@ -60,7 +63,7 @@ protected:
 
 private:
     ofstream *m_outStream;
-    ostringstream m_nullStream;
+    ostream *m_nullStream;
     bool m_netLog;
     bool m_webLog;
     bool m_verboseLog;

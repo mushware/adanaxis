@@ -1,6 +1,9 @@
 /*
- * $Id: MustlUtils.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.3 2002/12/13 19:03:06 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.3  2002/12/13 19:03:06  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -55,6 +58,9 @@
 #include "MustlSTL.h"
 
 #include "MustlNamespace.h"
+
+#include "mustlCore.h"
+using Mushware::CoreData;
 
 bool MustlUtils::m_truncateLog=true;
 

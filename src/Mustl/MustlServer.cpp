@@ -1,6 +1,9 @@
 /*
- * $Id: MustlServer.cpp,v 1.5 2002/12/14 15:04:34 southa Exp $
+ * $Id: MustlServer.cpp,v 1.6 2002/12/17 00:58:28 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.6  2002/12/17 00:58:28  southa
+ * Added support for libmustl target
+ *
  * Revision 1.5  2002/12/14 15:04:34  southa
  * Mustl fixes
  *
@@ -76,6 +79,9 @@
 #include "MustlSTL.h"
 
 #include "MustlNamespace.h"
+
+#include "mustlCore.h"
+using Mushware::CoreData;
 
 auto_ptr<MustlServer> MustlServer::m_instance;
 
@@ -176,7 +182,7 @@ MustlServer::UDPSend(const MustlAddress& inAddress, MustlData& ioData)
 {
     if (ioData.ReadSizeGet() == 0)
     {
-        throw(LogicFail("Attempt to send empty MustlData"));
+        throw(MustlFail("Attempt to send empty MustlData"));
     }
     if (!m_serving)
     {

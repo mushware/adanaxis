@@ -1,6 +1,9 @@
 /*
- * $Id: MustlWebLink.cpp,v 1.14 2002/11/23 14:39:06 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.2 2002/12/12 18:38:25 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.2  2002/12/12 18:38:25  southa
+ * Mustl separation
+ *
  * Revision 1.14  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -53,6 +56,12 @@
 #include "MustlSTL.h"
 
 #include "MustlNamespace.h"
+
+#include "mustlCore.h"
+using Mushware::CoreCommand;
+using Mushware::CoreData;
+using Mushware::CoreEnv;
+using Mushware::CoreEnvOutput;
 
 auto_ptr< CoreData<MustlWebLink> > CoreData<MustlWebLink>::m_instance;
 string MustlWebLink::m_webPath="";
@@ -242,7 +251,7 @@ MustlWebLink::ReceivedProcess(const string& inStr)
             switch (m_requestType)
             {
                 case kRequestGet:
-                    throw(LogicFail("Bad receive state for GET"));
+                    throw(MustlFail("Bad receive state for GET"));
                     break;
 
                 case kRequestPost:
@@ -258,7 +267,7 @@ MustlWebLink::ReceivedProcess(const string& inStr)
         break;
 
         default:
-            throw(LogicFail("Bad value for m_receiveState"));
+            throw(MustlFail("Bad value for m_receiveState"));
             break;
     }
 }
@@ -338,18 +347,15 @@ MustlWebLink::PostProcess(const string& inValues)
     {
         if (inValues.find("'") != inValues.npos)
         {
-            throw(MustlFail("Dodgy POST values"));
+            throw(MustlFail("Invalid POST values"));
         }
-        CoreCommand command(string("handlepostvalues('")+inValues+"')");
-        command.Execute();
+        //CoreCommand command(string("handlepostvalues('")+inValues+"')");
+        //command.Execute();
+        // Catch CommandFail
     }    
     catch (MustlFail &e)
     {
         MustlLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
-    }
-    catch (CommandFail &e)
-    {
-        MustlLog::Instance().WebLog() << "Command failed: " << e.what() << endl;
     }
 }
 
@@ -367,39 +373,46 @@ MustlWebLink::SendFile(const string& inFilename)
     MustlHTTP http;
     http.Reply200();
 
-    CoreRegExp re;
-    if (re.Search(inFilename, "\\.html$"))
+
+    U32 dotPos = inFilename.rfind('.');
+    if (dotPos == string::npos)
+    {
+        throw(MustlFail("Unknown file type: "+inFilename));
+    }
+    string fileTypeStr = inFilename.substr(dotPos+1);
+    
+    if (fileTypeStr == "html")
     {
         http.ContentTypeHTML();
     }
-    else if (re.Search(inFilename, "\\.mhtml$"))
+    else if (fileTypeStr == "mhtml")
     {
         http.ContentTypeHTML();
         processFile=true;
     }
-    else if (re.Search(inFilename, "\\.(jpg|jpeg)$"))
+    else if (fileTypeStr == "jpg" || fileTypeStr == "jpeg")
     {
         http.AllowCachingSet();
         http.ContentType("image/jpeg");
     }
-    else if (re.Search(inFilename, "\\.(tif|tiff)$"))
+    else if (fileTypeStr == "tif" || fileTypeStr == "tiff")
     {
         http.AllowCachingSet();
         http.ContentType("image/tiff");
     }
-    else if (re.Search(inFilename, "\\.png$"))
+    else if (fileTypeStr == "png")
     {
         http.AllowCachingSet();
         http.ContentType("image/png");
     }
-    else if (re.Search(inFilename, "\\.css$"))
+    else if (fileTypeStr == "css")
     {
         http.AllowCachingSet();
         http.ContentType("text/css");
     }
     else
     {
-        throw(MustlFail("Unknown file type: "+inFilename));
+        throw(MustlFail("Unknown file type: "+fileTypeStr));
     }
         
     if (processFile)
