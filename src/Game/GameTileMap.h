@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameTileMap.h,v 1.9 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTileMap.h,v 1.10 2002/08/27 08:56:26 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.10  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -48,6 +51,7 @@
  */
 
 #include "mushCore.h"
+#include "GameTileSpec.h"
 
 class GameTraits;
 
@@ -59,8 +63,9 @@ public:
     virtual void Unpickle(CoreXML& inXML);
     const string& NameGet(U32 inNum) const;
     bool TraitsExist(U32 inNum) const;
-    GameTraits *TraitsPtrGet(U32 inNum) const;
+    const GameTileSpec& TileSpecGet(U32 inNum);
     void Load(void);
+    
     static CoreScalar LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
     
@@ -91,18 +96,32 @@ private:
         kMaxVectorSize=4000
     };
 
-    GameTraits *LookupTrait(U32 inNum) const;
+    const GameTileSpec& LookupSpec(U32 inNum);
 
     typedef map<string, void (GameTileMap::*)(CoreXML& inXML)> ElementFunctionMap;
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     U32 m_state;
+    // End of XML stuff
+    class TraitDef
+    {
+    public:
+        TraitDef() {}
+        TraitDef(const string& inName, const GameTileSpec& inSpec) :
+            name(inName),
+            spec(inSpec)
+            {}
+        string name;
+        GameTileSpec spec;
+    };
+    
+    typedef map<U32, TraitDef> tTraitMap;
 
-    map<U32, string> m_map;
+    tTraitMap m_map;
     CoreScript m_loaderScript;
 
     mutable bool m_warned;
-    mutable vector<GameTraits *> m_traits;
+    mutable vector<GameTileSpec *> m_traits;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTileMap& inMap)

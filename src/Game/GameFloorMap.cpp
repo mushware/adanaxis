@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.32 2002/10/11 20:10:14 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.33 2002/10/12 15:25:13 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.33  2002/10/12 15:25:13  southa
+ * Facet renderer
+ *
  * Revision 1.32  2002/10/11 20:10:14  southa
  * Various fixes and new files
  *
@@ -281,9 +284,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                             }
                         }
                         
-
-                        GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
-                            (*m_tileMap->TraitsPtrGet(mapVector[tier]));
+                        const GameTileSpec& tileSpec = m_tileMap->TileSpecGet(mapVector[tier]);
 
                         const GameLightLinks& links=m_lightMap.ElementGet(x,y);
 
@@ -305,7 +306,9 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                         }
                             
                         gl.MoveTo(x, y);
-                        tileTraits.Render();
+                        tileSpec.RenderPrologue();
+                        tileSpec.TileTraitsGet().Render();
+                        tileSpec.RenderEpilogue();
                     }
                 }
             }
@@ -454,16 +457,15 @@ GameFloorMap::RebuildSolidMap(void) const
             tVal permeability=4;
             for (U32 i=0; i<size; ++i)
             {
-                GameTileTraits& tileTraits=
-                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
+                const GameTileSpec& tileSpec=m_tileMap->TileSpecGet(mapVec[i]);
 
                 tVal value;
-                if (tileTraits.PermeabilityGet(value))
+                if (tileSpec.TileTraitsGet().PermeabilityGet(value))
                 {
                     if (value < permeability) permeability = value;
                 }
 
-                if (tileTraits.AdhesionGet(value))
+                if (tileSpec.TileTraitsGet().AdhesionGet(value))
                 {
                     if (value > adhesion) adhesion = value;
                 }
@@ -475,9 +477,8 @@ GameFloorMap::RebuildSolidMap(void) const
                 message << "TileTrait [";
                 for (U32 i=0; i<size; ++i)
                 {
-                    GameTileTraits& tileTraits=
-                    dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
-                    cerr << tileTraits << endl;
+                    const GameTileSpec& tileSpec=m_tileMap->TileSpecGet(mapVec[i]);
+                    cerr << tileSpec << endl;
                     message << mapVec[i];
                     if (i+1 != size) message << ",";
                 }
@@ -510,11 +511,10 @@ GameFloorMap::RebuildLightMap(void) const
 
             for (U32 i=0; i<size; ++i)
             {
-                GameTileTraits& tileTraits=
-                dynamic_cast<GameTileTraits &>(*m_tileMap->TraitsPtrGet(mapVec[i]));
+                const GameTileSpec& tileSpec=m_tileMap->TileSpecGet(mapVec[i]);
 
                 GLLightDef lightDef;
-                if (tileTraits.LightGet(lightDef))
+                if (tileSpec.TileTraitsGet().LightGet(lightDef))
                 {
                     lightDef.BasePositionSet(GLVector(x,y,0));
                     GLData::Instance().LightsGet()->LightAdd(lightDefs.size(), lightDef);

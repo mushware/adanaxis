@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.39 2002/10/12 15:25:09 southa Exp $
+ * $Id: GLUtils.cpp,v 1.40 2002/10/12 17:56:10 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.40  2002/10/12 17:56:10  southa
+ * Reset normal when drawing sprites
+ *
  * Revision 1.39  2002/10/12 15:25:09  southa
  * Facet renderer
  *
@@ -318,9 +321,9 @@ GLUtils::DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2)
 {
     glBegin(GL_QUADS);
     glVertex2f(inX1,inY1);
-    glVertex2f(inX1,inY2);
-    glVertex2f(inX2,inY2);
     glVertex2f(inX2,inY1);
+    glVertex2f(inX2,inY2);
+    glVertex2f(inX1,inY2);
     glEnd();
 }
 
@@ -362,12 +365,12 @@ GLUtils::DrawSprite(const GLTexture& inTex)
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(-width2,-height2);
-    glTexCoord2f(0,1);
-    glVertex2f(-width2,height2);
-    glTexCoord2f(1,1);
-    glVertex2f(width2,height2);
     glTexCoord2f(1,0);
     glVertex2f(width2,-height2);
+    glTexCoord2f(1,1);
+    glVertex2f(width2,height2);
+    glTexCoord2f(0,1);
+    glVertex2f(-width2,height2);
     glEnd();
     GLState::TextureDisable();
 }
@@ -387,12 +390,12 @@ GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
     glBegin(GL_QUADS);
     glTexCoord2f(inRectangle.xmin,inRectangle.ymin);
     glVertex2f(-0.5,-0.5);
-    glTexCoord2f(inRectangle.xmin,inRectangle.ymax);
-    glVertex2f(-0.5,0.5);
-    glTexCoord2f(inRectangle.xmax,inRectangle.ymax);
-    glVertex2f(0.5,0.5);
     glTexCoord2f(inRectangle.xmax,inRectangle.ymin);
     glVertex2f(0.5,-0.5);
+    glTexCoord2f(inRectangle.xmax,inRectangle.ymax);
+    glVertex2f(0.5,0.5);
+    glTexCoord2f(inRectangle.xmin,inRectangle.ymax);
+    glVertex2f(-0.5,0.5);
     glEnd();
     GLState::TextureDisable();
     glPopMatrix();
@@ -409,12 +412,12 @@ GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(inX,inY);
-    glTexCoord2f(0,1);
-    glVertex2f(inX,inY+width);
-    glTexCoord2f(1,1);
-    glVertex2f(inX+height,inY+width);
     glTexCoord2f(1,0);
     glVertex2f(inX+height,inY);
+    glTexCoord2f(1,1);
+    glVertex2f(inX+height,inY+width);
+    glTexCoord2f(0,1);
+    glVertex2f(inX,inY+width);
     glEnd();
     GLState::TextureDisable();
     glNormal3f(0,0,1);
@@ -437,12 +440,12 @@ GLUtils::DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAn
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(inX,inY);
-    glTexCoord2f(0,1);
-    glVertex2f(inX,inY+width);
-    glTexCoord2f(1,1);
-    glVertex2f(inX+height,inY+width);
     glTexCoord2f(1,0);
     glVertex2f(inX+height,inY);
+    glTexCoord2f(1,1);
+    glVertex2f(inX+height,inY+width);
+    glTexCoord2f(0,1);
+    glVertex2f(inX,inY+width);
     glEnd();
     glPopMatrix();
     GLState::TextureDisable();

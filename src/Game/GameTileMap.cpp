@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileMap.cpp,v 1.11 2002/08/07 13:36:51 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.12 2002/08/27 08:56:26 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.12  2002/08/27 08:56:26  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -58,11 +61,11 @@ CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 const string&
 GameTileMap::NameGet(U32 inNum) const
 {
-    map<U32, string>::const_iterator p = m_map.find(inNum);
+    tTraitMap::const_iterator p = m_map.find(inNum);
 
     if (p != m_map.end())
     {
-        return p->second;
+        return p->second.name;
     }
     else
     {
@@ -85,9 +88,8 @@ GameTileMap::TraitsExist(U32 inNum) const
     }
 }
 
-
-GameTraits *
-GameTileMap::TraitsPtrGet(U32 inNum) const
+const GameTileSpec&
+GameTileMap::TileSpecGet(U32 inNum)
 {
     if (inNum < kMaxVectorSize)
     {
@@ -96,20 +98,20 @@ GameTileMap::TraitsPtrGet(U32 inNum) const
             if (m_traits[inNum] != NULL)
             {
                 // Trait exists and is in the fast lookup table
-                return m_traits[inNum];
+                return *m_traits[inNum];
             }
             else
             {
                 // Trait is in the range of the fast lookup table but NULL
-                return LookupTrait(inNum);
+                return LookupSpec(inNum);
             }
         }
         else
         {
             // Trait is outside of the fast lookup table
-            m_traits.resize(inNum+1);
-            return LookupTrait(inNum);
-        }            
+            m_traits.resize(inNum+1, NULL);
+            return LookupSpec(inNum);
+        }
     }
     else
     {
@@ -119,15 +121,15 @@ GameTileMap::TraitsPtrGet(U32 inNum) const
             cerr << "Warning: Use of map values above " << kMaxVectorSize << " is deoptimising" << endl;
             m_warned=true;
         }
-        return LookupTrait(inNum);
+        return LookupSpec(inNum);
     }
 }
 
-GameTraits *
-GameTileMap::LookupTrait(U32 inNum) const
+const GameTileSpec&
+GameTileMap::LookupSpec(U32 inNum)
 {
     IFCACHETESTING(cout << "Slow lookup for " << inNum << endl);
-    map<U32, string>::const_iterator p = m_map.find(inNum);
+    tTraitMap::iterator p = m_map.find(inNum);
 
     if (p == m_map.end())
     {
@@ -137,13 +139,19 @@ GameTileMap::LookupTrait(U32 inNum) const
     }
     else
     {
-        GameTraits *traitsPtr=GameData::Instance().TraitsGet(p->second);
+        GameTileSpec& spec=p->second.spec;
+        if (spec.TileTraitsAreNull())
+        {
+            // Do the lookup for this trait the first time it is accessed
+            spec.TileTraitsSet(dynamic_cast<GameTileTraits *>(GameData::Instance().TraitsGet(p->second.name)));
+            COREASSERT(!spec.TileTraitsAreNull());
+        }
         if (inNum < kMaxVectorSize)
         {
             COREASSERT(inNum < m_traits.size());
-            m_traits[inNum]=traitsPtr;
+            m_traits[inNum]=&spec;
         }
-        return traitsPtr;
+        return spec;
     }
 }    
 
@@ -192,11 +200,23 @@ GameTileMap::HandleTraitsStart(CoreXML& inXML)
 void
 GameTileMap::HandleMapEnd(CoreXML& inXML)
 {
-    istringstream inStream(inXML.TopData());
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for map.  Should be <map rotate=\"4\">200,desk1</map>";
+    char comma;
     U32 number;
     string name;
-    if (!(inStream >> number >> name)) throw (XMLFail("Expecting <map>number name</map>"));
-    m_map[number]=name;
+    if (!(data >> number)) inXML.Throw(failMessage);
+    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(data >> name)) inXML.Throw(failMessage);
+
+    CoreScalar rotateScalar(CoreScalar(1));
+    inXML.GetAttrib(rotateScalar, "rotate");
+    U32 rotate=rotateScalar.U32Get();
+    if (rotate < 1) inXML.Throw("rotate value must be >= 1");
+    for (U32 i=0; i<rotate; ++i)
+    {
+        m_map[number+i]=TraitDef(name, GameTileSpec(NULL, (tVal)i/rotate*360));
+    }
 }
 
 void
@@ -205,9 +225,9 @@ GameTileMap::Pickle(ostream& inOut, const string& inPrefix="") const
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_loaderScript;
     inOut << inPrefix << "</script>" << endl;
-    for (map<U32, string>::const_iterator p = m_map.begin(); p != m_map.end(); ++p)
+    for (tTraitMap::const_iterator p = m_map.begin(); p != m_map.end(); ++p)
     {
-        inOut << inPrefix << "<map>" << p->first << " " << p->second << "</map>" << endl;
+        inOut << inPrefix << "<map>" << p->first << " " << "<!-- Incomplete -->" << "</map>" << endl;
     }
 }
 

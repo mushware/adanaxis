@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.73 2002/10/11 20:10:14 southa Exp $
+ * $Id: GameContract.cpp,v 1.74 2002/10/12 15:25:11 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.74  2002/10/12 15:25:11  southa
+ * Facet renderer
+ *
  * Revision 1.73  2002/10/11 20:10:14  southa
  * Various fixes and new files
  *
@@ -431,6 +434,11 @@ GameContract::RunningDisplay(void)
     GameTimer& timer(GameData::Instance().TimerGet());
     
     GLUtils::DisplayPrologue();
+
+    // DisplayPrologue swaps in the previously rendered screen, so note the time here
+    timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
+    ++m_frames;
+    
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
     
@@ -499,11 +507,6 @@ GameContract::RunningDisplay(void)
     GameData::Instance().TypeGet().Render();
     
     GLUtils::DisplayEpilogue();
-
-    // Register displayed time
-
-    timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
-    ++m_frames;
 }
 
 void

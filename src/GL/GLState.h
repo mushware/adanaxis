@@ -2,8 +2,11 @@
 #define GLSTATE_H
 
 /*
- * $Id: GLState.h,v 1.1 2002/10/12 15:24:58 southa Exp $
+ * $Id: GLState.h,v 1.2 2002/10/12 17:34:20 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.2  2002/10/12 17:34:20  southa
+ * Wall edges
+ *
  * Revision 1.1  2002/10/12 15:24:58  southa
  * Facet renderer
  *
@@ -285,6 +288,9 @@ GLState::Reset(void)
         default:
             throw(LogicFail("Bad value for m_displayQuality"));
     }
+    glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CCW);
     m_depthState=kDepthInvalid;
     DepthSet(kDepthNone);
     m_modulateState=kModulationInvalid;
