@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.15 2002/08/19 11:09:55 southa Exp $
+ * $Id: CoreStandard.h,v 1.16 2002/08/27 08:56:18 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.16  2002/08/27 08:56:18  southa
+ * Source conditioning
+ *
  * Revision 1.15  2002/08/19 11:09:55  southa
  * GameTypeRace rendering
  *
@@ -122,6 +125,7 @@
 #include <errno.h>
 #include <assert.h>
 #include <math.h>
+#include <stdio.h>
 
 #ifdef HAVE_VALARRAY
 #include <valarray>
