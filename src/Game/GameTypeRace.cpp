@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.14 2002/08/21 19:48:42 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.15 2002/08/22 10:11:11 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.15  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.14  2002/08/21 19:48:42  southa
  * Race result tweaking
  *
@@ -138,12 +141,6 @@ GameTypeRace::SequenceAdvance(void)
     
     if (m_sequence == 1)
     {
-        if (m_lapCount == m_laps)
-        {
-            RaceFinished();
-            judgementRatio = (m_endTime - m_startTime) / (m_lapParTime * m_laps);
-        }
-        
         // Just passed the lap start
         ++m_lapCount;
         if (m_lapCount == m_laps)
@@ -200,6 +197,13 @@ GameTypeRace::SequenceAdvance(void)
     }
     m_chequePointTime = gameTime;
     m_chequePointTimeValid = true;
+    
+    if (m_lapCount == m_laps && m_sequence == 1)
+    {
+        RaceFinished();
+        judgementRatio = (m_endTime - m_startTime) / (m_lapParTime * m_laps);
+    }        
+
     if (judgementRatio != 0.0)
     {
         GameData::Instance().RewardsGet().JudgementPass(judgementRatio);
