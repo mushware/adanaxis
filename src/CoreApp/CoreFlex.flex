@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.8 2002/05/30 14:41:15 southa Exp $
+ // $Id: CoreFlex.flex,v 1.9 2002/07/02 14:27:12 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.8 2002/05/30 14:41:15 southa Exp $
+ * $Id: CoreFlex.flex,v 1.9 2002/07/02 14:27:12 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.9  2002/07/02 14:27:12  southa
+ * First floor map designer build
+ *
  * Revision 1.8  2002/05/30 14:41:15  southa
  * GameData and loadtilemap command
  *
@@ -41,8 +44,8 @@
 
 %option noyywrap
 
-dstring     \"[^\n"]+\"
-sstring     '[^\n']+'
+dstring     \"[^\n"]*\"
+sstring     '[^\n']*'
 string      {sstring}|{dstring}
 ws          [ \t]+
 alpha       [A-Za-z]

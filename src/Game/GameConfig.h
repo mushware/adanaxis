@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.4 2002/11/14 17:29:08 southa Exp $
+ * $Id: GameConfig.h,v 1.5 2002/11/14 19:35:30 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.5  2002/11/14 19:35:30  southa
+ * Configuration work
+ *
  * Revision 1.4  2002/11/14 17:29:08  southa
  * Config database
  *
@@ -38,6 +41,9 @@ public:
     
     static void Install(void);
     static CoreScalar GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv);
     
     U32 DisplayModeGet(void) const;
     void DisplayModeSet(U32 inMode);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.4 2002/11/14 17:29:08 southa Exp $
+ * $Id: GameConfig.cpp,v 1.5 2002/11/14 19:35:30 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.5  2002/11/14 19:35:30  southa
+ * Configuration work
+ *
  * Revision 1.4  2002/11/14 17:29:08  southa
  * Config database
  *
@@ -40,23 +43,6 @@ CoreInstaller GameConfigInstaller(GameConfig::Install);
 
 GameConfig::GameConfig()
 {
-    CoreData<GameConfigDef>::Instance().DataGive("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
-    CoreData<GameConfigDef>::Instance().DataGive("displayquality", new GameConfigDefString(
-        "medium", "low=Low&medium=Medium&high=High"));
-    CoreData<GameConfigDef>::Instance().DataGive("displaylighting", new GameConfigDefString(
-        "dynamic", "none=None&dynamic=Dynamic"));
-    CoreData<GameConfigDef>::Instance().DataGive("networkperms", new GameConfigDefString(
-        "normal", "none=None&normal=Normal&debug=Debug"));
-    CoreData<GameConfigDef>::Instance().DataGive("networkspeed", new GameConfigDefString(
-        "56k", "56k=56k Modem&cable=Cable/DSL&t1=LAN/T1/Infinite"));
-
-    CoreData<GameConfigDef>::Instance().DataGive("httpproxy", new GameConfigDefString(""));
-    
-    CoreData<GameConfigDef>::Instance().DataGive("configperms", new GameConfigDefString(
-        "allowlocal", "allownone=Always Ask&allowlocal=Allow Localhost&allowall=Allow All"));
-    CoreData<GameConfigDef>::Instance().DataGive("configextra", new GameConfigDefString(""));
-    CoreData<GameConfigDef>::Instance().DataGive("configport", new GameConfigDefU32(7200,0,65535));
-    CoreData<GameConfigDef>::Instance().DataGive("multiport", new GameConfigDefU32(7121,0,65535));
 }
 
 U32
@@ -295,7 +281,7 @@ GameConfig::GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams != 1)
     {
-        throw(CommandFail("Usage: gameconfigload(filename)"));
+        throw(CommandFail("Usage: configload(filename)"));
     }
     string filename;
     ioCommand.PopParam(filename);
@@ -306,8 +292,52 @@ GameConfig::GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+GameConfig::GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams != 4)
+    {
+        throw(CommandFail("Usage: configvalueadd(name, default value, low limit, high limit)"));
+    }
+    string name;
+    U32 defaultValue, lowLimit, highLimit;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(defaultValue);
+    ioCommand.PopParam(lowLimit);
+    ioCommand.PopParam(highLimit);
+    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefU32(defaultValue, lowLimit, highLimit));
+    return CoreScalar(0);
+}
+
+CoreScalar
+GameConfig::GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams < 2 || numParams > 3)
+    {
+        throw(CommandFail("Usage: configstringadd(name, default value, menu string)"));
+    }
+    string name, defaultValue, menuStr;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(defaultValue);
+    if (numParams >= 3) ioCommand.PopParam(menuStr);
+    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefString(defaultValue, menuStr));
+    return CoreScalar(0);
+}
+
+CoreScalar
+GameConfig::GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    CoreData<GameConfigDef>::Instance().DataGive("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
+    return CoreScalar(0);
+}
+
 void
 GameConfig::Install(void)
 {
-    CoreApp::Instance().AddHandler("gameconfigload", GameConfigLoad);
+    CoreApp::Instance().AddHandler("configload", GameConfigLoad);
+    CoreApp::Instance().AddHandler("configvalueadd", GameConfigValueAdd);
+    CoreApp::Instance().AddHandler("configstringadd", GameConfigStringAdd);
+    CoreApp::Instance().AddHandler("gameconfigspecial", GameConfigSpecial);
 }
