@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } xl2WxKWlXdOd++mz1fxC2w
 /*
- * $Id: MustlGameSTL.h,v 1.1 2003/10/06 22:42:04 southa Exp $
+ * $Id: MustlGameSTL.h,v 1.2 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlGameSTL.h,v $
+ * Revision 1.2  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/06 22:42:04  southa
  * Include fixes
  *
@@ -34,7 +37,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 
 //%includeGuardEnd {

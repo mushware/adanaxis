@@ -312,6 +312,14 @@
 			shellPath = /bin/sh;
 			shellScript = "date\ncd ../..\n./prebuild.sh";
 		};
+		7A6252EE05AC1A8D006A2161 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = app.acinclude.m4;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		7A62B6F305A49C0B002A5F1C = {
 			buildActionMask = 2147483647;
 			files = (
@@ -12559,6 +12567,7 @@
 				7ABCE94D05AB45CE00A00CC6,
 				7ABCE97005AB463800A00CC6,
 				7ABCE94E05AB45CE00A00CC6,
+				7A6252EE05AC1A8D006A2161,
 			);
 			isa = PBXGroup;
 			name = targets;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } X1xDmqNtUZaxHFuNQrhnpQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushPieStandard.h,v 1.1 2004/01/06 00:34:57 southa Exp $
+ * $Log: TestMushPieStandard.h,v $
+ * Revision 1.1  2004/01/06 00:34:57  southa
+ * MushPie testing
+ *
  */
 
 // Include everything we might need to keep things simple
@@ -31,7 +34,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
 #else
-#include "Mushcore.h"
+#include "Mushcore/Mushcore.h"
 #endif
 
 #if defined(HAVE_MUSHMESH_MUSHPIE_H)
@@ -39,7 +42,7 @@
 #elif defined(HAVE_MUSHPIE_H)
 #include <MushPie.h>
 #else
-#include "MushPie.h"
+#include "MushPie/MushPie.h"
 #endif
 
 #include <list>

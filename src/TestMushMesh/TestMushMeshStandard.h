@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } /nYbX6dMQIzdhaCzwQSAWg
 /*
- * $Id: TestMushMeshStandard.h,v 1.3 2004/01/02 21:13:17 southa Exp $
+ * $Id: TestMushMeshStandard.h,v 1.4 2004/01/06 00:34:56 southa Exp $
  * $Log: TestMushMeshStandard.h,v $
+ * Revision 1.4  2004/01/06 00:34:56  southa
+ * MushPie testing
+ *
  * Revision 1.3  2004/01/02 21:13:17  southa
  * Source conditioning
  *
@@ -40,7 +43,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
 #else
-#include "Mushcore.h"
+#include "Mushcore/Mushcore.h"
 #endif
 
 #if defined(HAVE_MUSHMESH_MUSHMESH_H)
@@ -48,7 +51,7 @@
 #elif defined(HAVE_MUSHMESH_H)
 #include <MushMesh.h>
 #else
-#include "MushMesh.h"
+#include "MushMesh/MushMesh.h"
 #endif
 
 #include <list>

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Y06e1+m5y028sC2Kud/rxQ
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.8 2003/10/25 18:26:03 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.9 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.9  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/10/25 18:26:03  southa
  * Patch connection rework
  *
@@ -54,7 +57,7 @@
 #if defined(HAVE_MUSHMESH_H)
 #include <MushMeshSubdivide.h>
 #else
-#include "MushMeshSubdivide.h"
+#include "MushMesh/MushMeshSubdivide.h"
 #endif
 #endif
 

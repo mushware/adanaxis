@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rdnU1aqXLiXUTYU3HXhTXQ
 /*
- * $Id: TestMustlStandard.h,v 1.3 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMustlStandard.h,v 1.4 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMustlStandard.h,v $
+ * Revision 1.4  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -66,7 +69,7 @@
 #if defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
 #else
-#include "Mushcore.h"
+#include "Mushcore/Mushcore.h"
 #endif
 #endif
 
@@ -76,7 +79,7 @@
 #if defined(HAVE_MUSTL_H)
 #include <Mustl.h>
 #else
-#include "Mustl.h"
+#include "Mustl/Mustl.h"
 #endif
 #endif
 //%includeGuardEnd {

@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } COCQhsHpGb6r5ZxBx3nXVg
 /*
- * $Id: MustlGameBase.cpp,v 1.3 2004/01/01 21:15:46 southa Exp $
+ * $Id: MustlGameBase.cpp,v 1.4 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlGameBase.cpp,v $
+ * Revision 1.4  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.3  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -100,7 +103,7 @@
 
 #include "MustlGameSTL.h"
 
-#include "Mustl.h"
+#include "mushMustl.h"
 #include "mushGL.h"
 #include "mushPlatform.h"
 

@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.1 2003/12/31 15:46:55 southa Exp $
+# $Id: autogen.pl,v 1.2 2004/01/06 20:46:48 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.2  2004/01/06 20:46:48  southa
+# Build fixes
+#
 # Revision 1.1  2003/12/31 15:46:55  southa
 # Created
 #
@@ -25,7 +28,7 @@ use constant TARGETTYPE_PROGRAM => 2;
 use constant TARGETTYPE_LIBRARY => 3;
 use constant TARGETTYPE_EXTRADIST => 4;
 
-my $gVerbose=1;
+my $gVerbose=0;
 my $gTargetDirectory='targets';
 my $gTarget;
 my $gTargetType = TARGETTYPE_NONE;
@@ -35,17 +38,21 @@ my %gContext;
 
 %gConfig =
 (
-    'SRC' => 'src'
 );
 
-sub FilenamesGet($$$)
+sub FilenamesGet($$$$);
+sub FilenamesGet($$$$)
 {
-    my ($outputRef, $prefix, $regExp) = @_;
-    print "Entering directory $prefix\n" if ($gVerbose);
+    my ($outputRef, $prefix, $regExp, $recurse) = @_;
     
     my $handle = new DirHandle;
     
-    $handle->open($prefix) or die "Couldn't open $prefix: $!";
+    my $dir = $prefix;
+    $dir = "." if $dir eq "";
+
+    print "Entering directory $dir\n" if ($gVerbose);
+    
+    $handle->open($dir) or die "Couldn't open $prefix: $!";
     
     while (defined(my $suffix = $handle->read()))
     {
@@ -54,12 +61,13 @@ sub FilenamesGet($$$)
         $gContext{PATH} = $prefix;
         
         my $filename="$prefix/$suffix";
+        $filename = $suffix if $prefix eq "";
+        
         if ( -d $filename )
         {
             if (substr($suffix,0,1) ne "." && $suffix ne "CVS")
             {
-                # Don't recurse
-                # ProcessDirectory($filename);
+                FilenamesGet($outputRef, $filename, $regExp, $recurse) if $recurse;
             }
         }
         elsif ( -f $filename )
@@ -70,14 +78,17 @@ sub FilenamesGet($$$)
             }
         }
     }
-    print "Leaving directory $prefix\n" if ($gVerbose);
+    print "Leaving directory $dir\n" if ($gVerbose);
 }
 
 sub Use($$)
 {
     my ($source, $target) = @_;
     print "Using $source as $target\n" if ($gVerbose);
-    system("cp -f $source $target");
+    if (system("cp -f $source $target") != 0)
+    {
+        die "File copy '$source'->'$target' failed";
+    }
 }
 
 sub Modules($$)
@@ -92,30 +103,68 @@ sub Modules($$)
     
     foreach my $moduleName (split(' ', $modules))
     {
-        unless( $moduleName =~ /^\s*$/) # Ignore whitespace-only
+        unless ($moduleName =~ /^\s*$/) # Ignore whitespace-only
         {
             print "Adding module '$moduleName'\n" if ($gVerbose);
             
+            my $recurse = 0;
+            if ($moduleName =~ s/^\+//)
+            {
+                $recurse = 1;
+            }
+
+            my $modulePath = $moduleName;
+            my $moduleExp = $moduleName;
+            
+            if ( -d $modulePath )
+            {
+                # Module is directory
+                $moduleExp = "";
+            }
+            elsif ($modulePath =~ /\//)
+            {
+                # Slash(es) present so split the path
+                $modulePath =~ s/\/([^\/]+)$//;
+                $moduleExp = $1;
+            }
+            else
+            {
+                # No slashes so use current directory
+                $modulePath = "";
+                # Leave $moduleExp as is
+            }
+
             my $searchExp = "";
             
-            if ($moduleName =~ s/\/(\..*)//)
+            if ($moduleExp =~ /\*/)
             {
-                $searchExp = $1;
+                # Modulename has wildcards
+                $searchExp = $moduleExp;
             }
-            
-            unless ( -d $moduleName )
+            elsif ($modulePath eq "" && -f $moduleName )
             {
-                die "No module named '$moduleName' (no directory '$gConfig{'SRC'}/$moduleName')";
+                # Module is a single file
+                $searchExp = quotemeta $moduleExp;
+            }
+            elsif ( -f "$modulePath/$moduleName" )
+            {
+                # Module is a single file
+                $searchExp = quotemeta $moduleExp;
+            }
+            # print "modulePath=$modulePath, moduleExp=$moduleExp, searchExp=$searchExp\n";
+            unless ( $modulePath eq "" || -d $modulePath )
+            {
+                die "No module named '$moduleName' (no directory '$gConfig{'PATH'}/$modulePath')";
             }
             
             if ($searchExp ne "")
             {
-                FilenamesGet(\@sourceFiles, $moduleName, "/$searchExp");
+                FilenamesGet(\@sourceFiles, $modulePath, "$searchExp", $recurse);
             }
             else
             {
-                FilenamesGet(\@sourceFiles, $moduleName, '/.*\.cpp');
-                FilenamesGet(\@headerFiles, $moduleName, '/.*\.h');
+                FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp', $recurse);
+                FilenamesGet(\@headerFiles, $modulePath, '/.*\.h', $recurse);
             }
             if ($gVerbose)
             {
@@ -172,7 +221,7 @@ sub FileWrite($$)
 {
     my ($contentRef, $filename) = @_;
     
-    print "Writing modified file $filename\n" if $gVerbose;
+    print "Writing file $filename\n" if $gVerbose;
         
     open(FILE, ">>$filename") or die "File open for write failed for $filename: $!";
     
@@ -188,7 +237,7 @@ sub Process($)
     my ($contentRef) = @_;
 
     my @output;
-    my $outputFilename;
+    my $outputFilename="";
     
     foreach my $command (@$contentRef)
     {
@@ -385,7 +434,7 @@ sub Main()
             die "Command '$command' failed";
         }
     }
-    print "Done...\n";
+    print "Done.\n";
 }
 
 Main();

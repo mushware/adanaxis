@@ -1,0 +1,22 @@
+# Target definition file
+# $Id$
+# $Log$
+
+Name: Snapshot
+
+Use: targets/app.Makefile.am as Makefile.am
+Use: targets/sdl_app.configure.in as configure.in
+Use: targets/app.acinclude.m4 as acinclude.m4
+
+Create: src/Makefile.am
+
+Program: all
+Modules: API Game GL Infernal Main/SDLApp Media MeshMover Mushcore MushMesh MushPie Mustl MustlGame Platform Support TestMushcore TestMushMesh TestMushPie TestMustl
+
+ExtraDist:
+Modules: Main Platform +.*\.y$ +.*\.mkf$
+
+Append: Makefile.am
+
+ExtraDist:
+Modules: targets/.*\.def targets/.*\.am targets/.*\.in macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh

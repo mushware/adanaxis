@@ -1,0 +1,26 @@
+# -*-makefile-*-
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.com.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2004.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+
+#
+# $Id: ic2.Makefile.am,v 1.7 2003/11/13 23:25:29 southa Exp $
+# $Log: ic2.Makefile.am,v $
+
+AUTOMAKE_OPTIONS=1.6
+SUBDIRS = @TOP_SUBDIRS@
+DIST_SUBDIRS = @TOP_SUBDIRS@
+GZIPFILE=snapshot-@APP_VERSION@.tar.gz
+BZIPFILE=snaphost-@APP_VERSION@.tar.bz2
+
+all:prebuild-script
+
+prebuild-script:
+	-$(SHELL) -c ./prebuild.sh
+

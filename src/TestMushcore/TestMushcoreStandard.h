@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } /AKq2mFxZ2UD/0DtLiL98g
 /*
- * $Id: TestMushcoreStandard.h,v 1.4 2004/01/02 21:13:18 southa Exp $
+ * $Id: TestMushcoreStandard.h,v 1.5 2004/01/04 17:02:30 southa Exp $
  * $Log: TestMushcoreStandard.h,v $
+ * Revision 1.5  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  * Revision 1.4  2004/01/02 21:13:18  southa
  * Source conditioning
  *
@@ -46,8 +49,8 @@
 #include <Mushcore.h>
 #include <MushcoreIO.h>
 #else
-#include "Mushcore.h"
-#include "MushcoreIO.h"
+#include "Mushcore/Mushcore.h"
+#include "Mushcore/MushcoreIO.h"
 #endif
 #endif
 
