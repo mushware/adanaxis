@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
+ // $Id: CoreFlex.flex,v 1.4 2002/03/07 22:24:33 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.3 2002/03/05 22:44:46 southa Exp $
+ * $Id: CoreFlex.flex,v 1.4 2002/03/07 22:24:33 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.4  2002/03/07 22:24:33  southa
+ * Command interpreter working
+ *
  * Revision 1.3  2002/03/05 22:44:46  southa
  * Changes to command handling
  *
@@ -26,11 +29,16 @@
 
 %option noyywrap
 
-string      \"[^\n"]+\"
+dstring     \"[^\n"]+\"
+sstring     '[^\n']+'
+string      {sstring}|{dstring}
 ws          [ \t]+
 alpha       [A-Za-z]
 dig         [0-9]
+url         (http|ftp):{unq_string}
+piper       ->
 identifier  ({alpha}|{dig}|\$)({alpha}|{dig}|[_.\-/$])*
+variable    \${identifier}
 num1        [-+]?{dig}+\.?([eE][-+]?{dig}+)?
 num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
@@ -56,6 +64,23 @@ eos	    [;\n]
                 }
             }
         }
+
+{url} {
+    IFFLEXTESTING(cerr << "url='" << yytext << "'" << endl);
+    *outScalar=yytext;
+    return URL;
+}
+
+{piper} {
+    IFFLEXTESTING(cerr << "piper" << endl);
+    return PIPER;
+}
+
+{variable} {
+    IFFLEXTESTING(cerr << "variable='" << yytext << "'" << endl);
+    *outScalar=yytext;
+    return VARIABLE;
+}
 
 {identifier} {
     IFFLEXTESTING(cerr << "identifier='" << yytext << "'" << endl);

@@ -2,8 +2,11 @@
 #define YYSTYPE int
 #endif
 #define	NUM	257
-#define	IDENTIFIER	258
-#define	STRING	259
-#define	UNQUOTED_STRING	260
-#define	EOS	261
+#define	URL	258
+#define	VARIABLE	259
+#define	PIPER	260
+#define	IDENTIFIER	261
+#define	STRING	262
+#define	UNQUOTED_STRING	263
+#define	EOS	264
 
