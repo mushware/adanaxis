@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.12 2002/06/10 15:16:59 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.13 2002/06/13 15:15:55 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.13  2002/06/13 15:15:55  southa
+ * New directory structure, FPS printing, load command
+ *
  * Revision 1.12  2002/06/10 15:16:59  southa
  * Integration of MP3 player
  *
@@ -58,10 +61,15 @@ GameAppHandler::Initialise(void)
     GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/spaces");
     GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/pixels");
     GameGlobalConfig::Instance().Set("CONTRACTPATH", appPath+"/pixels");
-
-    MediaAudio::Init();
-    MediaAudio::PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
-    
+    try
+    {
+        MediaAudio::Init();
+        MediaAudio::PlayMusic(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet()+"/waves/loop_test.ogg");
+    }
+    catch (DeviceFail& e)
+    {
+        cerr << "Audio failed : " << e << endl;
+    }
     // CoreApp::Instance().Process("loadcontract('game1',$MAPPATH+'/Contract.xml')");
 
     m_pGame=GameData::Instance().ContractGet("contract1");

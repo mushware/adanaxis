@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.8 2002/06/05 12:28:05 southa Exp $
+ * $Id: CoreException.h,v 1.9 2002/06/10 15:16:59 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.9  2002/06/10 15:16:59  southa
+ * Integration of MP3 player
+ *
  * Revision 1.8  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *
@@ -236,5 +239,23 @@ inline ostream& operator<<(ostream &s, LoaderFail f)
 {
     return s << "File '" << f.FilenameGet() << "': " << f.ReasonGet();
 }
+
+class DeviceFail: public exception
+{
+public:
+    DeviceFail(const string &inMessage) {m_message=inMessage;}
+    ~DeviceFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, DeviceFail f)
+{
+    return s<<f.SPrint();
+}
+
 
 #endif

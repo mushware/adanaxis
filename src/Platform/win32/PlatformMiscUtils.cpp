@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.3 2002/06/11 18:12:04 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.4 2002/06/13 15:53:33 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.4  2002/06/13 15:53:33  southa
+ * Path fixes
+ *
  * Revision 1.3  2002/06/11 18:12:04  southa
  * Fixed for cygwin
  *
