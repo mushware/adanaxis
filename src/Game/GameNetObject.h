@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.h,v 1.2 2002/11/25 18:02:57 southa Exp $
+ * $Id: GameNetObject.h,v 1.3 2002/11/27 13:23:26 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.3  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.2  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -47,7 +50,7 @@ private:
     vector<ElementFunctionMap> m_startTable;
     vector<ElementFunctionMap> m_endTable;
     U32 m_pickleState;
-
+    
     MediaNetAddress m_address;
 };
 

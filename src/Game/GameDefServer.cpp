@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.cpp,v 1.3 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.4 2002/11/27 16:35:09 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.4  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.3  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -20,11 +23,13 @@
 
 #include "mushPlatform.h"
 
+auto_ptr< CoreData<GameDefServer> > CoreData<GameDefServer>::m_instance;
+
 GameDefServer::GameDefServer(const string& inName) :
     GameDef(inName),
     m_playerCount(0),
-    m_lastLinkMsec(0),
-    m_lastUpdateMsec(0)
+    m_lastUpdateMsec(0),
+    m_killed(false)
 {
 }
 
@@ -51,12 +56,13 @@ GameDefServer::Ticker(void)
 void
 GameDefServer::UpdateClients(void)
 {
-    CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
+    CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
 
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
-        GameDefClient *clientDef=dynamic_cast<GameDefClient *>(p->second);
-        if (clientDef != NULL && clientDef->IsImage())
+        GameDefClient *clientDef=p->second;
+        COREASSERT(clientDef != NULL);
+        if (clientDef->IsImage())
         {
             UpdateClient(*clientDef);
         }
@@ -66,6 +72,7 @@ GameDefServer::UpdateClients(void)
 void
 GameDefServer::UpdateClient(GameDefClient& inClient)
 {
+    COREASSERT(inClient.IsImage()); // Server shouldn't deal directly  with clients on this station
     MediaNetLink *netLink=NULL;
     if (MediaNetUtils::FindLinkToStation(netLink, inClient.AddressGet()))
     {
@@ -73,18 +80,29 @@ GameDefServer::UpdateClient(GameDefClient& inClient)
         if (m_lastUpdateMsec + kUpdateMsec < m_currentMsec)
         {
             MediaNetData netData;
-            GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+            if (m_killed)
+            {
+                // Server is killed, so delete the server image on the remote station
+                GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
+            }
+            else
+            {
+                // Update the server image on the remote station
+                GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+            }
+            
             netLink->ReliableSend(netData);
         }
     }
-    else
-    {
-        if (m_lastLinkMsec + kLinkSetupMsec < m_currentMsec)
-        {
-            CreateNewLink(inClient.AddressGet());
-            m_lastLinkMsec = m_currentMsec;
-        }
-    }
+}
+
+void
+GameDefServer::Kill(void)
+{
+    m_killed=true;
+
+    // Schedule an immediate update on the ticker
+    m_lastUpdateMsec=0;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.5 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.6 2002/11/27 16:35:09 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.6  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.5  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -40,10 +43,13 @@
 
 #include "mushPlatform.h"
 
+auto_ptr< CoreData<GameDefClient> > CoreData<GameDefClient>::m_instance;
+
 GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),
     m_lastLinkMsec(0),
-    m_lastRegistrationMsec(0)
+    m_lastRegistrationMsec(0),
+    m_killed(false)
 {
 }
 
@@ -68,7 +74,16 @@ GameDefClient::Ticker(void)
         if (m_lastRegistrationMsec + kRegistrationMsec < m_currentMsec)
         {
             MediaNetData netData;
-            GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+            if (m_killed)
+            {
+                // Remove the image of this client on the server remote station
+                GameProtocol::DeleteObjectCreate(netData, *this, NameGet());
+            }
+            else
+            {
+                // Update the client image on the remote station
+                GameProtocol::CreateObjectCreate(netData, *this, NameGet());
+            }
             netLink->ReliableSend(netData);
             m_lastRegistrationMsec = m_currentMsec;
         }
@@ -81,6 +96,14 @@ GameDefClient::Ticker(void)
             m_lastLinkMsec = m_currentMsec;
         }
     }
+}
+
+void
+GameDefClient::Kill(void)
+{
+    m_killed=true;
+    // Schedule an immediate update on the ticker
+    m_lastRegistrationMsec=0;
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefServer.h,v 1.2 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDefServer.h,v 1.3 2002/11/27 16:35:09 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.3  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.2  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -25,7 +28,9 @@ public:
     virtual void WebPrint(ostream& ioOut) const;
 
     void HostGame(const string& inContract, U32 inPlayerLimit);
-
+    void Kill(void);
+    bool IsDead(void) const { return m_killed; }
+    
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
@@ -64,7 +69,7 @@ private:
 
     enum
     {
-        kLinkSetupMsec=7000,
+        kClientTimeoutMsec=35000,
         kUpdateMsec=10000
     };
 
@@ -75,8 +80,8 @@ private:
     string m_contractName;
     U32 m_playerCount;
     U32 m_playerLimit;
-    U32 m_lastLinkMsec;
     U32 m_lastUpdateMsec;
     U32 m_currentMsec;
     MediaNetAddress m_netAddress;
+    bool m_killed;
 };

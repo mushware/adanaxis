@@ -1,6 +1,9 @@
 /*
- * $Id: GameNetObject.cpp,v 1.3 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.4 2002/11/27 16:35:09 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.4  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.3  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -17,6 +20,8 @@
 #include "GameDefClient.h"
 #include "GameDefServer.h"
 
+#include "mushMedia.h"
+
 GameNetObject::~GameNetObject()
 {
 }
@@ -31,10 +36,27 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
 {
     string elementName=inXML.GetAttribOrThrow("name").StringGet();
     string dataName = elementName+"-image";
-    GameDefClient *gameDefClient = dynamic_cast<GameDefClient *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefClient(elementName)));
-    gameDefClient->IsImageSet(true);
-    gameDefClient->AddressSet(m_address);
-    gameDefClient->Unpickle(inXML);
+
+    CoreScalar netDelete(0);
+    inXML.GetAttrib(netDelete, "delete");
+    if (netDelete.U32Get())
+    {
+        try
+        {
+            CoreData<GameDefClient>::Instance().DataDelete(dataName);
+        }
+        catch (ReferenceFail& e)
+        {
+            MediaNetLog::Instance().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
+        }
+    }
+    else
+    {
+        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(dataName, new GameDefClient(elementName));
+        gameDefClient->IsImageSet(true);
+        gameDefClient->AddressSet(m_address);
+        gameDefClient->Unpickle(inXML);
+    }
 }
 
 void
@@ -42,10 +64,27 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
 {
     string elementName=inXML.GetAttribOrThrow("name").StringGet();
     string dataName = elementName+"-image";
-    GameDefServer *gameDefServer = dynamic_cast<GameDefServer *>(CoreData<GameDef>::Instance().DataGive(dataName, new GameDefServer(elementName)));
-    gameDefServer->IsImageSet(true);
-    gameDefServer->AddressSet(m_address);
-    gameDefServer->Unpickle(inXML);
+
+    CoreScalar netDelete(0);
+    inXML.GetAttrib(netDelete, "delete");
+    if (netDelete.U32Get())
+    {
+        try
+        {
+            CoreData<GameDefServer>::Instance().DataDelete(dataName);
+        }
+        catch (ReferenceFail& e)
+        {
+            MediaNetLog::Instance().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
+        }
+    }
+    else
+    {
+        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().DataGive(dataName, new GameDefServer(elementName));
+        gameDefServer->IsImageSet(true);
+        gameDefServer->AddressSet(m_address);
+        gameDefServer->Unpickle(inXML);
+    }
 }
 
 void
@@ -75,7 +114,9 @@ GameNetObject::Unpickle(CoreXML& inXML)
     m_startTable[kPickleInit]["netobject"] = &GameNetObject::HandleNetObjectStart;
     m_endTable[kPickleData]["netobject"] = &GameNetObject::HandleNetObjectEnd;
     m_startTable[kPickleData]["gamedefclient"] = &GameNetObject::HandleGameDefClientStart;
+    m_endTable[kPickleData]["gamedefclient"] = &GameNetObject::NullHandler;
     m_startTable[kPickleData]["gamedefserver"] = &GameNetObject::HandleGameDefServerStart;
+    m_endTable[kPickleData]["gamedefserver"] = &GameNetObject::NullHandler;
     m_pickleState=kPickleData;
     inXML.ParseStream(*this);
 }

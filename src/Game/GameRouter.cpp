@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.cpp,v 1.4 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameRouter.cpp,v 1.5 2002/11/27 16:35:09 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.5  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.4  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -24,11 +27,11 @@ auto_ptr<GameRouter> GameRouter::m_instance;
 void
 GameRouter::MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 inType)
 {
-    CreateObjectHandle(ioData, inLink);
+    NetObjectHandle(ioData, inLink);
 }
 
 void
-GameRouter::CreateObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink)
+GameRouter::NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink)
 {
     GameNetObject netObject;
 

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.11 2002/11/27 16:35:09 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.12 2002/11/27 20:17:27 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.12  2002/11/27 20:17:27  southa
+ * Basic network cleardown
+ *
  * Revision 1.11  2002/11/27 16:35:09  southa
  * Client and server image handling
  *
@@ -130,8 +133,8 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         GameConfig::Instance().PostDataHandle(values);
         string clientName = GameConfig::Instance().ParameterGet("mpplayername").StringGet();
-        GameDefClient& gameDefClient = dynamic_cast<GameDefClient&>(*CoreData<GameDef>::Instance().DataGive(clientName, new GameDefClient(clientName)));
-        gameDefClient.JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
+        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().DataGive(clientName, new GameDefClient(clientName));
+        gameDefClient->JoinGame(GameConfig::Instance().ParameterGet("mpjoinserver").StringGet(),
                                GameConfig::Instance().ParameterGet("mpjoinport").U32Get());
     }
     else if (matches[1] == "hostgame")
@@ -139,9 +142,9 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         GameConfig::Instance().PostDataHandle(values);
         string serverName=GameConfig::Instance().ParameterGet("mpservername").StringGet();
         string serverMessage=GameConfig::Instance().ParameterGet("mpservermessage").StringGet();
-        GameDefServer& gameDefServer = dynamic_cast<GameDefServer&>(*CoreData<GameDef>::Instance().DataGive(serverName, new GameDefServer(serverName)));
-        gameDefServer.ServerMessageSet(serverMessage);
-        gameDefServer.HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
+        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().DataGive(serverName, new GameDefServer(serverName));
+        gameDefServer->ServerMessageSet(serverMessage);
+        gameDefServer->HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
                                GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
     }
     else if (matches[1] == "linkcleardown")
@@ -155,44 +158,50 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     else if (matches[1] == "hostcleardown")
     {
-        bool found=true;
-        while(found)
         {
-            found=false;
-            CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
-
-            for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+            CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+    
+            for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
             {
-                GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
-                GameDefClient *clientDef = dynamic_cast<GameDefClient *>(p->second);
-                if ((serverDef != NULL && !serverDef->IsImage()) ||
-                    (clientDef != NULL && clientDef->IsImage()))
+                if (p->second->IsImage())
                 {
-                    CoreData<GameDef>::Instance().DataDelete(p->first);
-                    found=true;
-                    break;
+                    p->second->Kill();
+                }
+            }
+        }
+        {
+            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+
+            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+            {
+                if (!p->second->IsImage())
+                {
+                    p->second->Kill();
                 }
             }
         }
     }
     else if (matches[1] == "joincleardown")
     {
-        bool found=true;
-        while(found)
         {
-            found=false;
-            CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
-
-            for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+            CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+    
+            for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
             {
-                GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
-                GameDefClient *clientDef = dynamic_cast<GameDefClient *>(p->second);
-                if ((serverDef != NULL && serverDef->IsImage()) ||
-                    (clientDef != NULL && !clientDef->IsImage()))
+                if (!p->second->IsImage())
                 {
-                    CoreData<GameDef>::Instance().DataDelete(p->first);
-                    found=true;
-                    break;
+                    p->second->Kill();
+                }
+            }
+        }
+        {
+            CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+
+            for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+            {
+                if (p->second->IsImage())
+                {
+                    p->second->Kill();
                 }
             }
         }
@@ -279,18 +288,19 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player Limit</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
     ioEnv.Out() << "</tr>";
-    
-    CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
 
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
     {
-        GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
-        if (serverDef != NULL && !serverDef->IsImage())
+        CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+
+        for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            serverDef->WebPrint(ioEnv.Out());
+            if (!p->second->IsImage())
+            {
+                p->second->WebPrint(ioEnv.Out());
+            }
         }
     }
-
+    
     ioEnv.Out() << "</table>" << endl;
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
     
@@ -302,16 +312,18 @@ GameWebCommands::GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
     ioEnv.Out() << "</tr>";
 
-    // Client images for server
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
     {
-        GameDefClient *clientDef=dynamic_cast<GameDefClient *>(p->second);
-        if (clientDef != NULL && clientDef->IsImage())
+        CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+
+        // Client images for server
+        for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            clientDef->WebPrint(ioEnv.Out());
+            if (p->second->IsImage())
+            {
+                p->second->WebPrint(ioEnv.Out());
+            }
         }
     }
-
     ioEnv.Out() << "</table>" << endl;
 
     return CoreScalar(0);
@@ -328,19 +340,20 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Player Limit</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
     ioEnv.Out() << "</tr>";
-    
-    CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
 
-    // Image of remote server
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
     {
-        GameDefServer *serverDef = dynamic_cast<GameDefServer *>(p->second);
-        if (serverDef != NULL && serverDef->IsImage())
+        // Server images
+        CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+
+        for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
-            serverDef->WebPrint(ioEnv.Out());
+            if (p->second->IsImage())
+            {
+                p->second->WebPrint(ioEnv.Out());
+            }
         }
     }
-
+    
     ioEnv.Out() << "</table>" << endl;
     ioEnv.Out() << "<table width=\"100%\" class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
 
@@ -351,14 +364,16 @@ GameWebCommands::GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Address</font></td>";
     ioEnv.Out() << "<td class=\"bgred\"><font class=\"bold\">Status</font></td>";
     ioEnv.Out() << "</tr>";
-    
-    // Local clients
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
+
     {
-        GameDefClient *clientDef=dynamic_cast<GameDefClient *>(p->second);
-        if (clientDef != NULL && !clientDef->IsImage())
+        CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+        // Local clients
+        for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            clientDef->WebPrint(ioEnv.Out());
+            if (!p->second->IsImage())
+            {
+                p->second->WebPrint(ioEnv.Out());
+            }
         }
     }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDef.cpp,v 1.8 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameDef.cpp,v 1.9 2002/11/27 16:35:09 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.9  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.8  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -31,8 +34,6 @@
 #include "GameStationDef.h"
 
 #include "mushPlatform.h"
-
-auto_ptr< CoreData<GameDef> > CoreData<GameDef>::m_instance;
 
 GameDef::GameDef(const string& inName) :
     m_name(inName),

@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.12 2002/11/27 17:44:20 southa Exp $
+ * $Id: GameSetup.cpp,v 1.13 2002/11/27 20:17:26 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.13  2002/11/27 20:17:26  southa
+ * Basic network cleardown
+ *
  * Revision 1.12  2002/11/27 17:44:20  southa
  * Network fixes
  *
@@ -44,7 +47,7 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
-#include "GameDef.h"
+#include "GameDefClient.h"
 #include "GameDefServer.h"
 #include "GameRouter.h"
 
@@ -164,11 +167,11 @@ GameSetup::ConfigInit(void)
 void
 GameSetup::Config(void)
 {
-    MediaNetWebServer::Instance().Accept();
-    MediaNetWebRouter::Instance().ReceiveAll();
-
     try
     {
+        MediaNetWebServer::Instance().Accept();
+        MediaNetWebRouter::Instance().ReceiveAll();
+
         MediaNetServer::Instance().Accept();
         MediaNetRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
@@ -178,23 +181,53 @@ GameSetup::Config(void)
     }
 
     
-    bool serverNeeded=false;
 
-    CoreData<GameDef>::tMapIterator endValue=CoreData<GameDef>::Instance().End();
-
-    for (CoreData<GameDef>::tMapIterator p=CoreData<GameDef>::Instance().Begin(); p != endValue; ++p)
     {
-        if (!p->second->IsImage())
+        CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
+        CoreData<GameDefClient>::tMapIterator killValue = CoreData<GameDefClient>::Instance().End();
+    
+        for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
-            p->second->Ticker();
-            if (dynamic_cast<GameDefServer *>(p->second) != NULL)
+            if (!p->second->IsImage())
             {
-                // We need a local server
-                serverNeeded=true;
+                p->second->Ticker();
+                if (p->second->IsDead())
+                {
+                    killValue = p;
+                }
             }
+        }
+        if (killValue != CoreData<GameDefClient>::Instance().End())
+        {
+            CoreData<GameDefClient>::Instance().DataDelete(killValue);
         }
     }
 
+
+    bool serverNeeded=false;
+    {
+        CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+        CoreData<GameDefServer>::tMapIterator killValue = CoreData<GameDefServer>::Instance().End();
+
+        for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        {
+            if (!p->second->IsImage())
+            {
+                p->second->Ticker();
+                serverNeeded=true;
+                if (p->second->IsDead())
+                {
+                    killValue = p;
+                }
+            }
+        }
+        if (killValue != CoreData<GameDefServer>::Instance().End())
+        {
+            CoreData<GameDefServer>::Instance().DataDelete(killValue);
+        }
+    }
+    
+    
     if (serverNeeded)
     {
         if (!MediaNetServer::Instance().IsServing())

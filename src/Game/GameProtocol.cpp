@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.cpp,v 1.4 2002/11/25 12:06:18 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.5 2002/11/25 15:44:03 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.5  2002/11/25 15:44:03  southa
+ * CreateObject message decoding
+ *
  * Revision 1.4  2002/11/25 12:06:18  southa
  * Received net message routing
  *
@@ -29,4 +32,15 @@ GameProtocol::CreateObjectCreate(MediaNetData& ioData, CorePickle& inObj, const 
     netStream << "</" << inObj.TypeNameGet() << ">";
     MediaNetProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
     MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl; 
+}
+
+void
+GameProtocol::DeleteObjectCreate(MediaNetData& ioData, CorePickle& inObj, const string& inRemoteName)
+{
+    ostringstream netStream;
+
+    netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\" delete=\"1\">";
+    netStream << "</" << inObj.TypeNameGet() << ">";
+    MediaNetProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
+    MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl;
 }

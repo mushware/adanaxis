@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.h,v 1.2 2002/11/25 18:02:57 southa Exp $
+ * $Id: GameDefClient.h,v 1.3 2002/11/27 13:23:26 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.3  2002/11/27 13:23:26  southa
+ * Server and client data exchange
+ *
  * Revision 1.2  2002/11/25 18:02:57  southa
  * Mushware ID work
  *
@@ -26,6 +29,8 @@ public:
     void JoinGame(const string& inServer, U32 inPort);
     void AddressSet(MediaNetAddress& inAddress) { m_netAddress = inAddress; }
     const MediaNetAddress& AddressGet(void) const { return m_netAddress; }
+    void Kill(void);
+    bool IsDead(void) const { return m_killed; }
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
@@ -65,4 +70,5 @@ private:
     U32 m_currentMsec;
     GameStationDef m_serverStation;
     MediaNetAddress m_netAddress;
+    bool m_killed;
 };

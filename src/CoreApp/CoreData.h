@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.9 2002/11/18 18:55:56 southa Exp $
+ * $Id: CoreData.h,v 1.10 2002/11/21 18:06:17 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.10  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.9  2002/11/18 18:55:56  southa
  * Game resume and quit
  *
@@ -61,6 +64,7 @@ public:
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
     inline void DataDelete(const string& inName);
+    inline void DataDelete(const map<string, RefType *>::iterator& inIterator);
     inline bool DataExists(const string& inName) const;
     inline bool DataGetIfExists(RefType *& outData, const string& inName) const;
     inline void Clear(void);
@@ -137,6 +141,15 @@ CoreData<RefType>::DataDelete(const string& inName)
     }
     delete p->second;
     m_data.erase(p);
+}
+
+template<class RefType>
+inline void
+CoreData<RefType>::DataDelete(const map<string, RefType *>::iterator& inIterator)
+{
+    COREASSERT(inIterator->second != NULL);
+    delete inIterator->second;
+    m_data.erase(inIterator);
 }
 
 template<class RefType>

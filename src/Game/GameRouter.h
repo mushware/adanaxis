@@ -1,6 +1,9 @@
 /*
- * $Id: GameRouter.h,v 1.3 2002/11/25 15:44:03 southa Exp $
+ * $Id: GameRouter.h,v 1.4 2002/11/27 16:35:09 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.4  2002/11/27 16:35:09  southa
+ * Client and server image handling
+ *
  * Revision 1.3  2002/11/25 15:44:03  southa
  * CreateObject message decoding
  *
@@ -24,7 +27,7 @@ public:
     void MessageHandle(MediaNetData& ioData, const MediaNetLink& inLink, U32 inType);
 
 protected:
-    void CreateObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink);
+    void NetObjectHandle(MediaNetData& ioData, const MediaNetLink& inLink);
     
 private:
     static auto_ptr<GameRouter> m_instance;
