@@ -1,10 +1,13 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTileSpec.h,v 1.1 2002/10/13 12:26:48 southa Exp $
+ * $Log: GameTileSpec.h,v $
+ * Revision 1.1  2002/10/13 12:26:48  southa
+ * Facetised map rendering
+ *
  */
 
 #include "mushCore.h"
-#include "GLUtils.h"
+#include "mushGL.h"
 
 class GameTileTraits;
 
