@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.62 2002/08/24 19:23:32 southa Exp $
+ * $Id: GameContract.cpp,v 1.63 2002/08/27 08:56:22 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.63  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.62  2002/08/24 19:23:32  southa
  * Don't reload the tile map
  *
@@ -325,6 +328,8 @@ GameContract::Init(void)
 
     GameData::Instance().CurrentDialoguesClear();
     GameDataUtils::NamedDialoguesAdd("^start");
+    m_lights.LightAdd(0, GLLightDef());
+    m_lights.LightEnable(0);
 }
 
 void
@@ -451,7 +456,7 @@ GameContract::RunningDisplay(void)
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
     gl.SetPosition(0,0);
-    GLUtils::ModulateSet(false);
+    GLUtils::ModulationSet(GLUtils::kModulationNone);
     gl.MoveTo(lookAtPoint.pos.x, lookAtPoint.pos.y);
     GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
     GLUtils::Scale(m_masterScale*2, m_masterScale*2, 1);

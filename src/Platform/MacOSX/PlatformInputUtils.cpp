@@ -14,8 +14,14 @@
 
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.5 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.6.4.1 2002/09/04 10:18:04 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.6.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
+ *
+ * Revision 1.6  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -64,5 +70,14 @@ PlatformInputUtils::GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32
 void
 PlatformInputUtils::MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
 {
+}
+
+void
+PlatformInputUtils::MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta)
+{
+    CGMouseDelta xDelta, yDelta;
+    CGGetLastMouseDelta(&xDelta, &yDelta);
+    ioXDelta=xDelta;
+    ioYDelta=yDelta;
 }
 

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.23 2002/08/09 17:09:02 southa Exp $
+ * $Id: GLUtils.h,v 1.24 2002/08/27 08:56:22 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.24  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.23  2002/08/09 17:09:02  southa
  * GameDialogue added
  *
@@ -107,6 +110,14 @@ public:
         kBlendLine
     };
     
+    enum tModulationType
+    {
+        kModulationInvalid,
+        kModulationNone,
+        kModulationColour,
+        kModulationLighting
+    };
+    
     enum tDisplayQuality
     {
         kQualityInvalid,
@@ -153,11 +164,12 @@ public:
     static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
     static void RotateAboutZ(tVal inAngle);
     static void BlendSet(tBlendType inType);
-    static void ModulateSet(bool inType);
+    static void ModulationSet(tModulationType inType);
     static void Reset(void);
     static void TextureParamsReset(void);
     static tDisplayQuality DisplayQualityGet(void);
     static void PolygonSmoothingSet(bool inValue);
+    static void UseLightingSet(bool inValue);
     static void PushMatrix(void) { glPushMatrix(); }
     static void PopMatrix(void) { glPopMatrix(); }
     
@@ -170,5 +182,6 @@ private:
     static bool m_modulateState;
     static tDisplayQuality m_displayQuality;
     static bool m_polygonSmoothing;
+    static bool m_useLighting;    
 };
 #endif

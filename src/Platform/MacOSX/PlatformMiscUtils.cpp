@@ -14,8 +14,17 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.6 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.7.4.2 2002/09/07 10:58:41 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.7.4.2  2002/09/07 10:58:41  southa
+ * Removed usleep
+ *
+ * Revision 1.7.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
+ *
+ * Revision 1.7  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -38,11 +47,24 @@
 
 #include "mushPlatform.h"
 
+#include <ApplicationServices/ApplicationServices.h>
+
+
+void
+PlatformMiscUtils::Initialise(void)
+{
+    char *home = getenv("HOME");
+    if (home != NULL)
+    {
+        CoreGlobalConfig::Instance().Set("HOME", home);
+    }
+}
+
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])
 {
     string systemPath=GetSystemPath(argc, argv);
-string::size_type pos=string::npos;
+    string::size_type pos=string::npos;
     pos = systemPath.rfind('/', pos-1);
     if (pos==string::npos) pos = systemPath.rfind('\\', pos-1);
     if (pos==string::npos || pos == 0)
@@ -79,3 +101,38 @@ PlatformMiscUtils::TweakArgs(string& ioStr)
 {
     if (ioStr.substr(0, 4) == "-psn") ioStr="";
 }
+
+void
+PlatformMiscUtils::VBLWait(void)
+{
+    static bool enabled=true;
+    if (!enabled) return;
+    CGPoint point;
+    CGDisplayCount dispCount;
+    point.x=0;
+    point.y=0;
+    CGDirectDisplayID dispId;
+    if (CGGetDisplaysWithPoint(point, 1, &dispId, &dispCount) == kCGErrorSuccess)
+    {
+        if (dispCount == 1)
+        {
+            CGRect cgrect=CGDisplayBounds(dispId);
+            CGDisplayWaitForBeamPositionOutsideLines(dispId, 0, 
+                static_cast<CGBeamPosition>(cgrect.origin.y + cgrect.size.height - 1));
+            for (U32 i=0;; ++i)
+            {
+                if (CGDisplayBeamPosition(dispId) > cgrect.origin.y + cgrect.size.height - 1) break;
+                if (i > 1e6)
+                {
+                    cerr << "Waited too long for VBL.  Disabling" << endl;
+                    enabled=false;
+                    break;
+                }
+                // Possible detrimental effects with usleep
+                // usleep(100);
+            }
+            //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
+        }
+    }
+}
+

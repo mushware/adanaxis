@@ -14,10 +14,15 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.19 2002/09/01 16:29:18 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.18.4.1 2002/09/04 10:18:04 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.20  2002/09/02 14:48:02  southa
+ * RPM building
+ *
  * Revision 1.19  2002/09/01 16:29:18  southa
  * Support Redhat paths for include files
+ * Revision 1.18.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
  *
  * Revision 1.18  2002/08/27 08:56:22  southa
  * Source conditioning
@@ -366,6 +371,7 @@ SDLAppHandler::MainLoop(void)
                     m_mouseY=event.motion.y;
                     m_mouseXDelta+=event.motion.xrel;
                     m_mouseYDelta+=event.motion.yrel;
+                    PlatformInputUtils::MouseDeltaOverrideGet(m_mouseXDelta, m_mouseYDelta);
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:

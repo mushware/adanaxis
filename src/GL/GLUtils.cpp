@@ -14,8 +14,14 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.26 2002/08/24 14:54:00 southa Exp $
+ * $Id: GLUtils.cpp,v 1.27.4.1 2002/09/04 10:18:04 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.27.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
+ *
+ * Revision 1.27  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.26  2002/08/24 14:54:00  southa
  * Use GL_LINEAR_MIPMAP_LINEAR for high quality texturing
  *
@@ -101,11 +107,13 @@
 #include "GLAppHandler.h"
 #include "GLPoint.h"
 #include "GLRectangle.h"
+#include "mushPlatform.h"
 
 GLUtils::tBlendType GLUtils::m_blendState=GLUtils::kBlendInvalid;
 bool GLUtils::m_modulateState=false;
 GLUtils::tDisplayQuality GLUtils::m_displayQuality=GLUtils::kQualityNotSet;
 bool GLUtils::m_polygonSmoothing=false;
+bool GLUtils::m_useLighting=true;
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -224,7 +232,8 @@ void
 GLUtils::DisplayEpilogue(void)
 {
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-
+    glFinish();
+    PlatformMiscUtils::VBLWait();
     glHandler.SwapBuffers();
 }
 
@@ -451,17 +460,51 @@ GLUtils::BlendSet(tBlendType inValue)
 }
 
 void
-GLUtils::ModulateSet(bool inValue)
+GLUtils::ModulationSet(tModulationType inValue)
 {
     if (m_modulateState != inValue)
     {
-        if (inValue)
+        switch (inValue)
         {
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-        }
-        else
-        {
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+            case kModulationNone:
+                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+                glDisable(GL_LIGHTING);
+                break;
+                
+            case kModulationColour:
+                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                glDisable(GL_LIGHTING);
+                break;
+
+            case kModulationLighting:
+            if (m_useLighting)
+            {
+                GLfloat black[4]={0.2,0.2,0.2,1};
+                glLightModelfv(GL_LIGHT_MODEL_AMBIENT, black);
+                glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 0);
+                glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
+
+                GLfloat specular[4]={0.8,0.8,0.8,1};
+                glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+                GLfloat diffuse[4]={0.0,0.0,0.8,1};
+                glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+                glMaterialf(GL_FRONT, GL_SHININESS, 0);
+                
+                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+                glEnable(GL_LIGHTING);
+                glNormal3f(0,0,-1);
+            }
+            else
+            {
+                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+                glDisable(GL_LIGHTING);
+                ColourSet(1,1,1,1);
+            }
+            break;
+
+            default:
+                throw(LogicFail("Invalid value to GLUtils::ModulationSet"));
+                break;
         }
         m_modulateState=inValue;
     }
@@ -541,14 +584,20 @@ GLUtils::Reset(void)
             throw(LogicFail("Bad value for m_displayQuality"));
     }
     glDisable(GL_DEPTH_TEST);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-    m_modulateState=false;
+    m_modulateState=kModulationInvalid;
+    ModulationSet(kModulationNone);
 }
 
 void
 GLUtils::PolygonSmoothingSet(bool inValue)
 {
     m_polygonSmoothing=inValue;
+}
+    
+void
+GLUtils::UseLightingSet(bool inValue)
+{
+    m_useLighting=inValue;
 }
     
 void

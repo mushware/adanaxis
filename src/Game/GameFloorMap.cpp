@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.22 2002/08/18 20:44:34 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.23 2002/08/27 08:56:23 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.23  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.22  2002/08/18 20:44:34  southa
  * Initial chequepoint work
  *
@@ -176,12 +179,12 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
                     tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
                     GLUtils::ColourSet(redBri, greenBri, blueBri);
-                    GLUtils::ModulateSet(true);
+                    GLUtils::ModulationSet(GLUtils::kModulationColour);
                     highlightOn=true;
                 }
                 else if (highlightOn)
                 {
-                    GLUtils::ModulateSet(false);
+                    GLUtils::ModulationSet(GLUtils::kModulationLighting);
                     highlightOn=false;
                 }
                 

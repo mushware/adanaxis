@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.10 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.11 2002/08/27 08:56:29 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.11  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -55,6 +58,17 @@
 #ifndef MAXPATHLEN
 #define MAXPATHLEN 4096
 #endif
+
+
+void
+PlatformMiscUtils::Initialise(void)
+{
+    char *home = getenv("HOME");
+    if (home != NULL)
+    {
+        CoreGlobalConfig::Instance().Set("HOME", home);
+    }
+}
 
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])

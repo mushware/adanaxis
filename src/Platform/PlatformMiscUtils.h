@@ -33,5 +33,6 @@ public:
     static string GetSystemPath(int argc, char *argv[]);
     static void TweakArgs(string& ioString);
     static void Initialise(void);
+    static void VBLWait(void);
 };
 #endif

@@ -1820,6 +1820,7 @@
 				F5457BA702AFB19401E3BBF3,
 				F5457BA302AFB19401E3BBF3,
 				F5457BA802AFB19401E3BBF3,
+				F5950F3F03504F6501A80166,
 			);
 			isa = PBXGroup;
 			name = Platform;
@@ -2251,6 +2252,7 @@
 			isa = PBXShellScriptBuildPhase;
 			neededFileNames = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "rm -rf ic2data/system/ic2.app\ncp -pR build/ic2.app ic2data/system/ic2.app\nrm -f ic2data/ic2.app\nln -s ic2data/system/ic2.app ic2data/ic2.app\n";
 		};
@@ -2640,8 +2642,8 @@
 			productName = avarisse;
 			productReference = F547DFD302395BCB01A7C23C;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
-<plist version=\"0.9\">
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -2740,6 +2742,7 @@
 				F5F2C66102A3D8C001CB7A62,
 			);
 			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F547DFD602395BCC01A7C23C = {
 			buildActionMask = 2147483647;
@@ -2747,6 +2750,7 @@
 				F57BD75C028ADF0D01AD87C4,
 			);
 			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F547DFF302395BCC01A7C23C = {
 			buildActionMask = 2147483647;
@@ -2793,6 +2797,7 @@
 				F545CC5002B8E15B011D56AF,
 			);
 			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F547DFF502395BCC01A7C23C = {
 			fileRef = F54613840238008401507C92;
@@ -2900,12 +2905,14 @@
 				F57BD754028AD4A901AD87C4,
 			);
 			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F547E00702395BCC01A7C23C = {
 			buildActionMask = 2147483647;
 			files = (
 			);
 			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F5483A8A02D19C6B01480ACF = {
 			children = (
@@ -4288,8 +4295,11 @@
 				F53E490D031257DD01989694,
 				F56CBBD60317A679017AE398,
 				F56CBBD80317A68E017AE398,
+				F59516430350B22F01A80166,
+				F59516480350B32201A80166,
 			);
 			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F59396D1028C0CA6016230BF = {
 			buildActionMask = 2147483647;
@@ -4297,6 +4307,7 @@
 				F54506E602CB469F019E6518,
 			);
 			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F59396D2028C0CA6016230BF = {
 			buildActionMask = 2147483647;
@@ -4399,8 +4410,10 @@
 				F53E490C031257DD01989694,
 				F56CBBD50317A679017AE398,
 				F56CBBDC0317A717017AE398,
+				F59516440350B22F01A80166,
 			);
 			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F59396D3028C0CA6016230BF = {
 			buildActionMask = 2147483647;
@@ -4426,12 +4439,14 @@
 				F546F59402C1F7FD01173785,
 			);
 			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F59396D4028C0CA6016230BF = {
 			buildActionMask = 2147483647;
 			files = (
 			);
 			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F59396D5028C0CA6016230BF = {
 			buildPhases = (
@@ -4462,8 +4477,8 @@
 			productName = all;
 			productReference = F59396D6028C0CA6016230BF;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
-<plist version=\"0.9\">
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -4755,6 +4770,59 @@
 			settings = {
 			};
 		};
+		F5950F3F03504F6501A80166 = {
+			children = (
+				F5950F4003504F6501A80166,
+				F5950F4103504F6501A80166,
+			);
+			isa = PBXGroup;
+			name = X11;
+			path = src/Platform/X11;
+			refType = 2;
+		};
+		F5950F4003504F6501A80166 = {
+			isa = PBXFileReference;
+			path = PlatformInputUtils.cpp;
+			refType = 4;
+		};
+		F5950F4103504F6501A80166 = {
+			isa = PBXFileReference;
+			path = PlatformMiscUtils.cpp;
+			refType = 4;
+		};
+		F59516410350B22F01A80166 = {
+			isa = PBXFileReference;
+			path = GLLights.h;
+			refType = 4;
+		};
+		F59516420350B22F01A80166 = {
+			isa = PBXFileReference;
+			path = GLLights.cpp;
+			refType = 4;
+		};
+		F59516430350B22F01A80166 = {
+			fileRef = F59516410350B22F01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59516440350B22F01A80166 = {
+			fileRef = F59516420350B22F01A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F59516470350B32201A80166 = {
+			isa = PBXFileReference;
+			path = GLLightDef.h;
+			refType = 4;
+		};
+		F59516480350B32201A80166 = {
+			fileRef = F59516470350B32201A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5A0E55302B65A870115E516 = {
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
@@ -4818,6 +4886,9 @@
 				F548CF55030291D7011728CE,
 				F54B58D202A7AD5901E2A684,
 				F54B58D302A7AD5901E2A684,
+				F59516470350B32201A80166,
+				F59516410350B22F01A80166,
+				F59516420350B22F01A80166,
 				F545A42E02E46058015FC162,
 				F545A42F02E46058015FC162,
 				F5463ACC02E6CC4B018842E0,

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.12 2002/08/08 13:39:09 southa Exp $
+ * $Id: mushGL.h,v 1.13 2002/08/27 08:56:15 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.13  2002/08/27 08:56:15  southa
+ * Source conditioning
+ *
  * Revision 1.12  2002/08/08 13:39:09  southa
  * Text rendering
  *
@@ -62,6 +65,8 @@
 #include "GL/GLAppHandler.h"
 #include "GL/GLColour.h"
 #include "GL/GLData.h"
+#include "GL/GLLightDef.h"
+#include "GL/GLLights.h"
 #include "GL/GLLine.h"
 #include "GL/GLQuad.h"
 #include "GL/GLPoint.h"

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.23 2002/08/24 15:27:07 southa Exp $
+ * $Id: GameContract.h,v 1.24 2002/08/27 08:56:23 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.24  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.23  2002/08/24 15:27:07  southa
  * Race restart
  *
@@ -87,6 +90,7 @@
  */
 
 #include "mushCore.h"
+#include "mushGL.h"
 
 #include "GameBase.h"
 #include "GameTimer.h"
@@ -169,6 +173,7 @@ private:
     bool m_renderDiagnostics;
     tVal m_masterScale;
     bool m_fastDiagnostics;
+    GLLights m_lights; // temporary place
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

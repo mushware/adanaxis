@@ -18,8 +18,14 @@
 
 
 /*
- * $Id: PlatformInputUtils.h,v 1.4 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.5.4.1 2002/09/04 10:18:04 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.5.4.1  2002/09/04 10:18:04  southa
+ * Fixed for MacOS X 10.2
+ *
+ * Revision 1.5  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -48,6 +54,7 @@ public:
     static bool MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);    
     static void GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);
     static void MouseDeltaEpilogue(S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY);
+    static void MouseDeltaOverrideGet(tVal& ioXDelta, tVal& ioYDelta);
 };
 
 #endif

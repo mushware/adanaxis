@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.5 2002/08/21 10:12:21 southa Exp $
+ * $Id: GLFont.cpp,v 1.6 2002/08/27 08:56:19 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/21 10:12:21  southa
  * Time down counter
  *
@@ -80,7 +83,7 @@ GLFont::RenderCharacter(U32 inChar) const
     tVal yPos=1-((inChar-32) / m_xNum)*ystep;
     GLRectangle rect=GLRectangle(xPos, yPos-ystep, xPos+xstep, yPos);
     GLUtils::BlendSet(GLUtils::kBlendTransparent);
-    GLUtils::ModulateSet(true);
+    GLUtils::ModulationSet(GLUtils::kModulationColour);
     GLUtils::DrawSprite(*m_texRef.TextureGet(), rect);
 }
 
