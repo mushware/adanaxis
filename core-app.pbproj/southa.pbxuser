@@ -747,7 +747,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 698";
 		rLen = 0;
-		rLoc = 17489;
+		rLoc = 17488;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 19429;
@@ -797,7 +797,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 698";
 		rLen = 0;
-		rLoc = 17489;
+		rLoc = 17488;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 19429;
@@ -1267,7 +1267,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 70";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 797;
@@ -1527,7 +1527,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 867;
@@ -2627,7 +2627,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDef.cpp: 77";
 		rLen = 0;
-		rLoc = 2023;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 1013;
@@ -3047,7 +3047,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 3551;
+		rLoc = 3221;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 1386;
@@ -3117,7 +3117,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDef.cpp: 77";
 		rLen = 0;
-		rLoc = 2023;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 0;
@@ -3317,7 +3317,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 3551;
+		rLoc = 3221;
 		rType = 0;
 		vrLen = 1229;
 		vrLoc = 1391;
@@ -3367,7 +3367,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDef.cpp: 77";
 		rLen = 0;
-		rLoc = 2023;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1282;
 		vrLoc = 1036;
@@ -3387,7 +3387,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDef.cpp: 77";
 		rLen = 0;
-		rLoc = 2023;
+		rLoc = 2022;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 1013;
@@ -4195,27 +4195,13 @@
 	7AB36C6203D7880300A80164 = {
 		isa = PBXTargetBookmark;
 		trg = 7AB8559703D2FD4F00A80164;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
-			TOCViewSelectedItems = (
-				PBXTargetLdLinkerSettingsModule,
-			);
-		};
 	};
 	7AB36C6303D7880300A80164 = {
 		fRef = F5AAB69303A8C8CC01A80164;
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: Install";
 		rLen = 0;
-		rLoc = 4206;
+		rLoc = 4152;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 754;
@@ -4265,7 +4251,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 71;
-		rLoc = 1579;
+		rLoc = 1499;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 992;
@@ -4285,7 +4271,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 0;
-		rLoc = 2666;
+		rLoc = 2586;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 2225;
@@ -4305,7 +4291,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 20;
-		rLoc = 2938;
+		rLoc = 2756;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 2225;
@@ -4315,7 +4301,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: 187";
 		rLen = 0;
-		rLoc = 3842;
+		rLoc = 3788;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 2641;
@@ -4365,7 +4351,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: 198";
 		rLen = 45;
-		rLoc = 4025;
+		rLoc = 3971;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 2789;
@@ -4385,7 +4371,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: configValue";
 		rLen = 0;
-		rLoc = 3106;
+		rLoc = 3045;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 2699;
@@ -4395,7 +4381,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 20;
-		rLoc = 2938;
+		rLoc = 2756;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 2091;
@@ -4415,7 +4401,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 20;
-		rLoc = 2938;
+		rLoc = 2756;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 1996;
@@ -4445,7 +4431,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: Install";
 		rLen = 0;
-		rLoc = 4206;
+		rLoc = 4152;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 3023;
@@ -4465,7 +4451,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 0;
-		rLoc = 2922;
+		rLoc = 2745;
 		rType = 0;
 		vrLen = 1184;
 		vrLoc = 2388;
@@ -4485,7 +4471,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 0;
-		rLoc = 3241;
+		rLoc = 2977;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 2388;
@@ -4505,7 +4491,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 59";
 		rLen = 0;
-		rLoc = 1393;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 996;
@@ -4525,7 +4511,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 59";
 		rLen = 0;
-		rLoc = 1393;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 996;
@@ -4545,7 +4531,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 59";
 		rLen = 0;
-		rLoc = 1393;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 996;
@@ -4593,20 +4579,6 @@
 	7AB36C8903D7880300A80164 = {
 		isa = PBXTargetBookmark;
 		trg = 7AB8559703D2FD4F00A80164;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
-			TOCViewSelectedItems = (
-				PBXTargetLdLinkerSettingsModule,
-			);
-		};
 	};
 	7AB36C8A03D7880300A80164 = {
 		fRef = F57B1B6203B37C0F01A80164;
@@ -4621,27 +4593,13 @@
 	7AB36C8B03D7880300A80164 = {
 		isa = PBXTargetBookmark;
 		trg = 7AB8559703D2FD4F00A80164;
-		uiCtxt = {
-			TOCViewDetailVisibleRect = "{{0, 0}, {512, 287}}";
-			TOCViewExpandedItems = (
-				"com.apple.target-editor-pane.settings",
-				"com.apple.target-editor-pane.settings.simple",
-				"com.apple.target-editor-pane.info-plist",
-				"com.apple.target-editor-pane.info-plist.simple",
-				"com.apple.target-editor-pane.buildphases",
-			);
-			TOCViewMasterVisibleRect = "{{0, 0}, {201, 672}}";
-			TOCViewSelectedItems = (
-				PBXTargetLdLinkerSettingsModule,
-			);
-		};
 	};
 	7AB36C8C03D7880300A80164 = {
 		fRef = F5AAB69303A8C8CC01A80164;
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: Install";
 		rLen = 0;
-		rLoc = 4206;
+		rLoc = 4152;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 754;
@@ -4741,7 +4699,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: UpdateHandler";
 		rLen = 0;
-		rLoc = 3237;
+		rLoc = 3183;
 		rType = 0;
 		vrLen = 282;
 		vrLoc = 2892;
@@ -4751,7 +4709,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 0;
-		rLoc = 2958;
+		rLoc = 2776;
 		rType = 0;
 		vrLen = 326;
 		vrLoc = 2544;
@@ -4778,7 +4736,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: UpdateHandler";
 		rLen = 0;
-		rLoc = 3237;
+		rLoc = 3183;
 		rType = 0;
 		vrLen = 282;
 		vrLoc = 2892;
@@ -4788,7 +4746,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: Get";
 		rLen = 0;
-		rLoc = 2958;
+		rLoc = 2776;
 		rType = 0;
 		vrLen = 326;
 		vrLoc = 2544;
@@ -5174,7 +5132,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 847;
@@ -5194,7 +5152,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 942;
@@ -5304,7 +5262,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 3400;
+		rLoc = 3070;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 1158;
@@ -5344,7 +5302,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: PostDataHandle";
 		rLen = 0;
-		rLoc = 3026;
+		rLoc = 2803;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 1191;
@@ -6610,7 +6568,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfigDef.cpp: 347";
 		rLen = 0;
-		rLoc = 1416;
+		rLoc = 1415;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 1718;
@@ -7676,7 +7634,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 61";
 		rLen = 0;
-		rLoc = 1447;
+		rLoc = 1407;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 697;
@@ -7696,7 +7654,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: found";
 		rLen = 0;
-		rLoc = 1507;
+		rLoc = 1427;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 996;
@@ -7726,7 +7684,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 60";
 		rLen = 0;
-		rLoc = 1419;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 996;
@@ -7756,7 +7714,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlConfig.cpp: 60";
 		rLen = 0;
-		rLoc = 1419;
+		rLoc = 1391;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 996;
@@ -12283,7 +12241,7 @@
 		rLen = 0;
 		rLoc = 899;
 		rType = 0;
-		vrLen = 1083;
+		vrLen = 990;
 		vrLoc = 0;
 	};
 	7AB5640803D1E9EB00A80164 = {
@@ -12323,7 +12281,7 @@
 		rLen = 0;
 		rLoc = 901;
 		rType = 0;
-		vrLen = 1083;
+		vrLen = 990;
 		vrLoc = 0;
 	};
 	7AB5640C03D1E9EB00A80164 = {
@@ -12655,7 +12613,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 919";
 		rLen = 0;
-		rLoc = 23156;
+		rLoc = 23155;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 22461;
@@ -13973,7 +13931,7 @@
 		isa = PBXTextBookmark;
 		name = "GameConfigDef.cpp: 65";
 		rLen = 0;
-		rLoc = 1507;
+		rLoc = 1498;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 706;
@@ -21099,7 +21057,7 @@
 		activeExecutable = 7AB45DB703D3610100A80164;
 		activeTarget = 7AB45DB503D3610100A80164;
 		addToTargets = (
-			7AB8559703D2FD4F00A80164,
+			7AEACAD603D1B87F00A80164,
 		);
 		breakpoints = (
 		);
@@ -21108,7 +21066,135 @@
 			7AB45DB703D3610100A80164,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 64450846;
+			PBXPerProjectTemplateStateSaveDate = 64495090;
+			"PBXTemplateGeometry-F5CA7EC9015C08ED0DCA290F" = {
+				ContentSize = "{665, 594}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 0}, {665, 594}}";
+					Split0 = {
+						ActiveTab = 3;
+						ActiveTabName = PBXProjectFindModule;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {665, 594}}";
+						Split0 = {
+							Frame = "{{0, 301}, {665, 293}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {484, 208}}";
+						};
+						Tab1 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {664, 208}}";
+								Split0 = {
+									Frame = "{{0, 24}, {664, 184}}";
+									Split0 = {
+										Frame = "{{0, 0}, {325, 184}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											96.123,
+										);
+										Frame = "{{334, 0}, {330, 184}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {664, 208}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {664, 50}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {664, 50}}";
+							};
+						};
+						Tab3 = {
+							BuildMessageFrame = "{{0, 0}, {667, 265}}";
+							BuildTranscriptFrame = "{{0, 274}, {667, 2}}";
+							BuildTranscriptFrameExpanded = YES;
+							Frame = "{{0, 0}, {665, 298}}";
+						};
+						Tab4 = {
+							Frame = "{{0, 0}, {665, 295}}";
+						};
+						TabCount = 5;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {313, 531}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							280,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 557}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				NavBarShownByDefault = YES;
+				StatusViewVisible = NO;
+				Template = F5CA7EC9015C08ED0DCA290F;
+				ToolbarVisible = NO;
+				WindowLocation = "{69, 372}";
+			};
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
@@ -29669,7 +29755,7 @@
 					WindowLocation = "{69, 372}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 64450846;
+			PBXWorkspaceStateSaveDate = 64495090;
 		};
 		perUserProjectItems = {
 			7A0B335203D30BB600A80164 = 7A0B335203D30BB600A80164;
@@ -76569,7 +76655,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 962";
 		rLen = 0;
-		rLoc = 25082;
+		rLoc = 25081;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 23350;
@@ -77831,7 +77917,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 129";
 		rLen = 0;
-		rLoc = 3981;
+		rLoc = 3980;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 8463;
@@ -77861,7 +77947,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 305";
 		rLen = 0;
-		rLoc = 7951;
+		rLoc = 7950;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 7037;
@@ -77881,7 +77967,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 460";
 		rLen = 0;
-		rLoc = 12618;
+		rLoc = 12617;
 		rType = 0;
 		vrLen = 1134;
 		vrLoc = 11409;
@@ -77901,7 +77987,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 178";
 		rLen = 0;
-		rLoc = 5548;
+		rLoc = 5547;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 3422;
@@ -77921,7 +78007,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 358";
 		rLen = 0;
-		rLoc = 9444;
+		rLoc = 9443;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 7963;
@@ -77941,7 +78027,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 342";
 		rLen = 40;
-		rLoc = 9106;
+		rLoc = 9105;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 8059;
@@ -77961,7 +78047,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 360";
 		rLen = 0;
-		rLoc = 9444;
+		rLoc = 9443;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 8455;
@@ -78251,7 +78337,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 577";
 		rLen = 0;
-		rLoc = 15344;
+		rLoc = 15343;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 14166;
@@ -78291,7 +78377,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 955";
 		rLen = 0;
-		rLoc = 24593;
+		rLoc = 24592;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 24371;
@@ -78381,7 +78467,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 955";
 		rLen = 0;
-		rLoc = 24593;
+		rLoc = 24592;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 12974;
@@ -78811,7 +78897,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 218";
 		rLen = 0;
-		rLoc = 5414;
+		rLoc = 5413;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 4276;
@@ -78921,7 +79007,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLog.cpp: 123";
 		rLen = 0;
-		rLoc = 2046;
+		rLoc = 1985;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 1460;
@@ -78991,7 +79077,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 918";
 		rLen = 0;
-		rLoc = 22275;
+		rLoc = 22274;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 22603;
@@ -79051,7 +79137,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 864";
 		rLen = 0;
-		rLoc = 20320;
+		rLoc = 20319;
 		rType = 0;
 		vrLen = 1624;
 		vrLoc = 20779;
@@ -79071,7 +79157,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 341";
 		rLen = 0;
-		rLoc = 7627;
+		rLoc = 7626;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 7479;
@@ -79091,7 +79177,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 696";
 		rLen = 0;
-		rLoc = 16606;
+		rLoc = 16605;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 17102;
@@ -79161,7 +79247,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 707";
 		rLen = 0;
-		rLoc = 16829;
+		rLoc = 16828;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 17100;
@@ -79181,7 +79267,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 838";
 		rLen = 0;
-		rLoc = 20326;
+		rLoc = 20325;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2162;
@@ -79201,7 +79287,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 838";
 		rLen = 0;
-		rLoc = 20326;
+		rLoc = 20325;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 3128;
@@ -79221,7 +79307,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: NextLinkNameTake";
 		rLen = 0;
-		rLoc = 25097;
+		rLoc = 25096;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 24262;
@@ -79241,7 +79327,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: nameStream";
 		rLen = 0;
-		rLoc = 25070;
+		rLoc = 25069;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 24257;
@@ -79271,7 +79357,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 217";
 		rLen = 0;
-		rLoc = 5414;
+		rLoc = 5413;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 5157;
@@ -79321,7 +79407,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 217";
 		rLen = 0;
-		rLoc = 5414;
+		rLoc = 5413;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 3128;
@@ -79351,7 +79437,7 @@
 		isa = PBXTextBookmark;
 		name = "MustlLink.cpp: 633";
 		rLen = 0;
-		rLoc = 15884;
+		rLoc = 15883;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 15304;

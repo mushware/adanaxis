@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreData.h,v 1.3 2003/01/12 17:32:59 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.3  2003/01/12 17:32:59  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -73,8 +76,10 @@
  *
  */
 
-#include "MushcoreFail.h"
 #include "MushcoreStandard.h"
+
+#include "MushcoreAutoDelete.h"
+#include "MushcoreFail.h"
 
 template<class RefType> class MushcoreData
 {
@@ -82,6 +87,7 @@ public:
     typedef typename std::map<std::string, RefType *> tMap;
     typedef typename tMap::iterator tMapIterator;
     typedef typename tMap::const_iterator tMapConstIterator;
+    typedef MushcoreAutoDelete< MushcoreData<RefType> > tInstance;
 
     ~MushcoreData();
     static MushcoreData& Instance(void);
@@ -108,7 +114,7 @@ protected:
 private:
     tMap m_data;
     Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
-    static std::auto_ptr< MushcoreData<RefType> > m_instance;
+    static tInstance m_instance;
 };
 
 template<class RefType>
@@ -131,9 +137,11 @@ template<class RefType>
 inline class MushcoreData<RefType>&
 MushcoreData<RefType>::Instance(void)
 {
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MushcoreData);
-    return *m_instance;
+    if (m_instance.Get() == NULL)
+    {
+        m_instance.Reset(new MushcoreData);
+    }
+    return *m_instance.Get();
 }
 
 template<class RefType>

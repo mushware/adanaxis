@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfig.cpp,v 1.7 2003/01/15 13:27:32 southa Exp $
+ * $Id: MustlConfig.cpp,v 1.8 2003/01/17 00:41:03 southa Exp $
  * $Log: MustlConfig.cpp,v $
+ * Revision 1.8  2003/01/17 00:41:03  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.7  2003/01/15 13:27:32  southa
  * Static library linking fixes
  *
@@ -51,12 +54,10 @@ MushcoreInstaller MustlConfigInstaller(MustlConfig::Install);
 
 MustlConfig::MustlConfig()
 {
-    cerr << "Cons MustlConfig" << endl;
 }
 
 MustlConfig::~MustlConfig()
 {
-    cerr << "Dest MustlConfig" << endl;
 }
 
 MushcoreScalar
@@ -114,23 +115,17 @@ MustlConfig::PostDataHandle(const string& inData)
 void
 MustlConfig::UpdateHandlerAdd(tUpdateHandler inHandler)
 {
-    cerr << "Adding handler" << endl;
     m_updateHandlers.push_back(inHandler);
-    cerr << "Handler size=" << m_updateHandlers.size() << endl;
 }
 
 void
 MustlConfig::UpdateHandlersCall(void) const
 {
-    cerr << "Calling handlers" << endl;
-
     list<tUpdateHandler>::const_iterator endValue = m_updateHandlers.end();
     for (list<tUpdateHandler>::const_iterator p = m_updateHandlers.begin(); p != endValue; ++p)
     {
-        cerr << "Calling handler" << endl;
         (*p)();
     }
-    cerr << "Handler size=" << m_updateHandlers.size() << endl;
 }
 
 void

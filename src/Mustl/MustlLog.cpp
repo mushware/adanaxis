@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.cpp,v 1.6 2002/12/29 20:59:59 southa Exp $
+ * $Id: MustlLog.cpp,v 1.7 2003/01/17 00:41:03 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.7  2003/01/17 00:41:03  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.6  2002/12/29 20:59:59  southa
  * More build fixes
  *
@@ -70,7 +73,6 @@ MustlLog::MustlLog() :
     m_logFullIP(false)
 {
     m_nullStream = new ostringstream;
-    MustlConfig::Instance().UpdateHandlerAdd(UpdateHandler);
 }
 
 MustlLog::~MustlLog()
@@ -167,7 +169,7 @@ MustlLog::CloseFile(void)
 void
 MustlLog::UpdateHandler(void)
 {
-    cerr << "MustlLog::UpdateHandler" << endl;
+    cerr << "MustlLog::UpdateHandler called" << endl;
     MushcoreScalar configValue;
     if (MustlConfig::Instance().GetIfExists(configValue, "mustlnetlog"))
     {

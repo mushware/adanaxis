@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.16 2003/01/16 12:03:55 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.17 2003/01/16 15:58:02 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.17  2003/01/16 15:58:02  southa
+ * Mustl exception handling
+ *
  * Revision 1.16  2003/01/16 12:03:55  southa
  * Platform and invalid socket fixes
  *
@@ -112,7 +115,8 @@
 using namespace Mustl;
 using namespace std;
 
-auto_ptr< MushcoreData<MustlWebLink> > MushcoreData<MustlWebLink>::m_instance;
+MushcoreData<MustlWebLink>::tInstance MushcoreData<MustlWebLink>::m_instance;
+
 string MustlWebLink::m_webPath="";
 
 MustlWebLink::MustlWebLink(tSocket inSocket) :

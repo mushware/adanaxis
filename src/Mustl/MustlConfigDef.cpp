@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlConfigDef.cpp,v 1.2 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlConfigDef.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MustlConfigDef.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -39,7 +42,7 @@ using namespace Mustl;
 using namespace std;
 
 // Instantiate the MustlConfigDef database
-auto_ptr< MushcoreData<MustlConfigDef> > MushcoreData<MustlConfigDef>::m_instance;
+MushcoreData<MustlConfigDef>::tInstance MushcoreData<MustlConfigDef>::m_instance;
 
 MustlConfigDef::~MustlConfigDef()
 {

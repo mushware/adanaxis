@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.11 2003/01/12 17:32:52 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.12 2003/01/13 14:31:56 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.12  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.11  2003/01/12 17:32:52  southa
  * Mushcore work
  *
@@ -54,7 +57,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< MushcoreData<GameConfigDef> > MushcoreData<GameConfigDef>::m_instance;
+MushcoreData<GameConfigDef>:::tInstance MushcoreData<GameConfigDef>::m_instance;
 
 GameConfigDef::~GameConfigDef()
 {

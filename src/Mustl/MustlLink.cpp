@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.14 2003/01/14 12:40:11 southa Exp $
+ * $Id: MustlLink.cpp,v 1.15 2003/01/14 17:38:21 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.15  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.14  2003/01/14 12:40:11  southa
  * Moved ConfigDefs into Mustl
  *
@@ -147,7 +150,7 @@
 using namespace Mustl;
 using namespace std;
 
-auto_ptr< MushcoreData<MustlLink> > MushcoreData<MustlLink>::m_instance;
+MushcoreData<MustlLink>::tInstance MushcoreData<MustlLink>::m_instance;
 
 U32 MustlLink::m_linkNameNum=1;
 
