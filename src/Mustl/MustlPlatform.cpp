@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.7 2003/01/16 12:03:55 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.8 2003/01/16 13:11:32 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.8  2003/01/16 13:11:32  southa
+ * Install and uninstall MustlPlatform
+ *
  * Revision 1.7  2003/01/16 12:03:55  southa
  * Platform and invalid socket fixes
  *
@@ -101,6 +104,7 @@
 #include "MustlSTL.h"
 
 #include "MustlMushcore.h"
+#include "MustlPlatformError.h"
 #include "MustlPlatformHeaders.h"
 
 using namespace Mustl;
@@ -140,10 +144,7 @@ MustlPlatform::SocketNonBlockingSet(tSocket inSocket)
     if (result < 0)
     {
         MUSTL_ERROR_FETCH;
-        
-        ostringstream message;
-        message << "Failed to set socket non-blocking (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Failed to set socket non-blocking");
     }
 }
 
@@ -165,10 +166,7 @@ MustlPlatform::SocketBlockingSet(tSocket inSocket)
     if (result < 0)
     {
         MUSTL_ERROR_FETCH;
-
-        ostringstream message;
-        message << "Failed to set socket blocking (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Failed to set socket blocking");
     }
 }
 
@@ -182,10 +180,7 @@ MustlPlatform::SocketReuseAddressSet(tSocket inSocket)
     if (setsockopt(inSocket, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
     {
         MUSTL_ERROR_FETCH;
-
-        ostringstream message;
-        message << "Failed to set socket address reuse (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Failed to set socket address reuse");
     }
 }
 
@@ -199,10 +194,7 @@ MustlPlatform::SocketTCPNoDelaySet(tSocket inSocket)
     if (setsockopt(inSocket, IPPROTO_TCP, TCP_NODELAY, reinterpret_cast<char *>(&value), sizeof(value)) != 0)
     {
         MUSTL_ERROR_FETCH;
-
-        ostringstream message;
-        message << "Failed to set socket TCP delay (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Failed to set socket TCP delay");
     }
 }
 
@@ -216,9 +208,8 @@ MustlPlatform::TCPSend(tSocket inSocket, void *inBuffer, U32 inSize)
     if (result < 0)
     {
         MUSTL_ERROR_FETCH;
-        ostringstream message;
-        message << "TCP send failed (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "TCP send failed");
+        return kFailValue;
     }
     return static_cast<U32>(result);
 }
@@ -241,9 +232,8 @@ MustlPlatform::TCPReceive(tSocket inSocket, void *outBuffer, U32 inSize)
         }
         else
         {
-            ostringstream message;
-            message << "TCP receive failed (" << MUSTL_ERROR_VALUE << ")";
-            throw(MustlFail(message.str()));
+            MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "TCP receive failed");
+            return kFailValue;
         }
     }
     return static_cast<U32>(result);
@@ -265,10 +255,8 @@ MustlPlatform::UDPSend(const MustlAddress& inAddress, tSocket inSocket, void *in
     if (result < 0)
     {
         MUSTL_ERROR_FETCH;
-
-        ostringstream message;
-        message << "UDP send to " << inAddress << " failed (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "UDP send to "+inAddress.StringGet()+" failed");
+        return kFailValue;
     }
     return static_cast<U32>(result);
 }
@@ -297,9 +285,8 @@ MustlPlatform::UDPReceive(MustlAddress& outAddress, tSocket inSocket, void *outB
         }
         else
         {
-            ostringstream message;
-            message << "UDP receive failed (" << MUSTL_ERROR_VALUE << ")";
-            throw(MustlFail(message.str()));
+            MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "UDP receive failed");
+            return kFailValue;
         }
     }
     return static_cast<U32>(result);
@@ -317,10 +304,8 @@ MustlPlatform::TCPUnboundSocketCreate(void)
     if (sockHandle == MUSTL_INVALID_SOCKET)
     {
         MUSTL_ERROR_FETCH;
-        
-        ostringstream message;
-        message << "Couldn't create TCP socket (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Couldn't create TCP socket");
+        return MUSTL_INVALID_SOCKET;
     }
     return sockHandle;
 }
@@ -337,10 +322,8 @@ MustlPlatform::UDPUnboundSocketCreate(void)
     if (sockHandle == MUSTL_INVALID_SOCKET)
     {
         MUSTL_ERROR_FETCH;
-
-        ostringstream message;
-        message << "Couldn't create UDP socket (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Couldn't create UDP socket");
+        return MUSTL_INVALID_SOCKET;
     }
     return sockHandle;
 }
@@ -373,9 +356,8 @@ MustlPlatform::TCPConnectNonBlocking(const MustlAddress& inAddress)
         if (MUSTL_ERROR_VALUE != MUSTL_ERROR_EINPROGRESS)
         {
             SocketClose(sockHandle);
-            ostringstream message;
-            message << "Couldn't connect to remote host " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
-            throw(MustlFail(message.str()));
+            MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Couldn't connect to remote host "+inAddress.StringGet());
+            return MUSTL_INVALID_SOCKET;
         }
     }
 
@@ -402,11 +384,10 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
     if (bind(sockHandle, reinterpret_cast<struct sockaddr *>(&sockAddr), sizeof(sockAddr)) != 0)
     {
         MUSTL_ERROR_FETCH;
-
+        
         SocketClose(sockHandle);
-        ostringstream message;
-        message << "Couldn't bind server address " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Couldn't bind server address "+inAddress.StringGet());
+        return MUSTL_INVALID_SOCKET;
     }
     
     if (listen(sockHandle, 8) != 0)
@@ -414,9 +395,8 @@ MustlPlatform::TCPBindNonBlocking(const MustlAddress& inAddress)
         MUSTL_ERROR_FETCH;
         
         SocketClose(sockHandle);
-        ostringstream message;
-        message << "Couldn't listen on server socket " << inAddress << " (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Couldn't listen on server socket "+inAddress.StringGet());
+        return MUSTL_INVALID_SOCKET;
     }
     return sockHandle;
 }
@@ -446,8 +426,9 @@ MustlPlatform::UDPBindNonBlocking(U32 inPortNetworkOrder)
         {
             SocketClose(sockHandle);
             ostringstream message;
-            message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder) << " (" << MUSTL_ERROR_VALUE << ")";
-            throw(MustlFail(message.str()));
+            message << "Couldn't bind UDP port " << NetworkToHostOrderU16(inPortNetworkOrder);
+            MustlPlatformError::Throw(MUSTL_ERROR_VALUE, message.str());
+            return MUSTL_INVALID_SOCKET;
         }
     }
 
@@ -472,9 +453,8 @@ MustlPlatform::Accept(tSocket& outSocket, MustlAddress& outAddress, tSocket inSo
         {
             return false;
         }
-        ostringstream message;
-        message << "Accept failed (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "Accept failed");
+        return false;
     }
     outSocket = newSocket;
     outAddress.HostSetNetworkOrder(sockAddr.sin_addr.s_addr);
@@ -562,7 +542,9 @@ MustlPlatform::ResolveHostName(MustlAddress& outAddress, const string& inHostNam
             }
             else
             {
-                throw(MustlFail("Cannot resolve host name '"+inHostName+"'"));
+                MustlPlatformError::Throw("Cannot resolve host name '"+inHostName+"'");
+                outAddress.HostSetNetworkOrder(INADDR_NONE);
+                outAddress.PortSetHostOrder(0);
             }
         }
     }
@@ -607,8 +589,8 @@ MustlPlatform::LocalAddressesRetrieve(void)
     if (result != NO_ERROR)
     {
         ostringstream message;
-        message << "GetIpAddrTable failed (" << result << ")";
-        throw(MustlFail(message.str()));
+        message << "GetIpAddrTable failed (" << result << ")"
+        MustlPlatformError::Throw(message.str());
     }
     DWORD numEntries = ipAddrTable->dwNumEntries;
 
@@ -616,7 +598,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
     {
         ostringstream message;
         message << "Too many entries from GetIpAddrTable (" << numEntries << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(message.str());
     }
 
     for (U32 i=0; i<numEntries; ++i)
@@ -656,7 +638,7 @@ MustlPlatform::LaunchURL(const string& inURL)
     {
         ostringstream message;
         message << "URL launch failed for '" << inURL << "': " << status;
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(message.str());
     }
 }
 // End of win32 block
@@ -668,7 +650,7 @@ void
 MustlPlatform::LaunchURL(const string& inURL)
 {
 #ifdef MUSTL_NO_CARBON
-    throw(MustlFail("Cannot open URL '"+inURL+"' because Mustl was compiled with MUSTL_NO_CARBON"));
+    MustlPlatformError::Throw("Cannot open URL '"+inURL+"' because Mustl was compiled with MUSTL_NO_CARBON");
 #else
     CFStringRef destName = CFStringCreateWithCString(NULL, inURL.c_str(), kCFStringEncodingMacRoman);
     if (destName)
@@ -691,7 +673,7 @@ MustlPlatform::LaunchURL(const string& inURL)
 void
 MustlPlatform::LaunchURL(const string& inURL)
 {
-    throw(MustlFail("Cannot automatically open URL '"+inURL+"' on this platform"));
+    MustlPlatformError::Throw("Cannot automatically open URL '"+inURL+"' on this platform");
 }    
 // End of POSIX only block
 #endif
@@ -717,9 +699,7 @@ MustlPlatform::LocalAddressesRetrieve(void)
         MUSTL_ERROR_FETCH;
         
         SocketClose(testSocket);
-        ostringstream message;
-        message << "ioctl SIOCGIFCONF fail (" << MUSTL_ERROR_VALUE << ")";
-        throw(MustlFail(message.str()));
+        MustlPlatformError::Throw(MUSTL_ERROR_VALUE, "ioctl SIOCGIFCONF fail");
     }
     U8 *dataPtr=ipBuffer;
 
@@ -758,7 +738,7 @@ MustlPlatform::DefaultTimer(void)
     
     if (gettimeofday(&currentTime, NULL) != 0)
     {
-        throw(MustlFail("Cannot determine current time"));
+        MustlPlatformError::Throw("Cannot determine current time");
     }
     
     if (firstTimeValid)
@@ -780,7 +760,6 @@ MustlPlatform::DefaultTimer(void)
 void
 MustlPlatform::Install(void)
 {
-    cerr << "Installing MustlPlatform" << endl;
 #ifdef MUSTL_WIN32
     WORD wVersionRequested = MAKEWORD(2,2);
     WSADATA wsaData;
@@ -795,7 +774,6 @@ MustlPlatform::Install(void)
 void
 MustlPlatform::Uninstall(void)
 {
-    cerr << "Uninstalling MustlPlatform" << endl;
 #ifdef MUSTL_WIN32
     MUSTL_ERROR_PROLOGUE;
     MUSTL_ERROR_RESET;
@@ -811,5 +789,4 @@ MustlPlatform::Uninstall(void)
 void
 MustlPlatform::NullFunction(void)
 {
-
 }

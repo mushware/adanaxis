@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.15 2003/01/14 20:46:12 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.16 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.16  2003/01/16 12:03:55  southa
+ * Platform and invalid socket fixes
+ *
  * Revision 1.15  2003/01/14 20:46:12  southa
  * Post data handling
  *
@@ -262,7 +265,7 @@ MustlWebLink::ReceivedProcess(const string& inStr)
 
         case kReceiveHeaders:
         {
-	    bool lineEnd=false;
+            bool lineEnd=false;
             if (inStr.size() > 0 &&
              (inStr[0] == 0xd || inStr[0] == 0xa))
             {
@@ -387,7 +390,17 @@ MustlWebLink::GetProcess(const string& inFilename)
     catch (MushcoreNonFatalFail &e)
     {
         MustlLog::Instance().WebLog() << "Exception: " << e.what() << endl;
-        SendErrorPage(e.what());
+        if (!m_isDead)
+        {
+            try
+            {
+                SendErrorPage(e.what());
+            }
+            catch (MushcoreNonFatalFail &e)
+            {
+                MustlLog::Instance().WebLog() << "Exception sending error page: " << e.what() << endl;
+            }
+        }
     }
 }
 

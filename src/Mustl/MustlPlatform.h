@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.h,v 1.3 2003/01/16 12:03:55 southa Exp $
+ * $Id: MustlPlatform.h,v 1.4 2003/01/16 13:11:32 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.4  2003/01/16 13:11:32  southa
+ * Install and uninstall MustlPlatform
+ *
  * Revision 1.3  2003/01/16 12:03:55  southa
  * Platform and invalid socket fixes
  *
@@ -73,7 +76,17 @@ class MustlAddress;
 
 class MustlPlatform
 {
+#ifdef MUSTL_NO_EXCEPTIONS
 public:
+#else
+private:
+#endif
+    enum
+    {
+        kFailValue=0xffffffff
+    };
+
+public:    
     static void SocketNonBlockingSet(Mustl::tSocket inSocket);
     static void SocketBlockingSet(Mustl::tSocket inSocket);
     static void SocketReuseAddressSet(Mustl::tSocket inSocket);

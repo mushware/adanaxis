@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.cpp,v 1.4 2002/12/20 13:17:45 southa Exp $
+ * $Id: MustlAddress.cpp,v 1.5 2002/12/29 20:59:58 southa Exp $
  * $Log: MustlAddress.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -44,6 +47,22 @@ void
 MustlAddress::Print(ostream& ioOut) const
 {
     ioOut << MustlUtils::IPAddressToLogString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
+}
+
+string
+MustlAddress::StringGet(void) const
+{
+    ostringstream message;
+    message << MustlUtils::IPAddressToString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
+    return message.str();
+}
+
+string
+MustlAddress::LogStringGet(void) const
+{
+    ostringstream message;
+    message << MustlUtils::IPAddressToLogString(m_ip) << ":" << MustlPlatform:: NetworkToHostOrderU16(m_port);
+    return message.str();
 }
 
 string

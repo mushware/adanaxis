@@ -863,6 +863,30 @@
 			settings = {
 			};
 		};
+		7A7DCAC403D6FE6900A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MustlPlatformError.cpp;
+			refType = 4;
+		};
+		7A7DCAC503D6FE6900A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MustlPlatformError.h;
+			refType = 4;
+		};
+		7A7DCAC603D6FE6900A80164 = {
+			fileRef = 7A7DCAC403D6FE6900A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A7DCAC703D6FE6900A80164 = {
+			fileRef = 7A7DCAC503D6FE6900A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AA5A6F303D44D4100A80164 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -1912,6 +1936,7 @@
 				7AB41F1303D438AD00A80164,
 				7A78FB8803D4711F00A80164,
 				7AB0B2FD03D6D22B00A80164,
+				7A7DCAC703D6FE6900A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1961,6 +1986,7 @@
 				7AB41F1403D438AD00A80164,
 				7A78FB8903D4711F00A80164,
 				7AB0B2FE03D6D22B00A80164,
+				7A7DCAC603D6FE6900A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6612,6 +6638,8 @@
 				7A0B334503D308BC00A80164,
 				7AF139FD03D310B500A80164,
 				7AF139FE03D310B500A80164,
+				7A7DCAC403D6FE6900A80164,
+				7A7DCAC503D6FE6900A80164,
 				7AB0B2FB03D6D22B00A80164,
 				7AB0B2FC03D6D22B00A80164,
 				F5AAB69503A8C8CC01A80164,

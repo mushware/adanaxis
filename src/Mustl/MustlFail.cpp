@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.cpp,v 1.3 2002/12/29 20:59:58 southa Exp $
+ * $Id: MustlFail.cpp,v 1.4 2003/01/14 17:38:21 southa Exp $
  * $Log: MustlFail.cpp,v $
+ * Revision 1.4  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.3  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -33,3 +36,39 @@ MustlFail::MustlFail(const string &inMessage) :
     MushcoreNonFatalFail(inMessage)
 {
 }
+
+MustlPermanentFail::MustlPermanentFail(const string &inMessage) :
+    MustlFail(inMessage)
+{
+}
+
+MustlTemporaryFail::MustlTemporaryFail(const string &inMessage) :
+    MustlFail(inMessage)
+{
+}
+
+MustlAddressFail::MustlAddressFail(const string &inMessage) :
+    MustlPermanentFail(inMessage)
+{
+}
+
+MustlConnectionFail::MustlConnectionFail(const string &inMessage) :
+    MustlPermanentFail(inMessage)
+{
+}
+
+MustlMessageFail::MustlMessageFail(const string &inMessage) :
+    MustlPermanentFail(inMessage)
+{
+}
+
+MustlSocketFail::MustlSocketFail(const string &inMessage) :
+    MustlPermanentFail(inMessage)
+{
+}
+
+MustlSocketOrUDPFail::MustlSocketOrUDPFail(const string &inMessage) :
+    MustlSocketFail(inMessage)
+{
+}
+

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.h,v 1.7 2003/01/14 22:02:12 southa Exp $
+ * $Id: MustlAddress.h,v 1.8 2003/01/16 13:11:32 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.8  2003/01/16 13:11:32  southa
+ * Install and uninstall MustlPlatform
+ *
  * Revision 1.7  2003/01/14 22:02:12  southa
  * Command line build fixes
  *
@@ -67,7 +70,9 @@ public:
     {
         ResolveFromHostName(inName, inPortHostOrder);
     }
-    
+
+    std::string StringGet(void) const;
+    std::string LogStringGet(void) const;
     std::string HostStringGet(void) const;
     tIPv4Addr HostGetNetworkOrder(void) const { return m_ip; }
     void HostSetNetworkOrder(tIPv4Addr inIP) { m_ip = inIP; }
