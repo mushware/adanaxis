@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } cFdhIyJ/clkqVXQ7WA7saQ
 /*
- * $Id: TestMustlApp.h,v 1.7 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMustlApp.h,v 1.8 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMustlApp.h,v $
+ * Revision 1.8  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.7  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -48,7 +51,10 @@ class TestMustlApp : public MushcoreSingleton<TestMustlApp>
 public:
     void Enter(void);
     void DoQuit(void);
-
+    
+    static MushcoreScalar TestMustl(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static void Install(void);
+    
 private:
     bool m_doQuit;
 };

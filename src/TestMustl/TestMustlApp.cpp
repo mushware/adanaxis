@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 0bJDpFWP9zvx0y/lGUlbSA
 /*
- * $Id: TestMustlApp.cpp,v 1.8 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMustlApp.cpp,v 1.9 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMustlApp.cpp,v $
+ * Revision 1.9  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -44,6 +47,8 @@ using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(TestMustlApp);
 
+MushcoreInstaller TestMustlAppInstaller(TestMustlApp::Install);
+
 void
 TestMustlApp::Enter(void)
 {
@@ -56,14 +61,9 @@ TestMustlApp::Enter(void)
     cout << "or press control-C to exit." << endl;
 
     MustlWebServer::Sgl().Connect(webPort);
-    try
-    {
-        MustlPlatform::LaunchURL(configURL.str());
-    }
-    catch (MushcoreNonFatalFail& e)
-    {
-        cerr << "Exception: " << e.what() << endl;
-    }
+
+    MustlPlatform::LaunchURL(configURL.str());
+
     m_doQuit = false;
 
     while (!m_doQuit)
@@ -77,4 +77,25 @@ void
 TestMustlApp::DoQuit(void)
 {
     m_doQuit = true;
+}
+
+MushcoreScalar
+TestMustlApp::TestMustl(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    ioEnv.Out() << "This application must be started from the mustl directory" << endl;
+    ioEnv.Out() << "Number of installed modules=" << MushcoreInstaller::NumInstalledModulesGet() << endl;
+    MushcoreGlobalConfig::Sgl().Set("MUSTL_WEB_PATH", "test/mustl");
+    MushcoreGlobalConfig::Sgl().Set("MUSTL_START_FILE", "test/mustl/mustlstart.txt");
+    
+    MushcoreInterpreter::Sgl().Execute("load($MUSTL_START_FILE)");
+    
+    TestMustlApp::Sgl().Enter();
+
+    return MushcoreScalar(0);
+}
+
+void
+TestMustlApp::Install(void)
+{
+    MushcoreInterpreter::Sgl().HandlerAdd("testmustl", TestMustl);
 }

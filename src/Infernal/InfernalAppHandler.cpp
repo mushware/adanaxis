@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } OK79NjKAFVFPIyTLS5wV9g
 /*
- * $Id: InfernalAppHandler.cpp,v 1.4 2004/01/06 20:46:50 southa Exp $
+ * $Id: InfernalAppHandler.cpp,v 1.5 2004/03/06 13:13:42 southa Exp $
  * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.5  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.4  2004/01/06 20:46:50  southa
  * Build fixes
  *
@@ -78,7 +81,7 @@ InfernalAppHandler::GameModeEnter(bool inResume)
         m_pGame=InfernalData::Sgl().ContractGet("contract1");
 
         MUSHCOREASSERT(m_pGame != NULL);
-        CurrentSwapIn(m_pGame);
+        CurrentSwapIn("contract1");
         StateGameSet();
     }
 }

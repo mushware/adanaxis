@@ -130,8 +130,7 @@
 			sourceTree = "<group>";
 		};
 		20286C33FDCF999611CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Carbon.framework;
 			path = /System/Library/Frameworks/Carbon.framework;
@@ -149,8 +148,6 @@
 //4A3
 //4A4
 		4A9504C5FFE6A39111CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -183,8 +180,6 @@
 			name = Development;
 		};
 		4A9504C6FFE6A39111CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_ALTIVEC_EXTENSIONS = NO;
@@ -204,14 +199,14 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../../src ../../src/API";
 				ZERO_LINK = NO;
 			};
 			isa = PBXBuildStyle;
 			name = Deployment;
 		};
 		4A9504C8FFE6A3BC11CA0CBA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = ApplicationServices.framework;
 			path = /System/Library/Frameworks/ApplicationServices.framework;
@@ -219,8 +214,7 @@
 			sourceTree = "<absolute>";
 		};
 		4A9504CAFFE6A41611CA0CBA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = CoreServices.framework;
 			path = /System/Library/Frameworks/CoreServices.framework;
@@ -451,7 +445,7 @@
 		7A5353C705AE013000097C96 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = BaseMaterials.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -650,7 +644,7 @@
 		7A61E87905B0869700AFEB17 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = BaseForms.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -8888,7 +8882,7 @@
 		7A63E9AA05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = all.Info.plist;
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8896,7 +8890,7 @@
 		7A63E9AB05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "Mushcore-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8904,7 +8898,7 @@
 		7A63E9AC05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "MushMesh-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8912,7 +8906,7 @@
 		7A63E9AD05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "MushPie-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8920,7 +8914,7 @@
 		7A63E9AE05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "TestMushcore-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8928,7 +8922,7 @@
 		7A63E9AF05AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "TestMushMesh-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -8936,7 +8930,7 @@
 		7A63E9B005AA260F0051D708 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "TestMushPie-Info.plist";
 			refType = 2;
 			sourceTree = SOURCE_ROOT;
@@ -16483,7 +16477,7 @@
 		7ABA724105AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = contract.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -16491,7 +16485,7 @@
 		7ABA724205AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = designer_map.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -16499,7 +16493,7 @@
 		7ABA724305AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = floormap.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -16507,7 +16501,7 @@
 		7ABA724405AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = player.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -16548,7 +16542,7 @@
 		7ABA724905AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = contract.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -16828,7 +16822,7 @@
 		7ABA726A05AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "floormap-template.xml";
 			refType = 4;
 			sourceTree = "<group>";
@@ -16836,7 +16830,7 @@
 		7ABA726B05AC812900454BCE = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = tilemap.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -17042,7 +17036,7 @@
 		7ABA737E05AC97A200454BCE = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = BaseModels.xml;
 			refType = 4;
 			sourceTree = "<group>";

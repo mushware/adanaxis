@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nxVjK2Mc2cZYPq+0IdUZdQ
 /*
- * $Id: MushMeshVector.h,v 1.11 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushMeshVector.h,v 1.12 2004/09/26 19:42:05 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.12  2004/09/26 19:42:05  southa
+ * Added MushMesh, fixed typenames and release target
+ *
  * Revision 1.11  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -125,7 +128,7 @@ private:
 
 #ifndef MUSHWARE_NO_TEMPLATE_FRIENDS
     // Declare various operators which need acess to m_value as friends
-    friend template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const fnI& b);
+    template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator+=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator-=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator*=(MushMeshVector<fnT, fnD>& a, const fnI& b);
     template <class fnT, Mushware::U32 fnD, class fnI> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const fnI& b);
