@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.2 2004/03/07 12:05:56 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.3 2004/03/07 20:33:54 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.3  2004/03/07 20:33:54  southa
+ * Graphics tuning
+ *
  * Revision 1.2  2004/03/07 12:05:56  southa
  * Rendering work
  *
@@ -27,6 +30,7 @@
 #include "MaurheenWorm.h"
 
 #include "mushPlatform.h"
+#include "mushMushGL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -117,6 +121,9 @@ MaurheenGame::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
     glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0));
+    MushGLV glv;
+    glv.Acquaint();
+    cout << glv << endl;
 }
 
 void

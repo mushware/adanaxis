@@ -10533,6 +10533,8 @@
 				7A66E36A05FB240500135328,
 				7A66E40205FB256A00135328,
 				7A66E40105FB256A00135328,
+				7AC5D50A06FF502E00EF3984,
+				7AC5D50906FF502E00EF3984,
 			);
 			isa = PBXGroup;
 			path = MushGL;
@@ -10823,6 +10825,8 @@
 			children = (
 				7A6CE19E05A58DF000777D9B,
 				7A6CE19F05A58DF000777D9B,
+				7A8A6E74067C5CE60025D379,
+				7A8A6E7F067C5D7B0025D379,
 				7A6CE1A005A58DF000777D9B,
 				7A6CE1A105A58DF000777D9B,
 				7A6CE1A205A58DF000777D9B,
@@ -13437,6 +13441,24 @@
 			settings = {
 			};
 		};
+		7A8A6E74067C5CE60025D379 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.perl;
+			name = COBHandler.pm;
+			path = "/Users/southa/core-app/scripts/COBHandler.pm";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7A8A6E7F067C5D7B0025D379 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.perl;
+			name = COBTranslate.pl;
+			path = "/Users/southa/core-app/scripts/COBTranslate.pl";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
 		7AB64DCF05F9DE94003E2845 = {
 			children = (
 				7AB64DD005F9DE94003E2845,
@@ -13810,6 +13832,7 @@
 				7A66E40305FB256A00135328,
 				7A66E42605FB25C500135328,
 				7A66E44205FB260600135328,
+				7AC5D50B06FF502E00EF3984,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14850,6 +14873,7 @@
 				7A66E36B05FB240500135328,
 				7A66E40405FB256A00135328,
 				7A66E44305FB260600135328,
+				7AC5D50C06FF502E00EF3984,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -17070,6 +17094,34 @@
 			path = sdl_app.configure.in;
 			refType = 4;
 			sourceTree = "<group>";
+		};
+		7AC5D50906FF502E00EF3984 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGLV.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AC5D50A06FF502E00EF3984 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGLV.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AC5D50B06FF502E00EF3984 = {
+			fileRef = 7AC5D50906FF502E00EF3984;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AC5D50C06FF502E00EF3984 = {
+			fileRef = 7AC5D50A06FF502E00EF3984;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7ACC29DB05AB0DF3001A0873 = {
 			isa = PBXFileReference;

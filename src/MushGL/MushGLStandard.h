@@ -16,14 +16,18 @@
  ****************************************************************************/
 //%Header } JAwZoKzI2b5H44hJsgMLvA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLStandard.h,v 1.1 2004/03/07 12:05:56 southa Exp $
+ * $Log: MushGLStandard.h,v $
+ * Revision 1.1  2004/03/07 12:05:56  southa
+ * Rendering work
+ *
  */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #else
 #define HAVE_GLUT_GLUT_H
+#define HAVE_OPENGL_GLEXT_H
 #endif
  
 #if HAVE_WINDOWS_H
@@ -33,7 +37,7 @@
 #ifdef HAVE_GL_GLUT_H
 #include <GL/glut.h>
 #endif
- 
+
 #ifdef HAVE_GLUT_GLUT_H
 #include <GLUT/glut.h>
 #endif
@@ -45,8 +49,20 @@
 #ifdef HAVE_OPENGL_GLU_H
 #include <OpenGL/glu.h>
 #endif
- 
- 
+
+#ifdef HAVE_GLEXT_H
+#include <glext.h>
+#endif
+
+#ifdef HAVE_GL_GLEXT_H
+#include <GL/glext.h>
+#endif
+
+#ifdef HAVE_OPENGL_GLEXT_H
+#include <OpenGL/glext.h>
+#endif
+
+
 #include "mushMushcore.h"
 #include "mushMushMesh.h"
  
