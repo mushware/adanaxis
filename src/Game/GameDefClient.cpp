@@ -1,6 +1,9 @@
 /*
- * $Id: GameDefClient.cpp,v 1.1 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.2 2002/11/25 10:43:28 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.2  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.1  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -56,7 +59,7 @@ GameDefClient::Ticker(void)
         {
             MediaNetData netData;
             GameProtocol::CreateObjectCreate(netData, *this, "client-ghost");
-            // netLink->ReliableSend(netData);
+            netLink->ReliableSend(netData);
             m_lastRegistrationMsec = m_currentMsec;
         }
     }

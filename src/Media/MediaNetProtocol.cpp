@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.7 2002/11/22 11:42:06 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.8 2002/11/25 10:43:28 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.8  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.7  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -139,8 +142,25 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 break;
 
             case kUnpackStateLengthMSB:
-                MediaNetLog::Instance().NetLog() << "Protocol error";
-                skippedStr += byte;
+                messageLength=byte << 8;
+                unpackState=kUnpackStateLengthLSB;
+                break;
+
+            case kUnpackStateLengthLSB:
+                messageLength |= byte;
+
+                // Remove the header size from messageLength, leaving the size of the content
+                if (messageLength < 5)
+                {
+                    MediaNetLog::Instance().NetLog() << "Bad length in application protocol message (" << messageLength << ")" << endl;
+                    unpackState = kUnpackStateSync1;
+                    
+                }
+                else
+                {
+                    messageLength -= 5;
+                    unpackState=kUnpackStateMessageDone;
+                }
                 break;
 
             case kUnpackStateMessageDone:
@@ -166,7 +186,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
             ioData.ReadPosAdd(messageLength);
             unpackState=kUnpackStateMessageReady;
         }
-        // else come round in  kUnpackStateMessageDone next time when more data has been added
+        // else come round in kUnpackStateMessageDone next time when more data has been added
     }
     ioData.UnpackStateSet(unpackState);
 
@@ -174,6 +194,27 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
     if (skippedStr.size() > 0)
     {
         MediaNetLog::Instance().NetLog() << "NetProtocol skipped '" << MediaNetUtils::MakePrintable(skippedStr) << "'" << endl;
+    }
+}
+
+
+
+void
+MediaNetProtocol::RemoveLength(MediaNetData& ioData, U32 inType)
+{
+    switch (inType)
+    {
+        case kMessageTypeLongApp:
+            ioData.MessagePosSet(ioData.MessagePosGet() + 2);
+            break;
+
+        case kMessageTypeShortApp:
+            ioData.MessagePosSet(ioData.MessagePosGet() + 1);
+            break;
+
+        default:
+            MediaNetLog::Instance().NetLog() << "RemoveLength called on message type without length (" << inType << ")" << endl;
+            break;
     }
 }
 

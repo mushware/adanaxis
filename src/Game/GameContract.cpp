@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.97 2002/11/20 22:35:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.98 2002/11/24 23:18:07 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.98  2002/11/24 23:18:07  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.97  2002/11/20 22:35:25  southa
  * Multiplayer setup
  *
@@ -328,6 +331,7 @@
 #include "GameTypeRace.h"
 #include "GameEvent.h"
 #include "GameRewards.h"
+#include "GameRouter.h"
 #include "GameSpacePoint.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
@@ -715,7 +719,7 @@ GameContract::Running(void)
     else if (ctr > 100)
     {
         MediaNetServer::Instance().Accept();
-        MediaNetRouter::Instance().ReceiveAll();
+        MediaNetRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
     
     if (timer.JudgementValid())

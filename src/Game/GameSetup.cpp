@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.8 2002/11/24 00:29:08 southa Exp $
+ * $Id: GameSetup.cpp,v 1.9 2002/11/24 22:32:43 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.9  2002/11/24 22:32:43  southa
+ * Host and join displays
+ *
  * Revision 1.8  2002/11/24 00:29:08  southa
  * Serve web pages to local addresses only
  *
@@ -33,6 +36,7 @@
 #include "GameConfig.h"
 #include "GameConfigDef.h"
 #include "GameDef.h"
+#include "GameRouter.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"
@@ -155,7 +159,7 @@ GameSetup::Config(void)
     try
     {
         MediaNetServer::Instance().Accept();
-        MediaNetRouter::Instance().ReceiveAll();
+        MediaNetRouter::Instance().ReceiveAll(GameRouter::Instance());
     }
     catch (NetworkFail& e)
     {

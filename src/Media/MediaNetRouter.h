@@ -1,8 +1,11 @@
 #ifndef MEDIANETROUTER_H
 #define MEDIANETROUTER_H
 /*
- * $Id: MediaNetRouter.h,v 1.4 2002/11/23 14:39:06 southa Exp $
+ * $Id: MediaNetRouter.h,v 1.5 2002/11/25 10:43:28 southa Exp $
  * $Log: MediaNetRouter.h,v $
+ * Revision 1.5  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.4  2002/11/23 14:39:06  southa
  * Store ports in network order
  *
@@ -21,17 +24,18 @@
 
 class MediaNetData;
 class MediaNetLink;
+class MediaNetHandler;
 
 class MediaNetRouter
 {
 public:
     static inline MediaNetRouter& Instance(void);
-    void ReceiveAll(void);
+    void ReceiveAll(MediaNetHandler& inHandler);
 
 protected:
     MediaNetRouter();
-    void UDPIfAddressMatchReceive(MediaNetData& ioData);
-    void UDPReceiveFromServer(void);
+    void UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& inHandler);
+    void UDPReceiveFromServer(MediaNetHandler& inHandler);
     
 private:
     enum

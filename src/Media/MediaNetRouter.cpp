@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetRouter.cpp,v 1.4 2002/11/22 15:00:33 southa Exp $
+ * $Id: MediaNetRouter.cpp,v 1.5 2002/11/23 14:39:06 southa Exp $
  * $Log: MediaNetRouter.cpp,v $
+ * Revision 1.5  2002/11/23 14:39:06  southa
+ * Store ports in network order
+ *
  * Revision 1.4  2002/11/22 15:00:33  southa
  * Network connection handling
  *
@@ -18,6 +21,7 @@
 #include "MediaNetRouter.h"
 
 #include "MediaNetData.h"
+#include "MediaNetHandler.h"
 #include "MediaNetLog.h"
 #include "MediaNetLink.h"
 #include "MediaNetProtocol.h"
@@ -34,7 +38,7 @@ MediaNetRouter::MediaNetRouter() :
 }
 
 void
-MediaNetRouter::ReceiveAll(void)
+MediaNetRouter::ReceiveAll(MediaNetHandler& inHandler)
 {
     U32 currentMsec = SDL_GetTicks();
     bool callTick=false;;
@@ -44,7 +48,7 @@ MediaNetRouter::ReceiveAll(void)
         callTick = true;
     }
 
-    UDPReceiveFromServer();
+    UDPReceiveFromServer(inHandler);
     
     CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
     CoreData<MediaNetLink>::tMapIterator killValue=CoreData<MediaNetLink>::Instance().End();
@@ -64,7 +68,8 @@ MediaNetRouter::ReceiveAll(void)
             }
             else
             {
-                // pass to application
+                MediaNetProtocol::RemoveLength(*netData, messageType);
+                inHandler.MessageHandle(*netData, messageType);
             }
         }
         if (callTick)
@@ -83,7 +88,7 @@ MediaNetRouter::ReceiveAll(void)
 }
 
 void
-MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData)
+MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData, MediaNetHandler& inHandler)
 {
     CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
 
@@ -102,7 +107,8 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData)
                 }
                 else
                 {
-                    // pass to application
+                    MediaNetProtocol::RemoveLength(ioData, messageType);
+                    inHandler.MessageHandle(ioData, messageType);
                 }
             }
             // Message handled so return
@@ -115,7 +121,7 @@ MediaNetRouter::UDPIfAddressMatchReceive(MediaNetData& ioData)
 }
 
 void
-MediaNetRouter::UDPReceiveFromServer(void)
+MediaNetRouter::UDPReceiveFromServer(MediaNetHandler& inHandler)
 {
     for (U32 i=0; i<100; ++i)
     {
@@ -123,7 +129,7 @@ MediaNetRouter::UDPReceiveFromServer(void)
         MediaNetServer::Instance().UDPReceive(netData);
         if (netData.ReadSizeGet() != 0)
         {
-            UDPIfAddressMatchReceive(netData);
+            UDPIfAddressMatchReceive(netData, inHandler);
         }
         else
         {

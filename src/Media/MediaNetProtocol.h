@@ -1,8 +1,11 @@
 #ifndef MEDIANETPROTOCOL_H
 #define MEDIANETPROTOCOL_H
 /*
- * $Id: MediaNetProtocol.h,v 1.5 2002/11/04 19:34:47 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.6 2002/11/25 10:43:28 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.6  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.5  2002/11/04 19:34:47  southa
  * Network link maintenance
  *
@@ -30,15 +33,15 @@ public:
     enum tMessageType
     {
         kMessageTypeInvalid,
-        kMessageTypeMinLinkLayer='A',
+        kMessageTypeMinLinkLayer='A', // These messages are for the link
         kMessageTypeTCPLinkCheck=kMessageTypeMinLinkLayer,
         kMessageTypeTCPLinkCheckReply,
         kMessageTypeUDPLinkCheck,
         kMessageTypeUDPLinkCheckReply,
         kMessageTypeKillLink,
+        kMessageTypeMaxLinkLayer, // Subsequent messages are for the application
         kMessageTypeLongApp,
         kMessageTypeShortApp,
-        kMessageTypeMaxLinkLayer,
         kMessageTypeNextLayerStart='a'
     };
 
@@ -63,10 +66,12 @@ public:
     static void LongAppMessageCreate(MediaNetData& ioData, U32 inType, const string& inStr);
     static void LongAppMessageHeaderCreate(MediaNetData& ioData, U32 inType);
     static void LongAppMessageFinish(MediaNetData& ioData);
-    
+
     static void Unpack(MediaNetData& ioData);
+    static void RemoveLength(MediaNetData& ioData, U32 inType);
     static bool MessageTake(MediaNetData& ioData);
     static bool MessageTypeIsLinkLayer(U32 inType);
+
     
 private:
     enum
@@ -82,6 +87,7 @@ private:
         kUnpackStateSync2,
         kUnpackStateMessageType,
         kUnpackStateLengthMSB,
+        kUnpackStateLengthLSB,
         kUnpackStateMessageDone,
         kUnpackStateMessageReady
     };

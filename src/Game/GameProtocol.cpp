@@ -1,6 +1,9 @@
 /*
- * $Id: GameProtocol.cpp,v 1.2 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.3 2002/11/25 10:43:28 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.3  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.2  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -18,10 +21,9 @@ GameProtocol::CreateObjectCreate(MediaNetData& ioData, CorePickle& inObj, const 
 {
     ostringstream netStream;
 
-    netStream << "<object name=\"" << inRemoteName << "\" type=\"" << inObj.TypeNameGet() << "\">";
+    netStream << "<" << inObj.TypeNameGet() << "name=\"" << inRemoteName << "\">";
     inObj.Pickle(netStream);
-    netStream << "</object>" << endl;
-    MediaNetData netData;
-    MediaNetProtocol::LongAppMessageCreate(netData, kMessageTypeCreateObject, netStream.str());
-    MediaNetLog::Instance().NetLog() << "Sent " << netData << endl; 
+    netStream << "</" << inObj.TypeNameGet() << ">";
+    MediaNetProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
+    MediaNetLog::Instance().NetLog() << "Sent " << ioData << endl; 
 }

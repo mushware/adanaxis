@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.17 2002/11/15 11:47:55 southa Exp $
+ * $Id: mushMedia.h,v 1.18 2002/11/15 18:58:33 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.18  2002/11/15 18:58:33  southa
+ * Configuration mode
+ *
  * Revision 1.17  2002/11/15 11:47:55  southa
  * Web processing and error handling
  *
@@ -72,6 +75,7 @@
 #include "Media/MediaAudio.h"
 #include "Media/MediaNet.h"
 #include "Media/MediaNetData.h"
+#include "Media/MediaNetHandler.h"
 #include "Media/MediaNetLink.h"
 #include "Media/MediaNetLog.h"
 #include "Media/MediaNetProtocol.h"
