@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLAppSignal.h,v 1.5 2002/08/17 10:41:50 southa Exp $
+ * $Id: GLAppSignal.h,v 1.6 2002/08/27 08:56:18 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.6  2002/08/27 08:56:18  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -54,7 +57,7 @@ public:
 class GLKeyboardSignal: public CoreAppSignal
 {
 public:
-    GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, S32 inMouseX, S32 inMouseY):
+    GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, tVal inMouseX, tVal inMouseY):
         CoreAppSignal(GLAppSignal::kKeyboard),
         keyDown(inKeyDown),
         keyValue(inKeyValue),
