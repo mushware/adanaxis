@@ -1,6 +1,6 @@
 %define name @PACKAGE@
 %define version @VERSION@
-%define release 0
+%define release 1
 %define RUNFILE %{_bindir}/ic2
 
 Summary: Infernal Contractor II
@@ -48,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 rm -f %{RUNFILE}
 echo #!/bin/sh > %{RUNFILE}
 echo cd %{_datadir}/%{name}/system >> %{RUNFILE}
-echo exec %{_bindir}/ic2binary >> %{RUNFILE}
 echo '[ -d $HOME/.ic2 ] || mkdir $HOME/.ic2' >> %{RUNFILE}
+echo exec %{_bindir}/ic2binary >> %{RUNFILE}
 chmod 0755 %{RUNFILE}
 
 %changelog

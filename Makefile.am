@@ -52,18 +52,8 @@ $(BZIPFILE):$(GZIPFILE)
 	rm -f $(BZIPFILE)
 	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
 
-mdk-rpm:
-	cp -f ic2.spec.mdk ic2.spec
-	$(MAKE) $(BZIPFILE)
-	rpm -ta $(BZIPFILE)
-
-redhat-rpm:
-	cp -f ic2.spec.redhat ic2.spec
-	$(MAKE) $(BZIPFILE)
-	rpm -ta $(BZIPFILE)
-
-suse-rpm:
-	cp -f ic2.spec.suse ic2.spec
+%-rpm:ic2.spec.%
+	cp -f $< ic2.spec
 	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
