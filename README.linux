@@ -1,0 +1,51 @@
+README for Linux
+
+Building from source on SUSE Linux personal 8.0
+===============================================
+
+These instructions are based on building the ic2 source on SUSE Linux
+installation.  SUSE Linux 8.0 was installed using the 'Default + office'
+setting.
+
+Use the command 3Ddiag to check that your system is correctly configured
+for 3D rendering.  The glxinfo command should print information, and not
+tell you that GLX is disabled.
+
+Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
+whichever version you choose to build) into your home directory.
+
+tar xvzf ic2-src-0_0_4.tar.gz
+cd ic2-0.0.4
+tar xvzf ../ic2-data-0_0_4.tar.gz
+./configure
+
+Configure is likely to fail first time round, but it will tell you what's
+missing..  The following steps were required for configure to complete.
+
+Open the YAST2 application from Start Menu->System->YAST2
+(enter password as prompted)
+Choose Install/Remove software
+Install the following packages:
+ Development/Tools -> package make
+ Development/Languages/C and C++ -> package gcc
+ Development/Languages/C and C++ -> package gpp
+ Development/Libraries/X11 -> package xdevel
+ Development/Libraries/X11 -> package expat
+ Development/Libraries/C and C++ -> package alsa-devel
+ Development/Libraries/C and C++ -> package esound-devel
+ Development/Libraries/C and C++ -> package vorbis-devel
+ Productivity/Multimedia/Video/Players -> package smpeg
+ System/Libraries -> package SDL_mixer
+
+Install the mesa, SDL, smpeg and ogg devel packages.  Couldn't find these
+on my CD, so got them from:
+
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/x3d2/mesa-devel-4.0.1-118.i386.rpm
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/x3d2/mesaglu-devel-4.0.1-118.i386.rpm
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/x3d2/mesaglut-devel-4.0.1-118.i386.rpm
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/d4/SDL-devel-1.2.3-227.i386.rpm
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/gra3/smpeg-devel-0.4.4-322.i386.rpm
+ftp://ftp.suse.com/pub/suse/i386/8.0/suse/d4/libogg-devel-1.0rc3-73.i386.rpm
+
+(Paste the URL into Konqueror, click 'Open' when asked to 'Open using
+KPackage'.  Click 'Install' when KPackage starts.)
