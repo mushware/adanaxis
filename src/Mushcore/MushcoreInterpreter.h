@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } s1nYUhCBRnvmKAuFrxTZXA
 /*
- * $Id: MushcoreInterpreter.h,v 1.10 2003/10/04 12:23:08 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.11 2004/01/02 21:13:13 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.11  2004/01/02 21:13:13  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/10/04 12:23:08  southa
  * File renaming
  *
@@ -112,7 +115,9 @@ public:
     
     virtual MushcoreScalar Despatch(MushcoreCommand& ioCommand);
     virtual void HandlerAdd(const std::string& inName, MushcoreCommandHandler inHandler);
-
+    
+    virtual void CommandsGet(std::vector<std::string>& outVec, const std::string& inStr) const;
+    
     void LogFunctionSet(tLogFunction inFunction) { m_logFunction = inFunction; }
 
     static void NullFunction(void);

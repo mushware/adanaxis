@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } L2ybk6Z8teaZWR2VqTGmpg
 /*
- * $Id: TestMushcoreCommand.cpp,v 1.4 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMushcoreCommand.cpp,v 1.5 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushcoreCommand.cpp,v $
+ * Revision 1.5  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -81,5 +84,5 @@ TestMushcoreCommand::TestCommand(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushcoreCommand::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testcommand", TestCommand);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushcorecommand", TestCommand);
 }

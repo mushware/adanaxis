@@ -17,8 +17,11 @@
 //%Header } PnzbnMrxb1qHtbgCO/gBtw
 
 /*
- * $Id: MushcoreDataRef.h,v 1.8 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.9 2004/01/02 17:31:48 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.9  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.8  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -75,17 +78,17 @@
 #include "MushcoreXMLIStream.h"
 #include "MushcoreXMLOStream.h"
 
-template<class RefType>
+template<class RefType, class KeyType = std::string>
 class MushcoreDataRef
 {
 public:
     inline MushcoreDataRef();
-    inline explicit MushcoreDataRef(MushcoreData<RefType> *inInstance);
-    inline explicit MushcoreDataRef(const std::string& inName);
-    inline MushcoreDataRef(const std::string& inName, MushcoreData<RefType> *inInstance);
+    inline explicit MushcoreDataRef(MushcoreData<RefType, KeyType> *inInstance);
+    inline explicit MushcoreDataRef(const KeyType& inName);
+    inline MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType> *inInstance);
     
-    void NameSet(const std::string& inName) { m_name=inName; m_dataPtr=NULL; }
-    const std::string& NameGet(void) const { return m_name; }
+    void NameSet(const KeyType& inName) { m_name=inName; m_dataPtr=NULL; }
+    const KeyType& NameGet(void) const { return m_name; }
     inline RefType *Get(void) const;
     inline bool GetIfExists(RefType *& outRef) const;
     inline bool Exists(void) const;
@@ -94,8 +97,8 @@ private:
     inline void ReferenceGet(void) const;
     inline void DefaultDataPtrGet(void);
     
-    std::string m_name;
-    MushcoreData<RefType> *m_dataInstance;
+    KeyType m_name;
+    MushcoreData<RefType, KeyType> *m_dataInstance;
     mutable RefType *m_dataPtr;
     mutable Mushware::U32 m_sequenceNum;
 // classPrototypes { Modified
@@ -104,27 +107,27 @@ public:
 // classPrototypes }
 };
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType>::MushcoreDataRef() :
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef() :
     m_dataPtr(NULL),
     m_sequenceNum(1)
 {
     DefaultDataPtrGet();
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType>::MushcoreDataRef(MushcoreData<RefType> *inInstance) :
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(MushcoreData<RefType, KeyType> *inInstance) :
     m_dataInstance(inInstance),
     m_dataPtr(NULL),
     m_sequenceNum(1)
 {
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType>::MushcoreDataRef(const std::string& inName) :
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(const KeyType& inName) :
     m_name(inName),
     m_dataPtr(NULL),
     m_sequenceNum(1)
@@ -133,9 +136,9 @@ MushcoreDataRef<RefType>::MushcoreDataRef(const std::string& inName) :
 }
 
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline
-MushcoreDataRef<RefType>::MushcoreDataRef(const std::string& inName, MushcoreData<RefType> *inInstance) :
+MushcoreDataRef<RefType, KeyType>::MushcoreDataRef(const KeyType& inName, MushcoreData<RefType, KeyType> *inInstance) :
     m_name(inName),
     m_dataInstance(inInstance),
     m_dataPtr(NULL),
@@ -143,16 +146,16 @@ MushcoreDataRef<RefType>::MushcoreDataRef(const std::string& inName, MushcoreDat
 {
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline void
-MushcoreDataRef<RefType>::DefaultDataPtrGet(void)
+MushcoreDataRef<RefType, KeyType>::DefaultDataPtrGet(void)
 {
     m_dataInstance = &MushcoreData<RefType>::Sgl();
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline void
-MushcoreDataRef<RefType>::ReferenceGet(void) const
+MushcoreDataRef<RefType, KeyType>::ReferenceGet(void) const
 {
     MUSHCOREASSERT(m_dataInstance != NULL);
     
@@ -160,9 +163,9 @@ MushcoreDataRef<RefType>::ReferenceGet(void) const
     m_sequenceNum = m_dataInstance->SequenceNumGet();
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline RefType *
-MushcoreDataRef<RefType>::Get(void) const
+MushcoreDataRef<RefType, KeyType>::Get(void) const
 {
     if (m_dataPtr == NULL || m_sequenceNum != m_dataInstance->SequenceNumGet())
     {
@@ -175,9 +178,9 @@ MushcoreDataRef<RefType>::Get(void) const
     return m_dataPtr;
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline bool
-MushcoreDataRef<RefType>::GetIfExists(RefType *& outRef) const
+MushcoreDataRef<RefType, KeyType>::GetIfExists(RefType *& outRef) const
 {
     if (m_dataPtr == NULL || m_sequenceNum != m_dataInstance->SequenceNumGet())
     {
@@ -191,9 +194,9 @@ MushcoreDataRef<RefType>::GetIfExists(RefType *& outRef) const
     return true;
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline bool
-MushcoreDataRef<RefType>::Exists(void) const
+MushcoreDataRef<RefType, KeyType>::Exists(void) const
 {
     if (m_dataPtr != NULL && m_sequenceNum == m_dataInstance->SequenceNumGet()) return true;
     ReferenceGet();
@@ -201,9 +204,9 @@ MushcoreDataRef<RefType>::Exists(void) const
 }
 
 // inlineHeader { Modified
-template<class RefType>
+template<class RefType, class KeyType>
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushcoreDataRef<RefType>& inObj)
+operator<<(std::ostream& ioOut, const MushcoreDataRef<RefType, KeyType>& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
@@ -211,9 +214,9 @@ operator<<(std::ostream& ioOut, const MushcoreDataRef<RefType>& inObj)
 // inlineHeader }
 
 // outOfLineFunctions { Modified
-template<class RefType>
+template<class RefType, class KeyType>
 inline void
-MushcoreDataRef<RefType>::AutoPrint(std::ostream& ioOut) const
+MushcoreDataRef<RefType, KeyType>::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
@@ -230,17 +233,17 @@ MushcoreDataRef<RefType>::AutoPrint(std::ostream& ioOut) const
 //%outOfLineFunctions }
 
 // XML operators treat this object as a single string
-template<class RefType>
+template<class RefType, class KeyType>
 inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushcoreDataRef<RefType>& inObj)
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreDataRef<RefType, KeyType>& inObj)
 {
     ioOut << inObj.NameGet();
     return ioOut;
 }
 
-template<class RefType>
+template<class RefType, class KeyType>
 inline void
-operator>>(MushcoreXMLIStream& ioIn, MushcoreDataRef<RefType>& outObj)
+operator>>(MushcoreXMLIStream& ioIn, MushcoreDataRef<RefType, KeyType>& outObj)
 {
     ioIn >> outObj;
 }

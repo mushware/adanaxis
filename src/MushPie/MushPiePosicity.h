@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } u4KzedBl1+uLt37oBoF4HQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushPiePosicity.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Log: MushPiePosicity.h,v $
+ * Revision 1.1  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  */
 
 #include "MushPieStandard.h"
@@ -26,12 +29,6 @@
 class MushPiePosicity
 {
 public:
-    enum
-    {
-        kPosSize=3,
-        kAngSize = 4
-    };
-    
     Mushware::tQVal angPos;
     Mushware::tQVal angVel;
     Mushware::t3Val pos;

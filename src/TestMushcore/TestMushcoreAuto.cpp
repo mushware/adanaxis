@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 2RP3IYDdgdgRIg0wfmMxGQ
 /*
- * $Id: TestMushcoreAuto.cpp,v 1.4 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMushcoreAuto.cpp,v 1.5 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushcoreAuto.cpp,v $
+ * Revision 1.5  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -202,6 +205,6 @@ TestMushcoreAuto::TestAuto(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushcoreAuto::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testauto", TestAuto);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushcoreauto", TestAuto);
 }
 

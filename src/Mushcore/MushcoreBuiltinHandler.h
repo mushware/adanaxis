@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } oUjY1DvSUs64vK8oenvnKQ
 /*
- * $Id: MushcoreBuiltinHandler.h,v 1.7 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreBuiltinHandler.h,v 1.8 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreBuiltinHandler.h,v $
+ * Revision 1.8  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.7  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -76,6 +79,7 @@ class MushcoreBuiltinHandler
 public:
     static MushcoreScalar Load(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static MushcoreScalar ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
+    static MushcoreScalar Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv);
     static void Install(void);
     static void NullFunction(void);
 protected:

@@ -77,6 +77,27 @@
 		wantsCodeCompletionTabCompletes = 1;
 		wantsIndex = 1;
 	};
+	7A719BAF05A9A5C200C42A20 = {
+		fileReference = 7A05C3C603CB43AC00A80164;
+		functionName = "MushcoreBuiltinHandler::Test()";
+		isa = PBXFileBreakpoint;
+		lineNumber = 153;
+		state = 1;
+	};
+	7A719BBB05A9A61F00C42A20 = {
+		fileReference = 7A05C3C603CB43AC00A80164;
+		functionName = "MushcoreBuiltinHandler::Test()";
+		isa = PBXFileBreakpoint;
+		lineNumber = 147;
+		state = 1;
+	};
+	7A719BC305A9A66800C42A20 = {
+		fileReference = 7A05C3CA03CB43AC00A80164;
+		functionName = "MushcoreCommand::Execute()";
+		isa = PBXFileBreakpoint;
+		lineNumber = 115;
+		state = 1;
+	};
 	7AB45DB503D3610100A80164 = {
 		activeExec = 0;
 		executables = (
@@ -99,6 +120,11 @@
 		activeBuildStyle = F5431747020C310101449C4C;
 		activeExecutable = 7A2E6C5C05A4DA3F0025F99B;
 		activeTarget = F59396D5028C0CA6016230BF;
+		breakpoints = (
+			7A719BAF05A9A5C200C42A20,
+			7A719BBB05A9A61F00C42A20,
+			7A719BC305A9A66800C42A20,
+		);
 		codeSenseManager = 7A2E6C7A05A4DA600025F99B;
 		executables = (
 			7A2E6C5C05A4DA3F0025F99B,
@@ -128,7 +154,29 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 94689855;
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					295,
+					67,
+					20,
+					67,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 95000858;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -298,7 +346,7 @@
 				{
 					PBXProjectWorkspaceModule_StateKey_Rev39 = {
 						PBXProjectWorkspaceModule_DataSourceSelectionKey_Rev6 = {
-							BoundsStr = "{{0, 0}, {583, 4155}}";
+							BoundsStr = "{{0, 0}, {583, 1140}}";
 							Rows = (
 								0,
 							);
@@ -356,11 +404,11 @@
 								);
 								PBXSmartGroupTreeModuleOutlineStateSelectionKey = (
 									(
-										39,
+										40,
 										38,
 									),
 								);
-								PBXSmartGroupTreeModuleOutlineStateVisibleRectKey = "{{0, 50}, {239, 766}}";
+								PBXSmartGroupTreeModuleOutlineStateVisibleRectKey = "{{0, 29}, {239, 766}}";
 							};
 							PBXTopSmartGroupGIDs = (
 							);
@@ -466,8 +514,9 @@
 				RubberWindowFrame = "50 974 400 222 0 0 1280 1002 ";
 			};
 			"PBXWorkspaceGeometries:PBXConfiguration.PBXModule.PBXNavigatorGroup" = {
-				Frame = "{{0, 0}, {750, 460}}";
-				RubberWindowFrame = "341 272 750 502 0 0 1280 1002 ";
+				Frame = "{{0, 0}, {750, 481}}";
+				PBXModuleWindowStatusBarHidden = YES;
+				RubberWindowFrame = "61 453 750 502 0 0 1280 1002 ";
 			};
 			"PBXWorkspaceGeometries:PBXConfiguration.PBXModule.PBXProjectWorkspaceModule" = {
 				Frame = "{{0, 0}, {854, 784}}";
@@ -475,7 +524,7 @@
 				};
 				RubberWindowFrame = "389 96 854 826 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 94689855;
+			PBXWorkspaceStateSaveDate = 95000858;
 		};
 		sourceControlManager = 7A2E6C7905A4DA600025F99B;
 		userBuildSettings = {

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mvCjgges5NRlmA/1rKDjiQ
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.11 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.12 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.12  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -137,11 +140,63 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
     return MushcoreScalar(0);
 }
 
+MushcoreScalar
+MushcoreBuiltinHandler::Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
+{
+    std::vector<std::string> commandVec;
+    U32 numParams = ioCommand.NumParams();
+    for (U32 i=0; i<numParams; ++i)
+    {
+        string moduleStr;
+        ioCommand.PopParam(moduleStr);
+        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "test"+moduleStr);
+    }
+
+    std::vector<std::string> failsVec;
+    U32 passCount = 0;
+    
+    for (U32 i=0; i<commandVec.size(); ++i)
+    {
+        cout << "Test " << commandVec[i] << "... ";
+        try
+        {
+            MushcoreInterpreter::Sgl().Execute(commandVec[i]);
+            ++passCount;
+            cout << "passed";
+        }
+        catch (MushcoreFail& e)
+        {
+            cout << "FAILED";
+            failsVec.push_back(commandVec[i]+": "+e.what());
+        }
+        cout << endl;
+    }
+    
+    if (failsVec.size() == 0)
+    {
+        cout << "All " << passCount << " tests passed" << endl;
+    }
+    else
+    {
+        cout << "****** " << failsVec.size() << " test failures" << endl;
+        cout << "Failure report:" << endl;
+        for (U32 i=0; i<failsVec.size(); ++i)
+        {
+            cout << failsVec[i] << endl;
+        }
+        throw MushcoreCommandFail("Test failed");
+    }
+        
+    return MushcoreScalar(0);    
+}
+
+
 void
 MushcoreBuiltinHandler::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("load", Load);
     MushcoreInterpreter::Sgl().HandlerAdd("configset", ConfigSet);
+    MushcoreInterpreter::Sgl().HandlerAdd("test", Test);
 }
 
 void

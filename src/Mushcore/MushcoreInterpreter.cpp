@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8MAOuLpMUbLZhum+UB8pZg
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.11 2003/10/04 12:23:08 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.12 2004/01/02 21:13:13 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.12  2004/01/02 21:13:13  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/10/04 12:23:08  southa
  * File renaming
  *
@@ -96,6 +99,7 @@
 #include "MushcoreCommandHandler.h"
 #include "MushcoreEnv.h"
 #include "MushcoreFail.h"
+#include "MushcoreRegExp.h"
 
 #include "MushcoreSTL.h"
 
@@ -143,6 +147,20 @@ void
 MushcoreInterpreter::HandlerAdd(const string& inName, MushcoreCommandHandler inHandler)
 {
     m_handlers[inName]=inHandler;
+}
+
+void
+MushcoreInterpreter::CommandsGet(std::vector<std::string>& outVec, const std::string& inStr) const
+{
+    MushcoreRegExp re(inStr);
+    
+    for (tHandlerMap::const_iterator p = m_handlers.begin(); p != m_handlers.end(); ++p)
+    {
+        if (re.Search(p->first))
+        {
+            outVec.push_back(p->first);
+        }
+    }    
 }
 
 void

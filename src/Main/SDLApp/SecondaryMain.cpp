@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Main/main.cpp
+ * File: src/Main/SDLApp/SecondaryMain.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XMDunXG2uusAsXVXQuHRSg
+//%Header } joRrEdPR9bRRSNuToPWilA
 /*
- * $Id: main.cpp,v 1.33 2004/01/01 21:15:46 southa Exp $
+ * $Id: main.cpp,v 1.34 2004/01/02 21:13:09 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.34  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.33  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -119,25 +122,20 @@
 #include "config.h"
 #endif
 
-// SDL_main.h #defines main so must be included
-#if 1
+// SDL_main.h #defines main so must be included if present
 
 #if defined(HAVE_SDL_SDL_MAIN_H)
 #include <SDL/SDL_main.h>
-#else
-#if defined(HAVE_SDL_MAIN_H)
+#elif defined(HAVE_SDL_MAIN_H)
 #include <SDL_main.h>
 #else
 #include "SDL_main.h"
-#endif
-#endif
-
 #endif
 
 using namespace Mushware;
 using namespace std;
 
-int main(int argc, char *argv[])
+int SecondaryMain(int argc, char *argv[])
 {
     PlatformMiscUtils::Initialise();
     MushcoreGlobalConfig::Sgl().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));

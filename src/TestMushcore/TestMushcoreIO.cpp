@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } P6yBrDF9KuOXOLkAKGMvXA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.8 2003/09/30 22:11:30 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.9 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.9  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/30 22:11:30  southa
  * XML objects within objects
  *
@@ -131,5 +134,5 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 TestMushcoreIO::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testio", TestIO);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushcoreio", TestIO);
 }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } FbfqG3T7ZkJviLRYWvSJUg
 /*
- * $Id: TestMushcoreApp.cpp,v 1.4 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMushcoreApp.cpp,v 1.5 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushcoreApp.cpp,v $
+ * Revision 1.5  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -56,9 +59,9 @@ void
 TestMushcoreApp::EnterInstance(void)
 {
     cout << "Starting tests" << endl;
-    RunTest("testauto", "Automonkey");
-    RunTest("testcommand", "Command interpreter");
-    RunTest("testio", "Input/output");
+    RunTest("testmushcoreauto", "Automonkey");
+    RunTest("testmushcorecommand", "Command interpreter");
+    RunTest("testmushcoreio", "Input/output");
 }
 
 void
