@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.11 2002/08/27 08:56:29 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.12 2002/10/06 22:10:00 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.12  2002/10/06 22:10:00  southa
+ * Initial lighting test
+ *
  * Revision 1.11  2002/08/27 08:56:29  southa
  * Source conditioning
  *
@@ -115,3 +118,9 @@ void
 PlatformMiscUtils::TweakArgs(string& ioStr)
 {
 }
+
+void
+PlatformMiscUtils::VBLWait(void)
+{
+}
+
