@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.1 2002/05/10 22:38:23 southa Exp $
+ * $Id: GLUtils.cpp,v 1.2 2002/05/27 12:58:43 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.2  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  * Revision 1.1  2002/05/10 22:38:23  southa
  * Checkpoint
  *
@@ -29,6 +32,68 @@ GLUtils::OrthoEpilogue(void)
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
+}
+
+void
+GLUtils::DisplayPrologue(void)
+{
+    glDrawBuffer(GL_BACK);
+}
+
+void
+GLUtils::DisplayEpilogue(void)
+{
+    glutSwapBuffers();
+}
+
+void
+GLUtils::ClearScreen(void)
+{
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void
+GLUtils::SetColour(float inRed, float inGreen, float inBlue)
+{
+    glColor3f(inRed, inGreen, inBlue);
+}
+
+void
+GLUtils::DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2)
+{
+    glBegin(GL_QUADS);
+    glVertex2f(inX1,inY1);
+    glVertex2f(inX1,inY2);
+    glVertex2f(inX2,inY2);
+    glVertex2f(inX2,inY1);
+    glEnd();
+}
+
+void
+GLUtils::DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3)
+{
+    glBegin(GL_TRIANGLES);
+    glVertex2f(inX1,inY1);
+    glVertex2f(inX2,inY2);
+    glVertex2f(inX3,inY3);
+    glEnd();
+}
+
+void
+GLUtils::RasterPos(tVal inX, tVal inY)
+{
+    glRasterPos2f(inX, inY);
+}
+
+void
+GLUtils::BitmapText(const string& inStr)
+{
+    tSize length=inStr.size();
+    for (U32 i=0; i<length; i++)
+    {
+        glutBitmapCharacter(GLUT_BITMAP_8_BY_13, inStr[i]);
+    }
 }
 
 void

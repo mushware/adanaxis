@@ -1,6 +1,9 @@
 /*
- * $Id: GameMap.cpp,v 1.2 2002/05/25 17:16:15 southa Exp $
+ * $Id: GameMap.cpp,v 1.3 2002/05/26 16:08:48 southa Exp $
  * $Log: GameMap.cpp,v $
+ * Revision 1.3  2002/05/26 16:08:48  southa
+ * CoreXML loader
+ *
  * Revision 1.2  2002/05/25 17:16:15  southa
  * CoreXML implementation
  *
@@ -19,8 +22,8 @@ GameMap::NullHandler(CoreXML& inXML)
 void
 GameMap::HandleGameMapStart(CoreXML& inXML)
 {
-    m_xsize=inXML.GetAttribOrThrow("xsize");
-    m_ysize=inXML.GetAttribOrThrow("ysize");
+    m_xsize=inXML.GetAttribOrThrow("xsize").Val();
+    m_ysize=inXML.GetAttribOrThrow("ysize").Val();
     m_state=kData;
 }
 
@@ -49,14 +52,19 @@ GameMap::HandleDataEnd(CoreXML& inXML)
             break;
         }
     }
-    m_map.push_back(vec);
+    if (vec.size() != m_xsize)
+    {
+        cerr << "Warning: Data size does not match map size" << endl;
+        vec.resize(m_xsize);
+    }
+    m_map.insert(m_map.begin(), vec);
 }
 
 void
 GameMap::Pickle(ostream& inOut) const
 {
     inOut << "<gamemap xsize=\"" << m_xsize << "\" ysize=\"" << m_ysize << "\">" << endl;
-    for (vector< vector<U32> >::const_iterator x_it = m_map.begin(); x_it != m_map.end(); x_it++)
+    for (vector< vector<U32> >::const_reverse_iterator x_it = m_map.rbegin(); x_it != m_map.rend(); x_it++)
     {
         inOut << "<data>";
         for (vector<U32>::const_iterator y_it = x_it->begin(); y_it != x_it->end(); y_it++)
@@ -69,7 +77,7 @@ GameMap::Pickle(ostream& inOut) const
         }
         inOut << "</data>" << endl;
     }
-    inOut << "</gamemap>";
+    inOut << "</gamemap>" << endl;
 }
 
 void
@@ -84,6 +92,11 @@ GameMap::Unpickle(CoreXML& inXML)
 
     m_map.clear();
     inXML.ParseStream(*this);
+    if (m_map.size() != m_ysize)
+    {
+        cerr << "Warning: Data size does not match map size" << endl;
+        m_map.resize(m_ysize);
+    }
 }
 
 void

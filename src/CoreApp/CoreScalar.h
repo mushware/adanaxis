@@ -1,8 +1,11 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id: CoreScalar.h,v 1.3 2002/05/26 16:35:07 southa Exp $
+ * $Id: CoreScalar.h,v 1.4 2002/05/27 12:58:43 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.4  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  * Revision 1.3  2002/05/26 16:35:07  southa
  * CoreXML work
  *
@@ -29,9 +32,10 @@ using namespace std;
 class CoreScalar
 {
 public:
-    CoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
+    CoreScalar(): m_tag(kNone) {}
+    // CoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
     CoreScalar(tVal inVal): m_tag(kVal), m_val(inVal) {}
-    CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
+    // CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
     CoreScalar(const string& inStr): m_tag(kString), m_string(inStr) {}
 
     void Get(tVal &outVal) const;
@@ -50,13 +54,7 @@ public:
     }
 
     bool SlowEquals(const CoreScalar& inScalar) const;
-    
-    CoreScalar& operator=(const char* inChar)
-    {
-        m_string=inChar;
-        m_tag=kString;
-        return *this;
-    }
+
     CoreScalar& operator=(const string &inStr)
     {
         m_string=inStr;
@@ -71,14 +69,15 @@ public:
     }
 
     // Conversion operators
-    operator tVal() const { return Val(); }
-    operator string() const { return String(); }
+    // operator tVal() const { return Val(); }
+    // operator string() const { return String(); }
     
     void ostreamPrint(ostream &inOut) const;
 
 private:
     enum Tag
     {
+        kNone,
         kVal,
         kString
     };

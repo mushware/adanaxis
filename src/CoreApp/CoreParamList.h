@@ -1,8 +1,11 @@
 #ifndef COREPARAMLIST_HP
 #define COREPARAMLIST_HP
 /*
- * $Id: CoreParamList.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreParamList.h,v 1.2 2002/05/24 16:23:08 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.2  2002/05/24 16:23:08  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -21,6 +24,7 @@ public:
         {m_params.push_back(inScalar);}
     void PopParam(tVal& outVal);
     void PopParam(string& outStr);
+    tSize NumParams(void) {return m_params.size();}
     void Clear(void) {m_params.clear();};
     bool Empty(void) {return m_params.empty();}
     void ostreamPrint(ostream& inOut);

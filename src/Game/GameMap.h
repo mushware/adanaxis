@@ -1,6 +1,9 @@
 /*
- * $Id: GameMap.h,v 1.2 2002/05/25 17:16:15 southa Exp $
+ * $Id: GameMap.h,v 1.3 2002/05/26 16:08:49 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.3  2002/05/26 16:08:49  southa
+ * CoreXML loader
+ *
  * Revision 1.2  2002/05/25 17:16:15  southa
  * CoreXML implementation
  *
@@ -17,7 +20,10 @@ public:
     GameMap(): m_state(kInit) {}
     virtual void Pickle(ostream& inOut) const;
     virtual void Unpickle(CoreXML& inXML);
-
+    U32 At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
+    U32 XSize(void) {return m_xsize;}
+    U32 YSize(void) {return m_ysize;}
+    
 protected:
     void XMLStartHandler(CoreXML& inXML);
     void XMLEndHandler(CoreXML& inXML);

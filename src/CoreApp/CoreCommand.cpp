@@ -1,6 +1,9 @@
 /*
- * $Id: CoreCommand.cpp,v 1.6 2002/05/10 16:39:39 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.7 2002/05/24 16:23:09 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.7  2002/05/24 16:23:09  southa
+ * Config and typenames
+ *
  * Revision 1.6  2002/05/10 16:39:39  southa
  * Changed .hp files to .h
  *
@@ -26,6 +29,7 @@
 #include "CoreEnv.h"
 #include "CoreInterpreter.h"
 #include "CoreFlex.h"
+#include "CoreException.h"
 
 void
 CoreCommand::Execute(void)
@@ -37,7 +41,10 @@ CoreCommand::Execute(void)
 void
 CoreCommand::Execute(CoreEnv& ioEnv)
 {
-    m_bison.Parse(*this);
+    if (m_bison.Parse(*this))
+    {
+        throw(CommandFail("Syntax error in '" + m_string + "'"));
+    }
 }
 
 string

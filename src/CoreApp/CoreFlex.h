@@ -1,8 +1,11 @@
 #ifndef COREFLEX_HP
 #define COREFLEX_HP
 /*
- * $Id: CoreFlex.h,v 1.2 2002/03/04 22:30:49 southa Exp $
+ * $Id: CoreFlex.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreFlex.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.2  2002/03/04 22:30:49  southa
  * Interpreter work
  *
@@ -24,5 +27,6 @@ public:
 private:
     void *m_buffer_state; // Opaque to YY_BUFFER_STATE
     CoreScalar m_scalar;
+    bool m_eofFound;
 };
 #endif

@@ -1,8 +1,11 @@
 #ifndef COREEXCEPTION_HP
 #define COREEXCEPTION_HP
 /*
- * $Id: CoreException.h,v 1.3 2002/05/24 18:08:35 southa Exp $
+ * $Id: CoreException.h,v 1.4 2002/05/27 12:58:42 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.4  2002/05/27 12:58:42  southa
+ * GameContract and global configs added
+ *
  * Revision 1.3  2002/05/24 18:08:35  southa
  * CoreXML and game map
  *
@@ -111,6 +114,23 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, XMLFail f)
+{
+    return s<<f.SPrint();
+}
+
+class ExpressionFail: public exception
+{
+public:
+    ExpressionFail(const string &inMessage) {m_message=inMessage;}
+    ~ExpressionFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, ExpressionFail f)
 {
     return s<<f.SPrint();
 }

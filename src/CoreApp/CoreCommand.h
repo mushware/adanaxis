@@ -1,8 +1,11 @@
 #ifndef CORECOMMAND_HP
 #define CORECOMMAND_HP
 /*
- * $Id: CoreCommand.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreCommand.h,v 1.2 2002/05/24 16:23:10 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.2  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -33,10 +36,11 @@ class CoreEnv;
 class CoreCommand
 {
 public:
-    CoreCommand(const string& inStr): m_bison(inStr) {}
+    CoreCommand(const string& inStr): m_bison(inStr), m_string(inStr) {}
     void Execute(CoreEnv& inEnv);
     void Execute(void);
     const string& Name(void) {return m_name;}
+    tSize NumParams(void) {return m_paramList.NumParams();}
     string AllParams(void);
     string PopString(void);
     tVal PopVal(void);
@@ -52,6 +56,7 @@ public:
 private:
     CoreBison m_bison;
     string m_name;
+    string m_string;
     CoreParamList m_paramList;
 };
 #endif

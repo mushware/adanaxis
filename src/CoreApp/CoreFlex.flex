@@ -1,8 +1,11 @@
- // $Id: CoreFlex.flex,v 1.5 2002/03/08 22:48:14 southa Exp $
+ // $Id: CoreFlex.flex,v 1.6 2002/05/10 16:39:40 southa Exp $
 %{
 /*
- * $Id: CoreFlex.flex,v 1.5 2002/03/08 22:48:14 southa Exp $
+ * $Id: CoreFlex.flex,v 1.6 2002/05/10 16:39:40 southa Exp $
  * $Log: CoreFlex.flex,v $
+ * Revision 1.6  2002/05/10 16:39:40  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/03/08 22:48:14  southa
  * Added first avarisse code
  *
@@ -47,7 +50,7 @@ num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
 operator    [-+/*]
 unq_string  [^\n; \t]+
-eos	    [;\n]
+eos	        [;\n]
  
 %%
 
@@ -110,13 +113,18 @@ eos	    [;\n]
 
 <<EOF>> {
     IFFLEXTESTING(cerr << "EOF" << endl);
+    if (!m_eofFound)
+    {
+        m_eofFound=true;
+        return END_OF_FILE;
+    }
     return 0;
 }
 
 
 %%
 
-CoreFlex::CoreFlex(const string& inStr): m_scalar(0)
+CoreFlex::CoreFlex(const string& inStr): m_scalar(0), m_eofFound(false);
 {
     m_buffer_state=yy_scan_bytes(inStr.c_str(), inStr.size());
     if (m_buffer_state == NULL) throw "Flex failed";

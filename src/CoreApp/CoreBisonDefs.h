@@ -9,4 +9,5 @@
 #define	STRING	262
 #define	UNQUOTED_STRING	263
 #define	EOS	264
+#define	END_OF_FILE	265
 

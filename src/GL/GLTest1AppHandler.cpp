@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.8 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.9 2002/05/10 22:38:23 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.9  2002/05/10 22:38:23  southa
+ * Checkpoint
+ *
  * Revision 1.8  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -41,28 +44,11 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-    CoreApp::Instance().Process("loadpixmap ../test/test.spr;");
-    glutInitWindowSize(300,300);
+    CoreApp::Instance().Process("loadpixmap ../test/test.tiff;");
 
-    char buf1[]="glutInit";
-    char buf2[]="";
-    char *argv[] = {buf1,buf2};
-    int argc=sizeof(argv)/sizeof(argv[0]);
-
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE /*| GLUT_ALPHA*/);
-    if (0)
-    {
-        glutGameModeString("640x480:16@60");
-        glutEnterGameMode();
-    }
-    else
-    {
-        glutCreateWindow("GLTest1");
-    }
+    GLUtils::StandardInit();
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     GLUtils::CheckGLError();
 }
 
@@ -74,27 +60,12 @@ GLTest1AppHandler::Display(void)
     glLineWidth(5);
     static double ticker=0;
     static TextureRef texNum=0;
-    
-    glDrawBuffer(GL_BACK);
-    glClearColor(1.0, 1.0, 1.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_HEIGHT));
 
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
+    GLUtils::DisplayPrologue();
+    GLUtils::ClearScreen();
+    GLUtils::OrthoPrologue();
 
-    glPushAttrib(GL_ENABLE_BIT);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_BLEND);
-    glDisable(GL_LINE_SMOOTH);
-    
-    glRasterPos2f(0, 0);
+    GLUtils::RasterPos(0, 0);
     glBitmap(0,0,0,0,20+20*sin(ticker), 20+20*cos(ticker),NULL);
     const GLTexture& tex=GLData::Instance().GetTexture(0);
     static int printCtr=0;
@@ -107,13 +78,9 @@ GLTest1AppHandler::Display(void)
     glDrawPixels(tex.Width(texNum), tex.Height(texNum), tex.PixelFormat(texNum),
                      tex.PixelType(texNum), tex.DataPtr(texNum));
     
-    glPopAttrib();
 
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glutSwapBuffers();
+    GLUtils::OrthoEpilogue();
+    GLUtils::DisplayEpilogue();
     double oldTicker=ticker;
     ticker+=0.10;
     if ((int) ticker != (int) oldTicker)

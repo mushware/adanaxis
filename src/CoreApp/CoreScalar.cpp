@@ -1,6 +1,9 @@
 /*
- * $Id: CoreScalar.cpp,v 1.4 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.5 2002/05/24 16:23:10 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.5  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.4  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -16,12 +19,17 @@
  */
 
 #include "CoreScalar.h"
-#include <strstream>
+#include "CoreException.h"
+
 void
 CoreScalar::Get(tVal& outVal) const
 {
     switch (m_tag)
     {
+        case kNone:
+            throw(ExpressionFail("Use of undefined value"));
+            break;
+            
         case kVal:
             outVal=m_val;
             break;
@@ -29,7 +37,7 @@ CoreScalar::Get(tVal& outVal) const
         case kString:
             outVal=atof(m_string.c_str());
             break;
-            
+
         default:
             throw "CoreScalar value fault";
     }
@@ -40,13 +48,15 @@ CoreScalar::Get(string& outStr) const
 {
     switch (m_tag)
     {
+        case kNone:
+            throw(ExpressionFail("Use of undefined value"));
+            break;
+
         case kVal:
         {
-            char buf[256];
-            buf[sizeof(buf)-1]='\0';
-            ostrstream out(buf, sizeof(buf)-1);
-            out << m_val;
-            outStr=buf;
+            ostringstream strm;
+            strm << m_val;
+            outStr=strm.str();
         }
         break;
             
@@ -75,6 +85,10 @@ CoreScalar::ostreamPrint(ostream& inOut) const
 {
     switch (m_tag)
     {
+        case kNone:
+            inOut << "undefined";
+            break;
+
         case kVal:
             inOut << m_val;
             break;
@@ -87,4 +101,3 @@ CoreScalar::ostreamPrint(ostream& inOut) const
             throw "CoreScalar value fault";
     }
 }
-        

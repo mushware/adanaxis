@@ -1,8 +1,11 @@
 #ifndef COREBISON_HP
 #define COREBISON_HP
 /*
- * $Id: CoreBison.h,v 1.3 2002/03/05 22:44:45 southa Exp $
+ * $Id: CoreBison.h,v 1.1 2002/05/10 16:39:37 southa Exp $
  * $Log: CoreBison.h,v $
+ * Revision 1.1  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.3  2002/03/05 22:44:45  southa
  * Changes to command handling
  *
@@ -27,7 +30,7 @@ public:
     CoreBison(const string& inStr):
         m_flex(CoreFlex(inStr)) {}
     CoreBison(CoreFlex& inFlex): m_flex(inFlex) {}
-    void Parse(CoreCommand& inCommand);
+    int Parse(CoreCommand& inCommand);
     CoreScalar Despatch(CoreScalar& inCommand);
     void PushParam(CoreScalar& inParam);
     void ClearParams(void);

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameContract.cpp,v 1.1 2002/05/27 12:58:43 southa Exp $
+ * $Log: GameContract.cpp,v $
+ * Revision 1.1  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  */
 
 #include "GameContract.h"
@@ -13,8 +16,9 @@
 
 GameContract::GameContract(): m_state(kInit), m_gameMap(NULL)
 {
-    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH"));
+    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").String());
     GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
+    GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
 }
 
 GameContract::~GameContract()
@@ -44,33 +48,72 @@ GameContract::Process(bool &outDoQuit, bool &outRedraw)
 void
 GameContract::Display(void)
 {
-    glDrawBuffer(GL_BACK);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    switch (m_state)
+    {
+        case kInit:
+            InitDisplay();
+            break;
+        
+        case kRunning:
+            RunningDisplay();
+            break;
+    }
+}
+
+
+void
+GameContract::InitDisplay(void)
+{
+    GLUtils::DisplayPrologue();
+    GLUtils::ClearScreen();
+    GLUtils::OrthoPrologue();
+    GLUtils::RasterPos(100,100);
+    GLUtils::SetColour(1,1,1);
+    GLUtils::BitmapText("Loading...");
+    GLUtils::OrthoEpilogue();
+    GLUtils::DisplayEpilogue();
+}
+    
+void
+GameContract::RunningDisplay(void)
+{
+    COREASSERT(m_gameMap != NULL);
+    GLUtils::DisplayPrologue();
+    GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    glRasterPos2f(0, 0);
-
-    glBegin(GL_TRIANGLES);
-    glColor3f(0.5, 0.5, 0.5);
-    glVertex2f(16,0);
-    glVertex2f(0,0);
-    glVertex2f(0,16);
-    glEnd();
-
+    U32 xsize=m_gameMap->XSize();
+    U32 ysize=m_gameMap->YSize();
+    for (U32 x=0; x<xsize; x++)
+    {
+        for (U32 y=0; y<ysize; y++)
+        {
+            U32 mapVal=m_gameMap->At(x,y);
+            GLUtils::SetColour(mapVal, 0, 1-mapVal);
+            tVal basex=32*x;
+            tVal basey=32*y;
+            GLUtils::DrawRectangle(basex, basey, basex+31, basey+31);
+        }
+    }
     GLUtils::OrthoEpilogue();
-    glutSwapBuffers();
+    GLUtils::DisplayEpilogue();
 }
 
 void
 GameContract::Init(void)
 {
+    string filename;
+    // Load and decompose the pixel maps
+    filename=GameGlobalConfig::Instance().Get("IMAGEPATH").String() + "/gra1.tiff";
+    CoreApp::Instance().Process("loadpixmap gra1 "+filename);
+    CoreApp::Instance().Process("decompose gra1 0 0 32 32 4 4");
+    
+    // Load the game map
     m_gameMap=new GameMap;
-    string inFilename(GameGlobalConfig::Instance().Get("MAPPATH"));
-    inFilename+="/GameMap.xml";
-    ifstream inStream(inFilename.c_str());
-    if (!inStream) throw(LoaderFail(inFilename, "Could not open file"));
-    CoreXML xml(inStream, inFilename);
+    filename=GameGlobalConfig::Instance().Get("MAPPATH").String() + "/GameMap.xml";
+    ifstream inStream(filename.c_str());
+    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    CoreXML xml(inStream, filename);
     m_gameMap->Unpickle(xml);
     m_gameMap->Pickle(cout);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.6 2002/05/10 16:40:38 southa Exp $
+ * $Id: main.cpp,v 1.7 2002/05/27 12:58:43 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.7  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  * Revision 1.6  2002/05/10 16:40:38  southa
  * Changed .hp files to .h
  *
@@ -36,7 +39,6 @@ int main(int argc, char *argv[])
         str.append(argv[i]);
         if (i+1 != argc) str.append(" ");
     }
-    str.append(";");
     cout << "Command line was '" << str << "'" << endl;
     try
     {

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameContract.h,v 1.1 2002/05/27 12:58:43 southa Exp $
+ * $Log: GameContract.h,v $
+ * Revision 1.1  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  */
 
 #include "mushCore.h"
@@ -26,6 +29,8 @@ protected:
 
     virtual void Init(void);
     virtual void Running(bool &outRedraw);
+    virtual void InitDisplay(void);
+    virtual void RunningDisplay(void);
 
 private:
     State m_state;

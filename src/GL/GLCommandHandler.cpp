@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.10 2002/05/08 16:31:20 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.11 2002/05/10 16:41:42 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.11  2002/05/10 16:41:42  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.10  2002/05/08 16:31:20  southa
  * Created API directory
  *
@@ -39,6 +42,7 @@
 #include "GLData.h"
 #include "GLTextureSpr.h"
 #include "GLTextureGIF.h"
+#include "GLTextureTIFF.h"
 #include "GLTest.h"
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
@@ -54,34 +58,46 @@ GLCommandHandler::InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv)
 CoreScalar
 GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
+    string name;
     string filename;
+    if (ioCommand.NumParams() != 2)
+    {
+        throw(CommandFail("Usage: loadpixmap <name> <filename>"));
+    }
+    ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    try
+    CoreRegExp re;
+    if (re.Search(filename, "(spr|SPR)$"))
     {
-        CoreRegExp re;
-        if (re.Search(filename, "spr$"))
-        {
-            GLData::Instance().AddTexture(GLTextureSpr(filename));
-        }
-        else if (re.Search(filename, "gif$"))
-        {
-            GLData::Instance().AddTexture(GLTextureGIF(filename));
-        }
-        else
-        {
-            throw(LoaderFail(filename, "Couldn't decode extension"));
-        }
+        GLData::Instance().AddTexture(GLTextureSpr(filename));
     }
-    catch (LoaderFail f)
+    else if (re.Search(filename, "(gif|GIF)$"))
     {
-        cerr << f;
+        GLData::Instance().AddTexture(GLTextureGIF(filename));
     }
+    else if (re.Search(filename, "(tif|tiff|TIF|TIFF)$"))
+    {
+        GLData::Instance().AddTexture(GLTextureTIFF(filename));
+    }
+    else
+    {
+        throw(LoaderFail(filename, "Couldn't decode extension"));
+    }
+
     return CoreScalar(0);
 }
+
+CoreScalar
+GLCommandHandler::Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    // Format of command is decompose <pixmapname> <xsize> <ysize> <xstart> <ystart> <xnum> <ynum>
+}
+
 
 void
 GLCommandHandler::Install(void)
 {
     CoreApp::Instance().AddHandler("initgl", InitGL);
     CoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
+    CoreApp::Instance().AddHandler("decompose", Decompose);
 }

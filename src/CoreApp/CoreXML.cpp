@@ -1,6 +1,9 @@
 /*
- * $Id: CoreXML.cpp,v 1.2 2002/05/25 17:17:18 southa Exp $
+ * $Id: CoreXML.cpp,v 1.3 2002/05/26 16:08:48 southa Exp $
  * $Log: CoreXML.cpp,v $
+ * Revision 1.3  2002/05/26 16:08:48  southa
+ * CoreXML loader
+ *
  * Revision 1.2  2002/05/25 17:17:18  southa
  * CoreXML implementation
  *
@@ -98,7 +101,7 @@ CoreXML::GetAttrib(const string& inName)
     }
     else
     {
-        return "";
+        return string("");
     }
 }
 
