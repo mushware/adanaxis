@@ -108,9 +108,10 @@
 		};
 	};
 	F56090B30217E00A014AEE46 = {
-		activeArgIndex = 0;
+		activeArgIndex = 1;
 		argumentStrings = (
 			"launch /bin/ls;initGL;",
+			"initGL;loadPixmap test.gif",
 		);
 		debuggerPlugin = GDBDebugging;
 		dylibVariantSuffix = "";
