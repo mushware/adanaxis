@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.14 2004/01/01 21:15:46 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.15 2004/01/02 21:13:13 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.15  2004/01/02 21:13:13  southa
+ * Source conditioning
+ *
  * Revision 1.14  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -189,6 +192,7 @@ namespace Mushware
     typedef unsigned short U16;
     typedef signed char S8;
     typedef unsigned char U8;
+    typedef double tXMLVal;
 };
 
 #ifdef MIMIC_VALARRAY

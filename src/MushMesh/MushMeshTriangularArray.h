@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l6e5pdefOkqZRS3BnyRMLA
 /*
- * $Id: MushMeshTriangularArray.h,v 1.2 2004/01/01 21:15:46 southa Exp $
+ * $Id: MushMeshTriangularArray.h,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -215,7 +218,7 @@ MushMeshTriangularArray<T>::Print(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
     ioOut << "order=" << m_order << ", ";
-    ioOut << "values=" << m_values;
+    //FIXME! (Needs MushcoreIO.h ) ioOut << "values=" << m_values;
     ioOut << "]";
 }
 

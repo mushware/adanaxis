@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } yFpbFvl0kLTLgwf8WZnbZA
 /*
- * $Id: MushPiePiece.cpp,v 1.3 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.4 2004/01/04 14:36:37 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.4  2004/01/04 14:36:37  southa
+ * Handle 'inline' in source conditioner
+ *
  * Revision 1.3  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -66,8 +69,6 @@ void
 MushPiePiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "pos=" << m_pos << ", ";
-    ioOut << "vel=" << m_vel << ", ";
     ioOut << "sleepState=" << m_sleepState;
     ioOut << "]";
 }
@@ -77,14 +78,6 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     if (inTagStr == "obj")
     {
         ioIn >> *this;
-    }
-    else if (inTagStr == "pos")
-    {
-        ioIn >> m_pos;
-    }
-    else if (inTagStr == "vel")
-    {
-        ioIn >> m_vel;
     }
     else if (inTagStr == "sleepState")
     {
@@ -99,11 +92,7 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("pos");
-    ioOut << m_pos;
-    ioOut.TagSet("vel");
-    ioOut << m_vel;
     ioOut.TagSet("sleepState");
     ioOut << m_sleepState;
 }
-//%outOfLineFunctions } /c/PsEjrbOIVomYYhyKRJw
+//%outOfLineFunctions } J66q4nmmUiKYBn7WNet10A

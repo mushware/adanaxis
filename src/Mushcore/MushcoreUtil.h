@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XWTplRc9rgj8oYPVlTvtrA
 /*
- * $Id: MushcoreUtil.h,v 1.11 2003/10/04 12:23:09 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.12 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.12  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/10/04 12:23:09  southa
  * File renaming
  *
@@ -93,7 +96,32 @@ public:
     static std::string XMLMetaRemove(const std::string& inStr);
     static bool XMLAttributeExtract(std::string& outTypeStr, const std::string& inTagData, const std::string& inAttrName);
     static std::istream *IStringStreamNew(const std::string& inStr);
+    template<class T> static std::vector<T> ArrayToVector(const T inArray[], Mushware::U32 inSize);
+    template<class T> static void VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue = T());
 };
+
+template<class T>
+inline std::vector<T>
+MushcoreUtil::ArrayToVector(const T inArray[], Mushware::U32 inSize)
+{
+    std::vector<T> valueVec(inSize);
+    for (Mushware::U32 i=0; i<inSize; ++i)
+    {
+        valueVec[i] = inArray[i];
+    }
+    return valueVec;
+}
+
+template<class T>
+inline void
+MushcoreUtil::VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue)
+{
+    for (Mushware::U32 i=0; i<inSize; ++i)
+    {
+        inArray[i] = (i < inVec.size())?inVec[i]:inPadValue;
+    }
+}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

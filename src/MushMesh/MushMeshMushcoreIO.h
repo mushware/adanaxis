@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHSTANDARD_H
-#define MUSHMESHSTANDARD_H
-//%includeGuardStart } fMBJTUeUxG+dP9rT1wCfxg
+#ifndef MUSHMESHMUSHCOREIO_H
+#define MUSHMESHMUSHCOREIO_H
+//%includeGuardStart } 87V0oANPKNQtuQeirgbldw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshStandard.h
+ * File: src/MushMesh/MushMeshMushcoreIO.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,24 +14,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7tVHoBg9eeZiZvmzxRxBhw
+//%Header } xqdCCut+mdYbwvLEztS+Rw
+/*
+ * $Id$
+ * $Log$
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreStandard.h>
-#include <Mushcore/MushcoreFail.h>
+#include <Mushcore/MushcoreIO.h>
 #elif defined(HAVE_MUSHCORE_H)
-#include <MushcoreStandard.h>
-#include <MushcoreFail.h>
+#include <MushcoreIO.h>
 #else
-#include "MushcoreStandard.h"
-#include "MushcoreFail.h"
+#include "MushcoreIO.h"
 #endif
-
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rYJRsdhM+/o+yEinlvmmIg
 /*
- * $Id: MushPieStandard.h,v 1.1 2004/01/02 11:57:47 southa Exp $
+ * $Id: MushPieStandard.h,v 1.2 2004/01/02 17:31:48 southa Exp $
  * $Log: MushPieStandard.h,v $
+ * Revision 1.2  2004/01/02 17:31:48  southa
+ * MushPie work and XML fixes
+ *
  * Revision 1.1  2004/01/02 11:57:47  southa
  * Created
  *
@@ -29,16 +32,20 @@
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/Mushcore.h>
-#include <Mushcore/MushcoreIO.h>
-#else
-#if defined(HAVE_MUSHCORE_H)
+#elif defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
-#include <MushcoreIO.h>
 #else
 #include "Mushcore.h"
-#include "MushcoreIO.h"
 #endif
+
+#if defined(HAVE_MUSHMESH_MUSHMESH_H)
+#include <MushMesh/MushMesh.h>
+#elif defined(HAVE_MUSHMESH_H)
+#include <MushMesh.h>
+#else
+#include "MushMesh.h"
 #endif
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

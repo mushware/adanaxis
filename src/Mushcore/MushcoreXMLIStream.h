@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } n+bI30INdOIJpmv6BHEMxA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.17 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.18 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.18  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.17  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -97,6 +100,7 @@ public:
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(Mushware::tVal& outObj);
+    void ObjectRead(Mushware::tXMLVal& outObj);
     void ObjectRead(std::string& outStr);
 
     void Throw(const std::string& inMessage) const;
@@ -154,6 +158,12 @@ operator>>(MushcoreXMLIStream& ioIn, Mushware::U8& outObj)
 
 inline void
 operator>>(MushcoreXMLIStream& ioIn, Mushware::tVal& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, Mushware::tXMLVal& outObj)
 {
     ioIn.ObjectRead(outObj);
 }

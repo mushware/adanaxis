@@ -15,6 +15,7 @@
 
 #include "MushMeshPatchEnd.h"
 
+#include "MushMeshMushcoreIO.h"
 #include "MushMeshSTL.h"
 #include "MushMeshSubdivide.h"
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 5yrDa+Xrdt7jgCyT3G1cRw
 /*
- * $Id: MushcoreFactory.cpp,v 1.1 2003/10/02 23:33:38 southa Exp $
+ * $Id: MushcoreFactory.cpp,v 1.2 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreFactory.cpp,v $
+ * Revision 1.2  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *
@@ -22,6 +25,7 @@
 #include "MushcoreFactory.h"
 
 #include "MushcoreFail.h"
+#include "MushcoreIO.h"
 
 using namespace Mushware;
 using namespace std;

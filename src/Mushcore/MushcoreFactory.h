@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PCqvrnn/p0THwedPuNPI9g
 /*
- * $Id: MushcoreFactory.h,v 1.1 2003/10/02 23:33:38 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.2 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.2  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *
@@ -26,7 +29,6 @@
 #include "MushcoreStandard.h"
 #include "MushcoreSingleton.h"
 #include "MushcoreVirtualObject.h"
-#include "MushcoreIO.h"
 
 //:generate ostream
 class MushcoreFactory : public MushcoreSingleton<MushcoreFactory>

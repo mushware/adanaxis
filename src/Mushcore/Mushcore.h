@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0fdTqg9vFtF3oFat0HJ4HA
 /*
- * $Id: Mushcore.h,v 1.16 2003/10/02 23:33:38 southa Exp $
+ * $Id: Mushcore.h,v 1.17 2004/01/02 21:13:11 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.17  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/10/02 23:33:38  southa
  * XML polymorphic objects
  *
@@ -86,7 +89,7 @@
 #include "MushcoreInfo.h"
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
-#include "MushcoreIO.h"
+// #include "MushcoreIO.h"
 #include "MushcoreObject.h"
 #include "MushcorePickle.h"
 #include "MushcoreRegExp.h"

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } TQc+Pef4I2KQ3HNa4YFM4A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.12 2004/01/02 17:31:48 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.13 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.13  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.12  2004/01/02 17:31:48  southa
  * MushPie work and XML fixes
  *
@@ -197,6 +200,17 @@ MushcoreXMLIStream::ObjectRead(tVal& outObj)
     if (!(dataStream >> outObj))
     {
         Throw("Read tVal failed");
+    }
+}    
+
+void
+MushcoreXMLIStream::ObjectRead(tXMLVal& outObj)
+{
+    string dataStr = DataUntilTake(",)=<");
+    istringstream dataStream(dataStr);
+    if (!(dataStream >> outObj))
+    {
+        Throw("Read of XML numerical value failed");
     }
 }    
 

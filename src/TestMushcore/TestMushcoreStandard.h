@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } /AKq2mFxZ2UD/0DtLiL98g
 /*
- * $Id: TestMushcoreStandard.h,v 1.3 2003/09/17 19:40:39 southa Exp $
+ * $Id: TestMushcoreStandard.h,v 1.4 2004/01/02 21:13:18 southa Exp $
  * $Log: TestMushcoreStandard.h,v $
+ * Revision 1.4  2004/01/02 21:13:18  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -37,11 +40,14 @@
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/Mushcore.h>
+#include <Mushcore/MushcoreIO.h>
 #else
 #if defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
+#include <MushcoreIO.h>
 #else
 #include "Mushcore.h"
+#include "MushcoreIO.h"
 #endif
 #endif
 

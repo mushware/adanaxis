@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aCUlrKmjSFMJPZm1q0resw
 /*
- * $Id: MushMesh.h,v 1.10 2003/10/26 10:05:30 southa Exp $
+ * $Id: MushMesh.h,v 1.11 2004/01/02 21:13:10 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.11  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/10/26 10:05:30  southa
  * End patch testing
  *
@@ -56,7 +59,8 @@
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
-// #include "MushMeshSubdivide.h"
+#include "MushMeshQuaternion.h"
+// MushMeshSubdivide.h excluded
 #include "MushMeshTriangularArray.h"
 #include "MushMeshVector.h"
 #include "MushMeshUtils.h"

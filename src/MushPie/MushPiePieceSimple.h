@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vgNHjnCCayhlm093vD2VmA
 /*
- * $Id: MushPiePieceSimple.h,v 1.1 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushPiePieceSimple.h,v 1.2 2004/01/04 14:36:37 southa Exp $
  * $Log: MushPiePieceSimple.h,v $
+ * Revision 1.2  2004/01/04 14:36:37  southa
+ * Handle 'inline' in source conditioner
+ *
  * Revision 1.1  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -26,10 +29,10 @@
 #include "MushPieStandard.h"
 
 #include "MushPiePiece.h"
+#include "MushPiePosition.h"
 
 //:xml1base MushPiePiece
-//:notinline generate ostream xml1
-//:notinline generate standard
+//:generate ostream xml1 standard
 class MushPiePieceSimple : public MushPiePiece
 {
 public:
@@ -37,22 +40,19 @@ public:
     virtual ~MushPiePieceSimple() {}
 
 private:
-    Mushware::t3Val m_angPos; //:readwrite
-    Mushware::t3Val m_angVel; //:readwrite
+    MushPiePosition m_pos; //:readwrite
 //%classPrototypes {
 public:
-    const Mushware::t3Val& AngPosGet(void) const { return m_angPos; }
-    void AngPosSet(const Mushware::t3Val& inValue) { m_angPos=inValue; }
-    const Mushware::t3Val& AngVelGet(void) const { return m_angVel; }
-    void AngVelSet(const Mushware::t3Val& inValue) { m_angVel=inValue; }
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+    const MushPiePosition& PosGet(void) const { return m_pos; }
+    void PosSet(const MushPiePosition& inValue) { m_pos=inValue; }
     virtual const char *AutoNameGet(void) const;
     virtual MushPiePieceSimple *AutoClone(void) const;
     virtual MushPiePieceSimple *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-//%classPrototypes } R0udf6xrpSnBTdoVgo0CeA
+    void AutoPrint(std::ostream& ioOut) const;
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } QttjoPd2VgkDPSEVN3eCLA
 };
 //%inlineHeader {
 inline std::ostream&

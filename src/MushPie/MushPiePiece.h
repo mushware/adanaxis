@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.3 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushPiePiece.h,v 1.4 2004/01/04 14:36:37 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.4  2004/01/04 14:36:37  southa
+ * Handle 'inline' in source conditioner
+ *
  * Revision 1.3  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -52,17 +55,11 @@ public:
 protected:
         
 private:
-    Mushware::t3Val m_pos; //:readwrite
-    Mushware::t3Val m_vel; //:readwrite
     tSleepState m_sleepState; //:readwrite
     //MushcoreDataRef<Mushware::U32> m_templateRef; //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::t3Val& PosGet(void) const { return m_pos; }
-    void PosSet(const Mushware::t3Val& inValue) { m_pos=inValue; }
-    const Mushware::t3Val& VelGet(void) const { return m_vel; }
-    void VelSet(const Mushware::t3Val& inValue) { m_vel=inValue; }
     const tSleepState& SleepStateGet(void) const { return m_sleepState; }
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
     virtual const char *AutoNameGet(void) const;
@@ -72,7 +69,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OluR/oNEUAIT3kZAkE577w
+//%classPrototypes } oH3BpqHacmjoUXFvlp33Eg
 };
 //%inlineHeader {
 inline std::ostream&
