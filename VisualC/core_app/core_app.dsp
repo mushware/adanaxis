@@ -137,6 +137,14 @@ SOURCE=..\..\src\TestMushMesh\TestMushMeshSubdivide.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\TestMushMesh\TestMushMeshTriangularArray.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshTriangularArray.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\TestMushMesh\TestMushMeshUtils.cpp
 # End Source File
 # Begin Source File
@@ -205,6 +213,14 @@ SOURCE=..\..\src\MushMesh\MushMeshPatch.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\MushMesh\MushMeshPatchEnd.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshPatchEnd.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\MushMesh\MushMeshPatchPipe.cpp
 # End Source File
 # Begin Source File
@@ -258,6 +274,14 @@ SOURCE=..\..\src\MushMesh\MushMeshSubdivide.cpp
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshSubdivide.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshTriangularArray.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshTriangularArray.h
 # End Source File
 # Begin Source File
 

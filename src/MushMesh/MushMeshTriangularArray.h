@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHARRAY_H
-#define MUSHMESHARRAY_H
-//%includeGuardStart } CYljICa3h+r4WSdWcHsDTw
+#ifndef MUSHMESHTRIANGULARARRAY_H
+#define MUSHMESHTRIANGULARARRAY_H
+//%includeGuardStart } CFgyxFklArAzLRPExooCpg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshArray.h
+ * File: src/MushMesh/MushMeshTriangularArray.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,7 +14,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } EEaZ1vjndQRXjGZYADcVMQ
+//%Header } yeuO0kZZevx142QRdFnXSQ
 /*
  * $Id: MushMeshArray.h,v 1.9 2003/10/20 13:02:53 southa Exp $
  * $Log: MushMeshArray.h,v $
@@ -51,17 +51,12 @@
 #include "MushMeshVector.h"
 #include "MushMeshMath.h"
 
-#define MUSHMESHARRAY_VERBOSE_DEBUG
-#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
-#include "MushMeshSTL.h"
-#endif
-
 template <class T>
-class MushMeshArray
+class MushMeshTriangularArray
 {
 public:
-    MushMeshArray();
-    MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
+    MushMeshTriangularArray();
+    MushMeshTriangularArray(Mushware::U32 inXSize, Mushware::U32 inOrder);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
     const T& RefGet(Mushware::U32 inX, Mushware::U32 inY) const;
     const T& Get(const Mushware::t2U32& inPos) const;
@@ -70,18 +65,18 @@ public:
     const Mushware::t2U32 SizeGet(void) const;
     void SizeSet(const Mushware::t2U32& inSize);
     Mushware::U32 XSizeGet(void) const { return m_xSize; }
-    Mushware::U32 YSizeGet(void) const { return m_ySize; }
+    Mushware::U32 OrderGet(void) const { return m_order; }
 
-    bool EqualIs(const MushMeshArray<T>& inObj) const;
+    bool EqualIs(const MushMeshTriangularArray<T>& inObj) const;
 
     void Print(std::ostream& ioOut) const;
 
 #ifndef HAVE_RESIZING_VALARRAY_ASSIGNMENT
-    MushMeshArray<T>& operator=(const MushMeshArray<T>& inObj)
+    MushMeshTriangularArray<T>& operator=(const MushMeshTriangularArray<T>& inObj)
     {
         // With most compilers we must resize the valarray before assignment
         m_xSize = inObj.m_xSize;
-        m_ySize = inObj.m_ySize;
+        m_order = inObj.m_order;
         if (m_values.size() != inObj.m_values.size())
         {
             m_values.resize(0); // Prevent copies in the next resize
@@ -93,149 +88,148 @@ public:
 #endif
 
 private:
+    Mushware::U32 IndexGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    bool BoundsCheck(Mushware::U32 inX, Mushware::U32 inY) const;
+
     Mushware::U32 m_xSize;
-    Mushware::U32 m_ySize;
+    Mushware::U32 m_order;
+
     MushwareValarray<T> m_values;
 };
 
 template <class T>
-MushMeshArray<T>::MushMeshArray() :
+MushMeshTriangularArray<T>::MushMeshTriangularArray() :
     m_xSize(0),
-    m_ySize(0)
+    m_order(0)
 {
 }
 
 template <class T>
-MushMeshArray<T>::MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize) :
-    m_xSize(inXSize),
-    m_ySize(inYSize),
-    m_values(inXSize*inYSize)
+MushMeshTriangularArray<T>::MushMeshTriangularArray(Mushware::U32 inXSize, Mushware::U32 inOrder) :
+    m_xSize(0),
+    m_order(0)
 {
+        SizeSet(Mushware::t2U32(inXSize, inOrder));
 }
 
 template <class T>
-inline const T&
-MushMeshArray<T>::Get(Mushware::U32 inX, Mushware::U32 inY) const
+inline Mushware::U32
+MushMeshTriangularArray<T>::IndexGet(Mushware::U32 inX, Mushware::U32 inY) const
 {
-#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
-    if (inX >= m_xSize || inY >= m_ySize)
+    return (m_order*(inX*(inX-1))) / 2 + inY;
+}
+
+template <class T>
+inline bool
+MushMeshTriangularArray<T>::BoundsCheck(Mushware::U32 inX, Mushware::U32 inY) const
+{
+    if (inX >= m_xSize || inY >= inX * m_order)
     {
-        std::ostringstream message;
-        message << "MushMeshArray::Get failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
-        throw MushcoreLogicFail(message.str());
+        MushMeshUtils::BoundaryThrow(inX, m_xSize, inY, inX * m_order);
     }
-#else
-    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
-#endif
-    return m_values[inX + m_xSize * inY];
+    return true;
 }
 
 template <class T>
 inline const T&
-MushMeshArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
+MushMeshTriangularArray<T>::Get(Mushware::U32 inX, Mushware::U32 inY) const
 {
-#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
-    if (inX >= m_xSize || inY >= m_ySize)
-    {
-        std::ostringstream message;
-        message << "MushMeshArray::RefGet failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
-        throw MushcoreLogicFail(message.str());
-    }
-#else
-    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
-#endif
-    return m_values[inX + m_xSize * inY];
+    MUSHCOREASSERT(BoundsCheck(inX, inY));
+    MUSHCOREASSERT(IndexGet(inX, inY) < m_values.size());
+    return m_values[IndexGet(inX, inY)];
 }
 
 template <class T>
 inline const T&
-MushMeshArray<T>::Get(const Mushware::t2U32& inPos) const
+MushMeshTriangularArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
+{
+    MUSHCOREASSERT(BoundsCheck(inX, inY));
+    MUSHCOREASSERT(IndexGet(inX, inY) < m_values.size());
+    return m_values[IndexGet(inX, inY)];
+}
+
+template <class T>
+inline const T&
+MushMeshTriangularArray<T>::Get(const Mushware::t2U32& inPos) const
 {
     return Get(inPos.X(), inPos.Y());
 }
 
 template <class T>
 inline void
-MushMeshArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
+MushMeshTriangularArray<T>::Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
-#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
-    if (inX >= m_xSize || inY >= m_ySize)
-    {
-        std::ostringstream message;
-        message << "MushMeshArray::Set failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
-        throw MushcoreLogicFail(message.str());
-    }
-#else
-    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
-#endif
-    m_values[inX + m_xSize * inY] = inValue;
+    MUSHCOREASSERT(BoundsCheck(inX, inY));
+    MUSHCOREASSERT(IndexGet(inX, inY) < m_values.size());
+    m_values[IndexGet(inX, inY)] = inValue;
 }
 
 template <class T>
 inline void
-MushMeshArray<T>::Set(const T& inValue, const Mushware::t2U32& inPos)
+MushMeshTriangularArray<T>::Set(const T& inValue, const Mushware::t2U32& inPos)
 {
     Set(inValue, inPos.X(), inPos.Y());
 }
 
 template <class T>
 inline const Mushware::t2U32
-MushMeshArray<T>::SizeGet(void) const
+MushMeshTriangularArray<T>::SizeGet(void) const
 {
-    return Mushware::t2U32(m_xSize, m_ySize);
+    return Mushware::t2U32(m_xSize, m_order);
 }
 
 template <class T>
 inline void
-MushMeshArray<T>::SizeSet(const Mushware::t2U32& inSize)
+MushMeshTriangularArray<T>::SizeSet(const Mushware::t2U32& inSize)
 {
-    if (Mushware::t2U32(m_xSize, m_ySize) != inSize)
+    if (Mushware::t2U32(m_xSize, m_order) != inSize)
     {
         //  This is a destructive resize.  No previous elements are copied
         m_values.resize(0); 
         m_xSize = inSize.X();
-        m_ySize = inSize.Y();
-        m_values.resize(m_xSize * m_ySize);
+        m_order = inSize.Y();
+        // Size happens to be the index value of the first element that we don't have
+        m_values.resize(IndexGet(m_xSize, 0));
     }
 }
 
 template <class T>
 inline bool
-MushMeshArray<T>::EqualIs(const MushMeshArray<T>& inObj) const
+MushMeshTriangularArray<T>::EqualIs(const MushMeshTriangularArray<T>& inObj) const
 {
     return (m_xSize == inObj.m_xSize) &&
-           (m_ySize == inObj.m_ySize) &&
+           (m_order == inObj.m_order) &&
            MushMeshUtils::EqualIs(m_values, inObj.m_values); // Workaround for STL problem
 }
 
 template <class T>
 inline void
-MushMeshArray<T>::Print(std::ostream& ioOut) const
+MushMeshTriangularArray<T>::Print(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "xSize=" << m_xSize << ", ";
-    ioOut << "ySize=" << m_ySize << ", ";
+    ioOut << "order=" << m_order << ", ";
     ioOut << "values=" << m_values;
     ioOut << "]";
 }
 
 template <class T>
 inline bool
-operator==(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
+operator==(const MushMeshTriangularArray<T>& a, const MushMeshTriangularArray<T>& b)
 {
     return a.EqualIs(b);
 }
 
 template <class T>
 inline bool
-operator!=(const MushMeshArray<T>& a, const MushMeshArray<T>& b)
+operator!=(const MushMeshTriangularArray<T>& a, const MushMeshTriangularArray<T>& b)
 {
     return !a.EqualIs(b);
 }
 
 template <class T>
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMeshArray<T>& inObj)
+operator<<(std::ostream& ioOut, const MushMeshTriangularArray<T>& inObj)
 {
     inObj.Print(ioOut);
     return ioOut;

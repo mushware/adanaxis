@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshPatchPipe.cpp
+ * File: src/MushMesh/MushMeshPatchEnd.cpp
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -10,10 +10,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } BLqXz2QPeS3u0FChdbo3Ow
+//%Header } koaMdD8Sbr37+5s2etXK8Q
 
 
-#include "MushMeshPatchPipe.h"
+#include "MushMeshPatchEnd.h"
 
 #include "MushMeshSTL.h"
 #include "MushMeshSubdivide.h"
@@ -23,13 +23,13 @@ using namespace Mushware;
 using namespace std;
 
 const Mushware::tGeometryArray&
-MushMeshPatchPipe::GeometryGet(void)
+MushMeshPatchEnd::GeometryGet(void)
 {
     return m_geometry.BaseGet();
 }
 
 void
-MushMeshPatchPipe::GeometrySet(const tGeometryArray& inArray)
+MushMeshPatchEnd::GeometrySet(const tGeometryArray& inArray)
 {
     Touch();
     StorageTouch();
@@ -43,7 +43,7 @@ MushMeshPatchPipe::GeometrySet(const tGeometryArray& inArray)
 }
 
 const Mushware::tTexCoordArray&
-MushMeshPatchPipe::TexCoordGet(Mushware::U32 inIndex)
+MushMeshPatchEnd::TexCoordGet(Mushware::U32 inIndex)
 {
     if (inIndex >= m_texCoords.BaseGet().size())
     {
@@ -56,7 +56,7 @@ MushMeshPatchPipe::TexCoordGet(Mushware::U32 inIndex)
 
 
 void
-MushMeshPatchPipe::TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIndex)
+MushMeshPatchEnd::TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIndex)
 {
     Touch();
     StorageTouch();
@@ -69,7 +69,7 @@ MushMeshPatchPipe::TexCoordSet(const tTexCoordArray& inArray, Mushware::U32 inIn
 }
 
 void
-MushMeshPatchPipe::EdgeDefsGenerate(void)
+MushMeshPatchEnd::EdgeDefsGenerate(void)
 {
     /* This lot needs storing centrally, but calculate for each patch for now.
      * It's about 320 bytes
@@ -147,7 +147,7 @@ MushMeshPatchPipe::EdgeDefsGenerate(void)
 }
 
 void
-MushMeshPatchPipe::EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge)
+MushMeshPatchEnd::EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEdge)
 {
     MUSHCOREASSERT(inEdge < kNumEdgeSelectors);
     outStitchable.SourceSet(&m_geometry.BaseGet(), &m_texCoords.BaseGet(), &m_activeBox);
@@ -155,7 +155,7 @@ MushMeshPatchPipe::EdgeGet(MushMeshStitchable& outStitchable, tEdgeSelector inEd
 }
 
 void
-MushMeshPatchPipe::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge)
+MushMeshPatchEnd::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSelector inEdge)
 {
     MUSHCOREASSERT(inEdge < kNumEdgeSelectors);
     U32 size = m_neighbourDefs[inEdge].size;
@@ -187,7 +187,7 @@ MushMeshPatchPipe::NeighbourSet(const MushMeshStitchable& inStitchable, tEdgeSel
 }
 
 void
-MushMeshPatchPipe::Subdivide(tVal inLevel)
+MushMeshPatchEnd::Subdivide(tVal inLevel)
 {
     // FIXME: need to copy active box area only
     m_geometry.BaseToCurrentCopy();
@@ -202,7 +202,7 @@ MushMeshPatchPipe::Subdivide(tVal inLevel)
         }
 
         m_geometry.Swap();
-        MushMeshSubdivide<tGeometryVector>::RectangularSubdivide(
+        MushMeshSubdivide<tGeometryVector>::TriangularSubdivide(
             m_geometry.CurrentWRefGet(),
             m_geometry.PreviousGet(),
             m_activeBox,
@@ -211,7 +211,7 @@ MushMeshPatchPipe::Subdivide(tVal inLevel)
         m_texCoords.Swap();
         for (U32 i=0; i<m_texCoords.BaseGet().size(); ++i)
         {
-            MushMeshSubdivide<tTexCoordVector>::RectangularSubdivide(
+            MushMeshSubdivide<tTexCoordVector>::TriangularSubdivide(
                 m_texCoords.CurrentWRefGet()[i],
                 m_texCoords.PreviousGet()[i],
                 m_activeBox,
@@ -222,7 +222,7 @@ MushMeshPatchPipe::Subdivide(tVal inLevel)
 
 //%outOfLineFunctions {
 void
-MushMeshPatchPipe::AutoPrint(std::ostream& ioOut) const
+MushMeshPatchEnd::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "geometry=" << m_geometry << ", ";
@@ -232,4 +232,4 @@ MushMeshPatchPipe::AutoPrint(std::ostream& ioOut) const
     ioOut << "neighbourDefs=" << m_neighbourDefs;
     ioOut << "]";
 }
-//%outOfLineFunctions } UOFgRhr8RwHtroH0O4fFxg
+//%outOfLineFunctions } 99TW/Vu5cM7v1mWz6v7pxA

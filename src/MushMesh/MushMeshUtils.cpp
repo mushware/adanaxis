@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 32mFSsTNLHJgXJZJxCfxrQ
 /*
- * $Id: MushMeshUtils.cpp,v 1.2 2003/10/15 07:08:29 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.3 2003/10/15 12:26:59 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.3  2003/10/15 12:26:59  southa
+ * MushMeshArray neighbour testing and subdivision work
+ *
  * Revision 1.2  2003/10/15 07:08:29  southa
  * MushMeshArray creation
  *
@@ -46,6 +49,14 @@ MushMeshUtils::BoundaryThrow(U32 inValue, U32 inLimit)
 {
     ostringstream message;
     message << "Access out of bounds (" << inValue << " >= " << inLimit << ')';
+    throw MushcoreLogicFail(message.str()) ;
+}
+
+void
+MushMeshUtils::BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2)
+{
+    ostringstream message;
+    message << "Access out of bounds (" << inValue1 << " >= " << inLimit1 << " or " << inValue2 << " >= " << inLimit2 << ')';
     throw MushcoreLogicFail(message.str()) ;
 }
 
