@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.8 2002/05/31 15:18:16 southa Exp $
+ * $Id: GameContract.cpp,v 1.9 2002/05/31 16:05:55 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.9  2002/05/31 16:05:55  southa
+ * FPS printout
+ *
  * Revision 1.8  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -110,6 +113,8 @@ GameContract::RunningDisplay(void)
             U32 mapVal=m_floorMap->At(x,y);
             S32 basex=32*x;
             S32 basey=32*y;
+            basex+=(double(rand())/RAND_MAX)*4;
+            basey+=(double(rand())/RAND_MAX)*4;
             GLTextureRef texRef(m_tileMap->NameGet(mapVal));
             if (texRef.Exists())
             {
@@ -148,15 +153,15 @@ GameContract::Running(void)
         static U32 lastPrint=0;
         ++frames;
         U32 timeNow=glutGet(GLUT_ELAPSED_TIME);
-        if (timeNow - lastPrint > 5000)
+        //srand(timeNow);
+        if (timeNow > lastPrint && timeNow - lastPrint > 5000)
         {
             // Print FPS every 5 seconds
-            cout << "FPS " << (((tVal) frames * 1000) / ((tVal) timeNow - lastPrint)) << endl;
+            cout << "FPS " << (((double) frames * 1000) / (timeNow - lastPrint)) << endl;
             lastPrint=timeNow;
             frames=0;
         }
     }
-        
 }
 
 void

@@ -5682,6 +5682,7 @@ echo 'bin_PROGRAMS=coreapp' > Makefile.am
 echo -n 'coreapp_SOURCES=' >> Makefile.am
 $ac_prog_find . -name '*.cpp' -exec echo $ECHO_N " " {} \;  >> Makefile.am
 $ac_prog_find . -name '*.h' -exec echo $ECHO_N " " {} \;  >> Makefile.am
+$ac_prog_find . -name 'sstream' -exec echo $ECHO_N " " {} \; >> Makefile.am
 echo >> Makefile.am
 echo INCLUDES=-IAPI >> Makefile.am
 cd ..
