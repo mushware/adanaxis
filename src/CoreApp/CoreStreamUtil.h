@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: StreamUtil.h,v 1.2 2002/05/24 16:23:10 southa Exp $
+ * $Id: StreamUtil.h,v 1.3 2002/06/27 12:36:05 southa Exp $
  * $Log: StreamUtil.h,v $
+ * Revision 1.3  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.2  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -31,10 +34,10 @@
 
 #include "CoreStandard.h"
 
-class StreamUtil
+class CoreStreamUtil
 {
 public:
-    StreamUtil():m_ctr(0) {}
+    CoreStreamUtil():m_ctr(0) {}
     U32 BigEndianU32Get(u8istream& inIn);
     U32 LittleEndianU32Get(u8istream& inIn);
     U8 U8Get(u8istream& inIn);

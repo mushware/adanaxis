@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: StreamUtil.cpp,v 1.4 2002/05/24 16:23:10 southa Exp $
- * $Log: StreamUtil.cpp,v $
+ * $Id: CoreStreamUtil.cpp,v 1.5 2002/06/27 12:36:05 southa Exp $
+ * $Log: CoreStreamUtil.cpp,v $
+ * Revision 1.5  2002/06/27 12:36:05  southa
+ * Build process fixes
+ *
  * Revision 1.4  2002/05/24 16:23:10  southa
  * Config and typenames
  *
@@ -27,10 +30,10 @@
  *
  */
 
-#include "StreamUtil.h"
+#include "CoreStreamUtil.h"
 
 U32
-StreamUtil::BigEndianU32Get(u8istream& inIn)
+CoreStreamUtil::BigEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(buf, 4);
@@ -42,7 +45,7 @@ StreamUtil::BigEndianU32Get(u8istream& inIn)
 }
 
 U32
-StreamUtil::LittleEndianU32Get(u8istream& inIn)
+CoreStreamUtil::LittleEndianU32Get(u8istream& inIn)
 {
     U8 buf[4]={0,0,0,0};
     inIn.read(buf, 4);
@@ -54,7 +57,7 @@ StreamUtil::LittleEndianU32Get(u8istream& inIn)
 }
 
 U8
-StreamUtil::U8Get(u8istream& inIn)
+CoreStreamUtil::U8Get(u8istream& inIn)
 {
     char ch; // Should be U8
     inIn.get(ch);
@@ -63,21 +66,21 @@ StreamUtil::U8Get(u8istream& inIn)
 }
 
 void
-StreamUtil::Ignore(u8istream& inIn, tSize inSize)
+CoreStreamUtil::Ignore(u8istream& inIn, tSize inSize)
 {
     inIn.ignore(inSize);
     m_ctr+=inSize;
 }
 
 void
-StreamUtil::Get(u8istream& inIn, U8 *outBuffer, tSize inSize)
+CoreStreamUtil::Get(u8istream& inIn, U8 *outBuffer, tSize inSize)
 {
     inIn.read(outBuffer, inSize);
     m_ctr+=inSize;
 }
 
 void
-StreamUtil::ZeroIndex(tSize inWhich)
+CoreStreamUtil::ZeroIndex(tSize inWhich)
 {
     if (inWhich >= m_zero.size())
     {
@@ -87,17 +90,17 @@ StreamUtil::ZeroIndex(tSize inWhich)
 }
 
 tSize
-StreamUtil::GetIndex(tSize inWhich)
+CoreStreamUtil::GetIndex(tSize inWhich)
 {
     if (inWhich >= m_zero.size())
     {
-        throw "StreamUtil::Request for uninitialised index";
+        throw "CoreStreamUtil::Request for uninitialised index";
     }
     return m_ctr-m_zero[inWhich];
 }
 
 void
-StreamUtil::ConsumeToIndex(u8istream& inIn, tSize inWhich, tSize inValue)
+CoreStreamUtil::ConsumeToIndex(u8istream& inIn, tSize inWhich, tSize inValue)
 {
     int target=inValue-GetIndex(inWhich);
     if (target>0)
