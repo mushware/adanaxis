@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VeozmCH3dPYlaBddjtbDKw
 /*
- * $Id: InfernalRouter.cpp,v 1.1 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalRouter.cpp,v 1.2 2003/10/06 22:23:45 southa Exp $
  * $Log: InfernalRouter.cpp,v $
+ * Revision 1.2  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.1  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -58,10 +61,9 @@ InfernalRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
         if (gameNetID.DataRefGet().Exists())
         {
             MustlGameClient *clientDef = gameNetID.DataRefGet().Get();
-            if (clientDef->PlayerRefGet().Exists())
+            InfernalPiecePlayer *piecePlayer;
+            if (InfernalData::Sgl().PlayerGet().GetIfExists(piecePlayer, clientDef->PlayerNameGet()))
             {
-                InfernalPiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
-
                 InfernalMessageControlData controlData;
                 controlData.Unpack(ioData);
 

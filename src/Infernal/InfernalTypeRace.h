@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } bYoSX+vreI2xpwSuWEZ8/A
 /*
- * $Id: InfernalTypeRace.h,v 1.23 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalTypeRace.h,v 1.1 2003/10/04 15:32:12 southa Exp $
  * $Log: InfernalTypeRace.h,v $
+ * Revision 1.1  2003/10/04 15:32:12  southa
+ * Module split
+ *
  * Revision 1.23  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -122,7 +125,8 @@ protected:
     void XMLEndHandler(MushcoreXML& inXML);
     void XMLDataHandler(MushcoreXML& inXML);
 
-    void StandingOnHandler(const InfernalEventStandingOn& inEvent);
+    virtual void StandingOnHandler(const InfernalEventStandingOn& inEvent);
+    virtual void RewardHandler(const GameEventReward& inEvent);
     
 private:
     void HandleGameEnd(MushcoreXML& inXML);

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } IVPfuMRcU1i5lN3+uMpRoQ
 /*
- * $Id: mushGame.h,v 1.1 2003/10/04 15:32:08 southa Exp $
+ * $Id: mushGame.h,v 1.2 2003/10/06 22:23:43 southa Exp $
  * $Log: mushGame.h,v $
+ * Revision 1.2  2003/10/06 22:23:43  southa
+ * Game to GameMustl move
+ *
  * Revision 1.1  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -31,6 +34,7 @@
 #include "Game/GameControlFrameDef.h"
 #include "Game/GameEvent.h"
 #include "Game/GameGraphic.h"
+#include "Game/GamePiece.h"
 #include "Game/GameProtocol.h"
 #include "Game/GameRecords.h"
 #include "Game/GameRewards.h"

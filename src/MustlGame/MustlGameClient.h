@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } gtoOimOV8fD8ZDjA/5QqpQ
 /*
- * $Id: MustlGameClient.h,v 1.1 2003/10/06 22:22:38 southa Exp $
+ * $Id: MustlGameClient.h,v 1.2 2003/10/06 22:42:04 southa Exp $
  * $Log: MustlGameClient.h,v $
+ * Revision 1.2  2003/10/06 22:42:04  southa
+ * Include fixes
+ *
  * Revision 1.1  2003/10/06 22:22:38  southa
  * Moved from Game to MustlGame
  *
@@ -107,9 +110,9 @@ public:
     
     void JoinGame(const std::string& inServer, Mushware::U32 inPort);
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
-    void PlayerNameSet(const std::string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
+    const std::string& PlayerNameGet(void) const { return m_playerName; }
+    void PlayerNameSet(const std::string& inPlayerName) { m_playerName = inPlayerName; }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
-    const MushcoreDataRef<InfernalPiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
@@ -162,12 +165,12 @@ private:
     Mushware::U32 m_lastRegistrationMsec;
     Mushware::U32 m_currentMsec;
     std::string m_serverName;
+    std::string m_playerName;
     MustlAddress m_netAddress;
     std::vector< MushcoreDataRef<MustlLink> > m_netLinks;
     Mushware::U32 m_lastLinkNum;
     Mushware::U32 m_numLinks;
     Mushware::U32 m_uplinkBandwidth;
-    MushcoreDataRef<InfernalPiecePlayer> m_playerRef;
     bool m_killed;
     bool m_joined;
     bool m_linkGood;

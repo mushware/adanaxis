@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } nBpHAOtq8zrjwT3XagEt/Q
 /*
- * $Id: GameType.cpp,v 1.6 2003/08/21 23:08:58 southa Exp $
+ * $Id: GameType.cpp,v 1.7 2003/09/17 19:40:34 southa Exp $
  * $Log: GameType.cpp,v $
+ * Revision 1.7  2003/09/17 19:40:34  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.6  2003/08/21 23:08:58  southa
  * Fixed file headers
  *
@@ -39,3 +42,10 @@
 using namespace Mushware;
 using namespace std;
 
+MUSHCORE_SINGLETON_INSTANCE(GameType);
+
+GameType *
+GameType::SingletonFactory(void)
+{
+    throw(MushcoreReferenceFail("GameType accessed before creation"));
+}

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } oMQ1VLZnjYUkw29lLBIRAQ
 /*
- * $Id: InfernalContract.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.4 2003/10/06 22:23:45 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.4  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.3  2003/10/04 15:32:10  southa
  * Module split
  *
@@ -398,7 +401,7 @@
 #include "InfernalSTL.h"
 #include "InfernalSpacePoint.h"
 #include "InfernalTileMap.h"
-#include "InfernalTileTraits.h"
+#include "InfernalTileTraits.h" 
 #include "InfernalTypeRace.h"
 #include "InfernalView.h"
 
@@ -548,7 +551,7 @@ InfernalContract::Init(GameAppHandler& inAppHandler)
     m_currentView->RectangleSet(GLRectangle(0,0,inAppHandler.WidthGet(),inAppHandler.HeightGet()));  // Might be wrong
     // InfernalData::Sgl().DumpAll(cout);
 
-    InfernalData::Sgl().TypeGet().Initialise();
+    MushcoreAbstractSingleton<GameType>::Sgl().Initialise();
 
     InfernalData::Sgl().CurrentDialoguesClear();
     InfernalDataUtils::NamedDialoguesAdd("^start");
@@ -596,10 +599,10 @@ InfernalContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 
     for (U32 i=0; i<inNumFrames; ++i)
     {
-        InfernalData::Sgl().TypeGet().Move();
+        MushcoreAbstractSingleton<GameType>::Sgl().Move();
     }
     
-    if (InfernalData::Sgl().TypeGet().IsGameOver())
+    if (MushcoreAbstractSingleton<GameType>::Sgl().IsGameOver())
     {
         if (m_gameState == kGameStateRunning) m_gameState = kGameStateOver;
     }
@@ -734,7 +737,7 @@ InfernalContract::RunningDisplay(void)
     }
     GLUtils::Flush();
 
-    InfernalData::Sgl().TypeGet().Render();
+    MushcoreAbstractSingleton<GameType>::Sgl().Render();
 
     if (m_gameState == kGameStatePaused)
     {
@@ -1073,13 +1076,13 @@ InfernalContract::HandleGameStart(MushcoreXML& inXML)
     string type(inXML.GetAttribOrThrow("type").StringGet());
     if (type == "race")
     {
-    InfernalData::Sgl().TypeSet(new InfernalTypeRace);
+    MushcoreAbstractSingleton<GameType>::Sgl().SingletonMutate(new InfernalTypeRace);
     }
     else
     {
         inXML.Throw("Game type must be 'race'");
     }
-    InfernalData::Sgl().TypeGet().Unpickle(inXML);
+    MushcoreAbstractSingleton<GameType>::Sgl().Unpickle(inXML);
 }
 
 void

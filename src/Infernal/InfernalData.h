@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } RKDEvTZGWRiNbVX9UumVLA
 /*
- * $Id: InfernalData.h,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalData.h,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -125,7 +128,6 @@ class InfernalPiecePlayer;
 class InfernalDialogue;
 class InfernalView;
 class GameTimer;
-class GameType;
 class GameRewards;
 
 class InfernalData
@@ -165,8 +167,6 @@ public:
     MushcoreData<InfernalPiecePlayer>& PlayerGet(void) { return m_playerData; }
     
     GameTimer& TimerGet(void);
-    GameType& TypeGet(void) const;
-    void TypeSet(GameType *inType);
     GameRewards& RewardsGet(void) const;
     void RewardsSet(GameRewards *inRewards);
 
@@ -194,7 +194,6 @@ private:
     MushcoreData<InfernalPiecePlayer> m_playerData;
     
     GameTimer *m_timer;
-    GameType *m_gameType;
     GameRewards *m_gameRewards;
     
     DialogueMap m_currentDialogues;

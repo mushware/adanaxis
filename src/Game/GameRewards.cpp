@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 4sQPw+sMpDcotQDyxdjHoQ
 /*
- * $Id: GameRewards.cpp,v 1.13 2003/10/04 12:23:02 southa Exp $
+ * $Id: GameRewards.cpp,v 1.15 2003/10/04 18:12:13 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.15  2003/10/04 18:12:13  southa
+ * Readded
+ *
  * Revision 1.13  2003/10/04 12:23:02  southa
  * File renaming
  *
@@ -57,8 +60,8 @@
 
 #include "GameRewards.h"
 
-// Need to remove this dependency
-#include "Infernal/InfernalDataUtils.h"
+#include "GameEvent.h"
+#include "GameType.h"
 
 #include "GameSTL.h"
 
@@ -76,7 +79,7 @@ GameRewards::JudgementPass(tVal inRatio)
     {
         if (inRatio < m_judgements[i].ratio)
         {
-InfernalDataUtils::NamedDialoguesAdd(m_judgements[i].dialogueName);
+            GameType::Sgl().EventHandler(GameEventReward(m_judgements[i].dialogueName));
             found=true;
             break;
         }
@@ -97,7 +100,7 @@ GameRewards::TimeCountdownPass(tVal inTime)
             if (inTime <= m_times[i].time &&
                 m_lastTime > m_times[i].time)
             {
-                InfernalDataUtils::NamedDialoguesAdd(m_times[i].dialogueName);
+                GameType::Sgl().EventHandler(GameEventReward(m_times[i].dialogueName));
                 found=true;
             }
         }

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } hu5+CQDupViMzWYdaLkYDA
 /*
- * $Id: InfernalChequePoint.cpp,v 1.2 2003/10/04 12:44:34 southa Exp $
+ * $Id: InfernalChequePoint.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalChequePoint.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.2  2003/10/04 12:44:34  southa
  * File renaming
  *
@@ -106,7 +109,7 @@ void
 InfernalChequePoint::Triggered(void)
 {
     InfernalDataUtils::NamedDialoguesAdd(m_action);
-    InfernalData::Sgl().TypeGet().EventHandler(InfernalEventSequenceAdvance());
+    MushcoreAbstractSingleton<GameType>::Sgl().EventHandler(InfernalEventSequenceAdvance());
 }
 
 void

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aR8dJjPZW5KAdAjmbHfszQ
 /*
- * $Id: InfernalPlayerUtils.cpp,v 1.2 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalPlayerUtils.cpp,v 1.3 2003/10/06 22:23:45 southa Exp $
  * $Log: InfernalPlayerUtils.cpp,v $
+ * Revision 1.3  2003/10/06 22:23:45  southa
+ * Game to GameMustl move
+ *
  * Revision 1.2  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -292,7 +295,7 @@ InfernalPlayerUtils::ClientMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer
                 playerRef.EnvironmentRead(inFloorMap);
                 InfernalEventStandingOn standingOn(playerRef.StandingOnGet()); // Maybe
     
-                InfernalData::Sgl().TypeGet().EventHandler(standingOn); // Maybe
+                MushcoreAbstractSingleton<GameType>::Sgl().EventHandler(standingOn); // Maybe
     
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))
@@ -345,7 +348,7 @@ InfernalPlayerUtils::ServerMove(InfernalFloorMap& inFloorMap, GameTimer& inTimer
                 playerRef.EnvironmentRead(inFloorMap);
                 InfernalEventStandingOn standingOn(playerRef.StandingOnGet());
 
-                InfernalData::Sgl().TypeGet().EventHandler(standingOn);
+                MushcoreAbstractSingleton<GameType>::Sgl().EventHandler(standingOn);
 
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))

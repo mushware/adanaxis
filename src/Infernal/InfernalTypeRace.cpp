@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 7eDOjlMAR1UQYJUhR6Jr0w
 /*
- * $Id: InfernalTypeRace.cpp,v 1.40 2003/10/04 12:23:03 southa Exp $
+ * $Id: InfernalTypeRace.cpp,v 1.1 2003/10/04 15:32:12 southa Exp $
  * $Log: InfernalTypeRace.cpp,v $
+ * Revision 1.1  2003/10/04 15:32:12  southa
+ * Module split
+ *
  * Revision 1.40  2003/10/04 12:23:03  southa
  * File renaming
  *
@@ -193,6 +196,16 @@ InfernalTypeRace::EventHandler(const GameEvent& inEvent)
                 break;
         }
     }
+    else if (typeid(inEvent) == typeid(GameEventReward))
+    {
+        RewardHandler(dynamic_cast<const GameEventReward&>(inEvent));
+    }
+}
+
+void
+InfernalTypeRace::RewardHandler(const GameEventReward& inEvent)
+{
+    InfernalDataUtils::NamedDialoguesAdd(inEvent.NameGet());
 }
 
 void

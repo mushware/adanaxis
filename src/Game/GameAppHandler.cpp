@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } gKONxppaFUglL8c0yhKzkA
 /*
- * $Id: GameAppHandler.cpp,v 1.51 2003/10/06 22:23:43 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.52 2003/10/06 23:06:31 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.52  2003/10/06 23:06:31  southa
+ * Include fixes
+ *
  * Revision 1.51  2003/10/06 22:23:43  southa
  * Game to GameMustl move
  *
@@ -269,7 +272,7 @@ void
 GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
-    
+
     MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
 
     for (MushcoreData<MustlGameServer>::tMapIterator p = MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
@@ -292,7 +295,7 @@ GameAppHandler::GameTypeDetermine(void)
             }
         }
     }
-
+    
     if (m_gameType == kGameTypeInvalid)
     {
         m_gameType = kGameTypeSingle;

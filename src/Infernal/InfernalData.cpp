@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KDC8pImwjeHS5CqhZ3lPPQ
 /*
- * $Id: InfernalData.cpp,v 1.1 2003/10/04 12:23:04 southa Exp $
+ * $Id: InfernalData.cpp,v 1.3 2003/10/04 15:32:10 southa Exp $
  * $Log: InfernalData.cpp,v $
+ * Revision 1.3  2003/10/04 15:32:10  southa
+ * Module split
+ *
  * Revision 1.1  2003/10/04 12:23:04  southa
  * File renaming
  *
@@ -132,7 +135,6 @@ InfernalData *InfernalData::m_instance=NULL;
 
 InfernalData::InfernalData():
     m_timer(NULL),
-    m_gameType(NULL),
     m_gameRewards(NULL)
 {
 }
@@ -205,11 +207,6 @@ InfernalData::Clear(void)
     {
         delete m_timer;
         m_timer=NULL;
-    }
-    if (m_gameType != NULL)
-    {
-        delete m_gameType;
-        m_gameType=NULL;
     }
     if (m_gameRewards != NULL)
     {
@@ -480,26 +477,6 @@ InfernalData::TimerGet(void)
         m_timer = new GameTimer;
     }
     return *m_timer;
-}
-
-GameType&
-InfernalData::TypeGet(void) const
-{
-    if (m_gameType == NULL)
-    {
-        throw(MushcoreDataFail("Access to non-existent current type"));
-    }
-    return *m_gameType;
-}
-
-void
-InfernalData::TypeSet(GameType *inType)
-{
-    if (m_gameType == NULL)
-    {
-        delete m_gameType;
-    }
-    m_gameType=inType;
 }
 
 GameRewards&

@@ -14,8 +14,11 @@
  ****************************************************************************/
 //%Header } D3jiefET3k3peL6sMlTiLA
 /*
- * $Id: MustlGameClient.cpp,v 1.1 2003/10/06 22:22:38 southa Exp $
+ * $Id: MustlGameClient.cpp,v 1.2 2003/10/06 22:42:04 southa Exp $
  * $Log: MustlGameClient.cpp,v $
+ * Revision 1.2  2003/10/06 22:42:04  southa
+ * Include fixes
+ *
  * Revision 1.1  2003/10/06 22:22:38  southa
  * Moved from Game to MustlGame
  *
@@ -137,9 +140,6 @@
 
 #include "MustlGameClient.h"
 
-// Need to remove this dependency
-#include "Infernal/InfernalData.h"
-
 #include "MustlGameServer.h"
 #include "MustlGameUtils.h"
 #include "MustlGameSTL.h"
@@ -160,7 +160,6 @@ MustlGameClient::MustlGameClient(const string& inName) :
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
-    m_playerRef(inName, &InfernalData::Sgl().PlayerGet()),
     m_killed(false),
     m_joined(false)
 {

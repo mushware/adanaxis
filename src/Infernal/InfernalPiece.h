@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 1lSf0qtLtYZ0n5U+7Vm9eg
 /*
- * $Id: InfernalPiece.h,v 1.19 2003/10/04 12:23:01 southa Exp $
+ * $Id: InfernalPiece.h,v 1.1 2003/10/04 12:44:35 southa Exp $
  * $Log: InfernalPiece.h,v $
+ * Revision 1.1  2003/10/04 12:44:35  southa
+ * File renaming
+ *
  * Revision 1.19  2003/10/04 12:23:01  southa
  * File renaming
  *
@@ -79,12 +82,14 @@
 
 #include "Mushcore.h"
 
+#include "mushGame.h"
+
 class GLPoint;
 class GameControlFrameDef;
 class InfernalMotionSpec;
 class InfernalFloorMap;
 
-class InfernalPiece: public MushcorePickle, protected MushcoreXMLHandler
+class InfernalPiece: public GamePiece, public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     InfernalPiece() {}

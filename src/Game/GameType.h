@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } fusdHcJJ9bUvpylMoCVBZg
 /*
- * $Id: GameType.h,v 1.13 2003/09/17 19:40:34 southa Exp $
+ * $Id: GameType.h,v 1.14 2003/10/04 15:32:09 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.14  2003/10/04 15:32:09  southa
+ * Module split
+ *
  * Revision 1.13  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -63,7 +66,7 @@
 
 class GameEvent;
 
-class GameType : public MushcorePickle, protected MushcoreXMLHandler
+class GameType : public MushcoreAbstractSingleton<GameType>, public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     virtual ~GameType() {}
@@ -73,7 +76,9 @@ public:
     virtual void Render(void) const = 0;
     virtual void Initialise(void) = 0;
     virtual bool IsGameOver(void) const = 0;
-    
+
+    static GameType *SingletonFactory(void);
+
 protected:
     void UnpicklePrologue(void) {}
     void UnpickleEpilogue(void) {}

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } wtaCfE3Bg2cWSVhLCRxLsA
 /*
- * $Id: GameEvent.h,v 1.10 2003/10/04 12:22:59 southa Exp $
+ * $Id: GameEvent.h,v 1.11 2003/10/04 15:32:09 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.11  2003/10/04 15:32:09  southa
+ * Module split
+ *
  * Revision 1.10  2003/10/04 12:22:59  southa
  * File renaming
  *
@@ -58,6 +61,15 @@ public:
     virtual ~GameEvent() {}
 protected:
     GameEvent() {}
+};
+
+class GameEventReward : public GameEvent
+{
+public:
+    explicit GameEventReward(const std::string& inName) { m_name = inName; }
+    const std::string& NameGet(void) const { return m_name; }
+private:
+    std::string m_name;
 };
 
 //%includeGuardEnd {
