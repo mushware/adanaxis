@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.23 2002/10/07 17:49:46 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.24 2002/10/08 11:58:53 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.24  2002/10/08 11:58:53  southa
+ * Light cache
+ *
  * Revision 1.23  2002/10/07 17:49:46  southa
  * Multiple values per map element
  *
@@ -212,9 +215,10 @@ GamePiecePlayer::HandleNameEnd(CoreXML& inXML)
 void
 GamePiecePlayer::HandleGraphicStart(CoreXML& inXML)
 {
-    GameGraphicSprite *pSprite(new GameGraphicSprite);
-    m_graphics.push_back(pSprite);
-    pSprite->Unpickle(inXML);
+    string typeStr=inXML.GetAttribOrThrow("type").StringGet();
+    GameGraphic& graphic(GameGraphic::NewFromType(typeStr));
+    m_graphics.push_back(&graphic);
+    graphic.Unpickle(inXML);
 }
 
 void

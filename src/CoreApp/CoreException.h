@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: CoreException.h,v 1.14 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreException.h,v 1.15 2002/10/08 11:58:52 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.15  2002/10/08 11:58:52  southa
+ * Light cache
+ *
  * Revision 1.14  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -300,6 +303,40 @@ private:
 };
 
 inline ostream& operator<<(ostream &s, ResourceFail f)
+{
+    return s<<f.SPrint();
+}
+
+class SpecifierFail: public exception
+{
+public:
+    SpecifierFail(const string &inMessage) {m_message=inMessage;}
+    ~SpecifierFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, SpecifierFail f)
+{
+    return s<<f.SPrint();
+}
+
+class SyntaxFail: public exception
+{
+public:
+    SyntaxFail(const string &inMessage) {m_message=inMessage;}
+    ~SyntaxFail() throw() {}
+    const string& SPrint(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, SyntaxFail f)
 {
     return s<<f.SPrint();
 }

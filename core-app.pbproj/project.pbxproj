@@ -4050,6 +4050,8 @@
 				F545EEA202A67378018FABF3,
 				F546321902AD022D01A7DA6B,
 				F546321A02AD022D01A7DA6B,
+				F595FD83035821F601A80166,
+				F595FD84035821F601A80166,
 				F546321D02AD04B701A7DA6B,
 				F546321E02AD04B701A7DA6B,
 				F54020C502A25BFC01F0D71D,
@@ -4304,6 +4306,8 @@
 				F595C5710351E76E01A80166,
 				F59560E00355CA2301A80166,
 				F59560E40355D77D01A80166,
+				F595FD86035821F601A80166,
+				F595FD8903582A9101A80166,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4422,6 +4426,8 @@
 				F59560E10355CA2301A80166,
 				F59560E50355D77D01A80166,
 				F59560E70355EC9D01A80166,
+				F595FD85035821F601A80166,
+				F595FD8A03582A9101A80166,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4917,6 +4923,52 @@
 			settings = {
 			};
 		};
+		F595FD83035821F601A80166 = {
+			isa = PBXFileReference;
+			name = GameGraphicModel.cpp;
+			path = Game/GameGraphicModel.cpp;
+			refType = 4;
+		};
+		F595FD84035821F601A80166 = {
+			isa = PBXFileReference;
+			name = GameGraphicModel.h;
+			path = Game/GameGraphicModel.h;
+			refType = 4;
+		};
+		F595FD85035821F601A80166 = {
+			fileRef = F595FD83035821F601A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F595FD86035821F601A80166 = {
+			fileRef = F595FD84035821F601A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F595FD8703582A9101A80166 = {
+			isa = PBXFileReference;
+			path = GLArray.h;
+			refType = 4;
+		};
+		F595FD8803582A9101A80166 = {
+			isa = PBXFileReference;
+			path = GLArray.cpp;
+			refType = 4;
+		};
+		F595FD8903582A9101A80166 = {
+			fileRef = F595FD8703582A9101A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F595FD8A03582A9101A80166 = {
+			fileRef = F595FD8803582A9101A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5A0E55302B65A870115E516 = {
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
@@ -4968,6 +5020,8 @@
 				F5B25BCC02187072017E032D,
 				F52B3C52028C267B0179D0A8,
 				F54B58D002A78FB301E2A684,
+				F595FD8803582A9101A80166,
+				F595FD8703582A9101A80166,
 				F5463AD202E6D2A7018842E0,
 				F5463AD302E6D2A7018842E0,
 				F5B25BCE02187072017E032D,

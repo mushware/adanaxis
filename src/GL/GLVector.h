@@ -13,8 +13,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.1 2002/10/07 17:49:45 southa Exp $
+ * $Id: GLVector.h,v 1.2 2002/10/08 21:44:09 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.2  2002/10/08 21:44:09  southa
+ * 3D maps
+ *
  * Revision 1.1  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -36,8 +39,9 @@ public:
     virtual GLVector *Clone(void) const { return new GLVector(*this); }
     virtual void Render(void) const;
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    void Pickle(ostream& inOut, const string& inPrefix="") const;
+    void Unpickle(CoreXML& inXML);
+    void Unpickle(istream& ioIn);
     
     U32 U32XGet(void) const { return static_cast<U32>(x); }
     U32 U32YGet(void) const { return static_cast<U32>(y); }

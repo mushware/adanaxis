@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameGraphic.cpp,v 1.4 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameGraphic.cpp,v 1.5 2002/08/27 08:56:24 southa Exp $
  * $Log: GameGraphic.cpp,v $
+ * Revision 1.5  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -31,4 +34,24 @@
  */
 
 #include "GameGraphic.h"
+#include "GameGraphicSprite.h"
+#include "GameGraphicModel.h"
 
+GameGraphic&
+GameGraphic::NewFromType(const string& inName)
+{
+    if (inName == "sprite")
+    {
+        return *new GameGraphicSprite;
+    }
+    else if (inName == "model")
+    {
+        return *new GameGraphicModel;
+    }
+    else
+    {
+        ostringstream message;
+        message << "Unknown type for graphic '" << inName << "'";
+        throw (SpecifierFail(message.str()));
+    }
+}

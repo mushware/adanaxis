@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.1 2002/10/07 17:49:45 southa Exp $
+ * $Id: GLVector.cpp,v 1.2 2002/10/08 21:44:09 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.2  2002/10/08 21:44:09  southa
+ * 3D maps
+ *
  * Revision 1.1  2002/10/07 17:49:45  southa
  * Multiple values per map element
  *
@@ -33,20 +36,26 @@ GLVector::Render(void) const
 void
 GLVector::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << inPrefix << "<offset>" << x << "," << y << "," << z << "</offset>" << endl;
+    inOut << x << "," << y << "," << z;
 }
 
 void
 GLVector::Unpickle(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
-    const char *failMessage="Bad format for offset.  Should be <offset>10,10,30</offset>";
+    Unpickle(data);
+}
+
+void
+GLVector::Unpickle(istream& ioIn)
+{
+    const char *failMessage="Bad format for vector.  Should be 10,10,30";
     char comma;
-    if (!(data >> x)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(ioIn >> x)) throw(SyntaxFail(failMessage));
+    if (!(ioIn >> comma) || comma != ',') throw(SyntaxFail(failMessage));
 
-    if (!(data >> y)) inXML.Throw(failMessage);
-    if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
+    if (!(ioIn >> y)) throw(SyntaxFail(failMessage));
+    if (!(ioIn >> comma) || comma != ',') throw(SyntaxFail(failMessage));
 
-    if (!(data >> z)) inXML.Throw(failMessage);
+    if (!(ioIn >> z)) throw(SyntaxFail(failMessage));
 }

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLPoint.h,v 1.11 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLPoint.h,v 1.12 2002/10/10 13:51:16 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.12  2002/10/10 13:51:16  southa
+ * Speed fixes and various others
+ *
  * Revision 1.11  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -67,6 +70,10 @@ public:
     virtual ~GLPoint() {}
     virtual GLPoint *Clone(void) const { return new GLPoint(*this); }
     virtual void Render(void) const;
+
+    void Pickle(ostream& inOut, const string& inPrefix="") const;
+    void Unpickle(CoreXML& inXML);
+    void Unpickle(istream& ioIn);
     
     U32 U32XGet(void) const { return static_cast<U32>(x); }
     U32 U32YGet(void) const { return static_cast<U32>(y); }
@@ -101,7 +108,6 @@ public:
         modf(y, &temp);
         y=temp;
     }
-    void Print(ostream& inOstream) const { inOstream << "(" << x << "," << y << ")"; }
     
     const GLPoint& operator+=(const GLPoint& inPoint) {x+=inPoint.x; y+=inPoint.y; return *this;}
     const GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
@@ -162,7 +168,7 @@ inline bool operator!=(const GLPoint& a, const GLPoint& b)
 
 inline ostream& operator<<(ostream &s, const GLPoint& inPoint)
 {
-    inPoint.Print(s);
+    inPoint.Pickle(s);
     return s;
 }
 #endif

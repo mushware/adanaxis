@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameTileTraits.cpp,v 1.15 2002/10/10 22:47:57 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.16 2002/10/11 20:10:15 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.16  2002/10/11 20:10:15  southa
+ * Various fixes and new files
+ *
  * Revision 1.15  2002/10/10 22:47:57  southa
  * Full light definitions
  *
@@ -169,9 +172,10 @@ GameTileTraits::NullHandler(CoreXML& inXML)
 void
 GameTileTraits::HandleGraphicStart(CoreXML& inXML)
 {
-    GameGraphicSprite *pSprite(new GameGraphicSprite);
-    m_graphics.push_back(pSprite);
-    pSprite->Unpickle(inXML);
+    string typeStr=inXML.GetAttribOrThrow("type").StringGet();
+    GameGraphic& graphic(GameGraphic::NewFromType(typeStr));
+    m_graphics.push_back(&graphic);
+    graphic.Unpickle(inXML);
 }
 
 void

@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.13 2002/08/27 08:56:15 southa Exp $
+ * $Id: mushGL.h,v 1.14 2002/10/06 22:09:58 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.14  2002/10/06 22:09:58  southa
+ * Initial lighting test
+ *
  * Revision 1.13  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -62,6 +65,7 @@
  *
  */
 
+#include "GL/GLArray.h"
 #include "GL/GLAppHandler.h"
 #include "GL/GLColour.h"
 #include "GL/GLData.h"
