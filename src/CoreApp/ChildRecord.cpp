@@ -1,6 +1,9 @@
 /*
- * $Id: ChildRecord.cpp,v 1.1.1.1 2002/02/11 22:30:08 southa Exp $
+ * $Id: ChildRecord.cpp,v 1.2 2002/05/10 16:39:38 southa Exp $
  * $Log: ChildRecord.cpp,v $
+ * Revision 1.2  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:08  southa
  * Created
  *
@@ -19,10 +22,12 @@ ChildRecord::ChildRecord(int inPid, int inInPipe, int inOutPipe)
 bool
 ChildRecord::StatusGet(ChildStatus &outStatus)
 {
+#ifdef HAVE_POSIX
     int status=0;
     int rc=waitpid(m_pid, &status, WNOHANG);
     outStatus.Set(WIFEXITED(status), WIFSIGNALED(status), WEXITSTATUS(status));
     return (rc > 0);
+#endif
 }
 
 bool

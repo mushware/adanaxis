@@ -1,6 +1,9 @@
 /*
- * $Id: CoreAppHandler.cpp,v 1.2 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreAppHandler.cpp,v 1.3 2002/05/31 15:18:15 southa Exp $
  * $Log: CoreAppHandler.cpp,v $
+ * Revision 1.3  2002/05/31 15:18:15  southa
+ * Keyboard reading
+ *
  * Revision 1.2  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -39,8 +42,10 @@ CoreAppHandler::Idle(void)
 {
     int childCount;
     CoreApp::Instance().ServiceChildren(childCount);
+#ifdef HAVE_POSIX
     cout << "Sleeping in CoreAppHandler" << endl;
     sleep(1);
+#endif
 }
 
 void

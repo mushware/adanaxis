@@ -1,6 +1,9 @@
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.4 2002/05/10 16:39:37 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.5 2002/05/24 16:23:10 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.5  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.4  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -26,6 +29,7 @@ CoreInstaller LaunchCommandHandlerInstaller(LaunchCommandHandler::Install);
 CoreScalar
 LaunchCommandHandler::Launch(CoreCommand& ioCommand, CoreEnv &ioEnv)
 {
+#ifdef HAVE_POSIX
     string funcName(ioCommand.AllParams());
     typedef enum
     {
@@ -115,10 +119,13 @@ LaunchCommandHandler::Launch(CoreCommand& ioCommand, CoreEnv &ioEnv)
         CoreApp::Instance().AddChild(cpid, p[kStdin], NULL);
     }
     return CoreScalar(0);
+#endif
 }
 
 void
 LaunchCommandHandler::Install(void)
 {
+#ifdef HAVE_POSIX
     CoreApp::Instance().AddHandler("launch", Launch);
+#endif
 }

@@ -1,3 +1,4 @@
+#if 0
 /* WARNING:  This file was automatically generated!
  * Original: ./src/main/win32/SDL_main.c
  */
@@ -320,3 +321,4 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw)
 	/* Run the main program (after a little SDL initialization) */
 	return(console_main(argc, argv));
 }
+#endif

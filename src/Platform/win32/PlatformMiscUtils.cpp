@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.4 2002/06/13 15:53:33 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.5 2002/06/20 11:06:15 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.5  2002/06/20 11:06:15  southa
+ * Updated for cygwin
+ *
  * Revision 1.4  2002/06/13 15:53:33  southa
  * Path fixes
  *
@@ -18,6 +21,10 @@
 #include "mushPlatform.h"
 
 #include <windows.h>
+
+#ifndef MAXPATHLEN
+#define MAXPATHLEN 4096
+#endif
 
 string
 PlatformMiscUtils::GetApplPath(int argc, char *argv[])
