@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetHTTP.cpp,v 1.2 2002/11/08 00:15:30 southa Exp $
+ * $Id: MediaNetHTTP.cpp,v 1.3 2002/11/12 17:05:01 southa Exp $
  * $Log: MediaNetHTTP.cpp,v $
+ * Revision 1.3  2002/11/12 17:05:01  southa
+ * Tidied localweb server
+ *
  * Revision 1.2  2002/11/08 00:15:30  southa
  * Fixed errors
  *
@@ -31,7 +34,7 @@ MediaNetHTTP::Reply200(void)
 void
 MediaNetHTTP::ContentTypeHTML(void)
 {
-    m_content << "Content-Type: text/html" << m_endl;
+    m_content << "Content-Type: text/html; charset=ISO-8859-1" << m_endl;
     m_content << "Connection: close" << m_endl;
     if (!m_allowCaching) m_content << "Expires: 0" << m_endl;
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameWebCommands.h,v 1.5 2002/11/14 19:35:30 southa Exp $
+ * $Id: GameWebCommands.h,v 1.1 2002/11/18 13:40:32 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.1  2002/11/18 13:40:32  southa
+ * Moved to correct place
+ *
  * Revision 1.5  2002/11/14 19:35:30  southa
  * Configuration work
  *
@@ -27,6 +30,7 @@ public:
     static CoreScalar HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
 
 private:
 

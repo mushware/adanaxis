@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.12 2002/10/14 18:13:18 southa Exp $
+ * $Id: GameTimer.cpp,v 1.13 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.13  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.12  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -104,6 +107,7 @@ GameTimer::Reset(void)
 {
     m_motionFrameTime=m_currentTime;
     m_periodic10msTime=m_currentTime;
+    m_periodic100msTime=m_currentTime;
     m_periodic1sTime=m_currentTime;
     m_currentMotionFrame=0;
     m_lastRedisplayMotionFrame=m_currentMotionFrame;
@@ -180,6 +184,21 @@ GameTimer::Periodic10msDone(tVal inNum)
 {
     m_periodic10msTime += 10000*inNum;
     if (m_periodic10msTime > m_currentTime) ReportJitter();
+}
+
+tVal
+GameTimer::Periodic100msGet(void) const
+{
+    double periodics;
+    modf((m_currentTime - m_periodic100msTime) / 100000, &periodics);
+    return periodics;
+}
+
+void
+GameTimer::Periodic100msDone(tVal inNum)
+{
+    m_periodic100msTime += 100000*inNum;
+    if (m_periodic100msTime > m_currentTime) ReportJitter();
 }
 
 tVal

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.35 2002/11/18 14:11:04 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.36 2002/11/18 18:55:57 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.36  2002/11/18 18:55:57  southa
+ * Game resume and quit
+ *
  * Revision 1.35  2002/11/18 14:11:04  southa
  * win32 support
  *
@@ -244,7 +247,7 @@ GameAppHandler::PrepareNewGame(void)
     GameData::Instance().Clear();
     // Needs to be done in GameContract
     string contractRoot=CoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
-    string contractName=GameConfig::Instance().ParameterGet("contractname").StringGet();
+    string contractName=GameConfig::Instance().ParameterGet("spcontractname").StringGet();
     string contractPath=contractRoot+"/"+contractName;
     CoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
 

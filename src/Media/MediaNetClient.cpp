@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.9 2002/11/04 15:50:31 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.10 2002/11/07 00:53:34 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.10  2002/11/07 00:53:34  southa
+ * localweb work
+ *
  * Revision 1.9  2002/11/04 15:50:31  southa
  * Network log
  *
@@ -40,6 +43,7 @@
 MediaNetClient::MediaNetClient() :
     m_tcpSocket(NULL),
     m_udpSocket(NULL),
+    m_remoteIP(0),
     m_tcpConnected(false),
     m_udpConnected(false)
 {

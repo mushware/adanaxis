@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.h,v 1.7 2002/11/04 15:50:31 southa Exp $
+ * $Id: MediaNetLink.h,v 1.8 2002/11/04 19:34:46 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.8  2002/11/04 19:34:46  southa
+ * Network link maintenance
+ *
  * Revision 1.7  2002/11/04 15:50:31  southa
  * Network log
  *
@@ -51,7 +54,8 @@ public:
 
     void LinkInfoLog(void) const;
     void Print(ostream& ioOut) const;
-
+    void WebStatusPrint(ostream& ioOut) const;
+    
 private:
     enum tLinkState
     {
@@ -114,7 +118,8 @@ private:
     void MessageUDPLinkCheckHandle(MediaNetData& ioData);
     void MessageUDPLinkCheckReplyHandle(MediaNetData& ioData);
     void MessageKillLinkHandle(MediaNetData& ioData);
-    
+
+    static string LinkStateToBG(const LinkState& inLinkState);
     static bool LinkDeathCheck(LinkState& ioLinkState);
 
     LinkState m_tcpState;

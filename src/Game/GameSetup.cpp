@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.1 2002/11/15 18:58:34 southa Exp $
+ * $Id: GameSetup.cpp,v 1.2 2002/11/16 12:43:23 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.2  2002/11/16 12:43:23  southa
+ * GameApp mode switching
+ *
  * Revision 1.1  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -11,8 +14,8 @@
 #include "GameAppHandler.h"
 #include "GameConfigDef.h"
 
-#include "mushMedia.h"
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 GameSetup::GameSetup() :
@@ -128,6 +131,35 @@ GameSetup::Config(void)
 {
     MediaNetWebServer::Instance().Accept();
     MediaNetWebRouter::Instance().ReceiveAll();
+    static U32 ctr=0;
+    ++ctr;
+    if (ctr == 1000)
+    {
+        try
+        {
+            MediaNetServer::Instance().Connect(7121);
+            CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
+        }
+        catch (NetworkFail& e)
+        {
+            MediaNetLog::Instance().Log() << "Server creation exception: " << e.what();
+            PlatformMiscUtils::MinorErrorBox(e.what());
+        }
+            
+    }
+    else if (ctr > 100)
+    {
+        try
+        {
+            MediaNetServer::Instance().Accept();
+            MediaNetRouter::Instance().ReceiveAll();
+        }
+        catch (NetworkFail& e)
+        {
+            MediaNetLog::Instance().Log() << "Network exception: " << e.what();
+        }
+    }
+    
     KeyControl();
     GLUtils::PostRedisplay();
     MediaAudio::Instance().Ticker();

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.10 2002/10/14 15:13:40 southa Exp $
+ * $Id: GameTimer.h,v 1.11 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.11  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/10/14 15:13:40  southa
  * Frame rate tweaks for Mac
  *
@@ -70,6 +73,8 @@ public:
     void RedisplayDone(void);
     tVal Periodic10msGet(void) const;
     void Periodic10msDone(tVal inNum);
+    tVal Periodic100msGet(void) const;
+    void Periodic100msDone(tVal inNum);
     tVal Periodic1sGet(void) const;
     void Periodic1sDone(tVal inNum);
     tMsec SleepTimeGet(void) const;
@@ -86,6 +91,7 @@ private:
     tUsec m_currentTime;
     tUsec m_motionFrameTime;
     tUsec m_periodic10msTime;
+    tUsec m_periodic100msTime;
     tUsec m_periodic1sTime;
     tUsec m_motionFrameInterval;
     tUsec m_currentMotionFrame;

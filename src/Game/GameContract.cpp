@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.95 2002/11/18 18:55:57 southa Exp $
+ * $Id: GameContract.cpp,v 1.96 2002/11/19 18:43:26 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.96  2002/11/19 18:43:26  southa
+ * Fixed macosx dynamic libraries
+ *
  * Revision 1.95  2002/11/18 18:55:57  southa
  * Game resume and quit
  *
@@ -735,7 +738,7 @@ GameContract::Running(void)
 
         tVal numPeriodic10ms=timer.Periodic10msGet();
         // cerr << "numPeriodic10ms=" << numPeriodic10ms << endl;
-        for (tVal i=0; i<numPeriodic10ms; ++i)
+        for (tVal i=0; i<numPeriodic10ms && i<10; ++i)
         {
             if (i == 0)
             {
@@ -743,14 +746,21 @@ GameContract::Running(void)
             }
         }
         timer.Periodic10msDone(numPeriodic10ms);
-        
-        tVal numPeriodic1s=timer.Periodic1sGet();
-        // cerr << "numPeriodic1s=" << numPeriodic1s << endl;
-        for (tVal i=0; i<numPeriodic1s; ++i)
+
+        tVal numPeriodic100ms=timer.Periodic100msGet();
+        for (tVal i=0; i<numPeriodic100ms && i<10; ++i)
         {
             // Keep web links ticking over
             MediaNetWebServer::Instance().Accept();
             MediaNetWebRouter::Instance().ReceiveAll();
+        }
+        timer.Periodic100msDone(numPeriodic100ms);
+
+        tVal numPeriodic1s=timer.Periodic1sGet();
+        // cerr << "numPeriodic1s=" << numPeriodic1s << endl;
+        for (tVal i=0; i<numPeriodic1s && i<10; ++i)
+        {
+
             
             static U32 lastPrint=0;
             m_fps=m_frames;

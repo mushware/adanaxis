@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.19 2002/11/18 12:41:52 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.20 2002/11/18 18:55:58 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.20  2002/11/18 18:55:58  southa
+ * Game resume and quit
+ *
  * Revision 1.19  2002/11/18 12:41:52  southa
  * Return directories only in ReadDirectory
  *
@@ -85,6 +88,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <signal.h>
 
 OSStatus FSPathMakeFSSpec(const UInt8 *path, FSSpec *spec, Boolean *isDirectory);
 OSErr FinderLaunch(long nTargets, FSSpec *targetList);
@@ -96,6 +100,11 @@ PlatformMiscUtils::Initialise(void)
     if (home != NULL)
     {
         CoreGlobalConfig::Instance().Set("HOME", home);
+    }
+    // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
+    if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
+    {
+        cerr << "Failed to attach signal handler" << endl;
     }
 }
 

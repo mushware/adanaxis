@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.8 2002/11/04 19:34:46 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.9 2002/11/18 21:02:39 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.9  2002/11/18 21:02:39  southa
+ * Prevent crash on exit
+ *
  * Revision 1.8  2002/11/04 19:34:46  southa
  * Network link maintenance
  *
@@ -257,7 +260,12 @@ MediaNetLink::Tick(void)
         {
             ++m_udpState.linkErrorTotal;
             ++m_udpState.linkErrorsSinceGood;
-            if (LinkDeathCheck(m_udpState)) Disconnect(MediaNetProtocol::kReasonCodeUDPLinkCheckFail);
+            if (LinkDeathCheck(m_udpState))
+            {
+                // Just disconnnect UDP if it fails
+                m_client.UDPDisconnect();
+                m_udpState.linkState=kLinkStateDead;
+            }
             
             if (LinkIsUp(m_udpState.linkState))
             {
@@ -271,7 +279,12 @@ MediaNetLink::Tick(void)
         }
     }
 
-    if (LinkDeathCheck(m_udpState)) Disconnect(MediaNetProtocol::kReasonCodeUDPBadLink);
+    if (LinkDeathCheck(m_udpState))
+    {
+        // Just disconnnect UDP if it fails
+        m_client.UDPDisconnect();
+        m_udpState.linkState=kLinkStateDead;
+    }
 }
 
 bool
@@ -284,8 +297,8 @@ MediaNetLink::LinkDeathCheck(LinkState& ioLinkState)
 bool
 MediaNetLink::IsDead(void)
 {
-    return m_tcpState.linkState == kLinkStateDead ||
-        m_udpState.linkState == kLinkStateDead;
+    return m_tcpState.linkState == kLinkStateDead &&
+           m_udpState.linkState == kLinkStateDead;
 }
 
 void
@@ -339,7 +352,7 @@ MediaNetLink::UDPSend(MediaNetData& ioData)
         }
         if (m_udpUseServerPort)
         {
-            MediaNetServer::Instance().UDPSend(m_client.UDPRemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
+            MediaNetServer::Instance().UDPSend(m_client.RemoteIPGet(), m_client.UDPRemotePortGet(), ioData);
         }
         else
         {
@@ -362,7 +375,8 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
     {
         if (!LinkIsUp(m_udpState.linkState))
         {
-            throw(NetworkFail("UDPReceive on dead link"));
+            // Don't report an exception for this
+            return;
         }
         if (m_udpUseServerPort)
         {
@@ -587,4 +601,56 @@ MediaNetLink::Print(ostream& ioOut) const
     ioOut << "[tcpState=" << m_tcpState << ", udpState=" << m_udpState << ", targetIsServer=" << m_targetIsServer;
     ioOut << ", currentMsec=" << m_currentMsec << ", udpUseServerPort=" << m_udpUseServerPort;
     ioOut << ", client=" << m_client << "]";
+}
+
+string
+MediaNetLink::LinkStateToBG(const LinkState& inLinkState)
+{
+    switch (inLinkState.linkState)
+    {
+        default:
+        case kLinkStateInvalid:
+            return "bgblue";
+
+        case kLinkStateDead:
+        case kLinkStateNotMade:
+            return "bgred";
+
+        case kLinkStateUntested:
+            return "bgyellow";
+            
+        case kLinkStateTesting:
+        case kLinkStateIdle:
+            if (inLinkState.linkPingTime > 0)
+            {
+                return "bggreen";
+            }
+            else
+            {
+                return "bgyellow";
+            }
+    }
+}
+
+void
+MediaNetLink::WebStatusPrint(ostream& ioOut) const
+{
+    ioOut << "<td>";
+    if (m_targetIsServer)
+    {
+        ioOut << "Server for ";
+    }
+    else
+    {
+        ioOut << "Client of ";
+    }
+    ioOut << MediaNetUtils::IPAddressToString(m_client.RemoteIPGet())<< "</td>";
+    ioOut << "<td><font class=\"";
+    ioOut << LinkStateToBG(m_tcpState);
+    ioOut << "\">TCP:" << m_client.TCPRemotePortGet() << "</font></td><td>" << m_tcpState.linkPingTime;
+    ioOut << "ms</td><td><font class=\"";
+    ioOut << LinkStateToBG(m_udpState);
+    ioOut << "\">UDP:" << m_client.UDPRemotePortGet() << "</font></td><td>" << m_udpState.linkPingTime;
+    ioOut << "ms</td>";
+    ioOut << endl;
 }

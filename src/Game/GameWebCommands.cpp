@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.1 2002/11/18 13:40:32 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.2 2002/11/18 18:55:58 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.2  2002/11/18 18:55:58  southa
+ * Game resume and quit
+ *
  * Revision 1.1  2002/11/18 13:40:32  southa
  * Moved to correct place
  *
@@ -46,6 +49,7 @@
 #include "GameConfigDef.h"
 
 #include "mushCore.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 CoreInstaller GameWebCommandsInstaller(GameWebCommands::Install);
@@ -138,10 +142,47 @@ GameWebCommands::GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
     return CoreScalar(0);
 }
 
+CoreScalar
+GameWebCommands::GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    time_t now(time(NULL));
+    ioEnv.Out() << "Status at " << ctime(&now);
+    ioEnv.Out() << "<br>Server: ";
+    if (MediaNetServer::Instance().IsServing())
+    {
+        ioEnv.Out() << "Serving on port " << MediaNetServer::Instance().ServerPortGet();
+    }
+    else
+    {
+        ioEnv.Out() << "Not active";
+    }
+    ioEnv.Out() << endl;
+    ioEnv.Out() << "<br><br><font class=\"boldtitle\">Link status</font>" << endl;
+
+    ioEnv.Out() << "<br><br><table class=\"bglightred\" border=\"0\" cellspacing=\"2\" cellpadding=\"2\">" << endl;
+    ioEnv.Out() << "<tr class=\"bgred\"><td class=\"bold\">Target IP</td>";
+    ioEnv.Out() << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
+    ioEnv.Out() << "<td class=\"bold\">Remote port</td><td class=\"bold\">Ping</td>" << endl;
+    ioEnv.Out() << "</tr>" << endl;
+    CoreData<MediaNetLink>::tMapIterator endValue=CoreData<MediaNetLink>::Instance().End();
+
+    for (CoreData<MediaNetLink>::tMapIterator p=CoreData<MediaNetLink>::Instance().Begin();
+         p != endValue; ++p)
+    {
+        ioEnv.Out() << "<tr>";
+        p->second->WebStatusPrint(ioEnv.Out());
+        ioEnv.Out() << "</tr>";
+    }
+    ioEnv.Out() << "</table>" << endl;
+    
+    return CoreScalar(0);
+}
+
 void
 GameWebCommands::Install(void)
 {
     CoreApp::Instance().AddHandler("handlepostvalues", HandlePostValues);
     CoreApp::Instance().AddHandler("displaymodeswrite", DisplayModesWrite);
     CoreApp::Instance().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
+    CoreApp::Instance().AddHandler("gamestatuswrite", GameStatusWrite);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.9 2002/11/05 18:15:17 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.10 2002/11/18 21:02:39 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.10  2002/11/18 21:02:39  southa
+ * Prevent crash on exit
+ *
  * Revision 1.9  2002/11/05 18:15:17  southa
  * Web server
  *
@@ -44,6 +47,11 @@ MediaNetServer::MediaNetServer() :
 void
 MediaNetServer::Connect(U32 inPort)
 {
+    if (m_serving)
+    {
+        Disconnect();
+    }
+    
     m_serverPort=inPort;
         
     MediaNet::Instance();
@@ -52,7 +60,7 @@ MediaNetServer::Connect(U32 inPort)
     if (SDLNet_ResolveHost(&ip, NULL, inPort) == -1)
     {
         ostringstream message;
-        message << "Server creation failed: " << SDLNet_GetError();
+        message << "Resolution for server creation failed: " << SDLNet_GetError();
         throw(NetworkFail(message.str()));
     }
 
@@ -61,7 +69,7 @@ MediaNetServer::Connect(U32 inPort)
     if (m_tcpSocket == NULL)
     {
         ostringstream message;
-        message << "Server creation failed: " << SDLNet_GetError();
+        message << "Server socket creation failed: " << SDLNet_GetError();
         throw(NetworkFail(message.str()));
     }
 
@@ -84,6 +92,22 @@ MediaNetServer::Connect(U32 inPort)
     m_serving=true;
 }
 
+void
+MediaNetServer::Disconnect(void)
+{
+    if (m_serving)
+    {
+        COREASSERT(m_tcpSocket != NULL);
+        COREASSERT(m_udpSocket != NULL);
+        SDLNet_TCP_Close(m_tcpSocket);
+        SDLNet_UDP_Close(m_udpSocket);
+        m_tcpSocket=NULL;
+        m_udpSocket=NULL;
+    }
+    m_serving=false;
+    MediaNetLog::Instance().Log() << "Closed server" << endl;
+}
+
 MediaNetServer::~MediaNetServer()
 {
     if (m_serving)
@@ -92,8 +116,7 @@ MediaNetServer::~MediaNetServer()
         COREASSERT(m_udpSocket != NULL);
         SDLNet_TCP_Close(m_tcpSocket);
         SDLNet_UDP_Close(m_udpSocket);
-    }
-    MediaNetLog::Instance().Log() << "Closed server" << endl;
+    }    
 }
 
 void

@@ -1,8 +1,11 @@
 #ifndef MEDIANETCLIENT_H
 #define MEDIANETCLIENT_H
 /*
- * $Id: MediaNetClient.h,v 1.6 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetClient.h,v 1.7 2002/11/05 18:15:17 southa Exp $
  * $Log: MediaNetClient.h,v $
+ * Revision 1.7  2002/11/05 18:15:17  southa
+ * Web server
+ *
  * Revision 1.6  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -46,10 +49,12 @@ public:
     void UDPSend(MediaNetData& inData);
     void UDPReceive(MediaNetData& inData);
 
-    bool UDPConnectedGet(void) { return m_udpConnected; }
-    U32 UDPRemotePortGet(void) { return m_udpRemotePort; }
+    U32 TCPRemotePortGet(void) const { return m_tcpRemotePort; }
+
+    bool UDPConnectedGet(void) const { return m_udpConnected; }
+    U32 UDPRemotePortGet(void) const { return m_udpRemotePort; }
     void UDPRemotePortSet(U32 inPort);
-    U32 UDPRemoteIPGet(void) { return m_remoteIP; }
+    U32 RemoteIPGet(void) const { return m_remoteIP; }
     void Print(ostream& ioOut) const;
     
 private:
