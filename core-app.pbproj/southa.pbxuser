@@ -83,9 +83,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {724, 108}}";
-							BuildTranscriptFrame = "{{0, 117}, {724, 77}}";
-							Frame = "{{0, 0}, {722, 192}}";
+							BuildMessageFrame = "{{0, 0}, {743, 108}}";
+							BuildTranscriptFrame = "{{0, 117}, {743, 77}}";
+							Frame = "{{0, 0}, {741, 192}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {612, 295}}";
@@ -97,21 +97,21 @@
 						Frame = "{{0, 0}, {219, 595}}";
 					};
 					Tab1 = {
-						ClassesFrame = "{{0, 0}, {202, 56}}";
-						Frame = "{{0, 0}, {200, 100}}";
-						MembersFrame = "{{0, 65}, {202, 35}}";
+						ClassesFrame = "{{0, 0}, {203, 360}}";
+						Frame = "{{0, 0}, {201, 595}}";
+						MembersFrame = "{{0, 369}, {203, 226}}";
 						OptionsSetName = "Hierarchy, all classes";
 					};
 					Tab2 = {
-						Frame = "{{0, 0}, {200, 618}}";
+						Frame = "{{0, 0}, {200, 595}}";
 					};
 					Tab3 = {
-						Frame = "{{0, 0}, {200, 618}}";
+						Frame = "{{0, 0}, {200, 595}}";
 						Split0 = {
-							Frame = "{{0, 0}, {200, 300}}";
+							Frame = "{{0, 0}, {200, 288}}";
 						};
 						Split1 = {
-							Frame = "{{0, 309}, {200, 309}}";
+							Frame = "{{0, 297}, {200, 298}}";
 						};
 						SplitCount = 2;
 					};
