@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.12 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.13 2002/08/21 16:53:46 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.13  2002/08/21 16:53:46  southa
+ * Win and lose handling
+ *
  * Revision 1.12  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -128,26 +131,8 @@ GameTypeRace::SequenceAdvance(void)
     {
         if (m_lapCount == m_laps)
         {
-            // Race is finisihed
-            m_raceState = kResult;
-            m_endTime = gameTime;
-            // Calculate the total available time
-            tVal extraTime=0;
-            for (U32 i=0; i < m_chequePoints.size(); ++i)
-            {
-                extraTime += m_chequePoints[i]->AddTimeGet();
-            }
-            judgementRatio = (m_endTime - m_startTime) / (m_initialTime + m_laps * extraTime);
-            if (judgementRatio <= 1.0)
-            {
-                // Race won
-                GameDataUtils::NamedDialoguesAdd(m_winAction);
-            }
-            else
-            {
-                // Race lost
-                GameDataUtils::NamedDialoguesAdd(m_loseAction);
-            }
+            RaceFinished();
+            judgementRatio = (m_endTime - m_startTime) / (m_lapParTime * m_laps);
         }
         
         // Just passed the lap start
@@ -158,7 +143,7 @@ GameTypeRace::SequenceAdvance(void)
         }
         if (m_lapStartTimeValid)
         {
-            GameTimer::tMsec lapTime = gameTime-m_lapStartTime;
+            GameTimer::tMsec lapTime = m_dispLap;
             if (m_records.LapTimeValid())
             {
                 GameTimer::tMsec oldLapTime = m_records.LapTimeGet();
@@ -183,10 +168,10 @@ GameTypeRace::SequenceAdvance(void)
     }
     if (m_chequePointTimeValid)
     {
-        GameTimer::tMsec splitTime = gameTime - m_chequePointTime;
-        if (m_records.SplitTimeValid(m_sequence))
+        GameTimer::tMsec splitTime = m_dispSplit;
+        if (m_records.SplitTimeValid(lastSequence))
         {
-            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(m_sequence);
+            GameTimer::tMsec oldSplitTime = m_records.SplitTimeGet(lastSequence);
             GameDialogue *splitDialogue =
                 GameData::Instance().CurrentDialogueAdd("splitdifference",
                                         *GameData::Instance().DialogueGet("splitdifference"));
@@ -198,7 +183,7 @@ GameTypeRace::SequenceAdvance(void)
                                     *GameData::Instance().DialogueGet("splitdisplay"));
         splitDialogue->TextSet(0, GameTimer::MsecToString(splitTime));
 
-        m_records.SplitTimePropose(m_sequence, splitTime);
+        m_records.SplitTimePropose(lastSequence, splitTime);
         if (judgementRatio == 0.0)
         {
             judgementRatio = splitTime / m_chequePoints[lastSequence]->ParTimeGet();
@@ -213,6 +198,31 @@ GameTypeRace::SequenceAdvance(void)
 }
   
 void
+GameTypeRace::RaceFinished(void)
+{
+    GameTimer& timer(GameData::Instance().TimerGet());
+    GameTimer::tMsec gameTime=timer.GameMsecGet();
+            m_raceState = kPreResult;
+            m_endTime = gameTime;
+            // Calculate the total available time
+            tVal extraTime=0;
+            for (U32 i=0; i < m_chequePoints.size(); ++i)
+            {
+                extraTime += m_chequePoints[i]->AddTimeGet();
+            }
+            if (m_dispRemaining > 0.0)
+            {
+                // Race won
+                GameDataUtils::NamedDialoguesAdd(m_winAction);
+            }
+            else
+            {
+                // Race lost
+                GameDataUtils::NamedDialoguesAdd(m_loseAction);
+            }
+}
+
+void
 GameTypeRace::Move(void)
 {
     switch (m_raceState)
@@ -220,14 +230,26 @@ GameTypeRace::Move(void)
         case kPrelude:
         case kRunning:
             UpdateTimes();
+            if (m_dispRemaining <= 0.0)
+            {
+                RaceFinished();
+                GameData::Instance().RewardsGet().JudgementPass((m_laps+2)/ (m_lapCount+1));
+            }
             break;
 
+	case kPreResult:
+	    // Don't update times for the last time
+            // UpdateTimes();
+	    m_raceState=kResult;
+	    break;
+	    
         case kResult:
+	    m_resultAlpha += (0.9-m_resultAlpha) / 500;
             break;
 
-        case kInvalid:
+	default:
             throw(LogicFail("m_raceState"));
-    }    
+    }
 }
 
 void
@@ -237,6 +259,7 @@ GameTypeRace::Render(void) const
     {
         case kPrelude:
         case kRunning:
+	case kPreResult:
             RenderTimes();
             break;
 
@@ -245,7 +268,7 @@ GameTypeRace::Render(void) const
             RenderResult();
             break;
             
-        case kInvalid:
+       default:
             throw(LogicFail("m_raceState"));
     }
 }
@@ -269,6 +292,7 @@ GameTypeRace::UpdateTimes(void)
             m_dispSplit = gameTime - m_chequePointTime;
             break;
 
+        case kPreResult:
         case kResult:
             break;
             
@@ -340,37 +364,74 @@ GameTypeRace::RenderTimes(void) const
 void
 GameTypeRace::RenderResult(void) const
 {
+    // Table layout
+    const tVal row1=-0.1;
+    const tVal rowSpacing=-0.03;
+    const tVal column1=-0.2;
+    const tVal column2=0.1;
+    const tVal column3=0.4;
+     
     GLUtils::OrthoPrologue();
-    GLUtils::ColourSet(1.0,1.0,1.0,0.75);
+    GLUtils::ColourSet(1.0,1.0,1.0,m_resultAlpha);
     GLUtils orthoGL;
-    orthoGL.MoveTo(0,-0.03);
-    GLString timeStr(GameTimer::MsecToLongString(m_endTime - m_startTime),
-                          GLFontRef("font-mono1", 0.03), 0);
-    timeStr.Render();
+    {
+        orthoGL.MoveTo(column3,row1-rowSpacing);
+        GLString recordStr("RECORDS", GLFontRef("font-mono1", 0.02), 1);
+        recordStr.Render();
+    }
 
-    orthoGL.MoveRelative(0, -0.06);
-    GLUtils::ColourSet(1.0,1.0,0.0,0.75);
+    {
+        orthoGL.MoveTo(column1,row1);
+        GLString timeStr("Time:", GLFontRef("font-mono1", 0.03), 1);
+        timeStr.Render();
+        timeStr.TextSet(GameTimer::MsecToLongString(m_endTime - m_startTime));
+        orthoGL.MoveTo(column2,row1);
+        timeStr.Render();
+        orthoGL.MoveTo(column3,row1);
+        timeStr.Render();
+    }
+    {
+        orthoGL.MoveTo(0,row1+rowSpacing);
+        GLString recordStr("BEST SECTIONS", GLFontRef("font-mono1", 0.02), 0);
+        recordStr.Render();
+    }
+
+
+    GLUtils::ColourSet(1.0,1.0,0.0,m_resultAlpha);
 
     if (m_records.LapTimeValid())
     {
-        GLString lapRecordStr(GameTimer::MsecToLongString(m_records.LapTimeGet()),
-                              GLFontRef("font-mono1", 0.03), 0);
+        GLString lapRecordStr("Lap :", GLFontRef("font-mono1", 0.03), 1);
+        orthoGL.MoveTo(column1, row1+2*rowSpacing);
+        lapRecordStr.Render();
+        lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
+        orthoGL.MoveTo(column2, row1+2*rowSpacing);
+        lapRecordStr.Render();
+        lapRecordStr.TextSet(GameTimer::MsecToLongString(m_records.LapTimeGet()));
+        orthoGL.MoveTo(column3, row1+2*rowSpacing);
         lapRecordStr.Render();
     }
     
-    orthoGL.MoveRelative(0, -0.03);
-    GLUtils::ColourSet(0.0,1.0,1.0,0.75);
+    GLUtils::ColourSet(0.0,1.0,1.0,m_resultAlpha);
     
     for (U32 i=0; i<m_chequePoints.size(); ++i)
     {
-        orthoGL.MoveRelative(0, -0.03);
         if (m_records.SplitTimeValid(i))
         {
             U32 next=i+1;
             if (next >= m_chequePoints.size()) next=0;
             ostringstream message;
-            message << i << "-" << next << ": " << GameTimer::MsecToString(m_records.SplitTimeGet(i));
-            GLString splitRecordStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+            message << i+1 << "-" << next+1 << " :";
+            GLString splitRecordStr(message.str(), GLFontRef("font-mono1", 0.03), 1.0);
+            orthoGL.MoveTo(column1, row1+(3+i)*rowSpacing);
+            splitRecordStr.Render();
+	    
+	    splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
+            orthoGL.MoveTo(column2, row1+(3+i)*rowSpacing);
+            splitRecordStr.Render();
+	    
+	    splitRecordStr.TextSet(GameTimer::MsecToString(m_records.SplitTimeGet(next)));
+            orthoGL.MoveTo(column3, row1+(3+i)*rowSpacing);
             splitRecordStr.Render();
         }
     }
@@ -489,6 +550,7 @@ GameTypeRace::UnpicklePrologue(void)
     m_baseThreaded=0;
     m_sequence=0;
     m_lapCount=0;
+    m_resultAlpha=0;
     m_raceState=kPrelude;
 }
 

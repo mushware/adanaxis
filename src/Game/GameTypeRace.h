@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.7 2002/08/21 16:09:04 southa Exp $
+ * $Id: GameTypeRace.h,v 1.8 2002/08/21 16:53:46 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.8  2002/08/21 16:53:46  southa
+ * Win and lose handling
+ *
  * Revision 1.7  2002/08/21 16:09:04  southa
  * GameTypeRace state tweaks
  *
@@ -89,6 +92,7 @@ private:
         kInvalid,
         kPrelude,
         kRunning,
+	kPreResult,
         kResult
     };
 
@@ -96,6 +100,7 @@ private:
     void UpdateTimes(void);
     void RenderTimes(void) const;
     void RenderResult(void) const;
+    void RaceFinished(void);
     
     U32 m_sequence;
     vector<GameChequePoint *> m_chequePoints;
@@ -119,6 +124,7 @@ private:
     U32 m_laps;
     U32 m_lapCount;
     tVal m_initialTime;
+    tVal m_resultAlpha;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)
