@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.h,v 1.3 2002/05/31 15:18:16 southa Exp $
+ * $Id: GameAppHandler.h,v 1.4 2002/06/20 15:50:30 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.4  2002/06/20 15:50:30  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.3  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -17,7 +20,7 @@
 
 class GameBase;
 
-class GameAppHandler : public GLUTAppHandler
+class GameAppHandler : public SDLAppHandler
 {
 public:
     GameAppHandler(): m_pGame(NULL) {}

@@ -1,6 +1,9 @@
 /*
- * $Id: GLUtils.cpp,v 1.11 2002/06/06 16:08:42 southa Exp $
+ * $Id: GLUtils.cpp,v 1.12 2002/06/20 15:50:30 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.12  2002/06/20 15:50:30  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.11  2002/06/06 16:08:42  southa
  * Changed game screen size to 1024x768
  *
@@ -38,6 +41,7 @@
 
 #include "GLUtils.h"
 #include "GLTexture.h"
+#include "GLAppHandler.h"
 
 void
 GLUtils::MoveTo(tVal inX, tVal inY)
@@ -72,9 +76,11 @@ GLUtils::IdentityEpilogue(void)
 void
 GLUtils::OrthoPrologue(void)
 {
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+
     IdentityPrologue();
     glMatrixMode(GL_PROJECTION);
-    gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, 	glutGet(GLUT_WINDOW_HEIGHT));
+    gluOrtho2D(0, glHandler.WidthGet(), 0, glHandler.HeightGet());
 }
 
 void
@@ -86,9 +92,10 @@ GLUtils::OrthoEpilogue(void)
 void
 GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
 {
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
     glMatrixMode(GL_PROJECTION);
-    tVal width=glutGet(GLUT_WINDOW_WIDTH);
-    tVal height=glutGet(GLUT_WINDOW_HEIGHT);
+    tVal width=glHandler.WidthGet();
+    tVal height=glHandler.HeightGet();
     gluOrtho2D(-width/2, width/2, -height/2, height/2);
 
     gluLookAt(inX, inY, 0.1, // eye position
@@ -106,7 +113,9 @@ GLUtils::DisplayPrologue(void)
 void
 GLUtils::DisplayEpilogue(void)
 {
-    glutSwapBuffers();
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+
+    glHandler.SwapBuffers();
 }
 
 void
@@ -155,7 +164,7 @@ GLUtils::BitmapText(const string& inStr)
     tSize length=inStr.size();
     for (U32 i=0; i<length; i++)
     {
-        glutBitmapCharacter(GLUT_BITMAP_8_BY_13, inStr[i]);
+        // glutBitmapCharacter(GLUT_BITMAP_8_BY_13, inStr[i]);
     }
 }
 
@@ -241,7 +250,9 @@ GLUtils::DrawBitmap(const GLTexture& inTex, S32 inX, S32 inY)
 
 void GLUtils::PostRedisplay(void)
 {
-    glutPostRedisplay();
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+
+    glHandler.PostRedisplay();
 }
 
 void
@@ -283,52 +294,3 @@ GLUtils::CheckGLError(void)
     }
 }
 
-void
-GLUtils::SafetyHandler(void)
-{
-}
-
-
-#if 0
-void
-GLUtils::StandardInit(void)
-{
-    char *argv[] = {"glutInit", ""};
-    int argc=sizeof(argv)/sizeof(argv[0]);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE /* | GLUT_ALPHA */);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_BLEND);
-    glDisable(GL_LINE_SMOOTH);
-    // This kills glut on cygwin
-    // glutDisplayFunc(SafetyHandler);
-    glutInitWindowSize(640,480);
-    glutCreateWindow("Game");
-    glutDisplayFunc(SafetyHandler);
-    CheckGLError();
-}
-
-void
-GLUtils::GameInit(void)
-{
-    char *argv[] = {"glutInit", ""};
-    int argc=sizeof(argv)/sizeof(argv[0]);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_BLEND);
-    glDisable(GL_LINE_SMOOTH);
-    // This kills glut on cygwin
-    // glutDisplayFunc(SafetyHandler);
-    glutGameModeString("1024x768:32@85");
-    glutEnterGameMode();
-    glutDisplayFunc(SafetyHandler);
-    CheckGLError();
-}
-#endif

@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.14 2002/06/20 11:06:14 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.15 2002/06/20 15:50:30 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.15  2002/06/20 15:50:30  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.14  2002/06/20 11:06:14  southa
  * Updated for cygwin
  *
@@ -77,7 +80,7 @@ GameAppHandler::Initialise(void)
     m_pGame=GameData::Instance().ContractGet("contract1");
     m_pGame->ScriptFunction("load");
     
-    EnterScreen(kGame);
+    EnterScreen(kWindow);
 
     GLUtils::CheckGLError();
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: main.cpp,v 1.11 2002/06/13 15:15:56 southa Exp $
+ * $Id: main.cpp,v 1.12 2002/06/20 15:50:30 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.12  2002/06/20 15:50:30  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.11  2002/06/13 15:15:56  southa
  * New directory structure, FPS printing, load command
  *
@@ -44,7 +47,7 @@
 #endif
 
 // SDL test
-#if 0
+#if 1
 
 #if defined(HAVE_SDL_SDL_MAIN_H)
 #include <SDL/SDL_main.h>

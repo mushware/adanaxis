@@ -1,8 +1,11 @@
 #ifndef GLAPPHANDLER_H
 #define GLAPPHANDLER_H
 /*
- * $Id: GLAppHandler.h,v 1.5 2002/06/06 13:36:13 southa Exp $
+ * $Id: GLAppHandler.h,v 1.6 2002/06/20 15:50:29 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.6  2002/06/20 15:50:29  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.5  2002/06/06 13:36:13  southa
  * Mouse handling
  *
@@ -52,5 +55,10 @@ public:
     virtual void MousePositionGet(S32& outX, S32& outY) const = 0;
     virtual void MouseDeltaGet(S32& outX, S32& outY) const = 0;
     virtual void EnterScreen(tInitType inType) = 0;
+    virtual void PostRedisplay(void) = 0;
+    virtual void SwapBuffers(void) = 0;
+    virtual U32 WidthGet(void) const = 0;
+    virtual U32 HeightGet(void) const = 0;
+    virtual U32 GetMilliseconds(void) const = 0;
 };
 #endif

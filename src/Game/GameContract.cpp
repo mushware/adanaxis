@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.17 2002/06/10 15:16:59 southa Exp $
+ * $Id: GameContract.cpp,v 1.18 2002/06/13 15:15:55 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.18  2002/06/13 15:15:55  southa
+ * New directory structure, FPS printing, load command
+ *
  * Revision 1.17  2002/06/10 15:16:59  southa
  * Integration of MP3 player
  *
@@ -153,7 +156,6 @@ GameContract::RunningDisplay(void)
     }
     GLUtils::IdentityEpilogue();
 
-
     ostringstream message;
     message << "FPS " << m_fps;
     GLUtils::OrthoPrologue();
@@ -185,7 +187,9 @@ GameContract::Running(void)
     GLUtils::PostRedisplay();
     {
         static U32 lastPrint=0;
-        U32 timeNow=glutGet(GLUT_ELAPSED_TIME);
+        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+
+        U32 timeNow=glAppHandler.GetMilliseconds();
         //srand(timeNow);
         if (timeNow > lastPrint && timeNow - lastPrint > 5000)
         {

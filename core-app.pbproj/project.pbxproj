@@ -2295,6 +2295,12 @@
 			settings = {
 			};
 		};
+		F5473FB802C38AA801C31ED5 = {
+			fileRef = F546F21702C1F66E01173785;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F547DFD102395B6001A7C23C = {
 			children = (
 				F57BD7BB028AECBF01AD87C4,
@@ -3248,8 +3254,6 @@
 				F5F06F0702AE531801B05200,
 				F5F06F0E02AE554301B05200,
 				F5F06F0F02AE554301B05200,
-				F5F06F0A02AE542D01B05200,
-				F5F06F0B02AE542D01B05200,
 				F5939693028C067F016230BF,
 				F5939694028C067F016230BF,
 				F5F2C66302A410DA01CB7A62,
@@ -3505,6 +3509,7 @@
 				F546F59602C206E801173785,
 				F546F6F602C211F901173785,
 				F546F6FA02C2120701173785,
+				F5473FB802C38AA801C31ED5,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -3990,18 +3995,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F5F06F0A02AE542D01B05200 = {
-			isa = PBXFileReference;
-			name = GamePlayer.cpp;
-			path = Game/GamePlayer.cpp;
-			refType = 4;
-		};
-		F5F06F0B02AE542D01B05200 = {
-			isa = PBXFileReference;
-			name = GamePlayer.h;
-			path = Game/GamePlayer.h;
-			refType = 4;
 		};
 		F5F06F0E02AE554301B05200 = {
 			isa = PBXFileReference;
