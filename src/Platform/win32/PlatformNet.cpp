@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformNet.cpp,v 1.3 2002/11/08 00:25:34 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.4 2002/11/08 00:41:10 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.4  2002/11/08 00:41:10  southa
+ * Removed debug
+ *
  * Revision 1.3  2002/11/08 00:25:34  southa
  * Added UDPSend and UDPReceive
  *
@@ -98,3 +101,59 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
     }
     return dataSize;
 }
+
+TCPsocket
+PlatformNet::TCPConnectNonBlocking(IPaddress *ip)
+{
+    TCPsocket sock;
+    struct sockaddr_in sock_addr;
+
+    sock = reinterpret_cast<TCPsocket>(malloc(sizeof(*sock)));
+    if (sock == NULL)
+    {
+        throw(NetworkFail("Couldn't create socket"));
+    }
+
+    sock->channel = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock->channel == -1)
+    {
+        free(sock);
+        throw(NetworkFail("Couldn't create socket"));
+    }
+
+    SocketNonBlockingSet(sock->channel);
+    
+    // Use the SDL function for listening sockets
+    COREASSERT((ip->host != INADDR_NONE) && (ip->host != INADDR_ANY));
+
+    memset(&sock_addr, 0, sizeof(sock_addr));
+    sock_addr.sin_family = AF_INET;
+    sock_addr.sin_addr.s_addr = ip->host;
+    sock_addr.sin_port = ip->port;
+
+    if (connect(sock->channel, (struct sockaddr *)&sock_addr,
+                 sizeof(sock_addr)) == SOCKET_ERROR)
+    {
+    	int wsaError = WSAGetLastError();
+
+        if (wsaError != WSAEWOULDBLOCK)
+        {
+            ostringstream message;
+            message << "Couldn't connect to remote host (" << wsaError << ")";
+            throw(NetworkFail(message.str()));
+        }
+    }
+    sock->sflag = 0;
+    sock->ready = 0;
+
+    {
+        int yes = 1;
+        setsockopt(sock->channel, IPPROTO_TCP, TCP_NODELAY, (char*)&yes, sizeof(yes));
+    }
+
+    sock->remoteAddress.host = sock_addr.sin_addr.s_addr;
+    sock->remoteAddress.port = sock_addr.sin_port;
+
+    return(sock);
+}
+
