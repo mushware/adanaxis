@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.2 2003/09/21 11:46:12 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.3 2003/09/21 15:57:12 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.3  2003/09/21 15:57:12  southa
+ * XML autogenerator work
+ *
  * Revision 1.2  2003/09/21 11:46:12  southa
  * XML input stream
  *
@@ -73,6 +76,16 @@ Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::st
 }
 
 } // end namespace Mushcore
+
+// Keep the standard unpickles here
+
+inline MushcoreXMLIStream&
+operator>>(MushcoreXMLIStream& ioIn, TestMushcoreObject& outObj)
+{
+    Mushcore::Unpickle(ioIn, outObj);
+    return ioIn;
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)

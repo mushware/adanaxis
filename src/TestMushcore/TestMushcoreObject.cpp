@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.2 2003/09/21 11:46:11 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.3 2003/09/21 15:57:12 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.3  2003/09/21 15:57:12  southa
+ * XML autogenerator work
+ *
  * Revision 1.2  2003/09/21 11:46:11  southa
  * XML input stream
  *
@@ -33,16 +36,18 @@ TestMushcoreObject::XMLDataProcess(MushcoreXMLIStream& ioIn)
     cout << "Tag " << ioIn.TagNameGet() << endl;
     if (ioIn.TagNameGet() == "TestMushcoreObject")
     {
-        MushcoreXMLIStream xmlIStream(&ioIn.DataStreamGet());
-        Mushcore::Unpickle(xmlIStream, *this);
+        // MushcoreXMLIStream xmlIStream(&ioIn.DataStreamGet());
+        // Mushcore::Unpickle(xmlIStream, *this);
+
+        ioIn.ObjectRead(*this);
     }
     else if (ioIn.TagNameGet() == "u8")
     {
-        ioIn.DataStreamGet() >> m_u8;
+        ioIn >> m_u8;
     }
     else if (ioIn.TagNameGet() == "u32")
     {
-        ioIn.DataStreamGet() >> m_u32;
+        ioIn >> m_u32;
     }
 }
 

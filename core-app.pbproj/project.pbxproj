@@ -1810,6 +1810,12 @@
 			path = networkstatus.mhtml;
 			refType = 4;
 		};
+		7AB4BA9C051E148900A80064 = {
+			isa = PBXFrameworkReference;
+			name = vecLib.framework;
+			path = /System/Library/Frameworks/vecLib.framework;
+			refType = 0;
+		};
 		7AB53C48043256A900A80164 = {
 			fileRef = 7AB855DE03D2FD4F00A80164;
 			isa = PBXBuildFile;
@@ -6677,6 +6683,7 @@
 				F52A425C02B3B5050109140E,
 				F546F21A02C1F7FB01173785,
 				F546F21B02C1F7FB01173785,
+				7AB4BA9C051E148900A80064,
 			);
 			isa = PBXGroup;
 			name = Frameworks;

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.1 2003/09/21 11:46:10 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.2 2003/09/21 15:57:11 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.2  2003/09/21 15:57:11  southa
+ * XML autogenerator work
+ *
  * Revision 1.1  2003/09/21 11:46:10  southa
  * XML input stream
  *
@@ -29,10 +32,12 @@
 using namespace std;
 using namespace Mushware;
 
-MushcoreXMLIStream::MushcoreXMLIStream(std::istream *inPStream)
+MushcoreXMLIStream::MushcoreXMLIStream(std::istream *inPStream) :
+    m_pInputStream(inPStream),
+    m_contentStart(0),
+    m_contentEnd(0),
+    m_contentLineNum(0)
 {
-    m_pInputStream = inPStream;
-    m_pDataStream = NULL;
 }
 
 MushcoreXMLIStream::~MushcoreXMLIStream()
@@ -43,51 +48,78 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 void
 MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 {
-    string contentStr;
-    while (!m_pInputStream->eof())
+    string tagStr;
+    U32 dataStartPos;
+
+    do
     {
-        string newStr;
-        std::getline(*m_pInputStream, newStr);
-        if (m_pInputStream->bad())
+        while (dataStartPos = MushcoreUtil::TagGet(tagStr, m_contentStr, m_contentStart),
+                dataStartPos == 0)
         {
-            Throw("Read failure");
+            InputFetch();
         }
-        
-        contentStr += newStr;
-        
-        while (1)
+        m_tagName = tagStr.substr(0, tagStr.find(' '));
+    
+        string closingStr("</"+m_tagName+">");
+        U32 dataEndPos;
+    
+        while (dataEndPos = m_contentStr.find(closingStr, dataStartPos),
+                dataEndPos == string::npos)
         {
-            string tagStr;
-            U32 dataStartPos = MushcoreUtil::TagGet(tagStr, contentStr);
-            if (dataStartPos == 0)
-            {
-                break; // No tag - get more input
-            }
+            InputFetch();
+        }
             
-            m_tagName = tagStr.substr(0, tagStr.find(' '));
+        U32 sequenceEndPos = dataEndPos + closingStr.size();
 
-            string closingStr("</"+m_tagName+">");
-            U32 dataEndPos = contentStr.find(closingStr, dataStartPos);
-            U32 sequenceEndPos = dataEndPos + closingStr.size();
-            if (dataEndPos == string::npos)
-            {
-                break; // Need more input
-            }
-            istringstream dataStream(contentStr.substr(dataStartPos, dataEndPos - dataStartPos)); // FIXME: efficiency
+        U32 contentEndStore = m_contentEnd;
+        m_contentStart = dataStartPos;
+        m_contentEnd = dataEndPos;
 
-            m_pDataStream = &dataStream;
-            inObj.XMLDataProcess(*this);
-            m_pDataStream = NULL;
+        inObj.XMLDataProcess(*this);
+ 
+        m_contentStart = sequenceEndPos;
+        m_contentEnd = contentEndStore;
+        
+    } while (m_contentStart < m_contentEnd);
+}
 
-            contentStr = contentStr.substr(sequenceEndPos, string::npos); // FIXME: efficiency
-        }
+void
+MushcoreXMLIStream::InputFetch(void)
+{
+    if (m_pInputStream->eof())
+    {
+        Throw("Unexpected end of input");
     }
+    
+    string newStr;
+    std::getline(*m_pInputStream, newStr);
+    
+    if (m_pInputStream->bad())
+    {
+        Throw("Read failure");
+    }
+
+    m_contentStr += newStr;
+    ++m_contentLineNum;
+}
+
+std::string
+MushcoreXMLIStream::DataGet(void) const
+{
+    return m_contentStr.substr(m_contentStart, m_contentEnd - m_contentStart);
+}
+
+std::istream *
+MushcoreXMLIStream::TempIStreamNew(void) const
+{
+    return new std::istringstream(DataGet());
 }
 
 void
 MushcoreXMLIStream::Throw(const string& inMessage)
 {
     ostringstream message;
-    message << "XML parsing failure in '" << "'";
+    message << "XML parsing failure within '" << m_contentStr.substr(m_contentStart) << "' at line " << m_contentLineNum << ": " << inMessage;
     throw(MushcoreSyntaxFail(message.str()));
 }
+
