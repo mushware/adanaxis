@@ -2074,7 +2074,7 @@
 			neededFileNames = (
 			);
 			shellPath = /bin/sh;
-			shellScript = "rm -rf ic2data/system/contractor.app\ncp -pR build/contractor.app ic2data/system/contractor.app\nrm -f ic2data/contractor.app\nln -s ic2data/system/contractor.app ic2data/contractor.app\n";
+			shellScript = "rm -rf ic2data/system/ic2.app\ncp -pR build/ic2.app ic2data/system/ic2.app\nrm -f ic2data/ic2.app\nln -s ic2data/system/ic2.app ic2data/ic2.app\n";
 		};
 		F54631EB02ACC53801A7DA6B = {
 			isa = PBXFileReference;
@@ -3561,7 +3561,7 @@
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = contractor;
+				PRODUCT_NAME = ic2;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
 				WRAPPER_EXTENSION = app;
@@ -3580,9 +3580,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>contractor</string>
+	<string>ic2</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Contractor</string>
+	<string>Infernal Contractor II</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -3590,11 +3590,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Contractor</string>
+	<string>Infernal Contractor II</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>Contractor</string>
+	<string>ic2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -3606,7 +3606,7 @@
 		};
 		F59396D6028C0CA6016230BF = {
 			isa = PBXApplicationReference;
-			path = contractor.app;
+			path = ic2.app;
 			refType = 3;
 		};
 		F59396DA028C0CD8016230BF = {

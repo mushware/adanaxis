@@ -1,8 +1,23 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreStandard.h,v 1.7 2002/06/11 16:23:56 southa Exp $
+ * $Id: CoreStandard.h,v 1.8 2002/06/24 12:12:30 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.8  2002/06/24 12:12:30  southa
+ * Added <math.h>
+ *
  * Revision 1.7  2002/06/11 16:23:56  southa
  * New paths to data files
  *

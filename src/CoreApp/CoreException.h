@@ -1,8 +1,23 @@
-#ifndef COREEXCEPTION_HP
-#define COREEXCEPTION_HP
+#ifndef COREEXCEPTION_H
+#define COREEXCEPTION_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreException.h,v 1.9 2002/06/10 15:16:59 southa Exp $
+ * $Id: CoreException.h,v 1.10 2002/06/20 11:06:14 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.10  2002/06/20 11:06:14  southa
+ * Updated for cygwin
+ *
  * Revision 1.9  2002/06/10 15:16:59  southa
  * Integration of MP3 player
  *

@@ -1,16 +1,19 @@
 To compile and install Infernal Contractor II from this distribution:
 
-Download and unpack the data files to the ic2data directory.
+Download and unpack the source and data files thus:
+
+tar xvzf ic2-src-0_0_1.tar.gz
+cd ic2-0.0.1
+tar xvzf ic2-data-0_0_1.tar.gz
 
 Run
 
 ./configure
 (spend a few days getting the libraries which configure asks for)
 make
-make release
+make install
 
-The application can then be run using
+The application will be installed into to ic2data directory, not in the /usr tree.
+It can then be run using
 
-cd release/system
-./contractor
-
+./ic2

@@ -1,8 +1,23 @@
-#ifndef CORESCALAR_HP
-#define CORESCALAR_HP
+#ifndef CORESCALAR_H
+#define CORESCALAR_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreScalar.h,v 1.6 2002/05/28 22:36:44 southa Exp $
+ * $Id: CoreScalar.h,v 1.7 2002/06/04 20:27:35 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.7  2002/06/04 20:27:35  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.6  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *

@@ -1,6 +1,23 @@
+#ifndef DATASET_H
+#define DATASET_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: Dataset.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: Dataset.h,v 1.2 2002/05/24 16:23:10 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.2  2002/05/24 16:23:10  southa
+ * Config and typenames
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -45,3 +62,4 @@ inline bool operator==(const Dataset& data1, const Dataset& data2)
     return ((data1.m_data == data2.m_data) && (data1.m_valid == data2.m_valid));
 }
 
+#endif

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreScalar.cpp,v 1.5 2002/05/24 16:23:10 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.6 2002/05/28 13:05:56 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.6  2002/05/28 13:05:56  southa
+ * Command parser extensions and TIFF loader
+ *
  * Revision 1.5  2002/05/24 16:23:10  southa
  * Config and typenames
  *

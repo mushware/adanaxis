@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: Test.cpp,v 1.10 2002/05/28 22:36:44 southa Exp $
+ * $Id: Test.cpp,v 1.11 2002/06/04 20:28:39 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.11  2002/06/04 20:28:39  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.10  2002/05/28 22:36:44  southa
  * Script loader and tile map
  *

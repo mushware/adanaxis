@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameTest.cpp,v 1.2 2002/05/10 16:39:34 southa Exp $
+ * $Id: GameTest.cpp,v 1.3 2002/05/10 22:38:22 southa Exp $
  * $Log: GameTest.cpp,v $
+ * Revision 1.3  2002/05/10 22:38:22  southa
+ * Checkpoint
+ *
  * Revision 1.2  2002/05/10 16:39:34  southa
  * Changed .hp files to .h
  *

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameContract.cpp,v 1.18 2002/06/13 15:15:55 southa Exp $
+ * $Id: GameContract.cpp,v 1.19 2002/06/21 18:50:16 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.19  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  * Revision 1.18  2002/06/13 15:15:55  southa
  * New directory structure, FPS printing, load command
  *

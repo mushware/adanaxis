@@ -1,6 +1,23 @@
+#ifndef GAMETEST_H
+#define GAMETEST_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameTest.h,v 1.3 2002/05/10 22:38:22 southa Exp $
+ * $Id: GameTest.h,v 1.4 2002/05/24 16:23:07 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.4  2002/05/24 16:23:07  southa
+ * Config and typenames
+ *
  * Revision 1.3  2002/05/10 22:38:22  southa
  * Checkpoint
  *
@@ -44,3 +61,4 @@ private:
     tVal m_leftlim;
     tVal m_rightlim;
 };
+#endif

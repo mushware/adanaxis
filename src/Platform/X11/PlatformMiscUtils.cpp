@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.5 2002/06/20 11:06:15 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.1 2002/06/26 17:56:34 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.1  2002/06/26 17:56:34  southa
+ * Created
+ *
  * Revision 1.5  2002/06/20 11:06:15  southa
  * Updated for cygwin
  *

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: TestCommandHandler.cpp,v 1.5 2002/05/10 16:39:35 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.6 2002/05/24 18:09:39 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.6  2002/05/24 18:09:39  southa
+ * CoreXML and game map
+ *
  * Revision 1.5  2002/05/10 16:39:35  southa
  * Changed .hp files to .h
  *

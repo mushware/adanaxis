@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreConfig.cpp,v 1.5 2002/05/31 15:18:15 southa Exp $
+ * $Id: CoreConfig.cpp,v 1.6 2002/06/04 14:11:21 southa Exp $
  * $Log: CoreConfig.cpp,v $
+ * Revision 1.6  2002/06/04 14:11:21  southa
+ * Traits loader first stage
+ *
  * Revision 1.5  2002/05/31 15:18:15  southa
  * Keyboard reading
  *

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreUtil.cpp,v 1.4 2002/05/27 12:58:43 southa Exp $
+ * $Id: CoreUtil.cpp,v 1.5 2002/06/04 20:27:36 southa Exp $
  * $Log: CoreUtil.cpp,v $
+ * Revision 1.5  2002/06/04 20:27:36  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.4  2002/05/27 12:58:43  southa
  * GameContract and global configs added
  *

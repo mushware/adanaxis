@@ -1,6 +1,23 @@
+#ifndef GLDATA_H
+#define GLDATA_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLData.h,v 1.1 2002/05/10 16:41:43 southa Exp $
+ * $Id: GLData.h,v 1.2 2002/05/28 16:37:39 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.2  2002/05/28 16:37:39  southa
+ * Texture references and decomposer
+ *
  * Revision 1.1  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
  *
@@ -40,3 +57,4 @@ private:
     map<string, GLTexture *> m_textures;
     static GLData *m_instance;
 };
+#endif

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: LaunchCommandHandler.cpp,v 1.5 2002/05/24 16:23:10 southa Exp $
+ * $Id: LaunchCommandHandler.cpp,v 1.6 2002/06/24 16:41:14 southa Exp $
  * $Log: LaunchCommandHandler.cpp,v $
+ * Revision 1.6  2002/06/24 16:41:14  southa
+ * Fixed for mingw32
+ *
  * Revision 1.5  2002/05/24 16:23:10  southa
  * Config and typenames
  *

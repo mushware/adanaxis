@@ -1,6 +1,23 @@
+#ifndef GAMEPIECEPLAYER_H
+#define GAMEPIECEPLAYER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: GamePiecePlayer.h,v 1.1 2002/06/05 15:53:26 southa Exp $
+ * $Log: GamePiecePlayer.h,v $
+ * Revision 1.1  2002/06/05 15:53:26  southa
+ * Player and keyboard control
+ *
  */
 
 #include "GamePiece.h"
@@ -68,3 +85,4 @@ inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
+#endif

@@ -1,6 +1,23 @@
+#ifndef COREXML_H
+#define COREXML_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreXML.h,v 1.4 2002/05/26 16:08:49 southa Exp $
+ * $Id: CoreXML.h,v 1.5 2002/06/04 14:11:21 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.5  2002/06/04 14:11:21  southa
+ * Traits loader first stage
+ *
  * Revision 1.4  2002/05/26 16:08:49  southa
  * CoreXML loader
  *
@@ -79,3 +96,4 @@ private:
     bool m_threaded;
     U32 m_line;
 };
+#endif

@@ -1,6 +1,23 @@
+#ifndef GAMECONTRACT_H
+#define GAMECONTRACT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameContract.h,v 1.9 2002/06/05 15:53:25 southa Exp $
+ * $Id: GameContract.h,v 1.10 2002/06/13 15:15:55 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.10  2002/06/13 15:15:55  southa
+ * New directory structure, FPS printing, load command
+ *
  * Revision 1.9  2002/06/05 15:53:25  southa
  * Player and keyboard control
  *
@@ -99,3 +116,4 @@ inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
     return inOut;
 }
 
+#endif

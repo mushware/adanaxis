@@ -1,6 +1,23 @@
+#ifndef GAMEAPPHANDLER_H
+#define GAMEAPPHANDLER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameAppHandler.h,v 1.4 2002/06/20 15:50:30 southa Exp $
+ * $Id: GameAppHandler.h,v 1.5 2002/06/21 18:50:16 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.5  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  * Revision 1.4  2002/06/20 15:50:30  southa
  * Subclassed GLAppHandler
  *
@@ -32,3 +49,4 @@ protected:
 private:
     GameBase *m_pGame;
 };
+#endif

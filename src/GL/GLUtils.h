@@ -1,6 +1,23 @@
+#ifndef GLUTILS_H
+#define GLUTILS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLUtils.h,v 1.8 2002/06/05 12:28:05 southa Exp $
+ * $Id: GLUtils.h,v 1.9 2002/06/20 15:50:30 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.9  2002/06/20 15:50:30  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.8  2002/06/05 12:28:05  southa
  * Map rendered using traits
  *
@@ -63,3 +80,4 @@ private:
     tVal m_x;
     tVal m_y;
 };
+#endif

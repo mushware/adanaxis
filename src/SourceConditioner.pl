@@ -1,8 +1,21 @@
 #!/usr/bin/perl -w
 
+##############################################################################
 #
-# $Id$
-# $Log$
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.co.uk.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2002.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+
+#
+# $Id: SourceConditioner.pl,v 1.1 2002/06/27 09:41:40 southa Exp $
+# $Log: SourceConditioner.pl,v $
+# Revision 1.1  2002/06/27 09:41:40  southa
+# Created
+#
 #
 
 use DirHandle;

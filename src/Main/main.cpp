@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: main.cpp,v 1.12 2002/06/20 15:50:30 southa Exp $
+ * $Id: main.cpp,v 1.13 2002/06/21 18:50:16 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.13  2002/06/21 18:50:16  southa
+ * SDLAppHandler added
+ *
  * Revision 1.12  2002/06/20 15:50:30  southa
  * Subclassed GLAppHandler
  *

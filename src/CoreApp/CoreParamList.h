@@ -1,8 +1,23 @@
-#ifndef COREPARAMLIST_HP
-#define COREPARAMLIST_HP
+#ifndef COREPARAMLIST_H
+#define COREPARAMLIST_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreParamList.h,v 1.4 2002/05/28 16:37:36 southa Exp $
+ * $Id: CoreParamList.h,v 1.5 2002/06/24 12:12:52 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.5  2002/06/24 12:12:52  southa
+ * Added newline
+ *
  * Revision 1.4  2002/05/28 16:37:36  southa
  * Texture references and decomposer
  *

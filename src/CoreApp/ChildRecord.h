@@ -1,6 +1,23 @@
+#ifndef CHILDRECORD_H
+#define CHILDRECORD_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: ChildRecord.h,v 1.2 2002/05/09 17:10:38 southa Exp $
+ * $Id: ChildRecord.h,v 1.1 2002/05/10 16:39:37 southa Exp $
  * $Log: ChildRecord.h,v $
+ * Revision 1.1  2002/05/10 16:39:37  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.2  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -48,3 +65,4 @@ private:
     int m_inPipe;
     int m_outPipe;
 };
+#endif

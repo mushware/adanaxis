@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameFloorMap.cpp,v 1.1 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.2 2002/06/04 14:12:26 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.2  2002/06/04 14:12:26  southa
+ * Traits loader first stage
+ *
  * Revision 1.1  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *

@@ -1,9 +1,21 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT()
+AC_INIT(README)
 AC_CANONICAL_SYSTEM
 
-AM_INIT_AUTOMAKE(contractor, 0.0)
+IC_MAJOR_VERSION=0
+IC_MINOR_VERSION=0
+IC_MICRO_VERSION=1
+IC_VERSION=$IC_MAJOR_VERSION.$IC_MINOR_VERSION.$IC_MICRO_VERSION
+IC_UNDERSCORE_VERSION=${IC_MAJOR_VERSION}_${IC_MINOR_VERSION}_${IC_MICRO_VERSION}
+
+AC_SUBST(IC_MAJOR_VERSION)
+AC_SUBST(IC_MINOR_VERSION)
+AC_SUBST(IC_MICRO_VERSION)
+AC_SUBST(IC_VERSION)
+AC_SUBST(IC_UNDERSCORE_VERSION)
+
+AM_INIT_AUTOMAKE(ic2, $IC_VERSION)
 TOP_SUBDIRS="src"
 AC_SUBST(TOP_SUBDIRS)
 prefix='${top_srcdir}/ic2data'
@@ -142,8 +154,8 @@ AC_CHECK_FILE(src,[
 AC_CHECK_FILE(src/Makefile.am,,[
 echo Building src/Makefile.am
 cd src
-echo 'bin_PROGRAMS=contractor' > Makefile.am
-echo $ECHO_N 'contractor_SOURCES=' >> Makefile.am
+echo 'bin_PROGRAMS=ic2' > Makefile.am
+echo $ECHO_N 'ic2_SOURCES=' >> Makefile.am
 $ac_prog_find . -path './Platform/*/*' -prune -o -name '*.cpp' -exec echo $ECHO_N " " {} \;  >> Makefile.am
 $ac_prog_find . -path './Platform/*/*' -prune -o -name '*.h' -exec echo $ECHO_N " " {} \;  >> Makefile.am
 $ac_prog_find . -path './Platform/*/*' -prune -o -name 'sstream' -exec echo $ECHO_N " " {} \; >> Makefile.am

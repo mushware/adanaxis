@@ -1,6 +1,23 @@
+#ifndef GAMETRAITS_H
+#define GAMETRAITS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameTraits.h,v 1.1 2002/06/04 14:12:26 southa Exp $
+ * $Id: GameTraits.h,v 1.2 2002/06/04 20:27:37 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.2  2002/06/04 20:27:37  southa
+ * Pickles for game traits and graphics.  Removed mac libraries from archive.
+ *
  * Revision 1.1  2002/06/04 14:12:26  southa
  * Traits loader first stage
  *
@@ -62,3 +79,4 @@ inline ostream& operator<<(ostream &inOut, const GameTraits& inObj)
 }
 
 
+#endif

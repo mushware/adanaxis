@@ -1,8 +1,23 @@
-#ifndef CORESCRIPT_HP
-#define CORESCRIPT_HP
+#ifndef CORESCRIPT_H
+#define CORESCRIPT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreScript.h,v 1.2 2002/05/24 16:23:08 southa Exp $
+ * $Id: CoreScript.h,v 1.3 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreScript.h,v $
+ * Revision 1.3  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.2  2002/05/24 16:23:08  southa
  * Config and typenames
  *

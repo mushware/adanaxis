@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreCommand.cpp,v 1.8 2002/05/28 13:07:03 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.9 2002/05/30 14:41:13 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.9  2002/05/30 14:41:13  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.8  2002/05/28 13:07:03  southa
  * Command parser extensions and TIFF loader
  *

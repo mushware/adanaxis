@@ -1,6 +1,23 @@
+#ifndef GLTEST1APPHANDLER_H
+#define GLTEST1APPHANDLER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLTest1AppHandler.h,v 1.2 2002/05/31 15:18:16 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.3 2002/06/20 15:50:29 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.3  2002/06/20 15:50:29  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.2  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -32,3 +49,4 @@ public:
 protected:
 private:
 };
+#endif

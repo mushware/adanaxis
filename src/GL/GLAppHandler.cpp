@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLAppHandler.cpp,v 1.11 2002/06/06 15:00:44 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.12 2002/06/20 15:50:29 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.12  2002/06/20 15:50:29  southa
+ * Subclassed GLAppHandler
+ *
  * Revision 1.11  2002/06/06 15:00:44  southa
  * Mouse fixes
  *

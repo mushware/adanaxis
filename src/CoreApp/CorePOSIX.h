@@ -1,6 +1,23 @@
+#ifndef COREPOSIX_H
+#define COREPOSIX_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CorePOSIX.h,v 1.3 2002/06/24 16:41:14 southa Exp $
+ * $Id: CorePOSIX.h,v 1.4 2002/06/27 00:07:06 southa Exp $
  * $Log: CorePOSIX.h,v $
+ * Revision 1.4  2002/06/27 00:07:06  southa
+ * Catch up
+ *
  * Revision 1.3  2002/06/24 16:41:14  southa
  * Fixed for mingw32
  *
@@ -42,3 +59,4 @@
 #include <unistd.h>
 #endif
 
+#endif

@@ -1,4 +1,16 @@
 
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*  A Bison parser, made from CoreBison.y
     by GNU Bison version 1.28  */
 
@@ -20,8 +32,11 @@
 
 
 /*
- * $Id: CoreBison.y,v 1.8 2002/05/30 14:41:13 southa Exp $
- * $Log: CoreBison.y,v $
+ * $Id: CoreBison.cpp,v 1.9 2002/06/04 22:50:01 southa Exp $
+ * $Log: CoreBison.cpp,v $
+ * Revision 1.9  2002/06/04 22:50:01  southa
+ * Fixes to mac project
+ *
  * Revision 1.8  2002/05/30 14:41:13  southa
  * GameData and loadtilemap command
  *

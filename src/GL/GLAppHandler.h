@@ -1,8 +1,23 @@
 #ifndef GLAPPHANDLER_H
 #define GLAPPHANDLER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLAppHandler.h,v 1.7 2002/06/21 18:50:16 southa Exp $
+ * $Id: GLAppHandler.h,v 1.8 2002/06/23 10:42:33 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.8  2002/06/23 10:42:33  southa
+ * SDL input
+ *
  * Revision 1.7  2002/06/21 18:50:16  southa
  * SDLAppHandler added
  *

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: mushCore.h,v 1.3 2002/05/27 12:58:42 southa Exp $
+ * $Id: mushCore.h,v 1.4 2002/05/30 16:20:53 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.4  2002/05/30 16:20:53  southa
+ * Pickleable GameContract
+ *
  * Revision 1.3  2002/05/27 12:58:42  southa
  * GameContract and global configs added
  *

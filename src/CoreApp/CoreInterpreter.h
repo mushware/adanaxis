@@ -1,6 +1,23 @@
+#ifndef COREINTERPRETER_H
+#define COREINTERPRETER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreInterpreter.h,v 1.1 2002/05/10 16:39:38 southa Exp $
+ * $Id: CoreInterpreter.h,v 1.2 2002/05/30 14:41:15 southa Exp $
  * $Log: CoreInterpreter.h,v $
+ * Revision 1.2  2002/05/30 14:41:15  southa
+ * GameData and loadtilemap command
+ *
  * Revision 1.1  2002/05/10 16:39:38  southa
  * Changed .hp files to .h
  *
@@ -36,3 +53,4 @@ private:
     map<string, CoreCommandHandler> m_handlers;
     static CoreInterpreter *m_instance;
 };
+#endif

@@ -1,6 +1,21 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.0)
+ *
+ * This file contains original work by Andy Southgate.  Contact details can be
+ * found at http://www.mushware.co.uk.  This file was placed in the Public
+ * Domain by Andy Southgate and Mushware Limited in 2002.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GLTexture.cpp,v 1.12 2002/06/02 15:18:52 southa Exp $
+ * $Id: GLTexture.cpp,v 1.13 2002/06/02 20:37:39 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.13  2002/06/02 20:37:39  southa
+ * Set texture filtering
+ *
  * Revision 1.12  2002/06/02 15:18:52  southa
  * Texture bitmap renderer
  *
