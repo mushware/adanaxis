@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.8 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.9 2002/08/20 15:00:56 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.9  2002/08/20 15:00:56  southa
+ * Reward tweaks
+ *
  * Revision 1.8  2002/08/20 11:43:25  southa
  * GameRewards added
  *
@@ -35,6 +38,7 @@
 #include "GameEvent.h"
 #include "GameAppHandler.h"
 #include "GameData.h"
+#include "GameDataUtils.h"
 #include "GameDialogue.h"
 #include "GameRewards.h"
 
@@ -81,15 +85,28 @@ GameTypeRace::SequenceAdvance(void)
         m_startTime=gameTime;
         m_raceStarted=true;
     }
+    else
+    {
+        if (m_sequence == 0) ++m_lapCount;
+    }
+    
     U32 lastSequence = m_sequence;
+
+    m_timeAllowance += m_chequePoints[m_sequence]->AddTimeGet();
+    
     m_sequence++;
     if (m_sequence >= m_chequePoints.size())
     {
         m_sequence = 0;
     }
+
+
+    
     if (m_sequence == 1)
     {
         // Just passed the lap start
+        GameDataUtils::NamedDialoguesAdd(m_startAction);
+        
         if (m_lapStartTimeValid)
         {
             GameTimer::tMsec lapTime = gameTime-m_lapStartTime;
@@ -132,7 +149,7 @@ GameTypeRace::SequenceAdvance(void)
         m_records.SplitTimePropose(m_sequence, splitTime);
         if (judgementRatio == 0.0)
         {
-            judgementRatio = splitTime / m_chequePoints[lastSequence]->TimeGet();
+            judgementRatio = splitTime / m_chequePoints[lastSequence]->ParTimeGet();
         }
     }
     m_chequePointTime = gameTime;
@@ -150,10 +167,10 @@ GameTypeRace::Render(void) const
     if (!timer.JudgementValid()) return;
     GameTimer::tMsec gameTime=timer.GameMsecGet();
 
-    GameTimer::tMsec elapsedTime=0;
+    GameTimer::tMsec elapsedTime = m_timeAllowance;
     if (m_raceStarted)
     {
-        elapsedTime=gameTime - m_startTime;
+        elapsedTime=  m_startTime + m_timeAllowance - gameTime;
     }
 
     GLUtils::OrthoPrologue();
@@ -161,9 +178,9 @@ GameTypeRace::Render(void) const
     GLUtils orthoGL;
     orthoGL.MoveToEdge(1,1);
     orthoGL.MoveRelative(-0.03,-0.03);
-    GLString fpsStr(GameTimer::MsecToLongString(elapsedTime),
-                    GLFontRef("font-mono1", 0.03), 1.0);
-    fpsStr.Render();
+    GLString remainingStr(GameTimer::MsecToLongString(elapsedTime),
+                          GLFontRef("font-mono1", 0.03), 1.0);
+    remainingStr.Render();
     GLUtils::ColourSet(1.0,1.0,0.0,0.75);
     if (m_records.LapTimeValid())
     {
@@ -180,9 +197,18 @@ GameTypeRace::Render(void) const
         lapTimeStr.Render();
     }
 
-    GLUtils::ColourSet(0.0,1.0,1.0,0.75);
+    GLUtils::ColourSet(1.0,1.0,1.0,0.75);
     orthoGL.MoveToEdge(-1,1);
     orthoGL.MoveRelative(0.03,-0.03);
+
+    ostringstream lapMessage;
+    lapMessage << "Lap " << m_lapCount << " of " << m_laps;
+    GLString lapStr(lapMessage.str(),
+                    GLFontRef("font-mono1", 0.03), -1.0);
+    lapStr.Render();
+
+    GLUtils::ColourSet(0.0,1.0,1.0,0.75);
+
     U32 nextSequence = m_sequence+1;
     if (nextSequence >= m_chequePoints.size()) nextSequence = 0;
 
@@ -222,6 +248,31 @@ GameTypeRace::HandleLapTimeEnd(CoreXML& inXML)
 }
 
 void
+GameTypeRace::HandleStartActionEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for startaction.  Should be <startaction>^racestart</startaction>";
+    if (!(data >> m_startAction)) inXML.Throw(failMessage);
+}
+
+void
+GameTypeRace::HandleInitialTimeEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for initialtime.  Should be <initialtime>120</initialtime>";
+    if (!(data >> m_timeAllowance)) inXML.Throw(failMessage);
+    m_timeAllowance *= 1000;
+}
+
+void
+GameTypeRace::HandleLapsEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for laps.  Should be <laps>5</laps>";
+    if (!(data >> m_laps)) inXML.Throw(failMessage);
+}
+
+void
 GameTypeRace::HandleChequePointStart(CoreXML& inXML)
 {
     GameChequePoint *chequePoint=new GameChequePoint;
@@ -250,10 +301,17 @@ GameTypeRace::UnpicklePrologue(void)
     m_endTable[kPickleData]["chequepoint"] = &GameTypeRace::NullHandler;
     m_startTable[kPickleData]["laptime"] = &GameTypeRace::NullHandler;
     m_endTable[kPickleData]["laptime"] = &GameTypeRace::HandleLapTimeEnd;
+    m_startTable[kPickleData]["startaction"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["startaction"] = &GameTypeRace::HandleStartActionEnd;
+    m_startTable[kPickleData]["initialtime"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["initialtime"] = &GameTypeRace::HandleInitialTimeEnd;
+    m_startTable[kPickleData]["laps"] = &GameTypeRace::NullHandler;
+    m_endTable[kPickleData]["laps"] = &GameTypeRace::HandleLapsEnd;
     m_endTable[kPickleData]["game"] = &GameTypeRace::HandleGameEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
     m_sequence=0;
+    m_lapCount=0;
 }
 
 void

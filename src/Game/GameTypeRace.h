@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.h,v 1.3 2002/08/19 21:42:38 southa Exp $
+ * $Id: GameTypeRace.h,v 1.4 2002/08/20 11:43:25 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.4  2002/08/20 11:43:25  southa
+ * GameRewards added
+ *
  * Revision 1.3  2002/08/19 21:42:38  southa
  * Display of records and lap/split times
  *
@@ -49,6 +52,9 @@ protected:
 private:
     void HandleGameEnd(CoreXML& inXML);
     void HandleLapTimeEnd(CoreXML& inXML);
+    void HandleStartActionEnd(CoreXML& inXML);
+    void HandleInitialTimeEnd(CoreXML& inXML);
+    void HandleLapsEnd(CoreXML& inXML);
     void HandleChequePointStart(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
@@ -73,9 +79,13 @@ private:
     GameTimer::tMsec m_lapStartTime;
     GameTimer::tMsec m_chequePointTime;
     GameTimer::tMsec m_lapParTime;
+    GameTimer::tMsec m_timeAllowance;
     bool m_raceStarted;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
+    string m_startAction;
+    U32 m_laps;
+    U32 m_lapCount;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)

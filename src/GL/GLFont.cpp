@@ -1,6 +1,9 @@
 /*
- * $Id: GLFont.cpp,v 1.3 2002/08/09 17:09:02 southa Exp $
+ * $Id: GLFont.cpp,v 1.4 2002/08/19 22:18:36 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.4  2002/08/19 22:18:36  southa
+ * Display of time differences
+ *
  * Revision 1.3  2002/08/09 17:09:02  southa
  * GameDialogue added
  *
@@ -76,7 +79,7 @@ GLFont::RenderString(const string& inStr, tVal inAlign=-1.0) const
     for (U32 i=0; i<size; ++i)
     {
         // Characters are rendered with their centre at the position given
-        gl.MoveTo(i-offset, 0);
+        gl.MoveTo(i+0.5-offset, 0);
         RenderCharacter(inStr[i]);
     }
     gl.MoveTo(0,0);

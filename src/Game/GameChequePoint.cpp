@@ -1,6 +1,9 @@
 /*
- * $Id: GameChequePoint.cpp,v 1.2 2002/08/20 11:43:25 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.3 2002/08/20 15:00:56 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.3  2002/08/20 15:00:56  southa
+ * Reward tweaks
+ *
  * Revision 1.2  2002/08/20 11:43:25  southa
  * GameRewards added
  *
@@ -65,11 +68,19 @@ GameChequePoint::HandleMapValueEnd(CoreXML& inXML)
 }
 
 void
-GameChequePoint::HandleTimeEnd(CoreXML& inXML)
+GameChequePoint::HandleParTimeEnd(CoreXML& inXML)
 {
     istringstream data(inXML.TopData());
-    if (!(data >> m_time)) inXML.Throw("Bad format for time.  Should be <time>10</time>");
-    m_time *=1000;
+    if (!(data >> m_parTime)) inXML.Throw("Bad format for partime.  Should be <partime>10</partime>");
+    m_parTime *=1000;
+}
+
+void
+GameChequePoint::HandleAddTimeEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    if (!(data >> m_addTime)) inXML.Throw("Bad format for addtime.  Should be <addtime>10</addtime>");
+    m_addTime *=1000;
 }
 
 void
@@ -101,11 +112,15 @@ GameChequePoint::UnpicklePrologue(void)
     m_endTable[kPickleData]["mapvalue"] = &GameChequePoint::HandleMapValueEnd;
     m_startTable[kPickleData]["action"] = &GameChequePoint::NullHandler;
     m_endTable[kPickleData]["action"] = &GameChequePoint::HandleActionEnd;
-    m_startTable[kPickleData]["time"] = &GameChequePoint::NullHandler;
-    m_endTable[kPickleData]["time"] = &GameChequePoint::HandleTimeEnd;
+    m_startTable[kPickleData]["partime"] = &GameChequePoint::NullHandler;
+    m_endTable[kPickleData]["partime"] = &GameChequePoint::HandleParTimeEnd;
+    m_startTable[kPickleData]["addtime"] = &GameChequePoint::NullHandler;
+    m_endTable[kPickleData]["addtime"] = &GameChequePoint::HandleAddTimeEnd;
     m_endTable[kPickleData]["chequepoint"] = &GameChequePoint::HandleChequePointEnd;
     m_pickleState=kPickleData;
     m_baseThreaded=0;
+    m_addTime=0;
+    m_parTime=0;
 }
 
 void

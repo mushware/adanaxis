@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.16 2002/08/18 12:20:40 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.17 2002/08/19 23:11:22 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.17  2002/08/19 23:11:22  southa
+ * Lap and split time tweaks
+ *
  * Revision 1.16  2002/08/18 12:20:40  southa
  * Movement tweaks
  *
@@ -255,7 +258,7 @@ GameFloorDesigner::Move(void)
                                 TranslateWindowToMap(end));
         m_highlight.FixUp();
         m_highlightMap=m_currentMap;
-#if 1
+#if 0
         cerr << "Start was " << start.x << ", " << start.y;
         cerr << ", end was " << end.x << ", " << end.y << endl;
         cerr << "Translation was " << m_highlight.xmin << ", " <<
