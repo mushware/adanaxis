@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.h,v 1.1 2002/11/05 18:15:18 southa Exp $
+ * $Id: MediaNetWebLink.h,v 1.2 2002/11/06 14:16:57 southa Exp $
  * $Log: MediaNetWebLink.h,v $
+ * Revision 1.2  2002/11/06 14:16:57  southa
+ * Basic web server
+ *
  * Revision 1.1  2002/11/05 18:15:18  southa
  * Web server
  *
@@ -22,7 +25,10 @@ public:
     bool Receive(string& outStr);
     void Send(vector<U8>& inBytes);
     void Send(const string& inStr);
+    void Send(istream& ioStream);
+    void SendFile(const string& inStr);
     void SendTestPage(void);
+    void SendErrorPage(const string& inText);
     void ReceivedProcess(const string& inStr);
 
     void Print(ostream& ioOut) const;
@@ -47,6 +53,9 @@ private:
     U32 m_lastAccessMsec;
     U32 m_linkErrors;
     bool m_isDead;
+
+
+    static string m_webPath;
 };
 
 inline ostream&

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetLog.h,v 1.1 2002/11/04 15:50:32 southa Exp $
+ * $Log: MediaNetLog.h,v $
+ * Revision 1.1  2002/11/04 15:50:32  southa
+ * Network log
+ *
  */
 
 #include "mushCore.h"
@@ -24,13 +27,13 @@ protected:
 private:
     ofstream *m_outStream;
         
-    static auto_ptr<MediaNetLog> m_instance;
+    static MediaNetLog *m_instance;
 };
 
 inline MediaNetLog&
 MediaNetLog::Instance(void)
 {
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new MediaNetLog);
+    if (m_instance != NULL) return *m_instance;
+    m_instance=new MediaNetLog;
     return *m_instance;
 }

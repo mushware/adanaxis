@@ -1,13 +1,16 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNetLog.cpp,v 1.1 2002/11/04 15:50:31 southa Exp $
+ * $Log: MediaNetLog.cpp,v $
+ * Revision 1.1  2002/11/04 15:50:31  southa
+ * Network log
+ *
  */
 
 #include "MediaNetLog.h"
 
 #include "MediaSDL.h"
 
-auto_ptr<MediaNetLog> MediaNetLog::m_instance;
+MediaNetLog *MediaNetLog::m_instance=NULL;
 
 MediaNetLog::MediaNetLog() :
     m_outStream(NULL)

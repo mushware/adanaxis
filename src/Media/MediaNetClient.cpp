@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.8 2002/11/04 01:02:38 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.9 2002/11/04 15:50:31 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.9  2002/11/04 15:50:31  southa
+ * Network log
+ *
  * Revision 1.8  2002/11/04 01:02:38  southa
  * Link checks
  *
@@ -35,6 +38,8 @@
 #include "mushPlatform.h"
 
 MediaNetClient::MediaNetClient() :
+    m_tcpSocket(NULL),
+    m_udpSocket(NULL),
     m_tcpConnected(false),
     m_udpConnected(false)
 {
