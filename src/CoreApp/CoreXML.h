@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreXML.h,v 1.11 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreXML.h,v 1.12 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.12  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -86,18 +89,18 @@ public:
 class CoreXML
 {
 public:
-    CoreXML(istream& inStream, const string& inName = "<unknown stream>", Mushware::U32 inLine=1);
+    CoreXML(std::istream& inStream, const std::string& inName = "<unknown stream>", Mushware::U32 inLine=1);
     ~CoreXML();
     
-    const string& TopTag(void) {COREASSERT(!m_tagStack.empty());return m_tagStack.top();}
-    const string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
+    const std::string& TopTag(void) {COREASSERT(!m_tagStack.empty());return m_tagStack.top();}
+    const std::string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
     std::map<string, string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
     void DumpTops(std::ostream& inOut);
     void StopHandler(void);
-    CoreScalar GetAttrib(const string& inName);
-    void GetAttrib(CoreScalar& outScalar, const string& inName);
-    CoreScalar GetAttribOrThrow(const string& inName);
-    void Throw(const string& inMessage);
+    CoreScalar GetAttrib(const std::string& inName);
+    void GetAttrib(CoreScalar& outScalar, const std::string& inName);
+    CoreScalar GetAttribOrThrow(const std::string& inName);
+    void Throw(const std::string& inMessage);
     void ParseStream(CoreXMLHandler& inHandler);
 
 private:
@@ -115,8 +118,8 @@ private:
     stack< std::map<string, string> > m_attribStack;
     stack<string> m_dataStack;
     stack<string> m_tagStack;
-    istream *m_inStream;
-    string m_name;
+    std::istream *m_inStream;
+    std::string m_name;
     bool m_continue;
     bool m_threaded;
     Mushware::U32 m_line;

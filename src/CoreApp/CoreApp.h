@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.h,v 1.8 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreApp.h,v 1.9 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.9  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -62,8 +65,8 @@ public:
     
     static CoreApp& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreApp:m_instance);}
     virtual ~CoreApp() {}
-    void Process(const string& inStr);
-    void AddHandler(const string& inName, CoreCommandHandler inHandler);
+    void Process(const std::string& inStr);
+    void AddHandler(const std::string& inName, CoreCommandHandler inHandler);
     void AddChild(int pid, int inPipe, int outPipe);
     void ServiceChildren(int &outCount);
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebRouter.h,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.4 2002/12/20 13:17:47 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.4  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -55,7 +58,7 @@ private:
 
     Mustl::tMsec m_lastTickMsec;
 
-    static auto_ptr<MustlWebRouter> m_instance;
+    static std::auto_ptr<MustlWebRouter> m_instance;
 };
 
 inline  MustlWebRouter&

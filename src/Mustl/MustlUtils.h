@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.h,v 1.3 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlUtils.h,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -66,16 +69,16 @@ class MustlUtils
 {
 public:
     static bool FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddress);
-    static bool FindLinkToStation(string& outName, const MustlAddress& inAddress);
-    static string IPAddressToString(Mustl::U32 inAddress);
-    static string IPAddressToLogString(Mustl::U32 inAddress);
-    static string MsecDurationToString(Mustl::U32 inMsec);
-    static string MakePrintable(const string& inStr);
-    static string MakePrintable(const std::vector<Mustl::U8> inBytes);
-    static string MakeXMLSafe(const string& inStr);
-    static string MakeWebSafe(const string& inStr);
+    static bool FindLinkToStation(std::string& outName, const MustlAddress& inAddress);
+    static std::string IPAddressToString(Mustl::U32 inAddress);
+    static std::string IPAddressToLogString(Mustl::U32 inAddress);
+    static std::string MsecDurationToString(Mustl::U32 inMsec);
+    static std::string MakePrintable(const std::string& inStr);
+    static std::string MakePrintable(const std::vector<Mustl::U8> inBytes);
+    static std::string MakeXMLSafe(const std::string& inStr);
+    static std::string MakeWebSafe(const std::string& inStr);
     static Mustl::U32 MakeWebSafe(Mustl::U32 inValue) { return inValue; }
-    static string RemoveMeta(const string& inStr);
+    static std::string RemoveMeta(const std::string& inStr);
     static void TruncateLogSet(bool inTruncate) { m_truncateLog=inTruncate; }
     
 private:

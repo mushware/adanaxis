@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlFail.h,v 1.1 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlFail.h,v 1.2 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.2  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -25,14 +28,14 @@
 class MustlFail: public exception
 {
 public:
-    MustlFail(const string &inMessage) {m_message=inMessage;}
+    MustlFail(const std::string &inMessage) {m_message=inMessage;}
     ~MustlFail() throw();
     const char *what() const throw() { return m_message.c_str(); }
 
-    const string& Print(void) const { return m_message; }
+    const std::string& Print(void) const { return m_message; }
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 ostream& operator<<(std::ostream &ioOut, MustlFail f);

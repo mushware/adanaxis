@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreFunction.h,v 1.9 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreFunction.h,v 1.10 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreFunction.h,v $
+ * Revision 1.10  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -57,17 +60,17 @@ class CoreFunction
 {
 public:
     // CoreFunction() {}
-    CoreFunction(const string& inStr): m_name(inStr) {}
-    void AddCommand(const string& inStr) {if (inStr != "") m_commands.push_back(inStr);}
-    const string& Name(void) const {return m_name;}
-    const string& Command(Mushware::U32 inIndex) const {return m_commands[inIndex];}
+    CoreFunction(const std::string& inStr): m_name(inStr) {}
+    void AddCommand(const std::string& inStr) {if (inStr != "") m_commands.push_back(inStr);}
+    const std::string& Name(void) const {return m_name;}
+    const std::string& Command(Mushware::U32 inIndex) const {return m_commands[inIndex];}
     Mushware::U32 SizeGet(void) const {return m_commands.size();}
-    const string& Line(Mushware::U32 inNum) const {return m_commands[inNum];}
+    const std::string& Line(Mushware::U32 inNum) const {return m_commands[inNum];}
     void Execute(void) const;
     void Print(std::ostream &inOut) const;
 private:
-    string m_name;
-    std::vector<string> m_commands;
+    std::string m_name;
+    std::vector<std::string> m_commands;
 };
 
 inline std::ostream& operator<<(std::ostream &inOut, const CoreFunction& inFunction)

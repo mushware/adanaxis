@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreParamList.h,v 1.11 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreParamList.h,v 1.12 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.12  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -60,7 +63,7 @@ public:
     void PushParam(const CoreScalar& inScalar)
         {m_params.push_back(inScalar);}
     void PopParam(Mushware::tVal& outVal);
-    void PopParam(string& outStr);
+    void PopParam(std::string& outStr);
     void PopParam(Mushware::U32& outU32);
     Mushware::U32 NumParams(void) {return m_params.size();}
     void Clear(void) {m_params.clear();};

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.h,v 1.3 2002/12/17 12:53:35 southa Exp $
+ * $Id: MustlWebServer.h,v 1.4 2002/12/20 13:17:47 southa Exp $
  * $Log: MustlWebServer.h,v $
+ * Revision 1.4  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/17 12:53:35  southa
  * Mustl library
  *
@@ -68,7 +71,7 @@ public:
     void Accept(void);
     bool IsConnected(void) const;
     void PermissionSet(tPermission inPermission) { m_permission=inPermission; }
-    void ExtraAllowedAddrSet(const string& inAddr);
+    void ExtraAllowedAddrSet(const std::string& inAddr);
     void PermissionFunctionSet(tPermissionFunction inFunction); 
 
 protected:
@@ -79,14 +82,14 @@ private:
     Mustl::tSocket m_tcpSocket;
     Mustl::U32 m_linkCtr;
     std::map<Mustl::U32, bool> m_permissionMap;
-    string m_extraAllowedAddr;
+    std::string m_extraAllowedAddr;
     Mustl::U32 m_extraAllowedIP;
     tPermission m_permission;
     tPermissionFunction m_permissionFunction;
     
     bool m_serving;
 
-    static auto_ptr<MustlWebServer> m_instance;
+    static std::auto_ptr<MustlWebServer> m_instance;
 };
 
 inline MustlWebServer&

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.23 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreStandard.h,v 1.24 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.24  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.23  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -166,10 +169,10 @@ namespace Mushware
     typedef signed char S8;
     typedef unsigned char U8;
     typedef unsigned int tSize;
-    typedef istream u8istream;
+    typedef std::istream u8istream;
     typedef std::ostream u8ostream;
-    typedef ifstream u8ifstream;
-    typedef ofstream u8ofstream;
+    typedef std::ifstream u8ifstream;
+    typedef std::ofstream u8ofstream;
 };
 
 #define COREASSERT(exp) assert(exp)

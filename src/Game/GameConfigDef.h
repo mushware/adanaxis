@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.h,v 1.4 2002/11/25 18:02:56 southa Exp $
+ * $Id: GameConfigDef.h,v 1.5 2002/12/20 13:17:38 southa Exp $
  * $Log: GameConfigDef.h,v $
+ * Revision 1.5  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/11/25 18:02:56  southa
  * Mushware ID work
  *
@@ -35,13 +38,13 @@ public:
     virtual ~GameConfigDef();
     virtual const CoreScalar ValueGet(void) const = 0;
     virtual void ValueSet(const CoreScalar& inValue) = 0;
-    virtual bool FromPostRetrieve(const string& inName, const string& inData) = 0;
-    virtual void WebInputPrint(std::ostream& ioOut, const string& inName) = 0;
+    virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData) = 0;
+    virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName) = 0;
 
 protected:
-    static void SelectPrologue(std::ostream& ioOut, const string& inName);
-    static void SelectOption(std::ostream& ioOut, const string& inName, const string& inValue, bool inSelected);
-    static void SelectOption(std::ostream& ioOut, const string& inName, Mushware::U32 inValue, bool inSelected);
+    static void SelectPrologue(std::ostream& ioOut, const std::string& inName);
+    static void SelectOption(std::ostream& ioOut, const std::string& inName, const std::string& inValue, bool inSelected);
+    static void SelectOption(std::ostream& ioOut, const std::string& inName, Mushware::U32 inValue, bool inSelected);
     static void SelectEpilogue(std::ostream& ioOut);
 };
 
@@ -53,8 +56,8 @@ public:
     virtual ~GameConfigDefU32();
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue );
-    virtual bool FromPostRetrieve(const string& inName, const string& inData);
-    virtual void WebInputPrint(std::ostream& ioOut, const string& inName);
+    virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData);
+    virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName);
 
 private:
     Mushware::U32 m_value;
@@ -65,31 +68,31 @@ private:
 class GameConfigDefString : public GameConfigDef
 {
 public:
-    GameConfigDefString(const string& inValue, const string& inMenu="");
+    GameConfigDefString(const std::string& inValue, const std::string& inMenu="");
 
     virtual ~GameConfigDefString();
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue);
-    virtual bool FromPostRetrieve(const string& inName, const string& inData);
-    virtual void WebInputPrint(std::ostream& ioOut, const string& inName);
+    virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData);
+    virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName);
 
 private:
-    string m_value;
-    string m_menu;
+    std::string m_value;
+    std::string m_menu;
 };
 
 class GameConfigDefPassword : public GameConfigDef
 {
 public:
-    GameConfigDefPassword(const string& inValue);
+    GameConfigDefPassword(const std::string& inValue);
     virtual ~GameConfigDefPassword();
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue);
-    virtual bool FromPostRetrieve(const string& inName, const string& inData);
-    virtual void WebInputPrint(std::ostream& ioOut, const string& inName);
+    virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData);
+    virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName);
 
 private:
-    string m_value;
+    std::string m_value;
 };
 
 class GameConfigDefBool : public GameConfigDef
@@ -100,8 +103,8 @@ public:
     virtual ~GameConfigDefBool();
     virtual const CoreScalar ValueGet(void) const;
     virtual void ValueSet(const CoreScalar& inValue);
-    virtual bool FromPostRetrieve(const string& inName, const string& inData);
-    virtual void WebInputPrint(std::ostream& ioOut, const string& inName);
+    virtual bool FromPostRetrieve(const std::string& inName, const std::string& inData);
+    virtual void WebInputPrint(std::ostream& ioOut, const std::string& inName);
 
 private:
     bool m_value;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.14 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameTileMap.h,v 1.15 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.15  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -66,11 +69,11 @@ class GameTileMap : public CorePickle, private CoreXMLHandler
 {
 public:
     GameTileMap(): m_state(kInit), m_warned(false) {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    const string& NameGet(Mushware::U32 inNum) const;
+    const std::string& NameGet(Mushware::U32 inNum) const;
     bool TraitsExist(Mushware::U32 inNum) const;
     const GameTileSpec& TileSpecGet(Mushware::U32 inNum);
     void Load(void);
@@ -117,11 +120,11 @@ private:
     {
     public:
         TraitDef() {}
-        TraitDef(const string& inName, const GameTileSpec& inSpec) :
+        TraitDef(const std::string& inName, const GameTileSpec& inSpec) :
             name(inName),
             spec(inSpec)
             {}
-        string name;
+        std::string name;
         GameTileSpec spec;
     };
     

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameException.h,v 1.1 2002/12/13 01:07:25 southa Exp $
+ * $Id: GameException.h,v 1.2 2002/12/20 13:17:39 southa Exp $
  * $Log: GameException.h,v $
+ * Revision 1.2  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/13 01:07:25  southa
  * Mustl work
  *
@@ -26,11 +29,11 @@
 class NetworkFail : public MustlFail
 {
 public:
-    NetworkFail(const string& inMessage);
+    NetworkFail(const std::string& inMessage);
 };
 
 inline
-NetworkFail::NetworkFail(const string& inMessage) :
+NetworkFail::NetworkFail(const std::string& inMessage) :
     MustlFail(inMessage)
 {}
 

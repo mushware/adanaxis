@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreInterpreter.h,v 1.8 2002/11/22 11:42:06 southa Exp $
+ * $Id: CoreInterpreter.h,v 1.9 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreInterpreter.h,v $
+ * Revision 1.9  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -64,12 +67,12 @@ public:
     static CoreInterpreter& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreInterpreter:m_instance);}
     
     virtual CoreScalar Execute(CoreCommand& ioCommand);
-    virtual void AddHandler(const string& inName, CoreCommandHandler inHandler);
+    virtual void AddHandler(const std::string& inName, CoreCommandHandler inHandler);
 
     void LogCommandsSet(bool inLog) { m_logCommands = inLog; }
     
 private:
-    std::map<string, CoreCommandHandler> m_handlers;
+    std::map<std::string, CoreCommandHandler> m_handlers;
     bool m_logCommands;
     
     static CoreInterpreter *m_instance;

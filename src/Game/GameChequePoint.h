@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.6 2002/11/24 23:18:05 southa Exp $
+ * $Id: GameChequePoint.h,v 1.7 2002/12/20 13:17:37 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.7  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/11/24 23:18:05  southa
  * Added type name accessor to CorePickle
  *
@@ -41,7 +44,7 @@ class GameChequePoint : public CorePickle, protected CoreXMLHandler
 {
 public:
     virtual ~GameChequePoint() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -84,7 +87,7 @@ private:
 
     Mushware::U32 m_sequence;
     std::vector<U32> m_mapValues;
-    string m_action;
+    std::string m_action;
     Mushware::tVal m_parTime;
     Mushware::tVal m_addTime;
 };

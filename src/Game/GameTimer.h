@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.16 2002/12/10 19:00:17 southa Exp $
+ * $Id: GameTimer.h,v 1.17 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.17  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/10 19:00:17  southa
  * Split timer into client and server
  *
@@ -92,9 +95,9 @@ public:
     Mushware::tVal Periodic1sGet(void) const;
     void Periodic1sDone(Mushware::tVal inNum);
     tMsec SleepTimeGet(void) const;
-    static string MsecToString(tMsec inMsec);
-    static string MsecDifferenceToString(tMsec inMsec);
-    static string MsecToLongString(tMsec inMsec);
+    static std::string MsecToString(tMsec inMsec);
+    static std::string MsecDifferenceToString(tMsec inMsec);
+    static std::string MsecToLongString(tMsec inMsec);
     
 private:
     void ReportJitter(void) const;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlHTTP.h,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlHTTP.h,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlHTTP.h,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -38,7 +41,7 @@ public:
     ~MustlHTTP();
     void Reply200(void);
     void ContentTypeHTML(void);
-    void ContentType(const string& inStr);
+    void ContentType(const std::string& inStr);
     void Endl(void);
     void Header(void);
     void Footer(void);
@@ -49,7 +52,7 @@ public:
 private:
     std::ostream *m_content;
     Mustl::U32 m_refresh;    
-    string m_title;
+    std::string m_title;
     bool m_allowCaching;
     static const char m_endl[3];
 };

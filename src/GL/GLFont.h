@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.h,v 1.5 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLFont.h,v 1.6 2002/12/20 13:17:34 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.6  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -37,11 +40,11 @@
 class GLFont
 {
 public:
-    GLFont::GLFont(const string& inName);
+    GLFont::GLFont(const std::string& inName);
 
     void RenderCharacter(Mushware::U32 inChar) const;
-    void RenderString(const string& inStr, Mushware::tVal inAlign=-1.0) const;
-    Mushware::tVal StringLengthGet(const string& inStr) const;
+    void RenderString(const std::string& inStr, Mushware::tVal inAlign=-1.0) const;
+    Mushware::tVal StringLengthGet(const std::string& inStr) const;
     void ShapeSet(Mushware::U32 inXNum, Mushware::U32 inYNum);
     void SizeSet(Mushware::tVal inXNum, Mushware::tVal inYNum);
         
@@ -49,7 +52,7 @@ public:
     static CoreScalar LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
 
 private:
-    const string m_name;
+    const std::string m_name;
     const GLTextureRef m_texRef;
     Mushware::U32 m_xMapSize;
     Mushware::U32 m_yMapSize;

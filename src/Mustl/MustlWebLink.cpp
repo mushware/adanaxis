@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.3 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -71,10 +74,10 @@
 #include "mustlCore.h"
 
 using namespace Mustl;
-using Mushware::CoreCommand;
-using Mushware::CoreData;
-using Mushware::CoreEnv;
-using Mushware::CoreEnvOutput;
+//using Mushware::CoreCommand;
+//using Mushware::CoreData;
+//using Mushware::CoreEnv;
+//using Mushware::CoreEnvOutput;
 
 auto_ptr< CoreData<MustlWebLink> > CoreData<MustlWebLink>::m_instance;
 string MustlWebLink::m_webPath="";

@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceConditioner.pl,v 1.3 2002/10/20 17:57:43 southa Exp $
+# $Id: SourceConditioner.pl,v 1.4 2002/12/20 13:17:30 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.4  2002/12/20 13:17:30  southa
+# Namespace changes, licence changes and source conditioning
+#
 # Revision 1.3  2002/10/20 17:57:43  southa
 # Preparation for 0.1.0
 #
@@ -301,7 +304,7 @@ sub ReorderIncludeFiles
 sub AddHeaderNamespace
 {
     my $arrayref=shift;
-    my @stdnames = ("ostream", "vector", "list", "map");
+    my @stdnames = ("ostream", "istream", "vector", "list", "map", "string", "auto_ptr");
     my @mushnames = ("U32", "S32", "U16", "S16", "U8", "S8", "tVal", "u8istream");
     foreach my $line (@$arrayref)
     {

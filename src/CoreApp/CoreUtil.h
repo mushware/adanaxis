@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreUtil.h,v 1.7 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreUtil.h,v 1.8 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreUtil.h,v $
+ * Revision 1.8  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -44,11 +47,11 @@
 class CoreUtil
 {
 public:
-    static Mushware::U32 BigEndianU32Get(istream& inIn);
-    static Mushware::U32 LittleEndianU32Get(istream& inIn);
-    static Mushware::U8 U8Get(istream& inIn);
+    static Mushware::U32 BigEndianU32Get(std::istream& inIn);
+    static Mushware::U32 LittleEndianU32Get(std::istream& inIn);
+    static Mushware::U8 U8Get(std::istream& inIn);
 
-    static string TranslateFilename(const string& inStr) {return inStr;}
-    static string AppDirFilename(const string& inStr);
+    static std::string TranslateFilename(const std::string& inStr) {return inStr;}
+    static std::string AppDirFilename(const std::string& inStr);
 };
 #endif

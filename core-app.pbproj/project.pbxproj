@@ -28,6 +28,7 @@
 			};
 		};
 		F50F4DFF02B4EA17014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_mixer.h;
 			path = /usr/local/include/SDL/SDL_mixer.h;
@@ -91,168 +92,196 @@
 			};
 		};
 		F50F4E0402B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = begin_code.h;
 			path = /usr/local/include/SDL/begin_code.h;
 			refType = 0;
 		};
 		F50F4E0502B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = close_code.h;
 			path = /usr/local/include/SDL/close_code.h;
 			refType = 0;
 		};
 		F50F4E0602B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_active.h;
 			path = /usr/local/include/SDL/SDL_active.h;
 			refType = 0;
 		};
 		F50F4E0702B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_audio.h;
 			path = /usr/local/include/SDL/SDL_audio.h;
 			refType = 0;
 		};
 		F50F4E0802B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_byteorder.h;
 			path = /usr/local/include/SDL/SDL_byteorder.h;
 			refType = 0;
 		};
 		F50F4E0902B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_cdrom.h;
 			path = /usr/local/include/SDL/SDL_cdrom.h;
 			refType = 0;
 		};
 		F50F4E0A02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_copying.h;
 			path = /usr/local/include/SDL/SDL_copying.h;
 			refType = 0;
 		};
 		F50F4E0B02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_endian.h;
 			path = /usr/local/include/SDL/SDL_endian.h;
 			refType = 0;
 		};
 		F50F4E0C02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_error.h;
 			path = /usr/local/include/SDL/SDL_error.h;
 			refType = 0;
 		};
 		F50F4E0D02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_events.h;
 			path = /usr/local/include/SDL/SDL_events.h;
 			refType = 0;
 		};
 		F50F4E0E02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_getenv.h;
 			path = /usr/local/include/SDL/SDL_getenv.h;
 			refType = 0;
 		};
 		F50F4E0F02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_joystick.h;
 			path = /usr/local/include/SDL/SDL_joystick.h;
 			refType = 0;
 		};
 		F50F4E1002B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_keyboard.h;
 			path = /usr/local/include/SDL/SDL_keyboard.h;
 			refType = 0;
 		};
 		F50F4E1102B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_keysym.h;
 			path = /usr/local/include/SDL/SDL_keysym.h;
 			refType = 0;
 		};
 		F50F4E1202B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_main.h;
 			path = /usr/local/include/SDL/SDL_main.h;
 			refType = 0;
 		};
 		F50F4E1302B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_mouse.h;
 			path = /usr/local/include/SDL/SDL_mouse.h;
 			refType = 0;
 		};
 		F50F4E1402B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_mutex.h;
 			path = /usr/local/include/SDL/SDL_mutex.h;
 			refType = 0;
 		};
 		F50F4E1502B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_name.h;
 			path = /usr/local/include/SDL/SDL_name.h;
 			refType = 0;
 		};
 		F50F4E1602B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_opengl.h;
 			path = /usr/local/include/SDL/SDL_opengl.h;
 			refType = 0;
 		};
 		F50F4E1702B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_quit.h;
 			path = /usr/local/include/SDL/SDL_quit.h;
 			refType = 0;
 		};
 		F50F4E1802B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_rwops.h;
 			path = /usr/local/include/SDL/SDL_rwops.h;
 			refType = 0;
 		};
 		F50F4E1902B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_syswm.h;
 			path = /usr/local/include/SDL/SDL_syswm.h;
 			refType = 0;
 		};
 		F50F4E1A02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_thread.h;
 			path = /usr/local/include/SDL/SDL_thread.h;
 			refType = 0;
 		};
 		F50F4E1B02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_timer.h;
 			path = /usr/local/include/SDL/SDL_timer.h;
 			refType = 0;
 		};
 		F50F4E1C02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_types.h;
 			path = /usr/local/include/SDL/SDL_types.h;
 			refType = 0;
 		};
 		F50F4E1D02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_version.h;
 			path = /usr/local/include/SDL/SDL_version.h;
 			refType = 0;
 		};
 		F50F4E1E02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL_video.h;
 			path = /usr/local/include/SDL/SDL_video.h;
 			refType = 0;
 		};
 		F50F4E1F02B4EA9C014A78CB = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = SDL.h;
 			path = /usr/local/include/SDL/SDL.h;
@@ -453,6 +482,7 @@
 			};
 		};
 		F512BC6303798C7D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = index.html;
 			path = ic2data/localweb/index.html;
@@ -478,30 +508,35 @@
 			refType = 4;
 		};
 		F512BC650379928F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = style.css;
 			path = localweb/style.css;
 			refType = 4;
 		};
 		F512BC6C0379C0CE01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = title.html;
 			path = localweb/title.html;
 			refType = 4;
 		};
 		F512BC6D0379C3B401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = config.mhtml;
 			path = localweb/config.mhtml;
 			refType = 4;
 		};
 		F512BC6F0379C8C401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = home.mhtml;
 			path = localweb/home.mhtml;
 			refType = 4;
 		};
 		F512BC710379E4C301A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = multiplayer.mhtml;
 			path = localweb/multiplayer.mhtml;
@@ -520,11 +555,13 @@
 			};
 		};
 		F5175CB60227D48F01F76013 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTest.cpp;
 			refType = 4;
 		};
 		F5175CB80227D55C01F76013 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTest1AppHandler.cpp;
 			refType = 4;
@@ -542,12 +579,14 @@
 			refType = 0;
 		};
 		F52B3BF8028C25CF0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = mushCore.h;
 			path = API/mushCore.h;
 			refType = 4;
 		};
 		F52B3BF9028C25CF0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = mushGL.h;
 			path = API/mushGL.h;
@@ -578,136 +617,163 @@
 			};
 		};
 		F52B3C01028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAutoMonkey.h;
 			refType = 4;
 		};
 		F52B3C02028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBuiltinHandler.h;
 			refType = 4;
 		};
 		F52B3C03028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreChildRecord.h;
 			refType = 4;
 		};
 		F52B3C04028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreApp.h;
 			refType = 4;
 		};
 		F52B3C05028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAppHandler.h;
 			refType = 4;
 		};
 		F52B3C06028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBison.h;
 			refType = 4;
 		};
 		F52B3C07028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBisonDefs.h;
 			refType = 4;
 		};
 		F52B3C08028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreCommand.h;
 			refType = 4;
 		};
 		F52B3C09028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreCommandHandler.h;
 			refType = 4;
 		};
 		F52B3C0A028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreEnv.h;
 			refType = 4;
 		};
 		F52B3C0B028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreException.h;
 			refType = 4;
 		};
 		F52B3C0C028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreFlex.h;
 			refType = 4;
 		};
 		F52B3C0D028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreFunction.h;
 			refType = 4;
 		};
 		F52B3C0E028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreInstaller.h;
 			refType = 4;
 		};
 		F52B3C0F028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreInterpreter.h;
 			refType = 4;
 		};
 		F52B3C10028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreParamList.h;
 			refType = 4;
 		};
 		F52B3C11028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CorePOSIX.h;
 			refType = 4;
 		};
 		F52B3C12028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreRegExp.h;
 			refType = 4;
 		};
 		F52B3C13028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreScalar.h;
 			refType = 4;
 		};
 		F52B3C14028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreScript.h;
 			refType = 4;
 		};
 		F52B3C15028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreStandard.h;
 			refType = 4;
 		};
 		F52B3C16028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreSwitches.h;
 			refType = 4;
 		};
 		F52B3C17028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreUtil.h;
 			refType = 4;
 		};
 		F52B3C18028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreXML.h;
 			refType = 4;
 		};
 		F52B3C19028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = Dataset.h;
 			refType = 4;
 		};
 		F52B3C1A028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = LaunchCommandHandler.h;
 			refType = 4;
 		};
 		F52B3C1B028C26530179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreStreamUtil.h;
 			refType = 4;
@@ -1037,46 +1103,55 @@
 			};
 		};
 		F52B3C52028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLAppHandler.h;
 			refType = 4;
 		};
 		F52B3C53028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLCommandHandler.h;
 			refType = 4;
 		};
 		F52B3C54028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLData.h;
 			refType = 4;
 		};
 		F52B3C55028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLStandard.h;
 			refType = 4;
 		};
 		F52B3C56028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTest.h;
 			refType = 4;
 		};
 		F52B3C57028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTest1AppHandler.h;
 			refType = 4;
 		};
 		F52B3C58028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTexture.h;
 			refType = 4;
 		};
 		F52B3C59028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureGIF.h;
 			refType = 4;
 		};
 		F52B3C5A028C267B0179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureSpr.h;
 			refType = 4;
@@ -1190,11 +1265,13 @@
 			};
 		};
 		F52B3C6D028C26920179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = Test.h;
 			refType = 4;
 		};
 		F52B3C6E028C26920179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = TestCommandHandler.h;
 			refType = 4;
@@ -1224,24 +1301,28 @@
 			};
 		};
 		F52B3C73028C26B40179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GLWrangleAppHandler.h;
 			path = src/Wrangle/GLWrangleAppHandler.h;
 			refType = 2;
 		};
 		F52B3C74028C26B40179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GraphWrangler.h;
 			path = src/Wrangle/GraphWrangler.h;
 			refType = 2;
 		};
 		F52B3C75028C26B40179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = WrangleCommandHandler.h;
 			path = src/Wrangle/WrangleCommandHandler.h;
 			refType = 2;
 		};
 		F52B3C76028C26B40179D0A8 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = Wrangler.h;
 			path = src/Wrangle/Wrangler.h;
@@ -1296,12 +1377,14 @@
 			};
 		};
 		F53E0FAF031015CD01E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameType.cpp;
 			path = Game/GameType.cpp;
 			refType = 4;
 		};
 		F53E0FB0031015CD01E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameType.h;
 			path = Game/GameType.h;
@@ -1320,12 +1403,14 @@
 			};
 		};
 		F53E0FB703101AA401E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameChequePoint.cpp;
 			path = Game/GameChequePoint.cpp;
 			refType = 4;
 		};
 		F53E0FB803101AA401E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameChequePoint.h;
 			path = Game/GameChequePoint.h;
@@ -1338,6 +1423,7 @@
 			};
 		};
 		F53E0FBB03102A8E01E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameEvent.h;
 			path = Game/GameEvent.h;
@@ -1350,12 +1436,14 @@
 			};
 		};
 		F53E0FBD0310411501E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTypeRace.cpp;
 			path = Game/GameTypeRace.cpp;
 			refType = 4;
 		};
 		F53E0FBE0310411501E1DB74 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTypeRace.h;
 			path = Game/GameTypeRace.h;
@@ -1374,12 +1462,14 @@
 			};
 		};
 		F53E490A031257DD01989694 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRewards.cpp;
 			path = Game/GameRewards.cpp;
 			refType = 4;
 		};
 		F53E490B031257DD01989694 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRewards.h;
 			path = Game/GameRewards.h;
@@ -1398,32 +1488,38 @@
 			};
 		};
 		F53F7CC602311A0801633C4B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreFlex.cpp;
 			refType = 4;
 		};
 		F53F7CC902311A9701633C4B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreFlex.flex;
 			refType = 4;
 		};
 		F53F7CD802314C8B01633C4B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBison.y;
 			refType = 4;
 		};
 		F53F7CD902314F1301633C4B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBison.cpp;
 			refType = 4;
 		};
 		F54020AD02A2423901F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameContract.cpp;
 			path = Game/GameContract.cpp;
 			refType = 4;
 		};
 		F54020AE02A2423901F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameContract.h;
 			path = Game/GameContract.h;
@@ -1442,11 +1538,13 @@
 			};
 		};
 		F54020BF02A2551701F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreGlobalConfig.cpp;
 			refType = 4;
 		};
 		F54020C002A2551701F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreGlobalConfig.h;
 			refType = 4;
@@ -1476,12 +1574,14 @@
 			};
 		};
 		F54020C502A25BFC01F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGlobalConfig.cpp;
 			path = Game/GameGlobalConfig.cpp;
 			refType = 4;
 		};
 		F54020C602A25BFC01F0D71D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGlobalConfig.h;
 			path = Game/GameGlobalConfig.h;
@@ -1512,11 +1612,13 @@
 			};
 		};
 		F540BCB3022B8A1301C02155 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureSpr.cpp;
 			refType = 4;
 		};
 		F540BCB9022B8B9C01C02155 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreUtil.cpp;
 			refType = 4;
@@ -1528,17 +1630,20 @@
 			refType = 4;
 		};
 		F540BCBC022BAEFD01C02155 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreStreamUtil.cpp;
 			refType = 4;
 		};
 		F5412BCB0303E7D701F8C327 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDialogue.cpp;
 			path = Game/GameDialogue.cpp;
 			refType = 4;
 		};
 		F5412BCC0303E7D701F8C327 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDialogue.h;
 			path = Game/GameDialogue.h;
@@ -1564,6 +1669,7 @@
 				F57BD756028ADB3801AD87C4,
 				F54506F702CB614A019E6518,
 			);
+			hasScannedForEncodings = 1;
 			isa = PBXProject;
 			mainGroup = F5431746020C310101449C4C;
 			productRefGroup = F543174C020C336601449C4C;
@@ -1662,12 +1768,14 @@
 			refType = 4;
 		};
 		F54490DA03A52FD301A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetID.h;
 			path = Game/GameNetID.h;
 			refType = 4;
 		};
 		F54490DB03A52FD301A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetID.cpp;
 			path = Game/GameNetID.cpp;
@@ -1721,42 +1829,49 @@
 			};
 		};
 		F5450B7E02AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = expat.h;
 			path = /usr/local/include/expat.h;
 			refType = 0;
 		};
 		F5450B7F02AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = gif_lib.h;
 			path = /usr/local/include/gif_lib.h;
 			refType = 0;
 		};
 		F5450B8002AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = pcre.h;
 			path = /usr/local/include/pcre.h;
 			refType = 0;
 		};
 		F5450B8102AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = tiff.h;
 			path = /usr/local/include/tiff.h;
 			refType = 0;
 		};
 		F5450B8202AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = tiffconf.h;
 			path = /usr/local/include/tiffconf.h;
 			refType = 0;
 		};
 		F5450B8302AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = tiffio.h;
 			path = /usr/local/include/tiffio.h;
 			refType = 0;
 		};
 		F5450B8402AD78D8010FCD91 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = tiffvers.h;
 			path = /usr/local/include/tiffvers.h;
@@ -1865,6 +1980,7 @@
 			refType = 4;
 		};
 		F5457B9602AF8D8501E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = mushPlatform.h;
 			path = API/mushPlatform.h;
@@ -1910,23 +2026,27 @@
 			refType = 2;
 		};
 		F5457BA402AFB19401E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformInputUtils.cpp;
 			refType = 4;
 		};
 		F5457BA502AFB19401E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformInputUtils.h;
 			path = src/Platform/PlatformInputUtils.h;
 			refType = 2;
 		};
 		F5457BA602AFB19401E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformUtils.cpp;
 			path = src/Platform/PlatformUtils.cpp;
 			refType = 2;
 		};
 		F5457BA702AFB19401E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformUtils.h;
 			path = src/Platform/PlatformUtils.h;
@@ -1944,6 +2064,7 @@
 			refType = 2;
 		};
 		F5457BA902AFB19401E3BBF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformInputUtils.cpp;
 			refType = 4;
@@ -1967,11 +2088,13 @@
 			};
 		};
 		F545A42A02E455C2015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLQuad.cpp;
 			refType = 4;
 		};
 		F545A42B02E455C2015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLQuad.h;
 			refType = 4;
@@ -1989,11 +2112,13 @@
 			};
 		};
 		F545A42E02E46058015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLine.cpp;
 			refType = 4;
 		};
 		F545A42F02E46058015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLine.h;
 			refType = 4;
@@ -2011,12 +2136,14 @@
 			};
 		};
 		F545A43202E4771E015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMapArea.cpp;
 			path = Game/GameMapArea.cpp;
 			refType = 4;
 		};
 		F545A43302E4771E015FC162 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMapArea.h;
 			path = Game/GameMapArea.h;
@@ -2116,6 +2243,7 @@
 			};
 		};
 		F545CC4E02B8E15B011D56AF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAutoMonkey.cpp;
 			refType = 4;
@@ -2146,11 +2274,13 @@
 			refType = 4;
 		};
 		F545E4AA02A28FE10197F408 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureTIFF.cpp;
 			refType = 4;
 		};
 		F545E4AB02A28FE10197F408 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureTIFF.h;
 			refType = 4;
@@ -2180,12 +2310,14 @@
 			};
 		};
 		F545EE7B02A66359018FABF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameData.cpp;
 			path = Game/GameData.cpp;
 			refType = 4;
 		};
 		F545EE7C02A66359018FABF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameData.h;
 			path = Game/GameData.h;
@@ -2204,12 +2336,14 @@
 			};
 		};
 		F545EEA102A67378018FABF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFloorMap.cpp;
 			path = Game/GameFloorMap.cpp;
 			refType = 4;
 		};
 		F545EEA202A67378018FABF3 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFloorMap.h;
 			path = Game/GameFloorMap.h;
@@ -2228,12 +2362,14 @@
 			};
 		};
 		F546082602E5EDA30166357B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMotionSpec.cpp;
 			path = Game/GameMotionSpec.cpp;
 			refType = 4;
 		};
 		F546082702E5EDA30166357B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMotionSpec.h;
 			path = Game/GameMotionSpec.h;
@@ -2252,17 +2388,20 @@
 			};
 		};
 		F54613840238008401507C92 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreBuiltinHandler.cpp;
 			refType = 4;
 		};
 		F546138A0238116F01507C92 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = test1.txt;
 			path = test/test1.txt;
 			refType = 4;
 		};
 		F546138B0238134A01507C92 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreEnv.cpp;
 			refType = 4;
@@ -2328,24 +2467,28 @@
 			shellScript = "rm -rf ic2data/system/ic2.app\ncp -pR build/ic2.app ic2data/system/ic2.app\nrm -f ic2data/ic2.app\nln -s ic2data/system/ic2.app ic2data/ic2.app\n";
 		};
 		F54631EB02ACC53801A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTraits.cpp;
 			path = Game/GameTraits.cpp;
 			refType = 4;
 		};
 		F54631EC02ACC53801A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTraits.h;
 			path = Game/GameTraits.h;
 			refType = 4;
 		};
 		F54631EF02ACC78201A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileTraits.cpp;
 			path = Game/GameTileTraits.cpp;
 			refType = 4;
 		};
 		F54631F002ACC78201A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileTraits.h;
 			path = Game/GameTileTraits.h;
@@ -2376,12 +2519,14 @@
 			};
 		};
 		F546321902AD022D01A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphic.cpp;
 			path = Game/GameGraphic.cpp;
 			refType = 4;
 		};
 		F546321A02AD022D01A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphic.h;
 			path = Game/GameGraphic.h;
@@ -2400,12 +2545,14 @@
 			};
 		};
 		F546321D02AD04B701A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphicSprite.cpp;
 			path = Game/GameGraphicSprite.cpp;
 			refType = 4;
 		};
 		F546321E02AD04B701A7DA6B = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphicSprite.h;
 			path = Game/GameGraphicSprite.h;
@@ -2424,21 +2571,25 @@
 			};
 		};
 		F5463A970230DB9A011D269C = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreCommand.cpp;
 			refType = 4;
 		};
 		F5463A990230DCDC011D269C = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreInterpreter.cpp;
 			refType = 4;
 		};
 		F5463AC802E6C9EA018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRenderable.cpp;
 			refType = 4;
 		};
 		F5463AC902E6C9EA018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRenderable.h;
 			refType = 4;
@@ -2456,6 +2607,7 @@
 			};
 		};
 		F5463ACC02E6CC4B018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLPoint.cpp;
 			refType = 4;
@@ -2467,12 +2619,14 @@
 			};
 		};
 		F5463ACE02E6CD91018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameOverPlot.cpp;
 			path = Game/GameOverPlot.cpp;
 			refType = 4;
 		};
 		F5463ACF02E6CD91018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameOverPlot.h;
 			path = Game/GameOverPlot.h;
@@ -2491,11 +2645,13 @@
 			};
 		};
 		F5463AD202E6D2A7018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLColour.cpp;
 			refType = 4;
 		};
 		F5463AD302E6D2A7018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLColour.h;
 			refType = 4;
@@ -2513,12 +2669,14 @@
 			};
 		};
 		F5463AD602E6D60D018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameView.cpp;
 			path = Game/GameView.cpp;
 			refType = 4;
 		};
 		F5463AD702E6D60D018842E0 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameView.h;
 			path = Game/GameView.h;
@@ -2537,11 +2695,13 @@
 			};
 		};
 		F5463B4602355AAB01F17BDD = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreParamList.cpp;
 			refType = 4;
 		};
 		F54668B402AE2A590163596F = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSwitches.h;
 			path = Game/GameSwitches.h;
@@ -2554,12 +2714,14 @@
 			};
 		};
 		F54689F302E3048501CF937A = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSolidMap.cpp;
 			path = Game/GameSolidMap.cpp;
 			refType = 4;
 		};
 		F54689F402E3048501CF937A = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSolidMap.h;
 			path = Game/GameSolidMap.h;
@@ -2578,11 +2740,13 @@
 			};
 		};
 		F546F21602C1F66E01173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = SDLMain.h;
 			refType = 4;
 		};
 		F546F21702C1F66E01173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = SDLMain.m;
 			refType = 4;
@@ -2612,6 +2776,7 @@
 			};
 		};
 		F546F59502C206E801173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSDL.cpp;
 			path = Media/MediaSDL.cpp;
@@ -2624,11 +2789,13 @@
 			};
 		};
 		F546F6F402C211F901173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLUTAppHandler.cpp;
 			refType = 4;
 		};
 		F546F6F502C211F901173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLUTAppHandler.h;
 			refType = 4;
@@ -2646,11 +2813,13 @@
 			};
 		};
 		F546F6F802C2120701173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = SDLAppHandler.cpp;
 			refType = 4;
 		};
 		F546F6F902C2120701173785 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = SDLAppHandler.h;
 			refType = 4;
@@ -2754,7 +2923,6 @@
 </dict>
 </plist>
 ";
-			shouldUseHeadermap = 0;
 		};
 		F547DFD502395BCC01A7C23C = {
 			buildActionMask = 2147483647;
@@ -3027,6 +3195,7 @@
 			refType = 4;
 		};
 		F5483A9102D19E6101480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = contract.xml;
 			refType = 4;
@@ -3064,6 +3233,7 @@
 			refType = 4;
 		};
 		F5483A9802D19E6101480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = tilemap.xml;
 			refType = 4;
@@ -3077,6 +3247,7 @@
 			refType = 4;
 		};
 		F5483A9C02D19E6101480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = start.txt;
 			refType = 4;
@@ -3095,12 +3266,14 @@
 			refType = 4;
 		};
 		F5483AB002D1B9E501480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioCommandHandler.cpp;
 			path = Media/MediaAudioCommandHandler.cpp;
 			refType = 4;
 		};
 		F5483AB102D1B9E501480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioCommandHandler.h;
 			path = Media/MediaAudioCommandHandler.h;
@@ -3119,17 +3292,20 @@
 			};
 		};
 		F5483AB402D1BEA701480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = floormap.xml;
 			refType = 4;
 		};
 		F5483AB702D1D95801480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFloorDesigner.cpp;
 			path = Game/GameFloorDesigner.cpp;
 			refType = 4;
 		};
 		F5483AB802D1D95801480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFloorDesigner.h;
 			path = Game/GameFloorDesigner.h;
@@ -3148,6 +3324,7 @@
 			};
 		};
 		F5483ABB02D1DD3401480ACF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRectangle.h;
 			refType = 4;
@@ -3159,11 +3336,13 @@
 			};
 		};
 		F5483C4B02E836CD0163105D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureDef.cpp;
 			refType = 4;
 		};
 		F5483C4C02E836CD0163105D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureDef.h;
 			refType = 4;
@@ -3181,22 +3360,26 @@
 			};
 		};
 		F548851B022F992901D6DA80 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreScript.cpp;
 			refType = 4;
 		};
 		F548A84402DC8CAE01D1A877 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = player.xml;
 			refType = 4;
 		};
 		F548C8DE03052D3A01B83DAD = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDataUtils.cpp;
 			path = Game/GameDataUtils.cpp;
 			refType = 4;
 		};
 		F548C8DF03052D3A01B83DAD = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDataUtils.h;
 			path = Game/GameDataUtils.h;
@@ -3215,11 +3398,13 @@
 			};
 		};
 		F548CF4A0302813C011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLFont.cpp;
 			refType = 4;
 		};
 		F548CF4B0302813C011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLFont.h;
 			refType = 4;
@@ -3237,11 +3422,13 @@
 			};
 		};
 		F548CF5003029076011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLString.cpp;
 			refType = 4;
 		};
 		F548CF5103029076011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLString.h;
 			refType = 4;
@@ -3259,11 +3446,13 @@
 			};
 		};
 		F548CF54030291D7011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLFontRef.cpp;
 			refType = 4;
 		};
 		F548CF55030291D7011728CE = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLFontRef.h;
 			refType = 4;
@@ -3296,12 +3485,14 @@
 			refType = 4;
 		};
 		F549083802ED8ACC01F581B4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMotion.cpp;
 			path = Game/GameMotion.cpp;
 			refType = 4;
 		};
 		F549083902ED8ACC01F581B4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMotion.h;
 			path = Game/GameMotion.h;
@@ -3320,6 +3511,7 @@
 			};
 		};
 		F54AC49402F841D801726764 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSpacePoint.h;
 			path = Game/GameSpacePoint.h;
@@ -3332,6 +3524,7 @@
 			};
 		};
 		F54AC49802F8438001726764 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMapPoint.h;
 			path = Game/GameMapPoint.h;
@@ -3344,6 +3537,7 @@
 			};
 		};
 		F54ACE7502B643D401F28026 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformMiscUtils.h;
 			path = src/Platform/PlatformMiscUtils.h;
@@ -3356,11 +3550,13 @@
 			};
 		};
 		F54B58CC02A78DE301E2A684 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAppSignal.cpp;
 			refType = 4;
 		};
 		F54B58CD02A78DE301E2A684 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAppSignal.h;
 			refType = 4;
@@ -3378,6 +3574,7 @@
 			};
 		};
 		F54B58D002A78FB301E2A684 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLAppSignal.h;
 			refType = 4;
@@ -3389,11 +3586,13 @@
 			};
 		};
 		F54B58D202A7AD5901E2A684 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLKeys.cpp;
 			refType = 4;
 		};
 		F54B58D302A7AD5901E2A684 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLKeys.h;
 			refType = 4;
@@ -3411,12 +3610,14 @@
 			};
 		};
 		F54E9EAE030BCA8901D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSound.cpp;
 			path = Media/MediaSound.cpp;
 			refType = 4;
 		};
 		F54E9EAF030BCA8901D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSound.h;
 			path = Media/MediaSound.h;
@@ -3435,6 +3636,7 @@
 			};
 		};
 		F54E9EB2030BD58E01D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreData.h;
 			refType = 4;
@@ -3446,6 +3648,7 @@
 			};
 		};
 		F54E9EB4030BD59A01D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreDataRef.h;
 			refType = 4;
@@ -3457,6 +3660,7 @@
 			};
 		};
 		F54E9EB6030BD71401D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreDataRef.cpp;
 			refType = 4;
@@ -3468,6 +3672,7 @@
 			};
 		};
 		F54E9EB8030BD72A01D67831 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreData.cpp;
 			refType = 4;
@@ -3495,12 +3700,14 @@
 			refType = 4;
 		};
 		F5539E2B02B4CDA0010AB4A9 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudio.cpp;
 			path = Media/MediaAudio.cpp;
 			refType = 4;
 		};
 		F5539E2C02B4CDA0010AB4A9 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudio.h;
 			path = Media/MediaAudio.h;
@@ -3519,6 +3726,7 @@
 			};
 		};
 		F5539E3102B4CDCF010AB4A9 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaStandard.h;
 			path = Media/MediaStandard.h;
@@ -3531,6 +3739,7 @@
 			};
 		};
 		F5539E3302B4CE24010AB4A9 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSDL.h;
 			path = Media/MediaSDL.h;
@@ -3543,6 +3752,7 @@
 			};
 		};
 		F5539E3502B4D0A6010AB4A9 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = mushMedia.h;
 			path = API/mushMedia.h;
@@ -3555,12 +3765,14 @@
 			};
 		};
 		F5580896029E5A2B01DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = CoreConfig.cpp;
 			path = src/CoreApp/CoreConfig.cpp;
 			refType = 2;
 		};
 		F5580897029E5A2B01DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = CoreConfig.h;
 			path = src/CoreApp/CoreConfig.h;
@@ -3591,11 +3803,13 @@
 			};
 		};
 		F558089C029E5D4501DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CorePickle.cpp;
 			refType = 4;
 		};
 		F558089D029E5D4501DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CorePickle.h;
 			refType = 4;
@@ -3625,6 +3839,7 @@
 			};
 		};
 		F55808AA029EA98D01DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreXML.cpp;
 			refType = 4;
@@ -3642,12 +3857,14 @@
 			};
 		};
 		F55808AD029EAF6401DA4293 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = XMLtest.xml;
 			path = test/XMLtest.xml;
 			refType = 4;
 		};
 		F55FF7D002D204F301F9DCD1 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRectangle.cpp;
 			refType = 4;
@@ -3659,6 +3876,7 @@
 			};
 		};
 		F55FF7D202D2112001F9DCD1 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLPoint.h;
 			refType = 4;
@@ -3735,22 +3953,26 @@
 			refType = 4;
 		};
 		F56353FC022AE32F015CEA2E = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureGIF.cpp;
 			refType = 4;
 		};
 		F567B1610234179C01FBD387 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreScalar.cpp;
 			refType = 4;
 		};
 		F56CBBD30317A679017AE398 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioSDL.cpp;
 			path = Media/MediaAudioSDL.cpp;
 			refType = 4;
 		};
 		F56CBBD40317A679017AE398 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioSDL.h;
 			path = Media/MediaAudioSDL.h;
@@ -3769,6 +3991,7 @@
 			};
 		};
 		F56CBBD70317A68E017AE398 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioNull.h;
 			path = Media/MediaAudioNull.h;
@@ -3781,6 +4004,7 @@
 			};
 		};
 		F56CBBDB0317A717017AE398 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaAudioNull.cpp;
 			path = Media/MediaAudioNull.cpp;
@@ -3793,16 +4017,19 @@
 			};
 		};
 		F56F91A70221A926011355B6 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLData.cpp;
 			refType = 4;
 		};
 		F56F91AB0221AC0F011355B6 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTexture.cpp;
 			refType = 4;
 		};
 		F570DF8802D84F0B01CE3369 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = "floormap-template.xml";
 			refType = 4;
@@ -3816,9 +4043,46 @@
 			refType = 4;
 		};
 		F570DF8A02D873B601CE3369 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = contract.xml;
 			refType = 4;
+		};
+		F57B1B6103B37C0F01A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MustlConfig.h;
+			refType = 4;
+		};
+		F57B1B6203B37C0F01A80164 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			path = MustlConfig.cpp;
+			refType = 4;
+		};
+		F57B1B6303B37C0F01A80164 = {
+			fileRef = F57B1B6103B37C0F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57B1B6403B37C0F01A80164 = {
+			fileRef = F57B1B6203B37C0F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57B1B6503B37C0F01A80164 = {
+			fileRef = F57B1B6103B37C0F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F57B1B6603B37C0F01A80164 = {
+			fileRef = F57B1B6203B37C0F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F57B3120028C51470195BBD7 = {
 			fileRef = F56090DB0217E16B014AEE46;
@@ -3827,11 +4091,13 @@
 			};
 		};
 		F57B3121028C579D0195BBD7 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLUtils.cpp;
 			refType = 4;
 		};
 		F57B3122028C579D0195BBD7 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLUtils.h;
 			refType = 4;
@@ -3861,6 +4127,7 @@
 			};
 		};
 		F57BD74F028AC4C101AD87C4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreStandard.cpp;
 			refType = 4;
@@ -3893,7 +4160,6 @@
 			buildSettings = {
 				HAVE_SSTREAM = 1;
 				LIBRARY_SEARCH_PATHS = "\U0001/usr/lib/gcc/darwin/3.1";
-				USE_GCC3 = YES;
 				USE_GCC_PFE_SUPPORT = YES;
 			};
 			isa = PBXBuildStyle;
@@ -3916,6 +4182,7 @@
 			refType = 4;
 		};
 		F57BD759028ADF0D01AD87C4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = sstream;
 			path = "Support/gcc-2.95.2/sstream";
@@ -3928,18 +4195,21 @@
 			};
 		};
 		F57BD75D028AE40001AD87C4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GLWrangleAppHandler.cpp;
 			path = src/Wrangle/GLWrangleAppHandler.cpp;
 			refType = 2;
 		};
 		F57BD75F028AE40001AD87C4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GraphWrangler.cpp;
 			path = src/Wrangle/GraphWrangler.cpp;
 			refType = 2;
 		};
 		F57BD761028AE40001AD87C4 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = WrangleCommandHandler.cpp;
 			path = src/Wrangle/WrangleCommandHandler.cpp;
@@ -3964,12 +4234,14 @@
 			};
 		};
 		F57FF20C039D829001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameControlFrameDef.h;
 			path = Game/GameControlFrameDef.h;
 			refType = 4;
 		};
 		F57FF20D039D829001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameControlFrameDef.cpp;
 			path = Game/GameControlFrameDef.cpp;
@@ -4082,31 +4354,37 @@
 			refType = 4;
 		};
 		F5921CEA021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreChildRecord.cpp;
 			refType = 4;
 		};
 		F5921CEB021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreApp.cpp;
 			refType = 4;
 		};
 		F5921CEC021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreAppHandler.cpp;
 			refType = 4;
 		};
 		F5921CED021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = DataSet.cpp;
 			refType = 4;
 		};
 		F5921CEE021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = LaunchCommandHandler.cpp;
 			refType = 4;
 		};
 		F5921CEF021876D70127AF47 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreRegExp.cpp;
 			refType = 4;
@@ -4229,42 +4507,49 @@
 			refType = 4;
 		};
 		F5939689028C01AE016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameCommandHandler.cpp;
 			path = Game/GameCommandHandler.cpp;
 			refType = 4;
 		};
 		F593968A028C01AE016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameCommandHandler.h;
 			path = Game/GameCommandHandler.h;
 			refType = 4;
 		};
 		F593968D028C0342016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameAppHandler.cpp;
 			path = Game/GameAppHandler.cpp;
 			refType = 4;
 		};
 		F593968E028C0342016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameAppHandler.h;
 			path = Game/GameAppHandler.h;
 			refType = 4;
 		};
 		F5939691028C0629016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameBase.h;
 			path = Game/GameBase.h;
 			refType = 4;
 		};
 		F5939693028C067F016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTest.cpp;
 			path = Game/GameTest.cpp;
 			refType = 4;
 		};
 		F5939694028C067F016230BF = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTest.h;
 			path = Game/GameTest.h;
@@ -4486,6 +4771,7 @@
 				F5A934EC03A8FD0D01A80164,
 				F5AAE0D603A94DE901A80164,
 				F5AAD5FA03AF495B01A80164,
+				F57B1B6303B37C0F01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4658,6 +4944,7 @@
 				F5AAE0D703A94DE901A80164,
 				F5AAA6C903B34EFA01A80164,
 				F5AAA6CA03B34F2701A80164,
+				F57B1B6403B37C0F01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4710,7 +4997,6 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "src src/API";
-				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "-Wall";
@@ -4718,7 +5004,6 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = ic2;
 				SECTORDER_FLAGS = "";
-				USE_GCC3 = NO;
 				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4726,7 +5011,6 @@
 			);
 			isa = PBXApplicationTarget;
 			name = all;
-			productInstallPath = "/Volumes/work/core-app/ic2data/system";
 			productName = all;
 			productReference = F59396D6028C0CA6016230BF;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -4758,7 +5042,6 @@
 </dict>
 </plist>
 ";
-			shouldUseHeadermap = 0;
 		};
 		F59396D6028C0CA6016230BF = {
 			isa = PBXApplicationReference;
@@ -5018,12 +5301,14 @@
 			};
 		};
 		F593D55E035C11BE01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameConfig.h;
 			path = Game/GameConfig.h;
 			refType = 4;
 		};
 		F593D55F035C11BE01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameConfig.cpp;
 			path = Game/GameConfig.cpp;
@@ -5042,16 +5327,19 @@
 			};
 		};
 		F593D564035C56EE01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformVideoUtils.cpp;
 			refType = 4;
 		};
 		F593D565035C56FD01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformVideoUtils.cpp;
 			refType = 4;
 		};
 		F594083A035C7E4D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformBoxes.h;
 			path = src/Platform/MacOSX/PlatformBoxes.h;
@@ -5070,6 +5358,7 @@
 			};
 		};
 		F594084C035C800101A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformBoxes.r;
 			refType = 4;
@@ -5092,21 +5381,25 @@
 			refType = 2;
 		};
 		F5950F4003504F6501A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformInputUtils.cpp;
 			refType = 4;
 		};
 		F5950F4103504F6501A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
 			refType = 4;
 		};
 		F59516410350B22F01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLights.h;
 			refType = 4;
 		};
 		F59516420350B22F01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLights.cpp;
 			refType = 4;
@@ -5124,6 +5417,7 @@
 			};
 		};
 		F59516470350B32201A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLightDef.h;
 			refType = 4;
@@ -5135,6 +5429,7 @@
 			};
 		};
 		F5955436035EC93201A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
 			refType = 4;
@@ -5146,12 +5441,14 @@
 			};
 		};
 		F59560DE0355CA2301A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMap.h;
 			path = Game/GameMap.h;
 			refType = 4;
 		};
 		F59560DF0355CA2301A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMap.cpp;
 			path = Game/GameMap.cpp;
@@ -5170,12 +5467,14 @@
 			};
 		};
 		F59560E20355D77D01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameLightLinks.h;
 			path = Game/GameLightLinks.h;
 			refType = 4;
 		};
 		F59560E30355D77D01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameLightLinks.cpp;
 			path = Game/GameLightLinks.cpp;
@@ -5194,6 +5493,7 @@
 			};
 		};
 		F59560E60355EC9D01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLLightDef.cpp;
 			refType = 4;
@@ -5211,12 +5511,14 @@
 			};
 		};
 		F5957EC3035982EC01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileSpec.h;
 			path = Game/GameTileSpec.h;
 			refType = 4;
 		};
 		F5957EC4035982EC01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileSpec.cpp;
 			path = Game/GameTileSpec.cpp;
@@ -5235,11 +5537,13 @@
 			};
 		};
 		F5959BC303585A4701A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRender.h;
 			refType = 4;
 		};
 		F5959BC403585A4701A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLRender.cpp;
 			refType = 4;
@@ -5257,11 +5561,13 @@
 			};
 		};
 		F5959BC703585E9701A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLState.h;
 			refType = 4;
 		};
 		F5959BC803585E9701A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLState.cpp;
 			refType = 4;
@@ -5279,11 +5585,13 @@
 			};
 		};
 		F595A93C035B30C101A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLModeDef.h;
 			refType = 4;
 		};
 		F595A93D035B30C101A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLModeDef.cpp;
 			refType = 4;
@@ -5301,6 +5609,7 @@
 			};
 		};
 		F595A940035B313D01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = PlatformVideoUtils.h;
 			path = src/Platform/PlatformVideoUtils.h;
@@ -5313,6 +5622,7 @@
 			};
 		};
 		F595A942035B316401A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformVideoUtils.cpp;
 			refType = 4;
@@ -5324,11 +5634,13 @@
 			};
 		};
 		F595C56F0351E76E01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLVector.h;
 			refType = 4;
 		};
 		F595C5700351E76E01A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLVector.cpp;
 			refType = 4;
@@ -5346,12 +5658,14 @@
 			};
 		};
 		F595FD83035821F601A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphicModel.cpp;
 			path = Game/GameGraphicModel.cpp;
 			refType = 4;
 		};
 		F595FD84035821F601A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameGraphicModel.h;
 			path = Game/GameGraphicModel.h;
@@ -5370,11 +5684,13 @@
 			};
 		};
 		F595FD8703582A9101A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLArray.h;
 			refType = 4;
 		};
 		F595FD8803582A9101A80166 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLArray.cpp;
 			refType = 4;
@@ -5392,12 +5708,14 @@
 			};
 		};
 		F59C48E0037A815D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameWebCommands.h;
 			path = src/Game/GameWebCommands.h;
 			refType = 2;
 		};
 		F59C48E1037A815D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameWebCommands.cpp;
 			path = src/Game/GameWebCommands.cpp;
@@ -5416,11 +5734,13 @@
 			};
 		};
 		F59C48E4037A83D401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreEnvOutput.h;
 			refType = 4;
 		};
 		F59C48E5037A83D401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreEnvOutput.cpp;
 			refType = 4;
@@ -5438,16 +5758,19 @@
 			};
 		};
 		F5A0E55302B65A870115E516 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = PlatformMiscUtils.cpp;
 			refType = 4;
 		};
 		F5A7946F039E19E601A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreHistory.h;
 			refType = 4;
 		};
 		F5A79470039E19E601A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreHistory.cpp;
 			refType = 4;
@@ -5465,12 +5788,14 @@
 			};
 		};
 		F5A79F0703A6603F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFrameTimer.h;
 			path = Game/GameFrameTimer.h;
 			refType = 4;
 		};
 		F5A79F0803A6603F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameFrameTimer.cpp;
 			path = Game/GameFrameTimer.cpp;
@@ -5489,12 +5814,14 @@
 			};
 		};
 		F5A8A072039CE39901A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetUtils.h;
 			path = Game/GameNetUtils.h;
 			refType = 4;
 		};
 		F5A8A073039CE39901A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetUtils.cpp;
 			path = Game/GameNetUtils.cpp;
@@ -5513,12 +5840,14 @@
 			};
 		};
 		F5A8F280038560DB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSetup.h;
 			path = Game/GameSetup.h;
 			refType = 4;
 		};
 		F5A8F281038560DB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameSetup.cpp;
 			path = Game/GameSetup.cpp;
@@ -5537,11 +5866,13 @@
 			};
 		};
 		F5A934D703A8E82B01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlSTL.h;
 			refType = 4;
 		};
 		F5A934D803A8E82B01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlSTL.cpp;
 			refType = 4;
@@ -5559,11 +5890,13 @@
 			};
 		};
 		F5A934DF03A8E96001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlFail.h;
 			refType = 4;
 		};
 		F5A934E003A8E96001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlFail.cpp;
 			refType = 4;
@@ -5581,11 +5914,13 @@
 			};
 		};
 		F5A934E603A8ED7A01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlAssert.h;
 			refType = 4;
 		};
 		F5A934E703A8ED7A01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlAssert.cpp;
 			refType = 4;
@@ -5603,11 +5938,13 @@
 			};
 		};
 		F5A934EA03A8FD0D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlTimer.h;
 			refType = 4;
 		};
 		F5A934EB03A8FD0D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlTimer.cpp;
 			refType = 4;
@@ -5625,12 +5962,14 @@
 			};
 		};
 		F5AA63C8031193CA01442A89 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRecords.cpp;
 			path = Game/GameRecords.cpp;
 			refType = 4;
 		};
 		F5AA63C9031193CA01442A89 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRecords.h;
 			path = Game/GameRecords.h;
@@ -5643,6 +5982,7 @@
 			};
 		};
 		F5AA9AD3039E935801A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameBase.cpp;
 			path = Game/GameBase.cpp;
@@ -5655,12 +5995,14 @@
 			};
 		};
 		F5AA9AD5039E93F001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePlayerUtils.h;
 			path = Game/GamePlayerUtils.h;
 			refType = 4;
 		};
 		F5AA9AD6039E93F001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePlayerUtils.cpp;
 			path = Game/GamePlayerUtils.cpp;
@@ -5700,6 +6042,8 @@
 				F5AAB68203A8C8CC01A80164,
 				F5AAB68303A8C8CC01A80164,
 				F5AAB68403A8C8CC01A80164,
+				F57B1B6203B37C0F01A80164,
+				F57B1B6103B37C0F01A80164,
 				F5AAB68503A8C8CC01A80164,
 				F5AAB68603A8C8CC01A80164,
 				F5A934E003A8E96001A80164,
@@ -5718,8 +6062,6 @@
 				F5AAB69203A8C8CC01A80164,
 				F5AAB69303A8C8CC01A80164,
 				F5AAB69403A8C8CC01A80164,
-				F5AAB6D003A8D6DF01A80164,
-				F5AAB6CF03A8D6DF01A80164,
 				F5AAB69503A8C8CC01A80164,
 				F5AAB69603A8C8CC01A80164,
 				F5AAB69703A8C8CC01A80164,
@@ -5746,181 +6088,217 @@
 			refType = 4;
 		};
 		F5AAB67F03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = Mustl.cpp;
 			refType = 4;
 		};
 		F5AAB68003A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = Mustl.h;
 			refType = 4;
 		};
 		F5AAB68103A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlAddress.cpp;
 			refType = 4;
 		};
 		F5AAB68203A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlAddress.h;
 			refType = 4;
 		};
 		F5AAB68303A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlClient.cpp;
 			refType = 4;
 		};
 		F5AAB68403A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlClient.h;
 			refType = 4;
 		};
 		F5AAB68503A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlData.cpp;
 			refType = 4;
 		};
 		F5AAB68603A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlData.h;
 			refType = 4;
 		};
 		F5AAB68703A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlHandler.cpp;
 			refType = 4;
 		};
 		F5AAB68803A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlHandler.h;
 			refType = 4;
 		};
 		F5AAB68903A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlHTTP.cpp;
 			refType = 4;
 		};
 		F5AAB68A03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlHTTP.h;
 			refType = 4;
 		};
 		F5AAB68B03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlID.cpp;
 			refType = 4;
 		};
 		F5AAB68C03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlID.h;
 			refType = 4;
 		};
 		F5AAB68D03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlIDNull.cpp;
 			refType = 4;
 		};
 		F5AAB68E03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlIDNull.h;
 			refType = 4;
 		};
 		F5AAB68F03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlIDString.cpp;
 			refType = 4;
 		};
 		F5AAB69003A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlIDString.h;
 			refType = 4;
 		};
 		F5AAB69103A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlLink.cpp;
 			refType = 4;
 		};
 		F5AAB69203A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlLink.h;
 			refType = 4;
 		};
 		F5AAB69303A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlLog.cpp;
 			refType = 4;
 		};
 		F5AAB69403A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlLog.h;
 			refType = 4;
 		};
 		F5AAB69503A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlProtocol.cpp;
 			refType = 4;
 		};
 		F5AAB69603A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlProtocol.h;
 			refType = 4;
 		};
 		F5AAB69703A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlRouter.cpp;
 			refType = 4;
 		};
 		F5AAB69803A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlRouter.h;
 			refType = 4;
 		};
 		F5AAB69903A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlServer.cpp;
 			refType = 4;
 		};
 		F5AAB69A03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlServer.h;
 			refType = 4;
 		};
 		F5AAB69B03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlUtils.cpp;
 			refType = 4;
 		};
 		F5AAB69C03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlUtils.h;
 			refType = 4;
 		};
 		F5AAB69D03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebLink.cpp;
 			refType = 4;
 		};
 		F5AAB69E03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebLink.h;
 			refType = 4;
 		};
 		F5AAB69F03A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebRouter.cpp;
 			refType = 4;
 		};
 		F5AAB6A003A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebRouter.h;
 			refType = 4;
 		};
 		F5AAB6A103A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebServer.cpp;
 			refType = 4;
 		};
 		F5AAB6A203A8C8CC01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlWebServer.h;
 			refType = 4;
@@ -6136,6 +6514,7 @@
 			};
 		};
 		F5AAB6C903A8CFBF01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MustlPlatform.h;
 			path = src/Platform/MustlPlatform.h;
@@ -6148,11 +6527,13 @@
 			};
 		};
 		F5AAB6CB03A8D18001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlStandard.h;
 			refType = 4;
 		};
 		F5AAB6CC03A8D18001A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = MustlStandard.cpp;
 			refType = 4;
@@ -6169,22 +6550,14 @@
 			settings = {
 			};
 		};
-		F5AAB6CF03A8D6DF01A80164 = {
-			isa = PBXFileReference;
-			path = MustlNamespace.h;
-			refType = 4;
-		};
-		F5AAB6D003A8D6DF01A80164 = {
-			isa = PBXFileReference;
-			path = MustlNamespace.cpp;
-			refType = 4;
-		};
 		F5AAB6D303A8D97F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreNamespace.h;
 			refType = 4;
 		};
 		F5AAB6D403A8D97F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreNamespace.cpp;
 			refType = 4;
@@ -6228,6 +6601,7 @@
 				F5AAD5F103AF438801A80164,
 				F5AAD5F303AF438901A80164,
 				F5AAD5FB03AF495B01A80164,
+				F57B1B6503B37C0F01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6258,6 +6632,7 @@
 				F5AAD5F003AF438801A80164,
 				F5AAD5F203AF438901A80164,
 				F5AAD5F403AF438A01A80164,
+				F57B1B6603B37C0F01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6304,7 +6679,6 @@
 			productInstallPath = /usr/local/lib;
 			productName = "Mustl library";
 			productReference = F5AAD5C403AF435A01A80164;
-			shouldUseHeadermap = 0;
 		};
 		F5AAD5C403AF435A01A80164 = {
 			isa = PBXLibraryReference;
@@ -6588,6 +6962,7 @@
 			};
 		};
 		F5AAD5F903AF495B01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = mustlCore.h;
 			path = API/mustlCore.h;
@@ -6606,12 +6981,14 @@
 			};
 		};
 		F5AAE0D403A94DE901A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameException.h;
 			path = Game/GameException.h;
 			refType = 4;
 		};
 		F5AAE0D503A94DE901A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameException.cpp;
 			path = Game/GameException.cpp;
@@ -6630,12 +7007,14 @@
 			};
 		};
 		F5AAE43503A1122B01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMessageControlData.h;
 			path = Game/GameMessageControlData.h;
 			refType = 4;
 		};
 		F5AAE43603A1122B01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameMessageControlData.cpp;
 			path = Game/GameMessageControlData.cpp;
@@ -6660,12 +7039,14 @@
 			};
 		};
 		F5ADDCF9038C19B701A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDef.h;
 			path = Game/GameDef.h;
 			refType = 4;
 		};
 		F5ADDCFA038C19B701A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDef.cpp;
 			path = Game/GameDef.cpp;
@@ -6684,12 +7065,14 @@
 			};
 		};
 		F5ADDD01038C1EFE01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = multiframe.html;
 			path = localweb/multiframe.html;
 			refType = 4;
 		};
 		F5ADDD02038C1FF601A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = multistatus.mhtml;
 			path = localweb/multistatus.mhtml;
@@ -6793,11 +7176,13 @@
 			refType = 4;
 		};
 		F5B25BCC02187072017E032D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLAppHandler.cpp;
 			refType = 4;
 		};
 		F5B25BCE02187072017E032D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLCommandHandler.cpp;
 			refType = 4;
@@ -6811,6 +7196,7 @@
 			refType = 4;
 		};
 		F5B25BD202187072017E032D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = main.cpp;
 			refType = 4;
@@ -6827,34 +7213,40 @@
 			refType = 4;
 		};
 		F5B25BE602187072017E032D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = Test.cpp;
 			refType = 4;
 		};
 		F5B25BE802187072017E032D = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
 			refType = 4;
 		};
 		F5B33B190389513D01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = control.mhtml;
 			path = localweb/control.mhtml;
 			refType = 4;
 		};
 		F5B33B1A0389570F01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = quit.mhtml;
 			path = localweb/quit.mhtml;
 			refType = 4;
 		};
 		F5B33B1B03895F4701A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameQuit.cpp;
 			path = Game/GameQuit.cpp;
 			refType = 4;
 		};
 		F5B33B1C03895F4701A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameQuit.h;
 			path = Game/GameQuit.h;
@@ -6873,12 +7265,14 @@
 			};
 		};
 		F5B343A9039267A401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetObject.h;
 			path = Game/GameNetObject.h;
 			refType = 4;
 		};
 		F5B343AA039267A401A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameNetObject.cpp;
 			path = Game/GameNetObject.cpp;
@@ -6897,12 +7291,14 @@
 			};
 		};
 		F5B3598603918CD501A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameProtocol.h;
 			path = Game/GameProtocol.h;
 			refType = 4;
 		};
 		F5B3598703918CD501A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameProtocol.cpp;
 			path = Game/GameProtocol.cpp;
@@ -6921,12 +7317,14 @@
 			};
 		};
 		F5B3598A039197E801A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDefClient.h;
 			path = Game/GameDefClient.h;
 			refType = 4;
 		};
 		F5B3598B039197E801A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDefClient.cpp;
 			path = Game/GameDefClient.cpp;
@@ -6945,12 +7343,14 @@
 			};
 		};
 		F5B3598E039197FB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDefServer.h;
 			path = Game/GameDefServer.h;
 			refType = 4;
 		};
 		F5B3598F039197FB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameDefServer.cpp;
 			path = Game/GameDefServer.cpp;
@@ -6969,12 +7369,14 @@
 			};
 		};
 		F5B36CFA039229BF01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRouter.h;
 			path = Game/GameRouter.h;
 			refType = 4;
 		};
 		F5B36CFB039229BF01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameRouter.cpp;
 			path = Game/GameRouter.cpp;
@@ -6993,24 +7395,28 @@
 			};
 		};
 		F5B3796B0387A66A01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = singleplayer.mhtml;
 			path = localweb/singleplayer.mhtml;
 			refType = 4;
 		};
 		F5B37E460387C44801A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = developer.mhtml;
 			path = localweb/developer.mhtml;
 			refType = 4;
 		};
 		F5B39DB10383F5FB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameConfigDef.h;
 			path = Game/GameConfigDef.h;
 			refType = 4;
 		};
 		F5B39DB20383F5FB01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameConfigDef.cpp;
 			path = Game/GameConfigDef.cpp;
@@ -7029,11 +7435,13 @@
 			};
 		};
 		F5B39DB70384029501A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreInfo.h;
 			refType = 4;
 		};
 		F5B39DB80384029501A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreInfo.cpp;
 			refType = 4;
@@ -7051,12 +7459,14 @@
 			};
 		};
 		F5B96F1D030D9B5C015847EC = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSoundStream.cpp;
 			path = Media/MediaSoundStream.cpp;
 			refType = 4;
 		};
 		F5B96F1E030D9B5C015847EC = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MediaSoundStream.h;
 			path = Media/MediaSoundStream.h;
@@ -7075,6 +7485,7 @@
 			};
 		};
 		F5C4435D0372B4BE01A80164 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = MustlPlatform.cpp;
 			path = src/Platform/MacOSX/MustlPlatform.cpp;
@@ -7087,12 +7498,14 @@
 			};
 		};
 		F5D6A1A202FABD6701D854DA = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTimer.cpp;
 			path = Game/GameTimer.cpp;
 			refType = 4;
 		};
 		F5D6A1A302FABD6701D854DA = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTimer.h;
 			path = Game/GameTimer.h;
@@ -7111,12 +7524,14 @@
 			};
 		};
 		F5F06F0602AE531801B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePiece.cpp;
 			path = Game/GamePiece.cpp;
 			refType = 4;
 		};
 		F5F06F0702AE531801B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePiece.h;
 			path = Game/GamePiece.h;
@@ -7135,12 +7550,14 @@
 			};
 		};
 		F5F06F0E02AE554301B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePiecePlayer.cpp;
 			path = Game/GamePiecePlayer.cpp;
 			refType = 4;
 		};
 		F5F06F0F02AE554301B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GamePiecePlayer.h;
 			path = Game/GamePiecePlayer.h;
@@ -7159,12 +7576,14 @@
 			};
 		};
 		F5F06F1202AE5D2001B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameController.cpp;
 			path = Game/GameController.cpp;
 			refType = 4;
 		};
 		F5F06F1302AE5D2001B05200 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameController.h;
 			path = Game/GameController.h;
@@ -7195,11 +7614,13 @@
 			};
 		};
 		F5F2C65602A3C0B201CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureRef.cpp;
 			refType = 4;
 		};
 		F5F2C65702A3C0B201CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureRef.h;
 			refType = 4;
@@ -7229,11 +7650,13 @@
 			};
 		};
 		F5F2C65C02A3D8C001CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureClip.cpp;
 			refType = 4;
 		};
 		F5F2C65D02A3D8C001CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = GLTextureClip.h;
 			refType = 4;
@@ -7263,12 +7686,14 @@
 			};
 		};
 		F5F2C66302A410DA01CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileMap.cpp;
 			path = Game/GameTileMap.cpp;
 			refType = 4;
 		};
 		F5F2C66402A410DA01CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			name = GameTileMap.h;
 			path = Game/GameTileMap.h;
@@ -7287,6 +7712,7 @@
 			};
 		};
 		F5F2C66702A439A101CB7A62 = {
+			fileEncoding = 30;
 			isa = PBXFileReference;
 			path = CoreFunction.cpp;
 			refType = 4;

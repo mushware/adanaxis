@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.h,v 1.35 2002/12/03 20:28:14 southa Exp $
+ * $Id: GLUtils.h,v 1.36 2002/12/20 13:17:37 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.36  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.35  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -161,7 +164,7 @@ public:
     static void DrawRectangle(Mushware::tVal inX1, Mushware::tVal inY1, Mushware::tVal inX2, Mushware::tVal inY2);
     static void DrawTriangle(Mushware::tVal inX1, Mushware::tVal inY1, Mushware::tVal inX2, Mushware::tVal inY2, Mushware::tVal inX3, Mushware::tVal inY3);
     static void RasterPos(Mushware::tVal inX, Mushware::tVal inY);
-    static void BitmapText(const string& inStr);
+    static void BitmapText(const std::string& inStr);
     static void DrawSprite(const GLTexture& inTex, Mushware::tVal inX, Mushware::tVal inY);
     static void DrawSprite(const GLTexture& inTex);
     static void DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.h,v 1.4 2002/12/13 19:03:06 southa Exp $
+ * $Id: MustlServer.h,v 1.5 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.5  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/12/13 19:03:06  southa
  * Mustl interface cleanup
  *
@@ -70,7 +73,7 @@ class MustlServer
 public:
     ~MustlServer();
 
-    static inline MustlServer& Instance(void);
+    static MustlServer& Instance(void);
 
     void Connect(Mustl::U32 inPort);
     void Disconnect(void);
@@ -93,7 +96,7 @@ private:
     bool m_serving;
     bool m_logTraffic;
 
-    static auto_ptr<MustlServer> m_instance;
+    static std::auto_ptr<MustlServer> m_instance;
 };
 
 inline  MustlServer&

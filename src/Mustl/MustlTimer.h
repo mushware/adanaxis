@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlTimer.h,v 1.2 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlTimer.h,v 1.3 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlTimer.h,v $
+ * Revision 1.3  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -44,7 +47,7 @@ private:
     Mustl::tMsec m_currentMsec;
     unsigned int m_lastU32Msec;
     
-    static auto_ptr<MustlTimer> m_instance;
+    static std::auto_ptr<MustlTimer> m_instance;
 };
 
 inline MustlTimer&

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.h,v 1.6 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureSpr.h,v 1.7 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureSpr.h,v $
+ * Revision 1.7  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -41,7 +44,7 @@
 class GLTextureSpr : public GLTexture
 {
 public:
-    GLTextureSpr(const string& inFilename);
+    GLTextureSpr(const std::string& inFilename);
     GLTextureSpr *Clone(void) const {return new GLTextureSpr(*this);}
 
 protected:

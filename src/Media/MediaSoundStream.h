@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.h,v 1.3 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.4 2002/12/20 13:17:45 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.4  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -31,14 +34,14 @@
 class MediaSoundStream
 {
 public:
-    MediaSoundStream(const string& inName);
-    const string& FilenameGet(void) const { return m_filename; }
+    MediaSoundStream(const std::string& inName);
+    const std::string& FilenameGet(void) const { return m_filename; }
 
     static CoreScalar SoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar PlaySoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 
 private:
-    string m_filename;
+    std::string m_filename;
 };
 #endif

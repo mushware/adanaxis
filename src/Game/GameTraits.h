@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.11 2002/11/25 10:43:28 southa Exp $
+ * $Id: GameTraits.h,v 1.12 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.12  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/25 10:43:28  southa
  * GameProtocol work
  *
@@ -56,13 +59,13 @@ public:
     GameTraits(): m_traitsValid(false) {}
     virtual ~GameTraits() {}
     void Verify(void);
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     
 protected:
     Mushware::U32 NumberOfTraitsGet(void) const;
     GameTraits& TraitsGet(Mushware::U32 inIndex) const;
-    const string TraitsNameGet(void) const;
+    const std::string TraitsNameGet(void) const;
 
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
@@ -90,7 +93,7 @@ private:
     void RebuildTraits(void) const;
         
     std::vector<string> m_baseNames;
-    mutable string m_failMessage;
+    mutable std::string m_failMessage;
     mutable bool m_traitsValid;
     mutable std::vector<GameTraits *> m_baseTraits;
 };

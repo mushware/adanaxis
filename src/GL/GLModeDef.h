@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLModeDef.h,v 1.3 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLModeDef.h,v 1.4 2002/12/20 13:17:35 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.4  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -54,7 +57,7 @@ public:
 
     GLModeDef();
     
-    GLModeDef(const string& inName, Mushware::U32 inWidth, Mushware::U32 inHeight,
+    GLModeDef(const std::string& inName, Mushware::U32 inWidth, Mushware::U32 inHeight,
               Mushware::U32 inBpp, Mushware::U32 inHz, tScreen inScreen, tCursor inCursor, tSync inSync) :
         m_name(inName),
         m_width(inWidth),
@@ -66,7 +69,7 @@ public:
         m_sync(inSync)
     {}
 
-    const string& NameGet(void) const { return m_name; }
+    const std::string& NameGet(void) const { return m_name; }
     Mushware::U32 WidthGet(void) const { return m_width; }
     Mushware::U32 HeightGet(void) const { return m_height; }
     Mushware::U32 BPPGet(void) const { return m_bpp; }
@@ -79,7 +82,7 @@ public:
     static GLModeDef Default(void);
 
 private:
-    string m_name;
+    std::string m_name;
     Mushware::U32 m_width;
     Mushware::U32 m_height;
     Mushware::U32 m_bpp;

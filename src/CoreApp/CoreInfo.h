@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreInfo.h,v 1.2 2002/11/15 18:58:33 southa Exp $
+ * $Id: CoreInfo.h,v 1.3 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreInfo.h,v $
+ * Revision 1.3  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/11/15 18:58:33  southa
  * Configuration mode
  *
@@ -26,9 +29,9 @@
 class CoreInfo
 {
 public:
-    static string ApplicationNameGet(void) { return "Infernal Contractor II"; }
-    static string PackageNameGet(void) { return "ic2"; }
-    static string PackageVersionGet(void) { return "0.1.0"; }
-    static string PackageIDGet(void) { return "ic2-macosx-0.1.0"; }
+    static std::string ApplicationNameGet(void) { return "Infernal Contractor II"; }
+    static std::string PackageNameGet(void) { return "ic2"; }
+    static std::string PackageVersionGet(void) { return "0.1.0"; }
+    static std::string PackageIDGet(void) { return "ic2-macosx-0.1.0"; }
 };
 #endif

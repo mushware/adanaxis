@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.h,v 1.15 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreConfig.h,v 1.16 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.16  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -67,14 +70,14 @@ class CoreConfig
 {
 public:
     virtual ~CoreConfig() {}
-    void Set(const string& inName, const CoreScalar& inValue);
-    void Set(const string& inName, const string& inStr) { Set(inName, CoreScalar(inStr)); }
-    void Set(const string& inName, const Mushware::tVal inVal) { Set(inName, CoreScalar(inVal)); }
-    const CoreScalar& Get(const string& inName) const;
-    bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
-    bool Exists(const string& inName) const;
+    void Set(const std::string& inName, const CoreScalar& inValue);
+    void Set(const std::string& inName, const std::string& inStr) { Set(inName, CoreScalar(inStr)); }
+    void Set(const std::string& inName, const Mushware::tVal inVal) { Set(inName, CoreScalar(inVal)); }
+    const CoreScalar& Get(const std::string& inName) const;
+    bool GetIfExists(const CoreScalar** outScalar, const std::string& inName) const;
+    bool Exists(const std::string& inName) const;
 
 private:
-    std::map<string, CoreScalar> m_config;
+    std::map<std::string, CoreScalar> m_config;
 };
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioNull.h,v 1.4 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.5 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.5  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -33,7 +36,7 @@ class MediaAudioNull : public MediaAudio
 {
 public:
     MediaAudioNull();
-    virtual void PlayMusic(const string& inName);
+    virtual void PlayMusic(const std::string& inName);
     virtual void Play(MediaSound& inSound);
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     virtual void SoundHalt(MediaSound& inSound);

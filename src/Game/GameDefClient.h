@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.h,v 1.12 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDefClient.h,v 1.13 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.13  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -61,13 +64,13 @@
 class GameDefClient : public GameDef
 {
 public:
-    explicit GameDefClient(const string& inName);
-    virtual void Ticker(const string& inName);
+    explicit GameDefClient(const std::string& inName);
+    virtual void Ticker(const std::string& inName);
     virtual void WebPrint(std::ostream& ioOut) const;
     
-    void JoinGame(const string& inServer, Mushware::U32 inPort);
+    void JoinGame(const std::string& inServer, Mushware::U32 inPort);
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
-    void PlayerNameSet(const string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
+    void PlayerNameSet(const std::string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
     const CoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
@@ -77,7 +80,7 @@ public:
     void ReliableSendToServer(MustlData& ioData);
     void FastSendToServer(MustlData& ioData);
     
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -121,7 +124,7 @@ private:
     Mushware::U32 m_lastLinkMsec;
     Mushware::U32 m_lastRegistrationMsec;
     Mushware::U32 m_currentMsec;
-    string m_serverName;
+    std::string m_serverName;
     MustlAddress m_netAddress;
     std::vector< CoreDataRef<MustlLink> > m_netLinks;
     Mushware::U32 m_lastLinkNum;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreCommand.h,v 1.10 2002/11/22 11:42:06 southa Exp $
+ * $Id: CoreCommand.h,v 1.11 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.11  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/11/22 11:42:06  southa
  * Added developer controls
  *
@@ -70,16 +73,16 @@ class CoreEnv;
 class CoreCommand
 {
 public:
-    CoreCommand(const string& inStr): m_bison(inStr), m_string(inStr) {}
+    CoreCommand(const std::string& inStr): m_bison(inStr), m_string(inStr) {}
     void Execute(CoreEnv& inEnv);
     void Execute(void);
-    const string& Name(void) const { return m_name; }
+    const std::string& Name(void) const { return m_name; }
     const CoreParamList& ParamListGet(void) const { return m_paramList; }
     Mushware::U32 NumParams(void) {return m_paramList.NumParams();}
-    string AllParams(void);
-    string PopString(void);
+    std::string AllParams(void);
+    std::string PopString(void);
     Mushware::tVal PopVal(void);
-    void PopParam(string& outStr) {m_paramList.PopParam(outStr);}
+    void PopParam(std::string& outStr) {m_paramList.PopParam(outStr);}
     void PopParam(Mushware::tVal& outVal) {m_paramList.PopParam(outVal);}
     void PopParam(Mushware::U32& outU32) {m_paramList.PopParam(outU32);}
 
@@ -87,12 +90,12 @@ public:
     CoreScalar Despatch(void);
     void PushParam(CoreScalar& inParam) {m_paramList.PushParam(inParam);}
     void ClearParams(void) {m_paramList.Clear();}
-    void NameSet(const string& inStr) {m_name=inStr;}
+    void NameSet(const std::string& inStr) {m_name=inStr;}
     
 private:
     CoreBison m_bison;
-    string m_name;
-    string m_string;
+    std::string m_name;
+    std::string m_string;
     CoreParamList m_paramList;
 };
 #endif

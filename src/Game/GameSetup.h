@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.h,v 1.7 2002/12/05 23:52:52 southa Exp $
+ * $Id: GameSetup.h,v 1.8 2002/12/20 13:17:42 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.8  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/12/05 23:52:52  southa
  * Network management and status
  *
@@ -46,7 +49,7 @@ public:
     GameSetup();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
-    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const;
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
 
@@ -71,7 +74,7 @@ private:
     };
 
     tGameState m_gameState;
-    string m_configURL;
+    std::string m_configURL;
     Mushware::U32 m_currentMsec;
     Mushware::U32 m_lastTickerMsec;
     bool m_windowClicked;

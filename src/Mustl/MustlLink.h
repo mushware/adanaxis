@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.h,v 1.5 2002/12/14 15:04:34 southa Exp $
+ * $Id: MustlLink.h,v 1.6 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.6  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/12/14 15:04:34  southa
  * Mustl fixes
  *
@@ -138,7 +141,7 @@ public:
     void WebStatusPrint(std::ostream& ioOut) const;
 
     static void WebStatusHeaderPrint(std::ostream& ioOut);
-    static string NextLinkNameTake(void);
+    static std::string NextLinkNameTake(void);
 
 private:
     enum tLinkState
@@ -218,7 +221,7 @@ private:
 
     void LinkInfoLog(void) const;
 
-    static string LinkStateToBG(const LinkState& inLinkState);
+    static std::string LinkStateToBG(const LinkState& inLinkState);
 
     LinkState m_tcpState;
     LinkState m_udpState;

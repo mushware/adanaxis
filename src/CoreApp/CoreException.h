@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreException.h,v 1.21 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreException.h,v 1.22 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.22  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.21  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -92,19 +95,19 @@
 
 #include "CoreStandard.h"
 
-class FileFail: public exception
+class FileFail: public std::exception
 {
 public:
-    FileFail(const string& inFilename, const string& inMessage):
+    FileFail(const std::string& inFilename, const std::string& inMessage):
     m_filename(inFilename), m_message(inMessage) {}
     ~FileFail() throw() {}
-    const string& FilenameGet(void) const throw () {return m_filename;}
-    const string& MessageGet(void) const throw() {return m_message;}
+    const std::string& FilenameGet(void) const throw () {return m_filename;}
+    const std::string& MessageGet(void) const throw() {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_filename;
-    string m_message;
+    std::string m_filename;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, FileFail f)
@@ -112,16 +115,16 @@ inline std::ostream& operator<<(std::ostream &s, FileFail f)
     return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
 }
 
-class LogicFail: public exception
+class LogicFail: public std::exception
 {
 public:
-    LogicFail(const string &inMessage) {m_message=inMessage;}
+    LogicFail(const std::string &inMessage) {m_message=inMessage;}
     ~LogicFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, LogicFail f)
@@ -129,16 +132,16 @@ inline std::ostream& operator<<(std::ostream &s, LogicFail f)
     return s << f.StringGet();
 }
 
-class ConfigFail: public exception
+class ConfigFail: public std::exception
 {
 public:
-    ConfigFail(const string &inMessage) {m_message=inMessage;}
+    ConfigFail(const std::string &inMessage) {m_message=inMessage;}
     ~ConfigFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, ConfigFail f)
@@ -146,16 +149,16 @@ inline std::ostream& operator<<(std::ostream &s, ConfigFail f)
     return s << f.StringGet();
 }
 
-class ReferenceFail: public exception
+class ReferenceFail: public std::exception
 {
 public:
-    ReferenceFail(const string &inMessage) {m_message=inMessage;}
+    ReferenceFail(const std::string &inMessage) {m_message=inMessage;}
     ~ReferenceFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, ReferenceFail f)
@@ -163,16 +166,16 @@ inline std::ostream& operator<<(std::ostream &s, ReferenceFail f)
     return s << f.StringGet();
 }
 
-class FatalFail: public exception
+class FatalFail: public std::exception
 {
 public:
-    FatalFail(const string &inMessage) {m_message=inMessage;}
+    FatalFail(const std::string &inMessage) {m_message=inMessage;}
     ~FatalFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, FatalFail f)
@@ -180,16 +183,16 @@ inline std::ostream& operator<<(std::ostream &s, FatalFail f)
     return s << f.StringGet();
 }
 
-class VerifyFail: public exception
+class VerifyFail: public std::exception
 {
 public:
-    VerifyFail(const string &inMessage) {m_message=inMessage;}
+    VerifyFail(const std::string &inMessage) {m_message=inMessage;}
     ~VerifyFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, VerifyFail f)
@@ -197,16 +200,16 @@ inline std::ostream& operator<<(std::ostream &s, VerifyFail f)
     return s << f.StringGet();
 }
 
-class CommandFail: public exception
+class CommandFail: public std::exception
 {
 public:
-    CommandFail(const string &inMessage) {m_message=inMessage;}
+    CommandFail(const std::string &inMessage) {m_message=inMessage;}
     ~CommandFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, CommandFail f)
@@ -214,16 +217,16 @@ inline std::ostream& operator<<(std::ostream &s, CommandFail f)
     return s << f.StringGet();
 }
 
-class TestFail: public exception
+class TestFail: public std::exception
 {
 public:
-    TestFail(const string &inMessage) {m_message=inMessage;}
+    TestFail(const std::string &inMessage) {m_message=inMessage;}
     ~TestFail() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, TestFail f)
@@ -232,16 +235,16 @@ inline std::ostream& operator<<(std::ostream &s, TestFail f)
 }
 
 
-class XMLFail: public exception
+class XMLFail: public std::exception
 {
 public:
-    XMLFail(const string &inMessage) {m_message=inMessage;}
+    XMLFail(const std::string &inMessage) {m_message=inMessage;}
     ~XMLFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, XMLFail f)
@@ -249,16 +252,16 @@ inline std::ostream& operator<<(std::ostream &s, XMLFail f)
     return s<<f.SPrint();
 }
 
-class ExpressionFail: public exception
+class ExpressionFail: public std::exception
 {
 public:
-    ExpressionFail(const string &inMessage) {m_message=inMessage;}
+    ExpressionFail(const std::string &inMessage) {m_message=inMessage;}
     ~ExpressionFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, ExpressionFail f)
@@ -266,21 +269,21 @@ inline std::ostream& operator<<(std::ostream &s, ExpressionFail f)
     return s<<f.SPrint();
 }
 
-class LoaderFail: public exception
+class LoaderFail: public std::exception
 {
 public:
-    LoaderFail(const string& inFilename, const string& inReason):
+    LoaderFail(const std::string& inFilename, const std::string& inReason):
         m_filename(inFilename), m_reason(inReason)
         { m_message="File '"+m_filename+"': "+m_reason; }
     ~LoaderFail() throw() {}
-    const string& FilenameGet(void) {return m_filename;}
-    const string& ReasonGet(void) {return m_reason;}
+    const std::string& FilenameGet(void) {return m_filename;}
+    const std::string& ReasonGet(void) {return m_reason;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_filename;
-    string m_reason;
-    string m_message;
+    std::string m_filename;
+    std::string m_reason;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, LoaderFail f)
@@ -288,16 +291,16 @@ inline std::ostream& operator<<(std::ostream &s, LoaderFail f)
     return s << "File '" << f.FilenameGet() << "': " << f.ReasonGet();
 }
 
-class DeviceFail: public exception
+class DeviceFail: public std::exception
 {
 public:
-    DeviceFail(const string &inMessage) {m_message=inMessage;}
+    DeviceFail(const std::string &inMessage) {m_message=inMessage;}
     ~DeviceFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, DeviceFail f)
@@ -305,16 +308,16 @@ inline std::ostream& operator<<(std::ostream &s, DeviceFail f)
     return s<<f.SPrint();
 }
 
-class ResourceFail: public exception
+class ResourceFail: public std::exception
 {
 public:
-    ResourceFail(const string &inMessage) {m_message=inMessage;}
+    ResourceFail(const std::string &inMessage) {m_message=inMessage;}
     ~ResourceFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, ResourceFail f)
@@ -322,16 +325,16 @@ inline std::ostream& operator<<(std::ostream &s, ResourceFail f)
     return s<<f.SPrint();
 }
 
-class SpecifierFail: public exception
+class SpecifierFail: public std::exception
 {
 public:
-    SpecifierFail(const string &inMessage) {m_message=inMessage;}
+    SpecifierFail(const std::string &inMessage) {m_message=inMessage;}
     ~SpecifierFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, SpecifierFail f)
@@ -339,16 +342,16 @@ inline std::ostream& operator<<(std::ostream &s, SpecifierFail f)
     return s<<f.SPrint();
 }
 
-class SyntaxFail: public exception
+class SyntaxFail: public std::exception
 {
 public:
-    SyntaxFail(const string &inMessage) {m_message=inMessage;}
+    SyntaxFail(const std::string &inMessage) {m_message=inMessage;}
     ~SyntaxFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, SyntaxFail f)
@@ -356,16 +359,16 @@ inline std::ostream& operator<<(std::ostream &s, SyntaxFail f)
     return s<<f.SPrint();
 }
 
-class ValueFail: public exception
+class ValueFail: public std::exception
 {
 public:
-    ValueFail(const string &inMessage) {m_message=inMessage;}
+    ValueFail(const std::string &inMessage) {m_message=inMessage;}
     ~ValueFail() throw() {}
-    const string& SPrint(void) {return m_message;}
+    const std::string& SPrint(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, ValueFail f)

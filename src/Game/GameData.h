@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.20 2002/12/05 13:20:12 southa Exp $
+ * $Id: GameData.h,v 1.21 2002/12/20 13:17:38 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.21  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.20  2002/12/05 13:20:12  southa
  * Client link handling
  *
@@ -101,27 +104,27 @@ public:
 
     void Clear(void);
     
-    GameTileMap *TileMapGetOrCreate(const string& inName);
-    GameTileMap *TileMapGet(const string& inName) const;
-    GameFloorMap *FloorMapGetOrCreate(const string& inName);
-    GameFloorMap *FloorMapGet(const string& inName) const;
-    GameContract *ContractGetOrCreate(const string& inName);
-    GameContract *ContractGet(const string& inName) const;
-    bool ContractExists(const string& inName) const;
+    GameTileMap *TileMapGetOrCreate(const std::string& inName);
+    GameTileMap *TileMapGet(const std::string& inName) const;
+    GameFloorMap *FloorMapGetOrCreate(const std::string& inName);
+    GameFloorMap *FloorMapGet(const std::string& inName) const;
+    GameContract *ContractGetOrCreate(const std::string& inName);
+    GameContract *ContractGet(const std::string& inName) const;
+    bool ContractExists(const std::string& inName) const;
     void ContractsClear(void);
-    GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
-    GameTraits *TraitsGet(const string& inName) const;
-    GameController *ControllerGetOrCreate(const string& inName);
-    GameController *ControllerGet(const string& inName) const;
-    const GamePiece *TemplateDeleteAndCreate(const string& inName, GamePiece *inPiece);
-    const GamePiece *TemplateGet(const string& inName) const;
-    GamePiece *PieceDeleteAndCreate(const string& inName, GamePiece *inPiece);
-    GamePiece *PieceGet(const string& inName) const;
-    GameDialogue *DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue);
-    GameDialogue *DialogueGet(const string& inName) const;
+    GameTraits *TraitsDeleteAndCreate(const std::string& inName, GameTraits *inTraits);
+    GameTraits *TraitsGet(const std::string& inName) const;
+    GameController *ControllerGetOrCreate(const std::string& inName);
+    GameController *ControllerGet(const std::string& inName) const;
+    const GamePiece *TemplateDeleteAndCreate(const std::string& inName, GamePiece *inPiece);
+    const GamePiece *TemplateGet(const std::string& inName) const;
+    GamePiece *PieceDeleteAndCreate(const std::string& inName, GamePiece *inPiece);
+    GamePiece *PieceGet(const std::string& inName) const;
+    GameDialogue *DialogueDeleteAndCreate(const std::string& inName, GameDialogue *inDialogue);
+    GameDialogue *DialogueGet(const std::string& inName) const;
     const DialogueMap& DialogueMapGet(void) const { return m_dialogues; }
-    GameView *ViewGetOrCreate(const string& inName);
-    GameView *ViewGet(const string& inName) const;
+    GameView *ViewGetOrCreate(const std::string& inName);
+    GameView *ViewGet(const std::string& inName) const;
     GameView *CurrentViewGet(void) const;
 
     CoreData<GamePiecePlayer>& PlayerGet(void) { return *m_playerData; }
@@ -132,8 +135,8 @@ public:
     GameRewards& RewardsGet(void) const;
     void RewardsSet(GameRewards *inRewards);
 
-    GameDialogue *CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue);
-    void CurrentDialogueDelete(const string& inName);
+    GameDialogue *CurrentDialogueAdd(const std::string& inName, const GameDialogue& inDialogue);
+    void CurrentDialogueDelete(const std::string& inName);
     const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
     void CurrentDialoguesClear(void);
 
@@ -167,13 +170,13 @@ private:
 class GameDataNotPresent: public exception
 {
 public:
-    GameDataNotPresent(const string &inMessage) {m_message=inMessage;}
+    GameDataNotPresent(const std::string &inMessage) {m_message=inMessage;}
     ~GameDataNotPresent() throw() {}
-    const string& StringGet(void) {return m_message;}
+    const std::string& StringGet(void) {return m_message;}
     const char* what() const throw() {return m_message.c_str();}
 
 private:
-    string m_message;
+    std::string m_message;
 };
 
 inline std::ostream& operator<<(std::ostream &s, GameDataNotPresent f)

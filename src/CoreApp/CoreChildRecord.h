@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreChildRecord.h,v 1.5 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreChildRecord.h,v 1.6 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreChildRecord.h,v $
+ * Revision 1.6  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -73,7 +76,7 @@ class CoreChildRecord
 public:
     CoreChildRecord(int inPid, int inInPipe, int inOutPipe);
     bool StatusGet(CoreChildStatus& outStatus);
-    bool OutputAppend(string &outStr);
+    bool OutputAppend(std::string &outStr);
 
 private:
     int m_pid;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.h,v 1.8 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameRouter.h,v 1.9 2002/12/20 13:17:42 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.9  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -56,7 +59,7 @@ protected:
     void ControlDataHandle(MustlData& ioData, const MustlLink& inLink);
     
 private:
-    static auto_ptr<GameRouter> m_instance;
+    static std::auto_ptr<GameRouter> m_instance;
 };
 
 inline GameRouter&

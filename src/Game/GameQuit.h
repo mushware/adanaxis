@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.h,v 1.2 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameQuit.h,v 1.3 2002/12/20 13:17:42 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.3  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -31,7 +34,7 @@ public:
     GameQuit();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
-    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const;
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
 

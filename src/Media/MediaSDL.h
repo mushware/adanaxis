@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.12 2002/12/12 18:38:58 southa Exp $
+ * $Id: MediaSDL.h,v 1.13 2002/12/20 13:17:45 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.13  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/12/12 18:38:58  southa
  * Mustl separation
  *
@@ -98,7 +101,7 @@ protected:
     MediaSDL(): m_inited(0), m_firstInitCalled(false) {}
 
 private:
-    static auto_ptr<MediaSDL> m_instance;
+    static std::auto_ptr<MediaSDL> m_instance;
     Mushware::U32 m_inited;
     bool m_firstInitCalled;
 };

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.h,v 1.9 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameProtocol.h,v 1.10 2002/12/20 13:17:42 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.10  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -59,8 +62,8 @@ public:
         kMessageTypeControlData
     };
 
-    static void CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName);
-    static void DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName);
+    static void CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const std::string& inRemoteName);
+    static void DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const std::string& inRemoteName);
     
 private:
 };

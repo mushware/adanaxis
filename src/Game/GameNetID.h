@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetID.h,v 1.2 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameNetID.h,v 1.3 2002/12/20 13:17:41 southa Exp $
  * $Log: GameNetID.h,v $
+ * Revision 1.3  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -29,7 +32,7 @@
 class GameNetID : public MustlID
 {
 public:
-    explicit GameNetID(const string& inStr);
+    explicit GameNetID(const std::string& inStr);
     explicit GameNetID(MustlData& ioData);
     virtual ~GameNetID();
     virtual MustlID *Clone(void) const;
@@ -37,7 +40,7 @@ public:
     virtual void Unpack(MustlData& ioData);
     virtual void Print(std::ostream& ioOut) const;
 
-    void NameSuffixAdd(const string& inStr);
+    void NameSuffixAdd(const std::string& inStr);
     const CoreDataRef<GameDefClient>& DataRefGet(void) const { return m_clientRef; }
     
 private:

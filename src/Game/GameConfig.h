@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.9 2002/11/25 18:02:56 southa Exp $
+ * $Id: GameConfig.h,v 1.10 2002/12/20 13:17:37 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.10  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/25 18:02:56  southa
  * Mushware ID work
  *
@@ -61,13 +64,13 @@ public:
     void DisplayModeSet(Mushware::U32 inMode);
     void DisplayModeSetDefault(void);
 
-    CoreScalar ParameterGet(const string& inName) const;
-    bool ParameterExists(const string& inName) const;
-    void ParameterSet(const string& inName, const CoreScalar& inValue);
-    void PostDataHandle(const string& inData);
+    CoreScalar ParameterGet(const std::string& inName) const;
+    bool ParameterExists(const std::string& inName) const;
+    void ParameterSet(const std::string& inName, const CoreScalar& inValue);
+    void PostDataHandle(const std::string& inData);
     void Update(void);
     
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
    

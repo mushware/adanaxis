@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.h,v 1.15 2002/11/24 23:18:26 southa Exp $
+ * $Id: GameTypeRace.h,v 1.16 2002/12/20 13:17:44 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.16  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/11/24 23:18:26  southa
  * Added type name accessor to CorePickle
  *
@@ -77,7 +80,7 @@ class GameTypeRace : public GameType
 public:
     GameTypeRace();
     virtual ~GameTypeRace() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -156,10 +159,10 @@ private:
     RaceState m_raceState;
     bool m_lapStartTimeValid;
     bool m_chequePointTimeValid;
-    string m_startAction;
-    string m_finalLapAction;
-    string m_winAction;
-    string m_loseAction;
+    std::string m_startAction;
+    std::string m_finalLapAction;
+    std::string m_winAction;
+    std::string m_loseAction;
     Mushware::U32 m_laps;
     Mushware::U32 m_lapCount;
     Mushware::tVal m_initialTime;

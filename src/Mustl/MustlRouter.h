@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.h,v 1.3 2002/12/14 15:04:34 southa Exp $
+ * $Id: MustlRouter.h,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/14 15:04:34  southa
  * Mustl fixes
  *
@@ -70,7 +73,7 @@ private:
     
     Mustl::tMsec m_lastTickMsec;
     
-    static auto_ptr<MustlRouter> m_instance;
+    static std::auto_ptr<MustlRouter> m_instance;
 }; 
 
 inline  MustlRouter&

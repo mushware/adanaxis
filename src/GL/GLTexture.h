@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.h,v 1.12 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTexture.h,v 1.13 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.13  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -103,7 +106,7 @@ public:
     virtual bool Valid(Mushware::U32 inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
     virtual Mushware::U32 NumberOf(void) const {return m_textureDefs.size();}
     virtual std::ostream& ostreamPrint(std::ostream& inOut) const;
-    const string& FilenameGet(void) const {return m_inFilename;}
+    const std::string& FilenameGet(void) const {return m_inFilename;}
 
     GLuint BindingNameGet(Mushware::U32 inRef=0) const {if (m_bound) return m_bindingName; BindTexture(); return m_bindingName;}
     void BindTexture(void) const;
@@ -111,7 +114,7 @@ public:
     
 protected:
     virtual const char *FiletypeName(void) const = 0;
-    void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
+    void FilenameSet(const std::string& inFilename) {m_inFilename=inFilename;}
     void AddTextureDef(GLTextureDef& inDef) {m_textureDefs.push_back(inDef);}
     void AddTextureDef(GLTextureDef& inDef, Mushware::U32 inWhere);
     bool TextureDefValid(Mushware::U32 inWhere) const;
@@ -119,7 +122,7 @@ protected:
     
 private:
     std::vector<GLTextureDef> m_textureDefs;
-    string m_inFilename;
+    std::string m_inFilename;
     mutable bool m_bound;
     mutable GLuint m_bindingName;
 };

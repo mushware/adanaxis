@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlProtocol.h,v 1.2 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlProtocol.h,v 1.3 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlProtocol.h,v $
+ * Revision 1.3  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -104,7 +107,7 @@ public:
 
     static void IDTransferCreate(MustlData& outData, const MustlID& inID);
 
-    static void LongAppMessageCreate(MustlData& ioData, Mustl::U32 inType, const string& inStr);
+    static void LongAppMessageCreate(MustlData& ioData, Mustl::U32 inType, const std::string& inStr);
     static void LongAppMessageHeaderCreate(MustlData& ioData, Mustl::U32 inType);
     static void LongAppMessageFinish(MustlData& ioData);
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.3 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlLog.h,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -68,7 +71,7 @@ public:
     void TrafficLogSet(bool inLog) { m_trafficLog = inLog; }
     void LogFullIPSet(bool inFullIP) { m_logFullIP = inFullIP; }
     
-    void OpenFile(const string& inName);
+    void OpenFile(const std::string& inName);
     void CloseFile(void);
     
 protected:

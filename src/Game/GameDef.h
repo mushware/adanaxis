@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.h,v 1.14 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDef.h,v 1.15 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.15  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -72,18 +75,18 @@ public:
         kStatusNoServer
     };
     
-    explicit GameDef(const string& inName);
+    explicit GameDef(const std::string& inName);
     virtual ~GameDef() {}
-    virtual void Ticker(const string& inName) = 0;
+    virtual void Ticker(const std::string& inName) = 0;
     virtual void WebPrint(std::ostream& ioOut) const = 0;
 
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
-    const string& NameGet(void) const { return m_name; }
+    const std::string& NameGet(void) const { return m_name; }
     bool ImageIs(void) const { return m_isImage; }
     void ImageIsSet(bool inValue) { m_isImage = inValue; }
-    const string StatusWebStringGet(void) const;
+    const std::string StatusWebStringGet(void) const;
     Mushware::U32 CreationMsecGet(void) const { return m_creationMsec; }
     
 protected:
@@ -112,7 +115,7 @@ private:
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
 
-    string m_name;
+    std::string m_name;
     tStatus m_status;
     Mushware::U32 m_creationMsec;
     bool m_isImage;

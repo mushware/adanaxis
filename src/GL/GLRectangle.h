@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.h,v 1.9 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLRectangle.h,v 1.10 2002/12/20 13:17:35 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.10  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -69,7 +72,7 @@ public:
     void FixUp(void);
     void MakeInteger(void);
     void Expand(Mushware::tVal inExpansion);
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
     const GLRectangle& operator+=(const GLPoint& inPoint);

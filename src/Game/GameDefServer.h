@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.h,v 1.8 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDefServer.h,v 1.9 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.9  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -50,20 +53,20 @@ class GameDefClient;
 class GameDefServer : public GameDef
 {
 public:
-    GameDefServer(const string& inName);
-    virtual void Ticker(const string& inName);
+    GameDefServer(const std::string& inName);
+    virtual void Ticker(const std::string& inName);
     virtual void WebPrint(std::ostream& ioOut) const;
 
-    void HostGame(const string& inContract, Mushware::U32 inPlayerLimit);
+    void HostGame(const std::string& inContract, Mushware::U32 inPlayerLimit);
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
     
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
-    const string& ServerMessageGet(void) const { return m_serverMessage; }
-    void ServerMessageSet(const string& inMessage) { m_serverMessage = inMessage; }
+    const std::string& ServerMessageGet(void) const { return m_serverMessage; }
+    void ServerMessageSet(const std::string& inMessage) { m_serverMessage = inMessage; }
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
 
@@ -103,8 +106,8 @@ private:
 
     void UpdateClients(void);
     
-    string m_serverMessage;
-    string m_contractName;
+    std::string m_serverMessage;
+    std::string m_contractName;
     Mushware::U32 m_playerCount;
     Mushware::U32 m_playerLimit;
     Mushware::U32 m_lastUpdateMsec;

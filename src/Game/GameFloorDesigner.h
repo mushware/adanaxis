@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.h,v 1.10 2002/10/22 20:42:04 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.11 2002/12/20 13:17:40 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.11  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:42:04  southa
  * Source conditioning
  *
@@ -78,7 +81,7 @@ private:
     void MoveTiers(Mushware::S32 inStep);
     
     std::vector<GLPoint> m_pos;
-    string m_controllerName;
+    std::string m_controllerName;
     mutable GameController *m_controller; // in GameData
     GameTileMap *m_tileMap;
     std::vector<GameFloorMap *> m_floorMaps;

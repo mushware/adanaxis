@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Dataset.h,v 1.8 2002/12/04 00:37:10 southa Exp $
+ * $Id: Dataset.h,v 1.9 2002/12/20 13:17:34 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.9  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/12/04 00:37:10  southa
  * ControlFrameDef work
  *
@@ -53,7 +56,7 @@ class Dataset
 {
 public:
     Dataset();
-    void Load(istream& in);
+    void Load(std::istream& in);
     void Save(std::ostream& out);
     void Resize(Mushware::U32 entries);
     void AppendElement(const std::vector<Mushware::tVal>& data, const std::vector<bool>& valid);

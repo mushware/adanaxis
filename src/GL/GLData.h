@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.h,v 1.11 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLData.h,v 1.12 2002/12/20 13:17:34 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.12  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -78,10 +81,10 @@ public:
     GLData();
     ~GLData();
     static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
-    void TextureAdd(const string& inName, const GLTexture& inTexture);
-    GLTexture *TextureFind(const string& inName);
-    GLFont *FontGive(const string& inName, GLFont *inFont);
-    GLFont *FontGet(const string& inName) const;
+    void TextureAdd(const std::string& inName, const GLTexture& inTexture);
+    GLTexture *TextureFind(const std::string& inName);
+    GLFont *FontGive(const std::string& inName, GLFont *inFont);
+    GLFont *FontGet(const std::string& inName) const;
     GLLights *LightsGet(void);
     void Decache(void);
     void DumpTextures(std::ostream& inOut);

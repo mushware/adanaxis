@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLString.h,v 1.6 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLString.h,v 1.7 2002/12/20 13:17:35 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.7  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -42,15 +45,15 @@ class GLString : public GLRenderable
 {
 public:
     GLString() {}
-    GLString(const string& inValue, const GLFontRef& inFont, Mushware::tVal inAlign);
+    GLString(const std::string& inValue, const GLFontRef& inFont, Mushware::tVal inAlign);
     void AlignmentSet(Mushware::tVal inAlign) { m_alignment=inAlign; }
-    void TextSet(const string& inStr) { m_value=inStr; }
+    void TextSet(const std::string& inStr) { m_value=inStr; }
     virtual void Render(void) const;
     virtual GLRenderable *Clone(void) const { return new GLString(*this); }
 
 private:
     GLFontRef m_fontRef;
-    string m_value;
+    std::string m_value;
     Mushware::tVal m_alignment;
 };
 #endif

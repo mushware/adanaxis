@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.h,v 1.6 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaSound.h,v 1.7 2002/12/20 13:17:45 southa Exp $
  * $Log: MediaSound.h,v $
+ * Revision 1.7  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -40,12 +43,12 @@
 class MediaSound
 {
 public:
-    MediaSound(const string& inName);
+    MediaSound(const std::string& inName);
     ~MediaSound();
     void Load(void);
     void Free(void);
     void EndHandler(void);
-    const string& FilenameGet(void) const { return m_filename; }
+    const std::string& FilenameGet(void) const { return m_filename; }
     Mix_Chunk *MixChunkGet(void) const { return m_chunk; }
     void MixChunkSet(Mix_Chunk *inChunk) { m_chunk=inChunk; }
     void ResidenceSet(bool inResident) { m_resident=inResident; }
@@ -56,7 +59,7 @@ public:
     static void Install(void);
     
 private:
-    string m_filename;
+    std::string m_filename;
     Mix_Chunk *m_chunk;
     bool m_resident;
 };

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.h,v 1.7 2002/11/24 23:18:04 southa Exp $
+ * $Id: GLLightDef.h,v 1.8 2002/12/20 13:17:35 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.8  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/11/24 23:18:04  southa
  * Added type name accessor to CorePickle
  *
@@ -62,7 +65,7 @@ public:
 
     void BasePositionSet(const GLVector& inVec);
     
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     

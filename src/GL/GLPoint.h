@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.15 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLPoint.h,v 1.16 2002/12/20 13:17:35 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.16  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -77,9 +80,9 @@ public:
     virtual GLPoint *Clone(void) const { return new GLPoint(*this); }
     virtual void Render(void) const;
 
-    void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     void Unpickle(CoreXML& inXML);
-    void Unpickle(istream& ioIn);
+    void Unpickle(std::istream& ioIn);
     
     Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
     Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.h,v 1.6 2002/11/24 23:18:23 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.7 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.7  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -42,7 +45,7 @@ public:
     GameGraphicModel(): m_listContext(0) {}
     virtual ~GameGraphicModel();
     virtual void Render(void);
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     

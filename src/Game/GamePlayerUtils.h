@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.h,v 1.3 2002/12/10 20:38:05 southa Exp $
+ * $Id: GamePlayerUtils.h,v 1.4 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePlayerUtils.h,v $
+ * Revision 1.4  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/10 20:38:05  southa
  * Server timing
  *
@@ -38,9 +41,9 @@ public:
     static void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
     static void SendControl(GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
     static void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    static bool VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef);
-    static bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
-    static bool VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef);
+    static bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
+    static bool VerifyPlayer(const std::string& inName, GamePiecePlayer& inPlayer);
+    static bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
     static void ManagePlayers(GameAppHandler& inAppHandler);
     static void ClientMove(GameFloorMap& inFloorMap, GameTimer& inTimer, Mushware::U32 inNumFrames);
     static void ServerMove(GameFloorMap& inFloorMap, GameTimer& inTimer, Mushware::U32 inNumFrames);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.37 2002/12/10 19:00:16 southa Exp $
+ * $Id: GameContract.h,v 1.38 2002/12/20 13:17:38 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.38  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.37  2002/12/10 19:00:16  southa
  * Split timer into client and server
  *
@@ -143,11 +146,11 @@ public:
     virtual ~GameContract();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
-    virtual void ScriptFunction(const string& inName, GameAppHandler& inAppHandler) const;
+    virtual void ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const;
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
     
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -180,9 +183,9 @@ protected:
     void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
     void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
     void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
-    bool VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef);
-    bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
-    bool VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef);
+    bool VerifyOrCreateImagePlayer(const std::string& inName, GameDefClient& inClientDef);
+    bool VerifyPlayer(const std::string& inName, GamePiecePlayer& inPlayer);
+    bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
     void ManagePlayers(GameAppHandler& inAppHandler);
     
     void XMLStartHandler(CoreXML& inXML);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.h,v 1.5 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameNetObject.h,v 1.6 2002/12/20 13:17:41 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.6  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -38,7 +41,7 @@ class GameNetObject : public CorePickle, protected CoreXMLHandler
 {
 public:
     virtual ~GameNetObject();
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreScalar.h,v 1.14 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreScalar.h,v 1.15 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.15  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -75,13 +78,13 @@ public:
     // CoreScalar(int inInt=0): m_tag(kVal), m_val(inInt) {}
     CoreScalar(Mushware::tVal inVal): m_tag(kVal), m_val(inVal) {}
     // CoreScalar(const char *inChar): m_tag(kString), m_string(inChar) {}
-    CoreScalar(const string& inStr): m_tag(kString), m_string(inStr) {}
+    CoreScalar(const std::string& inStr): m_tag(kString), m_string(inStr) {}
 
     void Get(Mushware::tVal &outVal) const;
-    void Get(string& outStr) const;
+    void Get(std::string& outStr) const;
     void Get(bool& outBool) const;
 
-    string StringGet(void) const {string outStr; Get(outStr); return outStr;}
+    std::string StringGet(void) const {std::string outStr; Get(outStr); return outStr;}
     Mushware::tVal ValGet(void) const {Mushware::tVal outVal; Get(outVal); return outVal;}
     Mushware::U32 U32Get(void) const {Mushware::tVal outVal; Get(outVal); return static_cast<Mushware::U32>(outVal);}
     bool BoolGet(void) const {bool outVal; Get(outVal); return outVal;}
@@ -97,7 +100,7 @@ public:
 
     bool SlowEquals(const CoreScalar& inScalar) const;
 
-    CoreScalar& operator=(const string &inStr)
+    CoreScalar& operator=(const std::string &inStr)
     {
         m_string=inStr;
         m_tag=kString;
@@ -112,7 +115,7 @@ public:
 
     // Conversion operators
     // operator Mushware::tVal() const { return Val(); }
-    // operator string() const { return String(); }
+    // operator std::string() const { return String(); }
     
     void ostreamPrint(std::ostream &inOut) const;
 
@@ -125,7 +128,7 @@ private:
     };
     Tag m_tag;
     Mushware::tVal m_val;
-    string m_string;
+    std::string m_string;
 };
 
 inline bool operator==(const CoreScalar& a, const CoreScalar& b)

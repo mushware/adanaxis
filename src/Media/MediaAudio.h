@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudio.h,v 1.14 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudio.h,v 1.15 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.15  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.14  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -36,7 +39,7 @@ class MediaAudio
 {
 public:
     virtual ~MediaAudio();
-    virtual void PlayMusic(const string& inName) = 0;
+    virtual void PlayMusic(const std::string& inName) = 0;
     virtual void Play(MediaSound& inSound) = 0;
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000) = 0;
     virtual void SoundHalt(MediaSound& inSound) = 0;
@@ -48,7 +51,7 @@ public:
     static MediaAudio& Instance(void);
 
 private:
-    static auto_ptr<MediaAudio> m_instance;
+    static std::auto_ptr<MediaAudio> m_instance;
 };
 
 #endif

@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreDataRef.h,v 1.6 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreDataRef.h,v 1.7 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreDataRef.h,v $
+ * Revision 1.7  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -43,11 +46,11 @@ template<class RefType> class CoreDataRef
 public:
     CoreDataRef();
     explicit CoreDataRef(CoreData<RefType> *inInstance);
-    explicit CoreDataRef(const string& inName);
-    CoreDataRef(const string& inName, CoreData<RefType> *inInstance);
+    explicit CoreDataRef(const std::string& inName);
+    CoreDataRef(const std::string& inName, CoreData<RefType> *inInstance);
     
-    void NameSet(const string& inName) { m_name=inName; m_dataPtr=NULL; }
-    const string& NameGet(void) const { return m_name; }
+    void NameSet(const std::string& inName) { m_name=inName; m_dataPtr=NULL; }
+    const std::string& NameGet(void) const { return m_name; }
     RefType *Get(void) const;
     bool GetIfExists(RefType *& outRef) const;
     bool Exists(void) const;
@@ -56,7 +59,7 @@ private:
     void ReferenceGet(void) const;
     void DefaultDataPtrGet(void);
     
-    string m_name;
+    std::string m_name;
     CoreData<RefType> *m_dataInstance;
     mutable RefType *m_dataPtr;
     mutable Mushware::U32 m_sequenceNum;
@@ -82,7 +85,7 @@ CoreDataRef<RefType>::CoreDataRef(CoreData<RefType> *inInstance) :
 
 template<class RefType>
 inline
-CoreDataRef<RefType>::CoreDataRef(const string& inName) :
+CoreDataRef<RefType>::CoreDataRef(const std::string& inName) :
     m_name(inName),
     m_dataPtr(NULL),
     m_sequenceNum(1)
@@ -93,7 +96,7 @@ CoreDataRef<RefType>::CoreDataRef(const string& inName) :
 
 template<class RefType>
 inline
-CoreDataRef<RefType>::CoreDataRef(const string& inName, CoreData<RefType> *inInstance) :
+CoreDataRef<RefType>::CoreDataRef(const std::string& inName, CoreData<RefType> *inInstance) :
     m_name(inName),
     m_dataInstance(inInstance),
     m_dataPtr(NULL),

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameBase.h,v 1.13 2002/12/03 20:28:15 southa Exp $
+ * $Id: GameBase.h,v 1.14 2002/12/20 13:17:37 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.14  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.13  2002/12/03 20:28:15  southa
  * Network, player and control work
  *
@@ -64,7 +67,7 @@ public:
     virtual ~GameBase() {}
     virtual void Process(GameAppHandler& inHandler) = 0;
     virtual void Display(GameAppHandler& inHandler) = 0;
-    virtual void ScriptFunction(const string& inName, GameAppHandler& inHandler) const = 0;
+    virtual void ScriptFunction(const std::string& inName, GameAppHandler& inHandler) const = 0;
     virtual void SwapIn(GameAppHandler& inHandler) = 0;
     virtual void SwapOut(GameAppHandler& inHandler) = 0;
 

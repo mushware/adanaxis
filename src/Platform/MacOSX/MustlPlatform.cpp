@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.5 2002/12/17 00:58:29 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.6 2002/12/20 13:17:47 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.6  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/12/17 00:58:29  southa
  * Added support for libmustl target
  *
@@ -74,13 +77,12 @@
 
 #include "MustlAddress.h"
 #include "MustlFail.h"
-using namespace Mustl;
 #include "MustlSTL.h"
 
-#include <sys/types.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/time.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 #include <arpa/inet.h>

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.5 2002/10/22 20:42:02 southa Exp $
+ * $Id: GLVector.h,v 1.6 2002/12/20 13:17:37 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.6  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -47,9 +50,9 @@ public:
     virtual GLVector *Clone(void) const { return new GLVector(*this); }
     virtual void Render(void) const;
     
-    void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     void Unpickle(CoreXML& inXML);
-    void Unpickle(istream& ioIn);
+    void Unpickle(std::istream& ioIn);
     
     Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
     Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }

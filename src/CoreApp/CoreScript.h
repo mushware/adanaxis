@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreScript.h,v 1.8 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreScript.h,v 1.9 2002/12/20 13:17:34 southa Exp $
  * $Log: CoreScript.h,v $
+ * Revision 1.9  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -55,15 +58,15 @@ class CoreScript
 {
 public:
     CoreScript();
-    CoreScript(const string& inContent);
-    CoreScript(istream& inIn) {ReadFromStream(inIn);}
+    CoreScript(const std::string& inContent);
+    CoreScript(std::istream& inIn) {ReadFromStream(inIn);}
     void ostreamPrint(std::ostream& inOut) const;
-    const CoreFunction& FunctionGet(const string& inName) const;
+    const CoreFunction& FunctionGet(const std::string& inName) const;
     void Execute(void) const;
     
 private:
-    void ReadFromStream(istream& inIn);
-    std::map<string, CoreFunction> m_functions;
+    void ReadFromStream(std::istream& inIn);
+    std::map<std::string, CoreFunction> m_functions;
 };
 
 inline std::ostream& operator<<(std::ostream &inOut, const CoreScript& inCoreScript)

@@ -13,8 +13,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.5 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.6 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.6  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -74,7 +77,7 @@ class MediaAudioSDL : public MediaAudio
 public:
     MediaAudioSDL();
     virtual ~MediaAudioSDL();
-    void PlayMusic(const string& inName);
+    void PlayMusic(const std::string& inName);
     void Play(MediaSound& inSound);
     void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);

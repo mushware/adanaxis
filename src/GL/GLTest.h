@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest.h,v 1.6 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTest.h,v 1.7 2002/12/20 13:17:35 southa Exp $
  * $Log: GLTest.h,v $
+ * Revision 1.7  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -41,6 +44,6 @@
 class GLTest
 {
 public:
-    static void Test1(const string& inStr);
+    static void Test1(const std::string& inStr);
 };
 #endif

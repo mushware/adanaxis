@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.23 2002/12/10 20:38:05 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.24 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.24  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.23  2002/12/10 20:38:05  southa
  * Server timing
  *
@@ -98,7 +101,7 @@ class GamePiecePlayer: public GamePiece
 public:
     GamePiecePlayer();
     virtual ~GamePiecePlayer() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);

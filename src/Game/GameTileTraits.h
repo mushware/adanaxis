@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.h,v 1.16 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameTileTraits.h,v 1.17 2002/12/20 13:17:43 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.17  2002/12/20 13:17:43  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -76,7 +79,7 @@ public:
     bool PermeabilityGet(Mushware::tVal& outPermeability) const;
     bool AdhesionGet(Mushware::tVal& outAdhesion) const;
     bool LightGet(GLLightDef& outLight) const;
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     

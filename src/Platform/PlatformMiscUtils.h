@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.h,v 1.16 2002/11/24 12:57:02 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.17 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.17  2002/12/20 13:17:47  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/11/24 12:57:02  southa
  * Added configuration host protection
  *
@@ -47,19 +50,19 @@
 class PlatformMiscUtils
 {
 public:
-    static string GetApplPath(int argc, char *argv[]);
-    static string GetSystemPath(int argc, char *argv[]);
-    static void TweakArgs(string& ioString);
+    static std::string GetApplPath(int argc, char *argv[]);
+    static std::string GetSystemPath(int argc, char *argv[]);
+    static void TweakArgs(std::string& ioString);
     static void Initialise(void);
-    static bool DirectoryExists(const string& inName);
-    static void MakeDirectory(const string& inName);
-    static void ReadDirectory(std::vector<string>& outFilenames, const string& inDirName);
-    static void ErrorBox(const string& inStr);
-    static void MinorErrorBox(const string& inStr);
-    static bool PermissionBox(const string& inStr, bool inDefault);
+    static bool DirectoryExists(const std::string& inName);
+    static void MakeDirectory(const std::string& inName);
+    static void ReadDirectory(std::vector<string>& outFilenames, const std::string& inDirName);
+    static void ErrorBox(const std::string& inStr);
+    static void MinorErrorBox(const std::string& inStr);
+    static bool PermissionBox(const std::string& inStr, bool inDefault);
     static void UpdateCheck(void);
-    static void LaunchFile(const string& inFile);
-    static void LaunchURL(const string& inURL);
+    static void LaunchFile(const std::string& inFile);
+    static void LaunchURL(const std::string& inURL);
     static void ShowUpdateAlert(void);
     static void SleepMsec(Mushware::U32 inMsec);
 };

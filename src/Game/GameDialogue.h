@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.h,v 1.11 2002/11/24 23:18:16 southa Exp $
+ * $Id: GameDialogue.h,v 1.12 2002/12/20 13:17:39 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.12  2002/12/20 13:17:39  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -56,16 +59,16 @@
 class GameDialogue : public GLRenderable, public CorePickle, protected CoreXMLHandler
 {
 public:
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    virtual string TypeNameGet(void) {return "dialogue";}
+    virtual std::string TypeNameGet(void) {return "dialogue";}
     virtual void Render(void) const;
     virtual void Move(void);
     virtual GLRenderable *Clone(void) const { return new GameDialogue(*this); }
     virtual bool ExpiredGet(void) { return m_expired; }
-    virtual void TextSet(Mushware::U32 inWhich, const string& inStr);
+    virtual void TextSet(Mushware::U32 inWhich, const std::string& inStr);
     virtual void ExpireNow();
     
 protected:
@@ -124,7 +127,7 @@ private:
     class FunctionSpec
     {
     public:
-        string name;
+        std::string name;
         Mushware::tVal startTime;
     };
 
@@ -149,7 +152,7 @@ private:
     std::vector<SoundStreamSpec> m_soundStreams;
     GLFontRef m_fontRef;
     GameMotion m_motion;
-    string m_killSound;
+    std::string m_killSound;
     Mushware::tVal m_age;
     bool m_expired;
 //    CoreScript m_script;

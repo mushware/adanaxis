@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.h,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlWebLink.h,v 1.4 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.4  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *
@@ -65,15 +68,15 @@ public:
     void Tick(void);
     bool IsDead(void);
     void Disconnect(void);
-    bool Receive(string& outStr);
+    bool Receive(std::string& outStr);
     void Send(MustlData& ioData);
-    void Send(const string& inStr);
-    void Send(istream& ioStream);
-    void SendFile(const string& inStr);
-    void SendMHTML(istream& ioStream, MustlHTTP& ioHTTP);
+    void Send(const std::string& inStr);
+    void Send(std::istream& ioStream);
+    void SendFile(const std::string& inStr);
+    void SendMHTML(std::istream& ioStream, MustlHTTP& ioHTTP);
     void SendTestPage(void);
-    void SendErrorPage(const string& inText);
-    void ReceivedProcess(const string& inStr);
+    void SendErrorPage(const std::string& inText);
+    void ReceivedProcess(const std::string& inStr);
 
     void Print(std::ostream& ioOut) const;
 
@@ -106,8 +109,8 @@ private:
         kErrorLimit=100
     };
 
-    void GetProcess(const string& inFilename);
-    void PostProcess(const string& inValues);
+    void GetProcess(const std::string& inFilename);
+    void PostProcess(const std::string& inValues);
 
     std::string m_requestLine;
     tRequestType m_requestType;

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.h,v 1.12 2002/11/07 11:59:02 southa Exp $
+ * $Id: CoreEnv.h,v 1.13 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.13  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/11/07 11:59:02  southa
  * Web commands
  *
@@ -70,14 +73,14 @@ public:
 
     void PushConfig(CoreConfig& inConfig);
     void PopConfig(CoreConfig& inConfig);
-    const CoreScalar& VariableGet(const string& inName) const;
-    bool VariableGetIfExists(const CoreScalar** outScalar, const string& inName) const;
-    bool VariableGetIfExists(string& outValue, const string& inName) const;
-    bool VariableGetIfExists(Mushware::tVal& outValue, const string& inName) const;
-    bool VariableGetIfExists(Mushware::U32& outValue, const string& inName) const;
-    bool VariableGetIfExists(bool& outValue, const string& inName) const;
-    bool VariableExists(const string& inName) const;
-    void VariableSet(const string& inName, const string& inValue);
+    const CoreScalar& VariableGet(const std::string& inName) const;
+    bool VariableGetIfExists(const CoreScalar** outScalar, const std::string& inName) const;
+    bool VariableGetIfExists(std::string& outValue, const std::string& inName) const;
+    bool VariableGetIfExists(Mushware::tVal& outValue, const std::string& inName) const;
+    bool VariableGetIfExists(Mushware::U32& outValue, const std::string& inName) const;
+    bool VariableGetIfExists(bool& outValue, const std::string& inName) const;
+    bool VariableExists(const std::string& inName) const;
+    void VariableSet(const std::string& inName, const std::string& inValue);
     std::ostream& Out(void) const;
     void OutSet(std::ostream& inOut);
     void OutReset(void);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
-* $Id: GLFontRef.h,v 1.4 2002/10/22 20:42:00 southa Exp $
+* $Id: GLFontRef.h,v 1.5 2002/12/20 13:17:35 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.5  2002/12/20 13:17:35  southa
+* Namespace changes, licence changes and source conditioning
+*
 * Revision 1.4  2002/10/22 20:42:00  southa
 * Source conditioning
 *
@@ -35,16 +38,16 @@ class GLFontRef
 {
 public:
     GLFontRef(): m_fontPtr(NULL) {}
-    explicit GLFontRef(const string& inName, Mushware::tVal inSize=1.0): m_name(inName), m_size(inSize), m_fontPtr(NULL) {}
-    void NameSet(const string& inName) {m_name=inName; m_fontPtr=NULL;}
-    const string& NameGet(void) const {return m_name;}
+    explicit GLFontRef(const std::string& inName, Mushware::tVal inSize=1.0): m_name(inName), m_size(inSize), m_fontPtr(NULL) {}
+    void NameSet(const std::string& inName) {m_name=inName; m_fontPtr=NULL;}
+    const std::string& NameGet(void) const {return m_name;}
     Mushware::tVal SizeGet(void) const {return m_size;}
     GLFont *FontGet(void) const;
     bool Exists(void) const;
 
 private:
     void GetReference(void) const;
-    string m_name;
+    std::string m_name;
     Mushware::tVal m_size;
     mutable GLFont *m_fontPtr;
 };

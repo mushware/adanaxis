@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.h,v 1.5 2002/11/24 23:18:25 southa Exp $
+ * $Id: GameRewards.h,v 1.6 2002/12/20 13:17:42 southa Exp $
  * $Log: GameRewards.h,v $
+ * Revision 1.6  2002/12/20 13:17:42  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.5  2002/11/24 23:18:25  southa
  * Added type name accessor to CorePickle
  *
@@ -36,7 +39,7 @@ class GameRewards : public CorePickle, protected CoreXMLHandler
 {
 public:
     GameRewards(): m_lastTimeValid(false) {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -74,14 +77,14 @@ private:
     {
     public:
         Mushware::tVal ratio;
-        string dialogueName;
+        std::string dialogueName;
     };
 
     class TimedCount
     {
     public:
         Mushware::tVal time;
-        string dialogueName;
+        std::string dialogueName;
     };
 
     std::vector<TimeJudgement> m_judgements;

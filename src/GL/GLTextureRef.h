@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureRef.h,v 1.10 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureRef.h,v 1.11 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.11  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.10  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -55,9 +58,9 @@ class GLTextureRef
 {
 public:
     GLTextureRef(): m_texPtr(NULL), m_bindingNameContext(0) {}
-    GLTextureRef(const string& inName): m_name(inName), m_texPtr(NULL) {}
-    void NameSet(const string& inName) {m_name=inName;m_texPtr=NULL;}
-    const string& NameGet(void) const {return m_name;}
+    GLTextureRef(const std::string& inName): m_name(inName), m_texPtr(NULL) {}
+    void NameSet(const std::string& inName) {m_name=inName;m_texPtr=NULL;}
+    const std::string& NameGet(void) const {return m_name;}
     GLTexture *TextureGet(void) const;
     GLuint BindingNameGet(void) const;
     bool Exists(void) const;
@@ -66,7 +69,7 @@ private:
     void TextureFetch(void) const;
     void BindingNameFetch(void) const;
 
-    string m_name;
+    std::string m_name;
     mutable GLTexture *m_texPtr;
     mutable GLuint m_bindingName;
     mutable Mushware::U32 m_bindingNameContext;

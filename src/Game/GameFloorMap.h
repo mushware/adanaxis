@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.23 2002/11/24 23:18:16 southa Exp $
+ * $Id: GameFloorMap.h,v 1.24 2002/12/20 13:17:40 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.24  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.23  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -117,7 +120,7 @@ public:
     typedef std::vector<tMapValue> tMapVector;
     
     GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL), m_lightMapValid(false) {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     

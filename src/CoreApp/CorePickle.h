@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CorePickle.h,v 1.11 2002/11/24 23:18:03 southa Exp $
+ * $Id: CorePickle.h,v 1.12 2002/12/20 13:17:33 southa Exp $
  * $Log: CorePickle.h,v $
+ * Revision 1.12  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.11  2002/11/24 23:18:03  southa
  * Added type name accessor to CorePickle
  *
@@ -56,9 +59,9 @@ class CorePickle
 {
 public:
     virtual ~CorePickle() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const = 0;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual char *TypeNameGet(void) const = 0;
-    void Unpickle(const string& inFilename);
+    void Unpickle(const std::string& inFilename);
 };
 #endif

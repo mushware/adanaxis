@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.6 2002/12/17 12:53:34 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.7 2002/12/20 13:17:46 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:46  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/17 12:53:34  southa
  * Mustl library
  *
@@ -70,7 +73,7 @@
 #include "mustlCore.h"
 
 using namespace Mustl;
-using Mushware::CoreData;
+//using Mushware::CoreData;
 
 auto_ptr<MustlRouter> MustlRouter::m_instance;
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlIDString.h,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlIDString.h,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlIDString.h,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -31,7 +34,7 @@ class MustlData;
 class MustlIDString : public MustlID
 {
 public:
-    explicit MustlIDString(const string& inName) : m_name(inName) {}
+    explicit MustlIDString(const std::string& inName) : m_name(inName) {}
     explicit MustlIDString(MustlData& ioData);
     virtual ~MustlIDString();
     virtual MustlID *Clone(void) const;
@@ -40,6 +43,6 @@ public:
     virtual void Print(std::ostream& ioOut) const;
 
 private:
-    string m_name;
+    std::string m_name;
 };
 #endif

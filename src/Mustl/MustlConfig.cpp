@@ -9,16 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameException.cpp,v 1.2 2002/12/20 13:17:39 southa Exp $
- * $Log: GameException.cpp,v $
- * Revision 1.2  2002/12/20 13:17:39  southa
- * Namespace changes, licence changes and source conditioning
- *
- * Revision 1.1  2002/12/13 01:07:25  southa
- * Mustl work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "GameException.h"
+#include "MustlConfig.h"
 
-using namespace Mushware;
+using namespace Mustl;
+

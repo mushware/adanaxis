@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.6 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlLink.cpp,v 1.7 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.7  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -121,7 +124,7 @@
 #include "mustlCore.h"
 
 using namespace Mustl;
-using Mushware::CoreData;
+//using Mushware::CoreData;
 
 auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
 

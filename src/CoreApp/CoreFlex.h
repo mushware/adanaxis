@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreFlex.h,v 1.7 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreFlex.h,v 1.8 2002/12/20 13:17:33 southa Exp $
  * $Log: CoreFlex.h,v $
+ * Revision 1.8  2002/12/20 13:17:33  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -48,7 +51,7 @@
 class CoreFlex
 {
 public:
-    CoreFlex(const string& inStr);
+    CoreFlex(const std::string& inStr);
     int Lex(CoreScalar *outScalar, void *inPtr);
     void SetVal(const CoreScalar& inScalar) {m_scalar=inScalar;}
     

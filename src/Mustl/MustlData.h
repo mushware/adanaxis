@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlData.h,v 1.3 2002/12/13 19:03:05 southa Exp $
+ * $Id: MustlData.h,v 1.4 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.4  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/12/13 19:03:05  southa
  * Mustl interface cleanup
  *
@@ -56,7 +59,7 @@ class MustlData
 {
 public:
     MustlData();
-    explicit MustlData(const string& inStr);
+    explicit MustlData(const std::string& inStr);
 
     Mustl::U32 ReadPosGet(void) const;
     Mustl::U32 ReadSizeGet(void) const;
@@ -67,7 +70,7 @@ public:
     Mustl::U32 WriteSizeGet(void) const;
     void WritePosAdd(Mustl::U32 inAdd);
     Mustl::U8 *WritePtrGet(void);
-    void Write(const string& inStr);
+    void Write(const std::string& inStr);
     
     Mustl::U32 MessagePosGet(void) const;
     void MessagePosSet(Mustl::U32 inPos);
@@ -124,7 +127,7 @@ MustlData::MustlData() :
 }
 
 inline
-MustlData::MustlData(const string& inStr) :
+MustlData::MustlData(const std::string& inStr) :
     m_readPos(0),
     m_writePos(0),
     m_messagePos(0),
@@ -192,7 +195,7 @@ MustlData::WritePtrGet(void)
 }
 
 inline void
-MustlData::Write(const string& inStr)
+MustlData::Write(const std::string& inStr)
 {
     Mustl::U32 size=inStr.size();
     PrepareForWrite(size);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDataUtils.h,v 1.3 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameDataUtils.h,v 1.4 2002/12/20 13:17:38 southa Exp $
  * $Log: GameDataUtils.h,v $
+ * Revision 1.4  2002/12/20 13:17:38  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -29,6 +32,6 @@
 class GameDataUtils
 {
 public:
-    static void NamedDialoguesAdd(const string& inStr); // Takes regular expression
+    static void NamedDialoguesAdd(const std::string& inStr); // Takes regular expression
 };
 #endif

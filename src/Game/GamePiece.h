@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.12 2002/12/04 00:37:11 southa Exp $
+ * $Id: GamePiece.h,v 1.13 2002/12/20 13:17:41 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.13  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.12  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -63,7 +66,7 @@ class GamePiece: public CorePickle, protected CoreXMLHandler
 public:
     GamePiece() {}
     virtual ~GamePiece() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const = 0;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.h,v 1.9 2002/11/24 23:18:23 southa Exp $
+ * $Id: GameGraphic.h,v 1.10 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.10  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/24 23:18:23  southa
  * Added type name accessor to CorePickle
  *
@@ -49,12 +52,12 @@ class GameGraphic : public CorePickle, protected CoreXMLHandler
 public:
     GameGraphic() {}
     virtual ~GameGraphic() {}
-    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const = 0;
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
     virtual void Unpickle(CoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual char *TypeNameGet(void) const = 0;
 
-    static GameGraphic& NewFromType(const string& inName);
+    static GameGraphic& NewFromType(const std::string& inName);
     
 protected:
     void UnpicklePrologue(void) {}

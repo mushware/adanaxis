@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.15 2002/12/17 12:53:33 southa Exp $
+ * $Id: CoreData.h,v 1.16 2002/12/20 13:17:32 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.16  2002/12/20 13:17:32  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.15  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -67,21 +70,21 @@
 template<class RefType> class CoreData
 {
 public:
-    typedef std::map<string, RefType *> tMap;
-    typedef std::map<string, RefType *>::iterator tMapIterator;
-    typedef std::map<string, RefType *>::const_iterator tMapConstIterator;
+    typedef typename std::map<std::string, RefType *> tMap;
+    typedef typename tMap::iterator tMapIterator;
+    typedef typename tMap::const_iterator tMapConstIterator;
 
     ~CoreData();
     static CoreData& Instance(void);
     static CoreData *PrivateInstanceCreate(void);
 
-    RefType *Give(const string& inName, RefType *inData);
-    RefType *Get(const string& inName) const;
-    RefType *GetOrReturnNull(const string& inName) const;
-    void Delete(const string& inName);
-    void Delete(const std::map<string, RefType *>::iterator& inIterator);
-    bool Exists(const string& inName) const;
-    bool GetIfExists(RefType *& outData, const string& inName) const;
+    RefType *Give(const std::string& inName, RefType *inData);
+    RefType *Get(const std::string& inName) const;
+    RefType *GetOrReturnNull(const std::string& inName) const;
+    void Delete(const std::string& inName);
+    void Delete(const tMapIterator& inIterator);
+    bool Exists(const std::string& inName) const;
+    bool GetIfExists(RefType *& outData, const std::string& inName) const;
     void Clear(void);
     Mushware::U32 Size(void);
     void Iterate(void (*inFnPtr)(RefType&));
@@ -96,7 +99,7 @@ protected:
 private:
     tMap m_data;
     Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
-    static auto_ptr< CoreData<RefType> > m_instance;
+    static std::auto_ptr< CoreData<RefType> > m_instance;
 };
 
 template<class RefType>
@@ -108,7 +111,7 @@ CoreData<RefType>::CoreData(void) :
 template<class RefType>
 CoreData<RefType>::~CoreData(void)
 {
-    for (std::map<string, RefType *>::iterator p = m_data.begin();
+    for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
     {
         delete p->second;
@@ -133,9 +136,9 @@ CoreData<RefType>::PrivateInstanceCreate(void)
 
 template<class RefType>
 inline RefType *
-CoreData<RefType>::Give(const string& inName, RefType *inData)
+CoreData<RefType>::Give(const std::string& inName, RefType *inData)
 {
-    std::map<string, RefType *>::iterator p = m_data.find(inName);
+    tMapIterator p = m_data.find(inName);
     if (p != m_data.end())
     {
         ++m_sequenceNum;
@@ -151,9 +154,9 @@ CoreData<RefType>::Give(const string& inName, RefType *inData)
 
 template<class RefType>
 inline RefType *
-CoreData<RefType>::Get(const string& inName) const
+CoreData<RefType>::Get(const std::string& inName) const
 {
-    std::map<string, RefType *>::const_iterator p = m_data.find(inName);
+    tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
         throw(ReferenceFail("Access to non-existent data '"+inName+"'"));
@@ -163,9 +166,9 @@ CoreData<RefType>::Get(const string& inName) const
 
 template<class RefType>
 inline RefType *
-CoreData<RefType>::GetOrReturnNull(const string& inName) const
+CoreData<RefType>::GetOrReturnNull(const std::string& inName) const
 {
-    std::map<string, RefType *>::const_iterator p = m_data.find(inName);
+    tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
         return NULL;
@@ -175,9 +178,9 @@ CoreData<RefType>::GetOrReturnNull(const string& inName) const
 
 template<class RefType>
 inline void
-CoreData<RefType>::Delete(const string& inName)
+CoreData<RefType>::Delete(const std::string& inName)
 {
-    std::map<string, RefType *>::iterator p = m_data.find(inName);
+    tMapIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
         throw(ReferenceFail("Delete of non-existent data '"+inName+"'"));
@@ -189,7 +192,7 @@ CoreData<RefType>::Delete(const string& inName)
 
 template<class RefType>
 inline void
-CoreData<RefType>::Delete(const std::map<string, RefType *>::iterator& inIterator)
+CoreData<RefType>::Delete(const tMapIterator& inIterator)
 {
     COREASSERT(inIterator->second != NULL);
     ++m_sequenceNum;
@@ -199,9 +202,9 @@ CoreData<RefType>::Delete(const std::map<string, RefType *>::iterator& inIterato
 
 template<class RefType>
 inline bool
-CoreData<RefType>::Exists(const string& inName) const
+CoreData<RefType>::Exists(const std::string& inName) const
 {
-    std::map<string, RefType *>::const_iterator p = m_data.find(inName);
+    tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
         return false;
@@ -211,9 +214,9 @@ CoreData<RefType>::Exists(const string& inName) const
 
 template<class RefType>
 inline bool
-CoreData<RefType>::GetIfExists(RefType *& outData, const string& inName) const
+CoreData<RefType>::GetIfExists(RefType *& outData, const std::string& inName) const
 {
-    std::map<string, RefType *>::const_iterator p = m_data.find(inName);
+    tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
         return false;
@@ -227,7 +230,7 @@ inline void
 CoreData<RefType>::Clear(void)
 {
     ++m_sequenceNum;
-    for (std::map<string, RefType *>::iterator p = m_data.begin();
+    for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
     {
         delete p->second;
@@ -246,7 +249,7 @@ template<class RefType>
 inline void
 CoreData<RefType>::Iterate(void (*inFnPtr)(RefType&))
 {
-    for (std::map<string, RefType *>::iterator p = m_data.begin();
+    for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
     {
         inFnPtr(*p->second);
@@ -258,7 +261,7 @@ inline void
 CoreData<RefType>::Dump(std::ostream& ioOut)
 {
     ioOut << "Dumping data for CoreData<" << typeid(RefType).name() << ">" << endl;
-    for (std::map<string, RefType *>::iterator p = m_data.begin();
+    for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
     {
         ioOut << p->first << ": " << *p->second << endl;
@@ -266,14 +269,14 @@ CoreData<RefType>::Dump(std::ostream& ioOut)
 }
 
 template<class RefType>
-inline CoreData<RefType>::tMapIterator
+inline typename CoreData<RefType>::tMapIterator
 CoreData<RefType>::Begin(void)
 {
     return m_data.begin();
 }
 
 template<class RefType>
-inline CoreData<RefType>::tMapIterator
+inline typename CoreData<RefType>::tMapIterator
 CoreData<RefType>::End(void)
 {
     return m_data.end();

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mustlCore.h,v 1.1 2002/12/17 12:53:33 southa Exp $
+ * $Id: mustlCore.h,v 1.2 2002/12/20 13:17:31 southa Exp $
  * $Log: mustlCore.h,v $
+ * Revision 1.2  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.1  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -20,13 +23,11 @@
 
 #include "CoreApp/CoreStandard.h"
 
-namespace Mushware
-{
+// Core services used by Mustl
 #include "CoreApp/CoreCommand.h"
 #include "CoreApp/CoreData.h"
 #include "CoreApp/CoreDataRef.h"
 #include "CoreApp/CoreEnv.h"
 #include "CoreApp/CoreEnvOutput.h"
-};
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreBison.h,v 1.7 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreBison.h,v 1.8 2002/12/20 13:17:31 southa Exp $
  * $Log: CoreBison.h,v $
+ * Revision 1.8  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -55,7 +58,7 @@ class CoreCommand;
 class CoreBison
 {
 public:
-    CoreBison(const string& inStr):
+    CoreBison(const std::string& inStr):
         m_flex(CoreFlex(inStr)) {}
     CoreBison(CoreFlex& inFlex): m_flex(inFlex) {}
     int Parse(CoreCommand& inCommand);
