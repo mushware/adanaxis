@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.14 2002/10/15 14:41:30 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.15 2002/10/15 19:04:09 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.15  2002/10/15 19:04:09  southa
+ * Windows error box
+ *
  * Revision 1.14  2002/10/15 14:41:30  southa
  * Removed VBLWait
  *
@@ -73,11 +76,14 @@
 void
 PlatformMiscUtils::Initialise(void)
 {
-    char *home = getenv("HOME");
-    if (home != NULL)
+    char buffer[512]="";
+    DWORD retVal = ExpandEnvironmentStrings("%USERPROFILE%", buffer, 500);
+    if (retVal != 0)
     {
-        CoreGlobalConfig::Instance().Set("HOME", home);
+        CoreGlobalConfig::Instance().Set("HOME", buffer);
+	cerr << "Set home to " << buffer << endl;
     }
+    
 }
 
 string
@@ -126,12 +132,84 @@ PlatformMiscUtils::TweakArgs(string& ioStr)
 {
 }
 
+bool
+PlatformMiscUtils::DirectoryExists(const string& inName)
+{
+    DWORD attrib=GetFileAttributes(inName.c_str());
+    
+    if (attrib != INVALID_FILE_ATTRIBUTES && 
+	(attrib & FILE_ATTRIBUTE_DIRECTORY) != 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+void
+PlatformMiscUtils::MakeDirectory(const string& inName)
+{
+    if (CreateDirectory(inName.c_str(), NULL) == 0)
+    {
+	ostringstream message;
+	message << "mkdir " << inName << " failed: " << GetLastError(); 
+        throw(CommandFail(message.str()));
+    }
+}
+	
 void
 PlatformMiscUtils::ErrorBox(const string& inStr)
 {
     if (!MessageBox(NULL, inStr.c_str(), NULL, MB_OK|MB_ICONERROR))
     {
         cerr << "Dialog box failed: " << GetLastError() << endl;
+    }
+}
+
+void
+PlatformMiscUtils::UpdateCheck(void)
+{
+    if (CoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    {
+        ShowUpdateAlert();
+    }
+}
+
+void
+PlatformMiscUtils::ShowUpdateAlert(void)
+{    
+    char *title="Infernal Contractor II";
+    char *desc="Thank you for installing Infernal Contractor II!  As this is the first time you are running this application, we recommend that you visit the Mushware web site to check for any important information or updates.  Would you like to do this now?";
+
+    int itemHit=MessageBox(NULL, desc, title, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1);
+
+    switch (itemHit)
+    {
+	case 0:
+	    //MessageBox failed
+	    break;
+	    
+        case IDYES:
+        {
+            string updateFile=CoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+            LaunchFile(updateFile);
+            exit(0);
+        }
+        break;
+
+        default:
+            break;        
+    }
+}
+
+void
+PlatformMiscUtils::LaunchFile(const string& inFile)
+{
+    int retVal = (int)ShellExecute(NULL, NULL, inFile.c_str(), NULL, NULL, SW_SHOWNORMAL);
+    if (retVal < 32)
+    {
+	ostringstream message;
+	message << "Launch failed: " << retVal;
+	throw(CommandFail(message.str()));
     }
 }
 

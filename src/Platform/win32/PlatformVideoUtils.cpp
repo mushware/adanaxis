@@ -1,6 +1,9 @@
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.1 2002/10/15 14:02:32 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.2 2002/10/15 14:39:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.2  2002/10/15 14:39:21  southa
+ * Include fixes
+ *
  * Revision 1.1  2002/10/15 14:02:32  southa
  * Mode changes
  *
@@ -110,6 +113,10 @@ GLUtils::PushMatrix();
 
 void
 PlatformVideoUtils::VBLWait(void)
+{
+}
+void
+PlatformVideoUtils::ForceShowCursor(void)
 {
 }
 
