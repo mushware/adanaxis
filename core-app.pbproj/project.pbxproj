@@ -3422,6 +3422,8 @@
 				F5AB165D0371B43601A80164,
 				F5A731440375512201A80164,
 				F5A731430375512201A80164,
+				F5AAD5590375DDBE01A80164,
+				F5AAD5580375DDBE01A80164,
 				F5ABEB930371802C01A80164,
 				F5ABEB920371802C01A80164,
 				F5A7314803757EA301A80164,
@@ -4326,6 +4328,7 @@
 				F5C4435C0372B3AA01A80164,
 				F5A731450375512201A80164,
 				F5A7314903757EA301A80164,
+				F5AAD55A0375DDBE01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4460,6 +4463,7 @@
 				F5C4435E0372B4BE01A80164,
 				F5A731460375512201A80164,
 				F5A7314A03757EA301A80164,
+				F5AAD55B0375DDBE01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4510,13 +4514,12 @@
 				F5461B2502B6340701EABA85,
 			);
 			buildSettings = {
-				DEBUGGING_SYMBOLS = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "src src/API";
 				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
-				OPTIMIZATION_CFLAGS = "-O3";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = ic2;
@@ -5291,6 +5294,30 @@
 		};
 		F5AA63CB031193CA01442A89 = {
 			fileRef = F5AA63C9031193CA01442A89;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAD5580375DDBE01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetRouter.h;
+			path = Media/MediaNetRouter.h;
+			refType = 4;
+		};
+		F5AAD5590375DDBE01A80164 = {
+			isa = PBXFileReference;
+			name = MediaNetRouter.cpp;
+			path = Media/MediaNetRouter.cpp;
+			refType = 4;
+		};
+		F5AAD55A0375DDBE01A80164 = {
+			fileRef = F5AAD5580375DDBE01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5AAD55B0375DDBE01A80164 = {
+			fileRef = F5AAD5590375DDBE01A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: PlatformNet.cpp,v 1.3 2002/11/02 11:22:51 southa Exp $
+ * $Log: PlatformNet.cpp,v $
+ * Revision 1.3  2002/11/02 11:22:51  southa
+ * Simplified UDP send and receive
+ *
  */
 
 /*************************
@@ -54,7 +57,7 @@ PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outB
 {
     COREASSERT(inSize > 0);
     U32 dataSize=0;
-    for (U32 i=0; i<256; ++i)
+    for (U32 i=0; i<1; ++i) // Needs fixing to advance into outBuffer if you allow i>0
     {
         struct sockaddr_in sockAddr;
 

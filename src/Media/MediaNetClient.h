@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.h,v 1.4 2002/11/01 18:46:25 southa Exp $
+ * $Id: MediaNetClient.h,v 1.5 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNetClient.h,v $
+ * Revision 1.5  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.4  2002/11/01 18:46:25  southa
  * UDP Links
  *
@@ -38,6 +41,7 @@ public:
     void UDPSend(MediaNetData& inData);
     void UDPReceive(MediaNetData& inData);
 
+    bool UDPConnectedGet(void) { return m_udpConnected; }
     U32 UDPRemotePortGet(void) { return m_udpRemotePort; }
     void UDPRemotePortSet(U32 inPort);
     U32 UDPRemoteIPGet(void) { return m_remoteIP; }

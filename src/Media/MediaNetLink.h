@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.h,v 1.3 2002/11/01 18:46:26 southa Exp $
+ * $Id: MediaNetLink.h,v 1.4 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNetLink.h,v $
+ * Revision 1.4  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.3  2002/11/01 18:46:26  southa
  * UDP Links
  *
@@ -16,6 +19,7 @@
 
 #include "MediaSDL.h"
 #include "MediaNetClient.h"
+#include "MediaNetData.h"
 
 class MediaNetData;
 
@@ -26,13 +30,14 @@ public:
     explicit MediaNetLink(TCPsocket inSocket, U32 inPort);
     ~MediaNetLink();
 
-    void TCPSend(MediaNetData& inData);
-    void TCPReceive(MediaNetData& inData);
-    void UDPSend(MediaNetData& inData);
-    void UDPReceive(MediaNetData& inData);
-
+    void FastSend(MediaNetData& ioData);
+    void ReliableSend(MediaNetData& ioData);
+    bool Receive(MediaNetData * & outData);
+    
     void RequestLinkChecks(void);
-        
+
+    void MessageHandle(U32 inType, MediaNetData& ioData);
+
     void Print(ostream& ioOut) const;
     
 private:
@@ -59,6 +64,7 @@ private:
         U32 linkCheckTime;
         tLinkState linkState;
         tLinkCheckState linkCheckState;
+        MediaNetData data;
         U8 linkCheckSeqNum;
     };
 
@@ -70,6 +76,14 @@ private:
     void BuildLinkCheck(MediaNetData& outData, LinkState& ioState);
     bool LinkIsUp(tLinkState inState);
 
+    void TCPSend(MediaNetData& inData);
+    void TCPReceive(MediaNetData& outData);
+    void UDPSend(MediaNetData& inData);
+    void UDPReceive(MediaNetData& outData);
+
+    void MessageLinkCheckHandle(MediaNetData& ioData);
+    void MessageLinkCheckReplyHandle(MediaNetData& ioData);
+    
     LinkState m_tcpState;
     LinkState m_udpState;
     MediaNetClient m_client;

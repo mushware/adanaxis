@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.5 2002/11/01 18:46:26 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.6 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.6  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.5  2002/11/01 18:46:26  southa
  * UDP Links
  *
@@ -83,7 +86,7 @@ MediaNetServer::Accept(void)
     if (newSocket != NULL)
     {
         ostringstream name;
-        name << "link" << m_linkCtr;
+        name << "server" << m_linkCtr;
         CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
         m_linkCtr++;
     }

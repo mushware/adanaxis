@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.4 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreData.h,v 1.5 2002/11/01 16:15:26 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.5  2002/11/01 16:15:26  southa
+ * Network send and receive
+ *
  * Revision 1.4  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -36,19 +39,26 @@
 template<class RefType> class CoreData
 {
 public:
+    typedef map<string, RefType *> tMap;
+    typedef map<string, RefType *>::iterator tMapIterator;
+    typedef map<string, RefType *>::const_iterator tMapConstIterator;
+    
     ~CoreData();
     static CoreData& Instance(void);
 
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
     inline void Clear(void);
+    inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(ostream& ioOut);
+    inline tMapIterator Begin(void);
+    inline tMapIterator End(void);
     
 protected:
     CoreData() {}
 
 private:
-    map<string, RefType *> m_data;
+    tMap m_data;
     static auto_ptr< CoreData<RefType> > m_instance;
 };
 
@@ -114,6 +124,18 @@ CoreData<RefType>::Clear(void)
 
 template<class RefType>
 inline void
+CoreData<RefType>::Iterate(void (*inFnPtr)(RefType&))
+{
+    for (map<string, RefType *>::iterator p = m_data.begin();
+         p != m_data.end(); ++p)
+    {
+        inFnPtr(*p->second);
+    }
+}
+
+
+template<class RefType>
+inline void
 CoreData<RefType>::Dump(ostream& ioOut)
 {
     ioOut << "Dumping data for CoreData<" << typeid(RefType).name() << ">" << endl;
@@ -124,6 +146,19 @@ CoreData<RefType>::Dump(ostream& ioOut)
     }
 }
 
+template<class RefType>
+inline CoreData<RefType>::tMapIterator
+CoreData<RefType>::Begin(void)
+{
+    return m_data.begin();
+}
+
+template<class RefType>
+inline CoreData<RefType>::tMapIterator
+CoreData<RefType>::End(void)
+{
+    return m_data.end();
+}
 
 
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.86 2002/11/03 18:43:08 southa Exp $
+ * $Id: GameContract.cpp,v 1.87 2002/11/03 20:09:59 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.87  2002/11/03 20:09:59  southa
+ * Initial message unpacking
+ *
  * Revision 1.86  2002/11/03 18:43:08  southa
  * Network fixes
  *
@@ -408,7 +411,7 @@ GameContract::Init(void)
     GameData::Instance().CurrentViewGet()->AmbientLightingSet(0.01);
 
     MediaNetServer::Instance().Connect(7121);
-    MediaNetLink clientLink("localhost", 7121);
+    MediaNetLink *clientLink=CoreData<MediaNetLink>::Instance().DataGive("client0", new MediaNetLink("localhost", 7121));
     MediaNetServer::Instance().Accept();
     MediaNetData dataIn("Hello from the network link");
     MediaNetData dataReply("Hello yourself");
@@ -416,21 +419,19 @@ GameContract::Init(void)
     cout << "dataIn " << dataIn << endl;
     cout << "dataReply " << dataReply << endl;
     cout << "dataOut " << dataOut << endl;
-    MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("link0");
+    MediaNetLink *serverLink=CoreData<MediaNetLink>::Instance().DataGet("server0");
     COREASSERT(serverLink != NULL);
     // clientLink.UDPSend(dataIn);
     // serverLink->UDPSend(dataReply);
     for (U32 i=0; i<1e6; ++i)
         {}
-    MediaNetData dataBack;
-    clientLink.UDPReceive(dataBack);
-    serverLink->UDPReceive(dataOut);
-    cout << "dataIn " << dataIn << endl;
-    cout << "dataOut " << dataOut << endl;
-    cout << "dataBack " << dataBack << endl;
-    MediaNetProtocol::Unpack(dataOut);
-    cout << "Unpacked dataOut " << dataOut << endl;
-    cerr << clientLink << endl;
+
+MediaNetRouter::Instance().ReceiveAll();
+MediaNetRouter::Instance().ReceiveAll();
+MediaNetRouter::Instance().ReceiveAll();
+MediaNetRouter::Instance().ReceiveAll();
+MediaNetRouter::Instance().ReceiveAll();
+    
     CoreData<MediaNetLink>::Instance().Dump(cerr);
 }
 

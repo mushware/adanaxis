@@ -1,8 +1,11 @@
 #ifndef MEDIANETDATA_H
 #define MEDIANETDATA_H
 /*
- * $Id: MediaNetData.h,v 1.2 2002/11/01 18:46:25 southa Exp $
+ * $Id: MediaNetData.h,v 1.3 2002/11/03 20:10:00 southa Exp $
  * $Log: MediaNetData.h,v $
+ * Revision 1.3  2002/11/03 20:10:00  southa
+ * Initial message unpacking
+ *
  * Revision 1.2  2002/11/01 18:46:25  southa
  * UDP Links
  *
@@ -36,10 +39,15 @@ public:
 
     U32 UnpackStateGet(void) const;
     void UnpackStateSet(U32 inState);
+
+    U32 SourceHostGet(void);
+    U32 SourcePortGet(void);
+    void SourceSet(U32 inHost, U32 inPort);
     
     bool IsEmptyForRead(void) const;
-    
+
     U8 BytePop(void);
+    U8 MessageBytePop(void);
     void BytePush(U8 inByte);
 
     void PrepareForWrite(void);
@@ -57,6 +65,9 @@ private:
     U32 m_writePos;
     U32 m_messagePos;
     U32 m_unpackState;
+    U32 m_sourceHost;
+    U32 m_sourcePort;
+    bool m_sourceValid;
     vector<U8> m_data;
 };
 
@@ -68,6 +79,7 @@ m_readPos(0),
 m_writePos(0),
 m_messagePos(0),
 m_unpackState(0),
+m_sourceValid(false),
 m_data(kChunkSize)
 {
 }
@@ -76,6 +88,9 @@ inline
 MediaNetData::MediaNetData(const string& inStr) :
 m_readPos(0),
 m_writePos(0),
+m_messagePos(0),
+m_unpackState(0),
+m_sourceValid(false),
 m_data(kChunkSize)
 {
     U32 size=inStr.size();
@@ -181,6 +196,28 @@ MediaNetData::UnpackStateSet(U32 inState)
     m_unpackState=inState;
 }
 
+inline U32
+MediaNetData::SourceHostGet(void)
+{
+    COREASSERT(m_sourceValid);
+    return m_sourceHost;
+}
+
+inline U32
+MediaNetData::SourcePortGet(void)
+{
+    COREASSERT(m_sourceValid);
+    return m_sourcePort;
+}
+
+inline void
+MediaNetData::SourceSet(U32 inHost, U32 inPort)
+{
+    m_sourceHost=inHost;
+    m_sourcePort=inPort;
+    m_sourceValid=true;
+}
+
 inline bool
 MediaNetData::IsEmptyForRead(void) const
 {
@@ -192,6 +229,13 @@ MediaNetData::BytePop(void)
 {
     COREASSERT(m_readPos < m_data.size());
     return m_data[m_readPos++];
+}
+
+inline U8
+MediaNetData::MessageBytePop(void)
+{
+    COREASSERT(m_messagePos < m_data.size());
+    return m_data[m_messagePos++];
 }
 
 inline void
@@ -206,6 +250,11 @@ MediaNetData::BytePush(U8 inByte)
 inline void
 MediaNetData::PrepareForWrite(void)
 {
+    if (m_writePos == m_readPos)
+    {
+        m_writePos=0;
+        m_readPos=0;
+    }
     if (m_writePos + kChunkSize/2 > m_data.size())
     {
         m_data.resize(m_writePos + kChunkSize);
@@ -215,6 +264,11 @@ MediaNetData::PrepareForWrite(void)
 inline void
 MediaNetData::PrepareForWrite(U32 inSize)
 {
+    if (m_writePos == m_readPos)
+    {
+        m_writePos=0;
+        m_readPos=0;
+    }
     if (inSize >= m_data.size())
     {
         m_data.resize(inSize+1);

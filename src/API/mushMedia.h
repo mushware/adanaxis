@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.13 2002/11/01 16:15:26 southa Exp $
+ * $Id: mushMedia.h,v 1.14 2002/11/03 18:43:08 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.14  2002/11/03 18:43:08  southa
+ * Network fixes
+ *
  * Revision 1.13  2002/11/01 16:15:26  southa
  * Network send and receive
  *
@@ -63,6 +66,7 @@
 #include "Media/MediaNetData.h"
 #include "Media/MediaNetLink.h"
 #include "Media/MediaNetProtocol.h"
+#include "Media/MediaNetRouter.h"
 #include "Media/MediaNetServer.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSoundStream.h"

@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.h,v 1.1 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetProtocol.h,v 1.2 2002/11/03 20:10:00 southa Exp $
  * $Log: MediaNetProtocol.h,v $
+ * Revision 1.2  2002/11/03 20:10:00  southa
+ * Initial message unpacking
+ *
  * Revision 1.1  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -13,11 +16,19 @@ class MediaNetData;
 class MediaNetProtocol
 {
 public:
+    enum tMessageType
+    {
+        kMessageTypeInvalid,
+        kMessageTypeLinkCheck='A',
+        kMessageTypeLinkCheckReply
+    };
+    
     static void LinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber);
+    static void LinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber);
 
     static void Unpack(MediaNetData& ioData);
-    static bool MessageToHandle(const MediaNetData& ioData);
-    static void MessageHandledSet(MediaNetData& ioData);
+    static bool MessageTake(MediaNetData& ioData);
+    static bool MessageTypeIsLinkLayer(U32 inType);
     
 private:
     enum
@@ -26,12 +37,7 @@ private:
         kSyncByte2='y'
     };
     
-    enum tMessageType
-    {
-        kMessageTypeInvalid,
-        kMessageTypeLinkCheck='A',
-        kMessageTypeLinkCheckReply
-    };
+
 
     enum tUnpackUnpackState
     {

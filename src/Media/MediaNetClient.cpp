@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.6 2002/11/02 11:22:51 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.7 2002/11/03 18:43:09 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.7  2002/11/03 18:43:09  southa
+ * Network fixes
+ *
  * Revision 1.6  2002/11/02 11:22:51  southa
  * Simplified UDP send and receive
  *
@@ -252,6 +255,7 @@ MediaNetClient::TCPReceive(MediaNetData& outData)
         else
         {
             outData.WritePosAdd(result);
+            outData.SourceSet(m_remoteIP, m_tcpRemotePort);
         }
     }
 }
@@ -288,7 +292,8 @@ MediaNetClient::UDPReceive(MediaNetData& outData)
     U32 host, port;
     U32 dataSize=PlatformNet::UDPReceive(host, port, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
 
-    outData.WritePosAdd(dataSize);   
+    outData.WritePosAdd(dataSize);
+    outData.SourceSet(host, port);
 }
 
 void

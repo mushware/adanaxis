@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.1 2002/11/03 18:43:09 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.2 2002/11/03 20:10:00 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.2  2002/11/03 20:10:00  southa
+ * Initial message unpacking
+ *
  * Revision 1.1  2002/11/03 18:43:09  southa
  * Network fixes
  *
@@ -27,6 +30,15 @@ MediaNetProtocol::LinkCheckCreate(MediaNetData& outData, U32 inSequenceNumber)
     outData.BytePush(kSyncByte1);
     outData.BytePush(kSyncByte2);
     outData.BytePush(kMessageTypeLinkCheck);
+    outData.BytePush(static_cast<U8>(inSequenceNumber & 0xff));
+}
+
+void
+MediaNetProtocol::LinkCheckReplyCreate(MediaNetData& outData, U32 inSequenceNumber)
+{
+    outData.BytePush(kSyncByte1);
+    outData.BytePush(kSyncByte2);
+    outData.BytePush(kMessageTypeLinkCheckReply);
     outData.BytePush(static_cast<U8>(inSequenceNumber & 0xff));
 }
 
@@ -114,17 +126,19 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
 }
 
 bool
-MediaNetProtocol::MessageToHandle(const MediaNetData& ioData)
-{
-    return ioData.UnpackStateGet() == kUnpackStateMessageReady;
-}
-
-void
-MediaNetProtocol::MessageHandledSet(MediaNetData& ioData)
+MediaNetProtocol::MessageTake(MediaNetData& ioData)
 {
     if (ioData.UnpackStateGet() != kUnpackStateMessageReady)
     {
-        throw(LogicFail("MessageHandledSet without message"));
+        return false;
     }
     ioData.UnpackStateSet(kUnpackStateSync1);
+    return true;
+}
+
+bool
+MediaNetProtocol::MessageTypeIsLinkLayer(U32 inType)
+{
+    return inType == kMessageTypeLinkCheck ||
+           inType == kMessageTypeLinkCheckReply;
 }
