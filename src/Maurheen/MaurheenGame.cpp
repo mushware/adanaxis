@@ -12,11 +12,16 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id$
- * $Log$
+ * $Id: MaurheenGame.cpp,v 1.1 2004/03/06 14:01:42 southa Exp $
+ * $Log: MaurheenGame.cpp,v $
+ * Revision 1.1  2004/03/06 14:01:42  southa
+ * Maurheen created
+ *
  */
 
 #include "MaurheenGame.h"
+
+#include "MaurheenWorm.h"
 
 #include "mushPlatform.h"
 
@@ -24,7 +29,9 @@ using namespace Mushware;
 using namespace std;
 
 MaurheenGame::MaurheenGame()
-{}
+{
+
+}
 
 MaurheenGame::~MaurheenGame()
 {}
@@ -38,15 +45,43 @@ MaurheenGame::Process(GameAppHandler& inAppHandler)
 void
 MaurheenGame::Display(GameAppHandler& inAppHandler)
 {
+    GLColour white(1,1,1,1);
+    GLColour black(1,1,1,1);
+
+    U32 lightEnum = GL_LIGHT0;
+    glLightfv(lightEnum, GL_AMBIENT, black.ArrayGet());
+    glLightfv(lightEnum, GL_DIFFUSE, white.ArrayGet());
+    glLightfv(lightEnum, GL_SPECULAR, white.ArrayGet());
+    
+    glLightf(lightEnum, GL_SPOT_CUTOFF, 180);
+
+    GLfloat direction[3]={0,0,1};
+    glLightfv(lightEnum, GL_SPOT_DIRECTION, direction);
+    glLightf(lightEnum, GL_SPOT_EXPONENT, 0);
+    glLightf(lightEnum, GL_CONSTANT_ATTENUATION, 0.0001);
+    glLightf(lightEnum, GL_LINEAR_ATTENUATION, 0);
+    glLightf(lightEnum, GL_QUADRATIC_ATTENUATION, 1);
+    
+    GLfloat position[4]={4, 4, -4, 1};
+    glLightfv(lightEnum, GL_POSITION, position);
+
+    glEnable(lightEnum);
+
+    GLUtils::CheckGLError();
+    
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
-    GLUtils::OrthoPrologue();
+    GLUtils::IdentityPrologue();
     
-    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    GLUtils::PerspectiveLookAt(GLVector(0,0,-4), GLVector(0,0,0), 0);
     
-    // tVal msecNow = gameAppHandler.MillisecondsGet();
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    
+    tVal msecNow = gameAppHandler.MillisecondsGet();
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
+    
+#if 0
     GLUtils orthoGL;
     
     {
@@ -68,8 +103,22 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
         GLString glStr("Configuration mode", GLFontRef("font-system1", 0.03), 0);
         glStr.Render();
     }
+#endif
     
-    GLUtils::OrthoEpilogue();
+    glRotated(msecNow/50, 0, 0, 1);
+    glRotated(msecNow/45, 0, 1, 0);
+    glRotated(msecNow/40, 1, 0, 0);
+
+    GLState::UseLightingSet(true);
+    GLState::BlendSet(GLState::kBlendSolid);
+    GLState::ModulationSet(GLState::kModulationLighting);
+
+    GLState::TextureDisable();
+    MaurheenWorm worm;
+    worm.Create(msecNow / 1000);
+    worm.Render();
+    
+    GLUtils::IdentityEpilogue();
     GLUtils::DisplayEpilogue();
 }
 

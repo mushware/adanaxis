@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5G48h21GSab1hBFmr8Licg
 /*
- * $Id: GLStandard.h,v 1.18 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLStandard.h,v 1.19 2004/01/06 20:46:49 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.19  2004/01/06 20:46:49  southa
+ * Build fixes
+ *
  * Revision 1.18  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -129,6 +132,7 @@
 
 
 #include "mushMushcore.h"
+
 #include <cmath>
 
 #define GLTESTING(a) a

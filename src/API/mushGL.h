@@ -1,6 +1,6 @@
 //%includeGuardStart {
-#ifndef MUSHGL_H
-#define MUSHGL_H
+#ifndef API_MUSHGL_H
+#define API_MUSHGL_H
 //%includeGuardStart } sZMkMkP9fHs6SjzxXh/O8Q
 //%Header {
 /*****************************************************************************
@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 9ALpBAAG9yNsjRsW9GGQ3A
 /*
- * $Id: mushGL.h,v 1.23 2004/01/02 21:13:04 southa Exp $
+ * $Id: mushGL.h,v 1.24 2004/01/10 20:29:33 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.24  2004/01/10 20:29:33  southa
+ * Form and rendering work
+ *
  * Revision 1.23  2004/01/02 21:13:04  southa
  * Source conditioning
  *

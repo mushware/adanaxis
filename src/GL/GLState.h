@@ -17,8 +17,11 @@
 //%Header } 7bhoLWY+hPdqE2Q6eZhSaQ
 
 /*
- * $Id: GLState.h,v 1.11 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLState.h,v 1.12 2004/01/02 21:13:05 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.12  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -325,6 +328,7 @@ GLState::Reset(void)
         default:
             throw(MushcoreLogicFail("Bad value for m_displayQuality"));
     }
+    glLineWidth(1);
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CCW);

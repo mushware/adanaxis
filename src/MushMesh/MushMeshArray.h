@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PK+ZCe4Bf9/jI7UGYOtvRA
 /*
- * $Id: MushMeshArray.h,v 1.12 2004/01/02 21:13:10 southa Exp $
+ * $Id: MushMeshArray.h,v 1.13 2004/01/08 16:06:11 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.13  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.12  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -74,7 +77,10 @@ public:
     MushMeshArray(Mushware::U32 inXSize, Mushware::U32 inYSize);
     const T& Get(Mushware::U32 inX, Mushware::U32 inY) const;
     const T& RefGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    T& WRefGet(Mushware::U32 inX, Mushware::U32 inY);
     const T& Get(const Mushware::t2U32& inPos) const;
+    const T *DataPtrGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    const T *DataPtrGet(const Mushware::t2U32& inPos) const;
     void Set(const T& inValue, Mushware::U32 inX, Mushware::U32 inY);
     void Set(const T& inValue, const Mushware::t2U32& inPos);
     const Mushware::t2U32 SizeGet(void) const;
@@ -158,10 +164,51 @@ MushMeshArray<T>::RefGet(Mushware::U32 inX, Mushware::U32 inY) const
 }
 
 template <class T>
+inline T&
+MushMeshArray<T>::WRefGet(Mushware::U32 inX, Mushware::U32 inY)
+{
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+    if (inX >= m_xSize || inY >= m_ySize)
+    {
+        std::ostringstream message;
+        message << "MushMeshArray::RefGet failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
+        throw MushcoreLogicFail(message.str());
+    }
+#else
+    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
+#endif
+    return m_values[inX + m_xSize * inY];
+}
+
+template <class T>
 inline const T&
 MushMeshArray<T>::Get(const Mushware::t2U32& inPos) const
 {
     return Get(inPos.X(), inPos.Y());
+}
+
+template <class T>
+inline const T *
+MushMeshArray<T>::DataPtrGet(Mushware::U32 inX, Mushware::U32 inY) const
+{
+#ifdef MUSHMESHARRAY_VERBOSE_DEBUG
+    if (inX >= m_xSize || inY >= m_ySize)
+    {
+        std::ostringstream message;
+        message << "MushMeshArray::DataPtrGet failed: " << inX << ">=" << m_xSize << " || " << inY << ">=" << m_ySize;
+        throw MushcoreLogicFail(message.str());
+    }
+#else
+    MUSHCOREASSERT(inX < m_xSize && inY < m_ySize);
+#endif
+    return &m_values[inX + m_xSize * inY];
+}
+
+template <class T>
+inline const T *
+MushMeshArray<T>::DataPtrGet(const Mushware::t2U32& inPos) const
+{
+    return DataPtrGet(inPos.X(), inPos.Y());
 }
 
 template <class T>

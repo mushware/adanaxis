@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 9NgAD45hoxxJPNGfLM9/7Q
 /*
- * $Id: GLUtils.cpp,v 1.55 2003/10/04 12:22:58 southa Exp $
+ * $Id: GLUtils.cpp,v 1.56 2004/01/02 21:13:06 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.56  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.55  2003/10/04 12:22:58  southa
  * File renaming
  *
@@ -336,8 +339,6 @@ GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, t
 
     GLUtils::CheckGLError();
 }
-
-
 
 const GLPoint
 GLUtils::ScreenSizeGet(void)

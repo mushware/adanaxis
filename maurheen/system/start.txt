@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.47 2004/01/10 20:29:33 southa Exp $
+# $Id: start.txt,v 1.1 2004/03/06 13:13:42 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.1  2004/03/06 13:13:42  southa
+# Maurheen created
+#
 
 # Change the paths here if you detach the application from its data directory
 
@@ -39,7 +42,7 @@ updatecheck
 configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/config.xml")
 
 # Options for DISPLAY_QUALITY are low, medium or high
-configset("DISPLAY_QUALITY", "medium")
+configset("DISPLAY_QUALITY", "high")
 
 # Network setup
 configset('NET_DEFAULT_PORT', 9144)

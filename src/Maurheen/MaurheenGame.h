@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PPS/HIYTNx/xF3BnuxBKdQ
 /*
- * $Id$
- * $Log$
+ * $Id: MaurheenGame.h,v 1.1 2004/03/06 14:01:42 southa Exp $
+ * $Log: MaurheenGame.h,v $
+ * Revision 1.1  2004/03/06 14:01:42  southa
+ * Maurheen created
+ *
  */
 
 #include "mushMushcore.h"
@@ -39,9 +42,10 @@ public:
     static MushcoreScalar MaurheenLoadGame(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     
-protected:    
+protected:
+    
 private:
-        
+
 //%classPrototypes {
 public:
     virtual const char *AutoNameGet(void) const;
