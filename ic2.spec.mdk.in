@@ -1,6 +1,6 @@
 %define name @PACKAGE@
 %define version @VERSION@
-%define release 0
+%define release 1mdk
 %define RUNFILE %{_bindir}/ic2
 
 Summary: Infernal Contractor II
@@ -52,5 +52,5 @@ echo exec %{_bindir}/ic2binary >> %{RUNFILE}
 chmod 0755 %{RUNFILE}
 
 %changelog
-
-# end of file
+* Mon Sep  2 2002 Andy Southgate <andy.southgate@mushware.com>
+- Initial Mandrake spec.

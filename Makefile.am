@@ -1,4 +1,5 @@
 # -*-makefile-*-
+AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
 RUNFILE=${bindir}/ic2
