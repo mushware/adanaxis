@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.5 2003/09/21 23:15:06 southa Exp $
+# $Id: SourceConditioner.pl,v 1.6 2003/09/22 19:40:33 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.6  2003/09/22 19:40:33  southa
+# XML I/O work
+#
 # Revision 1.5  2003/09/21 23:15:06  southa
 # XML input stream improvements
 #
@@ -233,11 +236,11 @@ sub TypeSpecial($$)
 {
     my ($type, $attr) = @_;
 
-    if ($type =~ /(.*::)U8/)
+    if ($type =~ /^(.*::)U8$/)
     {
         return "static_cast<${1}U32>($attr)";
     }
-    elsif  ($type =~ /(.*::)S8/)
+    elsif  ($type =~ /^(.*::)S8$/)
     {
         return "static_cast<${1}S32>($attr)";
     }

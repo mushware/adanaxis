@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.5 2003/09/21 23:15:08 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.6 2003/09/22 19:40:36 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.6  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.5  2003/09/21 23:15:08  southa
  * XML input stream improvements
  *
@@ -97,6 +100,9 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
         Mushcore::Pickle(xmlOStream, testObject, "testobject");
 
+        MushcoreXMLOStream xmlCout(cout);
+        Mushcore::Pickle(xmlCout, testObject, "testobject");
+
         TestMushcoreObject readBackObject(0);
 
         istringstream testIStream(testOStream.str());
@@ -107,7 +113,7 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         if (testObject != readBackObject)
         {
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"' (" << readBackObject << ")";
+            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
             throw MushcoreLogicFail(message.str());
         }
         

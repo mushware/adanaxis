@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7aw6V/9lK++dZ0qJ8aUG7g
 /*
- * $Id: MushcoreStandard.h,v 1.10 2003/08/21 23:09:17 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.11 2003/09/17 19:40:36 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.11  2003/09/17 19:40:36  southa
+ * Source conditioning upgrades
+ *
  * Revision 1.10  2003/08/21 23:09:17  southa
  * Fixed file headers
  *
@@ -159,6 +162,7 @@
 #include <iosfwd>
 #include <list>
 #include <map>
+#include <memory>
 #include <stack>
 #include <stdexcept>
 #include <string>

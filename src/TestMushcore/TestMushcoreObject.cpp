@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.5 2003/09/21 23:15:08 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.6 2003/09/22 19:40:36 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.6  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.5  2003/09/21 23:15:08  southa
  * XML input stream improvements
  *
@@ -36,6 +39,7 @@
 using namespace std;
 using namespace Mushware;
 
+
 //%outOfLineFunctions {
 void
 TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
@@ -43,7 +47,14 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
     ioOut << "u32=" << m_u32 << ", ";
-    ioOut << "string=" << m_string;
+    ioOut << "string=" << m_string << ", ";
+    ioOut << "u8Vector=" << m_u8Vector << ", ";
+    ioOut << "u32Vector=" << m_u32Vector << ", ";
+    ioOut << "stringVector=" << m_stringVector << ", ";
+    ioOut << "u8EmptyVector=" << m_u8EmptyVector << ", ";
+    ioOut << "uEmpty32Vector=" << m_uEmpty32Vector << ", ";
+    ioOut << "stringEmptyVector=" << m_stringEmptyVector << ", ";
+    ioOut << "vectorVector=" << m_vectorVector;
     ioOut << "]";
 }
 void
@@ -65,6 +76,34 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_string;
     }
+    else if (ioIn.TagNameGet() == "u8Vector")
+    {
+        ioIn >> m_u8Vector;
+    }
+    else if (ioIn.TagNameGet() == "u32Vector")
+    {
+        ioIn >> m_u32Vector;
+    }
+    else if (ioIn.TagNameGet() == "stringVector")
+    {
+        ioIn >> m_stringVector;
+    }
+    else if (ioIn.TagNameGet() == "u8EmptyVector")
+    {
+        ioIn >> m_u8EmptyVector;
+    }
+    else if (ioIn.TagNameGet() == "uEmpty32Vector")
+    {
+        ioIn >> m_uEmpty32Vector;
+    }
+    else if (ioIn.TagNameGet() == "stringEmptyVector")
+    {
+        ioIn >> m_stringEmptyVector;
+    }
+    else if (ioIn.TagNameGet() == "vectorVector")
+    {
+        ioIn >> m_vectorVector;
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
@@ -78,6 +117,13 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
     ioOut << "<u32>" << m_u32 << "</u32>\n";
     ioOut << "<string>" << m_string << "</string>\n";
+    ioOut << "<u8Vector>" << m_u8Vector << "</u8Vector>\n";
+    ioOut << "<u32Vector>" << m_u32Vector << "</u32Vector>\n";
+    ioOut << "<stringVector>" << m_stringVector << "</stringVector>\n";
+    ioOut << "<u8EmptyVector>" << m_u8EmptyVector << "</u8EmptyVector>\n";
+    ioOut << "<uEmpty32Vector>" << m_uEmpty32Vector << "</uEmpty32Vector>\n";
+    ioOut << "<stringEmptyVector>" << m_stringEmptyVector << "</stringEmptyVector>\n";
+    ioOut << "<vectorVector>" << m_vectorVector << "</vectorVector>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } CyhXtASqJZgr6bspQC/thw
+//%outOfLineFunctions } XiDRf4JfSOn3A2VXN7WFdQ

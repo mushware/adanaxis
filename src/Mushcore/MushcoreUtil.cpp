@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.7 2003/09/21 15:57:11 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.8 2003/09/22 19:40:36 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.8  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.7  2003/09/21 15:57:11  southa
  * XML autogenerator work
  *
@@ -121,6 +124,10 @@ MushcoreUtil::XMLMetaInsert(const string& inStr)
         {
             retStr+="&amp;";
         }
+        else if (byte == ',')
+        {
+            retStr += "&#44;";
+        }
         else
         {
             retStr+=byte;
@@ -141,6 +148,12 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
         ++replacePos;
     }
     replacePos = 0;
+    while (replacePos = retStr.find("&#44;", replacePos), replacePos != string::npos)
+    {
+        retStr = retStr.substr(0, replacePos) + "," + retStr.substr(replacePos + 5, string::npos);
+        ++replacePos;
+    }
+    replacePos = 0;
     while (replacePos = retStr.find("&gt;", replacePos), replacePos != string::npos)
     {
         retStr = retStr.substr(0, replacePos) + ">" + retStr.substr(replacePos + 4, string::npos);
@@ -155,6 +168,12 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
     }
     
     return retStr;
+}
+
+std::istream *
+MushcoreUtil::IStringStreamNew(const std::string& inStr)
+{
+    return new istringstream(inStr);
 }
 
 

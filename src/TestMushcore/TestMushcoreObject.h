@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.5 2003/09/21 23:15:08 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.6 2003/09/22 19:40:36 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.6  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.5  2003/09/21 23:15:08  southa
  * XML input stream improvements
  *
@@ -44,8 +47,31 @@ public:
     TestMushcoreObject() :
         m_u8(1),
         m_u32(2),
-        m_string("&<>&lt;ab&amp;cdef</string>&&")
-    {}
+        m_string("&<>&lt;ab&am,p;cdef</string>&,&")
+    {
+            m_u8Vector.push_back(4);
+            m_u8Vector.push_back(16);
+            m_u8Vector.push_back(7);
+            m_u32Vector.push_back(3);
+            m_u32Vector.push_back(15);
+            m_u32Vector.push_back(9);
+            m_stringVector.push_back("hamster");
+            m_stringVector.push_back("ger,bil");
+            m_stringVector.push_back("bad|ger");
+
+            m_vectorVector.push_back();
+            m_vectorVector.push_back();
+            m_vectorVector.push_back();
+            m_vectorVector[0].push_back(3);
+            m_vectorVector[0].push_back(5);
+            m_vectorVector[0].push_back(7);
+            m_vectorVector[2].push_back(8);
+            m_vectorVector[2].push_back(35);
+            m_vectorVector[2].push_back(1);
+#if 0
+            m_pVector.push_back(TestMushcoreObject(0));
+#endif
+    }
 
     explicit TestMushcoreObject(Mushware::U32 inNum) :
     m_u8(0),
@@ -59,6 +85,16 @@ private:
     Mushware::U8 m_u8;
     Mushware::U32 m_u32;
     std::string m_string;
+    vector<Mushware::U8> m_u8Vector;
+    vector<Mushware::U32> m_u32Vector;
+    vector<std::string> m_stringVector;
+    vector<Mushware::U8> m_u8EmptyVector;
+    vector<Mushware::U32> m_uEmpty32Vector;
+    vector<std::string> m_stringEmptyVector;
+
+    vector< vector<Mushware::U32> > m_vectorVector;
+    //vector<TestMushcoreObject> m_pVector;
+    
 
 //%classPrototypes {
 public:
@@ -86,7 +122,14 @@ TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
 {
     return (m_u8 == inObj.m_u8) &&
            (m_u32 == inObj.m_u32) &&
-           (m_string == inObj.m_string);
+           (m_string == inObj.m_string) &&
+           (m_u8Vector == inObj.m_u8Vector) &&
+           (m_u32Vector == inObj.m_u32Vector) &&
+           (m_stringVector == inObj.m_stringVector) &&
+           (m_u8EmptyVector == inObj.m_u8EmptyVector) &&
+           (m_uEmpty32Vector == inObj.m_uEmpty32Vector) &&
+           (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
+           (m_vectorVector == inObj.m_vectorVector);
 }
 inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
@@ -99,7 +142,9 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } bH/ocKUu9DucE3oHrPE2Jg
+//%inlineHeader } jYHX+aMxTAOFKTdlFPN1zg
+
+
 
 //%includeGuardEnd {
 #endif

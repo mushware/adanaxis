@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.4 2003/09/21 23:15:08 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.5 2003/09/22 19:40:36 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.5  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.4  2003/09/21 23:15:08  southa
  * XML input stream improvements
  *
@@ -34,6 +37,7 @@
 
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
+#include "MushcoreUtil.h"
 
 class MushcoreXMLConsumer;
 
@@ -44,15 +48,23 @@ public:
     virtual ~MushcoreXMLIStream();
 
     std::string DataGet(void) const;
+    Mushware::U32 DataSizeGet(void) const;
+    void DataConsume(Mushware::U32 inSize);
+    string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
 
     void ObjectRead(MushcoreXMLConsumer& inObj);
+    void ObjectRead(MushcoreXMLConsumer *inObj) { ObjectRead(*inObj); }
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(std::string& outStr);
 
+    template<class T> void ObjectRead(vector<T>& inVector);
+
 protected:
-    void Throw(const std::string& inMessage);
+    Mushware::U8 ByteGet(void) const;
+    Mushware::U8 ByteTake(void);
+    void Throw(const std::string& inMessage) const;
     void InputFetch(void);
 
 private:    
@@ -64,11 +76,73 @@ private:
     Mushware::U32 m_contentLineNum;
 };
 
+inline Mushware::U8
+MushcoreXMLIStream::ByteGet(void) const
+{
+    if (m_contentStart >= m_contentEnd)
+    {
+        Throw("Unexpected end of input");
+    }
+    return m_contentStr[m_contentStart];
+}
+
+inline Mushware::U8
+MushcoreXMLIStream::ByteTake(void)
+{
+    if (m_contentStart >= m_contentEnd)
+    {
+        Throw("Unexpected end of input");
+    }
+    // cout << "took '" << m_contentStr[m_contentStart] << "'" << endl;
+    return m_contentStr[m_contentStart++];
+}
+
 template<class T>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, T& inObj)
 {
     ioIn.ObjectRead(inObj);
+}
+
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
+{
+    // Decode the (x,y,z) sequence
+
+    if (ByteTake() != '(')
+    {
+        Throw("Bad first character in vector");
+    }
+
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            T value;
+            ObjectRead(value);
+            inVector.push_back(value);
+            //cout << "Read '" << value << "'" << endl;
+            
+            Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in vector");
+            }
+        }
+    }
 }
 
 //%includeGuardEnd {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hKnIrVXIQdJQRS47018TCg
 /*
- * $Id: MushcoreUtil.h,v 1.6 2003/09/21 15:57:11 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.7 2003/09/22 19:40:36 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.7  2003/09/22 19:40:36  southa
+ * XML I/O work
+ *
  * Revision 1.6  2003/09/21 15:57:11  southa
  * XML autogenerator work
  *
@@ -77,6 +80,7 @@ public:
     static Mushware::U32 TagGet(std::string& outTag, const std::string& inStr, Mushware::U32 inPos = 0);
     static std::string XMLMetaInsert(const std::string& inStr);
     static std::string XMLMetaRemove(const std::string& inStr);
+    static std::istream *IStringStreamNew(const std::string& inStr);
 };
 //%includeGuardEnd {
 #endif
