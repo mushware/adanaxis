@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.3 2002/08/07 13:36:51 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.4 2002/08/13 17:50:21 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.4  2002/08/13 17:50:21  southa
+ * Added playsound command
+ *
  * Revision 1.3  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -34,6 +37,5 @@ class MediaAudioCommandHandler
 public:
     static void Install(void);
     static CoreScalar PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv);
 };
 #endif

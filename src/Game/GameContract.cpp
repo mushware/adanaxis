@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.48 2002/08/13 17:50:20 southa Exp $
+ * $Id: GameContract.cpp,v 1.49 2002/08/15 13:39:30 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.49  2002/08/15 13:39:30  southa
+ * CoreData and CoreDatRef
+ *
  * Revision 1.48  2002/08/13 17:50:20  southa
  * Added playsound command
  *
@@ -261,11 +264,6 @@ GameContract::Init(void)
     m_masterScale=0.5;
 
     GameDataUtils::NamedDialoguesAdd("^start");
-
-    // Test code
-    CoreData<MediaSound>::Instance().DataGive("sound1", new MediaSound);
-    CoreDataRef<MediaSound> soundRef("sound1");
-    cerr << "exists=" << soundRef.Exists() << endl;
 }
 
 void
@@ -502,6 +500,7 @@ GameContract::Running(void)
         timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
         // CoreUtils::Sleep(timer.SleepTimeGet());
     }
+    MediaAudio::Instance().Ticker();
 }
 
 void

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.18 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.19 2002/08/08 18:20:30 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.19  2002/08/08 18:20:30  southa
+ * Plot on screen of dimension 1.0
+ *
  * Revision 1.18  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -240,7 +243,6 @@ GameFloorMap::RebuildSolidMap(void) const
             m_solidMap.PermeabilitySet(perm, x, y);
         }
     }
-    cerr << "Built solid map" << endl;
     m_solidMapValid=true;
 }
 

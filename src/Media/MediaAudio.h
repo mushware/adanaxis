@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: MediaAudio.h,v 1.6 2002/08/07 13:36:51 southa Exp $
+ * $Id: MediaAudio.h,v 1.7 2002/08/13 17:50:21 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.7  2002/08/13 17:50:21  southa
+ * Added playsound command
+ *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -39,16 +42,45 @@
 
 #include "MediaStandard.h"
 
+class MediaSound;
+
 class MediaAudio
 {
 public:
     MediaAudio();
     ~MediaAudio();
-    static MediaAudio& Instance(void) {return *((m_instance==NULL)?m_instance=new MediaAudio:m_instance);}
+    static MediaAudio& Instance(void);
+    static void InstanceDelete(void);
     void PlayMusic(const string& inName);
-    void PlaySound(const string& inName);
+    void Play(MediaSound& inSound);
+    void SoundHalt(MediaSound& inSound);
+    void Ticker(void);
 
 private:
-    static MediaAudio *m_instance;
+    enum ChannelState
+    {
+        kInvalid,
+        kChannelIdle,
+        kChannelPlaying,
+        kChannelFinished
+    };
+
+    void ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound);
+    void SetEndFlag(U32 inChannel);
+    static void ChannelDone(int inChannel);
+    
+    U32 m_softChannels;
+    vector<ChannelState> m_channelState;
+    vector<MediaSound *> m_activeSamples;
+    static auto_ptr<MediaAudio> m_instance;
 };
+
+inline MediaAudio&
+MediaAudio::Instance(void)
+{
+    if (m_instance.get() != NULL) return *m_instance;
+    m_instance.reset(new MediaAudio);
+    return *m_instance;
+}
+
 #endif

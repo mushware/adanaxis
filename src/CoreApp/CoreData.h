@@ -2,8 +2,11 @@
 #define COREDATA_H
 
 /*
- * $Id$
- * $Log$
+ * $Id: CoreData.h,v 1.1 2002/08/15 13:39:30 southa Exp $
+ * $Log: CoreData.h,v $
+ * Revision 1.1  2002/08/15 13:39:30  southa
+ * CoreData and CoreDatRef
+ *
  */
 
 #include "CoreStandard.h"
@@ -17,7 +20,7 @@ public:
 
     inline RefType *DataGive(const string& inName, RefType *inData);
     inline RefType *DataGet(const string& inName) const;
-
+    inline void Clear(void);
 protected:
     CoreData() {}
 
@@ -73,5 +76,19 @@ CoreData<RefType>::DataGet(const string& inName) const
     }
     return p->second;
 }
+
+template<class RefType>
+inline void
+CoreData<RefType>::Clear(void)
+{
+    for (map<string, RefType *>::iterator p = m_data.begin();
+         p != m_data.end(); ++p)
+    {
+        delete p->second;
+    }
+    m_data.clear();
+}
+
+
 
 #endif

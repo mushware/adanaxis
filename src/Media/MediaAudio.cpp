@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudio.cpp,v 1.7 2002/08/07 13:36:51 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.8 2002/08/13 17:50:21 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.8  2002/08/13 17:50:21  southa
+ * Added playsound command
+ *
  * Revision 1.7  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -40,21 +43,30 @@
 
 #include "MediaAudio.h"
 #include "MediaSDL.h"
+#include "MediaSound.h"
 
-MediaAudio *MediaAudio::m_instance=NULL;
+auto_ptr<MediaAudio> MediaAudio::m_instance;
 
-MediaAudio::~MediaAudio()
-{
-    Mix_CloseAudio();
-}
-        
 MediaAudio::MediaAudio()
 {
     MediaSDL::Instance().InitAudio();
-    int audioRate = 44100;
-    unsigned short audioFormat = MIX_DEFAULT_FORMAT; /* 16-bit stereo */
-    int audioChannels = 2;
-    int audioBuffers = 4096;
+
+    U32 u32AudioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
+    U32 u32AudioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
+    U32 u32AudioHardChannels = 2; // Stereo
+    U32 u32AudioSoftChannels = 8;
+    U32 u32AudioBuffer = 1024;
+
+    CoreEnv::Instance().VariableGetIfExists(u32AudioRate, "AUDIO_RATE");
+    CoreEnv::Instance().VariableGetIfExists(u32AudioFormat, "AUDIO_FORMAT");
+    CoreEnv::Instance().VariableGetIfExists(u32AudioHardChannels, "AUDIO_HARD_CHANNELS");
+    CoreEnv::Instance().VariableGetIfExists(u32AudioSoftChannels, "AUDIO_SOFT_CHANNELS");
+    CoreEnv::Instance().VariableGetIfExists(u32AudioBuffer, "AUDIO_BUFFER");
+    
+    int audioRate = u32AudioRate;
+    unsigned short audioFormat = u32AudioFormat;
+    int audioChannels = u32AudioHardChannels;
+    int audioBuffers = u32AudioBuffer;
     
     if (Mix_OpenAudio(audioRate, audioFormat, audioChannels, audioBuffers))
     {
@@ -63,8 +75,23 @@ MediaAudio::MediaAudio()
 
     if (!Mix_QuerySpec(&audioRate, &audioFormat, &audioChannels))
     {
+        Mix_CloseAudio();
         throw(DeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
+    m_softChannels = Mix_AllocateChannels(u32AudioSoftChannels);
+    m_channelState.resize(m_softChannels, kChannelIdle);
+    m_activeSamples.resize(m_softChannels, NULL);
+    Mix_ChannelFinished(ChannelDone);
+    cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
+    cout << ", hard channels=" << audioChannels << ", soft channels=" << m_softChannels << endl;
+}
+
+MediaAudio::~MediaAudio()
+{
+    // First delete all sounds so that they can't interfere
+    CoreData<MediaSound>::Instance().Clear();
+    Mix_ChannelFinished(NULL); // Remove the hook
+    Mix_CloseAudio();
 }
 
 void
@@ -79,21 +106,80 @@ MediaAudio::PlayMusic(const string& inFilename)
 }
 
 void
-MediaAudio::PlaySound(const string& inFilename)
+MediaAudio::Play(MediaSound& inSound)
 {
-    SDL_RWops *src=SDL_RWFromFile(inFilename.c_str(), "rb");
-    if (src == NULL)
+    S32 channel=Mix_PlayChannel(-1, inSound.MixChunkGet(), 0);
+    // We're in trouble if the sample finishes before the ChannelStateSet below
+    if (channel == -1)
     {
-        throw(FileFail(inFilename, "Failed to open sound file: "+string(SDL_GetError())));
+        throw(DeviceFail("Failed to play sound '"+inSound.FilenameGet()+"': "+string(Mix_GetError())));
     }
-    Mix_Chunk *sound = Mix_LoadWAV_RW(src, true);
-    if (sound == NULL)
+    COREASSERT(channel < static_cast<S32>(m_softChannels));
+    ChannelStateSet(channel, kChannelPlaying, &inSound);
+}
+
+void
+MediaAudio::ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound)
+{
+    COREASSERT(inChannel < m_softChannels);
+    COREASSERT(inChannel < m_activeSamples.size());
+
+    MediaSound *oldSound=m_activeSamples[inChannel];
+    if (oldSound != NULL)
     {
-        throw(FileFail(inFilename, "Failed to load sound: "+string(Mix_GetError())));
+        oldSound->EndHandler();
     }
-    if (Mix_PlayChannel(-1, sound, 0) == -1)
+
+    m_activeSamples[inChannel] = inSound;
+    m_channelState[inChannel] = inState;
+}
+
+void
+MediaAudio::Ticker(void)
+{
+    for (U32 i=0; i<m_softChannels; ++i)
     {
-        throw(FileFail(inFilename, "Failed to play sound: "+string(Mix_GetError())));
+        if (m_channelState[i] == kChannelFinished)
+        {
+            ChannelStateSet(i, kChannelIdle, NULL);
+        }
     }
-    
+}
+
+void
+MediaAudio::SoundHalt(MediaSound& inSound)
+{
+    for (U32 i=0; i<m_softChannels; ++i)
+    {
+        if (m_activeSamples[i] == &inSound &&
+            m_channelState[i] != kChannelFinished)
+        {
+            cerr << "Halting channel " << i << " playing '" << inSound.FilenameGet() << "'" << endl;
+            Mix_HaltChannel(i);
+        }
+    }
+}
+
+// Hook called when channel finishes playing.  May be called from interrupt handler
+void
+MediaAudio::ChannelDone(int inChannel)
+{
+    COREASSERT(m_instance.get() != NULL);
+    if (m_instance.get() != NULL)
+    {
+        MediaAudio::Instance().SetEndFlag(inChannel);
+    }
+}
+
+// May be called from interrupt handler
+void
+MediaAudio::SetEndFlag(U32 inChannel)
+{
+    COREASSERT(inChannel < m_softChannels);
+    COREASSERT(inChannel < m_channelState.size());
+    if (m_channelState[inChannel] != kChannelPlaying)
+    {
+        cerr << "Channel " << inChannel << " finished but was not playing" << endl;
+    }
+    m_channelState[inChannel] = kChannelFinished;
 }

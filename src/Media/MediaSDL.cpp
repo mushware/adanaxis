@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaSDL.cpp,v 1.6 2002/08/05 22:31:45 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.7 2002/08/07 13:36:51 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.7  2002/08/07 13:36:51  southa
+ * Conditioned source
+ *
  * Revision 1.6  2002/08/05 22:31:45  southa
  * Removed debug code
  *
@@ -36,6 +39,8 @@
  */
 
 #include "MediaSDL.h"
+
+#include "MediaAudio.h"
 
 auto_ptr<MediaSDL> MediaSDL::m_instance;
 
