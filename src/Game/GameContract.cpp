@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.51 2002/08/17 10:41:50 southa Exp $
+ * $Id: GameContract.cpp,v 1.52 2002/08/18 15:13:15 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.52  2002/08/18 15:13:15  southa
+ * Adhesion handling
+ *
  * Revision 1.51  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -188,6 +191,8 @@
 #include "GameMapPoint.h"
 #include "GameDialogue.h"
 #include "GameDataUtils.h"
+#include "GameTypeRace.h"
+#include "GameEvent.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -291,6 +296,10 @@ GameContract::RunningMove(void)
     COREASSERT(m_floorMap != NULL);
     GameMotionSpec motion;
     m_player->EnvironmentRead(*m_floorMap);
+    GameEventStandingOn standingOn(m_player->StandingOnGet());
+
+    GameData::Instance().TypeGet().EventHandler(standingOn);
+
     m_player->MoveGet(motion);
     if (m_renderDiagnostics)
     {
@@ -585,6 +594,21 @@ GameContract::HandleDialogueStart(CoreXML& inXML)
 }
 
 void
+GameContract::HandleGameStart(CoreXML& inXML)
+{
+    string type(inXML.GetAttribOrThrow("type").StringGet());
+    if (type == "race")
+    {
+    GameData::Instance().TypeSet(new GameTypeRace);
+    }
+    else
+    {
+        inXML.Throw("Game type must be 'race'");
+    }
+    GameData::Instance().TypeGet().Unpickle(inXML);
+}
+
+void
 GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
 {
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
@@ -600,6 +624,7 @@ GameContract::Unpickle(CoreXML& inXML)
     m_startTable[kPickleInit]["contract"] = &GameContract::HandleContractStart;
     m_startTable[kPickleData]["script"] = &GameContract::HandleScriptStart;
     m_startTable[kPickleData]["dialogue"] = &GameContract::HandleDialogueStart;
+    m_startTable[kPickleData]["game"] = &GameContract::HandleGameStart;
     m_endTable[kPickleData]["contract"] = &GameContract::HandleContractEnd;
     m_endTable[kPickleData]["script"] = &GameContract::HandleScriptEnd;
     

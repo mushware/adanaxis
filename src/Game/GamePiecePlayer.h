@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.h,v 1.12 2002/08/08 18:20:30 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.13 2002/08/18 15:13:16 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.13  2002/08/18 15:13:16  southa
+ * Adhesion handling
+ *
  * Revision 1.12  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
  *
@@ -82,7 +85,7 @@ public:
     const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
     tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
     const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
-    
+    U32 StandingOnGet(void) { return m_standingOn; }
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
 
@@ -124,6 +127,7 @@ private:
     mutable GameController *m_controller; // in GameData
     tVal m_speedLim;
     tVal m_acceleration;
+    U32 m_standingOn;
 };
 
 inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)

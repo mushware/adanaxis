@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.21 2002/08/18 12:20:41 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.23 2002/08/18 15:15:43 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.23  2002/08/18 15:15:43  southa
+ * Adhesion handling
+ *
  * Revision 1.21  2002/08/18 12:20:41  southa
  * Movement tweaks
  *
@@ -183,7 +186,7 @@ tVal
 GameSolidMap::AdhesionGet(const GameSpacePoint& inPoint) const
 {
     GameMapPoint mapPoint(SpaceToMap(inPoint));
-    return PermeabilityGet(mapPoint);
+    return AdhesionGet(mapPoint);
 }
 
 tVal
@@ -490,15 +493,20 @@ GameSolidMap::Render(const GameMapArea& inArea) const
         {
             if (inArea.IsWithin(point))
             {
-                tVal perm=PermeabilityGet(point.U32XGet(), point.U32YGet());
-                GLUtils::ColourSet(0.5+0.5*cos(perm*M_PI),
-                                   0.5-0.5*cos(perm*M_PI),
-                                   (perm>1)?1:0, 0.33);
                 GLLine line((point-GLPoint(0.5, 0.5)),
                             (point+GLPoint(0.5, 0.5)));
 
+                tVal value;
+                value=PermeabilityGet(GameMapPoint(point));
+GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                   0.5-0.5*cos(value*M_PI),
+                   (value>1)?1:0, 0.33);
                 line.Render();
                 line.RotateAboutCentre(M_PI/2);
+                value=AdhesionGet(GameMapPoint(point));
+GLUtils::ColourSet(0.5+0.5*cos(value*M_PI),
+                   0.5-0.5*cos(value*M_PI),
+                   (value>1)?1:0, 0.33);
                 line.Render();
             }
         }

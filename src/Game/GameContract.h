@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.19 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameContract.h,v 1.20 2002/08/10 12:34:48 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.20  2002/08/10 12:34:48  southa
+ * Added current dialogues
+ *
  * Revision 1.19  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -83,7 +86,6 @@ class GameTileMap;
 class GamePiecePlayer;
 class GameFloorDesigner;
 class GameView;
-class GameDialogue;
 
 class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
 {
@@ -126,6 +128,7 @@ protected:
     void HandleScriptStart(CoreXML& inXML);
     void HandleScriptEnd(CoreXML& inXML);
     void HandleDialogueStart(CoreXML& inXML);
+    void HandleGameStart(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
     enum PickleState

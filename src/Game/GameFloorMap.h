@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.12 2002/08/17 10:41:51 southa Exp $
+ * $Id: GameFloorMap.h,v 1.13 2002/08/18 15:13:15 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.13  2002/08/18 15:13:15  southa
+ * Adhesion handling
+ *
  * Revision 1.12  2002/08/17 10:41:51  southa
  * Designer fixes
  *
@@ -91,11 +94,17 @@ public:
     tVal YStep(void) {return m_ystep;}
     GLPoint SizeGet(void) { return GLPoint(m_xsize, m_ysize); }
     GLPoint StepGet(void) { return GLPoint(m_xstep, m_ystep); }
+
+    const GameMapPoint SpaceToMap(const GameSpacePoint inPoint) const;
+    const GameMapPoint SpaceToMapFractional(const GameSpacePoint inPoint) const;
+    const GameSpacePoint MapToSpace(const GameMapPoint inPoint) const;
     
     void Render(const GameMapArea& inArea, const GameMapArea& inHighlight);
     void RenderSolidMap(const GameMapArea& inArea);
     
     U32 ElementGet(const GLPoint &inPoint) const;
+    U32 ElementGet(const GameSpacePoint &inPoint) const;
+    U32 ElementGet(const GameMapPoint &inPoint) const;
     void ElementSet(const GLPoint &inPoint, U32 inValue);
     tVal PermeabilityGet(const GameMapPoint &inPoint) const;
     tVal AdhesionGet(const GameSpacePoint &inPoint) const;

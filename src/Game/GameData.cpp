@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.11 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameData.cpp,v 1.12 2002/08/10 12:34:48 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.12  2002/08/10 12:34:48  southa
+ * Added current dialogues
+ *
  * Revision 1.11  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -60,11 +63,13 @@
 #include "GameDialogue.h"
 #include "GameView.h"
 #include "GameTimer.h"
+#include "GameType.h"
 
 GameData *GameData::m_instance=NULL;
 
 GameData::GameData():
-    m_timer(NULL)
+    m_timer(NULL),
+    m_gameType(NULL)
 {
 }
 
@@ -113,6 +118,10 @@ GameData::~GameData()
     if (m_timer != NULL)
     {
         delete m_timer;
+    }
+    if (m_gameType != NULL)
+    {
+        delete m_gameType;
     }
     for (map<string, GameDialogue *>::iterator p = m_currentDialogues.begin();
          p != m_currentDialogues.end(); ++p)
@@ -357,6 +366,26 @@ GameData::TimerGet(void)
         m_timer = new GameTimer;
     }
     return *m_timer;
+}
+
+GameType&
+GameData::TypeGet(void) const
+{
+    if (m_gameType == NULL)
+    {
+        throw(GameDataNotPresent("Access to non-existent current type"));
+    }
+    return *m_gameType;
+}
+
+void
+GameData::TypeSet(GameType *inType)
+{
+    if (m_gameType == NULL)
+    {
+        delete m_gameType;
+    }
+    m_gameType=inType;
 }
 
 GameDialogue *

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.17 2002/08/18 14:29:29 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.18 2002/08/18 15:13:16 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.18  2002/08/18 15:13:16  southa
+ * Adhesion handling
+ *
  * Revision 1.17  2002/08/18 14:29:29  southa
  * More movement tweaks
  *
@@ -95,6 +98,7 @@ GamePiecePlayer::EnvironmentRead(const GameFloorMap& inFloorMap)
 {
     GameSpacePoint spacePoint(m_motion.MotionSpecGet().pos);
     m_adhesion=inFloorMap.AdhesionGet(spacePoint);
+    m_standingOn=inFloorMap.ElementGet(spacePoint);
 }
 
 void

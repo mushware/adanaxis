@@ -1251,6 +1251,88 @@
 			settings = {
 			};
 		};
+		F53E0FAF031015CD01E1DB74 = {
+			isa = PBXFileReference;
+			name = GameType.cpp;
+			path = Game/GameType.cpp;
+			refType = 4;
+		};
+		F53E0FB0031015CD01E1DB74 = {
+			isa = PBXFileReference;
+			name = GameType.h;
+			path = Game/GameType.h;
+			refType = 4;
+		};
+		F53E0FB1031015CD01E1DB74 = {
+			fileRef = F53E0FAF031015CD01E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FB2031015CD01E1DB74 = {
+			fileRef = F53E0FB0031015CD01E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FB3031015DB01E1DB74 = {
+			isa = PBXFileReference;
+			path = GameTypeRace.cpp;
+			refType = 4;
+		};
+		F53E0FB4031015DB01E1DB74 = {
+			isa = PBXFileReference;
+			path = GameTypeRace.h;
+			refType = 4;
+		};
+		F53E0FB5031015DB01E1DB74 = {
+			fileRef = F53E0FB3031015DB01E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FB6031015DB01E1DB74 = {
+			fileRef = F53E0FB4031015DB01E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FB703101AA401E1DB74 = {
+			isa = PBXFileReference;
+			name = GameChequePoint.cpp;
+			path = Game/GameChequePoint.cpp;
+			refType = 4;
+		};
+		F53E0FB803101AA401E1DB74 = {
+			isa = PBXFileReference;
+			name = GameChequePoint.h;
+			path = Game/GameChequePoint.h;
+			refType = 4;
+		};
+		F53E0FB903101AA401E1DB74 = {
+			fileRef = F53E0FB703101AA401E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FBA03101AA401E1DB74 = {
+			fileRef = F53E0FB803101AA401E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F53E0FBB03102A8E01E1DB74 = {
+			isa = PBXFileReference;
+			name = GameEvent.h;
+			path = Game/GameEvent.h;
+			refType = 4;
+		};
+		F53E0FBC03102A8E01E1DB74 = {
+			fileRef = F53E0FBB03102A8E01E1DB74;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F53F7CC602311A0801633C4B = {
 			isa = PBXFileReference;
 			path = CoreFlex.cpp;
@@ -3856,6 +3938,8 @@
 				F593968D028C0342016230BF,
 				F593968E028C0342016230BF,
 				F5939691028C0629016230BF,
+				F53E0FB703101AA401E1DB74,
+				F53E0FB803101AA401E1DB74,
 				F5939689028C01AE016230BF,
 				F593968A028C01AE016230BF,
 				F54020AD02A2423901F0D71D,
@@ -3868,6 +3952,7 @@
 				F548C8DF03052D3A01B83DAD,
 				F5412BCB0303E7D701F8C327,
 				F5412BCC0303E7D701F8C327,
+				F53E0FBB03102A8E01E1DB74,
 				F5483AB702D1D95801480ACF,
 				F5483AB802D1D95801480ACF,
 				F545EEA102A67378018FABF3,
@@ -3904,6 +3989,10 @@
 				F5D6A1A302FABD6701D854DA,
 				F54631EB02ACC53801A7DA6B,
 				F54631EC02ACC53801A7DA6B,
+				F53E0FAF031015CD01E1DB74,
+				F53E0FB0031015CD01E1DB74,
+				F53E0FB3031015DB01E1DB74,
+				F53E0FB4031015DB01E1DB74,
 				F54668B402AE2A590163596F,
 				F5463AD602E6D60D018842E0,
 				F5463AD702E6D60D018842E0,
@@ -4103,6 +4192,10 @@
 				F54E9EB3030BD58E01D67831,
 				F54E9EB5030BD59A01D67831,
 				F5B96F20030D9B5C015847EC,
+				F53E0FB2031015CD01E1DB74,
+				F53E0FB6031015DB01E1DB74,
+				F53E0FBA03101AA401E1DB74,
+				F53E0FBC03102A8E01E1DB74,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -4207,6 +4300,9 @@
 				F54E9EB7030BD71401D67831,
 				F54E9EB9030BD72A01D67831,
 				F5B96F1F030D9B5C015847EC,
+				F53E0FB1031015CD01E1DB74,
+				F53E0FB5031015DB01E1DB74,
+				F53E0FB903101AA401E1DB74,
 			);
 			isa = PBXSourcesBuildPhase;
 		};

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.20 2002/08/16 19:46:07 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.21 2002/08/18 15:13:15 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.21  2002/08/18 15:13:15  southa
+ * Adhesion handling
+ *
  * Revision 1.20  2002/08/16 19:46:07  southa
  * MediaSound work
  *
@@ -98,8 +101,31 @@
 #include "GameTileTraits.h"
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
+#include "GameSpacePoint.h"
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
+
+const GameMapPoint
+GameFloorMap::SpaceToMapFractional(const GameSpacePoint inPoint) const
+{
+    GameMapPoint retVal(inPoint / GLPoint(m_xstep, m_ystep));
+    return retVal;
+}
+
+const GameMapPoint
+GameFloorMap::SpaceToMap(const GameSpacePoint inPoint) const
+{
+    GameMapPoint retVal(inPoint / GLPoint(m_xstep, m_ystep));
+    retVal += GLPoint(0.5,0.5);
+    retVal.MakeInteger();
+    return retVal;
+}
+
+const GameSpacePoint
+GameFloorMap::MapToSpace(const GameMapPoint inPoint) const
+{
+    return GameSpacePoint(inPoint * GLPoint(m_xstep, m_ystep));
+}
 
 void
 GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight)
@@ -187,6 +213,23 @@ GameFloorMap::ElementGet(const GLPoint &inPoint) const
     COREASSERT(inPoint.x < m_xsize);
     COREASSERT(inPoint.y < m_ysize);
     return m_map[inPoint.U32YGet()][inPoint.U32XGet()];
+}
+
+U32
+GameFloorMap::ElementGet(const GameSpacePoint& inPoint) const
+{
+    GameMapPoint mapPoint(SpaceToMap(inPoint));
+    return ElementGet(mapPoint);
+}
+
+U32
+GameFloorMap::ElementGet(const GameMapPoint& inPoint) const
+{
+    if (inPoint.x < 0 || inPoint.y < 0) return 0;
+    U32 x=static_cast<U32>(inPoint.x+0.5);
+    U32 y=static_cast<U32>(inPoint.y+0.5);
+    if (x >= m_xsize || y>= m_ysize) return 0;
+    return m_map[y][x];
 }
 
 void

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.10 2002/08/09 17:09:04 southa Exp $
+ * $Id: GameData.h,v 1.11 2002/08/10 12:34:48 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.11  2002/08/10 12:34:48  southa
+ * Added current dialogues
+ *
  * Revision 1.10  2002/08/09 17:09:04  southa
  * GameDialogue added
  *
@@ -60,6 +63,7 @@ class GamePiece;
 class GameDialogue;
 class GameView;
 class GameTimer;
+class GameType;
 
 class GameData
 {
@@ -87,6 +91,8 @@ public:
     GameView *ViewGet(const string& inName) const;
     GameView *CurrentViewGet(void) const;
     GameTimer& TimerGet(void);
+    GameType& TypeGet(void) const;
+    void TypeSet(GameType *inType);
 
     GameDialogue *CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue);
     void CurrentDialogueDelete(const string& inName);
@@ -106,7 +112,8 @@ private:
     map<string, GameView *> m_views;
 
     GameTimer *m_timer;
-
+    GameType *m_gameType;
+    
     DialogueMap m_currentDialogues;
 
     static GameData *m_instance;
