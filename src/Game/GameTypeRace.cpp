@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.27 2002/10/22 20:42:07 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.28 2002/11/24 23:18:26 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.28  2002/11/24 23:18:26  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.27  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -169,7 +172,7 @@ void
 GameTypeRace::SequenceAdvance(void)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
-    GameTimer::tMsec gameTime=timer.GameMsecGet();
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     tVal judgementRatio=0.0;
 
@@ -275,7 +278,7 @@ void
 GameTypeRace::RaceFinished(void)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
-    GameTimer::tMsec gameTime=timer.GameMsecGet();
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
     m_raceState = kPreResult;
     m_endTime = gameTime;
 
@@ -363,7 +366,7 @@ GameTypeRace::UpdateTimes(void)
 {
     GameTimer& timer(GameData::Instance().TimerGet());
     if (!timer.JudgementValid()) return;
-    GameTimer::tMsec gameTime=timer.GameMsecGet();
+    GameTimer::tMsec gameTime=timer.ClientGet().GameMsecGet();
 
     switch (m_raceState)
     {

@@ -1,6 +1,9 @@
 /*
- * $Id: GamePlayerUtils.cpp,v 1.3 2002/12/06 17:38:00 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.4 2002/12/07 18:32:15 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.4  2002/12/07 18:32:15  southa
+ * Network ID stuff
+ *
  * Revision 1.3  2002/12/06 17:38:00  southa
  * ControlData message unpacking
  *
@@ -27,12 +30,12 @@
 void
 GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
-    GameTimer::tMsec frameInterval = inTimer.MotionFrameIntervalGet(); // Msec between motion frames
+    GameTimer::tMsec frameInterval = inTimer.ConstClientGet().FrameIntervalMsecGet(); // Msec between motion frames
     GameTimer::tMsec currentMsec = inTimer.CurrentMsecGet(); // Current Msec
                                                             // Msec of the frame immediately before our first one
     GameTimer::tMsec previousFrameMsec = currentMsec - frameInterval * inNumFrames;
     // Frame number of the first frame in this sequence
-    U32 startFrame = inTimer.CurrentMotionFrameGet();
+    U32 startFrame = inTimer.ConstClientGet().FrameNumGet();
 
     GameController *localController = GameData::Instance().ControllerGet("controller1");
 
@@ -66,7 +69,7 @@ GamePlayerUtils::SendControl(GameDefClient& inClient, const GamePiecePlayer& inP
 {
     GameMessageControlData controlMessage;
     // frameNum is the first frame number in the chunk we're going to send
-    U32 startFrameNum = inTimer.CurrentMotionFrameGet();
+    U32 startFrameNum = inTimer.ConstClientGet().FrameNumGet();
     controlMessage.StartFrameSet(startFrameNum);
     
     CoreHistoryIterator<U32, GameControlFrameDef> p = inPlayer.ControlFrameDefIteratorGet(startFrameNum);

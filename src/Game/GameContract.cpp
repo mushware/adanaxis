@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.104 2002/12/05 13:20:11 southa Exp $
+ * $Id: GameContract.cpp,v 1.105 2002/12/05 23:52:50 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.105  2002/12/05 23:52:50  southa
+ * Network management and status
+ *
  * Revision 1.104  2002/12/05 13:20:11  southa
  * Client link handling
  *
@@ -514,10 +517,10 @@ GameContract::InitDisplay(void)
 }
 
 void
-GameContract::RunningMove(const GameTimer& inTimer, U32 inNumFrames)
+GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 {
     COREASSERT(m_floorMap != NULL);
-    U32 startFrameNum = inTimer.CurrentMotionFrameGet();
+    U32 startFrameNum = inTimer.ClientGet().FrameNumGet();
     
     CoreData<GamePiecePlayer>::tMapIterator endValue=GameData::Instance().PlayerGet().End();
 
@@ -602,7 +605,9 @@ GameContract::RunningDisplay(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
     GameTimer& timer(GameData::Instance().TimerGet());
 
-    tVal windbackValue = timer.WindbackValueGet(gameAppHandler.MillisecondsGet());
+    timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+    tVal windbackValue = timer.ClientGet().WindbackValueGet();
+    
     GameView& currentView = *GameData::Instance().CurrentViewGet();
 
     GLState::AmbientLightSet(currentView.AmbientLightingGet());
@@ -613,7 +618,8 @@ GameContract::RunningDisplay(void)
     GLUtils::DisplayPrologue();
 
     // DisplayPrologue swaps in the previously rendered screen, so note the time here
-    timer.DisplayedFrameAt(gameAppHandler.MillisecondsGet());
+    timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
+    timer.ClientGet().DisplayedFrameAt();
     ++m_frames;
     
     GLUtils::ClearScreen();
@@ -794,7 +800,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
 
     if (timer.JudgementValid())
     {
-        U32 numMotionFrames=timer.MotionFramesGet();
+        U32 numMotionFrames=timer.ClientGet().IntegerElapsedFramesGet();
         if (inAppHandler.MultiplayerIs())
         {
             // Can't skip frames in a network game, but this avoids a total hang
@@ -815,18 +821,18 @@ GameContract::Running(GameAppHandler& inAppHandler)
         
         RunningMove(timer, numMotionFrames);
 
-        timer.MotionFramesDone(numMotionFrames);
+        timer.ClientGet().FramesDone(numMotionFrames);
         
         // Discard any motion frames we haven't caught up with
         if (!inAppHandler.MultiplayerIs())
         {
-            timer.MotionFramesDiscard();
+            timer.ClientGet().FramesDiscard();
         }
         
-        if (timer.RedisplayGet())
+        if (timer.ClientGet().RedisplayGet())
         {
             GLUtils::PostRedisplay();
-            timer.RedisplayDone();
+            timer.ClientGet().RedisplayDone();
         }
 
         tVal numPeriodic10ms=timer.Periodic10msGet();

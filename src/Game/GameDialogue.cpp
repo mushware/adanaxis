@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.13 2002/11/24 23:18:16 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.14 2002/12/05 13:20:12 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.14  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.13  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -69,7 +72,8 @@ GameDialogue::Render(void) const
     U32 size=m_strings.size();
     
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    tVal windbackValue=timer.WindbackValueGet(glAppHandler.MillisecondsGet());
+    timer.CurrentMsecSet(glAppHandler.MillisecondsGet());
+    tVal windbackValue=timer.ClientGet().WindbackValueGet();
 
     
     for (U32 i=0; i<size; ++i)

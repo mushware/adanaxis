@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.14 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameTimer.h,v 1.15 2002/12/04 15:39:58 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.15  2002/12/04 15:39:58  southa
+ * Multiplayer work
+ *
  * Revision 1.14  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -61,6 +64,8 @@
 
 #include "mushCore.h"
 
+#include "GameFrameTimer.h"
+
 class GameTimer
 {
 public:
@@ -71,16 +76,14 @@ public:
     
     void CurrentMsecSet(U32 inMsec);
     tMsec CurrentMsecGet(void) const;
-    tMsec GameMsecGet(void) const;
-    U32 CurrentMotionFrameGet(void) const;
     void Reset(void);
     bool JudgementValid(void) const;
-    U32 MotionFramesGet(void) const;
-    void MotionFramesDiscard(void);
-    void MotionFramesDone(U32 inFrames);
-    tVal PartialMotionFrameGet(void) const;
-    bool RedisplayGet(void) const;
-    void RedisplayDone(void);
+
+    GameFrameTimer& ClientGet(void) { return m_clientFrameTimer; }
+    GameFrameTimer& ServerGet(void) { return m_serverFrameTimer; }
+    const GameFrameTimer& ConstClientGet(void) const { return m_clientFrameTimer; }
+    const GameFrameTimer& ConstServerGet(void) const { return m_serverFrameTimer; }
+    
     tVal Periodic10msGet(void) const;
     void Periodic10msDone(tVal inNum);
     tVal Periodic100msGet(void) const;
@@ -88,28 +91,20 @@ public:
     tVal Periodic1sGet(void) const;
     void Periodic1sDone(tVal inNum);
     tMsec SleepTimeGet(void) const;
-    void DisplayedFrameAt(tMsec inMsec);
-    tVal WindbackValueGet(tMsec inMSec);
-    tVal FrameRateGet(void);
-    tMsec MotionFrameIntervalGet(void) const { return m_motionFrameInterval / 1000; }
     static string MsecToString(tMsec inMsec);
     static string MsecDifferenceToString(tMsec inMsec);
     static string MsecToLongString(tMsec inMsec);
     
 private:
     void ReportJitter(void) const;
+
+    GameFrameTimer m_clientFrameTimer;
+    GameFrameTimer m_serverFrameTimer;
     
-    tUsec m_currentTime;
-    tUsec m_motionFrameTime;
-    tUsec m_periodic10msTime;
-    tUsec m_periodic100msTime;
-    tUsec m_periodic1sTime;
-    tUsec m_motionFrameInterval;
-    U32 m_currentMotionFrame;
-    U32 m_lastRedisplayMotionFrame;
-    tUsec m_lastFrameTime;
-    tUsec m_averageFrameDuration;
-    tUsec m_motionMargin;
+    tUsec m_currentUsec;
+    tUsec m_periodic10msUsec;
+    tUsec m_periodic100msUsec;
+    tUsec m_periodic1sUsec;
     U32 m_lastMsec;
     bool m_timesValid;
     mutable bool m_jitterReported;

@@ -4336,6 +4336,8 @@
 				F54631F002ACC78201A7DA6B,
 				F5D6A1A202FABD6701D854DA,
 				F5D6A1A302FABD6701D854DA,
+				F5A79F0803A6603F01A80164,
+				F5A79F0703A6603F01A80164,
 				F54631EB02ACC53801A7DA6B,
 				F54631EC02ACC53801A7DA6B,
 				F53E0FAF031015CD01E1DB74,
@@ -4546,7 +4548,6 @@
 				F53E0FBA03101AA401E1DB74,
 				F53E0FBC03102A8E01E1DB74,
 				F53E0FC00310411501E1DB74,
-				F5AA63CB031193CA01442A89,
 				F53E490D031257DD01989694,
 				F56CBBD60317A679017AE398,
 				F56CBBD80317A68E017AE398,
@@ -4602,6 +4603,7 @@
 				F5AA38B603A23A3801A80164,
 				F5AA38BA03A23A4D01A80164,
 				F54490DC03A52FD301A80164,
+				F5A79F0903A6603F01A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4765,6 +4767,7 @@
 				F5AA38B703A23A3801A80164,
 				F5AA38BB03A23A4D01A80164,
 				F54490DD03A52FD301A80164,
+				F5A79F0A03A6603F01A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5644,6 +5647,30 @@
 			settings = {
 			};
 		};
+		F5A79F0703A6603F01A80164 = {
+			isa = PBXFileReference;
+			name = GameFrameTimer.h;
+			path = Game/GameFrameTimer.h;
+			refType = 4;
+		};
+		F5A79F0803A6603F01A80164 = {
+			isa = PBXFileReference;
+			name = GameFrameTimer.cpp;
+			path = Game/GameFrameTimer.cpp;
+			refType = 4;
+		};
+		F5A79F0903A6603F01A80164 = {
+			fileRef = F5A79F0703A6603F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5A79F0A03A6603F01A80164 = {
+			fileRef = F5A79F0803A6603F01A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5A7B49403A21B0001A80164 = {
 			isa = PBXFileReference;
 			name = MediaNetID.h;
@@ -5778,12 +5805,6 @@
 		};
 		F5AA63CA031193CA01442A89 = {
 			fileRef = F5AA63C8031193CA01442A89;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F5AA63CB031193CA01442A89 = {
-			fileRef = F5AA63C9031193CA01442A89;
 			isa = PBXBuildFile;
 			settings = {
 			};

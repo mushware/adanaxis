@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.35 2002/12/04 12:54:41 southa Exp $
+ * $Id: GameContract.h,v 1.36 2002/12/04 15:39:58 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.36  2002/12/04 15:39:58  southa
+ * Multiplayer work
+ *
  * Revision 1.35  2002/12/04 12:54:41  southa
  * Network control work
  *
@@ -172,7 +175,7 @@ protected:
     void RenderFastDiagnostics(void) const;
     void DesigningDisplay(void);
     void GlobalKeyControl(void);
-    void RunningMove(const GameTimer& inTimer, U32 inNumFrames);
+    void RunningMove(GameTimer& inTimer, U32 inNumFrames);
     void FillControlQueues(const GameTimer& inTimer, U32 inNumFrames);
     void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames);
     void SendControlQueues(const GameTimer& inTimer, U32 inNumFrames);
