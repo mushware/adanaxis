@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.14 2002/11/20 22:35:27 southa Exp $
+ * $Id: GameTimer.cpp,v 1.15 2002/12/04 12:54:41 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.15  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.14  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -137,7 +140,7 @@ GameTimer::JudgementValid(void) const
     return m_timesValid;
 }
 
-tVal
+U32
 GameTimer::MotionFramesGet(void) const
 {
     // Return the integer part of the frame counter
@@ -146,7 +149,12 @@ GameTimer::MotionFramesGet(void) const
     
     double frames;
     modf((m_currentTime - m_motionFrameTime + m_motionMargin) / m_motionFrameInterval, &frames);
-    return frames;
+    if (frames < 0)
+    {
+        frames = 0;
+        ReportJitter();
+    }
+    return static_cast<U32>(frames);
 }
 
 void
@@ -318,7 +326,7 @@ GameTimer::WindbackValueGet(tMsec inMSec)
 }
 
 void
-GameTimer::ReportJitter(void)
+GameTimer::ReportJitter(void) const
 {
     if (!m_jitterReported)
     {

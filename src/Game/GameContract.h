@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.34 2002/12/03 20:28:16 southa Exp $
+ * $Id: GameContract.h,v 1.35 2002/12/04 12:54:41 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.35  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.34  2002/12/03 20:28:16  southa
  * Network, player and control work
  *
@@ -171,9 +174,11 @@ protected:
     void GlobalKeyControl(void);
     void RunningMove(const GameTimer& inTimer, U32 inNumFrames);
     void FillControlQueues(const GameTimer& inTimer, U32 inNumFrames);
+    void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames);
     void SendControlQueues(const GameTimer& inTimer, U32 inNumFrames);
-    bool VerifyOrCreateForClientDef(const string& inName, GameDefClient& inClientDef);
+    bool VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef);
     bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
+    bool VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef);
     void ManagePlayers(GameAppHandler& inAppHandler);
     
     void XMLStartHandler(CoreXML& inXML);

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.20 2002/12/04 00:37:11 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.21 2002/12/04 12:54:41 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.21  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.20  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -109,6 +112,7 @@ public:
     bool ImageIs(void) const { return m_imageIs; }
     void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
     bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum);
+    CoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(U32 inFrameNum) const;
     void ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum);
     
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);

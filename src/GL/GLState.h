@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.h,v 1.5 2002/10/17 15:50:58 southa Exp $
+ * $Id: GLState.h,v 1.6 2002/10/22 20:42:01 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.6  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/10/17 15:50:58  southa
  * Config saving, pause and quit
  *
@@ -52,7 +55,8 @@ public:
         kModulationInvalid,
         kModulationNone,
         kModulationColour,
-        kModulationLighting
+        kModulationLighting,
+        kModulationInvalidated
     };
 
     enum tDepthType
@@ -77,6 +81,7 @@ public:
     
     static void BlendSet(tBlendType inType);
     static void AmbientLightSet(tVal inAmbient);
+    static void LightingAlphaSet(tVal inAlpha);
     static void ModulationSet(tModulationType inType);
     static void DepthSet(tDepthType inType);
     static void UseLightingSet(bool inValue);
@@ -91,6 +96,7 @@ private:
     static void ResolveDisplayQuality(void);
         
     static tBlendType m_blendState;
+    static tVal m_lightingAlpha;
     static tModulationType m_modulateState;
     static tDepthType m_depthState;
     static tDisplayQuality m_displayQuality;
@@ -164,6 +170,13 @@ GLState::AmbientLightSet(tVal inAmbient)
 }
 
 inline void
+GLState::LightingAlphaSet(tVal inAlpha)
+{
+    m_lightingAlpha = inAlpha;
+    m_modulateState = kModulationInvalidated;
+}
+
+inline void
 GLState::ModulationSet(tModulationType inValue)
 {
     if (m_modulateState != inValue)
@@ -183,13 +196,13 @@ GLState::ModulationSet(tModulationType inValue)
             case kModulationLighting:
                 if (m_useLighting)
                 {
-                    GLfloat ambient[4]={1.0,1.0,1.0,1};
+                    GLfloat ambient[4]={1.0,1.0,1.0,1.0};
                     glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
 
-                    GLfloat specular[4]={1.0,1.0,1.0,1};
+                    GLfloat specular[4]={1.0,1.0,1.0,1.0};
                     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
-                    GLfloat diffuse[4]={0.1,0.1,0.1,1};
+                    GLfloat diffuse[4]={0.1,0.1,0.1,m_lightingAlpha};
                     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 
                     glMaterialf(GL_FRONT, GL_SHININESS, 128);

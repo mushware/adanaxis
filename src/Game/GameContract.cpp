@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.101 2002/12/04 00:37:10 southa Exp $
+ * $Id: GameContract.cpp,v 1.102 2002/12/04 12:54:40 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.102  2002/12/04 12:54:40  southa
+ * Network control work
+ *
  * Revision 1.101  2002/12/04 00:37:10  southa
  * ControlFrameDef work
  *
@@ -592,8 +595,9 @@ GameContract::RunningDisplay(void)
     GameTimer& timer(GameData::Instance().TimerGet());
 
     GameView& currentView = *GameData::Instance().CurrentViewGet();
-    
+
     GLState::AmbientLightSet(currentView.AmbientLightingGet());
+    GLState::LightingAlphaSet(1.0);
     GLData::Instance().LightsGet()->AmbientLightingSet(currentView.AmbientLightingGet());
     GLData::Instance().LightsGet()->LightingFactorSet(currentView.LightingFactorGet());
     
@@ -657,7 +661,6 @@ GameContract::RunningDisplay(void)
 
     // Set states for player rendering
     GLState::DepthSet(GLState::kDepthTest);
-    GLState::ModulationSet(GLState::kModulationLighting);
 
     {
         CoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Instance().PlayerDataGet().End();
@@ -674,7 +677,18 @@ GameContract::RunningDisplay(void)
             gl.SetPosition(0,0);
             gl.MoveTo(playerSpec.pos.x, playerSpec.pos.y);
             GLUtils::RotateAboutZ(-90-playerSpec.angle*(180/M_PI));
-        
+
+            if (p->second->ImageIs())
+            {
+                GLState::LightingAlphaSet(0.8);
+            }
+            else
+            {
+                GLState::LightingAlphaSet(1.0);
+            }
+            // Reset the lighting with the new alpha
+            GLState::ModulationSet(GLState::kModulationLighting);
+
             p->second->Render();
         
             GLUtils::PopMatrix();
@@ -797,6 +811,20 @@ GameContract::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 }
 
 void
+GameContract::SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames)
+{
+    U32 startFrame = inTimer.CurrentMotionFrameGet();
+    CoreHistoryIterator<U32, GameControlFrameDef> p = inPlayer.ControlFrameDefIteratorGet(startFrame);
+    U32 deathCtr=0;
+    while (p.ValidIs())
+    {
+        // Do something with the iterator
+        p.ForwardMove();
+        if (++deathCtr > 1000) COREASSERT(false);
+    }
+}
+
+void
 GameContract::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
 {
     CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
@@ -805,11 +833,13 @@ GameContract::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
     {
         if (!p->second->ImageIs())
         {
+            COREASSERT(p->second != NULL);
             GamePiecePlayer *playerPtr;
             // Needs optimised lookup
             if (GameData::Instance().PlayerDataGet().DataGetIfExists(playerPtr, p->first))
             {
-                
+                COREASSERT(playerPtr != NULL);
+                SendControl(*p->second, *playerPtr, inTimer, inNumFrames);
             }
         }
     }
@@ -827,7 +857,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
 
     if (timer.JudgementValid())
     {
-        tVal numMotionFrames=timer.MotionFramesGet();
+        U32 numMotionFrames=timer.MotionFramesGet();
         if (inAppHandler.MultiplayerIs())
         {
             // Can't skip frames in a network game, but this avoids a total hang
@@ -1027,7 +1057,7 @@ GameContract::ScriptFunction(const string& inName, GameAppHandler& inAppHandler)
 }
 
 bool
-GameContract::VerifyOrCreateForClientDef(const string& inName, GameDefClient& inClientDef)
+GameContract::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef)
 {
     bool retVal=true;
     CoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerDataGet();
@@ -1052,10 +1082,24 @@ GameContract::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
     if (CoreData<GameDefClient>::Instance().DataGetIfExists(defClient, inName))
     {
         COREASSERT(defClient != NULL);
-        if (defClient->ImageIs())
-        {
-            retVal = true;
-        }
+        retVal = true;
+    }
+    return retVal;
+}
+
+bool
+GameContract::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef)
+{
+    bool retVal=true;
+    CoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerDataGet();
+
+    if (!playerData.DataExists(inName))
+    {
+        retVal = false;
+        const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
+        COREASSERT(templatePlayer != NULL);
+        GamePiecePlayer *newPlayer = playerData.DataGive(inName, new GamePiecePlayer(*templatePlayer));
+        COREASSERT(newPlayer != NULL);
     }
     return retVal;
 }
@@ -1074,7 +1118,7 @@ GameContract::ManagePlayers(GameAppHandler& inAppHandler)
         {
             if (p->second->ImageIs())
             {
-                VerifyOrCreateForClientDef(p->first, *p->second);
+                VerifyOrCreateImagePlayer(p->first, *p->second);
             }
         }
     }
@@ -1106,7 +1150,7 @@ GameContract::ManagePlayers(GameAppHandler& inAppHandler)
     {
         if (!p->second->ImageIs())
         {
-            // VerifyLocalClientDef(p->first, *p->second);
+            VerifyOrCreateLocalPlayer(p->first, *p->second);
         }
     }    
 }

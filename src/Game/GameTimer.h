@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.13 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameTimer.h,v 1.14 2002/12/04 12:54:41 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.14  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.13  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -72,7 +75,7 @@ public:
     U32 CurrentMotionFrameGet(void) const;
     void Reset(void);
     bool JudgementValid(void) const;
-    tVal MotionFramesGet(void) const;
+    U32 MotionFramesGet(void) const;
     void MotionFramesDiscard(void);
     void MotionFramesDone(U32 inFrames);
     tVal PartialMotionFrameGet(void) const;
@@ -94,7 +97,7 @@ public:
     static string MsecToLongString(tMsec inMsec);
     
 private:
-    void ReportJitter(void);
+    void ReportJitter(void) const;
     
     tUsec m_currentTime;
     tUsec m_motionFrameTime;
@@ -109,6 +112,6 @@ private:
     tUsec m_motionMargin;
     U32 m_lastMsec;
     bool m_timesValid;
-    bool m_jitterReported;
+    mutable bool m_jitterReported;
 };
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.29 2002/12/04 00:37:11 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.30 2002/12/04 12:54:41 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.30  2002/12/04 12:54:41  southa
+ * Network control work
+ *
  * Revision 1.29  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
@@ -216,6 +219,12 @@ bool
 GamePiecePlayer::ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum)
 {
     return m_frameDefHistory.PreviousGet(outFrameDef, inFrameNum);
+}
+
+CoreHistoryIterator<U32, GameControlFrameDef>
+GamePiecePlayer::ControlFrameDefIteratorGet(U32 inFrameNum) const
+{
+    return m_frameDefHistory.IteratorPreviousGet(inFrameNum);
 }
 
 void

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.2 2002/10/17 15:50:58 southa Exp $
+ * $Id: GLState.cpp,v 1.3 2002/10/22 20:42:01 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.3  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/10/17 15:50:58  southa
  * Config saving, pause and quit
  *
@@ -24,6 +27,7 @@
 #include "GLState.h"
 
 GLState::tBlendType GLState::m_blendState=GLState::kBlendInvalid;
+tVal GLState::m_lightingAlpha = 1.0;
 GLState::tModulationType GLState::m_modulateState=GLState::kModulationInvalid;
 GLState::tDepthType GLState::m_depthState=GLState::kDepthInvalid;
 GLState::tDisplayQuality GLState::m_displayQuality=GLState::kQualityNotSet;
