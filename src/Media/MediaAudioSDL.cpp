@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.3 2002/08/26 15:19:02 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.4 2002/08/27 08:56:28 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.4  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/26 15:19:02  southa
  * Fix for SDL_mixer fading state bug
  *
@@ -111,7 +114,6 @@ MediaAudioSDL::~MediaAudioSDL()
 {
     // First delete all sounds so that they can't interfere
     CoreData<MediaSound>::Instance().Clear();
-    Mix_ChannelFinished(NULL); // Remove the hook
     Mix_CloseAudio();
 }
 
