@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } EhlKJwR5jYOFzt2/bmv21g
 /*
- * $Id: GLFont.h,v 1.12 2003/10/04 15:32:08 southa Exp $
+ * $Id: GLFont.h,v 1.13 2004/01/02 21:13:05 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.13  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLTextureRef.h"
 

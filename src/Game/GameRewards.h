@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aTSEw63LKX3T/DKXT8IarQ
 /*
- * $Id: GameRewards.h,v 1.14 2003/10/04 18:12:13 southa Exp $
+ * $Id: GameRewards.h,v 1.15 2004/01/02 21:13:07 southa Exp $
  * $Log: GameRewards.h,v $
+ * Revision 1.15  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.14  2003/10/04 18:12:13  southa
  * Readded
  *
@@ -59,7 +62,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameRewards : public MushcorePickle, protected MushcoreXMLHandler
 {

@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } 89fHF4YLGIWq9uDQlsz0Hw
 /*
- * $Id: MustlServer.h,v 1.10 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlServer.h,v 1.11 2004/01/02 21:13:15 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.11  2004/01/02 21:13:15  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -87,7 +90,7 @@
 
 #include "MustlStandard.h"
 
-#include "MustlMushcoreSingleton.h"
+#include "MustlMushcore.h"
 
 class MustlAddress;
 class MustlData;

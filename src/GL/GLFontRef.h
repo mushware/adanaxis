@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } zkzLPPq+iUqLS3l2Itx/aQ
 /*
-* $Id: GLFontRef.h,v 1.10 2003/10/04 15:32:08 southa Exp $
+* $Id: GLFontRef.h,v 1.11 2004/01/02 21:13:05 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.11  2004/01/02 21:13:05  southa
+* Source conditioning
+*
 * Revision 1.10  2003/10/04 15:32:08  southa
 * Module split
 *
@@ -50,7 +53,7 @@
 *
 */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLFont;
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4UPdmxdhcOYTSSiCCkQrtg
 /*
- * $Id: PlatformMiscUtils.h,v 1.22 2003/09/17 19:40:38 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.23 2004/01/02 21:13:16 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.23  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.22  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class PlatformMiscUtils
 {

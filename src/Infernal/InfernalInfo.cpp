@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 5zJGPs3Q4Kr0fA/Rcp9t6g
 /*
- * $Id: InfernalInfo.cpp,v 1.3 2004/01/01 21:15:46 southa Exp $
+ * $Id: InfernalInfo.cpp,v 1.4 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalInfo.cpp,v $
+ * Revision 1.4  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.3  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -47,7 +50,7 @@
 #define VERSION "0.1.2"
 #endif
 
-#include "MushcoreSTL.h"
+#include "InfernalSTL.h"
 
 using namespace Mushware;
 using namespace std;

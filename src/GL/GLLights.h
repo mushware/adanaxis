@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } jIqw/EED98UCmqHFIJJL/w
 /*
- * $Id: GLLights.h,v 1.9 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLLights.h,v 1.10 2004/01/02 21:13:05 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.10  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -48,7 +51,7 @@
 */
 
 #include "GLStandard.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLLightDef.h"
 

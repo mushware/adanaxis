@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } jT+U9xWDEpq/Hjy+c8gl5g
 /*
- * $Id: InfernalMessageControlData.h,v 1.3 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalMessageControlData.h,v 1.4 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalMessageControlData.h,v $
+ * Revision 1.4  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "mushGame.h"
 

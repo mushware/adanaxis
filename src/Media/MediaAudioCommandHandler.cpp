@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } mhlC8c6D/Irf0X0HlU+XHg
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.20 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.21 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.21  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.20  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -81,7 +84,7 @@
 #include "MediaAudio.h"
 #include "MediaSTL.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 using namespace Mushware;
 using namespace std;

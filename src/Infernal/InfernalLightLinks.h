@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QFrO3qrIh2RJLhY2NRioEQ
 /*
- * $Id: InfernalLightLinks.h,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalLightLinks.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalLightLinks.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalLightLinks
 {

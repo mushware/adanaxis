@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7NW6b2t5mL2XOCPX3qUwfw
 /*
- * $Id: MediaStandard.h,v 1.10 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaStandard.h,v 1.11 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.11  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

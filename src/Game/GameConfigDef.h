@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } OTDVin2+BEI/4kPdtl6y0w
 /*
- * $Id: GameConfigDef.h,v 1.10 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameConfigDef.h,v 1.11 2004/01/02 21:13:06 southa Exp $
  * $Log: GameConfigDef.h,v $
+ * Revision 1.11  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.10  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameConfigDef
 {

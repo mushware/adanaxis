@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } MctE4hzTzbF6lbeSYcdLFg
 /*
- * $Id: MustlWebRouter.h,v 1.8 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlWebRouter.h,v 1.9 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlWebRouter.h,v $
+ * Revision 1.9  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -57,7 +60,7 @@
 
 #include "MustlStandard.h"
 
-#include "MustlMushcoreSingleton.h"
+#include "MustlMushcore.h"
 
 class MustlLink;
 

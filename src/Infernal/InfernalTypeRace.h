@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } FQKI6Qs4Khn2iZTLco6EHA
 /*
- * $Id: InfernalTypeRace.h,v 1.2 2003/10/07 22:40:06 southa Exp $
+ * $Id: InfernalTypeRace.h,v 1.3 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalTypeRace.h,v $
+ * Revision 1.3  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -98,7 +101,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "mushGame.h"
 

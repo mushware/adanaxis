@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } gAAuufrhJQT+nw60TdIC4A
 /*
- * $Id: GLKeys.h,v 1.11 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLKeys.h,v 1.12 2004/01/02 21:13:05 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.12  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -53,7 +56,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLKeys
 {

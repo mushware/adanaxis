@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } R/1aQwvIg1O4dgh1TZWN5w
 /*
- * $Id: MustlFail.h,v 1.9 2003/09/17 19:40:37 southa Exp $
+ * $Id: MustlFail.h,v 1.10 2004/01/02 21:13:14 southa Exp $
  * $Log: MustlFail.h,v $
+ * Revision 1.10  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:37  southa
  * Source conditioning upgrades
  *
@@ -50,16 +53,7 @@
  */
 
 #include "MustlStandard.h"
-
-#if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/MushcoreFail.h>
-#else
-#if defined(HAVE_MUSHCORE_H)
-#include <MushcoreFail.h>
-#else
-#include "MushcoreFail.h"
-#endif
-#endif
+#include "MustlMushcore.h"
 
 class MustlFail : public MushcoreNonFatalFail
 {

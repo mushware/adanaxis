@@ -25,7 +25,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
 #else
-#include "Mushcore.h"
+#include "Mushcore/Mushcore.h"
 #endif
 
 //%includeGuardEnd {

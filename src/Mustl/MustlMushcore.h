@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } ld8VV7Ng9KnwdTTs5rn86A
 /*
- * $Id: MustlMushcore.h,v 1.3 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlMushcore.h,v 1.4 2004/01/02 21:13:15 southa Exp $
  * $Log: MustlMushcore.h,v $
+ * Revision 1.4  2004/01/02 21:13:15  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -39,7 +42,7 @@
 #if defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
 #else
-#include "Mushcore.h"
+#include "Mushcore/Mushcore.h"
 #endif
 #endif
 

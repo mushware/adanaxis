@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } i7SAdv1F9DdyP5ADuQs8UA
 /*
- * $Id: GameCommandHandler.cpp,v 1.22 2003/10/04 15:32:08 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.23 2004/01/02 21:13:06 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.23  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.22  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -87,7 +90,7 @@
 #include "GameAppHandler.h"
 #include "GameSTL.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

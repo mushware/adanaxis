@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } X7+028vaXXXQGbUppiPRWw
 /*
- * $Id: GameFrameTimer.h,v 1.5 2003/09/17 19:40:32 southa Exp $
+ * $Id: GameFrameTimer.h,v 1.6 2004/01/02 21:13:07 southa Exp $
  * $Log: GameFrameTimer.h,v $
+ * Revision 1.6  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -35,7 +38,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameFrameTimer
 {

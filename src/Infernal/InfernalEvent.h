@@ -16,14 +16,17 @@
  ****************************************************************************/
 //%Header } zdXi0pa6S/CF3BOLwACrHA
 /*
- * $Id: InfernalEvent.h,v 1.1 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalEvent.h,v 1.2 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalEvent.h,v $
+ * Revision 1.2  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 15:32:10  southa
  * Module split
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGame.h"
 
 #include "InfernalFloorMap.h"

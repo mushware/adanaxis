@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k3Rkj3RKHuRtzxzUhlcWQQ
 /*
- * $Id: InfernalFloorMap.h,v 1.1 2003/10/04 12:23:05 southa Exp $
+ * $Id: InfernalFloorMap.h,v 1.2 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalFloorMap.h,v $
+ * Revision 1.2  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 12:23:05  southa
  * File renaming
  *
@@ -134,7 +137,7 @@
 #include "InfernalLightLinks.h"
 #include "InfernalMap.h"
 #include "InfernalSolidMap.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class InfernalTileMap;

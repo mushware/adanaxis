@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } o3cRggzDaChnt+D4tHwV0Q
 /*
- * $Id: GameRouter.h,v 1.18 2003/10/04 15:32:09 southa Exp $
+ * $Id: GameRouter.h,v 1.19 2004/01/02 21:13:07 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.19  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.18  2003/10/04 15:32:09  southa
  * Module split
  *
@@ -74,8 +77,8 @@
  *
  */
 
-#include "Mushcore.h"
-#include "Mustl.h"
+#include "mushMushcore.h"
+#include "mushMustl.h"
 
 class GameRouter : public MustlMessageHandler, public MushcoreSingleton<GameRouter>
 {

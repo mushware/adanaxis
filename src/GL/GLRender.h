@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } nUcp9FzfP81gpVR3OJFy4w
 /*
- * $Id: GLRender.h,v 1.8 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLRender.h,v 1.9 2004/01/02 21:13:05 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.9  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -47,7 +50,7 @@
 #include "GLStandard.h"
 #include "GLState.h"
 #include "GLTextureRef.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLTextureRef;
 

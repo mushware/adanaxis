@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } yDMnpO6dBYVbvQbZBWfOWw
 /*
- * $Id: GameEvent.h,v 1.12 2003/10/07 22:40:05 southa Exp $
+ * $Id: GameEvent.h,v 1.13 2004/01/02 21:13:07 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.13  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/10/07 22:40:05  southa
  * Created MeshMover
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameEvent
 {

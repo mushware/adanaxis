@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } glt+p5k21nlY5n64VKRcXQ
 /*
- * $Id: InfernalMapArea.h,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalMapArea.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalMapArea.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class InfernalMapArea

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } tyJt/xZmlTC6wUUlDIYd3g
 /*
- * $Id: MediaAudio.h,v 1.21 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudio.h,v 1.22 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.22  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.21  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -55,7 +58,7 @@
 
 #include "MediaStandard.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class MediaSound;
 class MediaSoundStream;

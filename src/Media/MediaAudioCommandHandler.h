@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } qjKXp7uUgjCLAhL62k0zMA
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.12 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.13 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.13  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class MediaAudioCommandHandler
 {

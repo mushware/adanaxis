@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } bWQZsYE08i3wCn8IaZjh8w
 /*
- * $Id: MustlGameClient.h,v 1.3 2003/10/07 22:40:06 southa Exp $
+ * $Id: MustlGameClient.h,v 1.4 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlGameClient.h,v $
+ * Revision 1.4  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -94,7 +97,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "MustlGameBase.h"
 // Need to remove this dependency

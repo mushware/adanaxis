@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } OK79NjKAFVFPIyTLS5wV9g
 /*
- * $Id: InfernalAppHandler.cpp,v 1.2 2004/01/01 21:15:45 southa Exp $
+ * $Id: InfernalAppHandler.cpp,v 1.3 2004/01/01 23:04:02 southa Exp $
  * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.3  2004/01/01 23:04:02  southa
+ * XCode fixes
+ *
  * Revision 1.2  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -31,7 +34,7 @@
 #include "InfernalSTL.h"
 #include "InfernalWebCommands.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 #include "mushGame.h"
 #include "mushMedia.h"

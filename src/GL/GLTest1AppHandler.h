@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } b06EbYtXm8ynbb8Q4JWB2Q
 /*
- * $Id: GLTest1AppHandler.h,v 1.15 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.16 2004/01/02 21:13:05 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.16  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -75,7 +78,7 @@
  */
 
 #include "GLUTAppHandler.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "SDLAppHandler.h"
 
 class GLTest1AppHandler : public SDLAppHandler

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hyiZ+b2uNlo5j7vQ5mVf9w
 /*
- * $Id: GLColour.h,v 1.15 2003/10/04 15:32:08 southa Exp $
+ * $Id: GLColour.h,v 1.16 2004/01/02 21:13:05 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.16  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -66,7 +69,7 @@
  */
 
 #include "GLState.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLColour
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5GZB7i38V1ZXHKD6QTXNHw
 /*
- * $Id$
- * $Log$
+ * $Id: MushPieSTL.h,v 1.1 2004/01/02 11:57:47 southa Exp $
+ * $Log: MushPieSTL.h,v $
+ * Revision 1.1  2004/01/02 11:57:47  southa
+ * Created
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -29,7 +32,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 //%includeGuardEnd {
 #endif

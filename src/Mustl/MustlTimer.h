@@ -19,8 +19,11 @@
 //%Header } KmBPKC/kfWnzWwi8lGPGmA
 
 /*
- * $Id: MustlTimer.h,v 1.7 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlTimer.h,v 1.8 2004/01/02 21:13:15 southa Exp $
  * $Log: MustlTimer.h,v $
+ * Revision 1.8  2004/01/02 21:13:15  southa
+ * Source conditioning
+ *
  * Revision 1.7  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -46,7 +49,7 @@
 
 #include "MustlStandard.h"
 
-#include "MustlMushcoreSingleton.h"
+#include "MustlMushcore.h"
 
 class MustlTimer : public MushcoreSingleton<MustlTimer>
 {

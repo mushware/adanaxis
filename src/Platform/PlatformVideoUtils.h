@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } y/mShBhy6Geaycg1NfIfcg
 /*
- * $Id: PlatformVideoUtils.h,v 1.12 2003/09/17 19:40:39 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.13 2004/01/02 21:13:16 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.13  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/09/17 19:40:39  southa
  * Source conditioning upgrades
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLModeDef;
 

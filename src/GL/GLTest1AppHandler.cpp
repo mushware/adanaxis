@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } l7l96BOR/U94jSh7uenDpg
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.31 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.32 2004/01/02 21:13:05 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.32  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.31  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -111,7 +114,7 @@
 
 #include "GLTest1AppHandler.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 #include "GLSTL.h"

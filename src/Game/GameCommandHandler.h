@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PlnS42gkKu6Jk7XBx4Wu3w
 /*
- * $Id: GameCommandHandler.h,v 1.15 2003/10/04 15:32:08 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.16 2004/01/02 21:13:06 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.16  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameCommandHandler
 {

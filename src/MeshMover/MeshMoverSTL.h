@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vKhEb7SfUYHEsBmKwz32zw
 /*
- * $Id: MeshMoverSTL.h,v 1.1 2003/10/07 22:40:06 southa Exp $
+ * $Id: MeshMoverSTL.h,v 1.2 2004/01/02 21:13:10 southa Exp $
  * $Log: MeshMoverSTL.h,v $
+ * Revision 1.2  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -32,7 +35,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 //%includeGuardEnd {
 #endif

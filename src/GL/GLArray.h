@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } WCAdHIElfWaR0o22piKJyg
 /*
- * $Id: GLArray.h,v 1.9 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLArray.h,v 1.10 2004/01/02 21:13:04 southa Exp $
  * $Log: GLArray.h,v $
+ * Revision 1.10  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -48,7 +51,7 @@
  */
 
 #include "GLVector.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 template<class tSrc, class tDest>
 class GLArray

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5wVaQrecIxMy9gNkVg+RNw
 /*
- * $Id: GameAppHandler.h,v 1.22 2003/10/04 15:32:08 southa Exp $
+ * $Id: GameAppHandler.h,v 1.23 2004/01/02 21:13:06 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.23  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.22  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -86,7 +89,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class GameBase;

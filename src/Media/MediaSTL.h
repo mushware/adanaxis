@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } +Td/2IvsgUkwjOVIGbU3xg
 /*
- * $Id: MediaSTL.h,v 1.3 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaSTL.h,v 1.4 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaSTL.h,v $
+ * Revision 1.4  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -39,7 +42,7 @@
 #if defined(HAVE_MUSHCORESTL_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 #endif
 //%includeGuardEnd {

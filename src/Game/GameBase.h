@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } er0793/i2x5C77SKjyr/Ag
 /*
- * $Id: GameBase.h,v 1.19 2003/10/04 12:22:59 southa Exp $
+ * $Id: GameBase.h,v 1.20 2004/01/02 21:13:06 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.20  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.19  2003/10/04 12:22:59  southa
  * File renaming
  *
@@ -77,7 +80,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameAppHandler;
 

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } O1OZQ1e0dNivmeOKQy2vuA
 /*
- * $Id: InfernalContract.cpp,v 1.6 2004/01/01 21:15:45 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.7 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.7  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.6  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -411,7 +414,7 @@
 #include "InfernalTypeRace.h"
 #include "InfernalView.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGame.h"
 #include "mushGL.h"
 #include "mushMedia.h"

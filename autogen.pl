@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: autogen.pl,v 1.1 2003/12/31 15:46:55 southa Exp $
+# $Log: autogen.pl,v $
+# Revision 1.1  2003/12/31 15:46:55  southa
+# Created
+#
 
 use DirHandle;
 use Getopt::Long;
@@ -20,6 +23,7 @@ use strict;
 use constant TARGETTYPE_NONE => 1;
 use constant TARGETTYPE_PROGRAM => 2;
 use constant TARGETTYPE_LIBRARY => 3;
+use constant TARGETTYPE_EXTRADIST => 4;
 
 my $gVerbose=1;
 my $gTargetDirectory='targets';
@@ -33,8 +37,6 @@ my %gContext;
 (
     'SRC' => 'src'
 );
-
-sub ProcessDirectory($);
 
 sub FilenamesGet($$$)
 {
@@ -56,7 +58,8 @@ sub FilenamesGet($$$)
         {
             if (substr($suffix,0,1) ne "." && $suffix ne "CVS")
             {
-                ProcessDirectory($filename);
+                # Don't recurse
+                # ProcessDirectory($filename);
             }
         }
         elsif ( -f $filename )
@@ -82,7 +85,7 @@ sub Modules($$)
     my ($outputRef, $modules) = @_;
 
     my $entryDir = getcwd();
-    chdir $gConfig{'SRC'};
+    chdir $gConfig{'PATH'};
     
     my @sourceFiles;
     my @headerFiles;
@@ -92,13 +95,28 @@ sub Modules($$)
         unless( $moduleName =~ /^\s*$/) # Ignore whitespace-only
         {
             print "Adding module '$moduleName'\n" if ($gVerbose);
+            
+            my $searchExp = "";
+            
+            if ($moduleName =~ s/\/(\..*)//)
+            {
+                $searchExp = $1;
+            }
+            
             unless ( -d $moduleName )
             {
                 die "No module named '$moduleName' (no directory '$gConfig{'SRC'}/$moduleName')";
             }
             
-            FilenamesGet(\@sourceFiles, $moduleName, '/.*\.cpp');
-            FilenamesGet(\@headerFiles, $moduleName, '/.*\.h');
+            if ($searchExp ne "")
+            {
+                FilenamesGet(\@sourceFiles, $moduleName, "/$searchExp");
+            }
+            else
+            {
+                FilenamesGet(\@sourceFiles, $moduleName, '/.*\.cpp');
+                FilenamesGet(\@headerFiles, $moduleName, '/.*\.h');
+            }
             if ($gVerbose)
             {
                 print "Source files: ", join(' ', @sourceFiles), "\n";
@@ -114,7 +132,7 @@ sub Modules($$)
     {
         push @$outputRef,
             "lib_LTLIBRARIES=lib$gConfig{'LIBRARY'}.la",
-            "lib$gConfig{'LIBRARY'}_la_SOURCES=".join(' ', @sourceFiles).join(' ', @headerFiles),
+            "lib$gConfig{'LIBRARY'}_la_SOURCES=".join(' ', @sourceFiles).' '.join(' ', @headerFiles),
             'library_includedir=$(includedir)/'."$gConfig{'NAME'}",
             'library_include_HEADERS='.join(' ', @headerFiles);
     }
@@ -122,7 +140,12 @@ sub Modules($$)
     {
         push @$outputRef,
         "bin_PROGRAMS=$gConfig{'PROGRAM'}",
-        "$gConfig{'PROGRAM'}_SOURCES=".join(' ', @sourceFiles).join(' ', @headerFiles);        
+        "$gConfig{'PROGRAM'}_SOURCES=".join(' ', @sourceFiles).' '.join(' ', @headerFiles);        
+    }
+    elsif ($gTargetType == TARGETTYPE_EXTRADIST)
+    {
+        push @$outputRef,
+        "EXTRA_DIST=".join(' ', @sourceFiles).' '.join(' ', @headerFiles);        
     }
     else
     {
@@ -151,7 +174,7 @@ sub FileWrite($$)
     
     print "Writing modified file $filename\n" if $gVerbose;
         
-    open(FILE, ">$filename") or die "File open for write failed for $filename: $!";
+    open(FILE, ">>$filename") or die "File open for write failed for $filename: $!";
     
     foreach (@$contentRef)
     {
@@ -198,15 +221,29 @@ sub Process($)
                 die "Malformed command '$command'";
             }
         }
-        elsif ($command =~ /Create:/)
+        elsif ($command =~ /(Create|Append):/)
         {
-            if ($command =~ /Create:\s*(\S+)\s*$/)
+            if ($outputFilename ne "")
             {
-                $outputFilename = $1;
+                FileWrite(\@output, $outputFilename);
+                @output=();
+            }
+            if ($command =~ /(Create|Append):\s*(\S+)\s*$/)
+            {
+                $outputFilename = $2;
+                $gConfig{'PATH'} = $outputFilename;
+                unless ($gConfig{'PATH'} =~ s/\/.*$//)
+                {
+                    $gConfig{'PATH'} = ".";
+                }
             }
             else
             {
                 die "Malformed command '$command'";
+            }
+            if ($command =~ /Create:/)
+            {
+                unlink $outputFilename;
             }
         }
         elsif ($command =~ /Library:/)
@@ -227,6 +264,17 @@ sub Process($)
             {
                 $gTargetType = TARGETTYPE_PROGRAM;
                 $gConfig{'PROGRAM'} = $1;   
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /ExtraDist:/)
+        {
+            if ($command =~ /ExtraDist:\s*$/)
+            {
+                $gTargetType = TARGETTYPE_EXTRADIST;   
             }
             else
             {

@@ -16,13 +16,16 @@
  ****************************************************************************/
 //%Header } r0JNBhRFJkXxSnx0KE1UWg
 /*
- * $Id: InfernalCommandHandler.h,v 1.1 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalCommandHandler.h,v 1.2 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalCommandHandler.h,v $
+ * Revision 1.2  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 15:32:10  southa
  * Module split
  *
  */
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalCommandHandler
 {

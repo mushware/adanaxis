@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } iDPNfbMZ7BZLg/2HjUP/7A
 /*
- * $Id: GLCommandHandler.h,v 1.13 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.14 2004/01/02 21:13:05 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.14  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -68,7 +71,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLCommandHandler
 {

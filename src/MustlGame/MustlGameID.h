@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } KCOpISRhMzYCaLMLCDJp/A
 /*
- * $Id: MustlGameID.h,v 1.2 2003/10/06 22:42:04 southa Exp $
+ * $Id: MustlGameID.h,v 1.3 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlGameID.h,v $
+ * Revision 1.3  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/06 22:42:04  southa
  * Include fixes
  *
@@ -52,7 +55,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushMedia.h"
 
 #include "MustlGameClient.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } jvyI9s5e3PH32wk9MiBJ4A
 /*
- * $Id: GLLine.h,v 1.11 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLLine.h,v 1.12 2004/01/02 21:13:05 southa Exp $
  * $Log: GLLine.h,v $
+ * Revision 1.12  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -53,7 +56,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLPoint.h"
 #include "GLRenderable.h"

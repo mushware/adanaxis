@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } z2yHZT+T3CgxjL09nWyEYA
 /*
- * $Id: InfernalMotionSpec.h,v 1.3 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalMotionSpec.h,v 1.4 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalMotionSpec.h,v $
+ * Revision 1.4  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class InfernalMotionSpec

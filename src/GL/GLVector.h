@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } qFAbiUF3YhyOgQbh+CmEag
 /*
- * $Id: GLVector.h,v 1.12 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLVector.h,v 1.13 2004/01/02 21:13:06 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.13  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -58,7 +61,7 @@
 
 #include "GLRenderable.h"
 #include "GLStandard.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLVector : public GLRenderable
 {

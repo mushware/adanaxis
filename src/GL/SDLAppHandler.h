@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Qp+zJWpYDmzgoicW8gohiQ
 /*
- * $Id: SDLAppHandler.h,v 1.22 2003/09/17 19:40:30 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.23 2004/01/02 21:13:06 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.23  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.22  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -86,7 +89,7 @@
 #include "GLAppHandler.h"
 #include "GLKeys.h"
 #include "GLModeDef.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLKeyboardSignal;
 

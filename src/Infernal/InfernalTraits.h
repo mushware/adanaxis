@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NR/Q7xwlI5w+eMjk0n3sTQ
 /*
- * $Id: InfernalTraits.h,v 1.1 2003/10/04 15:32:12 southa Exp $
+ * $Id: InfernalTraits.h,v 1.2 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalTraits.h,v $
+ * Revision 1.2  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 15:32:12  southa
  * Module split
  *
@@ -83,7 +86,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalTraits : public MushcorePickle, protected MushcoreXMLHandler
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } l8oEAtAUD9xzUZc49igF7Q
 /*
- * $Id: InfernalPlayerUtils.h,v 1.3 2003/10/06 22:23:45 southa Exp $
+ * $Id: InfernalPlayerUtils.h,v 1.4 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalPlayerUtils.h,v $
+ * Revision 1.4  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/06 22:23:45  southa
  * Game to GameMustl move
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameAppHandler;
 class MustlGameClient;

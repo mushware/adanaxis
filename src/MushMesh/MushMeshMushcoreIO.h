@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xqdCCut+mdYbwvLEztS+Rw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshMushcoreIO.h,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Log: MushMeshMushcoreIO.h,v $
+ * Revision 1.1  2004/01/04 17:02:30  southa
+ * MushPie extras and MushcoreIO fixes
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -29,7 +32,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreIO.h>
 #else
-#include "MushcoreIO.h"
+#include "Mushcore/MushcoreIO.h"
 #endif
 //%includeGuardEnd {
 #endif

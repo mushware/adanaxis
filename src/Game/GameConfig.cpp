@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } aK/iFeTBrNogp26MaxgKxg
 /*
- * $Id: GameConfig.cpp,v 1.30 2004/01/01 21:15:45 southa Exp $
+ * $Id: GameConfig.cpp,v 1.31 2004/01/02 21:13:06 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.31  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.30  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -111,7 +114,7 @@
 #include "GameConfigDef.h"
 #include "GameSTL.h"
 
-#include "Mustl.h"
+#include "mushMustl.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

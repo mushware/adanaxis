@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rcXSfc3f9ci5xhawZesB7Q
 /*
- * $Id: InfernalContract.h,v 1.4 2003/10/06 22:23:45 southa Exp $
+ * $Id: InfernalContract.h,v 1.5 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.5  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/10/06 22:23:45  southa
  * Game to GameMustl move
  *
@@ -158,7 +161,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGame.h"
 #include "mushGL.h"
 

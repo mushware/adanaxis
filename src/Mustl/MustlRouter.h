@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } bY1HtzWwpPUoN4EWE+p3mQ
 /*
- * $Id: MustlRouter.h,v 1.11 2003/09/17 19:40:38 southa Exp $
+ * $Id: MustlRouter.h,v 1.12 2004/01/02 21:13:15 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.12  2004/01/02 21:13:15  southa
+ * Source conditioning
+ *
  * Revision 1.11  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -75,7 +78,7 @@
 
 #include "MustlStandard.h"
 
-#include "MustlMushcoreSingleton.h"
+#include "MustlMushcore.h"
 
 class MustlData;
 class MustlLink;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 4G+EBC2zDuc8WFEDtSpA3g
 /*
- * $Id: GameRecords.h,v 1.16 2003/10/04 18:12:13 southa Exp $
+ * $Id: GameRecords.h,v 1.17 2004/01/02 21:13:07 southa Exp $
  * $Log: GameRecords.h,v $
+ * Revision 1.17  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/10/04 18:12:13  southa
  * Readded
  *
@@ -66,7 +69,7 @@
  */
 
 #include "GameTimer.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameRecords : public MushcorePickle, protected MushcoreXMLHandler
 {

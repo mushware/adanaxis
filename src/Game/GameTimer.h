@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } w043ydgSglW3nMbwSA1Ebg
 /*
- * $Id: GameTimer.h,v 1.23 2003/10/04 15:32:09 southa Exp $
+ * $Id: GameTimer.h,v 1.24 2004/01/02 21:13:08 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.24  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.23  2003/10/04 15:32:09  southa
  * Module split
  *
@@ -89,7 +92,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GameFrameTimer.h"
 

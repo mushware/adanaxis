@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ZBuweYMmEueBsNGuUuHwDg
 /*
- * $Id: GameGraphic.h,v 1.15 2003/09/17 19:40:32 southa Exp $
+ * $Id: GameGraphic.h,v 1.16 2004/01/02 21:13:07 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.16  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/09/17 19:40:32  southa
  * Source conditioning upgrades
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameGraphic : public MushcorePickle, protected MushcoreXMLHandler
 {

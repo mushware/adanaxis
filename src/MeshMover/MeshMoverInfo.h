@@ -16,14 +16,17 @@
  ****************************************************************************/
 //%Header } +8ueqB8f7VxfVbFMh648UA
 /*
- * $Id: MeshMoverInfo.h,v 1.1 2003/10/07 22:40:06 southa Exp $
+ * $Id: MeshMoverInfo.h,v 1.2 2004/01/02 21:13:10 southa Exp $
  * $Log: MeshMoverInfo.h,v $
+ * Revision 1.2  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class MeshMoverInfo : public MushcoreInfo
 {

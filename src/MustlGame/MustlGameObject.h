@@ -18,8 +18,11 @@
  ****************************************************************************/
 //%Header } BvOHUSnlFWnlc3OzV7wmYw
 /*
- * $Id: MustlGameObject.h,v 1.1 2003/10/06 22:22:38 southa Exp $
+ * $Id: MustlGameObject.h,v 1.2 2004/01/02 21:13:16 southa Exp $
  * $Log: MustlGameObject.h,v $
+ * Revision 1.2  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/06 22:22:38  southa
  * Moved from Game to MustlGame
  *
@@ -61,7 +64,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "mushMedia.h"
 

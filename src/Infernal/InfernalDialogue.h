@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } NTlBsF8zSsqlWwKY37gwHQ
 /*
- * $Id: InfernalDialogue.h,v 1.1 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalDialogue.h,v 1.2 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalDialogue.h,v $
+ * Revision 1.2  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 15:32:10  southa
  * Module split
  *
@@ -81,7 +84,7 @@
  */
 
 #include "InfernalMotion.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 #include "mushMedia.h"
 

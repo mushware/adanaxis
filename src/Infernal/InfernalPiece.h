@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } aRj/NS7oVB222rZz315Kww
 /*
- * $Id: InfernalPiece.h,v 1.2 2003/10/07 22:40:06 southa Exp $
+ * $Id: InfernalPiece.h,v 1.3 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalPiece.h,v $
+ * Revision 1.3  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -83,7 +86,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "mushGame.h"
 

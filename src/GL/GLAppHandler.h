@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XaCf/61A2bEdA+h4Wlnatw
 /*
- * $Id: GLAppHandler.h,v 1.27 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLAppHandler.h,v 1.28 2004/01/02 21:13:04 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.28  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.27  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -117,7 +120,7 @@
  */
 
 #include "GLKeys.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLModeDef;
 

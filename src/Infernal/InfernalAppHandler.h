@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7QiPLoJKfevk4oMxOobgKw
 /*
- * $Id: InfernalAppHandler.h,v 1.2 2004/01/01 21:15:45 southa Exp $
+ * $Id: InfernalAppHandler.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalAppHandler.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -89,7 +92,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGame.h"
 
 class InfernalAppHandler : public GameAppHandler

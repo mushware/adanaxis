@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } BNjKCsSWcom9cMuDXrAdow
 /*
- * $Id: InfernalTileSpec.h,v 1.1 2003/10/04 12:23:07 southa Exp $
+ * $Id: InfernalTileSpec.h,v 1.2 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalTileSpec.h,v $
+ * Revision 1.2  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 12:23:07  southa
  * File renaming
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class InfernalTileTraits;

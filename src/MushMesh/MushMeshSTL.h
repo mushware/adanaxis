@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0cYW5/uVYQdnjseScctkDg
 /*
- * $Id: MushMeshSTL.h,v 1.2 2003/10/15 12:26:58 southa Exp $
+ * $Id: MushMeshSTL.h,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshSTL.h,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/15 12:26:58  southa
  * MushMeshArray neighbour testing and subdivision work
  *
@@ -35,7 +38,7 @@
 #elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 
 //%includeGuardEnd {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } d+1PYEKlqM49DPZUlGG7BQ
 /*
- * $Id: InfernalData.h,v 1.4 2003/10/07 22:40:06 southa Exp $
+ * $Id: InfernalData.h,v 1.5 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.5  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
@@ -119,7 +122,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalTileMap;
 class InfernalFloorMap;

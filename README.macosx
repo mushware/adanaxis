@@ -91,16 +91,16 @@ sudo make install
 tar xvzf tiff-v3.6.1.tar.gz
 cd tiff-v3.6.1
 ./configure
-perl -p -i.original -e 's#-install_name #-seg1addr 0x15000000 -install_name \@executable_path/../Frameworks/#g' libtiff/Makefile
+perl -p -i.original -e 's#-install_name #-prebind -seg1addr 0x15000000 -install_name \@executable_path/../Frameworks/#g' libtiff/Makefile
 make
 sudo make install
-sudo ranlib /usr/local/lib/libtiff.a
+# Might be necessary: sudo ranlib /usr/local/lib/libtiff.a
 
 # Download the SDL 1.2.6 from http://www.libsdl.org/
 tar xvzf SDL-1.2.6.tar.gz
 cd SDL-1.2.6
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x12000000 -install_name \@executable_path/../Frameworks#g' libtool
+perl -p -i.original -e 's#-install_name \\\$rpath#-prebind -seg1addr 0x12000000 -install_name \@executable_path/../Frameworks#g' libtool
 make
 sudo make install
 
@@ -108,16 +108,17 @@ sudo make install
 tar xvzf smpeg-0.4.4.tar.gz
 cd smpeg-0.4.4
 # Copy SDL's libtool and ltconfig into our directory.  Change path to suit your setup
-cp ../SDL-1.2.5/libtool .
-cp ../SDL-1.2.5/ltconfig .
-cp ../SDL-1.2.5/ltmain.sh .
+cp ../SDL-1.2.6/libtool .
+cp ../SDL-1.2.6/ltconfig .
+cp ../SDL-1.2.6/ltmain.sh .
 # Make sure that sdl-config is in our path
 setenv PATH ${PATH}:/usr/local/bin
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x13000000 -install_name \@executable_path/../Frameworks#g' libtool
-# Ignore make erros when building plaympeg
-make -i
-sudo make -i install
+perl -p -i.original -e 's#-install_name \\\$rpath#-prebind -seg1addr 0x13000000 -install_name \@executable_path/../Frameworks#g' libtool
+perl -p -i.original -e 's# -undefined suppress##g' libtool
+# Use make -i if there are errors when building plaympeg
+make
+sudo make install
 
 # Download http://www.vorbis.com/files/1.0/unix/libogg-1.0.tar.gz
 tar xvzf libogg-1.0.tar.gz
@@ -141,7 +142,7 @@ cp ../SDL-1.2.6/libtool .
 cp ../SDL-1.2.6/ltconfig .
 cp ../SDL-1.2.6/ltmain.sh .
 ./configure
-perl -p -i.original -e 's#-install_name \\\$rpath#-seg1addr 0x14000000 -install_name \@executable_path/../Frameworks#g' libtool
-# Ignore make erros when building playwave
-make -i
-sudo make -i install
+perl -p -i.original -e 's#-install_name \\\$rpath#-prebind -seg1addr 0x14000000 -install_name \@executable_path/../Frameworks#g' libtool
+# Use make -i if there are errors when building playwave
+make
+sudo make install

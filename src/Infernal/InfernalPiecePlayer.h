@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } b7Xc1ZmC/w7sQvBg7dNyig
 /*
- * $Id: InfernalPiecePlayer.h,v 1.2 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalPiecePlayer.h,v 1.3 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalPiecePlayer.h,v $
+ * Revision 1.3  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -122,7 +125,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "InfernalFloorMap.h"
 #include "InfernalMotion.h"

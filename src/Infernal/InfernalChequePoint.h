@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } KP8K5+6dHPi3q6P7dA01Yw
 /*
- * $Id: InfernalChequePoint.h,v 1.3 2003/10/04 15:32:10 southa Exp $
+ * $Id: InfernalChequePoint.h,v 1.4 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalChequePoint.h,v $
+ * Revision 1.4  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/04 15:32:10  southa
  * Module split
  *
@@ -71,7 +74,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalEventStandingOn;
 

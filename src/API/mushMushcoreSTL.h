@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef INFERNALSTL_H
-#define INFERNALSTL_H
-//%includeGuardStart } TixJaqXfAoLocRM9KDH+vA
+#ifndef MUSHMUSHCORESTL_H
+#define MUSHMUSHCORESTL_H
+//%includeGuardStart } PZAXPtgeebdcW5Bhk0MQOw
 //%Header {
 /*****************************************************************************
  *
- * File: src/Infernal/InfernalSTL.h
+ * File: src/API/mushMushcoreSTL.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,33 +14,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } My7Cs2aGYO3Ig0Gmp4Rxew
+//%Header } pULdbxCbc/wzlQ7qG2TKUA
 /*
- * $Id: InfernalSTL.h,v 1.2 2004/01/02 21:13:09 southa Exp $
- * $Log: InfernalSTL.h,v $
- * Revision 1.2  2004/01/02 21:13:09  southa
- * Source conditioning
- *
- * Revision 1.1  2003/10/04 15:32:11  southa
- * Module split
- *
- * Revision 1.3  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.2  2003/08/21 23:08:54  southa
- * Fixed file headers
- *
- * Revision 1.1  2003/02/05 17:36:36  southa
- * Build fixes
- *
- * Revision 1.1  2003/01/13 23:05:22  southa
- * Mustl test application
- *
+ * $Id$
+ * $Log$
  */
-
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/MushcoreSTL.h>

@@ -17,8 +17,11 @@
 //%Header } /DwE1GTn283yZ2L2eCo9hQ
 
 /*
- * $Id: GLLightDef.h,v 1.14 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLLightDef.h,v 1.15 2004/01/02 21:13:05 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.15  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.14  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -67,7 +70,7 @@
 #include "GLPoint.h"
 #include "GLStandard.h"
 #include "GLVector.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLLightDef : public MushcorePickle, protected MushcoreXMLHandler
 {

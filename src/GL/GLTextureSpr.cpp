@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } LPAF2ITbPG1x+79//1lI5Q
 /*
- * $Id: GLTextureSpr.cpp,v 1.23 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.24 2004/01/02 21:13:06 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.24  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.23  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -86,7 +89,7 @@
  */
 
 #include "GLTextureSpr.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLSTL.h"
 

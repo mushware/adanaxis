@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 3kCtD7CzyADrPqiGrznn9A
 /*
- * $Id: mushMedia.h,v 1.26 2003/09/17 19:40:29 southa Exp $
+ * $Id: mushMedia.h,v 1.27 2004/01/02 21:13:04 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.27  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.26  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -103,7 +106,7 @@
 #include "Media/MediaSDL.h"
 #include "Media/MediaSound.h"
 #include "Media/MediaSoundStream.h"
-#include "Mustl.h"
+#include "mushMustl.h"
 
 //%includeGuardEnd {
 #endif

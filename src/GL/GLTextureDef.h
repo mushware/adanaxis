@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } A/CNrT+Qg4gpGy329MDcbA
 /*
- * $Id: GLTextureDef.h,v 1.9 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTextureDef.h,v 1.10 2004/01/02 21:13:06 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.10  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -48,7 +51,7 @@
  */
 
 #include "GLStandard.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLTextureDef
 {

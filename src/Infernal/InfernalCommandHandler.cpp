@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } l0nBqSn0B0wVfex1A/iasA
 /*
- * $Id: InfernalCommandHandler.cpp,v 1.2 2004/01/01 21:15:45 southa Exp $
+ * $Id: InfernalCommandHandler.cpp,v 1.3 2004/01/01 23:04:02 southa Exp $
  * $Log: InfernalCommandHandler.cpp,v $
+ * Revision 1.3  2004/01/01 23:04:02  southa
+ * XCode fixes
+ *
  * Revision 1.2  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -28,7 +31,7 @@
 #include "InfernalInfo.h"
 #include "InfernalWebCommands.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QZbGT6FQOYkZGp6KXs/pew
 /*
- * $Id: GLTexture.h,v 1.18 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLTexture.h,v 1.19 2004/01/02 21:13:05 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.19  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.18  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -109,7 +112,7 @@
 
 #include "GLStandard.h"
 #include "GLTextureDef.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLTexture
 {

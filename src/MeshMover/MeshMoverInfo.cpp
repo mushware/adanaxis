@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } T42nM9pNHXnlv6ZlPVHIcg
 /*
- * $Id: MeshMoverInfo.cpp,v 1.2 2004/01/01 21:15:46 southa Exp $
+ * $Id: MeshMoverInfo.cpp,v 1.3 2004/01/02 21:13:10 southa Exp $
  * $Log: MeshMoverInfo.cpp,v $
+ * Revision 1.3  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.2  2004/01/01 21:15:46  southa
  * Created XCode project
  *
@@ -32,7 +35,7 @@
 #define VERSION "0.0.1"
 #endif
 
-#include "MushcoreSTL.h"
+#include "MeshMoverSTL.h"
 
 using namespace Mushware;
 using namespace std;

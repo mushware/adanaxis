@@ -78,6 +78,7 @@
 				7A6CE19605A58DB000777D9B,
 				7A63E99405AA25DD0051D708,
 				7A65837905A9D4FC00E727F8,
+				7ACC317305AB2FDD001A0873,
 			);
 			isa = PBXGroup;
 			name = project;
@@ -105,9 +106,13 @@
 				7A710CB505A4A0A700A58F05,
 				7A710CA105A4A06100A58F05,
 				7A710C7E05A49FF500A58F05,
+				7ACC2FB505AB10A8001A0873,
+				4A9504C8FFE6A3BC11CA0CBA,
 				20286C33FDCF999611CA2CEA,
 				4A9504CAFFE6A41611CA0CBA,
-				4A9504C8FFE6A3BC11CA0CBA,
+				7ACC2F3A05AB0FCC001A0873,
+				7ACC305605AB10D0001A0873,
+				7ACC29DB05AB0DF3001A0873,
 				0249A66BFF388E3F11CA2CEA,
 			);
 			isa = PBXGroup;
@@ -177,6 +182,7 @@
 				GCC_ALTIVEC_EXTENSIONS = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
@@ -223,21 +229,6 @@
 //7A2
 //7A3
 //7A4
-		7A2E6C8C05A4DA9B0025F99B = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.rez;
-			name = PlatformBoxes.r;
-			path = MacOSX/PlatformBoxes.r;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A2E6C8D05A4DA9B0025F99B = {
-			fileRef = 7A2E6C8C05A4DA9B0025F99B;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		7A2E6C9505A4DAF90025F99B = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.icns;
@@ -319,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../..\n./prebuild.sh";
+			shellScript = "date\ncd ../..\n./prebuild.sh";
 		};
 		7A62B6F305A49C0B002A5F1C = {
 			buildActionMask = 2147483647;
@@ -514,7 +505,6 @@
 				7A62BA9F05A49D06002A5F1C,
 				7A62BAA105A49D06002A5F1C,
 				7A62BAA305A49D06002A5F1C,
-				7A62BAA505A49D06002A5F1C,
 				7A62BAA705A49D06002A5F1C,
 				7A62BAA905A49D06002A5F1C,
 				7A62BAAB05A49D06002A5F1C,
@@ -636,6 +626,10 @@
 				7A71953B05A99A0900C42A20,
 				7A719B0005A9A0A200C42A20,
 				7A65688A05AAAE6A0003984A,
+				7ACC31F205AB36AD001A0873,
+				7ACC327C05AB3A0A001A0873,
+				7ACC32F805AB4141001A0873,
+				7ACC330105AB4150001A0873,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,7 +829,6 @@
 				7A62BA9E05A49D06002A5F1C,
 				7A62BAA005A49D06002A5F1C,
 				7A62BAA205A49D06002A5F1C,
-				7A62BAA405A49D06002A5F1C,
 				7A62BAA605A49D06002A5F1C,
 				7A62BAA805A49D06002A5F1C,
 				7A62BAAA05A49D06002A5F1C,
@@ -903,7 +896,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A62BAD105A49D06002A5F1C,
-				7A2E6C8D05A4DA9B0025F99B,
 			);
 			isa = PBXRezBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,6 +915,12 @@
 				7A710D1205A4A23100A58F05,
 				7A710D1305A4A23100A58F05,
 				7A710D1405A4A23100A58F05,
+				7ACC29DC05AB0DF3001A0873,
+				7ACC2BE305AB0EB4001A0873,
+				7ACC2BE705AB0ED7001A0873,
+				7ACC2F3B05AB0FCC001A0873,
+				7ACC2FB605AB10A8001A0873,
+				7ACC305705AB10D0001A0873,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -936,14 +934,17 @@
 				7A62B6F605A49C0B002A5F1C,
 				7A62B6F705A49C0B002A5F1C,
 				7AE6BE2905A9F8B20006F26B,
+				7ACC30DB05AB249C001A0873,
 			);
 			buildRules = (
 			);
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
+				HEADER_SEARCH_PATHS = "../../src ../../src/API";
 				INFOPLIST_FILE = All.Info.plist;
 				INSTALL_PATH = "$(USER_APPS_DIR)";
+				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
 				PRODUCT_NAME = ic2;
 			};
 			dependencies = (
@@ -1021,8 +1022,12 @@
 				7A62B70D05A49D04002A5F1C,
 				7A62B70E05A49D04002A5F1C,
 				7A62B70F05A49D04002A5F1C,
+				7ACC31F105AB36AD001A0873,
+				7ACC32F705AB4141001A0873,
+				7ACC330005AB4150001A0873,
 				7A62B71005A49D04002A5F1C,
 				7A62B71105A49D04002A5F1C,
+				7ACC327B05AB3A09001A0873,
 			);
 			isa = PBXGroup;
 			path = API;
@@ -4182,8 +4187,6 @@
 				7A62B89B05A49D05002A5F1C,
 				7A62B89C05A49D05002A5F1C,
 				7A62B89D05A49D05002A5F1C,
-				7A62B89E05A49D05002A5F1C,
-				7A62B89F05A49D05002A5F1C,
 				7A62B8A005A49D05002A5F1C,
 				7A62B8A105A49D05002A5F1C,
 				7A62B8A205A49D05002A5F1C,
@@ -4570,22 +4573,6 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		7A62B89E05A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			path = MustlMushcoreSingleton.cpp;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A62B89F05A49D05002A5F1C = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = MustlMushcoreSingleton.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		7A62B8A005A49D05002A5F1C = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -4954,7 +4941,6 @@
 				7A62B8DA05A49D05002A5F1C,
 				7A62B8DB05A49D05002A5F1C,
 				7A62B8DC05A49D05002A5F1C,
-				7A2E6C8C05A4DA9B0025F99B,
 				7A62B8DD05A49D05002A5F1C,
 				7A62B8E305A49D05002A5F1C,
 			);
@@ -7871,18 +7857,6 @@
 			settings = {
 			};
 		};
-		7A62BAA405A49D06002A5F1C = {
-			fileRef = 7A62B89E05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A62BAA505A49D06002A5F1C = {
-			fileRef = 7A62B89F05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		7A62BAA605A49D06002A5F1C = {
 			fileRef = 7A62B8A005A49D05002A5F1C;
 			isa = PBXBuildFile;
@@ -9986,6 +9960,15 @@
 		};
 		7A65837905A9D4FC00E727F8 = {
 			children = (
+				7ACC30A305AB116F001A0873,
+				7ACC30A405AB116F001A0873,
+				7ACC30A505AB116F001A0873,
+				7ACC30A605AB116F001A0873,
+				7ACC30A705AB116F001A0873,
+				7ACC30A805AB116F001A0873,
+				7ACC30A905AB116F001A0873,
+				7ACC30AA05AB116F001A0873,
+				7ACC30AB05AB116F001A0873,
 				7A65838705A9D53F00E727F8,
 			);
 			isa = PBXGroup;
@@ -12357,28 +12340,296 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ../..\n./prebuild.sh";
 		};
+		7ABCE94B05AB45CE00A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = mushcore.def;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABCE94C05AB45CE00A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = mushmesh.def;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABCE94D05AB45CE00A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = mushpiece.def;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABCE94E05AB45CE00A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = snapshot.def;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABCE96F05AB463800A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = app.Makefile.am;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABCE97005AB463800A00CC6 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = sdl_app.configure.in;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACC29DB05AB0DF3001A0873 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = OpenGL.framework;
+			path = /System/Library/Frameworks/OpenGL.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC29DC05AB0DF3001A0873 = {
+			fileRef = 7ACC29DB05AB0DF3001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC2BE305AB0EB4001A0873 = {
+			fileRef = 4A9504C8FFE6A3BC11CA0CBA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC2BE705AB0ED7001A0873 = {
+			fileRef = 20286C33FDCF999611CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC2F3A05AB0FCC001A0873 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC2F3B05AB0FCC001A0873 = {
+			fileRef = 7ACC2F3A05AB0FCC001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC2FB505AB10A8001A0873 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC2FB605AB10A8001A0873 = {
+			fileRef = 7ACC2FB505AB10A8001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC305605AB10D0001A0873 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = GLUT.framework;
+			path = /System/Library/Frameworks/GLUT.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC305705AB10D0001A0873 = {
+			fileRef = 7ACC305605AB10D0001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC30A305AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = AUTHORS;
+			path = "/Users/southa/core-app/AUTHORS";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A405AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = ChangeLog;
+			path = "/Users/southa/core-app/ChangeLog";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A505AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = COPYING;
+			path = "/Users/southa/core-app/COPYING";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A605AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = INSTALL;
+			path = "/Users/southa/core-app/INSTALL";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A705AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = NEWS;
+			path = "/Users/southa/core-app/NEWS";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A805AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = README;
+			path = "/Users/southa/core-app/README";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30A905AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = README.linux;
+			path = "/Users/southa/core-app/README.linux";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30AA05AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = README.macosx;
+			path = "/Users/southa/core-app/README.macosx";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30AB05AB116F001A0873 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = README.win32;
+			path = "/Users/southa/core-app/README.win32";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		7ACC30DB05AB249C001A0873 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "date
+";
+		};
+		7ACC317305AB2FDD001A0873 = {
+			children = (
+				7ABCE96F05AB463800A00CC6,
+				7ABCE94B05AB45CE00A00CC6,
+				7ABCE94C05AB45CE00A00CC6,
+				7ABCE94D05AB45CE00A00CC6,
+				7ABCE97005AB463800A00CC6,
+				7ABCE94E05AB45CE00A00CC6,
+			);
+			isa = PBXGroup;
+			name = targets;
+			path = ../../targets;
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7ACC31F105AB36AD001A0873 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushMushcore.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACC31F205AB36AD001A0873 = {
+			fileRef = 7ACC31F105AB36AD001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC327B05AB3A09001A0873 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushMustl.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACC327C05AB3A0A001A0873 = {
+			fileRef = 7ACC327B05AB3A09001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC32F705AB4141001A0873 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushMushcoreSTL.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACC32F805AB4141001A0873 = {
+			fileRef = 7ACC32F705AB4141001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACC330005AB4150001A0873 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushMushcoreIO.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACC330105AB4150001A0873 = {
+			fileRef = 7ACC330005AB4150001A0873;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AE6BE2905A9F8B20006F26B = {
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7AE6BE2C05A9F8D90006F26B,
-				7AE6BE2D05A9F8DC0006F26B,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AE6BE2C05A9F8D90006F26B = {
-			fileRef = 7A7194ED05A998B900C42A20;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AE6BE2D05A9F8DC0006F26B = {
-			fileRef = 7A65815405A9D09C00E727F8;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 	};
 	rootObject = 20286C28FDCF999611CA2CEA;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } K22sbPiQEBIl3PBNZIK/dg
 /*
- * $Id: GLUTAppHandler.h,v 1.21 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.22 2004/01/02 21:13:06 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.22  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.21  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -86,7 +89,7 @@
 #include "GLAppHandler.h"
 #include "GLKeys.h"
 #include "GLModeDef.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLKeyboardSignal;
 

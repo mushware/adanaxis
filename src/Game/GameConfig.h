@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } kFANUReADczQHwmekNEH5Q
 /*
- * $Id: GameConfig.h,v 1.17 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameConfig.h,v 1.18 2004/01/02 21:13:06 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.18  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.17  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -71,7 +74,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GameConfig : public MushcorePickle, protected MushcoreXMLHandler
 {

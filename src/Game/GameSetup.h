@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } tesy6QLZmmL1LfgGY632YQ
 /*
- * $Id: GameSetup.h,v 1.13 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameSetup.h,v 1.14 2004/01/02 21:13:07 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.14  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -59,7 +62,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GameBase.h"
 

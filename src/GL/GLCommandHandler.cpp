@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Vbvn2bY5HmOscUTibPKIOQ
 /*
- * $Id: GLCommandHandler.cpp,v 1.32 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.33 2004/01/02 21:13:05 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.33  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.32  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -123,7 +126,7 @@
 #include "GLUTAppHandler.h"
 
 #include "GLSTL.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 using namespace Mushware;
 using namespace std;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Gp4cWtpt1YXvkd2iniZVUA
 /*
- * $Id: PlatformInputUtils.h,v 1.13 2003/09/17 19:40:38 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.14 2004/01/02 21:13:16 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.14  2004/01/02 21:13:16  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:38  southa
  * Source conditioning upgrades
  *
@@ -68,7 +71,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class PlatformInputUtils
 {

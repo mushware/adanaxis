@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } +ig6/BzDL2N0Vgw0nOBxSA
 /*
- * $Id: GLSTL.h,v 1.3 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLSTL.h,v 1.4 2004/01/02 21:13:05 southa Exp $
  * $Log: GLSTL.h,v $
+ * Revision 1.4  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -39,7 +42,7 @@
 #if defined(HAVE_MUSHCORESTL_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
 #endif
 //%includeGuardEnd {

@@ -16,15 +16,18 @@
  ****************************************************************************/
 //%Header } y93vGFiaLTzZGoBb1nB26A
 /*
- * $Id: InfernalRouter.h,v 1.1 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalRouter.h,v 1.2 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalRouter.h,v $
+ * Revision 1.2  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/04 15:32:11  southa
  * Module split
  *
  */
 
-#include "Mushcore.h"
-#include "Mustl.h"
+#include "mushMushcore.h"
+#include "mushMustl.h"
 
 #include "mushGame.h"
 

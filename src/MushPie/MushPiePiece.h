@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } natnLnIxDQDAAFW/Brzh3g
 /*
- * $Id: MushPiePiece.h,v 1.6 2004/01/06 00:34:56 southa Exp $
+ * $Id: MushPiePiece.h,v 1.7 2004/01/06 10:08:51 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.7  2004/01/06 10:08:51  southa
+ * MushcoreData and MushPieForm work
+ *
  * Revision 1.6  2004/01/06 00:34:56  southa
  * MushPie testing
  *
@@ -39,8 +42,6 @@
  */
 
 #include "MushPieStandard.h"
-
-#include "MushMesh.h"
 
 #include "MushPieForm.h"
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } hLF+pHpuwBfrJexxUsU//A
 /*
- * $Id: GLPoint.h,v 1.23 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLPoint.h,v 1.24 2004/01/02 21:13:05 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.24  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.23  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -91,7 +94,7 @@
 
 #include "GLRenderable.h"
 #include "GLStandard.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLPoint : public GLRenderable
 {

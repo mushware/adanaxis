@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XagZxWZIAf6/N5/5LJQ3aw
 /*
- * $Id: GLString.h,v 1.12 2003/10/04 15:32:08 southa Exp $
+ * $Id: GLString.h,v 1.13 2004/01/02 21:13:05 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.13  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/10/04 15:32:08  southa
  * Module split
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLFontRef.h"
 #include "GLRenderable.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ekm6SBZbMj0IRVRPvvu2RQ
 /*
- * $Id: GLAppSignal.h,v 1.13 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLAppSignal.h,v 1.14 2004/01/02 21:13:04 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.14  2004/01/02 21:13:04  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -60,7 +63,7 @@
  */
 
 #include "GLKeys.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLAppSignal: public MushcoreAppSignal
 {

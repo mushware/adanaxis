@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } KpPbooo+WmuTQJm5BO2hWA
 /*
- * $Id: GameProtocol.h,v 1.15 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameProtocol.h,v 1.16 2004/01/02 21:13:07 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.16  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.15  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -65,7 +68,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GameControlFrameDef.h"
 

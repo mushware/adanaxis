@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 7iTDsyzIq141ueXxktQcVg
 /*
- * $Id: GLRectangle.h,v 1.16 2003/10/04 12:22:58 southa Exp $
+ * $Id: GLRectangle.h,v 1.17 2004/01/02 21:13:05 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.17  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.16  2003/10/04 12:22:58  southa
  * File renaming
  *
@@ -68,7 +71,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLPoint.h"
 #include "GLRenderable.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 61vgDQLU2BW2SFeZx1RGIA
 /*
- * $Id: GLQuad.h,v 1.12 2003/10/04 12:22:58 southa Exp $
+ * $Id: GLQuad.h,v 1.13 2004/01/02 21:13:05 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.13  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.12  2003/10/04 12:22:58  southa
  * File renaming
  *
@@ -56,7 +59,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GLPoint.h"
 #include "GLRenderable.h"

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } WkAkPEatlzETkXVMDjMhyA
 /*
- * $Id: InfernalDataUtils.h,v 1.2 2003/10/04 12:44:34 southa Exp $
+ * $Id: InfernalDataUtils.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalDataUtils.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:34  southa
  * File renaming
  *
@@ -50,7 +53,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalDataUtils
 {

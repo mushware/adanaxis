@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qWfrD/KaPbGcPpGRqeqJKA
 /*
- * $Id: GameAppHandler.cpp,v 1.54 2004/01/01 21:15:45 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.55 2004/01/02 21:13:06 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.55  2004/01/02 21:13:06  southa
+ * Source conditioning
+ *
  * Revision 1.54  2004/01/01 21:15:45  southa
  * Created XCode project
  *
@@ -180,7 +183,7 @@
 
 #include "GameAppHandler.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 #include "mushPlatform.h"
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 3j0G6ZKdulvYZGbhotTRhQ
 /*
- * $Id: InfernalSpacePoint.h,v 1.2 2003/10/04 12:44:36 southa Exp $
+ * $Id: InfernalSpacePoint.h,v 1.3 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalSpacePoint.h,v $
+ * Revision 1.3  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:36  southa
  * File renaming
  *
@@ -53,7 +56,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class InfernalSpacePoint : public GLPoint

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vNBjNbUCI0jb1hp2/2iIZA
 /*
- * $Id: MediaSoundStream.h,v 1.9 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.10 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.10  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -47,7 +50,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "MediaSDL.h"
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vWBeosVH87okVVejo5ZQ8Q
 /*
- * $Id: GameQuit.h,v 1.7 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameQuit.h,v 1.8 2004/01/02 21:13:07 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.8  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.7  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -41,7 +44,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 #include "GameBase.h"
 

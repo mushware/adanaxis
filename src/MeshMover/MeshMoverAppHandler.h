@@ -16,14 +16,17 @@
  ****************************************************************************/
 //%Header } lqBeDRNm3b3SMSEVf+F/iQ
 /*
- * $Id: MeshMoverAppHandler.h,v 1.1 2003/10/07 22:40:06 southa Exp $
+ * $Id: MeshMoverAppHandler.h,v 1.2 2004/01/02 21:13:10 southa Exp $
  * $Log: MeshMoverAppHandler.h,v $
+ * Revision 1.2  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/07 22:40:06  southa
  * Created MeshMover
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGame.h"
 
 class MeshMoverAppHandler : public GameAppHandler

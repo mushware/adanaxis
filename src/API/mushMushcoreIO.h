@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEPIECE_H
-#define GAMEPIECE_H
-//%includeGuardStart } q9phvipr2Sb7bVhTMJCVdg
+#ifndef MUSHMUSHCOREIO_H
+#define MUSHMUSHCOREIO_H
+//%includeGuardStart } hpWm4RhEe3fsJWdwb0tRJw
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePiece.h
+ * File: src/API/mushMushcoreIO.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,25 +14,19 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cMGfss7JUHgGEOL/HgDNjg
+//%Header } c3x7SXDUFh1JlJ0Lpf5M2A
 /*
- * $Id: GamePiece.h,v 1.22 2004/01/02 21:13:07 southa Exp $
- * $Log: GamePiece.h,v $
- * Revision 1.22  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.21  2003/10/07 22:40:05  southa
- * Created MeshMover
- *
+ * $Id$
+ * $Log$
  */
 
-#include "mushMushcore.h"
-
-class GamePiece
-{
-public:
-    virtual ~GamePiece() {}
-};
+#if defined(HAVE_MUSHCORE_MUSHCORE_H)
+#include <Mushcore/MushcoreIO.h>
+#elif defined(HAVE_MUSHCORE_H)
+#include <MushcoreIO.h>
+#else
+#include "Mushcore/MushcoreIO.h"
+#endif
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

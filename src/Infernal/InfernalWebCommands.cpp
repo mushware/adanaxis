@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } OGCMz2u/d/YVPAeO/76hbA
 /*
- * $Id: InfernalWebCommands.cpp,v 1.3 2003/10/06 22:23:45 southa Exp $
+ * $Id: InfernalWebCommands.cpp,v 1.4 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalWebCommands.cpp,v $
+ * Revision 1.4  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/06 22:23:45  southa
  * Game to GameMustl move
  *
@@ -156,7 +159,7 @@
 #include "mushGame.h"
 #include "InfernalSTL.h"
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushMedia.h"
 #include "mushMustlGame.h"
 #include "mushPlatform.h"

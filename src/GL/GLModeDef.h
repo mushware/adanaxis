@@ -17,8 +17,11 @@
 //%Header } NFoAZtc/sgUuT4vu3akJhw
 
 /*
- * $Id: GLModeDef.h,v 1.8 2003/09/17 19:40:29 southa Exp $
+ * $Id: GLModeDef.h,v 1.9 2004/01/02 21:13:05 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.9  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:29  southa
  * Source conditioning upgrades
  *
@@ -45,7 +48,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class GLModeDef
 {

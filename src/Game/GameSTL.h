@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } y0xiGDO93d4zR1w4Opnw9A
 /*
- * $Id: GameSTL.h,v 1.3 2003/09/17 19:40:33 southa Exp $
+ * $Id: GameSTL.h,v 1.4 2004/01/02 21:13:07 southa Exp $
  * $Log: GameSTL.h,v $
+ * Revision 1.4  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/09/17 19:40:33  southa
  * Source conditioning upgrades
  *
@@ -38,13 +41,12 @@
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/MushcoreSTL.h>
-#else
-#if defined(HAVE_MUSHCORE_H)
+#elif defined(HAVE_MUSHCORE_H)
 #include <MushcoreSTL.h>
 #else
-#include "MushcoreSTL.h"
+#include "Mushcore/MushcoreSTL.h"
 #endif
-#endif
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } PGUBV8NwWAgE7ExGpy0a+w
 /*
- * $Id: InfernalInfo.h,v 1.2 2003/10/04 12:44:35 southa Exp $
+ * $Id: InfernalInfo.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalInfo.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:35  southa
  * File renaming
  *
@@ -38,7 +41,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalInfo : public MushcoreInfo
 {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } J66vx5Jw4AKqhGoojYM9ug
 /*
- * $Id: InfernalFloorDesigner.h,v 1.2 2003/10/04 12:44:34 southa Exp $
+ * $Id: InfernalFloorDesigner.h,v 1.3 2004/01/02 21:13:08 southa Exp $
  * $Log: InfernalFloorDesigner.h,v $
+ * Revision 1.3  2004/01/02 21:13:08  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/04 12:44:34  southa
  * File renaming
  *
@@ -71,7 +74,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 #include "InfernalFloorMap.h"

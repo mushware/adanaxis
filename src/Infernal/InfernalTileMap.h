@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 47mOGP5nAmOd8TIW01bJ6Q
 /*
- * $Id: InfernalTileMap.h,v 1.3 2003/10/04 15:32:11 southa Exp $
+ * $Id: InfernalTileMap.h,v 1.4 2004/01/02 21:13:09 southa Exp $
  * $Log: InfernalTileMap.h,v $
+ * Revision 1.4  2004/01/02 21:13:09  southa
+ * Source conditioning
+ *
  * Revision 1.3  2003/10/04 15:32:11  southa
  * Module split
  *
@@ -96,7 +99,7 @@
  */
 
 #include "InfernalTileSpec.h"
-#include "Mushcore.h"
+#include "mushMushcore.h"
 
 class InfernalTraits;
 

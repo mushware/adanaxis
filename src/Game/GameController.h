@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } gF1oxYCHhFVzdpX4CcegEQ
 /*
- * $Id: GameController.h,v 1.14 2003/09/17 19:40:31 southa Exp $
+ * $Id: GameController.h,v 1.15 2004/01/02 21:13:07 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.15  2004/01/02 21:13:07  southa
+ * Source conditioning
+ *
  * Revision 1.14  2003/09/17 19:40:31  southa
  * Source conditioning upgrades
  *
@@ -62,7 +65,7 @@
  *
  */
 
-#include "Mushcore.h"
+#include "mushMushcore.h"
 #include "mushGL.h"
 
 class GameControlFrameDef;
