@@ -2,19 +2,20 @@
 #define GLUTILS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLUtils.h,v 1.34 2002/10/22 20:42:02 southa Exp $
+ * $Id: GLUtils.h,v 1.35 2002/12/03 20:28:14 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.35  2002/12/03 20:28:14  southa
+ * Network, player and control work
+ *
  * Revision 1.34  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -37,7 +38,7 @@
  * Tiered maps
  *
  * Revision 1.27  2002/10/07 17:49:45  southa
- * Multiple values per map element
+ * Multiple values per std::map element
  *
  * Revision 1.26  2002/10/07 12:15:36  southa
  * First specular lighting
@@ -119,8 +120,8 @@
  *
  */
 
-#include "GLStandard.h"
 #include "GLPoint.h"
+#include "GLStandard.h"
 #include "GLVector.h"
 
 class GLTexture;
@@ -132,61 +133,61 @@ public:
 
 
     GLUtils(): m_x(0), m_y(0) {}
-    void SetPosition(tVal inX, tVal inY) {m_x=inX;m_y=inY;}
-    void MoveTo(tVal inX, tVal inY);
+    void SetPosition(Mushware::tVal inX, Mushware::tVal inY) {m_x=inX;m_y=inY;}
+    void MoveTo(Mushware::tVal inX, Mushware::tVal inY);
     void MoveTo(const GLPoint& inPoint) { MoveTo(inPoint.x, inPoint.y); }
-    void MoveRelative(tVal inX, tVal inY);
-    void MoveToEdge(tVal inX, tVal inY);
+    void MoveRelative(Mushware::tVal inX, Mushware::tVal inY);
+    void MoveToEdge(Mushware::tVal inX, Mushware::tVal inY);
 
-    static void Vertex(tVal inX, tVal inY) { glVertex2f(inX, inY); }
-    static void Vertex(tVal inX, tVal inY, tVal inZ) { glVertex3f(inX, inY, inZ); }
+    static void Vertex(Mushware::tVal inX, Mushware::tVal inY) { glVertex2f(inX, inY); }
+    static void Vertex(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inZ) { glVertex3f(inX, inY, inZ); }
     static void IdentityPrologue(void);
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
     static const GLPoint ScreenSizeGet(void);
     static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
-    static tVal ScreenScaleGet(void);
-    static tVal EyeDistanceGet(void) { return m_eyeDistance; }
-    static tVal LongestScreenAxis(void);
-    static void OrthoLookAt(tVal inX, tVal inY, tVal inAngle);
-    static void PerspectiveLookAt(const GLPoint& inPoint, tVal inAngle);
-    static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, tVal inAngle);
+    static Mushware::tVal ScreenScaleGet(void);
+    static Mushware::tVal EyeDistanceGet(void) { return m_eyeDistance; }
+    static Mushware::tVal LongestScreenAxis(void);
+    static void OrthoLookAt(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inAngle);
+    static void PerspectiveLookAt(const GLPoint& inPoint, Mushware::tVal inAngle);
+    static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);
 
-    static void DrawRectangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2);
-    static void DrawTriangle(tVal inX1, tVal inY1, tVal inX2, tVal inY2, tVal inX3, tVal inY3);
-    static void RasterPos(tVal inX, tVal inY);
+    static void DrawRectangle(Mushware::tVal inX1, Mushware::tVal inY1, Mushware::tVal inX2, Mushware::tVal inY2);
+    static void DrawTriangle(Mushware::tVal inX1, Mushware::tVal inY1, Mushware::tVal inX2, Mushware::tVal inY2, Mushware::tVal inX3, Mushware::tVal inY3);
+    static void RasterPos(Mushware::tVal inX, Mushware::tVal inY);
     static void BitmapText(const string& inStr);
-    static void DrawSprite(const GLTexture& inTex, tVal inX, tVal inY);
+    static void DrawSprite(const GLTexture& inTex, Mushware::tVal inX, Mushware::tVal inY);
     static void DrawSprite(const GLTexture& inTex);
     static void DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle);
-    static void DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAngle);
+    static void DrawRotatedSprite(const GLTexture& inTex, Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inAngle);
     static void PostRedisplay(void);
-    static void Scale(tVal inXScale, tVal inYScale, tVal inZScale);
-    static void RotateAboutZ(tVal inAngle);
+    static void Scale(Mushware::tVal inXScale, Mushware::tVal inYScale, Mushware::tVal inZScale);
+    static void RotateAboutZ(Mushware::tVal inAngle);
 
     static void PushMatrix(void) { glPushMatrix(); }
     static void PopMatrix(void) { glPopMatrix(); }
     static void Translate(const GLVector& inVec) { glTranslatef(inVec.x, inVec.y, inVec.z); }
     static void Flush(void) { glFlush(); }
     static void Decache(void);
-    static U32 ListContextGet(void) { return m_context; }
-    static U32 TextureContextGet(void) { return m_context; }
+    static Mushware::U32 ListContextGet(void) { return m_context; }
+    static Mushware::U32 TextureContextGet(void) { return m_context; }
 
 private:            
     static void SafetyHandler(void);
-    tVal m_x;
-    tVal m_y;
+    Mushware::tVal m_x;
+    Mushware::tVal m_y;
 
 
 
-    static tVal m_eyeDistance;
-    static tVal m_screenScale;
-    static U32 m_context;
+    static Mushware::tVal m_eyeDistance;
+    static Mushware::tVal m_screenScale;
+    static Mushware::U32 m_context;
     static bool m_swapValid;
 };
 #endif

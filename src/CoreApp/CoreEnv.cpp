@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.cpp,v 1.14 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.15 2002/11/07 11:59:02 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.15  2002/11/07 11:59:02  southa
+ * Web commands
+ *
  * Revision 1.14  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -58,9 +59,11 @@
  */
 
 #include "CoreEnv.h"
+#include "CoreConfig.h"
 #include "CoreException.h"
 #include "CoreScalar.h"
-#include "CoreConfig.h"
+
+using namespace Mushware;
 
 CoreEnv::CoreEnv *CoreEnv::m_instance=NULL;
 

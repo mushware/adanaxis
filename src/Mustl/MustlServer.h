@@ -1,8 +1,21 @@
 #ifndef MUSTLSERVER_H
 #define MUSTLSERVER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlServer.h,v 1.3 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlServer.h,v 1.4 2002/12/13 19:03:06 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.4  2002/12/13 19:03:06  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.3  2002/12/13 01:06:54  southa
  * Mustl work
  *

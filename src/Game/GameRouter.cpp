@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameRouter.cpp,v 1.13 2002/12/13 01:07:25 southa Exp $
+ * $Id: GameRouter.cpp,v 1.14 2002/12/14 15:04:33 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.14  2002/12/14 15:04:33  southa
+ * Mustl fixes
+ *
  * Revision 1.13  2002/12/13 01:07:25  southa
  * Mustl work
  *
@@ -52,6 +65,8 @@
 #include "GameNetUtils.h"
 #include "GamePiecePlayer.h"
 #include "GameProtocol.h"
+
+using namespace Mushware;
 
 auto_ptr<GameRouter> GameRouter::m_instance;
 

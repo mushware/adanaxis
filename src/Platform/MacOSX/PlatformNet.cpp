@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: PlatformNet.cpp,v 1.13 2002/11/28 12:05:46 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.14 2002/12/03 20:28:18 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.14  2002/12/03 20:28:18  southa
+ * Network, player and control work
+ *
  * Revision 1.13  2002/11/28 12:05:46  southa
  * Server name work
  *
@@ -48,15 +61,17 @@
 #undef INADDR_ANY
 #undef INADDR_NONE
 
-#include <sys/types.h>
-#include <sys/time.h>
-#include <sys/socket.h>
-#include <sys/ioctl.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <net/if.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/types.h>
+
+using namespace Mushware;
 
 bool PlatformNet::m_localAddressesValid=false;
 map<U32, bool> PlatformNet::m_localAddressMap;

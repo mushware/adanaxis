@@ -1,8 +1,21 @@
 #ifndef MUSTLDATA_H
 #define MUSTLDATA_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlData.h,v 1.2 2002/12/12 18:38:24 southa Exp $
+ * $Id: MustlData.h,v 1.3 2002/12/13 19:03:05 southa Exp $
  * $Log: MustlData.h,v $
+ * Revision 1.3  2002/12/13 19:03:05  southa
+ * Mustl interface cleanup
+ *
  * Revision 1.2  2002/12/12 18:38:24  southa
  * Mustl separation
  *
@@ -35,9 +48,9 @@
  *
  */
 
-#include "MustlStandard.h"
-#include "MustlAssert.h"
 #include "MustlAddress.h"
+#include "MustlAssert.h"
+#include "MustlStandard.h"
 
 class MustlData
 {
@@ -79,7 +92,7 @@ public:
     void PrepareForWrite(void);
     void PrepareForWrite(Mustl::U32 inSize);
 
-    void Print(ostream& ioOut) const;
+    void Print(std::ostream& ioOut) const;
     
 private:
     enum
@@ -94,10 +107,10 @@ private:
     Mustl::U32 m_unpackState;
     MustlAddress m_sourceAddress;
     bool m_sourceValid;
-    vector<Mustl::U8> m_data;
+    std::vector<Mustl::U8> m_data;
 };
 
-ostream& operator<<(ostream &inOut, const MustlData& inData);
+ostream& operator<<(std::ostream &inOut, const MustlData& inData);
 
 inline
 MustlData::MustlData() :

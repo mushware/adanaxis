@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameDefServer.cpp,v 1.13 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.14 2002/12/12 18:38:57 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.14  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.13  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -49,6 +62,8 @@
 #include "GameProtocol.h"
 
 #include "mushPlatform.h"
+
+using namespace Mushware;
 
 auto_ptr< CoreData<GameDefServer> > CoreData<GameDefServer>::m_instance;
 

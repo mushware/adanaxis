@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.cpp,v 1.10 2002/08/27 08:56:15 southa Exp $
+ * $Id: CoreApp.cpp,v 1.11 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreApp.cpp,v $
+ * Revision 1.11  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -47,10 +48,12 @@
  */
 
 #include "CoreApp.h"
-#include "CorePOSIX.h"
-#include "CoreCommandHandler.h"
 #include "CoreCommand.h"
+#include "CoreCommandHandler.h"
 #include "CoreInterpreter.h"
+#include "CorePOSIX.h"
+
+using namespace Mushware;
 
 CoreApp *CoreApp::m_instance = NULL;
 

@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.106 2002/12/10 19:00:16 southa Exp $
+ * $Id: GameContract.cpp,v 1.107 2002/12/10 20:38:05 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.107  2002/12/10 20:38:05  southa
+ * Server timing
+ *
  * Revision 1.106  2002/12/10 19:00:16  southa
  * Split timer into client and server
  *
@@ -337,33 +338,35 @@
 #include "mushMedia.h"
 #include "mushPlatform.h"
 
-#include "GameController.h"
-#include "GameControlFrameDef.h"
-#include "GameFloorMap.h"
-#include "GameData.h"
-#include "GameTileMap.h"
-#include "GameGlobalConfig.h"
 #include "GameAppHandler.h"
-#include "GameTileTraits.h"
-#include "GamePiecePlayer.h"
-#include "GamePlayerUtils.h"
-#include "GameFloorDesigner.h"
-#include "GameMapArea.h"
-#include "GameMotionSpec.h"
-#include "GameView.h"
-#include "GameTimer.h"
-#include "GameMapPoint.h"
+#include "GameConfig.h"
+#include "GameConfigDef.h"
+#include "GameControlFrameDef.h"
+#include "GameController.h"
+#include "GameData.h"
+#include "GameDataUtils.h"
 #include "GameDefClient.h"
 #include "GameDialogue.h"
-#include "GameDataUtils.h"
-#include "GameTypeRace.h"
 #include "GameEvent.h"
+#include "GameFloorDesigner.h"
+#include "GameFloorMap.h"
+#include "GameGlobalConfig.h"
+#include "GameMapArea.h"
+#include "GameMapPoint.h"
+#include "GameMotionSpec.h"
 #include "GameNetUtils.h"
+#include "GamePiecePlayer.h"
+#include "GamePlayerUtils.h"
 #include "GameRewards.h"
 #include "GameRouter.h"
 #include "GameSpacePoint.h"
-#include "GameConfig.h"
-#include "GameConfigDef.h"
+#include "GameTileMap.h"
+#include "GameTileTraits.h"
+#include "GameTimer.h"
+#include "GameTypeRace.h"
+#include "GameView.h"
+
+using namespace Mushware;
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 

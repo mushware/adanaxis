@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlServer.cpp,v 1.6 2002/12/17 00:58:28 southa Exp $
+ * $Id: MustlServer.cpp,v 1.7 2002/12/17 12:53:34 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.7  2002/12/17 12:53:34  southa
+ * Mustl library
+ *
  * Revision 1.6  2002/12/17 00:58:28  southa
  * Added support for libmustl target
  *
@@ -78,9 +91,9 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
-#include "MustlNamespace.h"
-
 #include "mustlCore.h"
+
+using namespace Mustl;
 using Mushware::CoreData;
 
 auto_ptr<MustlServer> MustlServer::m_instance;

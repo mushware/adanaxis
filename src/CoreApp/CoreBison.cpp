@@ -1,13 +1,11 @@
 
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
@@ -32,8 +30,11 @@
 
 
 /*
- * $Id: CoreBison.cpp,v 1.13 2002/08/27 08:56:15 southa Exp $
+ * $Id: CoreBison.cpp,v 1.14 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreBison.cpp,v $
+ * Revision 1.14  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -247,6 +248,8 @@ static const short yycheck[] = {     0,
 #if 0 /* No need for malloc.h, which pollutes the namespace;
 	 instead, just don't use alloca.  */
 #include <malloc.h>
+
+using namespace Mushware;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)

@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameSetup.cpp,v 1.22 2002/12/12 14:00:40 southa Exp $
+ * $Id: GameSetup.cpp,v 1.23 2002/12/12 18:38:58 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.23  2002/12/12 18:38:58  southa
+ * Mustl separation
+ *
  * Revision 1.22  2002/12/12 14:00:40  southa
  * Created Mustl
  *
@@ -82,6 +95,8 @@
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"
+
+using namespace Mushware;
 
 GameSetup::GameSetup() :
     m_gameState(kGameStateConfigInit),

@@ -1,8 +1,21 @@
 #ifndef GAMEDEFCLIENT_H
 #define GAMEDEFCLIENT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameDefClient.h,v 1.11 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameDefClient.h,v 1.12 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.12  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -50,9 +63,9 @@ class GameDefClient : public GameDef
 public:
     explicit GameDefClient(const string& inName);
     virtual void Ticker(const string& inName);
-    virtual void WebPrint(ostream& ioOut) const;
+    virtual void WebPrint(std::ostream& ioOut) const;
     
-    void JoinGame(const string& inServer, U32 inPort);
+    void JoinGame(const string& inServer, Mushware::U32 inPort);
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
     void PlayerNameSet(const string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
@@ -64,11 +77,11 @@ public:
     void ReliableSendToServer(MustlData& ioData);
     void FastSendToServer(MustlData& ioData);
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    static void WebHeaderPrint(ostream& ioOut);
+    static void WebHeaderPrint(std::ostream& ioOut);
     
 protected:
     void UpdateServer(void);
@@ -90,11 +103,11 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameDefClient::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameDefClient::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
-    U32 m_baseThreaded;
+    Mushware::U32 m_baseThreaded;
     
     enum
     {
@@ -105,15 +118,15 @@ private:
         kMaxLinks=2
     };
 
-    U32 m_lastLinkMsec;
-    U32 m_lastRegistrationMsec;
-    U32 m_currentMsec;
+    Mushware::U32 m_lastLinkMsec;
+    Mushware::U32 m_lastRegistrationMsec;
+    Mushware::U32 m_currentMsec;
     string m_serverName;
     MustlAddress m_netAddress;
-    vector< CoreDataRef<MustlLink> > m_netLinks;
-    U32 m_lastLinkNum;
-    U32 m_numLinks;
-    U32 m_uplinkBandwidth;
+    std::vector< CoreDataRef<MustlLink> > m_netLinks;
+    Mushware::U32 m_lastLinkNum;
+    Mushware::U32 m_numLinks;
+    Mushware::U32 m_uplinkBandwidth;
     CoreDataRef<GamePiecePlayer> m_playerRef;
     bool m_killed;
     bool m_joined;

@@ -2,19 +2,20 @@
 #define GLAPPSIGNAL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLAppSignal.h,v 1.7 2002/08/27 09:01:22 southa Exp $
+ * $Id: GLAppSignal.h,v 1.8 2002/10/22 20:41:59 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.8  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/27 09:01:22  southa
  * Corrected KeyboardSignal constructor
  *
@@ -38,13 +39,13 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLKeys.h"
+#include "mushCore.h"
 
 class GLAppSignal: public CoreAppSignal
 {
 public:
-    GLAppSignal(U32 inSigNumber): CoreAppSignal(inSigNumber) {}
+    GLAppSignal(Mushware::U32 inSigNumber): CoreAppSignal(inSigNumber) {}
     enum GLSigNumber
     {
         kDisplay=0x100,
@@ -57,7 +58,7 @@ public:
 class GLKeyboardSignal: public CoreAppSignal
 {
 public:
-    GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, tVal inMouseX, tVal inMouseY):
+    GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
         CoreAppSignal(GLAppSignal::kKeyboard),
         keyDown(inKeyDown),
         keyValue(inKeyValue),
@@ -66,7 +67,7 @@ public:
         {}
     bool keyDown;
     GLKeys keyValue;
-    tVal mouseX;
-    tVal mouseY;
+    Mushware::tVal mouseX;
+    Mushware::tVal mouseY;
 };
 #endif

@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: PlatformNet.cpp,v 1.7 2002/11/23 15:08:08 southa Exp $
+ * $Id: PlatformNet.cpp,v 1.8 2002/11/24 11:16:37 southa Exp $
  * $Log: PlatformNet.cpp,v $
+ * Revision 1.8  2002/11/24 11:16:37  southa
+ * Added local IP address detection
+ *
  * Revision 1.7  2002/11/23 15:08:08  southa
  * Store ports in network order
  *
@@ -23,8 +36,10 @@
 
 #include "mushPlatform.h"
 
-#include <windows.h>
 #include <iphlpapi.h>
+#include <windows.h>
+
+using namespace Mushware;
 
 bool PlatformNet::m_localAddressesValid=false;
 map<U32, bool> PlatformNet::m_localAddressMap;

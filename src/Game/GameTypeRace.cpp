@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.28 2002/11/24 23:18:26 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.29 2002/12/10 19:00:17 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.29  2002/12/10 19:00:17  southa
+ * Split timer into client and server
+ *
  * Revision 1.28  2002/11/24 23:18:26  southa
  * Added type name accessor to CorePickle
  *
@@ -103,15 +104,17 @@
  */
 
 #include "GameTypeRace.h"
-#include "GameChequePoint.h"
-#include "GameEvent.h"
 #include "GameAppHandler.h"
+#include "GameChequePoint.h"
 #include "GameData.h"
 #include "GameDataUtils.h"
 #include "GameDialogue.h"
+#include "GameEvent.h"
 #include "GameRewards.h"
 
 #include <typeinfo>
+
+using namespace Mushware;
 
 GameTypeRace::GameTypeRace():
     m_lapStartTimeValid(false),

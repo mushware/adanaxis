@@ -2,19 +2,20 @@
 #define PLATFORMVIDEOUTILS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.h,v 1.5 2002/11/12 11:49:22 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.6 2002/12/03 20:28:18 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.6  2002/12/03 20:28:18  southa
+ * Network, player and control work
+ *
  * Revision 1.5  2002/11/12 11:49:22  southa
  * Initial MHTML processing
  *
@@ -41,18 +42,18 @@ class PlatformVideoUtils
 public:
     PlatformVideoUtils();
     static PlatformVideoUtils& Instance(void) {return *((m_instance==NULL)?m_instance=new PlatformVideoUtils:m_instance);}
-    const GLModeDef& ModeDefGet(U32 inNum);
-    U32 PreviousModeDef(U32 inNum) const;
-    U32 NextModeDef(U32 inNum) const;
-    U32 DefaultModeGet(void) const;
-    U32 NumModesGet(void) const;
-    void RenderModeInfo(U32 inNum) const;
+    const GLModeDef& ModeDefGet(Mushware::U32 inNum);
+    Mushware::U32 PreviousModeDef(Mushware::U32 inNum) const;
+    Mushware::U32 NextModeDef(Mushware::U32 inNum) const;
+    Mushware::U32 DefaultModeGet(void) const;
+    Mushware::U32 NumModesGet(void) const;
+    void RenderModeInfo(Mushware::U32 inNum) const;
     static void VBLWait(void);
     static void ForceShowCursor(void);
     static void AppActivate(void);
     
 private:
-    vector<GLModeDef> m_modeDefs;
+    std::vector<GLModeDef> m_modeDefs;
     static PlatformVideoUtils *m_instance;
 };
 #endif

@@ -2,19 +2,20 @@
 #define GAMETILETRAITS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.h,v 1.15 2002/10/22 20:42:06 southa Exp $
+ * $Id: GameTileTraits.h,v 1.16 2002/11/24 23:18:25 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.16  2002/11/24 23:18:25  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.15  2002/10/22 20:42:06  southa
  * Source conditioning
  *
@@ -22,7 +23,7 @@
  * Frame rate tweaks for Mac
  *
  * Revision 1.13  2002/10/14 13:03:00  southa
- * Display list test
+ * Display std::list test
  *
  * Revision 1.12  2002/10/10 22:47:58  southa
  * Full light definitions
@@ -62,9 +63,9 @@
  *
  */
 
-#include "mushGL.h"
-#include "GameTraits.h"
 #include "GameGraphic.h"
+#include "GameTraits.h"
+#include "mushGL.h"
 
 
 class GameTileTraits : public GameTraits
@@ -72,10 +73,10 @@ class GameTileTraits : public GameTraits
 public:
     virtual ~GameTileTraits();
     void Render(void);
-    bool PermeabilityGet(tVal& outPermeability) const;
-    bool AdhesionGet(tVal& outAdhesion) const;
+    bool PermeabilityGet(Mushware::tVal& outPermeability) const;
+    bool AdhesionGet(Mushware::tVal& outAdhesion) const;
     bool LightGet(GLLightDef& outLight) const;
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -100,22 +101,22 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameTileTraits::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameTileTraits::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
-    U32 m_baseThreaded;
+    Mushware::U32 m_baseThreaded;
     
-    vector <GameGraphic *> m_graphics;
-    tVal m_permeability;
+    std::vector <GameGraphic *> m_graphics;
+    Mushware::tVal m_permeability;
     bool m_hasPermeability;
-    tVal m_adhesion;
+    Mushware::tVal m_adhesion;
     bool m_hasAdhesion;
     GLLightDef m_light;
     bool m_hasLight;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameTileTraits& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameTileTraits& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.16 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameTimer.cpp,v 1.17 2002/12/10 19:00:17 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.17  2002/12/10 19:00:17  southa
+ * Split timer into client and server
+ *
  * Revision 1.16  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -64,6 +65,8 @@
  */
 
 #include "GameTimer.h"
+
+using namespace Mushware;
 
 GameTimer::GameTimer():
     m_clientFrameTimer(10000),

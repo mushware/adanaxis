@@ -1,12 +1,27 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameControlFrameDef.cpp,v 1.1 2002/12/04 00:37:11 southa Exp $
+ * $Id: GameControlFrameDef.cpp,v 1.2 2002/12/04 15:39:58 southa Exp $
  * $Log: GameControlFrameDef.cpp,v $
+ * Revision 1.2  2002/12/04 15:39:58  southa
+ * Multiplayer work
+ *
  * Revision 1.1  2002/12/04 00:37:11  southa
  * ControlFrameDef work
  *
  */
 
 #include "GameControlFrameDef.h"
+
+using namespace Mushware;
 
 void
 GameControlFrameDef::Print(ostream& ioOut) const

@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.11 2002/12/03 20:28:16 southa Exp $
+ * $Id: GameController.cpp,v 1.12 2002/12/04 00:37:11 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.12  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
  * Revision 1.11  2002/12/03 20:28:16  southa
  * Network, player and control work
  *
@@ -52,6 +53,8 @@
 
 #include "GameAppHandler.h"
 #include "GameControlFrameDef.h"
+
+using namespace Mushware;
 
 GameController::GameController():
     m_keyState(4),

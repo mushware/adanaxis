@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameNetObject.cpp,v 1.11 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.12 2002/12/12 14:00:39 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.12  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.11  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -39,6 +52,8 @@
 #include "GameDefServer.h"
 
 #include "mushMedia.h"
+
+using namespace Mushware;
 
 GameNetObject::~GameNetObject()
 {

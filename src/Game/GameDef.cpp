@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameDef.cpp,v 1.15 2002/12/12 14:00:39 southa Exp $
+ * $Id: GameDef.cpp,v 1.16 2002/12/13 01:07:25 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.16  2002/12/13 01:07:25  southa
+ * Mustl work
+ *
  * Revision 1.15  2002/12/12 14:00:39  southa
  * Created Mustl
  *
@@ -52,6 +65,8 @@
 
 #include "Mustl.h"
 #include "mushPlatform.h"
+
+using namespace Mushware;
 
 GameDef::GameDef(const string& inName) :
     m_name(inName),

@@ -2,19 +2,20 @@
 #define CORECOMMAND_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreCommand.h,v 1.9 2002/10/22 20:41:57 southa Exp $
+ * $Id: CoreCommand.h,v 1.10 2002/11/22 11:42:06 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.10  2002/11/22 11:42:06  southa
+ * Added developer controls
+ *
  * Revision 1.9  2002/10/22 20:41:57  southa
  * Source conditioning
  *
@@ -60,9 +61,9 @@
  *
  */
 
-#include "CoreStandard.h"
 #include "CoreBison.h"
 #include "CoreParamList.h"
+#include "CoreStandard.h"
 
 class CoreEnv;
 
@@ -74,13 +75,13 @@ public:
     void Execute(void);
     const string& Name(void) const { return m_name; }
     const CoreParamList& ParamListGet(void) const { return m_paramList; }
-    tSize NumParams(void) {return m_paramList.NumParams();}
+    Mushware::U32 NumParams(void) {return m_paramList.NumParams();}
     string AllParams(void);
     string PopString(void);
-    tVal PopVal(void);
+    Mushware::tVal PopVal(void);
     void PopParam(string& outStr) {m_paramList.PopParam(outStr);}
-    void PopParam(tVal& outVal) {m_paramList.PopParam(outVal);}
-    void PopParam(U32& outU32) {m_paramList.PopParam(outU32);}
+    void PopParam(Mushware::tVal& outVal) {m_paramList.PopParam(outVal);}
+    void PopParam(Mushware::U32& outU32) {m_paramList.PopParam(outU32);}
 
     // Callback interface from bison - not public
     CoreScalar Despatch(void);

@@ -2,19 +2,20 @@
 #define GAMECONTRACT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.36 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameContract.h,v 1.37 2002/12/10 19:00:16 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.37  2002/12/10 19:00:16  southa
+ * Split timer into client and server
+ *
  * Revision 1.36  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -46,7 +47,7 @@
  * Tiered maps
  *
  * Revision 1.26  2002/10/07 17:49:45  southa
- * Multiple values per map element
+ * Multiple values per std::map element
  *
  * Revision 1.25  2002/10/06 22:09:59  southa
  * Initial lighting test
@@ -88,7 +89,7 @@
  * More designer work
  *
  * Revision 1.12  2002/07/02 14:27:08  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  * Revision 1.11  2002/06/27 12:36:06  southa
  * Build process fixes
@@ -146,7 +147,7 @@ public:
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -175,10 +176,10 @@ protected:
     void RenderFastDiagnostics(void) const;
     void DesigningDisplay(void);
     void GlobalKeyControl(void);
-    void RunningMove(GameTimer& inTimer, U32 inNumFrames);
-    void FillControlQueues(const GameTimer& inTimer, U32 inNumFrames);
-    void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, U32 inNumFrames);
-    void SendControlQueues(const GameTimer& inTimer, U32 inNumFrames);
+    void RunningMove(GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void FillControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControl(const GameDefClient& inClient, const GamePiecePlayer& inPlayer, const GameTimer& inTimer, Mushware::U32 inNumFrames);
+    void SendControlQueues(const GameTimer& inTimer, Mushware::U32 inNumFrames);
     bool VerifyOrCreateImagePlayer(const string& inName, GameDefClient& inClientDef);
     bool VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer);
     bool VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& inClientDef);
@@ -205,10 +206,10 @@ protected:
     };
     
 private:
-    typedef map<string, void (GameContract::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
-    U32 m_pickleState;
+    typedef std::map<string, void (GameContract::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
+    Mushware::U32 m_pickleState;
     CoreScript m_script;
 
     enum tDiagnostic
@@ -225,17 +226,17 @@ private:
     tGameState m_gameState;
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
-    tVal m_fps;
-    U32 m_frames;
+    Mushware::tVal m_fps;
+    Mushware::U32 m_frames;
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
     GameTimer::tMsec m_modeKeypressTime;
-    U32 m_newMode;
+    Mushware::U32 m_newMode;
     tDiagnostic m_renderDiagnostics;
     bool m_fastDiagnostics;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameContract& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

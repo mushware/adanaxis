@@ -2,19 +2,20 @@
 #define GAMECHEQUEPOINT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.h,v 1.5 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameChequePoint.h,v 1.6 2002/11/24 23:18:05 southa Exp $
  * $Log: GameChequePoint.h,v $
+ * Revision 1.6  2002/11/24 23:18:05  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.5  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -40,13 +41,13 @@ class GameChequePoint : public CorePickle, protected CoreXMLHandler
 {
 public:
     virtual ~GameChequePoint() {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
-    U32 SequenceGet(void) { return m_sequence; }
-    tVal ParTimeGet(void) { return m_parTime; }
-    tVal AddTimeGet(void) { return m_addTime; }
+    Mushware::U32 SequenceGet(void) { return m_sequence; }
+    Mushware::tVal ParTimeGet(void) { return m_parTime; }
+    Mushware::tVal AddTimeGet(void) { return m_addTime; }
     void StandingOnHandler(const GameEventStandingOn& inEvent);
     
 protected:
@@ -75,20 +76,20 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameChequePoint::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameChequePoint::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
 
-    U32 m_sequence;
-    vector<U32> m_mapValues;
+    Mushware::U32 m_sequence;
+    std::vector<U32> m_mapValues;
     string m_action;
-    tVal m_parTime;
-    tVal m_addTime;
+    Mushware::tVal m_parTime;
+    Mushware::tVal m_addTime;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameChequePoint& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameChequePoint& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

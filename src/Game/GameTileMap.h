@@ -2,19 +2,20 @@
 #define GAMETILEMAP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.13 2002/11/18 11:31:14 southa Exp $
+ * $Id: GameTileMap.h,v 1.14 2002/11/24 23:18:25 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.14  2002/11/24 23:18:25  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.13  2002/11/18 11:31:14  southa
  * Return to game mode
  *
@@ -22,7 +23,7 @@
  * Source conditioning
  *
  * Revision 1.11  2002/10/13 12:26:47  southa
- * Facetised map rendering
+ * Facetised std::map rendering
  *
  * Revision 1.10  2002/08/27 08:56:26  southa
  * Source conditioning
@@ -56,8 +57,8 @@
  *
  */
 
-#include "mushCore.h"
 #include "GameTileSpec.h"
+#include "mushCore.h"
 
 class GameTraits;
 
@@ -65,13 +66,13 @@ class GameTileMap : public CorePickle, private CoreXMLHandler
 {
 public:
     GameTileMap(): m_state(kInit), m_warned(false) {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    const string& NameGet(U32 inNum) const;
-    bool TraitsExist(U32 inNum) const;
-    const GameTileSpec& TileSpecGet(U32 inNum);
+    const string& NameGet(Mushware::U32 inNum) const;
+    bool TraitsExist(Mushware::U32 inNum) const;
+    const GameTileSpec& TileSpecGet(Mushware::U32 inNum);
     void Load(void);
     
     static CoreScalar LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
@@ -105,12 +106,12 @@ private:
         kMaxVectorSize=4000
     };
 
-    const GameTileSpec& LookupSpec(U32 inNum);
+    const GameTileSpec& LookupSpec(Mushware::U32 inNum);
 
-    typedef map<string, void (GameTileMap::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
-    U32 m_state;
+    typedef std::map<string, void (GameTileMap::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
+    Mushware::U32 m_state;
     // End of XML stuff
     class TraitDef
     {
@@ -124,16 +125,16 @@ private:
         GameTileSpec spec;
     };
     
-    typedef map<U32, TraitDef> tTraitMap;
+    typedef std::map<U32, TraitDef> tTraitMap;
 
     tTraitMap m_map;
     CoreScript m_loaderScript;
 
     mutable bool m_warned;
-    mutable vector<GameTileSpec *> m_traits;
+    mutable std::vector<GameTileSpec *> m_traits;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameTileMap& inMap)
+inline std::ostream& operator<<(std::ostream &inOut, const GameTileMap& inMap)
 {
     inMap.Pickle(inOut);
     return inOut;

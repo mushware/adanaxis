@@ -2,19 +2,20 @@
 #define COREPARAMLIST_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreParamList.h,v 1.10 2002/10/22 20:41:59 southa Exp $
+ * $Id: CoreParamList.h,v 1.11 2002/12/17 12:53:33 southa Exp $
  * $Log: CoreParamList.h,v $
+ * Revision 1.11  2002/12/17 12:53:33  southa
+ * Mustl library
+ *
  * Revision 1.10  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -50,8 +51,8 @@
  *
  */
 
-#include "CoreStandard.h"
 #include "CoreScalar.h"
+#include "CoreStandard.h"
 
 class CoreParamList
 {
@@ -61,15 +62,15 @@ public:
     void PopParam(Mushware::tVal& outVal);
     void PopParam(string& outStr);
     void PopParam(Mushware::U32& outU32);
-    tSize NumParams(void) {return m_params.size();}
+    Mushware::U32 NumParams(void) {return m_params.size();}
     void Clear(void) {m_params.clear();};
     bool Empty(void) {return m_params.empty();}
-    void ostreamPrint(ostream& inOut);
+    void ostreamPrint(std::ostream& inOut);
 private:
-    list<CoreScalar> m_params;
+    std::list<CoreScalar> m_params;
 };
 
-inline ostream& operator<<(ostream &inOut, CoreParamList inCoreParamList)
+inline std::ostream& operator<<(std::ostream &inOut, CoreParamList inCoreParamList)
 {
     inCoreParamList.ostreamPrint(inOut);
     return inOut;

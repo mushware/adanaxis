@@ -1,6 +1,21 @@
+#ifndef GAMENETUTILS_H
+#define GAMENETUTILS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameNetUtils.h,v 1.6 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameNetUtils.h,v 1.7 2002/12/12 14:00:39 southa Exp $
  * $Log: GameNetUtils.h,v $
+ * Revision 1.7  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -36,10 +51,10 @@ public:
     static void KillClientImages(void);
     static void KillLinks(void);
 
-    static bool MaintainLinks(vector< CoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, U32 inLinkNum);
+    static bool MaintainLinks(std::vector< CoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, Mushware::U32 inLinkNum);
     static void CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClientName, const MustlAddress& inAddress);
-    static void ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData);
-    static void FastSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData);
+    static void ReliableSend(Mushware::U32& ioLinkNum, std::vector< CoreDataRef<MustlLink> >& inLinks, Mushware::U32 inLinkNum, MustlData& ioData);
+    static void FastSend(Mushware::U32& ioLinkNum, std::vector< CoreDataRef<MustlLink> >& inLinks, Mushware::U32 inLinkNum, MustlData& ioData);
     static void NetTicker(void);
     static void WebReceive(void);
     static void NetReceive(void);
@@ -52,3 +67,4 @@ private:
     static void KillServersByType(bool inImageIs);
     static void KillClientsByType(bool inImageIs);
 };
+#endif

@@ -2,19 +2,20 @@
 #define GLPOINT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.14 2002/10/12 15:24:58 southa Exp $
+ * $Id: GLPoint.h,v 1.15 2002/10/22 20:42:01 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.15  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/10/12 15:24:58  southa
  * Facet renderer
  *
@@ -59,15 +60,15 @@
  *
  */
 
-#include "mushCore.h"
-#include "GLStandard.h"
 #include "GLRenderable.h"
+#include "GLStandard.h"
+#include "mushCore.h"
 
 class GLPoint : public GLRenderable
 {
 public:
     GLPoint () {}
-    explicit GLPoint(tVal inX, tVal inY):
+    explicit GLPoint(Mushware::tVal inX, Mushware::tVal inY):
         x(inX),
         y(inY)
         {}
@@ -76,29 +77,29 @@ public:
     virtual GLPoint *Clone(void) const { return new GLPoint(*this); }
     virtual void Render(void) const;
 
-    void Pickle(ostream& inOut, const string& inPrefix="") const;
+    void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     void Unpickle(CoreXML& inXML);
     void Unpickle(istream& ioIn);
     
-    U32 U32XGet(void) const { return static_cast<U32>(x); }
-    U32 U32YGet(void) const { return static_cast<U32>(y); }
-    void RotateAboutZ(const GLPoint& inPoint, tVal inAngle)
+    Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
+    Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }
+    void RotateAboutZ(const GLPoint& inPoint, Mushware::tVal inAngle)
     {
-        tVal xtemp=x;
+        Mushware::tVal xtemp=x;
         x = inPoint.x + (x - inPoint.x) * cos(inAngle) + (y - inPoint.y) * sin(inAngle);
         y = inPoint.y + (y - inPoint.y) * cos(inAngle) - (xtemp - inPoint.x) * sin(inAngle);
     }
-    void RotateAboutZ(tVal inAngle)
+    void RotateAboutZ(Mushware::tVal inAngle)
     {
-        tVal xtemp = x;
+        Mushware::tVal xtemp = x;
         x = x * cos(inAngle) + y * sin(inAngle);
         y = y * cos(inAngle) - xtemp * sin(inAngle);
     }
-    tVal MagnitudeSquared(void) const { return x*x+y*y; }
-    tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
-    void ConstrainMagnitude(tVal inMagnitude)
+    Mushware::tVal MagnitudeSquared(void) const { return x*x+y*y; }
+    Mushware::tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
+    void ConstrainMagnitude(Mushware::tVal inMagnitude)
     {
-        tVal magnitude=Magnitude();
+        Mushware::tVal magnitude=Magnitude();
         if (magnitude > inMagnitude)
         {
             x *= inMagnitude/magnitude;
@@ -123,11 +124,11 @@ public:
     const GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
     const GLPoint& operator*=(const GLPoint& inPoint) {x*=inPoint.x; y*=inPoint.y; return *this;}
     const GLPoint& operator/=(const GLPoint& inPoint) {x/=inPoint.x; y/=inPoint.y; return *this;}
-    const GLPoint& operator*=(const tVal inOper) {x*=inOper; y*=inOper; return *this;}
-    const GLPoint& operator/=(const tVal inOper) {x/=inOper; y/=inOper; return *this;}
+    const GLPoint& operator*=(const Mushware::tVal inOper) {x*=inOper; y*=inOper; return *this;}
+    const GLPoint& operator/=(const Mushware::tVal inOper) {x/=inOper; y/=inOper; return *this;}
 
-    tVal x;
-    tVal y;
+    Mushware::tVal x;
+    Mushware::tVal y;
 };
 
 inline const GLPoint operator+(const GLPoint& a, const GLPoint& b)
@@ -154,13 +155,13 @@ inline const GLPoint operator/(const GLPoint& a, const GLPoint& b)
     return retPoint/=b;
 }
 
-inline const GLPoint operator*(const GLPoint& a, tVal inOper)
+inline const GLPoint operator*(const GLPoint& a, Mushware::tVal inOper)
 {
     GLPoint retPoint(a);
     return retPoint*=inOper;
 }
 
-inline const GLPoint operator/(const GLPoint& a, tVal inOper)
+inline const GLPoint operator/(const GLPoint& a, Mushware::tVal inOper)
 {
     GLPoint retPoint(a);
     return retPoint/=inOper;
@@ -176,7 +177,7 @@ inline bool operator!=(const GLPoint& a, const GLPoint& b)
     return a.x != b.x || a.y != b.y;
 }
 
-inline ostream& operator<<(ostream &s, const GLPoint& inPoint)
+inline std::ostream& operator<<(std::ostream &s, const GLPoint& inPoint)
 {
     inPoint.Pickle(s);
     return s;

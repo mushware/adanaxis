@@ -1,6 +1,21 @@
+#ifndef PLATFORMNET_H
+#define PLATFORMNET_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: PlatformNet.h,v 1.7 2002/11/23 17:23:45 southa Exp $
+ * $Id: PlatformNet.h,v 1.8 2002/11/24 00:29:08 southa Exp $
  * $Log: PlatformNet.h,v $
+ * Revision 1.8  2002/11/24 00:29:08  southa
+ * Serve web pages to local addresses only
+ *
  * Revision 1.7  2002/11/23 17:23:45  southa
  * Sleep in setup
  *
@@ -45,20 +60,21 @@ struct _TCPsocket {
 class PlatformNet
 {
 public:
-    typedef S32 tSocket;
+    typedef Mushware::S32 tSocket;
 
     static void SocketNonBlockingSet(tSocket inSocket);
     static void SocketAsyncSet(tSocket inSocket);
-    static void UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, U32 inSize);
-    static U32 UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize);
+    static void UDPSend(Mushware::U32 inHost, Mushware::U32 inPort, tSocket inSocket, void *outBuffer, Mushware::U32 inSize);
+    static Mushware::U32 UDPReceive(Mushware::U32& outHost, Mushware::U32& outPort, tSocket inSocket, void *outBuffer, Mushware::U32 inSize);
     static TCPsocket TCPConnectNonBlocking(IPaddress *ip);
     static bool TCPSocketConnectionCompleted(tSocket inSocket);
-    static U32 HostToNetworkOrderU16(U32 inVal);
-    static U32 NetworkToHostOrderU16(U32 inVal);
-    static bool IsLocalAddress(U32 inIPNetworkOrder);
+    static Mushware::U32 HostToNetworkOrderU16(Mushware::U32 inVal);
+    static Mushware::U32 NetworkToHostOrderU16(Mushware::U32 inVal);
+    static bool IsLocalAddress(Mushware::U32 inIPNetworkOrder);
 
 private:
     static void LocalAddressesRetrieve(void);
     static bool m_localAddressesValid;
-    static map<U32, bool> m_localAddressMap;
+    static std::map<U32, bool> m_localAddressMap;
 };
+#endif

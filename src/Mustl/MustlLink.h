@@ -1,8 +1,21 @@
 #ifndef MUSTLLINK_H
 #define MUSTLLINK_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlLink.h,v 1.4 2002/12/13 19:03:05 southa Exp $
+ * $Id: MustlLink.h,v 1.5 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.5  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.4  2002/12/13 19:03:05  southa
  * Mustl interface cleanup
  *
@@ -121,10 +134,10 @@ public:
 
     Mustl::tMsec CreationMsecGet(void) const { return m_creationMsec; }
     
-    void Print(ostream& ioOut) const;
-    void WebStatusPrint(ostream& ioOut) const;
+    void Print(std::ostream& ioOut) const;
+    void WebStatusPrint(std::ostream& ioOut) const;
 
-    static void WebStatusHeaderPrint(ostream& ioOut);
+    static void WebStatusHeaderPrint(std::ostream& ioOut);
     static string NextLinkNameTake(void);
 
 private:
@@ -238,8 +251,8 @@ MustlLink::UDPHostMatchDoes(const MustlData& ioData) const
     return ioData.SourceGet().HostGetNetworkOrder() == UDPAddressGet().HostGetNetworkOrder();
 }
 
-inline ostream&
-operator<<(ostream &ioOut, const MustlLink& inLink)
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MustlLink& inLink)
 {
     inLink.Print(ioOut);
     return ioOut;

@@ -1,6 +1,21 @@
+#ifndef COREHISTORY_H
+#define COREHISTORY_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: CoreHistory.h,v 1.2 2002/12/04 15:39:57 southa Exp $
+ * $Id: CoreHistory.h,v 1.3 2002/12/10 20:38:05 southa Exp $
  * $Log: CoreHistory.h,v $
+ * Revision 1.3  2002/12/10 20:38:05  southa
+ * Server timing
+ *
  * Revision 1.2  2002/12/04 15:39:57  southa
  * Multiplayer work
  *
@@ -17,7 +32,7 @@ template<class IndexType, class StoreType>class CoreHistoryIterator
 {
 public:
     CoreHistoryIterator() : m_history(NULL), m_valid(false) {}
-    CoreHistoryIterator(const CoreHistory<IndexType, StoreType>& inHistory, U32 inIndex);
+    CoreHistoryIterator(const CoreHistory<IndexType, StoreType>& inHistory, Mushware::U32 inIndex);
     void AssertValid(void) const;
     const IndexType& IndexGet(void) const;
     const StoreType& StoreGet(void) const;
@@ -27,24 +42,24 @@ public:
 
 private:
     const CoreHistory<IndexType, StoreType> *m_history;
-    U32 m_index;
+    Mushware::U32 m_index;
     bool m_valid;
 };
 
 template<class IndexType, class StoreType> class CoreHistory
 {
 public:
-    CoreHistory(U32 inSize, IndexType inInitial);
+    CoreHistory(Mushware::U32 inSize, IndexType inInitial);
     
     void Add(const StoreType& inStore, IndexType inIndex);
     bool PreviousGet(const StoreType *& outStore, IndexType inIndex) const;
     CoreHistoryIterator<IndexType, StoreType> IteratorPreviousGet(IndexType inIndex) const;
     CoreHistoryIterator<IndexType, StoreType> Back(void) const;
-    bool IndexValidIs(U32 inIndex) const;
-    const IndexType& IndexGet(U32 inIndex) const;
-    const StoreType& StoreGet(U32 inIndex) const;
-    bool BackMove(U32& ioIndex) const; // For use by iterator
-    bool ForwardMove(U32& ioIndex) const; // For use by iterator
+    bool IndexValidIs(Mushware::U32 inIndex) const;
+    const IndexType& IndexGet(Mushware::U32 inIndex) const;
+    const StoreType& StoreGet(Mushware::U32 inIndex) const;
+    bool BackMove(Mushware::U32& ioIndex) const; // For use by iterator
+    bool ForwardMove(Mushware::U32& ioIndex) const; // For use by iterator
     
 protected:
 
@@ -55,10 +70,10 @@ private:
         StoreType store;
     };
     
-    vector<tBuffer> m_buffer;
-    U32 m_bufferIndex;
-    U32 m_bufferSize;
-    U32 m_invalidIndex; // Index of first invalid (never set) entry
+    std::vector<tBuffer> m_buffer;
+    Mushware::U32 m_bufferIndex;
+    Mushware::U32 m_bufferSize;
+    Mushware::U32 m_invalidIndex; // Index of first invalid (never set) entry
 };
 
 
@@ -66,7 +81,7 @@ private:
 
 template<class IndexType, class StoreType>
 inline
-CoreHistoryIterator<IndexType, StoreType>::CoreHistoryIterator(const CoreHistory<IndexType, StoreType>& inHistory, U32 inIndex) :
+CoreHistoryIterator<IndexType, StoreType>::CoreHistoryIterator(const CoreHistory<IndexType, StoreType>& inHistory, Mushware::U32 inIndex) :
     m_history(&inHistory),
     m_index(inIndex)
 {
@@ -123,14 +138,14 @@ CoreHistoryIterator<IndexType, StoreType>::ValidIs(void) const
 // ----- CoreHistory -----
 
 template<class IndexType, class StoreType>
-CoreHistory<IndexType, StoreType>::CoreHistory(U32 inSize, IndexType inInitial) :
+CoreHistory<IndexType, StoreType>::CoreHistory(Mushware::U32 inSize, IndexType inInitial) :
     m_buffer(inSize),
     m_bufferIndex(0),
     m_bufferSize(inSize),
     m_invalidIndex(0)
 {
     COREASSERT(inSize > 0); // Suggests parameters wrong way round
-    for (U32 i=0; i<m_bufferSize; ++i)
+    for (Mushware::U32 i=0; i<m_bufferSize; ++i)
     {
         m_buffer[i].index = inInitial;
     }
@@ -164,8 +179,8 @@ CoreHistory<IndexType, StoreType>::PreviousGet(const StoreType *& outStore, Inde
     // Search backwards through the history, starting at the last added entry.  Return the first
     // entry found with an index <= inIndex, or false if no such valid entry exists
     
-    U32 bufferIndex = m_bufferIndex;
-    for (U32 i=0; i<m_bufferSize; ++i)
+    Mushware::U32 bufferIndex = m_bufferIndex;
+    for (Mushware::U32 i=0; i<m_bufferSize; ++i)
     {
         if (bufferIndex == 0)
         {
@@ -197,8 +212,8 @@ CoreHistory<IndexType, StoreType>::IteratorPreviousGet(IndexType inIndex) const
     // Search backwards through the history, starting at the last added entry.  Return the first
     // entry found with an index <= inIndex, or false if no such valid entry exists
 
-    U32 bufferIndex = m_bufferIndex;
-    for (U32 i=0; i<m_bufferSize; ++i)
+    Mushware::U32 bufferIndex = m_bufferIndex;
+    for (Mushware::U32 i=0; i<m_bufferSize; ++i)
     {
         if (bufferIndex == 0)
         {
@@ -226,7 +241,7 @@ template<class IndexType, class StoreType>
 inline CoreHistoryIterator<IndexType, StoreType>
 CoreHistory<IndexType, StoreType>::Back(void) const
 {
-    U32 bufferIndex = m_bufferIndex;
+    Mushware::U32 bufferIndex = m_bufferIndex;
 
     if (bufferIndex == 0)
     {
@@ -239,14 +254,14 @@ CoreHistory<IndexType, StoreType>::Back(void) const
 
 template<class IndexType, class StoreType>
 inline bool
-CoreHistory<IndexType, StoreType>::IndexValidIs(U32 inIndex) const
+CoreHistory<IndexType, StoreType>::IndexValidIs(Mushware::U32 inIndex) const
 {
     return inIndex < m_invalidIndex;
 }
 
 template<class IndexType, class StoreType>
 inline const IndexType&
-CoreHistory<IndexType, StoreType>::IndexGet(U32 inIndex) const
+CoreHistory<IndexType, StoreType>::IndexGet(Mushware::U32 inIndex) const
 {
     COREASSERT(inIndex < m_invalidIndex);
     return m_buffer[inIndex].index;
@@ -254,7 +269,7 @@ CoreHistory<IndexType, StoreType>::IndexGet(U32 inIndex) const
 
 template<class IndexType, class StoreType>
 inline const StoreType&
-CoreHistory<IndexType, StoreType>::StoreGet(U32 inIndex) const
+CoreHistory<IndexType, StoreType>::StoreGet(Mushware::U32 inIndex) const
 {
     COREASSERT(inIndex < m_invalidIndex);
     return m_buffer[inIndex].store;
@@ -262,7 +277,7 @@ CoreHistory<IndexType, StoreType>::StoreGet(U32 inIndex) const
 
 template<class IndexType, class StoreType>
 inline bool
-CoreHistory<IndexType, StoreType>::BackMove(U32& ioIndex) const
+CoreHistory<IndexType, StoreType>::BackMove(Mushware::U32& ioIndex) const
 {
     if (ioIndex == 0)
     {
@@ -275,7 +290,7 @@ CoreHistory<IndexType, StoreType>::BackMove(U32& ioIndex) const
 
 template<class IndexType, class StoreType>
 inline bool
-CoreHistory<IndexType, StoreType>::ForwardMove(U32& ioIndex) const
+CoreHistory<IndexType, StoreType>::ForwardMove(Mushware::U32& ioIndex) const
 {
     ++ioIndex;
     if (ioIndex == m_bufferSize)
@@ -285,3 +300,4 @@ CoreHistory<IndexType, StoreType>::ForwardMove(U32& ioIndex) const
     
     return ioIndex < m_invalidIndex && ioIndex != m_bufferIndex;
 }
+#endif

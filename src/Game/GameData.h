@@ -2,19 +2,20 @@
 #define GAMEDATA_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.19 2002/12/03 20:28:16 southa Exp $
+ * $Id: GameData.h,v 1.20 2002/12/05 13:20:12 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.20  2002/12/05 13:20:12  southa
+ * Client link handling
+ *
  * Revision 1.19  2002/12/03 20:28:16  southa
  * Network, player and control work
  *
@@ -92,9 +93,9 @@ class GameRewards;
 class GameData
 {
 public:
-    typedef map<string, GameDialogue *> DialogueMap;
-    typedef map<string, GameDialogue *>::iterator DialogueMapIterator;
-    typedef map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
+    typedef std::map<string, GameDialogue *> DialogueMap;
+    typedef std::map<string, GameDialogue *>::iterator DialogueMapIterator;
+    typedef std::map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
     static GameData& Instance(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
 
@@ -138,19 +139,19 @@ public:
 
 
     
-    void DumpAll(ostream& inOut) const;
+    void DumpAll(std::ostream& inOut) const;
 
 private:
     GameData();
-    map<string, GameTileMap *> m_tilemaps;
-    map<string, GameFloorMap *> m_floormaps;
-    map<string, GameContract *> m_contracts;
-    map<string, GameTraits *> m_traits;
-    map<string, GameController *> m_controllers;
+    std::map<string, GameTileMap *> m_tilemaps;
+    std::map<string, GameFloorMap *> m_floormaps;
+    std::map<string, GameContract *> m_contracts;
+    std::map<string, GameTraits *> m_traits;
+    std::map<string, GameController *> m_controllers;
     DialogueMap m_dialogues;
-    map<string, GamePiece *> m_templates;
-    map<string, GamePiece *> m_pieces;
-    map<string, GameView *> m_views;
+    std::map<string, GamePiece *> m_templates;
+    std::map<string, GamePiece *> m_pieces;
+    std::map<string, GameView *> m_views;
 
     CoreData<GamePiecePlayer> *m_playerData;
     
@@ -175,7 +176,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, GameDataNotPresent f)
+inline std::ostream& operator<<(std::ostream &s, GameDataNotPresent f)
 {
     return s << f.StringGet();
 }

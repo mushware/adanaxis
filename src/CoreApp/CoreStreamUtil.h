@@ -4,19 +4,20 @@
 #define STREAMUTIL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreStreamUtil.h,v 1.4 2002/08/27 08:56:18 southa Exp $
+ * $Id: CoreStreamUtil.h,v 1.5 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreStreamUtil.h,v $
+ * Revision 1.5  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -52,17 +53,17 @@ class CoreStreamUtil
 {
 public:
     CoreStreamUtil():m_ctr(0) {}
-    U32 BigEndianU32Get(u8istream& inIn);
-    U32 LittleEndianU32Get(u8istream& inIn);
-    U8 U8Get(u8istream& inIn);
-    void Get(u8istream& inIn, U8 *outBuffer, tSize inSize);
-    void Ignore(u8istream &inIn, tSize inSize);
-    void ZeroIndex(tSize inWhich);
-    tSize GetIndex(tSize inWhich);
-    void ConsumeToIndex(u8istream& inIn, tSize inWhich, tSize inValue);
+    Mushware::U32 BigEndianU32Get(Mushware::u8istream& inIn);
+    Mushware::U32 LittleEndianU32Get(Mushware::u8istream& inIn);
+    Mushware::U8 U8Get(Mushware::u8istream& inIn);
+    void Get(Mushware::u8istream& inIn, Mushware::U8 *outBuffer, Mushware::U32 inSize);
+    void Ignore(Mushware::u8istream &inIn, Mushware::U32 inSize);
+    void ZeroIndex(Mushware::U32 inWhich);
+    Mushware::U32 GetIndex(Mushware::U32 inWhich);
+    void ConsumeToIndex(Mushware::u8istream& inIn, Mushware::U32 inWhich, Mushware::U32 inValue);
     
 private:
-    vector<int> m_zero;
+    std::vector<int> m_zero;
     int m_ctr;
 };
 #endif

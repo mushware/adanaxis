@@ -3,19 +3,20 @@
 
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.h,v 1.6 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLLightDef.h,v 1.7 2002/11/24 23:18:04 southa Exp $
  * $Log: GLLightDef.h,v $
+ * Revision 1.7  2002/11/24 23:18:04  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.6  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -36,11 +37,11 @@
  *
 */
 
-#include "mushCore.h"
-#include "GLStandard.h"
-#include "GLPoint.h"
-#include "GLVector.h"
 #include "GLColour.h"
+#include "GLPoint.h"
+#include "GLStandard.h"
+#include "GLVector.h"
+#include "mushCore.h"
 
 class GLLightDef : public CorePickle, protected CoreXMLHandler
 {
@@ -52,16 +53,16 @@ public:
     const GLColour& AmbientGet(void) const { return m_ambient; }
     const GLColour& DiffuseGet(void) const { return m_diffuse; }
     const GLColour& SpecularGet(void) const { return m_specular; }
-    tVal CutoffGet(void) const { return m_cutoff; }
+    Mushware::tVal CutoffGet(void) const { return m_cutoff; }
     const GLVector& DirectionGet(void) const { return m_direction; }
-    tVal ExponentGet(void) const { return m_exponent; }
-    tVal ConstantGet(void) const { return m_constant; }
-    tVal LinearGet(void) const { return m_linear; }
-    tVal QuadraticGet(void) const { return m_quadratic; }
+    Mushware::tVal ExponentGet(void) const { return m_exponent; }
+    Mushware::tVal ConstantGet(void) const { return m_constant; }
+    Mushware::tVal LinearGet(void) const { return m_linear; }
+    Mushware::tVal QuadraticGet(void) const { return m_quadratic; }
 
     void BasePositionSet(const GLVector& inVec);
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -96,9 +97,9 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GLLightDef::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GLLightDef::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
 
@@ -109,15 +110,15 @@ private:
     GLColour m_ambient;
     GLColour m_diffuse;
     GLColour m_specular;
-    tVal m_cutoff;
+    Mushware::tVal m_cutoff;
     GLVector m_direction;
-    tVal m_exponent;
-    tVal m_constant;
-    tVal m_linear;
-    tVal m_quadratic;
+    Mushware::tVal m_exponent;
+    Mushware::tVal m_constant;
+    Mushware::tVal m_linear;
+    Mushware::tVal m_quadratic;
 };
 
-inline ostream& operator<<(ostream &inOut, const GLLightDef& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GLLightDef& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

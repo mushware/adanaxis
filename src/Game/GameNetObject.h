@@ -1,6 +1,21 @@
+#ifndef GAMENETOBJECT_H
+#define GAMENETOBJECT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameNetObject.h,v 1.4 2002/11/28 11:10:29 southa Exp $
+ * $Id: GameNetObject.h,v 1.5 2002/12/12 14:00:39 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.5  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.4  2002/11/28 11:10:29  southa
  * Client and server delete messages
  *
@@ -23,7 +38,7 @@ class GameNetObject : public CorePickle, protected CoreXMLHandler
 {
 public:
     virtual ~GameNetObject();
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -49,16 +64,17 @@ protected:
     };
 
 private:
-    typedef map<string, void (GameNetObject::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
-    U32 m_pickleState;
+    typedef std::map<string, void (GameNetObject::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
+    Mushware::U32 m_pickleState;
     
     MustlAddress m_address;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameNetObject& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameNetObject& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;
 }
+#endif

@@ -2,19 +2,20 @@
 #define COREEXCEPTION_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreException.h,v 1.20 2002/12/13 01:07:25 southa Exp $
+ * $Id: CoreException.h,v 1.21 2002/12/17 12:53:33 southa Exp $
  * $Log: CoreException.h,v $
+ * Revision 1.21  2002/12/17 12:53:33  southa
+ * Mustl library
+ *
  * Revision 1.20  2002/12/13 01:07:25  southa
  * Mustl work
  *
@@ -106,7 +107,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, FileFail f)
+inline std::ostream& operator<<(std::ostream &s, FileFail f)
 {
     return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
 }
@@ -123,7 +124,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, LogicFail f)
+inline std::ostream& operator<<(std::ostream &s, LogicFail f)
 {
     return s << f.StringGet();
 }
@@ -140,7 +141,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, ConfigFail f)
+inline std::ostream& operator<<(std::ostream &s, ConfigFail f)
 {
     return s << f.StringGet();
 }
@@ -157,7 +158,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, ReferenceFail f)
+inline std::ostream& operator<<(std::ostream &s, ReferenceFail f)
 {
     return s << f.StringGet();
 }
@@ -174,7 +175,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, FatalFail f)
+inline std::ostream& operator<<(std::ostream &s, FatalFail f)
 {
     return s << f.StringGet();
 }
@@ -191,7 +192,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, VerifyFail f)
+inline std::ostream& operator<<(std::ostream &s, VerifyFail f)
 {
     return s << f.StringGet();
 }
@@ -208,7 +209,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, CommandFail f)
+inline std::ostream& operator<<(std::ostream &s, CommandFail f)
 {
     return s << f.StringGet();
 }
@@ -225,7 +226,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, TestFail f)
+inline std::ostream& operator<<(std::ostream &s, TestFail f)
 {
     return s << f.StringGet();
 }
@@ -243,7 +244,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, XMLFail f)
+inline std::ostream& operator<<(std::ostream &s, XMLFail f)
 {
     return s<<f.SPrint();
 }
@@ -260,7 +261,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, ExpressionFail f)
+inline std::ostream& operator<<(std::ostream &s, ExpressionFail f)
 {
     return s<<f.SPrint();
 }
@@ -282,7 +283,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, LoaderFail f)
+inline std::ostream& operator<<(std::ostream &s, LoaderFail f)
 {
     return s << "File '" << f.FilenameGet() << "': " << f.ReasonGet();
 }
@@ -299,7 +300,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, DeviceFail f)
+inline std::ostream& operator<<(std::ostream &s, DeviceFail f)
 {
     return s<<f.SPrint();
 }
@@ -316,7 +317,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, ResourceFail f)
+inline std::ostream& operator<<(std::ostream &s, ResourceFail f)
 {
     return s<<f.SPrint();
 }
@@ -333,7 +334,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, SpecifierFail f)
+inline std::ostream& operator<<(std::ostream &s, SpecifierFail f)
 {
     return s<<f.SPrint();
 }
@@ -350,7 +351,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, SyntaxFail f)
+inline std::ostream& operator<<(std::ostream &s, SyntaxFail f)
 {
     return s<<f.SPrint();
 }
@@ -367,7 +368,7 @@ private:
     string m_message;
 };
 
-inline ostream& operator<<(ostream &s, ValueFail f)
+inline std::ostream& operator<<(std::ostream &s, ValueFail f)
 {
     return s<<f.SPrint();
 }

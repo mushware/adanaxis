@@ -2,19 +2,20 @@
 #define GAMETIMER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.h,v 1.15 2002/12/04 15:39:58 southa Exp $
+ * $Id: GameTimer.h,v 1.16 2002/12/10 19:00:17 southa Exp $
  * $Log: GameTimer.h,v $
+ * Revision 1.16  2002/12/10 19:00:17  southa
+ * Split timer into client and server
+ *
  * Revision 1.15  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -74,7 +75,7 @@ public:
     
     GameTimer();
     
-    void CurrentMsecSet(U32 inMsec);
+    void CurrentMsecSet(Mushware::U32 inMsec);
     tMsec CurrentMsecGet(void) const;
     void Reset(void);
     bool JudgementValid(void) const;
@@ -84,12 +85,12 @@ public:
     const GameFrameTimer& ConstClientGet(void) const { return m_clientFrameTimer; }
     const GameFrameTimer& ConstServerGet(void) const { return m_serverFrameTimer; }
     
-    tVal Periodic10msGet(void) const;
-    void Periodic10msDone(tVal inNum);
-    tVal Periodic100msGet(void) const;
-    void Periodic100msDone(tVal inNum);
-    tVal Periodic1sGet(void) const;
-    void Periodic1sDone(tVal inNum);
+    Mushware::tVal Periodic10msGet(void) const;
+    void Periodic10msDone(Mushware::tVal inNum);
+    Mushware::tVal Periodic100msGet(void) const;
+    void Periodic100msDone(Mushware::tVal inNum);
+    Mushware::tVal Periodic1sGet(void) const;
+    void Periodic1sDone(Mushware::tVal inNum);
     tMsec SleepTimeGet(void) const;
     static string MsecToString(tMsec inMsec);
     static string MsecDifferenceToString(tMsec inMsec);
@@ -105,7 +106,7 @@ private:
     tUsec m_periodic10msUsec;
     tUsec m_periodic100msUsec;
     tUsec m_periodic1sUsec;
-    U32 m_lastMsec;
+    Mushware::U32 m_lastMsec;
     bool m_timesValid;
     mutable bool m_jitterReported;
 };

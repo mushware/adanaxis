@@ -1,8 +1,21 @@
 #ifndef MUSTLWEBLINK_H
 #define MUSTLWEBLINK_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlWebLink.h,v 1.2 2002/12/12 18:38:25 southa Exp $
+ * $Id: MustlWebLink.h,v 1.3 2002/12/13 01:06:54 southa Exp $
  * $Log: MustlWebLink.h,v $
+ * Revision 1.3  2002/12/13 01:06:54  southa
+ * Mustl work
+ *
  * Revision 1.2  2002/12/12 18:38:25  southa
  * Mustl separation
  *
@@ -62,7 +75,7 @@ public:
     void SendErrorPage(const string& inText);
     void ReceivedProcess(const string& inStr);
 
-    void Print(ostream& ioOut) const;
+    void Print(std::ostream& ioOut) const;
 
 private:
     enum tLinkState
@@ -110,8 +123,8 @@ private:
     static std::string m_webPath;
 };
 
-inline ostream&
-operator<<(ostream &ioOut, const MustlWebLink& inLink)
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MustlWebLink& inLink)
 {
     inLink.Print(ioOut);
     return ioOut;

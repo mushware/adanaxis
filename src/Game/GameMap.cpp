@@ -1,22 +1,25 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameMap.cpp,v 1.7 2002/10/10 18:25:15 southa Exp $
+ * $Id: GameMap.cpp,v 1.8 2002/10/22 20:42:05 southa Exp $
  * $Log: GameMap.cpp,v $
+ * Revision 1.8  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/10 18:25:15  southa
  * Light links and test lights
  *
  */
 
 #include "GameMap.h"
+
+using namespace Mushware;
 

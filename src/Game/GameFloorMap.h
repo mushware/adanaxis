@@ -2,19 +2,20 @@
 #define GAMEFLOORMAP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.22 2002/11/18 11:31:14 southa Exp $
+ * $Id: GameFloorMap.h,v 1.23 2002/11/24 23:18:16 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.23  2002/11/24 23:18:16  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.22  2002/11/18 11:31:14  southa
  * Return to game mode
  *
@@ -34,7 +35,7 @@
  * Tiered maps
  *
  * Revision 1.16  2002/10/07 17:49:46  southa
- * Multiple values per map element
+ * Multiple values per std::map element
  *
  * Revision 1.15  2002/08/27 08:56:24  southa
  * Source conditioning
@@ -67,7 +68,7 @@
  * Selection in designer, mouse buttons
  *
  * Revision 1.5  2002/07/02 14:27:10  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  * Revision 1.4  2002/06/27 12:36:07  southa
  * Build process fixes
@@ -98,11 +99,11 @@
  *
  */
 
+#include "GameLightLinks.h"
+#include "GameMap.h"
+#include "GameSolidMap.h"
 #include "mushCore.h"
 #include "mushGL.h"
-#include "GameSolidMap.h"
-#include "GameMap.h"
-#include "GameLightLinks.h"
 
 class GameTileMap;
 class GameMapArea;
@@ -112,19 +113,19 @@ class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
 public:
 
-    typedef U32 tMapValue;
-    typedef vector<tMapValue> tMapVector;
+    typedef Mushware::U32 tMapValue;
+    typedef std::vector<tMapValue> tMapVector;
     
     GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL), m_lightMapValid(false) {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    const tMapVector& At(U32 inX, U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
-    U32 XSize(void) {return m_xsize;}
-    U32 YSize(void) {return m_ysize;}
-    tVal XStep(void) {return m_xstep;}
-    tVal YStep(void) {return m_ystep;}
+    const tMapVector& At(Mushware::U32 inX, Mushware::U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
+    Mushware::U32 XSize(void) {return m_xsize;}
+    Mushware::U32 YSize(void) {return m_ysize;}
+    Mushware::tVal XStep(void) {return m_xstep;}
+    Mushware::tVal YStep(void) {return m_ystep;}
     GLPoint SizeGet(void) { return GLPoint(m_xsize, m_ysize); }
     GLPoint StepGet(void) { return GLPoint(m_xstep, m_ystep); }
 
@@ -133,7 +134,7 @@ public:
     const GameSpacePoint MapToSpace(const GameMapPoint inPoint) const;
     bool IsInMap(const GameMapPoint inPoint) const;
 
-    void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight);
+    void Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const std::vector<bool>& inTierHighlight);
     void RenderSolidMap(const GameMapArea& inArea) const;
     void RenderAdhesionMap(const GameMapArea& inArea) const;
     void RenderLightMap(const GameMapArea& inArea) const;
@@ -142,9 +143,9 @@ public:
     const tMapVector& ElementGet(const GameSpacePoint &inPoint) const;
     const tMapVector& ElementGet(const GameMapPoint &inPoint) const;
     void ElementSet(const GLPoint &inPoint, const tMapVector& inValue);
-    tVal PermeabilityGet(const GameMapPoint &inPoint) const;
-    tVal AdhesionGet(const GameSpacePoint &inPoint) const;
-    tVal AdhesionGet(const GameMapPoint &inPoint) const;
+    Mushware::tVal PermeabilityGet(const GameMapPoint &inPoint) const;
+    Mushware::tVal AdhesionGet(const GameSpacePoint &inPoint) const;
+    Mushware::tVal AdhesionGet(const GameMapPoint &inPoint) const;
     void SetLightingFor(const GameSpacePoint &inPoint) const;
     void SetLightingFor(const GameMapPoint &inPoint) const;
     void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
@@ -177,16 +178,16 @@ private:
     void RebuildSolidMap(void) const;
     void RebuildLightMap(void) const;
 
-    typedef map<string, void (GameFloorMap::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
-    U32 m_state;
+    typedef std::map<string, void (GameFloorMap::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
+    Mushware::U32 m_state;
     
-    vector< vector< tMapVector > > m_map;
-    tSize m_xsize;
-    tSize m_ysize;
-    tVal m_xstep;
-    tVal m_ystep;
+    std::vector< std::vector< tMapVector > > m_map;
+    Mushware::U32 m_xsize;
+    Mushware::U32 m_ysize;
+    Mushware::tVal m_xstep;
+    Mushware::tVal m_ystep;
     mutable GameSolidMap m_solidMap;
     mutable bool m_solidMapValid;
     GameTileMap *m_tileMap;
@@ -197,7 +198,7 @@ private:
     static tMapVector m_emptyMapVector;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameFloorMap& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

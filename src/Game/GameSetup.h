@@ -1,6 +1,21 @@
+#ifndef GAMESETUP_H
+#define GAMESETUP_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameSetup.h,v 1.6 2002/12/03 20:28:17 southa Exp $
+ * $Id: GameSetup.h,v 1.7 2002/12/05 23:52:52 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.7  2002/12/05 23:52:52  southa
+ * Network management and status
+ *
  * Revision 1.6  2002/12/03 20:28:17  southa
  * Network, player and control work
  *
@@ -57,7 +72,8 @@ private:
 
     tGameState m_gameState;
     string m_configURL;
-    U32 m_currentMsec;
-    U32 m_lastTickerMsec;
+    Mushware::U32 m_currentMsec;
+    Mushware::U32 m_lastTickerMsec;
     bool m_windowClicked;
 };
+#endif

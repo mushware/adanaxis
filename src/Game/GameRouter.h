@@ -1,6 +1,21 @@
+#ifndef GAMEROUTER_H
+#define GAMEROUTER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameRouter.h,v 1.7 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameRouter.h,v 1.8 2002/12/12 14:00:40 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.8  2002/12/12 14:00:40  southa
+ * Created Mustl
+ *
  * Revision 1.7  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -33,7 +48,7 @@ class GameRouter : public MustlHandler
 public:
     static inline GameRouter& Instance(void);
 
-    void MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType);
+    void MessageHandle(MustlData& ioData, MustlLink& inLink, Mushware::U32 inType);
 
 protected:
     void IDTransferHandle(MustlData& ioData, MustlLink& inLink);
@@ -51,3 +66,4 @@ GameRouter::Instance(void)
     m_instance.reset(new GameRouter);
     return *m_instance;
 }
+#endif

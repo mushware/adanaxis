@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlClient.cpp,v 1.5 2002/12/14 15:04:33 southa Exp $
+ * $Id: MustlClient.cpp,v 1.6 2002/12/15 00:26:20 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.6  2002/12/15 00:26:20  southa
+ * Send, receive and timer work
+ *
  * Revision 1.5  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -75,7 +88,7 @@
 #include "MustlPlatform.h"
 #include "MustlSTL.h"
 
-#include "MustlNamespace.h"
+using namespace Mustl;
 
 MustlClient::MustlClient() :
     m_tcpSocket(NULL),

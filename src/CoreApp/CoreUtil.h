@@ -2,19 +2,20 @@
 #define COREUTIL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreUtil.h,v 1.6 2002/08/27 08:56:18 southa Exp $
+ * $Id: CoreUtil.h,v 1.7 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreUtil.h,v $
+ * Revision 1.7  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -43,9 +44,9 @@
 class CoreUtil
 {
 public:
-    static U32 BigEndianU32Get(istream& inIn);
-    static U32 LittleEndianU32Get(istream& inIn);
-    static U8 U8Get(istream& inIn);
+    static Mushware::U32 BigEndianU32Get(istream& inIn);
+    static Mushware::U32 LittleEndianU32Get(istream& inIn);
+    static Mushware::U8 U8Get(istream& inIn);
 
     static string TranslateFilename(const string& inStr) {return inStr;}
     static string AppDirFilename(const string& inStr);

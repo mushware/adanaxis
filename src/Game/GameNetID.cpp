@@ -1,12 +1,27 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameNetID.cpp,v 1.1 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameNetID.cpp,v 1.2 2002/12/12 14:00:39 southa Exp $
  * $Log: GameNetID.cpp,v $
+ * Revision 1.2  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.1  2002/12/09 23:59:58  southa
  * Network control
  *
  */
 
 #include "GameNetID.h"
+
+using namespace Mushware;
 
 GameNetID::GameNetID(const string& inStr) :
     m_clientRef(inStr)

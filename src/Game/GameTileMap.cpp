@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.15 2002/11/18 11:31:14 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.16 2002/11/24 23:18:25 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.16  2002/11/24 23:18:25  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.15  2002/11/18 11:31:14  southa
  * Return to game mode
  *
@@ -59,8 +60,10 @@
 
 #include "GameTileMap.h"
 #include "GameData.h"
-#include "GameTileTraits.h"
 #include "GameSwitches.h"
+#include "GameTileTraits.h"
+
+using namespace Mushware;
 
 CoreInstaller GameTileMapInstaller(GameTileMap::Install);
 

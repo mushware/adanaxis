@@ -2,19 +2,20 @@
 #define SDLAPPHANDLER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.h,v 1.16 2002/11/18 18:55:57 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.17 2002/12/03 20:28:15 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.17  2002/12/03 20:28:15  southa
+ * Network, player and control work
+ *
  * Revision 1.16  2002/11/18 18:55:57  southa
  * Game resume and quit
  *
@@ -62,21 +63,21 @@
  *
  */
 
-#include "mushCore.h"
-#include "GLKeys.h"
 #include "GLAppHandler.h"
+#include "GLKeys.h"
 #include "GLModeDef.h"
+#include "mushCore.h"
 
 class GLKeyboardSignal;
 
 class SDLControlEntry
 {
 public:
-    explicit SDLControlEntry(U32 inValue) : timestamp(inValue), unboundedMouseX(0), unboundedMouseY(0), keyValue(0), keyDirection(false) {}
-    U32 timestamp;
-    S32 unboundedMouseX;
-    S32 unboundedMouseY;
-    U32 keyValue;
+    explicit SDLControlEntry(Mushware::U32 inValue) : timestamp(inValue), unboundedMouseX(0), unboundedMouseY(0), keyValue(0), keyDirection(false) {}
+    Mushware::U32 timestamp;
+    Mushware::S32 unboundedMouseX;
+    Mushware::S32 unboundedMouseY;
+    Mushware::U32 keyValue;
     bool keyDirection;
 };
 
@@ -87,20 +88,20 @@ public:
     virtual ~SDLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
-    virtual void MousePositionGet(tVal& outX, tVal& outY) const;
-    virtual void UnboundedMousePositionGet(S32& outX, S32& outY) const;
+    virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const;
+    virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const;
     virtual void EnterScreen(const GLModeDef& inDef);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);
-    virtual U32 WidthGet(void) const {return m_width;}
-    virtual U32 HeightGet(void) const {return m_height;}
-    virtual U32 MillisecondsGet(void) const;
+    virtual Mushware::U32 WidthGet(void) const {return m_width;}
+    virtual Mushware::U32 HeightGet(void) const {return m_height;}
+    virtual Mushware::U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
     virtual void PollForControlEvents(void);
     virtual void AppQuit(void);
-    virtual void KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues);
-    virtual void ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec);
+    virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues);
+    virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec);
     
 protected:
     virtual void Initialise(void);
@@ -118,25 +119,25 @@ private:
         kControlBufferSize=100
     };
 
-    void AddToControlBuffer(U32 inKeyValue, bool inKeyDirection);
+    void AddToControlBuffer(Mushware::U32 inKeyValue, bool inKeyDirection);
     
-    U32 m_width;
-    U32 m_height;
-    U32 m_bpp;
+    Mushware::U32 m_width;
+    Mushware::U32 m_height;
+    Mushware::U32 m_bpp;
     bool m_showCursor;
     bool m_redisplay;
     bool m_visible;
-    vector<bool> m_keyState;
-    vector<bool> m_latchedKeyState;
-    tVal m_mouseX;
-    tVal m_mouseY;
-    S32 m_unboundedMouseX;
-    S32 m_unboundedMouseY;
-    tVal m_greatestDimension;
+    std::vector<bool> m_keyState;
+    std::vector<bool> m_latchedKeyState;
+    Mushware::tVal m_mouseX;
+    Mushware::tVal m_mouseY;
+    Mushware::S32 m_unboundedMouseX;
+    Mushware::S32 m_unboundedMouseY;
+    Mushware::tVal m_greatestDimension;
     GLModeDef m_modeDef;
-    vector<SDLControlEntry> m_controlBuffer;
-    U32 m_controlBufferIndex;
-    vector<GLKeys::tKeyValue> m_keysOfInterest;
+    std::vector<SDLControlEntry> m_controlBuffer;
+    Mushware::U32 m_controlBufferIndex;
+    std::vector<GLKeys::tKeyValue> m_keysOfInterest;
     bool m_firstDelta;
     bool m_doQuit;
 };

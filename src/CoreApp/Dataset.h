@@ -2,19 +2,20 @@
 #define DATASET_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: Dataset.h,v 1.7 2002/10/22 20:41:59 southa Exp $
+ * $Id: Dataset.h,v 1.8 2002/12/04 00:37:10 southa Exp $
  * $Log: Dataset.h,v $
+ * Revision 1.8  2002/12/04 00:37:10  southa
+ * ControlFrameDef work
+ *
  * Revision 1.7  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -44,18 +45,18 @@
  *
  */
 
+#include "CoreRegExp.h"
 #include "CoreStandard.h"
 #include "CoreXML.h"
-#include "CoreRegExp.h"
 
 class Dataset
 {
 public:
     Dataset();
     void Load(istream& in);
-    void Save(ostream& out);
-    void Resize(tSize entries);
-    void AppendElement(const vector<tVal>& data, const vector<bool>& valid);
+    void Save(std::ostream& out);
+    void Resize(Mushware::U32 entries);
+    void AppendElement(const std::vector<Mushware::tVal>& data, const std::vector<bool>& valid);
     void Clear(void);
     void Testset(void);
     
@@ -64,8 +65,8 @@ private:
     static void endElement(void *userData, const char *name);
     static void characterDataHandler(void *userData, const XML_Char *s, int len);
 
-    vector< vector<tVal> > m_data;
-    vector< vector<bool> > m_valid;
+    std::vector< std::vector<Mushware::tVal> > m_data;
+    std::vector< std::vector<bool> > m_valid;
 
     CoreRegExp m_regexp;
     

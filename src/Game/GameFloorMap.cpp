@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.38 2002/11/24 23:18:16 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.39 2002/12/03 20:28:16 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.39  2002/12/03 20:28:16  southa
+ * Network, player and control work
+ *
  * Revision 1.38  2002/11/24 23:18:16  southa
  * Added type name accessor to CorePickle
  *
@@ -146,11 +147,13 @@
 
 #include "GameFloorMap.h"
 #include "GameData.h"
-#include "GameTileMap.h"
-#include "GameTileTraits.h"
 #include "GameMapArea.h"
 #include "GameMapPoint.h"
 #include "GameSpacePoint.h"
+#include "GameTileMap.h"
+#include "GameTileTraits.h"
+
+using namespace Mushware;
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 

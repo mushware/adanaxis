@@ -2,19 +2,20 @@
 #define GAMEMAP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameMap.h,v 1.8 2002/10/11 14:01:13 southa Exp $
+ * $Id: GameMap.h,v 1.9 2002/10/22 20:42:05 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.9  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/10/11 14:01:13  southa
  * Lighting work
  *
@@ -30,14 +31,14 @@ template<class T> class GameMap
 {
 public:
     GameMap();
-    void SizeSet(U32 inX, U32 inY);
+    void SizeSet(Mushware::U32 inX, Mushware::U32 inY);
     const T& ElementGet(const GLPoint& inPoint) const { return ElementGet(inPoint.x, inPoint.y); }
-    const T& ElementGet(U32 inX, U32 inY) const;
-    void ElementSet(const T& inValue, U32 inX, U32 inY);
+    const T& ElementGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    void ElementSet(const T& inValue, Mushware::U32 inX, Mushware::U32 inY);
 
 private:
-    U32 m_xSize;
-    U32 m_ySize;
+    Mushware::U32 m_xSize;
+    Mushware::U32 m_ySize;
     tValarray<T> m_map;
 };
 
@@ -51,7 +52,7 @@ m_ySize(0)
 
 template<class T>
 inline void
-GameMap<T>::SizeSet(U32 inX, U32 inY)
+GameMap<T>::SizeSet(Mushware::U32 inX, Mushware::U32 inY)
 {
     m_xSize=inX;
     m_ySize=inY;
@@ -60,7 +61,7 @@ GameMap<T>::SizeSet(U32 inX, U32 inY)
 
 template<class T>
 inline void
-GameMap<T>::ElementSet(const T& inValue, U32 inX, U32 inY)
+GameMap<T>::ElementSet(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
     COREASSERT(inX < m_xSize);
     COREASSERT(inY < m_ySize);
@@ -69,7 +70,7 @@ GameMap<T>::ElementSet(const T& inValue, U32 inX, U32 inY)
 
 template<class T>
 inline const T&
-GameMap<T>::ElementGet(U32 inX, U32 inY) const
+GameMap<T>::ElementGet(Mushware::U32 inX, Mushware::U32 inY) const
 {
     if (inX >= m_xSize)
     {

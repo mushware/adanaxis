@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlPlatform.cpp,v 1.4 2002/12/15 00:26:20 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.5 2002/12/17 00:58:29 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.5  2002/12/17 00:58:29  southa
+ * Added support for libmustl target
+ *
  * Revision 1.4  2002/12/15 00:26:20  southa
  * Send, receive and timer work
  *
@@ -61,20 +74,24 @@
 
 #include "MustlAddress.h"
 #include "MustlFail.h"
-#include "MustlNamespace.h"
+using namespace Mustl;
 #include "MustlSTL.h"
 
 #include <sys/types.h>
-#include <sys/time.h>
-#include <sys/socket.h>
 #include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <unistd.h>
+
 #include <arpa/inet.h>
+#include <fcntl.h>
+
 #include <net/if.h>
+#include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <fcntl.h>
-#include <netdb.h>
-#include <unistd.h>
+
+using namespace Mustl;
 
 bool MustlPlatform::m_localAddressesValid=false;
 map<U32, bool> MustlPlatform::m_localAddressMap;

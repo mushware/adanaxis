@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GamePlayerUtils.cpp,v 1.6 2002/12/10 20:38:05 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.7 2002/12/12 14:00:40 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.7  2002/12/12 14:00:40  southa
+ * Created Mustl
+ *
  * Revision 1.6  2002/12/10 20:38:05  southa
  * Server timing
  *
@@ -35,6 +48,8 @@
 #include "GameProtocol.h"
 #include "GameTimer.h"
 #include "GameType.h"
+
+using namespace Mushware;
 
 void
 GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)

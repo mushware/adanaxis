@@ -2,19 +2,20 @@
 #define MUSHPLATFORM_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: mushPlatform.h,v 1.10 2002/11/01 16:56:49 southa Exp $
+ * $Id: mushPlatform.h,v 1.11 2002/12/12 18:38:57 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.11  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.10  2002/11/01 16:56:49  southa
  * Fixed platform inclusion
  *

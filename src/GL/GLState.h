@@ -3,19 +3,20 @@
 
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLState.h,v 1.6 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLState.h,v 1.7 2002/12/04 15:39:57 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.7  2002/12/04 15:39:57  southa
+ * Multiplayer work
+ *
  * Revision 1.6  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -23,10 +24,10 @@
  * Config saving, pause and quit
  *
  * Revision 1.4  2002/10/14 13:03:00  southa
- * Display list test
+ * Display std::list test
  *
  * Revision 1.3  2002/10/13 12:26:46  southa
- * Facetised map rendering
+ * Facetised std::map rendering
  *
  * Revision 1.2  2002/10/12 17:34:20  southa
  * Wall edges
@@ -80,8 +81,8 @@ public:
 
     
     static void BlendSet(tBlendType inType);
-    static void AmbientLightSet(tVal inAmbient);
-    static void LightingAlphaSet(tVal inAlpha);
+    static void AmbientLightSet(Mushware::tVal inAmbient);
+    static void LightingAlphaSet(Mushware::tVal inAlpha);
     static void ModulationSet(tModulationType inType);
     static void DepthSet(tDepthType inType);
     static void UseLightingSet(bool inValue);
@@ -96,7 +97,7 @@ private:
     static void ResolveDisplayQuality(void);
         
     static tBlendType m_blendState;
-    static tVal m_lightingAlpha;
+    static Mushware::tVal m_lightingAlpha;
     static tModulationType m_modulateState;
     static tDepthType m_depthState;
     static tDisplayQuality m_displayQuality;
@@ -161,7 +162,7 @@ GLState::BlendSet(tBlendType inValue)
 }
 
 inline void
-GLState::AmbientLightSet(tVal inAmbient)
+GLState::AmbientLightSet(Mushware::tVal inAmbient)
 {
     GLfloat ambient[4]={inAmbient, inAmbient, inAmbient, 1};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
@@ -170,7 +171,7 @@ GLState::AmbientLightSet(tVal inAmbient)
 }
 
 inline void
-GLState::LightingAlphaSet(tVal inAlpha)
+GLState::LightingAlphaSet(Mushware::tVal inAlpha)
 {
     m_lightingAlpha = inAlpha;
     m_modulateState = kModulationInvalidated;

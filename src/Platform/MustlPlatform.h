@@ -1,9 +1,22 @@
 #ifndef MUSTLPLATFORM_H
 #define MUSTLPLATFORM_H
 
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlPlatform.h,v 1.4 2002/12/14 15:04:34 southa Exp $
+ * $Id: MustlPlatform.h,v 1.5 2002/12/17 00:58:29 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.5  2002/12/17 00:58:29  southa
+ * Added support for libmustl target
+ *
  * Revision 1.4  2002/12/14 15:04:34  southa
  * Mustl fixes
  *
@@ -86,6 +99,6 @@ public:
     
 private:
     static bool m_localAddressesValid;
-    static map<Mustl::U32, bool> m_localAddressMap;
+    static std::map<Mustl::U32, bool> m_localAddressMap;
 };
 #endif

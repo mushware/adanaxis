@@ -1,3 +1,13 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
  *  GameFrameTimer.cpp
  *  core-app
@@ -10,6 +20,8 @@
 #include "GameFrameTimer.h"
 
 #include "GameTimer.h"
+
+using namespace Mushware;
 
 GameFrameTimer::GameFrameTimer(GameTimer::tUsec inInterval):
     m_averageFrameUsec(0),

@@ -2,19 +2,20 @@
 #define COREXML_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreXML.h,v 1.10 2002/09/01 16:29:18 southa Exp $
+ * $Id: CoreXML.h,v 1.11 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreXML.h,v $
+ * Revision 1.11  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/09/01 16:29:18  southa
  * Support Redhat paths for include files
  *
@@ -85,13 +86,13 @@ public:
 class CoreXML
 {
 public:
-    CoreXML(istream& inStream, const string& inName = "<unknown stream>", U32 inLine=1);
+    CoreXML(istream& inStream, const string& inName = "<unknown stream>", Mushware::U32 inLine=1);
     ~CoreXML();
     
     const string& TopTag(void) {COREASSERT(!m_tagStack.empty());return m_tagStack.top();}
     const string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
-    map<string, string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
-    void DumpTops(ostream& inOut);
+    std::map<string, string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
+    void DumpTops(std::ostream& inOut);
     void StopHandler(void);
     CoreScalar GetAttrib(const string& inName);
     void GetAttrib(CoreScalar& outScalar, const string& inName);
@@ -102,7 +103,7 @@ public:
 private:
     void ProcessStartElement(const char *inName, const char **inAttribs);
     void ProcessEndElement(const char *inName);
-    void ProcessCharacterData(const char *inData, tSize inLen);
+    void ProcessCharacterData(const char *inData, Mushware::U32 inLen);
     void NewHandler(CoreXMLHandler& inHandler);
     static void StartElementHandler(void *inUserData, const char *inName, const char **inAttribs);
     static void EndElementHandler(void *inUserData, const char *inName);
@@ -111,13 +112,13 @@ private:
     CoreXMLHandler *m_currentHandler;
     stack<CoreXMLHandler *> m_handlers;
     XML_Parser m_parser;
-    stack< map<string, string> > m_attribStack;
+    stack< std::map<string, string> > m_attribStack;
     stack<string> m_dataStack;
     stack<string> m_tagStack;
     istream *m_inStream;
     string m_name;
     bool m_continue;
     bool m_threaded;
-    U32 m_line;
+    Mushware::U32 m_line;
 };
 #endif

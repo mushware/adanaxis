@@ -2,19 +2,20 @@
 #define GLRECTANGLE_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.h,v 1.8 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLRectangle.h,v 1.9 2002/10/22 20:42:01 southa Exp $
  * $Log: GLRectangle.h,v $
+ * Revision 1.9  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -51,7 +52,7 @@ class GLLine;
 class GLRectangle : public GLRenderable
 {
 public:
-    GLRectangle(tVal inMinX=0, tVal inMinY=0, tVal inMaxX=0, tVal inMaxY=0);
+    GLRectangle(Mushware::tVal inMinX=0, Mushware::tVal inMinY=0, Mushware::tVal inMaxX=0, Mushware::tVal inMaxY=0);
     GLRectangle(const GLPoint& inMin, const GLPoint& inMax);
 
     virtual GLRectangle *Clone(void) const { return new GLRectangle(*this); }
@@ -61,25 +62,25 @@ public:
     void ConstrainPoint(GLPoint& ioPoint) const;
     bool IsWithin(const GLPoint& inPoint) const;
     bool IsIntersecting(const GLLine& inLine) const;
-    tVal XSize(void) const;
-    tVal YSize(void) const;
+    Mushware::tVal XSize(void) const;
+    Mushware::tVal YSize(void) const;
     GLPoint Size(void) const;
     GLPoint MinPoint(void) const { return GLPoint(xmin, ymin); }
     void FixUp(void);
     void MakeInteger(void);
-    void Expand(tVal inExpansion);
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    void Expand(Mushware::tVal inExpansion);
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
     const GLRectangle& operator+=(const GLPoint& inPoint);
     
-    tVal xmin;
-    tVal ymin;
-    tVal xmax;
-    tVal ymax;
+    Mushware::tVal xmin;
+    Mushware::tVal ymin;
+    Mushware::tVal xmax;
+    Mushware::tVal ymax;
 };
 
-inline ostream& operator<<(ostream &s, const GLRectangle& inRect)
+inline std::ostream& operator<<(std::ostream &s, const GLRectangle& inRect)
 {
     inRect.Pickle(s);
     return s;

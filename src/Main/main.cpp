@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.20 2002/10/17 12:35:30 southa Exp $
+ * $Id: main.cpp,v 1.21 2002/10/22 20:42:07 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.21  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.20  2002/10/17 12:35:30  southa
  * Save path and update check
  *
@@ -92,6 +93,8 @@
 #include <SDL_main.h>
 #else
 #include "SDL_main.h"
+
+using namespace Mushware;
 #endif
 #endif
 

@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.5 2002/10/17 15:50:58 southa Exp $
+ * $Id: GLPoint.cpp,v 1.6 2002/10/22 20:42:00 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.6  2002/10/22 20:42:00  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/10/17 15:50:58  southa
  * Config saving, pause and quit
  *
@@ -31,8 +32,10 @@
  */
 
 #include "GLPoint.h"
-#include "GLUtils.h"
 #include "GLState.h"
+#include "GLUtils.h"
+
+using namespace Mushware;
 
 void
 GLPoint::Render(void) const

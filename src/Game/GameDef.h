@@ -1,8 +1,21 @@
 #ifndef GAMEDEF_H
 #define GAMEDEF_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameDef.h,v 1.13 2002/12/07 18:32:14 southa Exp $
+ * $Id: GameDef.h,v 1.14 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.14  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.13  2002/12/07 18:32:14  southa
  * Network ID stuff
  *
@@ -62,16 +75,16 @@ public:
     explicit GameDef(const string& inName);
     virtual ~GameDef() {}
     virtual void Ticker(const string& inName) = 0;
-    virtual void WebPrint(ostream& ioOut) const = 0;
+    virtual void WebPrint(std::ostream& ioOut) const = 0;
 
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
     const string& NameGet(void) const { return m_name; }
     bool ImageIs(void) const { return m_isImage; }
     void ImageIsSet(bool inValue) { m_isImage = inValue; }
     const string StatusWebStringGet(void) const;
-    U32 CreationMsecGet(void) const { return m_creationMsec; }
+    Mushware::U32 CreationMsecGet(void) const { return m_creationMsec; }
     
 protected:
     tStatus StatusGet(void) { return m_status; }
@@ -94,14 +107,14 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameDef::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameDef::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
 
     string m_name;
     tStatus m_status;
-    U32 m_creationMsec;
+    Mushware::U32 m_creationMsec;
     bool m_isImage;
 };
 #endif

@@ -2,19 +2,20 @@
 #define GAMECONFIG_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.8 2002/11/24 23:18:06 southa Exp $
+ * $Id: GameConfig.h,v 1.9 2002/11/25 18:02:56 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.9  2002/11/25 18:02:56  southa
+ * Mushware ID work
+ *
  * Revision 1.8  2002/11/24 23:18:06  southa
  * Added type name accessor to CorePickle
  *
@@ -56,8 +57,8 @@ public:
     static CoreScalar GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv);
     
-    U32 DisplayModeGet(void) const;
-    void DisplayModeSet(U32 inMode);
+    Mushware::U32 DisplayModeGet(void) const;
+    void DisplayModeSet(Mushware::U32 inMode);
     void DisplayModeSetDefault(void);
 
     CoreScalar ParameterGet(const string& inName) const;
@@ -66,7 +67,7 @@ public:
     void PostDataHandle(const string& inData);
     void Update(void);
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
    
@@ -93,9 +94,9 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameConfig::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameConfig::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
     // End of XML stuff

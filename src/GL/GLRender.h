@@ -2,21 +2,22 @@
 #define GLRENDER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLRender.h,v 1.3 2002/10/14 13:03:00 southa Exp $
+ * $Id: GLRender.h,v 1.4 2002/10/22 20:42:01 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.4  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/10/14 13:03:00  southa
- * Display list test
+ * Display std::list test
  *
  * Revision 1.2  2002/10/12 17:34:20  southa
  * Wall edges
@@ -26,10 +27,10 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLStandard.h"
 #include "GLState.h"
 #include "GLTextureRef.h"
+#include "mushCore.h"
 
 class GLTextureRef;
 
@@ -56,11 +57,11 @@ public:
         GLState::BindTexture(inTexRef.BindingNameGet());
         GLState::TextureEnable();
     }
-    static void DrawArrays(GLenum inType, U32 inSize)
+    static void DrawArrays(GLenum inType, Mushware::U32 inSize)
     {
         glDrawArrays(inType, 0, inSize);
     }
-    static void ArraysToList(GLenum inType, U32 inSize);
+    static void ArraysToList(GLenum inType, Mushware::U32 inSize);
 
 private:
     static const GLfloat (*m_vertexArray)[3];

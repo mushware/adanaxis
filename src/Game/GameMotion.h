@@ -2,19 +2,20 @@
 #define GAMEMOTION_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.h,v 1.5 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameMotion.h,v 1.6 2002/11/24 23:18:23 southa Exp $
  * $Log: GameMotion.h,v $
+ * Revision 1.6  2002/11/24 23:18:23  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.5  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -46,7 +47,7 @@ public:
 
     void Render(void) const;
 
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -71,9 +72,9 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameMotion::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameMotion::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
 
     GameMotionSpec m_motionSpec;

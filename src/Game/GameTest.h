@@ -2,19 +2,20 @@
 #define GAMETEST_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTest.h,v 1.8 2002/08/27 08:56:26 southa Exp $
+ * $Id: GameTest.h,v 1.9 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTest.h,v $
+ * Revision 1.9  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:26  southa
  * Source conditioning
  *
@@ -65,12 +66,12 @@ protected:
 
 private:
     State m_state;
-    tVal m_playerx;
-    tVal m_playerxv;
-    tVal m_playery;
-    tVal m_playeryv;
+    Mushware::tVal m_playerx;
+    Mushware::tVal m_playerxv;
+    Mushware::tVal m_playery;
+    Mushware::tVal m_playeryv;
     
-    tVal m_leftlim;
-    tVal m_rightlim;
+    Mushware::tVal m_leftlim;
+    Mushware::tVal m_rightlim;
 };
 #endif

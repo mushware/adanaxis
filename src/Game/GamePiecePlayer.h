@@ -2,19 +2,20 @@
 #define GAMEPIECEPLAYER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.22 2002/12/04 15:39:58 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.23 2002/12/10 20:38:05 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.23  2002/12/10 20:38:05  southa
+ * Server timing
+ *
  * Revision 1.22  2002/12/04 15:39:58  southa
  * Multiplayer work
  *
@@ -97,7 +98,7 @@ class GamePiecePlayer: public GamePiece
 public:
     GamePiecePlayer();
     virtual ~GamePiecePlayer() {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
@@ -105,19 +106,19 @@ public:
     virtual void Render(void);
     virtual char *TypeNameGet(void) const;
 
-    tVal XGet(void) {return m_motion.MotionSpecGet().pos.x;}
-    tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}
+    Mushware::tVal XGet(void) {return m_motion.MotionSpecGet().pos.x;}
+    Mushware::tVal YGet(void) {return m_motion.MotionSpecGet().pos.y;}
     const GLPoint& PositionGet(void) { return m_motion.MotionSpecGet().pos; }
-    tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
+    Mushware::tVal AngleGet(void) {return m_motion.MotionSpecGet().angle;}
     const GameMotionSpec& MotionSpecGet(void) const { return m_motion.MotionSpecGet(); }
     const GameFloorMap::tMapVector& StandingOnGet(void) { return m_standingOn; }
     
     bool ImageIs(void) const { return m_imageIs; }
     void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
-    bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U32 inFrameNum);
-    CoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(U32 inFrameNum) const;
-    void ControlFrameDefAdd(const GameControlFrameDef& inDef, U32 inFrameNum);
-    U32 LastValidControlFrameGet(void) const;
+    bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, Mushware::U32 inFrameNum);
+    CoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(Mushware::U32 inFrameNum) const;
+    void ControlFrameDefAdd(const GameControlFrameDef& inDef, Mushware::U32 inFrameNum);
+    Mushware::U32 LastValidControlFrameGet(void) const;
     
     static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static void Install(void);
@@ -147,9 +148,9 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GamePiecePlayer::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GamePiecePlayer::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
 
@@ -159,16 +160,16 @@ private:
     };
 
     GameMotion m_motion;
-    tVal m_adhesion;
-    vector <GameGraphic *> m_graphics;
-    tVal m_speedLim;
-    tVal m_acceleration;
+    Mushware::tVal m_adhesion;
+    std::vector <GameGraphic *> m_graphics;
+    Mushware::tVal m_speedLim;
+    Mushware::tVal m_acceleration;
     GameFloorMap::tMapVector m_standingOn;
     CoreHistory<U32, GameControlFrameDef> m_frameDefHistory;
     bool m_imageIs;
 };
 
-inline ostream& operator<<(ostream &inOut, const GamePiecePlayer& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GamePiecePlayer& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

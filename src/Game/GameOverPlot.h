@@ -2,19 +2,20 @@
 #define GAMEOVERPLOT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameOverPlot.h,v 1.3 2002/08/27 08:56:25 southa Exp $
+ * $Id: GameOverPlot.h,v 1.4 2002/10/22 20:42:05 southa Exp $
  * $Log: GameOverPlot.h,v $
+ * Revision 1.4  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.3  2002/08/27 08:56:25  southa
  * Source conditioning
  *
@@ -39,8 +40,8 @@ public:
     void Clear(void);
 
 private:
-    U32 m_numRenderables;
-    vector<GLRenderable *> m_renderables;
-    vector<GLColour> m_colours;
+    Mushware::U32 m_numRenderables;
+    std::vector<GLRenderable *> m_renderables;
+    std::vector<GLColour> m_colours;
 };
 #endif

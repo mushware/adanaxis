@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLRender.cpp,v 1.2 2002/10/14 13:03:00 southa Exp $
+ * $Id: GLRender.cpp,v 1.3 2002/10/22 20:42:01 southa Exp $
  * $Log: GLRender.cpp,v $
+ * Revision 1.3  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/10/14 13:03:00  southa
  * Display list test
  *
@@ -22,6 +23,8 @@
  */
 
 #include "GLRender.h"
+
+using namespace Mushware;
 
 const GLfloat (*GLRender::m_vertexArray)[3] = NULL;
 const GLfloat (*GLRender::m_texCoordArray)[2] = NULL;

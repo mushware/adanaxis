@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameView.cpp,v 1.5 2002/10/22 20:42:07 southa Exp $
+ * $Id: GameView.cpp,v 1.6 2002/12/03 20:28:17 southa Exp $
  * $Log: GameView.cpp,v $
+ * Revision 1.6  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
  * Revision 1.5  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -31,6 +32,8 @@
  */
 
 #include "GameView.h"
+
+using namespace Mushware;
 
 GameView::GameView():
     m_dimensions(GLRectangle(0,0,0,0)),

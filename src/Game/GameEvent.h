@@ -2,19 +2,20 @@
 #define GAMEEVENT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameEvent.h,v 1.4 2002/10/08 11:58:52 southa Exp $
+ * $Id: GameEvent.h,v 1.5 2002/10/22 20:42:03 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.5  2002/10/22 20:42:03  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/08 11:58:52  southa
  * Light cache
  *

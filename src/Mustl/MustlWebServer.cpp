@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlWebServer.cpp,v 1.3 2002/12/17 00:58:29 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.4 2002/12/17 12:53:35 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.4  2002/12/17 12:53:35  southa
+ * Mustl library
+ *
  * Revision 1.3  2002/12/17 00:58:29  southa
  * Added support for libmustl target
  *
@@ -44,7 +57,7 @@
 
 #include "mustlCore.h"
 
-#include "MustlNamespace.h"
+using namespace Mustl;
 
 auto_ptr<MustlWebServer> MustlWebServer::m_instance;
 

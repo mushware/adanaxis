@@ -2,19 +2,20 @@
 #define GAMETRAITS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.10 2002/11/24 23:54:36 southa Exp $
+ * $Id: GameTraits.h,v 1.11 2002/11/25 10:43:28 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.11  2002/11/25 10:43:28  southa
+ * GameProtocol work
+ *
  * Revision 1.10  2002/11/24 23:54:36  southa
  * Initial send of objects over links
  *
@@ -55,12 +56,12 @@ public:
     GameTraits(): m_traitsValid(false) {}
     virtual ~GameTraits() {}
     void Verify(void);
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     
 protected:
-    U32 NumberOfTraitsGet(void) const;
-    GameTraits& TraitsGet(U32 inIndex) const;
+    Mushware::U32 NumberOfTraitsGet(void) const;
+    GameTraits& TraitsGet(Mushware::U32 inIndex) const;
     const string TraitsNameGet(void) const;
 
     void UnpicklePrologue(void);
@@ -81,17 +82,17 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameTraits::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameTraits::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
 
     void RebuildTraits(void) const;
         
-    vector<string> m_baseNames;
+    std::vector<string> m_baseNames;
     mutable string m_failMessage;
     mutable bool m_traitsValid;
-    mutable vector<GameTraits *> m_baseTraits;
+    mutable std::vector<GameTraits *> m_baseTraits;
 };
 
 inline U32
@@ -102,7 +103,7 @@ GameTraits::NumberOfTraitsGet(void) const
 }
 
 inline GameTraits&
-GameTraits::TraitsGet(U32 inIndex) const
+GameTraits::TraitsGet(Mushware::U32 inIndex) const
 {
     if (!m_traitsValid)
     {
@@ -112,7 +113,7 @@ GameTraits::TraitsGet(U32 inIndex) const
     return *m_baseTraits[inIndex];
 }
 
-inline ostream& operator<<(ostream &inOut, const GameTraits& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameTraits& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

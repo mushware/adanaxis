@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.11 2002/10/14 18:13:18 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.12 2002/10/22 20:42:08 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.12  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/14 18:13:18  southa
  * GLModeDef work
  *
@@ -60,6 +61,8 @@
 #include "mushGL.h"
 
 #include "GraphWrangler.h"
+
+using namespace Mushware;
 
 void
 GLWrangleAppHandler::Initialise(void)

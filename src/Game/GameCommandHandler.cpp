@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.8 2002/10/22 20:42:02 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.9 2002/11/17 13:38:30 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.9  2002/11/17 13:38:30  southa
+ * Game selection
+ *
  * Revision 1.8  2002/10/22 20:42:02  southa
  * Source conditioning
  *
@@ -41,9 +42,11 @@
 
 #include "GameCommandHandler.h"
 
+#include "GameAppHandler.h"
 #include "mushCore.h"
 #include "mushPlatform.h"
-#include "GameAppHandler.h"
+
+using namespace Mushware;
 
 CoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
 

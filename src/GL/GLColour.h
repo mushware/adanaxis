@@ -2,19 +2,20 @@
 #define GLCOLOUR_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLColour.h,v 1.7 2002/10/12 15:24:58 southa Exp $
+ * $Id: GLColour.h,v 1.8 2002/10/22 20:41:59 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.8  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/10/12 15:24:58  southa
  * Facet renderer
  *
@@ -38,14 +39,14 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLState.h"
+#include "mushCore.h"
 
 class GLColour
 {
 public:
     GLColour() {}
-    GLColour(tVal inRed, tVal inGreen, tVal inBlue, tVal inAlpha=1.0)
+    GLColour(Mushware::tVal inRed, Mushware::tVal inGreen, Mushware::tVal inBlue, Mushware::tVal inAlpha=1.0)
     {
         m_col[0]=inRed;
         m_col[1]=inGreen;
@@ -53,14 +54,14 @@ public:
         m_col[3]=inAlpha;
     }
     void Apply(void) const { GLState::ColourSet(m_col[0], m_col[1], m_col[2], m_col[3]); }
-    tVal RedGet(void) const { return m_col[0]; }
-    tVal GreenGet(void) const { return m_col[1]; }
-    tVal BlueGet(void) const { return m_col[2]; }
-    tVal AlphaGet(void) const { return m_col[3]; }
+    Mushware::tVal RedGet(void) const { return m_col[0]; }
+    Mushware::tVal GreenGet(void) const { return m_col[1]; }
+    Mushware::tVal BlueGet(void) const { return m_col[2]; }
+    Mushware::tVal AlphaGet(void) const { return m_col[3]; }
     typedef GLfloat tGLfloat4[4];
     const tGLfloat4& ArrayGet(void) const { return m_col; }
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
 
     const GLColour& operator+=(const GLColour& inCol)
@@ -71,7 +72,7 @@ public:
         m_col[3]+=inCol.m_col[3];
         return *this;
     }
-    const GLColour& operator*=(tVal inVal)
+    const GLColour& operator*=(Mushware::tVal inVal)
     {
         m_col[0]*=inVal;
         m_col[1]*=inVal;
@@ -90,13 +91,13 @@ inline const GLColour operator+(const GLColour& a, const GLColour& b)
     return retCol+=b;
 }
 
-inline const GLColour operator*(const GLColour& a, tVal b)
+inline const GLColour operator*(const GLColour& a, Mushware::tVal b)
 {
     GLColour retCol(a);
     return retCol*=b;
 }
 
-inline const GLColour operator*(tVal a, const GLColour& b)
+inline const GLColour operator*(Mushware::tVal a, const GLColour& b)
 {
     GLColour retCol(b);
     return retCol*=a;

@@ -1,8 +1,21 @@
 #ifndef MUSTLLOG_H
 #define MUSTLLOG_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlLog.h,v 1.2 2002/12/14 15:04:34 southa Exp $
+ * $Id: MustlLog.h,v 1.3 2002/12/17 12:53:34 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.3  2002/12/17 12:53:34  southa
+ * Mustl library
+ *
  * Revision 1.2  2002/12/14 15:04:34  southa
  * Mustl fixes
  *
@@ -39,10 +52,10 @@ public:
 
     static inline MustlLog& Instance(void);
 
-    ostream& WebLog(void);
-    ostream& NetLog(void);
-    ostream& VerboseLog(void);
-    ostream& TrafficLog(void);
+    std::ostream& WebLog(void);
+    std::ostream& NetLog(void);
+    std::ostream& VerboseLog(void);
+    std::ostream& TrafficLog(void);
     bool LogFullIPGet(void) const { return m_logFullIP; }
 
     bool NetLogGet(void) const { return m_netLog; }
@@ -59,11 +72,11 @@ public:
     void CloseFile(void);
     
 protected:
-    ostream& Log(void);
+    std::ostream& Log(void);
 
 private:
     ofstream *m_outStream;
-    ostream *m_nullStream;
+    std::ostream *m_nullStream;
     bool m_netLog;
     bool m_webLog;
     bool m_verboseLog;

@@ -2,19 +2,20 @@
 #define GAMETYPERACE_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.h,v 1.14 2002/10/22 20:42:07 southa Exp $
+ * $Id: GameTypeRace.h,v 1.15 2002/11/24 23:18:26 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.15  2002/11/24 23:18:26  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.14  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -62,10 +63,10 @@
  *
  */
 
-#include "mushCore.h"
-#include "GameType.h"
-#include "GameTimer.h"
 #include "GameRecords.h"
+#include "GameTimer.h"
+#include "GameType.h"
+#include "mushCore.h"
 
 class GameChequePoint;
 class GameEvent;
@@ -76,7 +77,7 @@ class GameTypeRace : public GameType
 public:
     GameTypeRace();
     virtual ~GameTypeRace() {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -115,9 +116,9 @@ private:
         kPickleNumStates
     };
     
-    typedef map<string, void (GameTypeRace::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameTypeRace::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
 
@@ -139,8 +140,8 @@ private:
     void LoadRecords(void);
     void SaveRecords(const GameRecords& inRecords) const;
 
-    U32 m_sequence;
-    vector<GameChequePoint *> m_chequePoints;
+    Mushware::U32 m_sequence;
+    std::vector<GameChequePoint *> m_chequePoints;
     GameRecords m_records;
     GameRecords m_worldRecords;
     GameTimer::tMsec m_startTime;
@@ -159,13 +160,13 @@ private:
     string m_finalLapAction;
     string m_winAction;
     string m_loseAction;
-    U32 m_laps;
-    U32 m_lapCount;
-    tVal m_initialTime;
-    tVal m_resultAlpha;
+    Mushware::U32 m_laps;
+    Mushware::U32 m_lapCount;
+    Mushware::tVal m_initialTime;
+    Mushware::tVal m_resultAlpha;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameTypeRace& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameTypeRace& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

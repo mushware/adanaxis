@@ -2,19 +2,20 @@
 #define COREAPPSIGNAL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreAppSignal.h,v 1.5 2002/08/27 08:56:15 southa Exp $
+ * $Id: CoreAppSignal.h,v 1.6 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreAppSignal.h,v $
+ * Revision 1.6  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -47,14 +48,14 @@ public:
         kMaxCoreAppSignal
     };
     
-    CoreAppSignal(U32 inSigNumber): m_sigNumber(inSigNumber) {} // for clients
+    CoreAppSignal(Mushware::U32 inSigNumber): m_sigNumber(inSigNumber) {} // for clients
     virtual ~CoreAppSignal() {}
     
-    U32 SigNumberGet(void) const {return m_sigNumber;}
-    void SigNumberSet(U32 inSigNumber) {m_sigNumber=inSigNumber;}
+    Mushware::U32 SigNumberGet(void) const {return m_sigNumber;}
+    void SigNumberSet(Mushware::U32 inSigNumber) {m_sigNumber=inSigNumber;}
     bool IsCoreAppSignal(void) const {return m_sigNumber > kMinCoreAppSignal && m_sigNumber < kMaxCoreAppSignal;}
 
 private:
-    U32 m_sigNumber;
+    Mushware::U32 m_sigNumber;
 };
 #endif

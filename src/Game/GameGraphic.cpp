@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.cpp,v 1.6 2002/10/12 11:22:21 southa Exp $
+ * $Id: GameGraphic.cpp,v 1.7 2002/10/22 20:42:04 southa Exp $
  * $Log: GameGraphic.cpp,v $
+ * Revision 1.7  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/10/12 11:22:21  southa
  * GraphicModel work
  *
@@ -34,8 +35,10 @@
  */
 
 #include "GameGraphic.h"
-#include "GameGraphicSprite.h"
 #include "GameGraphicModel.h"
+#include "GameGraphicSprite.h"
+
+using namespace Mushware;
 
 GameGraphic&
 GameGraphic::NewFromType(const string& inName)

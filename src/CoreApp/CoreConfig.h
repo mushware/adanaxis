@@ -2,19 +2,20 @@
 #define CORECONFIG_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreConfig.h,v 1.14 2002/11/24 23:18:03 southa Exp $
+ * $Id: CoreConfig.h,v 1.15 2002/12/17 12:53:33 southa Exp $
  * $Log: CoreConfig.h,v $
+ * Revision 1.15  2002/12/17 12:53:33  southa
+ * Mustl library
+ *
  * Revision 1.14  2002/11/24 23:18:03  southa
  * Added type name accessor to CorePickle
  *
@@ -31,7 +32,7 @@
  * More designer work
  *
  * Revision 1.9  2002/07/02 14:27:12  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  * Revision 1.8  2002/06/27 12:36:03  southa
  * Build process fixes
@@ -59,8 +60,8 @@
  *
  */
 
-#include "CoreStandard.h"
 #include "CoreScalar.h"
+#include "CoreStandard.h"
 
 class CoreConfig
 {
@@ -68,12 +69,12 @@ public:
     virtual ~CoreConfig() {}
     void Set(const string& inName, const CoreScalar& inValue);
     void Set(const string& inName, const string& inStr) { Set(inName, CoreScalar(inStr)); }
-    void Set(const string& inName, const tVal inVal) { Set(inName, CoreScalar(inVal)); }
+    void Set(const string& inName, const Mushware::tVal inVal) { Set(inName, CoreScalar(inVal)); }
     const CoreScalar& Get(const string& inName) const;
     bool GetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool Exists(const string& inName) const;
 
 private:
-    map<string, CoreScalar> m_config;
+    std::map<string, CoreScalar> m_config;
 };
 #endif

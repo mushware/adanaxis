@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameMessageControlData.cpp,v 1.2 2002/12/09 23:59:58 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.3 2002/12/12 14:00:39 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.3  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.2  2002/12/09 23:59:58  southa
  * Network control
  *
@@ -14,6 +27,8 @@
 #include "GameProtocol.h"
 
 #include "mushMedia.h"
+
+using namespace Mushware;
 
 const GameMessageControlData::DataEntry&
 GameMessageControlData::DataEntryGet(U32 inEntryNum) const

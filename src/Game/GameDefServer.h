@@ -1,6 +1,21 @@
+#ifndef GAMEDEFSERVER_H
+#define GAMEDEFSERVER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameDefServer.h,v 1.7 2002/12/07 18:32:15 southa Exp $
+ * $Id: GameDefServer.h,v 1.8 2002/12/12 14:00:39 southa Exp $
  * $Log: GameDefServer.h,v $
+ * Revision 1.8  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.7  2002/12/07 18:32:15  southa
  * Network ID stuff
  *
@@ -37,13 +52,13 @@ class GameDefServer : public GameDef
 public:
     GameDefServer(const string& inName);
     virtual void Ticker(const string& inName);
-    virtual void WebPrint(ostream& ioOut) const;
+    virtual void WebPrint(std::ostream& ioOut) const;
 
-    void HostGame(const string& inContract, U32 inPlayerLimit);
+    void HostGame(const string& inContract, Mushware::U32 inPlayerLimit);
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
     
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
@@ -75,11 +90,11 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameDefServer::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameDefServer::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
-    U32 m_baseThreaded;
+    Mushware::U32 m_baseThreaded;
 
     enum
     {
@@ -90,10 +105,11 @@ private:
     
     string m_serverMessage;
     string m_contractName;
-    U32 m_playerCount;
-    U32 m_playerLimit;
-    U32 m_lastUpdateMsec;
-    U32 m_currentMsec;
+    Mushware::U32 m_playerCount;
+    Mushware::U32 m_playerLimit;
+    Mushware::U32 m_lastUpdateMsec;
+    Mushware::U32 m_currentMsec;
     MustlAddress m_netAddress;
     bool m_killed;
 };
+#endif

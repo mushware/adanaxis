@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreGlobalConfig.cpp,v 1.6 2002/08/27 08:56:17 southa Exp $
+ * $Id: CoreGlobalConfig.cpp,v 1.7 2002/10/22 20:41:58 southa Exp $
  * $Log: CoreGlobalConfig.cpp,v $
+ * Revision 1.7  2002/10/22 20:41:58  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -34,8 +35,10 @@
  */
 
 #include "CoreGlobalConfig.h"
-#include "CoreInstaller.h"
 #include "CoreEnv.h"
+#include "CoreInstaller.h"
+
+using namespace Mushware;
 
 CoreGlobalConfig *CoreGlobalConfig::m_instance=NULL;
 

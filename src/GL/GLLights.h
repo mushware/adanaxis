@@ -2,19 +2,20 @@
 #define GLLIGHTS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLLights.h,v 1.4 2002/10/10 18:25:13 southa Exp $
+ * $Id: GLLights.h,v 1.5 2002/10/22 20:42:00 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.5  2002/10/22 20:42:00  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/10 18:25:13  southa
  * Light links and test lights
  *
@@ -29,8 +30,8 @@
  *
 */
 
-#include "mushCore.h"
 #include "GLStandard.h"
+#include "mushCore.h"
 
 #include "GLLightDef.h"
 
@@ -43,31 +44,31 @@ public:
         kInvalidLight
     };
     GLLights();
-    void LightAdd(U32 inNum, const GLLightDef& inDef);
-    const GLLightDef& LightGet(U32 inNum);
-    void LightEnable(U32 inNum);
-    void LightDisable(U32 inNum);
+    void LightAdd(Mushware::U32 inNum, const GLLightDef& inDef);
+    const GLLightDef& LightGet(Mushware::U32 inNum);
+    void LightEnable(Mushware::U32 inNum);
+    void LightDisable(Mushware::U32 inNum);
     void DisableAll(void);
-    void LightingFactorSet(tVal inFactor);
-    void AmbientLightingSet(tVal inAmbient);
+    void LightingFactorSet(Mushware::tVal inFactor);
+    void AmbientLightingSet(Mushware::tVal inAmbient);
     void InvalidateAll(void);
 
 private:
-    U32 LightCache(U32 inNum);
-    void CacheInvalidate(U32 inNum);
+    Mushware::U32 LightCache(Mushware::U32 inNum);
+    void CacheInvalidate(Mushware::U32 inNum);
     
     class CacheEntry
     {
     public:
-        U32 value;
-        U32 age;
+        Mushware::U32 value;
+        Mushware::U32 age;
         bool enabled;
         bool modified;
     };
-    vector<GLLightDef> m_lights;
-    tVal m_lightingFactor;
-    tVal m_ambientLighting;
-    vector<CacheEntry> m_cache;
-    U32 m_cacheTime;
+    std::vector<GLLightDef> m_lights;
+    Mushware::tVal m_lightingFactor;
+    Mushware::tVal m_ambientLighting;
+    std::vector<CacheEntry> m_cache;
+    Mushware::U32 m_cacheTime;
 };
 #endif

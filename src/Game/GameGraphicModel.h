@@ -2,19 +2,20 @@
 #define GAMEGRAPHICMODEL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.h,v 1.5 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.6 2002/11/24 23:18:23 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.6  2002/11/24 23:18:23  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.5  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -41,7 +42,7 @@ public:
     GameGraphicModel(): m_listContext(0) {}
     virtual ~GameGraphicModel();
     virtual void Render(void);
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
@@ -71,9 +72,9 @@ private:
         kPickleNumStates
     };
 
-    typedef map<string, void (GameGraphicModel::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameGraphicModel::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     bool m_baseThreaded;
     // End of XML stuff
@@ -94,13 +95,13 @@ private:
     GLPoint m_facetTexCoordOffset;
     GLTextureRef m_currentTexRef;
     
-    vector<FacetDef> m_facets;
-    vector<GLuint> m_listName;
+    std::vector<FacetDef> m_facets;
+    std::vector<GLuint> m_listName;
     
-    U32 m_listContext;
+    Mushware::U32 m_listContext;
 };
 
-inline ostream& operator<<(ostream &inOut, const GameGraphicModel& inObj)
+inline std::ostream& operator<<(std::ostream &inOut, const GameGraphicModel& inObj)
 {
     inObj.Pickle(inOut);
     return inOut;

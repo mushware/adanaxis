@@ -2,19 +2,20 @@
 #define GAMEFLOORDESIGNER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.h,v 1.9 2002/10/08 17:13:17 southa Exp $
+ * $Id: GameFloorDesigner.h,v 1.10 2002/10/22 20:42:04 southa Exp $
  * $Log: GameFloorDesigner.h,v $
+ * Revision 1.10  2002/10/22 20:42:04  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -40,7 +41,7 @@
  * Selection in designer, mouse buttons
  *
  * Revision 1.1  2002/07/02 14:27:09  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  */
 
@@ -74,26 +75,26 @@ private:
     void Undo(void);
     void Redo(void);
     void Save(void);
-    void MoveTiers(S32 inStep);
+    void MoveTiers(Mushware::S32 inStep);
     
-    vector<GLPoint> m_pos;
+    std::vector<GLPoint> m_pos;
     string m_controllerName;
     mutable GameController *m_controller; // in GameData
     GameTileMap *m_tileMap;
-    vector<GameFloorMap *> m_floorMaps;
-    U32 m_currentMap;
-    U32 m_highlightMap;
+    std::vector<GameFloorMap *> m_floorMaps;
+    Mushware::U32 m_currentMap;
+    Mushware::U32 m_highlightMap;
     GLRectangle m_highlight;
     bool m_primaryButtonState;
     bool m_secondaryButtonState;
     GLPoint m_downPoint;
-    tVal m_width;
-    tVal m_height;
-    vector<GameFloorMap> m_undoBuffer;
-    U32 m_currentUndoBuffer;
-    U32 m_lastUndoBuffer;
+    Mushware::tVal m_width;
+    Mushware::tVal m_height;
+    std::vector<GameFloorMap> m_undoBuffer;
+    Mushware::U32 m_currentUndoBuffer;
+    Mushware::U32 m_lastUndoBuffer;
     GameFloorMap m_scratchArea;
-    tVal m_masterScale;
-    vector<bool> m_tierFlags;
+    Mushware::tVal m_masterScale;
+    std::vector<bool> m_tierFlags;
 };
 #endif

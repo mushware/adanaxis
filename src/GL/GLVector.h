@@ -2,19 +2,20 @@
 #define GLVECTOR_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.4 2002/10/12 15:25:11 southa Exp $
+ * $Id: GLVector.h,v 1.5 2002/10/22 20:42:02 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.5  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/10/12 15:25:11  southa
  * Facet renderer
  *
@@ -25,19 +26,19 @@
  * 3D maps
  *
  * Revision 1.1  2002/10/07 17:49:45  southa
- * Multiple values per map element
+ * Multiple values per std::map element
  *
  */
 
-#include "mushCore.h"
-#include "GLStandard.h"
 #include "GLRenderable.h"
+#include "GLStandard.h"
+#include "mushCore.h"
 
 class GLVector : public GLRenderable
 {
 public:
     GLVector () {}
-    explicit GLVector(tVal inX, tVal inY, tVal inZ):
+    explicit GLVector(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inZ):
     x(inX),
     y(inY),
     z(inZ)
@@ -46,30 +47,30 @@ public:
     virtual GLVector *Clone(void) const { return new GLVector(*this); }
     virtual void Render(void) const;
     
-    void Pickle(ostream& inOut, const string& inPrefix="") const;
+    void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     void Unpickle(CoreXML& inXML);
     void Unpickle(istream& ioIn);
     
-    U32 U32XGet(void) const { return static_cast<U32>(x); }
-    U32 U32YGet(void) const { return static_cast<U32>(y); }
-    U32 U32ZGet(void) const { return static_cast<U32>(z); }
-    void RotateAboutZ(const GLVector& inVector, tVal inAngle)
+    Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }
+    Mushware::U32 U32YGet(void) const { return static_cast<U32>(y); }
+    Mushware::U32 U32ZGet(void) const { return static_cast<U32>(z); }
+    void RotateAboutZ(const GLVector& inVector, Mushware::tVal inAngle)
     {
-        tVal xtemp=x;
+        Mushware::tVal xtemp=x;
         x = inVector.x + (x - inVector.x) * cos(inAngle) + (y - inVector.y) * sin(inAngle);
         y = inVector.y + (y - inVector.y) * cos(inAngle) - (xtemp - inVector.x) * sin(inAngle);
     }
-    void RotateAboutZ(tVal inAngle)
+    void RotateAboutZ(Mushware::tVal inAngle)
     {
-        tVal xtemp = x;
+        Mushware::tVal xtemp = x;
         x = x * cos(inAngle) + y * sin(inAngle);
         y = y * cos(inAngle) - xtemp * sin(inAngle);
     }
-    tVal MagnitudeSquared(void) const { return x*x+y*y+z*z; }
-    tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
-    void ConstrainMagnitude(tVal inMagnitude)
+    Mushware::tVal MagnitudeSquared(void) const { return x*x+y*y+z*z; }
+    Mushware::tVal Magnitude(void) const { return sqrt(MagnitudeSquared()); }
+    void ConstrainMagnitude(Mushware::tVal inMagnitude)
     {
-        tVal magnitude=Magnitude();
+        Mushware::tVal magnitude=Magnitude();
         if (magnitude > inMagnitude)
         {
             x *= inMagnitude/magnitude;
@@ -99,12 +100,12 @@ public:
     const GLVector& operator-=(const GLVector& inVector) {x-=inVector.x; y-=inVector.y; z-=inVector.z; return *this;}
     const GLVector& operator*=(const GLVector& inVector) {x*=inVector.x; y*=inVector.y; z*=inVector.z; return *this;}
     const GLVector& operator/=(const GLVector& inVector) {x/=inVector.x; y/=inVector.y; z/=inVector.z; return *this;}
-    const GLVector& operator*=(const tVal inOper) {x*=inOper; y*=inOper; z*=inOper; return *this;}
-    const GLVector& operator/=(const tVal inOper) {x/=inOper; y/=inOper; z/=inOper; return *this;}
+    const GLVector& operator*=(const Mushware::tVal inOper) {x*=inOper; y*=inOper; z*=inOper; return *this;}
+    const GLVector& operator/=(const Mushware::tVal inOper) {x/=inOper; y/=inOper; z/=inOper; return *this;}
 
-    tVal x;
-    tVal y;
-    tVal z;
+    Mushware::tVal x;
+    Mushware::tVal y;
+    Mushware::tVal z;
 };
 
 inline const GLVector operator+(const GLVector& a, const GLVector& b)
@@ -131,13 +132,13 @@ inline const GLVector operator/(const GLVector& a, const GLVector& b)
     return retVector/=b;
 }
 
-inline const GLVector operator*(const GLVector& a, tVal inOper)
+inline const GLVector operator*(const GLVector& a, Mushware::tVal inOper)
 {
     GLVector retVector(a);
     return retVector*=inOper;
 }
 
-inline const GLVector operator/(const GLVector& a, tVal inOper)
+inline const GLVector operator/(const GLVector& a, Mushware::tVal inOper)
 {
     GLVector retVector(a);
     return retVector/=inOper;
@@ -153,7 +154,7 @@ inline bool operator!=(const GLVector& a, const GLVector& b)
     return a.x != b.x || a.y != b.y || a.z != b.z;
 }
 
-inline ostream& operator<<(ostream &s, const GLVector& inVector)
+inline std::ostream& operator<<(std::ostream &s, const GLVector& inVector)
 {
     inVector.Pickle(s);
     return s;

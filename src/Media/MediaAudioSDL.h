@@ -2,21 +2,22 @@
 #define MEDIAAUDIOSDL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.4 2002/08/27 09:02:59 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.5 2002/10/22 20:42:07 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.5  2002/10/22 20:42:07  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 09:02:59  southa
  * Fixed corrupted file header
  *
@@ -61,9 +62,9 @@
  *
  */
 
-#include "MediaStandard.h"
-#include "MediaSDL.h"
 #include "MediaAudio.h"
+#include "MediaSDL.h"
+#include "MediaStandard.h"
 
 class MediaSound;
 class MediaSoundStream;
@@ -75,7 +76,7 @@ public:
     virtual ~MediaAudioSDL();
     void PlayMusic(const string& inName);
     void Play(MediaSound& inSound);
-    void Play(MediaSoundStream& inSoundStream, U32 inLoop=10000);
+    void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
     void Free(MediaSound& inSound) const;
@@ -89,13 +90,13 @@ private:
         kChannelPlaying
     };
 
-    void ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound);
+    void ChannelStateSet(Mushware::U32 inChannel, ChannelState inState, MediaSound *inSound);
 
-    U32 m_softChannels;
-    vector<ChannelState> m_channelState;
-    vector<MediaSound *> m_activeSamples;
+    Mushware::U32 m_softChannels;
+    std::vector<ChannelState> m_channelState;
+    std::vector<MediaSound *> m_activeSamples;
     Mix_Music *m_music;
-    mutable U32 m_errCtr;
+    mutable Mushware::U32 m_errCtr;
 };
 
 #endif

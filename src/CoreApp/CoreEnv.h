@@ -2,19 +2,20 @@
 #define COREENV_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreEnv.h,v 1.11 2002/10/22 20:41:58 southa Exp $
+ * $Id: CoreEnv.h,v 1.12 2002/11/07 11:59:02 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.12  2002/11/07 11:59:02  southa
+ * Web commands
+ *
  * Revision 1.11  2002/10/22 20:41:58  southa
  * Source conditioning
  *
@@ -34,7 +35,7 @@
  * More designer work
  *
  * Revision 1.5  2002/07/02 14:27:12  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  * Revision 1.4  2002/06/27 12:36:03  southa
  * Build process fixes
@@ -72,21 +73,21 @@ public:
     const CoreScalar& VariableGet(const string& inName) const;
     bool VariableGetIfExists(const CoreScalar** outScalar, const string& inName) const;
     bool VariableGetIfExists(string& outValue, const string& inName) const;
-    bool VariableGetIfExists(tVal& outValue, const string& inName) const;
-    bool VariableGetIfExists(U32& outValue, const string& inName) const;
+    bool VariableGetIfExists(Mushware::tVal& outValue, const string& inName) const;
+    bool VariableGetIfExists(Mushware::U32& outValue, const string& inName) const;
     bool VariableGetIfExists(bool& outValue, const string& inName) const;
     bool VariableExists(const string& inName) const;
     void VariableSet(const string& inName, const string& inValue);
-    ostream& Out(void) const;
-    void OutSet(ostream& inOut);
+    std::ostream& Out(void) const;
+    void OutSet(std::ostream& inOut);
     void OutReset(void);
     
 private:
     CoreEnv();
 
-    ostream *m_outStream;
+    std::ostream *m_outStream;
     bool m_outSet;
-    vector<CoreConfig *> m_config;
+    std::vector<CoreConfig *> m_config;
     static CoreEnv *m_instance;
 };
 #endif

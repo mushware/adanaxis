@@ -2,19 +2,20 @@
 #define GLTEXTUREREF_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLTextureRef.h,v 1.9 2002/10/15 14:02:29 southa Exp $
+ * $Id: GLTextureRef.h,v 1.10 2002/10/22 20:42:01 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.10  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/10/15 14:02:29  southa
  * Mode changes
  *
@@ -44,9 +45,9 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLStandard.h"
 #include "GLUtils.h"
+#include "mushCore.h"
 
 class GLTexture;
 
@@ -68,7 +69,7 @@ private:
     string m_name;
     mutable GLTexture *m_texPtr;
     mutable GLuint m_bindingName;
-    mutable U32 m_bindingNameContext;
+    mutable Mushware::U32 m_bindingNameContext;
 };
 
 inline GLTexture *

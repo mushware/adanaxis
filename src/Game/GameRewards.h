@@ -2,19 +2,20 @@
 #define GAMEREWARDS_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.h,v 1.4 2002/10/22 20:42:05 southa Exp $
+ * $Id: GameRewards.h,v 1.5 2002/11/24 23:18:25 southa Exp $
  * $Log: GameRewards.h,v $
+ * Revision 1.5  2002/11/24 23:18:25  southa
+ * Added type name accessor to CorePickle
+ *
  * Revision 1.4  2002/10/22 20:42:05  southa
  * Source conditioning
  *
@@ -35,13 +36,13 @@ class GameRewards : public CorePickle, protected CoreXMLHandler
 {
 public:
     GameRewards(): m_lastTimeValid(false) {}
-    virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
+    virtual void Pickle(std::ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
     
-    bool JudgementPass(tVal inRatio);
-    bool TimeCountdownPass(tVal inTime);
+    bool JudgementPass(Mushware::tVal inRatio);
+    bool TimeCountdownPass(Mushware::tVal inTime);
     
 protected:
     void UnpicklePrologue(void);
@@ -63,29 +64,29 @@ private:
         kPickleNumStates
     };
         
-    typedef map<string, void (GameRewards::*)(CoreXML& inXML)> ElementFunctionMap;
-    vector<ElementFunctionMap> m_startTable;
-    vector<ElementFunctionMap> m_endTable;
+    typedef std::map<string, void (GameRewards::*)(CoreXML& inXML)> ElementFunctionMap;
+    std::vector<ElementFunctionMap> m_startTable;
+    std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
     // End of pickle
 
     class TimeJudgement
     {
     public:
-        tVal ratio;
+        Mushware::tVal ratio;
         string dialogueName;
     };
 
     class TimedCount
     {
     public:
-        tVal time;
+        Mushware::tVal time;
         string dialogueName;
     };
 
-    vector<TimeJudgement> m_judgements;
-    vector<TimedCount> m_times;
-    tVal m_lastTime;
-    tVal m_lastTimeValid;
+    std::vector<TimeJudgement> m_judgements;
+    std::vector<TimedCount> m_times;
+    Mushware::tVal m_lastTime;
+    Mushware::tVal m_lastTimeValid;
 };
 #endif

@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameConfigDef.cpp,v 1.5 2002/11/25 18:02:56 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.6 2002/12/12 14:00:39 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.6  2002/12/12 14:00:39  southa
+ * Created Mustl
+ *
  * Revision 1.5  2002/11/25 18:02:56  southa
  * Mushware ID work
  *
@@ -21,6 +34,8 @@
 #include "GameConfigDef.h"
 
 #include "mushMedia.h"
+
+using namespace Mushware;
 
 auto_ptr< CoreData<GameConfigDef> > CoreData<GameConfigDef>::m_instance;
 

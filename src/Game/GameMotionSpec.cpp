@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameMotionSpec.cpp,v 1.8 2002/10/17 16:41:21 southa Exp $
+ * $Id: GameMotionSpec.cpp,v 1.9 2002/10/22 20:42:05 southa Exp $
  * $Log: GameMotionSpec.cpp,v $
+ * Revision 1.9  2002/10/22 20:42:05  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/10/17 16:41:21  southa
  * Initialisation fix and player facet
  *
@@ -42,6 +43,8 @@
 #include "GameMotionSpec.h"
 #include "GameData.h"
 #include "GameView.h"
+
+using namespace Mushware;
 
 GameMotionSpec::GameMotionSpec(const GLPoint& inPoint, tVal inAngle) :
     pos(inPoint),

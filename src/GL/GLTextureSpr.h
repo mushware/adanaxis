@@ -2,19 +2,20 @@
 #define GLTEXTURESPR_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.h,v 1.5 2002/08/27 08:56:21 southa Exp $
+ * $Id: GLTextureSpr.h,v 1.6 2002/10/22 20:42:01 southa Exp $
  * $Log: GLTextureSpr.h,v $
+ * Revision 1.6  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/27 08:56:21  southa
  * Source conditioning
  *
@@ -48,10 +49,10 @@ protected:
 private:
     struct Palette
     {
-        U8 red;
-        U8 green;
-        U8 blue;
-        U8 alpha;
+        Mushware::U8 red;
+        Mushware::U8 green;
+        Mushware::U8 blue;
+        Mushware::U8 alpha;
     };
 
     static void GeneratePalette(void);
@@ -63,13 +64,13 @@ private:
 class GLSpriteModeRO
 {
 public:
-    GLSpriteModeRO(U32 inMode):m_mode(inMode) {}
-    U32 Value(void) const {return m_mode;}
+    GLSpriteModeRO(Mushware::U32 inMode):m_mode(inMode) {}
+    Mushware::U32 Value(void) const {return m_mode;}
     bool Valid(void) const {return (m_mode==13 || m_mode==21);}
     bool PixelDouble(void) const {return (m_mode==13);}
-    U32 BitsPerPixel(void) const {return 8;}
+    Mushware::U32 BitsPerPixel(void) const {return 8;}
 private:
-    U32 m_mode;
+    Mushware::U32 m_mode;
     
 };
 #endif

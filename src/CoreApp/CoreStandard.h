@@ -2,19 +2,20 @@
 #define CORESTANDARD_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreStandard.h,v 1.22 2002/12/12 18:38:57 southa Exp $
+ * $Id: CoreStandard.h,v 1.23 2002/12/17 12:53:33 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.23  2002/12/17 12:53:33  southa
+ * Mustl library
+ *
  * Revision 1.22  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -115,11 +116,11 @@
 #endif
 
 // General purpose includes used by most files 
-#include <string>
-#include <iostream>
-#include <iomanip>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
 #include <memory>
+#include <string>
 
 #ifdef HAVE_SSTREAM
 #include <sstream>
@@ -127,20 +128,20 @@
 #include "sstream"
 #endif
 
-#include <vector>
 #include <list>
 #include <map>
 #include <stack>
+#include <vector>
 
 #include <typeinfo>
 
-#include <stdexcept>
-#include <ctime>
-#include <stdlib.h>
-#include <errno.h>
 #include <assert.h>
+#include <ctime>
+#include <errno.h>
 #include <math.h>
+#include <stdexcept>
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifdef HAVE_VALARRAY
 #include <valarray>
@@ -166,7 +167,7 @@ namespace Mushware
     typedef unsigned char U8;
     typedef unsigned int tSize;
     typedef istream u8istream;
-    typedef ostream u8ostream;
+    typedef std::ostream u8ostream;
     typedef ifstream u8ifstream;
     typedef ofstream u8ofstream;
 };

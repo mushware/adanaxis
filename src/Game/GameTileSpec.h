@@ -2,24 +2,25 @@
 #define GAMETILESPEC_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameTileSpec.h,v 1.2 2002/10/15 14:33:39 southa Exp $
+ * $Id: GameTileSpec.h,v 1.3 2002/10/22 20:42:06 southa Exp $
  * $Log: GameTileSpec.h,v $
+ * Revision 1.3  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/10/15 14:33:39  southa
  * Fixed include
  *
  * Revision 1.1  2002/10/13 12:26:48  southa
- * Facetised map rendering
+ * Facetised std::map rendering
  *
  */
 
@@ -32,7 +33,7 @@ class GameTileSpec
 {
 public:
     GameTileSpec() {}
-    GameTileSpec(GameTileTraits *inTraits, tVal inRotation) :
+    GameTileSpec(GameTileTraits *inTraits, Mushware::tVal inRotation) :
         m_pTraits(inTraits),
         m_rotation(inRotation)
     {}
@@ -40,14 +41,14 @@ public:
     bool TileTraitsAreNull(void) { return m_pTraits == NULL; }
     GameTileTraits& TileTraitsGet(void) const;
     void TileTraitsSet(GameTileTraits *inTraits) { m_pTraits=inTraits; }
-    tVal RotationGet(void) const { return m_rotation; }    
+    Mushware::tVal RotationGet(void) const { return m_rotation; }    
     
     void RenderPrologue(void) const;
     void RenderEpilogue(void) const;
     
 private:
     GameTileTraits *m_pTraits;
-    tVal m_rotation;
+    Mushware::tVal m_rotation;
 };
 
 inline GameTileTraits&
@@ -76,5 +77,5 @@ GameTileSpec::RenderEpilogue(void) const
     }    
 }
 
-ostream& operator<<(ostream &inOut, const GameTileSpec& inSpec);
+ostream& operator<<(std::ostream &inOut, const GameTileSpec& inSpec);
 #endif

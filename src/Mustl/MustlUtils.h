@@ -1,8 +1,21 @@
 #ifndef MUSTLUTILS_H
 #define MUSTLUTILS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlUtils.h,v 1.2 2002/12/13 19:03:06 southa Exp $
+ * $Id: MustlUtils.h,v 1.3 2002/12/17 12:53:34 southa Exp $
  * $Log: MustlUtils.h,v $
+ * Revision 1.3  2002/12/17 12:53:34  southa
+ * Mustl library
+ *
  * Revision 1.2  2002/12/13 19:03:06  southa
  * Mustl interface cleanup
  *
@@ -58,7 +71,7 @@ public:
     static string IPAddressToLogString(Mustl::U32 inAddress);
     static string MsecDurationToString(Mustl::U32 inMsec);
     static string MakePrintable(const string& inStr);
-    static string MakePrintable(const vector<Mustl::U8> inBytes);
+    static string MakePrintable(const std::vector<Mustl::U8> inBytes);
     static string MakeXMLSafe(const string& inStr);
     static string MakeWebSafe(const string& inStr);
     static Mustl::U32 MakeWebSafe(Mustl::U32 inValue) { return inValue; }

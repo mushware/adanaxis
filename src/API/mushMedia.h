@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.21 2002/12/07 18:32:14 southa Exp $
+ * $Id: mushMedia.h,v 1.22 2002/12/12 14:00:38 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.22  2002/12/12 14:00:38  southa
+ * Created Mustl
+ *
  * Revision 1.21  2002/12/07 18:32:14  southa
  * Network ID stuff
  *
@@ -82,9 +83,9 @@
 #define MUSHMEDIA_H
 
 #include "Media/MediaAudio.h"
-#include "Mustl.h"
 #include "Media/MediaSDL.h"
-#include "Media/MediaSoundStream.h"
 #include "Media/MediaSound.h"
+#include "Media/MediaSoundStream.h"
+#include "Mustl.h"
 
 #endif

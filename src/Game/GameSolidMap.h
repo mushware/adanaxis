@@ -2,19 +2,20 @@
 #define GAMESOLIDMAP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.h,v 1.9 2002/10/17 15:50:59 southa Exp $
+ * $Id: GameSolidMap.h,v 1.10 2002/10/22 20:42:06 southa Exp $
  * $Log: GameSolidMap.h,v $
+ * Revision 1.10  2002/10/22 20:42:06  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/10/17 15:50:59  southa
  * Config saving, pause and quit
  *
@@ -60,18 +61,18 @@ public:
         kPermeabilityMax=16
     };
     GameSolidMap();
-    void SizeSet(U32 inX, U32 inY);
-    void StepSet(tVal inXStep, tVal inYStep);
+    void SizeSet(Mushware::U32 inX, Mushware::U32 inY);
+    void StepSet(Mushware::tVal inXStep, Mushware::tVal inYStep);
     const GameMapPoint SpaceToMap(const GameSpacePoint inPoint) const;
     const GameMapPoint SpaceToMapFractional(const GameSpacePoint inPoint) const;
     const GameSpacePoint MapToSpace(const GameMapPoint inPoint) const;
-    void PermeabilitySet(tVal inValue, U32 inX, U32 inY);
-    tVal PermeabilityGet(U32 inX, U32 inY) const;
-    tVal PermeabilityGet(const GameSpacePoint& inPoint) const;
-    tVal PermeabilityGet(const GameMapPoint& inPoint) const;
-    void AdhesionSet(tVal inValue, U32 inX, U32 inY);
-    tVal AdhesionGet(const GameSpacePoint& inPoint) const;
-    tVal AdhesionGet(const GameMapPoint& inPoint) const;
+    void PermeabilitySet(Mushware::tVal inValue, Mushware::U32 inX, Mushware::U32 inY);
+    Mushware::tVal PermeabilityGet(Mushware::U32 inX, Mushware::U32 inY) const;
+    Mushware::tVal PermeabilityGet(const GameSpacePoint& inPoint) const;
+    Mushware::tVal PermeabilityGet(const GameMapPoint& inPoint) const;
+    void AdhesionSet(Mushware::tVal inValue, Mushware::U32 inX, Mushware::U32 inY);
+    Mushware::tVal AdhesionGet(const GameSpacePoint& inPoint) const;
+    Mushware::tVal AdhesionGet(const GameMapPoint& inPoint) const;
     void TrimMotion(GameMotionSpec& inSpec) const;
     void OverPlotCollisionSet(const GameMotionSpec& inSpec) const;
     void RenderSolid(const GameMapArea& inArea) const { Render(inArea, kTypePermeability); }
@@ -88,15 +89,15 @@ private:
 
     void Render(const GameMapArea& inArea, tType inType) const;
 
-    typedef vector<GameMapPoint> tCollisionSet;
+    typedef std::vector<GameMapPoint> tCollisionSet;
     void CollisionSetAdd(tCollisionSet& outSet, const GameMotionSpec& inSpec) const;
     void OverPlotBox(const GameMapPoint& inPoint) const;
     bool CollisionElementCheck(const GameMapPoint& inPoint, const GLQuad& inQuad) const;
-    tVal MotionSpecPermeabilityGet(const GameMotionSpec& inSpec) const;
-    U32 m_xsize;
-    U32 m_ysize;
-    tVal m_xstep;
-    tVal m_ystep;
+    Mushware::tVal MotionSpecPermeabilityGet(const GameMotionSpec& inSpec) const;
+    Mushware::U32 m_xsize;
+    Mushware::U32 m_ysize;
+    Mushware::tVal m_xstep;
+    Mushware::tVal m_ystep;
     tValarray<tVal> m_solidMap;
     tValarray<tVal> m_adhesionMap;
 };

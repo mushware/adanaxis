@@ -2,19 +2,20 @@
 #define GLAPPHANDLER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.h,v 1.21 2002/11/18 18:55:56 southa Exp $
+ * $Id: GLAppHandler.h,v 1.22 2002/12/03 20:28:14 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.22  2002/12/03 20:28:14  southa
+ * Network, player and control work
+ *
  * Revision 1.21  2002/11/18 18:55:56  southa
  * Game resume and quit
  *
@@ -95,8 +96,8 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLKeys.h"
+#include "mushCore.h"
 
 class GLModeDef;
 
@@ -106,19 +107,19 @@ public:
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
-    virtual void MousePositionGet(tVal& outX, tVal& outY) const = 0;
-    virtual void UnboundedMousePositionGet(S32& outX, S32& outY) const = 0;
+    virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const = 0;
+    virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const = 0;
     virtual void EnterScreen(const GLModeDef& inDef) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;
-    virtual U32 WidthGet(void) const = 0;
-    virtual U32 HeightGet(void) const = 0;
-    virtual U32 MillisecondsGet(void) const = 0;
+    virtual Mushware::U32 WidthGet(void) const = 0;
+    virtual Mushware::U32 HeightGet(void) const = 0;
+    virtual Mushware::U32 MillisecondsGet(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
     virtual void PollForControlEvents(void) = 0;
     virtual void AppQuit(void) = 0;
-    virtual void KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues) = 0;
-    virtual void ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec) = 0;
+    virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues) = 0;
+    virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
 };
 #endif

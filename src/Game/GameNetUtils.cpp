@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: GameNetUtils.cpp,v 1.8 2002/12/12 18:38:57 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.9 2002/12/13 01:07:25 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.9  2002/12/13 01:07:25  southa
+ * Mustl work
+ *
  * Revision 1.8  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -39,6 +52,8 @@
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"
+
+using namespace Mushware;
 
 void
 GameNetUtils::KillServers(void)

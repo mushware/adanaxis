@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.15 2002/12/04 12:54:40 southa Exp $
+ * $Id: mushCore.h,v 1.16 2002/12/12 18:38:57 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.16  2002/12/12 18:38:57  southa
+ * Mustl separation
+ *
  * Revision 1.15  2002/12/04 12:54:40  southa
  * Network control work
  *
@@ -41,7 +42,7 @@
  * More designer work
  *
  * Revision 1.6  2002/07/02 15:48:29  southa
- * Floor map designer
+ * Floor std::map designer
  *
  * Revision 1.5  2002/06/27 12:36:01  southa
  * Build process fixes
@@ -121,6 +122,9 @@
 
 // Core namespace
 #include "CoreApp/CoreNamespace.h"
+
+// Pickle utilities
+#include "CoreApp/CorePickle.h"
 
 // POSIX utilities
 #include "CoreApp/CorePOSIX.h"

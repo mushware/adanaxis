@@ -2,19 +2,20 @@
 #define GLRENDERABLE_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLRenderable.h,v 1.4 2002/08/27 08:56:20 southa Exp $
+ * $Id: GLRenderable.h,v 1.5 2002/10/22 20:42:01 southa Exp $
  * $Log: GLRenderable.h,v $
+ * Revision 1.5  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:20  southa
  * Source conditioning
  *
@@ -28,6 +29,8 @@
  * Overplotting and movement
  *
  */
+
+#include "mushCore.h"
 
 class GLRenderable
 {

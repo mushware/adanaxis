@@ -2,19 +2,20 @@
 #define COREAPP_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: CoreApp.h,v 1.7 2002/08/27 08:56:15 southa Exp $
+ * $Id: CoreApp.h,v 1.8 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreApp.h,v $
+ * Revision 1.8  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/27 08:56:15  southa
  * Source conditioning
  *
@@ -25,7 +26,7 @@
  * More designer work
  *
  * Revision 1.4  2002/07/02 14:27:12  southa
- * First floor map designer build
+ * First floor std::map designer build
  *
  * Revision 1.3  2002/06/27 12:36:02  southa
  * Build process fixes
@@ -51,9 +52,9 @@
  *
  */
 
-#include "CoreStandard.h"
 #include "CoreChildRecord.h"
 #include "CoreCommandHandler.h"
+#include "CoreStandard.h"
 
 class CoreApp
 {
@@ -71,7 +72,7 @@ protected:
     static CoreApp *m_instance;
     
 private:
-    list<CoreChildRecord> m_children;
+    std::list<CoreChildRecord> m_children;
 };
 
     

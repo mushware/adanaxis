@@ -2,19 +2,20 @@
 #define MEDIASDL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.11 2002/11/02 11:22:51 southa Exp $
+ * $Id: MediaSDL.h,v 1.12 2002/12/12 18:38:58 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.12  2002/12/12 18:38:58  southa
+ * Mustl separation
+ *
  * Revision 1.11  2002/11/02 11:22:51  southa
  * Simplified UDP send and receive
  *
@@ -87,8 +88,8 @@ public:
         m_instance.reset(new MediaSDL);
         return *m_instance;
     }
-    void Init(U32 inWhich);
-    void QuitIfRequired(U32 inWhich);
+    void Init(Mushware::U32 inWhich);
+    void QuitIfRequired(Mushware::U32 inWhich);
     void InitVideo(void) { Init(SDL_INIT_VIDEO); }
     void QuitVideoIfRequired(void) { QuitIfRequired(SDL_INIT_VIDEO); }
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
@@ -98,7 +99,7 @@ protected:
 
 private:
     static auto_ptr<MediaSDL> m_instance;
-    U32 m_inited;
+    Mushware::U32 m_inited;
     bool m_firstInitCalled;
 };
 

@@ -1,18 +1,19 @@
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.19 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.20 2002/10/22 20:41:59 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.20  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.19  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -73,15 +74,17 @@
  */
 
 #include "GLCommandHandler.h"
-#include "mushCore.h"
-#include "GLUTAppHandler.h"
 #include "GLData.h"
-#include "GLTextureSpr.h"
-#include "GLTextureGIF.h"
-#include "GLTextureTIFF.h"
-#include "GLTextureClip.h"
-#include "GLTextureRef.h"
 #include "GLTest.h"
+#include "GLTextureClip.h"
+#include "GLTextureGIF.h"
+#include "GLTextureRef.h"
+#include "GLTextureSpr.h"
+#include "GLTextureTIFF.h"
+#include "GLUTAppHandler.h"
+#include "mushCore.h"
+
+using namespace Mushware;
 
 CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
 

@@ -1,8 +1,21 @@
 #ifndef MUSTLADDRESS_H
 #define MUSTLADDRESS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlAddress.h,v 1.4 2002/12/14 15:04:33 southa Exp $
+ * $Id: MustlAddress.h,v 1.5 2002/12/17 00:58:28 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.5  2002/12/17 00:58:28  southa
+ * Added support for libmustl target
+ *
  * Revision 1.4  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -60,7 +73,7 @@ public:
     void ResolveFromHostName(const std::string& inHostName, Mustl::U32 inPortHostOrder);
         
     // For use by <<
-    void Print(ostream& ioOut) const;
+    void Print(std::ostream& ioOut) const;
 
     // For use by the operators == != < > 
     bool Equals(const MustlAddress& inAddress) const;
@@ -119,8 +132,8 @@ operator>(const MustlAddress& a, const MustlAddress& b)
     return a.GreaterThan(b);
 }
 
-inline ostream&
-operator<<(ostream &ioOut, const MustlAddress& inLink)
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MustlAddress& inLink)
 {
     inLink.Print(ioOut);
     return ioOut;

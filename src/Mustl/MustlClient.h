@@ -1,8 +1,21 @@
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlClient.h,v 1.5 2002/12/14 15:04:33 southa Exp $
+ * $Id: MustlClient.h,v 1.6 2002/12/15 00:26:20 southa Exp $
  * $Log: MustlClient.h,v $
+ * Revision 1.6  2002/12/15 00:26:20  southa
+ * Send, receive and timer work
+ *
  * Revision 1.5  2002/12/14 15:04:33  southa
  * Mustl fixes
  *
@@ -53,8 +66,8 @@
  *
  */
 
-#include "MustlStandard.h"
 #include "MustlAddress.h"
+#include "MustlStandard.h"
 
 class MustlData;
 
@@ -84,7 +97,7 @@ public:
     void UDPRemotePortSetHostOrder(Mustl::U32 inPortHostOrder);
     void UDPAddressSet(const MustlAddress& inAddress) { m_udpAddress = inAddress; }
 
-    void Print(ostream& ioOut) const;
+    void Print(std::ostream& ioOut) const;
     
 private:
     enum
@@ -100,8 +113,8 @@ private:
     bool m_udpConnected;
 };
 
-inline ostream&
-operator<<(ostream &ioOut, const MustlClient& inClient)
+inline std::ostream&
+operator<<(std::ostream &ioOut, const MustlClient& inClient)
 {
     inClient.Print(ioOut);
     return ioOut;

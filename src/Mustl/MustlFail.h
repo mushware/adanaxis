@@ -1,6 +1,21 @@
+#ifndef MUSTLFAIL_H
+#define MUSTLFAIL_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: MustlFail.h,v 1.1 2002/12/12 18:38:24 southa Exp $
+ * $Log: MustlFail.h,v $
+ * Revision 1.1  2002/12/12 18:38:24  southa
+ * Mustl separation
+ *
  */
 
 #include <iosfwd>
@@ -20,4 +35,5 @@ private:
     string m_message;
 };
 
-ostream& operator<<(ostream &ioOut, MustlFail f);
+ostream& operator<<(std::ostream &ioOut, MustlFail f);
+#endif

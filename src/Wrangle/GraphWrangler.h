@@ -2,19 +2,20 @@
 #define GRAPHWRANGLER_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GraphWrangler.h,v 1.7 2002/08/27 08:56:30 southa Exp $
+ * $Id: GraphWrangler.h,v 1.8 2002/10/22 20:42:08 southa Exp $
  * $Log: GraphWrangler.h,v $
+ * Revision 1.8  2002/10/22 20:42:08  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/27 08:56:30  southa
  * Source conditioning
  *
@@ -74,20 +75,20 @@ protected:
     void FindVertAxis(void);
     void FindHorizAxis(void);
 
-    U32 PredominantColumnColour(tSize inX);
-    void ReplaceInColumn(tSize inX, U32 inSrcCol, U32 inDestCol);
+    Mushware::U32 PredominantColumnColour(Mushware::U32 inX);
+    void ReplaceInColumn(Mushware::U32 inX, Mushware::U32 inSrcCol, Mushware::U32 inDestCol);
 
-    U32 Pixel(tSize inX, tSize inY);
-    void SetPixel(tSize inX, tSize inY, U32 inCol);
+    Mushware::U32 Pixel(Mushware::U32 inX, Mushware::U32 inY);
+    void SetPixel(Mushware::U32 inX, Mushware::U32 inY, Mushware::U32 inCol);
 
 private:        
     State m_state;
     GLTexture& m_tex;
-    tSize m_width;
-    tSize m_height;
-    tSize m_hbytes;
-    U32 *m_dataPtr;
-    tSize m_vertAxis;
-    tSize m_horizAxis;
+    Mushware::U32 m_width;
+    Mushware::U32 m_height;
+    Mushware::U32 m_hbytes;
+    Mushware::U32 *m_dataPtr;
+    Mushware::U32 m_vertAxis;
+    Mushware::U32 m_horizAxis;
 };
 #endif

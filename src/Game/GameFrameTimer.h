@@ -1,8 +1,21 @@
 #ifndef GAMEFRAMETIMER_H
 #define GAMEFRAMETIMER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: GameFrameTimer.h,v 1.1 2002/12/10 19:00:17 southa Exp $
+ * $Log: GameFrameTimer.h,v $
+ * Revision 1.1  2002/12/10 19:00:17  southa
+ * Split timer into client and server
+ *
  */
 
 #include "mushCore.h"
@@ -17,18 +30,18 @@ public:
 
     void CurrentUsecSet(tUsec inUsec);
     tMsec GameMsecGet(void) const;
-    U32 FrameNumGet(void) const;
+    Mushware::U32 FrameNumGet(void) const;
     void Reset(void);
-    U32 IntegerElapsedFramesGet(void) const;
+    Mushware::U32 IntegerElapsedFramesGet(void) const;
     void FramesDiscard(void);
-    void FramesDone(U32 inFrames);
-    tVal PartialFrameGet(void) const;
+    void FramesDone(Mushware::U32 inFrames);
+    Mushware::tVal PartialFrameGet(void) const;
     tMsec FrameIntervalMsecGet(void) const { return m_frameIntervalUsec / 1000; }
     bool RedisplayGet(void) const;
     void RedisplayDone(void);
     void DisplayedFrameAt(void);
-    tVal FrameRateGet(void) const;
-    tVal WindbackValueGet(void);
+    Mushware::tVal FrameRateGet(void) const;
+    Mushware::tVal WindbackValueGet(void);
     
 private:
     void ReportJitter(void) const;
@@ -39,8 +52,8 @@ private:
     tUsec m_averageFrameUsec;
     tUsec m_marginUsec;
     tUsec m_frameIntervalUsec;
-    U32 m_frameNum;
-    U32 m_lastRedisplayFrameNum;
+    Mushware::U32 m_frameNum;
+    Mushware::U32 m_lastRedisplayFrameNum;
     
     mutable bool m_jitterReported;
 };

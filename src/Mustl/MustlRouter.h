@@ -1,8 +1,21 @@
 #ifndef MUSTLROUTER_H
 #define MUSTLROUTER_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlRouter.h,v 1.2 2002/12/13 01:06:54 southa Exp $
+ * $Id: MustlRouter.h,v 1.3 2002/12/14 15:04:34 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.3  2002/12/14 15:04:34  southa
+ * Mustl fixes
+ *
  * Revision 1.2  2002/12/13 01:06:54  southa
  * Mustl work
  *

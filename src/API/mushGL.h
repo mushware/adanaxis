@@ -2,19 +2,20 @@
 #define MUSHGL_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: mushGL.h,v 1.18 2002/10/22 20:41:56 southa Exp $
+ * $Id: mushGL.h,v 1.19 2002/11/18 11:31:13 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.19  2002/11/18 11:31:13  southa
+ * Return to game mode
+ *
  * Revision 1.18  2002/10/22 20:41:56  southa
  * Source conditioning
  *
@@ -52,7 +53,7 @@
  * Selection in designer, mouse buttons
  *
  * Revision 1.6  2002/07/02 15:48:29  southa
- * Floor map designer
+ * Floor std::map designer
  *
  * Revision 1.5  2002/06/27 12:36:01  southa
  * Build process fixes
@@ -74,17 +75,17 @@
  *
  */
 
-#include "GL/GLArray.h"
 #include "GL/GLAppHandler.h"
 #include "GL/GLAppSignal.h"
+#include "GL/GLArray.h"
 #include "GL/GLColour.h"
 #include "GL/GLData.h"
 #include "GL/GLLightDef.h"
 #include "GL/GLLights.h"
 #include "GL/GLLine.h"
 #include "GL/GLModeDef.h"
-#include "GL/GLQuad.h"
 #include "GL/GLPoint.h"
+#include "GL/GLQuad.h"
 #include "GL/GLRectangle.h"
 #include "GL/GLRender.h"
 #include "GL/GLRenderable.h"
@@ -92,8 +93,8 @@
 #include "GL/GLString.h"
 #include "GL/GLTexture.h"
 #include "GL/GLTextureRef.h"
-#include "GL/GLUtils.h"
 #include "GL/GLUTAppHandler.h"
+#include "GL/GLUtils.h"
 #include "GL/SDLAppHandler.h"
 
 #endif

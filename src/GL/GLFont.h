@@ -2,19 +2,20 @@
 #define GLFONT_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLFont.h,v 1.4 2002/08/27 08:56:19 southa Exp $
+ * $Id: GLFont.h,v 1.5 2002/10/22 20:42:00 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.5  2002/10/22 20:42:00  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/27 08:56:19  southa
  * Source conditioning
  *
@@ -38,11 +39,11 @@ class GLFont
 public:
     GLFont::GLFont(const string& inName);
 
-    void RenderCharacter(U32 inChar) const;
-    void RenderString(const string& inStr, tVal inAlign=-1.0) const;
-    tVal StringLengthGet(const string& inStr) const;
-    void ShapeSet(U32 inXNum, U32 inYNum);
-    void SizeSet(tVal inXNum, tVal inYNum);
+    void RenderCharacter(Mushware::U32 inChar) const;
+    void RenderString(const string& inStr, Mushware::tVal inAlign=-1.0) const;
+    Mushware::tVal StringLengthGet(const string& inStr) const;
+    void ShapeSet(Mushware::U32 inXNum, Mushware::U32 inYNum);
+    void SizeSet(Mushware::tVal inXNum, Mushware::tVal inYNum);
         
     static void Install(void);
     static CoreScalar LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
@@ -50,11 +51,11 @@ public:
 private:
     const string m_name;
     const GLTextureRef m_texRef;
-    U32 m_xMapSize;
-    U32 m_yMapSize;
-    tVal m_xUsedSize;
-    tVal m_yUsedSize;
-    U32 m_xNum; // Must be integer types
-    U32 m_yNum;
+    Mushware::U32 m_xMapSize;
+    Mushware::U32 m_yMapSize;
+    Mushware::tVal m_xUsedSize;
+    Mushware::tVal m_yUsedSize;
+    Mushware::U32 m_xNum; // Must be integer types
+    Mushware::U32 m_yNum;
 };
 #endif

@@ -2,19 +2,20 @@
 #define GLTEXTURE_H
 /*****************************************************************************
  *
- * (Mushware file header version 1.1)
+ * (Mushware file header version 1.2)
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.h,v 1.11 2002/10/15 14:02:29 southa Exp $
+ * $Id: GLTexture.h,v 1.12 2002/10/22 20:42:01 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.12  2002/10/22 20:42:01  southa
+ * Source conditioning
+ *
  * Revision 1.11  2002/10/15 14:02:29  southa
  * Mode changes
  *
@@ -31,7 +32,7 @@
  * More designer work
  *
  * Revision 1.6  2002/07/02 15:48:29  southa
- * Floor map designer
+ * Floor std::map designer
  *
  * Revision 1.5  2002/06/27 12:36:05  southa
  * Build process fixes
@@ -83,9 +84,9 @@
  *
  */
 
-#include "mushCore.h"
 #include "GLStandard.h"
 #include "GLTextureDef.h"
+#include "mushCore.h"
 
 class GLTexture
 {
@@ -93,18 +94,18 @@ public:
     GLTexture(): m_bound(false) {}
     virtual ~GLTexture();
     virtual GLTexture *Clone(void) const = 0;
-    virtual GLsizei Width(U32 inRef=0) const {return TextureDefGet(inRef).Width();}
-    virtual GLsizei Height(U32 inRef=0) const {return TextureDefGet(inRef).Height();}
-    virtual GLenum PixelFormat(U32 inRef=0) const {return TextureDefGet(inRef).PixelFormat();}
-    virtual GLenum PixelType(U32 inRef=0) const {return TextureDefGet(inRef).PixelType();}
-    virtual bool NeedsAlpha(U32 inRef=0) const {return TextureDefGet(inRef).NeedsAlpha();}
-    virtual U32 *DataPtr(U32 inRef=0) const {return TextureDefGet(inRef).DataPtr();}
-    virtual bool Valid(U32 inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
-    virtual tSize NumberOf(void) const {return m_textureDefs.size();}
-    virtual ostream& ostreamPrint(ostream& inOut) const;
+    virtual GLsizei Width(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).Width();}
+    virtual GLsizei Height(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).Height();}
+    virtual GLenum PixelFormat(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).PixelFormat();}
+    virtual GLenum PixelType(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).PixelType();}
+    virtual bool NeedsAlpha(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).NeedsAlpha();}
+    virtual Mushware::U32 *DataPtr(Mushware::U32 inRef=0) const {return TextureDefGet(inRef).DataPtr();}
+    virtual bool Valid(Mushware::U32 inRef=0) const {return (inRef<NumberOf())?TextureDefGet(inRef).Valid():false;}
+    virtual Mushware::U32 NumberOf(void) const {return m_textureDefs.size();}
+    virtual std::ostream& ostreamPrint(std::ostream& inOut) const;
     const string& FilenameGet(void) const {return m_inFilename;}
 
-    GLuint BindingNameGet(U32 inRef=0) const {if (m_bound) return m_bindingName; BindTexture(); return m_bindingName;}
+    GLuint BindingNameGet(Mushware::U32 inRef=0) const {if (m_bound) return m_bindingName; BindTexture(); return m_bindingName;}
     void BindTexture(void) const;
     void Decache(void);
     
@@ -112,18 +113,18 @@ protected:
     virtual const char *FiletypeName(void) const = 0;
     void FilenameSet(const string& inFilename) {m_inFilename=inFilename;}
     void AddTextureDef(GLTextureDef& inDef) {m_textureDefs.push_back(inDef);}
-    void AddTextureDef(GLTextureDef& inDef, tSize inWhere);
-    bool TextureDefValid(tSize inWhere) const;
-    const GLTextureDef& TextureDefGet(tSize inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
+    void AddTextureDef(GLTextureDef& inDef, Mushware::U32 inWhere);
+    bool TextureDefValid(Mushware::U32 inWhere) const;
+    const GLTextureDef& TextureDefGet(Mushware::U32 inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
-    vector<GLTextureDef> m_textureDefs;
+    std::vector<GLTextureDef> m_textureDefs;
     string m_inFilename;
     mutable bool m_bound;
     mutable GLuint m_bindingName;
 };
 
-inline ostream& operator<<(ostream &inOut, const GLTexture& inTex)
+inline std::ostream& operator<<(std::ostream &inOut, const GLTexture& inTex)
 {
     return inTex.ostreamPrint(inOut);
 }
