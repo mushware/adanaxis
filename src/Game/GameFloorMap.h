@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.h,v 1.8 2002/07/16 17:48:08 southa Exp $
+ * $Id: GameFloorMap.h,v 1.9 2002/07/16 19:30:09 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.9  2002/07/16 19:30:09  southa
+ * Simplistic collision checking
+ *
  * Revision 1.8  2002/07/16 17:48:08  southa
  * Collision and optimisation work
  *
@@ -63,6 +66,7 @@
 
 class GameTileMap;
 class GameMapArea;
+class GameMapPoint;
 
 class GameFloorMap : public CorePickle, private CoreXMLHandler
 {
@@ -80,7 +84,7 @@ public:
     
     U32 ElementGet(const GLPoint &inPoint) const;
     void ElementSet(const GLPoint &inPoint, U32 inValue);
-    tVal PermeabilityGet(const GLPoint &inPoint) const;
+    tVal PermeabilityGet(const GameMapPoint &inPoint) const;
     void AttachTileMap(GameTileMap *inTileMap) { m_tileMap=inTileMap; }
     const GameSolidMap& SolidMapGet(void) const;
     static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);

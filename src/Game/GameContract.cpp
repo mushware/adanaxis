@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.33 2002/07/19 17:51:10 southa Exp $
+ * $Id: GameContract.cpp,v 1.34 2002/07/23 14:10:46 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.34  2002/07/23 14:10:46  southa
+ * Added GameMotion
+ *
  * Revision 1.33  2002/07/19 17:51:10  southa
  * Texture tweaks
  *
@@ -212,9 +215,8 @@ GameContract::RunningDisplay(void)
                                 m_player->YGet() / m_floorMap->YStep());
     {
         GameMotionSpec motion;
-        // GLPoint scale(m_floorMap->XStep(), m_floorMap->YStep());
         m_player->MoveGet(motion);
-        // m_floorMap->SolidMapGet().TrimMotion(motion);
+        m_floorMap->SolidMapGet().TrimMotion(motion);
         m_player->MoveConfirm(motion);
         motion.Render();
     }

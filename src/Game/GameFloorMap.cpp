@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.13 2002/07/19 15:44:41 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.14 2002/07/19 17:51:11 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.14  2002/07/19 17:51:11  southa
+ * Texture tweaks
+ *
  * Revision 1.13  2002/07/19 15:44:41  southa
  * Graphic optimisations
  *
@@ -75,6 +78,7 @@
 #include "GameTileMap.h"
 #include "GameTileTraits.h"
 #include "GameMapArea.h"
+#include "GameMapPoint.h"
 
 CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 
@@ -154,7 +158,7 @@ GameFloorMap::RenderSolidMap(const GameMapArea& inArea)
     {
         RebuildSolidMap();
     }
-    m_solidMap.Render(inArea, GLPoint(m_xstep, m_ystep));
+    m_solidMap.Render(inArea);
     glPopMatrix();
 }
 
@@ -185,7 +189,7 @@ GameFloorMap::ElementSet(const GLPoint &inPoint, U32 inValue)
 }
 
 tVal
-GameFloorMap::PermeabilityGet(const GLPoint &inPoint) const
+GameFloorMap::PermeabilityGet(const GameMapPoint &inPoint) const
 {
     if (!m_solidMapValid)
     {
@@ -208,8 +212,9 @@ void
 GameFloorMap::RebuildSolidMap(void) const
 {
     COREASSERT(m_tileMap != NULL);
-    
+
     m_solidMap.SizeSet(m_xsize, m_ysize);
+    m_solidMap.StepSet(m_xstep, m_ystep);
     for (U32 x=0; x<m_xsize; ++x)
     {
         for (U32 y=0; y<m_ysize; ++y)

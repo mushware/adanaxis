@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.5 2002/07/18 13:53:48 southa Exp $
+ * $Id: GLPoint.h,v 1.6 2002/07/19 15:44:39 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.6  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/18 13:53:48  southa
  * Tuned player motion
  *
@@ -81,12 +84,12 @@ public:
     }
     void Print(ostream& inOstream) const { inOstream << "(" << x << "," << y << ")"; }
     
-    GLPoint& operator+=(const GLPoint& inPoint) {x+=inPoint.x; y+=inPoint.y; return *this;}
-    GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
-    GLPoint& operator*=(const GLPoint& inPoint) {x*=inPoint.x; y*=inPoint.y; return *this;}
-    GLPoint& operator/=(const GLPoint& inPoint) {x/=inPoint.x; y/=inPoint.y; return *this;}
-    GLPoint& operator*=(const tVal inOper) {x*=inOper; y*=inOper; return *this;}
-    GLPoint& operator/=(const tVal inOper) {x/=inOper; y/=inOper; return *this;}
+    const GLPoint& operator+=(const GLPoint& inPoint) {x+=inPoint.x; y+=inPoint.y; return *this;}
+    const GLPoint& operator-=(const GLPoint& inPoint) {x-=inPoint.x; y-=inPoint.y; return *this;}
+    const GLPoint& operator*=(const GLPoint& inPoint) {x*=inPoint.x; y*=inPoint.y; return *this;}
+    const GLPoint& operator/=(const GLPoint& inPoint) {x/=inPoint.x; y/=inPoint.y; return *this;}
+    const GLPoint& operator*=(const tVal inOper) {x*=inOper; y*=inOper; return *this;}
+    const GLPoint& operator/=(const tVal inOper) {x/=inOper; y/=inOper; return *this;}
     tVal x;
     tVal y;
 };

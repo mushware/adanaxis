@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: CoreEnv.cpp,v 1.9 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreEnv.cpp,v 1.10 2002/07/07 13:44:18 southa Exp $
  * $Log: CoreEnv.cpp,v $
+ * Revision 1.10  2002/07/07 13:44:18  southa
+ * Screen size config variables
+ *
  * Revision 1.9  2002/07/06 18:04:15  southa
  * More designer work
  *
@@ -129,7 +132,6 @@ CoreEnv::VariableGetIfExists(U32 &outValue, const string& inName) const
             outValue=pScalar->U32Get();
             return true;
         }
-
     }
     return false;
 }
@@ -146,7 +148,22 @@ CoreEnv::VariableGetIfExists(tVal &outValue, const string& inName) const
             outValue=pScalar->ValGet();
             return true;
         }
+    }
+    return false;
+}
 
+bool
+CoreEnv::VariableGetIfExists(bool &outValue, const string& inName) const
+{
+    for (vector<CoreConfig *>::const_reverse_iterator p = m_config.rbegin();
+         p != m_config.rend(); ++p)
+    {
+        const CoreScalar *pScalar;
+        if ((*p)->GetIfExists(&pScalar, inName))
+        {
+            outValue=pScalar->BoolGet();
+            return true;
+        }
     }
     return false;
 }

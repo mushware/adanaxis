@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreEnv.h,v 1.6 2002/07/06 18:04:15 southa Exp $
+ * $Id: CoreEnv.h,v 1.7 2002/07/07 13:44:18 southa Exp $
  * $Log: CoreEnv.h,v $
+ * Revision 1.7  2002/07/07 13:44:18  southa
+ * Screen size config variables
+ *
  * Revision 1.6  2002/07/06 18:04:15  southa
  * More designer work
  *
@@ -60,6 +63,7 @@ public:
     bool VariableGetIfExists(string& outValue, const string& inName) const;
     bool VariableGetIfExists(tVal& outValue, const string& inName) const;
     bool VariableGetIfExists(U32& outValue, const string& inName) const;
+    bool VariableGetIfExists(bool& outValue, const string& inName) const;
     bool VariableExists(const string& inName) const;
     void VariableSet(const string& inName, const string& inValue);
     

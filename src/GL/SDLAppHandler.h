@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.h,v 1.5 2002/07/10 16:37:39 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.6 2002/07/19 15:44:40 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.6  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -69,6 +72,7 @@ private:
     U32 m_width;
     U32 m_height;
     U32 m_bpp;
+    bool m_showCursor;
     bool m_redisplay;
     bool m_visible;
     vector<bool> m_keyState;

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.9 2002/07/19 15:44:40 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.10 2002/07/19 16:25:21 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.10  2002/07/19 16:25:21  southa
+ * Texture tweaks
+ *
  * Revision 1.9  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *
@@ -142,6 +145,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
     m_width=640;
     m_height=480;
     m_bpp=32;
+    m_showCursor=false;
     
     switch (inType)
     {
@@ -149,6 +153,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
             CoreEnv::Instance().VariableGetIfExists(m_width, "FULLSCREEN_DISPLAY_WIDTH");
             CoreEnv::Instance().VariableGetIfExists(m_height, "FULLSCREEN_DISPLAY_HEIGHT");
             CoreEnv::Instance().VariableGetIfExists(m_bpp, "FULLSCREEN_DISPLAY_BPP");
+            CoreEnv::Instance().VariableGetIfExists(m_showCursor, "FULLSCREEN_DISPLAY_SHOW_CURSOR");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL|SDL_FULLSCREEN);
             break;
 
@@ -156,6 +161,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
             CoreEnv::Instance().VariableGetIfExists(m_width, "WINDOW_DISPLAY_WIDTH");
             CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOW_DISPLAY_HEIGHT");
             CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOW_DISPLAY_BPP");
+            CoreEnv::Instance().VariableGetIfExists(m_showCursor, "WINDOW_DISPLAY_SHOW_CURSOR");
             SDL_SetVideoMode(m_width, m_height, m_bpp, SDL_OPENGL);
             break;
 
@@ -206,7 +212,14 @@ SDLAppHandler::GetMilliseconds(void) const
 void
 SDLAppHandler::SetCursorState(bool inValue)
 {
-    SDL_ShowCursor(inValue?SDL_ENABLE:SDL_DISABLE);
+    if (!inValue && !m_showCursor)
+    {
+        SDL_ShowCursor(SDL_DISABLE);
+    }
+    else
+    {
+        SDL_ShowCursor(SDL_ENABLE);
+    }    
 }
 
 void

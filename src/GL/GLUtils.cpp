@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.19 2002/07/19 17:51:10 southa Exp $
+ * $Id: GLUtils.cpp,v 1.20 2002/07/19 18:35:02 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.20  2002/07/19 18:35:02  southa
+ * More texture tweaks
+ *
  * Revision 1.19  2002/07/19 17:51:10  southa
  * Texture tweaks
  *
@@ -335,6 +338,21 @@ GLUtils::BlendSet(tBlendType inValue)
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glEnable(GL_BLEND);
                 break;
+
+            case kBlendLine:
+            {
+                glDisable(GL_POLYGON_SMOOTH);
+                if (m_displayQuality != kQualityLow)
+                {
+                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                    glEnable(GL_BLEND);
+                }
+                else
+                {
+                    glDisable(GL_BLEND);
+                }
+            }
+            break;
 
             case kBlendNone:
                 glDisable(GL_POLYGON_SMOOTH);

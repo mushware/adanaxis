@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.h,v 1.16 2002/07/19 16:25:21 southa Exp $
+ * $Id: GLUtils.h,v 1.17 2002/07/19 17:51:10 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.17  2002/07/19 17:51:10  southa
+ * Texture tweaks
+ *
  * Revision 1.16  2002/07/19 16:25:21  southa
  * Texture tweaks
  *
@@ -79,7 +82,8 @@ public:
         kBlendInvalid,
         kBlendNone,
         kBlendTransparent,
-        kBlendSolid
+        kBlendSolid,
+        kBlendLine
     };
     
     enum tDisplayQuality

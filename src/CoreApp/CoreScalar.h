@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: CoreScalar.h,v 1.8 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreScalar.h,v 1.9 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.9  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.8  2002/06/27 12:36:04  southa
  * Build process fixes
  *
@@ -65,10 +68,12 @@ public:
 
     void Get(tVal &outVal) const;
     void Get(string& outStr) const;
+    void Get(bool& outBool) const;
 
     string StringGet(void) const {string outStr; Get(outStr); return outStr;}
     tVal ValGet(void) const {tVal outVal; Get(outVal); return outVal;}
     U32 U32Get(void) const {tVal outVal; Get(outVal); return static_cast<U32>(outVal);}
+    bool BoolGet(void) const {bool outVal; Get(outVal); return outVal;}
 
     inline bool Equals(const CoreScalar& inScalar) const
     {

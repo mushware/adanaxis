@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.3 2002/07/19 17:51:11 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.4 2002/07/23 14:10:47 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.4  2002/07/23 14:10:47  southa
+ * Added GameMotion
+ *
  * Revision 1.3  2002/07/19 17:51:11  southa
  * Texture tweaks
  *
@@ -19,6 +22,17 @@
 #include "GameData.h"
 #include "GameView.h"
 #include "GameMapArea.h"
+#include "GameMotionSpec.h"
+#include "GameMapPoint.h"
+#include "GameSpacePoint.h"
+
+GameSolidMap::GameSolidMap():
+    m_xsize(0),
+    m_ysize(0),
+    m_xstep(1),
+    m_ystep(1)
+{
+}
 
 void
 GameSolidMap::SizeSet(U32 inXSize, U32 inYSize)
@@ -28,7 +42,14 @@ GameSolidMap::SizeSet(U32 inXSize, U32 inYSize)
     m_solidMap.resize(0);
     m_solidMap.resize(m_xsize*m_ysize);
 }
-    
+
+void
+GameSolidMap::StepSet(tVal inXStep, tVal inYStep)
+{
+    m_xstep=inXStep;
+    m_ystep=inYStep;
+}
+
 void
 GameSolidMap::PermeabilitySet(tVal inValue, U32 inX, U32 inY)
 {
@@ -46,7 +67,14 @@ GameSolidMap::PermeabilityGet(U32 inX, U32 inY) const
 }
 
 tVal
-GameSolidMap::PermeabilityGet(const GLPoint& inPoint) const
+GameSolidMap::PermeabilityGet(const GameSpacePoint& inPoint) const
+{
+    GameMapPoint mapPoint(inPoint / GLPoint(m_xstep, m_ystep));
+    return PermeabilityGet(mapPoint);
+}
+
+tVal
+GameSolidMap::PermeabilityGet(const GameMapPoint& inPoint) const
 {
     // Permeability is always 0 outside of the map
     if (inPoint.x < 0 || inPoint.y < 0) return 0;
@@ -57,12 +85,12 @@ GameSolidMap::PermeabilityGet(const GLPoint& inPoint) const
 }
 
 void
-GameSolidMap::TrimVector(GLPoint& ioVec, const GLPoint& inStart) const
+GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
 {
-    GLPoint destPoint=inStart+ioVec;
+    GameSpacePoint destPoint(inSpec.pos+inSpec.deltaPos);
     if (PermeabilityGet(destPoint) == 0)
     {
-        ioVec=GLPoint(0,0);
+        inSpec.deltaPos=GLPoint(0,0);
     }
 }
 
@@ -76,13 +104,13 @@ GameSolidMap::RenderCollisionSet(const GLRectangle& inRect, tVal inAngle)
 }
 
 void
-GameSolidMap::Render(const GameMapArea& inArea, const GLPoint& inSteps) const
+GameSolidMap::Render(const GameMapArea& inArea) const
 {
     GLUtils gl;
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     gl.SetPosition(0,0);
-    GLUtils::Scale(inSteps.x, inSteps.y, 1);
+    GLUtils::Scale(m_xstep, m_ystep, 1);
     GLPoint minPoint=inArea.MinPointGet();
     GLPoint maxPoint=inArea.MaxPointGet();
 
@@ -94,7 +122,7 @@ GameSolidMap::Render(const GameMapArea& inArea, const GLPoint& inSteps) const
     maxPoint.MakeInteger();
 
     GLPoint point;
-    GLUtils::BlendSet(GLUtils::kBlendNone);
+    GLUtils::BlendSet(GLUtils::kBlendLine);
 
     for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
     {

@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: CoreScalar.cpp,v 1.7 2002/06/27 12:36:04 southa Exp $
+ * $Id: CoreScalar.cpp,v 1.8 2002/07/06 18:04:16 southa Exp $
  * $Log: CoreScalar.cpp,v $
+ * Revision 1.8  2002/07/06 18:04:16  southa
+ * More designer work
+ *
  * Revision 1.7  2002/06/27 12:36:04  southa
  * Build process fixes
  *
@@ -83,6 +86,41 @@ CoreScalar::Get(string& outStr) const
             outStr=m_string;
             break;
             
+        default:
+            throw "CoreScalar value fault";
+    }
+}
+
+void
+CoreScalar::Get(bool& outBool) const
+{
+    switch (m_tag)
+    {
+        case kNone:
+            throw(ExpressionFail("Use of undefined value"));
+            break;
+
+        case kVal:
+        {
+            outBool=!(!m_val);
+        }
+            break;
+
+        case kString:
+            if (m_string == "1" || m_string == "true" || m_string == "TRUE")
+            {
+                outBool = true;
+            }
+            else if (m_string == "0" || m_string == "false" || m_string == "FALSE")
+            {
+                outBool = false;
+            }
+            else
+            {
+                throw(ExpressionFail("Cannot get boolean value from '"+m_string+"'"));
+            }
+            break;
+
         default:
             throw "CoreScalar value fault";
     }
