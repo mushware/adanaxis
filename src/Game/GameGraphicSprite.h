@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameGraphicSprite.h,v 1.1 2002/06/04 17:02:11 southa Exp $
+ * $Log: GameGraphicSprite.h,v $
+ * Revision 1.1  2002/06/04 17:02:11  southa
+ * More work
+ *
  */
 
 #include "GameGraphic.h"
@@ -13,7 +16,8 @@ public:
     virtual void Render(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
-
+    virtual string TypeNameGet(void) const {return "sprite";}
+    
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
@@ -42,3 +46,9 @@ private:
     
     GLTextureRef m_texRef;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameGraphicSprite& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}

@@ -1,8 +1,11 @@
 #ifndef GAMETILEMAP_H
 #define GAMETILEMAP_H
 /*
- * $Id: GameTileMap.h,v 1.3 2002/05/30 14:41:12 southa Exp $
+ * $Id: GameTileMap.h,v 1.4 2002/06/04 14:12:25 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.4  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  * Revision 1.3  2002/05/30 14:41:12  southa
  * GameData and loadtilemap command
  *
@@ -38,7 +41,6 @@ protected:
     void HandleScriptStart(CoreXML& inXML);
     void HandleScriptEnd(CoreXML& inXML);
     void HandleTraitsStart(CoreXML& inXML);
-    void HandleTraitsEnd(CoreXML& inXML);
     void NullHandler(CoreXML& inXML);
 
     enum

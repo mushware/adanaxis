@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.cpp,v 1.2 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameData.cpp,v 1.3 2002/06/04 14:12:25 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.3  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  * Revision 1.2  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -148,3 +151,40 @@ GameData::TraitsGet(const string& inName) const
     }
     return p->second;
 }
+
+void
+GameData::DumpAll(ostream& inOut) const
+{
+    for (map<string, GameTileMap *>::const_iterator p = m_tilemaps.begin();
+         p != m_tilemaps.end(); ++p)
+    {
+        inOut << "<chunk type=\"tilemap\">" << endl;
+        inOut << "  <tilemap name=\"" << p->first << "\">" << endl;
+        p->second->Pickle(inOut, "    ");
+        inOut << "  </tilemap>" << endl << "</chunk>" << endl;
+    }
+    for (map<string, GameFloorMap *>::const_iterator p = m_floormaps.begin();
+         p != m_floormaps.end(); ++p)
+    {
+        inOut << "<chunk type=\"floormap\">" << endl;
+        inOut << "  <floormap name=\"" << p->first << "\">" << endl;
+        p->second->Pickle(inOut, "    ");
+        inOut << "  </floormap>" << endl << "</chunk>" << endl;
+    }
+    for (map<string, GameContract *>::const_iterator p = m_contracts.begin();
+         p != m_contracts.end(); ++p)
+    {
+        inOut << "<chunk type=\"contract\">" << endl;
+        inOut << "  <contract name=\"" << p->first << "\">" << endl;
+        p->second->Pickle(inOut, "    ");
+        inOut << "  </contract>" << endl << "</chunk>" << endl;
+    }
+    for (map<string, GameTraits *>::const_iterator p = m_traits.begin();
+         p != m_traits.end(); ++p)
+    {
+        inOut << "<chunk type=\"traits\">" << endl;
+        inOut << "  <traits type=\"" << p->second->TypeNameGet() << "\" name=\"" << p->first << "\">" << endl;
+        p->second->Pickle(inOut, "    ");
+        inOut << "  </traits>" << endl << "</chunk>" << endl;
+    }
+}    

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameGraphicSprite.cpp,v 1.1 2002/06/04 17:02:11 southa Exp $
+ * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.1  2002/06/04 17:02:11  southa
+ * More work
+ *
  */
 
 #include "GameGraphicSprite.h"
@@ -35,7 +38,7 @@ GameGraphicSprite::NullHandler(CoreXML& inXML)
 void
 GameGraphicSprite::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << inPrefix << "<!-- GameGraphicSprite pickle code not written -->" << endl;
+    inOut << inPrefix << "<name>" << m_texRef.NameGet() << "</name>" << endl;
 }
 
 void

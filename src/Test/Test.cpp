@@ -1,6 +1,9 @@
 /*
- * $Id: Test.cpp,v 1.9 2002/05/26 16:35:07 southa Exp $
+ * $Id: Test.cpp,v 1.10 2002/05/28 22:36:44 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.10  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.9  2002/05/26 16:35:07  southa
  * CoreXML work
  *
@@ -278,7 +281,7 @@ Test::Test4(void)
     config.Set("elem2", CoreScalar(1.456));
     config.Set("elem3", CoreScalar(1));
 
-    if (config.Get("elem1").String() != string("elem1value"))
+    if (config.Get("elem1").StringGet() != string("elem1value"))
     {
         throw TestFail("Config fault 1");
     }
@@ -286,7 +289,7 @@ Test::Test4(void)
     {
         throw TestFail("Config fault 2");
     }
-    if (config.Get("elem2").Val() != 1.456)
+    if (config.Get("elem2").ValGet() != 1.456)
     {
         throw TestFail("Config fault 3");
     }
@@ -301,7 +304,7 @@ Test::Test4(void)
 
     config.Set("elem3", CoreScalar(2));
     
-    if (config.Get("elem3").Val() != 2)
+    if (config.Get("elem3").ValGet() != 2)
     {
         throw TestFail("Config fault 6");
     }

@@ -1,8 +1,11 @@
 #ifndef CORESCALAR_HP
 #define CORESCALAR_HP
 /*
- * $Id: CoreScalar.h,v 1.5 2002/05/28 13:05:56 southa Exp $
+ * $Id: CoreScalar.h,v 1.6 2002/05/28 22:36:44 southa Exp $
  * $Log: CoreScalar.h,v $
+ * Revision 1.6  2002/05/28 22:36:44  southa
+ * Script loader and tile map
+ *
  * Revision 1.5  2002/05/28 13:05:56  southa
  * Command parser extensions and TIFF loader
  *
@@ -44,8 +47,8 @@ public:
     void Get(tVal &outVal) const;
     void Get(string& outStr) const;
 
-    string String(void) const {string outStr; Get(outStr); return outStr;}
-    tVal Val(void) const {tVal outVal; Get(outVal); return outVal;}
+    string StringGet(void) const {string outStr; Get(outStr); return outStr;}
+    tVal ValGet(void) const {tVal outVal; Get(outVal); return outVal;}
     U32 U32Get(void) const {tVal outVal; Get(outVal); return static_cast<U32>(outVal);}
 
     inline bool Equals(const CoreScalar& inScalar) const

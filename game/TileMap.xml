@@ -85,7 +85,7 @@ adjustmap($THISX,$THISY,13)
 
 </script>
 
-<traits type="tile">
+<traits type="tile" name="slipperyfloor">
   <base>tiledfloor,slippery</base>
   <graphic>
     <name>floor_0_1</name>

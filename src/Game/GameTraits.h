@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTraits.h,v 1.1 2002/06/04 14:12:26 southa Exp $
+ * $Log: GameTraits.h,v $
+ * Revision 1.1  2002/06/04 14:12:26  southa
+ * Traits loader first stage
+ *
  */
 
 #include "mushCore.h"
@@ -13,6 +16,7 @@ public:
     void Verify(void);
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual string TypeNameGet(void) {return "base";}
     
 protected:
     U32 NumberOfTraitsGet(void) const;
@@ -27,8 +31,9 @@ protected:
     
 private:
 
-    void HandleBaseStart(CoreXML& inXML);
+    void NullHandler(CoreXML& inXML);
     void HandleBaseEnd(CoreXML& inXML);
+    void HandleTraitsEnd(CoreXML& inXML);
 
     enum PickleState
     {
@@ -49,3 +54,11 @@ private:
     mutable bool m_traitsValid;
     mutable vector<GameTraits *> m_baseTraits;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameTraits& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}
+
+

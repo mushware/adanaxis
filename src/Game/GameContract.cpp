@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.cpp,v 1.12 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameContract.cpp,v 1.13 2002/06/04 17:02:11 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.13  2002/06/04 17:02:11  southa
+ * More work
+ *
  * Revision 1.12  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -143,6 +146,7 @@ GameContract::Init(void)
     COREASSERT(m_tileMap != NULL);
     COREASSERT(m_floorMap != NULL);
     m_tileMap->Load();
+    GameData::Instance().DumpAll(cout);
 }
 
 void
@@ -210,11 +214,9 @@ GameContract::HandleScriptEnd(CoreXML& inXML)
 void
 GameContract::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << "<contract version=\"0.0\">" << endl;
-    inOut << "<script type=\"text/core\">" << endl;
+    inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_script;
-    inOut << "</script>" << endl;
-    inOut << "</contract>";
+    inOut << inPrefix << "</script>" << endl;
 }
 
 void

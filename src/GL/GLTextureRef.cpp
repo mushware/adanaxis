@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureRef.cpp,v 1.1 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.2 2002/06/04 17:02:24 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.2  2002/06/04 17:02:24  southa
+ * More work
+ *
  * Revision 1.1  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *
@@ -10,7 +13,7 @@
 #include "GLData.h"
 
 GLTexture *
-GLTextureRef::TextureGet(void)
+GLTextureRef::TextureGet(void) const
 {
     if (m_texPtr == NULL)
     {
@@ -20,7 +23,7 @@ GLTextureRef::TextureGet(void)
 }
 
 void
-GLTextureRef::GetReference(void)
+GLTextureRef::GetReference(void) const
 {
     m_texPtr=GLData::Instance().TextureFind(m_name);
     if (m_texPtr == NULL)
@@ -30,7 +33,7 @@ GLTextureRef::GetReference(void)
 }
 
 bool
-GLTextureRef::Exists(void)
+GLTextureRef::Exists(void) const
 {
     return (m_texPtr != NULL || GLData::Instance().TextureFind(m_name) != NULL);
 }

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileTraits.cpp,v 1.1 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.2 2002/06/04 17:02:11 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.2  2002/06/04 17:02:11  southa
+ * More work
+ *
  * Revision 1.1  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -28,14 +31,19 @@ GameTileTraits::HandleGraphicStart(CoreXML& inXML)
 void
 GameTileTraits::HandleTraitsEnd(CoreXML& inXML)
 {
-    cerr << "Traits end" << endl;
     inXML.StopHandler();
 }
 
 void
 GameTileTraits::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-
+    GameTraits::Pickle(inOut, inPrefix);
+    for (U32 i=0; i<m_graphics.size(); ++i)
+    {
+        inOut << inPrefix << "<graphic type=\"" << m_graphics[i]->TypeNameGet() << "\">" << endl;
+        m_graphics[i]->Pickle(inOut, inPrefix+"  ");
+        inOut << inPrefix << "</graphic>" << endl;
+    }
 }
 
 void

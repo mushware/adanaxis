@@ -1,6 +1,9 @@
 /*
- * $Id: GameContract.h,v 1.6 2002/05/31 15:18:16 southa Exp $
+ * $Id: GameContract.h,v 1.7 2002/06/04 14:12:25 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.7  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  * Revision 1.6  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -79,3 +82,10 @@ private:
     GameFloorMap *m_floorMap;
     GameTileMap *m_tileMap;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameContract& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}
+

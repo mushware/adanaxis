@@ -1,6 +1,9 @@
 /*
- * $Id: GLTextureRef.h,v 1.1 2002/05/28 16:37:39 southa Exp $
+ * $Id: GLTextureRef.h,v 1.2 2002/06/04 17:02:24 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.2  2002/06/04 17:02:24  southa
+ * More work
+ *
  * Revision 1.1  2002/05/28 16:37:39  southa
  * Texture references and decomposer
  *
@@ -14,14 +17,15 @@ class GLTextureRef
 {
 public:
     GLTextureRef(): m_texPtr(NULL) {}
-    GLTextureRef(const string& inName): m_texPtr(NULL), m_name(inName) {}
+    GLTextureRef(const string& inName): m_name(inName), m_texPtr(NULL) {}
     void NameSet(const string& inName) {m_name=inName;m_texPtr=NULL;}
-    GLTexture *TextureGet(void);
-    bool Exists(void);
+    const string& NameGet(void) const {return m_name;}
+    GLTexture *TextureGet(void) const;
+    bool Exists(void) const;
     
 private:
-    void GetReference(void);
+    void GetReference(void) const;
 
-    GLTexture *m_texPtr;
     string m_name;
+    mutable GLTexture *m_texPtr;
 };

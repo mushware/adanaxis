@@ -1,8 +1,11 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 /*
- * $Id: GameFloorMap.h,v 1.1 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameFloorMap.h,v 1.2 2002/06/04 14:12:26 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.2  2002/06/04 14:12:26  southa
+ * Traits loader first stage
+ *
  * Revision 1.1  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -64,4 +67,10 @@ private:
     tSize m_xsize;
     tSize m_ysize;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameFloorMap& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}
 #endif

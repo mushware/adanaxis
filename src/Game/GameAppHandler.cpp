@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.9 2002/05/31 15:18:16 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.10 2002/06/02 16:41:18 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.10  2002/06/02 16:41:18  southa
+ * Rotated sprite plotting
+ *
  * Revision 1.9  2002/05/31 15:18:16  southa
  * Keyboard reading
  *
@@ -44,7 +47,7 @@ void
 GameAppHandler::Initialise(void)
 {
     CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
-    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").String());
+    string appPath(CoreGlobalConfig::Instance().Get("APPLPATH").StringGet());
     GameGlobalConfig::Instance().Set("MAPPATH", appPath+"/../game");
     GameGlobalConfig::Instance().Set("IMAGEPATH", appPath+"/../game");
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileMap.cpp,v 1.4 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.6 2002/06/04 17:02:11 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.6  2002/06/04 17:02:11  southa
+ * More work
+ *
  * Revision 1.4  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -75,15 +78,8 @@ void
 GameTileMap::HandleTraitsStart(CoreXML& inXML)
 {
     GameTileTraits *pTraits(new GameTileTraits);
-    GameData::Instance().TraitsDeleteAndCreate("trait", pTraits);
+    GameData::Instance().TraitsDeleteAndCreate(inXML.GetAttribOrThrow("name").StringGet(), pTraits);
     pTraits->Unpickle(inXML);
-}
-
-void
-GameTileMap::HandleTraitsEnd(CoreXML& inXML)
-{
-    // Never gets called
-    cerr << "Traits end handler" << endl;
 }
 
 void
@@ -99,7 +95,6 @@ GameTileMap::HandleMapEnd(CoreXML& inXML)
 void
 GameTileMap::Pickle(ostream& inOut, const string& inPrefix="") const
 {
-    inOut << inPrefix << "<tilemap version=\"0.0\">" << endl;
     inOut << inPrefix << "<script type=\"text/core\">" << endl;
     inOut << m_loaderScript;
     inOut << inPrefix << "</script>" << endl;
@@ -107,7 +102,6 @@ GameTileMap::Pickle(ostream& inOut, const string& inPrefix="") const
     {
         inOut << inPrefix << "<map>" << p->first << " " << p->second << "</map>" << endl;
     }
-    inOut << inPrefix << "</tilemap>";
 }
 
 void
@@ -122,7 +116,6 @@ GameTileMap::Unpickle(CoreXML& inXML)
     m_endTable[kData]["tilemap"] = &GameTileMap::HandleTileMapEnd;
     m_endTable[kData]["script"] = &GameTileMap::HandleScriptEnd;
     m_endTable[kData]["map"] = &GameTileMap::HandleMapEnd;
-    m_endTable[kData]["traits"] = &GameTileMap::HandleTraitsEnd;
 
     m_map.clear();
     inXML.ParseStream(*this);

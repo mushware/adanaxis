@@ -1,6 +1,9 @@
 /*
- * $Id: GameData.h,v 1.2 2002/05/30 16:21:53 southa Exp $
+ * $Id: GameData.h,v 1.3 2002/06/04 14:12:25 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.3  2002/06/04 14:12:25  southa
+ * Traits loader first stage
+ *
  * Revision 1.2  2002/05/30 16:21:53  southa
  * Pickleable GameContract
  *
@@ -29,7 +32,7 @@ public:
     GameContract *ContractGet(const string& inName) const;
     GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
     GameTraits *TraitsGet(const string& inName) const;
-    // void Dump(ostream& inOut);
+    void DumpAll(ostream& inOut) const;
 
 private:
     GameData() {}

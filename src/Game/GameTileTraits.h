@@ -1,6 +1,9 @@
 /*
- * $Id: GameTileTraits.h,v 1.1 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameTileTraits.h,v 1.2 2002/06/04 17:02:11 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.2  2002/06/04 17:02:11  southa
+ * More work
+ *
  * Revision 1.1  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -17,6 +20,7 @@ public:
 
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);
+    virtual string TypeNameGet(void) {return "tile";}
 
 protected:
     void XMLStartHandler(CoreXML& inXML);
@@ -43,3 +47,9 @@ private:
     
     vector <GameGraphic *> m_graphics;
 };
+
+inline ostream& operator<<(ostream &inOut, const GameTileTraits& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}

@@ -1,6 +1,9 @@
 /*
- * $Id: CoreUtil.cpp,v 1.3 2002/05/10 16:39:37 southa Exp $
+ * $Id: CoreUtil.cpp,v 1.4 2002/05/27 12:58:43 southa Exp $
  * $Log: CoreUtil.cpp,v $
+ * Revision 1.4  2002/05/27 12:58:43  southa
+ * GameContract and global configs added
+ *
  * Revision 1.3  2002/05/10 16:39:37  southa
  * Changed .hp files to .h
  *
@@ -48,5 +51,5 @@ CoreUtil::U8Get(istream& inIn)
 string
 CoreUtil::AppDirFilename(const string& inStr)
 {
-    return CoreGlobalConfig::Instance().Get("APPLPATH").String() + "/" + inStr;
+    return CoreGlobalConfig::Instance().Get("APPLPATH").StringGet() + "/" + inStr;
 }

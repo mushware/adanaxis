@@ -1,6 +1,9 @@
 /*
- * $Id: GameTraits.cpp,v 1.1 2002/06/04 14:12:25 southa Exp $
+ * $Id: GameTraits.cpp,v 1.2 2002/06/04 17:02:11 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.2  2002/06/04 17:02:11  southa
+ * More work
+ *
  * Revision 1.1  2002/06/04 14:12:25  southa
  * Traits loader first stage
  *
@@ -68,16 +71,30 @@ GameTraits::RebuildTraits(void) const
     m_traitsValid=success;
 }
 
-void
-GameTraits::HandleBaseStart(CoreXML& inXML)
-{
-    m_pickleState=kPickleData;
-}
 
 void
 GameTraits::HandleBaseEnd(CoreXML& inXML)
 {
-    // inXML.StopHandler();
+    string inStr(inXML.TopData());
+    U32 start=0;
+    U32 end=0;
+    while (end != string::npos && start < inStr.size())
+    {
+        end=inStr.find(',', start);
+        m_baseNames.push_back(inStr.substr(start,end-start));
+        start=end+1;
+    }
+}
+
+void
+GameTraits::HandleTraitsEnd(CoreXML& inXML)
+{
+    inXML.StopHandler();
+}
+
+void
+GameTraits::NullHandler(CoreXML& inXML)
+{
 }
 
 void
@@ -100,9 +117,10 @@ GameTraits::UnpicklePrologue(void)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
-    m_startTable[kPickleInit]["base"] = &GameTraits::HandleBaseStart;
+    m_startTable[kPickleData]["base"] = &GameTraits::NullHandler;
     m_endTable[kPickleData]["base"] = &GameTraits::HandleBaseEnd;
-    m_pickleState=kPickleInit;
+    m_endTable[kPickleData]["traits"] = &GameTraits::HandleTraitsEnd;
+    m_pickleState=kPickleData;
     m_baseNames.clear();
 }
 
@@ -118,7 +136,6 @@ GameTraits::Unpickle(CoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
-    UnpickleEpilogue();
 }
 
 void
