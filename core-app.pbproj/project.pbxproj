@@ -2997,6 +2997,30 @@
 			path = player.xml;
 			refType = 4;
 		};
+		F548C8DE03052D3A01B83DAD = {
+			isa = PBXFileReference;
+			name = GameDataUtils.cpp;
+			path = Game/GameDataUtils.cpp;
+			refType = 4;
+		};
+		F548C8DF03052D3A01B83DAD = {
+			isa = PBXFileReference;
+			name = GameDataUtils.h;
+			path = Game/GameDataUtils.h;
+			refType = 4;
+		};
+		F548C8E003052D3A01B83DAD = {
+			fileRef = F548C8DE03052D3A01B83DAD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F548C8E103052D3A01B83DAD = {
+			fileRef = F548C8DF03052D3A01B83DAD;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F548CF4A0302813C011728CE = {
 			isa = PBXFileReference;
 			path = GLFont.cpp;
@@ -3764,6 +3788,8 @@
 				F5F06F1302AE5D2001B05200,
 				F545EE7B02A66359018FABF3,
 				F545EE7C02A66359018FABF3,
+				F548C8DE03052D3A01B83DAD,
+				F548C8DF03052D3A01B83DAD,
 				F5412BCB0303E7D701F8C327,
 				F5412BCC0303E7D701F8C327,
 				F5483AB702D1D95801480ACF,
@@ -3996,6 +4022,7 @@
 				F548CF5303029076011728CE,
 				F548CF57030291D7011728CE,
 				F5412BCE0303E7D701F8C327,
+				F548C8E103052D3A01B83DAD,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -4095,6 +4122,7 @@
 				F548CF5203029076011728CE,
 				F548CF56030291D7011728CE,
 				F5412BCD0303E7D701F8C327,
+				F548C8E003052D3A01B83DAD,
 			);
 			isa = PBXSourcesBuildPhase;
 		};

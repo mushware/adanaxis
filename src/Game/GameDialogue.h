@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDialogue.h,v 1.1 2002/08/09 17:09:04 southa Exp $
+ * $Log: GameDialogue.h,v $
+ * Revision 1.1  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  */
 
 #include "mushCore.h"
@@ -16,6 +19,7 @@ public:
     virtual void Render(void) const;
     virtual void Move(void);
     virtual GLRenderable *Clone(void) const { return new GameDialogue(*this); }
+    virtual bool ExpiredGet(void) { return m_expired; }
     
 protected:
     void UnpicklePrologue(void);
@@ -74,4 +78,5 @@ private:
     tVal m_currentMidSize;
     tVal m_currentEndSize;
     tVal m_age;
+    bool m_expired;
 };

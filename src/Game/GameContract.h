@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.18 2002/08/08 18:20:30 southa Exp $
+ * $Id: GameContract.h,v 1.19 2002/08/09 17:09:04 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.19  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.18  2002/08/08 18:20:30  southa
  * Plot on screen of dimension 1.0
  *
@@ -150,7 +153,6 @@ private:
     bool m_renderDiagnostics;
     tVal m_masterScale;
     bool m_fastDiagnostics;
-    map<string, GameDialogue *> m_dialogues;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameData.cpp,v 1.10 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameData.cpp,v 1.11 2002/08/09 17:09:04 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.11  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.10  2002/08/07 13:36:49  southa
  * Conditioned source
  *
@@ -54,6 +57,7 @@
 #include "GameTraits.h"
 #include "GameController.h"
 #include "GamePiece.h"
+#include "GameDialogue.h"
 #include "GameView.h"
 #include "GameTimer.h"
 
@@ -96,6 +100,11 @@ GameData::~GameData()
     {
         delete p->second;
     }
+    for (map<string, GameDialogue *>::iterator p = m_dialogues.begin();
+         p != m_dialogues.end(); ++p)
+    {
+        delete p->second;
+    }
     for (map<string, GameView *>::iterator p = m_views.begin();
          p != m_views.end(); ++p)
     {
@@ -104,6 +113,11 @@ GameData::~GameData()
     if (m_timer != NULL)
     {
         delete m_timer;
+    }
+    for (map<string, GameDialogue *>::iterator p = m_currentDialogues.begin();
+         p != m_currentDialogues.end(); ++p)
+    {
+        delete p->second;
     }
 }
 
@@ -269,6 +283,33 @@ GameData::PieceGet(const string& inName) const
     return p->second;
 }
 
+GameDialogue *
+GameData::DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue)
+{
+    map<string, GameDialogue *>::iterator p = m_dialogues.find(inName);
+    if (p != m_dialogues.end())
+    {
+        delete p->second;
+        p->second=inDialogue;
+    }
+    else
+    {
+        m_dialogues[inName]=inDialogue;
+    }
+    return inDialogue;
+}
+
+GameDialogue *
+GameData::DialogueGet(const string& inName) const
+{
+    map<string, GameDialogue *>::const_iterator p = m_dialogues.find(inName);
+    if (p == m_dialogues.end())
+    {
+        throw(GameDataNotPresent("Access to non-existent dialogue '"+inName+"'"));
+    }
+    return p->second;
+}
+
 GameView *
 GameData::ViewGetOrCreate(const string& inName)
 {
@@ -318,6 +359,38 @@ GameData::TimerGet(void)
     return *m_timer;
 }
 
+GameDialogue *
+GameData::CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue)
+{
+    GameDialogue *newDialogue = new GameDialogue(inDialogue);
+    map<string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    if (p == m_currentDialogues.end())
+    {
+        m_currentDialogues[inName] = newDialogue;
+    }
+    else
+    {
+        delete p->second;
+        p->second = newDialogue;
+    }
+    return newDialogue;
+}
+
+void
+GameData::CurrentDialogueDelete(const string& inName)
+{
+    map<string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
+    if (p == m_currentDialogues.end())
+    {
+        throw(LogicFail("Attempt to delete non-existent current dialogue '"+inName+"'"));
+    }
+    else
+    {
+        delete p->second;
+        m_currentDialogues.erase(p);
+    }    
+}
+
 void
 GameData::DumpAll(ostream& inOut) const
 {
@@ -357,4 +430,6 @@ GameData::DumpAll(ostream& inOut) const
         inOut << "  </traits>" << endl;
     }
     inOut << "</chunk>" << endl;
+    inOut << "<!-- Incomplete -->" << endl;
+
 }    

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.45 2002/08/08 18:20:29 southa Exp $
+ * $Id: GameContract.cpp,v 1.46 2002/08/09 17:09:03 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.46  2002/08/09 17:09:03  southa
+ * GameDialogue added
+ *
  * Revision 1.45  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
  *
@@ -168,6 +171,7 @@
 #include "GameTimer.h"
 #include "GameMapPoint.h"
 #include "GameDialogue.h"
+#include "GameDataUtils.h"
 
 CoreInstaller GameContractInstaller(GameContract::Install);
 
@@ -248,6 +252,8 @@ GameContract::Init(void)
     m_currentView->RectangleSet(GLRectangle(0,0,gameHandler.WidthGet(),gameHandler.HeightGet()));
     // GameData::Instance().DumpAll(cout);
     m_masterScale=0.5;
+
+    GameDataUtils::NamedDialoguesAdd("^start");
 }
 
 void
@@ -278,11 +284,26 @@ GameContract::RunningMove(void)
     {
         motion.Render();
     }
-    for (map<string, GameDialogue *>::const_iterator p = m_dialogues.begin();
-         p != m_dialogues.end(); ++p)
+    
+    const GameData::DialogueMap& currentDialogues(GameData::Instance().CurrentDialogueMapGet());
+    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+         p != currentDialogues.end(); ++p)
     {
         p->second->Move();
     }
+    
+    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+         p != currentDialogues.end(); ++p)
+    {
+        if (p->second->ExpiredGet())
+        {
+            GameData::Instance().CurrentDialogueDelete(p->first);
+            // Iterator now points to delete object, so break and get the rest
+            // next time round
+            break;
+        }
+    }
+
     m_masterScale+=(0.05 - m_masterScale)/30;
 }
 
@@ -298,7 +319,6 @@ GameContract::RunningDisplay(void)
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     GLUtils::IdentityPrologue();
-
     
     GameMotionSpec playerSpec(m_player->MotionSpecGet());
 
@@ -390,9 +410,11 @@ GameContract::RenderFastDiagnostics(void) const
 void
 GameContract::RenderText(void) const
 {
+    const GameData::DialogueMap currentDialogues(GameData::Instance().CurrentDialogueMapGet());
+
     GLUtils::OrthoPrologue();
-    for (map<string, GameDialogue *>::const_iterator p = m_dialogues.begin();
-         p != m_dialogues.end(); ++p)
+    for (map<string, GameDialogue *>::const_iterator p = currentDialogues.begin();
+         p != currentDialogues.end(); ++p)
     {
         GLUtils::PushMatrix();
         p->second->Render();
@@ -540,13 +562,7 @@ void
 GameContract::HandleDialogueStart(CoreXML& inXML)
 {
     string name(inXML.GetAttribOrThrow("name").StringGet());
-
-    GameDialogue *pDialogue(m_dialogues[name]);
-    if (pDialogue != NULL) delete pDialogue;
-
-    pDialogue=new GameDialogue;
-    m_dialogues[name]=pDialogue;
-    pDialogue->Unpickle(inXML);
+    GameData::Instance().DialogueDeleteAndCreate(name, new GameDialogue)->Unpickle(inXML);
 }
 
 void

@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.14 2002/08/05 22:30:19 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.15 2002/08/07 13:36:48 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.15  2002/08/07 13:36:48  southa
+ * Conditioned source
+ *
  * Revision 1.14  2002/08/05 22:30:19  southa
  * Made mode selection more robust
  *
@@ -357,13 +360,14 @@ SDLAppHandler::MainLoop(void)
                     break;
             }
         }
-        if (m_redisplay)
-        {
-            m_redisplay=false;
-            Display();
-        }
+
         if (!isEvent)
         {
+            if (m_redisplay)
+            {
+                m_redisplay=false;
+                Display();
+            }
             Idle();
         }
     }

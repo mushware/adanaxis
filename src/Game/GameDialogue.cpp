@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDialogue.cpp,v 1.1 2002/08/09 17:09:04 southa Exp $
+ * $Log: GameDialogue.cpp,v $
+ * Revision 1.1  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  */
 
 #include "GameDialogue.h"
@@ -28,25 +31,26 @@ GameDialogue::Render(void) const
     
     for (U32 i=0; i<size; ++i)
     {
-        tVal startMult(0),midMult(0),endMult(0);
-        if (m_age < m_startTimes[i])
+        if (m_age >= m_startTimes[i] && m_age < m_endTimes[i])
         {
-            startMult=1;
-        }
-        else if (m_age < m_endTimes[i])
-        {
-            startMult = 1 - (m_age - m_startTimes[i]) / m_fadeTimes[i];
-            if (startMult < 0) startMult=0;
-            endMult = 1 - (m_endTimes[i] - m_age) / m_fadeTimes[i];
-            if (endMult < 0) endMult=0;
-            midMult=1-startMult-endMult;
-        }
-        else
-        {
-            endMult=1;
-        }
-        if (1)
-        {
+            tVal startMult(0),midMult(0),endMult(0);
+            if (m_age < m_startTimes[i])
+            {
+                startMult=1;
+            }
+            else if (m_age < m_endTimes[i])
+            {
+                startMult = 1 - (m_age - m_startTimes[i]) / m_fadeTimes[i];
+                if (startMult < 0) startMult=0;
+                endMult = 1 - (m_endTimes[i] - m_age) / m_fadeTimes[i];
+                if (endMult < 0) endMult=0;
+                midMult=1-startMult-endMult;
+            }
+            else
+            {
+                endMult=1;
+            }
+            
             GameMotionSpec motionSpec(m_motionSpecs[i]);
             motionSpec.Windback(windbackValue);
             GLUtils::PushMatrix();
@@ -74,11 +78,19 @@ void
 GameDialogue::Move(void)
 {
     U32 size=m_motionSpecs.size();
-
+    bool expired=true;
     for (U32 i=0; i<size; ++i)
     {
-        m_motionSpecs[i].ApplyDelta();
+        if (m_age < m_endTimes[i])
+        {
+            expired=false;
+            if (m_age >= m_startTimes[i])
+            {
+                m_motionSpecs[i].ApplyDelta();
+            }
+        }
     }
+    m_expired=expired;
     m_age++;
 }
 
@@ -234,6 +246,7 @@ GameDialogue::UnpicklePrologue(void)
     m_currentEndTime=100;
     m_currentFadeTime=1;
     m_age=0;
+    m_expired=false;
 }
 
 void

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GameData.h,v 1.9 2002/08/07 13:36:49 southa Exp $
+ * $Id: GameData.h,v 1.10 2002/08/09 17:09:04 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.10  2002/08/09 17:09:04  southa
+ * GameDialogue added
+ *
  * Revision 1.9  2002/08/07 13:36:49  southa
  * Conditioned source
  *
@@ -54,12 +57,15 @@ class GameContract;
 class GameTraits;
 class GameController;
 class GamePiece;
+class GameDialogue;
 class GameView;
 class GameTimer;
 
 class GameData
 {
 public:
+    typedef map<string, GameDialogue *> DialogueMap;
+    typedef map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
     static GameData& Instance(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
     GameTileMap *TileMapGetOrCreate(const string& inName);
@@ -74,10 +80,17 @@ public:
     GameController *ControllerGet(const string& inName) const;
     GamePiece *PieceDeleteAndCreate(const string& inName, GamePiece *inPiece);
     GamePiece *PieceGet(const string& inName) const;
+    GameDialogue *DialogueDeleteAndCreate(const string& inName, GameDialogue *inDialogue);
+    GameDialogue *DialogueGet(const string& inName) const;
+    const DialogueMap& DialogueMapGet(void) const { return m_dialogues; }
     GameView *ViewGetOrCreate(const string& inName);
     GameView *ViewGet(const string& inName) const;
     GameView *CurrentViewGet(void) const;
     GameTimer& TimerGet(void);
+
+    GameDialogue *CurrentDialogueAdd(const string& inName, const GameDialogue& inDialogue);
+    void CurrentDialogueDelete(const string& inName);
+    const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
     
     void DumpAll(ostream& inOut) const;
 
@@ -88,10 +101,13 @@ private:
     map<string, GameContract *> m_contracts;
     map<string, GameTraits *> m_traits;
     map<string, GameController *> m_controllers;
+    DialogueMap m_dialogues;
     map<string, GamePiece *> m_pieces;
     map<string, GameView *> m_views;
 
     GameTimer *m_timer;
+
+    DialogueMap m_currentDialogues;
 
     static GameData *m_instance;
 };
