@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.9 2003/09/27 17:50:49 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.10 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.10  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.9  2003/09/27 17:50:49  southa
  * XML null pointer handling
  *
@@ -86,6 +89,7 @@ private:
     std::istream& m_inStream;
     std::string m_tagName;
     std::string m_contentStr;
+    std::string m_indentStr;
     Mushware::U32 m_contentStart;
     Mushware::U32 m_contentLineNum;
 };

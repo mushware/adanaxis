@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.7 2003/09/24 19:03:23 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.8 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.8  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.7  2003/09/24 19:03:23  southa
  * XML map IO
  *
@@ -62,9 +65,9 @@ MushcoreXMLIStream::~MushcoreXMLIStream()
 void
 MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 {
+    string tagStr;
     do
     {
-        string tagStr;
         U32 dataStartPos;
 
         while (dataStartPos = TagGet(tagStr, m_contentStr, m_contentStart),
@@ -76,16 +79,19 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 
         if (tagStr.substr(0, 1) == "/")
         {
+            // cout << "Break on '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl;
             // This is the end of the outer object
-            m_contentStart = dataStartPos;
+            // m_contentStart = dataStartPos;
             break;
         }
         
-        m_tagName = tagStr.substr(0, tagStr.find(' '));
+        tagStr = tagStr.substr(0, tagStr.find(' '));
         
         m_contentStart = dataStartPos;
 
-        inObj.AutoXMLDataProcess(*this);
+        // cout << m_indentStr << "Threading " << tagStr << endl; m_indentStr += " ";
+        inObj.AutoXMLDataProcess(*this, tagStr);
+        // m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1); cout << m_indentStr << "Unthreading " << tagStr << endl;
 
         string closingTagStr;
         // Consume and check the trailing tag
@@ -95,12 +101,14 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
             // Can be optimised
             InputFetch();
         }
+        // cout << "Skipped '" << m_contentStr.substr(m_contentStart, dataStartPos-m_contentStart) << "'" << endl;
         if (closingTagStr != "/"+tagStr)
         {
-            Throw("Unmatched tag: '"+tagStr+"' != '"+closingTagStr+"'");
+            Throw("Unmatched tag: Found '"+closingTagStr+"', expected '/"+tagStr+"'");
         }
+
         m_contentStart = dataStartPos;     
-    } while (1);
+    } while (tagStr != "obj");
 }
 
 void
@@ -152,6 +160,8 @@ MushcoreXMLIStream::InputFetch(void)
         Throw("Read failure");
     }
 
+    // if m_contentStart == m_contentStr.size() {m_contentStr.erase(); m_contentStart=0}
+    
     m_contentStr += newStr;
     ++m_contentLineNum;
 }
@@ -174,6 +184,7 @@ MushcoreXMLIStream::DataUntilTake(const string& inStr)
     return dataStr;
 }
 
+// Returns the length of tag found
 U32
 MushcoreXMLIStream::TagGet(string& outTag, const string& inStr, U32 inPos)
 {

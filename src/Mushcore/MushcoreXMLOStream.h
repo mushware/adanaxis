@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.9 2003/09/27 17:50:49 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.10 2003/09/29 21:48:37 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.10  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.9  2003/09/27 17:50:49  southa
  * XML null pointer handling
  *
@@ -47,8 +50,7 @@
 #include "MushcoreStandard.h"
 #include "MushcoreXMLStream.h"
 #include "MushcoreUtil.h"
-
-class MushcoreXMLConsumer;
+#include "MushcoreXMLConsumer.h"
 
 class MushcoreXMLOStream : public MushcoreXMLStream
 {
@@ -76,6 +78,7 @@ MushcoreXMLOStream::PointerPrint(const T *inPtr)
     }
 }
 
+#if 0
 template<class T>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const T& inObj)
@@ -83,24 +86,35 @@ operator<<(MushcoreXMLOStream& ioOut, const T& inObj)
     ioOut.OStreamGet() << inObj;
     return ioOut;
 }
+#endif
 
-template<>
+//template<>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushcoreXMLConsumer& inObj)
 {
-    ioOut << inObj;
+    ioOut.OStreamGet() << "<obj type=\"" << inObj.AutoNameGet() << "\">" << endl;
+    inObj.AutoXMLPrint(ioOut);
+    ioOut.OStreamGet() << "</obj>" << endl;
     return ioOut;
 }
 
-template<>
+//template<>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const char * inChar)
+{
+    ioOut.OStreamGet() << inChar;
+    return ioOut;
+}
+
+//template<>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const Mushware::U8& inU8)
 {
-    ioOut << static_cast<Mushware::U32>(inU8);
+    ioOut.OStreamGet() << static_cast<Mushware::U32>(inU8);
     return ioOut;
 }
 
-template<>
+//template<>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::string& inStr)
 {

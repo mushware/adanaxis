@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.11 2003/09/27 17:50:49 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.12 2003/09/29 21:48:37 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.12  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.11  2003/09/27 17:50:49  southa
  * XML null pointer handling
  *
@@ -56,6 +59,22 @@ using namespace Mushware;
 
 
 //%outOfLineFunctions {
+const char *TestMushcoreObject::AutoNameGet(void) const
+{
+    return "TestMushcoreObject";
+}
+TestMushcoreObject *TestMushcoreObject::AutoClone(void) const
+{
+    return new TestMushcoreObject(*this);
+}
+TestMushcoreObject *TestMushcoreObject::AutoCreate(void) const
+{
+    return new TestMushcoreObject;
+}
+TestMushcoreObject *TestMushcoreObject::AutoFactory(void)
+{
+    return new TestMushcoreObject;
+}
 bool
 TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
 {
@@ -130,87 +149,87 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "]";
 }
 void
-TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
+TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
-    if (ioIn.TagNameGet() == "TestMushcoreObject")
+    if (inTagStr == "obj")
     {
         ioIn >> *this;
     }
-    else if (ioIn.TagNameGet() == "u8")
+    else if (inTagStr == "u8")
     {
         ioIn >> m_u8;
     }
-    else if (ioIn.TagNameGet() == "u32")
+    else if (inTagStr == "u32")
     {
         ioIn >> m_u32;
     }
-    else if (ioIn.TagNameGet() == "string")
+    else if (inTagStr == "string")
     {
         ioIn >> m_string;
     }
-    else if (ioIn.TagNameGet() == "u8Vector")
+    else if (inTagStr == "u8Vector")
     {
         ioIn >> m_u8Vector;
     }
-    else if (ioIn.TagNameGet() == "u32Vector")
+    else if (inTagStr == "u32Vector")
     {
         ioIn >> m_u32Vector;
     }
-    else if (ioIn.TagNameGet() == "stringVector")
+    else if (inTagStr == "stringVector")
     {
         ioIn >> m_stringVector;
     }
-    else if (ioIn.TagNameGet() == "u8EmptyVector")
+    else if (inTagStr == "u8EmptyVector")
     {
         ioIn >> m_u8EmptyVector;
     }
-    else if (ioIn.TagNameGet() == "uEmpty32Vector")
+    else if (inTagStr == "uEmpty32Vector")
     {
         ioIn >> m_uEmpty32Vector;
     }
-    else if (ioIn.TagNameGet() == "stringEmptyVector")
+    else if (inTagStr == "stringEmptyVector")
     {
         ioIn >> m_stringEmptyVector;
     }
-    else if (ioIn.TagNameGet() == "vectorVector")
+    else if (inTagStr == "vectorVector")
     {
         ioIn >> m_vectorVector;
     }
-    else if (ioIn.TagNameGet() == "mapVector")
+    else if (inTagStr == "mapVector")
     {
         ioIn >> m_mapVector;
     }
-    else if (ioIn.TagNameGet() == "vectorMap")
+    else if (inTagStr == "vectorMap")
     {
         ioIn >> m_vectorMap;
     }
-    else if (ioIn.TagNameGet() == "pU32")
+    else if (inTagStr == "pU32")
     {
         ioIn >> m_pU32;
     }
-    else if (ioIn.TagNameGet() == "pVectorU32")
+    else if (inTagStr == "pVectorU32")
     {
         ioIn >> m_pVectorU32;
     }
-    else if (ioIn.TagNameGet() == "vectorpU32")
+    else if (inTagStr == "vectorpU32")
     {
         ioIn >> m_vectorpU32;
     }
-    else if (ioIn.TagNameGet() == "pNull")
+    else if (inTagStr == "pNull")
     {
         ioIn >> m_pNull;
     }
-    else if (ioIn.TagNameGet() == "testObject")
+    else if (inTagStr == "testObject")
     {
         ioIn >> m_testObject;
     }
     else
     {
-        ioIn.Throw("Unrecognised tag '"+ioIn.TagNameGet()+"'");
+        ioIn.Throw("Unrecognised tag '"+inTagStr+"'");
     }
 }
 void
-TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
+TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
     ioOut << "<u32>" << m_u32 << "</u32>\n";
@@ -258,4 +277,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
         ioOut << "<testObject>" << *m_testObject << "</testObject>\n";
     }
 }
-//%outOfLineFunctions } 99FEAXcfqZR/P1/3FQejQw
+//%outOfLineFunctions } VtGEKIj4kRVpJLRo8j3dzA

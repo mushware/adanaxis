@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } npITgZT+9cJbbZswb9CV2A
 /*
- * $Id: MushcoreXMLConsumer.h,v 1.2 2003/09/21 18:49:41 southa Exp $
+ * $Id: MushcoreXMLConsumer.h,v 1.3 2003/09/21 23:15:08 southa Exp $
  * $Log: MushcoreXMLConsumer.h,v $
+ * Revision 1.3  2003/09/21 23:15:08  southa
+ * XML input stream improvements
+ *
  * Revision 1.2  2003/09/21 18:49:41  southa
  * XML input stream work
  *
@@ -29,11 +32,14 @@
 #include "MushcoreStandard.h"
 
 class MushcoreXMLIStream;
+class MushcoreXMLOStream;
 
 class MushcoreXMLConsumer
 {
 public:
-    virtual void AutoXMLDataProcess(MushcoreXMLIStream& ioIn) = 0;
+    virtual void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr) = 0;
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const = 0;
+    virtual const char *AutoNameGet(void) const = 0;
 };
 
 //%includeGuardEnd {

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.11 2003/09/27 17:50:49 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.12 2003/09/29 21:48:37 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.12  2003/09/29 21:48:37  southa
+ * XML work
+ *
  * Revision 1.11  2003/09/27 17:50:49  southa
  * XML null pointer handling
  *
@@ -55,11 +58,11 @@
 
 #include "TestMushcoreStandard.h"
 
-//:generate ostream xml1 basic
+//:generate standard ostream xml1 basic
 class TestMushcoreObject : public MushcoreObject, public MushcoreXMLConsumer
 {
 public:
-    TestMushcoreObject() :
+    explicit TestMushcoreObject(Mushware::U32 inNum) :
         m_u8(1),
         m_u32(2),
         m_string("&<>&lt;ab&am,p;cde\"f</string>&,&"),
@@ -99,10 +102,6 @@ public:
             m_vectorMap[0][7] = "seven";
             m_vectorMap[2][14] = "fourt,)(\"een";
 
-#if 0
-            m_pVector.push_back(TestMushcoreObject(0));
-#endif
-
             m_pU32 = new Mushware::U32(2);
             m_pVectorU32 = new vector<Mushware::U32>;
             m_pVectorU32->push_back(4);
@@ -113,18 +112,17 @@ public:
             m_vectorpU32.push_back(NULL);
             m_vectorpU32.push_back(new Mushware::U32(19));
 
-            m_testObject = new TestMushcoreObject(0);
+            m_testObject = new TestMushcoreObject;
             // m_testObjectVector.push_back(new TestMushcoreObject(0));
     }
 
-    explicit TestMushcoreObject(Mushware::U32 inNum) :
-    m_u8(0),
-    m_u32(0),
-    m_string("z"),
-    m_pU32(NULL),
-    m_pVectorU32(NULL),
-    m_pNull(NULL),
-    m_testObject(NULL)
+    TestMushcoreObject() :
+        m_u8(0),
+        m_u32(0),
+        m_pU32(NULL),
+        m_pVectorU32(NULL),
+        m_pNull(NULL),
+        m_testObject(NULL)
     {
     }
 
@@ -157,24 +155,16 @@ private:
     
 //%classPrototypes {
 public:
+    virtual const char *AutoNameGet(void) const;
+    virtual TestMushcoreObject *AutoClone(void) const;
+    virtual TestMushcoreObject *AutoCreate(void) const;
+    static TestMushcoreObject *AutoFactory(void);
     bool AutoEquals(const TestMushcoreObject& inObj) const;
     void AutoPrint(std::ostream& ioOut) const;
-    void AutoXMLDataProcess(MushcoreXMLIStream& ioIn);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const;
-//%classPrototypes } t1PvWvwqFnZBtsD92H+mKA
+    void AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } P51yokolc3e17bhKpojB8Q
 };
-//%inlineNamespaced {
-namespace Mushcore
-{
-
-inline void
-Pickle(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj, const std::string& inName="")
-{
-    inObj.AutoXMLPrint(ioOut, inName);
-}
-
-} // end namespace Mushcore
-//%inlineNamespaced } +Fjvv2DYljqARHYMR/7PLA
 //%inlineHeader {
 inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
@@ -187,12 +177,14 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
+#if 0
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const TestMushcoreObject& inObj)
 {
     inObj.AutoXMLPrint(ioOut, "");
     return ioOut;
 }
+#endif
 //%inlineHeader } ikvElCmBt/z6dJAPO9xNgw
 
 

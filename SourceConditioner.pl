@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.11 2003/09/27 17:50:46 southa Exp $
+# $Id: SourceConditioner.pl,v 1.12 2003/09/29 21:48:33 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.12  2003/09/29 21:48:33  southa
+# XML work
+#
 # Revision 1.11  2003/09/27 17:50:46  southa
 # XML null pointer handling
 #
@@ -300,6 +303,57 @@ sub VarBaseNameGet($)
 
 ##########################################################
 #
+#    Standard functions
+#
+##########################################################
+
+sub StandardPrototypeGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for standard functions" unless defined ($className);
+    
+    push @$outputRef, "$gConfig{INDENT}virtual const char *$gConfig{AUTO_PREFIX}NameGet(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}virtual $className *$gConfig{AUTO_PREFIX}Create(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}static $className *$gConfig{AUTO_PREFIX}Factory(void);"; 
+}
+
+sub StandardFunctionGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+
+    my $className = $$infoRef{CLASSNAME};
+
+    die "No class found for standard functions" unless defined ($className);
+    
+    push @$outputRef,    
+"const char *".
+"${className}::$gConfig{AUTO_PREFIX}NameGet(void) const",
+"{",
+"    return \"$className\";",
+"}",
+"$className *".
+"${className}::$gConfig{AUTO_PREFIX}Clone(void) const",
+"{",
+"    return new $className(*this);",
+"}",
+"$className *".
+"${className}::$gConfig{AUTO_PREFIX}Create(void) const",
+"{",
+"    return new $className;",
+"}",
+"$className *".
+"${className}::$gConfig{AUTO_PREFIX}Factory(void)",
+"{",
+"    return new $className;",
+"}";
+}
+
+##########################################################
+#
 #    std::ostream output
 #
 ##########################################################
@@ -469,7 +523,7 @@ sub XMLIStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLIStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn);"; 
+    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -482,9 +536,9 @@ sub XMLIStreamWriteFunctionGenerate($$)
     
     push @$outputRef,
 "void",
-"${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn)",
+"${className}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
 "{",
-"    if (ioIn.TagNameGet() == \"$className\")",
+"    if (inTagStr == \"obj\")",
 "    {",
 "        ioIn >> *this;",
 "    }";
@@ -498,7 +552,7 @@ sub XMLIStreamWriteFunctionGenerate($$)
             my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
-"    else if (ioIn.TagNameGet() == \"$trimmedAttr\")",
+"    else if (inTagStr == \"$trimmedAttr\")",
 "    {",
 "        ioIn >> $baseAttr;",
 "    }";
@@ -508,7 +562,7 @@ sub XMLIStreamWriteFunctionGenerate($$)
     push @$outputRef,
 "    else",
 "    {",
-"        ioIn.Throw(\"Unrecognised tag '\"+ioIn.TagNameGet()+\"'\");",
+"        ioIn.Throw(\"Unrecognised tag '\"+inTagStr+\"'\");",
 "    }",
 "}";
 }
@@ -537,7 +591,7 @@ sub XMLOStreamWritePrototypeGenerate($$)
 
     die "No class found for XMLOStream writer" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const;"; 
+    push @$outputRef, "$gConfig{INDENT}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
 }
 
 sub XMLOStreamWriteFunctionGenerate($$)
@@ -549,7 +603,7 @@ sub XMLOStreamWriteFunctionGenerate($$)
     die "No class found for XMLOStream writer" unless defined ($className);
     
     push @$outputRef, "void";
-    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const";
+    push @$outputRef, "${className}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
     push @$outputRef,
 "{";
     my $attributesRef = $$infoRef{ATTRIBUTES};
@@ -581,22 +635,6 @@ sub XMLOStreamWriteFunctionGenerate($$)
         }
     }
     push @$outputRef, "}";  
-}
-
-sub XMLOStreamOperatorGenerate($$)
-{
-    my ($outputRef, $infoRef) = @_;
-
-    my $className = $$infoRef{CLASSNAME};
-
-    die "No class found for XMLOStream operator" unless defined ($className);
-    
-    push @$outputRef,
-"inline void",
-"Pickle(MushcoreXMLOStream& ioOut, const $className& inObj, const std::string& inName=\"\")",
-"{",
-"    inObj.$gConfig{AUTO_PREFIX}XMLPrint(ioOut, inName);",
-"}";
 }
 
 sub OldBlocksStrip($$)
@@ -773,6 +811,11 @@ sub ProcessHeader($$)
         
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # Standard functions
+            if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
+            {            
+                StandardPrototypeGenerate(\@classPrototypes, \%headerInfo);
+            }
             # BasicOperators
             if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
             {            
@@ -790,9 +833,9 @@ sub ProcessHeader($$)
             if ($$commandsRef[$i] =~ /generate.*\bxml1(.*)\b/)
             {
                 XMLIStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
-                XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
+                # XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
                 XMLOStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
-                XMLOStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
+                # XMLOStreamOperatorGenerate(\@inlineheader, \%headerInfo);
             }
             
 
@@ -851,12 +894,17 @@ sub ProcessCPP($$)
     {
         for (my $i=0; $i < @$commandsRef; $i += 1)
         {
+            # Standard
+            if ($$commandsRef[$i] =~ /generate.*\bstandard\b/)
+            {            
+                StandardFunctionGenerate(\@outOfLineCode, \%headerInfo);
+            }
             # BasicOperators
             if ($$commandsRef[$i] =~ /generate.*\bbasic(.*)\b/)
             {            
                 BasicOperatorsFunctionGenerate(\@outOfLineCode, \%headerInfo);
             }
-                        # std::ostream
+            # std::ostream
             if ($$commandsRef[$i] =~ /generate.*\bostream\b/)
             {
                 OstreamWriteFunctionGenerate(\@outOfLineCode, \%headerInfo);

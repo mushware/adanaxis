@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } xZttvudy36KFB+QD1H0nmA
 /*
- * $Id: TestMushcoreIO.cpp,v 1.6 2003/09/22 19:40:36 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.7 2003/09/23 22:57:57 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.7  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.6  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -96,14 +99,14 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     {
         ostringstream testOStream;
         MushcoreXMLOStream xmlOStream(testOStream);
-        TestMushcoreObject testObject;
+        TestMushcoreObject testObject(1);
 
-        Mushcore::Pickle(xmlOStream, testObject, "testobject");
+        xmlOStream << testObject;
 
         MushcoreXMLOStream xmlCout(cout);
-        Mushcore::Pickle(xmlCout, testObject, "testobject");
+        xmlCout << testObject;
 
-        TestMushcoreObject readBackObject(0);
+        TestMushcoreObject readBackObject;
 
         istringstream testIStream(testOStream.str());
         MushcoreXMLIStream xmlIStream(testIStream);
