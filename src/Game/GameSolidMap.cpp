@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.6 2002/08/01 16:47:12 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.7 2002/08/02 09:05:10 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.7  2002/08/02 09:05:10  southa
+ * Movement modification in collison checking
+ *
  * Revision 1.6  2002/08/01 16:47:12  southa
  * First multi-box collsion checking
  *
@@ -177,6 +180,32 @@ GameSolidMap::TrimMotion(GameMotionSpec& inSpec) const
             trialSpec.deltaPos.y=-deltaY;
             perm=MotionSpecPermeabilityGet(trialSpec);
             if (perm > 0) break;
+        }
+    }
+
+    if (perm <= 0 && inSpec.deltaAngle != 0)
+    {
+        trialSpec=inSpec;
+        trialSpec.deltaPos.x=-2;
+        trialSpec.deltaPos.y=-2;
+        perm=MotionSpecPermeabilityGet(trialSpec);
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=2;
+            trialSpec.deltaPos.y=-2;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=-2;
+            trialSpec.deltaPos.y=2;
+            perm=MotionSpecPermeabilityGet(trialSpec);
+        }
+        if (perm <= 0)
+        {
+            trialSpec.deltaPos.x=2;
+            trialSpec.deltaPos.y=2;
+            perm=MotionSpecPermeabilityGet(trialSpec);
         }
     }
     
