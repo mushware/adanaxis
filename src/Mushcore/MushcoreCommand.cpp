@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreCommand.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreCommand.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreCommand.cpp,v $
+ * Revision 1.2  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -70,9 +73,11 @@
 
 #include "MushcoreCommand.h"
 #include "MushcoreEnv.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreFlex.h"
 #include "MushcoreInterpreter.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -88,7 +93,7 @@ MushcoreCommand::Execute(MushcoreEnv& ioEnv)
 {
     if (m_bison.Parse(*this))
     {
-        throw(CommandFail("Syntax error in '" + m_string + "'"));
+        throw(MushcoreCommandFail("Syntax error in '" + m_string + "'"));
     }
 }
 

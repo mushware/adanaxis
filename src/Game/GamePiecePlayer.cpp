@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.38 2003/01/09 14:57:03 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.39 2003/01/11 17:07:52 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.39  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.38  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -460,13 +463,13 @@ GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: loadplayer <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadplayer <name> <filename>"));
     }
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GamePiecePlayer *newPlayer=new GamePiecePlayer;
     GameData::Instance().TemplateDeleteAndCreate("player1", newPlayer);

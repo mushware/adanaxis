@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScript.cpp,v 1.12 2002/12/29 20:59:52 southa Exp $
+ * $Id: MushcoreScript.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreScript.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -50,7 +53,9 @@
  */
 
 #include "MushcoreScript.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -72,7 +77,7 @@ MushcoreScript::ReadFromStream(istream& inIn)
         m_functions.insert(pair<string, MushcoreFunction>("_global", MushcoreFunction("_global")));
     if (!p.second)
     {
-        throw(LogicFail("Duplicated function name _global"));
+        throw(MushcoreLogicFail("Duplicated function name _global"));
     }
     while (!inIn.eof())
     {
@@ -91,7 +96,7 @@ MushcoreScript::FunctionGet(const string& inName) const
 
     if (p == m_functions.end())
     {
-        throw(LogicFail("Request for unknown function '"+inName+"'"));
+        throw(MushcoreLogicFail("Request for unknown function '"+inName+"'"));
     }
     return p->second;
 }

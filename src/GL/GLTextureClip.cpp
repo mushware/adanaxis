@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureClip.cpp,v 1.9 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.10 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -75,7 +78,7 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
             ysize=inY2-inY1;
         }
         // Overflow check
-        COREASSERT(xsize < 0x80000000 && ysize < 0x80000000);
+        MUSHCOREASSERT(xsize < 0x80000000 && ysize < 0x80000000);
 
         // cerr << "inX1=" << inX1 << " inY1=" << inY1 << " inX2=" << inX2 << " inY2=" << inY2 << endl;
         // cerr << "xinc=" << xinc << " yinc=" << yinc << " xsize=" << xsize << " ysize=" << ysize << endl;
@@ -110,11 +113,11 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
 
                 U32 *srcPtr=srcBase + x + y*srcWidth;
                 *destPtr++=*srcPtr;
-                COREASSERT(srcPtr < srcPtrLim);
-                COREASSERT(destPtr <= destPtrLim);
+                MUSHCOREASSERT(srcPtr < srcPtrLim);
+                MUSHCOREASSERT(destPtr <= destPtrLim);
             }
         }
-        COREASSERT(destPtr == destPtrLim);
+        MUSHCOREASSERT(destPtr == destPtrLim);
         AddTextureDef(def);
     }
 }

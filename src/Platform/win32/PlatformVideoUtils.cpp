@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.8 2002/12/20 13:17:48 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.9 2002/12/29 21:00:01 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.9  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -77,7 +80,7 @@ PlatformVideoUtils::ModeDefGet(U32 inNum)
     {
         ostringstream message;
         message << "Mode number " << inNum << " too high (max " << m_modeDefs.size() << ")";
-        throw(ReferenceFail(message.str()));
+        throw(MushcoreReferenceFail(message.str()));
     }
     return m_modeDefs[inNum];
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameLightLinks.h,v 1.4 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameLightLinks.h,v 1.5 2003/01/11 13:03:13 southa Exp $
  * $Log: GameLightLinks.h,v $
+ * Revision 1.5  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.4  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -46,12 +49,12 @@ public:
 
     GameLightLinks();
     
-    void LinkSet(Mushware::U32 inNum, Mushware::U32 inLink) { COREASSERT(inNum < kNumLinks); m_links[inNum].link = inLink; }
-    Mushware::U32 LinkGet(Mushware::U32 inNum) const { COREASSERT(inNum < kNumLinks); return m_links[inNum].link; }
-    void DistanceSet(Mushware::U32 inNum, Mushware::tVal inDistance) { COREASSERT(inNum < kNumLinks); m_links[inNum].distance = inDistance; }
-    Mushware::tVal DistanceGet(Mushware::U32 inNum) const { COREASSERT(inNum < kNumLinks); return m_links[inNum].distance; }
-    void ValidSet(Mushware::U32 inNum, bool inValid) { COREASSERT(inNum < kNumLinks); m_links[inNum].valid = inValid; }
-    bool ValidGet(Mushware::U32 inNum) const { COREASSERT(inNum < kNumLinks); return m_links[inNum].valid; }
+    void LinkSet(Mushware::U32 inNum, Mushware::U32 inLink) { MUSHCOREASSERT(inNum < kNumLinks); m_links[inNum].link = inLink; }
+    Mushware::U32 LinkGet(Mushware::U32 inNum) const { MUSHCOREASSERT(inNum < kNumLinks); return m_links[inNum].link; }
+    void DistanceSet(Mushware::U32 inNum, Mushware::tVal inDistance) { MUSHCOREASSERT(inNum < kNumLinks); m_links[inNum].distance = inDistance; }
+    Mushware::tVal DistanceGet(Mushware::U32 inNum) const { MUSHCOREASSERT(inNum < kNumLinks); return m_links[inNum].distance; }
+    void ValidSet(Mushware::U32 inNum, bool inValid) { MUSHCOREASSERT(inNum < kNumLinks); m_links[inNum].valid = inValid; }
+    bool ValidGet(Mushware::U32 inNum) const { MUSHCOREASSERT(inNum < kNumLinks); return m_links[inNum].valid; }
     Mushware::U32 SizeGet(void) const { return kNumLinks; }
     void Sort(void);
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreStreamUtil.cpp,v 1.8 2003/01/07 17:13:40 southa Exp $
+ * $Id: MushcoreStreamUtil.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreStreamUtil.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -53,6 +56,8 @@
  */
 
 #include "MushcoreStreamUtil.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureRef.cpp,v 1.10 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.11 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -56,7 +59,7 @@ GLTextureRef::TextureFetch(void) const
     m_texPtr=GLData::Instance().TextureFind(m_name);
     if (m_texPtr == NULL)
     {
-        throw(LogicFail("Attempt to access non-existent texture '"+m_name+"'"));
+        throw(MushcoreLogicFail("Attempt to access non-existent texture '"+m_name+"'"));
     }
 }
 

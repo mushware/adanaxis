@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.26 2003/01/11 13:03:15 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.27 2003/01/11 17:07:52 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.27  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.26  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -135,7 +138,7 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: handlepostvalues(values)"));
+        throw(MushcoreCommandFail("Usage: handlepostvalues(values)"));
     }
     string values;
     ioCommand.PopParam(values);
@@ -144,9 +147,9 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     vector<string> matches;
     if (!re.Search(values, matches))
     {
-        throw(CommandFail("No type= element in posted results '"+values+"'"));
+        throw(MushcoreCommandFail("No type= element in posted results '"+values+"'"));
     }
-    COREASSERT(matches.size() == 3);
+    MUSHCOREASSERT(matches.size() == 3);
     if (matches[1] == "config1" ||
         matches[1] == "developer1")
     {
@@ -234,7 +237,7 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     }
     else
     {
-        throw(CommandFail("Unknown config type value '"+matches[1]+"'"));
+        throw(MushcoreCommandFail("Unknown config type value '"+matches[1]+"'"));
     }
     
     return MushcoreScalar(0);
@@ -263,7 +266,7 @@ GameWebCommands::GameConfigInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& i
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: gameconfiginputwrite(name)"));
+        throw(MushcoreCommandFail("Usage: gameconfiginputwrite(name)"));
     }
     
     string dataName;
@@ -271,7 +274,7 @@ GameWebCommands::GameConfigInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& i
 
     if (!MushcoreData<GameConfigDef>::Instance().Exists(dataName))
     {
-        throw(CommandFail("Config value '"+dataName+"' does not exist"));
+        throw(MushcoreCommandFail("Config value '"+dataName+"' does not exist"));
     }
     MushcoreData<GameConfigDef>::Instance().Get(dataName)->WebInputPrint(ioEnv.Out(), dataName);
     

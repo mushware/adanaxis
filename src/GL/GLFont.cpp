@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.13 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLFont.cpp,v 1.14 2003/01/11 17:07:50 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.14  2003/01/11 17:07:50  southa
+ * Mushcore library separation
+ *
  * Revision 1.13  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -139,7 +142,7 @@ GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     string filename;
     if (ioCommand.NumParams() < 2 || ioCommand.NumParams() > 6)
     {
-        throw(CommandFail("Usage: loadfontmap <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadfontmap <name> <filename>"));
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.12 2003/01/09 14:57:03 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.12  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -130,14 +133,14 @@ GameNetUtils::MaintainLinks(vector< MushcoreDataRef<MustlLink> >& inLinks, const
 {
     bool linkGood=false;
     U32 size = inLinks.size();
-    COREASSERT(inLinkNum <= size);
+    MUSHCOREASSERT(inLinkNum <= size);
     
     for (U32 i=0; i<inLinkNum; ++i)
     {
         MustlLink *linkPtr = NULL;
         if (inLinks[i].GetIfExists(linkPtr))
         {
-            COREASSERT(linkPtr != NULL);
+            MUSHCOREASSERT(linkPtr != NULL);
             if (linkPtr->IsDead())
             {
                 CreateLink(inLinks[i], inClientName, inAddress);
@@ -173,7 +176,7 @@ GameNetUtils::CreateLink(MushcoreDataRef<MustlLink>& outLink, const string& inCl
 void
 GameNetUtils::ReliableSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
-    COREASSERT(inLinkNum <= inLinks.size());
+    MUSHCOREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
     {
         ++ioLinkNum;
@@ -181,7 +184,7 @@ GameNetUtils::ReliableSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >&
         MustlLink *linkPtr = NULL;
         if (inLinks[ioLinkNum].GetIfExists(linkPtr))
         {
-            COREASSERT(linkPtr != NULL);
+            MUSHCOREASSERT(linkPtr != NULL);
             if (linkPtr->ReadyIs())
             {
                 linkPtr->ReliableSend(ioData);
@@ -195,7 +198,7 @@ GameNetUtils::ReliableSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >&
 void
 GameNetUtils::FastSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
-    COREASSERT(inLinkNum <= inLinks.size());
+    MUSHCOREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
     {
         ++ioLinkNum;
@@ -203,7 +206,7 @@ GameNetUtils::FastSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inL
         MustlLink *linkPtr = NULL;
         if (inLinks[ioLinkNum].GetIfExists(linkPtr))
         {
-            COREASSERT(linkPtr != NULL);
+            MUSHCOREASSERT(linkPtr != NULL);
             if (linkPtr->ReadyIs())
             {
                 linkPtr->FastSend(ioData);

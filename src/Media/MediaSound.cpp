@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.11 2003/01/09 14:57:04 southa Exp $
+ * $Id: MediaSound.cpp,v 1.12 2003/01/11 17:07:53 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.12  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.11  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -101,7 +104,7 @@ MediaSound::TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: transientsound <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: transientsound <name> <filename>"));
     }
     string name, filename;
     ioCommand.PopParam(name);
@@ -116,7 +119,7 @@ MediaSound::ResidentSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: residentsound('name','filename')"));
+        throw(MushcoreCommandFail("Usage: residentsound('name','filename')"));
     }
     string name, filename;
     ioCommand.PopParam(name);
@@ -132,7 +135,7 @@ MediaSound::PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: playsound('name')"));
+        throw(MushcoreCommandFail("Usage: playsound('name')"));
     }
     string name;
     ioCommand.PopParam(name);

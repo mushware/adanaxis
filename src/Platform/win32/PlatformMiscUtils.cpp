@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.23 2002/12/29 21:00:01 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.24 2003/01/09 14:57:09 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.24  2003/01/09 14:57:09  southa
+ * Created Mushcore
+ *
  * Revision 1.23  2002/12/29 21:00:01  southa
  * More build fixes
  *
@@ -174,7 +177,7 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
     {
 	ostringstream message;
 	message << "mkdir " << inName << " failed: " << GetLastError(); 
-        throw(CommandFail(message.str()));
+        throw(MushcoreCommandFail(message.str()));
     }
 }
 
@@ -187,7 +190,7 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
 
     if (hList == INVALID_HANDLE_VALUE)
     {
-        throw(CommandFail("No files in drectory '" + inDirName + "'"));
+        throw(MushcoreCommandFail("No files in drectory '" + inDirName + "'"));
     }
     
     for (U32 i=0; i<10000; ++i)
@@ -208,10 +211,10 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
                 FindClose(hList);
 	        ostringstream message;
 	        message << "Directory error (" << GetLastError() << ")";
-	        throw(CommandFail(message.str()));
+	        throw(MushcoreCommandFail(message.str()));
 	    }
 	}
-        COREASSERT(i<9999);
+        MUSHCOREASSERT(i<9999);
     }
 
     FindClose(hList);   
@@ -327,7 +330,7 @@ PlatformMiscUtils::LaunchFile(const string& inFile)
     {
 	ostringstream message;
 	message << "Launch failed for '" << inFile << "': " << retVal;
-	throw(CommandFail(message.str()));
+	throw(MushcoreCommandFail(message.str()));
     }
 }
 
@@ -339,7 +342,7 @@ PlatformMiscUtils::LaunchURL(const string& inURL)
     {
 	ostringstream message;
 	message << "URL launch failed for '" << inURL << "': " << status;
-	throw(CommandFail(message.str()));
+	throw(MushcoreCommandFail(message.str()));
     }
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.15 2003/01/11 13:03:18 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.16 2003/01/11 17:07:53 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.16  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.15  2003/01/11 13:03:18  southa
  * Use Mushcore header
  *
@@ -87,9 +90,9 @@ TestCommandHandler::Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             return false;
         }
     }
-    catch (TestFail& f)
+    catch (MushcoreLogicFail& f)
     {
-        cerr << "Test failed: " << f;
+        cerr << "Test failed: " << f.what();
     }
     return true;
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.18 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.19 2003/01/09 14:56:59 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.19  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.18  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -107,7 +110,7 @@ GLUTAppHandler::Display(void)
 void
 GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
-    COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
+    MUSHCOREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
     m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
     if (inSignal.keyDown)
     {
@@ -124,7 +127,7 @@ GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 bool
 GLUTAppHandler::KeyStateGet(const GLKeys& inKey) const
 {
-    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     return m_keyState[inKey.ValueGet()];
 }
 
@@ -132,7 +135,7 @@ GLUTAppHandler::KeyStateGet(const GLKeys& inKey) const
 bool
 GLUTAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 {
-    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     bool state=m_latchedKeyState[inKey.ValueGet()];
     if (state)
     {
@@ -203,7 +206,7 @@ GLUTAppHandler::EnterScreen(const GLModeDef& inDef)
             break;
             
         default:
-            throw(LogicFail("Bad value to GLUTAppHandler::EnterScreen"));
+            throw(MushcoreLogicFail("Bad value to GLUTAppHandler::EnterScreen"));
     }
     RegisterHandlers();
     GLUtils::CheckGLError();
@@ -382,13 +385,13 @@ GLUTAppHandler::AppQuit(void)
 void
 GLUTAppHandler::KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues)
 {
-    COREASSERT(false);
+    MUSHCOREASSERT(false);
 }
 
 void
 GLUTAppHandler::ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnboundedMouseY, vector<bool>& outKeys, tVal inMsec)
 {
-    COREASSERT(false);
+    MUSHCOREASSERT(false);
 }
 
 GLKeys

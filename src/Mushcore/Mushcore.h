@@ -1,8 +1,11 @@
 #ifndef MUSHCORE_H
 #define MUSHCORE_H
 /*
- * $Id: Mushcore.h,v 1.1 2003/01/11 17:07:53 southa Exp $
+ * $Id: Mushcore.h,v 1.2 2003/01/11 17:58:14 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.2  2003/01/11 17:58:14  southa
+ * Mustl fixes
+ *
  * Revision 1.1  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -18,7 +21,7 @@
 #include "Mushcore/MushcoreDataRef.h"
 #include "Mushcore/MushcoreEnv.h"
 #include "Mushcore/MushcoreEnvOutput.h"
-#include "Mushcore/MushcoreException.h"
+#include "Mushcore/MushcoreFail.h"
 #include "Mushcore/MushcoreGlobalConfig.h"
 #include "Mushcore/MushcoreHistory.h"
 #include "Mushcore/MushcoreInfo.h"
@@ -30,8 +33,10 @@
 #include "Mushcore/MushcoreScript.h"
 #include "Mushcore/MushcoreStandard.h"
 #include "Mushcore/MushcoreStreamUtil.h"
-#include "Mushcore/MushcoreSwitches.h"
 #include "Mushcore/MushcoreUtil.h"
 #include "Mushcore/MushcoreXML.h"
+
+// Temporary
+#include "MushcoreSTL.h"
 
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoMonkey.cpp,v 1.7 2002/12/29 20:59:50 southa Exp $
+ * $Id: MushcoreAutoMonkey.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAutoMonkey.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2002/12/29 20:59:50  southa
  * More build fixes
  *
@@ -56,8 +59,11 @@
  */
 
 #include "MushcoreAutoMonkey.h"
-#include "MushcoreStandard.h"
+
+#include "MushcoreFail.h"
 #include "MushcoreSwitches.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -84,7 +90,7 @@ MushcoreAutoMonkey::MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey)
 void
 MushcoreAutoMonkey::Swap(MushcoreAutoMonkey& inMonkey)
 {
-    int *temp=m_refCtrPtr;
+    S32 *temp=m_refCtrPtr;
     m_refCtrPtr=inMonkey.m_refCtrPtr;
     inMonkey.m_refCtrPtr=temp;
 }
@@ -100,7 +106,7 @@ MushcoreAutoMonkey::operator=(const MushcoreAutoMonkey& inMonkey)
 bool
 MushcoreAutoMonkey::FreeInDestructor(void *inDataPtr) const
 {
-    if (*m_refCtrPtr < 1) throw("MushcoreAutoMonkey fault");
+    if (*m_refCtrPtr < 1) throw(MushcoreLogicFail("MushcoreAutoMonkey fault"));
     IFMONKEYTESTING(cerr << "Automonkey InDestructorFree, refcount is " << ReferenceCountGet() << endl);
     return (*m_refCtrPtr == 1  && inDataPtr != NULL);
 }

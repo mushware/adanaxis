@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreSwitches.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -48,15 +51,9 @@
 #define CORETESTING(a) a
 #define IFCORETESTING(a) a
 
-#define TEXTESTING 0
 #define MONKEYTESTING 0
 #define FLEXTESTING 0
 
-#if TEXTESTING
-#define IFTEXTESTING(a) a
-#else
-#define IFTEXTESTING(a)
-#endif
 #if MONKEYTESTING
 #define IFMONKEYTESTING(a) a
 #else

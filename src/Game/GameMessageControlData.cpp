@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMessageControlData.cpp,v 1.4 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameMessageControlData.cpp,v 1.5 2002/12/29 20:59:56 southa Exp $
  * $Log: GameMessageControlData.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -37,7 +40,7 @@ using namespace std;
 const GameMessageControlData::DataEntry&
 GameMessageControlData::DataEntryGet(U32 inEntryNum) const
 {
-    COREASSERT(inEntryNum < m_data.size());
+    MUSHCOREASSERT(inEntryNum < m_data.size());
     return m_data[inEntryNum];
 }
 
@@ -57,7 +60,7 @@ GameMessageControlData::Pack(MustlData& ioData) const
     ioData.BytePush(m_startFrame >> 8);
     ioData.BytePush(m_startFrame);
     U32 size = m_data.size();
-    COREASSERT(size <= kEntryLimit);
+    MUSHCOREASSERT(size <= kEntryLimit);
     for (U32 i=0; i<size; ++i)
     {
         ioData.BytePush(m_data[i].frameOffset);

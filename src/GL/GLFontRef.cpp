@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFontRef.cpp,v 1.4 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.5 2002/12/29 20:59:52 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -47,7 +50,7 @@ GLFontRef::GetReference(void) const
     m_fontPtr=GLData::Instance().FontGet(m_name);
     if (m_fontPtr == NULL)
     {
-        throw(ReferenceFail("Attempt to access non-existent font '"+m_name+"'"));
+        throw(MushcoreReferenceFail("Attempt to access non-existent font '"+m_name+"'"));
     }
 }
 

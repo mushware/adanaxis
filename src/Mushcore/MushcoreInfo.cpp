@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInfo.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreInfo.cpp,v 1.2 2003/01/11 17:44:27 southa Exp $
  * $Log: MushcoreInfo.cpp,v $
+ * Revision 1.2  2003/01/11 17:44:27  southa
+ * Mushcore fixes
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -34,6 +37,8 @@
 #ifndef VERSION
 #define VERSION "0.0.0"
 #endif
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;

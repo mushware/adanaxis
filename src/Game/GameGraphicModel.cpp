@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.12 2003/01/07 17:13:42 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.13 2003/01/09 14:57:02 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.13  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2003/01/07 17:13:42  southa
  * Fixes for gcc 3.1
  *
@@ -89,7 +92,7 @@ GameGraphicModel::Render(void)
             GLState::TextureEnable();
             if (m_listContext == GLUtils::ListContextGet())
             {
-                COREASSERT(glIsList(m_listName[i]));
+                MUSHCOREASSERT(glIsList(m_listName[i]));
                 glCallList(m_listName[i]);
             }
             else

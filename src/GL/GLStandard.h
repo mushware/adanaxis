@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLStandard.h,v 1.11 2003/01/09 14:56:58 southa Exp $
+ * $Id: GLStandard.h,v 1.12 2003/01/11 13:03:11 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.12  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.11  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -105,4 +108,12 @@
 #include "Mushcore.h"
 
 #define GLTESTING(a) a
+
+#define TEXTESTING 0
+#if TEXTESTING
+#define IFTEXTESTING(a) a
+#else
+#define IFTEXTESTING(a)
+#endif
+
 #endif

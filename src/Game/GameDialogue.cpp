@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.18 2003/01/07 17:13:42 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.19 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.19  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.18  2003/01/07 17:13:42  southa
  * Fixes for gcc 3.1
  *
@@ -193,7 +196,7 @@ GameDialogue::TextSet(U32 inWhich, const string& inStr)
 {
     if (inWhich >= m_strings.size())
     {
-        throw(ReferenceFail("TextSet index too high for this Dialogue"));
+        throw(MushcoreReferenceFail("TextSet index too high for this Dialogue"));
     }
     m_strings[inWhich].string.TextSet(inStr);
 }
@@ -223,7 +226,7 @@ void GameDialogue::ExpireNow(void)
     
     if (latestFound)
     {
-        COREASSERT(latestIndex < m_soundStreams.size());
+        MUSHCOREASSERT(latestIndex < m_soundStreams.size());
         SoundStreamSpec& spec=m_soundStreams[latestIndex];
         MediaAudio::Instance().Play(*spec.soundStreamRef.Get());
     }

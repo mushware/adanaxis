@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePlayerUtils.cpp,v 1.10 2003/01/07 17:13:43 southa Exp $
+ * $Id: GamePlayerUtils.cpp,v 1.11 2003/01/09 14:57:03 southa Exp $
  * $Log: GamePlayerUtils.cpp,v $
+ * Revision 1.11  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.10  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -78,7 +81,7 @@ GamePlayerUtils::FillControlQueues(const GameTimer& inTimer, U32 inNumFrames)
     for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin();
          p != endValue; ++p)
     {
-        COREASSERT(p->second != NULL);
+        MUSHCOREASSERT(p->second != NULL);
         GamePiecePlayer& playerRef = *p->second;
         if (playerRef.ImageIs())
         {
@@ -136,12 +139,12 @@ GamePlayerUtils::SendControlQueues(const GameTimer& inTimer, U32 inNumFrames)
     {
         if (!p->second->ImageIs())
         {
-            COREASSERT(p->second != NULL);
+            MUSHCOREASSERT(p->second != NULL);
             GamePiecePlayer *playerPtr;
             // Needs optimised lookup
             if (GameData::Instance().PlayerGet().GetIfExists(playerPtr, p->first))
             {
-                COREASSERT(playerPtr != NULL);
+                MUSHCOREASSERT(playerPtr != NULL);
                 SendControl(*p->second, *playerPtr, inTimer, inNumFrames);
             }
         }
@@ -158,9 +161,9 @@ GamePlayerUtils::VerifyOrCreateImagePlayer(const string& inName, GameDefClient& 
     {
         retVal = false;
         const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
-        COREASSERT(templatePlayer != NULL);
+        MUSHCOREASSERT(templatePlayer != NULL);
         GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
-        COREASSERT(newPlayer != NULL);
+        MUSHCOREASSERT(newPlayer != NULL);
         newPlayer->ImageIsSet(inClientDef.ImageIs());
     }
     return retVal;
@@ -173,7 +176,7 @@ GamePlayerUtils::VerifyPlayer(const string& inName, GamePiecePlayer& inPlayer)
     GameDefClient *defClient = NULL;
     if (MushcoreData<GameDefClient>::Instance().GetIfExists(defClient, inName))
     {
-        COREASSERT(defClient != NULL);
+        MUSHCOREASSERT(defClient != NULL);
         retVal = true;
     }
     return retVal;
@@ -189,9 +192,9 @@ GamePlayerUtils::VerifyOrCreateLocalPlayer(const string& inName, GameDefClient& 
     {
         retVal = false;
         const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
-        COREASSERT(templatePlayer != NULL);
+        MUSHCOREASSERT(templatePlayer != NULL);
         GamePiecePlayer *newPlayer = playerData.Give(inName, new GamePiecePlayer(*templatePlayer));
-        COREASSERT(newPlayer != NULL);
+        MUSHCOREASSERT(newPlayer != NULL);
     }
     return retVal;
 }
@@ -273,7 +276,7 @@ GamePlayerUtils::ClientMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))
                 {
-                    COREASSERT(frameDef != NULL);
+                    MUSHCOREASSERT(frameDef != NULL);
     
                     GameMotionSpec motion;
                     playerRef.MoveGet(motion, *frameDef);
@@ -326,7 +329,7 @@ GamePlayerUtils::ServerMove(GameFloorMap& inFloorMap, GameTimer& inTimer, U32 in
                 const GameControlFrameDef *frameDef = NULL;
                 if (playerRef.ControlFrameDefGet(frameDef, frameNum))
                 {
-                    COREASSERT(frameDef != NULL);
+                    MUSHCOREASSERT(frameDef != NULL);
 
                     GameMotionSpec motion;
                     playerRef.MoveGet(motion, *frameDef);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.26 2003/01/09 14:57:02 southa Exp $
+ * $Id: GameFloorMap.h,v 1.27 2003/01/11 13:03:13 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.27  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.26  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -130,7 +133,7 @@ public:
     virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
-    const tMapVector& At(Mushware::U32 inX, Mushware::U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
+    const tMapVector& At(Mushware::U32 inX, Mushware::U32 inY) {MUSHCOREASSERT(inX<m_xsize);MUSHCOREASSERT(inY<m_ysize);return m_map[inY][inX];}
     Mushware::U32 XSize(void) {return m_xsize;}
     Mushware::U32 YSize(void) {return m_ysize;}
     Mushware::tVal XStep(void) {return m_xstep;}

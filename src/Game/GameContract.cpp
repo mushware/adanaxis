@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.112 2003/01/11 13:03:12 southa Exp $
+ * $Id: GameContract.cpp,v 1.113 2003/01/11 17:07:51 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.113  2003/01/11 17:07:51  southa
+ * Mushcore library separation
+ *
  * Revision 1.112  2003/01/11 13:03:12  southa
  * Use Mushcore header
  *
@@ -434,7 +437,7 @@ GameContract::Process(GameAppHandler& inAppHandler)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_gameState"));
+            throw(MushcoreLogicFail("Bad value for m_gameState"));
     }
 }
 
@@ -458,7 +461,7 @@ GameContract::Display(GameAppHandler& inAppHandler)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_gameState"));
+            throw(MushcoreLogicFail("Bad value for m_gameState"));
     }
 }
 
@@ -494,8 +497,8 @@ GameContract::Init(GameAppHandler& inAppHandler)
     {
         m_tileMap=GameData::Instance().TileMapGet("tiles");
         m_floorMap=GameData::Instance().FloorMapGet("floor");
-        COREASSERT(m_tileMap != NULL);
-        COREASSERT(m_floorMap != NULL);
+        MUSHCOREASSERT(m_tileMap != NULL);
+        MUSHCOREASSERT(m_floorMap != NULL);
         m_floorMap->AttachTileMap(m_tileMap);
         m_tileMap->Load();
     }
@@ -505,7 +508,7 @@ GameContract::Init(GameAppHandler& inAppHandler)
     {
         // Create the player for a single player game
         const GamePiecePlayer *templatePlayer=dynamic_cast<const GamePiecePlayer *>(GameData::Instance().TemplateGet("player1"));
-        COREASSERT(templatePlayer != NULL);
+        MUSHCOREASSERT(templatePlayer != NULL);
 
         GameData::Instance().PlayerGet().Give("singleplayer", new GamePiecePlayer(*templatePlayer));
     }
@@ -514,7 +517,7 @@ GameContract::Init(GameAppHandler& inAppHandler)
     m_floorDesigner->Init();
     GameData::Instance().ViewGetOrCreate("view1");
     m_currentView=GameData::Instance().CurrentViewGet();
-    COREASSERT(m_currentView != NULL);
+    MUSHCOREASSERT(m_currentView != NULL);
     m_currentView->RectangleSet(GLRectangle(0,0,inAppHandler.WidthGet(),inAppHandler.HeightGet()));  // Might be wrong
     // GameData::Instance().DumpAll(cout);
 
@@ -578,8 +581,8 @@ GameContract::RunningMove(GameTimer& inTimer, U32 inNumFrames)
 void
 GameContract::RunningDisplay(void)
 {
-    COREASSERT(m_tileMap != NULL);
-    COREASSERT(m_floorMap != NULL);
+    MUSHCOREASSERT(m_tileMap != NULL);
+    MUSHCOREASSERT(m_floorMap != NULL);
     m_floorMap->AttachTileMap(m_tileMap);
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
@@ -688,7 +691,7 @@ GameContract::RunningDisplay(void)
             GLUtils::PopMatrix();
         }
     }
-    COREASSERT(m_currentView != NULL);
+    MUSHCOREASSERT(m_currentView != NULL);
     GLState::DepthSet(GLState::kDepthNone);
     GLState::ModulationSet(GLState::kModulationColour);
     GLState::BlendSet(GLState::kBlendLine);
@@ -763,7 +766,7 @@ GameContract::RenderText(void) const
 void
 GameContract::DesigningDisplay(void)
 {
-    COREASSERT(m_floorDesigner != NULL);
+    MUSHCOREASSERT(m_floorDesigner != NULL);
     m_floorDesigner->Display();
 }
 
@@ -798,7 +801,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
             GamePlayerUtils::SendControlQueues(timer, numClientFrames);
             GameNetUtils::NetReceive();
         }
-        COREASSERT(m_floorMap != NULL);
+        MUSHCOREASSERT(m_floorMap != NULL);
         
 
         U32 lastCompleteFrameNum=GamePlayerUtils::CompleteControlFrameFind();
@@ -1146,13 +1149,13 @@ GameContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: loadcontract <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadcontract <name> <filename>"));
     }
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);

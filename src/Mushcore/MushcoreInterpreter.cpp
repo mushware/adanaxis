@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.2  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -61,7 +64,9 @@
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
 #include "MushcoreEnv.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -96,9 +101,9 @@ MushcoreInterpreter::Despatch(MushcoreCommand& ioCommand)
         {
             retScalar=m_handlers[ioCommand.Name()](ioCommand, MushcoreEnv::Instance());
         }
-        catch (FileFail& f)
+        catch (MushcoreFileFail& f)
         {
-            cerr << "File operation failed: " << f << endl;
+            cerr << "File operation failed: " << f.what() << endl;
         }
     }
     else

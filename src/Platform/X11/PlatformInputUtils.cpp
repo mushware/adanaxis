@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformInputUtils.cpp,v 1.8 2002/12/20 13:17:48 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.9 2002/12/29 21:00:00 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.9  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -67,7 +70,7 @@ PlatformInputUtils::MouseDeltaPrologue(S32& ioX, S32& ioY, S32& ioLastX, S32& io
 void
 PlatformInputUtils::GetMouseDeltas(S32& outXDelta, S32& outYDelta, S32& ioX, S32& ioY, S32& ioLastX, S32& ioLastY)
 {
-    throw(LogicFail("GetMouseDeltas not implemented for X11"));
+    throw(MushcoreLogicFail("GetMouseDeltas not implemented for X11"));
 }
 
 void

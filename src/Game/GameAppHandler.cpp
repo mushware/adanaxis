@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.42 2003/01/09 14:56:59 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.43 2003/01/11 13:03:12 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.43  2003/01/11 13:03:12  southa
+ * Use Mushcore header
+ *
  * Revision 1.42  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -247,7 +250,7 @@ GameAppHandler::GameModeEnter(bool inResume)
         }
         m_pGame=GameData::Instance().ContractGet("contract1");
 
-        COREASSERT(m_pGame != NULL);
+        MUSHCOREASSERT(m_pGame != NULL);
         m_pCurrent=m_pGame;
         m_pCurrent->SwapIn(*this);
         m_appState=kAppStateGame;

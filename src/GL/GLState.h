@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.h,v 1.7 2002/12/04 15:39:57 southa Exp $
+ * $Id: GLState.h,v 1.8 2002/12/20 13:17:35 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.8  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/12/04 15:39:57  southa
  * Multiplayer work
  *
@@ -154,7 +157,7 @@ GLState::BlendSet(tBlendType inValue)
                 break;
 
             default:
-                throw(LogicFail("Invalid value to GLState::BlendSet"));
+                throw(MushcoreLogicFail("Invalid value to GLState::BlendSet"));
                 break;
         }
         m_blendState = inValue;
@@ -221,7 +224,7 @@ GLState::ModulationSet(tModulationType inValue)
                 break;
 
             default:
-                throw(LogicFail("Invalid value to GLState::ModulationSet"));
+                throw(MushcoreLogicFail("Invalid value to GLState::ModulationSet"));
                 break;
         }
         m_modulateState=inValue;
@@ -245,7 +248,7 @@ GLState::DepthSet(tDepthType inValue)
                 break;
 
             default:
-                throw(LogicFail("Invalid value to GLState::DepthSet"));
+                throw(MushcoreLogicFail("Invalid value to GLState::DepthSet"));
                 break;
         }
         m_depthState=inValue;
@@ -283,7 +286,7 @@ GLState::TextureParamsReset(void)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_displayQuality"));
+            throw(MushcoreLogicFail("Bad value for m_displayQuality"));
     }
 }
 
@@ -306,7 +309,7 @@ GLState::Reset(void)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_displayQuality"));
+            throw(MushcoreLogicFail("Bad value for m_displayQuality"));
     }
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);

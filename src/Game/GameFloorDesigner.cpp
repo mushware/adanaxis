@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.30 2002/12/29 20:59:55 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.31 2003/01/09 14:57:01 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.31  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.30  2002/12/29 20:59:55  southa
  * More build fixes
  *
@@ -136,8 +139,8 @@ GameFloorDesigner::Init(void)
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floormap-template"));
     m_floorMaps.push_back(&m_scratchArea);
     m_scratchArea=*m_floorMaps[0];
-    COREASSERT(m_tileMap != NULL);
-    COREASSERT(m_floorMaps[0] != NULL);
+    MUSHCOREASSERT(m_tileMap != NULL);
+    MUSHCOREASSERT(m_floorMaps[0] != NULL);
     GameData::Instance().ControllerGetOrCreate(m_controllerName);
     m_width=glHandler.WidthGet();
     m_height=glHandler.HeightGet();
@@ -163,8 +166,8 @@ GameFloorDesigner::Init(void)
 void
 GameFloorDesigner::Display(void)
 {
-    COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_currentMap < m_pos.size());
+    MUSHCOREASSERT(m_currentMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_currentMap < m_pos.size());
 
     GameFloorMap *floorMap(m_floorMaps[m_currentMap]);
     
@@ -261,7 +264,7 @@ GameFloorDesigner::Display(void)
 void
 GameFloorDesigner::Move(void)
 {
-    COREASSERT(m_floorMaps.size() > 0);
+    MUSHCOREASSERT(m_floorMaps.size() > 0);
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
 
     if (m_controller == NULL)
@@ -441,8 +444,8 @@ GameFloorDesigner::Move(void)
 void
 GameFloorDesigner::Paste(const GLPoint& inDest)
 {
-    COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_highlightMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_currentMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_highlightMap < m_floorMaps.size());
     GameFloorMap *srcMap;
     if (m_currentMap == m_highlightMap)
     {
@@ -507,8 +510,8 @@ GameFloorDesigner::Paste(const GLPoint& inDest)
 void
 GameFloorDesigner::MoveTiers(S32 inStep)
 {
-    COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_highlightMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_currentMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_highlightMap < m_floorMaps.size());
     GameFloorMap *srcMap=m_floorMaps[m_highlightMap];
     GameFloorMap *destMap=m_floorMaps[m_highlightMap];
 
@@ -595,7 +598,7 @@ GameFloorDesigner::Save(void)
     cout << "Saving F1 buffer to file '" << filename << "'" << endl;
 
     ofstream outputFile(filename.c_str());
-    if (!outputFile) throw(LoaderFail(filename, "Could not open file"));
+    if (!outputFile) throw(MushcoreFileFail(filename, "Could not open file"));
     time_t now(time(NULL));
     outputFile << "<!-- Map saved by designer " << ctime(&now) << " -->" << endl;
     m_floorMaps[0]->Pickle(outputFile);
@@ -604,8 +607,8 @@ GameFloorDesigner::Save(void)
 const GLPoint
 GameFloorDesigner::TranslateWindowToMap(const GLPoint& inPoint)
 {
-    COREASSERT(m_currentMap < m_floorMaps.size());
-    COREASSERT(m_currentMap < m_pos.size());
+    MUSHCOREASSERT(m_currentMap < m_floorMaps.size());
+    MUSHCOREASSERT(m_currentMap < m_pos.size());
     GLPoint outPoint;
     GLPoint mapSteps(m_floorMaps[m_currentMap]->StepGet());
     outPoint = ((inPoint/m_masterScale) + m_pos[m_currentMap]) / mapSteps;

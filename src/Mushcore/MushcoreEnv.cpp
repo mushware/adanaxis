@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.17 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -66,8 +69,10 @@
 
 #include "MushcoreEnv.h"
 #include "MushcoreConfig.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreScalar.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -91,11 +96,11 @@ MushcoreEnv::PopConfig(MushcoreConfig& inConfig)
 {
     if (m_config.empty())
     {
-        throw(LogicFail("Attempt to pop config from empty environment"));
+        throw(MushcoreLogicFail("Attempt to pop config from empty environment"));
     }
     if (m_config.back() != &inConfig)
     {
-        throw(LogicFail("Popped config does not match pushed"));
+        throw(MushcoreLogicFail("Popped config does not match pushed"));
     }
     m_config.pop_back();
 }
@@ -212,7 +217,7 @@ MushcoreEnv::VariableExists(const string& inName) const
 void
 MushcoreEnv::VariableSet(const string& inName, const string& inValue)
 {
-    COREASSERT(m_config.size() > 0);
+    MUSHCOREASSERT(m_config.size() > 0);
     m_config.back()->Set(inName, inValue);
 }
 
@@ -221,7 +226,7 @@ MushcoreEnv::Out(void) const
 {
     if (m_outStream == NULL)
     {
-        throw(LogicFail("Write to uninitialised output stream"));
+        throw(MushcoreLogicFail("Write to uninitialised output stream"));
     }
     return *m_outStream;
 }
@@ -231,7 +236,7 @@ MushcoreEnv::OutSet(ostream& inOut)
 {
     if (m_outSet)
     {
-        throw(LogicFail("Multiple OutSets"));
+        throw(MushcoreLogicFail("Multiple OutSets"));
     }
     
     m_outStream = &inOut;
@@ -243,7 +248,7 @@ MushcoreEnv::OutReset(void)
 {
     if (!m_outSet)
     {
-        throw(LogicFail("OutReset without OutSet"));
+        throw(MushcoreLogicFail("OutReset without OutSet"));
     }
     m_outStream = &cerr;
     m_outSet = false;

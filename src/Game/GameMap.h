@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMap.h,v 1.11 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameMap.h,v 1.12 2003/01/11 13:03:13 southa Exp $
  * $Log: GameMap.h,v $
+ * Revision 1.12  2003/01/11 13:03:13  southa
+ * Use Mushcore header
+ *
  * Revision 1.11  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -69,8 +72,8 @@ template<class T>
 inline void
 GameMap<T>::ElementSet(const T& inValue, Mushware::U32 inX, Mushware::U32 inY)
 {
-    COREASSERT(inX < m_xSize);
-    COREASSERT(inY < m_ySize);
+    MUSHCOREASSERT(inX < m_xSize);
+    MUSHCOREASSERT(inY < m_ySize);
     m_map[inY * m_xSize + inX] = inValue;
 }
 
@@ -82,8 +85,8 @@ GameMap<T>::ElementGet(Mushware::U32 inX, Mushware::U32 inY) const
     {
         cerr << "inX=" << inX << ", m_xSize=" << m_xSize << endl;
     }
-    COREASSERT(inX < m_xSize);
-    COREASSERT(inY < m_ySize);
+    MUSHCOREASSERT(inX < m_xSize);
+    MUSHCOREASSERT(inY < m_ySize);
     return m_map[inY * m_xSize + inX];
 }
 

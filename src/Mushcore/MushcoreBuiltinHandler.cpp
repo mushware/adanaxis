@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.3 2003/01/11 17:44:27 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.3  2003/01/11 17:44:27  southa
+ * Mushcore fixes
+ *
  * Revision 1.2  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -62,11 +65,13 @@
 
 #include "MushcoreCommand.h"
 #include "MushcoreEnv.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -79,12 +84,12 @@ MushcoreBuiltinHandler::Load(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: load(filename)"));
+        throw(MushcoreCommandFail("Usage: load(filename)"));
     }
     string filename;
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not load file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not load file"));
     MushcoreScript script(inStream);
     script.Execute();
     return MushcoreScalar(0);
@@ -95,7 +100,7 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: configset(name,value)"));
+        throw(MushcoreCommandFail("Usage: configset(name,value)"));
     }
     string name;
     string value;

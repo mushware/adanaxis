@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.28 2003/01/11 17:07:53 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.29 2003/01/11 17:44:27 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.29  2003/01/11 17:44:27  southa
+ * Mushcore fixes
+ *
  * Revision 1.28  2003/01/11 17:07:53  southa
  * Mushcore library separation
  *
@@ -197,7 +200,7 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
     errno=0;
     if (mkdir(inName.c_str(), 0700) != 0)
     {
-        throw(CommandFail("mkdir "+inName+" failed: "+strerror(errno)));
+        throw(MushcoreCommandFail("mkdir "+inName+" failed: "+strerror(errno)));
     }
 }
 
@@ -207,7 +210,7 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
     DIR *dirPtr = opendir(inDirName.c_str());
     if (dirPtr == NULL)
     {
-        throw(CommandFail("Cannot open directory '" + inDirName + "'"));
+        throw(MushcoreCommandFail("Cannot open directory '" + inDirName + "'"));
     }
     struct dirent *entry;
     while (entry = readdir(dirPtr), entry != NULL)

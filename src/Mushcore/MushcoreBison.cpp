@@ -1,14 +1,4 @@
 
-/*****************************************************************************
- *
- * (Mushware file header version 1.2)
- *
- * This file contains original work by Andy Southgate.
- * Copyright Andy Southgate 2002.  All rights reserved.
- * Contact details can be found at http://www.mushware.com/
- *
- ****************************************************************************/
-
 /*  A Bison parser, made from MushcoreBison.y
     by GNU Bison version 1.28  */
 
@@ -30,10 +20,10 @@
 
 
 /*
- * $Id: MushcoreBison.cpp,v 1.17 2003/01/07 17:13:39 southa Exp $
- * $Log: MushcoreBison.cpp,v $
- * Revision 1.17  2003/01/07 17:13:39  southa
- * Fixes for gcc 3.1
+ * $Id: MushcoreBison.y,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Log: MushcoreBison.y,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
  *
  * Revision 1.10  2002/12/29 20:59:51  southa
  * More build fixes
@@ -48,6 +38,8 @@
 #include "MushcoreBison.h"
 #include "MushcoreCommand.h"
 #include "MushcoreEnv.h"
+
+#include "MushcoreSTL.h"
     
 #define YYSTYPE MushcoreScalar
 #define YYPARSE_PARAM inBison
@@ -130,8 +122,8 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    42,    43,    44,    45,    47,    51,    52,    53,    54,    56,
-    60,    61,    62,    64,    65,    67,    68
+    47,    48,    49,    50,    52,    56,    57,    58,    59,    61,
+    65,    66,    67,    69,    70,    72,    73
 };
 #endif
 
@@ -241,8 +233,6 @@ static const short yycheck[] = {     0,
 #if 0 /* No need for malloc.h, which pollutes the namespace;
 	 instead, just don't use alloca.  */
 #include <malloc.h>
-
-using namespace Mushware;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)

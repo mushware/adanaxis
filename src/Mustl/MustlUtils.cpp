@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlUtils.cpp,v 1.8 2003/01/09 14:57:08 southa Exp $
+ * $Id: MustlUtils.cpp,v 1.9 2003/01/11 17:58:15 southa Exp $
  * $Log: MustlUtils.cpp,v $
+ * Revision 1.9  2003/01/11 17:58:15  southa
+ * Mustl fixes
+ *
  * Revision 1.8  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -98,7 +101,7 @@ MustlUtils::FindLinkToStation(MustlLink *& outLink, const MustlAddress& inAddres
     for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        COREASSERT(p->second != NULL);
+        MUSHCOREASSERT(p->second != NULL);
         if (p->second->TCPAddressGet() == inAddress)
         {
             outLink = p->second;
@@ -116,7 +119,7 @@ MustlUtils::FindLinkToStation(string& outName, const MustlAddress& inAddress)
     for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
-        COREASSERT(p->second != NULL);
+        MUSHCOREASSERT(p->second != NULL);
         if (p->second->TCPAddressGet() == inAddress)
         {
             outName = p->first;

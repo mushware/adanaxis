@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileSpec.h,v 1.4 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileSpec.h,v 1.5 2003/01/11 13:03:15 southa Exp $
  * $Log: GameTileSpec.h,v $
+ * Revision 1.5  2003/01/11 13:03:15  southa
+ * Use Mushcore header
+ *
  * Revision 1.4  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -57,7 +60,7 @@ private:
 inline GameTileTraits&
 GameTileSpec::TileTraitsGet(void) const
 {
-    COREASSERT(m_pTraits != NULL);
+    MUSHCOREASSERT(m_pTraits != NULL);
     return *m_pTraits;
 }
 

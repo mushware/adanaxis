@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.16 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameRouter.cpp,v 1.17 2003/01/09 14:57:03 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.17  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.16  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -128,7 +131,7 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     {
         netObject.Unpickle(xml);
     }
-    catch (XMLFail& e)
+    catch (MushcoreSyntaxFail& e)
     {
         throw(NetworkFail(e.what()));
     }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSolidMap.cpp,v 1.30 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.31 2002/12/29 20:59:57 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.31  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.30  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -165,16 +168,16 @@ GameSolidMap::MapToSpace(const GameMapPoint inPoint) const
 void
 GameSolidMap::PermeabilitySet(tVal inValue, U32 inX, U32 inY)
 {
-    COREASSERT(inX < m_xsize);
-    COREASSERT(inY < m_ysize);
+    MUSHCOREASSERT(inX < m_xsize);
+    MUSHCOREASSERT(inY < m_ysize);
     m_solidMap[m_xsize * inY + inX] = inValue;
 }
 
 tVal
 GameSolidMap::PermeabilityGet(U32 inX, U32 inY) const
 {
-    COREASSERT(inX < m_xsize);
-    COREASSERT(inY < m_ysize);
+    MUSHCOREASSERT(inX < m_xsize);
+    MUSHCOREASSERT(inY < m_ysize);
     return m_solidMap[m_xsize * inY + inX];
 }
 
@@ -199,8 +202,8 @@ GameSolidMap::PermeabilityGet(const GameMapPoint& inPoint) const
 void
 GameSolidMap::AdhesionSet(tVal inValue, U32 inX, U32 inY)
 {
-    COREASSERT(inX < m_xsize);
-    COREASSERT(inY < m_ysize);
+    MUSHCOREASSERT(inX < m_xsize);
+    MUSHCOREASSERT(inY < m_ysize);
     m_adhesionMap[m_xsize * inY + inX] = inValue;
 }
 

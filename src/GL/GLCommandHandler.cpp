@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.24 2003/01/11 13:03:11 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.25 2003/01/11 17:07:50 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.25  2003/01/11 17:07:50  southa
+ * Mushcore library separation
+ *
  * Revision 1.24  2003/01/11 13:03:11  southa
  * Use Mushcore header
  *
@@ -116,7 +119,7 @@ GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     string filename;
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: loadpixmap <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadpixmap <name> <filename>"));
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
@@ -135,7 +138,7 @@ GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     else
     {
-        throw(LoaderFail(filename, "Couldn't decode extension"));
+        throw(MushcoreFileFail(filename, "Couldn't decode extension"));
     }
 
     return MushcoreScalar(0);
@@ -146,14 +149,14 @@ GLCommandHandler::Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() < 4)
     {
-        throw(CommandFail("Usage: decompose <src> <dest>[@] [<xsize> <ysize> [<xstart> <ystart> [<xnum> <ynum>]]]"));
+        throw(MushcoreCommandFail("Usage: decompose <src> <dest>[@] [<xsize> <ysize> [<xstart> <ystart> [<xnum> <ynum>]]]"));
     }
     string srcName, destName;
     ioCommand.PopParam(srcName);
     GLTextureRef srcTexRef(srcName);
     if (!srcTexRef.Exists())
     {
-        throw(CommandFail("Pixel map '"+srcName+"' could not be found"));
+        throw(MushcoreCommandFail("Pixel map '"+srcName+"' could not be found"));
     }
     ioCommand.PopParam(destName);    
 
@@ -171,11 +174,11 @@ GLCommandHandler::Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
     if (xsize == 0 || ysize == 0)
     {
-        throw(CommandFail("xsize and ysize must be non-zero"));
+        throw(MushcoreCommandFail("xsize and ysize must be non-zero"));
     }
     if (xstart >= width || ystart >= height)
     {
-        throw(CommandFail("xstart and ystart must be within the texture"));
+        throw(MushcoreCommandFail("xstart and ystart must be within the texture"));
     }
     U32 xnum=(width-xstart)/xsize;
     U32 ynum=(height-ystart)/ysize;

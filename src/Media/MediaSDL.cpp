@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.17 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.18 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.18  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.17  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -91,7 +94,7 @@ MediaSDL::Init(U32 inWhich)
         {
             if (SDL_InitSubSystem(whichNotDone | SDL_INIT_NOPARACHUTE) < 0)
             {
-                throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
+                throw(MushcoreDeviceFail("Unable to init SDL: "+string(SDL_GetError())));
             }
         }
     }
@@ -99,7 +102,7 @@ MediaSDL::Init(U32 inWhich)
     {
         if (SDL_Init(inWhich | SDL_INIT_NOPARACHUTE) < 0)
         {
-            throw(DeviceFail("Unable to init SDL: "+string(SDL_GetError())));
+            throw(MushcoreDeviceFail("Unable to init SDL: "+string(SDL_GetError())));
         }
         m_firstInitCalled=true;
     }

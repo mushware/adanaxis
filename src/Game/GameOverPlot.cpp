@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameOverPlot.cpp,v 1.5 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameOverPlot.cpp,v 1.6 2002/12/29 20:59:56 southa Exp $
  * $Log: GameOverPlot.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -46,8 +49,8 @@ GameOverPlot::RenderableAdd(const GLRenderable& inRenderable, const GLColour& in
         m_colours.resize(m_numRenderables+32);
     }
 
-    COREASSERT(m_numRenderables < m_renderables.size());
-    COREASSERT(m_numRenderables < m_colours.size());
+    MUSHCOREASSERT(m_numRenderables < m_renderables.size());
+    MUSHCOREASSERT(m_numRenderables < m_colours.size());
     
     m_renderables[m_numRenderables]=inRenderable.Clone();
     m_colours[m_numRenderables]=inColour;

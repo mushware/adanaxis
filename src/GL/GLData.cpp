@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.cpp,v 1.21 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLData.cpp,v 1.22 2003/01/09 14:56:58 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.22  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.21  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -153,7 +156,7 @@ GLData::FontGet(const string& inName) const
     map<string, GLFont *>::const_iterator p = m_fonts.find(inName);
     if (p == m_fonts.end())
     {
-        throw(ReferenceFail("Access to non-existent font '"+inName+"'"));
+        throw(MushcoreReferenceFail("Access to non-existent font '"+inName+"'"));
     }
     return p->second;
 }

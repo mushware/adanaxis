@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.9 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.10 2003/01/09 14:57:00 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.10  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -78,7 +81,7 @@ GameConfigDefU32::ValueSet(const MushcoreScalar& inValue)
     {
         ostringstream message;
         message << "Value out of range (" << m_lowLimit << " < " << inValue << " < " << m_highLimit << ")";
-        throw(ValueFail(message.str()));
+        throw(MushcoreDataFail(message.str()));
     }
     m_value=value;
 }
@@ -91,7 +94,7 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
     vector<string> matches;
     if (re.Search(inData, matches))
     {
-        COREASSERT(matches.size() == 1);
+        MUSHCOREASSERT(matches.size() == 1);
         istringstream valueStream(matches[0]);
         U32 value;
         if (valueStream >> value)
@@ -141,7 +144,7 @@ GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData
     vector<string> matches;
     if (re.Search(inData, matches))
     {
-        COREASSERT(matches.size() == 1);
+        MUSHCOREASSERT(matches.size() == 1);
         m_value=MustlUtils::RemoveMeta(matches[0]);
         found=true;
     }
@@ -210,7 +213,7 @@ GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inDa
     vector<string> matches;
     if (re.Search(inData, matches))
     {
-        COREASSERT(matches.size() == 1);
+        MUSHCOREASSERT(matches.size() == 1);
         string newValue=MustlUtils::RemoveMeta(matches[0]);
         if (newValue != "******")
         {
@@ -263,7 +266,7 @@ GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
     vector<string> matches;
     if (re.Search(inData, matches))
     {
-        COREASSERT(matches.size() == 1);
+        MUSHCOREASSERT(matches.size() == 1);
         istringstream valueStream(matches[0]);
         U32 value;
         if (valueStream >> value)

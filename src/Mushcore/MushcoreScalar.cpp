@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.cpp,v 1.14 2002/12/29 20:59:52 southa Exp $
+ * $Id: MushcoreScalar.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreScalar.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -56,7 +59,9 @@
  */
 
 #include "MushcoreScalar.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -67,7 +72,7 @@ MushcoreScalar::Get(tVal& outVal) const
     switch (m_tag)
     {
         case kNone:
-            throw(ExpressionFail("Use of undefined value"));
+            throw(MushcoreDataFail("Use of undefined value"));
             break;
             
         case kVal:
@@ -89,7 +94,7 @@ MushcoreScalar::Get(string& outStr) const
     switch (m_tag)
     {
         case kNone:
-            throw(ExpressionFail("Use of undefined value"));
+            throw(MushcoreDataFail("Use of undefined value"));
             break;
 
         case kVal:
@@ -115,7 +120,7 @@ MushcoreScalar::Get(bool& outBool) const
     switch (m_tag)
     {
         case kNone:
-            throw(ExpressionFail("Use of undefined value"));
+            throw(MushcoreDataFail("Use of undefined value"));
             break;
 
         case kVal:
@@ -135,7 +140,7 @@ MushcoreScalar::Get(bool& outBool) const
             }
             else
             {
-                throw(ExpressionFail("Cannot get boolean value from '"+m_string+"'"));
+                throw(MushcoreDataFail("Cannot get boolean value from '"+m_string+"'"));
             }
             break;
 

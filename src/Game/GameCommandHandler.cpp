@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.13 2003/01/11 13:03:12 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.14 2003/01/11 17:07:51 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.14  2003/01/11 17:07:51  southa
+ * Mushcore library separation
+ *
  * Revision 1.13  2003/01/11 13:03:12  southa
  * Use Mushcore header
  *
@@ -76,7 +79,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams < 2)
     {
-        throw(CommandFail("Usage: setsavepath(name,root,...)"));
+        throw(MushcoreCommandFail("Usage: setsavepath(name,root,...)"));
     }
     string dirName;
     string rootName;
@@ -100,7 +103,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
                 found=true;
             }
-            catch (CommandFail& e)
+            catch (MushcoreCommandFail& e)
             {
                 cerr << e.what() << endl;
             }
@@ -131,7 +134,7 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
     U32 numParams=ioCommand.NumParams();
     if (numParams < 2 || numParams > 3)
     {
-        throw(CommandFail("Usage: readdirectorytomenu(var name,dir name,[filter regexp])"));
+        throw(MushcoreCommandFail("Usage: readdirectorytomenu(var name,dir name,[filter regexp])"));
     }
     string varName;
     string dirName;

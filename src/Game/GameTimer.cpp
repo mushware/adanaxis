@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTimer.cpp,v 1.18 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameTimer.cpp,v 1.19 2002/12/29 20:59:57 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.19  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.18  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -106,7 +109,7 @@ GameTimer::CurrentMsecGet(void) const
 {
     if (!m_timesValid)
     {
-        throw(LogicFail("CurrentMsecGet before Set"));
+        throw(MushcoreLogicFail("CurrentMsecGet before Set"));
     }
     return m_currentUsec / 1000;
 }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.cpp,v 1.7 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameQuit.cpp,v 1.8 2003/01/11 17:44:26 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.8  2003/01/11 17:44:26  southa
+ * Mushcore fixes
+ *
  * Revision 1.7  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -67,7 +70,7 @@ GameQuit::Process(GameAppHandler& inAppHandler)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_gameState"));
+            throw(MushcoreLogicFail("Bad value for m_gameState"));
     }
 }
 

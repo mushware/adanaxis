@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreDataRef.h,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -44,7 +47,7 @@
  */
 
 #include "MushcoreData.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreStandard.h"
 
 template<class RefType> class MushcoreDataRef
@@ -121,7 +124,7 @@ template<class RefType>
 inline void
 MushcoreDataRef<RefType>::ReferenceGet(void) const
 {
-    COREASSERT(m_dataInstance != NULL);
+    MUSHCOREASSERT(m_dataInstance != NULL);
     
     m_dataPtr = m_dataInstance->GetOrReturnNull(m_name);
     m_sequenceNum = m_dataInstance->SequenceNumGet();
@@ -136,7 +139,7 @@ MushcoreDataRef<RefType>::Get(void) const
         ReferenceGet();
         if (m_dataPtr == NULL)
         {
-            throw(ReferenceFail("Attempt to access non-existent data '"+m_name+"'"));
+            throw(MushcoreReferenceFail("Attempt to access non-existent data '"+m_name+"'"));
         }
     }
     return m_dataPtr;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.11 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameRecords.cpp,v 1.12 2003/01/09 14:57:03 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.12  2003/01/09 14:57:03  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -83,7 +86,7 @@ GameRecords::SplitTimePropose(U32 inWhich, GameTimer::tMsec inMsec)
 GameTimer::tMsec
 GameRecords::SplitTimeGet(U32 inWhich) const
 {
-    COREASSERT(inWhich < m_splitTimes.size());
+    MUSHCOREASSERT(inWhich < m_splitTimes.size());
     return m_splitTimes[inWhich];
 }
 
@@ -94,7 +97,7 @@ GameRecords::SplitTimeValid(U32 inWhich) const
     {
         return false;
     }
-    COREASSERT(inWhich < m_splitTimeValid.size());
+    MUSHCOREASSERT(inWhich < m_splitTimeValid.size());
     return m_splitTimeValid[inWhich];
 }
 
@@ -117,7 +120,7 @@ GameRecords::LapTimePropose(GameTimer::tMsec inMsec)
 GameTimer::tMsec
 GameRecords::LapTimeGet(void) const
 {
-    COREASSERT(m_lapTimeValid);
+    MUSHCOREASSERT(m_lapTimeValid);
     return m_lapTime;
 }
 
@@ -146,7 +149,7 @@ GameRecords::RaceTimePropose(GameTimer::tMsec inMsec)
 GameTimer::tMsec
 GameRecords::RaceTimeGet(void) const
 {
-    COREASSERT(m_raceTimeValid);
+    MUSHCOREASSERT(m_raceTimeValid);
     return m_raceTime;
 }
 

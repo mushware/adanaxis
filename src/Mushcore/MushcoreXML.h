@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.h,v 1.1 2003/01/09 14:57:08 southa Exp $
+ * $Id: MushcoreXML.h,v 1.2 2003/01/11 13:03:18 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.2  2003/01/11 13:03:18  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -104,9 +107,9 @@ public:
     MushcoreXML(std::istream& inStream, const std::string& inName = "<unknown stream>", Mushware::U32 inLine=1);
     ~MushcoreXML();
     
-    const std::string& TopTag(void) {COREASSERT(!m_tagStack.empty());return m_tagStack.top();}
-    const std::string& TopData(void) {COREASSERT(!m_dataStack.empty());return m_dataStack.top();}
-    std::map<std::string, std::string>& TopAttrib(void) {COREASSERT(!m_attribStack.empty());return m_attribStack.top();}
+    const std::string& TopTag(void) {MUSHCOREASSERT(!m_tagStack.empty());return m_tagStack.top();}
+    const std::string& TopData(void) {MUSHCOREASSERT(!m_dataStack.empty());return m_dataStack.top();}
+    std::map<std::string, std::string>& TopAttrib(void) {MUSHCOREASSERT(!m_attribStack.empty());return m_attribStack.top();}
     void DumpTops(std::ostream& inOut);
     void StopHandler(void);
     MushcoreScalar GetAttrib(const std::string& inName);

@@ -1,8 +1,11 @@
- // $Id: MushcoreFlex.flex,v 1.11 2002/12/29 20:59:51 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.1 2003/01/09 14:57:07 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.11 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcoreFlex.flex,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.11  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -44,6 +47,8 @@
 #include "MushcoreSwitches.h"
 #include "MushcoreBisonDefs.h"
 #include "MushcoreScalar.h"
+
+#include "MushcoreSTL.h"
 
 using namespace std;
 

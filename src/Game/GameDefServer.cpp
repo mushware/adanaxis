@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.17 2003/01/07 17:13:41 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.18 2003/01/09 14:57:01 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.18  2003/01/09 14:57:01  southa
+ * Created Mushcore
+ *
  * Revision 1.17  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -115,7 +118,7 @@ GameDefServer::UpdateClients(void)
     for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
         GameDefClient *clientDef=p->second;
-        COREASSERT(clientDef != NULL);
+        MUSHCOREASSERT(clientDef != NULL);
         if (clientDef->ImageIs())
         {
             UpdateClient(*clientDef);
@@ -126,11 +129,11 @@ GameDefServer::UpdateClients(void)
 void
 GameDefServer::UpdateClient(GameDefClient& inClient)
 {
-    COREASSERT(inClient.ImageIs()); // Server shouldn't deal directly with clients on this station
+    MUSHCOREASSERT(inClient.ImageIs()); // Server shouldn't deal directly with clients on this station
     MustlLink *netLink=NULL;
     if (MustlUtils::FindLinkToStation(netLink, inClient.AddressGet()))
     {
-        COREASSERT(netLink != NULL);
+        MUSHCOREASSERT(netLink != NULL);
         MustlData netData;
 
         if (m_killed)

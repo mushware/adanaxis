@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreFunction.cpp,v 1.2 2003/01/11 17:07:53 southa Exp $
  * $Log: MushcoreFunction.cpp,v $
+ * Revision 1.2  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -55,8 +58,10 @@
 #include "MushcoreFunction.h"
 
 #include "MushcoreInterpreter.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreScalar.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -70,19 +75,15 @@ MushcoreFunction::Execute(void) const
         {
             MushcoreInterpreter::Instance().Execute(m_commands[i]);
         }
-        catch (CommandFail& e)
+        catch (MushcoreCommandFail& e)
         {
             cerr << "*** Command failed: " << e.what() << endl;
         }
-        catch (ExpressionFail& e)
+        catch (MushcoreDataFail& e)
         {
             cerr << "*** Command failed: " << e.what() << endl;
         }
-        catch (FileFail& e)
-        {
-            cerr << "*** Command failed: " << e.what() << endl;
-        }
-        catch (LoaderFail& e)
+        catch (MushcoreFileFail& e)
         {
             cerr << "*** Command failed: " << e.what() << endl;
         }

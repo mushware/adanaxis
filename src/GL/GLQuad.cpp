@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLQuad.cpp,v 1.9 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLQuad.cpp,v 1.10 2002/12/29 20:59:52 southa Exp $
  * $Log: GLQuad.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -105,14 +108,14 @@ GLQuad::RotateAboutCentre(tVal inAngle)
 const GLPoint&
 GLQuad::PointGet(U32 inWhich) const
 {
-    COREASSERT(inWhich < 4);
+    MUSHCOREASSERT(inWhich < 4);
     return m_points[inWhich];
 }
 
 void
 GLQuad::PointSet(U32 inWhich, const GLPoint &inPoint)
 {
-    COREASSERT(inWhich < 4);
+    MUSHCOREASSERT(inWhich < 4);
     m_points[inWhich] = inPoint;
 }
 

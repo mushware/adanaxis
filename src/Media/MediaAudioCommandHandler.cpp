@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.13 2003/01/11 13:03:15 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.14 2003/01/11 17:07:53 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.14  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.13  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -67,7 +70,7 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: playmusic(filename)"));
+        throw(MushcoreCommandFail("Usage: playmusic(filename)"));
     }
     string filename;
     ioCommand.PopParam(filename);
@@ -75,9 +78,9 @@ MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioE
     {
         MediaAudio::Instance().PlayMusic(filename);
     }
-    catch (DeviceFail& e)
+    catch (MushcoreDeviceFail& e)
     {
-        throw(CommandFail(string("Command failed: ")+e.what()));
+        throw(MushcoreCommandFail(string("Command failed: ")+e.what()));
     }
     return MushcoreScalar(0);
 }

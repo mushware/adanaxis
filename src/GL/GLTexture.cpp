@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.cpp,v 1.25 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTexture.cpp,v 1.26 2003/01/09 14:56:58 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.26  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.25  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -148,7 +151,7 @@ GLTexture::TextureDefValid(tSize inWhere) const
 void
 GLTexture::BindTexture(void) const
 {
-    COREASSERT(!m_bound);
+    MUSHCOREASSERT(!m_bound);
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
     GLState::TextureParamsReset();

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureGIF.cpp,v 1.12 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.13 2003/01/09 14:56:59 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.13  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.12  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -90,7 +93,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
             if (colorMap == NULL) colorMap=gif->SColorMap;
             if (colorMap == NULL)
             {
-                throw(LoaderFail(inFilename, "GIF with no colorMap"));
+                throw(MushcoreFileFail(inFilename, "GIF with no colorMap"));
             }
 
             GifColorType *colors=colorMap->Colors;
@@ -111,7 +114,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                 if (image->ImageDesc.Interlace)
                 {
                     // Not implemeted
-                    throw(LoaderFail(inFilename, "Cannot load interlaced GIF"));
+                    throw(MushcoreFileFail(inFilename, "Cannot load interlaced GIF"));
                     inputPtr=&image->RasterBits[(def.Height()-1-y)*def.Width()];
                     outputPtr=&def.DataPtr()[y*def.Width()];
                 }
@@ -125,7 +128,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                     U8 colIndex=*inputPtr++;
                     if (colIndex > colIndexLimit)
                     {
-                        throw(LoaderFail(inFilename, "GIF color index out of range"));
+                        throw(MushcoreFileFail(inFilename, "GIF color index out of range"));
                     }
                     // Pack data into output buffer in RGB order
                     *outputPtr++ =
@@ -136,7 +139,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                 }
                 if (outputPtr > def.DataPtr() + u32Size)
                 {
-                    throw(LoaderFail(inFilename, "Pointer mismatch"));
+                    throw(MushcoreFileFail(inFilename, "Pointer mismatch"));
                 }
             }
             // This step adds a second reference to the def which stops its memory being
@@ -163,34 +166,34 @@ GLTextureGIF::ThrowGifError(const string& inFilename, int inRC)
     switch (inRC)
     {
         case D_GIF_ERR_OPEN_FAILED:
-            throw(LoaderFail(inFilename, "GIF file open failed"));
+            throw(MushcoreFileFail(inFilename, "GIF file open failed"));
         case D_GIF_ERR_READ_FAILED:
-            throw(LoaderFail(inFilename, "GIF file read failed"));
+            throw(MushcoreFileFail(inFilename, "GIF file read failed"));
         case D_GIF_ERR_NOT_GIF_FILE:
-            throw(LoaderFail(inFilename, "Not a GIF file"));
+            throw(MushcoreFileFail(inFilename, "Not a GIF file"));
         case D_GIF_ERR_NO_SCRN_DSCR:
-            throw(LoaderFail(inFilename, "GIF no screen description"));
+            throw(MushcoreFileFail(inFilename, "GIF no screen description"));
         case D_GIF_ERR_NO_IMAG_DSCR:
-            throw(LoaderFail(inFilename, "GIF no image description"));
+            throw(MushcoreFileFail(inFilename, "GIF no image description"));
         case D_GIF_ERR_NO_COLOR_MAP:
-            throw(LoaderFail(inFilename, "GIF no colour map"));
+            throw(MushcoreFileFail(inFilename, "GIF no colour map"));
         case D_GIF_ERR_WRONG_RECORD:
-            throw(LoaderFail(inFilename, "GIF wrong record"));
+            throw(MushcoreFileFail(inFilename, "GIF wrong record"));
         case D_GIF_ERR_DATA_TOO_BIG:
-            throw(LoaderFail(inFilename, "GIF data too big"));
+            throw(MushcoreFileFail(inFilename, "GIF data too big"));
         case D_GIF_ERR_NOT_ENOUGH_MEM:
-            throw(LoaderFail(inFilename, "GIF non enough memory"));
+            throw(MushcoreFileFail(inFilename, "GIF non enough memory"));
         case D_GIF_ERR_CLOSE_FAILED:
-            throw(LoaderFail(inFilename, "GIF close failed"));
+            throw(MushcoreFileFail(inFilename, "GIF close failed"));
         case D_GIF_ERR_NOT_READABLE:
-            throw(LoaderFail(inFilename, "GIF not readable"));
+            throw(MushcoreFileFail(inFilename, "GIF not readable"));
         case D_GIF_ERR_IMAGE_DEFECT:
-            throw(LoaderFail(inFilename, "GIF image defect"));
+            throw(MushcoreFileFail(inFilename, "GIF image defect"));
         case D_GIF_ERR_EOF_TOO_SOON:
-            throw(LoaderFail(inFilename, "GIF EOF too soon"));
+            throw(MushcoreFileFail(inFilename, "GIF EOF too soon"));
 
         default:
-            throw(LoaderFail(inFilename, "Unknown GIF error"));
+            throw(MushcoreFileFail(inFilename, "Unknown GIF error"));
     }
 }
 

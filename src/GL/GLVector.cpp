@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.7 2003/01/07 17:13:41 southa Exp $
+ * $Id: GLVector.cpp,v 1.8 2003/01/09 14:56:59 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.8  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.7  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -67,11 +70,11 @@ GLVector::Unpickle(istream& ioIn)
 {
     const char *failMessage="Bad format for vector.  Should be 10,10,30";
     char comma;
-    if (!(ioIn >> x)) throw(SyntaxFail(failMessage));
-    if (!(ioIn >> comma) || comma != ',') throw(SyntaxFail(failMessage));
+    if (!(ioIn >> x)) throw(MushcoreSyntaxFail(failMessage));
+    if (!(ioIn >> comma) || comma != ',') throw(MushcoreSyntaxFail(failMessage));
 
-    if (!(ioIn >> y)) throw(SyntaxFail(failMessage));
-    if (!(ioIn >> comma) || comma != ',') throw(SyntaxFail(failMessage));
+    if (!(ioIn >> y)) throw(MushcoreSyntaxFail(failMessage));
+    if (!(ioIn >> comma) || comma != ',') throw(MushcoreSyntaxFail(failMessage));
 
-    if (!(ioIn >> z)) throw(SyntaxFail(failMessage));
+    if (!(ioIn >> z)) throw(MushcoreSyntaxFail(failMessage));
 }

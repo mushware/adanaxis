@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreXML.cpp,v 1.15 2003/01/07 17:13:40 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.1 2003/01/09 14:57:08 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.15  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -59,7 +62,9 @@
  */
 
 #include "MushcoreXML.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -69,7 +74,7 @@ MushcoreXML::MushcoreXML(istream& inStream, const string& inName, U32 inLine):
     m_currentHandler(NULL), m_inStream(&inStream), m_name(inName), m_threaded(false), m_line(inLine)
 {
     m_parser = XML_ParserCreate(NULL);
-    if (m_parser == NULL) throw(XMLFail("Couldn't create parser"));
+    if (m_parser == NULL) throw(MushcoreSyntaxFail("Couldn't create parser"));
     XML_SetUserData(m_parser, this);
     XML_SetElementHandler(m_parser, StartElementHandler, EndElementHandler);
     XML_SetCharacterDataHandler(m_parser, CharacterDataHandler);
@@ -91,7 +96,7 @@ MushcoreXML::ProcessStartElement(const char *inName, const char **inAttribs)
         m_attribStack.top()[inAttribs[0]]=inAttribs[1];
         inAttribs+=2;
     }
-    COREASSERT(m_currentHandler != NULL);
+    MUSHCOREASSERT(m_currentHandler != NULL);
     m_currentHandler->XMLStartHandler(*this);
 }
 
@@ -102,9 +107,9 @@ MushcoreXML::ProcessEndElement(const char *inName)
     {
         ostringstream message;
         message << "Tag mismatch <" << TopTag() << "> != </" << inName << ">";
-        throw (XMLFail(message.str()));
+        throw (MushcoreSyntaxFail(message.str()));
     }
-    COREASSERT(m_currentHandler != NULL);
+    MUSHCOREASSERT(m_currentHandler != NULL);
     m_currentHandler->XMLEndHandler(*this);
     m_attribStack.pop();
     m_dataStack.pop();
@@ -115,7 +120,7 @@ void
 MushcoreXML::ProcessCharacterData(const char *inData, tSize inLen)
 {
     m_dataStack.top().append(inData, inLen);
-    COREASSERT(m_currentHandler != NULL);
+    MUSHCOREASSERT(m_currentHandler != NULL);
     m_currentHandler->XMLDataHandler(*this);
 }
 
@@ -184,7 +189,7 @@ MushcoreXML::Throw(const string& inMessage)
     ostringstream message;
     message << "XML parsing failure in " << m_name << " at line " << m_line << ": " << inMessage << endl;
     DumpTops(message);
-    throw(XMLFail(message.str()));
+    throw(MushcoreSyntaxFail(message.str()));
 }
 
 void
@@ -235,7 +240,7 @@ MushcoreXML::ParseStream(MushcoreXMLHandler& inHandler)
                 ostringstream message;
                 message << XML_ErrorString(XML_GetErrorCode(m_parser)) << " at line " <<
                     XML_GetCurrentLineNumber(m_parser);
-                throw (XMLFail(message.str()));
+                throw (MushcoreSyntaxFail(message.str()));
             }
             m_line++;
         } while (m_continue && !m_inStream->eof());

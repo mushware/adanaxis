@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.1 2003/01/09 14:57:06 southa Exp $
+ * $Id: MushcoreData.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:06  southa
  * Created Mushcore
  *
@@ -70,7 +73,7 @@
  *
  */
 
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreStandard.h"
 
 template<class RefType> class MushcoreData
@@ -165,7 +168,7 @@ MushcoreData<RefType>::Get(const std::string& inName) const
     tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
-        throw(ReferenceFail("Access to non-existent data '"+inName+"'"));
+        throw(MushcoreReferenceFail("Access to non-existent data '"+inName+"'"));
     }
     return p->second;
 }
@@ -189,7 +192,7 @@ MushcoreData<RefType>::Delete(const std::string& inName)
     tMapIterator p = m_data.find(inName);
     if (p == m_data.end())
     {
-        throw(ReferenceFail("Delete of non-existent data '"+inName+"'"));
+        throw(MushcoreReferenceFail("Delete of non-existent data '"+inName+"'"));
     }
     ++m_sequenceNum;
     delete p->second;
@@ -200,7 +203,7 @@ template<class RefType>
 inline void
 MushcoreData<RefType>::Delete(const tMapIterator& inIterator)
 {
-    COREASSERT(inIterator->second != NULL);
+    MUSHCOREASSERT(inIterator->second != NULL);
     ++m_sequenceNum;
     delete inIterator->second;
     m_data.erase(inIterator);
@@ -266,7 +269,6 @@ template<class RefType>
 inline void
 MushcoreData<RefType>::Dump(std::ostream& ioOut)
 {
-    ioOut << "Dumping data for MushcoreData<" << typeid(RefType).name() << ">" << endl;
     for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
     {

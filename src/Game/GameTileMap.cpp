@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.20 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.21 2003/01/11 17:07:52 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.21  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.20  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -157,7 +160,7 @@ GameTileMap::LookupSpec(U32 inNum)
     {
         ostringstream message;
         message << "Request for unknown tilemap value " << inNum << endl;
-        throw(ReferenceFail(message.str()));
+        throw(MushcoreReferenceFail(message.str()));
     }
     else
     {
@@ -166,11 +169,11 @@ GameTileMap::LookupSpec(U32 inNum)
         {
             // Do the lookup for this trait the first time it is accessed
             spec.TileTraitsSet(dynamic_cast<GameTileTraits *>(GameData::Instance().TraitsGet(p->second.name)));
-            COREASSERT(!spec.TileTraitsAreNull());
+            MUSHCOREASSERT(!spec.TileTraitsAreNull());
         }
         if (inNum < kMaxVectorSize)
         {
-            COREASSERT(inNum < m_traits.size());
+            MUSHCOREASSERT(inNum < m_traits.size());
             m_traits[inNum]=&spec;
         }
         return spec;
@@ -334,13 +337,13 @@ GameTileMap::LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: loadtilemap <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadtilemap <name> <filename>"));
     }
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GameData::Instance().TileMapGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);

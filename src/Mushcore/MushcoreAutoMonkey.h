@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.1 2003/01/09 14:57:05 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.2 2003/01/11 13:03:16 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.2  2003/01/11 13:03:16  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -51,6 +54,8 @@
  *
  */
 
+#include "MushcoreStandard.h"
+
 class MushcoreAutoMonkey
 {
 public:
@@ -58,11 +63,11 @@ public:
     ~MushcoreAutoMonkey();
     MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey);
     bool FreeInDestructor(void *inDataPtr) const; // Call in destructor, free shared area if returns true
-    int ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
+    Mushware::S32 ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
     MushcoreAutoMonkey& operator=(const MushcoreAutoMonkey&);
     
 private:
     void Swap(MushcoreAutoMonkey& inMonkey);
-    int *m_refCtrPtr;
+    Mushware::S32 *m_refCtrPtr;
 };
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLights.cpp,v 1.11 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLLights.cpp,v 1.12 2002/12/29 20:59:52 southa Exp $
  * $Log: GLLights.cpp,v $
+ * Revision 1.12  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.11  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -93,7 +96,7 @@ GLLights::LightAdd(U32 inNum, const GLLightDef& inDef)
 {
     GLint numLights;
     glGetIntegerv(GL_MAX_LIGHTS, &numLights);
-    COREASSERT(numLights >= kMaxLights);
+    MUSHCOREASSERT(numLights >= kMaxLights);
 
     if (inNum < m_lights.size())
     {
@@ -111,7 +114,7 @@ GLLights::LightGet(U32 inNum)
 {
     if (inNum >= m_lights.size())
     {
-        throw(ReferenceFail("Light number too big"));
+        throw(MushcoreReferenceFail("Light number too big"));
     }
     return m_lights[inNum];
 }
@@ -125,16 +128,16 @@ GLLights::LightEnable(U32 inNum)
     {
         slot=LightCache(inNum);
     }
-    catch (ResourceFail& e)
+    catch (MushcoreRequestFail& e)
     {
         cerr << "Lighting fail: " << e.what() << endl;
         return;
     }
 
-    COREASSERT(slot < kMaxLights);
+    MUSHCOREASSERT(slot < kMaxLights);
     
     GLenum lightEnum=GL_LIGHT0+slot;
-    COREASSERT(m_cache[slot].value == inNum);
+    MUSHCOREASSERT(m_cache[slot].value == inNum);
 
     const GLLightDef& def = m_lights[inNum];
     
@@ -173,7 +176,7 @@ GLLights::LightCache(U32 inNum)
 {
     if (inNum >= m_lights.size())
     {
-        throw(LogicFail("Light number too big"));
+        throw(MushcoreLogicFail("Light number too big"));
     }
     
     for (U32 i=0; i<kMaxLights; ++i)
@@ -207,12 +210,12 @@ GLLights::LightCache(U32 inNum)
     }
     if (!found)
     {
-        throw(ResourceFail("No free slot in light cache"));
+        throw(MushcoreRequestFail("No free slot in light cache"));
     }
     m_cache[slot].age=m_cacheTime;
     m_cache[slot].value=inNum;
     m_cache[slot].modified=true;
-    COREASSERT(!m_cache[slot].enabled);
+    MUSHCOREASSERT(!m_cache[slot].enabled);
     m_cacheTime++;
     // cerr << "Took light cache slot " << slot << " for light " << inNum << endl;
     return slot;
@@ -231,7 +234,7 @@ GLLights::LightDisable(U32 inNum)
             return;
         }
     }
-    throw(LogicFail("Disable of light not in cache"));
+    throw(MushcoreLogicFail("Disable of light not in cache"));
 }
 
 void

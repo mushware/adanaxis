@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.43 2003/01/09 14:57:01 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.44 2003/01/11 17:07:51 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.44  2003/01/11 17:07:51  southa
+ * Mushcore library separation
+ *
  * Revision 1.43  2003/01/09 14:57:01  southa
  * Created Mushcore
  *
@@ -203,7 +206,7 @@ GameFloorMap::IsInMap(const GameMapPoint inPoint) const
 void
 GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight)
 {
-    COREASSERT(m_tileMap != NULL);
+    MUSHCOREASSERT(m_tileMap != NULL);
 
     if (!m_lightMapValid)
     {
@@ -252,7 +255,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
         {
 
             U32 areaFlagIndex=(x-areaXMin) * areaYSize + (y-areaYMin);
-            COREASSERT(areaFlagIndex < areaXSize * areaYSize);
+            MUSHCOREASSERT(areaFlagIndex < areaXSize * areaYSize);
             areaFlags[areaFlagIndex] =
                 inArea.IsWithin(GLPoint(x,y));
         }
@@ -285,7 +288,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
             for (U32 y=areaYMin; y<areaYMax; ++y)
             {
                 U32 areaFlagIndex=(x-areaXMin) * areaYSize + (y-areaYMin);
-                COREASSERT(areaFlagIndex < areaXSize * areaYSize);
+                MUSHCOREASSERT(areaFlagIndex < areaXSize * areaYSize);
 
                 if (areaFlags[areaFlagIndex])
                 {
@@ -371,8 +374,8 @@ GameFloorMap::RenderAdhesionMap(const GameMapArea& inArea) const
 const GameFloorMap::tMapVector&
 GameFloorMap::ElementGet(const GLPoint &inPoint) const
 {
-    COREASSERT(inPoint.x < m_xsize);
-    COREASSERT(inPoint.y < m_ysize);
+    MUSHCOREASSERT(inPoint.x < m_xsize);
+    MUSHCOREASSERT(inPoint.y < m_ysize);
     return m_map[inPoint.U32YGet()][inPoint.U32XGet()];
 }
 
@@ -396,8 +399,8 @@ GameFloorMap::ElementGet(const GameMapPoint& inPoint) const
 void
 GameFloorMap::ElementSet(const GLPoint &inPoint, const tMapVector& inValue)
 {
-    COREASSERT(inPoint.x < m_xsize);
-    COREASSERT(inPoint.y < m_ysize);
+    MUSHCOREASSERT(inPoint.x < m_xsize);
+    MUSHCOREASSERT(inPoint.y < m_ysize);
     if (m_map.size() < inPoint.y)
     {
         cerr << "Warning: Had to grow map vector to accomodate y=" << inPoint.y << endl;
@@ -480,7 +483,7 @@ GameFloorMap::SolidMapGet(void) const
 void
 GameFloorMap::RebuildSolidMap(void) const
 {
-    COREASSERT(m_tileMap != NULL);
+    MUSHCOREASSERT(m_tileMap != NULL);
 
     m_solidMap.SizeSet(m_xsize, m_ysize);
     m_solidMap.StepSet(m_xstep, m_ystep);
@@ -520,7 +523,7 @@ GameFloorMap::RebuildSolidMap(void) const
                     if (i+1 != size) message << ",";
                 }
                 message << "] bad adhesion or permeability value at (" << x << "," << y << ")";
-                throw(ReferenceFail(message.str()));
+                throw(MushcoreReferenceFail(message.str()));
             }
             m_solidMap.PermeabilitySet(permeability, x, y);
             m_solidMap.AdhesionSet(adhesion, x, y);
@@ -532,7 +535,7 @@ GameFloorMap::RebuildSolidMap(void) const
 void
 GameFloorMap::RebuildLightMap(void) const
 {
-    COREASSERT(m_tileMap != NULL);
+    MUSHCOREASSERT(m_tileMap != NULL);
 
     m_lightMap.SizeSet(m_xsize, m_ysize);
 
@@ -862,13 +865,13 @@ GameFloorMap::LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: loadfloormap <name> <filename>"));
+        throw(MushcoreCommandFail("Usage: loadfloormap <name> <filename>"));
     }
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     GameData::Instance().FloorMapGetOrCreate(name)->Unpickle(xml);
     return MushcoreScalar(0);

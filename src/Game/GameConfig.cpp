@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.21 2003/01/11 17:07:51 southa Exp $
+ * $Id: GameConfig.cpp,v 1.22 2003/01/11 17:44:26 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.22  2003/01/11 17:44:26  southa
+ * Mushcore fixes
+ *
  * Revision 1.21  2003/01/11 17:07:51  southa
  * Mushcore library separation
  *
@@ -153,7 +156,7 @@ GameConfig::PostDataHandle(const string& inData)
         {
             if (p->second->FromPostRetrieve(p->first, inData)) found=true;
         }
-        catch (ValueFail& e)
+        catch (MushcoreDataFail& e)
         {
             PlatformMiscUtils::MinorErrorBox(e.what());
         }
@@ -173,7 +176,7 @@ GameConfig::SaveToFile(void) const
     if (filename != "")
     {
         ofstream outputFile(filename.c_str());
-        if (!outputFile) throw(FileFail(filename, "Could not open file"));
+        if (!outputFile) throw(MushcoreFileFail(filename, "Could not open file"));
         Pickle(outputFile);
     }
 }
@@ -409,18 +412,18 @@ GameConfig::GameConfigLoad(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams != 1)
     {
-        throw(CommandFail("Usage: configload(filename)"));
+        throw(MushcoreCommandFail("Usage: configload(filename)"));
     }
     string filename;
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
-    if (!inStream) throw(LoaderFail(filename, "Could not open file"));
+    if (!inStream) throw(MushcoreFileFail(filename, "Could not open file"));
     MushcoreXML xml(inStream, filename);
     try
     {
         GameConfig::Instance().Unpickle(xml);
     }
-    catch (XMLFail& e)
+    catch (MushcoreSyntaxFail& e)
     {
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
@@ -434,7 +437,7 @@ GameConfig::GameConfigValueAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams != 4)
     {
-        throw(CommandFail("Usage: configvalueadd(name, default value, low limit, high limit)"));
+        throw(MushcoreCommandFail("Usage: configvalueadd(name, default value, low limit, high limit)"));
     }
     string name;
     U32 defaultValue, lowLimit, highLimit;
@@ -452,7 +455,7 @@ GameConfig::GameConfigStringAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams < 2 || numParams > 3)
     {
-        throw(CommandFail("Usage: configstringadd(name, default value, menu string)"));
+        throw(MushcoreCommandFail("Usage: configstringadd(name, default value, menu string)"));
     }
     string name, defaultValue, menuStr;
     ioCommand.PopParam(name);
@@ -468,7 +471,7 @@ GameConfig::GameConfigPasswordAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     U32 numParams=ioCommand.NumParams();
     if (numParams != 2)
     {
-        throw(CommandFail("Usage: configpasswordadd(name, default value)"));
+        throw(MushcoreCommandFail("Usage: configpasswordadd(name, default value)"));
     }
     string name, defaultValue;
     ioCommand.PopParam(name);
@@ -483,7 +486,7 @@ GameConfig::GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 numParams=ioCommand.NumParams();
     if (numParams != 2)
     {
-        throw(CommandFail("Usage: configbooladd(name, default value)"));
+        throw(MushcoreCommandFail("Usage: configbooladd(name, default value)"));
     }
     string name;
     U32 defaultValue;

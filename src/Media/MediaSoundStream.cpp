@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.8 2003/01/09 14:57:05 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.9 2003/01/11 17:07:53 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.9  2003/01/11 17:07:53  southa
+ * Mushcore library separation
+ *
  * Revision 1.8  2003/01/09 14:57:05  southa
  * Created Mushcore
  *
@@ -58,7 +61,7 @@ MediaSoundStream::SoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
-        throw(CommandFail("Usage: soundstream('name','filename')"));
+        throw(MushcoreCommandFail("Usage: soundstream('name','filename')"));
     }
     string name, filename;
     ioCommand.PopParam(name);
@@ -72,7 +75,7 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(CommandFail("Usage: playsoundstreamm('name')"));
+        throw(MushcoreCommandFail("Usage: playsoundstreamm('name')"));
     }
     string name;
     ioCommand.PopParam(name);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLArray.h,v 1.5 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLArray.h,v 1.6 2003/01/11 13:03:11 southa Exp $
  * $Log: GLArray.h,v $
+ * Revision 1.6  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.5  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -43,7 +46,7 @@ public:
 
     void Push(const tSrc& inValue) { m_vector.push_back(inValue); }
     void Build(void);
-    const tDest *ArrayGet(void) const { COREASSERT(m_pArray != NULL); return m_pArray; }
+    const tDest *ArrayGet(void) const { MUSHCOREASSERT(m_pArray != NULL); return m_pArray; }
     Mushware::U32 SizeGet(void) const { return m_vector.size(); }
     
 private:
@@ -58,7 +61,7 @@ GLArray<tSrc, tDest>::GLArray(const GLArray& inArray) :
 {
     if (inArray.m_pArray != NULL)
     {
-        throw(LogicFail("Cannot copy GLArray once built"));
+        throw(MushcoreLogicFail("Cannot copy GLArray once built"));
     }
 }
 

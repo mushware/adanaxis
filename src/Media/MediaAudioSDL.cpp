@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.9 2003/01/07 17:13:44 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.10 2003/01/09 14:57:04 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.10  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2003/01/07 17:13:44  southa
  * Fixes for gcc 3.1
  *
@@ -108,13 +111,13 @@ MediaAudioSDL::MediaAudioSDL():
     
     if (Mix_OpenAudio(audioRate, audioFormat, audioChannels, audioBuffers))
     {
-        throw(DeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
+        throw(MushcoreDeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
 
     if (!Mix_QuerySpec(&audioRate, &audioFormat, &audioChannels))
     {
         Mix_CloseAudio();
-        throw(DeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
+        throw(MushcoreDeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
     m_softChannels = Mix_AllocateChannels(u32AudioSoftChannels);
     m_channelState.resize(m_softChannels, kChannelIdle);
@@ -158,7 +161,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
     else
     {
 	Mix_Volume(channel, MIX_MAX_VOLUME); // Fix for SDL bug
-	COREASSERT(channel < static_cast<S32>(m_softChannels));
+	MUSHCOREASSERT(channel < static_cast<S32>(m_softChannels));
         ChannelStateSet(channel, kChannelPlaying, &inSound);
     }
 }
@@ -186,8 +189,8 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 void
 MediaAudioSDL::ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound)
 {
-    COREASSERT(inChannel < m_softChannels);
-    COREASSERT(inChannel < m_activeSamples.size());
+    MUSHCOREASSERT(inChannel < m_softChannels);
+    MUSHCOREASSERT(inChannel < m_activeSamples.size());
 
     MediaSound *oldSound=m_activeSamples[inChannel];
     if (oldSound != NULL)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.23 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameData.cpp,v 1.24 2003/01/09 14:57:00 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.24  2003/01/09 14:57:00  southa
+ * Created Mushcore
+ *
  * Revision 1.23  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -518,7 +521,7 @@ GameData::CurrentDialogueDelete(const string& inName)
     map<string, GameDialogue *>::iterator p = m_currentDialogues.find(inName);
     if (p == m_currentDialogues.end())
     {
-        throw(LogicFail("Attempt to delete non-existent current dialogue '"+inName+"'"));
+        throw(MushcoreLogicFail("Attempt to delete non-existent current dialogue '"+inName+"'"));
     }
     else
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.9 2003/01/07 17:13:40 southa Exp $
+ * $Id: GLPoint.cpp,v 1.10 2003/01/09 14:56:58 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.10  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2003/01/07 17:13:40  southa
  * Fixes for gcc 3.1
  *
@@ -74,7 +77,7 @@ GLPoint::Unpickle(istream& ioIn)
 {
     const char *failMessage="Bad format for point.  Should be 10,10";
     char comma;
-    if (!(ioIn >> x)) throw(SyntaxFail(failMessage));
-    if (!(ioIn >> comma) || comma != ',') throw(SyntaxFail(failMessage));
-    if (!(ioIn >> y)) throw(SyntaxFail(failMessage));
+    if (!(ioIn >> x)) throw(MushcoreSyntaxFail(failMessage));
+    if (!(ioIn >> comma) || comma != ',') throw(MushcoreSyntaxFail(failMessage));
+    if (!(ioIn >> y)) throw(MushcoreSyntaxFail(failMessage));
 }

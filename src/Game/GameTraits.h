@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.h,v 1.15 2003/01/11 13:03:15 southa Exp $
+ * $Id: GameTraits.h,v 1.16 2003/01/11 17:07:52 southa Exp $
  * $Log: GameTraits.h,v $
+ * Revision 1.16  2003/01/11 17:07:52  southa
+ * Mushcore library separation
+ *
  * Revision 1.15  2003/01/11 13:03:15  southa
  * Use Mushcore header
  *
@@ -119,9 +122,9 @@ GameTraits::TraitsGet(Mushware::U32 inIndex) const
 {
     if (!m_traitsValid)
     {
-        throw(LogicFail("Use of invalid traits"));
+        throw(MushcoreLogicFail("Use of invalid traits"));
     }
-    COREASSERT(inIndex < m_baseTraits.size());
+    MUSHCOREASSERT(inIndex < m_baseTraits.size());
     return *m_baseTraits[inIndex];
 }
 

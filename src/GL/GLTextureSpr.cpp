@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.17 2003/01/09 14:56:59 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.18 2003/01/11 13:03:11 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.18  2003/01/11 13:03:11  southa
+ * Use Mushcore header
+ *
  * Revision 1.17  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -79,7 +82,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
 
     u8ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
 
-    if (!in) throw(LoaderFail(inFilename, "Could not open file"));
+    if (!in) throw(MushcoreFileFail(inFilename, "Could not open file"));
     U32 numSprites=sUtil.LittleEndianU32Get(in);
     IFTEXTESTING(U32 offsetFirst=sUtil.LittleEndianU32Get(in);)
     IFTEXTESTING(U32 offsetFree=sUtil.LittleEndianU32Get(in);)
@@ -90,7 +93,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
     IFTEXTESTING(cerr << "offsetFree=" << offsetFree);
     IFTEXTESTING(cerr << endl);
     
-    if (numSprites > 0xffff) throw (LoaderFail(inFilename, "Corrupt sprite file - first word insane"));
+    if (numSprites > 0xffff) throw (MushcoreFileFail(inFilename, "Corrupt sprite file - first word insane"));
 
     for (tSize spriteCtr=0; spriteCtr<numSprites; ++spriteCtr)
     {
@@ -124,7 +127,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         IFTEXTESTING(cerr << "mode=" << mode.Value());
         IFTEXTESTING(cerr << "]");
 
-        if (!mode.Valid()) throw (LoaderFail(inFilename, "Unsupported sprite mode"));
+        if (!mode.Valid()) throw (MushcoreFileFail(inFilename, "Unsupported sprite mode"));
 
         U32 width=(wordWidth*32-(31-lastPixel))/mode.BitsPerPixel();
 
@@ -176,7 +179,7 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
             }
             if (outputPtr > def.DataPtr() + u32Size)
             {
-                throw(LoaderFail(inFilename, "Pointer error"));
+                throw(MushcoreFileFail(inFilename, "Pointer error"));
             }
         }
         // This step adds a second reference to the def which stops its memory being
@@ -187,17 +190,17 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         {
             if (sprIndex > 0xffff)
             {
-                throw(LoaderFail(inFilename, "Sprite number too large"));
+                throw(MushcoreFileFail(inFilename, "Sprite number too large"));
             }
             if (TextureDefValid(sprIndex))
             {
-                throw(LoaderFail(inFilename, "Numbering fault - one sprite overwrites another"));
+                throw(MushcoreFileFail(inFilename, "Numbering fault - one sprite overwrites another"));
             }
             AddTextureDef(def, sprIndex);
         }
         sUtil.ConsumeToIndex(in, 0, offsetNext);
-        if (in.eof()) throw(LoaderFail(inFilename, "Unexpected EOF"));
-        if (!in.good()) throw(LoaderFail(inFilename, "Fault reading file"));
+        if (in.eof()) throw(MushcoreFileFail(inFilename, "Unexpected EOF"));
+        if (!in.good()) throw(MushcoreFileFail(inFilename, "Fault reading file"));
     }
     IFTEXTESTING(cerr << "(dec)" << dec << endl);
 }

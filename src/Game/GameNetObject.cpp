@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.15 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.16 2003/01/09 14:57:02 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.16  2003/01/09 14:57:02  southa
+ * Created Mushcore
+ *
  * Revision 1.15  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -88,7 +91,7 @@ GameNetObject::HandleGameDefClientStart(MushcoreXML& inXML)
         {
             MushcoreData<GameDefClient>::Instance().Delete(dataName);
         }
-        catch (ReferenceFail& e)
+        catch (MushcoreReferenceFail& e)
         {
             MustlLog::Instance().NetLog() << "Delete gamedefclient failed: " << e.what() << endl;
         }
@@ -131,7 +134,7 @@ GameNetObject::HandleGameDefServerStart(MushcoreXML& inXML)
         {
             MushcoreData<GameDefServer>::Instance().Delete(dataName);
         }
-        catch (ReferenceFail& e)
+        catch (MushcoreReferenceFail& e)
         {
             MustlLog::Instance().NetLog() << "Delete gamedefserver failed: " << e.what() << endl;
         }

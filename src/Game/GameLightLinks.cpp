@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameLightLinks.cpp,v 1.4 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameLightLinks.cpp,v 1.5 2002/12/29 20:59:56 southa Exp $
  * $Log: GameLightLinks.cpp,v $
+ * Revision 1.5  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.4  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -43,7 +46,7 @@ GameLightLinks::Sort(void)
 {
     for (U32 i=1; i < kNumLinks; ++i)
     {
-        COREASSERT(i>0);
+        MUSHCOREASSERT(i>0);
         if (m_links[i-1].valid && m_links[i].valid)
         {
             if (m_links[i-1].link > m_links[i].link)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreHistory.h,v 1.1 2003/01/09 14:57:07 southa Exp $
+ * $Id: MushcoreHistory.h,v 1.2 2003/01/11 13:03:17 southa Exp $
  * $Log: MushcoreHistory.h,v $
+ * Revision 1.2  2003/01/11 13:03:17  southa
+ * Use Mushcore header
+ *
  * Revision 1.1  2003/01/09 14:57:07  southa
  * Created Mushcore
  *
@@ -98,8 +101,8 @@ template<class IndexType, class StoreType>
 inline void
 MushcoreHistoryIterator<IndexType, StoreType>::AssertValid(void) const
 {
-    COREASSERT(m_history != NULL);
-    if (!m_valid) throw(LogicFail("Use of invalid iterator"));
+    MUSHCOREASSERT(m_history != NULL);
+    if (!m_valid) throw(MushcoreLogicFail("Use of invalid iterator"));
 }
 
 template<class IndexType, class StoreType>
@@ -150,7 +153,7 @@ MushcoreHistory<IndexType, StoreType>::MushcoreHistory(Mushware::U32 inSize, Ind
     m_bufferSize(inSize),
     m_invalidIndex(0)
 {
-    COREASSERT(inSize > 0); // Suggests parameters wrong way round
+    MUSHCOREASSERT(inSize > 0); // Suggests parameters wrong way round
     for (Mushware::U32 i=0; i<m_bufferSize; ++i)
     {
         m_buffer[i].index = inInitial;
@@ -161,7 +164,7 @@ template<class IndexType, class StoreType>
 inline void
 MushcoreHistory<IndexType, StoreType>::Add(const StoreType& inStore, IndexType inIndex)
 {
-    COREASSERT(m_bufferIndex < m_buffer.size());
+    MUSHCOREASSERT(m_bufferIndex < m_buffer.size());
     tBuffer& bufferEntry = m_buffer[m_bufferIndex];
     bufferEntry.index = inIndex;
     bufferEntry.store = inStore;
@@ -194,7 +197,7 @@ MushcoreHistory<IndexType, StoreType>::PreviousGet(const StoreType *& outStore, 
         }
         --bufferIndex;
         
-        COREASSERT(bufferIndex < m_buffer.size());
+        MUSHCOREASSERT(bufferIndex < m_buffer.size());
 
         const tBuffer& bufferEntry = m_buffer[bufferIndex];
 
@@ -227,7 +230,7 @@ MushcoreHistory<IndexType, StoreType>::IteratorPreviousGet(IndexType inIndex) co
         }
         --bufferIndex;
 
-        COREASSERT(bufferIndex < m_buffer.size());
+        MUSHCOREASSERT(bufferIndex < m_buffer.size());
 
         const tBuffer& bufferEntry = m_buffer[bufferIndex];
 
@@ -269,7 +272,7 @@ template<class IndexType, class StoreType>
 inline const IndexType&
 MushcoreHistory<IndexType, StoreType>::IndexGet(Mushware::U32 inIndex) const
 {
-    COREASSERT(inIndex < m_invalidIndex);
+    MUSHCOREASSERT(inIndex < m_invalidIndex);
     return m_buffer[inIndex].index;
 }
 
@@ -277,7 +280,7 @@ template<class IndexType, class StoreType>
 inline const StoreType&
 MushcoreHistory<IndexType, StoreType>::StoreGet(Mushware::U32 inIndex) const
 {
-    COREASSERT(inIndex < m_invalidIndex);
+    MUSHCOREASSERT(inIndex < m_invalidIndex);
     return m_buffer[inIndex].store;
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.32 2003/01/07 17:13:44 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.33 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.33  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.32  2003/01/07 17:13:44  southa
  * Fixes for gcc 3.1
  *
@@ -349,7 +352,7 @@ GameTypeRace::Move(void)
             break;
 
 	default:
-            throw(LogicFail("m_raceState"));
+            throw(MushcoreLogicFail("m_raceState"));
     }
 }
 
@@ -370,7 +373,7 @@ GameTypeRace::Render(void) const
             break;
             
        default:
-            throw(LogicFail("m_raceState"));
+            throw(MushcoreLogicFail("m_raceState"));
     }
 }
 
@@ -398,7 +401,7 @@ GameTypeRace::UpdateTimes(void)
             break;
             
         default:
-            throw(LogicFail("m_raceState"));
+            throw(MushcoreLogicFail("m_raceState"));
     }
 }
 
@@ -563,7 +566,7 @@ GameTypeRace::SaveRecords(const GameRecords& inRecords) const
         {
             filename=pScalar->StringGet();
             ofstream outputFile(filename.c_str());
-            if (!outputFile) throw(FileFail(filename, "Could not open file for writing"));
+            if (!outputFile) throw(MushcoreFileFail(filename, "Could not open file for writing"));
             time_t now(time(NULL));
             outputFile << "<?xml version=\"1.0\" standalone=\"no\"?>" << endl;
             outputFile << "<!-- Records saved " << ctime(&now) << " -->" << endl;

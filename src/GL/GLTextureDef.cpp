@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureDef.cpp,v 1.5 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureDef.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTextureDef.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -49,7 +52,7 @@ GLTextureDef::DetermineNeedsAlpha(void) const
     U8 *dataPtr=reinterpret_cast<U8 *>(m_dataPtr);
     U32 dataSize=m_width*m_height; // Number of pixels to check
     
-    COREASSERT(dataPtr != NULL || dataSize == 0);
+    MUSHCOREASSERT(dataPtr != NULL || dataSize == 0);
 
     m_needsAlpha=false;
     dataPtr += 3; // Advance to first alpha byte

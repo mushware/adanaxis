@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnvOutput.cpp,v 1.3 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreEnvOutput.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreEnvOutput.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.3  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -25,6 +28,8 @@
 #include "MushcoreEnvOutput.h"
 
 #include "MushcoreEnv.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;

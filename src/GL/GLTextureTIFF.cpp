@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureTIFF.cpp,v 1.11 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureTIFF.cpp,v 1.12 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTextureTIFF.cpp,v $
+ * Revision 1.12  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.11  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -57,7 +60,7 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
     TIFF* pTiff = TIFFOpen(inFilename.c_str(), "r");
     if (pTiff == NULL)
     {
-        throw(LoaderFail(inFilename, "Could not open file"));
+        throw(MushcoreFileFail(inFilename, "Could not open file"));
     }
 
     try
@@ -86,8 +89,8 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
 
             uint32 *srcData=tiffData;
             U8 *destBytes=reinterpret_cast<U8 *>(def.DataPtr());
-            COREASSERT(srcData != NULL);
-            COREASSERT(destBytes != NULL);
+            MUSHCOREASSERT(srcData != NULL);
+            MUSHCOREASSERT(destBytes != NULL);
             // Convert from ABGR words (from tifflib) into RGBA bytes.  Has to work on big
             // and little endian machines
             for (U32 i=0; i<numPixels; i++)
@@ -98,8 +101,8 @@ GLTextureTIFF::GLTextureTIFF(const string& inFilename)
                 *destBytes++=col>>16; // Blue
                 *destBytes++=col>>24; // Alpha
             }
-            COREASSERT(srcData == tiffData+width*height);
-            COREASSERT(destBytes == reinterpret_cast<U8 *>(def.DataPtr()+width*height));
+            MUSHCOREASSERT(srcData == tiffData+width*height);
+            MUSHCOREASSERT(destBytes == reinterpret_cast<U8 *>(def.DataPtr()+width*height));
             _TIFFfree(tiffData);
             tiffData=NULL;
             AddTextureDef(def);

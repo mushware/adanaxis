@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAppSignal.cpp,v 1.8 2002/12/29 20:59:50 southa Exp $
+ * $Id: MushcoreAppSignal.cpp,v 1.1 2003/01/09 14:57:05 southa Exp $
  * $Log: MushcoreAppSignal.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:05  southa
+ * Created Mushcore
+ *
  * Revision 1.8  2002/12/29 20:59:50  southa
  * More build fixes
  *
@@ -38,6 +41,8 @@
  */
 
 #include "MushcoreAppSignal.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;

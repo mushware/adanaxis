@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.26 2003/01/09 14:57:03 southa Exp $
+ * $Id: GameSetup.cpp,v 1.27 2003/01/11 17:44:27 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.27  2003/01/11 17:44:27  southa
+ * Mushcore fixes
+ *
  * Revision 1.26  2003/01/09 14:57:03  southa
  * Created Mushcore
  *
@@ -130,7 +133,7 @@ GameSetup::Process(GameAppHandler& inAppHandler)
             break;
 
         default:
-            throw(LogicFail("Bad value for m_gameState"));
+            throw(MushcoreLogicFail("Bad value for m_gameState"));
     }
 }
 

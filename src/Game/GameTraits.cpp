@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.14 2003/01/07 17:13:43 southa Exp $
+ * $Id: GameTraits.cpp,v 1.15 2003/01/09 14:57:04 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.15  2003/01/09 14:57:04  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2003/01/07 17:13:43  southa
  * Fixes for gcc 3.1
  *
@@ -76,16 +79,14 @@ GameTraits::Verify(void)
         message+=" failed to build because";
         message+=m_failMessage;
         message+=" were missing";
-        throw(VerifyFail(message));
+        throw(MushcoreRequestFail(message));
     }
 }
-
-
 
 void
 GameTraits::RebuildTraits(void) const
 {
-    COREASSERT(!m_traitsValid);
+    MUSHCOREASSERT(!m_traitsValid);
     m_baseTraits.resize(0);
     m_failMessage.erase();
     bool success=true;    

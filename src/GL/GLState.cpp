@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLState.cpp,v 1.7 2003/01/09 14:56:58 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.7  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.6  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -64,6 +67,6 @@ GLState::ResolveDisplayQuality(void)
     }
     else
     {
-        throw(CommandFail("Bad value for DISPLAY_QUALITY: should be low, medium or high"));
+        throw(MushcoreCommandFail("Bad value for DISPLAY_QUALITY: should be low, medium or high"));
     }
 }

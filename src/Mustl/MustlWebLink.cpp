@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.8 2003/01/09 14:57:08 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.9 2003/01/11 17:58:15 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.9  2003/01/11 17:58:15  southa
+ * Mustl fixes
+ *
  * Revision 1.8  2003/01/09 14:57:08  southa
  * Created Mushcore
  *
@@ -380,7 +383,7 @@ MustlWebLink::PostProcess(const string& inValues)
         }
         //MushcoreCommand command(string("handlepostvalues('")+inValues+"')");
         //command.Execute();
-        // Catch CommandFail
+        // Catch MushcoreCommandFail
     }    
     catch (MustlFail &e)
     {

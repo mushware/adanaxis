@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.cpp,v 1.16 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcoreConfig.cpp,v 1.1 2003/01/09 14:57:06 southa Exp $
  * $Log: MushcoreConfig.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:06  southa
+ * Created Mushcore
+ *
  * Revision 1.16  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -50,7 +53,9 @@
  */
 
 #include "MushcoreConfig.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -70,7 +75,7 @@ MushcoreConfig::Get(const string& inName) const
     {
         ostringstream out;
         out << "Config element '" << inName << "' not found";
-        throw (ConfigFail(out.str()));
+        throw (MushcoreDataFail(out.str()));
     }
     return p->second;
 }

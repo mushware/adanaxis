@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcorePickle.cpp,v 1.9 2002/12/29 20:59:51 southa Exp $
+ * $Id: MushcorePickle.cpp,v 1.1 2003/01/09 14:57:07 southa Exp $
  * $Log: MushcorePickle.cpp,v $
+ * Revision 1.1  2003/01/09 14:57:07  southa
+ * Created Mushcore
+ *
  * Revision 1.9  2002/12/29 20:59:51  southa
  * More build fixes
  *
@@ -41,9 +44,11 @@
  */
 
 #include "MushcorePickle.h"
-#include "MushcoreException.h"
+#include "MushcoreFail.h"
 #include "MushcoreUtil.h"
 #include "MushcoreXML.h"
+
+#include "MushcoreSTL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -52,7 +57,7 @@ void
 MushcorePickle::Unpickle(const string& inFilename)
 {
     ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
-    if (!in) throw(LoaderFail(inFilename, "Could not open file"));
+    if (!in) throw(MushcoreFileFail(inFilename, "Could not open file"));
     MushcoreXML xml(in, inFilename);
     Unpickle(xml);
 }

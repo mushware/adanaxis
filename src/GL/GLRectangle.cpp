@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.14 2003/01/07 17:13:41 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.15 2003/01/09 14:56:58 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.15  2003/01/09 14:56:58  southa
+ * Created Mushcore
+ *
  * Revision 1.14  2003/01/07 17:13:41  southa
  * Fixes for gcc 3.1
  *
@@ -137,21 +140,21 @@ GLRectangle::IsIntersecting(const GLLine& inLine) const
 tVal
 GLRectangle::XSize(void) const
 {
-    COREASSERT(xmin <= xmax);
+    MUSHCOREASSERT(xmin <= xmax);
     return xmax-xmin;
 }
 
 tVal
 GLRectangle::YSize(void) const
 {
-    COREASSERT(ymin <= ymax);
+    MUSHCOREASSERT(ymin <= ymax);
     return ymax-ymin;
 }
 
 GLPoint
 GLRectangle::Size(void) const
 {
-    COREASSERT(xmin <= xmax && ymin <= ymax);
+    MUSHCOREASSERT(xmin <= xmax && ymin <= ymax);
     return GLPoint(xmax-xmin, ymax-ymin);
 }
 

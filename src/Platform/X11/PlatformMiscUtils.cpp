@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.13 2002/12/29 21:00:00 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.14 2003/01/09 14:57:08 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.14  2003/01/09 14:57:08  southa
+ * Created Mushcore
+ *
  * Revision 1.13  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -152,7 +155,7 @@ PlatformMiscUtils::MakeDirectory(const string& inName)
     errno=0;
     if (mkdir(inName.c_str(), 0700) != 0)
     {
-        throw(CommandFail("mkdir "+inName+" failed: "+strerror(errno)));
+        throw(MushcoreCommandFail("mkdir "+inName+" failed: "+strerror(errno)));
     }
 }
 

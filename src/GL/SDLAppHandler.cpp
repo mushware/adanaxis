@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.30 2002/12/29 20:59:53 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.31 2003/01/09 14:56:59 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.31  2003/01/09 14:56:59  southa
+ * Created Mushcore
+ *
  * Revision 1.30  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -155,7 +158,7 @@ void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     U32 keyValue = inSignal.keyValue.ValueGet();
-    COREASSERT(keyValue < m_keyState.size());
+    MUSHCOREASSERT(keyValue < m_keyState.size());
 
     AddToControlBuffer(keyValue, inSignal.keyDown);
     
@@ -175,14 +178,14 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 bool
 SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
 {
-    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     return m_keyState[inKey.ValueGet()];
 }
 
 bool
 SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 {
-    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     bool state=m_latchedKeyState[inKey.ValueGet()];
     if (state)
     {
@@ -251,7 +254,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
-    if (surface == NULL) throw(DeviceFail("Could not select a video mode"));
+    if (surface == NULL) throw(MushcoreDeviceFail("Could not select a video mode"));
 
 
     // Got video mode
@@ -363,7 +366,7 @@ SDLAppHandler::MainLoop(void)
 void
 SDLAppHandler::AddToControlBuffer(U32 inKeyValue, bool inKeyDirection)
 {
-    COREASSERT(m_controlBufferIndex < m_controlBuffer.size());
+    MUSHCOREASSERT(m_controlBufferIndex < m_controlBuffer.size());
     
     SDLControlEntry& controlEntry = m_controlBuffer[m_controlBufferIndex];
     controlEntry.timestamp = MillisecondsGet();
@@ -453,7 +456,7 @@ SDLAppHandler::ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnbound
     for (U32 i=0; i<keysOfInterestSize; ++i)
     {
         U32 keyValue = m_keysOfInterest[i];
-        COREASSERT(keyValue < m_keyState.size());
+        MUSHCOREASSERT(keyValue < m_keyState.size());
         outKeys[i] = m_keyState[keyValue];
     }
 
