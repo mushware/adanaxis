@@ -1,6 +1,9 @@
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.7 2002/05/08 16:31:21 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.8 2002/05/10 16:41:43 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.8  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.7  2002/05/08 16:31:21  southa
  * Created API directory
  *
@@ -30,6 +33,7 @@
 #include "mushCore.h"
 #include "GLTexture.h"
 #include "GLData.h"
+#include "GLUtils.h"
 
 CoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
@@ -59,7 +63,7 @@ GLTest1AppHandler::Initialise(void)
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    CheckGLError();
+    GLUtils::CheckGLError();
 }
 
 void

@@ -1,6 +1,9 @@
 /*
- * $Id: mushGL.h,v 1.1 2002/05/08 16:31:23 southa Exp $
+ * $Id: mushGL.h,v 1.1 2002/05/10 16:39:34 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.1  2002/05/10 16:39:34  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/08 16:31:23  southa
  * Created API directory
  *
@@ -12,5 +15,6 @@
 #include "GL/GLTexture.h"
 #include "GL/GLData.h"
 #include "GL/GLAppHandler.h"
+#include "GL/GLUtils.h"
 
 #endif

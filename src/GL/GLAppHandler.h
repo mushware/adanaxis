@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.h,v 1.5 2002/05/08 16:31:20 southa Exp $
+ * $Id: GLAppHandler.h,v 1.1 2002/05/10 16:41:43 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.1  2002/05/10 16:41:43  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.5  2002/05/08 16:31:20  southa
  * Created API directory
  *
@@ -32,11 +35,9 @@ public:
     virtual void Signal(U32 inSignal);
 
 protected:
-    void CheckGLError(void);
-    void StandardInit(void);
-    void OrthoPrologue(void);
-    void OrthoEpilogue(void);
     bool IsVisible(void) {return m_visible;}
+    void RegisterHandlers(void);
+    
 private:
     enum
     {

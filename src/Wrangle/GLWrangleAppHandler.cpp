@@ -1,6 +1,9 @@
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.1 2002/05/09 17:08:07 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.2 2002/05/10 16:40:39 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.2  2002/05/10 16:40:39  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/09 17:08:07  southa
  * Fixed for gcc 3.0
  *
@@ -26,14 +29,14 @@ GLWrangleAppHandler::Initialise(void)
 
     m_pWrangler = new GraphWrangler(tex);
     
-    StandardInit();
+    GLUtils::StandardInit();
     
     glutInitWindowSize(tex.Width(), tex.Height());
 
     glutCreateWindow("Wrangling data");
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
-    CheckGLError();    
+    GLUtils::CheckGLError();    
 }
 
 void
@@ -44,14 +47,14 @@ GLWrangleAppHandler::Display(void)
     glDrawBuffer(GL_BACK);
     glClearColor(0.2, 0.2, 0.2, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    OrthoPrologue();
+    GLUtils::OrthoPrologue();
     
     glRasterPos2f(0, 0);
     // glBitmap(0,0,0,0,0,0,NULL);
     glDrawPixels(tex.Width(), tex.Height(), tex.PixelFormat(),
                      tex.PixelType(), tex.DataPtr());
 
-    OrthoEpilogue();
+    GLUtils::OrthoEpilogue();
     glutSwapBuffers();
 }
 

@@ -1,6 +1,9 @@
 /*
- * $Id: GameAppHandler.cpp,v 1.1 2002/05/10 15:35:27 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.2 2002/05/10 16:39:34 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.2  2002/05/10 16:39:34  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.1  2002/05/10 15:35:27  southa
  * Added Game group
  *
@@ -12,39 +15,40 @@
 #include "mushGL.h"
 
 #include "GameTest.h"
-
+#include <Carbon/Carbon.h>
+#include <Quicktime/Movies.h>
 void
 GameAppHandler::Initialise(void)
 {
-    GLTexture& tex=GLData::Instance().GetTexture(0);
-
     m_pGame = new GameTest;
 
-    StandardInit();
+    Ptr restoreState;
+    short desiredWidth=640;
+    short desiredHeight=480;
+    
+    BeginFullScreen(&restoreState, 0,
+                    &desiredWidth,
+                    &desiredHeight,
+                    0, 0, 0);
+    
+    GLUtils::GameInit();
 
-    glutInitWindowSize(tex.Width(), tex.Height());
-
-    glutCreateWindow("Game");
+    //glutInitWindowSize(640,480);
+    //glutCreateWindow("Game");
+    glutGameModeString("640x480:16@60");
+    glutEnterGameMode();
+    RegisterHandlers();
     glutDisplayFunc(DisplayHandler);
     glutIdleFunc(IdleHandler);
-    CheckGLError();
+
+    GLUtils::CheckGLError();
 }
 
 void
 GameAppHandler::Display(void)
 {
-    glDrawBuffer(GL_BACK);
-    glClearColor(0.2, 0.2, 0.2, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    OrthoPrologue();
-
-    glRasterPos2f(0, 0);
-#if 0
-    glDrawPixels(tex.Width(), tex.Height(), tex.PixelFormat(),
-                 tex.PixelType(), tex.DataPtr());
-#endif
-    OrthoEpilogue();
-    glutSwapBuffers();
+    COREASSERT(m_pGame != NULL);
+    m_pGame->Display();
 }
 
 void
@@ -66,5 +70,5 @@ GameAppHandler::Idle(bool& outQuit, int& outUSleepFor)
     {
         glutPostRedisplay();
     }
-    outUSleepFor=1000000;
+    outUSleepFor=0;
 }

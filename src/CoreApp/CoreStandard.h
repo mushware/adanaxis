@@ -1,8 +1,11 @@
 #ifndef CORESTANDARD_H
 #define CORESTANDARD_H
 /*
- * $Id: CoreStandard.h,v 1.9 2002/05/09 17:10:38 southa Exp $
+ * $Id: CoreStandard.h,v 1.1 2002/05/10 16:39:38 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.1  2002/05/10 16:39:38  southa
+ * Changed .hp files to .h
+ *
  * Revision 1.9  2002/05/09 17:10:38  southa
  * Fixed for gcc 3.0
  *
@@ -56,7 +59,7 @@ using namespace std;
 typedef double Val;
 typedef unsigned int U32;
 typedef unsigned char U8;
-typedef size_t Size;
+typedef long int Size;
 
 #if 0
 // This didn't work
