@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.11 2003/01/18 13:33:59 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.12 2003/02/04 14:54:51 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.12  2003/02/04 14:54:51  southa
+ * Build fixes
+ *
  * Revision 1.11  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -486,7 +489,7 @@ MustlPlatform::TCPConnectionCompletedHas(tSocket inSocket)
 
     if (result < 0) return false;
     
-    return (FD_ISSET(inSocket, &fdSet));
+    return !(!(FD_ISSET(inSocket, &fdSet)));
 }
 
 U32
@@ -588,7 +591,6 @@ MustlPlatform::ResolveIPAddressString(MustlAddress& outAddress, const string& in
 void
 MustlPlatform::LocalAddressesRetrieve(void)
 {
-#if 0
     m_localAddressMap.clear();
 
     U8 ipBuffer[16384];
@@ -619,7 +621,6 @@ MustlPlatform::LocalAddressesRetrieve(void)
         m_localAddressMap[ipAddrRow->dwAddr]=true;
     }
     m_localAddressesValid=true;
-#endif
 }
 
 unsigned int

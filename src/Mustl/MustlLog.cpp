@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.cpp,v 1.8 2003/01/17 12:20:40 southa Exp $
+ * $Id: MustlLog.cpp,v 1.9 2003/01/20 10:45:30 southa Exp $
  * $Log: MustlLog.cpp,v $
+ * Revision 1.9  2003/01/20 10:45:30  southa
+ * Singleton tidying
+ *
  * Revision 1.8  2003/01/17 12:20:40  southa
  * Fixed auto_ptr duplication
  *
@@ -176,23 +179,23 @@ MustlLog::UpdateHandler(void)
     MushcoreScalar configValue;
     if (MustlConfig::Sgl().GetIfExists(configValue, "mustlnetlog"))
     {
-        Sgl().NetLogSet(configValue.U32Get());
+        Sgl().NetLogSet(configValue.BoolGet());
     }
     if (MustlConfig::Sgl().GetIfExists(configValue, "mustlweblog"))
     {
-        Sgl().WebLogSet(configValue.U32Get());
+        Sgl().WebLogSet(configValue.BoolGet());
     }
     if (MustlConfig::Sgl().GetIfExists(configValue, "mustlverboselog"))
     {
-        Sgl().VerboseLogSet(configValue.U32Get());
+        Sgl().VerboseLogSet(configValue.BoolGet());
     }
     if (MustlConfig::Sgl().GetIfExists(configValue, "mustltrafficlog"))
     {
-        Sgl().TrafficLogSet(configValue.U32Get());
+        Sgl().TrafficLogSet(configValue.BoolGet());
     }
     if (MustlConfig::Sgl().GetIfExists(configValue, "mustlcommandlog"))
     {
-        if (configValue.U32Get())
+        if (configValue.BoolGet())
         {
             MushcoreInterpreter::Sgl().LogFunctionSet(LogString);
         }
