@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.8 2003/01/12 17:32:50 southa Exp $
+ * $Id: GLState.cpp,v 1.9 2003/01/13 14:31:55 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.9  2003/01/13 14:31:55  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.8  2003/01/12 17:32:50  southa
  * Mushcore work
  *
@@ -57,7 +60,13 @@ void
 GLState::ResolveDisplayQuality(void)
 {
     string displayQuality("low");
-    MushcoreEnv::Instance().VariableGetIfExists(displayQuality, "DISPLAY_QUALITY");
+    
+    const MushcoreScalar *pScalar;    
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "DISPLAY_QUALITY"))
+    {
+        displayQuality = pScalar->StringGet();
+    }
+    
     if (displayQuality == "low")
     {
         m_displayQuality = kQualityLow;

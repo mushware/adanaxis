@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.h,v 1.4 2002/12/20 13:17:46 southa Exp $
+ * $Id: MustlRouter.h,v 1.5 2002/12/29 20:30:56 southa Exp $
  * $Log: MustlRouter.h,v $
+ * Revision 1.5  2002/12/29 20:30:56  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.4  2002/12/20 13:17:46  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -49,18 +52,18 @@
 
 class MustlData;
 class MustlLink;
-class MustlHandler;
+class MustlMessageHandler;
 
 class MustlRouter
 {
 public:
     static inline MustlRouter& Instance(void);
-    void ReceiveAll(MustlHandler& inHandler);
+    void ReceiveAll(MustlMessageHandler& inHandler);
 
 protected:
     MustlRouter();
-    void UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler);
-    void UDPReceiveFromServer(MustlHandler& inHandler);
+    void UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& inHandler);
+    void UDPReceiveFromServer(MustlMessageHandler& inHandler);
     
 private:
     enum
@@ -69,7 +72,7 @@ private:
         kUDPReceivePacketLimit=100
     };
 
-    void ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlHandler& inHandler);
+    void ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlMessageHandler& inHandler);
     
     Mustl::tMsec m_lastTickMsec;
     

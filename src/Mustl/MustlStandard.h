@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlStandard.h,v 1.4 2003/01/13 15:01:20 southa Exp $
+ * $Id: MustlStandard.h,v 1.5 2003/01/17 00:41:05 southa Exp $
  * $Log: MustlStandard.h,v $
+ * Revision 1.5  2003/01/17 00:41:05  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.4  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -32,11 +35,11 @@
 #endif
 
 #include <iosfwd>
+#include <list>
 #include <map>
 #include <memory>
 #include <string>
 #include <vector>
-#include <list>
 
 namespace Mustl
 {

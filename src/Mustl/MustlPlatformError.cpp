@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlPlatformError.cpp,v 1.2 2003/01/16 16:38:37 southa Exp $
+ * $Id: MustlPlatformError.cpp,v 1.3 2003/01/17 00:41:04 southa Exp $
  * $Log: MustlPlatformError.cpp,v $
+ * Revision 1.3  2003/01/17 00:41:04  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.2  2003/01/16 16:38:37  southa
  * Error codes for win32
  *

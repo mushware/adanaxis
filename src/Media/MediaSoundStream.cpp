@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.10 2003/01/12 17:32:58 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.11 2003/01/13 14:32:02 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.11  2003/01/13 14:32:02  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.10  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -51,7 +54,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< MushcoreData<MediaSoundStream> > MushcoreData<MediaSoundStream>::m_instance;
+MushcoreData<MediaSoundStream>::tInstance MushcoreData<MediaSoundStream>::m_instance;
 
 MushcoreInstaller MediaSoundStreamInstaller(MediaSoundStream::Install);
 

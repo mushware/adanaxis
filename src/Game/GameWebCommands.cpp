@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.29 2003/01/13 14:32:01 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.30 2003/01/14 17:38:20 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.30  2003/01/14 17:38:20  southa
+ * Mustl web configuration
+ *
  * Revision 1.29  2003/01/13 14:32:01  southa
  * Build frameworks for Mac OS X
  *
@@ -141,60 +144,54 @@ using namespace std;
 MushcoreInstaller GameWebCommandsInstaller(GameWebCommands::Install);
 
 MushcoreScalar
-GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+GameWebCommands::PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    if (ioCommand.NumParams() != 1)
+    if (ioCommand.NumParams() != 2)
     {
-        throw(MushcoreCommandFail("Usage: handlepostvalues(values)"));
+        throw(MushcoreCommandFail("Usage: posthandler(type, valueStr)"));
     }
-    string values;
-    ioCommand.PopParam(values);
+    string typeStr, valueStr;
+    ioCommand.PopParam(typeStr);
+    ioCommand.PopParam(valueStr);
 
-    MushcoreRegExp re("(^|&)type=([^&]+)($|&)");
-    vector<string> matches;
-    if (!re.Search(values, matches))
+    if (typeStr == "config1" ||
+        typeStr == "developer1")
     {
-        throw(MushcoreCommandFail("No type= element in posted results '"+values+"'"));
-    }
-    MUSHCOREASSERT(matches.size() == 3);
-    if (matches[1] == "config1" ||
-        matches[1] == "developer1")
-    {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
         GameConfig::Instance().Update();
     }
-    else if (matches[1] == "singleplayer")
+    else if (typeStr == "singleplayer")
     {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
         GameNetUtils::KillServers();
         GameNetUtils::KillClients();
 
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
         gameHandler.GameModeEnter(false);
     }
-    else if (matches[1] == "mpentergame")
+    else if (typeStr == "mpentergame")
     {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
         gameHandler.GameModeEnter(false);
     }
-    else if (matches[1] == "resumegame")
+    else if (typeStr == "resumegame")
     {
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
         gameHandler.GameModeEnter(true); // Resume game
     }
-    else if (matches[1] == "endcurrentgame")
+    else if (typeStr == "endcurrentgame")
     {
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
         gameHandler.CurrentGameEnd(); // End the game
     }
-    else if (matches[1] == "mplogin")
+    else if (typeStr == "mplogin")
     {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
     }
-    else if (matches[1] == "joingame")
+    else if (typeStr == "joingame")
     {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
         string clientName = GameConfig::Instance().ParameterGet("mpplayername").StringGet();
         GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Instance().Give(clientName, new GameDefClient(clientName));
         try
@@ -211,9 +208,9 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
             gameDefClient->Kill();
         }
     }
-    else if (matches[1] == "hostgame")
+    else if (typeStr == "hostgame")
     {
-        GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().PostDataHandle(valueStr);
         string serverName=GameConfig::Instance().ParameterGet("mpservername").StringGet();
         string serverMessage=GameConfig::Instance().ParameterGet("mpservermessage").StringGet();
         GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Instance().Give(serverName, new GameDefServer(serverName));
@@ -221,30 +218,30 @@ GameWebCommands::HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
         gameDefServer->HostGame(GameConfig::Instance().ParameterGet("mpcontractname").StringGet(),
                                GameConfig::Instance().ParameterGet("mpplayerlimit").U32Get());
     }
-    else if (matches[1] == "linkcleardown")
+    else if (typeStr == "linkcleardown")
     {
         GameNetUtils::KillLinks();
     }
-    else if (matches[1] == "hostcleardown")
+    else if (typeStr == "hostcleardown")
     {
         // Kill server first so that it can tell anything with a client image that it's going
         GameNetUtils::KillServers();
         GameNetUtils::KillClientImages();
     }
-    else if (matches[1] == "joincleardown")
+    else if (typeStr == "joincleardown")
     {
         // Kill clients first so that they can tell the servers with images that they're going
         GameNetUtils::KillClients();
         GameNetUtils::KillServerImages();
     }
-    else if (matches[1] == "quit")
+    else if (typeStr == "quit")
     {
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
         gameHandler.QuitModeEnter(); // Quit application
     }
     else
     {
-        throw(MushcoreCommandFail("Unknown config type value '"+matches[1]+"'"));
+        throw(MushcoreCommandFail("Unknown config type value '"+typeStr+"'"));
     }
     
     return MushcoreScalar(0);
@@ -435,7 +432,7 @@ GameWebCommands::GameLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& io
 void
 GameWebCommands::Install(void)
 {
-    MushcoreInterpreter::Instance().AddHandler("handlepostvalues", HandlePostValues);
+    MushcoreInterpreter::Instance().AddHandler("posthandler", PostHandler);
     MushcoreInterpreter::Instance().AddHandler("displaymodeswrite", DisplayModesWrite);
     MushcoreInterpreter::Instance().AddHandler("gameconfiginputwrite", GameConfigInputWrite);
     MushcoreInterpreter::Instance().AddHandler("gamestatuswrite", GameStatusWrite);

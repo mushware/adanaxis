@@ -12,8 +12,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreData.h,v 1.3 2003/01/12 17:32:59 southa Exp $
+ * $Id: MushcoreData.h,v 1.4 2003/01/17 12:20:40 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.4  2003/01/17 12:20:40  southa
+ * Fixed std::auto_ptr duplication
+ *
  * Revision 1.3  2003/01/12 17:32:59  southa
  * Mushcore work
  *

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.25 2003/01/13 14:31:57 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.26 2003/01/14 17:38:19 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.26  2003/01/14 17:38:19  southa
+ * Mustl web configuration
+ *
  * Revision 1.25  2003/01/13 14:31:57  southa
  * Build frameworks for Mac OS X
  *
@@ -117,7 +120,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< MushcoreData<GameDefClient> > MushcoreData<GameDefClient>::m_instance;
+MushcoreData<GameDefClient>::tInstance MushcoreData<GameDefClient>::m_instance;
 
 GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),

@@ -1,4 +1,14 @@
 
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*  A Bison parser, made from MushcoreBison.y
     by GNU Bison version 1.28  */
 
@@ -20,8 +30,11 @@
 
 
 /*
- * $Id: MushcoreBison.y,v 1.2 2003/01/12 17:32:58 southa Exp $
- * $Log: MushcoreBison.y,v $
+ * $Id: MushcoreBison.cpp,v 1.4 2003/01/14 20:46:09 southa Exp $
+ * $Log: MushcoreBison.cpp,v $
+ * Revision 1.4  2003/01/14 20:46:09  southa
+ * Post data handling
+ *
  * Revision 1.2  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -237,6 +250,8 @@ static const short yycheck[] = {     0,
 #if 0 /* No need for malloc.h, which pollutes the namespace;
 	 instead, just don't use alloca.  */
 #include <malloc.h>
+
+using namespace Mushware;
 #endif
 #else /* not MSDOS, or __TURBOC__ */
 #if defined(_AIX)

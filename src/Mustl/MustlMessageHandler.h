@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlHandler.h,v 1.2 2002/12/17 12:53:33 southa Exp $
+ * $Id: MustlHandler.h,v 1.3 2002/12/20 13:17:45 southa Exp $
  * $Log: MustlHandler.h,v $
+ * Revision 1.3  2002/12/20 13:17:45  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -35,7 +38,7 @@
 class MustlData;
 class MustlLink;
 
-class MustlHandler
+class MustlMessageHandler
 {
 public:
     virtual void MessageHandle(MustlData& ioData, MustlLink& inLink, Mustl::U32 inType) = 0;

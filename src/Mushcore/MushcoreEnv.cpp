@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.2 2003/01/12 17:32:59 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.3 2003/01/15 13:27:32 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.3  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  * Revision 1.2  2003/01/12 17:32:59  southa
  * Mushcore work
  *
@@ -118,7 +121,7 @@ MushcoreEnv::VariableGet(const string& inName) const
          p != m_config.rend(); ++p)
     {
         const MushcoreScalar *pScalar;
-        if ((*p)->GetIfExists(&pScalar, inName))
+        if ((*p)->GetIfExists(pScalar, inName))
         {
             return *pScalar;
         }
@@ -127,78 +130,13 @@ MushcoreEnv::VariableGet(const string& inName) const
 }
 
 bool
-MushcoreEnv::VariableGetIfExists(const MushcoreScalar** outScalar, const string& inName) const
+MushcoreEnv::VariableGetIfExists(const MushcoreScalar *& outScalar, const string& inName) const
 {
     for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
          p != m_config.rend(); ++p)
     {
         if ((*p)->GetIfExists(outScalar, inName))
         {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool
-MushcoreEnv::VariableGetIfExists(string &outValue, const string& inName) const
-{
-    for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
-         p != m_config.rend(); ++p)
-    {
-        const MushcoreScalar *pScalar;
-        if ((*p)->GetIfExists(&pScalar, inName))
-        {
-            outValue=pScalar->StringGet();
-            return true;
-        }
-        
-    }
-    return false;
-}
-
-bool
-MushcoreEnv::VariableGetIfExists(U32 &outValue, const string& inName) const
-{
-    for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
-         p != m_config.rend(); ++p)
-    {
-        const MushcoreScalar *pScalar;
-        if ((*p)->GetIfExists(&pScalar, inName))
-        {
-            outValue=pScalar->U32Get();
-            return true;
-        }
-    }
-    return false;
-}
-
-bool
-MushcoreEnv::VariableGetIfExists(tVal &outValue, const string& inName) const
-{
-    for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
-         p != m_config.rend(); ++p)
-    {
-        const MushcoreScalar *pScalar;
-        if ((*p)->GetIfExists(&pScalar, inName))
-        {
-            outValue=pScalar->ValGet();
-            return true;
-        }
-    }
-    return false;
-}
-
-bool
-MushcoreEnv::VariableGetIfExists(bool &outValue, const string& inName) const
-{
-    for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
-         p != m_config.rend(); ++p)
-    {
-        const MushcoreScalar *pScalar;
-        if ((*p)->GetIfExists(&pScalar, inName))
-        {
-            outValue=pScalar->BoolGet();
             return true;
         }
     }

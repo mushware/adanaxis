@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.32 2003/01/12 17:32:53 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.33 2003/01/13 14:31:58 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.33  2003/01/13 14:31:58  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.32  2003/01/12 17:32:53  southa
  * Mushcore work
  *
@@ -591,7 +594,7 @@ GameFloorDesigner::Save(void)
 {
     string filename;
     const MushcoreScalar *pScalar;
-    if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "DESIGNER_MAP_NAME"))
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "DESIGNER_MAP_NAME"))
     {
         filename=pScalar->StringGet();
     }

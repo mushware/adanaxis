@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.h,v 1.5 2003/01/09 14:57:04 southa Exp $
+ * $Id: GameWebCommands.h,v 1.6 2003/01/11 13:03:15 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.6  2003/01/11 13:03:15  southa
+ * Use Mushcore header
+ *
  * Revision 1.5  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -51,7 +54,7 @@ class GameWebCommands
 {
 public:
     static void Install(void);
-    static MushcoreScalar HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar PostHandler(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar DisplayModesWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar GameConfigInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar GameStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);

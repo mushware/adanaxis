@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.11 2003/01/12 17:32:57 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.12 2003/01/13 14:32:01 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.12  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.11  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -94,38 +97,49 @@ MediaAudioSDL::MediaAudioSDL():
 {
     MediaSDL::Instance().InitAudio();
 
-    U32 u32AudioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
-    U32 u32AudioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
-    U32 u32AudioHardChannels = 2; // Stereo
-    U32 u32AudioSoftChannels = 8;
-    U32 u32AudioBuffer = 1024;
+    int audioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
+    unsigned short audioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
+    int audioHardChannels = 2; // Stereo
+    U32 audioSoftChannels = 8;
+    int audioBuffer = 1024;
 
-    MushcoreEnv::Instance().VariableGetIfExists(u32AudioRate, "AUDIO_RATE");
-    MushcoreEnv::Instance().VariableGetIfExists(u32AudioFormat, "AUDIO_FORMAT");
-    MushcoreEnv::Instance().VariableGetIfExists(u32AudioHardChannels, "AUDIO_HARD_CHANNELS");
-    MushcoreEnv::Instance().VariableGetIfExists(u32AudioSoftChannels, "AUDIO_SOFT_CHANNELS");
-    MushcoreEnv::Instance().VariableGetIfExists(u32AudioBuffer, "AUDIO_BUFFER");
+    const MushcoreScalar *pScalar;
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_RATE"))
+    {
+        audioRate = pScalar->U32Get();
+    }
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_FORMAT"))
+    {
+        audioFormat = pScalar->U32Get();
+    }
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_HARD_CHANNELS"))
+    {
+        audioHardChannels = pScalar->U32Get();
+    }
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_SOFT_CHANNELS"))
+    {
+        audioSoftChannels = pScalar->U32Get();
+    }
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "MUSHME_AUDIO_BUFFER"))
+    {
+        audioBuffer = pScalar->U32Get();
+    }
     
-    int audioRate = u32AudioRate;
-    unsigned short audioFormat = u32AudioFormat;
-    int audioChannels = u32AudioHardChannels;
-    int audioBuffers = u32AudioBuffer;
-    
-    if (Mix_OpenAudio(audioRate, audioFormat, audioChannels, audioBuffers))
+    if (Mix_OpenAudio(audioRate, audioFormat, audioHardChannels, audioBuffer))
     {
         throw(MushcoreDeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
 
-    if (!Mix_QuerySpec(&audioRate, &audioFormat, &audioChannels))
+    if (!Mix_QuerySpec(&audioRate, &audioFormat, &audioHardChannels))
     {
         Mix_CloseAudio();
         throw(MushcoreDeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
-    m_softChannels = Mix_AllocateChannels(u32AudioSoftChannels);
+    m_softChannels = Mix_AllocateChannels(audioSoftChannels);
     m_channelState.resize(m_softChannels, kChannelIdle);
     m_activeSamples.resize(m_softChannels, NULL);
     cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
-    cout << ", hard channels=" << audioChannels << ", soft channels=" << m_softChannels << endl;
+    cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
 }
 
 MediaAudioSDL::~MediaAudioSDL()

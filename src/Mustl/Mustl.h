@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mustl.h,v 1.5 2003/01/14 17:38:21 southa Exp $
+ * $Id: Mustl.h,v 1.6 2003/01/14 20:46:10 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.6  2003/01/14 20:46:10  southa
+ * Post data handling
+ *
  * Revision 1.5  2003/01/14 17:38:21  southa
  * Mustl web configuration
  *
@@ -56,7 +59,7 @@
 #include "MustlConfigDefVal.h"
 #include "MustlData.h"
 #include "MustlFail.h"
-#include "MustlHandler.h"
+#include "MustlMessageHandler.h"
 #include "MustlID.h"
 #include "MustlIDNull.h"
 #include "MustlIDString.h"

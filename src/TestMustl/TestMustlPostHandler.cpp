@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: TestMustlPostHandler.cpp,v 1.1 2003/01/14 20:46:12 southa Exp $
+ * $Id: TestMustlPostHandler.cpp,v 1.2 2003/01/17 00:41:06 southa Exp $
  * $Log: TestMustlPostHandler.cpp,v $
+ * Revision 1.2  2003/01/17 00:41:06  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.1  2003/01/14 20:46:12  southa
  * Post data handling
  *

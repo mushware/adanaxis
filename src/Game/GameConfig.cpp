@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.23 2003/01/12 17:32:52 southa Exp $
+ * $Id: GameConfig.cpp,v 1.24 2003/01/13 14:31:56 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.24  2003/01/13 14:31:56  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.23  2003/01/12 17:32:52  southa
  * Mushcore work
  *
@@ -175,12 +178,17 @@ GameConfig::PostDataHandle(const string& inData)
 void
 GameConfig::SaveToFile(void) const
 {
-    string filename;
-    MushcoreEnv::Instance().VariableGetIfExists(filename, "CONFIG_FILENAME");
-    if (filename != "")
+    string filenameStr;
+    const MushcoreScalar *pScalar;
+    if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
     {
-        ofstream outputFile(filename.c_str());
-        if (!outputFile) throw(MushcoreFileFail(filename, "Could not open file"));
+        filenameStr = pScalar->StringGet();
+    }
+
+    if (filenameStr != "")
+    {
+        ofstream outputFile(filenameStr.c_str());
+        if (!outputFile) throw(MushcoreFileFail(filenameStr, "Could not open file"));
         Pickle(outputFile);
     }
 }
@@ -188,30 +196,6 @@ GameConfig::SaveToFile(void) const
 void
 GameConfig::Update(void)
 {
-    if (ParameterExists("devnetlog"))
-    {
-        MustlLog::Instance().NetLogSet(ParameterGet("devnetlog").U32Get());
-    }
-    if (ParameterExists("devweblog"))
-    {
-        MustlLog::Instance().WebLogSet(ParameterGet("devweblog").U32Get());
-    }
-    if (ParameterExists("devverboselog"))
-    {
-        MustlLog::Instance().VerboseLogSet(ParameterGet("devverboselog").U32Get());
-    }
-    if (ParameterExists("devtrafficlog"))
-    {
-        MustlLog::Instance().TrafficLogSet(ParameterGet("devtrafficlog").U32Get());
-    }
-    if (ParameterExists("devcommandlog"))
-    {
-        MushcoreInterpreter::Instance().LogCommandsSet(ParameterGet("devcommandlog").U32Get());
-    }
-    if (ParameterExists("devlogfullip"))
-    {
-MustlUtils::TruncateLogSet(!ParameterGet("devlogfullip").U32Get());
-    }
     if (ParameterExists("configperms"))
     {
         string configPerms=ParameterGet("configperms").StringGet();

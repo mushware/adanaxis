@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.11 2003/01/11 17:58:15 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.12 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.12  2003/01/13 15:01:20  southa
+ * Fix Mustl command line build
+ *
  * Revision 1.11  2003/01/11 17:58:15  southa
  * Mustl fixes
  *
@@ -96,7 +99,7 @@ MustlRouter::MustlRouter() :
 }
 
 void
-MustlRouter::ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlHandler& inHandler)
+MustlRouter::ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlMessageHandler& inHandler)
 {
     do
     {
@@ -125,7 +128,7 @@ MustlRouter::ProcessMessage(MustlData& ioData, MustlLink& ioLink, MustlHandler& 
 }
 
 void
-MustlRouter::ReceiveAll(MustlHandler& inHandler)
+MustlRouter::ReceiveAll(MustlMessageHandler& inHandler)
 {
     tMsec currentMsec = MustlTimer::Instance().CurrentMsecGet();
     bool callTick=false;
@@ -180,7 +183,7 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
 }
 
 void
-MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler)
+MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlMessageHandler& inHandler)
 {
     MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
 
@@ -224,7 +227,7 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
 }
 
 void
-MustlRouter::UDPReceiveFromServer(MustlHandler& inHandler)
+MustlRouter::UDPReceiveFromServer(MustlMessageHandler& inHandler)
 {
     for (U32 i=0; i<100; ++i)
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.17 2003/01/16 15:58:02 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.18 2003/01/17 12:20:41 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.18  2003/01/17 12:20:41  southa
+ * Fixed auto_ptr duplication
+ *
  * Revision 1.17  2003/01/16 15:58:02  southa
  * Mustl exception handling
  *
@@ -378,7 +381,7 @@ MustlWebLink::GetProcess(const string& inFilename)
             if (m_webPath == "")
             {
                 const MushcoreScalar *pScalar;
-                if (MushcoreGlobalConfig::Instance().GetIfExists(&pScalar, "MUSTL_WEB_PATH"))
+                if (MushcoreGlobalConfig::Instance().GetIfExists(pScalar, "MUSTL_WEB_PATH"))
                 {
                     m_webPath = pScalar->StringGet();
                 }

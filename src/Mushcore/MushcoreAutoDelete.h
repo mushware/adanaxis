@@ -1,3 +1,15 @@
+#ifndef MUSHCOREAUTODELETE_H
+#define MUSHCOREAUTODELETE_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
  * $Id$
  * $Log$
@@ -29,7 +41,6 @@ MushcoreAutoDelete<RefType>::~MushcoreAutoDelete(void)
 {
     if (m_pObject != NULL)
     {
-        cerr << "Deleting object" << endl;
         delete m_pObject;
     }    
 }
@@ -51,3 +62,4 @@ MushcoreAutoDelete<RefType>::Reset(RefType *inObj)
     }
     m_pObject = inObj;
 }
+#endif

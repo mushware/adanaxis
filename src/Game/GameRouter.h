@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.h,v 1.10 2002/12/29 20:30:54 southa Exp $
+ * $Id: GameRouter.h,v 1.11 2003/01/11 13:03:14 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.11  2003/01/11 13:03:14  southa
+ * Use Mushcore header
+ *
  * Revision 1.10  2002/12/29 20:30:54  southa
  * Work for gcc 3.1 build
  *
@@ -46,10 +49,9 @@
  */
 
 #include "Mushcore.h"
+#include "Mustl.h"
 
-#include "mushMedia.h"
-
-class GameRouter : public MustlHandler
+class GameRouter : public MustlMessageHandler
 {
 public:
     static inline GameRouter& Instance(void);
@@ -62,14 +64,16 @@ protected:
     void ControlDataHandle(MustlData& ioData, const MustlLink& inLink);
     
 private:
-    static std::auto_ptr<GameRouter> m_instance;
+    static MushcoreAutoDelete<GameRouter> m_instance;
 };
 
 inline GameRouter&
 GameRouter::Instance(void)
 {
-    if (m_instance.get() != NULL) return *m_instance;
-    m_instance.reset(new GameRouter);
-    return *m_instance;
+    if (m_instance.Get() == NULL)
+    {
+        m_instance.Reset(new GameRouter);
+    }
+    return *m_instance.Get();
 }
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLog.h,v 1.6 2003/01/07 17:13:45 southa Exp $
+ * $Id: MustlLog.h,v 1.7 2003/01/17 00:41:04 southa Exp $
  * $Log: MustlLog.h,v $
+ * Revision 1.7  2003/01/17 00:41:04  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.6  2003/01/07 17:13:45  southa
  * Fixes for gcc 3.1
  *
@@ -80,7 +83,7 @@ public:
     void OpenFile(const std::string& inName);
     void CloseFile(void);
 
-    static void LogString(const string& inStr);
+    static void LogString(const std::string& inStr);
     static void UpdateHandler(void);
     static void Install(void);
     static void NullFunction(void);

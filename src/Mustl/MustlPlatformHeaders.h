@@ -1,6 +1,21 @@
+#ifndef MUSTLPLATFORMHEADERS_H
+#define MUSTLPLATFORMHEADERS_H
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id: MustlPlatformHeaders.h,v 1.4 2003/01/16 16:38:37 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.5 2003/01/17 00:41:04 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.5  2003/01/17 00:41:04  southa
+ * Configuration updates from POST data
+ *
  * Revision 1.4  2003/01/16 16:38:37  southa
  * Error codes for win32
  *
@@ -14,6 +29,8 @@
  * Platform and invalid socket fixes
  *
  */
+
+#include "MustlStandard.h"
 
 // This file #defines the following values for platform selection
 //
@@ -36,8 +53,8 @@
 
 // win32 includes
 #ifdef MUSTL_WIN32
-#include <windows.h>
 #include <iphlpapi.h>
+#include <windows.h>
 #endif
 
 // Mac OS X includes
@@ -154,4 +171,5 @@
 
 #define MUSTL_INVALID_SOCKET -1
 
+#endif
 #endif

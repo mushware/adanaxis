@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFail.h,v 1.1 2003/01/12 17:32:59 southa Exp $
+ * $Id: MushcoreFail.h,v 1.2 2003/01/14 17:38:21 southa Exp $
  * $Log: MushcoreFail.h,v $
+ * Revision 1.2  2003/01/14 17:38:21  southa
+ * Mustl web configuration
+ *
  * Revision 1.1  2003/01/12 17:32:59  southa
  * Mushcore work
  *
@@ -21,8 +24,8 @@
 // This file does not include MustlStandard.h, and is available to clients
 // which want to generate Mushcore exceptions without #including #Mushcore.h itself
 
-#include <string>
 #include <stdexcept>
+#include <string>
 
 // Base class for all Mushware exceptions
 class MushcoreFail : public std::exception

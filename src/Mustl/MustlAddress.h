@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlAddress.h,v 1.8 2003/01/16 13:11:32 southa Exp $
+ * $Id: MustlAddress.h,v 1.9 2003/01/16 15:58:01 southa Exp $
  * $Log: MustlAddress.h,v $
+ * Revision 1.9  2003/01/16 15:58:01  southa
+ * Mustl exception handling
+ *
  * Revision 1.8  2003/01/16 13:11:32  southa
  * Install and uninstall MustlPlatform
  *
@@ -86,7 +89,7 @@ public:
     // This one can block if given a name which needs looking up
     void ResolveFromHostName(const std::string& inHostName, tPort inPortHostOrder);
         
-    // For use by ostream <<
+    // For use by std::ostream <<
     void Print(std::ostream& ioOut) const;
 
     // For use by the operators == != < > 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.2 2003/01/11 13:03:16 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.3 2003/01/12 17:32:58 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.3  2003/01/12 17:32:58  southa
+ * Mushcore work
+ *
  * Revision 1.2  2003/01/11 13:03:16  southa
  * Use Mushcore header
  *
@@ -56,13 +59,32 @@
 
 #include "MushcoreStandard.h"
 
+/* Use like this to delete data when the last copy of MyClass referencing the
+ * data is deleted.  This makes a class holding a pointer to private data safe
+ * to place in STL containers without copying the data.  Use delete[] for array
+ * data.
+ *
+ * class MyClass
+ * {
+ * public:
+ *     MyClass(): m_dataPtr(NULL) {}
+ *     MyClass(void *inDataPtr): m_dataPtr(inDataPtr) {}
+ *     ~MyClass() { if (m_autoMonkey.FreeInDestructor(m_dataPtr)) delete m_dataPtr;}
+ * 
+ * private:
+ *     void *m_dataPtr;
+ *     MushcoreAutoMonkey m_autoMonkey;
+ * };
+ */
+
 class MushcoreAutoMonkey
 {
 public:
-    MushcoreAutoMonkey(): m_refCtrPtr(new int(1)) {}
+    MushcoreAutoMonkey(): m_refCtrPtr(new Mushware::S32(1)) {}
     ~MushcoreAutoMonkey();
     MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey);
-    bool FreeInDestructor(void *inDataPtr) const; // Call in destructor, free shared area if returns true
+    bool FreeInDestructor(void *inDataPtr) const;
+
     Mushware::S32 ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
     MushcoreAutoMonkey& operator=(const MushcoreAutoMonkey&);
     

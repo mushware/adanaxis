@@ -1,6 +1,19 @@
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreInstaller.cpp,v 1.1 2003/01/15 13:27:32 southa Exp $
+ * $Log: MushcoreInstaller.cpp,v $
+ * Revision 1.1  2003/01/15 13:27:32  southa
+ * Static library linking fixes
+ *
  */
 
 #include "MushcoreInstaller.h"

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreConfig.cpp,v 1.2 2003/01/12 17:32:58 southa Exp $
+ * $Id: MushcoreConfig.cpp,v 1.3 2003/01/13 23:05:22 southa Exp $
  * $Log: MushcoreConfig.cpp,v $
+ * Revision 1.3  2003/01/13 23:05:22  southa
+ * Mustl test application
+ *
  * Revision 1.2  2003/01/12 17:32:58  southa
  * Mushcore work
  *
@@ -84,7 +87,7 @@ MushcoreConfig::Get(const string& inName) const
 }
 
 bool
-MushcoreConfig::GetIfExists(const MushcoreScalar **outScalar, const string& inName) const
+MushcoreConfig::GetIfExists(const MushcoreScalar *& outScalar, const string& inName) const
 {
     map<string, MushcoreScalar>::const_iterator p = m_config.find(inName);
     if (p == m_config.end())
@@ -93,7 +96,7 @@ MushcoreConfig::GetIfExists(const MushcoreScalar **outScalar, const string& inNa
     }
     else
     {
-        *outScalar=&p->second;
+        outScalar=&p->second;
         return true;
     }
 }

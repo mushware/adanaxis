@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Mushcore.h,v 1.4 2003/01/13 14:32:02 southa Exp $
+ * $Id: Mushcore.h,v 1.5 2003/01/16 13:11:32 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.5  2003/01/16 13:11:32  southa
+ * Install and uninstall MustlPlatform
+ *
  * Revision 1.4  2003/01/13 14:32:02  southa
  * Build frameworks for Mac OS X
  *
@@ -29,6 +32,7 @@
 
 #include "MushcoreAppHandler.h"
 #include "MushcoreAppSignal.h"
+#include "MushcoreAutoDelete.h"
 #include "MushcoreAutoMonkey.h"
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"

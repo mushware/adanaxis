@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.34 2003/01/12 17:32:57 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.35 2003/01/13 14:32:01 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.35  2003/01/13 14:32:01  southa
+ * Build frameworks for Mac OS X
+ *
  * Revision 1.34  2003/01/12 17:32:57  southa
  * Mushcore work
  *
@@ -565,7 +568,7 @@ GameTypeRace::SaveRecords(const GameRecords& inRecords) const
     {
         string filename;
         const MushcoreScalar *pScalar;
-        if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
             ofstream outputFile(filename.c_str());
@@ -590,7 +593,7 @@ GameTypeRace::LoadRecords(void)
     {
         string filename;
         const MushcoreScalar *pScalar;
-        if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        if (MushcoreEnv::Instance().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
         }
