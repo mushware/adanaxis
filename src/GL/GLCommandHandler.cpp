@@ -1,6 +1,9 @@
 /*
- * $Id: GLCommandHandler.cpp,v 1.1.1.1 2002/02/11 22:30:09 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.2 2002/02/18 22:04:37 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.2  2002/02/18 22:04:37  southa
+ * Initial texture loading
+ *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
  *
@@ -36,7 +39,14 @@ GLCommandHandler::InitGL(const string& inStr)
 
 void GLCommandHandler::LoadPixmap(const string& inStr)
 {
-    GLData::Instance().AddTexture(*new GLTexture("test.gif")); 
+    try
+    {
+        GLData::Instance().AddTexture(GLTexture("test.gif"));
+    }
+    catch (LoaderFail f)
+    {
+        cerr << f;
+    }
 }
 
 void

@@ -1,20 +1,43 @@
 #ifndef GLTEXTURE_HP
 #define GLTEXTURE_HP
 /*
- * $Id$
- * $Log$
+ * $Id: GLTexture.hp,v 1.1 2002/02/18 22:04:37 southa Exp $
+ * $Log: GLTexture.hp,v $
+ * Revision 1.1  2002/02/18 22:04:37  southa
+ * Initial texture loading
+ *
  */
 
 #include "GLStandard.hp"
+
+class LoaderFail: public exception
+{
+public:
+    LoaderFail(const string& inFilename, const string& inMessage):
+        m_filename(inFilename), m_message(inMessage) {}
+    const string& FilenameGet(void) {return m_filename;}
+    const string& MessageGet(void) {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+    
+private:
+    string m_filename;
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, LoaderFail f)
+{
+    return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
 
 class GLTexture
 {
 public:
     GLTexture(const string& inFilename);
     ~GLTexture() {if (m_data != NULL) delete[] m_data;}
-    void Load(const string& inFilename);
 
 private:
+    void ThrowGifError(const string& inFilename, int inRC);
+        
     Size m_xSize;
     Size m_ySize;
     Size m_hBytes;

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GLData.hp,v 1.1 2002/02/18 22:04:37 southa Exp $
+ * $Log: GLData.hp,v $
+ * Revision 1.1  2002/02/18 22:04:37  southa
+ * Initial texture loading
+ *
  */
 
 #include "GLStandard.hp"
@@ -11,7 +14,7 @@ class GLData
 {
 public:
     static GLData& Instance(void) {return *((m_instance==NULL)?m_instance=new GLData:m_instance);}
-    TextureRef AddTexture(GLTexture& inTexture);
+    TextureRef AddTexture(const GLTexture& inTexture);
     const GLTexture& GetTexture(TextureRef& inRef);
     
 private:
