@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } r1qdr/CPxCNbhC2AuKdGEA
 /*
- * $Id: MushcoreUtil.cpp,v 1.8 2003/09/22 19:40:36 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.9 2003/09/23 22:57:57 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.9  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.8  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -124,9 +127,9 @@ MushcoreUtil::XMLMetaInsert(const string& inStr)
         {
             retStr+="&amp;";
         }
-        else if (byte == ',')
+        else if (byte == '"')
         {
-            retStr += "&#44;";
+            retStr += "&quot;";
         }
         else
         {
@@ -148,15 +151,15 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
         ++replacePos;
     }
     replacePos = 0;
-    while (replacePos = retStr.find("&#44;", replacePos), replacePos != string::npos)
-    {
-        retStr = retStr.substr(0, replacePos) + "," + retStr.substr(replacePos + 5, string::npos);
-        ++replacePos;
-    }
-    replacePos = 0;
     while (replacePos = retStr.find("&gt;", replacePos), replacePos != string::npos)
     {
         retStr = retStr.substr(0, replacePos) + ">" + retStr.substr(replacePos + 4, string::npos);
+        ++replacePos;
+    }
+    replacePos = 0;
+    while (replacePos = retStr.find("&quot;", replacePos), replacePos != string::npos)
+    {
+        retStr = retStr.substr(0, replacePos) + "\"" + retStr.substr(replacePos + 6, string::npos);
         ++replacePos;
     }
     replacePos = 0;

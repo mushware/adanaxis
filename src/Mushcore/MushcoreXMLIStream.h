@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } k0No7lYD7eN99xHKZPXcDg
 /*
- * $Id: MushcoreXMLIStream.h,v 1.5 2003/09/22 19:40:36 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.6 2003/09/23 22:57:57 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.6  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.5  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -60,6 +63,7 @@ public:
     void ObjectRead(std::string& outStr);
 
     template<class T> void ObjectRead(vector<T>& inVector);
+    template<class T, class U> void ObjectRead(map<T, U>& inMap);
 
 protected:
     Mushware::U8 ByteGet(void) const;
@@ -124,10 +128,17 @@ MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
     {
         for (;;)
         {
-            T value;
-            ObjectRead(value);
-            inVector.push_back(value);
-            //cout << "Read '" << value << "'" << endl;
+            inVector.push_back();
+            try
+            {
+                ObjectRead(inVector.back());
+            }
+            catch (...)
+            {
+                // Remove partially written object
+                inVector.pop_back();
+                throw;
+            }
             
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -144,6 +155,56 @@ MushcoreXMLIStream::ObjectRead(vector<T>& inVector)
         }
     }
 }
+
+template<class T, class U>
+inline void
+MushcoreXMLIStream::ObjectRead(map<T, U>& inMap)
+{
+    // Decode the (x,y,z) sequence
+
+    if (ByteTake() != '(')
+    {
+        Throw("Bad first character in map");
+    }
+
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            T keyValue;
+            ObjectRead(keyValue);
+
+            if (ByteTake() != '=')
+            {
+                Throw("Bad separator in map");
+            }
+
+            // Read completely before setting the map, in case of exception
+            U valueValue;
+            ObjectRead(valueValue);
+            inMap[keyValue] = valueValue;
+            
+            Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in vector");
+            }
+        }
+    }
+}
+
 
 //%includeGuardEnd {
 #endif

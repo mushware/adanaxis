@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 6Pvz7HiimjBXCxXQxlnIcA
 /*
- * $Id: TestMushcoreObject.h,v 1.6 2003/09/22 19:40:36 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.7 2003/09/23 22:57:57 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.7  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.6  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -47,7 +50,7 @@ public:
     TestMushcoreObject() :
         m_u8(1),
         m_u32(2),
-        m_string("&<>&lt;ab&am,p;cdef</string>&,&")
+        m_string("&<>&lt;ab&am,p;cde\"f</string>&,&")
     {
             m_u8Vector.push_back(4);
             m_u8Vector.push_back(16);
@@ -55,7 +58,7 @@ public:
             m_u32Vector.push_back(3);
             m_u32Vector.push_back(15);
             m_u32Vector.push_back(9);
-            m_stringVector.push_back("hamster");
+            m_stringVector.push_back("hams\"ter");
             m_stringVector.push_back("ger,bil");
             m_stringVector.push_back("bad|ger");
 
@@ -68,6 +71,20 @@ public:
             m_vectorVector[2].push_back(8);
             m_vectorVector[2].push_back(35);
             m_vectorVector[2].push_back(1);
+
+            m_mapVector[3].push_back("three");
+            m_mapVector[6] = vector<std::string>();
+            m_mapVector[15].push_back("\"fifteen-one\"");
+            m_mapVector[15].push_back("fifteen-two");
+
+            m_vectorMap.push_back();
+            m_vectorMap.push_back();
+            m_vectorMap.push_back();
+
+            m_vectorMap[0][6] = "six";
+            m_vectorMap[0][7] = "seven";
+            m_vectorMap[2][14] = "fourt,)(\"een";
+
 #if 0
             m_pVector.push_back(TestMushcoreObject(0));
 #endif
@@ -85,14 +102,17 @@ private:
     Mushware::U8 m_u8;
     Mushware::U32 m_u32;
     std::string m_string;
-    vector<Mushware::U8> m_u8Vector;
-    vector<Mushware::U32> m_u32Vector;
-    vector<std::string> m_stringVector;
-    vector<Mushware::U8> m_u8EmptyVector;
-    vector<Mushware::U32> m_uEmpty32Vector;
-    vector<std::string> m_stringEmptyVector;
+    std::vector<Mushware::U8> m_u8Vector;
+    std::vector<Mushware::U32> m_u32Vector;
+    std::vector<std::string> m_stringVector;
+    std::vector<Mushware::U8> m_u8EmptyVector;
+    std::vector<Mushware::U32> m_uEmpty32Vector;
+    std::vector<std::string> m_stringEmptyVector;
 
-    vector< vector<Mushware::U32> > m_vectorVector;
+    std::vector< std::vector<Mushware::U32> > m_vectorVector;
+    std::map< Mushware::U32, std::vector<std::string> > m_mapVector;
+    std::vector< std::map<Mushware::U32, std::string> > m_vectorMap;
+
     //vector<TestMushcoreObject> m_pVector;
     
 
@@ -129,7 +149,9 @@ TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
            (m_u8EmptyVector == inObj.m_u8EmptyVector) &&
            (m_uEmpty32Vector == inObj.m_uEmpty32Vector) &&
            (m_stringEmptyVector == inObj.m_stringEmptyVector) &&
-           (m_vectorVector == inObj.m_vectorVector);
+           (m_vectorVector == inObj.m_vectorVector) &&
+           (m_mapVector == inObj.m_mapVector) &&
+           (m_vectorMap == inObj.m_vectorMap);
 }
 inline bool
 operator==(const TestMushcoreObject& inA, const TestMushcoreObject& inB)
@@ -142,7 +164,7 @@ operator<<(std::ostream& ioOut, const TestMushcoreObject& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } jYHX+aMxTAOFKTdlFPN1zg
+//%inlineHeader } mtiBtssmlCyLe38L5iOZ9w
 
 
 

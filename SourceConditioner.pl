@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.6 2003/09/22 19:40:33 southa Exp $
+# $Id: SourceConditioner.pl,v 1.7 2003/09/23 22:57:54 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.7  2003/09/23 22:57:54  southa
+# XML vector handling
+#
 # Revision 1.6  2003/09/22 19:40:33  southa
 # XML I/O work
 #
@@ -475,7 +478,7 @@ sub XMLOStreamWriteFunctionGenerate($$)
 "    ioOut << \"<$className\";",
 "    if (inName != \"\")",
 "    {",
-'        ioOut << " name=\"" << inName << "\"";',
+'        ioOut << " name=" << inName;',
 "    }",
 "    ioOut << \">\\n\";"
 ;

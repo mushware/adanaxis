@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.5 2003/09/22 19:58:13 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.6 2003/09/23 22:57:57 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.6  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.5  2003/09/22 19:58:13  southa
  * Prebuild in makefiles
  *
@@ -66,7 +69,7 @@ template<>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const std::string& inStr)
 {
-    ioOut.OStreamGet() << MushcoreUtil::XMLMetaInsert(inStr);
+    ioOut.OStreamGet() << '"' << MushcoreUtil::XMLMetaInsert(inStr) << '"';
     return ioOut;
 }
 
@@ -81,6 +84,27 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T>& inObj)
     while (p != pEnd)
     {
         ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    return ioOut;
+}
+
+template<class T, class U>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::map<T, U>& inObj)
+{
+    std::map<T, U>::const_iterator pEnd = inObj.end();
+    std::map<T, U>::const_iterator p = inObj.begin();
+
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << p->first << "=" << p->second;
         ++p;
         if (p != pEnd)
         {

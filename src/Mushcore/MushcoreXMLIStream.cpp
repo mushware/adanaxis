@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YEOo+pXU/aO2Yxoi77dW6A
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.5 2003/09/22 19:40:36 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.6 2003/09/23 22:57:57 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.6  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.5  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -95,7 +98,7 @@ MushcoreXMLIStream::ObjectRead(MushcoreXMLConsumer& inObj)
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)
 {
-    string dataStr = DataUntilTake(",)");
+    string dataStr = DataUntilTake(",)=");
     istringstream dataStream(dataStr);
     if (!(dataStream >> outU32))
     {
@@ -114,8 +117,15 @@ MushcoreXMLIStream::ObjectRead(U8& outU8)
 void
 MushcoreXMLIStream::ObjectRead(string& outStr)
 {
-    outStr = DataUntilTake(",)");
+    if (ByteTake() != '"')
+    {
+        Throw("Bad first character in string");
+    }
+
+    outStr = DataUntilTake("\"");
     outStr = MushcoreUtil::XMLMetaRemove(outStr);
+
+    ByteTake(); // Remove the quote
 }
 
 void

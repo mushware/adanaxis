@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } /pOiNRIbyuLcFay5YqF2HQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.6 2003/09/22 19:40:36 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.7 2003/09/23 22:57:57 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.7  2003/09/23 22:57:57  southa
+ * XML vector handling
+ *
  * Revision 1.6  2003/09/22 19:40:36  southa
  * XML I/O work
  *
@@ -54,7 +57,9 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "u8EmptyVector=" << m_u8EmptyVector << ", ";
     ioOut << "uEmpty32Vector=" << m_uEmpty32Vector << ", ";
     ioOut << "stringEmptyVector=" << m_stringEmptyVector << ", ";
-    ioOut << "vectorVector=" << m_vectorVector;
+    ioOut << "vectorVector=" << m_vectorVector << ", ";
+    ioOut << "mapVector=" << m_mapVector << ", ";
+    ioOut << "vectorMap=" << m_vectorMap;
     ioOut << "]";
 }
 void
@@ -104,6 +109,14 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn)
     {
         ioIn >> m_vectorVector;
     }
+    else if (ioIn.TagNameGet() == "mapVector")
+    {
+        ioIn >> m_mapVector;
+    }
+    else if (ioIn.TagNameGet() == "vectorMap")
+    {
+        ioIn >> m_vectorMap;
+    }
 }
 void
 TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& inName) const
@@ -111,7 +124,7 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<TestMushcoreObject";
     if (inName != "")
     {
-        ioOut << " name=\"" << inName << "\"";
+        ioOut << " name=" << inName;
     }
     ioOut << ">\n";
     ioOut << "<u8>" << static_cast<Mushware::U32>(m_u8) << "</u8>\n";
@@ -124,6 +137,8 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut, const std::string& i
     ioOut << "<uEmpty32Vector>" << m_uEmpty32Vector << "</uEmpty32Vector>\n";
     ioOut << "<stringEmptyVector>" << m_stringEmptyVector << "</stringEmptyVector>\n";
     ioOut << "<vectorVector>" << m_vectorVector << "</vectorVector>\n";
+    ioOut << "<mapVector>" << m_mapVector << "</mapVector>\n";
+    ioOut << "<vectorMap>" << m_vectorMap << "</vectorMap>\n";
     ioOut << "</TestMushcoreObject>\n";
 }
-//%outOfLineFunctions } XiDRf4JfSOn3A2VXN7WFdQ
+//%outOfLineFunctions } Sig60JxWdIF4FZnqb4hzqg
