@@ -1,6 +1,9 @@
 /*
- * $Id: GLAppHandler.cpp,v 1.9 2002/06/05 16:29:51 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.10 2002/06/06 13:36:13 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.10  2002/06/06 13:36:13  southa
+ * Mouse handling
+ *
  * Revision 1.9  2002/06/05 16:29:51  southa
  * Mouse control
  *
@@ -173,17 +176,20 @@ GLAppHandler::SpecialUpHandler(int inKey, int inX, int inY)
 void
 GLAppHandler::PassiveMotionHandler(int inX, int inY)
 {
-    S32 deltaX, deltaY;
+    S32 deltaX=0;
+    S32 deltaY=0;
+    
     if (!m_lastMouseValid)
     {
         m_lastMouseX=inX;
         m_lastMouseY=inY;
     }
     
-    PlatformInputUtils::MouseDeltaPrologue(inX, inY, m_lastMouseX, m_lastMouseY);
-    PlatformInputUtils::GetMouseDeltas(deltaX, deltaY, inX, inY, m_lastMouseX, m_lastMouseY);
-    PlatformInputUtils::MouseDeltaEpilogue(inX, inY, m_lastMouseX, m_lastMouseY);
-
+    if (PlatformInputUtils::MouseDeltaPrologue(inX, inY, m_lastMouseX, m_lastMouseY))
+    {
+    	PlatformInputUtils::GetMouseDeltas(deltaX, deltaY, inX, inY, m_lastMouseX, m_lastMouseY);
+    	PlatformInputUtils::MouseDeltaEpilogue(inX, inY, m_lastMouseX, m_lastMouseY);
+    }
     if (m_lastMouseValid)
     {
         m_mouseXDelta+=deltaX;
