@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.h,v 1.6 2002/07/19 15:44:40 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.7 2002/07/31 16:27:16 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.7  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.6  2002/07/19 15:44:40  southa
  * Graphic optimisations
  *
@@ -48,6 +51,7 @@ public:
     SDLAppHandler();
     virtual ~SDLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
+    virtual bool LatchedKeyStateTake(const GLKeys& inKey);
     virtual void MousePositionGet(S32& outX, S32& outY) const;
     virtual void MouseDeltaGet(tVal& outX, tVal& outY);
     virtual void EnterScreen(tInitType inType);
@@ -76,9 +80,11 @@ private:
     bool m_redisplay;
     bool m_visible;
     vector<bool> m_keyState;
+    vector<bool> m_latchedKeyState;
     U32 m_mouseX;
     U32 m_mouseY;
     tVal m_mouseXDelta;
     tVal m_mouseYDelta;
+    bool m_firstDelta;
 };
 #endif

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameContract.h,v 1.13 2002/07/06 18:04:18 southa Exp $
+ * $Id: GameContract.h,v 1.14 2002/07/18 11:40:34 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.14  2002/07/18 11:40:34  southa
+ * Overplotting and movement
+ *
  * Revision 1.13  2002/07/06 18:04:18  southa
  * More designer work
  *
@@ -125,6 +128,7 @@ private:
     U32 m_frames;
     GameFloorDesigner *m_floorDesigner;
     GameView *m_currentView;
+    bool m_renderDiagnostics;
 };
 
 inline ostream& operator<<(ostream &inOut, const GameContract& inObj)

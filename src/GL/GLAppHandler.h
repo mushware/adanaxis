@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.11 2002/07/10 16:37:39 southa Exp $
+ * $Id: GLAppHandler.h,v 1.12 2002/07/19 15:44:39 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.12  2002/07/19 15:44:39  southa
+ * Graphic optimisations
+ *
  * Revision 1.11  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -80,6 +83,7 @@ public:
     };
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
+    virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
     virtual void MousePositionGet(S32& outX, S32& outY) const = 0;
     virtual void MouseDeltaGet(tVal& outX, tVal& outY) = 0;
     virtual void EnterScreen(tInitType inType) = 0;

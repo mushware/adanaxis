@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameContract.cpp,v 1.36 2002/08/01 16:47:10 southa Exp $
+ * $Id: GameContract.cpp,v 1.37 2002/08/02 09:05:10 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.37  2002/08/02 09:05:10  southa
+ * Movement modification in collison checking
+ *
  * Revision 1.36  2002/08/01 16:47:10  southa
  * First multi-box collsion checking
  *
@@ -144,7 +147,8 @@ GameContract::GameContract() :
     m_gameState(kInit),
     m_fps(0),
     m_frames(0),
-    m_currentView(NULL)
+    m_currentView(NULL),
+    m_renderDiagnostics(false)
 {
 }
 
@@ -222,13 +226,13 @@ GameContract::RunningDisplay(void)
     {
         GameMotionSpec motion;
         m_player->MoveGet(motion);
-        if (gameHandler.KeyStateGet('m'))
+        if (m_renderDiagnostics)
         {
             m_floorMap->SolidMapGet().OverPlotCollisionSet(motion);
         }
         m_floorMap->SolidMapGet().TrimMotion(motion);
         m_player->MoveConfirm(motion);
-        if (gameHandler.KeyStateGet('m'))
+        if (m_renderDiagnostics)
         {
             motion.Render();
         }
@@ -244,7 +248,7 @@ GameContract::RunningDisplay(void)
     
     m_floorMap->Render(visibleArea, highlightArea);
 
-    if (gameHandler.KeyStateGet('m'))
+    if (m_renderDiagnostics)
     {
         m_floorMap->RenderSolidMap(visibleArea);
     }
@@ -337,6 +341,10 @@ GameContract::Running(void)
     {
         gameHandler.SetCursorState(true);
         m_gameState=kDesigning;
+    }
+    if (gameHandler.LatchedKeyStateTake('m'))
+    {
+        m_renderDiagnostics=!m_renderDiagnostics;
     }
 }
 

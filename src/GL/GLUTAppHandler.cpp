@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.5 2002/07/10 16:37:39 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.6 2002/07/19 15:44:40 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.6  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -49,7 +52,8 @@ bool GLUTAppHandler::m_lastMouseValid=false;
 
 GLUTAppHandler::GLUTAppHandler():
     m_visible(true),
-    m_keyState(GLKeys::kNumberOfKeys)
+    m_keyState(GLKeys::kNumberOfKeys, false),
+    m_latchedKeyState(GLKeys::kNumberOfKeys, false)
 {}
 
 void
@@ -73,7 +77,11 @@ GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
     m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
-
+    if (inSignal.keyDown)
+    {
+        m_latchedKeyState[inSignal.keyValue.ValueGet()]=true;
+    }
+    
     if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
         // Escape key pressed
@@ -86,6 +94,19 @@ GLUTAppHandler::KeyStateGet(const GLKeys& inKey) const
 {
     COREASSERT(inKey.ValueGet() < m_keyState.size());
     return m_keyState[inKey.ValueGet()];
+}
+
+
+bool
+GLUTAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
+{
+    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    bool state=m_latchedKeyState[inKey.ValueGet()];
+    if (state)
+    {
+        m_latchedKeyState[inKey.ValueGet()]=false;
+    }
+    return state;
 }
 
 void

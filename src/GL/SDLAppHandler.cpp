@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.10 2002/07/19 16:25:21 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.11 2002/07/31 16:27:16 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.11  2002/07/31 16:27:16  southa
+ * Collision checking work
+ *
  * Revision 1.10  2002/07/19 16:25:21  southa
  * Texture tweaks
  *
@@ -59,11 +62,13 @@
 SDLAppHandler::SDLAppHandler():
     m_redisplay(false),
     m_visible(true),
-    m_keyState(GLKeys::kNumberOfKeys),
+    m_keyState(GLKeys::kNumberOfKeys, false),
+    m_latchedKeyState(GLKeys::kNumberOfKeys, false),
     m_mouseX(0),
     m_mouseY(0),
     m_mouseXDelta(0),
-    m_mouseYDelta(0)
+    m_mouseYDelta(0),
+    m_firstDelta(true)
 {}
 
 void
@@ -73,6 +78,7 @@ SDLAppHandler::Initialise(void)
     m_mouseY=0;
     m_mouseXDelta=0;
     m_mouseYDelta=0;
+    m_firstDelta=true;
 }
 
 void
@@ -92,6 +98,10 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 
     COREASSERT(inSignal.keyValue.ValueGet() < m_keyState.size());
     m_keyState[inSignal.keyValue.ValueGet()]=inSignal.keyDown;
+    if (inSignal.keyDown)
+    {
+        m_latchedKeyState[inSignal.keyValue.ValueGet()]=true;
+    }
 
     if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
@@ -107,6 +117,18 @@ SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
     return m_keyState[inKey.ValueGet()];
 }
 
+bool
+SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
+{
+    COREASSERT(inKey.ValueGet() < m_keyState.size());
+    bool state=m_latchedKeyState[inKey.ValueGet()];
+    if (state)
+    {
+        m_latchedKeyState[inKey.ValueGet()]=false;
+    }
+    return state;
+}
+
 void
 SDLAppHandler::MousePositionGet(S32& outX, S32& outY) const
 {
@@ -118,8 +140,17 @@ SDLAppHandler::MousePositionGet(S32& outX, S32& outY) const
 void
 SDLAppHandler::MouseDeltaGet(tVal& outXDelta, tVal& outYDelta)
 {
-    outXDelta=m_mouseXDelta/m_width;
-    outYDelta=-m_mouseYDelta/m_width;
+    if (m_firstDelta)
+    {
+        outXDelta=0;
+        outYDelta=0;
+        m_firstDelta=false;
+    }
+    else
+    {
+        outXDelta=m_mouseXDelta/m_width;
+        outYDelta=-m_mouseYDelta/m_width; // width intentional
+    }
     m_mouseXDelta=0;
     m_mouseYDelta=0;
 }
@@ -180,7 +211,7 @@ SDLAppHandler::EnterScreen(tInitType inType)
         }
         else
         {
-            GLUtils::PolygonSmoothingSet(false); // ********
+            GLUtils::PolygonSmoothingSet(false);
             cerr << "Disabling polygon smoothing (no alpha buffer)" << endl;
         }
     }
@@ -391,6 +422,7 @@ SDLAppHandler::TranslateKey(void *inKeyEvent) const
             {
                 return keyValue;
             }
+            break;
     }
     cerr << "Ignored SDL key " << keyValue << endl;
     return 0;

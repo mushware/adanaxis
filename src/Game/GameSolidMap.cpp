@@ -1,6 +1,9 @@
 /*
- * $Id: GameSolidMap.cpp,v 1.10 2002/08/02 10:02:28 southa Exp $
+ * $Id: GameSolidMap.cpp,v 1.11 2002/08/02 11:00:44 southa Exp $
  * $Log: GameSolidMap.cpp,v $
+ * Revision 1.11  2002/08/02 11:00:44  southa
+ * Tweaked motion trimming
+ *
  * Revision 1.10  2002/08/02 10:02:28  southa
  * Added more angle tweaks
  *
@@ -411,9 +414,9 @@ GameSolidMap::Render(const GameMapArea& inArea) const
                 tVal perm=PermeabilityGet(point.U32XGet(), point.U32YGet());
                 GLUtils::ColourSet(0.5+0.5*cos(perm*M_PI),
                                    0.5-0.5*cos(perm*M_PI),
-                                   (perm>1)?1:0);
-                GLLine line((point-GLPoint(0.4, 0.4)),
-                            (point+GLPoint(0.4, 0.4)));
+                                   (perm>1)?1:0, 0.33);
+                GLLine line((point-GLPoint(0.5, 0.5)),
+                            (point+GLPoint(0.5, 0.5)));
 
                 line.Render();
                 line.RotateAboutCentre(M_PI/2);

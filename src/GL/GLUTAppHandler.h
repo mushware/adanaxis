@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.5 2002/07/10 16:37:39 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.6 2002/07/19 15:44:40 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.6  2002/07/19 15:44:40  southa
+ * Graphic optimisations
+ *
  * Revision 1.5  2002/07/10 16:37:39  southa
  * Cursor removal
  *
@@ -45,6 +48,7 @@ public:
     GLUTAppHandler();
     virtual ~GLUTAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const;
+    virtual bool LatchedKeyStateTake(const GLKeys& inKey);
     virtual void MousePositionGet(S32& outX, S32& outY) const;
     virtual void MouseDeltaGet(tVal& outX, tVal& outY);
     virtual void EnterScreen(tInitType inType);
@@ -79,6 +83,7 @@ private:
     static void PassiveMotionHandler(int inX, int inY);
     bool m_visible;
     vector<bool> m_keyState;
+    vector<bool> m_latchedKeyState;
     U32 m_width;
     U32 m_height;
     U32 m_bpp;
