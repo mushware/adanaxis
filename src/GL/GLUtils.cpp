@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.38 2002/10/11 20:10:14 southa Exp $
+ * $Id: GLUtils.cpp,v 1.39 2002/10/12 15:25:09 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.39  2002/10/12 15:25:09  southa
+ * Facet renderer
+ *
  * Revision 1.38  2002/10/11 20:10:14  southa
  * Various fixes and new files
  *
@@ -355,6 +358,7 @@ GLUtils::DrawSprite(const GLTexture& inTex)
     tVal height2=inTex.Height()/2;
     GLState::BindTexture(inTex.BindingNameGet());
     GLState::TextureEnable();
+    glNormal3f(0,0,1);
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(-width2,-height2);
@@ -373,6 +377,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, const GLRectangle& inRectangle)
 {
     GLState::BindTexture(inTex.BindingNameGet());
     GLState::TextureEnable();
+    glNormal3f(0,0,1);
     glPushMatrix();
     {
         static tVal ctr=0;
@@ -400,6 +405,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
     tVal height=inTex.Height();
     GLState::BindTexture(inTex.BindingNameGet());
     GLState::TextureEnable();
+    glNormal3f(0,0,1);
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
     glVertex2f(inX,inY);
@@ -411,6 +417,7 @@ GLUtils::DrawSprite(const GLTexture& inTex, tVal inX, tVal inY)
     glVertex2f(inX+height,inY);
     glEnd();
     GLState::TextureDisable();
+    glNormal3f(0,0,1);
 }
 
 void
@@ -420,6 +427,7 @@ GLUtils::DrawRotatedSprite(const GLTexture& inTex, tVal inX, tVal inY, tVal inAn
     tVal height=inTex.Height();
     GLState::BindTexture(inTex.BindingNameGet());
     GLState::TextureEnable();
+    glNormal3f(0,0,1);
     glPushMatrix();
     tVal xCentre=inX+width/2;
     tVal yCentre=inY+height/2;
