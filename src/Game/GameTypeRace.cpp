@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.1 2002/08/18 20:52:28 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.1  2002/08/18 20:52:28  southa
+ * Moved
+ *
  * Revision 1.1  2002/08/18 20:44:33  southa
  * Initial chequepoint work
  *
@@ -40,7 +43,7 @@ GameTypeRace::SequenceAdvance(void)
     m_sequence++;
     if (m_sequence >= m_chequePoints.size())
     {
-        m_sequence = m_chequePoints.size();
+        m_sequence = 0;
     }
 }
 

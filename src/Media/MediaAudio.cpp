@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudio.cpp,v 1.9 2002/08/16 19:46:07 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.10 2002/08/16 21:13:52 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.10  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.9  2002/08/16 19:46:07  southa
  * MediaSound work
  *
@@ -86,7 +89,6 @@ MediaAudio::MediaAudio():
     m_softChannels = Mix_AllocateChannels(u32AudioSoftChannels);
     m_channelState.resize(m_softChannels, kChannelIdle);
     m_activeSamples.resize(m_softChannels, NULL);
-    Mix_ChannelFinished(ChannelDone);
     cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
     cout << ", hard channels=" << audioChannels << ", soft channels=" << m_softChannels << endl;
 }
@@ -114,7 +116,6 @@ void
 MediaAudio::Play(MediaSound& inSound)
 {
     S32 channel=Mix_PlayChannel(-1, inSound.MixChunkGet(), 0);
-    // We're in trouble if the sample finishes before the ChannelStateSet below
     if (channel == -1)
     {
         throw(DeviceFail("Failed to play sound '"+inSound.FilenameGet()+"': "+string(Mix_GetError())));
@@ -161,9 +162,12 @@ MediaAudio::Ticker(void)
 {
     for (U32 i=0; i<m_softChannels; ++i)
     {
-        if (m_channelState[i] == kChannelFinished)
+        if (m_channelState[i] != kChannelIdle)
         {
-            ChannelStateSet(i, kChannelIdle, NULL);
+            if (Mix_Playing(i) == 0)
+            {
+                ChannelStateSet(i, kChannelIdle, NULL);
+            }
         }
     }
 }
@@ -174,34 +178,10 @@ MediaAudio::SoundHalt(MediaSound& inSound)
     for (U32 i=0; i<m_softChannels; ++i)
     {
         if (m_activeSamples[i] == &inSound &&
-            m_channelState[i] != kChannelFinished)
+            Mix_Playing(i) != 0)
         {
             cerr << "Halting channel " << i << " playing '" << inSound.FilenameGet() << "'" << endl;
             Mix_HaltChannel(i);
         }
     }
-}
-
-// Hook called when channel finishes playing.  May be called from interrupt handler
-void
-MediaAudio::ChannelDone(int inChannel)
-{
-    COREASSERT(m_instance.get() != NULL);
-    if (m_instance.get() != NULL)
-    {
-        MediaAudio::Instance().SetEndFlag(inChannel);
-    }
-}
-
-// May be called from interrupt handler
-void
-MediaAudio::SetEndFlag(U32 inChannel)
-{
-    COREASSERT(inChannel < m_softChannels);
-    COREASSERT(inChannel < m_channelState.size());
-    if (m_channelState[inChannel] != kChannelPlaying)
-    {
-        cerr << "Channel " << inChannel << " finished but was not playing" << endl;
-    }
-    m_channelState[inChannel] = kChannelFinished;
 }

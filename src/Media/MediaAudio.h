@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: MediaAudio.h,v 1.8 2002/08/16 19:46:07 southa Exp $
+ * $Id: MediaAudio.h,v 1.9 2002/08/16 21:13:52 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.9  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.8  2002/08/16 19:46:07  southa
  * MediaSound work
  *
@@ -67,13 +70,10 @@ private:
     {
         kInvalid,
         kChannelIdle,
-        kChannelPlaying,
-        kChannelFinished
+        kChannelPlaying
     };
 
     void ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound);
-    void SetEndFlag(U32 inChannel);
-    static void ChannelDone(int inChannel);
     
     U32 m_softChannels;
     vector<ChannelState> m_channelState;

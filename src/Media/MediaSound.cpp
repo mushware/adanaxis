@@ -1,6 +1,9 @@
 /*
- * $Id: MediaSound.cpp,v 1.2 2002/08/16 19:46:07 southa Exp $
+ * $Id: MediaSound.cpp,v 1.3 2002/08/16 21:13:52 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.3  2002/08/16 21:13:52  southa
+ * Added MediaSoundStream
+ *
  * Revision 1.2  2002/08/16 19:46:07  southa
  * MediaSound work
  *
@@ -52,7 +55,7 @@ MediaSound::Free(void)
         // cerr << "Freeing sound '" << m_filename << "'" << endl;
         MediaAudio::Instance().SoundHalt(*this);
         Mix_FreeChunk(m_chunk);
-        // cerr << "Freed sound '" << m_filename << "'" << endl;
+        cerr << "Freed sound '" << m_filename << "'" << endl;
         m_chunk=NULL;
     }
 }    
