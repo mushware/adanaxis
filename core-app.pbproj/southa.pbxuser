@@ -2981,7 +2981,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 101";
 		rLen = 0;
-		rLoc = 3471;
+		rLoc = 3690;
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 2217;
@@ -3091,9 +3091,9 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 102";
 		rLen = 0;
-		rLoc = 3471;
+		rLoc = 3690;
 		rType = 0;
-		vrLen = 1387;
+		vrLen = 1328;
 		vrLoc = 3781;
 	};
 	7AB0147803D5C0D800A80164 = {
@@ -3231,7 +3231,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: 130";
 		rLen = 0;
-		rLoc = 3385;
+		rLoc = 3420;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 2125;
@@ -3250,8 +3250,8 @@
 		fRef = 7A05C3C603CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: 126";
-		rLen = 52;
-		rLoc = 3333;
+		rLen = 58;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 2126;
@@ -3741,7 +3741,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 101";
 		rLen = 0;
-		rLoc = 3471;
+		rLoc = 3690;
 		rType = 0;
 		vrLen = 2013;
 		vrLoc = 2217;
@@ -3821,7 +3821,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: MushcoreEnv";
 		rLen = 0;
-		rLoc = 2815;
+		rLoc = 2822;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 1544;
@@ -3941,7 +3941,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 4695;
+		rLoc = 4531;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 4756;
@@ -5149,7 +5149,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 122";
 		rLen = 0;
-		rLoc = 3157;
+		rLoc = 3532;
 		rType = 0;
 		vrLen = 1071;
 		vrLoc = 1323;
@@ -6355,7 +6355,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 147";
 		rLen = 0;
-		rLoc = 4964;
+		rLoc = 5775;
 		rType = 0;
 		vrLen = 2076;
 		vrLoc = 1616;
@@ -7950,8 +7950,8 @@
 		fRef = 7A05C3C603CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: Install";
-		rLen = 52;
-		rLoc = 3333;
+		rLen = 58;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 2205;
@@ -8067,7 +8067,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFunction.h: 87";
 		rLen = 0;
-		rLoc = 2486;
+		rLoc = 2483;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1207;
@@ -8157,7 +8157,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 131";
 		rLen = 0;
-		rLoc = 3212;
+		rLoc = 3587;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 2763;
@@ -8177,7 +8177,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 6121;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5548;
@@ -8245,7 +8245,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: VariableGet";
 		rLen = 0;
-		rLoc = 2475;
+		rLoc = 2482;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 2068;
@@ -8395,7 +8395,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 116";
 		rLen = 0;
-		rLoc = 3440;
+		rLoc = 3816;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 2062;
@@ -8415,7 +8415,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 327";
 		rLen = 0;
-		rLoc = 8058;
+		rLoc = 10602;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6829;
@@ -8455,7 +8455,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 124";
 		rLen = 170;
-		rLoc = 3544;
+		rLoc = 3920;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 2990;
@@ -8475,7 +8475,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 170";
 		rLen = 0;
-		rLoc = 4541;
+		rLoc = 4917;
 		rType = 0;
 		vrLen = 1080;
 		vrLoc = 4346;
@@ -8495,7 +8495,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 229";
 		rLen = 0;
-		rLoc = 5553;
+		rLoc = 5929;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 6915;
@@ -8515,7 +8515,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 223";
 		rLen = 0;
-		rLoc = 5447;
+		rLoc = 5823;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 5235;
@@ -8535,7 +8535,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 214";
 		rLen = 0;
-		rLoc = 5447;
+		rLoc = 5823;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 4815;
@@ -8704,8 +8704,8 @@
 		fRef = 7A05C3C603CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: Install";
-		rLen = 52;
-		rLoc = 3333;
+		rLen = 58;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 0;
@@ -8764,8 +8764,8 @@
 		fRef = 7A05C3C603CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: Install";
-		rLen = 52;
-		rLoc = 3333;
+		rLen = 58;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 2206;
@@ -8894,8 +8894,8 @@
 		fRef = 7A05C3C603CB43AC00A80164;
 		isa = PBXTextBookmark;
 		name = "MushcoreBuiltinHandler.cpp: Install";
-		rLen = 52;
-		rLoc = 3333;
+		rLen = 58;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 2205;
@@ -9129,7 +9129,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5731;
+		rLoc = 6107;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 5344;
@@ -9159,7 +9159,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 6121;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 5548;
@@ -9249,7 +9249,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.cpp: VariableGet";
 		rLen = 0;
-		rLoc = 4375;
+		rLoc = 4211;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 0;
@@ -9259,7 +9259,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: 115";
 		rLen = 0;
-		rLoc = 3436;
+		rLoc = 3491;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1900;
@@ -9279,7 +9279,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: 113";
 		rLen = 0;
-		rLoc = 3197;
+		rLoc = 3252;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 2068;
@@ -9389,7 +9389,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFunction.h: 87";
 		rLen = 0;
-		rLoc = 2486;
+		rLoc = 2483;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1207;
@@ -9599,7 +9599,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: 113";
 		rLen = 0;
-		rLoc = 3197;
+		rLoc = 3252;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 2068;
@@ -9649,7 +9649,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreFlex.flex: 131";
 		rLen = 0;
-		rLoc = 3212;
+		rLoc = 3587;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 2763;
@@ -9669,7 +9669,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: 113";
 		rLen = 0;
-		rLoc = 3197;
+		rLoc = 3252;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 2068;
@@ -9679,7 +9679,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreScalar.h: 228";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 6121;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 5548;
@@ -9689,7 +9689,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: VariableGet";
 		rLen = 0;
-		rLoc = 2475;
+		rLoc = 2482;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 2089;
@@ -9917,7 +9917,7 @@
 		isa = PBXTextBookmark;
 		name = "MushcoreEnv.h: VariableGet";
 		rLen = 0;
-		rLoc = 2475;
+		rLoc = 2482;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 2068;
@@ -15707,7 +15707,7 @@
 		isa = PBXTextBookmark;
 		name = "autogen.sh: 110";
 		rLen = 0;
-		rLoc = 4554;
+		rLoc = 4626;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 2791;

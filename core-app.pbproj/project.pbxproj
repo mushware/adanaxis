@@ -2257,6 +2257,7 @@
 				FRAMEWORK_VERSION = A;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "-DMUSHCORE_FLEXTESTING";
 				OTHER_LDFLAGS = "-seg1addr 0x2a000000";
 				OTHER_LIBTOOL_FLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -2812,6 +2813,8 @@
 				7AF8B16F03DC3DA300A80164,
 				7AF8B17403DC473900A80164,
 				7AF8B17303DC473900A80164,
+				7AF8B17803DC4F9500A80164,
+				7AF8B17703DC4F9500A80164,
 				7AF8B14E03DC3A3F00A80164,
 				7AF8B14D03DC3A3F00A80164,
 				7AF8B16903DC3B8E00A80164,
@@ -4335,6 +4338,7 @@
 				7AF8B16B03DC3B8E00A80164,
 				7AF8B17103DC3DA300A80164,
 				7AF8B17503DC473900A80164,
+				7AF8B17903DC4F9500A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4353,6 +4357,7 @@
 				7AF8B16C03DC3B8E00A80164,
 				7AF8B17203DC3DA300A80164,
 				7AF8B17603DC473900A80164,
+				7AF8B17A03DC4F9500A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4483,6 +4488,30 @@
 		};
 		7AF8B17603DC473900A80164 = {
 			fileRef = 7AF8B17403DC473900A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AF8B17703DC4F9500A80164 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = TestMushcoreCommand.h;
+			refType = 4;
+		};
+		7AF8B17803DC4F9500A80164 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = TestMushcoreCommand.cpp;
+			refType = 4;
+		};
+		7AF8B17903DC4F9500A80164 = {
+			fileRef = 7AF8B17703DC4F9500A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AF8B17A03DC4F9500A80164 = {
+			fileRef = 7AF8B17803DC4F9500A80164;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.7 2003/01/20 10:45:29 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.8 2003/01/20 12:23:22 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
+ * Revision 1.8  2003/01/20 12:23:22  southa
+ * Code and interface tidying
+ *
  * Revision 1.7  2003/01/20 10:45:29  southa
  * Singleton tidying
  *
@@ -114,11 +117,11 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
     {
         throw(MushcoreCommandFail("Usage: configset(name,value)"));
     }
-    string name;
-    string value;
-    ioCommand.PopParam(name);
-    ioCommand.PopParam(value);
-    MushcoreEnv::Sgl().VariableSet(name, value);
+    string nameStr;
+    MushcoreScalar valueScalar;
+    ioCommand.PopParam(nameStr);
+    ioCommand.PopParam(valueScalar);
+    MushcoreEnv::Sgl().VariableSet(nameStr, valueScalar);
     return MushcoreScalar(0);
 }
 

@@ -10,8 +10,11 @@
  ****************************************************************************/
 
  /*
- * $Id: MushcoreBison.y,v 1.5 2003/01/20 10:45:28 southa Exp $
+ * $Id: MushcoreBison.y,v 1.6 2003/01/20 15:38:28 southa Exp $
  * $Log: MushcoreBison.y,v $
+ * Revision 1.6  2003/01/20 15:38:28  southa
+ * Created MushcoreTest
+ *
  * Revision 1.5  2003/01/20 10:45:28  southa
  * Singleton tidying
  *
@@ -72,6 +75,10 @@ int yyerror( char *s);
 %token EOS
 %token END_OF_FILE
 
+%left '+' '-'
+%left '*' '/'
+%left NEG
+
 %% /* Grammar rules and actions follow */
 
 input:    /* empty */
@@ -80,12 +87,17 @@ end: EOS
 | END_OF_FILE
 ;
 command: IDENTIFIER { INBISON->ClearParams(); }
-| VARIABLE {$$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
+| VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet(); INBISON->ClearParams(); }
 ;
-scalar: VARIABLE {$$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)).StringGet();}
-| STRING {$$ = $1.StringGet();}
-| NUMBER {$$ = $1.ValGet();}
-| scalar '+' scalar {$$ = $1.StringGet()+$3.StringGet(); /* Enhance me */ }
+scalar: VARIABLE { $$=MushcoreEnv::Sgl().VariableGet($1.StringGet().substr(1)); }
+| STRING { $$ = $1.StringGet();}
+| NUMBER { $$ = $1.ValGet();}
+| scalar '+' scalar { $$ = $1+$3; }
+| scalar '-' scalar { $$ = $1-$3; }
+| scalar '*' scalar { $$ = $1*$3; }
+| scalar '/' scalar { $$ = $1/$3; }
+| '-' scalar %prec NEG { $$ = -$2.ValGet(); }
+| '(' scalar ')' { $$ = $2; }
 ;
 parameter: scalar {
     INBISON->PushParam($1);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreScalar.h,v 1.3 2003/01/18 13:33:59 southa Exp $
+ * $Id: MushcoreScalar.h,v 1.4 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreScalar.h,v $
+ * Revision 1.4  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.3  2003/01/18 13:33:59  southa
  * Created MushcoreSingleton
  *
@@ -106,6 +109,10 @@ public:
 
     MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const std::string& inStr);
     MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator=(const Mushware::tLongVal inVal);
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator+=(const MushcoreScalar& inScalar);
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator-=(const MushcoreScalar& inScalar);
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator*=(const MushcoreScalar& inScalar);
+    MUSHCORE_DECLARE_INLINE const MushcoreScalar& operator/=(const MushcoreScalar& inScalar);
 
     MUSHCORE_DECLARE_INLINE bool Equals(const MushcoreScalar& inScalar) const;
     
@@ -311,6 +318,98 @@ MushcoreScalar::operator=(const Mushware::tLongVal inVal)
     m_longVal=inVal;
     m_typeTag=kTypeTagLongVal;
     return *this;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator+=(const MushcoreScalar& inScalar)
+{
+    if (m_typeTag == kTypeTagLongVal && inScalar.m_typeTag ==  kTypeTagLongVal)
+    {
+        m_longVal += inScalar.ValGet();
+    }
+    else if (m_typeTag == kTypeTagString && inScalar.m_typeTag ==  kTypeTagString)
+    {
+        m_stringVal += inScalar.StringGet();
+    }
+    else
+    {
+        throw MushcoreSyntaxFail("Cannot add variables of different types");
+    }
+    return *this;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator-=(const MushcoreScalar& inScalar)
+{
+    if (m_typeTag == kTypeTagLongVal && inScalar.m_typeTag ==  kTypeTagLongVal)
+    {
+        m_longVal -= inScalar.ValGet();
+    }
+    else
+    {
+        throw MushcoreSyntaxFail("Cannot subtract non-numeric variables");
+    }
+    return *this;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator*=(const MushcoreScalar& inScalar)
+{
+    if (m_typeTag == kTypeTagLongVal && inScalar.m_typeTag ==  kTypeTagLongVal)
+    {
+        m_longVal *= inScalar.ValGet();
+    }
+    else
+    {
+        throw MushcoreSyntaxFail("Cannot multiply non-numeric variables");
+    }
+    return *this;
+}
+
+inline const MushcoreScalar&
+MushcoreScalar::operator/=(const MushcoreScalar& inScalar)
+{
+    if (m_typeTag == kTypeTagLongVal && inScalar.m_typeTag ==  kTypeTagLongVal)
+    {
+        m_longVal /= inScalar.ValGet();
+    }
+    else
+    {
+        throw MushcoreSyntaxFail("Cannot divide non-numeric variables");
+    }
+    return *this;
+}
+
+inline const MushcoreScalar
+operator+(const MushcoreScalar& a, const MushcoreScalar& b)
+{
+    MushcoreScalar retScalar(a);
+    retScalar += b;
+    return retScalar;
+}
+
+inline const MushcoreScalar
+operator-(const MushcoreScalar& a, const MushcoreScalar& b)
+{
+    MushcoreScalar retScalar(a);
+    retScalar -= b;
+    return retScalar;
+}
+
+inline const MushcoreScalar
+operator*(const MushcoreScalar& a, const MushcoreScalar& b)
+{
+    MushcoreScalar retScalar(a);
+    retScalar *= b;
+    return retScalar;
+}
+
+inline const MushcoreScalar
+operator/(const MushcoreScalar& a, const MushcoreScalar& b)
+{
+    MushcoreScalar retScalar(a);
+    retScalar /= b;
+    return retScalar;
 }
 
 inline bool

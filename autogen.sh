@@ -130,14 +130,13 @@ mushcore)
     find . -name 'Mushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
     find . -name 'sstream' -exec echo -n " " {} \; >> Makefile.am
-    echo '' >> Makefile.am    
+    echo '' >> Makefile.am
     
     echo 'library_includedir=$(includedir)/Mushcore' >> Makefile.am
     echo -n 'library_include_HEADERS=' >> Makefile.am
     find . -name 'Mushcore*.h' -exec echo -n " " {} \;  >> Makefile.am
     echo '' >> Makefile.am
 
-    
     echo 'bin_PROGRAMS=test_mushcore' >> Makefile.am
     echo -n 'test_mushcore_SOURCES=' >> Makefile.am
     find . -name 'TestMushcore*.cpp' -exec echo -n " " {} \;  >> Makefile.am
@@ -147,7 +146,6 @@ mushcore)
     echo 'test_mushcore_LDADD=libmushcore.la -lexpat -lpcre' >> Makefile.am
     echo 'test_mushcore_CXXFLAGS=-I${srcdir}/Mushcore $(AM_CXXFLAGS)' >> Makefile.am
     echo '' >> Makefile.am
-
 
     echo 'test: test_@PACKAGE@' >> Makefile.am
     echo '	@echo' >> Makefile.am
@@ -163,7 +161,7 @@ mushcore)
 
 
 *)
-echo Please supply a package name to build.  Choices are ic2, mustl. mushcore.
+echo Please supply a package name to build.  Choices are ic2, mustl, mushcore.
 exit 1
 esac
 

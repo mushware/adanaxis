@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.h,v 1.5 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.6 2003/01/20 10:45:29 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.6  2003/01/20 10:45:29  southa
+ * Singleton tidying
+ *
  * Revision 1.5  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -81,7 +84,8 @@
 
 #include "MushcoreStandard.h"
 
-class MushcoreConfig;
+#include "MushcoreConfig.h"
+
 class MushcoreScalar;
 
 class MushcoreEnv
@@ -95,7 +99,7 @@ public:
     bool VariableGetIfExists(const MushcoreScalar *& outScalar, const std::string& inName) const;
     template<class ParamType> MUSHCORE_DECLARE_INLINE bool VariableGetIfExists(ParamType& outParam, const std::string& inName) const;
     bool VariableExists(const std::string& inName) const;
-    void VariableSet(const std::string& inName, const std::string& inValue);
+    template<class ParamType> MUSHCORE_DECLARE_INLINE void VariableSet(const std::string& inName, const ParamType& inValue);
     std::ostream& Out(void) const;
     void OutSet(std::ostream& inOut);
     void OutReset(void);
@@ -123,4 +127,13 @@ MushcoreEnv::VariableGetIfExists(ParamType& outParam, const std::string& inName)
     }
     return false;
 }
+
+template<class ParamType>
+inline void
+MushcoreEnv::VariableSet(const string& inName, const ParamType& inValue)
+{
+    MUSHCOREASSERT(m_config.size() > 0);
+    m_config.back()->Set(inName, inValue);
+}
+
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreFunction.h,v 1.3 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.4 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreFunction.h,v $
+ * Revision 1.4  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.3  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -71,7 +74,7 @@
 class MushcoreFunction
 {
 public:
-    // MushcoreFunction() {}
+    MushcoreFunction() {}
     MushcoreFunction(const std::string& inStr): m_name(inStr) {}
     MUSHCORE_DECLARE_INLINE void CommandAdd(const std::string& inStr);
     const std::string& NameGet(void) const { return m_name; }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreApp.h,v 1.1 2003/01/20 15:38:28 southa Exp $
+ * $Log: TestMushcoreApp.h,v $
+ * Revision 1.1  2003/01/20 15:38:28  southa
+ * Created MushcoreTest
+ *
  */
 
 #include "TestMushcoreStandard.h"
@@ -24,7 +27,7 @@ public:
     ~TestMushcoreApp();
     
     void EnterInstance(void);
-    void RunTest(const string& inCommandStr, const string& inNameStr);
+    void RunTest(const std::string& inCommandStr, const std::string& inNameStr);
     static void Enter(void);
     static bool MagicTest(void);
     static void FailureAdd(const std::string& inStr);

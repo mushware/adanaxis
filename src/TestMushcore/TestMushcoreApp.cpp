@@ -44,7 +44,8 @@ void
 TestMushcoreApp::EnterInstance(void)
 {
     cout << "Starting tests" << endl;
-    RunTest("testauto", "MushcoreAutomonkey");
+    RunTest("testauto", "Automonkey");
+    RunTest("testcommand", "Command interpreter");
 }
 
 void

@@ -1,5 +1,5 @@
-#ifndef TESTMUSHCOREAUTO_H
-#define TESTMUSHCOREAUTO_H
+#ifndef TESTMUSHCORECOMMAND_H
+#define TESTMUSHCORECOMMAND_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.2)
@@ -11,19 +11,19 @@
  ****************************************************************************/
 
 /*
- * $Id: TestMushcoreAuto.h,v 1.1 2003/01/20 15:38:28 southa Exp $
- * $Log: TestMushcoreAuto.h,v $
- * Revision 1.1  2003/01/20 15:38:28  southa
- * Created MushcoreTest
- *
+ * $Id$
+ * $Log$
  */
 
 #include "TestMushcoreStandard.h"
 
-class TestMushcoreAuto
+class TestMushcoreCommand
 {
 public:
-    static MushcoreScalar TestAuto(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar TestCommand(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+
+protected:
+    static void ValueTest(const std::string& inName, const MushcoreScalar& inScalar);
 };
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MushcoreEnv.cpp,v 1.4 2003/01/17 13:30:40 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.5 2003/01/18 13:33:58 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.5  2003/01/18 13:33:58  southa
+ * Created MushcoreSingleton
+ *
  * Revision 1.4  2003/01/17 13:30:40  southa
  * Source conditioning and build fixes
  *
@@ -158,13 +161,6 @@ MushcoreEnv::VariableExists(const string& inName) const
         }
     }
     return false;
-}
-
-void
-MushcoreEnv::VariableSet(const string& inName, const string& inValue)
-{
-    MUSHCOREASSERT(m_config.size() > 0);
-    m_config.back()->Set(inName, inValue);
 }
 
 ostream&

@@ -1,8 +1,11 @@
- // $Id: MushcoreFlex.flex,v 1.4 2003/01/18 13:33:58 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.5 2003/01/20 12:23:23 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.4 2003/01/18 13:33:58 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.5 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreFlex.flex,v $
+ * Revision 1.5  2003/01/20 12:23:23  southa
+ * Code and interface tidying
+ *
  * Revision 1.4  2003/01/18 13:33:58  southa
  * Created MushcoreSingleton
  *
@@ -83,8 +86,9 @@ alpha       [A-Za-z]
 dig         [0-9]
 identifier  ({alpha}|_)({alpha}|{dig}|_)*
 variable    \${identifier}
-num1        [-+]?{dig}+\.?([eE][-+]?{dig}+)?
-num2        [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
+operator    [-+*/]
+num1        {dig}+\.?([eE][-+]?{dig}+)?
+num2        {dig}*\.{dig}+([eE][-+]?{dig}+)?
 number      {num1}|{num2}
 eos	        [;\n]
 comment     ^[ \t]*#.*
@@ -114,6 +118,21 @@ comment     ^[ \t]*#.*
             return '+';
         }
                     
+"-"     {
+            MUSHCORE_IFFLEXTESTING(cerr << yytext << endl);
+            return '-';
+        }
+                    
+"*"     {
+            MUSHCORE_IFFLEXTESTING(cerr << yytext << endl);
+            return '*';
+        }
+                    
+"/"     {
+            MUSHCORE_IFFLEXTESTING(cerr << yytext << endl);
+            return '/';
+        }
+                    
 "/*"    {
         int c;
 
@@ -139,6 +158,11 @@ comment     ^[ \t]*#.*
     MUSHCORE_IFFLEXTESTING(cerr << "identifier='" << yytext << "'" << endl);
     *outScalar=yytext;
     return IDENTIFIER;
+}
+
+{operator} {
+    MUSHCORE_IFFLEXTESTING(cerr << "operator='" << yytext << "'" << endl);
+    return yytext[0];
 }
 
 {number} {
