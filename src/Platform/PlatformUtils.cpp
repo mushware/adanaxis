@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformUtils.cpp,v 1.5 2002/08/07 13:36:51 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.6 2002/08/27 08:56:29 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.6  2002/08/27 08:56:29  southa
+ * Source conditioning
+ *
  * Revision 1.5  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -38,3 +41,4 @@
 
 #include "PlatformInputUtils.cpp"
 #include "PlatformMiscUtils.cpp"
+#include "PlatformVideoUtils.cpp"

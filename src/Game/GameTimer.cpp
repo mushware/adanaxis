@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameTimer.cpp,v 1.10 2002/08/27 08:56:27 southa Exp $
+ * $Id: GameTimer.cpp,v 1.11 2002/10/14 15:13:40 southa Exp $
  * $Log: GameTimer.cpp,v $
+ * Revision 1.11  2002/10/14 15:13:40  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.10  2002/08/27 08:56:27  southa
  * Source conditioning
  *
@@ -204,23 +207,19 @@ GameTimer::DisplayedFrameAt(tMsec inMsec)
     tVal frameDuration = timeNow - m_lastFrameTime;
     // Keep rolling average of frame duration
     tVal frameRatio = frameDuration / m_averageFrameDuration;
-    if (frameDuration < m_averageFrameDuration)
+    if (frameDuration < m_averageFrameDuration*1.2)
     {
         m_averageFrameDuration = frameDuration;
         // cerr << "frame duration to " << m_averageFrameDuration << endl;
     }
     else if (frameRatio > 1.9 && frameRatio < 2.1)
     {
-        // cerr << "Doubled frame" << endl;
-    }
-    else if (frameRatio > 1.45 && frameRatio < 1.55)
-    {
-        // cerr << "Frame 3/2" << endl;
+        // Doubled frame
     }
     else
     {
-        m_averageFrameDuration *=0.95;
-        m_averageFrameDuration += 0.05*frameDuration;
+        m_averageFrameDuration *=0.9;
+        m_averageFrameDuration += 0.1*frameDuration;
     }
     m_lastFrameTime = timeNow;
 }

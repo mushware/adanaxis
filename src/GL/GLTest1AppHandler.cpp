@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.18 2002/08/27 08:56:20 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.19 2002/10/12 15:25:03 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.19  2002/10/12 15:25:03  southa
+ * Facet renderer
+ *
  * Revision 1.18  2002/08/27 08:56:20  southa
  * Source conditioning
  *
@@ -83,7 +86,7 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-    EnterScreen(kWindow);
+    EnterScreen(GLModeDef::Default());
     GLUtils::CheckGLError();
 }
 

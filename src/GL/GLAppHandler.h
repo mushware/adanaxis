@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLAppHandler.h,v 1.16 2002/08/17 10:41:50 southa Exp $
+ * $Id: GLAppHandler.h,v 1.17 2002/08/27 08:56:18 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.17  2002/08/27 08:56:18  southa
+ * Source conditioning
+ *
  * Revision 1.16  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -86,21 +89,17 @@
 #include "mushCore.h"
 #include "GLKeys.h"
 
+class GLModeDef;
+
 class GLAppHandler : public CoreAppHandler
 {
 public:
-    enum tInitType
-    {
-        kInvalid,
-        kFullScreen,
-        kWindow
-    };
     virtual ~GLAppHandler() {}
     virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
     virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
     virtual void MousePositionGet(tVal& outX, tVal& outY) const = 0;
     virtual void MouseDeltaTake(tVal& outX, tVal& outY) = 0;
-    virtual void EnterScreen(tInitType inType) = 0;
+    virtual void EnterScreen(const GLModeDef& inDef) = 0;
     virtual void PostRedisplay(void) = 0;
     virtual void SwapBuffers(void) = 0;
     virtual U32 WidthGet(void) const = 0;

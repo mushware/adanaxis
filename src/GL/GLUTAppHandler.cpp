@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.10 2002/08/17 10:41:50 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.11 2002/08/27 08:56:21 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.11  2002/08/27 08:56:21  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -153,7 +156,7 @@ GLUTAppHandler::RegisterHandlers(void)
 
 
 void
-GLUTAppHandler::EnterScreen(tInitType inType)
+GLUTAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     char *argv[] = {"glutInit", ""};
     int argc=sizeof(argv)/sizeof(argv[0]);
@@ -166,16 +169,16 @@ GLUTAppHandler::EnterScreen(tInitType inType)
     glDisable(GL_BLEND);
     glDisable(GL_LINE_SMOOTH);
 
-    switch (inType)
+    switch (1)
     {
-        case kFullScreen:
+        case 1:
             m_width=1024;
             m_height=768;
             glutGameModeString("1024x768:32@85");
             glutEnterGameMode();
             break;
 
-        case kWindow:
+        case 2:
             m_width=640;
             m_height=480;
             glutInitWindowSize(m_width,m_height);

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.41 2002/10/13 12:26:46 southa Exp $
+ * $Id: GLUtils.cpp,v 1.42 2002/10/14 15:12:31 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.42  2002/10/14 15:12:31  southa
+ * Frame rate tweaks for Mac
+ *
  * Revision 1.41  2002/10/13 12:26:46  southa
  * Facetised map rendering
  *
@@ -300,7 +303,7 @@ void
 GLUtils::DisplayPrologue(void)
 {
     GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    glFinish();
+    // glFinish();
     PlatformMiscUtils::VBLWait();
 
     glHandler.SwapBuffers();

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: MediaSDL.cpp,v 1.8 2002/08/16 19:46:07 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.9 2002/08/27 08:56:28 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.9  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/16 19:46:07  southa
  * MediaSound work
  *
@@ -79,4 +82,14 @@ MediaSDL::Init(U32 inWhich)
         }
     }
     m_inited=inWhich;
+}
+
+void
+MediaSDL::QuitIfRequired(U32 inWhich)
+{
+    U32 toQuit = m_inited & inWhich;
+
+    SDL_QuitSubSystem(toQuit);
+
+    m_inited &= ~inWhich;
 }

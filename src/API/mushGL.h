@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: mushGL.h,v 1.15 2002/10/12 11:22:20 southa Exp $
+ * $Id: mushGL.h,v 1.16 2002/10/12 15:24:57 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.16  2002/10/12 15:24:57  southa
+ * Facet renderer
+ *
  * Revision 1.15  2002/10/12 11:22:20  southa
  * GraphicModel work
  *
@@ -75,6 +78,7 @@
 #include "GL/GLLightDef.h"
 #include "GL/GLLights.h"
 #include "GL/GLLine.h"
+#include "GL/GLModeDef.h"
 #include "GL/GLQuad.h"
 #include "GL/GLPoint.h"
 #include "GL/GLRectangle.h"

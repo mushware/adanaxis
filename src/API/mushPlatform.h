@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: mushPlatform.h,v 1.6 2002/08/07 13:36:43 southa Exp $
+ * $Id: mushPlatform.h,v 1.7 2002/08/27 08:56:15 southa Exp $
  * $Log: mushPlatform.h,v $
+ * Revision 1.7  2002/08/27 08:56:15  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:43  southa
  * Conditioned source
  *
@@ -43,5 +46,8 @@
 
 // Miscellaneous utilities
 #include "Platform/PlatformMiscUtils.h"
+
+// Video utilities
+#include "Platform/PlatformVideoUtils.h"
 
 #endif

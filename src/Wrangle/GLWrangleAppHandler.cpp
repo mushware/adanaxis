@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLWrangleAppHandler.cpp,v 1.9 2002/08/07 13:36:52 southa Exp $
+ * $Id: GLWrangleAppHandler.cpp,v 1.10 2002/08/27 08:56:30 southa Exp $
  * $Log: GLWrangleAppHandler.cpp,v $
+ * Revision 1.10  2002/08/27 08:56:30  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/07 13:36:52  southa
  * Conditioned source
  *
@@ -65,8 +68,8 @@ GLWrangleAppHandler::Initialise(void)
     GLTexture& tex=*texRef.TextureGet();
 
     m_pWrangler = new GraphWrangler(tex);
-    
-    EnterScreen(kWindow);
+
+    EnterScreen(GLModeDef::Default());
     GLUtils::CheckGLError();    
 }
 

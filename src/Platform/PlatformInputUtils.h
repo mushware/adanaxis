@@ -1,7 +1,5 @@
 #ifndef PLATFORMINPUTUTILS_H
 #define PLATFORMINPUTUTILS_H
-#ifndef INPUTUTILS_H
-#define INPUTUTILS_H
 /*****************************************************************************
  *
  * (Mushware file header version 1.0)
@@ -18,8 +16,11 @@
 
 
 /*
- * $Id: PlatformInputUtils.h,v 1.5.4.1 2002/09/04 10:18:04 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.6 2002/10/06 22:09:59 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.6  2002/10/06 22:09:59  southa
+ * Initial lighting test
+ *
  * Revision 1.5.4.1  2002/09/04 10:18:04  southa
  * Fixed for MacOS X 10.2
  *
@@ -58,4 +59,4 @@ public:
 };
 
 #endif
-#endif
+

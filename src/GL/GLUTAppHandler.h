@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: GLUTAppHandler.h,v 1.10 2002/08/17 10:41:50 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.11 2002/08/27 08:56:22 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.11  2002/08/27 08:56:22  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/17 10:41:50  southa
  * Designer fixes
  *
@@ -65,7 +68,7 @@ public:
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
     virtual void MousePositionGet(tVal& outX, tVal& outY) const;
     virtual void MouseDeltaTake(tVal& outX, tVal& outY);
-    virtual void EnterScreen(tInitType inType);
+    virtual void EnterScreen(const GLModeDef& inDef);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);
     virtual U32 WidthGet(void) const {return m_width;}

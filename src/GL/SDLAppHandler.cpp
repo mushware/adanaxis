@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.21 2002/10/06 22:09:59 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.22 2002/10/12 15:25:11 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.22  2002/10/12 15:25:11  southa
+ * Facet renderer
+ *
  * Revision 1.21  2002/10/06 22:09:59  southa
  * Initial lighting test
  *
@@ -86,6 +89,7 @@
 #include "GLUtils.h"
 #include "GLState.h"
 #include "GLAppSignal.h"
+#include "GLModeDef.h"
 
 #include "mushPlatform.h"
 #include "mushMedia.h"
@@ -189,8 +193,9 @@ SDLAppHandler::MouseDeltaTake(tVal& outXDelta, tVal& outYDelta)
 }
 
 void
-SDLAppHandler::EnterScreen(tInitType inType)
+SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
+    MediaSDL::Instance().QuitVideoIfRequired();
     MediaSDL::Instance().InitVideo();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -206,31 +211,18 @@ SDLAppHandler::EnterScreen(tInitType inType)
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-    m_width=640;
-    m_height=480;
-    m_bpp=32;
+    m_width=inDef.WidthGet();
+    m_height=inDef.HeightGet();
+    m_bpp=inDef.BPPGet();
     m_showCursor=false;
     U32 sdlFlags=0;
-    switch (inType)
+    if (inDef.FullScreenGet())
     {
-        case kFullScreen:
-            CoreEnv::Instance().VariableGetIfExists(m_width, "FULLSCREEN_DISPLAY_WIDTH");
-            CoreEnv::Instance().VariableGetIfExists(m_height, "FULLSCREEN_DISPLAY_HEIGHT");
-            CoreEnv::Instance().VariableGetIfExists(m_bpp, "FULLSCREEN_DISPLAY_BPP");
-            CoreEnv::Instance().VariableGetIfExists(m_showCursor, "FULLSCREEN_DISPLAY_SHOW_CURSOR");
-            sdlFlags=SDL_OPENGL|SDL_FULLSCREEN;
-            break;
-
-        case kWindow:
-            CoreEnv::Instance().VariableGetIfExists(m_width, "WINDOW_DISPLAY_WIDTH");
-            CoreEnv::Instance().VariableGetIfExists(m_height, "WINDOW_DISPLAY_HEIGHT");
-            CoreEnv::Instance().VariableGetIfExists(m_bpp, "WINDOW_DISPLAY_BPP");
-            CoreEnv::Instance().VariableGetIfExists(m_showCursor, "WINDOW_DISPLAY_SHOW_CURSOR");
-            sdlFlags=SDL_OPENGL;
-            break;
-
-        default:
-            throw(LogicFail("Bad value to SDLAppHandler::EnterScreen"));
+        sdlFlags=SDL_OPENGL|SDL_FULLSCREEN;
+    }
+    else
+    {
+        sdlFlags=SDL_OPENGL;
     }
 
     SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);

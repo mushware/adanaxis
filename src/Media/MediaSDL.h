@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: MediaSDL.h,v 1.6 2002/08/07 13:36:51 southa Exp $
+ * $Id: MediaSDL.h,v 1.7 2002/08/27 08:56:28 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.7  2002/08/27 08:56:28  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source
  *
@@ -76,8 +79,10 @@ public:
         return *m_instance;
     }
     void Init(U32 inWhich);
-    void InitVideo(void) {Init(SDL_INIT_VIDEO);}
-    void InitAudio(void) {Init(SDL_INIT_AUDIO);}
+    void QuitIfRequired(U32 inWhich);
+    void InitVideo(void) { Init(SDL_INIT_VIDEO); }
+    void QuitVideoIfRequired(void) { QuitIfRequired(SDL_INIT_VIDEO); }
+    void InitAudio(void) { Init(SDL_INIT_AUDIO); }
     
 protected:
     MediaSDL(): m_inited(0) {}
