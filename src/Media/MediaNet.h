@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: MediaNet.h,v 1.1 2002/10/31 15:52:15 southa Exp $
+ * $Log: MediaNet.h,v $
+ * Revision 1.1  2002/10/31 15:52:15  southa
+ * First network code
+ *
  */
 
 #include "mushCore.h"

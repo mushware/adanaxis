@@ -1,14 +1,19 @@
 /*
- *  PlatformNet.cpp
- *  core-app
- *
- *  Created by Andy Southgate on Fri Nov 01 2002.
- *  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
+
+/*************************
+ *
+ *  Mac OS X file
+ *
+ *************************/
 
 #include "PlatformNet.h"
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <fcntl.h>
 
 void
@@ -24,7 +29,62 @@ PlatformNet::SocketNonBlockingSet(tSocket inSocket)
 }
 
 void
-PlatformNet::ReceiveNonBlocking(tSocket inSocket, void *outBuffer, U32 inSize)
+PlatformNet::UDPSend(U32 inHost, U32 inPort, tSocket inSocket, void *outBuffer, U32 inSize)
 {
-    COREASSERT(false);
+    COREASSERT(inSize > 0);
+
+    struct sockaddr_in sockAddr;
+    sockAddr.sin_addr.s_addr = inHost;
+    sockAddr.sin_port = inPort;
+    sockAddr.sin_family = AF_INET;
+    
+    errno=0;
+    int result=sendto(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), sizeof(sockAddr));
+
+    if (result < 0 || static_cast<U32>(result) != inSize)
+    {
+        ostringstream message;
+        message << "UDP send failed (" << errno << ")";
+        throw(NetworkFail(message.str()));
+    }
+}
+
+U32
+PlatformNet::UDPReceive(U32& outHost, U32& outPort, tSocket inSocket, void *outBuffer, U32 inSize)
+{
+    COREASSERT(inSize > 0);
+    U32 dataSize=0;
+    for (U32 i=0; i<256; ++i)
+    {
+        struct sockaddr_in sockAddr;
+
+        errno=0;
+        int sockAddrSize=sizeof(sockAddr);
+        int result = recvfrom(inSocket, outBuffer, inSize, 0, reinterpret_cast<sockaddr *>(&sockAddr), &sockAddrSize);
+        cerr << "recv " << result << endl;
+    
+        outHost=sockAddr.sin_addr.s_addr;
+        outPort=sockAddr.sin_port;
+        
+        if (result < 0)
+        {
+            if (errno == EAGAIN) break;
+            
+            if (errno != EINTR)
+            {
+                ostringstream message;
+                message << "UDP receive failed (" << errno << ")";
+                throw(NetworkFail(message.str()));
+            }
+        }
+        else if (result == 0)
+        {
+            break;
+        }
+        else
+        {
+            dataSize += result;
+        }
+    }
+    return dataSize;
 }

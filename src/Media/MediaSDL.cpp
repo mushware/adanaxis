@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.cpp,v 1.13 2002/10/22 22:36:18 southa Exp $
+ * $Id: MediaSDL.cpp,v 1.14 2002/10/31 15:52:15 southa Exp $
  * $Log: MediaSDL.cpp,v $
+ * Revision 1.14  2002/10/31 15:52:15  southa
+ * First network code
+ *
  * Revision 1.13  2002/10/22 22:36:18  southa
  * Use SDL_INIT_NOPARACHUTE to avoid hang exit on MacOS 10.1.5
  *
@@ -101,4 +104,14 @@ MediaSDL::QuitIfRequired(U32 inWhich)
     SDL_QuitSubSystem(toQuit);
 
     m_inited &= ~inWhich;
+}
+
+ostream&
+operator<<(ostream &ioOut, const IPaddress& inAddress)
+{
+    U32 ip=inAddress.host;
+    U8 *ipPtr=reinterpret_cast<U8 *>(&ip);
+    ioOut << static_cast<U32>(ipPtr[0]) << "." << static_cast<U32>(ipPtr[1]) << "." << static_cast<U32>(ipPtr[2]) << "." << static_cast<U32>(ipPtr[3]);
+    ioOut << ":" << inAddress.port;
+    return ioOut;
 }

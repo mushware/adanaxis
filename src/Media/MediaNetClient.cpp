@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.4 2002/11/01 16:56:49 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.5 2002/11/01 18:46:25 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.5  2002/11/01 18:46:25  southa
+ * UDP Links
+ *
  * Revision 1.4  2002/11/01 16:56:49  southa
  * Fixed platform inclusion
  *
@@ -152,13 +155,17 @@ MediaNetClient::UDPConnect(U32 inPort)
         throw(NetworkFail(string("UDP socket open failed: ")+SDLNet_GetError()));
     }
     cout << "Selected local UDP port " << m_udpPort << endl;
-    
+
+    // Since we've replaced SDLNet_UDP_Send we don't use this bound address,
+    // but let's bind it anyway
     int result=SDLNet_UDP_Bind(m_udpSocket, -1, &m_remoteIP);
 
     if (result == -1)
     {
         throw(NetworkFail(string("UDP socket bind failed: ")+SDLNet_GetError()));
     }
+
+    PlatformNet::SocketNonBlockingSet(m_udpSocket->channel);
     
     m_udpConnected=true;
 }
@@ -256,27 +263,10 @@ MediaNetClient::UDPSend(MediaNetData& ioData)
     }
     COREASSERT(m_udpSocket != NULL);
 
-    errno=0;
-
     U32 dataSize=ioData.ReadSizeGet();
-    UDPpacket *packet=SDLNet_AllocPacket(dataSize);
-    if (packet == NULL) throw(FatalFail("UDP packet allocation failed"));
-    memcpy(packet->data, ioData.ReadPtrGet(), dataSize);
-    packet->len = dataSize;
-    int result = SDLNet_UDP_Send(m_udpSocket, 0, packet);
-    int status = packet->status;
-    SDLNet_FreePacket(packet); packet=NULL;
-    
-    if (result <= 0 || status < 0 || static_cast<U32>(status) != dataSize)
-    {
-        ostringstream message;
-        message << "UDP send failed (" << status << "): " << SDLNet_GetError();
-        throw(NetworkFail(message.str()));
-    }
-    else
-    {
-        ioData.ReadPosAdd(dataSize);
-    }
+
+    PlatformNet::UDPSend(m_remoteIP.host, m_remoteIP.port, m_udpSocket->channel, ioData.ReadPtrGet(), dataSize);
+    ioData.ReadPosAdd(dataSize);
 }
 
 void
@@ -288,48 +278,18 @@ MediaNetClient::UDPReceive(MediaNetData& outData)
     }
     COREASSERT(m_udpSocket != NULL);
 
-    for (U32 i=0; i<256; ++i)
-    {
-        outData.PrepareForWrite();
-        
-        UDPpacket *packet=SDLNet_AllocPacket(32768);
-        int result = SDLNet_UDP_Recv(m_udpSocket, packet);
-        int status = packet->status;
-        if (result < 0)
-        {
-            SDLNet_FreePacket(packet); packet=NULL;
-            ostringstream message;
-            message << "TCP receive failed (" << status << "): " << SDLNet_GetError();
-            throw(NetworkFail(message.str()));
-        }
-        else if (result == 0)
-        {
-            SDLNet_FreePacket(packet); packet=NULL;
-            break;
-        }
-        else
-        {
-            U32 dataSize=packet->len;
-            outData.PrepareForWrite(dataSize);
-            memcpy(outData.WritePtrGet(), packet->data, dataSize);
-            SDLNet_FreePacket(packet); packet=NULL;
-            outData.WritePosAdd(dataSize);
-        }
-    }
+    outData.PrepareForWrite();
+    U32 host, port;
+    U32 dataSize=PlatformNet::UDPReceive(host, port, m_udpSocket->channel, outData.WritePtrGet(), outData.WriteSizeGet());
+
+    outData.WritePosAdd(dataSize);   
 }
 
 void
 MediaNetClient::Print(ostream& ioOut) const
 {
     ioOut << "tcpSocket=" << m_tcpSocket->channel << ", udpSocket=" << m_udpSocket->channel << ", udpPort=" << m_udpPort;
-    ioOut << ", remoteIP=" << hex << m_remoteIP.host << dec << ":" << m_remoteIP.port;
+    ioOut << ", remoteIP=" << m_remoteIP;
     ioOut << ", remoteName=" << m_remoteName << ", tcpConnected=" << m_tcpConnected << ", udpConnected=" << m_udpConnected;
 }
 
-TCPsocket m_tcpSocket;
-UDPsocket m_udpSocket;
-U32 m_udpPort;
-IPaddress m_remoteIP;
-string m_remoteName;
-bool m_tcpConnected;
-bool m_udpConnected;

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSDL.h,v 1.9 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaSDL.h,v 1.10 2002/10/31 15:52:15 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.10  2002/10/31 15:52:15  southa
+ * First network code
+ *
  * Revision 1.9  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -105,5 +108,8 @@ private:
     U32 m_inited;
     bool m_firstInitCalled;
 };
+
+ostream&
+operator<<(ostream &ioOut, const IPaddress& inAddress);
 
 #endif
