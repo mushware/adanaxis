@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.h,v 1.6 2002/10/22 20:42:08 southa Exp $
+ * $Id: TestCommandHandler.h,v 1.7 2002/12/20 13:17:49 southa Exp $
  * $Log: TestCommandHandler.h,v $
+ * Revision 1.7  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -47,7 +50,7 @@
 class TestCommandHandler
 {
 public:
-    static CoreScalar Execute(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 };
 #endif

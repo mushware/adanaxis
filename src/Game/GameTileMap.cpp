@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.cpp,v 1.18 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameTileMap.cpp,v 1.19 2003/01/07 17:13:43 southa Exp $
  * $Log: GameTileMap.cpp,v $
+ * Revision 1.19  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.18  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.16  2002/11/24 23:18:25  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.15  2002/11/18 11:31:14  southa
  * Return to game mode
@@ -72,7 +75,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GameTileMapInstaller(GameTileMap::Install);
+MushcoreInstaller GameTileMapInstaller(GameTileMap::Install);
 
 const string&
 GameTileMap::NameGet(U32 inNum) const
@@ -178,35 +181,35 @@ GameTileMap::Load(void)
 }
 
 void
-GameTileMap::NullHandler(CoreXML& inXML)
+GameTileMap::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameTileMap::HandleTileMapStart(CoreXML& inXML)
+GameTileMap::HandleTileMapStart(MushcoreXML& inXML)
 {
     m_state=kData;
 }
 
 void
-GameTileMap::HandleTileMapEnd(CoreXML& inXML)
+GameTileMap::HandleTileMapEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
 
 void
-GameTileMap::HandleScriptStart(CoreXML& inXML)
+GameTileMap::HandleScriptStart(MushcoreXML& inXML)
 {
 }
 
 void
-GameTileMap::HandleScriptEnd(CoreXML& inXML)
+GameTileMap::HandleScriptEnd(MushcoreXML& inXML)
 {
-    m_loaderScript=CoreScript(inXML.TopData());
+    m_loaderScript=MushcoreScript(inXML.TopData());
 }
 
 void
-GameTileMap::HandleTraitsStart(CoreXML& inXML)
+GameTileMap::HandleTraitsStart(MushcoreXML& inXML)
 {
     GameTileTraits *pTraits(new GameTileTraits);
     GameData::Instance().TraitsDeleteAndCreate(inXML.GetAttribOrThrow("name").StringGet(), pTraits);
@@ -214,7 +217,7 @@ GameTileMap::HandleTraitsStart(CoreXML& inXML)
 }
 
 void
-GameTileMap::HandleMapEnd(CoreXML& inXML)
+GameTileMap::HandleMapEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for map.  Should be <map rotate=\"4\">200,desk1</map>";
@@ -225,7 +228,7 @@ GameTileMap::HandleMapEnd(CoreXML& inXML)
     if (!(data >> comma) || comma != ',') inXML.Throw(failMessage);
     if (!(data >> name)) inXML.Throw(failMessage);
 
-    CoreScalar rotateScalar(CoreScalar(1));
+    MushcoreScalar rotateScalar(MushcoreScalar(1));
     inXML.GetAttrib(rotateScalar, "rotate");
     U32 rotate=rotateScalar.U32Get();
     if (rotate < 1) inXML.Throw("rotate value must be >= 1");
@@ -248,7 +251,7 @@ GameTileMap::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameTileMap::Unpickle(CoreXML& inXML)
+GameTileMap::Unpickle(MushcoreXML& inXML)
 {
     m_startTable.resize(kNumStates);
     m_endTable.resize(kNumStates);
@@ -267,7 +270,7 @@ GameTileMap::Unpickle(CoreXML& inXML)
 }
 
 void
-GameTileMap::XMLStartHandler(CoreXML& inXML)
+GameTileMap::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_state].find(inXML.TopTag());
 
@@ -290,7 +293,7 @@ GameTileMap::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameTileMap::XMLEndHandler(CoreXML& inXML)
+GameTileMap::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_state].find(inXML.TopTag());
 
@@ -313,7 +316,7 @@ GameTileMap::XMLEndHandler(CoreXML& inXML)
 }
 
 void
-GameTileMap::XMLDataHandler(CoreXML& inXML)
+GameTileMap::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
@@ -323,8 +326,8 @@ GameTileMap::TypeNameGet(void) const
     return "gametilemap";
 }
 
-CoreScalar
-GameTileMap::LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameTileMap::LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -335,15 +338,15 @@ GameTileMap::LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-    CoreXML xml(inStream, filename);
+    MushcoreXML xml(inStream, filename);
     GameData::Instance().TileMapGetOrCreate(name)->Unpickle(xml);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GameTileMap::Install(void)
 {
-    CoreApp::Instance().AddHandler("loadtilemap", LoadTileMap);
+    MushcoreApp::Instance().AddHandler("loadtilemap", LoadTileMap);
 }
 
 

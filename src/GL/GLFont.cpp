@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLFont.cpp,v 1.11 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLFont.cpp,v 1.12 2003/01/07 17:13:40 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.12  2003/01/07 17:13:40  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.11  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -57,7 +60,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GLFontInstaller(GLFont::Install);
+MushcoreInstaller GLFontInstaller(GLFont::Install);
 
 GLFont::GLFont(const string& inName):
     m_name(inName),
@@ -126,8 +129,8 @@ GLFont::StringLengthGet(const string& inStr) const
     return inStr.size();
 }
 
-CoreScalar
-GLFont::LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLFont::LoadFontMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     string name;
     string filename;
@@ -137,7 +140,7 @@ GLFont::LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    CoreApp::Instance().Process("loadpixmap('"+name+"','"+filename+"')");
+    MushcoreApp::Instance().Process("loadpixmap('"+name+"','"+filename+"')");
     GLFont *font(new GLFont(name));
     GLData::Instance().FontGive(name, font);
     U32 xNum(10),yNum(10);
@@ -148,11 +151,11 @@ GLFont::LoadFontMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(ySize);
     font->ShapeSet(xNum, yNum);
     font->SizeSet(xSize, ySize);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GLFont::Install(void)
 {
-    CoreApp::Instance().AddHandler("loadfontmap", LoadFontMap);
+    MushcoreApp::Instance().AddHandler("loadfontmap", LoadFontMap);
 }

@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.h,v 1.17 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileTraits.h,v 1.18 2002/12/29 20:30:54 southa Exp $
  * $Log: GameTileTraits.h,v $
+ * Revision 1.18  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.17  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.16  2002/11/24 23:18:25  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.15  2002/10/22 20:42:06  southa
  * Source conditioning
@@ -80,21 +83,21 @@ public:
     bool AdhesionGet(Mushware::tVal& outAdhesion) const;
     bool LightGet(GLLightDef& outLight) const;
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
 protected:
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
 private:
-    void NullHandler(CoreXML& inXML);
-    void HandleGraphicStart(CoreXML& inXML);
-    void HandlePermeabilityEnd(CoreXML& inXML);
-    void HandleAdhesionEnd(CoreXML& inXML);
-    void HandleLightStart(CoreXML& inXML);
-    void HandleTraitsEnd(CoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
+    void HandleGraphicStart(MushcoreXML& inXML);
+    void HandlePermeabilityEnd(MushcoreXML& inXML);
+    void HandleAdhesionEnd(MushcoreXML& inXML);
+    void HandleLightStart(MushcoreXML& inXML);
+    void HandleTraitsEnd(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -104,7 +107,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameTileTraits::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameTileTraits::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

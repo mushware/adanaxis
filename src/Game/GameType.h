@@ -11,10 +11,13 @@
  ****************************************************************************/
 
 /*
- * $Id: GameType.h,v 1.8 2002/11/24 23:18:26 southa Exp $
+ * $Id: GameType.h,v 1.9 2002/12/20 13:17:44 southa Exp $
  * $Log: GameType.h,v $
+ * Revision 1.9  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/11/24 23:18:26  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.7  2002/10/22 20:42:07  southa
  * Source conditioning
@@ -43,7 +46,7 @@
 
 class GameEvent;
 
-class GameType : public CorePickle, protected CoreXMLHandler
+class GameType : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     virtual ~GameType() {}

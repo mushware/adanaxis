@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: TestCommandHandler.cpp,v 1.12 2002/12/20 13:17:49 southa Exp $
+ * $Id: TestCommandHandler.cpp,v 1.13 2002/12/29 21:00:01 southa Exp $
  * $Log: TestCommandHandler.cpp,v $
+ * Revision 1.13  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.12  2002/12/20 13:17:49  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -30,7 +33,7 @@
  * Build process fixes
  *
  * Revision 1.6  2002/05/24 18:09:39  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.5  2002/05/10 16:39:35  southa
  * Changed .hp files to .h
@@ -57,10 +60,10 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller testCommandHandlerInstaller(TestCommandHandler::Install);
+MushcoreInstaller testCommandHandlerInstaller(TestCommandHandler::Install);
 
-CoreScalar
-TestCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+TestCommandHandler::Execute(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     string str;
     ioCommand.PopParam(str);
@@ -88,5 +91,5 @@ TestCommandHandler::Execute(CoreCommand& ioCommand, CoreEnv& ioEnv)
 void
 TestCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("test", Execute);
+    MushcoreApp::Instance().AddHandler("test", Execute);
 }

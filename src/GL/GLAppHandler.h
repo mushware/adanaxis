@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.h,v 1.22 2002/12/03 20:28:14 southa Exp $
+ * $Id: GLAppHandler.h,v 1.23 2002/12/20 13:17:34 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.23  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.22  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -101,7 +104,7 @@
 
 class GLModeDef;
 
-class GLAppHandler : public CoreAppHandler
+class GLAppHandler : public MushcoreAppHandler
 {
 public:
     virtual ~GLAppHandler() {}

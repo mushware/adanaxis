@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.cpp,v 1.18 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameDef.cpp,v 1.19 2003/01/07 17:13:41 southa Exp $
  * $Log: GameDef.cpp,v $
+ * Revision 1.19  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.18  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -48,7 +51,7 @@
  * Initial send of objects over links
  *
  * Revision 1.6  2002/11/24 23:18:16  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.4  2002/11/23 17:23:44  southa
  * Sleep in setup
@@ -80,7 +83,7 @@ GameDef::GameDef(const string& inName) :
     m_status(kStatusInvalid),
     m_isImage(false)
 {
-    m_creationMsec = dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
+    m_creationMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
 }
 
 const string
@@ -104,13 +107,13 @@ GameDef::StatusWebStringGet(void) const
 }
 
 void
-GameDef::HandleNameEnd(CoreXML& inXML)
+GameDef::HandleNameEnd(MushcoreXML& inXML)
 {
     m_name = inXML.TopData();
 }
 
 void
-GameDef::HandleStatusEnd(CoreXML& inXML)
+GameDef::HandleStatusEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for status.  Should be <status>3</status>";
@@ -120,7 +123,7 @@ GameDef::HandleStatusEnd(CoreXML& inXML)
 }
 
 void
-GameDef::NullHandler(CoreXML& inXML)
+GameDef::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -151,14 +154,14 @@ GameDef::UnpickleEpilogue(void)
 }
 
 void
-GameDef::Unpickle(CoreXML& inXML)
+GameDef::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameDef::XMLStartHandler(CoreXML& inXML)
+GameDef::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -181,7 +184,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameDef::XMLEndHandler(CoreXML& inXML)
+GameDef::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -204,7 +207,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameDef::XMLDataHandler(CoreXML& inXML)
+GameDef::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

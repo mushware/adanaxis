@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Test.cpp,v 1.18 2002/12/20 13:17:48 southa Exp $
+ * $Id: Test.cpp,v 1.19 2002/12/29 21:00:01 southa Exp $
  * $Log: Test.cpp,v $
+ * Revision 1.19  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.18  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -39,13 +42,13 @@
  * Script loader and tile map
  *
  * Revision 1.9  2002/05/26 16:35:07  southa
- * CoreXML work
+ * MushcoreXML work
  *
  * Revision 1.8  2002/05/25 17:17:18  southa
- * CoreXML implementation
+ * MushcoreXML implementation
  *
  * Revision 1.7  2002/05/24 18:09:39  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.6  2002/05/10 16:39:35  southa
  * Changed .hp files to .h
@@ -60,7 +63,7 @@
  * Added GIF loader and GL tests
  *
  * Revision 1.2  2002/02/23 11:43:36  southa
- * Added CoreAutoMonkey
+ * Added MushcoreAutoMonkey
  *
  * Revision 1.1.1.1  2002/02/11 22:30:09  southa
  * Created
@@ -76,7 +79,7 @@ using namespace std;
 void
 Test::Test1(void)
 {
-    CoreRegExp re;
+    MushcoreRegExp re;
     vector<string> matches;
 
     if (re.Search("dog", "cat")) throw TestFail("False positive");
@@ -113,14 +116,16 @@ Test::Test1(void)
         re.Search("test", "{(");
         throw TestFail("Failed to raise exception");
     }
-    catch (CoreRegExpFail r)
+    catch (MushcoreRegExpFail r)
     {
     }
 }
 
+
 void
 Test::Test2(void)
 {
+#if 0
     Dataset data1, data2;
     {
         ifstream inFile("test1_input.txt");
@@ -144,6 +149,7 @@ Test::Test2(void)
         throw TestFail("Reread data doesn't match");
     }
 #endif
+#endif
 }
 
 void
@@ -151,160 +157,160 @@ Test::Test3(void)
 {
     char workspace[]="hello";
     
-    CoreAutoMonkey& monkey1=*new CoreAutoMonkey;
+    MushcoreAutoMonkey& monkey1=*new MushcoreAutoMonkey;
     if (monkey1.ReferenceCountGet() != 1)
     {
-        throw TestFail("CoreAutoMonkey fault 1");
+        throw TestFail("MushcoreAutoMonkey fault 1");
     }
 
     if (!monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 2");
+        throw TestFail("MushcoreAutoMonkey fault 2");
     }
-    CoreAutoMonkey& monkey2=*new CoreAutoMonkey(monkey1);
+    MushcoreAutoMonkey& monkey2=*new MushcoreAutoMonkey(monkey1);
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 3");
+        throw TestFail("MushcoreAutoMonkey fault 3");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 4");
+        throw TestFail("MushcoreAutoMonkey fault 4");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 5");
+        throw TestFail("MushcoreAutoMonkey fault 5");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 6");
+        throw TestFail("MushcoreAutoMonkey fault 6");
     }
     monkey1=monkey1;
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 7");
+        throw TestFail("MushcoreAutoMonkey fault 7");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 8");
+        throw TestFail("MushcoreAutoMonkey fault 8");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 9");
+        throw TestFail("MushcoreAutoMonkey fault 9");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 10");
+        throw TestFail("MushcoreAutoMonkey fault 10");
     }
     monkey1=monkey2;
     if (monkey1.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 11");
+        throw TestFail("MushcoreAutoMonkey fault 11");
     }
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 12");
+        throw TestFail("MushcoreAutoMonkey fault 12");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 13");
+        throw TestFail("MushcoreAutoMonkey fault 13");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 14");
+        throw TestFail("MushcoreAutoMonkey fault 14");
     }
-    CoreAutoMonkey& monkey3=*new CoreAutoMonkey;
-    CoreAutoMonkey& monkey4=*new CoreAutoMonkey(monkey3);
+    MushcoreAutoMonkey& monkey3=*new MushcoreAutoMonkey;
+    MushcoreAutoMonkey& monkey4=*new MushcoreAutoMonkey(monkey3);
     if (monkey3.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 40");
+        throw TestFail("MushcoreAutoMonkey fault 40");
     }
     if (monkey4.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 41");
+        throw TestFail("MushcoreAutoMonkey fault 41");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 42");
+        throw TestFail("MushcoreAutoMonkey fault 42");
     }
     if (monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 43");
+        throw TestFail("MushcoreAutoMonkey fault 43");
     }
     monkey3=monkey2;
     if (monkey4.ReferenceCountGet() != 1)
     {
-        throw TestFail("CoreAutoMonkey fault 44");
+        throw TestFail("MushcoreAutoMonkey fault 44");
     }
     if (!monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 45");
+        throw TestFail("MushcoreAutoMonkey fault 45");
     }
     if (monkey3.ReferenceCountGet() != 3)
     {
-        throw TestFail("CoreAutoMonkey fault 46");
+        throw TestFail("MushcoreAutoMonkey fault 46");
     }
     if (monkey2.ReferenceCountGet() != 3)
     {
-        throw TestFail("CoreAutoMonkey fault 47");
+        throw TestFail("MushcoreAutoMonkey fault 47");
     }
     if (monkey1.ReferenceCountGet() != 3)
     {
-        throw TestFail("CoreAutoMonkey fault 48");
+        throw TestFail("MushcoreAutoMonkey fault 48");
     }
     if (monkey1.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 49");
+        throw TestFail("MushcoreAutoMonkey fault 49");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 50");
+        throw TestFail("MushcoreAutoMonkey fault 50");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 51");
+        throw TestFail("MushcoreAutoMonkey fault 51");
     }
     delete &monkey1;
     if (monkey2.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 80");
+        throw TestFail("MushcoreAutoMonkey fault 80");
     }
     if (monkey3.ReferenceCountGet() != 2)
     {
-        throw TestFail("CoreAutoMonkey fault 81");
+        throw TestFail("MushcoreAutoMonkey fault 81");
     }
     if (monkey2.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 82");
+        throw TestFail("MushcoreAutoMonkey fault 82");
     }
     if (monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 83");
+        throw TestFail("MushcoreAutoMonkey fault 83");
     }
     delete &monkey2;
     if (monkey3.ReferenceCountGet() != 1)
     {
-        throw TestFail("CoreAutoMonkey fault 84");
+        throw TestFail("MushcoreAutoMonkey fault 84");
     }
     if (!monkey3.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 85");
+        throw TestFail("MushcoreAutoMonkey fault 85");
     }
     delete &monkey3;
     if (monkey4.ReferenceCountGet() != 1)
     {
-        throw TestFail("CoreAutoMonkey fault 86");
+        throw TestFail("MushcoreAutoMonkey fault 86");
     }
     if (!monkey4.FreeInDestructor(workspace))
     {
-        throw TestFail("CoreAutoMonkey fault 87");
+        throw TestFail("MushcoreAutoMonkey fault 87");
     }
     delete &monkey4;
     // All monkeys gone
-    CoreAutoMonkey& monkey5=*new CoreAutoMonkey;
+    MushcoreAutoMonkey& monkey5=*new MushcoreAutoMonkey;
     
     if (monkey5.FreeInDestructor(NULL))
     {
-        throw TestFail("CoreAutoMonkey fault 100");
+        throw TestFail("MushcoreAutoMonkey fault 100");
     }
     delete &monkey5;
 }
@@ -312,17 +318,17 @@ Test::Test3(void)
 void
 Test::Test4(void)
 {
-    CoreConfig config;
+    MushcoreConfig config;
 
-    config.Set("elem1", CoreScalar("elem1value"));
-    config.Set("elem2", CoreScalar(1.456));
-    config.Set("elem3", CoreScalar(1));
+    config.Set("elem1", MushcoreScalar("elem1value"));
+    config.Set("elem2", MushcoreScalar(1.456));
+    config.Set("elem3", MushcoreScalar(1));
 
     if (config.Get("elem1").StringGet() != string("elem1value"))
     {
         throw TestFail("Config fault 1");
     }
-    if (config.Get("elem1") != CoreScalar("elem1value"))
+    if (config.Get("elem1") != MushcoreScalar("elem1value"))
     {
         throw TestFail("Config fault 2");
     }
@@ -330,16 +336,16 @@ Test::Test4(void)
     {
         throw TestFail("Config fault 3");
     }
-    if (config.Get("elem2") != CoreScalar(1.456))
+    if (config.Get("elem2") != MushcoreScalar(1.456))
     {
         throw TestFail("Config fault 4");
     }
-    if (config.Get("elem3") != CoreScalar(1))
+    if (config.Get("elem3") != MushcoreScalar(1))
     {
         throw TestFail("Config fault 5");
     }
 
-    config.Set("elem3", CoreScalar(2));
+    config.Set("elem3", MushcoreScalar(2));
     
     if (config.Get("elem3").ValGet() != 2)
     {
@@ -351,10 +357,10 @@ void
 Test::Test5(void)
 {
     string inFilename("../test/XMLtest.xml");
-    ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
+    ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
 
-//    CoreXML parser;
+//    MushcoreXML parser;
 //    parser.ParseStream(in);
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.10 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameConfig.h,v 1.11 2002/12/29 20:30:53 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.11  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.10  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -20,7 +23,7 @@
  * Mushware ID work
  *
  * Revision 1.8  2002/11/24 23:18:06  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.7  2002/11/22 11:42:06  southa
  * Added developer controls
@@ -47,31 +50,31 @@
 
 #include "mushCore.h"
 
-class GameConfig : public CorePickle, protected CoreXMLHandler
+class GameConfig : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     static GameConfig& Instance(void) { return *((m_instance==NULL)?m_instance=new GameConfig:m_instance); }
     
     static void Install(void);
-    static CoreScalar GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigPasswordAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar GameConfigLoad(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigValueAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigStringAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigPasswordAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigSpecial(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     
     Mushware::U32 DisplayModeGet(void) const;
     void DisplayModeSet(Mushware::U32 inMode);
     void DisplayModeSetDefault(void);
 
-    CoreScalar ParameterGet(const std::string& inName) const;
+    MushcoreScalar ParameterGet(const std::string& inName) const;
     bool ParameterExists(const std::string& inName) const;
-    void ParameterSet(const std::string& inName, const CoreScalar& inValue);
+    void ParameterSet(const std::string& inName, const MushcoreScalar& inValue);
     void PostDataHandle(const std::string& inData);
     void Update(void);
     
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
    
 protected:
@@ -79,15 +82,15 @@ protected:
 
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
     
 private:
-    void HandleConfigStart(CoreXML& inXML);
-    void HandleConfigEnd(CoreXML& inXML);
-    void HandleValueEnd(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleConfigStart(MushcoreXML& inXML);
+    void HandleConfigEnd(MushcoreXML& inXML);
+    void HandleValueEnd(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -97,7 +100,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameConfig::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameConfig::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

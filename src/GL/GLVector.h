@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.h,v 1.6 2002/12/20 13:17:37 southa Exp $
+ * $Id: GLVector.h,v 1.7 2002/12/29 20:30:53 southa Exp $
  * $Log: GLVector.h,v $
+ * Revision 1.7  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.6  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -51,7 +54,7 @@ public:
     virtual void Render(void) const;
     
     void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    void Unpickle(CoreXML& inXML);
+    void Unpickle(MushcoreXML& inXML);
     void Unpickle(std::istream& ioIn);
     
     Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureDef.h,v 1.4 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTextureDef.h,v 1.5 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.5  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.4  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -58,6 +61,6 @@ private:
     mutable bool m_needsAlpha;
     mutable bool m_needsAlphaValid;
     Mushware::U32 *m_dataPtr;
-    CoreAutoMonkey m_autoMonkey;
+    MushcoreAutoMonkey m_autoMonkey;
 };
 #endif

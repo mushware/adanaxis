@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.h,v 1.17 2002/12/03 20:28:15 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.18 2002/12/20 13:17:37 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.18  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.17  2002/12/03 20:28:15  southa
  * Network, player and control work
  *
@@ -109,7 +112,7 @@ protected:
     virtual void MainLoop(void);
     virtual void Display(void);
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
-    virtual void Signal(const CoreAppSignal& inSignal);
+    virtual void Signal(const MushcoreAppSignal& inSignal);
     bool IsVisible(void) {return m_visible;}
     GLKeys TranslateKey(/* SDL_KeyboardEvent */ void *inKeyEvent) const;
     

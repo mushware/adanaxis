@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: main.cpp,v 1.22 2002/12/20 13:17:44 southa Exp $
+ * $Id: main.cpp,v 1.23 2002/12/29 20:59:58 southa Exp $
  * $Log: main.cpp,v $
+ * Revision 1.23  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.22  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -107,10 +110,10 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     PlatformMiscUtils::Initialise();
-    CoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
-    cerr << "Application path is " << CoreGlobalConfig::Instance().Get("APPLPATH") << endl;
-    CoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
-    cerr << "System path is " << CoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
+    MushcoreGlobalConfig::Instance().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
+    cerr << "Application path is " << MushcoreGlobalConfig::Instance().Get("APPLPATH") << endl;
+    MushcoreGlobalConfig::Instance().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
+    cerr << "System path is " << MushcoreGlobalConfig::Instance().Get("SYSTEMPATH") << endl;
 
 
 
@@ -130,9 +133,9 @@ int main(int argc, char *argv[])
     }
     try
     {
-        CoreApp::Instance().Process(str);
-        CoreAppHandler::Instance().Initialise();
-        CoreAppHandler::Instance().MainLoop();
+        MushcoreApp::Instance().Process(str);
+        MushcoreAppHandler::Instance().Initialise();
+        MushcoreAppHandler::Instance().MainLoop();
     }
     catch (exception& e)
     {

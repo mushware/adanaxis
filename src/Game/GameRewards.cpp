@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRewards.cpp,v 1.7 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameRewards.cpp,v 1.8 2003/01/07 17:13:43 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.8  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.7  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.5  2002/11/24 23:18:25  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.4  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -83,7 +86,7 @@ GameRewards::TimeCountdownPass(tVal inTime)
 }
 
 void
-GameRewards::HandleJudgementEnd(CoreXML& inXML)
+GameRewards::HandleJudgementEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for judgement.  Should be <judgement>0.8,^impressive</judgement>";
@@ -96,7 +99,7 @@ GameRewards::HandleJudgementEnd(CoreXML& inXML)
 }
 
 void
-GameRewards::HandleTimedEnd(CoreXML& inXML)
+GameRewards::HandleTimedEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for timed.  Should be <timed>10,^ten-second-warning</timed>";
@@ -110,14 +113,14 @@ GameRewards::HandleTimedEnd(CoreXML& inXML)
 }
 
 void
-GameRewards::HandleRewardsEnd(CoreXML& inXML)
+GameRewards::HandleRewardsEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameRewards::NullHandler(CoreXML& inXML)
+GameRewards::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -149,14 +152,14 @@ GameRewards::UnpickleEpilogue(void)
 }
 
 void
-GameRewards::Unpickle(CoreXML& inXML)
+GameRewards::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameRewards::XMLStartHandler(CoreXML& inXML)
+GameRewards::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -179,7 +182,7 @@ GameRewards::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameRewards::XMLEndHandler(CoreXML& inXML)
+GameRewards::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -202,7 +205,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 }
 
 void
-GameRewards::XMLDataHandler(CoreXML& inXML)
+GameRewards::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

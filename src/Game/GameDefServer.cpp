@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefServer.cpp,v 1.16 2002/12/29 20:59:55 southa Exp $
+ * $Id: GameDefServer.cpp,v 1.17 2003/01/07 17:13:41 southa Exp $
  * $Log: GameDefServer.cpp,v $
+ * Revision 1.17  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.16  2002/12/29 20:59:55  southa
  * More build fixes
  *
@@ -72,7 +75,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< CoreData<GameDefServer> > CoreData<GameDefServer>::m_instance;
+auto_ptr< MushcoreData<GameDefServer> > MushcoreData<GameDefServer>::m_instance;
 
 GameDefServer::GameDefServer(const string& inName) :
     GameDef(inName),
@@ -94,7 +97,7 @@ GameDefServer::HostGame(const string& inContract, U32 inPlayerLimit)
 void
 GameDefServer::Ticker(const string& inName)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
     if (m_currentMsec > m_lastUpdateMsec + kUpdateMsec)
@@ -107,9 +110,9 @@ GameDefServer::Ticker(const string& inName)
 void
 GameDefServer::UpdateClients(void)
 {
-    CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
 
-    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
         GameDefClient *clientDef=p->second;
         COREASSERT(clientDef != NULL);
@@ -172,24 +175,24 @@ GameDefServer::WebPrint(ostream& ioOut) const
 }
 
 void
-GameDefServer::NullHandler(CoreXML& inXML)
+GameDefServer::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameDefServer::HandleMessageEnd(CoreXML& inXML)
+GameDefServer::HandleMessageEnd(MushcoreXML& inXML)
 {
     m_serverMessage = inXML.TopData();
 }
 
 void
-GameDefServer::HandleContractEnd(CoreXML& inXML)
+GameDefServer::HandleContractEnd(MushcoreXML& inXML)
 {
     m_contractName = inXML.TopData();
 }
 
 void
-GameDefServer::HandlePlayerCountEnd(CoreXML& inXML)
+GameDefServer::HandlePlayerCountEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for playercount.  Should be <playercount>3</playercount>";
@@ -197,7 +200,7 @@ GameDefServer::HandlePlayerCountEnd(CoreXML& inXML)
 }
 
 void
-GameDefServer::HandlePlayerLimitEnd(CoreXML& inXML)
+GameDefServer::HandlePlayerLimitEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for playerlimit.  Should be <playerlimit>4</playerlimit>";
@@ -205,7 +208,7 @@ GameDefServer::HandlePlayerLimitEnd(CoreXML& inXML)
 }
 
 void
-GameDefServer::HandleDefServerEnd(CoreXML& inXML)
+GameDefServer::HandleDefServerEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
@@ -221,7 +224,7 @@ GameDefServer::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameDefServer::Unpickle(CoreXML& inXML)
+GameDefServer::Unpickle(MushcoreXML& inXML)
 {
     GameDef::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
@@ -241,7 +244,7 @@ GameDefServer::Unpickle(CoreXML& inXML)
 }
 
 void
-GameDefServer::XMLStartHandler(CoreXML& inXML)
+GameDefServer::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -273,7 +276,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameDefServer::XMLEndHandler(CoreXML& inXML)
+GameDefServer::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -308,7 +311,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameDefServer::XMLDataHandler(CoreXML& inXML)
+GameDefServer::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.12 2002/12/20 13:17:48 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.13 2002/12/29 21:00:00 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.13  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.12  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -79,7 +82,7 @@ PlatformMiscUtils::Initialise(void)
     char *home = getenv("HOME");
     if (home != NULL)
     {
-        CoreGlobalConfig::Instance().Set("HOME", home);
+        MushcoreGlobalConfig::Instance().Set("HOME", home);
     }
     // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
     if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
@@ -161,7 +164,7 @@ PlatformMiscUtils::ErrorBox(const string& inStr)
 void
 PlatformMiscUtils::UpdateCheck(void)
 {
-    if (CoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    if (MushcoreGlobalConfig::Instance().Exists("FIRST_RUN"))
     {
         ShowUpdateAlert();
     }

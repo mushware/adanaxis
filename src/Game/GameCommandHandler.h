@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.h,v 1.9 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.10 2002/12/20 13:17:37 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.10  2002/12/20 13:17:37  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -48,9 +51,9 @@ class GameCommandHandler
 {
 public:
     static void Install(void);
-    static CoreScalar Game(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar UpdateCheck(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
 #endif

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetUtils.cpp,v 1.10 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameNetUtils.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
  * $Log: GameNetUtils.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -86,9 +89,9 @@ GameNetUtils::KillClientImages(void)
 void
 GameNetUtils::KillLinks(void)
 {
-    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
 
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
     {
         p->second->Disconnect(MustlProtocol::kReasonCodeUserDisconnect);
     }
@@ -97,9 +100,9 @@ GameNetUtils::KillLinks(void)
 void
 GameNetUtils::KillServersByType(bool inImageIs)
 {
-    CoreData<GameDefServer>::tMapIterator endValue=CoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue=MushcoreData<GameDefServer>::Instance().End();
 
-    for (CoreData<GameDefServer>::tMapIterator p=CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p=MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs() == inImageIs)
         {
@@ -111,9 +114,9 @@ GameNetUtils::KillServersByType(bool inImageIs)
 void
 GameNetUtils::KillClientsByType(bool inImageIs)
 {
-    CoreData<GameDefClient>::tMapIterator endValue=CoreData<GameDefClient>::Instance().End();
+    MushcoreData<GameDefClient>::tMapIterator endValue=MushcoreData<GameDefClient>::Instance().End();
 
-    for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs() == inImageIs)
         {
@@ -123,7 +126,7 @@ GameNetUtils::KillClientsByType(bool inImageIs)
 }
 
 bool
-GameNetUtils::MaintainLinks(vector< CoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, U32 inLinkNum)
+GameNetUtils::MaintainLinks(vector< MushcoreDataRef<MustlLink> >& inLinks, const string& inClientName, const MustlAddress& inAddress, U32 inLinkNum)
 {
     bool linkGood=false;
     U32 size = inLinks.size();
@@ -153,12 +156,12 @@ GameNetUtils::MaintainLinks(vector< CoreDataRef<MustlLink> >& inLinks, const str
 }
 
 void
-GameNetUtils::CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClientName, const MustlAddress& inAddress)
+GameNetUtils::CreateLink(MushcoreDataRef<MustlLink>& outLink, const string& inClientName, const MustlAddress& inAddress)
 {
     try
     {
         string linkName=MustlLink::NextLinkNameTake();
-        CoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
+        MushcoreData<MustlLink>::Instance().Give(linkName, new MustlLink(GameNetID(inClientName), inAddress));
         outLink.NameSet(linkName);
     }
     catch (MustlFail& e)
@@ -168,7 +171,7 @@ GameNetUtils::CreateLink(CoreDataRef<MustlLink>& outLink, const string& inClient
 }
 
 void
-GameNetUtils::ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
+GameNetUtils::ReliableSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
     COREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
@@ -190,7 +193,7 @@ GameNetUtils::ReliableSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inL
 }
 
 void
-GameNetUtils::FastSend(U32& ioLinkNum, vector< CoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
+GameNetUtils::FastSend(U32& ioLinkNum, vector< MushcoreDataRef<MustlLink> >& inLinks, U32 inLinkNum, MustlData& ioData)
 {
     COREASSERT(inLinkNum <= inLinks.size());
     for (U32 i=0; i<inLinkNum; ++i)
@@ -215,12 +218,12 @@ void
 GameNetUtils::NetTicker(void)
 {
     // Needs to be called at least once a second
-    U32 currentMsec = dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
+    U32 currentMsec = dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
     {
-        CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
-        CoreData<GameDefClient>::tMapIterator killValue = CoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator killValue = MushcoreData<GameDefClient>::Instance().End();
     
-        for (CoreData<GameDefClient>::tMapIterator p=CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p=MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -239,19 +242,19 @@ GameNetUtils::NetTicker(void)
                 killValue = p;
             }
         }
-        if (killValue != CoreData<GameDefClient>::Instance().End())
+        if (killValue != MushcoreData<GameDefClient>::Instance().End())
         {
-            CoreData<GameDefClient>::Instance().Delete(killValue);
+            MushcoreData<GameDefClient>::Instance().Delete(killValue);
         }
     }
     
     
     bool serverNeeded=false;
     {
-        CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
-        CoreData<GameDefServer>::tMapIterator killValue = CoreData<GameDefServer>::Instance().End();
+        MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
+        MushcoreData<GameDefServer>::tMapIterator killValue = MushcoreData<GameDefServer>::Instance().End();
     
-        for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
         {
             if (p->second->ImageIs())
             {
@@ -271,9 +274,9 @@ GameNetUtils::NetTicker(void)
                 killValue = p;
             }
         }
-        if (killValue != CoreData<GameDefServer>::Instance().End())
+        if (killValue != MushcoreData<GameDefServer>::Instance().End())
         {
-            CoreData<GameDefServer>::Instance().Delete(killValue);
+            MushcoreData<GameDefServer>::Instance().Delete(killValue);
         }
     }
     

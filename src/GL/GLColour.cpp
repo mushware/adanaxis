@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLColour.cpp,v 1.8 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLColour.cpp,v 1.9 2003/01/07 17:13:40 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.9  2003/01/07 17:13:40  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.8  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -49,7 +52,7 @@ GLColour::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GLColour::Unpickle(CoreXML& inXML)
+GLColour::Unpickle(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for colour.  Should be <colour>0.1,0.4,0.6,1.0</colour>";

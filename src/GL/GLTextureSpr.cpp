@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTextureSpr.cpp,v 1.15 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.16 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
+ * Revision 1.16  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.15  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -39,10 +42,10 @@
  * Texture references and decomposer
  *
  * Revision 1.6  2002/05/25 17:16:14  southa
- * CoreXML implementation
+ * MushcoreXML implementation
  *
  * Revision 1.5  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.4  2002/05/10 16:41:43  southa
  * Changed .hp files to .h
@@ -68,10 +71,10 @@ GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 
 GLTextureSpr::GLTextureSpr(const string& inFilename)
 {
-    CoreStreamUtil sUtil;
+    MushcoreStreamUtil sUtil;
     FilenameSet(inFilename);
 
-    u8ifstream in(CoreUtil::TranslateFilename(inFilename).c_str());
+    u8ifstream in(MushcoreUtil::TranslateFilename(inFilename).c_str());
 
     if (!in) throw(LoaderFail(inFilename, "Could not open file"));
     U32 numSprites=sUtil.LittleEndianU32Get(in);

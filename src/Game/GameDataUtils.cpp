@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDataUtils.cpp,v 1.5 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameDataUtils.cpp,v 1.6 2002/12/29 20:59:54 southa Exp $
  * $Log: GameDataUtils.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -41,7 +44,7 @@ GameDataUtils::NamedDialoguesAdd(const string& inStr)
     if (inStr == "") return;
     
     bool found=false;
-    CoreRegExp regExp(inStr);
+    MushcoreRegExp regExp(inStr);
     const GameData::DialogueMap& dialogueMap(GameData::Instance().DialogueMapGet());
     for (GameData::DialogueMapConstIterator p = dialogueMap.begin();
          p != dialogueMap.end(); ++p)

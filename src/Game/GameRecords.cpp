@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRecords.cpp,v 1.10 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameRecords.cpp,v 1.11 2003/01/07 17:13:43 southa Exp $
  * $Log: GameRecords.cpp,v $
+ * Revision 1.11  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.10  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.8  2002/11/24 23:18:24  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.7  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -182,7 +185,7 @@ GameRecords::Reset(void)
 }
 
 void
-GameRecords::HandleSplitTimeEnd(CoreXML& inXML)
+GameRecords::HandleSplitTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for splittime.  Should be <splittime>100,200,350</splittime>";
@@ -197,7 +200,7 @@ GameRecords::HandleSplitTimeEnd(CoreXML& inXML)
 }
 
 void
-GameRecords::HandleLapTimeEnd(CoreXML& inXML)
+GameRecords::HandleLapTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for laptime.  Should be <laptime>1400</laptime>";
@@ -206,7 +209,7 @@ GameRecords::HandleLapTimeEnd(CoreXML& inXML)
 }
 
 void
-GameRecords::HandleRaceTimeEnd(CoreXML& inXML)
+GameRecords::HandleRaceTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for racetime.  Should be <racetime>7500</racetime>";
@@ -215,20 +218,20 @@ GameRecords::HandleRaceTimeEnd(CoreXML& inXML)
 }
 
 void
-GameRecords::HandleRecordsStart(CoreXML& inXML)
+GameRecords::HandleRecordsStart(MushcoreXML& inXML)
 {
     m_pickleState = kPickleData;
 }
 
 void
-GameRecords::HandleRecordsEnd(CoreXML& inXML)
+GameRecords::HandleRecordsEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameRecords::NullHandler(CoreXML& inXML)
+GameRecords::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -286,14 +289,14 @@ GameRecords::UnpickleEpilogue(void)
 }
 
 void
-GameRecords::Unpickle(CoreXML& inXML)
+GameRecords::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameRecords::XMLStartHandler(CoreXML& inXML)
+GameRecords::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -316,7 +319,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameRecords::XMLEndHandler(CoreXML& inXML)
+GameRecords::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -339,7 +342,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameRecords::XMLDataHandler(CoreXML& inXML)
+GameRecords::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

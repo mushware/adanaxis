@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLLightDef.cpp,v 1.6 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLLightDef.cpp,v 1.7 2003/01/07 17:13:40 southa Exp $
  * $Log: GLLightDef.cpp,v $
+ * Revision 1.7  2003/01/07 17:13:40  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.6  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.4  2002/11/24 23:18:03  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.3  2002/10/22 20:42:00  southa
  * Source conditioning
@@ -44,14 +47,14 @@ GLLightDef::BasePositionSet(const GLVector& inVec)
 }
 
 void
-GLLightDef::HandleOffsetEnd(CoreXML& inXML)
+GLLightDef::HandleOffsetEnd(MushcoreXML& inXML)
 {
     m_offset.Unpickle(inXML);
     m_position=m_offset+m_basePosition;
 }
 
 void
-GLLightDef::HandlePowerEnd(CoreXML& inXML)
+GLLightDef::HandlePowerEnd(MushcoreXML& inXML)
 {
     tVal power;
     istringstream data(inXML.TopData());
@@ -63,32 +66,32 @@ GLLightDef::HandlePowerEnd(CoreXML& inXML)
 }
 
 void
-GLLightDef::HandleColourEnd(CoreXML& inXML)
+GLLightDef::HandleColourEnd(MushcoreXML& inXML)
 {
     m_specular.Unpickle(inXML);
     m_diffuse = m_specular;
 }
 
 void
-GLLightDef::HandleAmbientEnd(CoreXML& inXML)
+GLLightDef::HandleAmbientEnd(MushcoreXML& inXML)
 {
     m_ambient.Unpickle(inXML);
 }
 
 void
-GLLightDef::HandleDiffuseEnd(CoreXML& inXML)
+GLLightDef::HandleDiffuseEnd(MushcoreXML& inXML)
 {
     m_diffuse.Unpickle(inXML);
 }
 
 void
-GLLightDef::HandleSpecularEnd(CoreXML& inXML)
+GLLightDef::HandleSpecularEnd(MushcoreXML& inXML)
 {
     m_specular.Unpickle(inXML);
 }
 
 void
-GLLightDef::HandleCutoffEnd(CoreXML& inXML)
+GLLightDef::HandleCutoffEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_cutoff)) inXML.Throw("Bad format for cutoff");
@@ -96,13 +99,13 @@ GLLightDef::HandleCutoffEnd(CoreXML& inXML)
 }
 
 void
-GLLightDef::HandleDirectionEnd(CoreXML& inXML)
+GLLightDef::HandleDirectionEnd(MushcoreXML& inXML)
 {
     m_direction.Unpickle(inXML);
 }
 
 void
-GLLightDef::HandleExponentEnd(CoreXML& inXML)
+GLLightDef::HandleExponentEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_exponent)) inXML.Throw("Bad format for exponent");
@@ -110,34 +113,34 @@ GLLightDef::HandleExponentEnd(CoreXML& inXML)
 }
 
 void
-GLLightDef::HandleConstantEnd(CoreXML& inXML)
+GLLightDef::HandleConstantEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_constant)) inXML.Throw("Bad format for constant");
 }
 
 void
-GLLightDef::HandleLinearEnd(CoreXML& inXML)
+GLLightDef::HandleLinearEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_linear)) inXML.Throw("Bad format for linear");
 }
 void
-GLLightDef::HandleQuadraticEnd(CoreXML& inXML)
+GLLightDef::HandleQuadraticEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_quadratic)) inXML.Throw("Bad format for quadratic");
 }
 
 void
-GLLightDef::HandleLightEnd(CoreXML& inXML)
+GLLightDef::HandleLightEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GLLightDef::NullHandler(CoreXML& inXML)
+GLLightDef::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -195,7 +198,7 @@ GLLightDef::UnpicklePrologue(void)
 }
 
 void
-GLLightDef::Unpickle(CoreXML& inXML)
+GLLightDef::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -209,7 +212,7 @@ GLLightDef::UnpickleEpilogue(void)
 }
 
 void
-GLLightDef::XMLStartHandler(CoreXML& inXML)
+GLLightDef::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -241,7 +244,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GLLightDef::XMLEndHandler(CoreXML& inXML)
+GLLightDef::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -276,7 +279,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GLLightDef::XMLDataHandler(CoreXML& inXML)
+GLLightDef::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

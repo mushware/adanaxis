@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.h,v 1.7 2002/12/20 13:17:45 southa Exp $
+ * $Id: MediaSound.h,v 1.8 2002/12/29 20:30:55 southa Exp $
  * $Log: MediaSound.h,v $
+ * Revision 1.8  2002/12/29 20:30:55  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.7  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -32,7 +35,7 @@
  * MediaSound work
  *
  * Revision 1.1  2002/08/15 13:39:31  southa
- * CoreData and CoreDatRef
+ * MushcoreData and MushcoreDatRef
  *
  */
 
@@ -53,9 +56,9 @@ public:
     void MixChunkSet(Mix_Chunk *inChunk) { m_chunk=inChunk; }
     void ResidenceSet(bool inResident) { m_resident=inResident; }
 
-    static CoreScalar TransientSound(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar ResidentSound(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar ResidentSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     
 private:

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGlobalConfig.h,v 1.6 2002/10/22 20:42:04 southa Exp $
+ * $Id: GameGlobalConfig.h,v 1.7 2002/12/20 13:17:40 southa Exp $
  * $Log: GameGlobalConfig.h,v $
+ * Revision 1.7  2002/12/20 13:17:40  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:04  southa
  * Source conditioning
  *
@@ -35,7 +38,7 @@
 
 #include "mushCore.h"
 
-class GameGlobalConfig : public CoreConfig
+class GameGlobalConfig : public MushcoreConfig
 {
 public:
     static GameGlobalConfig& Instance(void) {return *((m_instance==NULL)?m_instance=new GameGlobalConfig:m_instance);}

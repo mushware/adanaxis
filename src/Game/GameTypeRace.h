@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.h,v 1.16 2002/12/20 13:17:44 southa Exp $
+ * $Id: GameTypeRace.h,v 1.17 2002/12/29 20:30:54 southa Exp $
  * $Log: GameTypeRace.h,v $
+ * Revision 1.17  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.16  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.15  2002/11/24 23:18:26  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.14  2002/10/22 20:42:07  southa
  * Source conditioning
@@ -81,7 +84,7 @@ public:
     GameTypeRace();
     virtual ~GameTypeRace() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
     virtual void Move(void);
@@ -93,23 +96,23 @@ public:
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
     void StandingOnHandler(const GameEventStandingOn& inEvent);
     
 private:
-    void HandleGameEnd(CoreXML& inXML);
-    void HandleLapTimeEnd(CoreXML& inXML);
-    void HandleStartActionEnd(CoreXML& inXML);
-    void HandleFinalLapActionEnd(CoreXML& inXML);
-    void HandleWinActionEnd(CoreXML& inXML);
-    void HandleLoseActionEnd(CoreXML& inXML);
-    void HandleInitialTimeEnd(CoreXML& inXML);
-    void HandleLapsEnd(CoreXML& inXML);
-    void HandleChequePointStart(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleGameEnd(MushcoreXML& inXML);
+    void HandleLapTimeEnd(MushcoreXML& inXML);
+    void HandleStartActionEnd(MushcoreXML& inXML);
+    void HandleFinalLapActionEnd(MushcoreXML& inXML);
+    void HandleWinActionEnd(MushcoreXML& inXML);
+    void HandleLoseActionEnd(MushcoreXML& inXML);
+    void HandleInitialTimeEnd(MushcoreXML& inXML);
+    void HandleLapsEnd(MushcoreXML& inXML);
+    void HandleChequePointStart(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -119,7 +122,7 @@ private:
         kPickleNumStates
     };
     
-    typedef std::map<string, void (GameTypeRace::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameTypeRace::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

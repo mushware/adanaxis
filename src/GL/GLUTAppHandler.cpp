@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.cpp,v 1.17 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.18 2002/12/29 20:59:53 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.18  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.17  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -93,7 +96,7 @@ GLUTAppHandler::Initialise(void)
 void
 GLUTAppHandler::Idle(void)
 {
-    CoreAppHandler::Idle();
+    MushcoreAppHandler::Idle();
 }
 
 void
@@ -114,7 +117,7 @@ GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
         // Escape key pressed
-        CoreAppHandler::Instance().Signal(CoreAppSignal(CoreAppSignal::kEscape));
+        MushcoreAppHandler::Instance().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
     }
 }
 
@@ -322,7 +325,7 @@ GLUTAppHandler::SetCursorState(bool inValue)
 }
 
 void
-GLUTAppHandler::Signal(const CoreAppSignal& inSignal)
+GLUTAppHandler::Signal(const MushcoreAppSignal& inSignal)
 {
     switch (inSignal.SigNumberGet())
     {
@@ -345,9 +348,9 @@ GLUTAppHandler::Signal(const CoreAppSignal& inSignal)
         break;
 
         default:
-            if (inSignal.IsCoreAppSignal())
+            if (inSignal.IsMushcoreAppSignal())
             {
-                CoreAppHandler::Signal(inSignal);
+                MushcoreAppHandler::Signal(inSignal);
             }
             else
             {

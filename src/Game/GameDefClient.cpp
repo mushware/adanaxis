@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.cpp,v 1.22 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameDefClient.cpp,v 1.23 2003/01/07 17:13:41 southa Exp $
  * $Log: GameDefClient.cpp,v $
+ * Revision 1.23  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.22  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -78,7 +81,7 @@
  * Initial send of objects over links
  *
  * Revision 1.6  2002/11/24 23:18:16  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.4  2002/11/23 17:23:44  southa
  * Sleep in setup
@@ -107,13 +110,13 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< CoreData<GameDefClient> > CoreData<GameDefClient>::m_instance;
+auto_ptr< MushcoreData<GameDefClient> > MushcoreData<GameDefClient>::m_instance;
 
 GameDefClient::GameDefClient(const string& inName) :
     GameDef(inName),
     m_lastLinkMsec(0),
     m_lastRegistrationMsec(0),
-    m_netLinks(kMaxLinks, CoreDataRef<MustlLink>("invalid-link")),
+    m_netLinks(kMaxLinks, MushcoreDataRef<MustlLink>("invalid-link")),
     m_lastLinkNum(0),
     m_numLinks(kNumSetupModeLinks),
     m_uplinkBandwidth(0),
@@ -140,7 +143,7 @@ GameDefClient::Ticker(const string& inName)
     // Needs calling at least once per second
     if (!m_joined) return;
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     if (gameAppHandler.GameRunningIs())
     {
         m_numLinks=kNumGameModeLinks;
@@ -205,7 +208,7 @@ void
 GameDefClient::UpdateStatus(void)
 {
     GameDef::tStatus oldStatus = StatusGet();
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
     if (m_currentMsec > CreationMsecGet() + kServerTimeoutMsec)
@@ -213,9 +216,9 @@ GameDefClient::UpdateStatus(void)
         StatusSet(GameDef::kStatusNoServer);
     }
     
-    CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
 
-    for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
         if (p->second->ImageIs())
         {
@@ -268,12 +271,12 @@ GameDefClient::WebPrint(ostream& ioOut) const
 }
 
 void
-GameDefClient::NullHandler(CoreXML& inXML)
+GameDefClient::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameDefClient::HandleULBytesEnd(CoreXML& inXML)
+GameDefClient::HandleULBytesEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for ulbytes.  Should be <ulbytes>10240</ulbytes>";
@@ -281,7 +284,7 @@ GameDefClient::HandleULBytesEnd(CoreXML& inXML)
 }
 
 void
-GameDefClient::HandleGameDefClientEnd(CoreXML& inXML)
+GameDefClient::HandleGameDefClientEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
@@ -294,7 +297,7 @@ GameDefClient::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameDefClient::Unpickle(CoreXML& inXML)
+GameDefClient::Unpickle(MushcoreXML& inXML)
 {
     GameDef::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
@@ -308,7 +311,7 @@ GameDefClient::Unpickle(CoreXML& inXML)
 }
 
 void
-GameDefClient::XMLStartHandler(CoreXML& inXML)
+GameDefClient::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -340,7 +343,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameDefClient::XMLEndHandler(CoreXML& inXML)
+GameDefClient::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -375,7 +378,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameDefClient::XMLDataHandler(CoreXML& inXML)
+GameDefClient::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

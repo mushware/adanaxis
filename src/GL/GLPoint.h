@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.h,v 1.16 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLPoint.h,v 1.17 2002/12/29 20:30:52 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.17  2002/12/29 20:30:52  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.16  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -81,7 +84,7 @@ public:
     virtual void Render(void) const;
 
     void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    void Unpickle(CoreXML& inXML);
+    void Unpickle(MushcoreXML& inXML);
     void Unpickle(std::istream& ioIn);
     
     Mushware::U32 U32XGet(void) const { return static_cast<U32>(x); }

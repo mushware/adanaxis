@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.h,v 1.7 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.8 2002/12/29 20:30:54 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.8  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.7  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.6  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.5  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -46,25 +49,25 @@ public:
     virtual ~GameGraphicModel();
     virtual void Render(void);
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
 private:
-    void HandleGraphicEnd(CoreXML& inXML);
-    void HandleTextureEnd(CoreXML& inXML);
-    void HandleFacetsStart(CoreXML& inXML);
-    void HandleFacetsEnd(CoreXML& inXML);
-    void HandleOffsetEnd(CoreXML& inXML);
-    void HandleFacetOffsetEnd(CoreXML& inXML);
-    void HandleVertexEnd(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleGraphicEnd(MushcoreXML& inXML);
+    void HandleTextureEnd(MushcoreXML& inXML);
+    void HandleFacetsStart(MushcoreXML& inXML);
+    void HandleFacetsEnd(MushcoreXML& inXML);
+    void HandleOffsetEnd(MushcoreXML& inXML);
+    void HandleFacetOffsetEnd(MushcoreXML& inXML);
+    void HandleVertexEnd(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -75,7 +78,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameGraphicModel::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameGraphicModel::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

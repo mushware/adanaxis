@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.16 2002/12/12 18:38:57 southa Exp $
+ * $Id: mushCore.h,v 1.17 2002/12/20 13:17:30 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.17  2002/12/20 13:17:30  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/12 18:38:57  southa
  * Mustl separation
  *
@@ -33,7 +36,7 @@
  * Source conditioning
  *
  * Revision 1.9  2002/08/15 13:39:30  southa
- * CoreData and CoreDatRef
+ * MushcoreData and MushcoreDatRef
  *
  * Revision 1.8  2002/08/07 13:36:43  southa
  * Conditioned source
@@ -76,81 +79,81 @@
 #define MUSHCORE_H
 
 // Utility for memory management
-#include "CoreApp/CoreAutoMonkey.h"
+#include "Mushcore/MushcoreAutoMonkey.h"
 
 // Application class required by main()
-#include "CoreApp/CoreApp.h"
+#include "Mushcore/MushcoreApp.h"
 
 // Application handler subclassed to provide different application types
-#include "CoreApp/CoreAppHandler.h"
+#include "Mushcore/MushcoreAppHandler.h"
 
 // Command handler to be subclassed to provide new commands
-#include "CoreApp/CoreCommandHandler.h"
+#include "Mushcore/MushcoreCommandHandler.h"
 
 // Configuration handler
-#include "CoreApp/CoreConfig.h"
+#include "Mushcore/MushcoreConfig.h"
 
 // Data storage
-#include "CoreApp/CoreData.h"
+#include "Mushcore/MushcoreData.h"
 
 // Data reference
-#include "CoreApp/CoreDataRef.h"
+#include "Mushcore/MushcoreDataRef.h"
 
 // Environment
-#include "CoreApp/CoreEnv.h"
+#include "Mushcore/MushcoreEnv.h"
 
 // Environment output controller
-#include "CoreApp/CoreEnvOutput.h"
+#include "Mushcore/MushcoreEnvOutput.h"
 
 // Exception classes to be thrown
-#include "CoreApp/CoreException.h"
+#include "Mushcore/MushcoreException.h"
 
 // Global configuration
-#include "CoreApp/CoreGlobalConfig.h"
+#include "Mushcore/MushcoreGlobalConfig.h"
 
 // History storage
-#include "CoreApp/CoreHistory.h"
+#include "Mushcore/MushcoreHistory.h"
 
 // Package and version information
-#include "CoreApp/CoreInfo.h"
+#include "Mushcore/MushcoreInfo.h"
 
 // Used as a hook to register classes and commands at startup
-#include "CoreApp/CoreInstaller.h"
+#include "Mushcore/MushcoreInstaller.h"
 
 // Command interpreter
-#include "CoreApp/CoreInterpreter.h"
+#include "Mushcore/MushcoreInterpreter.h"
 
-// Core namespace
-#include "CoreApp/CoreNamespace.h"
+// Mushcore namespace
+#include "Mushcore/MushcoreNamespace.h"
 
 // Pickle utilities
-#include "CoreApp/CorePickle.h"
+#include "Mushcore/MushcorePickle.h"
 
 // POSIX utilities
-#include "CoreApp/CorePOSIX.h"
+#include "Mushcore/MushcorePOSIX.h"
 
 // Regular expression utility
-#include "CoreApp/CoreRegExp.h"
+#include "Mushcore/MushcoreRegExp.h"
 
 // Scalar type for expressions
-#include "CoreApp/CoreScalar.h"
+#include "Mushcore/MushcoreScalar.h"
 
 // Script class
-#include "CoreApp/CoreScript.h"
+#include "Mushcore/MushcoreScript.h"
 
 // Standard typedefs
-#include "CoreApp/CoreStandard.h"
+#include "Mushcore/MushcoreStandard.h"
 
 // Stream utilities
-#include "CoreApp/CoreStreamUtil.h"
+#include "Mushcore/MushcoreStreamUtil.h"
 
 // Compilation switches
-#include "CoreApp/CoreSwitches.h"
+#include "Mushcore/MushcoreSwitches.h"
 
 // Utilities
-#include "CoreApp/CoreUtil.h"
+#include "Mushcore/MushcoreUtil.h"
 
-// Temporary
-#include "CoreApp/Dataset.h"
+// XML
+#include "Mushcore/MushcoreXML.h"
 
 #endif

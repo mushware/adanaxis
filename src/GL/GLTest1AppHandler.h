@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.h,v 1.9 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.10 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.10  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -61,7 +64,7 @@ public:
     virtual void Initialise(void);
     virtual void Display(void);
     virtual void Idle(void);
-    static CoreScalar GLTest1(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar GLTest1(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 
 protected:

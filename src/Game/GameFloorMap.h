@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.h,v 1.24 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameFloorMap.h,v 1.25 2002/12/29 20:30:53 southa Exp $
  * $Log: GameFloorMap.h,v $
+ * Revision 1.25  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.24  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.23  2002/11/24 23:18:16  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.22  2002/11/18 11:31:14  southa
  * Return to game mode
@@ -92,13 +95,13 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.3  2002/05/26 16:08:49  southa
- * CoreXML loader
+ * MushcoreXML loader
  *
  * Revision 1.2  2002/05/25 17:16:15  southa
- * CoreXML implementation
+ * MushcoreXML implementation
  *
  * Revision 1.1  2002/05/24 18:08:35  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  */
 
@@ -112,7 +115,7 @@ class GameTileMap;
 class GameMapArea;
 class GameMapPoint;
 
-class GameFloorMap : public CorePickle, private CoreXMLHandler
+class GameFloorMap : public MushcorePickle, private MushcoreXMLHandler
 {
 public:
 
@@ -121,7 +124,7 @@ public:
     
     GameFloorMap(): m_state(kInit), m_solidMapValid(false), m_tileMap(NULL), m_lightMapValid(false) {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
     const tMapVector& At(Mushware::U32 inX, Mushware::U32 inY) {COREASSERT(inX<m_xsize);COREASSERT(inY<m_ysize);return m_map[inY][inX];}
@@ -156,18 +159,18 @@ public:
     void SolidMapInvalidate(void) { m_solidMapValid=false; }
     void LightMapInvalidate(void) { m_lightMapValid=false; }
    
-    static CoreScalar LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 
 protected:
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
-    void HandleDataEnd(CoreXML& inXML);
-    void HandleGameFloorMapStart(CoreXML& inXML);
-    void HandleGameFloorMapEnd(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleDataEnd(MushcoreXML& inXML);
+    void HandleGameFloorMapStart(MushcoreXML& inXML);
+    void HandleGameFloorMapEnd(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum
     {
@@ -181,7 +184,7 @@ private:
     void RebuildSolidMap(void) const;
     void RebuildLightMap(void) const;
 
-    typedef std::map<string, void (GameFloorMap::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameFloorMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_state;

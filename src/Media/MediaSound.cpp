@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSound.cpp,v 1.9 2002/12/20 13:17:45 southa Exp $
+ * $Id: MediaSound.cpp,v 1.10 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.10  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -36,7 +39,7 @@
  * MediaSound work
  *
  * Revision 1.1  2002/08/15 13:39:31  southa
- * CoreData and CoreDatRef
+ * MushcoreData and MushcoreDatRef
  *
  */
 
@@ -47,9 +50,9 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< CoreData<MediaSound> > CoreData<MediaSound>::m_instance;
+auto_ptr< MushcoreData<MediaSound> > MushcoreData<MediaSound>::m_instance;
 
-CoreInstaller MediaSoundInstaller(MediaSound::Install);
+MushcoreInstaller MediaSoundInstaller(MediaSound::Install);
 
 MediaSound::MediaSound(const string& inName):
     m_filename(inName),
@@ -90,8 +93,8 @@ MediaSound::EndHandler(void)
     }
 }
 
-CoreScalar
-MediaSound::TransientSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaSound::TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -100,13 +103,13 @@ MediaSound::TransientSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=CoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
+    MediaSound *sound=MushcoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
     sound->ResidenceSet(false);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-MediaSound::ResidentSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaSound::ResidentSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -115,14 +118,14 @@ MediaSound::ResidentSound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    MediaSound *sound=CoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
+    MediaSound *sound=MushcoreData<MediaSound>::Instance().Give(name, new MediaSound(filename));
     sound->ResidenceSet(true);
     sound->Load();
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-MediaSound::PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaSound::PlaySound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
@@ -130,15 +133,15 @@ MediaSound::PlaySound(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSound *sound=CoreData<MediaSound>::Instance().Get(name);
+    MediaSound *sound=MushcoreData<MediaSound>::Instance().Get(name);
     MediaAudio::Instance().Play(*sound);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 MediaSound::Install(void)
 {
-    CoreApp::Instance().AddHandler("residentsound", ResidentSound);
-    CoreApp::Instance().AddHandler("transientsound", TransientSound);
-    CoreApp::Instance().AddHandler("playsound", PlaySound);
+    MushcoreApp::Instance().AddHandler("residentsound", ResidentSound);
+    MushcoreApp::Instance().AddHandler("transientsound", TransientSound);
+    MushcoreApp::Instance().AddHandler("playsound", PlaySound);
 }

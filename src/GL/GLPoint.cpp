@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLPoint.cpp,v 1.8 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLPoint.cpp,v 1.9 2003/01/07 17:13:40 southa Exp $
  * $Log: GLPoint.cpp,v $
+ * Revision 1.9  2003/01/07 17:13:40  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.8  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -60,7 +63,7 @@ GLPoint::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GLPoint::Unpickle(CoreXML& inXML)
+GLPoint::Unpickle(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     Unpickle(data);

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: Test.h,v 1.7 2002/10/22 20:42:08 southa Exp $
+ * $Id: Test.h,v 1.8 2002/12/20 13:17:48 southa Exp $
  * $Log: Test.h,v $
+ * Revision 1.8  2002/12/20 13:17:48  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -29,7 +32,7 @@
  * Build process fixes
  *
  * Revision 1.2  2002/05/24 18:09:39  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.1  2002/05/10 16:39:35  southa
  * Changed .hp files to .h

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppSignal.h,v 1.8 2002/10/22 20:41:59 southa Exp $
+ * $Id: GLAppSignal.h,v 1.9 2002/12/20 13:17:34 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.9  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:41:59  southa
  * Source conditioning
  *
@@ -42,10 +45,10 @@
 #include "GLKeys.h"
 #include "mushCore.h"
 
-class GLAppSignal: public CoreAppSignal
+class GLAppSignal: public MushcoreAppSignal
 {
 public:
-    GLAppSignal(Mushware::U32 inSigNumber): CoreAppSignal(inSigNumber) {}
+    GLAppSignal(Mushware::U32 inSigNumber): MushcoreAppSignal(inSigNumber) {}
     enum GLSigNumber
     {
         kDisplay=0x100,
@@ -55,11 +58,11 @@ public:
     };
 };
 
-class GLKeyboardSignal: public CoreAppSignal
+class GLKeyboardSignal: public MushcoreAppSignal
 {
 public:
     GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
-        CoreAppSignal(GLAppSignal::kKeyboard),
+        MushcoreAppSignal(GLAppSignal::kKeyboard),
         keyDown(inKeyDown),
         keyValue(inKeyValue),
         mouseX(inMouseX),

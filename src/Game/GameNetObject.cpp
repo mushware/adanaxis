@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.cpp,v 1.14 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameNetObject.cpp,v 1.15 2003/01/07 17:13:43 southa Exp $
  * $Log: GameNetObject.cpp,v $
+ * Revision 1.15  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.14  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -67,23 +70,23 @@ GameNetObject::~GameNetObject()
 }
 
 void
-GameNetObject::NullHandler(CoreXML& inXML)
+GameNetObject::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
+GameNetObject::HandleGameDefClientStart(MushcoreXML& inXML)
 {
     string elementName=inXML.GetAttribOrThrow("name").StringGet();
     string dataName = elementName+"-image";
 
-    CoreScalar netDelete(0);
+    MushcoreScalar netDelete(0);
     inXML.GetAttrib(netDelete, "delete");
     if (netDelete.U32Get())
     {
         try
         {
-            CoreData<GameDefClient>::Instance().Delete(dataName);
+            MushcoreData<GameDefClient>::Instance().Delete(dataName);
         }
         catch (ReferenceFail& e)
         {
@@ -92,8 +95,8 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
     }
     else
     {
-        bool isUpdate = CoreData<GameDefClient>::Instance().Exists(dataName);
-        GameDefClient *gameDefClient = CoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
+        bool isUpdate = MushcoreData<GameDefClient>::Instance().Exists(dataName);
+        GameDefClient *gameDefClient = MushcoreData<GameDefClient>::Instance().Give(dataName, new GameDefClient(elementName));
         gameDefClient->ImageIsSet(true);
         gameDefClient->PlayerNameSet(dataName);
         gameDefClient->AddressSet(m_address);
@@ -102,8 +105,8 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
         // When a client image is created, we send an update of the server image to that client
         if (!isUpdate)
         {
-            CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
-            for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+            MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
+            for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
             {
                 if (!p->second->ImageIs())
                 {
@@ -115,18 +118,18 @@ GameNetObject::HandleGameDefClientStart(CoreXML& inXML)
 }
 
 void
-GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
+GameNetObject::HandleGameDefServerStart(MushcoreXML& inXML)
 {
     string elementName=inXML.GetAttribOrThrow("name").StringGet();
     string dataName = elementName+"-image";
 
-    CoreScalar netDelete(0);
+    MushcoreScalar netDelete(0);
     inXML.GetAttrib(netDelete, "delete");
     if (netDelete.U32Get())
     {
         try
         {
-            CoreData<GameDefServer>::Instance().Delete(dataName);
+            MushcoreData<GameDefServer>::Instance().Delete(dataName);
         }
         catch (ReferenceFail& e)
         {
@@ -135,7 +138,7 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
     }
     else
     {
-        GameDefServer *gameDefServer = CoreData<GameDefServer>::Instance().Give(dataName, new GameDefServer(elementName));
+        GameDefServer *gameDefServer = MushcoreData<GameDefServer>::Instance().Give(dataName, new GameDefServer(elementName));
         gameDefServer->ImageIsSet(true);
         gameDefServer->AddressSet(m_address);
         gameDefServer->Unpickle(inXML);
@@ -147,13 +150,13 @@ GameNetObject::HandleGameDefServerStart(CoreXML& inXML)
 }
 
 void
-GameNetObject::HandleNetObjectStart(CoreXML& inXML)
+GameNetObject::HandleNetObjectStart(MushcoreXML& inXML)
 {
     inXML.Throw("Not expecting a <netobject> element");
 }
 
 void
-GameNetObject::HandleNetObjectEnd(CoreXML& inXML)
+GameNetObject::HandleNetObjectEnd(MushcoreXML& inXML)
 {
     inXML.Throw("Not expecting expect a </netobject> element");
     inXML.StopHandler();
@@ -166,7 +169,7 @@ GameNetObject::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameNetObject::Unpickle(CoreXML& inXML)
+GameNetObject::Unpickle(MushcoreXML& inXML)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
@@ -181,7 +184,7 @@ GameNetObject::Unpickle(CoreXML& inXML)
 }
 
 void
-GameNetObject::XMLStartHandler(CoreXML& inXML)
+GameNetObject::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -204,7 +207,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameNetObject::XMLEndHandler(CoreXML& inXML)
+GameNetObject::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -227,7 +230,7 @@ GameNetObject::XMLEndHandler(CoreXML& inXML)
 }
 
 void
-GameNetObject::XMLDataHandler(CoreXML& inXML)
+GameNetObject::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.h,v 1.16 2002/12/03 20:28:14 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.17 2002/12/20 13:17:36 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.17  2002/12/20 13:17:36  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.16  2002/12/03 20:28:14  southa
  * Network, player and control work
  *
@@ -98,7 +101,7 @@ protected:
     virtual void MainLoop(void);
     virtual void Display(void);
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
-    virtual void Signal(const CoreAppSignal& inSignal);
+    virtual void Signal(const MushcoreAppSignal& inSignal);
     bool IsVisible(void) {return m_visible;}
 
     // GLUT specific

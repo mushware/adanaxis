@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameController.cpp,v 1.13 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameController.cpp,v 1.14 2002/12/29 20:59:54 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.14  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.13  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -73,7 +76,7 @@ GameController::GameController():
 void
 GameController::StateGet(GameControlFrameDef& outDef, U32 inAtMsec)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     
     gameAppHandler.KeysOfInterestSet(m_keysOfInterest);
     

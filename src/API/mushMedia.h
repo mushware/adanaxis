@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushMedia.h,v 1.22 2002/12/12 14:00:38 southa Exp $
+ * $Id: mushMedia.h,v 1.23 2002/12/20 13:17:31 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.23  2002/12/20 13:17:31  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.22  2002/12/12 14:00:38  southa
  * Created Mustl
  *
@@ -60,7 +63,7 @@
  * Added MediaSoundStream
  *
  * Revision 1.6  2002/08/15 13:39:30  southa
- * CoreData and CoreDatRef
+ * MushcoreData and MushcoreDatRef
  *
  * Revision 1.5  2002/08/07 13:36:43  southa
  * Conditioned source

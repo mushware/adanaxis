@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.cpp,v 1.24 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTexture.cpp,v 1.25 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.25  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.24  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -54,7 +57,7 @@
  * Texture references and decomposer
  *
  * Revision 1.10  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.9  2002/05/10 16:41:43  southa
  * Changed .hp files to .h

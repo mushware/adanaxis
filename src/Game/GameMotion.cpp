@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameMotion.cpp,v 1.9 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameMotion.cpp,v 1.10 2003/01/07 17:13:43 southa Exp $
  * $Log: GameMotion.cpp,v $
+ * Revision 1.10  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.9  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.7  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.6  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -46,13 +49,13 @@ using namespace Mushware;
 using namespace std;
 
 void
-GameMotion::HandleRectEnd(CoreXML& inXML)
+GameMotion::HandleRectEnd(MushcoreXML& inXML)
 {
     m_motionSpec.shape.Unpickle(inXML);
 }
 
 void
-GameMotion::HandlePositionEnd(CoreXML& inXML)
+GameMotion::HandlePositionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for position.  Should be <position>64,96,0.314</position>";
@@ -65,7 +68,7 @@ GameMotion::HandlePositionEnd(CoreXML& inXML)
 }
 
 void
-GameMotion::HandleDeltaEnd(CoreXML& inXML)
+GameMotion::HandleDeltaEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for delta.  Should be <delta>1,-1,0.0314</delta>";
@@ -78,14 +81,14 @@ GameMotion::HandleDeltaEnd(CoreXML& inXML)
 }
 
 void
-GameMotion::HandleMotionEnd(CoreXML& inXML)
+GameMotion::HandleMotionEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameMotion::NullHandler(CoreXML& inXML)
+GameMotion::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -115,7 +118,7 @@ GameMotion::UnpicklePrologue(void)
 }
 
 void
-GameMotion::Unpickle(CoreXML& inXML)
+GameMotion::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -129,7 +132,7 @@ GameMotion::UnpickleEpilogue(void)
 }
 
 void
-GameMotion::XMLStartHandler(CoreXML& inXML)
+GameMotion::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -152,7 +155,7 @@ GameMotion::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameMotion::XMLEndHandler(CoreXML& inXML)
+GameMotion::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -175,7 +178,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 }
 
 void
-GameMotion::XMLDataHandler(CoreXML& inXML)
+GameMotion::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileMap.h,v 1.15 2002/12/20 13:17:43 southa Exp $
+ * $Id: GameTileMap.h,v 1.16 2002/12/29 20:30:54 southa Exp $
  * $Log: GameTileMap.h,v $
+ * Revision 1.16  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.15  2002/12/20 13:17:43  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.14  2002/11/24 23:18:25  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.13  2002/11/18 11:31:14  southa
  * Return to game mode
@@ -65,12 +68,12 @@
 
 class GameTraits;
 
-class GameTileMap : public CorePickle, private CoreXMLHandler
+class GameTileMap : public MushcorePickle, private MushcoreXMLHandler
 {
 public:
     GameTileMap(): m_state(kInit), m_warned(false) {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
     const std::string& NameGet(Mushware::U32 inNum) const;
@@ -78,21 +81,21 @@ public:
     const GameTileSpec& TileSpecGet(Mushware::U32 inNum);
     void Load(void);
     
-    static CoreScalar LoadTileMap(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar LoadTileMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     
 protected:
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
-    void HandleMapEnd(CoreXML& inXML);
-    void HandleTileMapStart(CoreXML& inXML);
-    void HandleTileMapEnd(CoreXML& inXML);
-    void HandleScriptStart(CoreXML& inXML);
-    void HandleScriptEnd(CoreXML& inXML);
-    void HandleTraitsStart(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleMapEnd(MushcoreXML& inXML);
+    void HandleTileMapStart(MushcoreXML& inXML);
+    void HandleTileMapEnd(MushcoreXML& inXML);
+    void HandleScriptStart(MushcoreXML& inXML);
+    void HandleScriptEnd(MushcoreXML& inXML);
+    void HandleTraitsStart(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum
     {
@@ -111,7 +114,7 @@ private:
 
     const GameTileSpec& LookupSpec(Mushware::U32 inNum);
 
-    typedef std::map<string, void (GameTileMap::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameTileMap::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_state;
@@ -131,7 +134,7 @@ private:
     typedef std::map<U32, TraitDef> tTraitMap;
 
     tTraitMap m_map;
-    CoreScript m_loaderScript;
+    MushcoreScript m_loaderScript;
 
     mutable bool m_warned;
     mutable std::vector<GameTileSpec *> m_traits;

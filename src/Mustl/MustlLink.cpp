@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlLink.cpp,v 1.9 2002/12/29 20:59:59 southa Exp $
+ * $Id: MustlLink.cpp,v 1.10 2003/01/07 17:13:45 southa Exp $
  * $Log: MustlLink.cpp,v $
+ * Revision 1.10  2003/01/07 17:13:45  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.9  2002/12/29 20:59:59  southa
  * More build fixes
  *
@@ -131,9 +134,9 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::CoreData;
+//using Mushware::MushcoreData;
 
-auto_ptr< CoreData<MustlLink> > CoreData<MustlLink>::m_instance;
+auto_ptr< MushcoreData<MustlLink> > MushcoreData<MustlLink>::m_instance;
 
 U32 MustlLink::m_linkNameNum=1;
 
@@ -909,7 +912,10 @@ MustlLink::LinkInfoLog(void) const
 void
 MustlLink::Print(ostream& ioOut) const
 {
-    ioOut << "tcpState=[" << m_tcpState.Print() << "], udpState=[" << m_udpState.Print();
+    ioOut << "tcpState=[";
+    m_tcpState.Print(ioOut);
+    ioOut << "], udpState=[";
+    m_udpState.Print(ioOut);
     ioOut << "], currentMsec=" << m_currentMsec << ", creationMsec=" << m_creationMsec;
     ioOut  << ", lastActivityMsec=" << m_lastActivityMsec << ", lastIDRequestMsec=" << m_lastIDRequestMsec;
     ioOut << ", netID";

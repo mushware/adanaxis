@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameChequePoint.cpp,v 1.11 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameChequePoint.cpp,v 1.12 2003/01/07 17:13:41 southa Exp $
  * $Log: GameChequePoint.cpp,v $
+ * Revision 1.12  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.11  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.9  2002/11/24 23:18:05  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.8  2002/10/22 20:42:02  southa
  * Source conditioning
@@ -81,21 +84,21 @@ GameChequePoint::Triggered(void)
 }
 
 void
-GameChequePoint::HandleSequenceEnd(CoreXML& inXML)
+GameChequePoint::HandleSequenceEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_sequence)) inXML.Throw("Bad format for sequence.  Should be <sequence>1</sequence>");
 }
 
 void
-GameChequePoint::HandleActionEnd(CoreXML& inXML)
+GameChequePoint::HandleActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_action)) inXML.Throw("Bad format for action.  Should be <action>^chequepoint1</action>");
 }
 
 void
-GameChequePoint::HandleMapValueEnd(CoreXML& inXML)
+GameChequePoint::HandleMapValueEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     char comma;
@@ -109,7 +112,7 @@ GameChequePoint::HandleMapValueEnd(CoreXML& inXML)
 }
 
 void
-GameChequePoint::HandleParTimeEnd(CoreXML& inXML)
+GameChequePoint::HandleParTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_parTime)) inXML.Throw("Bad format for partime.  Should be <partime>10</partime>");
@@ -117,7 +120,7 @@ GameChequePoint::HandleParTimeEnd(CoreXML& inXML)
 }
 
 void
-GameChequePoint::HandleAddTimeEnd(CoreXML& inXML)
+GameChequePoint::HandleAddTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_addTime)) inXML.Throw("Bad format for addtime.  Should be <addtime>10</addtime>");
@@ -125,14 +128,14 @@ GameChequePoint::HandleAddTimeEnd(CoreXML& inXML)
 }
 
 void
-GameChequePoint::HandleChequePointEnd(CoreXML& inXML)
+GameChequePoint::HandleChequePointEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameChequePoint::NullHandler(CoreXML& inXML)
+GameChequePoint::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -165,7 +168,7 @@ GameChequePoint::UnpicklePrologue(void)
 }
 
 void
-GameChequePoint::Unpickle(CoreXML& inXML)
+GameChequePoint::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -179,7 +182,7 @@ GameChequePoint::UnpickleEpilogue(void)
 }
 
 void
-GameChequePoint::XMLStartHandler(CoreXML& inXML)
+GameChequePoint::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -211,7 +214,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameChequePoint::XMLEndHandler(CoreXML& inXML)
+GameChequePoint::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -246,7 +249,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameChequePoint::XMLDataHandler(CoreXML& inXML)
+GameChequePoint::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

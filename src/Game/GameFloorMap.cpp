@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorMap.cpp,v 1.41 2002/12/29 20:59:55 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.42 2003/01/07 17:13:42 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.42  2003/01/07 17:13:42  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.41  2002/12/29 20:59:55  southa
  * More build fixes
  *
@@ -21,7 +24,7 @@
  * Network, player and control work
  *
  * Revision 1.38  2002/11/24 23:18:16  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.37  2002/11/18 11:31:14  southa
  * Return to game mode
@@ -141,13 +144,13 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.3  2002/05/26 16:08:48  southa
- * CoreXML loader
+ * MushcoreXML loader
  *
  * Revision 1.2  2002/05/25 17:16:15  southa
- * CoreXML implementation
+ * MushcoreXML implementation
  *
  * Revision 1.1  2002/05/24 18:08:35  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  */
 
@@ -162,7 +165,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
+MushcoreInstaller GameFloorMapInstaller(GameFloorMap::Install);
 
 GameFloorMap::tMapVector GameFloorMap::m_emptyMapVector;
 
@@ -204,7 +207,7 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
         RebuildLightMap();
     }
     
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
     U32 timeNow=glAppHandler.MillisecondsGet();
     tVal xv=50*cos(timeNow/450.0);
     tVal yv=50*sin(timeNow/450.0);
@@ -670,20 +673,20 @@ GameFloorMap::RenderLightMap(const GameMapArea& inArea) const
 /* --- XML stuff --- */
 
 void
-GameFloorMap::NullHandler(CoreXML& inXML)
+GameFloorMap::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameFloorMap::HandleGameFloorMapStart(CoreXML& inXML)
+GameFloorMap::HandleGameFloorMapStart(MushcoreXML& inXML)
 {
     m_xsize=inXML.GetAttribOrThrow("xsize").U32Get();
     m_ysize=inXML.GetAttribOrThrow("ysize").U32Get();
-    CoreScalar temp;
-    temp=CoreScalar(1.0);
+    MushcoreScalar temp;
+    temp=MushcoreScalar(1.0);
     inXML.GetAttrib(temp, "xstep");
     m_xstep=temp.ValGet();
-    temp=CoreScalar(1.0);
+    temp=MushcoreScalar(1.0);
     inXML.GetAttrib(temp, "ystep");
     m_ystep=temp.ValGet();
     if (m_xstep == 0 || m_ystep == 0)
@@ -694,13 +697,13 @@ GameFloorMap::HandleGameFloorMapStart(CoreXML& inXML)
 }
 
 void
-GameFloorMap::HandleGameFloorMapEnd(CoreXML& inXML)
+GameFloorMap::HandleGameFloorMapEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
 
 void
-GameFloorMap::HandleDataEnd(CoreXML& inXML)
+GameFloorMap::HandleDataEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
 
@@ -708,7 +711,7 @@ GameFloorMap::HandleDataEnd(CoreXML& inXML)
     vector<tMapVector> rowVector;
     char seperator;
 
-    CoreScalar tierScalar(1);
+    MushcoreScalar tierScalar(1);
     inXML.GetAttrib(tierScalar, "tier");
     U32 tier=tierScalar.U32Get();
     if (tier > 0 ) --tier;
@@ -766,7 +769,7 @@ GameFloorMap::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameFloorMap::Unpickle(CoreXML& inXML)
+GameFloorMap::Unpickle(MushcoreXML& inXML)
 {
     m_startTable.resize(kNumStates);
     m_endTable.resize(kNumStates);
@@ -794,7 +797,7 @@ GameFloorMap::Unpickle(CoreXML& inXML)
 }
 
 void
-GameFloorMap::XMLStartHandler(CoreXML& inXML)
+GameFloorMap::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_state].find(inXML.TopTag());
 
@@ -817,7 +820,7 @@ ElementFunctionMap::iterator p = m_startTable[m_state].begin();
 }
 
 void
-GameFloorMap::XMLEndHandler(CoreXML& inXML)
+GameFloorMap::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_state].find(inXML.TopTag());
 
@@ -840,7 +843,7 @@ ElementFunctionMap::iterator p = m_endTable[m_state].begin();
 }
 
 void
-GameFloorMap::XMLDataHandler(CoreXML& inXML)
+GameFloorMap::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
@@ -851,8 +854,8 @@ GameFloorMap::TypeNameGet(void) const
     return "gamefloormap";
 }
 
-CoreScalar
-GameFloorMap::LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameFloorMap::LoadFloorMap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -863,14 +866,14 @@ GameFloorMap::LoadFloorMap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-    CoreXML xml(inStream, filename);
+    MushcoreXML xml(inStream, filename);
     GameData::Instance().FloorMapGetOrCreate(name)->Unpickle(xml);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GameFloorMap::Install(void)
 {
-    CoreApp::Instance().AddHandler("loadfloormap", LoadFloorMap);
+    MushcoreApp::Instance().AddHandler("loadfloormap", LoadFloorMap);
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: WrangleCommandHandler.h,v 1.6 2002/10/22 20:42:08 southa Exp $
+ * $Id: WrangleCommandHandler.h,v 1.7 2002/12/20 13:17:49 southa Exp $
  * $Log: WrangleCommandHandler.h,v $
+ * Revision 1.7  2002/12/20 13:17:49  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.6  2002/10/22 20:42:08  southa
  * Source conditioning
  *
@@ -48,6 +51,6 @@ class WrangleCommandHandler
 {
 public:
     static void Install(void);
-    static CoreScalar Wrangle(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar Wrangle(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
 #endif

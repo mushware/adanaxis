@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.22 2002/12/20 13:17:48 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.23 2002/12/29 21:00:01 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.23  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.22  2002/12/20 13:17:48  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -99,7 +102,7 @@ PlatformMiscUtils::Initialise(void)
     DWORD retVal = ExpandEnvironmentStrings("%USERPROFILE%", buffer, 500);
     if (retVal != 0)
     {
-        CoreGlobalConfig::Instance().Set("HOME", buffer);
+        MushcoreGlobalConfig::Instance().Set("HOME", buffer);
 	cerr << "Set home to " << buffer << endl;
     }
     
@@ -246,7 +249,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
     }
 	    
     int itemHit=MessageBox(NULL,
-		    CoreInfo::ApplicationNameGet().c_str(),
+		    MushcoreInfo::ApplicationNameGet().c_str(),
 		    inStr.c_str(),
 		    flags);
 
@@ -274,7 +277,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
 void
 PlatformMiscUtils::UpdateCheck(void)
 {
-    if (CoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    if (MushcoreGlobalConfig::Instance().Exists("FIRST_RUN"))
     {
         ShowUpdateAlert();
     }
@@ -296,7 +299,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
 	    
         case IDYES:
         {
-            string updateFile=CoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+            string updateFile=MushcoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
             LaunchFile(updateFile);
             exit(0);
         }

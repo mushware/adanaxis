@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTexture.h,v 1.13 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTexture.h,v 1.14 2002/12/29 20:30:53 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.14  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.13  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -47,7 +50,7 @@
  * Texture references and decomposer
  *
  * Revision 1.2  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.1  2002/05/10 16:40:38  southa
  * Changed .hp files to .h

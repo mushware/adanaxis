@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.22 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameData.cpp,v 1.23 2002/12/29 20:59:54 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.23  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.22  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -99,7 +102,7 @@ using namespace std;
 GameData *GameData::m_instance=NULL;
 
 GameData::GameData():
-    m_playerData(CoreData<GamePiecePlayer>::PrivateInstanceCreate()),
+    m_playerData(MushcoreData<GamePiecePlayer>::PrivateInstanceCreate()),
     m_timer(NULL),
     m_gameType(NULL),
     m_gameRewards(NULL)

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.h,v 1.24 2002/12/20 13:17:41 southa Exp $
+ * $Id: GamePiecePlayer.h,v 1.25 2002/12/29 20:30:54 southa Exp $
  * $Log: GamePiecePlayer.h,v $
+ * Revision 1.25  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.24  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -32,7 +35,7 @@
  * Network, player and control work
  *
  * Revision 1.18  2002/11/24 23:18:24  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.17  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -102,7 +105,7 @@ public:
     GamePiecePlayer();
     virtual ~GamePiecePlayer() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const;
     virtual void MoveConfirm(const GameMotionSpec& inSpec);
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap);
@@ -119,29 +122,29 @@ public:
     bool ImageIs(void) const { return m_imageIs; }
     void ImageIsSet(bool inImageIs) { m_imageIs = inImageIs; }
     bool ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, Mushware::U32 inFrameNum);
-    CoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(Mushware::U32 inFrameNum) const;
+    MushcoreHistoryIterator<U32, GameControlFrameDef> ControlFrameDefIteratorGet(Mushware::U32 inFrameNum) const;
     void ControlFrameDefAdd(const GameControlFrameDef& inDef, Mushware::U32 inFrameNum);
     Mushware::U32 LastValidControlFrameGet(void) const;
     
-    static CoreScalar LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 
 protected:
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
 private:
-    void HandleMotionStart(CoreXML& inXML);
-    void HandlePlayerStart(CoreXML& inXML);
-    void HandlePlayerEnd(CoreXML& inXML);
-    void HandleGraphicStart(CoreXML& inXML);
-    void HandleNameEnd(CoreXML& inXML);
-    void HandleAccelerationEnd(CoreXML& inXML);
-    void HandleSpeedLimitEnd(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleMotionStart(MushcoreXML& inXML);
+    void HandlePlayerStart(MushcoreXML& inXML);
+    void HandlePlayerEnd(MushcoreXML& inXML);
+    void HandleGraphicStart(MushcoreXML& inXML);
+    void HandleNameEnd(MushcoreXML& inXML);
+    void HandleAccelerationEnd(MushcoreXML& inXML);
+    void HandleSpeedLimitEnd(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
     
     enum PickleState
     {
@@ -151,7 +154,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GamePiecePlayer::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GamePiecePlayer::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
@@ -168,7 +171,7 @@ private:
     Mushware::tVal m_speedLim;
     Mushware::tVal m_acceleration;
     GameFloorMap::tMapVector m_standingOn;
-    CoreHistory<U32, GameControlFrameDef> m_frameDefHistory;
+    MushcoreHistory<U32, GameControlFrameDef> m_frameDefHistory;
     bool m_imageIs;
 };
 

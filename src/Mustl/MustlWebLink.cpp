@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebLink.cpp,v 1.6 2002/12/29 21:00:00 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.7 2003/01/07 17:13:45 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.7  2003/01/07 17:13:45  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.6  2002/12/29 21:00:00  southa
  * More build fixes
  *
@@ -81,12 +84,12 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::CoreCommand;
-//using Mushware::CoreData;
-//using Mushware::CoreEnv;
-//using Mushware::CoreEnvOutput;
+//using Mushware::MushcoreCommand;
+//using Mushware::MushcoreData;
+//using Mushware::MushcoreEnv;
+//using Mushware::MushcoreEnvOutput;
 
-auto_ptr< CoreData<MustlWebLink> > CoreData<MustlWebLink>::m_instance;
+auto_ptr< MushcoreData<MustlWebLink> > MushcoreData<MustlWebLink>::m_instance;
 string MustlWebLink::m_webPath="";
 
 MustlWebLink::MustlWebLink(tSocket inSocket) :
@@ -346,7 +349,7 @@ MustlWebLink::GetProcess(const string& inFilename)
         {
             if (m_webPath == "")
             {
-                CoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
+                MushcoreEnv::Instance().VariableGetIfExists(m_webPath, "LOCALWEB_PATH");
             }
             if (m_webPath == "")
             {
@@ -372,7 +375,7 @@ MustlWebLink::PostProcess(const string& inValues)
         {
             throw(MustlFail("Invalid POST values"));
         }
-        //CoreCommand command(string("handlepostvalues('")+inValues+"')");
+        //MushcoreCommand command(string("handlepostvalues('")+inValues+"')");
         //command.Execute();
         // Catch CommandFail
     }    
@@ -482,9 +485,9 @@ MustlWebLink::SendMHTML(istream& ioStream, MustlHTTP& ioHTTP)
 
             try
             {
-                CoreCommand command(content);
+                MushcoreCommand command(content);
                 ostringstream commandOutput;
-                CoreEnvOutput envOutput(CoreEnv::Instance(), commandOutput);
+                MushcoreEnvOutput envOutput(MushcoreEnv::Instance(), commandOutput);
                 command.Execute();
                 dataStr.replace(startPos, endPos - startPos + 2, commandOutput.str());
             }

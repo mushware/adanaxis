@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfigDef.cpp,v 1.8 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.9 2003/01/07 17:13:41 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.9  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.8  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -44,7 +47,7 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< CoreData<GameConfigDef> > CoreData<GameConfigDef>::m_instance;
+auto_ptr< MushcoreData<GameConfigDef> > MushcoreData<GameConfigDef>::m_instance;
 
 GameConfigDef::~GameConfigDef()
 {
@@ -61,14 +64,14 @@ GameConfigDefU32::~GameConfigDefU32()
 {
 }
 
-const CoreScalar
+const MushcoreScalar
 GameConfigDefU32::ValueGet(void) const
 {
-    return CoreScalar(m_value);
+    return MushcoreScalar(m_value);
 }
 
 void
-GameConfigDefU32::ValueSet(const CoreScalar& inValue)
+GameConfigDefU32::ValueSet(const MushcoreScalar& inValue)
 {
     U32 value=inValue.U32Get();
     if (value < m_lowLimit || value >= m_highLimit)
@@ -84,7 +87,7 @@ bool
 GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
-    CoreRegExp re("&"+inName+"=([^&$]+)");
+    MushcoreRegExp re("&"+inName+"=([^&$]+)");
     vector<string> matches;
     if (re.Search(inData, matches))
     {
@@ -93,7 +96,7 @@ GameConfigDefU32::FromPostRetrieve(const string& inName, const string& inData)
         U32 value;
         if (valueStream >> value)
         {
-            ValueSet(CoreScalar(value));
+            ValueSet(MushcoreScalar(value));
             found=true;
         }
     }
@@ -118,14 +121,14 @@ GameConfigDefString::~GameConfigDefString()
 {
 }
 
-const CoreScalar
+const MushcoreScalar
 GameConfigDefString::ValueGet(void) const
 {
-    return CoreScalar(m_value);
+    return MushcoreScalar(m_value);
 }
 
 void
-GameConfigDefString::ValueSet(const CoreScalar& inValue)
+GameConfigDefString::ValueSet(const MushcoreScalar& inValue)
 {
     m_value = inValue.StringGet();
 }
@@ -134,7 +137,7 @@ bool
 GameConfigDefString::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
-    CoreRegExp re("&"+inName+"=([^&$]*)");
+    MushcoreRegExp re("&"+inName+"=([^&$]*)");
     vector<string> matches;
     if (re.Search(inData, matches))
     {
@@ -187,14 +190,14 @@ GameConfigDefPassword::~GameConfigDefPassword()
 {
 }
 
-const CoreScalar
+const MushcoreScalar
 GameConfigDefPassword::ValueGet(void) const
 {
-    return CoreScalar(m_value);
+    return MushcoreScalar(m_value);
 }
 
 void
-GameConfigDefPassword::ValueSet(const CoreScalar& inValue)
+GameConfigDefPassword::ValueSet(const MushcoreScalar& inValue)
 {
     m_value = inValue.StringGet();
 }
@@ -203,7 +206,7 @@ bool
 GameConfigDefPassword::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
-    CoreRegExp re("&"+inName+"=([^&$]*)");
+    MushcoreRegExp re("&"+inName+"=([^&$]*)");
     vector<string> matches;
     if (re.Search(inData, matches))
     {
@@ -240,14 +243,14 @@ GameConfigDefBool::~GameConfigDefBool()
 {
 }
 
-const CoreScalar
+const MushcoreScalar
 GameConfigDefBool::ValueGet(void) const
 {
-    return CoreScalar(m_value);
+    return MushcoreScalar(m_value);
 }
 
 void
-GameConfigDefBool::ValueSet(const CoreScalar& inValue)
+GameConfigDefBool::ValueSet(const MushcoreScalar& inValue)
 {
     m_value = inValue.U32Get();
 }
@@ -256,7 +259,7 @@ bool
 GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
 {
     bool found=false;
-    CoreRegExp re("&"+inName+"=([^&$]+)");
+    MushcoreRegExp re("&"+inName+"=([^&$]+)");
     vector<string> matches;
     if (re.Search(inData, matches))
     {
@@ -265,7 +268,7 @@ GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
         U32 value;
         if (valueStream >> value)
         {
-            ValueSet(CoreScalar(value));
+            ValueSet(MushcoreScalar(value));
             found=true;
         }
     }

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicSprite.cpp,v 1.15 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.16 2003/01/07 17:13:42 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.16  2003/01/07 17:13:42  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.15  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.13  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.12  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -88,39 +91,39 @@ GameGraphicSprite::Render(void)
 }
 
 void
-GameGraphicSprite::HandleNameEnd(CoreXML& inXML)
+GameGraphicSprite::HandleNameEnd(MushcoreXML& inXML)
 {
     m_texRef.NameSet(inXML.TopData());
 }
 
 void
-GameGraphicSprite::HandleRectEnd(CoreXML& inXML)
+GameGraphicSprite::HandleRectEnd(MushcoreXML& inXML)
 {
     m_rectangle.Unpickle(inXML);
 }
 
 void
-GameGraphicSprite::HandleOffsetEnd(CoreXML& inXML)
+GameGraphicSprite::HandleOffsetEnd(MushcoreXML& inXML)
 {
     m_offset.Unpickle(inXML);
 }
 
 void
-GameGraphicSprite::HandleRotateEnd(CoreXML& inXML)
+GameGraphicSprite::HandleRotateEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     if (!(data >> m_rotation)) inXML.Throw("Bad format for rotate.  Should be <rotate>90</rotate>");
 }
 
 void
-GameGraphicSprite::HandleGraphicEnd(CoreXML& inXML)
+GameGraphicSprite::HandleGraphicEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameGraphicSprite::NullHandler(CoreXML& inXML)
+GameGraphicSprite::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -156,7 +159,7 @@ GameGraphicSprite::UnpicklePrologue(void)
 }
 
 void
-GameGraphicSprite::Unpickle(CoreXML& inXML)
+GameGraphicSprite::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -171,7 +174,7 @@ GameGraphicSprite::UnpickleEpilogue(void)
 }
 
 void
-GameGraphicSprite::XMLStartHandler(CoreXML& inXML)
+GameGraphicSprite::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -203,7 +206,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameGraphicSprite::XMLEndHandler(CoreXML& inXML)
+GameGraphicSprite::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -238,7 +241,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameGraphicSprite::XMLDataHandler(CoreXML& inXML)
+GameGraphicSprite::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

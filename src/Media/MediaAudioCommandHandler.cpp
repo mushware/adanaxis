@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.10 2002/12/20 13:17:44 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.11 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:44  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -51,10 +54,10 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller MediaAudioCommandHandlerInstaller(MediaAudioCommandHandler::Install);
+MushcoreInstaller MediaAudioCommandHandlerInstaller(MediaAudioCommandHandler::Install);
 
-CoreScalar
-MediaAudioCommandHandler::PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaAudioCommandHandler::PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
@@ -70,11 +73,11 @@ MediaAudioCommandHandler::PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv)
     {
         throw(CommandFail(string("Command failed: ")+e.what()));
     }
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 MediaAudioCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("playmusic", PlayMusic);
+    MushcoreApp::Instance().AddHandler("playmusic", PlayMusic);
 }

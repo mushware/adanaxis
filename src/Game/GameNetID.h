@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetID.h,v 1.3 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameNetID.h,v 1.4 2002/12/29 20:30:54 southa Exp $
  * $Log: GameNetID.h,v $
+ * Revision 1.4  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.3  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -41,10 +44,10 @@ public:
     virtual void Print(std::ostream& ioOut) const;
 
     void NameSuffixAdd(const std::string& inStr);
-    const CoreDataRef<GameDefClient>& DataRefGet(void) const { return m_clientRef; }
+    const MushcoreDataRef<GameDefClient>& DataRefGet(void) const { return m_clientRef; }
     
 private:
-    CoreDataRef<GameDefClient> m_clientRef;
+    MushcoreDataRef<GameDefClient> m_clientRef;
 };
 
 #endif

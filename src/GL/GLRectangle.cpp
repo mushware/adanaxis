@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLRectangle.cpp,v 1.13 2002/12/29 20:59:52 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.14 2003/01/07 17:13:41 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.14  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.13  2002/12/29 20:59:52  southa
  * More build fixes
  *
@@ -200,7 +203,7 @@ GLRectangle::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GLRectangle::Unpickle(CoreXML& inXML)
+GLRectangle::Unpickle(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for rect.  Should be <rect>10,10,30,+20</rect>";

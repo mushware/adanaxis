@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.h,v 1.10 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameProtocol.h,v 1.11 2002/12/29 20:30:54 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.11  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.10  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -41,7 +44,7 @@
  * GameProtocol work
  *
  * Revision 1.1  2002/11/24 23:18:24  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  */
 
@@ -62,8 +65,8 @@ public:
         kMessageTypeControlData
     };
 
-    static void CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const std::string& inRemoteName);
-    static void DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const std::string& inRemoteName);
+    static void CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const std::string& inRemoteName);
+    static void DeleteObjectCreate(MustlData& ioData, MushcorePickle& inObj, const std::string& inRemoteName);
     
 private:
 };

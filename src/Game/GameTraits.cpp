@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTraits.cpp,v 1.13 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameTraits.cpp,v 1.14 2003/01/07 17:13:43 southa Exp $
  * $Log: GameTraits.cpp,v $
+ * Revision 1.14  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.13  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -104,7 +107,7 @@ GameTraits::RebuildTraits(void) const
 
 
 void
-GameTraits::HandleBaseEnd(CoreXML& inXML)
+GameTraits::HandleBaseEnd(MushcoreXML& inXML)
 {
     string inStr(inXML.TopData());
     U32 start=0;
@@ -118,13 +121,13 @@ GameTraits::HandleBaseEnd(CoreXML& inXML)
 }
 
 void
-GameTraits::HandleTraitsEnd(CoreXML& inXML)
+GameTraits::HandleTraitsEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
 
 void
-GameTraits::NullHandler(CoreXML& inXML)
+GameTraits::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -163,14 +166,14 @@ GameTraits::UnpickleEpilogue(void)
 }
 
 void
-GameTraits::Unpickle(CoreXML& inXML)
+GameTraits::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameTraits::XMLStartHandler(CoreXML& inXML)
+GameTraits::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -193,7 +196,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameTraits::XMLEndHandler(CoreXML& inXML)
+GameTraits::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -216,7 +219,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameTraits::XMLDataHandler(CoreXML& inXML)
+GameTraits::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

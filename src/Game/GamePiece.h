@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiece.h,v 1.13 2002/12/20 13:17:41 southa Exp $
+ * $Id: GamePiece.h,v 1.14 2002/12/29 20:30:54 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.14  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.13  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -23,7 +26,7 @@
  * Network, player and control work
  *
  * Revision 1.10  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.9  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -61,13 +64,13 @@ class GameControlFrameDef;
 class GameMotionSpec;
 class GameFloorMap;
 
-class GamePiece: public CorePickle, protected CoreXMLHandler
+class GamePiece: public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     GamePiece() {}
     virtual ~GamePiece() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
-    virtual void Unpickle(CoreXML& inXML) = 0;
+    virtual void Unpickle(MushcoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
     virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const = 0;

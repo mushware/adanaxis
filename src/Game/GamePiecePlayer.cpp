@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GamePiecePlayer.cpp,v 1.36 2002/12/29 20:59:56 southa Exp $
+ * $Id: GamePiecePlayer.cpp,v 1.37 2003/01/07 17:13:43 southa Exp $
  * $Log: GamePiecePlayer.cpp,v $
+ * Revision 1.37  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.36  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -39,7 +42,7 @@
  * Network, player and control work
  *
  * Revision 1.27  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.26  2002/10/22 20:42:05  southa
  * Source conditioning
@@ -136,7 +139,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
+MushcoreInstaller GamePiecePlayerInstaller(GamePiecePlayer::Install);
 
 GamePiecePlayer::GamePiecePlayer() :
     m_frameDefHistory(kFrameDefBufferSize, 0),
@@ -240,7 +243,7 @@ GamePiecePlayer::ControlFrameDefGet(const GameControlFrameDef *& outFrameDef, U3
     return m_frameDefHistory.PreviousGet(outFrameDef, inFrameNum);
 }
 
-CoreHistoryIterator<U32, GameControlFrameDef>
+MushcoreHistoryIterator<U32, GameControlFrameDef>
 GamePiecePlayer::ControlFrameDefIteratorGet(U32 inFrameNum) const
 {
     return m_frameDefHistory.IteratorPreviousGet(inFrameNum);
@@ -268,18 +271,18 @@ GamePiecePlayer::LastValidControlFrameGet(void) const
 }
 
 void
-GamePiecePlayer::HandlePlayerStart(CoreXML& inXML)
+GamePiecePlayer::HandlePlayerStart(MushcoreXML& inXML)
 {
     m_pickleState=kPickleData;
 }
 
 void
-GamePiecePlayer::HandleNameEnd(CoreXML& inXML)
+GamePiecePlayer::HandleNameEnd(MushcoreXML& inXML)
 {
 }
 
 void
-GamePiecePlayer::HandleGraphicStart(CoreXML& inXML)
+GamePiecePlayer::HandleGraphicStart(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
     GameGraphic& graphic(GameGraphic::NewFromType(typeStr));
@@ -288,33 +291,33 @@ GamePiecePlayer::HandleGraphicStart(CoreXML& inXML)
 }
 
 void
-GamePiecePlayer::HandleMotionStart(CoreXML& inXML)
+GamePiecePlayer::HandleMotionStart(MushcoreXML& inXML)
 {
     m_motion.Unpickle(inXML);
 }
 
 void
-GamePiecePlayer::HandleAccelerationEnd(CoreXML& inXML)
+GamePiecePlayer::HandleAccelerationEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_acceleration)) inXML.Throw("Expecting <acceleration>1.0</acceleration>");
 }
 
 void
-GamePiecePlayer::HandleSpeedLimitEnd(CoreXML& inXML)
+GamePiecePlayer::HandleSpeedLimitEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_speedLim)) inXML.Throw("Expecting <speedlimit>0.1</speedlimit>");
 }
 void
-GamePiecePlayer::HandlePlayerEnd(CoreXML& inXML)
+GamePiecePlayer::HandlePlayerEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GamePiecePlayer::NullHandler(CoreXML& inXML)
+GamePiecePlayer::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -354,7 +357,7 @@ GamePiecePlayer::UnpicklePrologue(void)
 }
 
 void
-GamePiecePlayer::Unpickle(CoreXML& inXML)
+GamePiecePlayer::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     m_adhesion=0.5;
@@ -372,7 +375,7 @@ GamePiecePlayer::UnpickleEpilogue(void)
 }
 
 void
-GamePiecePlayer::XMLStartHandler(CoreXML& inXML)
+GamePiecePlayer::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -404,7 +407,7 @@ GamePiecePlayer::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GamePiecePlayer::XMLEndHandler(CoreXML& inXML)
+GamePiecePlayer::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -439,7 +442,7 @@ GamePiecePlayer::XMLEndHandler(CoreXML& inXML)
 }
 
 void
-GamePiecePlayer::XMLDataHandler(CoreXML& inXML)
+GamePiecePlayer::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
@@ -449,8 +452,8 @@ GamePiecePlayer::TypeNameGet(void) const
     return "gamepieceplayer";
 }
 
-CoreScalar
-GamePiecePlayer::LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GamePiecePlayer::LoadPlayer(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -461,15 +464,15 @@ GamePiecePlayer::LoadPlayer(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-    CoreXML xml(inStream, filename);
+    MushcoreXML xml(inStream, filename);
     GamePiecePlayer *newPlayer=new GamePiecePlayer;
     GameData::Instance().TemplateDeleteAndCreate("player1", newPlayer);
     newPlayer->Unpickle(xml);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GamePiecePlayer::Install(void)
 {
-    CoreApp::Instance().AddHandler("loadplayer", LoadPlayer);
+    MushcoreApp::Instance().AddHandler("loadplayer", LoadPlayer);
 }

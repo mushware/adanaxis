@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameCommandHandler.cpp,v 1.10 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.11 2002/12/29 20:59:54 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.11  2002/12/29 20:59:54  southa
+ * More build fixes
+ *
  * Revision 1.10  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -52,17 +55,17 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
+MushcoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
 
-CoreScalar
-GameCommandHandler::Game(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameCommandHandler::Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    CoreAppHandler::Instance().Mutate(new GameAppHandler);
-    return CoreScalar(0);
+    MushcoreAppHandler::Instance().Mutate(new GameAppHandler);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GameCommandHandler::SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     U32 numParams=ioCommand.NumParams();
     if (numParams < 2)
@@ -87,7 +90,7 @@ GameCommandHandler::SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv)
             try
             {
                 PlatformMiscUtils::MakeDirectory(dirPath);
-                CoreGlobalConfig::Instance().Set("FIRST_RUN", 1);
+                MushcoreGlobalConfig::Instance().Set("FIRST_RUN", 1);
 
                 found=true;
             }
@@ -99,25 +102,25 @@ GameCommandHandler::SetSavePath(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     if (found)
     {
-        CoreGlobalConfig::Instance().Set("GLOBAL_SAVE_PATH", dirPath);
+        MushcoreGlobalConfig::Instance().Set("GLOBAL_SAVE_PATH", dirPath);
         cout << "Save path is '" << dirPath << "'" << endl;
     }
     else
     {
         cerr << "*** Couldn't find working save path - cannot save data" << endl;
     }
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GameCommandHandler::UpdateCheck(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameCommandHandler::UpdateCheck(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     PlatformMiscUtils::UpdateCheck();
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GameCommandHandler::ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     U32 numParams=ioCommand.NumParams();
     if (numParams < 2 || numParams > 3)
@@ -134,7 +137,7 @@ GameCommandHandler::ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv)
     vector<string> dirEntries;
     PlatformMiscUtils::ReadDirectory(dirEntries, dirName);
 
-    CoreRegExp re(filterRegExp);
+    MushcoreRegExp re(filterRegExp);
     string menuStr;
     U32 size=dirEntries.size();
     for (U32 i=0; i<size; ++i)
@@ -148,15 +151,15 @@ GameCommandHandler::ReadDirectoryToMenu(CoreCommand& ioCommand, CoreEnv& ioEnv)
             menuStr += dirEntries[i]+"="+dirEntries[i];
         }
     }
-    CoreGlobalConfig::Instance().Set(varName, menuStr);
-    return CoreScalar(0);
+    MushcoreGlobalConfig::Instance().Set(varName, menuStr);
+    return MushcoreScalar(0);
 }
 
 void
 GameCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("game", Game);
-    CoreApp::Instance().AddHandler("setsavepath", SetSavePath);
-    CoreApp::Instance().AddHandler("updatecheck", UpdateCheck);
-    CoreApp::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
+    MushcoreApp::Instance().AddHandler("game", Game);
+    MushcoreApp::Instance().AddHandler("setsavepath", SetSavePath);
+    MushcoreApp::Instance().AddHandler("updatecheck", UpdateCheck);
+    MushcoreApp::Instance().AddHandler("readdirectorytomenu", ReadDirectoryToMenu);
 }

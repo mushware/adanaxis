@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: WrangleCommandHandler.cpp,v 1.9 2002/12/20 13:17:49 southa Exp $
+ * $Id: WrangleCommandHandler.cpp,v 1.10 2002/12/29 21:00:01 southa Exp $
  * $Log: WrangleCommandHandler.cpp,v $
+ * Revision 1.10  2002/12/29 21:00:01  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/20 13:17:49  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -58,17 +61,17 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller WrangleCommandHandlerInstaller(WrangleCommandHandler::Install);
+MushcoreInstaller WrangleCommandHandlerInstaller(WrangleCommandHandler::Install);
 
-CoreScalar
-WrangleCommandHandler::Wrangle(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+WrangleCommandHandler::Wrangle(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     string filename;
     filename=ioCommand.PopString();
     string loadCommand("loadpixmap 0 ");
     loadCommand.append(filename);
     loadCommand.append(";");
-    CoreApp::Instance().Process(loadCommand);
+    MushcoreApp::Instance().Process(loadCommand);
 
     GLTextureRef texRef("0");
     GLTexture& tex=*texRef.TextureGet();
@@ -76,13 +79,13 @@ WrangleCommandHandler::Wrangle(CoreCommand& ioCommand, CoreEnv& ioEnv)
     cout << "# Wrangling image " << filename << endl;
     cout << "# " << tex << endl;
 
-    CoreAppHandler::Instance().Mutate(new GLWrangleAppHandler);
+    MushcoreAppHandler::Instance().Mutate(new GLWrangleAppHandler);
 
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 WrangleCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("wrangle", Wrangle);
+    MushcoreApp::Instance().AddHandler("wrangle", Wrangle);
 }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.h,v 1.3 2002/11/27 13:23:26 southa Exp $
+ * $Id: GameWebCommands.h,v 1.4 2002/12/20 13:17:44 southa Exp $
  * $Log: GameWebCommands.h,v $
+ * Revision 1.4  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.3  2002/11/27 13:23:26  southa
  * Server and client data exchange
  *
@@ -45,13 +48,13 @@ class GameWebCommands
 {
 public:
     static void Install(void);
-    static CoreScalar HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar DisplayModesWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameConfigInputWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameServerStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameClientStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar GameLinkStatusWrite(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar HandlePostValues(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar DisplayModesWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameConfigInputWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameServerStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameClientStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar GameLinkStatusWrite(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 
 private:
 

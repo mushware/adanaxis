@@ -1,0 +1,22 @@
+#
+# $Id: ParserMake.mkf,v 1.2 2002/05/28 22:36:44 southa Exp $
+# $Log: ParserMake.mkf,v $
+# Revision 1.2  2002/05/28 22:36:44  southa
+# Script loader and tile map
+#
+# Revision 1.1  2002/03/02 20:33:21  southa
+# Created
+#
+#
+
+MAKEFILE=ParserMake.mkf
+OBJECTS=MushcoreFlex.cpp MushcoreBison.cpp
+
+default:$(OBJECTS)
+
+%.cpp:%.flex $(MAKEFILE)
+	flex -PMushcoreFlex_ -L -o$@ $<
+
+%.cpp %.h:%.y $(MAKEFILE)
+	bison --debug --name-prefix=MushcoreBison_ --no-lines --defines --output-file=$@ $<
+	mv $@.h $(patsubst %.cpp,%Defs.h,$@)

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlRouter.cpp,v 1.8 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlRouter.cpp,v 1.9 2002/12/29 20:59:59 southa Exp $
  * $Log: MustlRouter.cpp,v $
+ * Revision 1.9  2002/12/29 20:59:59  southa
+ * More build fixes
+ *
  * Revision 1.8  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -77,7 +80,7 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::CoreData;
+//using Mushware::MushcoreData;
 
 auto_ptr<MustlRouter> MustlRouter::m_instance;
 
@@ -130,12 +133,12 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
 
     UDPReceiveFromServer(inHandler);
     
-    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
-    CoreData<MustlLink>::tMapIterator killValue=CoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator killValue=MushcoreData<MustlLink>::Instance().End();
 
     if (callTick)
     {
-        for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
         {
             MUSTLASSERT(p->second != NULL);
             MustlLink& linkRef = *p->second;
@@ -147,12 +150,12 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
         }
     }
 
-    if (killValue != CoreData<MustlLink>::Instance().End())
+    if (killValue != MushcoreData<MustlLink>::Instance().End())
     {
-        CoreData<MustlLink>::Instance().Delete(killValue);
+        MushcoreData<MustlLink>::Instance().Delete(killValue);
     }
     
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin(); p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
         MustlLink& linkRef = *p->second;
@@ -173,10 +176,10 @@ MustlRouter::ReceiveAll(MustlHandler& inHandler)
 void
 MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler)
 {
-    CoreData<MustlLink>::tMapIterator endValue=CoreData<MustlLink>::Instance().End();
+    MushcoreData<MustlLink>::tMapIterator endValue=MushcoreData<MustlLink>::Instance().End();
 
     // Check for an exact address match
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
@@ -194,7 +197,7 @@ MustlRouter::UDPIfAddressMatchReceive(MustlData& ioData, MustlHandler& inHandler
 
     // Check for a host match where the port number is zero.  This caters for link
     // establishment messages where the port number of the remote end is not yet known
-    for (CoreData<MustlLink>::tMapIterator p=CoreData<MustlLink>::Instance().Begin();
+    for (MushcoreData<MustlLink>::tMapIterator p=MushcoreData<MustlLink>::Instance().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLState.cpp,v 1.5 2002/12/20 13:17:35 southa Exp $
+ * $Id: GLState.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -46,7 +49,7 @@ void
 GLState::ResolveDisplayQuality(void)
 {
     string displayQuality("low");
-    CoreEnv::Instance().VariableGetIfExists(displayQuality, "DISPLAY_QUALITY");
+    MushcoreEnv::Instance().VariableGetIfExists(displayQuality, "DISPLAY_QUALITY");
     if (displayQuality == "low")
     {
         m_displayQuality = kQualityLow;

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.109 2002/12/29 20:59:54 southa Exp $
+ * $Id: GameContract.cpp,v 1.110 2003/01/07 17:13:41 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.110  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.109  2002/12/29 20:59:54  southa
  * More build fixes
  *
@@ -45,7 +48,7 @@
  * Received net message routing
  *
  * Revision 1.98  2002/11/24 23:18:07  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.97  2002/11/20 22:35:25  southa
  * Multiplayer setup
@@ -192,7 +195,7 @@
  * MediaSound work
  *
  * Revision 1.49  2002/08/15 13:39:30  southa
- * CoreData and CoreDatRef
+ * MushcoreData and MushcoreDatRef
  *
  * Revision 1.48  2002/08/13 17:50:20  southa
  * Added playsound command
@@ -375,7 +378,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GameContractInstaller(GameContract::Install);
+MushcoreInstaller GameContractInstaller(GameContract::Install);
 
 GameContract::GameContract() :
     m_gameState(kGameStateInit),
@@ -458,7 +461,7 @@ GameContract::SwapIn(GameAppHandler& inAppHandler)
 {
     try
     {
-        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+        GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
         glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(GameConfig::Instance().DisplayModeGet()));
     }
     catch (...)
@@ -573,7 +576,7 @@ GameContract::RunningDisplay(void)
     COREASSERT(m_floorMap != NULL);
     m_floorMap->AttachTileMap(m_tileMap);
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     GameTimer& timer(GameData::Instance().TimerGet());
 
     timer.CurrentMsecSet(gameAppHandler.MillisecondsGet());
@@ -597,7 +600,7 @@ GameContract::RunningDisplay(void)
     GLUtils::IdentityPrologue();
 
     // Just pick the first player for now
-    CoreData<GamePiecePlayer>::tMapIterator playerIter = GameData::Instance().PlayerGet().Begin();
+    MushcoreData<GamePiecePlayer>::tMapIterator playerIter = GameData::Instance().PlayerGet().Begin();
     if (playerIter != GameData::Instance().PlayerGet().End())
     {
         GameMotionSpec playerSpec(playerIter->second->MotionSpecGet());
@@ -649,9 +652,9 @@ GameContract::RunningDisplay(void)
     GLState::DepthSet(GLState::kDepthTest);
 
     {
-        CoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Instance().PlayerGet().End();
+        MushcoreData<GamePiecePlayer>::tMapIterator endValue = GameData::Instance().PlayerGet().End();
     
-        for (CoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin(); p != endValue; ++p)
+        for (MushcoreData<GamePiecePlayer>::tMapIterator p=GameData::Instance().PlayerGet().Begin(); p != endValue; ++p)
         {
             GLUtils::PushMatrix();
             GameMotionSpec playerSpec(p->second->MotionSpecGet());
@@ -869,7 +872,7 @@ GameContract::Running(GameAppHandler& inAppHandler)
             timer.Periodic1sDone(1);
         }
         timer.CurrentMsecSet(inAppHandler.MillisecondsGet());
-        // CoreUtils::Sleep(timer.SleepTimeGet());
+        // MushcoreUtils::Sleep(timer.SleepTimeGet());
     }
     MediaAudio::Instance().Ticker();
 }
@@ -887,7 +890,7 @@ void
 GameContract::Over(void)
 {
     // Expects Running to have been called as well
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     // Needs sorting out
     if (gameAppHandler.KeyStateGet(' '))
     {
@@ -898,7 +901,7 @@ GameContract::Over(void)
 void
 GameContract::GlobalKeyControl(void)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     GameTimer& timer(GameData::Instance().TimerGet());
 
     if (gameAppHandler.LatchedKeyStateTake('d'))
@@ -994,42 +997,42 @@ GameContract::ScriptFunction(const string& inName, GameAppHandler& inAppHandler)
 
 
 void
-GameContract::NullHandler(CoreXML& inXML)
+GameContract::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameContract::HandleContractStart(CoreXML& inXML)
+GameContract::HandleContractStart(MushcoreXML& inXML)
 {
     m_pickleState=kPickleData;
 }
 
 void
-GameContract::HandleContractEnd(CoreXML& inXML)
+GameContract::HandleContractEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
 
 void
-GameContract::HandleScriptStart(CoreXML& inXML)
+GameContract::HandleScriptStart(MushcoreXML& inXML)
 {
 }
 
 void
-GameContract::HandleScriptEnd(CoreXML& inXML)
+GameContract::HandleScriptEnd(MushcoreXML& inXML)
 {
-    m_script=CoreScript(inXML.TopData());
+    m_script=MushcoreScript(inXML.TopData());
 }
 
 void
-GameContract::HandleDialogueStart(CoreXML& inXML)
+GameContract::HandleDialogueStart(MushcoreXML& inXML)
 {
     string name(inXML.GetAttribOrThrow("name").StringGet());
     GameData::Instance().DialogueDeleteAndCreate(name, new GameDialogue)->Unpickle(inXML);
 }
 
 void
-GameContract::HandleGameStart(CoreXML& inXML)
+GameContract::HandleGameStart(MushcoreXML& inXML)
 {
     string type(inXML.GetAttribOrThrow("type").StringGet());
     if (type == "race")
@@ -1044,7 +1047,7 @@ GameContract::HandleGameStart(CoreXML& inXML)
 }
 
 void
-GameContract::HandleRewardsStart(CoreXML& inXML)
+GameContract::HandleRewardsStart(MushcoreXML& inXML)
 {
     GameData::Instance().RewardsSet(new GameRewards);
     GameData::Instance().RewardsGet().Unpickle(inXML);
@@ -1059,7 +1062,7 @@ GameContract::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameContract::Unpickle(CoreXML& inXML)
+GameContract::Unpickle(MushcoreXML& inXML)
 {
     m_startTable.resize(kPickleNumStates);
     m_endTable.resize(kPickleNumStates);
@@ -1076,7 +1079,7 @@ GameContract::Unpickle(CoreXML& inXML)
 }
 
 void
-GameContract::XMLStartHandler(CoreXML& inXML)
+GameContract::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -1099,7 +1102,7 @@ GameContract::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameContract::XMLEndHandler(CoreXML& inXML)
+GameContract::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -1122,7 +1125,7 @@ GameContract::XMLEndHandler(CoreXML& inXML)
 }
 
 void
-GameContract::XMLDataHandler(CoreXML& inXML)
+GameContract::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 
@@ -1132,8 +1135,8 @@ GameContract::TypeNameGet(void) const
     return "gamecontract";
 }
 
-CoreScalar
-GameContract::LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GameContract::LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -1144,13 +1147,13 @@ GameContract::LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv)
     ioCommand.PopParam(filename);
     ifstream inStream(filename.c_str());
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
-    CoreXML xml(inStream, filename);
+    MushcoreXML xml(inStream, filename);
     GameData::Instance().ContractGetOrCreate(name)->Unpickle(xml);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GameContract::Install(void)
 {
-    CoreApp::Instance().AddHandler("loadcontract", LoadContract);
+    MushcoreApp::Instance().AddHandler("loadcontract", LoadContract);
 }

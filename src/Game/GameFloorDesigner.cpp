@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameFloorDesigner.cpp,v 1.29 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameFloorDesigner.cpp,v 1.30 2002/12/29 20:59:55 southa Exp $
  * $Log: GameFloorDesigner.cpp,v $
+ * Revision 1.30  2002/12/29 20:59:55  southa
+ * More build fixes
+ *
  * Revision 1.29  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -125,7 +128,7 @@ GameFloorDesigner::GameFloorDesigner():
 void
 GameFloorDesigner::Init(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
     m_controllerName="controller1";
     m_tileMap=GameData::Instance().TileMapGet("tiles");
     m_floorMaps.push_back(GameData::Instance().FloorMapGet("floor"));
@@ -165,7 +168,7 @@ GameFloorDesigner::Display(void)
 
     GameFloorMap *floorMap(m_floorMaps[m_currentMap]);
     
-    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    // GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
 
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
@@ -259,7 +262,7 @@ void
 GameFloorDesigner::Move(void)
 {
     COREASSERT(m_floorMaps.size() > 0);
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
 
     if (m_controller == NULL)
     {
@@ -580,14 +583,14 @@ void
 GameFloorDesigner::Save(void)
 {
     string filename;
-    const CoreScalar *pScalar;
-    if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "DESIGNER_MAP_NAME"))
+    const MushcoreScalar *pScalar;
+    if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "DESIGNER_MAP_NAME"))
     {
         filename=pScalar->StringGet();
     }
     else
     {
-        filename=CoreEnv::Instance().VariableGet("CONTRACT_PATH").StringGet()+"/designer_map.xml";
+        filename=MushcoreEnv::Instance().VariableGet("CONTRACT_PATH").StringGet()+"/designer_map.xml";
     }
     cout << "Saving F1 buffer to file '" << filename << "'" << endl;
 

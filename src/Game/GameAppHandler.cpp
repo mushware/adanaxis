@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.cpp,v 1.40 2002/12/20 13:17:37 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.41 2002/12/29 20:59:53 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.41  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.40  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -114,10 +117,10 @@
  * GameContract and global configs added
  *
  * Revision 1.6  2002/05/26 16:08:48  southa
- * CoreXML loader
+ * MushcoreXML loader
  *
  * Revision 1.5  2002/05/25 17:16:14  southa
- * CoreXML implementation
+ * MushcoreXML implementation
  *
  * Revision 1.4  2002/05/24 16:23:07  southa
  * Config and typenames
@@ -161,12 +164,12 @@ GameAppHandler::GameAppHandler() :
     m_appState(kAppStateStartup),
     m_gameType(kGameTypeInvalid)
 {
-    CoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
+    MushcoreEnv::Instance().PushConfig(GameGlobalConfig::Instance());
 }
 
 GameAppHandler::~GameAppHandler()
 {
-    CoreEnv::Instance().PopConfig(GameGlobalConfig::Instance());
+    MushcoreEnv::Instance().PopConfig(GameGlobalConfig::Instance());
     if (m_pSetup != NULL) delete m_pSetup;
     if (m_pGame != NULL) delete m_pGame;
 }
@@ -262,9 +265,9 @@ GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
     
-    CoreData<GameDefServer>::tMapIterator endValue = CoreData<GameDefServer>::Instance().End();
+    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Instance().End();
 
-    for (CoreData<GameDefServer>::tMapIterator p = CoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
+    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Instance().Begin(); p != endValue; ++p)
     {
         if (!p->second->ImageIs())
         {
@@ -274,9 +277,9 @@ GameAppHandler::GameTypeDetermine(void)
 
     if (m_gameType == kGameTypeInvalid)
     {
-        CoreData<GameDefClient>::tMapIterator endValue = CoreData<GameDefClient>::Instance().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Instance().End();
 
-        for (CoreData<GameDefClient>::tMapIterator p = CoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p = MushcoreData<GameDefClient>::Instance().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -303,7 +306,7 @@ GameAppHandler::PrepareNewGame(void)
     GameData::Instance().Clear();
 
     // Create the contract path
-    string contractRoot=CoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
+    string contractRoot=MushcoreGlobalConfig::Instance().Get("CONTRACT_ROOT").StringGet();
     string contractName;
     if (MultiplayerIs())
     {
@@ -314,9 +317,9 @@ GameAppHandler::PrepareNewGame(void)
         contractName=GameConfig::Instance().ParameterGet("spcontractname").StringGet();
     }
     string contractPath=contractRoot+"/"+contractName;
-    CoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
+    MushcoreGlobalConfig::Instance().Set("CONTRACT_PATH", contractPath);
 
-    CoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
+    MushcoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
     command.Execute();
     
     // Get a pointer to the newly created contract

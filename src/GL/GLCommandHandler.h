@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.h,v 1.8 2002/10/22 20:42:00 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.9 2002/12/20 13:17:34 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.9  2002/12/20 13:17:34  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.8  2002/10/22 20:42:00  southa
  * Source conditioning
  *
@@ -54,9 +57,9 @@ class GLCommandHandler
 {
 public:
     static void Install(void);
-    static CoreScalar InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv);
-    static CoreScalar DumpTextures(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
 #endif

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mustlCore.h,v 1.2 2002/12/20 13:17:31 southa Exp $
+ * $Id: mustlCore.h,v 1.3 2002/12/29 20:30:51 southa Exp $
  * $Log: mustlCore.h,v $
+ * Revision 1.3  2002/12/29 20:30:51  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.2  2002/12/20 13:17:31  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -21,13 +24,13 @@
  *
  */
 
-#include "CoreApp/CoreStandard.h"
+#include "Mushcore/MushcoreStandard.h"
 
-// Core services used by Mustl
-#include "CoreApp/CoreCommand.h"
-#include "CoreApp/CoreData.h"
-#include "CoreApp/CoreDataRef.h"
-#include "CoreApp/CoreEnv.h"
-#include "CoreApp/CoreEnvOutput.h"
+// Mushcore services used by Mustl
+#include "Mushcore/MushcoreCommand.h"
+#include "Mushcore/MushcoreData.h"
+#include "Mushcore/MushcoreDataRef.h"
+#include "Mushcore/MushcoreEnv.h"
+#include "Mushcore/MushcoreEnvOutput.h"
 
 #endif

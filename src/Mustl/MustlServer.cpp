@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlServer.cpp,v 1.9 2002/12/29 20:30:56 southa Exp $
+ * $Id: MustlServer.cpp,v 1.10 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.10  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.9  2002/12/29 20:30:56  southa
  * Work for gcc 3.1 build
  *
@@ -101,7 +104,7 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::CoreData;
+//using Mushware::MushcoreData;
 
 auto_ptr<MustlServer> MustlServer::m_instance;
 
@@ -189,7 +192,7 @@ MustlServer::Accept(void)
         {
             ostringstream name;
             name << "server" << m_linkCtr;
-            CoreData<MustlLink>::Instance().Give(name.str(), new MustlLink(newSocket, remoteAddress));
+            MushcoreData<MustlLink>::Instance().Give(name.str(), new MustlLink(newSocket, remoteAddress));
             m_linkCtr++;
     
             MustlLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;

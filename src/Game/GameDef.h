@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDef.h,v 1.15 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameDef.h,v 1.16 2002/12/29 20:30:53 southa Exp $
  * $Log: GameDef.h,v $
+ * Revision 1.16  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.15  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -64,7 +67,7 @@
 
 class MustlAddress;
 
-class GameDef : public CorePickle, protected CoreXMLHandler
+class GameDef : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     enum tStatus
@@ -81,7 +84,7 @@ public:
     virtual void WebPrint(std::ostream& ioOut) const = 0;
 
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
 
     const std::string& NameGet(void) const { return m_name; }
     bool ImageIs(void) const { return m_isImage; }
@@ -94,14 +97,14 @@ protected:
     void StatusSet(tStatus inStatus) { m_status = inStatus; }
     void UnpicklePrologue(void);
     void UnpickleEpilogue(void);
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
 private:
-    void NullHandler(CoreXML& inXML);
-    void HandleNameEnd(CoreXML& inXML);
-    void HandleStatusEnd(CoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
+    void HandleNameEnd(MushcoreXML& inXML);
+    void HandleStatusEnd(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -110,7 +113,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameDef::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameDef::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;

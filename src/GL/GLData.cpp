@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLData.cpp,v 1.20 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLData.cpp,v 1.21 2002/12/29 20:59:52 southa Exp $
  * $Log: GLData.cpp,v $
+ * Revision 1.21  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.20  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -48,7 +51,7 @@
  * Texture references and decomposer
  *
  * Revision 1.8  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.7  2002/05/10 16:41:42  southa
  * Changed .hp files to .h

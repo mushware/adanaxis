@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTileTraits.cpp,v 1.23 2002/12/29 20:59:57 southa Exp $
+ * $Id: GameTileTraits.cpp,v 1.24 2003/01/07 17:13:43 southa Exp $
  * $Log: GameTileTraits.cpp,v $
+ * Revision 1.24  2003/01/07 17:13:43  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.23  2002/12/29 20:59:57  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.21  2002/11/24 23:18:25  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.20  2002/10/22 20:42:06  southa
  * Source conditioning
@@ -190,12 +193,12 @@ GameTileTraits::LightGet(GLLightDef& outLight) const
 
 
 void
-GameTileTraits::NullHandler(CoreXML& inXML)
+GameTileTraits::NullHandler(MushcoreXML& inXML)
 {
 }
 
 void
-GameTileTraits::HandleGraphicStart(CoreXML& inXML)
+GameTileTraits::HandleGraphicStart(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
     GameGraphic& graphic(GameGraphic::NewFromType(typeStr));
@@ -204,7 +207,7 @@ GameTileTraits::HandleGraphicStart(CoreXML& inXML)
 }
 
 void
-GameTileTraits::HandlePermeabilityEnd(CoreXML& inXML)
+GameTileTraits::HandlePermeabilityEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_permeability)) inXML.Throw("Expecting <permeability>1.0</permeability>");
@@ -212,7 +215,7 @@ GameTileTraits::HandlePermeabilityEnd(CoreXML& inXML)
 }
 
 void
-GameTileTraits::HandleAdhesionEnd(CoreXML& inXML)
+GameTileTraits::HandleAdhesionEnd(MushcoreXML& inXML)
 {
     istringstream inStream(inXML.TopData());
     if (!(inStream >> m_adhesion)) inXML.Throw("Expecting <adhesion>1.0</adhesion>");
@@ -220,14 +223,14 @@ GameTileTraits::HandleAdhesionEnd(CoreXML& inXML)
 }
 
 void
-GameTileTraits::HandleLightStart(CoreXML& inXML)
+GameTileTraits::HandleLightStart(MushcoreXML& inXML)
 {
     m_light.Unpickle(inXML);
     m_hasLight=true;
 }
 
 void
-GameTileTraits::HandleTraitsEnd(CoreXML& inXML)
+GameTileTraits::HandleTraitsEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
 }
@@ -250,7 +253,7 @@ GameTileTraits::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GameTileTraits::Unpickle(CoreXML& inXML)
+GameTileTraits::Unpickle(MushcoreXML& inXML)
 {
     GameTraits::UnpicklePrologue();
     m_startTable.resize(kPickleNumStates);
@@ -274,7 +277,7 @@ GameTileTraits::Unpickle(CoreXML& inXML)
 }
 
 void
-GameTileTraits::XMLStartHandler(CoreXML& inXML)
+GameTileTraits::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -306,7 +309,7 @@ GameTileTraits::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameTileTraits::XMLEndHandler(CoreXML& inXML)
+GameTileTraits::XMLEndHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -341,7 +344,7 @@ GameTileTraits::XMLEndHandler(CoreXML& inXML)
 }
 
 void
-GameTileTraits::XMLDataHandler(CoreXML& inXML)
+GameTileTraits::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.25 2002/12/20 13:17:47 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.26 2002/12/29 21:00:00 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.26  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.25  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -115,7 +118,7 @@ PlatformMiscUtils::Initialise(void)
     char *home = getenv("HOME");
     if (home != NULL)
     {
-        CoreGlobalConfig::Instance().Set("HOME", home);
+        MushcoreGlobalConfig::Instance().Set("HOME", home);
     }
     // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
     if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
@@ -242,7 +245,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
     AlertStdAlertParamRec param;
     SInt16			alertType=kAlertNoteAlert;
     Str255			title;
-    CopyCStringToPascal(CoreInfo::ApplicationNameGet().c_str(), title);
+    CopyCStringToPascal(MushcoreInfo::ApplicationNameGet().c_str(), title);
     Str255          desc;
     CopyCStringToPascal(inStr.c_str(), desc);    
     SInt16			itemHit;
@@ -288,7 +291,7 @@ PlatformMiscUtils::PermissionBox(const string& inStr, bool inDefault)
 void
 PlatformMiscUtils::UpdateCheck(void)
 {
-    if (CoreGlobalConfig::Instance().Exists("FIRST_RUN"))
+    if (MushcoreGlobalConfig::Instance().Exists("FIRST_RUN"))
     {
         ShowUpdateAlert();
     }
@@ -320,7 +323,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
         {
             case kAlertStdAlertOKButton:
             {
-                string updateFile=CoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+                string updateFile=MushcoreGlobalConfig::Instance().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
                 LaunchFile(updateFile);
                 exit(0);
             }

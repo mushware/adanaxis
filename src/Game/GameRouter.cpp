@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameRouter.cpp,v 1.15 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameRouter.cpp,v 1.16 2002/12/29 20:59:57 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.16  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.15  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -120,7 +123,7 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     
     string dataStr(reinterpret_cast<char *>(ioData.MessagePtrGet()), ioData.MessageSizeGet());
     istringstream data(dataStr);
-    CoreXML xml(data, "network");
+    MushcoreXML xml(data, "network");
     try
     {
         netObject.Unpickle(xml);
@@ -172,7 +175,7 @@ GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
 
     
 #if 0
-    CoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
+    MushcoreData<GamePiecePlayer>& playerData = GameData::Instance().PlayerGet();
 
     if (playerData.Exists(clientName))
     {

@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphicModel.cpp,v 1.11 2002/12/29 20:59:56 southa Exp $
+ * $Id: GameGraphicModel.cpp,v 1.12 2003/01/07 17:13:42 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
+ * Revision 1.12  2003/01/07 17:13:42  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.11  2002/12/29 20:59:56  southa
  * More build fixes
  *
@@ -18,7 +21,7 @@
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.9  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.8  2002/10/22 20:42:04  southa
  * Source conditioning
@@ -106,13 +109,13 @@ GameGraphicModel::Render(void)
 }
 
 void
-GameGraphicModel::HandleTextureEnd(CoreXML& inXML)
+GameGraphicModel::HandleTextureEnd(MushcoreXML& inXML)
 {
     m_currentTexRef.NameSet(inXML.TopData());
 }
 
 void
-GameGraphicModel::HandleFacetsStart(CoreXML& inXML)
+GameGraphicModel::HandleFacetsStart(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
 
@@ -171,14 +174,14 @@ GameGraphicModel::HandleFacetsStart(CoreXML& inXML)
 }
 
 void
-GameGraphicModel::HandleFacetsEnd(CoreXML& inXML)
+GameGraphicModel::HandleFacetsEnd(MushcoreXML& inXML)
 {
     m_facets.back().texRef=m_currentTexRef;
     m_pickleState = kPickleData;
 }
 
 void
-GameGraphicModel::HandleOffsetEnd(CoreXML& inXML)
+GameGraphicModel::HandleOffsetEnd(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
     if (typeStr == "position")
@@ -196,7 +199,7 @@ GameGraphicModel::HandleOffsetEnd(CoreXML& inXML)
 }
 
 void
-GameGraphicModel::HandleFacetOffsetEnd(CoreXML& inXML)
+GameGraphicModel::HandleFacetOffsetEnd(MushcoreXML& inXML)
 {
     string typeStr=inXML.GetAttribOrThrow("type").StringGet();
     if (typeStr == "position")
@@ -215,7 +218,7 @@ GameGraphicModel::HandleFacetOffsetEnd(CoreXML& inXML)
 
 
 void
-GameGraphicModel::HandleVertexEnd(CoreXML& inXML)
+GameGraphicModel::HandleVertexEnd(MushcoreXML& inXML)
 {
     const char *failMessage="Bad format for vertex.  Should be <vertex>0,0,2:0,0.5</vertex>";
     istringstream data(inXML.TopData());
@@ -244,14 +247,14 @@ GameGraphicModel::HandleVertexEnd(CoreXML& inXML)
 };
 
 void
-GameGraphicModel::HandleGraphicEnd(CoreXML& inXML)
+GameGraphicModel::HandleGraphicEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameGraphicModel::NullHandler(CoreXML& inXML)
+GameGraphicModel::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -287,7 +290,7 @@ GameGraphicModel::UnpicklePrologue(void)
 }
 
 void
-GameGraphicModel::Unpickle(CoreXML& inXML)
+GameGraphicModel::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -308,7 +311,7 @@ GameGraphicModel::UnpickleEpilogue(void)
 }
 
 void
-GameGraphicModel::XMLStartHandler(CoreXML& inXML)
+GameGraphicModel::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -340,7 +343,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameGraphicModel::XMLEndHandler(CoreXML& inXML)
+GameGraphicModel::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -375,7 +378,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameGraphicModel::XMLDataHandler(CoreXML& inXML)
+GameGraphicModel::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.7 2002/10/22 20:42:07 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.8 2002/12/20 13:17:44 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.8  2002/12/20 13:17:44  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.7  2002/10/22 20:42:07  southa
  * Source conditioning
  *
@@ -42,6 +45,6 @@ class MediaAudioCommandHandler
 {
 public:
     static void Install(void);
-    static CoreScalar PlayMusic(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
 #endif

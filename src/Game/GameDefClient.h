@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDefClient.h,v 1.13 2002/12/20 13:17:39 southa Exp $
+ * $Id: GameDefClient.h,v 1.14 2002/12/29 20:30:53 southa Exp $
  * $Log: GameDefClient.h,v $
+ * Revision 1.14  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.13  2002/12/20 13:17:39  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -72,7 +75,7 @@ public:
     void AddressSet(MustlAddress& inAddress) { m_netAddress = inAddress; }
     void PlayerNameSet(const std::string& inPlayerName) { m_playerRef.NameSet(inPlayerName); }
     const MustlAddress& AddressGet(void) const { return m_netAddress; }
-    const CoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
+    const MushcoreDataRef<GamePiecePlayer>& PlayerRefGet(void) const { return m_playerRef; }
     
     void Kill(void);
     bool IsDead(void) const { return m_killed; }
@@ -81,7 +84,7 @@ public:
     void FastSendToServer(MustlData& ioData);
     
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
     
     static void WebHeaderPrint(std::ostream& ioOut);
@@ -89,14 +92,14 @@ public:
 protected:
     void UpdateServer(void);
         
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
 private:
-    void NullHandler(CoreXML& inXML);
-    void HandleGameDefClientEnd(CoreXML& inXML);
-    void HandleULBytesEnd(CoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
+    void HandleGameDefClientEnd(MushcoreXML& inXML);
+    void HandleULBytesEnd(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -106,7 +109,7 @@ private:
         kPickleNumStates
     };
 
-    typedef std::map<string, void (GameDefClient::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameDefClient::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     PickleState m_pickleState;
@@ -126,11 +129,11 @@ private:
     Mushware::U32 m_currentMsec;
     std::string m_serverName;
     MustlAddress m_netAddress;
-    std::vector< CoreDataRef<MustlLink> > m_netLinks;
+    std::vector< MushcoreDataRef<MustlLink> > m_netLinks;
     Mushware::U32 m_lastLinkNum;
     Mushware::U32 m_numLinks;
     Mushware::U32 m_uplinkBandwidth;
-    CoreDataRef<GamePiecePlayer> m_playerRef;
+    MushcoreDataRef<GamePiecePlayer> m_playerRef;
     bool m_killed;
     bool m_joined;
     bool m_linkGood;

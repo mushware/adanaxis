@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.21 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameData.h,v 1.22 2002/12/29 20:30:53 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.22  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.21  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -127,7 +130,7 @@ public:
     GameView *ViewGet(const std::string& inName) const;
     GameView *CurrentViewGet(void) const;
 
-    CoreData<GamePiecePlayer>& PlayerGet(void) { return *m_playerData; }
+    MushcoreData<GamePiecePlayer>& PlayerGet(void) { return *m_playerData; }
     
     GameTimer& TimerGet(void);
     GameType& TypeGet(void) const;
@@ -156,7 +159,7 @@ private:
     std::map<string, GamePiece *> m_pieces;
     std::map<string, GameView *> m_views;
 
-    CoreData<GamePiecePlayer> *m_playerData;
+    MushcoreData<GamePiecePlayer> *m_playerData;
     
     GameTimer *m_timer;
     GameType *m_gameType;

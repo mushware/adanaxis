@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.h,v 1.38 2002/12/20 13:17:38 southa Exp $
+ * $Id: GameContract.h,v 1.39 2002/12/29 20:30:53 southa Exp $
  * $Log: GameContract.h,v $
+ * Revision 1.39  2002/12/29 20:30:53  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.38  2002/12/20 13:17:38  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -29,7 +32,7 @@
  * Network, player and control work
  *
  * Revision 1.33  2002/11/24 23:18:07  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.32  2002/11/16 12:43:22  southa
  * GameApp mode switching
@@ -139,7 +142,7 @@ class GamePiecePlayer;
 class GameFloorDesigner;
 class GameView;
 
-class GameContract: public GameBase, public CorePickle, private CoreXMLHandler
+class GameContract: public GameBase, public MushcorePickle, private MushcoreXMLHandler
 {
 public:
     GameContract();
@@ -151,10 +154,10 @@ public:
     virtual void SwapOut(GameAppHandler& inAppHandler);
     
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
-    static CoreScalar LoadContract(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static MushcoreScalar LoadContract(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 
 protected:
@@ -188,18 +191,18 @@ protected:
     bool VerifyOrCreateLocalPlayer(const std::string& inName, GameDefClient& inClientDef);
     void ManagePlayers(GameAppHandler& inAppHandler);
     
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
-    void HandleContractStart(CoreXML& inXML);
-    void HandleContractEnd(CoreXML& inXML);
-    void HandleScriptStart(CoreXML& inXML);
-    void HandleScriptEnd(CoreXML& inXML);
-    void HandleDialogueStart(CoreXML& inXML);
-    void HandleGameStart(CoreXML& inXML);
-    void HandleRewardsStart(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleContractStart(MushcoreXML& inXML);
+    void HandleContractEnd(MushcoreXML& inXML);
+    void HandleScriptStart(MushcoreXML& inXML);
+    void HandleScriptEnd(MushcoreXML& inXML);
+    void HandleDialogueStart(MushcoreXML& inXML);
+    void HandleGameStart(MushcoreXML& inXML);
+    void HandleRewardsStart(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -209,11 +212,11 @@ protected:
     };
     
 private:
-    typedef std::map<string, void (GameContract::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameContract::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_pickleState;
-    CoreScript m_script;
+    MushcoreScript m_script;
 
     enum tDiagnostic
     {

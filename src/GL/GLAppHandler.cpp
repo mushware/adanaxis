@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.cpp,v 1.18 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.19 2002/12/29 20:59:52 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.19  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.18  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -45,7 +48,7 @@
  * Keyboard reading
  *
  * Revision 1.7  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.6  2002/05/10 22:38:23  southa
  * Checkpoint

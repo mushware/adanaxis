@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.29 2002/12/20 13:17:37 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.30 2002/12/29 20:59:53 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.30  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.29  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -140,7 +143,7 @@ SDLAppHandler::Initialise(void)
 void
 SDLAppHandler::Idle(void)
 {
-    CoreAppHandler::Idle();
+    MushcoreAppHandler::Idle();
 }
 
 void
@@ -165,7 +168,7 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     if (keyValue == 27 && inSignal.keyDown)
     {
         // Escape key pressed
-        CoreAppHandler::Instance().Signal(CoreAppSignal(CoreAppSignal::kEscape));
+        MushcoreAppHandler::Instance().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
     }
 }
 
@@ -306,7 +309,7 @@ SDLAppHandler::SetCursorState(bool inValue)
 }
 
 void
-SDLAppHandler::Signal(const CoreAppSignal& inSignal)
+SDLAppHandler::Signal(const MushcoreAppSignal& inSignal)
 {
     switch (inSignal.SigNumberGet())
     {
@@ -329,9 +332,9 @@ SDLAppHandler::Signal(const CoreAppSignal& inSignal)
         break;
 
         default:
-            if (inSignal.IsCoreAppSignal())
+            if (inSignal.IsMushcoreAppSignal())
             {
-                CoreAppHandler::Signal(inSignal);
+                MushcoreAppHandler::Signal(inSignal);
             }
             else
             {

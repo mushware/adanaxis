@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLVector.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
+ * $Id: GLVector.cpp,v 1.7 2003/01/07 17:13:41 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.7  2003/01/07 17:13:41  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.6  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -53,7 +56,7 @@ GLVector::Pickle(ostream& inOut, const string& inPrefix) const
 }
 
 void
-GLVector::Unpickle(CoreXML& inXML)
+GLVector::Unpickle(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     Unpickle(data);

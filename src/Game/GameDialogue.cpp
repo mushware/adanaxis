@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.17 2002/12/29 20:59:55 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.18 2003/01/07 17:13:42 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.18  2003/01/07 17:13:42  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.17  2002/12/29 20:59:55  southa
  * More build fixes
  *
@@ -24,7 +27,7 @@
  * Client link handling
  *
  * Revision 1.13  2002/11/24 23:18:16  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.12  2002/10/22 20:42:03  southa
  * Source conditioning
@@ -81,7 +84,7 @@ GameDialogue::Render(void) const
    
     U32 size=m_strings.size();
     
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
     timer.CurrentMsecSet(glAppHandler.MillisecondsGet());
     tVal windbackValue=timer.ClientGet().WindbackValueGet();
 
@@ -215,7 +218,7 @@ void GameDialogue::ExpireNow(void)
 
     if (m_killSound != "")
     {    
-        MediaAudio::Instance().Play(*CoreDataRef<MediaSound>(m_killSound).Get());
+        MediaAudio::Instance().Play(*MushcoreDataRef<MediaSound>(m_killSound).Get());
     }
     
     if (latestFound)
@@ -228,9 +231,9 @@ void GameDialogue::ExpireNow(void)
     
 
 void
-GameDialogue::HandleTextEnd(CoreXML& inXML)
+GameDialogue::HandleTextEnd(MushcoreXML& inXML)
 {
-    CoreScalar alignment(CoreScalar(0));
+    MushcoreScalar alignment(MushcoreScalar(0));
 
     GameMotionSpec motionSpec=m_motion.MotionSpecGet();
 
@@ -244,14 +247,14 @@ GameDialogue::HandleTextEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleFontEnd(CoreXML& inXML)
+GameDialogue::HandleFontEnd(MushcoreXML& inXML)
 {
     tVal size=inXML.GetAttribOrThrow("size").ValGet();
     m_fontRef=GLFontRef(inXML.TopData(), size);
 }
 
 void
-GameDialogue::HandleStartTimeEnd(CoreXML& inXML)
+GameDialogue::HandleStartTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for starttime.  Should be <starttime>100.0</starttime>";
@@ -259,7 +262,7 @@ GameDialogue::HandleStartTimeEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleEndTimeEnd(CoreXML& inXML)
+GameDialogue::HandleEndTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for endtime.  Should be <endtime>100.0</endtime>";
@@ -267,7 +270,7 @@ GameDialogue::HandleEndTimeEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleFadeTimeEnd(CoreXML& inXML)
+GameDialogue::HandleFadeTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for fadetime.  Should be <fadetime>100.0</fadetime>";
@@ -276,7 +279,7 @@ GameDialogue::HandleFadeTimeEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleSizesEnd(CoreXML& inXML)
+GameDialogue::HandleSizesEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for sizes.  Should be <sizes>0.0,1.0,0.0</sizes>";
@@ -291,31 +294,31 @@ GameDialogue::HandleSizesEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleStartColourEnd(CoreXML& inXML)
+GameDialogue::HandleStartColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.startColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleMidColourEnd(CoreXML& inXML)
+GameDialogue::HandleMidColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.midColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleEndColourEnd(CoreXML& inXML)
+GameDialogue::HandleEndColourEnd(MushcoreXML& inXML)
 {
     m_currentSpec.endColour.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleMotionStart(CoreXML& inXML)
+GameDialogue::HandleMotionStart(MushcoreXML& inXML)
 {
     m_motion.Unpickle(inXML);
 }
 
 void
-GameDialogue::HandleSoundEnd(CoreXML& inXML)
+GameDialogue::HandleSoundEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for sound.  Should be <sound>impressive<sound>";
@@ -328,7 +331,7 @@ GameDialogue::HandleSoundEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleSoundStreamEnd(CoreXML& inXML)
+GameDialogue::HandleSoundStreamEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for soundstream.  Should be <sound>rate-music<sound>";
@@ -338,8 +341,8 @@ GameDialogue::HandleSoundStreamEnd(CoreXML& inXML)
     streamSpec.soundStreamRef.NameSet(name);
     streamSpec.startTime = m_currentSpec.startTime;
 
-    CoreScalar temp;
-    temp=CoreScalar(10000.0);
+    MushcoreScalar temp;
+    temp=MushcoreScalar(10000.0);
     inXML.GetAttrib(temp, "loop");
     streamSpec.loop=temp.U32Get();
     
@@ -347,7 +350,7 @@ GameDialogue::HandleSoundStreamEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleKillSoundEnd(CoreXML& inXML)
+GameDialogue::HandleKillSoundEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for killsound.  Should be <killsound>phone-beep</killsound>";
@@ -355,14 +358,14 @@ GameDialogue::HandleKillSoundEnd(CoreXML& inXML)
 }
 
 void
-GameDialogue::HandleDialogueEnd(CoreXML& inXML)
+GameDialogue::HandleDialogueEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameDialogue::NullHandler(CoreXML& inXML)
+GameDialogue::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -430,14 +433,14 @@ GameDialogue::UnpickleEpilogue(void)
 }
 
 void
-GameDialogue::Unpickle(CoreXML& inXML)
+GameDialogue::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
 }
 
 void
-GameDialogue::XMLStartHandler(CoreXML& inXML)
+GameDialogue::XMLStartHandler(MushcoreXML& inXML)
 {
     ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -460,7 +463,7 @@ GameDialogue::XMLStartHandler(CoreXML& inXML)
 }
 
 void
-GameDialogue::XMLEndHandler(CoreXML& inXML)
+GameDialogue::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -483,7 +486,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 }
 
 void
-GameDialogue::XMLDataHandler(CoreXML& inXML)
+GameDialogue::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

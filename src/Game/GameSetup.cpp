@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameSetup.cpp,v 1.24 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameSetup.cpp,v 1.25 2002/12/29 20:59:57 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.25  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.24  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -135,7 +138,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
 
     m_currentMsec=gameAppHandler.MillisecondsGet();
 
@@ -146,14 +149,14 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(CoreInfo::ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+CoreInfo::PackageVersionGet()+"  ID: "+CoreInfo::PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::PackageVersionGet()+"  ID: "+MushcoreInfo::PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
         glStr.Render();
     }
     
@@ -197,7 +200,7 @@ GLUtils::RotateAboutZ(5*sin(msecNow/151));
 void
 GameSetup::ConfigInit(void)
 {
-    U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
+    U32 webPort=MushcoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
     try
     {
         MustlWebServer::Instance().Connect(webPort);
@@ -217,7 +220,7 @@ GameSetup::ConfigInit(void)
 void
 GameSetup::Config(void)
 {
-    m_currentMsec=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance()).MillisecondsGet();
+    m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance()).MillisecondsGet();
     
     GameNetUtils::WebReceive();
     GameNetUtils::NetReceive();
@@ -248,12 +251,12 @@ GameSetup::Config(void)
 void
 GameSetup::KeyControl(void)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
     {
         if (!MustlWebServer::Instance().IsConnected())
         {
-            U32 webPort=CoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
+            U32 webPort=MushcoreData<GameConfigDef>::Instance().Get("configport")->ValueGet().U32Get();
             try
             {
                 MustlWebServer::Instance().Connect(webPort);
@@ -276,7 +279,7 @@ GameSetup::ScriptFunction(const string& inName, GameAppHandler& inAppHandler) co
 void
 GameSetup::SwapIn(GameAppHandler& inAppHandler)
 {
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Instance());
     glAppHandler.EnterScreen(PlatformVideoUtils::Instance().ModeDefGet(0));
 }
 

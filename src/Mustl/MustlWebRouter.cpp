@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebRouter.cpp,v 1.6 2002/12/29 20:30:57 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.7 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.7  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -53,7 +56,7 @@
 
 using namespace Mustl;
 using namespace std;
-//using Mushware::CoreData;
+//using Mushware::MushcoreData;
 
 auto_ptr<MustlWebRouter> MustlWebRouter::m_instance;
 
@@ -74,10 +77,10 @@ MustlWebRouter::ReceiveAll(void)
         callTick = true;
     }
 
-    CoreData<MustlWebLink>::tMapIterator endValue=CoreData<MustlWebLink>::Instance().End();
-    CoreData<MustlWebLink>::tMapIterator killValue=CoreData<MustlWebLink>::Instance().End();
+    MushcoreData<MustlWebLink>::tMapIterator endValue=MushcoreData<MustlWebLink>::Instance().End();
+    MushcoreData<MustlWebLink>::tMapIterator killValue=MushcoreData<MustlWebLink>::Instance().End();
     
-    for (CoreData<MustlWebLink>::tMapIterator p=CoreData<MustlWebLink>::Instance().Begin();
+    for (MushcoreData<MustlWebLink>::tMapIterator p=MushcoreData<MustlWebLink>::Instance().Begin();
          p != endValue; ++p)
     {
         MUSTLASSERT(p->second != NULL);
@@ -108,8 +111,8 @@ MustlWebRouter::ReceiveAll(void)
             }
         }
     }
-    if (killValue != CoreData<MustlWebLink>::Instance().End())
+    if (killValue != MushcoreData<MustlWebLink>::Instance().End())
     {
-        CoreData<MustlWebLink>::Instance().Delete(killValue);
+        MushcoreData<MustlWebLink>::Instance().Delete(killValue);
     }
 }

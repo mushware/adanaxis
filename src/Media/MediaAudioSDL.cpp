@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.8 2002/12/29 20:59:58 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.9 2003/01/07 17:13:44 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.9  2003/01/07 17:13:44  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.8  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -92,11 +95,11 @@ MediaAudioSDL::MediaAudioSDL():
     U32 u32AudioSoftChannels = 8;
     U32 u32AudioBuffer = 1024;
 
-    CoreEnv::Instance().VariableGetIfExists(u32AudioRate, "AUDIO_RATE");
-    CoreEnv::Instance().VariableGetIfExists(u32AudioFormat, "AUDIO_FORMAT");
-    CoreEnv::Instance().VariableGetIfExists(u32AudioHardChannels, "AUDIO_HARD_CHANNELS");
-    CoreEnv::Instance().VariableGetIfExists(u32AudioSoftChannels, "AUDIO_SOFT_CHANNELS");
-    CoreEnv::Instance().VariableGetIfExists(u32AudioBuffer, "AUDIO_BUFFER");
+    MushcoreEnv::Instance().VariableGetIfExists(u32AudioRate, "AUDIO_RATE");
+    MushcoreEnv::Instance().VariableGetIfExists(u32AudioFormat, "AUDIO_FORMAT");
+    MushcoreEnv::Instance().VariableGetIfExists(u32AudioHardChannels, "AUDIO_HARD_CHANNELS");
+    MushcoreEnv::Instance().VariableGetIfExists(u32AudioSoftChannels, "AUDIO_SOFT_CHANNELS");
+    MushcoreEnv::Instance().VariableGetIfExists(u32AudioBuffer, "AUDIO_BUFFER");
     
     int audioRate = u32AudioRate;
     unsigned short audioFormat = u32AudioFormat;
@@ -123,7 +126,7 @@ MediaAudioSDL::MediaAudioSDL():
 MediaAudioSDL::~MediaAudioSDL()
 {
     // First delete all sounds so that they can't interfere
-    CoreData<MediaSound>::Instance().Clear();
+    MushcoreData<MediaSound>::Instance().Clear();
     Mix_CloseAudio();
 }
 

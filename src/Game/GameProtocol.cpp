@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameProtocol.cpp,v 1.11 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.12 2002/12/29 20:59:56 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.12  2002/12/29 20:59:56  southa
+ * More build fixes
+ *
  * Revision 1.11  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -42,7 +45,7 @@
  * Initial send of objects over links
  *
  * Revision 1.1  2002/11/24 23:18:24  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  */
 
@@ -54,7 +57,7 @@ using namespace Mushware;
 using namespace std;
 
 void
-GameProtocol::CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName)
+GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
     ostringstream netStream;
 
@@ -66,7 +69,7 @@ GameProtocol::CreateObjectCreate(MustlData& ioData, CorePickle& inObj, const str
 }
 
 void
-GameProtocol::DeleteObjectCreate(MustlData& ioData, CorePickle& inObj, const string& inRemoteName)
+GameProtocol::DeleteObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
     ostringstream netStream;
 

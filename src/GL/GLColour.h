@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLColour.h,v 1.9 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLColour.h,v 1.10 2002/12/29 20:30:52 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.10  2002/12/29 20:30:52  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.9  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -65,7 +68,7 @@ public:
     const tGLfloat4& ArrayGet(void) const { return m_col; }
     
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
 
     const GLColour& operator+=(const GLColour& inCol)
     {

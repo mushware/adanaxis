@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlWebServer.cpp,v 1.6 2002/12/29 20:30:57 southa Exp $
+ * $Id: MustlWebServer.cpp,v 1.7 2002/12/29 21:00:00 southa Exp $
  * $Log: MustlWebServer.cpp,v $
+ * Revision 1.7  2002/12/29 21:00:00  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/29 20:30:57  southa
  * Work for gcc 3.1 build
  *
@@ -131,7 +134,7 @@ MustlWebServer::Accept(void)
             {
                 ostringstream name;
                 name << "web" << m_linkCtr;
-                CoreData<MustlWebLink>::Instance().Give(name.str(), new MustlWebLink(newSocket));
+                MushcoreData<MustlWebLink>::Instance().Give(name.str(), new MustlWebLink(newSocket));
                 m_linkCtr++;
                 MustlLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
             }

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLStandard.h,v 1.9 2002/10/22 20:42:01 southa Exp $
+ * $Id: GLStandard.h,v 1.10 2002/12/20 13:17:35 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.10  2002/12/20 13:17:35  southa
+ * Namespace changes, licence changes and source conditioning
+ *
  * Revision 1.9  2002/10/22 20:42:01  southa
  * Source conditioning
  *
@@ -35,7 +38,7 @@
  * Texture references and decomposer
  *
  * Revision 1.2  2002/05/24 18:10:43  southa
- * CoreXML and game map
+ * MushcoreXML and game map
  *
  * Revision 1.1  2002/05/10 16:41:43  southa
  * Changed .hp files to .h

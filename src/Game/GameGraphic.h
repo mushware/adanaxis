@@ -11,13 +11,16 @@
  ****************************************************************************/
 
 /*
- * $Id: GameGraphic.h,v 1.10 2002/12/20 13:17:40 southa Exp $
+ * $Id: GameGraphic.h,v 1.11 2002/12/29 20:30:54 southa Exp $
  * $Log: GameGraphic.h,v $
+ * Revision 1.11  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.10  2002/12/20 13:17:40  southa
  * Namespace changes, licence changes and source conditioning
  *
  * Revision 1.9  2002/11/24 23:18:23  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.8  2002/10/22 20:42:04  southa
  * Source conditioning
@@ -47,13 +50,13 @@
 
 #include "mushCore.h"
 
-class GameGraphic : public CorePickle, protected CoreXMLHandler
+class GameGraphic : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     GameGraphic() {}
     virtual ~GameGraphic() {}
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
-    virtual void Unpickle(CoreXML& inXML) = 0;
+    virtual void Unpickle(MushcoreXML& inXML) = 0;
     virtual void Render(void) = 0;
     virtual char *TypeNameGet(void) const = 0;
 

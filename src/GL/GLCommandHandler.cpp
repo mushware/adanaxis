@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLCommandHandler.cpp,v 1.21 2002/12/20 13:17:34 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.22 2002/12/29 20:59:52 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.22  2002/12/29 20:59:52  southa
+ * More build fixes
+ *
  * Revision 1.21  2002/12/20 13:17:34  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -90,18 +93,18 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
+MushcoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
 
-CoreScalar
-GLCommandHandler::InitGL(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLCommandHandler::InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     // Save inStr to context
-    CoreAppHandler::Instance().Mutate(new GLUTAppHandler);
-    return CoreScalar(0);
+    MushcoreAppHandler::Instance().Mutate(new GLUTAppHandler);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     string name;
     string filename;
@@ -111,7 +114,7 @@ GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    CoreRegExp re;
+    MushcoreRegExp re;
     if (re.Search(filename, "(spr|SPR)$"))
     {
         GLData::Instance().TextureAdd(name, GLTextureSpr(filename));
@@ -129,11 +132,11 @@ GLCommandHandler::LoadPixmap(CoreCommand& ioCommand, CoreEnv& ioEnv)
         throw(LoaderFail(filename, "Couldn't decode extension"));
     }
 
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GLCommandHandler::Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLCommandHandler::Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() < 4)
     {
@@ -188,21 +191,21 @@ GLCommandHandler::Decompose(CoreCommand& ioCommand, CoreEnv& ioEnv)
             GLData::Instance().TextureAdd(name, GLTextureClip(srcTex, xbase, ybase, xbase+xsize, ybase+ysize));
         }
     }
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-GLCommandHandler::DumpTextures(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLCommandHandler::DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     GLData::Instance().DumpTextures(cout);
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 GLCommandHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("initgl", InitGL);
-    CoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
-    CoreApp::Instance().AddHandler("decompose", Decompose);
-    CoreApp::Instance().AddHandler("dumptextures", DumpTextures);
+    MushcoreApp::Instance().AddHandler("initgl", InitGL);
+    MushcoreApp::Instance().AddHandler("loadpixmap", LoadPixmap);
+    MushcoreApp::Instance().AddHandler("decompose", Decompose);
+    MushcoreApp::Instance().AddHandler("dumptextures", DumpTextures);
 }

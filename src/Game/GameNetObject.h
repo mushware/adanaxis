@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameNetObject.h,v 1.6 2002/12/20 13:17:41 southa Exp $
+ * $Id: GameNetObject.h,v 1.7 2002/12/29 20:30:54 southa Exp $
  * $Log: GameNetObject.h,v $
+ * Revision 1.7  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
  * Revision 1.6  2002/12/20 13:17:41  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -37,27 +40,27 @@
 
 #include "mushMedia.h"
 
-class GameNetObject : public CorePickle, protected CoreXMLHandler
+class GameNetObject : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     virtual ~GameNetObject();
     virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const;
-    virtual void Unpickle(CoreXML& inXML);
+    virtual void Unpickle(MushcoreXML& inXML);
     virtual char *TypeNameGet(void) const;
 
     void AddressSet(const MustlAddress& inAddress) { m_address = inAddress; }
     const MustlAddress& AddressGet(void) const { return m_address; }
     
 protected:
-    void XMLStartHandler(CoreXML& inXML);
-    void XMLEndHandler(CoreXML& inXML);
-    void XMLDataHandler(CoreXML& inXML);
+    void XMLStartHandler(MushcoreXML& inXML);
+    void XMLEndHandler(MushcoreXML& inXML);
+    void XMLDataHandler(MushcoreXML& inXML);
 
-    void HandleGameDefClientStart(CoreXML& inXML);
-    void HandleGameDefServerStart(CoreXML& inXML);
-    void HandleNetObjectStart(CoreXML& inXML);
-    void HandleNetObjectEnd(CoreXML& inXML);
-    void NullHandler(CoreXML& inXML);
+    void HandleGameDefClientStart(MushcoreXML& inXML);
+    void HandleGameDefServerStart(MushcoreXML& inXML);
+    void HandleNetObjectStart(MushcoreXML& inXML);
+    void HandleNetObjectEnd(MushcoreXML& inXML);
+    void NullHandler(MushcoreXML& inXML);
 
     enum PickleState
     {
@@ -67,7 +70,7 @@ protected:
     };
 
 private:
-    typedef std::map<string, void (GameNetObject::*)(CoreXML& inXML)> ElementFunctionMap;
+    typedef std::map<string, void (GameNetObject::*)(MushcoreXML& inXML)> ElementFunctionMap;
     std::vector<ElementFunctionMap> m_startTable;
     std::vector<ElementFunctionMap> m_endTable;
     Mushware::U32 m_pickleState;

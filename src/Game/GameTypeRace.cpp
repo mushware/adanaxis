@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameTypeRace.cpp,v 1.31 2002/12/29 20:59:58 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.32 2003/01/07 17:13:44 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.32  2003/01/07 17:13:44  southa
+ * Fixes for gcc 3.1
+ *
  * Revision 1.31  2002/12/29 20:59:58  southa
  * More build fixes
  *
@@ -21,7 +24,7 @@
  * Split timer into client and server
  *
  * Revision 1.28  2002/11/24 23:18:26  southa
- * Added type name accessor to CorePickle
+ * Added type name accessor to MushcorePickle
  *
  * Revision 1.27  2002/10/22 20:42:07  southa
  * Source conditioning
@@ -555,8 +558,8 @@ GameTypeRace::SaveRecords(const GameRecords& inRecords) const
     try
     {
         string filename;
-        const CoreScalar *pScalar;
-        if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        const MushcoreScalar *pScalar;
+        if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
             ofstream outputFile(filename.c_str());
@@ -580,12 +583,12 @@ GameTypeRace::LoadRecords(void)
     try
     {
         string filename;
-        const CoreScalar *pScalar;
-        if (CoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
+        const MushcoreScalar *pScalar;
+        if (MushcoreEnv::Instance().VariableGetIfExists(&pScalar, "RECORDS_FILENAME"))
         {
             filename=pScalar->StringGet();
         }
-        dynamic_cast<CorePickle&>(m_worldRecords).Unpickle(filename);
+        dynamic_cast<MushcorePickle&>(m_worldRecords).Unpickle(filename);
     }
     catch (exception& e)
     {
@@ -595,14 +598,14 @@ GameTypeRace::LoadRecords(void)
 }
 
 void
-GameTypeRace::HandleGameEnd(CoreXML& inXML)
+GameTypeRace::HandleGameEnd(MushcoreXML& inXML)
 {
     inXML.StopHandler();
     UnpickleEpilogue();
 }
 
 void
-GameTypeRace::HandleLapTimeEnd(CoreXML& inXML)
+GameTypeRace::HandleLapTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for laptime.  Should be <laptime>45.0</laptime>";
@@ -612,7 +615,7 @@ GameTypeRace::HandleLapTimeEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleStartActionEnd(CoreXML& inXML)
+GameTypeRace::HandleStartActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for startaction.  Should be <startaction>^racestart</startaction>";
@@ -620,7 +623,7 @@ GameTypeRace::HandleStartActionEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleFinalLapActionEnd(CoreXML& inXML)
+GameTypeRace::HandleFinalLapActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for finallapaction.  Should be <finallapaction>^finallap</finallapaction>";
@@ -628,7 +631,7 @@ GameTypeRace::HandleFinalLapActionEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleWinActionEnd(CoreXML& inXML)
+GameTypeRace::HandleWinActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for winaction.  Should be <winaction>^racewin</winaction>";
@@ -636,7 +639,7 @@ GameTypeRace::HandleWinActionEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleLoseActionEnd(CoreXML& inXML)
+GameTypeRace::HandleLoseActionEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for loseaction.  Should be <loseaction>^racelose</loseaction>";
@@ -644,7 +647,7 @@ GameTypeRace::HandleLoseActionEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleInitialTimeEnd(CoreXML& inXML)
+GameTypeRace::HandleInitialTimeEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for initialtime.  Should be <initialtime>120</initialtime>";
@@ -653,7 +656,7 @@ GameTypeRace::HandleInitialTimeEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleLapsEnd(CoreXML& inXML)
+GameTypeRace::HandleLapsEnd(MushcoreXML& inXML)
 {
     istringstream data(inXML.TopData());
     const char *failMessage="Bad format for laps.  Should be <laps>5</laps>";
@@ -661,7 +664,7 @@ GameTypeRace::HandleLapsEnd(CoreXML& inXML)
 }
 
 void
-GameTypeRace::HandleChequePointStart(CoreXML& inXML)
+GameTypeRace::HandleChequePointStart(MushcoreXML& inXML)
 {
     GameChequePoint *chequePoint=new GameChequePoint;
     m_chequePoints.push_back(chequePoint);
@@ -669,7 +672,7 @@ GameTypeRace::HandleChequePointStart(CoreXML& inXML)
 }
 
 void
-GameTypeRace::NullHandler(CoreXML& inXML)
+GameTypeRace::NullHandler(MushcoreXML& inXML)
 {
 }
 
@@ -711,7 +714,7 @@ GameTypeRace::UnpicklePrologue(void)
 }
 
 void
-GameTypeRace::Unpickle(CoreXML& inXML)
+GameTypeRace::Unpickle(MushcoreXML& inXML)
 {
     UnpicklePrologue();
     inXML.ParseStream(*this);
@@ -727,7 +730,7 @@ GameTypeRace::UnpickleEpilogue(void)
 }
 
 void
-GameTypeRace::XMLStartHandler(CoreXML& inXML)
+GameTypeRace::XMLStartHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
@@ -759,7 +762,7 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 }
 
 void
-GameTypeRace::XMLEndHandler(CoreXML& inXML)
+GameTypeRace::XMLEndHandler(MushcoreXML& inXML)
 {
 ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
@@ -794,7 +797,7 @@ ElementFunctionMap::iterator p = m_endTable[m_pickleState].begin();
 }
 
 void
-GameTypeRace::XMLDataHandler(CoreXML& inXML)
+GameTypeRace::XMLDataHandler(MushcoreXML& inXML)
 {
 }
 

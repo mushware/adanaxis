@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MediaSoundStream.cpp,v 1.6 2002/12/20 13:17:45 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.7 2002/12/29 20:59:58 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.7  2002/12/29 20:59:58  southa
+ * More build fixes
+ *
  * Revision 1.6  2002/12/20 13:17:45  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -38,17 +41,17 @@
 using namespace Mushware;
 using namespace std;
 
-auto_ptr< CoreData<MediaSoundStream> > CoreData<MediaSoundStream>::m_instance;
+auto_ptr< MushcoreData<MediaSoundStream> > MushcoreData<MediaSoundStream>::m_instance;
 
-CoreInstaller MediaSoundStreamInstaller(MediaSoundStream::Install);
+MushcoreInstaller MediaSoundStreamInstaller(MediaSoundStream::Install);
 
 MediaSoundStream::MediaSoundStream(const string& inName):
 m_filename(inName)
 {
 }
 
-CoreScalar
-MediaSoundStream::SoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaSoundStream::SoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 2)
     {
@@ -57,12 +60,12 @@ MediaSoundStream::SoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
     string name, filename;
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
-    CoreData<MediaSoundStream>::Instance().Give(name, new MediaSoundStream(filename));
-    return CoreScalar(0);
+    MushcoreData<MediaSoundStream>::Instance().Give(name, new MediaSoundStream(filename));
+    return MushcoreScalar(0);
 }
 
-CoreScalar
-MediaSoundStream::PlaySoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     if (ioCommand.NumParams() != 1)
     {
@@ -70,14 +73,14 @@ MediaSoundStream::PlaySoundStream(CoreCommand& ioCommand, CoreEnv& ioEnv)
     }
     string name;
     ioCommand.PopParam(name);
-    MediaSoundStream *soundStream=CoreData<MediaSoundStream>::Instance().Get(name);
+    MediaSoundStream *soundStream=MushcoreData<MediaSoundStream>::Instance().Get(name);
     MediaAudio::Instance().Play(*soundStream) ;
-    return CoreScalar(0);
+    return MushcoreScalar(0);
 }
 
 void
 MediaSoundStream::Install(void)
 {
-    CoreApp::Instance().AddHandler("soundstream", SoundStream);
-    CoreApp::Instance().AddHandler("playsoundstream", PlaySoundStream);
+    MushcoreApp::Instance().AddHandler("soundstream", SoundStream);
+    MushcoreApp::Instance().AddHandler("playsoundstream", PlaySoundStream);
 }

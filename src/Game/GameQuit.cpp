@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameQuit.cpp,v 1.5 2002/12/20 13:17:42 southa Exp $
+ * $Id: GameQuit.cpp,v 1.6 2002/12/29 20:59:57 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.6  2002/12/29 20:59:57  southa
+ * More build fixes
+ *
  * Revision 1.5  2002/12/20 13:17:42  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -72,7 +75,7 @@ GameQuit::Display(GameAppHandler& inAppHandler)
     GLUtils::ClearScreen();
     GLUtils::OrthoPrologue();
 
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
 
     tVal msecNow=gameAppHandler.MillisecondsGet() - m_startMsec;
     
@@ -81,14 +84,14 @@ GameQuit::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(CoreInfo::ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+CoreInfo::PackageVersionGet()+"  ID: "+CoreInfo::PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::PackageVersionGet()+"  ID: "+MushcoreInfo::PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
         glStr.Render();
     }
     
@@ -106,7 +109,7 @@ GameQuit::Display(GameAppHandler& inAppHandler)
 void
 GameQuit::Init(void)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
 
     MustlLog::Instance().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
@@ -120,13 +123,13 @@ GameQuit::Timing(void)
     MustlWebServer::Instance().Accept();
     MustlWebRouter::Instance().ReceiveAll();
     GLUtils::PostRedisplay();
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Instance());
     U32 currentMsec=gameAppHandler.MillisecondsGet();
 
     if (m_startMsec + kQuitHangTime < currentMsec)
     {
         // Quit after quit hang time if all web links are closed
-        if (CoreData<MustlWebLink>::Instance().Size() == 0)
+        if (MushcoreData<MustlWebLink>::Instance().Size() == 0)
         {
             MustlLog::Instance().WebLog() << "Quitting" << endl;
             gameAppHandler.AppQuit();

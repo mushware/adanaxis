@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.22 2002/12/20 13:17:36 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.23 2002/12/29 20:59:53 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.23  2002/12/29 20:59:53  southa
+ * More build fixes
+ *
  * Revision 1.22  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -87,7 +90,7 @@
 using namespace Mushware;
 using namespace std;
 
-CoreInstaller
+MushcoreInstaller
 GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 
 void
@@ -163,15 +166,15 @@ GLTest1AppHandler::Idle(void)
     GLUtils::PostRedisplay();
 }
 
-CoreScalar
-GLTest1AppHandler::GLTest1(CoreCommand& ioCommand, CoreEnv& ioEnv)
+MushcoreScalar
+GLTest1AppHandler::GLTest1(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    CoreAppHandler::Instance().Mutate(new GLTest1AppHandler);
-    return CoreScalar(0);
+    MushcoreAppHandler::Instance().Mutate(new GLTest1AppHandler);
+    return MushcoreScalar(0);
 }
 
 void
 GLTest1AppHandler::Install(void)
 {
-    CoreApp::Instance().AddHandler("gltest1", GLTest1);
+    MushcoreApp::Instance().AddHandler("gltest1", GLTest1);
 }
