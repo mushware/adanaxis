@@ -1,0 +1,20 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+
+class CoreFunction
+{
+public:
+    CoreFunction(const string& inStr): m_name(inStr) {}
+    void AddCommand(const string& inStr) {m_commands.push_back(inStr);}
+    const string& Name(void) const {return m_name;}
+    const string& Command(Size inIndex) const {return m_commands[inIndex];}
+    Size SizeGet(void) const {return m_commands.size();}
+    
+private:
+    string m_name;
+    vector<string> m_commands;
+};

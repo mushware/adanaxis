@@ -1,0 +1,25 @@
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "CoreStandard.hp"
+#include "CoreFunction.hp"
+
+class CoreScript
+{
+public:
+    CoreScript(const string& inFilename);
+    CoreScript(istream& inIn) {ReadFromStream(inIn);}
+    void ostreamPrint(ostream& inOut) const;
+    
+private:
+    void ReadFromStream(istream& inIn);
+    vector<CoreFunction> m_functions;
+};
+
+inline ostream& operator<<(ostream &inOut, CoreScript inCoreScript)
+{
+    inCoreScript.ostreamPrint(inOut);
+    return inOut;
+}

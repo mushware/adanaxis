@@ -1,0 +1,27 @@
+#ifndef COREEXCEPTION_HP
+#define COREEXCEPTION_HP
+/*
+ * $Id$
+ * $Log$
+ */
+
+class FileFail: public exception
+{
+public:
+    FileFail(const string& inFilename, const string& inMessage):
+    m_filename(inFilename), m_message(inMessage) {}
+    const string& FilenameGet(void) const throw () {return m_filename;}
+    const string& MessageGet(void) const throw() {return m_message;}
+    const char* what() const throw() {return m_message.c_str();}
+
+private:
+    string m_filename;
+    string m_message;
+};
+
+inline ostream& operator<<(ostream &s, FileFail f)
+{
+    return s << "File '" << f.FilenameGet() << "': " << f.MessageGet();
+}
+
+#endif
