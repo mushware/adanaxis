@@ -16,8 +16,11 @@
 
 
 /*
- * $Id: CoreStandard.h,v 1.16 2002/08/27 08:56:18 southa Exp $
+ * $Id: CoreStandard.h,v 1.17 2002/08/27 09:03:24 southa Exp $
  * $Log: CoreStandard.h,v $
+ * Revision 1.17  2002/08/27 09:03:24  southa
+ * Added stdio.h
+ *
  * Revision 1.16  2002/08/27 08:56:18  southa
  * Source conditioning
  *
@@ -129,9 +132,10 @@
 
 #ifdef HAVE_VALARRAY
 #include <valarray>
-template<class T> class tValarray : public std::valarray<T> {};
+#define tValarray valarray
 #else
-template<class T> class tValarray : public std::vector<T> {};
+// Mimic valarray using vector
+#define tValarray vector
 #endif
 
 using namespace std;

@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.7.4.2 2002/09/07 10:58:41 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.8 2002/10/06 22:10:00 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.8  2002/10/06 22:10:00  southa
+ * Initial lighting test
+ *
  * Revision 1.7.4.2  2002/09/07 10:58:41  southa
  * Removed usleep
  *
@@ -129,7 +132,7 @@ PlatformMiscUtils::VBLWait(void)
                     break;
                 }
                 // Possible detrimental effects with usleep
-                // usleep(100);
+                usleep(100);
             }
             //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
         }

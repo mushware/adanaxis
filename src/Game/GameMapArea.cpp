@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GameMapArea.cpp,v 1.2 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameMapArea.cpp,v 1.3 2002/08/27 08:56:24 southa Exp $
  * $Log: GameMapArea.cpp,v $
+ * Revision 1.3  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -125,4 +128,11 @@ const GLRectangle
 GameMapArea::BoundingBoxGet(void) const
 {
     return GLRectangle(MinPointGet(), MaxPointGet());
+}
+
+bool
+GameMapArea::IsEmpty(void) const
+{
+    return (m_rectangles.size() == 0 &&
+            m_points.size() == 0);
 }

@@ -15,8 +15,11 @@
 
 
 /*
- * $Id: GLPoint.h,v 1.10 2002/08/18 12:20:40 southa Exp $
+ * $Id: GLPoint.h,v 1.11 2002/08/27 08:56:19 southa Exp $
  * $Log: GLPoint.h,v $
+ * Revision 1.11  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.10  2002/08/18 12:20:40  southa
  * Movement tweaks
  *
@@ -61,6 +64,7 @@ public:
         y(inY)
         {}
 
+    virtual ~GLPoint() {}
     virtual GLPoint *Clone(void) const { return new GLPoint(*this); }
     virtual void Render(void) const;
     

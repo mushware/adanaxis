@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLLine.h,v 1.4 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLLine.h,v 1.5 2002/08/27 08:56:19 southa Exp $
  * $Log: GLLine.h,v $
+ * Revision 1.5  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -39,7 +42,7 @@ class GLLine : public GLRenderable
 {
 public:
     GLLine(const GLPoint& inStart, const GLPoint& inEnd);
-
+    virtual ~GLLine() {}
     virtual GLLine *Clone(void) const { return new GLLine(*this); }
     virtual void Render(void) const;
 

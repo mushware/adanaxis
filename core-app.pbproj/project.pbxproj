@@ -4344,7 +4344,6 @@
 				F593971C028C0D38016230BF,
 				F593971F028C0D3B016230BF,
 				F5939721028C0D3E016230BF,
-				F5939723028C0D40016230BF,
 				F5939728028C0D54016230BF,
 				F593972A028C0D56016230BF,
 				F593972D028C0D59016230BF,
@@ -4413,6 +4412,7 @@
 				F56CBBDC0317A717017AE398,
 				F59516440350B22F01A80166,
 				F595C5720351E76E01A80166,
+				F5956CBA03557BF201A80166,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4461,13 +4461,15 @@
 			);
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = "src src/API";
 				INSTALL_PATH = "/Volumes/work/core-app/ic2data/system";
 				LIBRARY_SEARCH_PATHS = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenGL.framework/Versions/A/Libraries\"";
-				OPTIMIZATION_CFLAGS = "-O0";
+				OPTIMIZATION_CFLAGS = "-O";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = ic2;
 				SECTORDER_FLAGS = "";
+				USE_GCC3 = NO;
 				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4700,12 +4702,6 @@
 			settings = {
 			};
 		};
-		F5939723028C0D40016230BF = {
-			fileRef = F540BCBC022BAEFD01C02155;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F5939728028C0D54016230BF = {
 			fileRef = F593968D028C0342016230BF;
 			isa = PBXBuildFile;
@@ -4821,6 +4817,12 @@
 		};
 		F59516480350B32201A80166 = {
 			fileRef = F59516470350B32201A80166;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5956CBA03557BF201A80166 = {
+			fileRef = F540BCBC022BAEFD01C02155;
 			isa = PBXBuildFile;
 			settings = {
 			};

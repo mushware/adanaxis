@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameDialogue.cpp,v 1.9 2002/08/26 12:44:37 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.10 2002/08/27 08:56:23 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.10  2002/08/27 08:56:23  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/26 12:44:37  southa
  * Timed rewards and sound tweaks
  *
@@ -174,7 +177,7 @@ void GameDialogue::ExpireNow(void)
     // Need to leave the last sound stream playing, if we haven't started it yet
     tVal latestTime=m_age;
     bool latestFound=false;
-    U32 latestIndex;
+    U32 latestIndex=0;
     U32 size=m_soundStreams.size();
     for (U32 i=0; i<size; ++i)
     {

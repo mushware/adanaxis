@@ -12,8 +12,11 @@
 
 
 /*
- * $Id: GLLine.cpp,v 1.4 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLLine.cpp,v 1.5 2002/08/27 08:56:19 southa Exp $
  * $Log: GLLine.cpp,v $
+ * Revision 1.5  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.4  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -70,6 +73,7 @@ GLLine::GetEnd(void) const
 bool
 GLLine::IsIntersecting(const GLLine& inLine) const
 {
+    // This function has been rearranged to avoid a MacOS X compiler bug
     GLPoint a(m_start);
     GLPoint b(m_end);
     GLPoint c(inLine.GetStart());
@@ -82,14 +86,21 @@ GLLine::IsIntersecting(const GLLine& inLine) const
 
     tVal m = d.y*(c.x-a.x)+d.x*(a.y-c.y);
     tVal n = b.y*(c.x-a.x)+b.x*(a.y-c.y);
+    
+    bool isIntersecting;
     if (f < 0)
     {
-        return m<=0 && m>f && n<=0 && n>f;
+        isIntersecting = (m<=0 && m>f && n<=0 && n>f);
     }
     else
     {
-        return m>=0 && m<f && n>=0 && n<f;
+        isIntersecting = (m>=0 && m<f && n>=0 && n<f);
     }
+    if (isIntersecting)
+    {
+        return true;
+    }
+    return false;
 }
 
 void

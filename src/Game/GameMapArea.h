@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameMapArea.h,v 1.2 2002/08/07 13:36:50 southa Exp $
+ * $Id: GameMapArea.h,v 1.3 2002/08/27 08:56:24 southa Exp $
  * $Log: GameMapArea.h,v $
+ * Revision 1.3  2002/08/27 08:56:24  southa
+ * Source conditioning
+ *
  * Revision 1.2  2002/08/07 13:36:50  southa
  * Conditioned source
  *
@@ -36,6 +39,7 @@ public:
     const GLPoint MinPointGet(void) const;
     const GLPoint MaxPointGet(void) const;
     const GLRectangle BoundingBoxGet(void) const;
+    bool IsEmpty(void) const;
     
 private:
     vector<GLRectangle> m_rectangles;

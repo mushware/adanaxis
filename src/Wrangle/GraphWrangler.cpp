@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GraphWrangler.cpp,v 1.7 2002/08/07 13:36:52 southa Exp $
+ * $Id: GraphWrangler.cpp,v 1.8 2002/08/27 08:56:30 southa Exp $
  * $Log: GraphWrangler.cpp,v $
+ * Revision 1.8  2002/08/27 08:56:30  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/07 13:36:52  southa
  * Conditioned source
  *
@@ -129,7 +132,7 @@ GraphWrangler::PredominantColumnColour(tSize inX)
         colMap[col]=colMap[col]+1;
     }
 
-    U32 outCol;
+    U32 outCol=0;
     U32 highest=0;
     for (map<U32, U32>::const_iterator i=colMap.begin();
          i != colMap.end(); ++i)

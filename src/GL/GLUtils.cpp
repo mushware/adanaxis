@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GLUtils.cpp,v 1.32 2002/10/08 21:44:08 southa Exp $
+ * $Id: GLUtils.cpp,v 1.33 2002/10/08 23:03:55 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.33  2002/10/08 23:03:55  southa
+ * Widen z clipping on OrthoLookAt
+ *
  * Revision 1.32  2002/10/08 21:44:08  southa
  * 3D maps
  *
@@ -271,16 +274,17 @@ GLUtils::LongestScreenAxis(void)
 void
 GLUtils::DisplayPrologue(void)
 {
+    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
+    glFinish();
+PlatformMiscUtils::VBLWait();
+    glHandler.SwapBuffers();
     glDrawBuffer(GL_BACK);
 }
 
 void
 GLUtils::DisplayEpilogue(void)
 {
-    GLAppHandler& glHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
-    glFinish();
-    PlatformMiscUtils::VBLWait();
-    glHandler.SwapBuffers();
+
 }
 
 void

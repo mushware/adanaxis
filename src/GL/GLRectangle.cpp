@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: GLRectangle.cpp,v 1.7 2002/08/07 13:36:47 southa Exp $
+ * $Id: GLRectangle.cpp,v 1.8 2002/08/27 08:56:19 southa Exp $
  * $Log: GLRectangle.cpp,v $
+ * Revision 1.8  2002/08/27 08:56:19  southa
+ * Source conditioning
+ *
  * Revision 1.7  2002/08/07 13:36:47  southa
  * Conditioned source
  *
@@ -90,10 +93,26 @@ GLRectangle::IsWithin(const GLPoint& inPoint) const
 bool
 GLRectangle::IsIntersecting(const GLLine& inLine) const
 {
-    if (inLine.IsIntersecting(GLLine(GLPoint(xmin,ymin), GLPoint(xmax,ymin))) ||
-        inLine.IsIntersecting(GLLine(GLPoint(xmax,ymin), GLPoint(xmax,ymax))) ||
-        inLine.IsIntersecting(GLLine(GLPoint(xmax,ymax), GLPoint(xmin,ymax))) ||
-        inLine.IsIntersecting(GLLine(GLPoint(xmin,ymax), GLPoint(xmin,ymin)))) return true;
+    GLPoint xMinYMin(xmin,ymin);
+    GLPoint xMaxYMin(xmax,ymin);
+
+    GLLine line1(xMinYMin, xMaxYMin);
+
+    if (inLine.IsIntersecting(line1)) return true;
+
+    GLPoint xMaxYMax(xmax,ymax);
+    GLLine line2(xMaxYMin, xMaxYMax);
+
+    if (inLine.IsIntersecting(line2)) return true;
+    
+    GLPoint xMinYMax(xmin,ymax);
+    GLLine line3(xMaxYMax, xMinYMax);
+
+    if (inLine.IsIntersecting(line3)) return true;
+
+    GLLine line4(xMinYMax, xMinYMin);
+    if (inLine.IsIntersecting(line4)) return true;
+
     return false;
 }    
 

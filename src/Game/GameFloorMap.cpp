@@ -14,8 +14,11 @@
 
 
 /*
- * $Id: GameFloorMap.cpp,v 1.26 2002/10/08 17:13:17 southa Exp $
+ * $Id: GameFloorMap.cpp,v 1.27 2002/10/08 21:44:10 southa Exp $
  * $Log: GameFloorMap.cpp,v $
+ * Revision 1.27  2002/10/08 21:44:10  southa
+ * 3D maps
+ *
  * Revision 1.26  2002/10/08 17:13:17  southa
  * Tiered maps
  *
@@ -148,6 +151,7 @@ GameFloorMap::MapToSpace(const GameMapPoint inPoint) const
 void
 GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, const vector<bool>& inTierHighlight)
 {
+#if 1
     COREASSERT(m_tileMap != NULL);
 
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(CoreAppHandler::Instance());
@@ -174,9 +178,32 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
     
     GLPoint point;
 
-    bool highlightOn=true;
+    bool isHighlight = inHighlight.IsEmpty();
 
+    bool highlightOn=false;
+    GLUtils::ModulationSet(GLUtils::kModulationLighting);
 
+    U32 areaXSize=maxPoint.U32XGet() - minPoint.U32XGet();
+    U32 areaXMin=minPoint.U32XGet();
+    U32 areaXMax=maxPoint.U32XGet();
+    U32 areaYSize=maxPoint.U32YGet() - minPoint.U32YGet();
+    U32 areaYMin=minPoint.U32YGet();
+    U32 areaYMax=maxPoint.U32YGet();
+
+    tValarray<bool> areaFlags(areaXSize*areaYSize);
+    
+    for (U32 x=areaXMin; x<areaXMax; ++x)
+    {
+        for (U32 y=areaYMin; y<areaYMax; ++y)
+        {
+
+            U32 areaFlagIndex=(x-areaXMin) * areaYSize + (y-areaYMin);
+            COREASSERT(areaFlagIndex < areaXSize * areaYSize);
+            areaFlags[areaFlagIndex] =
+                inArea.IsWithin(GLPoint(x,y));
+        }
+    }
+    
     U32 m_numTiers=5;
     U32 tierHighlightSize=inTierHighlight.size();
     for (U32 tier=0; tier<m_numTiers; ++tier)
@@ -192,47 +219,54 @@ GameFloorMap::Render(const GameMapArea& inArea, const GameMapArea& inHighlight, 
                 GLUtils::AmbientLightSet(0.2);
             }
         }
-        for (point.x=minPoint.x; point.x<maxPoint.x; ++point.x)
+        for (U32 x=areaXMin; x<areaXMax; ++x)
         {
-            for (point.y=minPoint.y; point.y<maxPoint.y; ++point.y)
+            for (U32 y=areaYMin; y<areaYMax; ++y)
             {
-                const tMapVector& mapVector=ElementGet(point);
-                U32 vecSize=mapVector.size();
+                U32 areaFlagIndex=(x-areaXMin) * areaYSize + (y-areaYMin);
+                COREASSERT(areaFlagIndex < areaXSize * areaYSize);
 
-                if (tier < vecSize)
+                if (areaFlags[areaFlagIndex])
                 {
-                    if (inArea.IsWithin(point))
+                    const tMapVector& mapVector=m_map[y][x];
+                    U32 vecSize=mapVector.size();
+
+                    if (tier < vecSize && mapVector[tier] != 0)
                     {
-                        if (inHighlight.IsWithin(point))
+                        if (isHighlight)
                         {
-                            tVal clockNow=timeNow+point.x*xv+point.y*yv;
-                            tVal redBri=0.4+0.35*sin(clockNow/200.0);
-                            tVal greenBri=0.4+0.35*sin(clockNow/201.0);
-                            tVal blueBri=0.4+0.35*sin(clockNow/202.0);
+                            if (inHighlight.IsWithin(point))
+                            {
+                                tVal clockNow=timeNow+point.x*xv+point.y*yv;
+                                tVal redBri=0.4+0.35*sin(clockNow/200.0);
+                                tVal greenBri=0.4+0.35*sin(clockNow/201.0);
+                                tVal blueBri=0.4+0.35*sin(clockNow/202.0);
 
-                            GLUtils::ColourSet(redBri, greenBri, blueBri);
-                            GLUtils::ModulationSet(GLUtils::kModulationColour);
-                            highlightOn=true;
+                                GLUtils::ColourSet(redBri, greenBri, blueBri);
+                                GLUtils::ModulationSet(GLUtils::kModulationColour);
+                                highlightOn=true;
+                            }
+                            else if (highlightOn)
+                            {
+                                GLUtils::ModulationSet(GLUtils::kModulationLighting);
+                                highlightOn=false;
+                            }
                         }
-                        else if (highlightOn)
-                        {
-                            GLUtils::ModulationSet(GLUtils::kModulationLighting);
-                            highlightOn=false;
-                        }
-
-                        gl.MoveTo(point.x, point.y);
+                        
+                        gl.MoveTo(x, y);
 
                         GameTileTraits& tileTraits=dynamic_cast<GameTileTraits &>
                             (*m_tileMap->TraitsPtrGet(mapVector[tier]));
-                        glPushMatrix();
+                        // glPushMatrix();
                         tileTraits.Render();
-                        glPopMatrix();
+                        // glPopMatrix();
                     }
                 }
             }
         }
     }
     glPopMatrix();
+#endif
 }
 
 void
