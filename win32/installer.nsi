@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.2 2002/06/13 15:53:20 southa Exp $
+; $Id: installer.nsi,v 1.3 2002/06/25 18:05:49 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.3  2002/06/25 18:05:49  southa
+; Path and icon fixes
+;
 ; Revision 1.2  2002/06/13 15:53:20  southa
 ; More work
 ;
@@ -8,6 +11,9 @@
 
 Name "Infernal Contractor II"
 OutFile "IC2setup.exe"
+
+LicenseText "You must agree to this licence before installing."
+LicenseData "..\LICENCE"
 
 ; Some default compiler settings (uncomment and change at will):
 ; SetCompress auto ; (can be off or force)
@@ -86,6 +92,7 @@ err10:
 File /oname=$OUTDIR\system\zlib.dll win32libs\zlib.dll
 noerr10:
 
+File /oname=$OUTDIR\system\COPYING ..\COPYING
 File /r ..\release\*.*
 
 WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II" "" "$INSTDIR"
