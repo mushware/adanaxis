@@ -76,6 +76,101 @@ CFG=core_app - Win32 Debug
 
 !ENDIF 
 
+# Begin Group "TestMushMesh"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshApp.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshApp.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshArray.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshArray.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshMain.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshMain.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshStandard.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshStandard.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshSubdivide.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshSubdivide.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshUtils.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshUtils.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshVector.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\TestMushMesh\TestMushMeshVector.h
+# End Source File
+# End Group
+# Begin Group "MushMesh"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMesh.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMesh.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshArray.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshArray.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshMath.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshMath.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshStandard.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshStandard.h
+# End Source File
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshSTL.cpp
@@ -86,11 +181,376 @@ SOURCE=..\..\src\MushMesh\MushMeshSTL.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\MushMesh\MushMeshSubdivide.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshSubdivide.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshUtils.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\MushMesh\MushMeshUtils.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\MushMesh\MushMeshVector.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\src\MushMesh\MushMeshVector.h
 # End Source File
+# End Group
+# Begin Group "Mushcore"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\Mushcore.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\Mushcore.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAbstractSingleton.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAbstractSingleton.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAppHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAppHandler.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAppSignal.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAppSignal.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAutoMonkey.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreAutoMonkey.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBison.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBison.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBisonDefs.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBisonDefs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBuiltinHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreBuiltinHandler.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreCommand.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreCommand.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreCommandHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreCommandHandler.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreConfig.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreConfig.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreData.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreData.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreDataRef.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreDataRef.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreEnv.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreEnv.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreEnvOutput.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreEnvOutput.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFactory.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFactory.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFail.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFail.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFlex.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFlex.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFunction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreFunction.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreGlobalConfig.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreGlobalConfig.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreHistory.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreHistory.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInfo.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInfo.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInstaller.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInstaller.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInterpreter.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreInterpreter.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreIO.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreIO.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreParamList.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreParamList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcorePickle.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcorePickle.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreRegExp.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreRegExp.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreScalar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreScalar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreScript.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreScript.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSingleton.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSingleton.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreStandard.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreStandard.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSTL.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSTL.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreStreamUtil.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreStreamUtil.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSwitches.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreSwitches.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreUninstaller.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreUninstaller.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreUtil.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreUtil.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreVirtualObject.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreVirtualObject.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXML.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXML.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLIStream.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLIStream.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLOStream.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLOStream.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLStream.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\Mushcore\MushcoreXMLStream.h
+# End Source File
+# End Group
 # End Target
 # End Project

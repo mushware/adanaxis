@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 32mFSsTNLHJgXJZJxCfxrQ
 /*
- * $Id: MushMeshUtils.cpp,v 1.1 2003/10/14 13:07:25 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.2 2003/10/15 07:08:29 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.2  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  * Revision 1.1  2003/10/14 13:07:25  southa
  * MushMesh vector creation
  *

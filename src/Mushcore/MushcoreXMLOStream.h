@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } f2F46K8LXdioFTimaPJHmQ
 /*
- * $Id: MushcoreXMLOStream.h,v 1.14 2003/10/03 23:39:34 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.15 2003/10/11 10:39:19 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.15  2003/10/11 10:39:19  southa
+ * gcc3.3 fixes
+ *
  * Revision 1.14  2003/10/03 23:39:34  southa
  * XML polymorphs
  *

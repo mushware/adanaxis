@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } xFo+XPP1GOS/msMIb9Dkcg
 /*
- * $Id: MushMesh.h,v 1.2 2003/10/15 07:08:28 southa Exp $
+ * $Id: MushMesh.h,v 1.3 2003/10/15 11:54:53 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.3  2003/10/15 11:54:53  southa
+ * MushMeshArray neighbour testing and subdivision
+ *
  * Revision 1.2  2003/10/15 07:08:28  southa
  * MushMeshArray creation
  *

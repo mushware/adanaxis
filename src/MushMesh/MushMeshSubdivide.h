@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 52PDoNY8UY0CW0LzYPWXdA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshSubdivide.h,v 1.1 2003/10/15 11:54:54 southa Exp $
+ * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.1  2003/10/15 11:54:54  southa
+ * MushMeshArray neighbour testing and subdivision
+ *
  */
 
 #include "MushMeshStandard.h"

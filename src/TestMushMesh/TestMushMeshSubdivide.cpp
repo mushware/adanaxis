@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } raybvYJ6HiKtjntHFaNDHg
 /*
- * $Id: TestMushMeshArray.cpp,v 1.1 2003/10/15 07:08:29 southa Exp $
- * $Log: TestMushMeshArray.cpp,v $
+ * $Id: TestMushMeshSubdivide.cpp,v 1.1 2003/10/15 11:54:54 southa Exp $
+ * $Log: TestMushMeshSubdivide.cpp,v $
+ * Revision 1.1  2003/10/15 11:54:54  southa
+ * MushMeshArray neighbour testing and subdivision
+ *
  */
 #include "TestMushMeshSubdivide.h"
 

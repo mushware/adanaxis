@@ -51,10 +51,11 @@ case "$target" in
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
             AC_MSG_NOTICE([* Header windows.h detected.  Assuming target is Windows.])
-           CPPFLAGS="$CPPFLAGS"
+            CPPFLAGS="$CPPFLAGS -g -Wall"
+			CXXFLAGS="$CPPFLAGS"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
-            CPPFLAGS="$CPPFLAGS"
+            CPPFLAGS="$CPPFLAGS -Wall"
         fi
         ;;
 esac

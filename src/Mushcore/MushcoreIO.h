@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Xy+fzSH8daL6jemhQN4e2A
 /*
- * $Id: MushcoreIO.h,v 1.3 2003/09/21 09:51:08 southa Exp $
+ * $Id: MushcoreIO.h,v 1.4 2003/10/11 10:39:19 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.4  2003/10/11 10:39:19  southa
+ * gcc3.3 fixes
+ *
  * Revision 1.3  2003/09/21 09:51:08  southa
  * Stream autogenerators
  *

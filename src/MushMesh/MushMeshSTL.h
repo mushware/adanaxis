@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } q42gnMzcqmxbiiShXxxc8Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshSTL.h,v 1.1 2003/10/14 10:46:05 southa Exp $
+ * $Log: MushMeshSTL.h,v $
+ * Revision 1.1  2003/10/14 10:46:05  southa
+ * MeshMover creation
+ *
  */
 
 #ifdef HAVE_CONFIG_H

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } NpbEMB4k9VmzCv2Ei2ZZyg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshArray.cpp,v 1.1 2003/10/15 07:08:29 southa Exp $
+ * $Log: MushMeshArray.cpp,v $
+ * Revision 1.1  2003/10/15 07:08:29  southa
+ * MushMeshArray creation
+ *
  */
 
 #include "MushMeshArray.h"
