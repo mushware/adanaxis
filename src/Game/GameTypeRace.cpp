@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameTypeRace.cpp,v 1.1 2002/08/18 20:44:33 southa Exp $
+ * $Log: GameTypeRace.cpp,v $
+ * Revision 1.1  2002/08/18 20:44:33  southa
+ * Initial chequepoint work
+ *
  */
 
 #include "GameTypeRace.h"
