@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameQuit.cpp,v 1.1 2002/11/18 18:55:58 southa Exp $
+ * $Log: GameQuit.cpp,v $
+ * Revision 1.1  2002/11/18 18:55:58  southa
+ * Game resume and quit
+ *
  */
 
 #include "GameQuit.h"
@@ -79,7 +82,7 @@ GameQuit::Init(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
 
-    MediaNetLog::Instance().Log() << "Waiting to quit" << endl;
+    MediaNetLog::Instance().WebLog() << "Waiting to quit" << endl;
     m_startMsec=gameAppHandler.MillisecondsGet();
 }    
 
@@ -97,14 +100,14 @@ GameQuit::Timing(void)
         // Quit after quit hang time if all web links are closed
         if (CoreData<MediaNetWebLink>::Instance().Size() == 0)
         {
-            MediaNetLog::Instance().Log() << "Quitting" << endl;
+            MediaNetLog::Instance().WebLog() << "Quitting" << endl;
             gameAppHandler.AppQuit();
         }
     }
     
     if (m_startMsec + kQuitTimeout < currentMsec)
     {
-        MediaNetLog::Instance().Log() << "Quitting on timeout" << endl;
+        MediaNetLog::Instance().WebLog() << "Quitting on timeout" << endl;
         gameAppHandler.AppQuit();
     }
 }

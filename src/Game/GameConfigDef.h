@@ -1,6 +1,9 @@
 /*
- * $Id: GameConfigDef.h,v 1.1 2002/11/14 17:29:08 southa Exp $
+ * $Id: GameConfigDef.h,v 1.2 2002/11/14 19:35:31 southa Exp $
  * $Log: GameConfigDef.h,v $
+ * Revision 1.2  2002/11/14 19:35:31  southa
+ * Configuration work
+ *
  * Revision 1.1  2002/11/14 17:29:08  southa
  * Config database
  *
@@ -55,6 +58,21 @@ public:
 private:
     string m_value;
     string m_menu;
+};
+
+class GameConfigDefBool : public GameConfigDef
+{
+public:
+    explicit GameConfigDefBool(bool inValue);
+
+    virtual ~GameConfigDefBool();
+    virtual const CoreScalar ValueGet(void) const;
+    virtual void ValueSet(const CoreScalar& inValue);
+    virtual bool FromPostRetrieve(const string& inName, const string& inData);
+    virtual void WebInputPrint(ostream& ioOut, const string& inName);
+
+private:
+    bool m_value;
 };
 
 

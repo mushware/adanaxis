@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.h,v 1.5 2002/11/14 19:35:30 southa Exp $
+ * $Id: GameConfig.h,v 1.6 2002/11/14 20:24:43 southa Exp $
  * $Log: GameConfig.h,v $
+ * Revision 1.6  2002/11/14 20:24:43  southa
+ * Configurable config elements
+ *
  * Revision 1.5  2002/11/14 19:35:30  southa
  * Configuration work
  *
@@ -43,6 +46,7 @@ public:
     static CoreScalar GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigValueAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
+    static CoreScalar GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv);
     static CoreScalar GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv);
     
     U32 DisplayModeGet(void) const;
@@ -50,9 +54,10 @@ public:
     void DisplayModeSetDefault(void);
 
     CoreScalar ParameterGet(const string& inName) const;
+    bool ParameterExists(const string& inName) const;
     void ParameterSet(const string& inName, const CoreScalar& inValue);
-    
     void PostDataHandle(const string& inData);
+    void Update(void);
     
     virtual void Pickle(ostream& inOut, const string& inPrefix="") const;
     virtual void Unpickle(CoreXML& inXML);

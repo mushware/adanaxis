@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetClient.cpp,v 1.11 2002/11/20 22:35:27 southa Exp $
+ * $Id: MediaNetClient.cpp,v 1.12 2002/11/21 18:06:17 southa Exp $
  * $Log: MediaNetClient.cpp,v $
+ * Revision 1.12  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.11  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -142,7 +145,7 @@ MediaNetClient::ResolveTargetName(void)
         static U32 errCtr=0;
         if (errCtr++ < 100)
         {
-            MediaNetLog::Instance().Log() << "Couldn't get hostname for IP: " << SDLNet_GetError() << endl;
+            MediaNetLog::Instance().NetLog() << "Couldn't get hostname for IP: " << SDLNet_GetError() << endl;
         }
     }
 }
@@ -171,7 +174,7 @@ MediaNetClient::UDPConnect(U32 inPort)
     }
     if (m_udpLocalPort != inPort)
     {
-        MediaNetLog::Instance().Log() << "Selected local UDP port " << m_udpLocalPort << endl;
+        MediaNetLog::Instance().NetLog() << "Selected local UDP port " << m_udpLocalPort << endl;
     }
     
     // Since we've replaced SDLNet_UDP_Send we don't use this bound address,

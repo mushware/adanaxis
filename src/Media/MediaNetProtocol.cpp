@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetProtocol.cpp,v 1.5 2002/11/04 15:50:32 southa Exp $
+ * $Id: MediaNetProtocol.cpp,v 1.6 2002/11/04 19:34:47 southa Exp $
  * $Log: MediaNetProtocol.cpp,v $
+ * Revision 1.6  2002/11/04 19:34:47  southa
+ * Network link maintenance
+ *
  * Revision 1.5  2002/11/04 15:50:32  southa
  * Network log
  *
@@ -133,7 +136,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
                 break;
 
             case kUnpackStateLengthMSB:
-                MediaNetLog::Instance().Log() << "Protocol error";
+                MediaNetLog::Instance().NetLog() << "Protocol error";
                 skippedStr += byte;
                 break;
 
@@ -167,7 +170,7 @@ MediaNetProtocol::Unpack(MediaNetData& ioData)
     // Error logging
     if (skippedStr.size() > 0)
     {
-        MediaNetLog::Instance().Log() << "NetProtocol skipped '" << MediaNetUtils::MakePrintable(skippedStr) << "'" << endl;
+        MediaNetLog::Instance().NetLog() << "NetProtocol skipped '" << MediaNetUtils::MakePrintable(skippedStr) << "'" << endl;
     }
 }
 

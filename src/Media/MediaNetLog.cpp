@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLog.cpp,v 1.2 2002/11/07 00:53:37 southa Exp $
+ * $Id: MediaNetLog.cpp,v 1.3 2002/11/08 11:54:40 southa Exp $
  * $Log: MediaNetLog.cpp,v $
+ * Revision 1.3  2002/11/08 11:54:40  southa
+ * Web fixes
+ *
  * Revision 1.2  2002/11/07 00:53:37  southa
  * localweb work
  *
@@ -22,7 +25,11 @@ MediaNetLog::Instance(void)
 }
 
 MediaNetLog::MediaNetLog() :
-    m_outStream(NULL)
+    m_outStream(NULL),
+    m_netLog(true),
+    m_webLog(true),
+    m_verboseLog(true),
+    m_logFullIP(false)
 {
 }
 
@@ -45,6 +52,48 @@ MediaNetLog::Log(void)
     }
     *retStream << SDL_GetTicks() << ": ";
     return *retStream;
+}
+
+ostream&
+MediaNetLog::NetLog(void)
+{
+    if (m_netLog)
+    {
+        return Log();
+    }
+    else
+    {
+        m_nullStream.clear();
+        return m_nullStream;
+    }
+}
+
+ostream&
+MediaNetLog::WebLog(void)
+{
+    if (m_webLog)
+    {
+        return Log();
+    }
+    else
+    {
+        m_nullStream.clear();
+        return m_nullStream;
+    }
+}
+
+ostream&
+MediaNetLog::VerboseLog(void)
+{
+    if (m_verboseLog)
+    {
+        return Log();
+    }
+    else
+    {
+        m_nullStream.clear();
+        return m_nullStream;
+    }
 }
 
 void

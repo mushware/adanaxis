@@ -1,6 +1,9 @@
 /*
- * $Id: GameConfigDef.cpp,v 1.2 2002/11/14 19:35:30 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.3 2002/11/15 11:47:55 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.3  2002/11/15 11:47:55  southa
+ * Web processing and error handling
+ *
  * Revision 1.2  2002/11/14 19:35:30  southa
  * Configuration work
  *
@@ -144,6 +147,60 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
         SelectEpilogue(ioOut);
     }
 }
+
+// -----
+
+GameConfigDefBool::GameConfigDefBool(bool inValue) :
+m_value(inValue)
+{
+}
+
+GameConfigDefBool::~GameConfigDefBool()
+{
+}
+
+const CoreScalar
+GameConfigDefBool::ValueGet(void) const
+{
+    return CoreScalar(m_value);
+}
+
+void
+GameConfigDefBool::ValueSet(const CoreScalar& inValue)
+{
+    m_value = inValue.U32Get();
+}
+
+bool
+GameConfigDefBool::FromPostRetrieve(const string& inName, const string& inData)
+{
+    bool found=false;
+    CoreRegExp re("&"+inName+"=([^&$]+)");
+    vector<string> matches;
+    if (re.Search(inData, matches))
+    {
+        COREASSERT(matches.size() == 1);
+        istringstream valueStream(matches[0]);
+        U32 value;
+        if (valueStream >> value)
+        {
+            ValueSet(CoreScalar(value));
+            found=true;
+        }
+    }
+    return found;    
+}
+
+void
+GameConfigDefBool::WebInputPrint(ostream& ioOut, const string& inName)
+{
+    ioOut << "<input name=\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"checkbox\" ";
+    if (m_value) ioOut << "checked ";
+    ioOut << "value=\"1\">" << endl;
+    ioOut << "<input name =\"" << MediaNetUtils::MakeWebSafe(inName) << "\" type=\"hidden\" value=\"0\"" << endl;
+}
+
+// -----
 
 void
 GameConfigDef::SelectPrologue(ostream& ioOut, const string& inName)

@@ -1,6 +1,9 @@
 /*
- * $Id$
- * $Log$
+ * $Id: GameDef.cpp,v 1.1 2002/11/21 18:06:17 southa Exp $
+ * $Log: GameDef.cpp,v $
+ * Revision 1.1  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  */
 
 #include "GameDef.h"
@@ -57,6 +60,6 @@ GameDef::CreateNewLink(const GameStationDef& inStation)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << "Link creation failed: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "Link creation failed: " << e.what() << endl;
     }
 }

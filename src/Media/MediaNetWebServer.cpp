@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebServer.cpp,v 1.3 2002/11/15 18:58:34 southa Exp $
+ * $Id: MediaNetWebServer.cpp,v 1.4 2002/11/18 21:02:40 southa Exp $
  * $Log: MediaNetWebServer.cpp,v $
+ * Revision 1.4  2002/11/18 21:02:40  southa
+ * Prevent crash on exit
+ *
  * Revision 1.3  2002/11/15 18:58:34  southa
  * Configuration mode
  *
@@ -57,7 +60,7 @@ MediaNetWebServer::Connect(U32 inPort)
         throw(NetworkFail(message.str()));
     }
 
-    MediaNetLog::Instance().Log() << "Created web server on port " << inPort << endl;
+    MediaNetLog::Instance().WebLog() << "Created web server on port " << inPort << endl;
     m_serving=true;
 }
 
@@ -79,7 +82,7 @@ MediaNetWebServer::~MediaNetWebServer()
         COREASSERT(m_tcpSocket != NULL);
         SDLNet_TCP_Close(m_tcpSocket);
     }
-    MediaNetLog::Instance().Log() << "Closed web server" << endl;
+    MediaNetLog::Instance().WebLog() << "Closed web server" << endl;
 }
 
 void
@@ -95,7 +98,7 @@ MediaNetWebServer::Accept(void)
             name << "web" << m_linkCtr;
             CoreData<MediaNetWebLink>::Instance().DataGive(name.str(), new MediaNetWebLink(newSocket, m_serverPort));
             m_linkCtr++;
-            MediaNetLog::Instance().Log() << "Accepted web connection " << name.str() << endl;
+            MediaNetLog::Instance().WebLog() << "Accepted web connection " << name.str() << endl;
         }
     }
 }

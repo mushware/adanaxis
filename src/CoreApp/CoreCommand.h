@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreCommand.h,v 1.8 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreCommand.h,v 1.9 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreCommand.h,v $
+ * Revision 1.9  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.8  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -69,7 +72,8 @@ public:
     CoreCommand(const string& inStr): m_bison(inStr), m_string(inStr) {}
     void Execute(CoreEnv& inEnv);
     void Execute(void);
-    const string& Name(void) {return m_name;}
+    const string& Name(void) const { return m_name; }
+    const CoreParamList& ParamListGet(void) const { return m_paramList; }
     tSize NumParams(void) {return m_paramList.NumParams();}
     string AllParams(void);
     string PopString(void);
@@ -77,7 +81,7 @@ public:
     void PopParam(string& outStr) {m_paramList.PopParam(outStr);}
     void PopParam(tVal& outVal) {m_paramList.PopParam(outVal);}
     void PopParam(U32& outU32) {m_paramList.PopParam(outU32);}
-    
+
     // Callback interface from bison - not public
     CoreScalar Despatch(void);
     void PushParam(CoreScalar& inParam) {m_paramList.PushParam(inParam);}

@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.3 2002/11/20 22:35:27 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.4 2002/11/21 18:06:17 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.4  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.3  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -75,9 +78,11 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         throw(CommandFail("No type= element in posted results '"+values+"'"));
     }
     COREASSERT(matches.size() == 3);
-    if (matches[1] == "config1")
+    if (matches[1] == "config1" ||
+        matches[1] == "developer1")
     {
         GameConfig::Instance().PostDataHandle(values);
+        GameConfig::Instance().Update();
     }
     else if (matches[1] == "singleplayer")
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreCommand.cpp,v 1.13 2002/08/27 08:56:16 southa Exp $
+ * $Id: CoreCommand.cpp,v 1.14 2002/10/22 20:41:57 southa Exp $
  * $Log: CoreCommand.cpp,v $
+ * Revision 1.14  2002/10/22 20:41:57  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/08/27 08:56:16  southa
  * Source conditioning
  *
@@ -117,7 +120,5 @@ CoreCommand::PopVal(void)
 CoreScalar
 CoreCommand::Despatch(void)
 {
-    cerr << "Command was " << Name() << "(";
-    cerr << m_paramList << ")" << endl;
     return CoreInterpreter::Instance().Execute(*this);
 }

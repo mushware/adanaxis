@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetWebLink.cpp,v 1.11 2002/11/15 11:47:56 southa Exp $
+ * $Id: MediaNetWebLink.cpp,v 1.12 2002/11/18 14:11:04 southa Exp $
  * $Log: MediaNetWebLink.cpp,v $
+ * Revision 1.12  2002/11/18 14:11:04  southa
+ * win32 support
+ *
  * Revision 1.11  2002/11/15 11:47:56  southa
  * Web processing and error handling
  *
@@ -74,14 +77,14 @@ MediaNetWebLink::MediaNetWebLink(TCPsocket inSocket, U32 inPort) :
 
 MediaNetWebLink::~MediaNetWebLink()
 {
-    MediaNetLog::Instance().Log() << "Closing web link" << endl;
+    MediaNetLog::Instance().WebLog() << "Closing web link" << endl;
     try
     {
         Disconnect();
     }
     catch (exception& e)
     {
-        MediaNetLog::Instance().Log() << "~MediaNetWebLink exception: " << e.what() << endl;
+        MediaNetLog::Instance().WebLog() << "~MediaNetWebLink exception: " << e.what() << endl;
     }
 }
 
@@ -149,7 +152,7 @@ MediaNetWebLink::Send(MediaNetData& ioData)
     int result=SDLNet_TCP_Send(m_tcpSocket, ioData.ReadPtrGet(), ioData.ReadSizeGet());
     if (result < 0 || static_cast<U32>(result) != ioData.ReadSizeGet())
     {
-        MediaNetLog::Instance().Log() << "Failed to send data on WebLink (" << result << "): " << SDLNet_GetError() << endl;
+        MediaNetLog::Instance().WebLog() << "Failed to send data on WebLink (" << result << "): " << SDLNet_GetError() << endl;
         ++m_linkErrors;
     }
     else
@@ -269,7 +272,7 @@ MediaNetWebLink::GetProcess(const string& inFilename)
     U32 dotCount=0;
     U32 slashCount=0;
 
-    MediaNetLog::Instance().Log() << "Serving fetch request for " << MediaNetUtils::MakePrintable(inFilename) << endl;
+    MediaNetLog::Instance().WebLog() << "Serving fetch request for " << MediaNetUtils::MakePrintable(inFilename) << endl;
 
     try
     {
@@ -325,7 +328,7 @@ MediaNetWebLink::GetProcess(const string& inFilename)
     }
     catch (NetworkFail &e)
     {
-        MediaNetLog::Instance().Log() << "ReceivedProcess exception: " << e.what() << endl;
+        MediaNetLog::Instance().WebLog() << "ReceivedProcess exception: " << e.what() << endl;
         SendErrorPage(e.what());
     }
 }
@@ -344,11 +347,11 @@ MediaNetWebLink::PostProcess(const string& inValues)
     }    
     catch (NetworkFail &e)
     {
-        MediaNetLog::Instance().Log() << "Network exception: " << e.what() << endl;
+        MediaNetLog::Instance().WebLog() << "Network exception: " << e.what() << endl;
     }
     catch (CommandFail &e)
     {
-        MediaNetLog::Instance().Log() << "Command failed: " << e.what() << endl;
+        MediaNetLog::Instance().WebLog() << "Command failed: " << e.what() << endl;
     }
 }
 

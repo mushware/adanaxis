@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreInterpreter.h,v 1.6 2002/08/27 08:56:17 southa Exp $
+ * $Id: CoreInterpreter.h,v 1.7 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreInterpreter.h,v $
+ * Revision 1.7  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.6  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -54,15 +57,20 @@
 class CoreInterpreter
 {
 public:
+    CoreInterpreter();
     virtual ~CoreInterpreter() {}
 
     static CoreInterpreter& Instance(void) {return *((m_instance==NULL)?m_instance=new CoreInterpreter:m_instance);}
     
     virtual CoreScalar Execute(CoreCommand& ioCommand);
     virtual void AddHandler(const string& inName, CoreCommandHandler inHandler);
+
+    void LogCommandsSet(bool inLog) { m_logCommands = inLog; }
     
 private:
     map<string, CoreCommandHandler> m_handlers;
+    bool m_logCommands;
+    
     static CoreInterpreter *m_instance;
 };
 #endif

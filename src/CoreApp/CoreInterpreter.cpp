@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreInterpreter.cpp,v 1.9 2002/08/27 08:56:17 southa Exp $
+ * $Id: CoreInterpreter.cpp,v 1.10 2002/10/22 20:41:59 southa Exp $
  * $Log: CoreInterpreter.cpp,v $
+ * Revision 1.10  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.9  2002/08/27 08:56:17  southa
  * Source conditioning
  *
@@ -49,9 +52,20 @@
 
 CoreInterpreter *CoreInterpreter::m_instance = NULL;
 
+CoreInterpreter::CoreInterpreter() :
+    m_logCommands(true)
+{
+}
+
 CoreScalar
 CoreInterpreter::Execute(CoreCommand& ioCommand)
 {
+    if (m_logCommands)
+    {
+        cerr << "Command was " << ioCommand.Name() << "(";
+        cerr << ioCommand.ParamListGet() << ")" << endl;
+    }
+    
     CoreScalar retScalar(0);
     if (m_handlers.find(ioCommand.Name()) != m_handlers.end())
     {

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: mushCore.h,v 1.12 2002/11/07 11:59:02 southa Exp $
+ * $Id: mushCore.h,v 1.13 2002/11/14 17:29:07 southa Exp $
  * $Log: mushCore.h,v $
+ * Revision 1.13  2002/11/14 17:29:07  southa
+ * Config database
+ *
  * Revision 1.12  2002/11/07 11:59:02  southa
  * Web commands
  *
@@ -103,6 +106,9 @@
 
 // Used as a hook to register classes and commands at startup
 #include "CoreApp/CoreInstaller.h"
+
+// Command interpreter
+#include "CoreApp/CoreInterpreter.h"
 
 // POSIX utilities
 #include "CoreApp/CorePOSIX.h"

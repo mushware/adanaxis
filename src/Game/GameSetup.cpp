@@ -1,6 +1,9 @@
 /*
- * $Id: GameSetup.cpp,v 1.3 2002/11/20 22:35:26 southa Exp $
+ * $Id: GameSetup.cpp,v 1.4 2002/11/21 18:06:17 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.4  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.3  2002/11/20 22:35:26  southa
  * Multiplayer setup
  *
@@ -121,7 +124,7 @@ GameSetup::ConfigInit(void)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << e.what() << endl;
+        MediaNetLog::Instance().WebLog() << e.what() << endl;
     }
         
     ostringstream configURL;
@@ -146,7 +149,7 @@ GameSetup::Config(void)
         }
         catch (NetworkFail& e)
         {
-            MediaNetLog::Instance().Log() << "Server creation exception: " << e.what();
+            MediaNetLog::Instance().NetLog() << "Server creation exception: " << e.what();
             PlatformMiscUtils::MinorErrorBox(e.what());
         }
             
@@ -160,7 +163,7 @@ GameSetup::Config(void)
         }
         catch (NetworkFail& e)
         {
-            MediaNetLog::Instance().Log() << "Network exception: " << e.what();
+            MediaNetLog::Instance().NetLog() << "Network exception: " << e.what();
         }
     }
 
@@ -191,7 +194,7 @@ GameSetup::KeyControl(void)
             }
             catch (NetworkFail& e)
             {
-                MediaNetLog::Instance().Log() << e.what() << endl;
+                MediaNetLog::Instance().WebLog() << e.what() << endl;
             }
         }
         PlatformMiscUtils::LaunchURL(m_configURL);

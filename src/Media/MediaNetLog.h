@@ -1,8 +1,11 @@
 #ifndef MEDIANETLOG_H
 #define MEDIANETLOG_H
 /*
- * $Id: MediaNetLog.h,v 1.3 2002/11/08 11:54:40 southa Exp $
+ * $Id: MediaNetLog.h,v 1.4 2002/11/21 18:06:18 southa Exp $
  * $Log: MediaNetLog.h,v $
+ * Revision 1.4  2002/11/21 18:06:18  southa
+ * Non-blocking network connection
+ *
  * Revision 1.3  2002/11/08 11:54:40  southa
  * Web fixes
  *
@@ -22,16 +25,30 @@ public:
     MediaNetLog();
     ~MediaNetLog();
 
-    ostream& Log(void);
+    ostream& WebLog(void);
+    ostream& NetLog(void);
+    ostream& VerboseLog(void);
+    bool LogFullIPGet(void) const { return m_logFullIP; }
+
+    void NetLogSet(bool inLog) { m_netLog = inLog; }
+    void WebLogSet(bool inLog) { m_webLog = inLog; }
+    void VerboseLogSet(bool inLog) { m_verboseLog = inLog; }
+    void LogFullIPSet(bool inFullIP) { m_logFullIP = inFullIP; }
+    
     void OpenFile(const string& inName);
     void CloseFile(void);
     
     static MediaNetLog& Instance(void);
     
 protected:
+    ostream& Log(void);
 
 private:
     ofstream *m_outStream;
-
+    ostringstream m_nullStream;
+    bool m_netLog;
+    bool m_webLog;
+    bool m_verboseLog;
+    bool m_logFullIP;
 };
 #endif

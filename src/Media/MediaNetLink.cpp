@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetLink.cpp,v 1.10 2002/11/20 22:35:27 southa Exp $
+ * $Id: MediaNetLink.cpp,v 1.11 2002/11/21 18:06:17 southa Exp $
  * $Log: MediaNetLink.cpp,v $
+ * Revision 1.11  2002/11/21 18:06:17  southa
+ * Non-blocking network connection
+ *
  * Revision 1.10  2002/11/20 22:35:27  southa
  * Multiplayer setup
  *
@@ -47,7 +50,7 @@ MediaNetLink::MediaNetLink(const string& inServer, U32 inPort)
     // I am the client end of the link
     Initialise();
     m_udpUseServerPort=false;
-    MediaNetLog::Instance().Log() << "Connecting to " << inServer << ":" << inPort << endl;
+    MediaNetLog::Instance().NetLog() << "Connecting to " << inServer << ":" << inPort << endl;
     TCPConnect(inServer, inPort);
     UDPConnect(inPort);
     m_client.UDPRemotePortSet(inPort);
@@ -120,7 +123,7 @@ MediaNetLink::Disconnect(MediaNetProtocol::tReasonCode inCode)
     if (m_tcpState.linkState != kLinkStateDead ||
         m_udpState.linkState != kLinkStateDead)
     {
-        MediaNetLog::Instance().Log() << "Link closing reasonCode=" << inCode << ": " << *this << endl;
+        MediaNetLog::Instance().NetLog() << "Link closing reasonCode=" << inCode << ": " << *this << endl;
     }
     
     try
@@ -134,7 +137,7 @@ MediaNetLink::Disconnect(MediaNetProtocol::tReasonCode inCode)
     }
     catch (exception& e)
     {
-        MediaNetLog::Instance().Log() << "TCP link disconnect exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "TCP link disconnect exception: " << e.what() << endl;
     }
     
     try
@@ -148,7 +151,7 @@ MediaNetLink::Disconnect(MediaNetProtocol::tReasonCode inCode)
     }
     catch (exception& e)
     {
-        MediaNetLog::Instance().Log() << "UDP link disconnect exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "UDP link disconnect exception: " << e.what() << endl;
     }
     
     m_client.TCPDisconnect();
@@ -243,7 +246,7 @@ MediaNetLink::Tick(void)
             {
                 TCPLinkCheckSend();
             }
-            MediaNetLog::Instance().Log() << "TCP link check failed" << endl;
+            MediaNetLog::Instance().NetLog() << "TCP link check failed" << endl;
         }
         else
         {
@@ -283,7 +286,7 @@ MediaNetLink::Tick(void)
             {
                 UDPLinkCheckSend();
             }
-            MediaNetLog::Instance().Log() << "UDP link check failed" << endl;
+            MediaNetLog::Instance().NetLog() << "UDP link check failed" << endl;
         }
         else
         {
@@ -327,7 +330,7 @@ MediaNetLink::TCPSend(MediaNetData& ioData)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << "TCPSend exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "TCPSend exception: " << e.what() << endl;
         ++m_tcpState.linkErrorTotal;
         ++m_tcpState.linkErrorsSinceGood;
     }
@@ -348,7 +351,7 @@ MediaNetLink::TCPReceive(MediaNetData& outData)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << "TCPReceive exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "TCPReceive exception: " << e.what() << endl;
         ++m_tcpState.linkErrorTotal;
         ++m_tcpState.linkErrorsSinceGood;
     }
@@ -375,7 +378,7 @@ MediaNetLink::UDPSend(MediaNetData& ioData)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << "UDPSend exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "UDPSend exception: " << e.what() << endl;
         ++m_udpState.linkErrorTotal;
         ++m_udpState.linkErrorsSinceGood;
     }
@@ -405,7 +408,7 @@ MediaNetLink::UDPReceive(MediaNetData& outData)
     }
     catch (NetworkFail& e)
     {
-        MediaNetLog::Instance().Log() << "UDPReceive exception: " << e.what() << endl;
+        MediaNetLog::Instance().NetLog() << "UDPReceive exception: " << e.what() << endl;
         ++m_udpState.linkErrorTotal;
         ++m_udpState.linkErrorsSinceGood;
     }
@@ -536,7 +539,7 @@ MediaNetLink::MessageTCPLinkCheckReplyHandle(MediaNetData& ioData)
         }
         m_tcpState.linkCheckState = kLinkCheckStateIdle;
         m_tcpState.linkErrorsSinceGood=0;
-        MediaNetLog::Instance().Log() << "TCP link check good" << endl;
+        MediaNetLog::Instance().VerboseLog() << "TCP link check good" << endl;
     }
 }
 
@@ -583,7 +586,7 @@ MediaNetLink::MessageUDPLinkCheckReplyHandle(MediaNetData& ioData)
         }
         m_udpState.linkCheckState = kLinkCheckStateIdle;
         m_udpState.linkErrorsSinceGood=0;
-        MediaNetLog::Instance().Log() << "UDP link check good" << endl;
+        MediaNetLog::Instance().VerboseLog() << "UDP link check good" << endl;
     }
 }
 
@@ -591,7 +594,7 @@ void
 MediaNetLink::MessageKillLinkHandle(MediaNetData& ioData)
 {
     U32 reasonCode = ioData.MessageBytePop();
-    MediaNetLog::Instance().Log() << "Link kill received (" << reasonCode << ")" << endl;
+    MediaNetLog::Instance().VerboseLog() << "Link kill received (" << reasonCode << ")" << endl;
     if (reasonCode != MediaNetProtocol::kReasonCodePeerDisconnected)
     {
         Disconnect(MediaNetProtocol::kReasonCodePeerDisconnected);
@@ -603,7 +606,7 @@ MediaNetLink::LinkInfoLog(void) const
 {
     if (!m_loggedLinkInfo)
     {
-        MediaNetLog::Instance().Log() << "Link: " << *this << endl;
+        MediaNetLog::Instance().VerboseLog() << "Link: " << *this << endl;
     }
     m_loggedLinkInfo=true;
 }

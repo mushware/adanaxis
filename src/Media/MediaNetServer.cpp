@@ -1,6 +1,9 @@
 /*
- * $Id: MediaNetServer.cpp,v 1.11 2002/11/20 22:35:28 southa Exp $
+ * $Id: MediaNetServer.cpp,v 1.12 2002/11/21 18:39:42 southa Exp $
  * $Log: MediaNetServer.cpp,v $
+ * Revision 1.12  2002/11/21 18:39:42  southa
+ * Added m_serving check to Accept
+ *
  * Revision 1.11  2002/11/20 22:35:28  southa
  * Multiplayer setup
  *
@@ -91,7 +94,7 @@ MediaNetServer::Connect(U32 inPort)
     {
         SDLNet_TCP_Close(m_tcpSocket);
     }
-    MediaNetLog::Instance().Log() << "Created server on port " << inPort << endl;
+    MediaNetLog::Instance().NetLog() << "Created server on port " << inPort << endl;
     m_serving=true;
 }
 
@@ -108,7 +111,7 @@ MediaNetServer::Disconnect(void)
         m_udpSocket=NULL;
     }
     m_serving=false;
-    MediaNetLog::Instance().Log() << "Closed server" << endl;
+    MediaNetLog::Instance().NetLog() << "Closed server" << endl;
 }
 
 MediaNetServer::~MediaNetServer()
@@ -135,7 +138,7 @@ MediaNetServer::Accept(void)
             CoreData<MediaNetLink>::Instance().DataGive(name.str(), new MediaNetLink(newSocket, m_serverPort));
             m_linkCtr++;
     
-            MediaNetLog::Instance().Log() << "Accepted connection for " << name.str() << endl;
+            MediaNetLog::Instance().NetLog() << "Accepted connection for " << name.str() << endl;
         }
     }
 }

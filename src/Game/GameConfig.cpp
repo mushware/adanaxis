@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameConfig.cpp,v 1.6 2002/11/14 20:24:43 southa Exp $
+ * $Id: GameConfig.cpp,v 1.7 2002/11/15 11:47:55 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.7  2002/11/15 11:47:55  southa
+ * Web processing and error handling
+ *
  * Revision 1.6  2002/11/14 20:24:43  southa
  * Configurable config elements
  *
@@ -80,6 +83,12 @@ GameConfig::ParameterGet(const string& inName) const
     return CoreData<GameConfigDef>::Instance().DataGet(inName)->ValueGet();
 }
 
+bool
+GameConfig::ParameterExists(const string& inName) const
+{
+    return CoreData<GameConfigDef>::Instance().DataExists(inName);
+}
+
 void
 GameConfig::ParameterSet(const string& inName, const CoreScalar& inValue)
 {
@@ -124,6 +133,29 @@ GameConfig::SaveToFile(void) const
         Pickle(outputFile);
     }
 }
+
+void
+GameConfig::Update(void)
+{
+    if (ParameterExists("devnetlog"))
+    {
+        MediaNetLog::Instance().NetLogSet(ParameterGet("devnetlog").U32Get());
+    }
+    if (ParameterExists("devweblog"))
+    {
+        MediaNetLog::Instance().WebLogSet(ParameterGet("devweblog").U32Get());
+    }
+    if (ParameterExists("devverboselog"))
+    {
+        MediaNetLog::Instance().VerboseLogSet(ParameterGet("devverboselog").U32Get());
+    }
+    if (ParameterExists("devcommandlog"))
+    {
+        CoreInterpreter::Instance().LogCommandsSet(ParameterGet("devcommandlog").U32Get());
+    }
+}
+
+// ----- XML stuff -----
 
 void
 GameConfig::HandleValueEnd(CoreXML& inXML)
@@ -298,6 +330,7 @@ GameConfig::GameConfigLoad(CoreCommand& ioCommand, CoreEnv& ioEnv)
     if (!inStream) throw(LoaderFail(filename, "Could not open file"));
     CoreXML xml(inStream, filename);
     GameConfig::Instance().Unpickle(xml);
+    GameConfig::Instance().Update();
     return CoreScalar(0);
 }
 
@@ -336,6 +369,22 @@ GameConfig::GameConfigStringAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
 }
 
 CoreScalar
+GameConfig::GameConfigBoolAdd(CoreCommand& ioCommand, CoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams != 2)
+    {
+        throw(CommandFail("Usage: configbooladd(name, default value)"));
+    }
+    string name;
+    U32 defaultValue;
+    ioCommand.PopParam(name);
+    ioCommand.PopParam(defaultValue);
+    CoreData<GameConfigDef>::Instance().DataGive(name, new GameConfigDefBool(defaultValue));
+    return CoreScalar(0);
+}
+
+CoreScalar
 GameConfig::GameConfigSpecial(CoreCommand& ioCommand, CoreEnv& ioEnv)
 {
     CoreData<GameConfigDef>::Instance().DataGive("displaymode", new GameConfigDefU32(PlatformVideoUtils::Instance().DefaultModeGet(), 0, PlatformVideoUtils::Instance().NumModesGet()));
@@ -348,5 +397,6 @@ GameConfig::Install(void)
     CoreApp::Instance().AddHandler("configload", GameConfigLoad);
     CoreApp::Instance().AddHandler("configvalueadd", GameConfigValueAdd);
     CoreApp::Instance().AddHandler("configstringadd", GameConfigStringAdd);
+    CoreApp::Instance().AddHandler("configbooladd", GameConfigBoolAdd);
     CoreApp::Instance().AddHandler("gameconfigspecial", GameConfigSpecial);
 }
