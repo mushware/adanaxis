@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatformHeaders.h,v 1.11 2003/07/17 19:14:01 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.12 2003/08/21 23:09:29 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.12  2003/08/21 23:09:29  southa
+ * Fixed file headers
+ *
  * Revision 1.11  2003/07/17 19:14:01  southa
  * Unix include order fix
  *
@@ -74,8 +77,8 @@
 
 // win32 includes
 #ifdef MUSTL_WIN32
-#include <iphlpapi.h>
 #include <windows.h>
+#include <iphlpapi.h>
 #endif
 
 // Mac OS X includes
@@ -93,17 +96,17 @@
 
 // POSIX includes (including Mac OS X)
 #ifdef MUSTL_POSIX_OR_MACOSX
-#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <net/if.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
-#include <sys/ioctl.h>
-#include <sys/socket.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include <arpa/inet.h>
 #endif
 
 // win32 has a different error handling and different names for some values,
