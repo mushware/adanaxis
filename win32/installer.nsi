@@ -1,10 +1,13 @@
-; $Id$
-; $Log$
+; $Id: installer.nsi,v 1.2 2002/06/13 15:53:20 southa Exp $
+; $Log: installer.nsi,v $
+; Revision 1.2  2002/06/13 15:53:20  southa
+; More work
+;
 
 ; NOTE: this .NSI script is designed for NSIS v1.8+
 
 Name "Infernal Contractor II"
-OutFile "IC2_Setup.exe"
+OutFile "IC2setup.exe"
 
 ; Some default compiler settings (uncomment and change at will):
 ; SetCompress auto ; (can be off or force)
@@ -23,59 +26,65 @@ Section "" ; (default section)
 SetOutPath "$INSTDIR"
 CreateDirectory "$OUTDIR/system"
 ; add files / whatever that need to be installed here.
-GetDLLVersion cygpcre $R1 $R2
+GetDLLVersion glut32 $R1 $R2
 IfErrors err1 noerr1
 err1:
-File /oname=$OUTDIR\system\cygpcre.dll libs\cygpcre.dll
+File /oname=$OUTDIR\system\glut32.dll win32libs\glut32.dll
 noerr1:
 
-GetDLLVersion cygwin1 $R1 $R2
+GetDLLVersion libexpat $R1 $R2
 IfErrors err2 noerr2
 err2:
-File /oname=$SYSDIR\cygwin1.dll libs\cygwin1.dll
+File /oname=$OUTDIR\system\libexpat.dll win32libs\libexpat.dll
 noerr2:
 
-GetDLLVersion cygtiff3 $R1 $R2
+GetDLLVersion libjpeg $R1 $R2
 IfErrors err3 noerr3
 err3:
-File /oname=$OUTDIR\system\cygtiff3.dll libs\cygtiff3.dll
+File /oname=$OUTDIR\system\libjpeg.dll win32libs\libjpeg.dll
 noerr3:
 
-GetDLLVersion cygjpeg6b $R1 $R2
+GetDLLVersion libtiff $R1 $R2
 IfErrors err4 noerr4
 err4:
-File /oname=$OUTDIR\system\cygjpeg6b.dll libs\cygjpeg6b.dll
+File /oname=$OUTDIR\system\libtiff.dll win32libs\libtiff.dll
 noerr4:
 
-GetDLLVersion cygz $R1 $R2
+GetDLLVersion libungif $R1 $R2
 IfErrors err5 noerr5
 err5:
-File /oname=$OUTDIR\system\cygz.dll libs\cygz.dll
+File /oname=$OUTDIR\system\libungif.dll win32libs\libungif.dll
 noerr5:
 
-GetDLLVersion glut32 $R1 $R2
+GetDLLVersion pcre $R1 $R2
 IfErrors err6 noerr6
 err6:
-File /oname=$OUTDIR\system\glut32.dll libs\glut32.dll
+File /oname=$OUTDIR\system\pcre.dll win32libs\pcre.dll
 noerr6:
 
 GetDLLVersion SDL $R1 $R2
 IfErrors err7 noerr7
 err7:
-File /oname=$OUTDIR\system\SDL.dll libs\SDL.dll
+File /oname=$OUTDIR\system\SDL.dll win32libs\SDL.dll
 noerr7:
 
 GetDLLVersion SDL_mixer $R1 $R2
 IfErrors err8 noerr8
 err8:
-File /oname=$SYSDIR\SDL_mixer.dll libs\SDL_mixer.dll
+File /oname=$OUTDIR\system\SDL_mixer.dll win32libs\SDL_mixer.dll
 noerr8:
 
 GetDLLVersion smpeg $R1 $R2
 IfErrors err9 noerr9
 err9:
-File /oname=$OUTDIR\system\smpeg.dll libs\smpeg.dll
+File /oname=$OUTDIR\system\smpeg.dll win32libs\smpeg.dll
 noerr9:
+
+GetDLLVersion zlib $R1 $R2
+IfErrors err10 noerr10
+err10:
+File /oname=$OUTDIR\system\zlib.dll win32libs\zlib.dll
+noerr10:
 
 File /r ..\release\*.*
 
@@ -84,10 +93,10 @@ WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninst
 WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "UninstallString" '"$INSTDIR\uninst.exe"'
 
 SetOutPath "$INSTDIR\system"
-CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe"
-CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe"
+CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 0
+CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 0
 CreateDirectory "$STARTMENU\Programs\Mushware"
-CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe"
+CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\contractor.exe" "" "$OUTDIR\ic2_app.ico" 
 CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\uninst.exe"
 SetOutPath "$INSTDIR"
 
