@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YgKXUj/EEsggmRKVn+PRWA
 /*
- * $Id: SDLAppHandler.cpp,v 1.40 2005/03/13 00:34:46 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.41 2005/03/25 22:04:48 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.41  2005/03/25 22:04:48  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.40  2005/03/13 00:34:46  southa
  * Build fixes, key support and stereo
  *
@@ -257,9 +260,12 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    
+#if defined(SDL_GL_MULTISAMPLEBUFFERS) && defined(SDL_GL_MULTISAMPLESAMPLES)
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-
+#endif
+    
     m_width=inDef.WidthGet();
     m_height=inDef.HeightGet();
     m_bpp=inDef.BPPGet();
