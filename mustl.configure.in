@@ -52,7 +52,9 @@ case "$target" in
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
             AC_MSG_NOTICE([* Header windows.h detected.  Assuming target is Windows.])
             AC_CHECK_LIB(wsock32, main,, AC_MSG_ERROR([Not configured to build without wsock32 library]))
-            CPPFLAGS="$CPPFLAGS"
+            AC_CHECK_LIB(winmm, main,, AC_MSG_ERROR([Not configured to build without winmm library]))
+            AC_CHECK_LIB(iphlpapi, main,, AC_MSG_ERROR([Not configured to build without iphlpapi library]))
+           CPPFLAGS="$CPPFLAGS"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
             CPPFLAGS="$CPPFLAGS"

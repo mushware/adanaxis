@@ -9,8 +9,11 @@
  ****************************************************************************/
 
 /*
- * $Id: MustlPlatform.cpp,v 1.4 2003/01/14 20:46:11 southa Exp $
+ * $Id: MustlPlatform.cpp,v 1.5 2003/01/14 22:02:12 southa Exp $
  * $Log: MustlPlatform.cpp,v $
+ * Revision 1.5  2003/01/14 22:02:12  southa
+ * Command line build fixes
+ *
  * Revision 1.4  2003/01/14 20:46:11  southa
  * Post data handling
  *
@@ -85,12 +88,6 @@
  *
  */
 
-/*************************
- *
- *  Mac OS X file
- *
- *************************/
-
 #include "MustlPlatform.h"
 
 #include "MustlAddress.h"
@@ -107,8 +104,8 @@
 
 #ifdef WIN32
 // win32 includes
-#include <iphlpapi.h>
 #include <windows.h>
+#include <iphlpapi.h>
 #else
 #ifdef MACOSX
 // Mac OS X includes
