@@ -486,10 +486,12 @@
 		F512BC6403798C9201A80164 = {
 			children = (
 				F512BC6D0379C3B401A80164,
+				F5B33B190389513D01A80164,
 				F5B37E460387C44801A80164,
 				F512BC6F0379C8C401A80164,
 				F512BC6303798C7D01A80164,
 				F512BC710379E4C301A80164,
+				F5B33B1A0389570F01A80164,
 				F5B3796B0387A66A01A80164,
 				F512BC650379928F01A80164,
 				F512BC6C0379C0CE01A80164,
@@ -4240,6 +4242,8 @@
 				F5F06F0702AE531801B05200,
 				F5F06F0E02AE554301B05200,
 				F5F06F0F02AE554301B05200,
+				F5B33B1B03895F4701A80164,
+				F5B33B1C03895F4701A80164,
 				F5AA63C8031193CA01442A89,
 				F5AA63C9031193CA01442A89,
 				F53E490A031257DD01989694,
@@ -4507,6 +4511,7 @@
 				F5B39DB30383F5FB01A80164,
 				F5B39DB90384029501A80164,
 				F5A8F282038560DB01A80164,
+				F5B33B1E03895F4701A80164,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4652,6 +4657,7 @@
 				F5B39DB40383F5FB01A80164,
 				F5B39DBA0384029501A80164,
 				F5A8F283038560DB01A80164,
+				F5B33B1D03895F4701A80164,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5388,13 +5394,13 @@
 		F59C48E0037A815D01A80164 = {
 			isa = PBXFileReference;
 			name = GameWebCommands.h;
-			path = Game/GameWebCommands.h;
+			path = src/Game/GameWebCommands.h;
 			refType = 2;
 		};
 		F59C48E1037A815D01A80164 = {
 			isa = PBXFileReference;
 			name = GameWebCommands.cpp;
-			path = Game/GameWebCommands.cpp;
+			path = src/Game/GameWebCommands.cpp;
 			refType = 2;
 		};
 		F59C48E2037A818201A80164 = {
@@ -5785,6 +5791,42 @@
 			isa = PBXFileReference;
 			path = TestCommandHandler.cpp;
 			refType = 4;
+		};
+		F5B33B190389513D01A80164 = {
+			isa = PBXFileReference;
+			name = control.mhtml;
+			path = localweb/control.mhtml;
+			refType = 4;
+		};
+		F5B33B1A0389570F01A80164 = {
+			isa = PBXFileReference;
+			name = quit.mhtml;
+			path = localweb/quit.mhtml;
+			refType = 4;
+		};
+		F5B33B1B03895F4701A80164 = {
+			isa = PBXFileReference;
+			name = GameQuit.cpp;
+			path = Game/GameQuit.cpp;
+			refType = 4;
+		};
+		F5B33B1C03895F4701A80164 = {
+			isa = PBXFileReference;
+			name = GameQuit.h;
+			path = Game/GameQuit.h;
+			refType = 4;
+		};
+		F5B33B1D03895F4701A80164 = {
+			fileRef = F5B33B1B03895F4701A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5B33B1E03895F4701A80164 = {
+			fileRef = F5B33B1C03895F4701A80164;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F5B345E20370218B01A80164 = {
 			isa = PBXFileReference;

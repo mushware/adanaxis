@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameContract.cpp,v 1.93 2002/11/16 12:43:21 southa Exp $
+ * $Id: GameContract.cpp,v 1.94 2002/11/18 11:31:13 southa Exp $
  * $Log: GameContract.cpp,v $
+ * Revision 1.94  2002/11/18 11:31:13  southa
+ * Return to game mode
+ *
  * Revision 1.93  2002/11/16 12:43:21  southa
  * GameApp mode switching
  *
@@ -339,7 +342,7 @@ GameContract::GameContract() :
 
 GameContract::~GameContract()
 {
-    CoreEnv::Instance().PopConfig(GameGlobalConfig::Instance());
+    // GameData::Instance().Clear();
 }
 
 void

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameAppHandler.h,v 1.13 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameAppHandler.h,v 1.14 2002/11/18 11:31:13 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.14  2002/11/18 11:31:13  southa
+ * Return to game mode
+ *
  * Revision 1.13  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -72,6 +75,8 @@ public:
 
     void SetupModeEnter(void);
     void GameModeEnter(bool inResume);
+    void QuitModeEnter(void);
+    void CurrentGameEnd(void);
     
 protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
@@ -84,11 +89,13 @@ private:
         kAppStateInvalid,
         kAppStateStartup,
         kAppStateSetup,
-        kAppStateGame
+        kAppStateGame,
+        kAppStateQuit
     };
     
     GameBase *m_pSetup;
     GameBase *m_pGame;
+    GameBase *m_pCurrent;
     tAppState m_appState;
 };
 #endif

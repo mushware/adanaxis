@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.cpp,v 1.25 2002/10/17 15:50:58 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.26 2002/10/22 20:42:02 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.26  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.25  2002/10/17 15:50:58  southa
  * Config saving, pause and quit
  *
@@ -338,8 +341,8 @@ SDLAppHandler::Signal(const CoreAppSignal& inSignal)
 void
 SDLAppHandler::MainLoop(void)
 {
-    bool doQuit=false;
-    while (!doQuit)
+    m_doQuit=false;
+    while (!m_doQuit)
     {
         SDL_Event event;
         bool isEvent=SDL_PollEvent(&event);
@@ -379,7 +382,7 @@ SDLAppHandler::MainLoop(void)
                 break;
                     
                 case SDL_QUIT:
-                    doQuit=true;
+                    m_doQuit=true;
                     break;
             }
         }
@@ -394,6 +397,12 @@ SDLAppHandler::MainLoop(void)
             Idle();
         }
     }
+}
+
+void
+SDLAppHandler::AppQuit(void)
+{
+    m_doQuit=true;
 }
 
 GLKeys

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.cpp,v 1.17 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameData.cpp,v 1.18 2002/11/17 13:38:30 southa Exp $
  * $Log: GameData.cpp,v $
+ * Revision 1.18  2002/11/17 13:38:30  southa
+ * Game selection
+ *
  * Revision 1.17  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -83,69 +86,96 @@ GameData *GameData::m_instance=NULL;
 
 GameData::GameData():
     m_timer(NULL),
-    m_gameType(NULL)
+    m_gameType(NULL),
+    m_gameRewards(NULL)
 {
 }
 
 GameData::~GameData()
+{
+    Clear();
+}
+
+void
+GameData::Clear(void)
 {
     for (map<string, GameTileMap *>::iterator p = m_tilemaps.begin();
          p != m_tilemaps.end(); ++p)
     {
         delete p->second;
     }
+    m_tilemaps.clear();
+    
     for (map<string, GameFloorMap *>::iterator p = m_floormaps.begin();
          p != m_floormaps.end(); ++p)
     {
         delete p->second;
     }
+    m_floormaps.clear();
+
     for (map<string, GameContract *>::iterator p = m_contracts.begin();
          p != m_contracts.end(); ++p)
     {
         delete p->second;
     }
+    m_contracts.clear();
+
     for (map<string, GameTraits *>::iterator p = m_traits.begin();
          p != m_traits.end(); ++p)
     {
         delete p->second;
     }
+    m_traits.clear();
+
     for (map<string, GameController *>::iterator p = m_controllers.begin();
          p != m_controllers.end(); ++p)
     {
         delete p->second;
     }
+    m_controllers.clear();
+
     for (map<string, GamePiece *>::iterator p = m_pieces.begin();
          p != m_pieces.end(); ++p)
     {
         delete p->second;
     }
+    m_pieces.clear();
+
     for (map<string, GameDialogue *>::iterator p = m_dialogues.begin();
          p != m_dialogues.end(); ++p)
     {
         delete p->second;
     }
+    m_dialogues.clear();
+
     for (map<string, GameView *>::iterator p = m_views.begin();
          p != m_views.end(); ++p)
     {
         delete p->second;
     }
+    m_views.clear();
+
     if (m_timer != NULL)
     {
         delete m_timer;
+        m_timer=NULL;
     }
     if (m_gameType != NULL)
     {
         delete m_gameType;
+        m_gameType=NULL;
     }
     if (m_gameRewards != NULL)
     {
         delete m_gameRewards;
+        m_gameRewards=NULL;
     }
     for (map<string, GameDialogue *>::iterator p = m_currentDialogues.begin();
          p != m_currentDialogues.end(); ++p)
     {
         delete p->second;
     }
+    m_currentDialogues.clear();
 }
 
 GameTileMap *
@@ -233,6 +263,18 @@ bool
 GameData::ContractExists(const string& inName) const
 {
     return (m_contracts.find(inName) != m_contracts.end());
+}
+
+void
+GameData::ContractsClear(void)
+{
+    for (map<string, GameContract *>::iterator p = m_contracts.begin();
+         p != m_contracts.end(); ++p)
+    {
+        delete p->second;
+        p->second=NULL;
+    }
+    m_contracts.clear();
 }
 
 GameTraits *

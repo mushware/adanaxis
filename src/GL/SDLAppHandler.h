@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: SDLAppHandler.h,v 1.14 2002/10/15 14:02:30 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.15 2002/10/22 20:42:02 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.15  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.14  2002/10/15 14:02:30  southa
  * Mode changes
  *
@@ -80,6 +83,7 @@ public:
     virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
+    virtual void AppQuit(void);
     
 protected:
     virtual void Initialise(void);
@@ -107,5 +111,6 @@ private:
     bool m_firstDelta;
     tVal m_greatestDimension;
     GLModeDef m_modeDef;
+    bool m_doQuit;
 };
 #endif

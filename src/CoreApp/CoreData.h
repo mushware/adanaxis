@@ -14,8 +14,11 @@
  ****************************************************************************/
 
 /*
- * $Id: CoreData.h,v 1.7 2002/11/04 19:34:46 southa Exp $
+ * $Id: CoreData.h,v 1.8 2002/11/14 17:29:07 southa Exp $
  * $Log: CoreData.h,v $
+ * Revision 1.8  2002/11/14 17:29:07  southa
+ * Config database
+ *
  * Revision 1.7  2002/11/04 19:34:46  southa
  * Network link maintenance
  *
@@ -57,6 +60,7 @@ public:
     inline void DataDelete(const string& inName);
     inline bool DataExists(const string& inName) const;
     inline void Clear(void);
+    inline U32 Size(void);
     inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(ostream& ioOut);
     inline tMapIterator Begin(void);
@@ -153,6 +157,13 @@ CoreData<RefType>::Clear(void)
         delete p->second;
     }
     m_data.clear();
+}
+
+template<class RefType>
+inline U32
+CoreData<RefType>::Size(void)
+{
+    return m_data.size();
 }
 
 template<class RefType>

@@ -11,8 +11,11 @@
  ****************************************************************************/
 
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.18 2002/11/17 13:38:31 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.19 2002/11/18 12:41:52 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.19  2002/11/18 12:41:52  southa
+ * Return directories only in ReadDirectory
+ *
  * Revision 1.18  2002/11/17 13:38:31  southa
  * Game selection
  *
@@ -172,16 +175,16 @@ PlatformMiscUtils::ReadDirectory(vector<string>& outFilenames, const string& inD
     struct dirent *entry;
     while (entry = readdir(dirPtr), entry != NULL)
     {
-	struct stat statInfo;
+        struct stat statInfo;
         lstat(entry->d_name, &statInfo);
         if(S_ISDIR(statInfo.st_mode))
-	{
-            string name=entry.d_name;
+        {
+            string name=entry->d_name;
             if (name != "." && name != ".." && name != "CVS")
             {
                 outFilenames.push_back(name);
             }
-	}
+        }
     }
     closedir(dirPtr);
 }

@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLAppHandler.h,v 1.19 2002/10/15 14:02:29 southa Exp $
+ * $Id: GLAppHandler.h,v 1.20 2002/10/22 20:41:59 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.20  2002/10/22 20:41:59  southa
+ * Source conditioning
+ *
  * Revision 1.19  2002/10/15 14:02:29  southa
  * Mode changes
  *
@@ -110,5 +113,6 @@ public:
     virtual U32 MillisecondsGet(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
+    virtual void AppQuit(void) = 0;
 };
 #endif

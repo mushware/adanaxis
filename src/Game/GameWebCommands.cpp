@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: GameWebCommands.cpp,v 1.7 2002/11/17 13:38:30 southa Exp $
+ * $Id: GameWebCommands.cpp,v 1.1 2002/11/18 13:40:32 southa Exp $
  * $Log: GameWebCommands.cpp,v $
+ * Revision 1.1  2002/11/18 13:40:32  southa
+ * Moved to correct place
+ *
  * Revision 1.7  2002/11/17 13:38:30  southa
  * Game selection
  *
@@ -73,6 +76,21 @@ GameWebCommands::HandlePostValues(CoreCommand& ioCommand, CoreEnv& ioEnv)
         GameConfig::Instance().PostDataHandle(values);
         GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
         gameHandler.GameModeEnter(false);
+    }
+    else if (matches[1] == "resumegame")
+    {
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        gameHandler.GameModeEnter(true); // Resume game
+    }
+    else if (matches[1] == "endcurrentgame")
+    {
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        gameHandler.CurrentGameEnd(); // End the game
+    }
+    else if (matches[1] == "quit")
+    {
+        GameAppHandler& gameHandler=dynamic_cast<GameAppHandler &>(CoreAppHandler::Instance());
+        gameHandler.QuitModeEnter(); // Quit application
     }
     else
     {

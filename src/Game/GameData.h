@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GameData.h,v 1.16 2002/10/22 20:42:03 southa Exp $
+ * $Id: GameData.h,v 1.17 2002/11/17 13:38:30 southa Exp $
  * $Log: GameData.h,v $
+ * Revision 1.17  2002/11/17 13:38:30  southa
+ * Game selection
+ *
  * Revision 1.16  2002/10/22 20:42:03  southa
  * Source conditioning
  *
@@ -87,6 +90,9 @@ public:
     typedef map<string, GameDialogue *>::const_iterator DialogueMapConstIterator;
     ~GameData();
     static GameData& Instance(void) {return *((m_instance==NULL)?m_instance=new GameData:m_instance);}
+
+    void Clear(void);
+    
     GameTileMap *TileMapGetOrCreate(const string& inName);
     GameTileMap *TileMapGet(const string& inName) const;
     GameFloorMap *FloorMapGetOrCreate(const string& inName);
@@ -94,6 +100,7 @@ public:
     GameContract *ContractGetOrCreate(const string& inName);
     GameContract *ContractGet(const string& inName) const;
     bool ContractExists(const string& inName) const;
+    void ContractsClear(void);
     GameTraits *TraitsDeleteAndCreate(const string& inName, GameTraits *inTraits);
     GameTraits *TraitsGet(const string& inName) const;
     GameController *ControllerGetOrCreate(const string& inName);
@@ -116,6 +123,8 @@ public:
     void CurrentDialogueDelete(const string& inName);
     const DialogueMap& CurrentDialogueMapGet(void) const { return m_currentDialogues; }
     void CurrentDialoguesClear(void);
+
+
     
     void DumpAll(ostream& inOut) const;
 

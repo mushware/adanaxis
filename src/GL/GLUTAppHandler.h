@@ -13,8 +13,11 @@
  ****************************************************************************/
 
 /*
- * $Id: GLUTAppHandler.h,v 1.13 2002/10/15 14:02:29 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.14 2002/10/22 20:42:02 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.14  2002/10/22 20:42:02  southa
+ * Source conditioning
+ *
  * Revision 1.13  2002/10/15 14:02:29  southa
  * Mode changes
  *
@@ -80,7 +83,8 @@ public:
     virtual U32 MillisecondsGet(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
-            
+    virtual void AppQuit(void);
+    
 protected:
     virtual void Initialise(void);
     virtual void Idle(void);
