@@ -20,22 +20,27 @@ AC_CHECK_HEADER(windows.h)
 dnl Get GL
 case "$target" in
     powerpc-apple-darwin*)
-        AC_MSG_NOTICE([Using frameworks for Darwin])
+        AC_MSG_NOTICE([Using frameworks for Darwin.  Building for MacOS X])
         LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT"
         AC_CHECK_HEADERS(OpenGL/gl.h)
         AC_CHECK_HEADERS(OpenGL/glu.h)
         AC_CHECK_HEADERS(GLUT/glut.h)
+        CPPFLAGS="$CPPFLAGS -ISupport/macosx"
         ;;
     *)
         if test "x$ac_cv_header_windows_h" = "xyes" ; then
+            AC_MSG_NOTICE([windows.h detected.  Building for win32])
             AC_CHECK_LIB(opengl32, main)
             AC_CHECK_LIB(glu32, main)
             AC_CHECK_LIB(glut32, main)
+            CPPFLAGS="$CPPFLAGS -ISupport/win32"
         else
-            AC_PATH_X 
+            AC_MSG_NOTICE([Building for X11])
+            AC_PATH_XTRA
             AC_CHECK_LIB(gl, main,, AC_CHECK_LIB(GL, main))
             AC_CHECK_LIB(glu, main,, AC_CHECK_LIB(GLU, main))
             AC_CHECK_LIB(glut, main,, AC_CHECK_LIB(GLUT, main))
+            CPPFLAGS="$CPPFLAGS -ISupport/x11"
         fi
         AC_CHECK_HEADERS(GLUT/glut.h)
         AC_CHECK_HEADERS(GL/gl.h)
