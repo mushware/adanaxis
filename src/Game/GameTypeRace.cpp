@@ -1,6 +1,9 @@
 /*
- * $Id: GameTypeRace.cpp,v 1.22 2002/08/24 17:08:32 southa Exp $
+ * $Id: GameTypeRace.cpp,v 1.23 2002/08/24 18:52:55 southa Exp $
  * $Log: GameTypeRace.cpp,v $
+ * Revision 1.23  2002/08/24 18:52:55  southa
+ * Fixed add on times
+ *
  * Revision 1.22  2002/08/24 17:08:32  southa
  * Split time fixes
  *
@@ -290,8 +293,9 @@ GameTypeRace::Move(void)
             if (m_dispRemaining <= 0.0)
             {
                 RaceFinished();
-                GameData::Instance().RewardsGet().JudgementPass((m_laps+2)/ (m_lapCount+1));
+                GameData::Instance().RewardsGet().JudgementPass((m_laps+2) / (m_lapCount+1));
             }
+            GameData::Instance().RewardsGet().TimeCountdownPass(m_dispRemaining);    
             break;
 
 	case kPreResult:

@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.cpp,v 1.7 2002/08/22 10:11:11 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.8 2002/08/23 16:41:29 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.8  2002/08/23 16:41:29  southa
+ * Replaced deleted section
+ *
  * Revision 1.7  2002/08/22 10:11:11  southa
  * Save records, spacebar dialogues
  *
@@ -28,6 +31,7 @@
 
 #include "GameMotion.h"
 #include "GameData.h"
+#include "GameDataUtils.h"
 #include "GameTimer.h"
 
 void
@@ -132,7 +136,7 @@ GameDialogue::Move(void)
         }
         if (m_age == spec.startTime)
         {
-            MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet());
+            MediaAudio::Instance().Play(*spec.soundStreamRef.DataGet(), spec.loop);
         }
     }
     
@@ -168,6 +172,11 @@ void GameDialogue::ExpireNow(void)
         }
     }
 
+    if (m_killSound != "")
+    {    
+        MediaAudio::Instance().Play(*CoreDataRef<MediaSound>(m_killSound).DataGet());
+    }
+    
     if (latestFound)
     {
         COREASSERT(latestIndex < m_soundStreams.size());
@@ -287,7 +296,21 @@ GameDialogue::HandleSoundStreamEnd(CoreXML& inXML)
     if (!(data >> name)) inXML.Throw(failMessage);
     streamSpec.soundStreamRef.NameSet(name);
     streamSpec.startTime = m_currentSpec.startTime;
+
+    CoreScalar temp;
+    temp=CoreScalar(10000.0);
+    inXML.GetAttrib(temp, "loop");
+    streamSpec.loop=temp.U32Get();
+    
     m_soundStreams.push_back(streamSpec);
+}
+
+void
+GameDialogue::HandleKillSoundEnd(CoreXML& inXML)
+{
+    istringstream data(inXML.TopData());
+    const char *failMessage="Bad format for killsound.  Should be <killsound>phone-beep</killsound>";
+    if (!(data >> m_killSound)) inXML.Throw(failMessage);
 }
 
 void
@@ -339,6 +362,8 @@ GameDialogue::UnpicklePrologue(void)
     m_endTable[kPickleData]["sound"] = &GameDialogue::HandleSoundEnd;
     m_startTable[kPickleData]["soundstream"] = &GameDialogue::NullHandler;
     m_endTable[kPickleData]["soundstream"] = &GameDialogue::HandleSoundStreamEnd;
+    m_startTable[kPickleData]["killsound"] = &GameDialogue::NullHandler;
+    m_endTable[kPickleData]["killsound"] = &GameDialogue::HandleKillSoundEnd;
     m_endTable[kPickleData]["dialogue"] = &GameDialogue::HandleDialogueEnd;
     m_pickleState=kPickleData;
     m_motion.MotionSpecSet(GameMotionSpec(GLPoint(0,0), 0));

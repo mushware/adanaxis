@@ -1,6 +1,9 @@
 /*
- * $Id: GameDialogue.h,v 1.6 2002/08/19 22:18:36 southa Exp $
+ * $Id: GameDialogue.h,v 1.7 2002/08/22 10:11:11 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.7  2002/08/22 10:11:11  southa
+ * Save records, spacebar dialogues
+ *
  * Revision 1.6  2002/08/19 22:18:36  southa
  * Display of time differences
  *
@@ -59,6 +62,7 @@ private:
     void HandleFadeTimeEnd(CoreXML& inXML);
     void HandleMotionStart(CoreXML& inXML);
     void HandleSoundEnd(CoreXML& inXML);
+    void HandleKillSoundEnd(CoreXML& inXML);
     void HandleSoundStreamEnd(CoreXML& inXML);
     void HandleDialogueEnd(CoreXML& inXML);
 
@@ -109,6 +113,7 @@ private:
     {
     public:
         CoreDataRef<MediaSoundStream> soundStreamRef;
+        U32 loop;
         tVal startTime;
     };
 
@@ -118,6 +123,7 @@ private:
     vector<SoundStreamSpec> m_soundStreams;
     GLFontRef m_fontRef;
     GameMotion m_motion;
+    string m_killSound;
     tVal m_age;
     bool m_expired;
 //    CoreScript m_script;

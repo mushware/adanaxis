@@ -15,8 +15,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudio.h,v 1.10 2002/08/19 09:59:36 southa Exp $
- * $Log: MediaAudio.h,v $
+ * $Id: MediaAudioSDL.h,v 1.1 2002/08/24 13:12:31 southa Exp $
+ * $Log: MediaAudioSDL.h,v $
+ * Revision 1.1  2002/08/24 13:12:31  southa
+ * Null MediaAudio device
+ *
  * Revision 1.10  2002/08/19 09:59:36  southa
  * Removed sound callbacks, used polling
  *
@@ -63,7 +66,7 @@ public:
     virtual ~MediaAudioSDL();
     void PlayMusic(const string& inName);
     void Play(MediaSound& inSound);
-    void Play(MediaSoundStream& inSoundStream);
+    void Play(MediaSoundStream& inSoundStream, U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
     void Free(MediaSound& inSound) const;

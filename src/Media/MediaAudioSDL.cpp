@@ -13,8 +13,11 @@
 
 
 /*
- * $Id: MediaAudioSDL.cpp,v 1.11 2002/08/19 09:59:36 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.1 2002/08/24 13:12:31 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.1  2002/08/24 13:12:31  southa
+ * Null MediaAudio device
+ *
  * Revision 1.11  2002/08/19 09:59:36  southa
  * Removed sound callbacks, used polling
  *
@@ -134,7 +137,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioSDL::Play(MediaSoundStream& inSoundStream)
+MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop=10000)
 {
     if (m_music != NULL)
     {
@@ -147,7 +150,7 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream)
     {
         if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
     }
-    Mix_PlayMusic(m_music, 10000);
+    Mix_PlayMusic(m_music, inLoop);
 }
 
 void
