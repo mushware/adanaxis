@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 8xLMG4RN55BtVXvugHCuFA
 /*
- * $Id: MushGLVertexBuffer.h,v 1.2 2005/02/10 12:34:04 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.3 2005/02/26 17:53:38 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.3  2005/02/26 17:53:38  southa
+ * Plane sets and pairs
+ *
  * Revision 1.2  2005/02/10 12:34:04  southa
  * Template fixes
  *
@@ -56,7 +59,7 @@ public:
     GLuint GLName() const { return m_handle; }
     
 private:  
-    
+    void Validate(void);
     void Allocate(const Mushware::tSize inSize);
     void Deallocate();
     
@@ -66,9 +69,10 @@ private:
     bool m_allocated;
     Mushware::tSize m_size;
     tVec *m_pData;
+    Mushware::U32 m_contextNum;
     
 public:
-        virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
 };
 
 template <class T>
@@ -78,7 +82,8 @@ MushGLVertexBuffer<T>::MushGLVertexBuffer() :
     m_mapped(false),
     m_allocated(false),
     m_size(0),
-    m_pData(NULL)
+    m_pData(NULL),
+    m_contextNum(0)
 {
 }
 
@@ -89,7 +94,8 @@ MushGLVertexBuffer<T>::MushGLVertexBuffer(const Mushware::tSize inSize) :
     m_mapped(false),
     m_allocated(false),
     m_size(0),
-    m_pData(NULL)
+    m_pData(NULL),
+    m_contextNum(0)
 {
     Allocate(inSize);
 }
@@ -126,6 +132,7 @@ MushGLVertexBuffer<T>::Allocate(const Mushware::tSize inSize)
     }
     m_size = inSize;
     m_allocated = true;
+    m_contextNum = MushGLV::Sgl().ContextNum();
 }
 
 template <class T>
@@ -134,7 +141,12 @@ MushGLVertexBuffer<T>::Deallocate()
 {
     if (m_isVertexBuffer)
     {
-        MushGLV::Sgl().DeleteBuffers(1, &m_handle);
+        if (m_contextNum == MushGLV::Sgl().ContextNum())
+        {
+            // Mustn't delete if the context has changed, as the old buffers are already gone
+            // and we might delete a new one
+            MushGLV::Sgl().DeleteBuffers(1, &m_handle);
+        }
     }
     else
     {
@@ -144,15 +156,29 @@ MushGLVertexBuffer<T>::Deallocate()
         }
         delete[] m_pData;
     }
+    m_pData = NULL;
     m_allocated = false;
+    m_mapped = false;
 }    
 
+template <class T>
+inline void
+MushGLVertexBuffer<T>::Validate(void)
+{
+    if (m_contextNum != MushGLV::Sgl().ContextNum())
+    {
+        Deallocate();
+        Allocate(m_size);
+    }
+}
+    
 template <class T>
 inline void
 MushGLVertexBuffer<T>::Bind(void)
 {
     if (m_isVertexBuffer)
     {
+        Validate();
         MushGLV::Sgl().BindBuffer(GL_ARRAY_BUFFER, m_handle);
     }
 }
@@ -212,7 +238,7 @@ MushGLVertexBuffer<T>::AttemptUnmap(void)
     if (m_isVertexBuffer)
     {
         Bind();
-        if (!MushGLV::Sgl().UnmapBuffer(GL_ARRAY_BUFFER))
+        if (MushGLV::Sgl().UnmapBuffer(GL_ARRAY_BUFFER) != GL_TRUE)
         {
             success = false;
         }
@@ -249,6 +275,10 @@ template <class T>
 inline void *
 MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
 {
+    if (m_contextNum != MushGLV::Sgl().ContextNum())
+    {
+        throw MushcoreLogicFail("MushGLVertexBuffer: Buffer no longer valid in AddrForGLGet");
+    }
     if (m_mapped)
     {
         throw MushcoreLogicFail("MushGLVertexBuffer: AddrForGLGet on mapped buffer");

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Gkc3xTsTqFNmidPd7p8vOQ
 /*
- * $Id: GLTexture.cpp,v 1.32 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLTexture.cpp,v 1.33 2005/02/13 22:44:06 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.33  2005/02/13 22:44:06  southa
+ * Tesseract stuff
+ *
  * Revision 1.32  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -180,8 +183,23 @@ GLTexture::BindTexture(void) const
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
     GLState::TextureParamsReset();
-    if (0)
+    if (GLState::UseMipMap())
     {
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+        
+        glTexImage2D(GL_TEXTURE_2D, // target
+                     0,             // level
+                     GL_RGBA,       // internal format
+                     Width(),       // width
+                     Height(),      // height
+                     0,             // border
+                     PixelFormat(), // format
+                     PixelType(),   // type
+                     DataPtr()      // pointer to data
+                     );
+        
+#if 0
+        // The old-fashioned way
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target
                                     4,             // components
                                     Width(),       // width
@@ -191,9 +209,12 @@ GLTexture::BindTexture(void) const
                                     DataPtr()      // pointer to data
                                     );
         if (err != 0) cerr << "Error building mipmaps: " << gluErrorString(err) << endl;
+#endif
     }
     else
     {
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
+
         glTexImage2D(GL_TEXTURE_2D, // target
                      0,             // level
                      GL_RGBA,       // internal format

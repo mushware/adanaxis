@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KlSGDEnGkB9koN4E0FK9Tw
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.4 2005/02/26 17:53:47 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.5 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.5  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.4  2005/02/26 17:53:47  southa
  * Plane sets and pairs
  *
@@ -52,6 +55,7 @@ TesseractTrainerHypersphere::Create(tVal frame, const std::vector<Mushware::t4GL
     m_vertexBuffer.ClearAndResize(m_numVertices);
     m_colourBuffer.ClearAndResize(m_numVertices);
     m_colourBuffer.MapReadWrite();
+    m_vertices.resize(0);
     
     for (U32 i=0; i<m_numVertices; ++i)
     {
@@ -190,11 +194,14 @@ TesseractTrainerHypersphere::Render(tVal frame)
         }
     }
 
+    m_vertexBuffer.Bind();
     glVertexPointer(3, GL_FLOAT, 0, m_vertexBuffer.AddrForGLGet());
+    m_colourBuffer.Bind();
+    glColorPointer(4, GL_FLOAT, 0, m_colourBuffer.AddrForGLGet());
     
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
-    
+
     glDrawArrays(GL_POINTS, 0, vertices.size() * m_renderFaces / 8);
 
     glDisableClientState(GL_COLOR_ARRAY);

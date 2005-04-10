@@ -17,8 +17,11 @@
 //%Header } 7bhoLWY+hPdqE2Q6eZhSaQ
 
 /*
- * $Id: GLState.h,v 1.13 2004/03/07 12:05:56 southa Exp $
+ * $Id: GLState.h,v 1.14 2005/02/13 22:44:06 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.14  2005/02/13 22:44:06  southa
+ * Tesseract stuff
+ *
  * Revision 1.13  2004/03/07 12:05:56  southa
  * Rendering work
  *
@@ -116,6 +119,7 @@ public:
     static void BindTexture(GLuint inHandle);
     static void TextureEnable(void);
     static void TextureDisable(void);
+    static bool UseMipMap(void) { return m_useMipMap; }
     
 private:
     static void ResolveDisplayQuality(void);
@@ -127,6 +131,7 @@ private:
     static tDisplayQuality m_displayQuality;
     static bool m_useLighting;
     static bool m_textureEnabled;
+    static bool m_useMipMap;
 
     static GLuint m_boundTexture;
 };
@@ -294,25 +299,33 @@ GLState::DisplayQualityGet(void)
 inline void
 GLState::TextureParamsReset(void)
 {
-    switch (DisplayQualityGet())
+    if (m_useMipMap)
     {
-        case kQualityLow:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-            break;
+        switch (DisplayQualityGet())
+        {
+            case kQualityLow:
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+                break;
 
-        case kQualityMedium:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            break;
+            case kQualityMedium:
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                break;
 
-        case kQualityHigh:
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            break;
+            case kQualityHigh:
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                break;
 
-        default:
-            throw(MushcoreLogicFail("Bad value for m_displayQuality"));
+            default:
+                throw(MushcoreLogicFail("Bad value for m_displayQuality"));
+        }
+    }
+    else
+    {
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     }
 }
 

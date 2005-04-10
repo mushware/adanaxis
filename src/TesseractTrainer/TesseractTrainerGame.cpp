@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.9 2005/03/25 22:04:50 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.10 2005/03/28 18:59:33 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.10  2005/03/28 18:59:33  southa
+ * Dialogues for Tesseract Trainer
+ *
  * Revision 1.9  2005/03/25 22:04:50  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -120,6 +123,11 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
         NamedDialoguesAdd("^keyhelp");
     }    
     
+    if (gameAppHandler.LatchedKeyStateTake('r'))
+    {
+        gameAppHandler.RegModeEnter();
+    }    
+
     GLUtils::PostRedisplay();
 }
 

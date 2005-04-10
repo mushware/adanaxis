@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } uiXTBqRVrI+qFoX2dUuamg
 /*
- * $Id: MushGLV.h,v 1.4 2005/01/29 18:27:31 southa Exp $
+ * $Id: MushGLV.h,v 1.5 2005/02/10 12:34:03 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.5  2005/02/10 12:34:03  southa
+ * Template fixes
+ *
  * Revision 1.4  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -82,10 +85,12 @@ private:
     std::string m_version;
     std::string m_extensions;
     
+    Mushware::U32 m_contextNum; //:read
 //%classPrototypes {
 public:
+    const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+//%classPrototypes } tZpXkTA5BVxgV6b1/yA+aA
 };
 
 //%inlineHeader {

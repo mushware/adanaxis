@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } YgKXUj/EEsggmRKVn+PRWA
 /*
- * $Id: SDLAppHandler.cpp,v 1.41 2005/03/25 22:04:48 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.42 2005/04/01 00:02:02 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.42  2005/04/01 00:02:02  southa
+ * Build tweaks
+ *
  * Revision 1.41  2005/03/25 22:04:48  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -214,14 +217,24 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 bool
 SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
 {
-    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
+    if (inKey.ValueGet() >= m_keyState.size())
+    {
+        ostringstream message;
+        message << "Key number " << inKey.ValueGet() << " too large";
+        throw MushcoreDataFail(message.str());
+    }
     return m_keyState[inKey.ValueGet()];
 }
 
 bool
 SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 {
-    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
+    if (inKey.ValueGet() >= m_keyState.size())
+    {
+        ostringstream message;
+        message << "Key number " << inKey.ValueGet() << " too large";
+        throw MushcoreDataFail(message.str());
+    }
     bool state=m_latchedKeyState[inKey.ValueGet()];
     if (state)
     {

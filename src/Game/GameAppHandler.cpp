@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qWfrD/KaPbGcPpGRqeqJKA
 /*
- * $Id: GameAppHandler.cpp,v 1.57 2004/03/06 13:13:42 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.58 2005/03/13 00:34:46 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.58  2005/03/13 00:34:46  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.57  2004/03/06 13:13:42  southa
  * Maurheen created
  *
@@ -198,6 +201,7 @@
 #include "GameQuit.h"
 #include "GameSTL.h"
 #include "GameSetup.h"
+#include "GameReg.h"
 
 #include "mushMedia.h"
 
@@ -263,10 +267,7 @@ GameAppHandler::SetupModeEnter(void)
 {
     if (m_appState != kAppStateSetup)
     {
-        if (m_currentRef.Exists())
-        {
-            m_currentRef.RefGet().SwapOut(*this);
-        }
+        CurrentSwapOut();
         if (!m_setupRef.Exists())
         {
             MushcoreData<GameBase>::Sgl().Give("setup", new GameSetup);
@@ -283,8 +284,22 @@ GameAppHandler::QuitModeEnter(void)
 {
     if (m_appState != kAppStateQuit)
     {
+        CurrentSwapOut();
         MushcoreData<GameBase>::Sgl().Give("quit", new GameQuit);
-        m_currentRef.NameSet("quit");
+        CurrentSwapIn("quit");
+        m_appState = kAppStateQuit;
+    }
+}
+
+void
+GameAppHandler::RegModeEnter(void)
+{
+    if (m_appState != kAppStateReg)
+    {
+        CurrentSwapOut();
+        MushcoreData<GameBase>::Sgl().Give("reg", new GameReg);
+        CurrentSwapIn("reg");
+        m_appState = kAppStateReg;
     }
 }
 

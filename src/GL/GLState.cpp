@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wlqHuRRZqpfZYwL14lhh0Q
 /*
- * $Id: GLState.cpp,v 1.13 2003/09/17 19:40:30 southa Exp $
+ * $Id: GLState.cpp,v 1.14 2004/01/02 21:13:05 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.14  2004/01/02 21:13:05  southa
+ * Source conditioning
+ *
  * Revision 1.13  2003/09/17 19:40:30  southa
  * Source conditioning upgrades
  *
@@ -69,6 +72,7 @@ GLState::tDepthType GLState::m_depthState=GLState::kDepthInvalid;
 GLState::tDisplayQuality GLState::m_displayQuality=GLState::kQualityNotSet;
 bool GLState::m_useLighting=true;
 bool GLState::m_textureEnabled=false;
+bool GLState::m_useMipMap=true;
 GLuint GLState::m_boundTexture=0;
 
 void

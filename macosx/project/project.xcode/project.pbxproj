@@ -158,7 +158,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
@@ -768,6 +768,46 @@
 		};
 		7A5BE76007FB56B000306E18 = {
 			fileRef = 7A5BE75C07FB56B000306E18;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5DB883080804C000163474 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = GameReg.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5DB884080804C000163474 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = GameReg.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A5DB885080804C000163474 = {
+			fileRef = 7A5DB883080804C000163474;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5DB886080804C000163474 = {
+			fileRef = 7A5DB884080804C000163474;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5DB887080804C000163474 = {
+			fileRef = 7A5DB883080804C000163474;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A5DB888080804C000163474 = {
+			fileRef = 7A5DB884080804C000163474;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1519,6 +1559,8 @@
 				7A45EA6A07F45D6700773CF6,
 				7A45EAB407F46A9900773CF6,
 				7A45EABC07F46BE500773CF6,
+				7A5DB887080804C000163474,
+				7ABBAB2608087A3900A01FB4,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1835,6 +1877,8 @@
 				7A45EA6B07F45D6700773CF6,
 				7A45EAB507F46A9900773CF6,
 				7A45EABD07F46BE500773CF6,
+				7A5DB888080804C000163474,
+				7ABBAB2708087A3900A01FB4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2068,6 +2112,8 @@
 				7A62B73305A49D04002A5F1C,
 				7A62B73405A49D04002A5F1C,
 				7A62B73505A49D04002A5F1C,
+				7A5DB884080804C000163474,
+				7A5DB883080804C000163474,
 				7A62B73605A49D04002A5F1C,
 				7A62B73705A49D04002A5F1C,
 				7A62B73805A49D04002A5F1C,
@@ -2087,6 +2133,8 @@
 				7A62B74005A49D04002A5F1C,
 				7A62B74105A49D04002A5F1C,
 				7A62B74205A49D04002A5F1C,
+				7ABBAB2308087A3900A01FB4,
+				7ABBAB2208087A3900A01FB4,
 			);
 			isa = PBXGroup;
 			path = Game;
@@ -14843,6 +14891,8 @@
 				7A45EA6807F45D6700773CF6,
 				7A45EAB207F46A9900773CF6,
 				7A45EABA07F46BE500773CF6,
+				7A5DB885080804C000163474,
+				7ABBAB2408087A3900A01FB4,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15855,6 +15905,8 @@
 				7A45EA6907F45D6700773CF6,
 				7A45EAB307F46A9900773CF6,
 				7A45EABB07F46BE500773CF6,
+				7A5DB886080804C000163474,
+				7ABBAB2508087A3900A01FB4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -20253,6 +20305,46 @@
 			path = BaseModels.xml;
 			refType = 4;
 			sourceTree = "<group>";
+		};
+		7ABBAB2208087A3900A01FB4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = GameUtils.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABBAB2308087A3900A01FB4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = GameUtils.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ABBAB2408087A3900A01FB4 = {
+			fileRef = 7ABBAB2208087A3900A01FB4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ABBAB2508087A3900A01FB4 = {
+			fileRef = 7ABBAB2308087A3900A01FB4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ABBAB2608087A3900A01FB4 = {
+			fileRef = 7ABBAB2208087A3900A01FB4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ABBAB2708087A3900A01FB4 = {
+			fileRef = 7ABBAB2308087A3900A01FB4;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		7ABCE94B05AB45CE00A00CC6 = {
 			fileEncoding = 30;

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 5wVaQrecIxMy9gNkVg+RNw
 /*
- * $Id: GameAppHandler.h,v 1.24 2004/01/06 20:46:49 southa Exp $
+ * $Id: GameAppHandler.h,v 1.25 2004/03/06 13:13:42 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.25  2004/03/06 13:13:42  southa
+ * Maurheen created
+ *
  * Revision 1.24  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -109,6 +112,7 @@ public:
     virtual void SetupModeEnter(void);
     virtual void GameModeEnter(bool inResume) = 0;
     virtual void QuitModeEnter(void);
+    virtual void RegModeEnter(void);
     virtual void CurrentGameEnd(void) = 0;
 
     bool ServerPresent(void) const { return m_gameType == kGameTypeServer; }
@@ -133,7 +137,8 @@ private:
         kAppStateStartup,
         kAppStateSetup,
         kAppStateGame,
-        kAppStateQuit
+        kAppStateQuit,
+        kAppStateReg
     };
 
     enum tGameType

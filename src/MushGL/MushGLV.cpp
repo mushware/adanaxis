@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 3XIr5cTD30rcFqo9UL9xaQ
 /*
- * $Id: MushGLV.cpp,v 1.2 2005/01/29 14:06:12 southa Exp $
+ * $Id: MushGLV.cpp,v 1.3 2005/01/29 18:27:31 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.3  2005/01/29 18:27:31  southa
+ * Vertex buffer stuff
+ *
  * Revision 1.2  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -40,13 +43,15 @@ MushGLV::MushGLV() :
     m_fpDeleteBuffers(NULL),
     m_fpGenBuffers(NULL),
     m_fpMapBuffer(NULL),
-    m_fpUnmapBuffer(NULL)
+    m_fpUnmapBuffer(NULL),
+    m_contextNum(0)
 {
 }
 
 void
 MushGLV::Acquaint()
 {
+    ++m_contextNum;
     m_vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     m_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
@@ -98,7 +103,8 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
-    ioOut << "extensions=" << m_extensions;
+    ioOut << "extensions=" << m_extensions << ", ";
+    ioOut << "contextNum=" << m_contextNum;
     ioOut << "]";
 }
-//%outOfLineFunctions } GqUEday1JoJOy0E+UqZFFQ
+//%outOfLineFunctions } Hy0vCXDf3BKDouVKwtdIeQ
