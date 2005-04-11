@@ -16,13 +16,17 @@
  ****************************************************************************/
 //%Header } OAqNOiLKaXeT868OyOk4iw
 /*
- * $Id$
- * $Log$
+ * $Id: GameReg.h,v 1.1 2005/04/10 00:09:22 southa Exp $
+ * $Log: GameReg.h,v $
+ * Revision 1.1  2005/04/10 00:09:22  southa
+ * Registration
+ *
  */
 
 #include "mushMushcore.h"
 
 #include "GameBase.h"
+#include "GameCode.h"
 
 //:generate virtual standard ostream xml1 
 class GameReg : public GameBase

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.10 2005/03/28 18:59:33 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.11 2005/04/10 00:09:23 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.11  2005/04/10 00:09:23  southa
+ * Registration
+ *
  * Revision 1.10  2005/03/28 18:59:33  southa
  * Dialogues for Tesseract Trainer
  *
@@ -71,6 +74,7 @@ void
 TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    tVal msecNow = gameAppHandler.MillisecondsGet();
     
     if (gameAppHandler.LatchedKeyStateTake('1'))
     {
@@ -123,11 +127,29 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
         NamedDialoguesAdd("^keyhelp");
     }    
     
-    if (gameAppHandler.LatchedKeyStateTake('r'))
+    if (m_lastRegCheckMsec + kRegTimeMsec < msecNow)
     {
-        gameAppHandler.RegModeEnter();
+        if (!RegCheck())
+        {
+            gameAppHandler.RegModeEnter();
+        }
+        m_lastRegCheckMsec = msecNow;
     }    
 
+    if (gameAppHandler.LatchedKeyStateTake('r'))
+    {
+        if (RegCheck())
+        {
+            NamedDialoguesAdd("^registered");
+        }
+        else
+        {
+            gameAppHandler.RegModeEnter();
+        }
+        m_lastRegCheckMsec = msecNow;
+    }    
+    
+    
     GLUtils::PostRedisplay();
 }
 
@@ -314,9 +336,11 @@ TesseractTrainerGame::ScriptFunction(const std::string& inName, GameAppHandler& 
 void
 TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
 {
-    GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 14
+    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    gameAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 14
     MushGLV::Sgl().Acquaint();
+
+    tVal msecNow = gameAppHandler.MillisecondsGet();
     
     m_colours.resize(8);
     
@@ -378,11 +402,66 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     }
     
     NamedDialoguesAdd("^start");
+    if (RegCheck())
+    {
+        NamedDialoguesAdd("^registered");        
+    }
+    else
+    {
+        NamedDialoguesAdd("^unregistered");
+    }
+    
+    m_lastRegCheckMsec = msecNow;
 }
 
 void
 TesseractTrainerGame::SwapOut(GameAppHandler& inAppHandler)
 {}
+
+bool
+TesseractTrainerGame::RegCheck(void)
+{
+    bool success = false;
+    
+    std::string packageName = MushcoreInfo::Sgl().PackageNameGet();
+    GameCode *pGameCode = MushcoreData<GameCode>::Sgl().GetOrCreate(packageName);
+    
+    if (GameUtils::CodeVerify(pGameCode->Code()))
+    {
+        success = true;
+    }
+    else
+    {
+        try
+        {
+            std::string filenameStr;
+            const MushcoreScalar *pScalar;
+
+            if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "REG_FILENAME"))
+            {
+                filenameStr = pScalar->StringGet();
+
+                std::ifstream codeFileStrm(filenameStr.c_str());
+                if (codeFileStrm)
+                {
+                    MushcoreXMLIStream xmlIn(codeFileStrm);
+                    
+                    xmlIn >> *pGameCode;
+                }
+            }
+            if (GameUtils::CodeVerify(pGameCode->Code()))
+            {
+                success = true;
+            }
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            std::cerr << "Registration check failed: " << e.what() << std::endl;
+        }
+    }
+    
+    return success;
+}
 
 void
 TesseractTrainerGame::NamedDialoguesAdd(const std::string& inRegExp)
@@ -437,6 +516,7 @@ TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "previous=" << m_previous << ", ";
     ioOut << "colours=" << m_colours << ", ";
     ioOut << "lastChangeMsec=" << m_lastChangeMsec << ", ";
+    ioOut << "lastRegCheckMsec=" << m_lastRegCheckMsec << ", ";
     ioOut << "dialogues=" << m_dialogues << ", ";
     ioOut << "ttRotationChangeMsec=" << m_ttRotationChangeMsec << ", ";
     ioOut << "ttRealignMsec=" << m_ttRealignMsec << ", ";
@@ -484,6 +564,10 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "lastChangeMsec")
     {
         ioIn >> m_lastChangeMsec;
+    }
+    else if (inTagStr == "lastRegCheckMsec")
+    {
+        ioIn >> m_lastRegCheckMsec;
     }
     else if (inTagStr == "dialogues")
     {
@@ -566,6 +650,8 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_colours;
     ioOut.TagSet("lastChangeMsec");
     ioOut << m_lastChangeMsec;
+    ioOut.TagSet("lastRegCheckMsec");
+    ioOut << m_lastRegCheckMsec;
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
     ioOut.TagSet("ttRotationChangeMsec");
@@ -597,4 +683,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("ttStereoImageSeparation");
     ioOut << m_ttStereoImageSeparation;
 }
-//%outOfLineFunctions } LrHnP3aLyI6tSXhq9VcwLw
+//%outOfLineFunctions } 6kErLUg8IcLC6qXNs4N7zA

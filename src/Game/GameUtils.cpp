@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } KH3rkSKlI7syV0i8D7gvNg
 /*
- * $Id$
- * $Log$
+ * $Id: GameUtils.cpp,v 1.1 2005/04/10 00:10:40 southa Exp $
+ * $Log: GameUtils.cpp,v $
+ * Revision 1.1  2005/04/10 00:10:40  southa
+ * Registration
+ *
  */
 
 #include "GameUtils.h"
@@ -28,15 +31,28 @@ GameUtils::Rotate(Mushware::U32 inVal, Mushware::U32 inRot)
     return (inVal << inRot) | (inVal >> (32 - inRot));
 }
 
+Mushware::U32
+GameUtils::HashGenerate(Mushware::U32 inCode)
+{
+    U32 hashVal = inCode;
+    std::string productStr = MushcoreInfo::Sgl().PackageNameGet();
+    U32 productStrLength = productStr.length();
+    
+    for (U32 i=0; i<47; ++i)
+    {
+        hashVal ^= productStr[1];
+        hashVal ^= Rotate(hashVal, productStr[i % productStrLength] % 32);
+        hashVal = Rotate(hashVal, hashVal % 32);
+    }
+    return hashVal;
+}
+
 bool
 GameUtils::CodeVerify(const std::string& inCode)
 {
     bool success = true;
     
     U32 codeHalfLength = inCode.length()/2;
-    
-    std::string productStr = MushcoreInfo::Sgl().PackageNameGet();
-    U32 productStrLength = productStr.length();
     
     std::istringstream codeStrm(inCode.substr(0, codeHalfLength));
     std::istringstream hashStrm(inCode.substr(codeHalfLength, codeHalfLength));
@@ -53,17 +69,8 @@ GameUtils::CodeVerify(const std::string& inCode)
         success = false;
     }
     
-    for (U32 i=0; i<47; ++i)
-    {
-        codeVal ^= productStr[1];
-        codeVal ^= Rotate(codeVal, productStr[i % productStrLength] % 32);
-        codeVal = Rotate(codeVal, codeVal % 32);
-    }
+    codeVal = HashGenerate(codeVal) % 1000000;
     
-    codeVal = codeVal % 1000000;
-    
-    std::cerr << codeVal << std::endl;
-
     if (codeVal != hashVal)
     {
         success = false;

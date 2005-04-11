@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XWTplRc9rgj8oYPVlTvtrA
 /*
- * $Id: MushcoreUtil.h,v 1.14 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.15 2005/03/13 00:34:48 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.15  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.14  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -112,6 +115,8 @@ public:
     static Mushware::tVal MakeWebSafe(Mushware::tVal inValue) { return inValue; }
     static std::string RemoveMeta(const std::string& inStr);
     static std::string InsertMeta(const std::string& inStr);
+
+    static const Mushware::U32 RandomU32(const Mushware::U32 inMin, const Mushware::U32 inMax);
     
     static void BreakpointFunction(void);
 };

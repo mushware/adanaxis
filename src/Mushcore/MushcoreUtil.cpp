@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } pmQovnG+eSD9h3QcMJoqMg
 /*
- * $Id: MushcoreUtil.cpp,v 1.15 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.16 2005/03/13 00:34:47 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.16  2005/03/13 00:34:47  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.15  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *
@@ -293,6 +296,12 @@ MushcoreUtil::InsertMeta(const string& inStr)
         }
     }
     return retStr;
+}
+
+const Mushware::U32 
+MushcoreUtil::RandomU32(const Mushware::U32 inMin, const Mushware::U32 inMax)
+{
+    return static_cast<U32>(inMin + (inMax - inMin) *((double)std::rand() / RAND_MAX));
 }
 
 void

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.9 2005/03/25 22:04:50 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.10 2005/03/28 18:59:33 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.10  2005/03/28 18:59:33  southa
+ * Dialogues for Tesseract Trainer
+ *
  * Revision 1.9  2005/03/25 22:04:50  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -75,8 +78,13 @@ protected:
     void Reorientate(void);
     void RenderView(GameAppHandler& inAppHandler, Mushware::tVal inStereo);
     void NamedDialoguesAdd(const std::string& inRegExp);
+    bool RegCheck(void);
     
 private:
+    enum
+    {
+        kRegTimeMsec = 5*60*1000
+    };
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
     TesseractTrainerPlanePair m_planepair; //:ignore
@@ -87,6 +95,7 @@ private:
     Mushware::U32 m_previous;
     std::vector<Mushware::t4GLVal> m_colours;
     Mushware::tVal m_lastChangeMsec;
+    Mushware::tVal m_lastRegCheckMsec;
     
     MushcoreData<GameDialogue> m_dialogues;
     

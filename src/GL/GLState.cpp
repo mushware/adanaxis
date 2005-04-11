@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } wlqHuRRZqpfZYwL14lhh0Q
 /*
- * $Id: GLState.cpp,v 1.14 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLState.cpp,v 1.15 2005/04/10 00:09:22 southa Exp $
  * $Log: GLState.cpp,v $
+ * Revision 1.15  2005/04/10 00:09:22  southa
+ * Registration
+ *
  * Revision 1.14  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -78,7 +81,7 @@ GLuint GLState::m_boundTexture=0;
 void
 GLState::ResolveDisplayQuality(void)
 {
-    string displayQuality("low");
+    string displayQuality("high");
     
     const MushcoreScalar *pScalar;    
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "DISPLAY_QUALITY"))

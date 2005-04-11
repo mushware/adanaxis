@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } e50mVxNYmM7sWR8WfslVyg
 /*
- * $Id: TesseractTrainerPlanePair.cpp,v 1.2 2005/02/27 01:01:32 southa Exp $
+ * $Id: TesseractTrainerPlanePair.cpp,v 1.3 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerPlanePair.cpp,v $
+ * Revision 1.3  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.2  2005/02/27 01:01:32  southa
  * Eigenplane markers
  *
@@ -159,8 +162,6 @@ TesseractTrainerPlanePair::Render(tVal frame)
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DITHER);
     
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     GLState::BindTexture(m_textureRef.BindingNameGet());
     
     U32 colourNum=0;

@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.20 2005/03/25 19:13:50 southa Exp $
+ * $Id: MushcoreData.h,v 1.21 2005/03/25 22:04:50 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.21  2005/03/25 22:04:50  southa
+ * Dialogue and MushcoreIO fixes
+ *
  * Revision 1.20  2005/03/25 19:13:50  southa
  * GameDialogue work
  *
@@ -161,6 +164,7 @@ public:
     inline RefType *Give(const KeyType& inName, RefType *inData);
     inline RefType *Get(const KeyType& inName) const;
     inline RefType *GetOrReturnNull(const KeyType& inName) const;
+    inline RefType *GetOrCreate(const KeyType& inName);
     inline bool GetIfExists(RefType *& outData, const KeyType& inName) const;
     inline void Delete(const KeyType& inName);
     inline void Delete(const tMapIterator& inIterator);
@@ -242,6 +246,18 @@ MushcoreData<RefType, KeyType>::GetOrReturnNull(const KeyType& inName) const
     if (p == m_data.end())
     {
         return NULL;
+    }
+    return p->second;
+}
+
+template<class RefType, class KeyType>
+inline RefType *
+MushcoreData<RefType, KeyType>::GetOrCreate(const KeyType& inName)
+{
+    tMapConstIterator p = m_data.find(inName);
+    if (p == m_data.end())
+    {
+        return Give(inName, new RefType);
     }
     return p->second;
 }

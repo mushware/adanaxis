@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } tvE8OYNg7opzgRevdZ3rwA
 /*
- * $Id: TesseractTrainerHypercube.cpp,v 1.4 2005/02/26 17:53:46 southa Exp $
+ * $Id: TesseractTrainerHypercube.cpp,v 1.5 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.5  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.4  2005/02/26 17:53:46  southa
  * Plane sets and pairs
  *
@@ -205,8 +208,6 @@ TesseractTrainerHypercube::Render(tVal frame)
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DITHER);
     
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     GLState::BindTexture(m_textureRef.Get()->BindingNameGet());
     
     U32 colourNum=0;

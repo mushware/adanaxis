@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GAMEUTILS_H
-#define GAMEUTILS_H
-//%includeGuardStart } tnIW58cbpoexh5GV89K1gQ
+#ifndef CODEGENCOMMANDS_H
+#define CODEGENCOMMANDS_H
+//%includeGuardStart } FHHGpOF69Q6Xwq1bL4LKmA
 //%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameUtils.h
+ * File: src/CodeGen/CodeGenCommands.h
  *
  * This file contains original work by Andy Southgate.  Contact details can be
  * found at http://www.mushware.com/.  This file was placed in the Public
@@ -14,23 +14,19 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1HRLY36l0fDdeXDF6UkrqA
+//%Header } V31ae4LqVVZQrXmmvogKBQ
 /*
- * $Id: GameUtils.h,v 1.1 2005/04/10 00:10:40 southa Exp $
- * $Log: GameUtils.h,v $
- * Revision 1.1  2005/04/10 00:10:40  southa
- * Registration
- *
+ * $Id$
+ * $Log$
  */
 
 #include "mushMushcore.h"
 
-class GameUtils
+class CodeGenCommands
 {
 public:
-    static Mushware::U32 Rotate(Mushware::U32 inVal, Mushware::U32 inRot);
-    static Mushware::U32 GameUtils::HashGenerate(Mushware::U32 inCode);
-    static bool CodeVerify(const std::string& inCode);
+    static void Install(void);
+    static MushcoreScalar CodeGenGenerate(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
 
 //%includeGuardEnd {

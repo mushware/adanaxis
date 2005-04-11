@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } uWbfm7fd07cmTliM1Hqs3g
 /*
- * $Id$
- * $Log$
+ * $Id: GameReg.cpp,v 1.1 2005/04/10 00:09:22 southa Exp $
+ * $Log: GameReg.cpp,v $
+ * Revision 1.1  2005/04/10 00:09:22  southa
+ * Registration
+ *
  */
 
 #include "GameReg.h"
@@ -32,7 +35,6 @@ using namespace std;
 
 GameReg::GameReg() :
     m_regURL("http://www.mushware.com/"),
-    m_regCode(""),
     m_regCodeLength(12),
     m_codeValid(kCodeValidUnknown),
     m_lastCheckMsec(0)
@@ -275,7 +277,11 @@ GameReg::SaveToFile(void)
         ofstream outputFile(filenameStr.c_str());
         if (!outputFile) throw(MushcoreFileFail(filenameStr, "Could not open file"));
         MushcoreXMLOStream xmlOut(outputFile);
-        xmlOut << m_regCode;
+        
+        GameCode *pGameCode = MushcoreData<GameCode>::Sgl().
+            Give(MushcoreInfo::Sgl().PackageNameGet(), new GameCode);
+        pGameCode->CodeSet(m_regCode);
+        xmlOut << *pGameCode;
     }
 }
 

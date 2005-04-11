@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } frXsN++MOUlQ8TCjDarsUA
 /*
- * $Id: mushGame.h,v 1.4 2004/01/02 21:13:04 southa Exp $
+ * $Id: mushGame.h,v 1.5 2005/03/25 19:13:47 southa Exp $
  * $Log: mushGame.h,v $
+ * Revision 1.5  2005/03/25 19:13:47  southa
+ * GameDialogue work
+ *
  * Revision 1.4  2004/01/02 21:13:04  southa
  * Source conditioning
  *
@@ -34,6 +37,7 @@
 
 #include "Game/GameAppHandler.h"
 #include "Game/GameBase.h"
+#include "Game/GameCode.h"
 #include "Game/GameConfig.h"
 #include "Game/GameConfigDef.h"
 #include "Game/GameController.h"
@@ -48,6 +52,7 @@
 #include "Game/GameRouter.h"
 #include "Game/GameTimer.h"
 #include "Game/GameType.h"
+#include "Game/GameUtils.h"
 
 //%includeGuardEnd {
 #endif
