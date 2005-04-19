@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } ULcld2q1/9CHp8iLY+i0/A
 /*
- * $Id: MushcoreVirtualObject.h,v 1.3 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.4 2005/03/25 19:13:50 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.4  2005/03/25 19:13:50  southa
+ * GameDialogue work
+ *
  * Revision 1.3  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -41,6 +44,7 @@ class MushcoreXMLOStream;
 class MushcoreVirtualObject
 {
 public:
+    virtual ~MushcoreVirtualObject() {}
     virtual const char *AutoNameGet(void) const = 0;
     virtual MushcoreVirtualObject *AutoClone(void) const = 0;
     virtual MushcoreVirtualObject *AutoCreate(void) const = 0;
@@ -53,6 +57,12 @@ public:
     virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);   
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
     virtual void AutoOutputEpilogue(MushcoreXMLOStream& ioOut) const;   
+
+    virtual void AutoStreamLoad(std::istream& ioStream);
+    virtual void AutoFileLoad(const std::string& inName);
+    virtual void AutoFileIfExistsLoad(const std::string& inName);
+    virtual void AutoStreamSave(std::ostream& ioStream) const;
+    virtual void AutoFileSave(const std::string& inName) const;
 };
 
 inline std::ostream&

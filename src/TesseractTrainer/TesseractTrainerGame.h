@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.10 2005/03/28 18:59:33 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.11 2005/04/11 23:31:42 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.11  2005/04/11 23:31:42  southa
+ * Startup and registration screen
+ *
  * Revision 1.10  2005/03/28 18:59:33  southa
  * Dialogues for Tesseract Trainer
  *
@@ -54,6 +57,7 @@
 #include "mushGame.h"
 #include "mushGL.h"
 
+#include "TesseractTrainerConfig.h"
 #include "TesseractTrainerHypercube.h"
 #include "TesseractTrainerHypersphere.h"
 #include "TesseractTrainerPlanePair.h"
@@ -99,21 +103,7 @@ private:
     
     MushcoreData<GameDialogue> m_dialogues;
     
-    Mushware::tVal m_ttRotationChangeMsec;
-    Mushware::tVal m_ttRealignMsec;
-    Mushware::tVal m_ttLineWidth;
-    Mushware::tVal m_ttPointSize;
-    Mushware::tVal m_ttObjectDistance;
-
-    Mushware::U32 m_ttRenderFaces;
-    bool m_ttRenderFaceOutlines;
-    bool m_ttRenderFaceTextures;
-    bool m_ttRenderFacePoints;
-    bool m_ttRenderRotationPlanes;
-    bool m_ttRenderBasicPlanes;
-    bool m_ttRenderStereo;
-    Mushware::tVal m_ttStereoEyeSeparation;
-    Mushware::tVal m_ttStereoImageSeparation;
+    TesseractTrainerConfig m_config;
     
 //%classPrototypes {
 public:

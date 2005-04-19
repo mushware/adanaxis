@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.31 2005/02/10 12:33:52 southa Exp $
+# $Id: SourceConditioner.pl,v 1.32 2005/03/25 19:13:46 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.32  2005/03/25 19:13:46  southa
+# GameDialogue work
+#
 # Revision 1.31  2005/02/10 12:33:52  southa
 # Template fixes
 #
@@ -489,7 +492,10 @@ sub AccessPrototypeGenerate($$)
                 push @$outputRef, "$gConfig{INDENT}// Writable reference for $attr";
                 push @$outputRef, "$gConfig{INDENT}$type& ${capitalisedAttr}WRef(void) { return $attr; }";
             }
-            
+            if ($comment =~ /:toggle\b/)
+            {
+                push @$outputRef, "$gConfig{INDENT}void ${capitalisedAttr}Toggle(void) { $attr=!($attr); }";
+            }                
         }
     }
 }
