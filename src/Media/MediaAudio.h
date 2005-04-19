@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } tyJt/xZmlTC6wUUlDIYd3g
 /*
- * $Id: MediaAudio.h,v 1.22 2004/01/02 21:13:10 southa Exp $
+ * $Id: MediaAudio.h,v 1.23 2004/01/06 20:46:51 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.23  2004/01/06 20:46:51  southa
+ * Build fixes
+ *
  * Revision 1.22  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -72,9 +75,12 @@ public:
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000) = 0;
     virtual void SoundHalt(MediaSound& inSound) = 0;
     virtual void Load(MediaSound& inSound) const = 0;
+    virtual void Load(MediaSoundStream& inSoundStream) = 0;
     virtual void Free(MediaSound& inSound) const = 0;
     virtual void Ticker(void) = 0;
-
+    virtual void MusicFadeIn(Mushware::tVal inMsec) = 0;
+    virtual void MusicFadeOut(Mushware::tVal inMsec) = 0;
+    
     static MediaAudio *SingletonFactory(void);
     
 protected:

@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Xj4GDjQD+0YwgfSGVwf86A
 /*
- * $Id: TesseractTrainerAppHandler.cpp,v 1.1 2005/02/03 15:46:55 southa Exp $
+ * $Id: TesseractTrainerAppHandler.cpp,v 1.2 2005/03/13 00:34:48 southa Exp $
  * $Log: TesseractTrainerAppHandler.cpp,v $
+ * Revision 1.2  2005/03/13 00:34:48  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.1  2005/02/03 15:46:55  southa
  * Quaternion work
  *
@@ -60,6 +63,7 @@ TesseractTrainerAppHandler::GameModeEnter(bool inResume)
 void
 TesseractTrainerAppHandler::PrepareNewGame(void)
 {
+    
     MushcoreData<GameBase>::Sgl().Give("tesseracttrainer", new TesseractTrainerGame);
 }
 

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } Lyih9KbNJKXiDaCn2V9pQg
 /*
- * $Id: MediaAudioNull.h,v 1.8 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.9 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.9  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -55,8 +58,12 @@ public:
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     virtual void SoundHalt(MediaSound& inSound);
     virtual void Load(MediaSound& inSound) const;
+    virtual void Load(MediaSoundStream& inSoundStream) {}
     virtual void Free(MediaSound& inSound) const;
     virtual void Ticker(void);
+    virtual void MusicFadeIn(Mushware::tVal inMsec) {};
+    virtual void MusicFadeOut(Mushware::tVal inMsec) {};
+    
 private:
 };
 //%includeGuardEnd {

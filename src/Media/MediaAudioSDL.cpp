@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } iHDcFOgJS7hkjzAEEWNYww
 /*
- * $Id: MediaAudioSDL.cpp,v 1.17 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.18 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.18  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.17  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -153,8 +156,8 @@ MediaAudioSDL::MediaAudioSDL():
     m_softChannels = Mix_AllocateChannels(audioSoftChannels);
     m_channelState.resize(m_softChannels, kChannelIdle);
     m_activeSamples.resize(m_softChannels, NULL);
-    cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
-    cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
+    //cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
+    //cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
 }
 
 MediaAudioSDL::~MediaAudioSDL()
@@ -200,7 +203,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
+MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
 {
     if (m_music != NULL)
     {
@@ -213,7 +216,13 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
     {
         if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
     }
-    else
+}
+
+void
+MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
+{
+    Load(inSoundStream);
+    if (m_music != NULL)
     {
         Mix_PlayMusic(m_music, inLoop);
     }
@@ -294,4 +303,19 @@ MediaAudioSDL::Free(MediaSound &inSound) const
         Mix_FreeChunk(chunk);
     }
     inSound.MixChunkSet(NULL);
+}
+
+void
+MediaAudioSDL::MusicFadeIn(Mushware::tVal inMsec)
+{
+    if (m_music != NULL)
+    {
+        Mix_FadeInMusic(m_music, 10000, static_cast<int>(inMsec));
+    }
+}
+
+void
+MediaAudioSDL::MusicFadeOut(Mushware::tVal inMsec)
+{
+    Mix_FadeOutMusic(static_cast<int>(inMsec));
 }

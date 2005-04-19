@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 8z6frlELi6JgItG1tdJiyw
 /*
- * $Id: GameQuit.cpp,v 1.20 2005/02/10 12:33:58 southa Exp $
+ * $Id: GameQuit.cpp,v 1.21 2005/03/13 00:34:46 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.21  2005/03/13 00:34:46  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.20  2005/02/10 12:33:58  southa
  * Template fixes
  *
@@ -133,14 +136,14 @@ GameQuit::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-mono1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-mono1", 0.018), 0);
         glStr.Render();
     }
     
@@ -148,7 +151,7 @@ GameQuit::Display(GameAppHandler& inAppHandler)
     {
         GLState::ColourSet(1.0,1.0,1.0,0.75+0.25*sin(msecNow/100));
         orthoGL.MoveRelative(0, -0.12);
-        GLString glStr("Quitting", GLFontRef("font-system1", 0.03), 0);
+        GLString glStr("Quitting", GLFontRef("font-mono1", 0.03), 0);
         glStr.Render();
     }
     GLUtils::OrthoEpilogue();

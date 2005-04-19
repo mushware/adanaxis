@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 8xLMG4RN55BtVXvugHCuFA
 /*
- * $Id: MushGLVertexBuffer.h,v 1.3 2005/02/26 17:53:38 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.4 2005/04/10 00:09:23 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.4  2005/04/10 00:09:23  southa
+ * Registration
+ *
  * Revision 1.3  2005/02/26 17:53:38  southa
  * Plane sets and pairs
  *
@@ -275,10 +278,6 @@ template <class T>
 inline void *
 MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
 {
-    if (m_contextNum != MushGLV::Sgl().ContextNum())
-    {
-        throw MushcoreLogicFail("MushGLVertexBuffer: Buffer no longer valid in AddrForGLGet");
-    }
     if (m_mapped)
     {
         throw MushcoreLogicFail("MushGLVertexBuffer: AddrForGLGet on mapped buffer");
@@ -286,6 +285,10 @@ MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
     MushMeshUtils::BoundsCheck(inIndex, m_size);
     if (m_isVertexBuffer)
     {
+        if (m_contextNum != MushGLV::Sgl().ContextNum())
+        {
+            throw MushcoreLogicFail("MushGLVertexBuffer: Buffer no longer valid in AddrForGLGet");
+        }
         return reinterpret_cast<void *>(inIndex*sizeof(T));
     }
     else

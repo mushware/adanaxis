@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } 1UTcekI/TccaPfXbPReOYw
 /*
- * $Id: MaurheenGame.cpp,v 1.10 2005/02/01 13:40:36 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.11 2005/02/10 12:34:02 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.11  2005/02/10 12:34:02  southa
+ * Template fixes
+ *
  * Revision 1.10  2005/02/01 13:40:36  southa
  * Rotating spheres and hypercube
  *
@@ -129,7 +132,7 @@ MaurheenGame::Display(GameAppHandler& inAppHandler)
     glPointSize(2.0);
     
     GLState::TextureDisable();
-    //GLTextureRef texRef("font-system1");
+    //GLTextureRef texRef("font-mono1");
     
     //GLState::BindTexture(texRef.TextureGet()->BindingNameGet());
     

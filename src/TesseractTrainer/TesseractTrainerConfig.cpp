@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } g55dObGq40yYVeBAOAratw
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerConfig.cpp,v 1.1 2005/04/19 19:23:14 southa Exp $
+ * $Log: TesseractTrainerConfig.cpp,v $
+ * Revision 1.1  2005/04/19 19:23:14  southa
+ * Save and load config
+ *
  */
 
 #include "TesseractTrainerConfig.h"
@@ -64,7 +67,9 @@ TesseractTrainerConfig::AutoPrint(std::ostream& ioOut) const
     ioOut << "renderBasicPlanes=" << m_renderBasicPlanes << ", ";
     ioOut << "renderStereo=" << m_renderStereo << ", ";
     ioOut << "stereoEyeSeparation=" << m_stereoEyeSeparation << ", ";
-    ioOut << "stereoImageSeparation=" << m_stereoImageSeparation;
+    ioOut << "stereoImageSeparation=" << m_stereoImageSeparation << ", ";
+    ioOut << "displayMode=" << m_displayMode << ", ";
+    ioOut << "playMusic=" << m_playMusic;
     ioOut << "]";
 }
 bool
@@ -130,6 +135,14 @@ TesseractTrainerConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
     {
         ioIn >> m_stereoImageSeparation;
     }
+    else if (inTagStr == "displayMode")
+    {
+        ioIn >> m_displayMode;
+    }
+    else if (inTagStr == "playMusic")
+    {
+        ioIn >> m_playMusic;
+    }
     else
     {
         return false;
@@ -167,5 +180,9 @@ TesseractTrainerConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_stereoEyeSeparation;
     ioOut.TagSet("stereoImageSeparation");
     ioOut << m_stereoImageSeparation;
+    ioOut.TagSet("displayMode");
+    ioOut << m_displayMode;
+    ioOut.TagSet("playMusic");
+    ioOut << m_playMusic;
 }
-//%outOfLineFunctions } jNy3Hlgh0JWJlaqx+aNEBA
+//%outOfLineFunctions } yQdHWm9BP58yfj5artL3kA

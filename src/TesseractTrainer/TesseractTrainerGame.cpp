@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } DGznA4s7M/09HsWaOc7wZA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.12 2005/04/11 23:31:41 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.13 2005/04/19 19:23:14 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.13  2005/04/19 19:23:14  southa
+ * Save and load config
+ *
  * Revision 1.12  2005/04/11 23:31:41  southa
  * Startup and registration screen
  *
@@ -57,12 +60,14 @@
 #include "TesseractTrainerHypercube.h"
 
 #include "mushPlatform.h"
+#include "mushMedia.h"
 #include "mushMushGL.h"
 
 using namespace Mushware;
 using namespace std;
 
 TesseractTrainerGame::TesseractTrainerGame() :
+    m_inited(false),
     m_orientations(2),
     m_angVels(2),
     m_current(0),
@@ -76,7 +81,7 @@ TesseractTrainerGame::~TesseractTrainerGame()
 void
 TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
+    GameAppHandler& gameAppHandler = inAppHandler;
     tVal msecNow = gameAppHandler.MillisecondsGet();
     
     if (gameAppHandler.LatchedKeyStateTake('1'))
@@ -113,6 +118,19 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
     if (gameAppHandler.LatchedKeyStateTake('s'))
     {
         m_config.RenderStereoToggle();
+    }
+    
+    if (gameAppHandler.LatchedKeyStateTake('m'))
+    {
+        m_config.PlayMusicToggle();
+        if (m_config.PlayMusic())
+        {
+            MediaAudio::Sgl().MusicFadeIn(300);            
+        }
+        else
+        {
+            MediaAudio::Sgl().MusicFadeOut(300);            
+        }
     }
     
     if (gameAppHandler.LatchedKeyStateTake(' '))
@@ -152,6 +170,33 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
         m_lastRegCheckMsec = msecNow;
     }    
     
+    if (gameAppHandler.LatchedKeyStateTake('-'))
+    {
+        if (m_modeKeypressMsec != 0)
+        {
+            m_newMode = PlatformVideoUtils::Sgl().PreviousModeDef(m_newMode);
+        }
+        m_modeKeypressMsec = msecNow;
+    }
+    if (gameAppHandler.LatchedKeyStateTake('='))
+    {
+        if (m_modeKeypressMsec != 0)
+        {
+            m_newMode = PlatformVideoUtils::Sgl().NextModeDef(m_newMode);
+        }
+        m_modeKeypressMsec = msecNow;
+    }
+    if (m_modeKeypressMsec != 0 && m_modeKeypressMsec + 3000 < msecNow)
+    {
+        if (m_newMode != m_config.DisplayMode())
+        {
+            m_config.DisplayModeSet(m_newMode);
+            SwapOut(inAppHandler);
+            SwapIn(inAppHandler);
+        }
+
+        m_modeKeypressMsec=0;
+    }
     
     GLUtils::PostRedisplay();
 }
@@ -230,6 +275,11 @@ TesseractTrainerGame::Display(GameAppHandler& inAppHandler)
         m_dialogues.Delete(expiredDialogues[i]);
     }
 
+    if (m_modeKeypressMsec != 0)
+    {
+        PlatformVideoUtils::Sgl().RenderModeInfo(m_newMode);
+    }
+    
     GLUtils::OrthoEpilogue();
     
     GLUtils::DisplayEpilogue();
@@ -300,7 +350,6 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     if (m_config.RenderBasicPlanes()) m_planeset.Render(0);
     
     GLUtils::IdentityEpilogue();
-
 }
 
 void
@@ -336,26 +385,12 @@ TesseractTrainerGame::ScriptFunction(const std::string& inName, GameAppHandler& 
 {}
 
 void
-TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
+TesseractTrainerGame::Init(GameAppHandler& inAppHandler)
 {
-    GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    try
-    {
-        gameAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(14)); // 14
-        MushGLV::Sgl().Acquaint();
-    }
-    catch (...)
-    {
-        GameConfig::Sgl().DisplayModeSetDefault();
-        throw;
-    }
-    
-    GLUtils::CheckGLError();
-    
-    tVal msecNow = gameAppHandler.MillisecondsGet();
+    m_config.DisplayModeSet(MushcoreEnv::Sgl().VariableGet("TT_DISPLAY_MODE").U32Get());
     
     m_colours.resize(8);
-    
+
     for (U32 i=0; i<m_colours.size(); ++i)
     {
         std::ostringstream varName;
@@ -366,59 +401,38 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
         
         xmlIStrm >> m_colours[i];
     }
-    
-    m_hypercube.Create(0, m_colours);
-    m_hypersphere.Create(0, m_colours);
-    m_planepair.Create(0, m_colours);
-    m_planeset.Create(0, m_colours);
 
-    for (U32 i=0; i<2; ++i)
-    {
-        m_orientations[i] = tQValPair::RotationIdentityGet();
-        m_angVels[i] = tQValPair::RotationIdentityGet();
-    }
-    
-    m_lastChangeMsec = 0;
-    
     m_config.RotationChangeMsecSet(MushcoreEnv::Sgl().VariableGet("TT_ROTATION_CHANGE_MSEC").ValGet());
     m_config.RealignMsecSet(MushcoreEnv::Sgl().VariableGet("TT_REALIGN_MSEC").ValGet());
     m_config.LineWidthSet(MushcoreEnv::Sgl().VariableGet("TT_LINE_WIDTH").ValGet());
     m_config.PointSizeSet(MushcoreEnv::Sgl().VariableGet("TT_POINT_SIZE").ValGet());
-    
+
     m_config.ObjectDistanceSet(MushcoreEnv::Sgl().VariableGet("TT_OBJECT_DISTANCE").ValGet());
 
-    tVal ttFogStart = MushcoreEnv::Sgl().VariableGet("TT_FOG_START").ValGet();
-    tVal ttFogEnd = MushcoreEnv::Sgl().VariableGet("TT_FOG_END").ValGet();
-    
-    float black[4] = {0,0,0,0};
-    glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START, m_config.ObjectDistance() + ttFogStart);
-    glFogf(GL_FOG_END, m_config.ObjectDistance() + ttFogEnd);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
-    
-    
     m_config.RenderFacesSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACES").U32Get());
     m_config.RenderFaceOutlinesSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_OUTLINES").U32Get());
     m_config.RenderFaceTexturesSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_TEXTURES").U32Get());
     m_config.RenderFacePointsSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_FACE_POINTS").U32Get());
     m_config.RenderRotationPlanesSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_ROTATION_PLANES").U32Get());
     m_config.RenderBasicPlanesSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_BASIC_PLANES").U32Get());
-    
+
     m_config.RenderStereoSet(MushcoreEnv::Sgl().VariableGet("TT_RENDER_STEREO").U32Get());
     m_config.StereoEyeSeparationSet(MushcoreEnv::Sgl().VariableGet("TT_STEREO_EYE_SEPARATION").ValGet());
     m_config.StereoImageSeparationSet(MushcoreEnv::Sgl().VariableGet("TT_STEREO_IMAGE_SEPARATION").ValGet());
+    m_config.PlayMusicSet(MushcoreEnv::Sgl().VariableGet("TT_PLAY_MUSIC").U32Get());
+    
     
     const MushcoreScalar *pScalar;    
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
     {
         m_config.AutoFileIfExistsLoad(pScalar->StringGet());
     }
-    
+
     if (MushcoreEnv::Sgl().VariableExists("TT_DUMP_MUSHGLV"))
     {
         std::cout << MushGLV::Sgl() << endl;
     }
-    
+
     NamedDialoguesAdd("^start");
     if (RegCheck())
     {
@@ -429,7 +443,62 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
         NamedDialoguesAdd("^unregistered");
     }
     
+    MushcoreInterpreter::Sgl().Execute("loadsoundstream('tt-music1')");
+    if (m_config.PlayMusic())
+    {
+        MediaAudio::Sgl().MusicFadeIn(300);                    
+    }
+    
+    m_inited = true;
+}
+
+void
+TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
+{
+    tVal msecNow = inAppHandler.MillisecondsGet();
+
+    if (!m_inited)
+    {
+        Init(inAppHandler);
+    }
+    
+    try
+    {
+        inAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(m_config.DisplayMode()));
+        MushGLV::Sgl().Acquaint();
+    }
+    catch (...)
+    {
+        m_config.DisplayModeSet(0);
+        throw;
+    }
+    
+    GLUtils::CheckGLError();
+    
+    tVal ttFogStart = MushcoreEnv::Sgl().VariableGet("TT_FOG_START").ValGet();
+    tVal ttFogEnd = MushcoreEnv::Sgl().VariableGet("TT_FOG_END").ValGet();
+    
+    float black[4] = {0,0,0,0};
+    glFogfv(GL_FOG_COLOR, black);
+    glFogf(GL_FOG_START, m_config.ObjectDistance() + ttFogStart);
+    glFogf(GL_FOG_END, m_config.ObjectDistance() + ttFogEnd);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
+    
+    m_lastChangeMsec = 0;
     m_lastRegCheckMsec = msecNow;
+    m_modeKeypressMsec = 0;
+    m_newMode = m_config.DisplayMode();
+
+    m_hypercube.Create(0, m_colours);
+    m_hypersphere.Create(0, m_colours);
+    m_planepair.Create(0, m_colours);
+    m_planeset.Create(0, m_colours);
+    
+    for (U32 i=0; i<2; ++i)
+    {
+        m_orientations[i] = tQValPair::RotationIdentityGet();
+        m_angVels[i] = tQValPair::RotationIdentityGet();
+    }
 }
 
 void
@@ -534,6 +603,8 @@ TesseractTrainerGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "colours=" << m_colours << ", ";
     ioOut << "lastChangeMsec=" << m_lastChangeMsec << ", ";
     ioOut << "lastRegCheckMsec=" << m_lastRegCheckMsec << ", ";
+    ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
+    ioOut << "newMode=" << m_newMode << ", ";
     ioOut << "dialogues=" << m_dialogues << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
@@ -573,6 +644,14 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_lastRegCheckMsec;
     }
+    else if (inTagStr == "modeKeypressMsec")
+    {
+        ioIn >> m_modeKeypressMsec;
+    }
+    else if (inTagStr == "newMode")
+    {
+        ioIn >> m_newMode;
+    }
     else if (inTagStr == "dialogues")
     {
         ioIn >> m_dialogues;
@@ -604,9 +683,13 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lastChangeMsec;
     ioOut.TagSet("lastRegCheckMsec");
     ioOut << m_lastRegCheckMsec;
+    ioOut.TagSet("modeKeypressMsec");
+    ioOut << m_modeKeypressMsec;
+    ioOut.TagSet("newMode");
+    ioOut << m_newMode;
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } NHjUEhgj1mNe8a//+rX7EQ
+//%outOfLineFunctions } vBC3u4fBe/aE1X55Ir2FUw

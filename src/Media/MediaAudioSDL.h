@@ -18,8 +18,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.9 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.10 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.10  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.9  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -96,8 +99,11 @@ public:
     void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
+    void Load(MediaSoundStream& inSoundStream);
     void Free(MediaSound& inSound) const;
     void Ticker(void);
+    virtual void MusicFadeIn(Mushware::tVal inMsec);
+    virtual void MusicFadeOut(Mushware::tVal inMsec);
 
 private:
     enum ChannelState

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } LlaQFXhrKwucd7Jrlj3s9g
 /*
- * $Id: TesseractTrainerGame.h,v 1.11 2005/04/11 23:31:42 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.12 2005/04/19 19:23:14 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.12  2005/04/19 19:23:14  southa
+ * Save and load config
+ *
  * Revision 1.11  2005/04/11 23:31:42  southa
  * Startup and registration screen
  *
@@ -74,6 +77,7 @@ public:
     virtual void ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const;
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
+    virtual void Init(GameAppHandler& inAppHandler);
     
     static MushcoreScalar TesseractTrainerLoadGame(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
@@ -89,6 +93,7 @@ private:
     {
         kRegTimeMsec = 5*60*1000
     };
+    bool m_inited; //:ignore
     TesseractTrainerHypercube m_hypercube; //:ignore
     TesseractTrainerHypersphere m_hypersphere; //:ignore
     TesseractTrainerPlanePair m_planepair; //:ignore
@@ -100,6 +105,8 @@ private:
     std::vector<Mushware::t4GLVal> m_colours;
     Mushware::tVal m_lastChangeMsec;
     Mushware::tVal m_lastRegCheckMsec;
+    Mushware::tVal m_modeKeypressMsec;
+    Mushware::U32 m_newMode;
     
     MushcoreData<GameDialogue> m_dialogues;
     

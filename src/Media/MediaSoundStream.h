@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vNBjNbUCI0jb1hp2/2iIZA
 /*
- * $Id: MediaSoundStream.h,v 1.10 2004/01/02 21:13:10 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.11 2004/01/06 20:46:51 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.11  2004/01/06 20:46:51  southa
+ * Build fixes
+ *
  * Revision 1.10  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -62,6 +65,7 @@ public:
 
     static MushcoreScalar SoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar LoadSoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 
 private:

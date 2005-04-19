@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } qJV1bWLIlj6HZey98U23fQ
 /*
- * $Id: MediaSoundStream.cpp,v 1.17 2003/09/17 19:40:34 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.18 2004/01/02 21:13:10 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.18  2004/01/02 21:13:10  southa
+ * Source conditioning
+ *
  * Revision 1.17  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -112,9 +115,24 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
     return MushcoreScalar(0);
 }
 
+MushcoreScalar
+MediaSoundStream::LoadSoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    if (ioCommand.NumParams() != 1)
+    {
+        throw(MushcoreCommandFail("Usage: loadsoundstreamm('name')"));
+    }
+    string name;
+    ioCommand.PopParam(name);
+    MediaSoundStream *soundStream=MushcoreData<MediaSoundStream>::Sgl().Get(name);
+    MediaAudio::Sgl().Load(*soundStream) ;
+    return MushcoreScalar(0);
+}
+
 void
 MediaSoundStream::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("soundstream", SoundStream);
     MushcoreInterpreter::Sgl().HandlerAdd("playsoundstream", PlaySoundStream);
+    MushcoreInterpreter::Sgl().HandlerAdd("loadsoundstream", LoadSoundStream);
 }

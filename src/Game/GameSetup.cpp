@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } VufStEC6QuxV1NUD7MJizg
 /*
- * $Id: GameSetup.cpp,v 1.42 2005/02/10 12:33:59 southa Exp $
+ * $Id: GameSetup.cpp,v 1.43 2005/03/13 00:34:46 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.43  2005/03/13 00:34:46  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.42  2005/02/10 12:33:59  southa
  * Template fixes
  *
@@ -205,14 +208,14 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-mono1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-mono1", 0.018), 0);
         glStr.Render();
     }
     
@@ -220,13 +223,13 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     {
         GLState::ColourSet(1.0,1.0,1.0,1.0);
         orthoGL.MoveRelative(0, -0.12);
-        GLString glStr("Configuration mode", GLFontRef("font-system1", 0.03), 0);
+        GLString glStr("Configuration mode", GLFontRef("font-mono1", 0.03), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1.0);
-        GLString glStr("Please click this window or view", GLFontRef("font-system1", 0.02), 0);
+        GLString glStr("Please click this window or view", GLFontRef("font-mono1", 0.02), 0);
         orthoGL.MoveRelative(0, -0.06);
         glStr.Render();
         
@@ -244,7 +247,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     if (!m_windowClicked)
     {
         GLState::ColourSet(1.0,1.0,1.0,0.8);
-        GLString glStr("Click this window to begin", GLFontRef("font-system1", 0.03), 0);
+        GLString glStr("Click this window to begin", GLFontRef("font-mono1", 0.03), 0);
         orthoGL.MoveRelative(0.01*sin(msecNow/200), -0.15+0.01*cos(msecNow/401));
 GLUtils::RotateAboutZ(5*sin(msecNow/151));
         glStr.Render();

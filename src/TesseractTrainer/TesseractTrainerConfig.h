@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } F/CgXVUSoDn7bRpiFwrEYQ
 /*
- * $Id$
- * $Log$
+ * $Id: TesseractTrainerConfig.h,v 1.1 2005/04/19 19:23:14 southa Exp $
+ * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.1  2005/04/19 19:23:14  southa
+ * Save and load config
+ *
  */
 
 #include "TesseractTrainerStandard.h"
@@ -43,6 +46,9 @@ private:
     bool m_renderStereo; //:readwrite :toggle
     Mushware::tVal m_stereoEyeSeparation; //:readwrite
     Mushware::tVal m_stereoImageSeparation; //:readwrite
+    Mushware::U32 m_displayMode; //:readwrite
+    bool m_playMusic; //:readwrite :toggle
+    
 //%classPrototypes {
 public:
     const Mushware::tVal& RotationChangeMsec(void) const { return m_rotationChangeMsec; }
@@ -81,6 +87,11 @@ public:
     void StereoEyeSeparationSet(const Mushware::tVal& inValue) { m_stereoEyeSeparation=inValue; }
     const Mushware::tVal& StereoImageSeparation(void) const { return m_stereoImageSeparation; }
     void StereoImageSeparationSet(const Mushware::tVal& inValue) { m_stereoImageSeparation=inValue; }
+    const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
+    void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
+    const bool& PlayMusic(void) const { return m_playMusic; }
+    void PlayMusicSet(const bool& inValue) { m_playMusic=inValue; }
+    void PlayMusicToggle(void) { m_playMusic=!(m_playMusic); }
     const char *AutoNameGet(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
@@ -88,7 +99,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ss+rZM68JSvQz6/KYmIdCA
+//%classPrototypes } YgDPPEGtTgk5BwsRt0VzKw
 };
 //%inlineHeader {
 inline std::ostream&

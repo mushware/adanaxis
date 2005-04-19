@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } uWbfm7fd07cmTliM1Hqs3g
 /*
- * $Id: GameReg.cpp,v 1.1 2005/04/10 00:09:22 southa Exp $
+ * $Id: GameReg.cpp,v 1.2 2005/04/11 23:31:41 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.2  2005/04/11 23:31:41  southa
+ * Startup and registration screen
+ *
  * Revision 1.1  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -120,27 +123,27 @@ GameReg::Display(GameAppHandler& inAppHandler)
     
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-mono1", 0.04), 0);
         glStr.Render();
     }
     
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-mono1", 0.018), 0);
         glStr.Render();
     }
     
     {
         GLState::ColourSet(1.0,1.0,1.0,1.0);
         orthoGL.MoveRelative(0, -0.12);
-        GLString glStr("Registration Code", GLFontRef("font-system1", 0.03), 0);
+        GLString glStr("Registration Code", GLFontRef("font-mono1", 0.03), 0);
         glStr.Render();
     }
     
     {
         GLState::ColourSet(0.8,0.8,1.0,1.0);
-        GLString glStr("Click this window to buy", GLFontRef("font-system1", 0.02), 0);
+        GLString glStr("Click this window to buy", GLFontRef("font-mono1", 0.02), 0);
         orthoGL.MoveRelative(0, -0.06);
         glStr.Render();
         
@@ -154,14 +157,14 @@ GameReg::Display(GameAppHandler& inAppHandler)
     {
         {
             GLState::ColourSet(0.4,1.0,0.4,1.0);
-            GLString glStr("Code Valid", GLFontRef("font-system1", 0.06), 0);
+            GLString glStr("Code Valid", GLFontRef("font-mono1", 0.06), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();
         }
         {
             GLState::ColourSet(0.8,0.8,1.0,1.0);
-            GLString glStr("Thank you", GLFontRef("font-system1", 0.02), 0);
+            GLString glStr("Thank you", GLFontRef("font-mono1", 0.02), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();
@@ -178,7 +181,7 @@ GameReg::Display(GameAppHandler& inAppHandler)
             GLState::ColourSet(1.0,1.0,1.0,1.0);
         }
         {
-            GLString glStr(m_regCode, GLFontRef("font-system1", 0.06), 0);
+            GLString glStr(m_regCode, GLFontRef("font-mono1", 0.06), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();
@@ -186,7 +189,7 @@ GameReg::Display(GameAppHandler& inAppHandler)
         if (m_codeValid == kCodeValidFail)
         {
             GLState::ColourSet(1.0,1.0,1.0,1.0);
-            GLString glStr("Code Invalid", GLFontRef("font-system1", 0.02), 0);
+            GLString glStr("Code Invalid", GLFontRef("font-mono1", 0.02), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();
@@ -194,7 +197,7 @@ GameReg::Display(GameAppHandler& inAppHandler)
         else
         {
             GLState::ColourSet(0.8,0.8,1.0,1.0);
-            GLString glStr("(Space to skip)", GLFontRef("font-system1", 0.02), 0);
+            GLString glStr("(Space to skip)", GLFontRef("font-mono1", 0.02), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();
