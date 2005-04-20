@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } NWRkvgvxWqhQS+QTO/T3zg
 /*
- * $Id: MushcoreXML.cpp,v 1.8 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.9 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.9  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.8  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -106,16 +109,22 @@ MushcoreXML::MushcoreXML(istream& inStream, const string& inName, U32 inLine):
     m_threaded(false),
     m_line(inLine)
 {
+#ifdef MUSHCORE_USE_EXPAT        
     m_parser = XML_ParserCreate(NULL);
     if (m_parser == NULL) throw(MushcoreSyntaxFail("Couldn't create parser"));
     XML_SetUserData(m_parser, this);
     XML_SetElementHandler(m_parser, StartElementHandler, EndElementHandler);
     XML_SetCharacterDataHandler(m_parser, CharacterDataHandler);
+#else    
+    throw MushcoreLogicFail("Couldn't create parser - expat not compiled in");
+#endif
 }
 
 MushcoreXML::~MushcoreXML()
 {
+#ifdef MUSHCORE_USE_EXPAT        
     XML_ParserFree(m_parser);
+#endif
 }
 
 void
@@ -172,7 +181,11 @@ MushcoreXML::EndElementHandler(void *inUserData, const char *inName)
 }
 
 void
+#ifdef MUSHCORE_USE_EXPAT        
 MushcoreXML::CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen)
+#else
+MushcoreXML::CharacterDataHandler(void *inUserData, const char *inData, int inLen)
+#endif
 {
     MushcoreXML *newThis=static_cast<MushcoreXML *>(inUserData);
     newThis->ProcessCharacterData(inData, inLen);
@@ -257,6 +270,7 @@ MushcoreXML::NewHandler(MushcoreXMLHandler& inHandler)
 void
 MushcoreXML::ParseStream(MushcoreXMLHandler& inHandler)
 {
+#ifdef MUSHCORE_USE_EXPAT
     NewHandler(inHandler);
     if (!m_threaded)
     {
@@ -279,6 +293,7 @@ MushcoreXML::ParseStream(MushcoreXMLHandler& inHandler)
         } while (m_continue && !m_inStream->eof());
         m_threaded=false;
     }
+#endif
 }
 
 void MushcoreXML::StopHandler(void)

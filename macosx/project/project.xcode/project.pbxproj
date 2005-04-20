@@ -54,6 +54,8 @@
 //204
 		20286C28FDCF999611CA2CEA = {
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.7.sdk;
 			};
 			buildStyles = (
 				4A9504C5FFE6A39111CA0CBA,
@@ -204,7 +206,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "../../src ../../src/API";
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				ZERO_LINK = NO;
 			};
 			isa = PBXBuildStyle;
@@ -748,30 +750,6 @@
 			path = start.txt;
 			refType = 4;
 			sourceTree = "<group>";
-		};
-		7A5BE75D07FB56B000306E18 = {
-			fileRef = 7A5BE75807FB56AF00306E18;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A5BE75E07FB56B000306E18 = {
-			fileRef = 7A5BE75907FB56AF00306E18;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A5BE75F07FB56B000306E18 = {
-			fileRef = 7A5BE75B07FB56AF00306E18;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A5BE76007FB56B000306E18 = {
-			fileRef = 7A5BE75C07FB56B000306E18;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		7A5C9EF4080979900017E78B = {
 			children = (
@@ -9653,6 +9631,40 @@
 			settings = {
 			};
 		};
+		7A632D410816D43D00637D49 = {
+			containerPortal = 20286C28FDCF999611CA2CEA;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = 7A657E8905A9CD1C00E727F8;
+			remoteInfo = MushPie;
+		};
+		7A632D420816D43D00637D49 = {
+			isa = PBXTargetDependency;
+			target = 7A657E8905A9CD1C00E727F8;
+			targetProxy = 7A632D410816D43D00637D49;
+		};
+		7A632D4D0816D5EC00637D49 = {
+			fileRef = 7A657EE905A9CD1C00E727F8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A632DF7081704CD00637D49 = {
+			compilerSpec = com.apple.compilers.gcc.2_95_2;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			isa = PBXBuildRule;
+			outputFiles = (
+			);
+		};
+		7A632DF8081704D300637D49 = {
+			compilerSpec = com.apple.compilers.gcc.2_95_2;
+			fileType = sourcecode.cpp;
+			isEditable = 1;
+			isa = PBXBuildRule;
+			outputFiles = (
+			);
+		};
 		7A63E99405AA25DD0051D708 = {
 			children = (
 				7A63E9AA05AA260F0051D708,
@@ -14581,18 +14593,6 @@
 			settings = {
 			};
 		};
-		7A8FBB5407F4543100BAAFBE = {
-			containerPortal = 20286C28FDCF999611CA2CEA;
-			isa = PBXContainerItemProxy;
-			proxyType = 1;
-			remoteGlobalIDString = 7A657E8905A9CD1C00E727F8;
-			remoteInfo = MushPie;
-		};
-		7A8FBB5507F4543100BAAFBE = {
-			isa = PBXTargetDependency;
-			target = 7A657E8905A9CD1C00E727F8;
-			targetProxy = 7A8FBB5407F4543100BAAFBE;
-		};
 		7A8FBC9707F4566700BAAFBE = {
 			fileRef = 7A657EE905A9CD1C00E727F8;
 			isa = PBXBuildFile;
@@ -14791,6 +14791,8 @@
 				7AAE6CD707AFC4250085C60F,
 			);
 			buildRules = (
+				7A632DF8081704D300637D49,
+				7A632DF7081704CD00637D49,
 			);
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -14804,8 +14806,8 @@
 			};
 			dependencies = (
 				7AAE6BAD07AFC4250085C60F,
-				7A8FBB5507F4543100BAAFBE,
 				7AAE6BAE07AFC4250085C60F,
+				7A632D420816D43D00637D49,
 			);
 			isa = PBXNativeTarget;
 			name = TesseractTrainer;
@@ -15939,20 +15941,9 @@
 		7AAE6C5907AFC4250085C60F = {
 			buildActionMask = 2147483647;
 			files = (
-				7AAE6C5A07AFC4250085C60F,
-				7A5BE75D07FB56B000306E18,
-				7A5BE75E07FB56B000306E18,
-				7A5BE75F07FB56B000306E18,
-				7A5BE76007FB56B000306E18,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AAE6C5A07AFC4250085C60F = {
-			fileRef = 7A62B8EB05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		7AAE6C5C07AFC4250085C60F = {
 			buildActionMask = 2147483647;
@@ -16685,6 +16676,7 @@
 			files = (
 				7AAE6CD307AFC4250085C60F,
 				7AAE6CD407AFC4250085C60F,
+				7A632D4D0816D5EC00637D49,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

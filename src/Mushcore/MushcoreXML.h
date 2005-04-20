@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } vVslL/TgxkMLTD73bl9ejA
 /*
- * $Id: MushcoreXML.h,v 1.6 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreXML.h,v 1.7 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.7  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.6  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -91,6 +94,8 @@
 
 #include "MushcoreStandard.h"
 
+#ifdef MUSHCORE_USE_EXPAT
+
 // Interface to XML parser 
 extern "C"
 {
@@ -104,6 +109,8 @@ extern "C"
 #endif
 #endif
 }
+
+#endif
 
 #include "MushcoreScalar.h"
 
@@ -142,11 +149,17 @@ private:
     void NewHandler(MushcoreXMLHandler& inHandler);
     static void StartElementHandler(void *inUserData, const char *inName, const char **inAttribs);
     static void EndElementHandler(void *inUserData, const char *inName);
+#ifdef MUSHCORE_USE_EXPAT
     static void CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen);
+#else
+    static void CharacterDataHandler(void *inUserData, const char *inData, int inLen);
+#endif    
 
     MushcoreXMLHandler *m_currentHandler;
     std::stack<MushcoreXMLHandler *> m_handlers;
+#ifdef MUSHCORE_USE_EXPAT
     XML_Parser m_parser;
+#endif
     std::stack< std::map<std::string, std::string> > m_attribStack;
     std::stack<std::string> m_dataStack;
     std::stack<std::string> m_tagStack;
