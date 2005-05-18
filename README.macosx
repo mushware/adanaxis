@@ -1,10 +1,23 @@
 README for MacOS X
 
+Building from source on Mac OS X 10.4
+=====================================
+
+Use
+
+sudo gcc_select 3.3
+
+before compilation.  System can be returned to the default setting using
+
+sudo gcc_select 4.0
+
+Otherwise as per 10.3 below.
+
 Building from source on Mac OS X 10.3
 =====================================
 
-These instructions are based on building the ic2 source on a MacOS X 10.3
-installation.
+These instructions are based on building the Mushware source tree on a MacOS X
+10.3 installation.
 
 Install the Developer Tools.
 
@@ -39,13 +52,13 @@ reversed using:
 
 sudo gcc_select 3
 
-Download the files ic2-src-0_0_4.tar.gz and ic2-data-0_0_4.tar.gz (or
-whichever version you choose to build) into your home directory.  Open
+Download the files <app name>-src-0_0_4.tar.gz and <app name>-data-0_0_4.tar.gz
+(or whichever version you choose to build) into your home directory.  Open
 a terminal (Applications->Utilities->Terminal).
 
-tar xvzf ic2-src-0_0_4.tar.gz
-cd ic2-0.0.4
-tar xvzf ../ic2-data-0_0_4.tar.gz
+tar xvzf <app name>-src-0_0_4.tar.gz
+cd <app name>-0.0.4
+tar xvzf ../<app name>-data-0_0_4.tar.gz
 ./configure
 
 Configure will complain about the absence of various libraries.  The

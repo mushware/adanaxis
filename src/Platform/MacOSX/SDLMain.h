@@ -15,9 +15,6 @@
  *
  ****************************************************************************/
 //%Header } VBikQRpTax22IfHIUTLYLw
-/* WARNING:  This file was automatically generated!
- * Original: ./src/main/macosx/SDLMain.h
- */
 /*   SDLMain.m - main entry point for our Cocoa-ized SDL app
        Initial Version: Darrell Walisser <dwaliss1@purdue.edu>
        Non-NIB-Code & other changes: Max Horn <max@quendi.de>
