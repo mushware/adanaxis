@@ -10,10 +10,12 @@
 ##############################################################################
 
 #
-# $Id$
-# $Log$
+# $Id: MakeRelease.sh,v 1.6 2002/10/22 22:36:17 southa Exp $
+# $Log: MakeRelease.sh,v $
+# Revision 1.6  2002/10/22 22:36:17  southa
+# Use SDL_INIT_NOPARACHUTE to avoid hang exit on MacOS 10.1.5
+#
 
-cd ic2data
 echo Entering directory `pwd`
 DEST=../release
 echo Removing $DEST

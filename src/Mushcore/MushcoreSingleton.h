@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } 0v/Ao4e1eUt3CGt7KXHrzg
 /*
- * $Id: MushcoreSingleton.h,v 1.6 2003/09/17 19:40:36 southa Exp $
+ * $Id: MushcoreSingleton.h,v 1.7 2004/01/02 21:13:13 southa Exp $
  * $Log: MushcoreSingleton.h,v $
+ * Revision 1.7  2004/01/02 21:13:13  southa
+ * Source conditioning
+ *
  * Revision 1.6  2003/09/17 19:40:36  southa
  * Source conditioning upgrades
  *
@@ -49,11 +52,11 @@ template<class SingletonType>
 inline SingletonType&
 MushcoreSingleton<SingletonType>::Sgl(void)
 {
-    if (!SingletonExists())
+    if (!MushcoreAbstractSingleton<SingletonType>::SingletonExists())
     {
         SingletonUncheckedNew();
     }
-    return *SingletonPtrGet();
+    return *MushcoreAbstractSingleton<SingletonType>::SingletonPtrGet();
 }
 
 

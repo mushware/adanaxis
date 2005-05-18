@@ -17,8 +17,11 @@
 //%Header } 9n1OY34YpOaTjZkf4akFng
 
 /*
- * $Id: MushcoreData.h,v 1.21 2005/03/25 22:04:50 southa Exp $
+ * $Id: MushcoreData.h,v 1.22 2005/04/11 23:31:41 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.22  2005/04/11 23:31:41  southa
+ * Startup and registration screen
+ *
  * Revision 1.21  2005/03/25 22:04:50  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -347,7 +350,7 @@ MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut)
     tMapIterator endIter = m_data.end();
     for (tMapIterator p = m_data.begin(); p != endIter; ++p)
     {
-        ioOut << p->first << ": " << *p->second << endl;
+        ioOut << p->first << ": " << *p->second << std::endl;
     }
 }
 

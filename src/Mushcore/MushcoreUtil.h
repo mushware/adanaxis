@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } XWTplRc9rgj8oYPVlTvtrA
 /*
- * $Id: MushcoreUtil.h,v 1.15 2005/03/13 00:34:48 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.16 2005/04/11 23:31:41 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.16  2005/04/11 23:31:41  southa
+ * Startup and registration screen
+ *
  * Revision 1.15  2005/03/13 00:34:48  southa
  * Build fixes, key support and stereo
  *
@@ -133,15 +136,17 @@ MushcoreUtil::ArrayToVector(const T inArray[], Mushware::U32 inSize)
     return valueVec;
 }
 
+#if 0
 template<class T>
 inline void
 MushcoreUtil::VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue)
 {
     for (Mushware::U32 i=0; i<inSize; ++i)
     {
-        inArray[i] = (i < inVec.size())?inVec[i]:inPadValue;
+        outArray[i] = (i < inVec.size())?inVec[i]:inPadValue;
     }
 }
+#endif
 
 //%includeGuardEnd {
 #endif

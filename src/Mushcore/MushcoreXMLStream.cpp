@@ -12,8 +12,11 @@
  ****************************************************************************/
 //%Header } Yvu2AkEkXU8UsszgMDJkfw
 /*
- * $Id: MushcoreXMLStream.cpp,v 1.4 2003/10/01 23:18:28 southa Exp $
+ * $Id: MushcoreXMLStream.cpp,v 1.5 2004/01/02 21:13:14 southa Exp $
  * $Log: MushcoreXMLStream.cpp,v $
+ * Revision 1.5  2004/01/02 21:13:14  southa
+ * Source conditioning
+ *
  * Revision 1.4  2003/10/01 23:18:28  southa
  * XML object handling
  *
@@ -27,7 +30,6 @@
  * Stream autogenerators
  *
  */
-
 /*
  * XML data structure
  *

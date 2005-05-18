@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } dbQP5VPhKgJFEOkJOdx7gw
 /*
- * $Id: MushcoreHistory.h,v 1.5 2003/09/17 19:40:35 southa Exp $
+ * $Id: MushcoreHistory.h,v 1.6 2004/01/02 21:13:12 southa Exp $
  * $Log: MushcoreHistory.h,v $
+ * Revision 1.6  2004/01/02 21:13:12  southa
+ * Source conditioning
+ *
  * Revision 1.5  2003/09/17 19:40:35  southa
  * Source conditioning upgrades
  *
@@ -48,6 +51,7 @@
  */
 
 #include "MushcoreStandard.h"
+#include "MushcoreFail.h"
 
 template<class IndexType, class StoreType> class MushcoreHistory;
 

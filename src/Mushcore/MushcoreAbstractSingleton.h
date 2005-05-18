@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } QTzwtSxdj3zY53ISeRBwWQ
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.6 2003/09/17 19:40:34 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.7 2004/01/02 21:13:11 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.7  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.6  2003/09/17 19:40:34  southa
  * Source conditioning upgrades
  *
@@ -51,8 +54,8 @@
 #endif
 
 #define MUSHCORE_SINGLETON_INSTANCE(SingletonType) \
-SingletonType *MushcoreAbstractSingleton< SingletonType >::m_pSingleton=NULL; \
-MushcoreAbstractSingleton< SingletonType >::SingletonDestroyer MushcoreAbstractSingleton< SingletonType >::m_singletonDestroyer
+template<> SingletonType *MushcoreAbstractSingleton< SingletonType >::m_pSingleton=NULL; \
+template<> MushcoreAbstractSingleton< SingletonType >::SingletonDestroyer MushcoreAbstractSingleton< SingletonType >::m_singletonDestroyer
 
 template<class SingletonType> class MushcoreAbstractSingleton
 {

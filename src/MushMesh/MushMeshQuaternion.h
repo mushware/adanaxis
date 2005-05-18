@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } rIcABVZ9p6NF41BMv39r2Q
 /*
- * $Id: MushMeshQuaternion.h,v 1.7 2005/02/27 01:01:31 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.8 2005/03/08 01:24:09 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.8  2005/03/08 01:24:09  southa
+ * Quaternion slerp between orientations
+ *
  * Revision 1.7  2005/02/27 01:01:31  southa
  * Eigenplane markers
  *
@@ -55,10 +58,10 @@ public:
     explicit MushMeshQuaternion(const MushMeshVector<T, 4>& inVec);
     MushMeshQuaternion(const T& in0, const T& in1, const T& in2, const T& in3)
     {
-        m_value[0] = in0;
-        m_value[1] = in1;
-        m_value[2] = in2;
-        m_value[3] = in3;
+        this->m_value[0] = in0;
+        this->m_value[1] = in1;
+        this->m_value[2] = in2;
+        this->m_value[3] = in3;
     }
     
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
@@ -76,10 +79,10 @@ template <class T>
 inline
 MushMeshQuaternion<T>::MushMeshQuaternion(const MushMeshVector<T, 4>& inVec)
 {
-    m_value[0] = inVec.Get(0);
-    m_value[1] = inVec.Get(1);
-    m_value[2] = inVec.Get(2);
-    m_value[3] = inVec.Get(3);
+    this->m_value[0] = inVec.Get(0);
+    this->m_value[1] = inVec.Get(1);
+    this->m_value[2] = inVec.Get(2);
+    this->m_value[3] = inVec.Get(3);
 }
 
 template <class T>
@@ -90,36 +93,36 @@ MushMeshQuaternion<T>::PreMultiplyBy(const MushMeshQuaternion<T>& inQuat)
     T b = inQuat.Y();
     T c = inQuat.Z();
     T d = inQuat.W();
-    T e = m_value[0];
-    T f = m_value[1];
-    T g = m_value[2];
-    T h = m_value[3];
+    T e = this->m_value[0];
+    T f = this->m_value[1];
+    T g = this->m_value[2];
+    T h = this->m_value[3];
     
     // Apply expansion of (a+bi+cj+dk)(e+fi+gj+hk)
     
-    m_value[0] = a*e - b*f - c*g - d*h;
-    m_value[1] = a*f + b*e + c*h - d*g;
-    m_value[2] = a*g + c*e - b*h + d*f;
-    m_value[3] = a*h + d*e + b*g - c*f;
+    this->m_value[0] = a*e - b*f - c*g - d*h;
+    this->m_value[1] = a*f + b*e + c*h - d*g;
+    this->m_value[2] = a*g + c*e - b*h + d*f;
+    this->m_value[3] = a*h + d*e + b*g - c*f;
 }
 
 template <class T>
 inline void
 MushMeshQuaternion<T>::PostMultiplyBy(const MushMeshQuaternion<T>& inQuat)
 {
-    T a = m_value[0];
-    T b = m_value[1];
-    T c = m_value[2];
-    T d = m_value[3];
+    T a = this->m_value[0];
+    T b = this->m_value[1];
+    T c = this->m_value[2];
+    T d = this->m_value[3];
     T e = inQuat.X();
     T f = inQuat.Y();
     T g = inQuat.Z();
     T h = inQuat.W();
     
-    m_value[0] = a*e - b*f - c*g - d*h;
-    m_value[1] = a*f + b*e + c*h - d*g;
-    m_value[2] = a*g + c*e - b*h + d*f;
-    m_value[3] = a*h + d*e + b*g - c*f;
+    this->m_value[0] = a*e - b*f - c*g - d*h;
+    this->m_value[1] = a*f + b*e + c*h - d*g;
+    this->m_value[2] = a*g + c*e - b*h + d*f;
+    this->m_value[3] = a*h + d*e + b*g - c*f;
 }
 
 
@@ -127,10 +130,10 @@ template <class T>
 inline void
 MushMeshQuaternion<T>::PreMultiplyVector(tBase& ioVec) const
 {
-    T a = m_value[0];
-    T b = m_value[1];
-    T c = m_value[2];
-    T d = m_value[3];
+    T a = this->m_value[0];
+    T b = this->m_value[1];
+    T c = this->m_value[2];
+    T d = this->m_value[3];
     T e = ioVec.X();
     T f = ioVec.Y();
     T g = ioVec.Z();
@@ -150,10 +153,10 @@ MushMeshQuaternion<T>::PostMultiplyVector(tBase& ioVec) const
     T b = ioVec.Y();
     T c = ioVec.Z();
     T d = ioVec.W();
-    T e = m_value[0];
-    T f = m_value[1];
-    T g = m_value[2];
-    T h = m_value[3];
+    T e = this->m_value[0];
+    T f = this->m_value[1];
+    T g = this->m_value[2];
+    T h = this->m_value[3];
     
     // Apply expansion of (a+bi+cj+dk)(e+fi+gj+hk)
     
@@ -167,7 +170,7 @@ template <class T>
 inline MushMeshQuaternion<T>
 MushMeshQuaternion<T>::ConjugateGet(void) const
 {
-    return MushMeshQuaternion<T>(m_value[0], -m_value[1], -m_value[2], -m_value[3]);
+    return MushMeshQuaternion<T>(this->m_value[0], -this->m_value[1], -this->m_value[2], -this->m_value[3]);
 }
 
 // Free operators

@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } yU9uRDetmvJpxBGLqf6t6A
 /*
- * $Id: MushMeshWorkspaceBased.h,v 1.2 2003/10/19 15:59:34 southa Exp $
+ * $Id: MushMeshWorkspaceBased.h,v 1.3 2004/01/02 21:13:11 southa Exp $
  * $Log: MushMeshWorkspaceBased.h,v $
+ * Revision 1.3  2004/01/02 21:13:11  southa
+ * Source conditioning
+ *
  * Revision 1.2  2003/10/19 15:59:34  southa
  * Edge manipulation
  *
@@ -48,7 +51,7 @@ template<class T>
 inline void
 MushMeshWorkspaceBased<T>::BaseToCurrentCopy(void)
 {
-    CurrentWRefGet() = m_base;
+    this->CurrentWRefGet() = m_base;
 }
 
 template<class T>

@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.1 2005/03/13 00:34:49 southa Exp $
+# $Id: tesseracttrainer.def,v 1.2 2005/03/25 19:13:51 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.2  2005/03/25 19:13:51  southa
+# GameDialogue work
+#
 # Revision 1.1  2005/03/13 00:34:49  southa
 # Build fixes, key support and stereo
 #
@@ -14,6 +17,7 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 
 Subst: MUSH_APP_NAME 'tesseracttrainer'
 Use: targets/sdl_app.configure.in as configure.in
+Use: targets/macosx.MakeRelease.sh as macosx/MakeRelease.sh
 
 Create: src/Makefile.am
 

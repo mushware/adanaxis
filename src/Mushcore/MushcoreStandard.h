@@ -16,8 +16,11 @@
  ****************************************************************************/
 //%Header } VEQuSkwV/fh55K/iqbIbTA
 /*
- * $Id: MushcoreStandard.h,v 1.19 2005/01/27 21:00:39 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.20 2005/03/30 23:33:57 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.20  2005/03/30 23:33:57  southa
+ * win32 and gcc 2.95 fixes
+ *
  * Revision 1.19  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -194,6 +197,11 @@
  * so use the mimic instead
  */
 #define MUSHCORE_MIMIC_VALARRAY 1
+#endif
+
+#if defined(__APPLE__) || defined(MACOSX)
+#undef HAVE_SSTREAM_NOT_IN_IOSFWD
+#define HAVE_SSTREAM_NOT_IN_IOSFWD
 #endif
 
 #include <iosfwd>
