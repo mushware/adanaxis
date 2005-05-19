@@ -1,0 +1,48 @@
+Please report bugs or request support at http://www.mushware.com/
+
+Platform-specific details can be found in README.linux, README.win32 and
+README.macosx files.
+
+To compile and install MUSH_APP_NAME from this distribution:
+
+Unix/POSIX/Linux/FreeBSD
+========================
+
+Download and unpack the source and data files and build thus:
+
+tar xvzf MUSH_APP_PACKAGE-MUSH_APP_VERSION.tar.gz
+cd MUSH_APP_PACKAGE-MUSH_APP_VERSION
+tar xvzf MUSH_APP_PACKAGE-MUSH_APP_VERSION.tar.gz
+./configure
+# (spend a few days getting the libraries that configure asks for)
+make
+make install
+./MUSH_APP_PACKAGE
+
+MacOS X
+=======
+
+Install using the MacOS X installer from http://www.mushware.com/, or:
+
+Compile using the project builder file macosx/project/project.xcode.
+To build the release, use
+
+make mac-release
+
+and follow the instructions.  This will require a checkout of the
+macosxlibs module from the CVS server or a set of your own libraries.
+
+win32
+=====
+
+Install using the win32 installer from http://www.mushware.com/, or:
+
+Build using cygwin/mingw32.  Both cygwin and mingw32 should be installed,
+with mingw32 paths appearing before cygwin so that the mingw32 compiler
+is used.  Then build as for POSIX above.
+
+To build the installer, ensure that nullsoft.com's makensis.exe is visible
+in your path.  Place the required DLLs in win32/win32libs or get them via
+CVS.  Then use
+
+make win32-release

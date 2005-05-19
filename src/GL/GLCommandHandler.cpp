@@ -3,17 +3,27 @@
  *
  * File: src/GL/GLCommandHandler.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Vbvn2bY5HmOscUTibPKIOQ
+//%Header } SaYKn9j1C69rZyNuDs/EKA
 /*
- * $Id: GLCommandHandler.cpp,v 1.34 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.35 2004/09/27 22:42:08 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
+ * Revision 1.35  2004/09/27 22:42:08  southa
+ * MSVC compilation fixes
+ *
  * Revision 1.34  2004/01/06 20:46:49  southa
  * Build fixes
  *

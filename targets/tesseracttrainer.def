@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.2 2005/03/25 19:13:51 southa Exp $
+# $Id: tesseracttrainer.def,v 1.3 2005/05/18 15:53:27 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.3  2005/05/18 15:53:27  southa
+# Made buildable using gcc 4.0/Mac OS X 10.4
+#
 # Revision 1.2  2005/03/25 19:13:51  southa
 # GameDialogue work
 #
@@ -11,13 +14,21 @@
 
 Name: TesseractTrainer
 
-
-Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/app.acinclude.m4 as acinclude.m4
 
-Subst: MUSH_APP_NAME 'tesseracttrainer'
+Subst: MUSH_APP_PACKAGE 'tesseracttrainer'
+Subst: MUSH_APP_NAME 'TesseractTrainer'
+Subst: MUSH_APP_MAJOR_VERSION '0'
+Subst: MUSH_APP_MINOR_VERSION '1'
+Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
+Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
+Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
+Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
-Use: targets/macosx.MakeRelease.sh as macosx/MakeRelease.sh
+Use: targets/app.COPYING as COPYING
+Use: targets/app.INSTALL as INSTALL
+Use: targets/tesseracttrainer.CHANGELOG as CHANGELOG
 
 Create: src/Makefile.am
 

@@ -7,17 +7,27 @@
  *
  * File: src/GL/GLRender.h
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nUcp9FzfP81gpVR3OJFy4w
+//%Header } mGqMZ/bPTRv9fMoBaL//fQ
 /*
- * $Id: GLRender.h,v 1.10 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLRender.h,v 1.11 2004/01/10 20:29:34 southa Exp $
  * $Log: GLRender.h,v $
+ * Revision 1.11  2004/01/10 20:29:34  southa
+ * Form and rendering work
+ *
  * Revision 1.10  2004/01/06 20:46:49  southa
  * Build fixes
  *

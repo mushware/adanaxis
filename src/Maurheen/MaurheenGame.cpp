@@ -3,17 +3,27 @@
  *
  * File: src/Maurheen/MaurheenGame.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1UTcekI/TccaPfXbPReOYw
+//%Header } ZbqDA500q75IjTv/A4Bk6Q
 /*
- * $Id: MaurheenGame.cpp,v 1.11 2005/02/10 12:34:02 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.12 2005/04/19 23:25:40 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.12  2005/04/19 23:25:40  southa
+ * Mode switching and recognition
+ *
  * Revision 1.11  2005/02/10 12:34:02  southa
  * Template fixes
  *

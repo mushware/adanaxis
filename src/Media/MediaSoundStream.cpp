@@ -3,17 +3,27 @@
  *
  * File: src/Media/MediaSoundStream.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qJV1bWLIlj6HZey98U23fQ
+//%Header } xlCRhuAoTMrT0DwUtH9KGQ
 /*
- * $Id: MediaSoundStream.cpp,v 1.18 2004/01/02 21:13:10 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.19 2005/04/19 23:25:41 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.19  2005/04/19 23:25:41  southa
+ * Mode switching and recognition
+ *
  * Revision 1.18  2004/01/02 21:13:10  southa
  * Source conditioning
  *

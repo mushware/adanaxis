@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: tesseracttrainer.Makefile.am,v 1.1 2005/03/30 20:57:52 southa Exp $
-# $Log: tesseracttrainer.Makefile.am,v $
+# $Id$
+# $Log$
+# Revision 1.2  2005/03/30 23:33:58  southa
+# win32 and gcc 2.95 fixes
+#
 # Revision 1.1  2005/03/30 20:57:52  southa
 # Created
 #
@@ -19,11 +22,11 @@
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
 DIST_SUBDIRS = @TOP_SUBDIRS@
-RUNFILE=${DESTDIR}${bindir}/tesseracttrainer
-GZIPFILE=tesseracttrainer-@APP_VERSION@.tar.gz
-BZIPFILE=tesseracttrainer-@APP_VERSION@.tar.bz2
+RUNFILE=${DESTDIR}${bindir}/MUSH_APP_PACKAGE
+GZIPFILE=MUSH_APP_PACKAGE-@APP_VERSION@.tar.gz
+BZIPFILE=MUSH_APP_PACKAGE-@APP_VERSION@.tar.bz2
 
-DATAMAKEFILE=tesseracttrainerdata/Makefile.am
+DATAMAKEFILE=MUSH_APP_PACKAGEdata/Makefile.am
 
 all:prebuild-script
 
@@ -33,8 +36,8 @@ prebuild-script:
 release: install-strip
 	(cd $(top_srcdir);$(SHELL) MakeRelease.sh)
 
-mac-release: release
-	(cd $(top_srcdir);$(SHELL) macosx/MakeInstaller.sh @APP_UNDERSCORE_VERSION@)
+mac-release:
+	(cd $(top_srcdir);$(SHELL) macosx/MakeRelease.sh 'MUSH_APP_NAME' '@APP_UNDERSCORE_VERSION@' 'MUSH_MACOSX_BUILD_PATH' 'MUSH_DATA_PATH')
 
 win32-release: release
 	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh @APP_UNDERSCORE_VERSION@)
@@ -48,20 +51,20 @@ makefiles-withoutdata:
 	mv -f tempMakefile $(DATAMAKEFILE)
 
 x11-release $(GZIPFILE): makefiles-withoutdata dist
-	rm -f tesseracttrainer-src-@APP_UNDERSCORE_VERSION@.tar.gz
-	rm -f tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar.gz
-	cp -p COPYING tesseracttrainerdata/COPYING
-	tar cpvf tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar tesseracttrainerdata/COPYING
-	rm tesseracttrainerdata/COPYING
-	find tesseracttrainerdata -path './data/system/tesseracttrainer*' -prune -o \
+	rm -f MUSH_APP_PACKAGE-src-@APP_UNDERSCORE_VERSION@.tar.gz
+	rm -f MUSH_APP_PACKAGE-data-@APP_UNDERSCORE_VERSION@.tar.gz
+	cp -p COPYING MUSH_APP_PACKAGEdata/COPYING
+	tar cpvf MUSH_APP_PACKAGE-data-@APP_UNDERSCORE_VERSION@.tar MUSH_APP_PACKAGEdata/COPYING
+	rm MUSH_APP_PACKAGEdata/COPYING
+	find MUSH_APP_PACKAGEdata -path './data/system/MUSH_APP_PACKAGE*' -prune -o \
            -path '*CVS' -prune -o \
-           -name 'tesseracttrainer.exe' -prune -o \
-           -name 'tesseracttrainer' -prune -o \
+           -name 'MUSH_APP_PACKAGE.exe' -prune -o \
+           -name 'MUSH_APP_PACKAGE' -prune -o \
            -name '.*' -prune -o \
            -type f -name '*' \
-           -exec tar rpvf tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar {} \;
-	gzip tesseracttrainer-data-@APP_UNDERSCORE_VERSION@.tar
-	cp -p tesseracttrainer-@APP_VERSION@.tar.gz tesseracttrainer-src-@APP_UNDERSCORE_VERSION@.tar.gz
+           -exec tar rpvf MUSH_APP_PACKAGE-data-@APP_UNDERSCORE_VERSION@.tar {} \;
+	gzip MUSH_APP_PACKAGE-data-@APP_UNDERSCORE_VERSION@.tar
+	cp -p MUSH_APP_PACKAGE-@APP_VERSION@.tar.gz MUSH_APP_PACKAGE-src-@APP_UNDERSCORE_VERSION@.tar.gz
 	$(MAKE) makefiles-withdata dist
 
 $(BZIPFILE):$(GZIPFILE)
@@ -73,8 +76,8 @@ rpm:
 	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
 	@exit 1
 
-%-rpm:tesseracttrainer.spec.%
-	cp -f $< tesseracttrainer.spec
+%-rpm:MUSH_APP_PACKAGE.spec.%
+	cp -f $< MUSH_APP_PACKAGE.spec
 	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
@@ -82,7 +85,7 @@ install-exec-hook:
 	rm -f $(RUNFILE)
 	echo #!/bin/sh > $(RUNFILE)
 	echo cd $(DESTDIR)$(pkgdatadir)/system >> $(RUNFILE)
-	echo $(DESTDIR)$(bindir)/tesseracttrainerbinary >> $(RUNFILE)
+	echo $(DESTDIR)$(bindir)/MUSH_APP_PACKAGEbinary >> $(RUNFILE)
 	chmod 0755 $(RUNFILE)
 
 uninstall-hook:

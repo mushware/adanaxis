@@ -14849,6 +14849,7 @@
 				7A49035D083B9E15000775B1,
 			);
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				DSTROOT = "";
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -20678,28 +20679,28 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = text;
-			name = ChangeLog;
-			path = ../../ChangeLog;
-			refType = 4;
-			sourceTree = "<group>";
+			name = tesseracttrainer.ChangeLog;
+			path = "/Users/southa/core-app/targets/tesseracttrainer.ChangeLog";
+			refType = 0;
+			sourceTree = "<absolute>";
 		};
 		7ACC30A505AB116F001A0873 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = text;
-			name = COPYING;
-			path = ../../COPYING;
-			refType = 4;
-			sourceTree = "<group>";
+			name = app.COPYING;
+			path = "/Users/southa/core-app/targets/app.COPYING";
+			refType = 0;
+			sourceTree = "<absolute>";
 		};
 		7ACC30A605AB116F001A0873 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = text;
-			name = INSTALL;
-			path = ../../INSTALL;
-			refType = 4;
-			sourceTree = "<group>";
+			name = app.INSTALL;
+			path = "/Users/southa/core-app/targets/app.INSTALL";
+			refType = 0;
+			sourceTree = "<absolute>";
 		};
 		7ACC30A705AB116F001A0873 = {
 			fileEncoding = 30;
@@ -20769,6 +20770,8 @@
 				7ABCE97005AB463800A00CC6,
 				7ABCE94E05AB45CE00A00CC6,
 				7A6252EE05AC1A8D006A2161,
+				7AE2756D083C88B200F22CA3,
+				7AE27570083C892C00F22CA3,
 			);
 			isa = PBXGroup;
 			name = targets;
@@ -21095,6 +21098,22 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		7AE2756D083C88B200F22CA3 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = tesseracttrainer.def;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AE27570083C892C00F22CA3 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = tesseracttrainer.Makefile.am;
+			refType = 4;
+			sourceTree = "<group>";
 		};
 		7AE6BE2905A9F8B20006F26B = {
 			buildActionMask = 2147483647;

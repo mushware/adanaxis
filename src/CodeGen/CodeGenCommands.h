@@ -7,17 +7,21 @@
  *
  * File: src/CodeGen/CodeGenCommands.h
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Copyright: Andy Southgate 2002-2005
+ *
+ * All rights reserved.  Distribution prohibited.  For information, please
+ * contact the author via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } V31ae4LqVVZQrXmmvogKBQ
+//%Header } jKxDVx2UzgPAldsgxtMHUw
 /*
- * $Id$
- * $Log$
+ * $Id: CodeGenCommands.h,v 1.1 2005/04/11 23:31:40 southa Exp $
+ * $Log: CodeGenCommands.h,v $
+ * Revision 1.1  2005/04/11 23:31:40  southa
+ * Startup and registration screen
+ *
  */
 
 #include "mushMushcore.h"

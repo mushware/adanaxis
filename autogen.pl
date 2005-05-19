@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.4 2004/01/07 13:22:47 southa Exp $
+# $Id: autogen.pl,v 1.5 2005/03/13 00:34:44 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.5  2005/03/13 00:34:44  southa
+# Build fixes, key support and stereo
+#
 # Revision 1.4  2004/01/07 13:22:47  southa
 # Snapshot fixes
 #
@@ -88,6 +91,16 @@ sub FilenamesGet($$$$)
     print "Leaving directory $dir\n" if ($gVerbose);
 }
 
+sub Substitute($)
+{
+    my ($line) = @_;
+    foreach my $varExp (keys %gVars)
+    {
+        $line =~ s/$varExp/$gVars{$varExp}/;
+    }
+    return $line;
+}
+
 sub Use($$)
 {
     my ($source, $target) = @_;
@@ -97,12 +110,7 @@ sub Use($$)
     
     while (<INUSE>)
     {
-        my $line =  $_;
-        foreach my $varExp (keys %gVars)
-        {
-            $line =~ s/$varExp/$gVars{$varExp}/;
-        }
-        print OUTUSE $line;
+        print OUTUSE Substitute($_);
     }
 }
 
@@ -388,8 +396,8 @@ sub Process($)
         {
             if ($command =~ /Subst:\s*(\w+)\s+'([^']*)'$/)
             {   
-                $gVars{$1} = $2;
-                print "Subst varaible $1 = $2\n" if $gVerbose;
+                $gVars{$1} = Substitute($2);
+                print "Subst varaible $1 = $gVars{$1}\n" if $gVerbose;
             }
             else
             {

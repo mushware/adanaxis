@@ -1,0 +1,49 @@
+Please report bugs or request support at
+http://sourceforge.net/projects/ic2/
+
+Platform-specific details can be found in README.linux and README.macosx files.
+
+To compile and install Infernal Contractor II from this distribution:
+
+Unix/POSIX/Linux/FreeBSD
+========================
+
+Download and unpack the source and data files and build thus:
+
+tar xvzf ic2-src-0_1_2.tar.gz
+cd ic2-0.1.2
+tar xvzf ic2-data-0_1_2.tar.gz
+./configure
+# (spend a few days getting the libraries that configure asks for)
+make
+make install
+./ic2
+
+MacOS X
+=======
+
+Install using the MacOS X installer from http://www.mushware.com, or:
+
+Compile using the project builder file core-app.pbproj.  To build the
+installer, use
+
+make mac-release
+
+and follow the instructions.  This will require a checkout of the
+macosxlibs module from the CVS server or a set of your own libraries.
+
+win32
+=====
+
+Install using the win32 installer from http://www.mushware.com, or:
+
+Build using cygwin/mingw32.  Both cygwin and mingw32 should be installed,
+with mingw32 paths appearing before cygwin so that the mingw32 compiler
+is used.  Then build as for POSIX above.
+
+To build the installer, ensure that nullsoft.com's makensis.exe is visible
+in your path.  Place the required DLLs in win32/win32libs or get them via
+CVS.  Then use
+
+make win32-release
+

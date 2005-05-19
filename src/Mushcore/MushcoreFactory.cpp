@@ -3,17 +3,27 @@
  *
  * File: src/Mushcore/MushcoreFactory.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5yrDa+Xrdt7jgCyT3G1cRw
+//%Header } x2zaHORqMzaHy+z0sz5CIg
 /*
- * $Id: MushcoreFactory.cpp,v 1.4 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushcoreFactory.cpp,v 1.5 2004/01/08 16:06:11 southa Exp $
  * $Log: MushcoreFactory.cpp,v $
+ * Revision 1.5  2004/01/08 16:06:11  southa
+ * XML fixes
+ *
  * Revision 1.4  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *

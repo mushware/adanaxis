@@ -7,17 +7,27 @@
  *
  * File: src/TestMushMesh/TestMushMeshBox.h
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } y/xKb7oW7RyI23COR8XAQA
+//%Header } xe9Ia8A4FYy1X0VBjTHAug
 /*
- * $Id: TestMushMeshBox.h,v 1.1 2003/10/17 12:27:20 southa Exp $
+ * $Id: TestMushMeshBox.h,v 1.2 2004/01/02 21:13:17 southa Exp $
  * $Log: TestMushMeshBox.h,v $
+ * Revision 1.2  2004/01/02 21:13:17  southa
+ * Source conditioning
+ *
  * Revision 1.1  2003/10/17 12:27:20  southa
  * Line end fixes and more mesh work
  *

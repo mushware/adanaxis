@@ -3,17 +3,27 @@
  *
  * File: src/Game/GameConfig.cpp
  *
- * This file contains original work by Andy Southgate.  Contact details can be
- * found at http://www.mushware.com/.  This file was placed in the Public
- * Domain by Andy Southgate and Mushware Limited in 2002-2004.
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } aK/iFeTBrNogp26MaxgKxg
+//%Header } eOz11zG8+D0599nfvP2Npg
 /*
- * $Id: GameConfig.cpp,v 1.33 2004/09/27 22:42:08 southa Exp $
+ * $Id: GameConfig.cpp,v 1.34 2005/03/13 00:34:46 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.34  2005/03/13 00:34:46  southa
+ * Build fixes, key support and stereo
+ *
  * Revision 1.33  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *
