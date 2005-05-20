@@ -169,7 +169,7 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 138282909;
+			PBXPerProjectTemplateStateSaveDate = 138292557;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -2353,8 +2353,8 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "503 295 723 466 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 138282909;
-			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <40b047970756463747275616d618308e481004484848e0e435d457471626c656142727169700484870e435142727169700484880e435f426a656364700584810960068>;
+			PBXWorkspaceStateSaveDate = 138292557;
+			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <040b747970656473747265616d8103e88401408484840e4e534d757461626c654172726179008484074e534172726179008484084e534f626a65637400858401690086>;
 		};
 		perUserProjectItems = {
 			7A03DDE7083DE51900EC5296 = 7A03DDE7083DE51900EC5296;
@@ -2677,11 +2677,6 @@
 		path = "/Users/southa/core-app/macosx/MakeRelease.sh";
 		refType = 0;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1098, 1105}}";
-			sepNavSelRange = "{1510, 0}";
-			sepNavVisRect = "{{0, 337}, {1098, 442}}";
-		};
 	};
 	7A0673B207B284E00067AA64 = {
 		uiCtxt = {
@@ -7924,6 +7919,7 @@
 	};
 	7AD7EC7A083E0E9600F30A02 = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.xml;
 		name = reg.xml;
 		path = /Users/southa/.tesseracttrainer/reg.xml;
 		refType = 0;

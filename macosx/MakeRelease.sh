@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.2 2005/05/20 10:26:24 southa Exp $
+# $Id: MakeRelease.sh,v 1.3 2005/05/20 13:18:59 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.3  2005/05/20 13:18:59  southa
+# Release work
+#
 # Revision 1.2  2005/05/20 10:26:24  southa
 # Release work
 #
@@ -58,7 +61,7 @@ cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
 cp "$name-src-$version.tar.gz" "$releasedir/system"
 
-ditto -rsrcFork "macosx/Mushware web site.webloc" "${releasedir}/Mushware web site.webloc"
+ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
 
 echo Fixing up file types
 find "${releaseDir}" -name '*.txt' -exec $SetFile -a E {} \;
