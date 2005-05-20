@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 5uxxs82jaFpMYF4+/fHOsg
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.17 2005/04/19 23:25:42 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.18 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.18  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.17  2005/04/19 23:25:42  southa
  * Mode switching and recognition
  *
@@ -131,7 +134,7 @@ PlatformVideoUtils::PlatformVideoUtils()
         
         std::ostringstream modeStrm;
         modeStrm << xSize << "x" << ySize;
-        m_modeDefs.push_back(GLModeDef(modeStrm.str(), xSize, ySize, 32, 0,  GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+        m_modeDefs.push_back(GLModeDef(modeStrm.str(), xSize, ySize, 32, 0,  GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     }
 }
 
@@ -201,65 +204,13 @@ PlatformVideoUtils::RenderModeInfo(U32 inNum) const
     glStr=GLString(modeDef.NameGet(), GLFontRef("font-mono1", 0.04), 0);
     glStr.Render();
     
-#if 0
-    gl.MoveTo(0,-0.05);
-    switch (modeDef.SyncGet())
-    {
-        case GLModeDef::kSyncHard:
-            glStr=GLString("Hard sync provides a stable display", GLFontRef("font-mono1", 0.025), 0);
-            glStr.Render();
-            glStr.TextSet("but sometimes with slower frame rates");
-            gl.MoveTo(0,-0.08);
-            glStr.Render();
-            break;
-
-        case GLModeDef::kSyncSoft:
-            glStr=GLString("Soft sync can provide better frame rates", GLFontRef("font-mono1", 0.025), 0);
-            glStr.Render();
-            glStr.TextSet("but with slight visual distortion");
-            gl.MoveTo(0,-0.08);
-            glStr.Render();
-            break;
-            
-        default:
-            break;
-    }
-#endif
     GLUtils::PopMatrix();
 }
 
 void
 PlatformVideoUtils::VBLWait(void)
 {
-    static bool enabled=true;
-    if (!enabled) return;
-    CGPoint point;
-    CGDisplayCount dispCount;
-    point.x=0;
-    point.y=0;
-    CGDirectDisplayID dispId;
-    if (CGGetDisplaysWithPoint(point, 1, &dispId, &dispCount) == kCGErrorSuccess)
-    {
-        if (dispCount == 1)
-        {
-            CGRect cgrect=CGDisplayBounds(dispId);
-            CGDisplayWaitForBeamPositionOutsideLines(dispId, 0,
-                                                     static_cast<CGBeamPosition>(cgrect.origin.y + cgrect.size.height - 1));
-            for (U32 i=0;; ++i)
-            {
-                if (CGDisplayBeamPosition(dispId) > cgrect.origin.y + cgrect.size.height - 1) break;
-                if (i > 1e6)
-                {
-                    cerr << "Waited too long for VBL.  Disabling" << endl;
-                    enabled=false;
-                    break;
-                }
-                // Possible detrimental effects with usleep
-                // usleep(100);
-            }
-            //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
-        }
-    }
+    // Removed
 }
 
 void
@@ -290,4 +241,5 @@ PlatformVideoUtils::ModeChangePrologue(void)
 void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
+    
 }

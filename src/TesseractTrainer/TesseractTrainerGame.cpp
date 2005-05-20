@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.14 2005/04/19 23:25:43 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.15 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.15  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.14  2005/04/19 23:25:43  southa
  * Mode switching and recognition
  *
@@ -112,7 +115,8 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
     
     if (gameAppHandler.LatchedKeyStateTake('4'))
     {
-        m_config.RenderFacePointsToggle();
+        ++m_config.RenderFacePointsWRef();
+        if (m_config.RenderFacePoints() == 4) m_config.RenderFacePointsSet(0);
     }
     
     if (gameAppHandler.LatchedKeyStateTake('5'))
@@ -344,7 +348,10 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
     glLineWidth(m_config.LineWidth());
-    glPointSize(m_config.PointSize());
+    if (m_config.RenderFacePoints() > 0)
+    {
+        glPointSize(pow(2.0, 1.0*m_config.RenderFacePoints())*m_config.PointSize()/2.0);
+    }
     
     GLState::TextureDisable();
     
@@ -354,7 +361,7 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
 
     m_hypersphere.RenderFacesSet(m_config.RenderFaces());
     
-    if (m_config.RenderFacePoints()) m_hypersphere.Render(0);
+    if (m_config.RenderFacePoints() > 0) m_hypersphere.Render(0);
     m_hypercube.Render(0);
     if (m_config.RenderRotationPlanes()) m_planepair.Render(0);
     if (m_config.RenderBasicPlanes()) m_planeset.Render(0);

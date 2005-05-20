@@ -84,6 +84,7 @@
 		};
 		20286C2CFDCF999611CA2CEA = {
 			children = (
+				7A03DDBA083DE46F00EC5296,
 				7A2E6C9505A4DAF90025F99B,
 			);
 			isa = PBXGroup;
@@ -237,6 +238,20 @@
 //7A2
 //7A3
 //7A4
+		7A03DDBA083DE46F00EC5296 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.icns;
+			name = tesseracttrainer_app.icns;
+			path = ../tesseracttrainer_app.icns;
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		7A03DDBB083DE47000EC5296 = {
+			fileRef = 7A03DDBA083DE46F00EC5296;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A0673B207B284E00067AA64 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -603,6 +618,12 @@
 		};
 		7A45EABD07F46BE500773CF6 = {
 			fileRef = 7A45EAB907F46BE500773CF6;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A47C7D8083CEB5D00FE6EF4 = {
+			fileRef = 7A62B8D005A49D05002A5F1C;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -15990,6 +16011,7 @@
 		7AAE6C5907AFC4250085C60F = {
 			buildActionMask = 2147483647;
 			files = (
+				7A03DDBB083DE47000EC5296,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16061,7 +16083,6 @@
 				7AAE6C9A07AFC4250085C60F,
 				7AAE6C9B07AFC4250085C60F,
 				7AAE6CA307AFC4250085C60F,
-				7AAE6CA407AFC4250085C60F,
 				7AAE6CA507AFC4250085C60F,
 				7AAE6CA607AFC4250085C60F,
 				7AAE6CA707AFC4250085C60F,
@@ -16094,6 +16115,7 @@
 				7ABBAB2508087A3900A01FB4,
 				7A5C9F650809869B0017E78B,
 				7A7DE93D08157EE300CB5432,
+				7A47C7D8083CEB5D00FE6EF4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16478,12 +16500,6 @@
 		};
 		7AAE6CA307AFC4250085C60F = {
 			fileRef = 7A62B8CF05A49D05002A5F1C;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AAE6CA407AFC4250085C60F = {
-			fileRef = 7A62B8D005A49D05002A5F1C;
 			isa = PBXBuildFile;
 			settings = {
 			};

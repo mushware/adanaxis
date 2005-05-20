@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.3 2005/05/18 15:53:27 southa Exp $
+# $Id: tesseracttrainer.def,v 1.4 2005/05/19 13:02:25 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.4  2005/05/19 13:02:25  southa
+# Mac release work
+#
 # Revision 1.3  2005/05/18 15:53:27  southa
 # Made buildable using gcc 4.0/Mac OS X 10.4
 #
@@ -41,4 +44,5 @@ Modules: Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex
 Append: Makefile.am
 
 ExtraDist:
-Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh
+Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/tesseracttrainer*
+

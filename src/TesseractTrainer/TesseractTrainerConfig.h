@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 1cPm6Hnox103xUM9gkbzFw
 /*
- * $Id: TesseractTrainerConfig.h,v 1.2 2005/04/19 23:25:43 southa Exp $
+ * $Id: TesseractTrainerConfig.h,v 1.3 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.3  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/04/19 23:25:43  southa
  * Mode switching and recognition
  *
@@ -39,8 +42,10 @@
 class TesseractTrainerConfig : public MushcoreVirtualObject
 {
 public:
+    TesseractTrainerConfig();
     
 private:
+    Mushware::U32 m_version;
     Mushware::tVal m_rotationChangeMsec; //:readwrite
     Mushware::tVal m_realignMsec; //:readwrite
     Mushware::tVal m_lineWidth; //:readwrite
@@ -50,7 +55,7 @@ private:
     Mushware::U32 m_renderFaces; //:readwrite :wref
     bool m_renderFaceOutlines; //:readwrite :toggle
     bool m_renderFaceTextures; //:readwrite :toggle
-    bool m_renderFacePoints; //:readwrite :toggle
+    Mushware::U32 m_renderFacePoints; //:readwrite :wref
     bool m_renderRotationPlanes; //:readwrite :toggle
     bool m_renderBasicPlanes; //:readwrite :toggle
     bool m_renderStereo; //:readwrite :toggle
@@ -81,9 +86,10 @@ public:
     const bool& RenderFaceTextures(void) const { return m_renderFaceTextures; }
     void RenderFaceTexturesSet(const bool& inValue) { m_renderFaceTextures=inValue; }
     void RenderFaceTexturesToggle(void) { m_renderFaceTextures=!(m_renderFaceTextures); }
-    const bool& RenderFacePoints(void) const { return m_renderFacePoints; }
-    void RenderFacePointsSet(const bool& inValue) { m_renderFacePoints=inValue; }
-    void RenderFacePointsToggle(void) { m_renderFacePoints=!(m_renderFacePoints); }
+    const Mushware::U32& RenderFacePoints(void) const { return m_renderFacePoints; }
+    void RenderFacePointsSet(const Mushware::U32& inValue) { m_renderFacePoints=inValue; }
+    // Writable reference for m_renderFacePoints
+    Mushware::U32& RenderFacePointsWRef(void) { return m_renderFacePoints; }
     const bool& RenderRotationPlanes(void) const { return m_renderRotationPlanes; }
     void RenderRotationPlanesSet(const bool& inValue) { m_renderRotationPlanes=inValue; }
     void RenderRotationPlanesToggle(void) { m_renderRotationPlanes=!(m_renderRotationPlanes); }
@@ -109,7 +115,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } YgDPPEGtTgk5BwsRt0VzKw
+//%classPrototypes } COUqy4GU/NiLvkG0HBw2wA
 };
 //%inlineHeader {
 inline std::ostream&

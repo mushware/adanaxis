@@ -1,21 +1,21 @@
 #!/bin/sh
-
 ##############################################################################
 #
 # This file contains original work by Andy Southgate.  Contact details can be
-# found at http://www.mushware.co.uk.  This file was placed in the Public
+# found at http://www.mushware.com/. This file was placed in the Public
 # Domain by Andy Southgate and Mushware Limited in 2005.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-
 #
-# $Id: MakeInstaller.sh,v 1.6 2003/04/06 12:35:23 southa Exp $
-# $Log: MakeInstaller.sh,v $
+# $Id: MakeRelease.sh,v 1.1 2005/05/19 13:03:40 southa Exp $
+# $Log: MakeRelease.sh,v $
+# Revision 1.1  2005/05/19 13:03:40  southa
+# Mac release work
+#
 
-# Script for generating the Mac OS X package.  Needs a bit of manual
-# intervention
+# Script for generating the Mac OS X release
 
 name="$1"
 version="$2"
@@ -43,14 +43,17 @@ cp -pR "$datadir" "$releasedir"
 find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
 
+cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
+
 mkdir -p "$releasedir/Read Me"
-for filename in macosx/*.txt
+for filename in
 do
 ditto -rsrcFork "$filename" "${readmedir}"
 done
 
 cp COPYING "${readmedir}/Licence.txt"
-cp ChangeLog "${readmedir}/Copying.txt"
+cp ChangeLog "${readmedir}/ChangeLog.txt"
+cp "$name-src-$version.tar.gz" "$releasedir/system"
 
 ditto -rsrcFork "macosx/Mushware web site.webloc" "${releasedir}/Mushware web site.webloc"
 

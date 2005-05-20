@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } M3UkBs5T8BrIGUpcmTAdqg
 /*
- * $Id: TesseractTrainerConfig.cpp,v 1.2 2005/04/19 23:25:43 southa Exp $
+ * $Id: TesseractTrainerConfig.cpp,v 1.3 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerConfig.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/04/19 23:25:43  southa
  * Mode switching and recognition
  *
@@ -30,6 +33,11 @@
  */
 
 #include "TesseractTrainerConfig.h"
+
+TesseractTrainerConfig::TesseractTrainerConfig() :
+    m_version(1)
+{
+}
 
 //%outOfLineFunctions {
 
@@ -64,6 +72,7 @@ void
 TesseractTrainerConfig::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "version=" << m_version << ", ";
     ioOut << "rotationChangeMsec=" << m_rotationChangeMsec << ", ";
     ioOut << "realignMsec=" << m_realignMsec << ", ";
     ioOut << "lineWidth=" << m_lineWidth << ", ";
@@ -88,6 +97,10 @@ TesseractTrainerConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
     if (inTagStr == "obj")
     {
         ioIn >> *this;
+    }
+    else if (inTagStr == "version")
+    {
+        ioIn >> m_version;
     }
     else if (inTagStr == "rotationChangeMsec")
     {
@@ -162,6 +175,8 @@ TesseractTrainerConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
 void
 TesseractTrainerConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("version");
+    ioOut << m_version;
     ioOut.TagSet("rotationChangeMsec");
     ioOut << m_rotationChangeMsec;
     ioOut.TagSet("realignMsec");
@@ -195,4 +210,4 @@ TesseractTrainerConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("playMusic");
     ioOut << m_playMusic;
 }
-//%outOfLineFunctions } yQdHWm9BP58yfj5artL3kA
+//%outOfLineFunctions } qYf8ZuFFFIYWueK1mfeICg

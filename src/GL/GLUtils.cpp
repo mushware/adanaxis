@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } f6+nyib19+xpGJMCBF2GGw
 /*
- * $Id: GLUtils.cpp,v 1.58 2005/01/29 14:06:11 southa Exp $
+ * $Id: GLUtils.cpp,v 1.59 2005/05/19 13:02:01 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.59  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.58  2005/01/29 14:06:11  southa
  * OpenGL buffers and extensions
  *
@@ -396,7 +399,7 @@ GLUtils::DisplayPrologue(void)
         switch (glAppHandler.CurrentModeDefGet().SyncGet())
         {
             case GLModeDef::kSyncHard:
-                glFinish();
+                // glFinish();
             case GLModeDef::kSyncSoft:
                 PlatformVideoUtils::VBLWait();
             default:
@@ -409,7 +412,7 @@ void
 GLUtils::DisplayEpilogue(void)
 {
     glDrawBuffer(GL_BACK);
-    glFlush();
+    // glFlush();
     m_swapValid=true;
 }
 
