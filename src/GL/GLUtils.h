@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } TGXL6/hKQ0loCR2CzU3flA
 /*
- * $Id: GLUtils.h,v 1.44 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLUtils.h,v 1.45 2005/05/19 13:02:01 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.45  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.44  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
@@ -193,6 +196,7 @@ public:
     static void OrthoLookAt(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLPoint& inPoint, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle);
+    static void StereoPerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle, Mushware::tVal inOffset);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } f6+nyib19+xpGJMCBF2GGw
 /*
- * $Id: GLUtils.cpp,v 1.59 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLUtils.cpp,v 1.60 2005/05/20 10:26:27 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.60  2005/05/20 10:26:27  southa
+ * Release work
+ *
  * Revision 1.59  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -345,14 +348,39 @@ GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, t
               nearClip, // zNear clipping plane distance from viewer
               m_eyeDistance*2 // zFar clipping plane distance from viewer
               );
-
+    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(inCamera.x, inCamera.y, inCamera.z, // eye position
               inLookAt.x, inLookAt.y, inLookAt.z, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
               );
+    
+    GLUtils::CheckGLError();
+}
 
+void
+GLUtils::StereoPerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt,
+                                 tVal inAngle, tVal inOffset)
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    GLPoint screenRatios(ScreenRatiosGet()*0.5);
+    tVal nearClip=0.01;
+    tVal scale=m_screenScale/m_eyeDistance*nearClip;
+    glFrustum((inOffset-screenRatios.x)*scale,(inOffset+screenRatios.x)*scale,
+              -screenRatios.y*scale,screenRatios.y*scale,
+              nearClip, // zNear clipping plane distance from viewer
+              m_eyeDistance*2 // zFar clipping plane distance from viewer
+              );
+    
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(inCamera.x, inCamera.y, inCamera.z, // eye position
+              inLookAt.x, inLookAt.y, inLookAt.z, // reference for -z axis
+              sin(inAngle),cos(inAngle),0 // direction of up
+              );
+    
     GLUtils::CheckGLError();
 }
 

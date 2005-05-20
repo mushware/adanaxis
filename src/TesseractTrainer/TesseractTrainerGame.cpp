@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.15 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.16 2005/05/20 10:26:29 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.16  2005/05/20 10:26:29  southa
+ * Release work
+ *
  * Revision 1.15  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -304,7 +307,19 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
 {
     GLUtils::IdentityPrologue();
     
-    GLUtils::PerspectiveLookAt(GLVector(m_config.StereoImageSeparation()*inStereo, 0, -m_config.ObjectDistance()), GLVector(m_config.StereoImageSeparation()*inStereo, 0, 0), 0);
+    tVal objectDistance = m_config.ObjectDistance();
+    objectDistance *= (1.0+0.5*fabs(inStereo));
+
+    tVal ttFogStart = MushcoreEnv::Sgl().VariableGet("TT_FOG_START").ValGet();
+    tVal ttFogEnd = MushcoreEnv::Sgl().VariableGet("TT_FOG_END").ValGet();
+    
+    float fogBlack[4] = {0,0,0,0};
+    glFogfv(GL_FOG_COLOR, fogBlack);
+    glFogf(GL_FOG_START, objectDistance + ttFogStart);
+    glFogf(GL_FOG_END, objectDistance + ttFogEnd);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
+    
+    GLUtils::StereoPerspectiveLookAt(GLVector(m_config.StereoImageSeparation()*inStereo, 0, -objectDistance), GLVector(m_config.StereoImageSeparation()*inStereo, 0, 0), 0, -m_config.StereoEyeSeparation()*inStereo);
     
     GLState::ColourSet(1.0,1.0,1.0,1.0);
     GLColour white(1,1,1,1);
@@ -491,15 +506,6 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     }
     
     GLUtils::CheckGLError();
-    
-    tVal ttFogStart = MushcoreEnv::Sgl().VariableGet("TT_FOG_START").ValGet();
-    tVal ttFogEnd = MushcoreEnv::Sgl().VariableGet("TT_FOG_END").ValGet();
-    
-    float black[4] = {0,0,0,0};
-    glFogfv(GL_FOG_COLOR, black);
-    glFogf(GL_FOG_START, m_config.ObjectDistance() + ttFogStart);
-    glFogf(GL_FOG_END, m_config.ObjectDistance() + ttFogEnd);
-    glFogi(GL_FOG_MODE, GL_LINEAR);
     
     m_lastChangeMsec = 0;
     m_lastRegCheckMsec = msecNow;

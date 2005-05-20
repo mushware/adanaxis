@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.1 2005/05/19 13:03:40 southa Exp $
+# $Id: MakeRelease.sh,v 1.2 2005/05/20 10:26:24 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.2  2005/05/20 10:26:24  southa
+# Release work
+#
 # Revision 1.1  2005/05/19 13:03:40  southa
 # Mac release work
 #
@@ -22,7 +25,7 @@ version="$2"
 builddir="$3"
 datadir="$4"
 releasedir="release/$name"
-readmedir="release/$name/Read Me"
+readmedir="release/$name/Documents"
 appdir="$datadir/system/$name.app"
 
 SetFile="/Developer/Tools/SetFile"
@@ -45,7 +48,7 @@ find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
 
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 
-mkdir -p "$releasedir/Read Me"
+mkdir -p "$readmedir"
 for filename in
 do
 ditto -rsrcFork "$filename" "${readmedir}"
@@ -59,6 +62,7 @@ ditto -rsrcFork "macosx/Mushware web site.webloc" "${releasedir}/Mushware web si
 
 echo Fixing up file types
 find "${releaseDir}" -name '*.txt' -exec $SetFile -a E {} \;
+find "${releaseDir}" -name '*.pdf' -exec $SetFile -a E {} \;
 # find ${releasedir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
 ln -s "system/$name.app" "${releasedir}/$name.app"
 echo Setting permissions
