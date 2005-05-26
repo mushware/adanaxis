@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kWkUhkNRBAfL9OYY11vCpQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.16 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.17 2005/05/26 00:46:41 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.17  2005/05/26 00:46:41  southa
+ * Made buildable on win32
+ *
  * Revision 1.16  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -115,7 +118,7 @@ PlatformVideoUtils::PlatformVideoUtils() :
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     
-    // Find all display modes available on all displays and add them
+    // Find all display modes available on the default display and add them
     // to the list
     
     m_modesSoFar.resize(0);
@@ -137,15 +140,22 @@ PlatformVideoUtils::PlatformVideoUtils() :
         LPDIRECTDRAW2 iDirectDraw2;
         if (iDirectDraw->QueryInterface(IID_IDirectDraw2, (LPVOID *) &iDirectDraw2) == DD_OK)
         {
-            if (iDirectDraw2->EnumDisplayModes(0, NULL, this, PlatformVideoUtils_EnumDisplayModesCallback) == DD_OK)
-            {
-                cout << "Success!" << endl;
-            }
+            iDirectDraw2->EnumDisplayModes(0, NULL, this, PlatformVideoUtils_EnumDisplayModesCallback);
             iDirectDraw2->Release();
         }
         iDirectDraw->Release();
     }
     
+    if (m_modesSoFar.size() == 0)
+    {
+        // Couldn't get any modes so invent them
+        m_modesSoFar.push_back(std::pair<long, long>(640,480));
+        m_modesSoFar.push_back(std::pair<long, long>(800,600));
+        m_modesSoFar.push_back(std::pair<long, long>(1024,768));
+        m_modesSoFar.push_back(std::pair<long, long>(1280,1024));
+        m_modesSoFar.push_back(std::pair<long, long>(1600,1200));
+    }
+
     std::sort(m_modesSoFar.begin(), m_modesSoFar.end());
     
     for (U32 i=0; i<m_modesSoFar.size(); ++i)
@@ -244,31 +254,34 @@ PlatformVideoUtils::AppActivate(void)
 void
 PlatformVideoUtils::ModeChangePrologue(void)
 {
+#if 0
     m_fgThreadID = GetWindowThreadProcessId(GetForegroundWindow(), NULL);
     DWORD ourThreadID = GetCurrentThreadId();
 
     if (m_fgThreadID != ourThreadID)
     {
-	AttachThreadInput(m_fgThreadID, ourThreadID, true);
+	    AttachThreadInput(m_fgThreadID, ourThreadID, true);
         m_threadAttached = true;
     }
+#endif
 }
 
 void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
+#if 0
     if (m_threadAttached)
     {
-	DWORD ourThreadID = GetCurrentThreadId();
-	AttachThreadInput(m_fgThreadID, ourThreadID, false);
-	m_threadAttached = false;
+	    DWORD ourThreadID = GetCurrentThreadId();
+	    AttachThreadInput(m_fgThreadID, ourThreadID, false);
+	    m_threadAttached = false;
     }
-
+#endif
     typedef void (APIENTRY * WGLSWAPINTERVALEXT) (int);
 
     WGLSWAPINTERVALEXT wglSwapIntervalEXT = (WGLSWAPINTERVALEXT) wglGetProcAddress("wglSwapIntervalEXT");
 
-    if (wglSwapIntervalEXT)
+    if (wglSwapIntervalEXT != NULL)
     {
         wglSwapIntervalEXT(1);
     }

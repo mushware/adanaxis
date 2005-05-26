@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VTRm8wZFSdKmR9HvYVSD2w
 /*
- * $Id: MediaSDL.h,v 1.23 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaSDL.h,v 1.24 2005/05/26 00:46:40 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.24  2005/05/26 00:46:40  southa
+ * Made buildable on win32
+ *
  * Revision 1.23  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -141,6 +144,7 @@ public:
     void Init(Mushware::U32 inWhich);
     void QuitIfRequired(Mushware::U32 inWhich);
     void InitVideo(void) { Init(SDL_INIT_VIDEO); }
+    void InitVideoIfRequired(void) { InitVideo(); }
     void QuitVideoIfRequired(void) { QuitIfRequired(SDL_INIT_VIDEO); }
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
     

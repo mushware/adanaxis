@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.5 2005/03/13 00:34:44 southa Exp $
+# $Id: autogen.pl,v 1.6 2005/05/19 13:01:55 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.6  2005/05/19 13:01:55  southa
+# Mac release work
+#
 # Revision 1.5  2005/03/13 00:34:44  southa
 # Build fixes, key support and stereo
 #
@@ -28,7 +31,7 @@
 
 use DirHandle;
 use Getopt::Long;
-use Cwd;
+require Cwd;
 
 use strict;
 
@@ -118,7 +121,7 @@ sub Modules($$)
 {
     my ($outputRef, $modules) = @_;
 
-    my $entryDir = getcwd();
+    my $entryDir = Cwd::getcwd();
     chdir $gConfig{'PATH'};
     
     my @sourceFiles;

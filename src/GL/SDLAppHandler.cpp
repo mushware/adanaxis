@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +lRBy3tXEG1uAcp7BgEAGg
 /*
- * $Id: SDLAppHandler.cpp,v 1.43 2005/04/10 00:09:22 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.44 2005/05/19 13:02:01 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.44  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.43  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -274,8 +277,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
-    MediaSDL::Sgl().QuitVideoIfRequired();
-    MediaSDL::Sgl().InitVideo();
+    MediaSDL::Sgl().InitVideoIfRequired();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -334,6 +336,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         m_greatestDimension=m_height;
     }
     SetCursorState(m_showCursor);
+    SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
+
     GLState::Reset();
     m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false);
     m_modeDef=inDef;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.7 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLV.h,v 1.8 2005/05/26 00:46:40 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.8  2005/05/26 00:46:40  southa
+ * Made buildable on win32
+ *
  * Revision 1.7  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -78,19 +81,19 @@ public:
     
 private:
     bool m_hasVertexBuffer;
-    typedef void (*tfpBindBuffer)(GLenum target, GLuint buffer);
+    typedef void (MUSHCORE_APIENTRY *tfpBindBuffer)(GLenum target, GLuint buffer);
     tfpBindBuffer m_fpBindBuffer; // :fnpointer
-    typedef void (*tfpBufferData)(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage);
+    typedef void (MUSHCORE_APIENTRY *tfpBufferData)(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage);
     tfpBufferData m_fpBufferData; // :fnpointer
-    typedef void (*tfpBufferSubData)(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid *data);
+    typedef void (MUSHCORE_APIENTRY *tfpBufferSubData)(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid *data);
     tfpBufferSubData m_fpBufferSubData; // :fnpointer
-    typedef void (*tfpDeleteBuffers)(GLsizei n, const GLuint *buffers);
+    typedef void (MUSHCORE_APIENTRY *tfpDeleteBuffers)(GLsizei n, const GLuint *buffers);
     tfpDeleteBuffers m_fpDeleteBuffers; // :fnpointer
-    typedef void (*tfpGenBuffers)(GLsizei n, GLuint *buffers);
+    typedef void (MUSHCORE_APIENTRY *tfpGenBuffers)(GLsizei n, GLuint *buffers);
     tfpGenBuffers m_fpGenBuffers; // :fnpointer
-    typedef GLvoid *(*tfpMapBuffer)(GLenum target, GLenum access);
+    typedef GLvoid *(MUSHCORE_APIENTRY *tfpMapBuffer)(GLenum target, GLenum access);
     tfpMapBuffer m_fpMapBuffer; // :fnpointer
-    typedef GLboolean (*tfpUnmapBuffer)(GLenum target);
+    typedef GLboolean (MUSHCORE_APIENTRY *tfpUnmapBuffer)(GLenum target);
     tfpUnmapBuffer m_fpUnmapBuffer; // :fnpointer
         
     std::string m_vendor;

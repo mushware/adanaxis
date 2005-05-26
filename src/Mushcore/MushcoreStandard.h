@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9ETNO07nndi1buun61a/EQ
 /*
- * $Id: MushcoreStandard.h,v 1.21 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.22 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.22  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.21  2005/05/18 15:53:27  southa
  * Made buildable using gcc 4.0/Mac OS X 10.4
  *
@@ -207,6 +210,11 @@
  * so use the mimic instead
  */
 #define MUSHCORE_MIMIC_VALARRAY 1
+
+/* API entry tweak for DLLs */
+#define MUSHCORE_APIENTRY APIENTRY
+#else
+#define MUSHCORE_APIENTRY
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.16 2005/05/20 10:26:29 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.17 2005/05/20 13:19:02 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.17  2005/05/20 13:19:02  southa
+ * Release work
+ *
  * Revision 1.16  2005/05/20 10:26:29  southa
  * Release work
  *
@@ -359,7 +362,7 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
     
     glDisable(GL_MULTISAMPLE);
-    glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
+    // glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
     
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
     glLineWidth(m_config.LineWidth());
@@ -460,11 +463,6 @@ TesseractTrainerGame::Init(GameAppHandler& inAppHandler)
         m_config.AutoFileIfExistsLoad(pScalar->StringGet());
     }
 
-    if (MushcoreEnv::Sgl().VariableExists("TT_DUMP_MUSHGLV"))
-    {
-        std::cout << MushGLV::Sgl() << endl;
-    }
-
     NamedDialoguesAdd("^start");
     if (RegCheck())
     {
@@ -498,6 +496,10 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     {
         inAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(m_config.DisplayMode()));
         MushGLV::Sgl().Acquaint();
+        if (MushcoreEnv::Sgl().VariableExists("TT_DUMP_MUSHGLV"))
+        {
+            std::cout << MushGLV::Sgl() << endl;
+        }
     }
     catch (...)
     {

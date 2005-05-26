@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wq62GzmuN/a+v2SYEo+oxg
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.32 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.33 2005/05/26 00:46:41 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.33  2005/05/26 00:46:41  southa
+ * Made buildable on win32
+ *
  * Revision 1.32  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -393,6 +396,12 @@ bool
 PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
 {
     bool success = false;
+    PROC fnPtr = wglGetProcAddress(inName.c_str());
+    if (fnPtr != NULL)
+    {
+        outPtr = fnPtr;
+        success = true;
+    }
     return success;
 }
 
