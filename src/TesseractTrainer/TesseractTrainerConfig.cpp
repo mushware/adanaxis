@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } M3UkBs5T8BrIGUpcmTAdqg
 /*
- * $Id: TesseractTrainerConfig.cpp,v 1.3 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerConfig.cpp,v 1.4 2005/05/20 10:26:29 southa Exp $
  * $Log: TesseractTrainerConfig.cpp,v $
+ * Revision 1.4  2005/05/20 10:26:29  southa
+ * Release work
+ *
  * Revision 1.3  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -33,6 +36,8 @@
  */
 
 #include "TesseractTrainerConfig.h"
+
+#include "TesseractTrainerSTL.h"
 
 TesseractTrainerConfig::TesseractTrainerConfig() :
     m_version(1)

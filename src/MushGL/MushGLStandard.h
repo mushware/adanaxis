@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eKtxHeAsO7WKLWrqWJNU3w
 /*
- * $Id: MushGLStandard.h,v 1.5 2005/01/29 18:27:31 southa Exp $
+ * $Id: MushGLStandard.h,v 1.6 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.6  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -47,7 +50,12 @@
 #endif
  
 #if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
+#define NOMINMAX
 #include <windows.h>
+#endif
+
+#ifdef _MSC_VER
+#define HAVE_SDL_OPENGL_H 1
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)
@@ -79,6 +87,12 @@
 #include <GL/glext.h>
 #elif defined(HAVE_OPENGL_GLEXT_H)
 #include <OpenGL/glext.h>
+#endif
+
+#if defined(HAVE_SDL_SDL_OPENGL_H)
+#include <SDL/SDL_opengl.h>
+#elif defined(HAVE_SDL_OPENGL_H)
+#include <SDL_opengl.h>
 #endif
 
 #ifndef GL_VERSION_1_5

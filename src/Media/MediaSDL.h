@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VTRm8wZFSdKmR9HvYVSD2w
 /*
- * $Id: MediaSDL.h,v 1.22 2004/01/06 20:46:51 southa Exp $
+ * $Id: MediaSDL.h,v 1.23 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.23  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.22  2004/01/06 20:46:51  southa
  * Build fixes
  *
@@ -117,6 +120,15 @@
 #include "SDL_mixer.h"
 #endif
 #endif
+
+#if defined(HAVE_SDL_SDL_OPENGL_H)
+#include <SDL/SDL_opengl.h>
+#elif defined(HAVE_SDL_OPENGL_H)
+#include <SDL_opengl.h>
+#else
+#include "SDL_opengl.h"
+#endif
+
 
 #include "mushMushcore.h"
 

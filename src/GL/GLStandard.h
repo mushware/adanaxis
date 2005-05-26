@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YuwEx5C1bxstjdtkwV60mQ
 /*
- * $Id: GLStandard.h,v 1.22 2004/10/31 23:34:06 southa Exp $
+ * $Id: GLStandard.h,v 1.23 2005/05/19 13:02:00 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.23  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.22  2004/10/31 23:34:06  southa
  * Hypercube rendering test
  *
@@ -125,7 +128,13 @@
 #endif
 
 #if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
+#define NOMINMAX
 #include <windows.h>
+#define HAVE_GLENUM_IS_UNSIGNED_INT 1
+#endif
+
+#ifdef _MSC_VER
+#define HAVE_SDL_OPENGL_H 1
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)
@@ -147,6 +156,12 @@
 #include <OpenGL/glu.h>
 #else
 #include "GL/glu.h"
+#endif
+
+#if defined(HAVE_SDL_SDL_OPENGL_H)
+#include <SDL/SDL_opengl.h>
+#elif defined(HAVE_SDL_OPENGL_H)
+#include <SDL_opengl.h>
 #endif
 
 #include "mushMushcore.h"

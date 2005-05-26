@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kWkUhkNRBAfL9OYY11vCpQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.15 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.16 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.16  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -74,32 +77,101 @@
 #include "mushGL.h"
 #include "mushPlatform.h"
 
+#define NOMINMAX
+#include <direct.h>
+#include <windows.h>
+#include <ddraw.h>
+#include <mmsystem.h>
+
+#include <algorithm>
+
 using namespace Mushware;
 using namespace std;
 
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
+
+static HRESULT WINAPI PlatformVideoUtils_EnumDisplayModesCallback(LPDDSURFACEDESC lpDDSurfaceDesc, LPVOID lpContext)
+{
+    reinterpret_cast<PlatformVideoUtils *>(lpContext)->ModeAdd(lpDDSurfaceDesc->dwWidth, lpDDSurfaceDesc->dwHeight);
+    return DDENUMRET_OK;
+}
+
+void
+PlatformVideoUtils::ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight)
+{
+    std::pair<long, long> newSize(inWidth, inHeight);
+    if (inWidth >= 640 && inHeight >= 480)
+    {
+        if (std::find(m_modesSoFar.begin(), m_modesSoFar.end(), newSize) == m_modesSoFar.end())
+        {
+            m_modesSoFar.push_back(newSize);
+        }
+    }
+}
 
 PlatformVideoUtils::PlatformVideoUtils() :
     m_threadAttached(false)
 {
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
+    
+    // Find all display modes available on all displays and add them
+    // to the list
+    
+    m_modesSoFar.resize(0);
 
-    m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    LPDIRECTDRAW iDirectDraw;
 
-    m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    typedef HRESULT (WINAPI *tfpDirectDrawCreate)(GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter);
+    tfpDirectDrawCreate fpDirectDrawCreate = NULL;
+    HINSTANCE pLibrary = LoadLibrary("DDRAW.DLL");
 
-    m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    if (pLibrary != NULL)
+    {
+        fpDirectDrawCreate = (tfpDirectDrawCreate) GetProcAddress(pLibrary, "DirectDrawCreate");
+        FreeLibrary(pLibrary);
+    }
 
-    m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-;
+    if (fpDirectDrawCreate != NULL && fpDirectDrawCreate(NULL, &iDirectDraw, NULL) == DD_OK)
+    {
+        LPDIRECTDRAW2 iDirectDraw2;
+        if (iDirectDraw->QueryInterface(IID_IDirectDraw2, (LPVOID *) &iDirectDraw2) == DD_OK)
+        {
+            if (iDirectDraw2->EnumDisplayModes(0, NULL, this, PlatformVideoUtils_EnumDisplayModesCallback) == DD_OK)
+            {
+                cout << "Success!" << endl;
+            }
+            iDirectDraw2->Release();
+        }
+        iDirectDraw->Release();
+    }
+    
+    std::sort(m_modesSoFar.begin(), m_modesSoFar.end());
+    
+    for (U32 i=0; i<m_modesSoFar.size(); ++i)
+    {
+        U32 xSize = m_modesSoFar[i].first;
+        U32 ySize = m_modesSoFar[i].second;
+        
+        std::ostringstream modeStrm;
+        modeStrm << xSize << "x" << ySize;
+        m_modeDefs.push_back(GLModeDef(modeStrm.str(), xSize, ySize, 32, 0,  GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    }
 }
 
 U32
 PlatformVideoUtils::DefaultModeGet(void) const
 {
-    return 2;
+    U32 retVal=0;
+    for (U32 i=2; i < m_modeDefs.size(); ++i)
+    {
+        if (m_modeDefs[i].WidthGet() == 640 &&
+            m_modeDefs[i].HeightGet() == 480)
+        {
+            retVal = i;   
+        }
+    }
+    return retVal;
 }
 
 const GLModeDef&
@@ -190,6 +262,15 @@ PlatformVideoUtils::ModeChangeEpilogue(void)
 	DWORD ourThreadID = GetCurrentThreadId();
 	AttachThreadInput(m_fgThreadID, ourThreadID, false);
 	m_threadAttached = false;
+    }
+
+    typedef void (APIENTRY * WGLSWAPINTERVALEXT) (int);
+
+    WGLSWAPINTERVALEXT wglSwapIntervalEXT = (WGLSWAPINTERVALEXT) wglGetProcAddress("wglSwapIntervalEXT");
+
+    if (wglSwapIntervalEXT)
+    {
+        wglSwapIntervalEXT(1);
     }
 }
 

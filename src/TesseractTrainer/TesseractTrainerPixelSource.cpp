@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } deJxNEsvw1K5S2rPw6UiPg
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.1 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.2 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -83,7 +86,7 @@ TesseractTrainerPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mush
 
     for (U32 y=0; y<inSize.Y(); ++y)
     {
-        U32 *destPtr = &outPtr[y * inSize.X()];
+        U8 *destPtr = reinterpret_cast<U8 *>(&outPtr[y * inSize.X()]);
         for (U32 x=0; x<inSize.X(); ++x)
         {
             t3Val vert(x, y, 1);
@@ -102,7 +105,10 @@ TesseractTrainerPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mush
             {
                 //alpha = 1;     
             }
-            *destPtr++ = 0xffffff00 | (static_cast<U32>(alpha * 0xff));
+            *destPtr++ = 0xff;
+            *destPtr++ = 0xff;
+            *destPtr++ = 0xff;
+            *destPtr++ = static_cast<U8>(alpha * 0xff);
             if (x == 0 || x == 127 || x == 128 || x == 255)
             {
                 //cout << "orig. vert=" << t3Val(x, y, 1) << ", vert=" << vert << "alpha=" << alpha << endl;   

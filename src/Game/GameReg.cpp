@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ggvvg/klFTDl+UpqEnnMwA
 /*
- * $Id: GameReg.cpp,v 1.3 2005/04/19 23:25:39 southa Exp $
+ * $Id: GameReg.cpp,v 1.4 2005/05/19 13:02:03 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/04/19 23:25:39  southa
  * Mode switching and recognition
  *
@@ -65,8 +68,7 @@ GameReg::Process(GameAppHandler& inAppHandler)
         }
         catch (MushcoreNonFatalFail& e)
         {
-
-            PlatformMiscUtils::MinorErrorBox("Failed to open URL '"+m_regURL+"'.  Please open in your browser.");
+            PlatformMiscUtils::MinorErrorBox("Failed to open URL '"+m_regURL+"' ("+e.what()+").  Please open in your browser.");
         }
     }
     

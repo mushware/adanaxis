@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wq62GzmuN/a+v2SYEo+oxg
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.31 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.32 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.32  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.31  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -119,8 +122,10 @@
 #include "mushMedia.h"
 #include "mushPlatform.h"
 
+#define NOMINMAX
 #include <direct.h>
 #include <windows.h>
+#include <shellapi.h>
 
 using namespace Mushware;
 using namespace std;
@@ -383,4 +388,21 @@ PlatformMiscUtils::SleepMsec(U32 inMsec)
 {
     Sleep(inMsec);
 }
+
+bool
+PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
+{
+    bool success = false;
+    return success;
+}
+
+void
+PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
+{
+    if (!FunctionPointerGetIfExists(outPtr, inName))
+    {
+        throw MushcoreRequestFail("Unknown symbol '"+inName+"'");
+    }
+}
+
 

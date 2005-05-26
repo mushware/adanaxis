@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.6 2005/04/10 00:09:22 southa Exp $
+ * $Id: MushGLV.h,v 1.7 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.7  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -71,7 +74,7 @@ public:
     
     void *MapBuffer(GLenum target, GLenum access) const { if (m_fpMapBuffer != NULL) return m_fpMapBuffer(target, access); else throw MushcoreLogicFail("MushGLV::MapBuffer"); }
     
-    bool UnmapBuffer(GLenum target) const { if (m_fpUnmapBuffer != NULL) return m_fpUnmapBuffer(target); else return true; }
+    bool UnmapBuffer(GLenum target) const { if (m_fpUnmapBuffer != NULL) return (m_fpUnmapBuffer(target) != GL_FALSE); else return true; }
     
 private:
     bool m_hasVertexBuffer;

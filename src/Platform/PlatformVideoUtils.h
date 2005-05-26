@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mAl6ct+vq2NVgwL/N2nDTQ
 /*
- * $Id: PlatformVideoUtils.h,v 1.14 2004/01/06 20:46:52 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.15 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.15  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.14  2004/01/06 20:46:52  southa
  * Build fixes
  *
@@ -86,12 +89,16 @@ public:
     void RenderModeInfo(Mushware::U32 inNum) const;
     void ModeChangePrologue(void);
     void ModeChangeEpilogue(void);
+    void ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight);
+
     static void VBLWait(void);
     static void ForceShowCursor(void);
     static void AppActivate(void);
     
 private:
+
     std::vector<GLModeDef> m_modeDefs;
+    std::vector< std::pair<long, long> > m_modesSoFar;
     static PlatformVideoUtils *m_instance;
 
     bool m_threadAttached;
