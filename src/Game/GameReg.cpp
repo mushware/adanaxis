@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ggvvg/klFTDl+UpqEnnMwA
 /*
- * $Id: GameReg.cpp,v 1.4 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameReg.cpp,v 1.5 2005/05/26 00:46:40 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.5  2005/05/26 00:46:40  southa
+ * Made buildable on win32
+ *
  * Revision 1.4  2005/05/19 13:02:03  southa
  * Mac release work
  *
@@ -110,6 +113,7 @@ GameReg::Process(GameAppHandler& inAppHandler)
     if (inAppHandler.LatchedKeyStateTake(' ') ||
         m_codeValid == kCodeValidPass && m_lastCheckMsec + 2000 < m_currentMsec)
     {
+        inAppHandler.LatchedKeyStateTake('r');
         inAppHandler.GameModeEnter(true);
     }
     GLUtils::PostRedisplay();
@@ -155,12 +159,12 @@ GameReg::Display(GameAppHandler& inAppHandler)
     
     {
         GLState::ColourSet(0.8,0.8,1.0,1.0);
-        GLString glStr("Click this window to buy", GLFontRef("font-mono1", 0.02), 0);
+        GLString glStr("Click this window to buy,", GLFontRef("font-mono1", 0.02), 0);
         orthoGL.MoveRelative(0, -0.06);
         glStr.Render();
         
         GLState::ColourSet(0.8,0.8,1.0,1.0);
-        glStr.TextSet("or enter your code");
+        glStr.TextSet("or enter your code below");
         orthoGL.MoveRelative(0, -0.02);
         glStr.Render();
     }
@@ -184,6 +188,9 @@ GameReg::Display(GameAppHandler& inAppHandler)
     }
     else
     {
+        GLState::ColourSet(0.1,0.1,0.3,1.0);
+        GLUtils::DrawRectangle(-0.4, -0.09, 0.4, -0.03);
+        
         if (m_codeValid == kCodeValidFail)
         {
             GLState::ColourSet(1.0,0.4,0.4,0.5+0.5*sin(m_currentMsec/100));
@@ -192,8 +199,18 @@ GameReg::Display(GameAppHandler& inAppHandler)
         {
             GLState::ColourSet(1.0,1.0,1.0,1.0);
         }
+        
         {
-            GLString glStr(m_regCode, GLFontRef("font-mono1", 0.06), 0);
+            std::string regCode = m_regCode;
+            if (inAppHandler.HasFocus() && static_cast<U32>(m_currentMsec) % 1000 > 500)
+            {
+                regCode += " ";
+            }
+            else
+            {
+                regCode += "|";
+            }
+            GLString glStr(regCode, GLFontRef("font-mono1", 0.06), 0);
             
             orthoGL.MoveRelative(0, -0.06);
             glStr.Render();

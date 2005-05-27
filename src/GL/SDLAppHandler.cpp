@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +lRBy3tXEG1uAcp7BgEAGg
 /*
- * $Id: SDLAppHandler.cpp,v 1.44 2005/05/19 13:02:01 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.45 2005/05/26 16:05:29 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.45  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.44  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -366,6 +369,12 @@ U32
 SDLAppHandler::MillisecondsGet(void) const
 {
     return SDL_GetTicks();
+}
+
+bool
+SDLAppHandler::HasFocus(void) const
+{
+    return ((SDL_GetAppState() & SDL_APPINPUTFOCUS) != 0);
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 73dxJ2aq0CnII0Vg/zkZdg
 /*
- * $Id: SDLAppHandler.h,v 1.24 2004/01/06 20:46:49 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.25 2005/05/19 13:02:01 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.25  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.24  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -129,6 +132,7 @@ public:
     virtual Mushware::U32 WidthGet(void) const {return m_width;}
     virtual Mushware::U32 HeightGet(void) const {return m_height;}
     virtual Mushware::U32 MillisecondsGet(void) const;
+    virtual bool HasFocus(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
     virtual void PollForControlEvents(void);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eKtxHeAsO7WKLWrqWJNU3w
 /*
- * $Id: MushGLStandard.h,v 1.6 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLStandard.h,v 1.7 2005/05/26 00:46:40 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.7  2005/05/26 00:46:40  southa
+ * Made buildable on win32
+ *
  * Revision 1.6  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -61,7 +64,6 @@
 #if defined(__APPLE__) || defined(MACOSX)
 #define HAVE_OPENGL_GL_H
 #define HAVE_OPENGL_GLU_H
-#define HAVE_OPENGL_GLEXT_H
 #endif
 
 #ifdef HAVE_GL_GL_H
@@ -81,12 +83,15 @@
 #endif
 
 
+#if 0
+// Use SDL version instead
 #ifdef HAVE_GLEXT_H
 #include <glext.h>
 #elif defined(HAVE_GL_GLEXT_H)
 #include <GL/glext.h>
 #elif defined(HAVE_OPENGL_GLEXT_H)
 #include <OpenGL/glext.h>
+#endif
 #endif
 
 #if defined(HAVE_SDL_SDL_OPENGL_H)

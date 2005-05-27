@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } AB8KzsXX8AUrZ2Tp6Oe/IA
 /*
- * $Id: TesseractTrainerInfo.cpp,v 1.1 2005/02/03 15:47:00 southa Exp $
+ * $Id: TesseractTrainerInfo.cpp,v 1.2 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerInfo.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/03 15:47:00  southa
  * Quaternion work
  *
@@ -33,7 +36,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "0.1.0"
+#define VERSION "0.1.1"
 #endif
 
 #include "TesseractTrainerSTL.h"

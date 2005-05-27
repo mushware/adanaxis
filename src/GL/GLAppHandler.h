@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } SqyVyfS1ZdPjvWXinM57nQ
 /*
- * $Id: GLAppHandler.h,v 1.29 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLAppHandler.h,v 1.30 2005/05/19 13:01:57 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.30  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.29  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -148,6 +151,7 @@ public:
     virtual Mushware::U32 WidthGet(void) const = 0;
     virtual Mushware::U32 HeightGet(void) const = 0;
     virtual Mushware::U32 MillisecondsGet(void) const = 0;
+    virtual bool HasFocus(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
     virtual void PollForControlEvents(void) = 0;

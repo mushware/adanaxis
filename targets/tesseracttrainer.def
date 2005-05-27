@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.5 2005/05/20 10:26:29 southa Exp $
+# $Id: tesseracttrainer.def,v 1.6 2005/05/20 14:55:33 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.6  2005/05/20 14:55:33  southa
+# Release tweaks
+#
 # Revision 1.5  2005/05/20 10:26:29  southa
 # Release work
 #
@@ -26,7 +29,7 @@ Subst: MUSH_APP_PACKAGE 'tesseracttrainer'
 Subst: MUSH_APP_NAME 'TesseractTrainer'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '1'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
