@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.7 2005/05/27 12:48:37 southa Exp $
+# $Id: tesseracttrainer.def,v 1.8 2005/05/27 19:25:24 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.8  2005/05/27 19:25:24  southa
+# win32 build fixes
+#
 # Revision 1.7  2005/05/27 12:48:37  southa
 # Registration box tweaks
 #
@@ -50,7 +53,7 @@ Program: all
 Modules: API Game GL Main/SDLApp Media Mushcore MushGL MushMesh MushPie Platform Support TesseractTrainer
 
 ExtraDist:
-Modules: Platform/MacOSX Platform/win32 Platform/win32/SDL_main.c Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$
+Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$
 
 Append: Makefile.am
 
