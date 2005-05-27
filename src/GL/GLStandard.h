@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YuwEx5C1bxstjdtkwV60mQ
 /*
- * $Id: GLStandard.h,v 1.23 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLStandard.h,v 1.24 2005/05/26 00:46:40 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.24  2005/05/26 00:46:40  southa
+ * Made buildable on win32
+ *
  * Revision 1.23  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -158,10 +161,20 @@
 #include "GL/glu.h"
 #endif
 
+#ifndef GL_GLEXT_VERSION
+
 #if defined(HAVE_SDL_SDL_OPENGL_H)
 #include <SDL/SDL_opengl.h>
 #elif defined(HAVE_SDL_OPENGL_H)
 #include <SDL_opengl.h>
+#elif defined(HAVE_OPENGL_GLEXTL_H)
+#include <OpenGL/glext.h>
+#elif defined(HAVE_GL_GLEXTL_H)
+#include <GL/glext.h>
+#else
+#include "SDL_opengl.h"
+#endif
+
 #endif
 
 #include "mushMushcore.h"

@@ -10,12 +10,15 @@
 #
 ##############################################################################
 
-# $Id$
-# $Log$
+# $Id: prebuild.sh,v 1.1 2003/09/17 20:04:58 southa Exp $
+# $Log: prebuild.sh,v $
+# Revision 1.1  2003/09/17 20:04:58  southa
+# Build changes
+#
 
 echo Executing prebuild script
 
 # Run the source conditioner if present
-if [ -f SourceConditioner.pl ];then
+if [ -e SourceConditioner.pl ];then
 perl -w SourceConditioner.pl
 fi

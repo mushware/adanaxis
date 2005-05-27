@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.6 2005/05/19 13:01:55 southa Exp $
+# $Id: autogen.pl,v 1.7 2005/05/26 16:05:28 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.7  2005/05/26 16:05:28  southa
+# win32 support
+#
 # Revision 1.6  2005/05/19 13:01:55  southa
 # Mac release work
 #
@@ -99,7 +102,7 @@ sub Substitute($)
     my ($line) = @_;
     foreach my $varExp (keys %gVars)
     {
-        $line =~ s/$varExp/$gVars{$varExp}/;
+        $line =~ s/$varExp/$gVars{$varExp}/g;
     }
     return $line;
 }
@@ -287,7 +290,7 @@ sub Process($)
         }
         elsif ($command =~ /Name:/)
         {
-            if ($command =~ /Name:\s*(\S+)\s*$/)
+            if ($command =~ /Name:\s*'([^']+)'\s*$/)
             {
                 $gConfig{'NAME'} = $1;
             }

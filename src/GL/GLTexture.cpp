@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ej9ThOgaMcdsA9brpVOZaQ
 /*
- * $Id: GLTexture.cpp,v 1.34 2005/04/10 00:09:22 southa Exp $
+ * $Id: GLTexture.cpp,v 1.35 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.35  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.34  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -195,6 +198,7 @@ GLTexture::BindTexture(void) const
     GLState::TextureParamsReset();
     if (GLState::UseMipMap())
     {
+#ifdef GL_VERSION_1_4
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
         
         glTexImage2D(GL_TEXTURE_2D, // target
@@ -206,10 +210,8 @@ GLTexture::BindTexture(void) const
                      PixelFormat(), // format
                      PixelType(),   // type
                      DataPtr()      // pointer to data
-                     );
-        
-#if 0
-        // The old-fashioned way
+                     );   
+#else
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target
                                     4,             // components
                                     Width(),       // width
@@ -223,7 +225,9 @@ GLTexture::BindTexture(void) const
     }
     else
     {
+#ifdef GL_VERSION_1_4
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
+#endif
 
         glTexImage2D(GL_TEXTURE_2D, // target
                      0,             // level

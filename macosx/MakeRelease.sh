@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.3 2005/05/20 13:18:59 southa Exp $
+# $Id: MakeRelease.sh,v 1.4 2005/05/20 14:55:30 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.4  2005/05/20 14:55:30  southa
+# Release tweaks
+#
 # Revision 1.3  2005/05/20 13:18:59  southa
 # Release work
 #
@@ -23,10 +26,17 @@
 
 # Script for generating the Mac OS X release
 
+if test "x$4" = "x"
+then
+echo Usage: $0 <name> <version> <build directory> <data directory>
+exit 1
+fi
+
 name="$1"
-version="$2"
-builddir="$3"
-datadir="$4"
+package="$2"
+version="$3"
+builddir="$4"
+datadir="$5"
 releasedir="release/$name"
 readmedir="release/$name/Documents"
 appdir="$datadir/system/$name.app"
@@ -59,7 +69,7 @@ done
 
 cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
-cp "$name-src-$version.tar.gz" "$releasedir/system"
+cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
 
 ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
 

@@ -89,7 +89,7 @@ case "$target" in
             AC_MSG_NOTICE([* Using platform pack from src/Platform/win32.])
             AC_CHECK_LIB(opengl32, main,, AC_MSG_ERROR([Cannot survive without OpenGL]))
             AC_CHECK_LIB(glu32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
-            AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
+dnl         AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))
             AC_CHECK_LIB(wsock32, main,, AC_MSG_ERROR([Not configured to build without wsock32 library]))
             AC_CHECK_LIB(winmm, main,, AC_MSG_ERROR([Not configured to build without winmm library]))
             AC_CHECK_LIB(iphlpapi, main,, AC_MSG_ERROR([Not configured to build without iphlpapi library]))
@@ -113,7 +113,7 @@ dnl Use Mesa
                 AC_CHECK_LIB(MesaGL, main,, AC_MSG_ERROR([Cannot find and link MesaGL]))
                 AC_CHECK_LIB(MesaGLU, main,, AC_MSG_ERROR([Cannot find and link MesaGLU]))
             ],[
-dnl Uee GL
+dnl Use GL
                 AC_CHECK_LIB(GL, main,, AC_CHECK_LIB(gl, main,, AC_MSG_ERROR([Cannot find and link GL.  Try --with-mesa])))
                 AC_CHECK_LIB(GLU, main,, AC_CHECK_LIB(glu, main,, AC_MSG_ERROR([Cannot find and link GLU])))
             ])
@@ -123,7 +123,8 @@ dnl Uee GL
         fi
         AC_CHECK_HEADERS(GL/gl.h,, AC_MSG_ERROR([No GL/gl.h header]))
         AC_CHECK_HEADERS(GL/glu.h,, AC_MSG_ERROR([No GL/glu.h header]))
-        AC_CHECK_HEADERS(GL/glut.h,, [AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([No glut.h header]))])
+        AC_CHECK_HEADERS(GL/glext.h,, AC_MSG_NOTICE([No GL/glext.h header]))
+dnl     AC_CHECK_HEADERS(GL/glut.h,, [AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([No glut.h header]))])
         ;;
 esac
 
@@ -164,6 +165,7 @@ AC_CHECK_HEADERS(gif_lib.h,, AC_MSG_ERROR([Cannot find gif_lib.h header]))
 AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
 AC_CHECK_HEADERS(SDL_mixer.h,, [AC_CHECK_HEADERS(SDL/SDL_mixer.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
 AC_CHECK_HEADERS(SDL_main.h,, [AC_CHECK_HEADERS(SDL/SDL_main.h,, AC_MSG_ERROR([Cannot find SDL_main.h header]))])
+AC_CHECK_HEADERS(SDL_opengl.h,, [AC_CHECK_HEADERS(SDL/SDL_opengl.h,, AC_MSG_NOTICE([Cannot find SDL_opengl.h header]))])
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN

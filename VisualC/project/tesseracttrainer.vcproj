@@ -52,7 +52,8 @@
 				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd ..\.. &amp;&amp; pwd &amp;&amp; perl -w SourceConditioner.pl"/>
+				Description="Runs SourceConditioner.pm, which handles code autogeneration within the source files"
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential &amp;&amp; echo Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -112,7 +113,8 @@
 				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd ..\.. &amp;&amp; pwd &amp;&amp; perl -w SourceConditioner.pl"/>
+				Description="Running SourceConditioner.pl, which handles code autogeneration within the source files"
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -861,58 +863,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="MushModel"
-				Filter="">
-				<File
-					RelativePath="..\..\src\MushModel\MushModel.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModel.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelCommands.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelCommands.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelFacet.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelFacet.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelIO.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelIO.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelMaterial.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelMaterial.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelMultiFacet.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelMultiFacet.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelStandard.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelStandard.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelSTL.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushModel\MushModelSTL.h">
-				</File>
-			</Filter>
-			<Filter
 				Name="MushPie"
 				Filter="">
 				<File
@@ -1475,11 +1425,20 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath=".\resource.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			<File
+				RelativePath=".\tesseracttrainer.rc">
+			</File>
+			<File
+				RelativePath=".\tesseracttrainer_app.ico">
+			</File>
 		</Filter>
 		<Filter
 			Name="Libraries"

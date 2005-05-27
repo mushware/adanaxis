@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eKtxHeAsO7WKLWrqWJNU3w
 /*
- * $Id: MushGLStandard.h,v 1.7 2005/05/26 00:46:40 southa Exp $
+ * $Id: MushGLStandard.h,v 1.8 2005/05/27 12:48:37 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.8  2005/05/27 12:48:37  southa
+ * Registration box tweaks
+ *
  * Revision 1.7  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -82,22 +85,20 @@
 #include "GL/glu.h"
 #endif
 
-
-#if 0
-// Use SDL version instead
-#ifdef HAVE_GLEXT_H
-#include <glext.h>
-#elif defined(HAVE_GL_GLEXT_H)
-#include <GL/glext.h>
-#elif defined(HAVE_OPENGL_GLEXT_H)
-#include <OpenGL/glext.h>
-#endif
-#endif
+#ifndef GL_GLEXT_VERSION
 
 #if defined(HAVE_SDL_SDL_OPENGL_H)
 #include <SDL/SDL_opengl.h>
 #elif defined(HAVE_SDL_OPENGL_H)
 #include <SDL_opengl.h>
+#elif defined(HAVE_OPENGL_GLEXTL_H)
+#include <OpenGL/glext.h>
+#elif defined(HAVE_GL_GLEXTL_H)
+#include <GL/glext.h>
+#else
+#include "SDL_opengl.h"
+#endif
+
 #endif
 
 #ifndef GL_VERSION_1_5

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } AB8KzsXX8AUrZ2Tp6Oe/IA
 /*
- * $Id: TesseractTrainerInfo.cpp,v 1.2 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerInfo.cpp,v 1.3 2005/05/27 12:48:37 southa Exp $
  * $Log: TesseractTrainerInfo.cpp,v $
+ * Revision 1.3  2005/05/27 12:48:37  southa
+ * Registration box tweaks
+ *
  * Revision 1.2  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -49,7 +52,7 @@ MushcoreInstaller TesseractTrainerInfoInstaller(TesseractTrainerInfo::Install);
 string
 TesseractTrainerInfo::ApplicationNameGet(void)
 {
-    return "TesseractTrainer";
+    return "Tesseract Trainer";
 }
 
 string

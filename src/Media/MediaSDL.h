@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VTRm8wZFSdKmR9HvYVSD2w
 /*
- * $Id: MediaSDL.h,v 1.24 2005/05/26 00:46:40 southa Exp $
+ * $Id: MediaSDL.h,v 1.25 2005/05/26 16:05:29 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.25  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.24  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -123,15 +126,6 @@
 #include "SDL_mixer.h"
 #endif
 #endif
-
-#if defined(HAVE_SDL_SDL_OPENGL_H)
-#include <SDL/SDL_opengl.h>
-#elif defined(HAVE_SDL_OPENGL_H)
-#include <SDL_opengl.h>
-#else
-#include "SDL_opengl.h"
-#endif
-
 
 #include "mushMushcore.h"
 

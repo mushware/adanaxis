@@ -1,5 +1,8 @@
-; $Id: installer.nsi,v 1.11 2002/11/24 10:26:14 southa Exp $
+; $Id: installer.nsi,v 1.12 2003/04/30 20:28:47 southa Exp $
 ; $Log: installer.nsi,v $
+; Revision 1.12  2003/04/30 20:28:47  southa
+; Removed win32 licence
+;
 ; Revision 1.11  2002/11/24 10:26:14  southa
 ; Added SDL_net
 ;
@@ -31,148 +34,88 @@
 ; More work
 ;
 
-; NOTE: this .NSI script is designed for NSIS v1.8+
+; NOTE: this .NSI script is designed for NSIS v2.0.6+
 
-Name "Infernal Contractor II"
-OutFile "IC2-win32-setup-0_0_0.exe"
+  !include "MUI.nsh"
+
+Name "Tesseract Trainer"
+OutFile "tesseracttrainer-win32-0.1.1.exe"
+SetCompressor lzma
+
+  !define MUI_ABORTWARNING
+
+  !insertmacro MUI_PAGE_WELCOME
+  !insertmacro MUI_PAGE_DIRECTORY
+  !insertmacro MUI_PAGE_INSTFILES
+  !insertmacro MUI_PAGE_FINISH
+    
+  !insertmacro MUI_UNPAGE_WELCOME
+  !insertmacro MUI_UNPAGE_CONFIRM
+  !insertmacro MUI_UNPAGE_INSTFILES
+  !insertmacro MUI_UNPAGE_FINISH
+  
+  !insertmacro MUI_LANGUAGE "English"
 
 ; LicenseText "You should at least read the WARRANTY line of this licence before installing."
 ; LicenseData "LICENCE"
 
-; Some default compiler settings (uncomment and change at will):
-; SetCompress auto ; (can be off or force)
-; SetDatablockOptimize on ; (can be off)
-; CRCCheck on ; (can be off)
-; AutoCloseWindow false ; (can be true for the window go away automatically at end)
-; ShowInstDetails hide ; (can be show to have them shown, or nevershow to disable)
-; SetDateSave off ; (can be on to have files restored to their orginal date)
+VIAddVersionKey "ProductName" "Tesseract Trainer"
+VIAddVersionKey "CompanyName" "Mushware Limited"
+VIAddVersionKey "LegalCopyright" "©Mushware Limited and Andy Southgate"
+VIAddVersionKey "FileVersion" "0.1.1"
+VIAddVersionKey "FileDescription" "Mushware software installer.  See http://www.mushware.com/."
+VIProductVersion "0.0.1.1"
 
-InstallDir "$PROGRAMFILES\Infernal Contractor II"
-InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II" ""
-DirShow show ; (make this hide to not let the user change it)
-DirText "Select the directory to install Infernal Contractor II in:"
+Icon tesseracttrainer_inst_app.ico
+UninstallIcon tesseracttrainer_uninst_app.ico
+
+InstallDir "$PROGRAMFILES\Tesseract Trainer"
+InstallDirRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Tesseract Trainer" ""
+; DirShow show ; (make this hide to not let the user change it)
+DirText "Select the directory to install Tesseract Trainer in:"
 
 Section "" ; (default section)
 SetOutPath "$INSTDIR"
-CreateDirectory "$OUTDIR/system"
-; add files / whatever that need to be installed here.
-GetDLLVersion glut32 $R1 $R2
-IfErrors err1 noerr1
-err1:
-File /oname=$OUTDIR\system\glut32.dll win32libs\glut32.dll
-noerr1:
+File /r "..\release\Tesseract Trainer\*.*"
 
-GetDLLVersion libexpat $R1 $R2
-IfErrors err2 noerr2
-err2:
-File /oname=$OUTDIR\system\libexpat.dll win32libs\libexpat.dll
-noerr2:
-
-GetDLLVersion libjpeg $R1 $R2
-IfErrors err3 noerr3
-err3:
-File /oname=$OUTDIR\system\libjpeg.dll win32libs\libjpeg.dll
-noerr3:
-
-GetDLLVersion libtiff $R1 $R2
-IfErrors err4 noerr4
-err4:
-File /oname=$OUTDIR\system\libtiff.dll win32libs\libtiff.dll
-noerr4:
-
-GetDLLVersion libungif $R1 $R2
-IfErrors err5 noerr5
-err5:
-File /oname=$OUTDIR\system\libungif.dll win32libs\libungif.dll
-noerr5:
-
-GetDLLVersion pcre $R1 $R2
-IfErrors err6 noerr6
-err6:
-File /oname=$OUTDIR\system\pcre.dll win32libs\pcre.dll
-noerr6:
-
-GetDLLVersion SDL $R1 $R2
-IfErrors err7 noerr7
-err7:
-File /oname=$OUTDIR\system\SDL.dll win32libs\SDL.dll
-noerr7:
-
-GetDLLVersion SDL_mixer $R1 $R2
-IfErrors err8 noerr8
-err8:
-File /oname=$OUTDIR\system\SDL_mixer.dll win32libs\SDL_mixer.dll
-noerr8:
-
-GetDLLVersion smpeg $R1 $R2
-IfErrors err9 noerr9
-err9:
-File /oname=$OUTDIR\system\smpeg.dll win32libs\smpeg.dll
-noerr9:
-
-GetDLLVersion zlib $R1 $R2
-IfErrors err10 noerr10
-err10:
-File /oname=$OUTDIR\system\zlib.dll win32libs\zlib.dll
-noerr10:
-
-GetDLLVersion SDL_net $R1 $R2
-IfErrors err11 noerr11
-err11:
-File /oname=$OUTDIR\system\SDL_net.dll win32libs\SDL_net.dll
-noerr11:
-
-File /r ..\release\*.*
-
-WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II" "" "$INSTDIR"
-WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "DisplayName" "Infernal Contractor II"
-WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II" "UninstallString" '"$INSTDIR\Uninstall IC2.exe"'
+WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Tesseract Trainer" "" "$INSTDIR"
+WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer" "DisplayName" "Tesseract Trainer"
+WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer" "UninstallString" '"$INSTDIR\Uninstall tesseracttrainer.exe"'
 
 SetOutPath "$INSTDIR\system"
-CreateShortCut "$DESKTOP\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
-CreateShortCut "$DESKTOP\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
-CreateShortCut "$INSTDIR\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
-CreateDirectory "$STARTMENU\Programs\Mushware"
-CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk" "$OUTDIR\ic2.exe" "" "$OUTDIR\ic2_app.ico" 0
-CreateShortCut "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk" "$INSTDIR\Uninstall IC2.exe"
-CreateShortCut "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk" "$INSTDIR\README.txt"
-CreateShortCut "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
-CreateShortCut "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk" "$INSTDIR\"
-CreateShortCut "$STARTMENU\Programs\Mushware\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
-CreateShortCut "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk" "http://sourceforge.net/projects/ic2/"
-
-CreateShortCut "$INSTDIR\IC2 Configuration File.lnk" "$INSTDIR\system\start.txt"
+CreateShortCut "$INSTDIR\Tesseract Trainer.lnk" "$OUTDIR\tesseracttrainer.exe" 
+; "" "$OUTDIR\tesseracttrainer_app.ico" 0
+CreateDirectory "$STARTMENU\Programs\Tesseract Trainer"
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer.lnk" "$OUTDIR\tesseracttrainer.exe"
+; "" "$OUTDIR\tesseracttrainer_app.ico" 0
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Uninstall Tesseract Trainer.lnk" "$INSTDIR\Uninstall Tesseract Trainer.exe"
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\About Tesseract Trainer.lnk" "$INSTDIR\About Tesseract Trainer.pdf"
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Explore Tesseract Trainer Files.lnk" "$INSTDIR\"
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
 
 SetOutPath "$INSTDIR"
 
 ; write out uninstaller
-WriteUninstaller "$INSTDIR\Uninstall IC2.exe"
+WriteUninstaller "$INSTDIR\Uninstall Tesseract Trainer.exe"
 SectionEnd ; end of default section
 
 ; begin uninstall settings/section
-UninstallText "This will uninstall Infernal Contractor II from your system"
+UninstallText "This will uninstall Tesseract Trainer from your system"
 
 Section Uninstall
 ; add delete commands to delete whatever files/registry keys/etc you installed here.
-Delete "$INSTDIR\Uninstall IC2.exe"
-DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Infernal Contractor II"
-DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Infernal Contractor II"
+Delete "$INSTDIR\Uninstall tesseracttrainer.exe"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Tesseract Trainer"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer"
 RMDir /r "$INSTDIR"
-Delete "$DESKTOP\Infernal Contractor II.lnk"
-Delete "$DESKTOP\Mushware web site.lnk"
-Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II.lnk"
-Delete "$STARTMENU\Programs\Mushware\Uninstall Infernal Contractor II.lnk"
-Delete "$STARTMENU\Programs\Mushware\Infernal Contractor II README.lnk"
-Delete "$STARTMENU\Programs\Mushware\IC2 Configuration File.lnk"
-Delete "$STARTMENU\Programs\Mushware\Explore IC2 Files.lnk"
-Delete "$STARTMENU\Programs\Mushware\Mushware web site.lnk"
-Delete "$STARTMENU\Programs\Mushware\Report IC2 Bug.lnk"
-FindFirst $R1 $R2 "$STARTMENU\Programs\Mushware\*.lnk"
-IfErrors err20 noerr20
-err20:
-RmDir "$STARTMENU\Programs\Mushware"
-noerr20:
-FindClose $R1
+Delete "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\Uninstall Tesseract Trainer.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\About Tesseract Trainer.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\Explore tesseracttrainer Files.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\Mushware web site.lnk"
+
+RmDir "$STARTMENU\Programs\Tesseract Trainer"
+
 SectionEnd ; end of uninstall section
 
 ; eof
