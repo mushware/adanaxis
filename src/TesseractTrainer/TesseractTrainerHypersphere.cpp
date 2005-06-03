@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FD3CFDwuOpfxWOkJrDCd/Q
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.6 2005/04/10 00:09:23 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.7 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/04/10 00:09:23  southa
  * Registration
  *
@@ -211,6 +214,11 @@ TesseractTrainerHypersphere::Render(tVal frame)
     
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_SECONDARY_COLOR_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    glDisableClientState(GL_FOG_COORDINATE_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_EDGE_FLAG_ARRAY);
 
     glDrawArrays(GL_POINTS, 0, vertices.size() * m_renderFaces / 8);
 
