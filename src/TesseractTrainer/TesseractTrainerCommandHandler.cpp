@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } P8q72fYQ3IWUSGw5eVuZOQ
 /*
- * $Id: TesseractTrainerCommandHandler.cpp,v 1.1 2005/02/03 15:46:56 southa Exp $
+ * $Id: TesseractTrainerCommandHandler.cpp,v 1.2 2005/05/19 13:02:21 southa Exp $
  * $Log: TesseractTrainerCommandHandler.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/03 15:46:56  southa
  * Quaternion work
  *
@@ -46,7 +49,6 @@ TesseractTrainerCommandHandler::TesseractTrainer(MushcoreCommand& ioCommand, Mus
 
     TesseractTrainerAppHandler *pAppHandler = new TesseractTrainerAppHandler;
     MushcoreAppHandler::Sgl().Mutate(pAppHandler);
-    pAppHandler->GameModeEnter(false);
     
     return MushcoreScalar(0);
 }

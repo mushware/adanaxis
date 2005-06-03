@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iLsKF/6w0qS1tAB1VblJCg
 /*
- * $Id: TesseractTrainerAppHandler.cpp,v 1.3 2005/04/19 23:25:43 southa Exp $
+ * $Id: TesseractTrainerAppHandler.cpp,v 1.4 2005/05/19 13:02:21 southa Exp $
  * $Log: TesseractTrainerAppHandler.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/04/19 23:25:43  southa
  * Mode switching and recognition
  *
@@ -52,6 +55,12 @@ TesseractTrainerAppHandler::TesseractTrainerAppHandler()
 
 TesseractTrainerAppHandler::~TesseractTrainerAppHandler()
 {
+}
+
+void
+TesseractTrainerAppHandler::SetupModeEnter(void)
+{
+    GameModeEnter(false);
 }
 
 void

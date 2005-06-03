@@ -44,6 +44,10 @@ SetCompressor lzma
 
   !define MUI_ABORTWARNING
 
+  !define MUI_FINISHPAGE_RUN
+  !define MUI_FINISHPAGE_RUN_TEXT "Create shortcut on desktop"
+  !define MUI_FINISHPAGE_RUN_FUNCTION desktopCreate
+
   !insertmacro MUI_PAGE_WELCOME
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
@@ -55,6 +59,11 @@ SetCompressor lzma
   !insertmacro MUI_UNPAGE_FINISH
   
   !insertmacro MUI_LANGUAGE "English"
+
+Function desktopCreate
+SetOutPath "$INSTDIR\system"
+CreateShortCut "$DESKTOP\Tesseract Trainer.lnk" "$OUTDIR\tesseracttrainer.exe" 
+FunctionEnd
 
 ; LicenseText "You should at least read the WARRANTY line of this licence before installing."
 ; LicenseData "LICENCE"
@@ -80,14 +89,16 @@ File /r "..\release\Tesseract Trainer\*.*"
 
 WriteRegStr HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Tesseract Trainer" "" "$INSTDIR"
 WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer" "DisplayName" "Tesseract Trainer"
-WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer" "UninstallString" '"$INSTDIR\Uninstall tesseracttrainer.exe"'
+WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer" "UninstallString" '"$INSTDIR\Uninstall Tesseract Trainer.exe"'
 
 SetOutPath "$INSTDIR\system"
 CreateShortCut "$INSTDIR\Tesseract Trainer.lnk" "$OUTDIR\tesseracttrainer.exe" 
-; "" "$OUTDIR\tesseracttrainer_app.ico" 0
+CreateShortCut "$INSTDIR\Tesseract Trainer (Safe Mode).lnk" "$OUTDIR\tesseracttrainer.exe" "load('start_safe.txt')"
+
 CreateDirectory "$STARTMENU\Programs\Tesseract Trainer"
 CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer.lnk" "$OUTDIR\tesseracttrainer.exe"
-; "" "$OUTDIR\tesseracttrainer_app.ico" 0
+CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer (Safe Mode).lnk" "$OUTDIR\tesseracttrainer.exe" "load('start_safe.txt')"
+
 CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Uninstall Tesseract Trainer.lnk" "$INSTDIR\Uninstall Tesseract Trainer.exe"
 CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\About Tesseract Trainer.lnk" "$INSTDIR\About Tesseract Trainer.pdf"
 CreateShortCut "$STARTMENU\Programs\Tesseract Trainer\Explore Tesseract Trainer Files.lnk" "$INSTDIR\"
@@ -109,11 +120,13 @@ DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Mushware Limited\Tesseract Trainer"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Tesseract Trainer"
 RMDir /r "$INSTDIR"
 Delete "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\Tesseract Trainer (Safe Mode).lnk"
 Delete "$STARTMENU\Programs\Tesseract Trainer\Uninstall Tesseract Trainer.lnk"
 Delete "$STARTMENU\Programs\Tesseract Trainer\About Tesseract Trainer.lnk"
-Delete "$STARTMENU\Programs\Tesseract Trainer\Explore tesseracttrainer Files.lnk"
+Delete "$STARTMENU\Programs\Tesseract Trainer\Explore Tesseract Trainer Files.lnk"
 Delete "$STARTMENU\Programs\Tesseract Trainer\Mushware web site.lnk"
 
+Delete "$DESKTOP\Tesseract Trainer.lnk"
 RmDir "$STARTMENU\Programs\Tesseract Trainer"
 
 SectionEnd ; end of uninstall section

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kWkUhkNRBAfL9OYY11vCpQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.17 2005/05/26 00:46:41 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.18 2005/05/26 16:05:29 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.18  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.17  2005/05/26 00:46:41  southa
  * Made buildable on win32
  *
@@ -115,6 +118,17 @@ PlatformVideoUtils::ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight)
 PlatformVideoUtils::PlatformVideoUtils() :
     m_threadAttached(false)
 {
+    bool safeMode;
+    const MushcoreScalar *pScalar;
+
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
+    {
+        if (pScalar->U32Get())
+        {
+            safeMode = true;
+        }
+    }
+
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     
@@ -123,27 +137,30 @@ PlatformVideoUtils::PlatformVideoUtils() :
     
     m_modesSoFar.resize(0);
 
-    LPDIRECTDRAW iDirectDraw;
-
-    typedef HRESULT (WINAPI *tfpDirectDrawCreate)(GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter);
-    tfpDirectDrawCreate fpDirectDrawCreate = NULL;
-    HINSTANCE pLibrary = LoadLibrary("DDRAW.DLL");
-
-    if (pLibrary != NULL)
+    if (!safeMode)
     {
-        fpDirectDrawCreate = (tfpDirectDrawCreate) GetProcAddress(pLibrary, "DirectDrawCreate");
-        FreeLibrary(pLibrary);
-    }
+        LPDIRECTDRAW iDirectDraw;
 
-    if (fpDirectDrawCreate != NULL && fpDirectDrawCreate(NULL, &iDirectDraw, NULL) == DD_OK)
-    {
-        LPDIRECTDRAW2 iDirectDraw2;
-        if (iDirectDraw->QueryInterface(IID_IDirectDraw2, (LPVOID *) &iDirectDraw2) == DD_OK)
+        typedef HRESULT (WINAPI *tfpDirectDrawCreate)(GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter);
+        tfpDirectDrawCreate fpDirectDrawCreate = NULL;
+        HINSTANCE pLibrary = LoadLibrary("DDRAW.DLL");
+
+        if (pLibrary != NULL)
         {
-            iDirectDraw2->EnumDisplayModes(0, NULL, this, PlatformVideoUtils_EnumDisplayModesCallback);
-            iDirectDraw2->Release();
+            fpDirectDrawCreate = (tfpDirectDrawCreate) GetProcAddress(pLibrary, "DirectDrawCreate");
+            FreeLibrary(pLibrary);
         }
-        iDirectDraw->Release();
+
+        if (fpDirectDrawCreate != NULL && fpDirectDrawCreate(NULL, &iDirectDraw, NULL) == DD_OK)
+        {
+            LPDIRECTDRAW2 iDirectDraw2;
+            if (iDirectDraw->QueryInterface(IID_IDirectDraw2, (LPVOID *) &iDirectDraw2) == DD_OK)
+            {
+                iDirectDraw2->EnumDisplayModes(0, NULL, this, PlatformVideoUtils_EnumDisplayModesCallback);
+                iDirectDraw2->Release();
+            }
+            iDirectDraw->Release();
+        }
     }
     
     if (m_modesSoFar.size() == 0)

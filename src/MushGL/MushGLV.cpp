@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.4 2005/04/10 00:09:22 southa Exp $
+ * $Id: MushGLV.cpp,v 1.5 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -61,6 +64,9 @@ MushGLV::MushGLV() :
 void
 MushGLV::Acquaint()
 {
+    bool safeMode = false;
+    const MushcoreScalar *pScalar = NULL;
+
     ++m_contextNum;
     m_vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
@@ -69,7 +75,15 @@ MushGLV::Acquaint()
     
     void *fnPtr;
 
-    if (m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
+    {
+        if (pScalar->U32Get())
+        {
+            safeMode = true;
+        }
+    }
+
+    if (!safeMode && m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
         try
         {

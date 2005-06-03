@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } gGYZia3OELOmIgAy2ACquQ
 /*
- * $Id: TesseractTrainerAppHandler.h,v 1.2 2005/03/13 00:34:48 southa Exp $
+ * $Id: TesseractTrainerAppHandler.h,v 1.3 2005/05/19 13:02:21 southa Exp $
  * $Log: TesseractTrainerAppHandler.h,v $
+ * Revision 1.3  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/03/13 00:34:48  southa
  * Build fixes, key support and stereo
  *
@@ -41,6 +44,7 @@ class TesseractTrainerAppHandler : public GameAppHandler
 public:
     TesseractTrainerAppHandler();
     virtual ~TesseractTrainerAppHandler();
+    virtual void SetupModeEnter(void);
     virtual void GameModeEnter(bool inResume);
     virtual void CurrentGameEnd(void);
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);

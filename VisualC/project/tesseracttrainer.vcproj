@@ -83,7 +83,7 @@
 				EnableIntrinsicFunctions="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.7\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.5\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;"
+				PreprocessorDefinitions="WIN32;_WINDOWS;"
 				StringPooling="FALSE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
