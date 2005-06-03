@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kWkUhkNRBAfL9OYY11vCpQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.19 2005/06/03 13:36:44 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.20 2005/06/03 15:21:19 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.20  2005/06/03 15:21:19  southa
+ * win32 build fixes
+ *
  * Revision 1.19  2005/06/03 13:36:44  southa
  * win32 build fixes
  *
@@ -172,8 +175,6 @@ PlatformVideoUtils::PlatformVideoUtils() :
         m_modesSoFar.push_back(std::pair<long, long>(640,480));
         m_modesSoFar.push_back(std::pair<long, long>(800,600));
         m_modesSoFar.push_back(std::pair<long, long>(1024,768));
-        m_modesSoFar.push_back(std::pair<long, long>(1280,1024));
-        m_modesSoFar.push_back(std::pair<long, long>(1600,1200));
     }
 
     std::sort(m_modesSoFar.begin(), m_modesSoFar.end());
