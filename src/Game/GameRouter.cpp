@@ -1,56 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameRouter.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } KmW3qd1eEoGcmlQpxkF4Jw
+
 /*
- * $Id: GameRouter.cpp,v 1.31 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameRouter.cpp,v 1.21 2003/01/18 13:33:57 southa Exp $
  * $Log: GameRouter.cpp,v $
- * Revision 1.31  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.30  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.29  2003/10/06 23:06:31  southa
- * Include fixes
- *
- * Revision 1.28  2003/10/06 22:23:44  southa
- * Game to GameMustl move
- *
- * Revision 1.27  2003/10/04 15:32:09  southa
- * Module split
- *
- * Revision 1.26  2003/10/04 12:44:34  southa
- * File renaming
- *
- * Revision 1.25  2003/10/04 12:23:02  southa
- * File renaming
- *
- * Revision 1.24  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.23  2003/08/21 23:08:53  southa
- * Fixed file headers
- *
- * Revision 1.22  2003/01/20 10:45:27  southa
- * Singleton tidying
- *
  * Revision 1.21  2003/01/18 13:33:57  southa
  * Created MushcoreSingleton
  *
@@ -118,12 +78,15 @@
 
 #include "GameRouter.h"
 
+#include "GameData.h"
+#include "GameException.h"
+#include "GameMessageControlData.h"
+#include "GameNetID.h"
+#include "GameNetObject.h"
+#include "GameNetUtils.h"
+#include "GamePiecePlayer.h"
 #include "GameProtocol.h"
 #include "GameSTL.h"
-
-#ifdef MUSHWARE_USE_MUSTL
-#include "mushMustlGame.h"
-#endif
 
 using namespace Mushware;
 using namespace std;
@@ -133,7 +96,6 @@ MUSHCORE_SINGLETON_INSTANCE(GameRouter);
 void
 GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
 {
-#ifdef MUSHWARE_USE_MUSTL
     switch (inType)
     {
         case GameProtocol::kMessageTypeIDTransfer:
@@ -145,19 +107,20 @@ GameRouter::MessageHandle(MustlData& ioData, MustlLink& inLink, U32 inType)
             NetObjectHandle(ioData, inLink);
             break;
 
+        case GameProtocol::kMessageTypeControlData:
+            ControlDataHandle(ioData, inLink);
+            break;
+
         default:
             MustlLog::Sgl().NetLog() << "Unrecognised message type (" << inType << ")" << endl;
             break;
     }
-#endif
 }
 
 void
 GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
 {
-#ifdef MUSHWARE_USE_MUSTL
-
-    MustlGameID netID(ioData);
+    GameNetID netID(ioData);
 
     // We add the -image suffix if the target of this link is a client.  Not rigourous
     if (!inLink.TargetServerIs())
@@ -165,14 +128,12 @@ GameRouter::IDTransferHandle(MustlData& ioData, MustlLink& inLink)
         netID.NameSuffixAdd("-image");
     }
     inLink.NetIDSet(netID);
-#endif
 }
 
 void
 GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
 {
-#ifdef MUSHWARE_USE_MUSTL
-    MustlGameObject netObject;
+    GameNetObject netObject;
 
     netObject.AddressSet(inLink.TCPAddressGet());
     
@@ -185,11 +146,66 @@ GameRouter::NetObjectHandle(MustlData& ioData, const MustlLink& inLink)
     }
     catch (MushcoreSyntaxFail& e)
     {
-        throw(MustlFail(e.what()));
+        throw(NetworkFail(e.what()));
     }
-#endif
 }
 
+void
+GameRouter::ControlDataHandle(MustlData& ioData, const MustlLink& inLink)
+{
+    // Find object that relates to this control data
+
+    bool discard=true;
+    
+    if (inLink.NetIDExists())
+    {
+        const GameNetID& gameNetID = dynamic_cast<const GameNetID&>(inLink.NetIDGet());
+        if (gameNetID.DataRefGet().Exists())
+        {
+            GameDefClient *clientDef = gameNetID.DataRefGet().Get();
+            if (clientDef->PlayerRefGet().Exists())
+            {
+                GamePiecePlayer *piecePlayer = clientDef->PlayerRefGet().Get();
+
+                GameMessageControlData controlData;
+                controlData.Unpack(ioData);
+
+                U32 size = controlData.DataSizeGet();
+                U32 startFrame = controlData.StartFrameGet();
+                
+                for (U32 i=0; i<size; ++i)
+                {
+                    const GameMessageControlData::DataEntry& dataEntry = controlData.DataEntryGet(i);
+                    piecePlayer->ControlFrameDefAdd(dataEntry.frameDef, startFrame + dataEntry.frameOffset);
+                }
+                
+                discard=false;
+            }
+        }
+    }
+
+    if (discard)
+    {
+        MustlLog::Sgl().NetLog() << ": Discarding ControlData for unknown target" << endl;
+    }
+
+    
+#if 0
+    MushcoreData<GamePiecePlayer>& playerData = GameData::Sgl().PlayerGet();
+
+    if (playerData.Exists(clientName))
+    {
+        MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Found player '" << clientName << "' for data" << endl;
+    }
+    else
+    {
+       MustlLog::Sgl().NetLog() << inLink.TCPTargetAddressGet() << ": Didn't find player '" << clientName << "' for data" << endl;
+    }
+#endif
+    // Apply or store the data
+
+    // Resend object's MotionSpec to the clients as necessary
+}
 
 /************************************************************************************
 

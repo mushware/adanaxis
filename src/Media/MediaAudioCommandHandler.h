@@ -1,45 +1,18 @@
-//%includeGuardStart {
 #ifndef MEDIAAUDIOCOMMANDHANDLER_H
 #define MEDIAAUDIOCOMMANDHANDLER_H
-//%includeGuardStart } r97NEZCvbdc6OGWQjgXrlA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Media/MediaAudioCommandHandler.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } CfnCtxuG8isNnDiP8es6/A
+
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.14 2004/01/06 20:46:51 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.9 2003/01/09 14:57:04 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
- * Revision 1.14  2004/01/06 20:46:51  southa
- * Build fixes
- *
- * Revision 1.13  2004/01/02 21:13:10  southa
- * Source conditioning
- *
- * Revision 1.12  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.11  2003/08/21 23:09:00  southa
- * Fixed file headers
- *
- * Revision 1.10  2003/01/11 13:03:15  southa
- * Use Mushcore header
- *
  * Revision 1.9  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -69,7 +42,7 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class MediaAudioCommandHandler
 {
@@ -77,6 +50,4 @@ public:
     static void Install(void);
     static MushcoreScalar PlayMusic(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,62 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameSetup.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } tdoSfpSXz3jSwC871qqVIQ
+
 /*
- * $Id: GameSetup.cpp,v 1.44 2005/04/19 23:25:39 southa Exp $
+ * $Id: GameSetup.cpp,v 1.32 2003/02/06 18:55:27 southa Exp $
  * $Log: GameSetup.cpp,v $
- * Revision 1.44  2005/04/19 23:25:39  southa
- * Mode switching and recognition
- *
- * Revision 1.43  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.42  2005/02/10 12:33:59  southa
- * Template fixes
- *
- * Revision 1.41  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.40  2004/03/06 13:59:59  southa
- * Fixes
- *
- * Revision 1.39  2004/03/06 13:13:42  southa
- * Maurheen created
- *
- * Revision 1.38  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.37  2003/10/06 23:06:31  southa
- * Include fixes
- *
- * Revision 1.36  2003/10/06 22:23:45  southa
- * Game to GameMustl move
- *
- * Revision 1.35  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.34  2003/08/21 23:08:54  southa
- * Fixed file headers
- *
- * Revision 1.33  2003/03/10 21:57:11  southa
- * ic2 revisions
- *
  * Revision 1.32  2003/02/06 18:55:27  southa
  * Linux build fixes
  *
@@ -160,16 +114,15 @@
 #include "GameAppHandler.h"
 #include "GameConfig.h"
 #include "GameConfigDef.h"
+#include "GameDefClient.h"
+#include "GameDefServer.h"
+#include "GameNetUtils.h"
 #include "GameRouter.h"
 #include "GameSTL.h"
 
 #include "mushGL.h"
 #include "mushMedia.h"
 #include "mushPlatform.h"
-
-#ifdef MUSHWARE_USE_MUSTL
-#include "mushMustlGame.h"
-#endif
 
 using namespace Mushware;
 using namespace std;
@@ -218,14 +171,14 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 
     {
         orthoGL.MoveRelative(0, 0.2);
-        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-mono1", 0.04), 0);
+        GLString glStr(MushcoreInfo::Sgl().ApplicationNameGet(), GLFontRef("font-system1", 0.04), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1);
         orthoGL.MoveRelative(0, -0.03);
-        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-mono1", 0.018), 0);
+        GLString glStr("Version: "+MushcoreInfo::Sgl().PackageVersionGet()+"  ID: "+MushcoreInfo::Sgl().PackageIDGet(), GLFontRef("font-system1", 0.018), 0);
         glStr.Render();
     }
     
@@ -233,13 +186,13 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     {
         GLState::ColourSet(1.0,1.0,1.0,1.0);
         orthoGL.MoveRelative(0, -0.12);
-        GLString glStr("Configuration mode", GLFontRef("font-mono1", 0.03), 0);
+        GLString glStr("Configuration mode", GLFontRef("font-system1", 0.03), 0);
         glStr.Render();
     }
 
     {
         GLState::ColourSet(0.8,0.8,1.0,1.0);
-        GLString glStr("Please click this window or view", GLFontRef("font-mono1", 0.02), 0);
+        GLString glStr("Please click this window or view", GLFontRef("font-system1", 0.02), 0);
         orthoGL.MoveRelative(0, -0.06);
         glStr.Render();
         
@@ -257,7 +210,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
     if (!m_windowClicked)
     {
         GLState::ColourSet(1.0,1.0,1.0,0.8);
-        GLString glStr("Click this window to begin", GLFontRef("font-mono1", 0.03), 0);
+        GLString glStr("Click this window to begin", GLFontRef("font-system1", 0.03), 0);
         orthoGL.MoveRelative(0.01*sin(msecNow/200), -0.15+0.01*cos(msecNow/401));
 GLUtils::RotateAboutZ(5*sin(msecNow/151));
         glStr.Render();
@@ -269,7 +222,6 @@ GLUtils::RotateAboutZ(5*sin(msecNow/151));
 void
 GameSetup::ConfigInit(void)
 {
-#ifdef MUSHWARE_USE_MUSTL
     U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
     try
     {
@@ -281,10 +233,7 @@ GameSetup::ConfigInit(void)
         MustlLog::Sgl().WebLog() << e.what() << endl;
         PlatformMiscUtils::MinorErrorBox(e.what());
     }
-#else
-    U32 webPort = 0;
-#endif
-    
+        
     ostringstream configURL;
     configURL << "http://127.0.0.1:" << webPort << "/";
     m_configURL=configURL.str();
@@ -296,16 +245,15 @@ GameSetup::Config(void)
 {
     m_currentMsec=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl()).MillisecondsGet();
     
-#ifdef MUSHWARE_USE_MUSTL
-    MustlGameUtils::WebReceive();
-    MustlGameUtils::NetReceive();
+    GameNetUtils::WebReceive();
+    GameNetUtils::NetReceive();
+
 
     if (m_currentMsec > m_lastTickerMsec + kTickerMsec)
     {
         m_lastTickerMsec = m_currentMsec;
-        MustlGameUtils::NetTicker();
+        GameNetUtils::NetTicker();
     }
-#endif
     
     KeyControl();
     GLUtils::PostRedisplay();
@@ -329,7 +277,6 @@ GameSetup::KeyControl(void)
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
     if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
     {
-#ifdef MUSHWARE_USE_MUSTL
         if (!MustlWebServer::Sgl().IsConnected())
         {
             U32 webPort=MushcoreData<GameConfigDef>::Sgl().Get("configport")->ValueGet().U32Get();
@@ -351,7 +298,6 @@ GameSetup::KeyControl(void)
             cerr << "Exception: " << e.what() << endl;
             cerr << "Please open the URL manually if necessary." << endl;
         }
-#endif
         m_windowClicked=true;
     }
 }
@@ -378,101 +324,3 @@ GameSetup::MustlPermissionFunction(const std::string& inAddress)
 {
     return PlatformMiscUtils::PermissionBox("A connection is being attempted from address "+inAddress+".  Would you like to allow this?", false);
 }
-
-
-void
-operator>>(MushcoreXMLIStream& ioIn, GameSetup::tGameState& inValue)
-{
-    Mushware::tXMLVal value;
-    ioIn >> value;
-	inValue = static_cast<GameSetup::tGameState>(static_cast<Mushware::U32>(value));
-}
-
-//%outOfLineFunctions {
-
-const char *GameSetup::AutoNameGet(void) const
-{
-    return "GameSetup";
-}
-
-MushcoreVirtualObject *GameSetup::AutoClone(void) const
-{
-    return new GameSetup(*this);
-}
-
-MushcoreVirtualObject *GameSetup::AutoCreate(void) const
-{
-    return new GameSetup;
-}
-
-MushcoreVirtualObject *GameSetup::AutoVirtualFactory(void)
-{
-    return new GameSetup;
-}
-namespace
-{
-void AutoInstall(void)
-{
-    MushcoreFactory::Sgl().FactoryAdd("GameSetup", GameSetup::AutoVirtualFactory);
-}
-MushcoreInstaller AutoInstaller(AutoInstall);
-} // end anonymous namespace
-void
-GameSetup::AutoPrint(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "gameState=" << m_gameState << ", ";
-    ioOut << "configURL=" << m_configURL << ", ";
-    ioOut << "currentMsec=" << m_currentMsec << ", ";
-    ioOut << "lastTickerMsec=" << m_lastTickerMsec << ", ";
-    ioOut << "windowClicked=" << m_windowClicked;
-    ioOut << "]";
-}
-bool
-GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
-{
-    if (inTagStr == "obj")
-    {
-        ioIn >> *this;
-    }
-    else if (inTagStr == "gameState")
-    {
-        ioIn >> m_gameState;
-    }
-    else if (inTagStr == "configURL")
-    {
-        ioIn >> m_configURL;
-    }
-    else if (inTagStr == "currentMsec")
-    {
-        ioIn >> m_currentMsec;
-    }
-    else if (inTagStr == "lastTickerMsec")
-    {
-        ioIn >> m_lastTickerMsec;
-    }
-    else if (inTagStr == "windowClicked")
-    {
-        ioIn >> m_windowClicked;
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-void
-GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut.TagSet("gameState");
-    ioOut << m_gameState;
-    ioOut.TagSet("configURL");
-    ioOut << m_configURL;
-    ioOut.TagSet("currentMsec");
-    ioOut << m_currentMsec;
-    ioOut.TagSet("lastTickerMsec");
-    ioOut << m_lastTickerMsec;
-    ioOut.TagSet("windowClicked");
-    ioOut << m_windowClicked;
-}
-//%outOfLineFunctions } PMr12HgvmeSl2XTctCjcTw

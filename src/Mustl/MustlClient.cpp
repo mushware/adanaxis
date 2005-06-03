@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlClient.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } n0VAgcjyZnlRBcENYgMhGg
+
 /*
- * $Id: MustlClient.cpp,v 1.16 2004/09/28 23:05:54 southa Exp $
+ * $Id: MustlClient.cpp,v 1.11 2003/01/16 12:03:55 southa Exp $
  * $Log: MustlClient.cpp,v $
- * Revision 1.16  2004/09/28 23:05:54  southa
- * MSVC build of ic2
- *
- * Revision 1.15  2004/01/02 21:13:14  southa
- * Source conditioning
- *
- * Revision 1.14  2003/09/17 19:40:37  southa
- * Source conditioning upgrades
- *
- * Revision 1.13  2003/08/21 23:09:21  southa
- * Fixed file headers
- *
- * Revision 1.12  2003/01/20 10:45:29  southa
- * Singleton tidying
- *
  * Revision 1.11  2003/01/16 12:03:55  southa
  * Platform and invalid socket fixes
  *
@@ -205,7 +180,6 @@ MustlClient::UDPConnect(const MustlAddress& inAddress)
         }
         catch (MushcoreNonFatalFail& e)
         {
-            (void) e;
             ++localPort;
             if (++failCtr > 8) // Should be configurable
             {

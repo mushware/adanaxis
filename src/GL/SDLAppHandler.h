@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef SDLAPPHANDLER_H
 #define SDLAPPHANDLER_H
-//%includeGuardStart } H5tWwcRTm9Qy8lKFOS/83A
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/SDLAppHandler.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 73dxJ2aq0CnII0Vg/zkZdg
+
 /*
- * $Id: SDLAppHandler.h,v 1.25 2005/05/19 13:02:01 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.19 2003/01/09 14:56:59 southa Exp $
  * $Log: SDLAppHandler.h,v $
- * Revision 1.25  2005/05/19 13:02:01  southa
- * Mac release work
- *
- * Revision 1.24  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.23  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.22  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.21  2003/08/21 23:08:33  southa
- * Fixed file headers
- *
- * Revision 1.20  2003/01/11 13:03:12  southa
- * Use Mushcore header
- *
  * Revision 1.19  2003/01/09 14:56:59  southa
  * Created Mushcore
  *
@@ -102,7 +72,7 @@
 #include "GLAppHandler.h"
 #include "GLKeys.h"
 #include "GLModeDef.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLKeyboardSignal;
 
@@ -132,7 +102,6 @@ public:
     virtual Mushware::U32 WidthGet(void) const {return m_width;}
     virtual Mushware::U32 HeightGet(void) const {return m_height;}
     virtual Mushware::U32 MillisecondsGet(void) const;
-    virtual bool HasFocus(void) const;
     virtual void SetCursorState(bool inValue);
     virtual const GLModeDef& CurrentModeDefGet(void);
     virtual void PollForControlEvents(void);
@@ -178,6 +147,4 @@ private:
     bool m_firstDelta;
     bool m_doQuit;
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

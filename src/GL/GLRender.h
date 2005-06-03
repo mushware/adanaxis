@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef GLRENDER_H
 #define GLRENDER_H
-//%includeGuardStart } Y+fiEOiRr+UML9oBaQneSA
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLRender.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } mGqMZ/bPTRv9fMoBaL//fQ
+
 /*
- * $Id: GLRender.h,v 1.11 2004/01/10 20:29:34 southa Exp $
+ * $Id: GLRender.h,v 1.5 2002/12/20 13:17:35 southa Exp $
  * $Log: GLRender.h,v $
- * Revision 1.11  2004/01/10 20:29:34  southa
- * Form and rendering work
- *
- * Revision 1.10  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.9  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.8  2003/09/17 19:40:29  southa
- * Source conditioning upgrades
- *
- * Revision 1.7  2003/08/21 23:08:26  southa
- * Fixed file headers
- *
- * Revision 1.6  2003/01/11 13:03:11  southa
- * Use Mushcore header
- *
  * Revision 1.5  2002/12/20 13:17:35  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -63,7 +33,7 @@
 #include "GLStandard.h"
 #include "GLState.h"
 #include "GLTextureRef.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLTextureRef;
 
@@ -75,32 +45,16 @@ public:
         glVertexPointer(3, GL_FLOAT, 0, inArray);
         m_vertexArray=inArray;
     }
-    static void VertexArraySet(const GLfloat *inArray)
-    {
-        glVertexPointer(3, GL_FLOAT, 0, inArray);
-    }
-    
     static void TexCoordArraySet(const GLfloat (*inArray)[2])
     {
         glTexCoordPointer(2, GL_FLOAT, 0, inArray);
         m_texCoordArray=inArray;
     }
-    static void TexCoordArraySet(const GLfloat *inArray)
-    {
-        glTexCoordPointer(4, GL_FLOAT, 0, inArray);
-    }
-
     static void NormalArraySet(const GLfloat (*inArray)[3])
     {
         glNormalPointer(GL_FLOAT, 0, inArray);
         m_normalArray=inArray;
     }
-
-    static void NormalArraySet(const GLfloat *inArray)
-    {
-        glNormalPointer(GL_FLOAT, 0, inArray);
-    }
-    
     static void TextureSet(const GLTextureRef& inTexRef)
     {
         GLState::BindTexture(inTexRef.BindingNameGet());
@@ -119,6 +73,4 @@ private:
 };
 
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

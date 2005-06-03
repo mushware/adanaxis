@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureGIF.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } x1YzGtAw3FWxsQMqga4EYA
+
 /*
- * $Id: GLTextureGIF.cpp,v 1.21 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.15 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
- * Revision 1.21  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.20  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.19  2004/01/01 21:15:45  southa
- * Created XCode project
- *
- * Revision 1.18  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.17  2003/08/21 23:08:31  southa
- * Fixed file headers
- *
- * Revision 1.16  2003/02/05 16:19:45  southa
- * Build fixes
- *
  * Revision 1.15  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -88,15 +60,15 @@
 
 #include "GLTextureGIF.h"
 
-#if 0
-namespace libgif
-{
 extern "C"
 {
+// Prevent clash with windows.h
+#define DrawTextA gif_lib_DrawTextA
 #include "gif_lib.h"
+
+#undef DrawTextA
 }
-}
-#endif
+
 #include "GLSTL.h"
 
 using namespace Mushware;
@@ -104,31 +76,28 @@ using namespace std;
 
 GLTextureGIF::GLTextureGIF(const string& inFilename)
 {
-
-    throw(MushcoreFileFail(inFilename, "Could not open file - unsupported format (RiscOS)"));
-#if 0
-    libgif::GifFileType *gif;
+    GifFileType *gif;
     FilenameSet(inFilename);
 
-    gif = libgif::DGifOpenFileName(inFilename.c_str());
+    gif = DGifOpenFileName(inFilename.c_str());
 
     if (gif == NULL)
     {
-        ThrowGifError(inFilename, libgif::GifLastError());
+        ThrowGifError(inFilename, GifLastError());
     }
     
     // Try block calls DGifCloseFile on fault
     try
     {
-        if (libgif::DGifSlurp(gif) != GIF_OK)
+        if (DGifSlurp(gif) != GIF_OK)
         {
-            ThrowGifError(inFilename, libgif::GifLastError());
+            ThrowGifError(inFilename, GifLastError());
         }
 
         for (int imageNum=0; imageNum < gif->ImageCount; ++imageNum)
         {
-            struct libgif::SavedImage *image = &gif->SavedImages[imageNum];
-            libgif::ColorMapObject *colorMap = image->ImageDesc.ColorMap;
+            struct SavedImage *image = &gif->SavedImages[imageNum];
+            ColorMapObject *colorMap = image->ImageDesc.ColorMap;
 
             if (colorMap == NULL) colorMap=gif->SColorMap;
             if (colorMap == NULL)
@@ -136,7 +105,7 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
                 throw(MushcoreFileFail(inFilename, "GIF with no colorMap"));
             }
 
-            libgif::GifColorType *colors=colorMap->Colors;
+            GifColorType *colors=colorMap->Colors;
             int colIndexLimit=1 << colorMap->BitsPerPixel;
             U32 u32Size=image->ImageDesc.Width*image->ImageDesc.Height;
 
@@ -192,7 +161,6 @@ GLTextureGIF::GLTextureGIF(const string& inFilename)
         DGifCloseFile(gif);
         throw;
     }
-#endif
 }
 
 const char *
@@ -204,7 +172,6 @@ GLTextureGIF::FiletypeName(void) const
 void
 GLTextureGIF::ThrowGifError(const string& inFilename, int inRC)
 {
-#if 0
     switch (inRC)
     {
         case D_GIF_ERR_OPEN_FAILED:
@@ -237,7 +204,6 @@ GLTextureGIF::ThrowGifError(const string& inFilename, int inRC)
         default:
             throw(MushcoreFileFail(inFilename, "Unknown GIF error"));
     }
-#endif
 }
 
 

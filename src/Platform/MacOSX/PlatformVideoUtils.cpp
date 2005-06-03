@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Platform/MacOSX/PlatformVideoUtils.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 5uxxs82jaFpMYF4+/fHOsg
+
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.18 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.12 2003/04/06 12:35:23 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
- * Revision 1.18  2005/05/19 13:02:21  southa
- * Mac release work
- *
- * Revision 1.17  2005/04/19 23:25:42  southa
- * Mode switching and recognition
- *
- * Revision 1.16  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.15  2003/09/17 19:40:39  southa
- * Source conditioning upgrades
- *
- * Revision 1.14  2003/08/21 23:09:35  southa
- * Fixed file headers
- *
- * Revision 1.13  2003/04/13 08:39:18  southa
- * Bring window to foreground on mode change
- *
  * Revision 1.12  2003/04/06 12:35:23  southa
  * Fixes for release
  *
@@ -92,65 +64,31 @@ PlatformVideoUtils::PlatformVideoUtils()
 {
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-    
-    // Find all display modes available on all displays and add them
-    // to the list
-    
-    CGDirectDisplayID displayArray[32];
-    CGDisplayCount numDisplays;
-    
-    CGGetActiveDisplayList(sizeof(displayArray)/sizeof(displayArray[0]), displayArray, &numDisplays);
 
-    std::vector< std::pair<long, long> > modesSoFar;
-    
-    for (CGDisplayCount displayNum=0; displayNum < numDisplays; ++displayNum)
-    {
-        CFArrayRef displayModeArrayRef = CGDisplayAvailableModes(displayArray[displayNum]) ;
-        
-        for (CFIndex modeNum=0; modeNum < CFArrayGetCount(displayModeArrayRef); ++modeNum)
-        {
-            CFDictionaryRef displayMode = reinterpret_cast<CFDictionaryRef>(CFArrayGetValueAtIndex(displayModeArrayRef, modeNum));
-
-            CFNumberRef widthRef = reinterpret_cast<CFNumberRef>(CFDictionaryGetValue(displayMode, kCGDisplayWidth)) ;
-            CFNumberRef heightRef = reinterpret_cast<CFNumberRef>(CFDictionaryGetValue(displayMode, kCGDisplayHeight)) ;
-            
-            std::pair<long, long> newSize;
-            CFNumberGetValue(widthRef, kCFNumberLongType, &newSize.first);
-            CFNumberGetValue(heightRef, kCFNumberLongType, &newSize.second);
-            
-            if (std::find(modesSoFar.begin(), modesSoFar.end(), newSize) == modesSoFar.end())
-            {
-                modesSoFar.push_back(newSize);
-            }
-        }
-    }
-    
-    std::sort(modesSoFar.begin(), modesSoFar.end());
-    
-    for (U32 i=0; i<modesSoFar.size(); ++i)
-    {
-        U32 xSize = modesSoFar[i].first;
-        U32 ySize = modesSoFar[i].second;
-        
-        std::ostringstream modeStrm;
-        modeStrm << xSize << "x" << ySize;
-        m_modeDefs.push_back(GLModeDef(modeStrm.str(), xSize, ySize, 32, 0,  GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    }
+    m_modeDefs.push_back(GLModeDef("640x480 no sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncNone));
+    m_modeDefs.push_back(GLModeDef("640x480 soft sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("640x480 hard sync",640,480,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("800x600 soft sync",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("800x600 hard sync",800,600,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1024x768 soft sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1024x768 hard sync",1024,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1280x768 soft sync",1280,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x768 hard sync",1280,768,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1280x854 soft sync",1280,854,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x854 hard sync",1280,854,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1280x1024 soft sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1280x1024 hard sync",1280,1024,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1440x900 soft sync",1440,900,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1440x900 hard sync",1440,900,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
+    m_modeDefs.push_back(GLModeDef("1600x1200 no sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncNone));
+    m_modeDefs.push_back(GLModeDef("1600x1200 soft sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef("1600x1200 hard sync",1600,1200,32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncHard));
 }
 
 U32
 PlatformVideoUtils::DefaultModeGet(void) const
 {
-    U32 retVal=0;
-    for (U32 i=2; i < m_modeDefs.size(); ++i)
-    {
-        if (m_modeDefs[i].WidthGet() == 640 &&
-            m_modeDefs[i].HeightGet() == 480)
-        {
-            retVal = i;   
-        }
-    }
-    return retVal;
+    return 4;
 }
 
 const GLModeDef&
@@ -191,7 +129,7 @@ PlatformVideoUtils::RenderModeInfo(U32 inNum) const
 {
     const GLModeDef& modeDef=PlatformVideoUtils::Sgl().ModeDefGet(inNum);
     GLState::ColourSet(1.0,1.0,1.0,0.8);
-    GLUtils::PushMatrix();
+GLUtils::PushMatrix();
     GLUtils gl;
     GLString glStr;
     gl.MoveTo(0,0.05);
@@ -203,14 +141,63 @@ PlatformVideoUtils::RenderModeInfo(U32 inNum) const
     
     glStr=GLString(modeDef.NameGet(), GLFontRef("font-mono1", 0.04), 0);
     glStr.Render();
-    
+    gl.MoveTo(0,-0.05);
+    switch (modeDef.SyncGet())
+    {
+        case GLModeDef::kSyncHard:
+            glStr=GLString("Hard sync provides a stable display", GLFontRef("font-mono1", 0.025), 0);
+            glStr.Render();
+            glStr.TextSet("but sometimes with slower frame rates");
+            gl.MoveTo(0,-0.08);
+            glStr.Render();
+            break;
+
+        case GLModeDef::kSyncSoft:
+            glStr=GLString("Soft sync can provide better frame rates", GLFontRef("font-mono1", 0.025), 0);
+            glStr.Render();
+            glStr.TextSet("but with slight visual distortion");
+            gl.MoveTo(0,-0.08);
+            glStr.Render();
+            break;
+            
+        default:
+            break;
+    }
     GLUtils::PopMatrix();
 }
 
 void
 PlatformVideoUtils::VBLWait(void)
 {
-    // Removed
+    static bool enabled=true;
+    if (!enabled) return;
+    CGPoint point;
+    CGDisplayCount dispCount;
+    point.x=0;
+    point.y=0;
+    CGDirectDisplayID dispId;
+    if (CGGetDisplaysWithPoint(point, 1, &dispId, &dispCount) == kCGErrorSuccess)
+    {
+        if (dispCount == 1)
+        {
+            CGRect cgrect=CGDisplayBounds(dispId);
+            CGDisplayWaitForBeamPositionOutsideLines(dispId, 0,
+                                                     static_cast<CGBeamPosition>(cgrect.origin.y + cgrect.size.height - 1));
+            for (U32 i=0;; ++i)
+            {
+                if (CGDisplayBeamPosition(dispId) > cgrect.origin.y + cgrect.size.height - 1) break;
+                if (i > 1e6)
+                {
+                    cerr << "Waited too long for VBL.  Disabling" << endl;
+                    enabled=false;
+                    break;
+                }
+                // Possible detrimental effects with usleep
+                // usleep(100);
+            }
+            //cerr << "Beam is at " << CGDisplayBeamPosition(dispId) << endl;
+        }
+    }
 }
 
 void
@@ -241,5 +228,4 @@ PlatformVideoUtils::ModeChangePrologue(void)
 void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
-    
 }

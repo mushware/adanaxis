@@ -1,54 +1,18 @@
-//%includeGuardStart {
 #ifndef MEDIASDL_H
 #define MEDIASDL_H
-//%includeGuardStart } CItEkt7MJUT9WuobW/ZI/g
-//%Header {
 /*****************************************************************************
  *
- * File: src/Media/MediaSDL.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } VTRm8wZFSdKmR9HvYVSD2w
+
 /*
- * $Id: MediaSDL.h,v 1.25 2005/05/26 16:05:29 southa Exp $
+ * $Id: MediaSDL.h,v 1.17 2003/01/18 17:05:47 southa Exp $
  * $Log: MediaSDL.h,v $
- * Revision 1.25  2005/05/26 16:05:29  southa
- * win32 support
- *
- * Revision 1.24  2005/05/26 00:46:40  southa
- * Made buildable on win32
- *
- * Revision 1.23  2005/05/19 13:02:08  southa
- * Mac release work
- *
- * Revision 1.22  2004/01/06 20:46:51  southa
- * Build fixes
- *
- * Revision 1.21  2004/01/02 21:13:10  southa
- * Source conditioning
- *
- * Revision 1.20  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.19  2003/08/21 23:09:01  southa
- * Fixed file headers
- *
- * Revision 1.18  2003/01/20 10:45:28  southa
- * Singleton tidying
- *
  * Revision 1.17  2003/01/18 17:05:47  southa
  * Singleton work
  *
@@ -127,7 +91,7 @@
 #endif
 #endif
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class MediaSDL : public MushcoreSingleton<MediaSDL>
 {
@@ -138,7 +102,6 @@ public:
     void Init(Mushware::U32 inWhich);
     void QuitIfRequired(Mushware::U32 inWhich);
     void InitVideo(void) { Init(SDL_INIT_VIDEO); }
-    void InitVideoIfRequired(void) { InitVideo(); }
     void QuitVideoIfRequired(void) { QuitIfRequired(SDL_INIT_VIDEO); }
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
     
@@ -149,6 +112,4 @@ private:
     bool m_firstInitCalled;
 };
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

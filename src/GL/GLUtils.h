@@ -1,57 +1,18 @@
-//%includeGuardStart {
 #ifndef GLUTILS_H
 #define GLUTILS_H
-//%includeGuardStart } 8THyZDfrG+pGVou6WTmP6A
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLUtils.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } TGXL6/hKQ0loCR2CzU3flA
+
 /*
- * $Id: GLUtils.h,v 1.45 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLUtils.h,v 1.36 2002/12/20 13:17:37 southa Exp $
  * $Log: GLUtils.h,v $
- * Revision 1.45  2005/05/19 13:02:01  southa
- * Mac release work
- *
- * Revision 1.44  2005/03/25 19:13:48  southa
- * GameDialogue work
- *
- * Revision 1.43  2004/01/10 20:29:34  southa
- * Form and rendering work
- *
- * Revision 1.42  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.41  2003/10/04 15:32:08  southa
- * Module split
- *
- * Revision 1.40  2003/10/04 12:22:58  southa
- * File renaming
- *
- * Revision 1.39  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.38  2003/08/21 23:08:33  southa
- * Fixed file headers
- *
- * Revision 1.37  2002/12/29 20:30:53  southa
- * Work for gcc 3.1 build
- *
  * Revision 1.36  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -92,7 +53,7 @@
  * Source conditioning
  *
  * Revision 1.23  2002/08/09 17:09:02  southa
- * InfernalDialogue added
+ * GameDialogue added
  *
  * Revision 1.22  2002/08/08 18:20:29  southa
  * Plot on screen of dimension 1.0
@@ -155,7 +116,7 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.2  2002/05/27 12:58:43  southa
- * InfernalContract and global configs added
+ * GameContract and global configs added
  *
  * Revision 1.1  2002/05/10 22:38:23  southa
  * Checkpoint
@@ -166,19 +127,18 @@
 #include "GLStandard.h"
 #include "GLVector.h"
 
-#include "mushMushMesh.h"
-
 class GLTexture;
 class GLRectangle;
 
 class GLUtils
 {
 public:
+
+
     GLUtils(): m_x(0), m_y(0) {}
     void SetPosition(Mushware::tVal inX, Mushware::tVal inY) {m_x=inX;m_y=inY;}
     void MoveTo(Mushware::tVal inX, Mushware::tVal inY);
     void MoveTo(const GLPoint& inPoint) { MoveTo(inPoint.x, inPoint.y); }
-    void MoveTo(const Mushware::t2Val& inPoint) { MoveTo(inPoint.X(), inPoint.Y()); }
     void MoveRelative(Mushware::tVal inX, Mushware::tVal inY);
     void MoveToEdge(Mushware::tVal inX, Mushware::tVal inY);
 
@@ -196,7 +156,6 @@ public:
     static void OrthoLookAt(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLPoint& inPoint, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle);
-    static void StereoPerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle, Mushware::tVal inOffset);
     static void CheckGLError(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
@@ -227,12 +186,11 @@ private:
     Mushware::tVal m_x;
     Mushware::tVal m_y;
 
+
+
     static Mushware::tVal m_eyeDistance;
     static Mushware::tVal m_screenScale;
     static Mushware::U32 m_context;
     static bool m_swapValid;
 };
-
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

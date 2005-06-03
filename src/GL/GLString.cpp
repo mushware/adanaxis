@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLString.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } T2OnH6NbDcsuezTIwyt4FA
+
 /*
- * $Id: GLString.cpp,v 1.12 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLString.cpp,v 1.6 2002/12/29 20:59:53 southa Exp $
  * $Log: GLString.cpp,v $
- * Revision 1.12  2005/03/25 19:13:48  southa
- * GameDialogue work
- *
- * Revision 1.11  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.10  2003/10/04 15:32:08  southa
- * Module split
- *
- * Revision 1.9  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.8  2003/08/21 23:08:29  southa
- * Fixed file headers
- *
- * Revision 1.7  2003/01/13 14:31:55  southa
- * Build frameworks for Mac OS X
- *
  * Revision 1.6  2002/12/29 20:59:53  southa
  * More build fixes
  *
@@ -52,7 +24,7 @@
  * Source conditioning
  *
  * Revision 1.2  2002/08/09 17:09:02  southa
- * InfernalDialogue added
+ * GameDialogue added
  *
  * Revision 1.1  2002/08/08 13:39:09  southa
  * Text rendering
@@ -84,86 +56,3 @@ GLString::Render(void) const
     m_fontRef.FontGet()->RenderString(m_value, m_alignment);
     GLUtils::PopMatrix();
 }
-//%outOfLineFunctions {
-
-const char *GLString::AutoNameGet(void) const
-{
-    return "GLString";
-}
-
-MushcoreVirtualObject *GLString::AutoClone(void) const
-{
-    return new GLString(*this);
-}
-
-MushcoreVirtualObject *GLString::AutoCreate(void) const
-{
-    return new GLString;
-}
-
-MushcoreVirtualObject *GLString::AutoVirtualFactory(void)
-{
-    return new GLString;
-}
-namespace
-{
-void AutoInstall(void)
-{
-    MushcoreFactory::Sgl().FactoryAdd("GLString", GLString::AutoVirtualFactory);
-}
-MushcoreInstaller AutoInstaller(AutoInstall);
-} // end anonymous namespace
-bool
-GLString::AutoEquals(const GLString& inObj) const
-{
-    return 1
-        && (m_fontRef == inObj.m_fontRef)
-        && (m_value == inObj.m_value)
-        && (m_alignment == inObj.m_alignment)
-    ;
-}
-void
-GLString::AutoPrint(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "fontRef=" << m_fontRef << ", ";
-    ioOut << "value=" << m_value << ", ";
-    ioOut << "alignment=" << m_alignment;
-    ioOut << "]";
-}
-bool
-GLString::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
-{
-    if (inTagStr == "obj")
-    {
-        ioIn >> *this;
-    }
-    else if (inTagStr == "fontRef")
-    {
-        ioIn >> m_fontRef;
-    }
-    else if (inTagStr == "value")
-    {
-        ioIn >> m_value;
-    }
-    else if (inTagStr == "alignment")
-    {
-        ioIn >> m_alignment;
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-void
-GLString::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut.TagSet("fontRef");
-    ioOut << m_fontRef;
-    ioOut.TagSet("value");
-    ioOut << m_value;
-    ioOut.TagSet("alignment");
-    ioOut << m_alignment;
-}
-//%outOfLineFunctions } hZnvuy5Muyh2YbZEIdXxjw

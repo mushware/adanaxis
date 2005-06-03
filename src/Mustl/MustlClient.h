@@ -1,42 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSTLCLIENT_H
 #define MUSTLCLIENT_H
-//%includeGuardStart } 72ii6tRCfX48vehyuqEuHg
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlClient.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } Y0msJdZB8aXE40hCd2FbFw
+
 /*
- * $Id: MustlClient.h,v 1.10 2004/01/02 21:13:14 southa Exp $
+ * $Id: MustlClient.h,v 1.6 2002/12/15 00:26:20 southa Exp $
  * $Log: MustlClient.h,v $
- * Revision 1.10  2004/01/02 21:13:14  southa
- * Source conditioning
- *
- * Revision 1.9  2003/09/17 19:40:37  southa
- * Source conditioning upgrades
- *
- * Revision 1.8  2003/08/21 23:09:21  southa
- * Fixed file headers
- *
- * Revision 1.7  2002/12/20 13:17:45  southa
- * Namespace changes, licence changes and source conditioning
- *
  * Revision 1.6  2002/12/15 00:26:20  southa
  * Send, receive and timer work
  *
@@ -143,6 +119,4 @@ operator<<(std::ostream &ioOut, const MustlClient& inClient)
     inClient.Print(ioOut);
     return ioOut;
 }
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

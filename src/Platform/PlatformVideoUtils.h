@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef PLATFORMVIDEOUTILS_H
 #define PLATFORMVIDEOUTILS_H
-//%includeGuardStart } AEK+Al+NrqhKC+Q5B1/9Bg
-//%Header {
 /*****************************************************************************
  *
- * File: src/Platform/PlatformVideoUtils.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } mAl6ct+vq2NVgwL/N2nDTQ
+
 /*
- * $Id: PlatformVideoUtils.h,v 1.15 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.9 2003/01/20 10:45:31 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
- * Revision 1.15  2005/05/19 13:02:21  southa
- * Mac release work
- *
- * Revision 1.14  2004/01/06 20:46:52  southa
- * Build fixes
- *
- * Revision 1.13  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.12  2003/09/17 19:40:39  southa
- * Source conditioning upgrades
- *
- * Revision 1.11  2003/08/21 23:09:34  southa
- * Fixed file headers
- *
- * Revision 1.10  2003/04/13 08:39:18  southa
- * Bring window to foreground on mode change
- *
  * Revision 1.9  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -72,7 +42,7 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLModeDef;
 
@@ -89,21 +59,15 @@ public:
     void RenderModeInfo(Mushware::U32 inNum) const;
     void ModeChangePrologue(void);
     void ModeChangeEpilogue(void);
-    void ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight);
-
     static void VBLWait(void);
     static void ForceShowCursor(void);
     static void AppActivate(void);
     
 private:
-
     std::vector<GLModeDef> m_modeDefs;
-    std::vector< std::pair<long, long> > m_modesSoFar;
     static PlatformVideoUtils *m_instance;
 
     bool m_threadAttached;
     unsigned long m_fgThreadID;
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

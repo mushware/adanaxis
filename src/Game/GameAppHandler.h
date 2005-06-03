@@ -1,54 +1,18 @@
-//%includeGuardStart {
 #ifndef GAMEAPPHANDLER_H
 #define GAMEAPPHANDLER_H
-//%includeGuardStart } wBmcsG1CoSpxwZO+dBp4YA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameAppHandler.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } NTm55Vd77+0BorPnzAvV7w
+
 /*
- * $Id: GameAppHandler.h,v 1.26 2005/04/10 00:09:22 southa Exp $
+ * $Id: GameAppHandler.h,v 1.18 2002/12/20 13:17:37 southa Exp $
  * $Log: GameAppHandler.h,v $
- * Revision 1.26  2005/04/10 00:09:22  southa
- * Registration
- *
- * Revision 1.25  2004/03/06 13:13:42  southa
- * Maurheen created
- *
- * Revision 1.24  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.23  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.22  2003/10/04 15:32:08  southa
- * Module split
- *
- * Revision 1.21  2003/09/17 19:40:31  southa
- * Source conditioning upgrades
- *
- * Revision 1.20  2003/08/21 23:08:34  southa
- * Fixed file headers
- *
- * Revision 1.19  2003/01/11 13:03:12  southa
- * Use Mushcore header
- *
  * Revision 1.18  2002/12/20 13:17:37  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -105,7 +69,7 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 
 class GameBase;
@@ -119,11 +83,10 @@ public:
     virtual void Display(void);
     virtual void Idle(void);
 
-    virtual void SetupModeEnter(void);
-    virtual void GameModeEnter(bool inResume) = 0;
-    virtual void QuitModeEnter(void);
-    virtual void RegModeEnter(void);
-    virtual void CurrentGameEnd(void) = 0;
+    void SetupModeEnter(void);
+    void GameModeEnter(bool inResume);
+    void QuitModeEnter(void);
+    void CurrentGameEnd(void);
 
     bool ServerPresent(void) const { return m_gameType == kGameTypeServer; }
     bool NetworkActive(void) const { return m_gameType == kGameTypeServer || m_gameType == kGameTypeClient; }
@@ -132,14 +95,9 @@ public:
     
 protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
-    virtual void PrepareNewGame(void) = 0;
-    
-    bool StateGameIs(void) const { return (m_appState == kAppStateGame); }
-    void StateGameSet(void) { m_appState=kAppStateGame; }
-    void CurrentSwapOut(void);
-    void CurrentSwapIn(const std::string& inName);
-    void GameTypeDetermine(void); // Not sure about exporting this
         
+    void PrepareNewGame(void);
+    
 private:
     enum tAppState
     {
@@ -147,8 +105,7 @@ private:
         kAppStateStartup,
         kAppStateSetup,
         kAppStateGame,
-        kAppStateQuit,
-        kAppStateReg
+        kAppStateQuit
     };
 
     enum tGameType
@@ -158,12 +115,13 @@ private:
         kGameTypeClient,
         kGameTypeSingle
     };
+
+    void GameTypeDetermine(void);
         
-    MushcoreDataRef<GameBase> m_setupRef;
-    MushcoreDataRef<GameBase> m_currentRef;
+    GameBase *m_pSetup;
+    GameBase *m_pGame;
+    GameBase *m_pCurrent;
     tAppState m_appState;
     tGameType m_gameType;
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

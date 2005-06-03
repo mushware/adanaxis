@@ -1,48 +1,95 @@
-//%includeGuardStart {
 #ifndef GAMEPIECE_H
 #define GAMEPIECE_H
-//%includeGuardStart } q9phvipr2Sb7bVhTMJCVdg
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GamePiece.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } EOIP/QYeoFuInwBTVxBTtQ
+
 /*
- * $Id: GamePiece.h,v 1.23 2004/01/06 20:46:50 southa Exp $
+ * $Id: GamePiece.h,v 1.15 2003/01/09 14:57:03 southa Exp $
  * $Log: GamePiece.h,v $
- * Revision 1.23  2004/01/06 20:46:50  southa
- * Build fixes
+ * Revision 1.15  2003/01/09 14:57:03  southa
+ * Created Mushcore
  *
- * Revision 1.22  2004/01/02 21:13:07  southa
+ * Revision 1.14  2002/12/29 20:30:54  southa
+ * Work for gcc 3.1 build
+ *
+ * Revision 1.13  2002/12/20 13:17:41  southa
+ * Namespace changes, licence changes and source conditioning
+ *
+ * Revision 1.12  2002/12/04 00:37:11  southa
+ * ControlFrameDef work
+ *
+ * Revision 1.11  2002/12/03 20:28:17  southa
+ * Network, player and control work
+ *
+ * Revision 1.10  2002/11/24 23:18:23  southa
+ * Added type name accessor to MushcorePickle
+ *
+ * Revision 1.9  2002/10/22 20:42:05  southa
  * Source conditioning
  *
- * Revision 1.21  2003/10/07 22:40:05  southa
- * Created MeshMover
+ * Revision 1.8  2002/08/27 08:56:25  southa
+ * Source conditioning
+ *
+ * Revision 1.7  2002/08/18 15:13:15  southa
+ * Adhesion handling
+ *
+ * Revision 1.6  2002/08/07 13:36:50  southa
+ * Conditioned source
+ *
+ * Revision 1.5  2002/07/18 11:40:35  southa
+ * Overplotting and movement
+ *
+ * Revision 1.4  2002/07/16 17:48:08  southa
+ * Collision and optimisation work
+ *
+ * Revision 1.3  2002/07/06 18:04:19  southa
+ * More designer work
+ *
+ * Revision 1.2  2002/06/27 12:36:07  southa
+ * Build process fixes
+ *
+ * Revision 1.1  2002/06/05 15:53:26  southa
+ * Player and keyboard control
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
-class GamePiece
+class GLPoint;
+class GameControlFrameDef;
+class GameMotionSpec;
+class GameFloorMap;
+
+class GamePiece: public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
+    GamePiece() {}
     virtual ~GamePiece() {}
+    virtual void Pickle(std::ostream& inOut, const std::string& inPrefix="") const = 0;
+    virtual void Unpickle(MushcoreXML& inXML) = 0;
+    virtual void Render(void) = 0;
+    virtual void EnvironmentRead(const GameFloorMap& inFloorMap) {}
+    virtual void MoveGet(GameMotionSpec& outSpec, const GameControlFrameDef& inDef) const = 0;
+    virtual void MoveConfirm(const GameMotionSpec& inSpec) = 0;
+    virtual char *TypeNameGet(void) const = 0;
+    
+protected:
+    void UnpicklePrologue(void) {}
+    void UnpickleEpilogue(void) {}
+
+private:
 };
-//%includeGuardEnd {
+
+inline std::ostream& operator<<(std::ostream &inOut, const GamePiece& inObj)
+{
+    inObj.Pickle(inOut);
+    return inOut;
+}
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

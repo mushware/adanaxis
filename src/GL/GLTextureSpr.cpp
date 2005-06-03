@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureSpr.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } NpyasFYz9Hu6io3Z0eo1og
+
 /*
- * $Id: GLTextureSpr.cpp,v 1.26 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLTextureSpr.cpp,v 1.20 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureSpr.cpp,v $
- * Revision 1.26  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.25  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.24  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.23  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.22  2003/08/21 23:08:32  southa
- * Fixed file headers
- *
- * Revision 1.21  2003/02/05 16:19:45  southa
- * Build fixes
- *
  * Revision 1.20  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -102,7 +74,7 @@
  */
 
 #include "GLTextureSpr.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 #include "GLSTL.h"
 
@@ -113,8 +85,6 @@ GLTextureSpr::Palette *GLTextureSpr::m_palette=NULL;
 
 GLTextureSpr::GLTextureSpr(const string& inFilename)
 {
-    throw(MushcoreFileFail(inFilename, "Could not open file - unsupported format (RiscOS)"));
-#if 0
     MushcoreStreamUtil sUtil;
     FilenameSet(inFilename);
 
@@ -241,7 +211,6 @@ GLTextureSpr::GLTextureSpr(const string& inFilename)
         if (!in.good()) throw(MushcoreFileFail(inFilename, "Fault reading file"));
     }
     IFTEXTESTING(cerr << "(dec)" << dec << endl);
-#endif
 }
 
 void

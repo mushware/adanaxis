@@ -1,51 +1,18 @@
-//%includeGuardStart {
 #ifndef GAMETYPE_H
 #define GAMETYPE_H
-//%includeGuardStart } fiFGzXz++NMp6yAajC0kdA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameType.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } SC3/oLG88xM8oDw733GcJg
+
 /*
- * $Id: GameType.h,v 1.17 2004/01/06 20:46:50 southa Exp $
+ * $Id: GameType.h,v 1.10 2003/01/09 14:57:04 southa Exp $
  * $Log: GameType.h,v $
- * Revision 1.17  2004/01/06 20:46:50  southa
- * Build fixes
- *
- * Revision 1.16  2004/01/02 21:13:08  southa
- * Source conditioning
- *
- * Revision 1.15  2003/10/07 22:40:05  southa
- * Created MeshMover
- *
- * Revision 1.14  2003/10/04 15:32:09  southa
- * Module split
- *
- * Revision 1.13  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.12  2003/08/21 23:08:58  southa
- * Fixed file headers
- *
- * Revision 1.11  2003/01/11 13:03:15  southa
- * Use Mushcore header
- *
  * Revision 1.10  2003/01/09 14:57:04  southa
  * Created Mushcore
  *
@@ -68,21 +35,21 @@
  * Save records, spacebar dialogues
  *
  * Revision 1.3  2002/08/21 16:09:04  southa
- * InfernalTypeRace state tweaks
+ * GameTypeRace state tweaks
  *
  * Revision 1.2  2002/08/19 11:09:56  southa
- * InfernalTypeRace rendering
+ * GameTypeRace rendering
  *
  * Revision 1.1  2002/08/18 20:44:35  southa
  * Initial chequepoint work
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GameEvent;
 
-class GameType : public MushcoreAbstractSingleton<GameType>, public MushcorePickle, protected MushcoreXMLHandler
+class GameType : public MushcorePickle, protected MushcoreXMLHandler
 {
 public:
     virtual ~GameType() {}
@@ -92,9 +59,7 @@ public:
     virtual void Render(void) const = 0;
     virtual void Initialise(void) = 0;
     virtual bool IsGameOver(void) const = 0;
-
-    static GameType *SingletonFactory(void);
-
+    
 protected:
     void UnpicklePrologue(void) {}
     void UnpickleEpilogue(void) {}
@@ -107,6 +72,4 @@ inline std::ostream& operator<<(std::ostream &inOut, const GameType& inObj)
     inObj.Pickle(inOut);
     return inOut;
 }
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,9 +1,11 @@
-
-/* #define NO_STDIO_REDIRECT 1 */
+#if 0
+/* WARNING:  This file was automatically generated!
+ * Original: ./src/main/win32/SDL_main.c
+ */
 /*
     SDL_main.c, placed in the public domain by Sam Lantinga  4/13/98
 
-    The WinMain function -- calls your program's main() function
+    The WinMain function -- calls your program's main() function 
 */
 
 #include <stdio.h>
@@ -12,46 +14,25 @@
 #include <stdlib.h>
 
 #include <windows.h>
-#include <malloc.h>			/* For _alloca() */
-
-#ifdef _WIN32_WCE
-# define DIR_SEPERATOR TEXT("\\")
-# undef _getcwd
-# define _getcwd(str,len)	wcscpy(str,TEXT(""))
-# define setbuf(f,b)
-# define setvbuf(w,x,y,z)
-# define fopen		_wfopen
-# define freopen	_wfreopen
-# define remove(x)	DeleteFile(x)
-# define strcat		wcscat
-#else
-# define DIR_SEPERATOR TEXT("/")
-# include <direct.h>
-#endif
+#include <malloc.h>		/* For _alloca() */
 
 /* Include the SDL main definition header */
-#include "SDL.h"
-#include "SDL_main.h"
-
+#include <SDL/SDL.h>
+#include <SDL/SDL_main.h>
 #ifdef main
-# ifndef _WIN32_WCE_EMULATION
-#  undef main
-# endif /* _WIN32_WCE_EMULATION */
-#endif /* main */
+#ifndef _WIN32_WCE_EMULATION
+#undef main
+#endif
+#endif
+
+/* Do we really not want stdio redirection with Windows CE? */
+#ifdef _WIN32_WCE
+#define NO_STDIO_REDIRECT
+#endif
 
 /* The standard output files */
 #define STDOUT_FILE	TEXT("stdout.txt")
 #define STDERR_FILE	TEXT("stderr.txt")
-
-#ifndef NO_STDIO_REDIRECT
-# ifdef _WIN32_WCE
-  static wchar_t stdoutPath[MAX_PATH];
-  static wchar_t stderrPath[MAX_PATH];
-# else
-  static char stdoutPath[MAX_PATH];
-  static char stderrPath[MAX_PATH];
-# endif
-#endif
 
 #if defined(_WIN32_WCE) && _WIN32_WCE < 300
 /* seems to be undefined in Win CE although in online help */
@@ -161,24 +142,20 @@ static void __cdecl cleanup_output(void)
 
 #ifndef NO_STDIO_REDIRECT
 	/* See if the files have any output in them */
-	if ( stdoutPath[0] ) {
-		file = fopen(stdoutPath, TEXT("rb"));
-		if ( file ) {
-			empty = (fgetc(file) == EOF) ? 1 : 0;
-			fclose(file);
-			if ( empty ) {
-				remove(stdoutPath);
-			}
+	file = fopen(STDOUT_FILE, "rb");
+	if ( file ) {
+		empty = (fgetc(file) == EOF) ? 1 : 0;
+		fclose(file);
+		if ( empty ) {
+			remove(STDOUT_FILE);
 		}
 	}
-	if ( stderrPath[0] ) {
-		file = fopen(stderrPath, TEXT("rb"));
-		if ( file ) {
-			empty = (fgetc(file) == EOF) ? 1 : 0;
-			fclose(file);
-			if ( empty ) {
-				remove(stderrPath);
-			}
+	file = fopen(STDERR_FILE, "rb");
+	if ( file ) {
+		empty = (fgetc(file) == EOF) ? 1 : 0;
+		fclose(file);
+		if ( empty ) {
+			remove(STDERR_FILE);
 		}
 	}
 #endif
@@ -192,7 +169,7 @@ static void __cdecl cleanup_output(void)
 /* This is where execution begins [console apps] */
 int console_main(int argc, char *argv[])
 {
-	size_t n;
+	int n;
 	char *bufp, *appname;
 
 	/* Get the class name from argv[0] */
@@ -252,9 +229,6 @@ int console_main(int argc, char *argv[])
 
 	/* Exit cleanly, calling atexit() functions */
 	exit(0);
-
-	/* Hush little compiler, don't you cry... */
-	return(0);
 }
 
 /* This is where execution begins [windowed apps] */
@@ -288,42 +262,29 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw)
 	}
 
 #ifndef NO_STDIO_REDIRECT
-	_getcwd( stdoutPath, sizeof( stdoutPath ) );
-	strcat( stdoutPath, DIR_SEPERATOR STDOUT_FILE );
-    
 	/* Redirect standard input and standard output */
-	newfp = freopen(stdoutPath, TEXT("w"), stdout);
-
-#ifndef _WIN32_WCE
+	newfp = freopen(STDOUT_FILE, "w", stdout);
 	if ( newfp == NULL ) {	/* This happens on NT */
 #if !defined(stdout)
-		stdout = fopen(stdoutPath, TEXT("w"));
+		stdout = fopen(STDOUT_FILE, "w");
 #else
-		newfp = fopen(stdoutPath, TEXT("w"));
+		newfp = fopen(STDOUT_FILE, "w");
 		if ( newfp ) {
 			*stdout = *newfp;
 		}
 #endif
 	}
-#endif /* _WIN32_WCE */
-
-	_getcwd( stderrPath, sizeof( stderrPath ) );
-	strcat( stderrPath, DIR_SEPERATOR STDERR_FILE );
-
-	newfp = freopen(stderrPath, TEXT("w"), stderr);
-#ifndef _WIN32_WCE
+	newfp = freopen(STDERR_FILE, "w", stderr);
 	if ( newfp == NULL ) {	/* This happens on NT */
 #if !defined(stderr)
-		stderr = fopen(stderrPath, TEXT("w"));
+		stderr = fopen(STDERR_FILE, "w");
 #else
-		newfp = fopen(stderrPath, TEXT("w"));
+		newfp = fopen(STDERR_FILE, "w");
 		if ( newfp ) {
 			*stderr = *newfp;
 		}
 #endif
 	}
-#endif /* _WIN32_WCE */
-
 	setvbuf(stdout, NULL, _IOLBF, BUFSIZ);	/* Line buffered */
 	setbuf(stderr, NULL);			/* No buffering */
 #endif /* !NO_STDIO_REDIRECT */
@@ -331,9 +292,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw)
 #ifdef _WIN32_WCE
 	nLen = wcslen(szCmdLine)+128+1;
 	bufp = (wchar_t *)alloca(nLen*2);
-	wcscpy (bufp, TEXT("\""));
-	GetModuleFileName(NULL, bufp+1, 128-3);
-	wcscpy (bufp+wcslen(bufp), TEXT("\" "));
+	GetModuleFileName(NULL, bufp, 128);
 	wcsncpy(bufp+wcslen(bufp), szCmdLine,nLen-wcslen(bufp));
 	nLen = wcslen(bufp)+1;
 	cmdline = (char *)alloca(nLen);
@@ -362,3 +321,4 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw)
 	/* Run the main program (after a little SDL initialization) */
 	return(console_main(argc, argv));
 }
+#endif

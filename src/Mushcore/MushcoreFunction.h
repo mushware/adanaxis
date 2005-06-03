@@ -1,45 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSHCOREFUNCTION_H
 #define MUSHCOREFUNCTION_H
-//%includeGuardStart } 1O3S0nuIoHfVFoouNMS7qw
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreFunction.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 6nbx+7rnBAKPBYTNCbniWw
+
 /*
- * $Id: MushcoreFunction.h,v 1.10 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushcoreFunction.h,v 1.5 2003/01/20 17:03:22 southa Exp $
  * $Log: MushcoreFunction.h,v $
- * Revision 1.10  2004/09/26 19:42:05  southa
- * Added MushMesh, fixed typenames and release target
- *
- * Revision 1.9  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.8  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.7  2003/08/21 23:09:12  southa
- * Fixed file headers
- *
- * Revision 1.6  2003/02/05 17:06:37  southa
- * Build fixes
- *
  * Revision 1.5  2003/01/20 17:03:22  southa
  * Command line expression evaluator enhancements
  *
@@ -109,7 +82,7 @@ public:
     inline void CommandAdd(const std::string& inStr);
     const std::string& NameGet(void) const { return m_name; }
     const std::string& CommandGet(Mushware::U32 inIndex) const { return m_commands[inIndex]; }
-	std::size_t SizeGet(void) const { return m_commands.size(); }
+    Mushware::U32 SizeGet(void) const { return m_commands.size(); }
     
     void ThrowErrorExecute(void) const;
     void CoalesceErrorsExecute(void) const;
@@ -138,6 +111,4 @@ operator<<(std::ostream &ioOut, const MushcoreFunction& inFunction)
     return ioOut;
 }
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

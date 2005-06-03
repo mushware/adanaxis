@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreEnv.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } chUuZxIZ5LkHF5ysVOjQrQ
+
 /*
- * $Id: MushcoreEnv.cpp,v 1.12 2005/03/13 00:34:47 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.6 2003/01/20 17:03:21 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
- * Revision 1.12  2005/03/13 00:34:47  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.11  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.10  2003/10/04 12:23:08  southa
- * File renaming
- *
- * Revision 1.9  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.8  2003/08/21 23:09:10  southa
- * Fixed file headers
- *
- * Revision 1.7  2003/02/03 23:15:49  southa
- * Build work for Visual C++
- *
  * Revision 1.6  2003/01/20 17:03:21  southa
  * Command line expression evaluator enhancements
  *
@@ -91,7 +63,7 @@
  * Build process fixes
  *
  * Revision 1.6  2002/05/30 14:41:13  southa
- * InfernalData and loadtilemap command
+ * GameData and loadtilemap command
  *
  * Revision 1.5  2002/05/28 22:36:44  southa
  * Script loader and tile map
@@ -153,6 +125,7 @@ MushcoreEnv::PopConfig(MushcoreConfig& inConfig)
 const MushcoreScalar&
 MushcoreEnv::VariableGet(const string& inName) const
 {
+    static const MushcoreScalar undefined;
     for (vector<MushcoreConfig *>::const_reverse_iterator p = m_config.rbegin();
          p != m_config.rend(); ++p)
     {
@@ -162,8 +135,7 @@ MushcoreEnv::VariableGet(const string& inName) const
             return *pScalar;
         }
     }
-    
-    throw(MushcoreDataFail("Access to non-existent MushcoreEnv variable '"+inName+"'"));
+    return undefined;
 }
 
 bool

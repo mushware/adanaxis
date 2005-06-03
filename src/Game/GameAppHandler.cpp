@@ -1,68 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameAppHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } JC9xJmCNs84Qp81sTfdcsw
+
 /*
- * $Id: GameAppHandler.cpp,v 1.59 2005/04/10 00:09:22 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.45 2003/01/13 14:31:56 southa Exp $
  * $Log: GameAppHandler.cpp,v $
- * Revision 1.59  2005/04/10 00:09:22  southa
- * Registration
- *
- * Revision 1.58  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.57  2004/03/06 13:13:42  southa
- * Maurheen created
- *
- * Revision 1.56  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.55  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.54  2004/01/01 21:15:45  southa
- * Created XCode project
- *
- * Revision 1.53  2003/10/07 22:40:05  southa
- * Created MeshMover
- *
- * Revision 1.52  2003/10/06 23:06:31  southa
- * Include fixes
- *
- * Revision 1.51  2003/10/06 22:23:43  southa
- * Game to GameMustl move
- *
- * Revision 1.50  2003/10/04 15:32:08  southa
- * Module split
- *
- * Revision 1.49  2003/10/04 12:22:58  southa
- * File renaming
- *
- * Revision 1.48  2003/09/17 19:40:31  southa
- * Source conditioning upgrades
- *
- * Revision 1.47  2003/08/21 23:08:34  southa
- * Fixed file headers
- *
- * Revision 1.46  2003/01/20 10:45:24  southa
- * Singleton tidying
- *
  * Revision 1.45  2003/01/13 14:31:56  southa
  * Build frameworks for Mac OS X
  *
@@ -175,10 +123,10 @@
  * Keyboard reading
  *
  * Revision 1.8  2002/05/30 16:21:53  southa
- * Pickleable InfernalContract
+ * Pickleable GameContract
  *
  * Revision 1.7  2002/05/27 12:58:43  southa
- * InfernalContract and global configs added
+ * GameContract and global configs added
  *
  * Revision 1.6  2002/05/26 16:08:48  southa
  * MushcoreXML loader
@@ -202,27 +150,30 @@
 
 #include "GameAppHandler.h"
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 #include "mushGL.h"
 #include "mushPlatform.h"
 
 #include "GameConfig.h"
+#include "GameContract.h"
+#include "GameData.h"
+#include "GameDefClient.h"
+#include "GameDefServer.h"
+#include "GameFloorMap.h"
 #include "GameGlobalConfig.h"
 #include "GameQuit.h"
 #include "GameSTL.h"
 #include "GameSetup.h"
-#include "GameReg.h"
 
 #include "mushMedia.h"
-
-#ifdef MUSHWARE_USE_MUSTL
-#include "mushMustlGame.h"
-#endif
 
 using namespace Mushware;
 using namespace std;
 
 GameAppHandler::GameAppHandler() :
+    m_pSetup(NULL),
+    m_pGame(NULL),
+    m_pCurrent(NULL),
     m_appState(kAppStateStartup),
     m_gameType(kGameTypeInvalid)
 {
@@ -232,6 +183,8 @@ GameAppHandler::GameAppHandler() :
 GameAppHandler::~GameAppHandler()
 {
     MushcoreEnv::Sgl().PopConfig(GameGlobalConfig::Sgl());
+    if (m_pSetup != NULL) delete m_pSetup;
+    if (m_pGame != NULL) delete m_pGame;
 }
 
 void
@@ -243,9 +196,9 @@ GameAppHandler::Initialise(void)
 void
 GameAppHandler::Display(void)
 {
-    if (m_currentRef.Exists())
+    if (m_pCurrent != NULL)
     {
-        m_currentRef.RefGet().Display(*this);
+        m_pCurrent->Display(*this);
     }
 }
 
@@ -254,13 +207,13 @@ GameAppHandler::Idle(void)
 {
     try
     {
-        if (m_currentRef.Exists())
+        if (m_pCurrent == NULL)
         {
-            m_currentRef.RefGet().Process(*this);
+            SetupModeEnter();
         }
         else
         {
-            SetupModeEnter();
+            m_pCurrent->Process(*this);
         }
     }
     catch (exception& e)
@@ -277,16 +230,38 @@ GameAppHandler::SetupModeEnter(void)
 {
     if (m_appState != kAppStateSetup)
     {
-        CurrentSwapOut();
-        if (!m_setupRef.Exists())
+        if (m_pCurrent != NULL)
         {
-            MushcoreData<GameBase>::Sgl().Give("setup", new GameSetup);
-            m_setupRef.NameSet("setup");
+            m_pCurrent->SwapOut(*this);
         }
-        m_currentRef = m_setupRef;
-        m_currentRef.RefGet().SwapIn(*this);
+        if (m_pSetup == NULL) m_pSetup = new GameSetup;
+        m_pCurrent=m_pSetup;
+        m_pCurrent->SwapIn(*this);
         m_appState=kAppStateSetup;
     }   
+}
+
+void
+GameAppHandler::GameModeEnter(bool inResume)
+{
+    if (m_appState != kAppStateGame)
+    {
+        if (m_pCurrent != NULL)
+        {
+            m_pCurrent->SwapOut(*this);
+        }
+
+        if (!inResume || !GameData::Sgl().ContractExists("contract1"))
+        {
+            PrepareNewGame();
+        }
+        m_pGame=GameData::Sgl().ContractGet("contract1");
+
+        MUSHCOREASSERT(m_pGame != NULL);
+        m_pCurrent=m_pGame;
+        m_pCurrent->SwapIn(*this);
+        m_appState=kAppStateGame;
+    }
 }
 
 void
@@ -294,22 +269,7 @@ GameAppHandler::QuitModeEnter(void)
 {
     if (m_appState != kAppStateQuit)
     {
-        CurrentSwapOut();
-        MushcoreData<GameBase>::Sgl().Give("quit", new GameQuit);
-        CurrentSwapIn("quit");
-        m_appState = kAppStateQuit;
-    }
-}
-
-void
-GameAppHandler::RegModeEnter(void)
-{
-    if (m_appState != kAppStateReg)
-    {
-        CurrentSwapOut();
-        MushcoreData<GameBase>::Sgl().Give("reg", new GameReg);
-        CurrentSwapIn("reg");
-        m_appState = kAppStateReg;
+        m_pCurrent=new GameQuit;  // leaked
     }
 }
 
@@ -317,25 +277,22 @@ void
 GameAppHandler::GameTypeDetermine(void)
 {
     m_gameType = kGameTypeInvalid;
+    
+    MushcoreData<GameDefServer>::tMapIterator endValue = MushcoreData<GameDefServer>::Sgl().End();
 
-#ifdef MUSHWARE_USE_MUSTL
+    for (MushcoreData<GameDefServer>::tMapIterator p = MushcoreData<GameDefServer>::Sgl().Begin(); p != endValue; ++p)
     {
-        MushcoreData<MustlGameServer>::tMapIterator endValue = MushcoreData<MustlGameServer>::Sgl().End();
-
-        for (MushcoreData<MustlGameServer>::tMapIterator p = MushcoreData<MustlGameServer>::Sgl().Begin(); p != endValue; ++p)
+        if (!p->second->ImageIs())
         {
-            if (!p->second->ImageIs())
-            {
-                m_gameType = kGameTypeServer;
-            }
+            m_gameType = kGameTypeServer;
         }
     }
-    
+
     if (m_gameType == kGameTypeInvalid)
     {
-        MushcoreData<MustlGameClient>::tMapIterator endValue = MushcoreData<MustlGameClient>::Sgl().End();
+        MushcoreData<GameDefClient>::tMapIterator endValue = MushcoreData<GameDefClient>::Sgl().End();
 
-        for (MushcoreData<MustlGameClient>::tMapIterator p = MushcoreData<MustlGameClient>::Sgl().Begin(); p != endValue; ++p)
+        for (MushcoreData<GameDefClient>::tMapIterator p = MushcoreData<GameDefClient>::Sgl().Begin(); p != endValue; ++p)
         {
             if (!p->second->ImageIs())
             {
@@ -343,8 +300,7 @@ GameAppHandler::GameTypeDetermine(void)
             }
         }
     }
-#endif
-    
+
     if (m_gameType == kGameTypeInvalid)
     {
         m_gameType = kGameTypeSingle;
@@ -352,29 +308,35 @@ GameAppHandler::GameTypeDetermine(void)
 }
 
 void
-GameAppHandler::CurrentSwapOut(void)
+GameAppHandler::PrepareNewGame(void)
 {
-    if (m_currentRef.Exists())
-    {
-        m_currentRef.Get()->SwapOut(*this);
-    }
-}
+    m_pGame = NULL; // We're about to delete this
+    
+    // Work out what the game type is
+    GameTypeDetermine();
 
-void
-GameAppHandler::CurrentSwapIn(const std::string& inName)
-{
-    try
-    {   
-        m_currentRef.NameSet(inName);
-        m_currentRef.RefGet().SwapIn(*this);
-    }
-    catch (exception& e)
+    // Delete the old contract and all of its data
+    GameData::Sgl().Clear();
+
+    // Create the contract path
+    string contractRoot=MushcoreGlobalConfig::Sgl().Get("CONTRACT_ROOT").StringGet();
+    string contractName;
+    if (MultiplayerIs())
     {
-        cerr << "Exception during start sequence: " << e.what() << endl;
-        
-        PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
-        QuitModeEnter();
+        contractName=GameConfig::Sgl().ParameterGet("mpcontractname").StringGet();
     }
+    else
+    {
+        contractName=GameConfig::Sgl().ParameterGet("spcontractname").StringGet();
+    }
+    string contractPath=contractRoot+"/"+contractName;
+    MushcoreGlobalConfig::Sgl().Set("CONTRACT_PATH", contractPath);
+
+    MushcoreCommand command("loadcontract('contract1',$CONTRACT_PATH+'/contract.xml')");
+    command.Execute();
+    
+    // Get a pointer to the newly created contract
+    m_pGame=GameData::Sgl().ContractGet("contract1");
 }
 
 void
@@ -395,3 +357,10 @@ GameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     }
 }
 
+void
+GameAppHandler::CurrentGameEnd(void)
+{
+    SetupModeEnter();
+    m_pGame=NULL;
+    GameData::Sgl().Clear();
+}

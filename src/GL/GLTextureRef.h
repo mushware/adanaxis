@@ -1,51 +1,18 @@
-//%includeGuardStart {
 #ifndef GLTEXTUREREF_H
 #define GLTEXTUREREF_H
-//%includeGuardStart } 7kcCzGNBUbRNq9osHA8Qxw
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureRef.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } RiAVbikoHEcCHD1YSyzBEg
+
 /*
- * $Id: GLTextureRef.h,v 1.19 2005/02/10 12:33:57 southa Exp $
+ * $Id: GLTextureRef.h,v 1.12 2002/12/29 20:30:53 southa Exp $
  * $Log: GLTextureRef.h,v $
- * Revision 1.19  2005/02/10 12:33:57  southa
- * Template fixes
- *
- * Revision 1.18  2004/01/10 20:29:34  southa
- * Form and rendering work
- *
- * Revision 1.17  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.16  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.15  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.14  2003/08/21 23:08:31  southa
- * Fixed file headers
- *
- * Revision 1.13  2003/01/11 13:03:11  southa
- * Use Mushcore header
- *
  * Revision 1.12  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -86,16 +53,14 @@
 
 #include "GLStandard.h"
 #include "GLUtils.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLTexture;
 
-//:generate virtual standard ostream xml1
-class GLTextureRef : public MushcoreVirtualObject
+class GLTextureRef
 {
 public:
     GLTextureRef(): m_texPtr(NULL), m_bindingNameContext(0) {}
-    virtual ~GLTextureRef() {}
     GLTextureRef(const std::string& inName): m_name(inName), m_texPtr(NULL) {}
     void NameSet(const std::string& inName) {m_name=inName;m_texPtr=NULL;}
     const std::string& NameGet(void) const {return m_name;}
@@ -111,16 +76,6 @@ private:
     mutable GLTexture *m_texPtr;
     mutable GLuint m_bindingName;
     mutable Mushware::U32 m_bindingNameContext;
-//%classPrototypes {
-public:
-    virtual const char *AutoNameGet(void) const;
-    virtual MushcoreVirtualObject *AutoClone(void) const;
-    virtual MushcoreVirtualObject *AutoCreate(void) const;
-    static MushcoreVirtualObject *AutoVirtualFactory(void);
-    virtual void AutoPrint(std::ostream& ioOut) const;
-    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
 };
 
 inline GLTexture *
@@ -139,14 +94,4 @@ GLTextureRef::BindingNameGet(void) const
     m_bindingNameContext = GLUtils::TextureContextGet();
     return m_bindingName;
 }
-//%inlineHeader {
-inline std::ostream&
-operator<<(std::ostream& ioOut, const GLTextureRef& inObj)
-{
-    inObj.AutoPrint(ioOut);
-    return ioOut;
-}
-//%inlineHeader } 7Tcn23BbQg1X7vdx6W+7ew
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

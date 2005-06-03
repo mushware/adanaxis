@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Platform/MacOSX/PlatformInputUtils.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } buThZSFeAbrqXgmDB6JlgA
+
 /*
- * $Id: PlatformInputUtils.cpp,v 1.15 2005/03/13 00:34:48 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.10 2002/12/20 13:17:47 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
- * Revision 1.15  2005/03/13 00:34:48  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.14  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.13  2003/09/17 19:40:39  southa
- * Source conditioning upgrades
- *
- * Revision 1.12  2003/08/21 23:09:35  southa
- * Fixed file headers
- *
- * Revision 1.11  2002/12/29 21:00:00  southa
- * More build fixes
- *
  * Revision 1.10  2002/12/20 13:17:47  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -82,8 +57,6 @@
 
 #include "mushPlatform.h"
 
-#include "mushGL.h"
-
 #include <ApplicationServices/ApplicationServices.h>
 
 using namespace Mushware;
@@ -96,30 +69,4 @@ PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
     CGGetLastMouseDelta(&xDelta, &yDelta);
     ioXDelta=xDelta;
     ioYDelta=yDelta;
-}
-
-
-bool
-PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
-{
-    bool retVal = false;
-    switch (inKeyCode)
-    {
-        case 310:
-            // Command key
-            outKey = GLKeys::kKeyCommand;
-            retVal = true;
-            break;
-            
-        case 'q':
-            GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-
-            if (glAppHandler.KeyStateGet(GLKeys::kKeyCommand))
-            {
-                outKey = GLKeys::kKeyQuit;
-                retVal = true;
-            }
-            break;
-    }
-    return retVal;
 }

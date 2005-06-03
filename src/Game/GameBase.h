@@ -1,54 +1,18 @@
-//%includeGuardStart {
 #ifndef GAMEBASE_H
 #define GAMEBASE_H
-//%includeGuardStart } fJfmVcVY6Dz2kLgb11HrMw
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameBase.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } OAMdcONP1Ymrb+voM+b4hw
+
 /*
- * $Id: GameBase.h,v 1.23 2004/03/06 13:59:59 southa Exp $
+ * $Id: GameBase.h,v 1.15 2002/12/29 20:30:53 southa Exp $
  * $Log: GameBase.h,v $
- * Revision 1.23  2004/03/06 13:59:59  southa
- * Fixes
- *
- * Revision 1.22  2004/03/06 13:13:42  southa
- * Maurheen created
- *
- * Revision 1.21  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.20  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.19  2003/10/04 12:22:59  southa
- * File renaming
- *
- * Revision 1.18  2003/09/17 19:40:31  southa
- * Source conditioning upgrades
- *
- * Revision 1.17  2003/08/21 23:08:34  southa
- * Fixed file headers
- *
- * Revision 1.16  2003/01/11 13:03:12  southa
- * Use Mushcore header
- *
  * Revision 1.15  2002/12/29 20:30:53  southa
  * Work for gcc 3.1 build
  *
@@ -83,7 +47,7 @@
  * Keyboard reading
  *
  * Revision 1.4  2002/05/30 16:21:53  southa
- * Pickleable InfernalContract
+ * Pickleable GameContract
  *
  * Revision 1.3  2002/05/10 22:38:22  southa
  * Checkpoint
@@ -96,11 +60,11 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GameAppHandler;
 
-class GameBase : public MushcoreVirtualObject
+class GameBase
 {
 public:
     virtual ~GameBase() {}
@@ -113,6 +77,4 @@ public:
 private:
 
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

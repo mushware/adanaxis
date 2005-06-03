@@ -1,59 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/SDLAppHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } +lRBy3tXEG1uAcp7BgEAGg
+
 /*
- * $Id: SDLAppHandler.cpp,v 1.45 2005/05/26 16:05:29 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.34 2003/01/20 10:45:24 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
- * Revision 1.45  2005/05/26 16:05:29  southa
- * win32 support
- *
- * Revision 1.44  2005/05/19 13:02:01  southa
- * Mac release work
- *
- * Revision 1.43  2005/04/10 00:09:22  southa
- * Registration
- *
- * Revision 1.42  2005/04/01 00:02:02  southa
- * Build tweaks
- *
- * Revision 1.41  2005/03/25 22:04:48  southa
- * Dialogue and MushcoreIO fixes
- *
- * Revision 1.40  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.39  2005/01/26 00:48:46  southa
- * MushMeshGroup and rendering
- *
- * Revision 1.38  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.37  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.36  2003/08/21 23:08:33  southa
- * Fixed file headers
- *
- * Revision 1.35  2003/04/13 08:39:18  southa
- * Bring window to foreground on mode change
- *
  * Revision 1.34  2003/01/20 10:45:24  southa
  * Singleton tidying
  *
@@ -184,7 +141,6 @@ SDLAppHandler::SDLAppHandler():
     m_unboundedMouseX(0),
     m_unboundedMouseY(0),
     m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
-    m_controlBufferIndex(0),
     m_firstDelta(true)
 {}
 
@@ -223,7 +179,7 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         m_latchedKeyState[keyValue]=true;
     }
 
-    if ((keyValue == 27 || keyValue == GLKeys::kKeyQuit) && inSignal.keyDown)
+    if (keyValue == 27 && inSignal.keyDown)
     {
         // Escape key pressed
         MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
@@ -233,24 +189,14 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 bool
 SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
 {
-    if (inKey.ValueGet() >= m_keyState.size())
-    {
-        ostringstream message;
-        message << "Key number " << inKey.ValueGet() << " too large";
-        throw MushcoreDataFail(message.str());
-    }
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     return m_keyState[inKey.ValueGet()];
 }
 
 bool
 SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
 {
-    if (inKey.ValueGet() >= m_keyState.size())
-    {
-        ostringstream message;
-        message << "Key number " << inKey.ValueGet() << " too large";
-        throw MushcoreDataFail(message.str());
-    }
+    MUSHCOREASSERT(inKey.ValueGet() < m_keyState.size());
     bool state=m_latchedKeyState[inKey.ValueGet()];
     if (state)
     {
@@ -280,7 +226,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
-    MediaSDL::Sgl().InitVideoIfRequired();
+    MediaSDL::Sgl().QuitVideoIfRequired();
+    MediaSDL::Sgl().InitVideo();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -288,12 +235,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    
-#if defined(SDL_GL_MULTISAMPLEBUFFERS) && defined(SDL_GL_MULTISAMPLESAMPLES)
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-#endif
-    
+
     m_width=inDef.WidthGet();
     m_height=inDef.HeightGet();
     m_bpp=inDef.BPPGet();
@@ -339,8 +281,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         m_greatestDimension=m_height;
     }
     SetCursorState(m_showCursor);
-    SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
-
     GLState::Reset();
     m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false);
     m_modeDef=inDef;
@@ -369,12 +309,6 @@ U32
 SDLAppHandler::MillisecondsGet(void) const
 {
     return SDL_GetTicks();
-}
-
-bool
-SDLAppHandler::HasFocus(void) const
-{
-    return ((SDL_GetAppState() & SDL_APPINPUTFOCUS) != 0);
 }
 
 void
@@ -592,109 +526,79 @@ GLKeys
 SDLAppHandler::TranslateKey(void *inKeyEvent) const
 {
     SDLKey keyValue=static_cast<SDL_KeyboardEvent *>(inKeyEvent)->keysym.sym;
-    GLKeys retValue = 0;
-
     switch (keyValue)
     {
         case SDLK_F1:
-            retValue = GLKeys::kKeyF1;
-            break;
+            return GLKeys::kKeyF1;
 
         case SDLK_F2:
-            retValue = GLKeys::kKeyF2;
-            break;
+            return GLKeys::kKeyF2;
 
         case SDLK_F3:
-            retValue = GLKeys::kKeyF3;
-            break;
+            return GLKeys::kKeyF3;
 
         case SDLK_F4:
-            retValue = GLKeys::kKeyF4;
-            break;
+            return GLKeys::kKeyF4;
 
         case SDLK_F5:
-            retValue = GLKeys::kKeyF5;
-            break;
+            return GLKeys::kKeyF5;
 
         case SDLK_F6:
-            retValue = GLKeys::kKeyF6;
-            break;
+            return GLKeys::kKeyF6;
 
         case SDLK_F7:
-            retValue = GLKeys::kKeyF7;
-            break;
+            return GLKeys::kKeyF7;
 
         case SDLK_F8:
-            retValue = GLKeys::kKeyF8;
-            break;
+            return GLKeys::kKeyF8;
 
         case SDLK_F9:
-            retValue = GLKeys::kKeyF9;
-            break;
+            return GLKeys::kKeyF9;
 
         case SDLK_F10:
-            retValue = GLKeys::kKeyF10;
-            break;
+            return GLKeys::kKeyF10;
 
         case SDLK_F11:
-            retValue = GLKeys::kKeyF11;
-            break;
+            return GLKeys::kKeyF11;
 
         case SDLK_F12:
-            retValue = GLKeys::kKeyF12;
-            break;
+            return GLKeys::kKeyF12;
 
         case SDLK_LEFT:
-            retValue = GLKeys::kKeyLeft;
-            break;
+            return GLKeys::kKeyLeft;
 
         case SDLK_UP:
-            retValue = GLKeys::kKeyUp;
-            break;
+            return GLKeys::kKeyUp;
 
         case SDLK_RIGHT:
-            retValue = GLKeys::kKeyRight;
-            break;
+            return GLKeys::kKeyRight;
 
         case SDLK_DOWN:
-            retValue = GLKeys::kKeyDown;
-            break;
+            return GLKeys::kKeyDown;
 
         case SDLK_PAGEUP:
-            retValue = GLKeys::kKeyPageUp;
-            break;
+            return GLKeys::kKeyPageUp;
 
         case SDLK_PAGEDOWN:
-            retValue = GLKeys::kKeyPageDown;
-            break;
+            return GLKeys::kKeyPageDown;
 
         case SDLK_HOME:
-            retValue = GLKeys::kKeyHome;
-            break;
+            return GLKeys::kKeyHome;
 
         case SDLK_END:
-            retValue = GLKeys::kKeyEnd;
-            break;
+            return GLKeys::kKeyEnd;
 
         case SDLK_INSERT:
-            retValue = GLKeys::kKeyInsert;
-            break;
-            
+            return GLKeys::kKeyInsert;
+
         default:
             if (keyValue > 0 && keyValue < 0x100)
             {
-                retValue = keyValue;
+                return keyValue;
             }
             break;
     }
-        
-    if (!PlatformInputUtils::TranslateKey(retValue, keyValue))
-    {
-        if (keyValue == 0)
-        {
-            cerr << "Ignored SDL key " << keyValue << endl;
-        }
-    }
-    return retValue;
+    cerr << "Ignored SDL key " << keyValue << endl;
+    return 0;
 }
 

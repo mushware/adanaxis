@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLFontRef.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 03m51tzRRZ4J/ClESPY1sA
+
 /*
- * $Id: GLFontRef.cpp,v 1.12 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.7 2003/01/13 14:31:54 southa Exp $
  * $Log: GLFontRef.cpp,v $
- * Revision 1.12  2005/03/25 19:13:48  southa
- * GameDialogue work
- *
- * Revision 1.11  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.10  2003/09/17 19:40:29  southa
- * Source conditioning upgrades
- *
- * Revision 1.9  2003/08/21 23:08:21  southa
- * Fixed file headers
- *
- * Revision 1.8  2003/01/20 10:45:23  southa
- * Singleton tidying
- *
  * Revision 1.7  2003/01/13 14:31:54  southa
  * Build frameworks for Mac OS X
  *
@@ -92,78 +67,3 @@ GLFontRef::Exists(void) const
 {
     return (m_fontPtr != NULL || GLData::Sgl().FontGet(m_name) != NULL);
 }
-//%outOfLineFunctions {
-
-const char *GLFontRef::AutoNameGet(void) const
-{
-    return "GLFontRef";
-}
-
-MushcoreVirtualObject *GLFontRef::AutoClone(void) const
-{
-    return new GLFontRef(*this);
-}
-
-MushcoreVirtualObject *GLFontRef::AutoCreate(void) const
-{
-    return new GLFontRef;
-}
-
-MushcoreVirtualObject *GLFontRef::AutoVirtualFactory(void)
-{
-    return new GLFontRef;
-}
-namespace
-{
-void AutoInstall(void)
-{
-    MushcoreFactory::Sgl().FactoryAdd("GLFontRef", GLFontRef::AutoVirtualFactory);
-}
-MushcoreInstaller AutoInstaller(AutoInstall);
-} // end anonymous namespace
-bool
-GLFontRef::AutoEquals(const GLFontRef& inObj) const
-{
-    return 1
-        && (m_name == inObj.m_name)
-        && (m_size == inObj.m_size)
-    ;
-}
-void
-GLFontRef::AutoPrint(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "name=" << m_name << ", ";
-    ioOut << "size=" << m_size;
-    ioOut << "]";
-}
-bool
-GLFontRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
-{
-    if (inTagStr == "obj")
-    {
-        ioIn >> *this;
-    }
-    else if (inTagStr == "name")
-    {
-        ioIn >> m_name;
-    }
-    else if (inTagStr == "size")
-    {
-        ioIn >> m_size;
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-void
-GLFontRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut.TagSet("name");
-    ioOut << m_name;
-    ioOut.TagSet("size");
-    ioOut << m_size;
-}
-//%outOfLineFunctions } JA7b5lM7O6fVj4J39SDyHQ

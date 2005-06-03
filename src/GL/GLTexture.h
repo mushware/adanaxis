@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef GLTEXTURE_H
 #define GLTEXTURE_H
-//%includeGuardStart } Vklsdh1o2zaZOVz+l73KYw
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTexture.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } SEV/7L2fX2x2aB0YP4YDXA
+
 /*
- * $Id: GLTexture.h,v 1.21 2005/02/13 22:44:06 southa Exp $
+ * $Id: GLTexture.h,v 1.15 2003/01/09 14:56:58 southa Exp $
  * $Log: GLTexture.h,v $
- * Revision 1.21  2005/02/13 22:44:06  southa
- * Tesseract stuff
- *
- * Revision 1.20  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.19  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.18  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.17  2003/08/21 23:08:30  southa
- * Fixed file headers
- *
- * Revision 1.16  2003/01/11 13:03:11  southa
- * Use Mushcore header
- *
  * Revision 1.15  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -125,7 +95,7 @@
 
 #include "GLStandard.h"
 #include "GLTextureDef.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLTexture
 {
@@ -154,7 +124,7 @@ protected:
     void AddTextureDef(GLTextureDef& inDef) {m_textureDefs.push_back(inDef);}
     void AddTextureDef(GLTextureDef& inDef, Mushware::U32 inWhere);
     bool TextureDefValid(Mushware::U32 inWhere) const;
-    const GLTextureDef& TextureDefGet(Mushware::U32 inIndex) const {if (inIndex >= m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
+    const GLTextureDef& TextureDefGet(Mushware::U32 inIndex) const {if (inIndex>m_textureDefs.size()) throw "Texture def index out of range"; return m_textureDefs[inIndex];}
     
 private:
     std::vector<GLTextureDef> m_textureDefs;
@@ -168,6 +138,4 @@ inline std::ostream& operator<<(std::ostream &inOut, const GLTexture& inTex)
     return inTex.ostreamPrint(inOut);
 }
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

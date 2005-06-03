@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreXML.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } EYf11LoiemBhUvn/dRAG/w
+
 /*
- * $Id: MushcoreXML.cpp,v 1.10 2005/04/20 22:18:25 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.5 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreXML.cpp,v $
- * Revision 1.10  2005/04/20 22:18:25  southa
- * Mac OS X build fixes
- *
- * Revision 1.9  2004/01/02 21:13:14  southa
- * Source conditioning
- *
- * Revision 1.8  2003/09/17 19:40:36  southa
- * Source conditioning upgrades
- *
- * Revision 1.7  2003/08/21 23:09:19  southa
- * Fixed file headers
- *
- * Revision 1.6  2003/02/05 17:06:38  southa
- * Build fixes
- *
  * Revision 1.5  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -119,22 +94,16 @@ MushcoreXML::MushcoreXML(istream& inStream, const string& inName, U32 inLine):
     m_threaded(false),
     m_line(inLine)
 {
-#ifdef MUSHCORE_USE_EXPAT        
     m_parser = XML_ParserCreate(NULL);
     if (m_parser == NULL) throw(MushcoreSyntaxFail("Couldn't create parser"));
     XML_SetUserData(m_parser, this);
     XML_SetElementHandler(m_parser, StartElementHandler, EndElementHandler);
     XML_SetCharacterDataHandler(m_parser, CharacterDataHandler);
-#else    
-    throw MushcoreLogicFail("Couldn't create parser - expat not compiled in");
-#endif
 }
 
 MushcoreXML::~MushcoreXML()
 {
-#ifdef MUSHCORE_USE_EXPAT        
     XML_ParserFree(m_parser);
-#endif
 }
 
 void
@@ -191,11 +160,7 @@ MushcoreXML::EndElementHandler(void *inUserData, const char *inName)
 }
 
 void
-#ifdef MUSHCORE_USE_EXPAT        
 MushcoreXML::CharacterDataHandler(void *inUserData, const XML_Char *inData, int inLen)
-#else
-MushcoreXML::CharacterDataHandler(void *inUserData, const char *inData, int inLen)
-#endif
 {
     MushcoreXML *newThis=static_cast<MushcoreXML *>(inUserData);
     newThis->ProcessCharacterData(inData, inLen);
@@ -280,7 +245,6 @@ MushcoreXML::NewHandler(MushcoreXMLHandler& inHandler)
 void
 MushcoreXML::ParseStream(MushcoreXMLHandler& inHandler)
 {
-#ifdef MUSHCORE_USE_EXPAT
     NewHandler(inHandler);
     if (!m_threaded)
     {
@@ -303,7 +267,6 @@ MushcoreXML::ParseStream(MushcoreXMLHandler& inHandler)
         } while (m_continue && !m_inStream->eof());
         m_threaded=false;
     }
-#endif
 }
 
 void MushcoreXML::StopHandler(void)

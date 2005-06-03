@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameProtocol.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } YbGuXz0TJBJ9lrIOnrFa5Q
+
 /*
- * $Id: GameProtocol.cpp,v 1.19 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.14 2003/01/13 14:31:59 southa Exp $
  * $Log: GameProtocol.cpp,v $
- * Revision 1.19  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.18  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.17  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.16  2003/08/21 23:08:52  southa
- * Fixed file headers
- *
- * Revision 1.15  2003/01/20 10:45:27  southa
- * Singleton tidying
- *
  * Revision 1.14  2003/01/13 14:31:59  southa
  * Build frameworks for Mac OS X
  *
@@ -89,12 +64,9 @@
 using namespace Mushware;
 using namespace std;
 
-
-
 void
 GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
-#ifdef MUSHWARE_USE_MUSTL
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\">";
@@ -102,19 +74,16 @@ GameProtocol::CreateObjectCreate(MustlData& ioData, MushcorePickle& inObj, const
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeCreateObject, netStream.str());
     // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl; 
-#endif
 }
 
 void
 GameProtocol::DeleteObjectCreate(MustlData& ioData, MushcorePickle& inObj, const string& inRemoteName)
 {
-#ifdef MUSHWARE_USE_MUSTL
     ostringstream netStream;
 
     netStream << "<" << inObj.TypeNameGet() << " name=\"" << inRemoteName << "\" delete=\"1\">";
     netStream << "</" << inObj.TypeNameGet() << ">";
     MustlProtocol::LongAppMessageCreate(ioData, kMessageTypeDeleteObject, netStream.str());
     // MustlLog::Sgl().NetLog() << "Sent " << ioData << endl;
-#endif
 }
 

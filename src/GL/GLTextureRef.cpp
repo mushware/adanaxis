@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureRef.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } asw/Xtq8JFLwPuHWwCzSHA
+
 /*
- * $Id: GLTextureRef.cpp,v 1.19 2005/02/10 12:33:56 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.13 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTextureRef.cpp,v $
- * Revision 1.19  2005/02/10 12:33:56  southa
- * Template fixes
- *
- * Revision 1.18  2004/01/10 20:29:34  southa
- * Form and rendering work
- *
- * Revision 1.17  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.16  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.15  2003/08/21 23:08:31  southa
- * Fixed file headers
- *
- * Revision 1.14  2003/01/20 10:45:24  southa
- * Singleton tidying
- *
  * Revision 1.13  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -110,63 +82,3 @@ GLTextureRef::BindingNameFetch(void) const
 {
     m_bindingName=TextureGet()->BindingNameGet();
 }
-//%outOfLineFunctions {
-
-const char *GLTextureRef::AutoNameGet(void) const
-{
-    return "GLTextureRef";
-}
-
-MushcoreVirtualObject *GLTextureRef::AutoClone(void) const
-{
-    return new GLTextureRef(*this);
-}
-
-MushcoreVirtualObject *GLTextureRef::AutoCreate(void) const
-{
-    return new GLTextureRef;
-}
-
-MushcoreVirtualObject *GLTextureRef::AutoVirtualFactory(void)
-{
-    return new GLTextureRef;
-}
-namespace
-{
-void AutoInstall(void)
-{
-    MushcoreFactory::Sgl().FactoryAdd("GLTextureRef", GLTextureRef::AutoVirtualFactory);
-}
-MushcoreInstaller AutoInstaller(AutoInstall);
-} // end anonymous namespace
-void
-GLTextureRef::AutoPrint(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "name=" << m_name;
-    ioOut << "]";
-}
-bool
-GLTextureRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
-{
-    if (inTagStr == "obj")
-    {
-        ioIn >> *this;
-    }
-    else if (inTagStr == "name")
-    {
-        ioIn >> m_name;
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-void
-GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut.TagSet("name");
-    ioOut << m_name;
-}
-//%outOfLineFunctions } iJv9AW5q5USnzdu48t2C9Q

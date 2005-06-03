@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef GLAPPHANDLER_H
 #define GLAPPHANDLER_H
-//%includeGuardStart } 1msgI15TWmC3n6mkLWTBUg
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLAppHandler.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } SqyVyfS1ZdPjvWXinM57nQ
+
 /*
- * $Id: GLAppHandler.h,v 1.30 2005/05/19 13:01:57 southa Exp $
+ * $Id: GLAppHandler.h,v 1.24 2003/01/09 14:56:57 southa Exp $
  * $Log: GLAppHandler.h,v $
- * Revision 1.30  2005/05/19 13:01:57  southa
- * Mac release work
- *
- * Revision 1.29  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.28  2004/01/02 21:13:04  southa
- * Source conditioning
- *
- * Revision 1.27  2003/09/17 19:40:29  southa
- * Source conditioning upgrades
- *
- * Revision 1.26  2003/08/21 23:08:17  southa
- * Fixed file headers
- *
- * Revision 1.25  2003/01/11 13:03:11  southa
- * Use Mushcore header
- *
  * Revision 1.24  2003/01/09 14:56:57  southa
  * Created Mushcore
  *
@@ -133,7 +103,7 @@
  */
 
 #include "GLKeys.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLModeDef;
 
@@ -151,7 +121,6 @@ public:
     virtual Mushware::U32 WidthGet(void) const = 0;
     virtual Mushware::U32 HeightGet(void) const = 0;
     virtual Mushware::U32 MillisecondsGet(void) const = 0;
-    virtual bool HasFocus(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
     virtual void PollForControlEvents(void) = 0;
@@ -159,6 +128,4 @@ public:
     virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues) = 0;
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

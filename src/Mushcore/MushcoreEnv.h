@@ -1,45 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSHCOREENV_H
 #define MUSHCOREENV_H
-//%includeGuardStart } Eq5NN656mTaTht1Xpecjog
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreEnv.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } S54oWqW1F2wpWNS9IEzJBQ
+
 /*
- * $Id: MushcoreEnv.h,v 1.13 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.8 2003/02/03 23:15:50 southa Exp $
  * $Log: MushcoreEnv.h,v $
- * Revision 1.13  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.12  2003/10/04 12:23:08  southa
- * File renaming
- *
- * Revision 1.11  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.10  2003/08/21 23:09:10  southa
- * Fixed file headers
- *
- * Revision 1.9  2003/02/05 17:06:37  southa
- * Build fixes
- *
  * Revision 1.8  2003/02/03 23:15:50  southa
  * Build work for Visual C++
  *
@@ -98,7 +71,7 @@
  * Build process fixes
  *
  * Revision 1.3  2002/05/30 14:41:13  southa
- * InfernalData and loadtilemap command
+ * GameData and loadtilemap command
  *
  * Revision 1.2  2002/05/28 22:36:44  southa
  * Script loader and tile map
@@ -162,6 +135,4 @@ private:
     static MushcoreEnv *m_instance;
 };
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

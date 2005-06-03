@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLCommandHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } SaYKn9j1C69rZyNuDs/EKA
+
 /*
- * $Id: GLCommandHandler.cpp,v 1.35 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLCommandHandler.cpp,v 1.29 2003/01/20 12:23:20 southa Exp $
  * $Log: GLCommandHandler.cpp,v $
- * Revision 1.35  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.34  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.33  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.32  2003/09/17 19:40:29  southa
- * Source conditioning upgrades
- *
- * Revision 1.31  2003/08/21 23:08:19  southa
- * Fixed file headers
- *
- * Revision 1.30  2003/02/05 16:19:45  southa
- * Build fixes
- *
  * Revision 1.29  2003/01/20 12:23:20  southa
  * Code and interface tidying
  *
@@ -136,14 +108,23 @@
 #include "GLTextureRef.h"
 #include "GLTextureSpr.h"
 #include "GLTextureTIFF.h"
+#include "GLUTAppHandler.h"
 
 #include "GLSTL.h"
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 using namespace Mushware;
 using namespace std;
 
 MushcoreInstaller GLCommandHandlerInstaller(GLCommandHandler::Install);
+
+MushcoreScalar
+GLCommandHandler::InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    // Save inStr to context
+    MushcoreAppHandler::Sgl().Mutate(new GLUTAppHandler);
+    return MushcoreScalar(0);
+}
 
 MushcoreScalar
 GLCommandHandler::LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
@@ -248,6 +229,7 @@ GLCommandHandler::DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 void
 GLCommandHandler::Install(void)
 {
+    MushcoreInterpreter::Sgl().HandlerAdd("initgl", InitGL);
     MushcoreInterpreter::Sgl().HandlerAdd("loadpixmap", LoadPixmap);
     MushcoreInterpreter::Sgl().HandlerAdd("decompose", Decompose);
     MushcoreInterpreter::Sgl().HandlerAdd("dumptextures", DumpTextures);

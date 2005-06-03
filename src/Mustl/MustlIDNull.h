@@ -1,42 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSTLIDNULL_H
 #define MUSTLIDNULL_H
-//%includeGuardStart } Kb4yOVq0bljErBTtDHuRNA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlIDNull.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } q8owiYBfW+7uXqB3hQ0IHA
+
 /*
- * $Id: MustlIDNull.h,v 1.6 2004/01/02 21:13:15 southa Exp $
+ * $Id: MustlIDNull.h,v 1.2 2002/12/17 12:53:33 southa Exp $
  * $Log: MustlIDNull.h,v $
- * Revision 1.6  2004/01/02 21:13:15  southa
- * Source conditioning
- *
- * Revision 1.5  2003/09/17 19:40:37  southa
- * Source conditioning upgrades
- *
- * Revision 1.4  2003/08/21 23:09:26  southa
- * Fixed file headers
- *
- * Revision 1.3  2002/12/20 13:17:45  southa
- * Namespace changes, licence changes and source conditioning
- *
  * Revision 1.2  2002/12/17 12:53:33  southa
  * Mustl library
  *
@@ -63,6 +39,4 @@ public:
 
 private:
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

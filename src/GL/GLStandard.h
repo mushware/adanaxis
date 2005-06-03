@@ -1,63 +1,18 @@
-//%includeGuardStart {
 #ifndef GLSTANDARD_H
 #define GLSTANDARD_H
-//%includeGuardStart } 52yady1NYSEbLWZGeNtMgw
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLStandard.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } YuwEx5C1bxstjdtkwV60mQ
+
 /*
- * $Id: GLStandard.h,v 1.24 2005/05/26 00:46:40 southa Exp $
+ * $Id: GLStandard.h,v 1.13 2003/01/12 17:32:50 southa Exp $
  * $Log: GLStandard.h,v $
- * Revision 1.24  2005/05/26 00:46:40  southa
- * Made buildable on win32
- *
- * Revision 1.23  2005/05/19 13:02:00  southa
- * Mac release work
- *
- * Revision 1.22  2004/10/31 23:34:06  southa
- * Hypercube rendering test
- *
- * Revision 1.21  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.20  2004/03/07 12:05:56  southa
- * Rendering work
- *
- * Revision 1.19  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.18  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.17  2003/10/04 12:22:58  southa
- * File renaming
- *
- * Revision 1.16  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.15  2003/08/21 23:08:29  southa
- * Fixed file headers
- *
- * Revision 1.14  2003/01/13 14:31:55  southa
- * Build frameworks for Mac OS X
- *
  * Revision 1.13  2003/01/12 17:32:50  southa
  * Mushcore work
  *
@@ -86,7 +41,7 @@
  * Build process fixes
  *
  * Revision 1.4  2002/05/30 16:20:53  southa
- * Pickleable InfernalContract
+ * Pickleable GameContract
  *
  * Revision 1.3  2002/05/28 16:37:39  southa
  * Texture references and decomposer
@@ -128,57 +83,32 @@
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
+#else
+#define HAVE_GLUT_GLUT_H
 #endif
 
-#if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
-#define NOMINMAX
+#if HAVE_WINDOWS_H
 #include <windows.h>
-#define HAVE_GLENUM_IS_UNSIGNED_INT 1
 #endif
 
-#ifdef _MSC_VER
-#define HAVE_SDL_OPENGL_H 1
+#ifdef HAVE_GL_GLUT_H
+#include <GL/glut.h>
 #endif
 
-#if defined(__APPLE__) || defined(MACOSX)
-#define HAVE_OPENGL_GL_H
-#define HAVE_OPENGL_GLU_H
+#ifdef HAVE_GLUT_GLUT_H
+#include <GLUT/glut.h>
 #endif
 
-#ifdef HAVE_GL_GL_H
-#include <GL/gl.h>
-#elif defined(HAVE_OPENGL_GL_H)
+#ifdef HAVE_OPENGL_GL_H
 #include <OpenGL/gl.h>
-#else
-#include "GL/gl.h"
 #endif
 
-#ifdef HAVE_GL_GLU_H
-#include <GL/glu.h>
-#elif defined(HAVE_OPENGL_GLU_H)
+#ifdef HAVE_OPENGL_GLU_H
 #include <OpenGL/glu.h>
-#else
-#include "GL/glu.h"
 #endif
 
-#ifndef GL_GLEXT_VERSION
 
-#if defined(HAVE_SDL_SDL_OPENGL_H)
-#include <SDL/SDL_opengl.h>
-#elif defined(HAVE_SDL_OPENGL_H)
-#include <SDL_opengl.h>
-#elif defined(HAVE_OPENGL_GLEXTL_H)
-#include <OpenGL/glext.h>
-#elif defined(HAVE_GL_GLEXTL_H)
-#include <GL/glext.h>
-#else
-#include "SDL_opengl.h"
-#endif
-
-#endif
-
-#include "mushMushcore.h"
-
+#include "Mushcore.h"
 #include <cmath>
 
 #define GLTESTING(a) a
@@ -190,6 +120,4 @@
 #define IFTEXTESTING(a)
 #endif
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

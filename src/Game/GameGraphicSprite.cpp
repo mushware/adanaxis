@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameGraphicSprite.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } ueJ1Bc0PYwHuvFIQgjvdVw
+
 /*
- * $Id: GameGraphicSprite.cpp,v 1.23 2004/01/02 11:56:59 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.17 2003/01/09 14:57:02 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
- * Revision 1.23  2004/01/02 11:56:59  southa
- * MushPie created
- *
- * Revision 1.22  2004/01/01 23:04:02  southa
- * XCode fixes
- *
- * Revision 1.21  2003/10/04 12:23:00  southa
- * File renaming
- *
- * Revision 1.20  2003/09/17 19:40:32  southa
- * Source conditioning upgrades
- *
- * Revision 1.19  2003/08/21 23:08:46  southa
- * Fixed file headers
- *
- * Revision 1.18  2003/01/13 14:31:58  southa
- * Build frameworks for Mac OS X
- *
  * Revision 1.17  2003/01/09 14:57:02  southa
  * Created Mushcore
  *
@@ -70,7 +42,7 @@
  * Conditioned source
  *
  * Revision 1.7  2002/07/23 14:10:46  southa
- * Added InfernalMotion
+ * Added GameMotion
  *
  * Revision 1.6  2002/07/19 15:44:41  southa
  * Graphic optimisations
@@ -209,11 +181,11 @@ GameGraphicSprite::UnpickleEpilogue(void)
 void
 GameGraphicSprite::XMLStartHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p2 != m_startTable[m_pickleState].end())
+    if (p != m_startTable[m_pickleState].end())
     {
-        (this->*p2->second)(inXML);
+        (this->*p->second)(inXML);
     }
     else
     {
@@ -241,11 +213,11 @@ ElementFunctionMap::iterator p = m_startTable[m_pickleState].begin();
 void
 GameGraphicSprite::XMLEndHandler(MushcoreXML& inXML)
 {
-ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
+ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p2 != m_endTable[m_pickleState].end())
+    if (p != m_endTable[m_pickleState].end())
     {
-        (this->*p2->second)(inXML);
+        (this->*p->second)(inXML);
     }
     else
     {

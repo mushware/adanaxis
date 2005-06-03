@@ -1,73 +1,19 @@
-//%includeGuardStart {
 #ifndef MUSHCOREDATA_H
 #define MUSHCOREDATA_H
-//%includeGuardStart } 5xx3QcLnHc7l0jqnvH7Hiw
-//%Header {
+
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreData.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.23 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushcoreData.h,v 1.9 2003/02/03 23:15:49 southa Exp $
  * $Log: MushcoreData.h,v $
- * Revision 1.23  2005/05/18 15:53:27  southa
- * Made buildable using gcc 4.0/Mac OS X 10.4
- *
- * Revision 1.22  2005/04/11 23:31:41  southa
- * Startup and registration screen
- *
- * Revision 1.21  2005/03/25 22:04:50  southa
- * Dialogue and MushcoreIO fixes
- *
- * Revision 1.20  2005/03/25 19:13:50  southa
- * GameDialogue work
- *
- * Revision 1.19  2004/09/26 19:42:05  southa
- * Added MushMesh, fixed typenames and release target
- *
- * Revision 1.18  2004/01/18 18:25:29  southa
- * XML stream upgrades
- *
- * Revision 1.17  2004/01/08 16:06:11  southa
- * XML fixes
- *
- * Revision 1.16  2004/01/07 18:01:19  southa
- * MushModel and Infernal work
- *
- * Revision 1.15  2004/01/06 10:08:51  southa
- * MushcoreData and MushPieForm work
- *
- * Revision 1.14  2004/01/05 14:27:41  southa
- * MushPie work and build fixes
- *
- * Revision 1.13  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.12  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.11  2003/08/21 23:09:09  southa
- * Fixed file headers
- *
- * Revision 1.10  2003/02/05 17:06:37  southa
- * Build fixes
- *
  * Revision 1.9  2003/02/03 23:15:49  southa
  * Build work for Visual C++
  *
@@ -152,51 +98,34 @@
 
 #include "MushcoreFail.h"
 #include "MushcoreSingleton.h"
-#include "MushcoreXMLIStream.h"
-#include "MushcoreXMLOStream.h"
 
 #define MUSHCORE_DATA_INSTANCE(RefType) MUSHCORE_SINGLETON_INSTANCE(MushcoreData< RefType >)
 #define MUSHCORE_DESTROY_DATA_INSTANCE(RefType) MUSHCORE_DESTROY_SINGLETON_INSTANCE(MushcoreData< RefType >)
 
-#define MUSHCORE_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_SINGLETON_INSTANCE2(MushcoreData< RefType, KeyType >)
-#define MUSHCORE_DESTROY_KEYED_DATA_INSTANCE(RefType, KeyType) MUSHCORE_DESTROY_SINGLETON_INSTANCE((MushcoreData< RefType, KeyType >))
-
-template<class RefType, class KeyType = std::string>
-class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
+template<class RefType> class MushcoreData : public MushcoreSingleton< MushcoreData<RefType> >
 {
 public:
-    typedef typename std::map<KeyType, RefType *> tMap;
-    typedef typename tMap::iterator tIterator;
-    typedef typename tMap::iterator tMapIterator;
-    typedef typename tMap::const_iterator tConstIterator;
-    typedef typename tMap::const_iterator tMapConstIterator;
+    typedef MUSHCORE_TYPENAME std::map<std::string, RefType *> tMap;
+    typedef MUSHCORE_TYPENAME tMap::iterator tMapIterator;
+    typedef MUSHCORE_TYPENAME tMap::const_iterator tMapConstIterator;
 
     inline MushcoreData();
     inline ~MushcoreData();
 
-    inline RefType *Give(const KeyType& inName, RefType *inData);
-    inline RefType *Get(const KeyType& inName) const;
-    inline RefType *GetOrReturnNull(const KeyType& inName) const;
-    inline RefType *GetOrCreate(const KeyType& inName);
-    inline bool GetIfExists(RefType *& outData, const KeyType& inName) const;
-    inline void Delete(const KeyType& inName);
+    inline RefType *Give(const std::string& inName, RefType *inData);
+    inline RefType *Get(const std::string& inName) const;
+    inline RefType *GetOrReturnNull(const std::string& inName) const;
+    inline bool GetIfExists(RefType *& outData, const std::string& inName) const;
+    inline void Delete(const std::string& inName);
     inline void Delete(const tMapIterator& inIterator);
-    inline bool Exists(const KeyType& inName) const;
+    inline bool Exists(const std::string& inName) const;
     inline void Clear(void);
     inline Mushware::U32 Size(void);
     inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(std::ostream& ioOut);
     inline tMapIterator Begin(void);
     inline tMapIterator End(void);
-    inline tMapConstIterator Begin(void) const;
-    inline tMapConstIterator End(void) const;
     inline Mushware::U32 SequenceNumGet(void) const;
-
-    void Print(std::ostream& ioOut) const;
-    void XMLRead(MushcoreXMLIStream& ioIn);
-    void XMLPrint(MushcoreXMLOStream& ioOut) const;
-    bool Equals(const MushcoreData& inObj) const;
-    bool PtrEquals(const MushcoreData& inObj) const;
     
 protected:
 
@@ -205,14 +134,14 @@ private:
     Mushware::U32 m_sequenceNum; // Incremented when anything is deleted
 };
 
-template<class RefType, class KeyType>
-MushcoreData<RefType, KeyType>::MushcoreData(void) :
+template<class RefType>
+MushcoreData<RefType>::MushcoreData(void) :
     m_sequenceNum(1)
 {
 }
 
-template<class RefType, class KeyType>
-MushcoreData<RefType, KeyType>::~MushcoreData(void)
+template<class RefType>
+MushcoreData<RefType>::~MushcoreData(void)
 {
     for (tMapIterator p = m_data.begin();
          p != m_data.end(); ++p)
@@ -221,9 +150,9 @@ MushcoreData<RefType, KeyType>::~MushcoreData(void)
     }
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline RefType *
-MushcoreData<RefType, KeyType>::Give(const KeyType& inName, RefType *inData)
+MushcoreData<RefType>::Give(const std::string& inName, RefType *inData)
 {
     tMapIterator p = m_data.find(inName);
     if (p != m_data.end())
@@ -239,9 +168,9 @@ MushcoreData<RefType, KeyType>::Give(const KeyType& inName, RefType *inData)
     return inData;
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline RefType *
-MushcoreData<RefType, KeyType>::Get(const KeyType& inName) const
+MushcoreData<RefType>::Get(const std::string& inName) const
 {
     tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
@@ -251,9 +180,9 @@ MushcoreData<RefType, KeyType>::Get(const KeyType& inName) const
     return p->second;
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline RefType *
-MushcoreData<RefType, KeyType>::GetOrReturnNull(const KeyType& inName) const
+MushcoreData<RefType>::GetOrReturnNull(const std::string& inName) const
 {
     tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
@@ -263,21 +192,9 @@ MushcoreData<RefType, KeyType>::GetOrReturnNull(const KeyType& inName) const
     return p->second;
 }
 
-template<class RefType, class KeyType>
-inline RefType *
-MushcoreData<RefType, KeyType>::GetOrCreate(const KeyType& inName)
-{
-    tMapConstIterator p = m_data.find(inName);
-    if (p == m_data.end())
-    {
-        return Give(inName, new RefType);
-    }
-    return p->second;
-}
-
-template<class RefType, class KeyType>
+template<class RefType>
 inline bool
-MushcoreData<RefType, KeyType>::GetIfExists(RefType *& outData, const KeyType& inName) const
+MushcoreData<RefType>::GetIfExists(RefType *& outData, const std::string& inName) const
 {
     tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
@@ -288,9 +205,9 @@ MushcoreData<RefType, KeyType>::GetIfExists(RefType *& outData, const KeyType& i
     return true;
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline void
-MushcoreData<RefType, KeyType>::Delete(const KeyType& inName)
+MushcoreData<RefType>::Delete(const std::string& inName)
 {
     tMapIterator p = m_data.find(inName);
     if (p == m_data.end())
@@ -300,9 +217,9 @@ MushcoreData<RefType, KeyType>::Delete(const KeyType& inName)
     Delete(p);
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline void
-MushcoreData<RefType, KeyType>::Delete(const tMapIterator& inIterator)
+MushcoreData<RefType>::Delete(const tMapIterator& inIterator)
 {
     MUSHCOREASSERT(inIterator->second != NULL);
     ++m_sequenceNum;
@@ -310,9 +227,9 @@ MushcoreData<RefType, KeyType>::Delete(const tMapIterator& inIterator)
     m_data.erase(inIterator);
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline bool
-MushcoreData<RefType, KeyType>::Exists(const KeyType& inName) const
+MushcoreData<RefType>::Exists(const std::string& inName) const
 {
     tMapConstIterator p = m_data.find(inName);
     if (p == m_data.end())
@@ -322,9 +239,9 @@ MushcoreData<RefType, KeyType>::Exists(const KeyType& inName) const
     return true;
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline void
-MushcoreData<RefType, KeyType>::Clear(void)
+MushcoreData<RefType>::Clear(void)
 {
     ++m_sequenceNum;
     tMapIterator endIter = m_data.end();
@@ -335,16 +252,16 @@ MushcoreData<RefType, KeyType>::Clear(void)
     m_data.clear();
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline Mushware::U32
-MushcoreData<RefType, KeyType>::Size(void)
+MushcoreData<RefType>::Size(void)
 {
     return m_data.size();
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline void
-MushcoreData<RefType, KeyType>::Iterate(void (*inFnPtr)(RefType&))
+MushcoreData<RefType>::Iterate(void (*inFnPtr)(RefType&))
 {
     tMapIterator endIter = m_data.end();
     for (tMapIterator p = m_data.begin(); p != endIter; ++p)
@@ -353,137 +270,36 @@ MushcoreData<RefType, KeyType>::Iterate(void (*inFnPtr)(RefType&))
     }
 }
 
-template<class RefType, class KeyType>
+template<class RefType>
 inline void
-MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut)
+MushcoreData<RefType>::Dump(std::ostream& ioOut)
 {
     tMapIterator endIter = m_data.end();
     for (tMapIterator p = m_data.begin(); p != endIter; ++p)
     {
-        ioOut << p->first << ": " << *p->second << std::endl;
+        ioOut << p->first << ": " << *p->second << endl;
     }
 }
 
-template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapIterator
-MushcoreData<RefType, KeyType>::Begin(void)
+template<class RefType>
+inline MUSHCORE_TYPENAME MushcoreData<RefType>::tMapIterator
+MushcoreData<RefType>::Begin(void)
 {
     return m_data.begin();
 }
 
-template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapIterator
-MushcoreData<RefType, KeyType>::End(void)
+template<class RefType>
+inline MUSHCORE_TYPENAME MushcoreData<RefType>::tMapIterator
+MushcoreData<RefType>::End(void)
 {
     return m_data.end();
 }
 
-template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
-MushcoreData<RefType, KeyType>::Begin(void) const
-{
-    return m_data.begin();
-}
-
-template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
-MushcoreData<RefType, KeyType>::End(void) const
-{
-    return m_data.end();
-}
-
-template<class RefType, class KeyType>
+template<class RefType>
 inline Mushware::U32
-MushcoreData<RefType, KeyType>::SequenceNumGet(void) const
+MushcoreData<RefType>::SequenceNumGet(void) const
 {
     return m_sequenceNum;
 }
 
-// XML operators treat this object as a single std::map
-
-template<class RefType, class KeyType>
-inline void
-MushcoreData<RefType, KeyType>::XMLRead(MushcoreXMLIStream& ioIn)
-{
-    ioIn >> m_data;
-}
-
-template<class RefType, class KeyType>
-inline void
-MushcoreData<RefType, KeyType>::XMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut << m_data;
-}
-
-template<class RefType, class KeyType>
-inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushcoreData<RefType, KeyType>& inObj)
-{
-    inObj.XMLPrint(ioOut);
-    return ioOut;
-}
-
-template<class RefType, class KeyType>
-inline void
-operator>>(MushcoreXMLIStream& ioIn, MushcoreData<RefType, KeyType>& outObj)
-{
-    outObj.XMLRead(ioIn);
-}
-
-template<class RefType, class KeyType>
-inline void
-MushcoreData<RefType, KeyType>::Print(std::ostream& ioOut) const
-{
-    ioOut << "[";
-    ioOut << "data=" << m_data << ", ";
-    ioOut << "sequenceNum=" << m_sequenceNum;
-    ioOut << "]";
-}
-
-template<class RefType, class KeyType>
-inline std::ostream&
-operator<<(std::ostream& ioOut, const MushcoreData<RefType, KeyType>& inObj)
-{
-    inObj.Print(ioOut);
-    return ioOut;
-}
-
-template<class RefType, class KeyType>
-inline bool
-MushcoreData<RefType, KeyType>::Equals(const MushcoreData<RefType, KeyType>& inObj) const
-{
-    tMapConstIterator p1 = Begin();
-    tMapConstIterator p1End = End();
-    tMapConstIterator p2 = inObj.Begin();
-    tMapConstIterator p2End = inObj.End();
-
-    for (;;)
-    {
-        if (p1 == p1End && p2 == p2End) return true; // Both finished
-        if (p1 == p1End || p2 == p2End) return false; // One finished, not the other
-        if (p1->first != p2->first) return false; // Keys not equal
-        if (p1->second == NULL && p2->second != NULL) return false; // One NULL but not the other
-        if (p1->second != NULL && p2->second == NULL) return false; // One NULL but not the other
-        if (p1->second != NULL && p2->second != NULL && *p1->second != *p2->second) return false; // Referred objects not equal
-        ++p1;
-        ++p2;
-    }
-}
-
-template<class RefType, class KeyType>
-inline bool
-operator==(const MushcoreData<RefType, KeyType>& inA, const MushcoreData<RefType, KeyType>& inB)
-{
-    return inA.Equals(inB);
-}
-
-template<class RefType, class KeyType>
-inline bool
-operator!=(const MushcoreData<RefType, KeyType>& inA, const MushcoreData<RefType, KeyType>& inB)
-{
-    return !inA.Equals(inB);
-}
-
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

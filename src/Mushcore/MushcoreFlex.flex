@@ -1,11 +1,8 @@
- // $Id: MushcoreFlex.flex,v 1.7 2003/02/04 00:11:05 southa Exp $
+ // $Id: MushcoreFlex.flex,v 1.6 2003/01/20 17:03:22 southa Exp $
 %{
 /*
- * $Id: MushcoreFlex.flex,v 1.7 2003/02/04 00:11:05 southa Exp $
+ * $Id: MushcoreFlex.flex,v 1.6 2003/01/20 17:03:22 southa Exp $
  * $Log: MushcoreFlex.flex,v $
- * Revision 1.7  2003/02/04 00:11:05  southa
- * Build fixes
- *
  * Revision 1.6  2003/01/20 17:03:22  southa
  * Command line expression evaluator enhancements
  *
@@ -34,7 +31,7 @@
  * First floor map designer build
  *
  * Revision 1.8  2002/05/30 14:41:15  southa
- * InfernalData and loadtilemap command
+ * GameData and loadtilemap command
  *
  * Revision 1.7  2002/05/28 13:07:04  southa
  * Command parser extensions and TIFF loader

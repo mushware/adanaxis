@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameTimer.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } kYNl/PxaR84VY5DYcX6fVA
+
 /*
- * $Id: GameTimer.cpp,v 1.26 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameTimer.cpp,v 1.20 2003/01/12 17:32:56 southa Exp $
  * $Log: GameTimer.cpp,v $
- * Revision 1.26  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.25  2003/10/04 15:32:09  southa
- * Module split
- *
- * Revision 1.1  2003/10/04 12:23:07  southa
- * File renaming
- *
- * Revision 1.23  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.22  2003/08/21 23:08:57  southa
- * Fixed file headers
- *
- * Revision 1.21  2003/01/13 14:32:01  southa
- * Build frameworks for Mac OS X
- *
  * Revision 1.20  2003/01/12 17:32:56  southa
  * Mushcore work
  *
@@ -79,7 +51,7 @@
  * Added time format
  *
  * Revision 1.7  2002/08/19 11:09:56  southa
- * InfernalTypeRace rendering
+ * GameTypeRace rendering
  *
  * Revision 1.6  2002/08/07 13:36:51  southa
  * Conditioned source

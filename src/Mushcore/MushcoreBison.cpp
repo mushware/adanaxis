@@ -1,23 +1,6 @@
-//%Header {
-/*****************************************************************************
- *
- * File: src/Mushcore/MushcoreBison.cpp
- *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
- *
- ****************************************************************************/
-//%Header } LD+q1qMX7RORBqqK5N4cUw
+
+/*  A Bison parser, made from MushcoreBison.y
+    by GNU Bison version 1.28  */
 
 #define YYBISON 1  /* Identify Bison output.  */
 
@@ -36,24 +19,20 @@
 #define	END_OF_FILE	262
 #define	NEG	263
 
+
+/*****************************************************************************
+ *
+ * (Mushware file header version 1.2)
+ *
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
+ *
+ ****************************************************************************/
+
  /*
- * $Id: MushcoreBison.cpp,v 1.13 2004/01/02 21:13:12 southa Exp $
- * $Log: MushcoreBison.cpp,v $
- * Revision 1.13  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.12  2003/10/04 12:23:08  southa
- * File renaming
- *
- * Revision 1.11  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.10  2003/08/21 23:09:05  southa
- * Fixed file headers
- *
- * Revision 1.8  2003/02/04 00:11:04  southa
- * Build fixes
- *
+ * $Id: MushcoreBison.y,v 1.7 2003/01/20 17:03:21 southa Exp $
+ * $Log: MushcoreBison.y,v $
  * Revision 1.7  2003/01/20 17:03:21  southa
  * Command line expression evaluator enhancements
  *
@@ -82,7 +61,7 @@
  * Fixes to mac project
  *
  * Revision 1.8  2002/05/30 14:41:13  southa
- * InfernalData and loadtilemap command
+ * GameData and loadtilemap command
  *
  */
 
@@ -183,9 +162,9 @@ static const short yyrhs[] = {    -1,
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    92,    93,    94,    95,    97,    98,   100,   101,   102,   103,
-   104,   105,   106,   107,   108,   110,   114,   115,   116,   118,
-   119,   121,   122
+    87,    88,    89,    90,    92,    93,    95,    96,    97,    98,
+    99,   100,   101,   102,   103,   105,   109,   110,   111,   113,
+   114,   116,   117
 };
 #endif
 

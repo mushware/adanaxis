@@ -1,47 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTexture.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } ej9ThOgaMcdsA9brpVOZaQ
+
 /*
- * $Id: GLTexture.cpp,v 1.35 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTexture.cpp,v 1.28 2003/01/13 14:31:55 southa Exp $
  * $Log: GLTexture.cpp,v $
- * Revision 1.35  2005/05/19 13:02:00  southa
- * Mac release work
- *
- * Revision 1.34  2005/04/10 00:09:22  southa
- * Registration
- *
- * Revision 1.33  2005/02/13 22:44:06  southa
- * Tesseract stuff
- *
- * Revision 1.32  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.31  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.30  2003/08/21 23:08:30  southa
- * Fixed file headers
- *
- * Revision 1.29  2003/02/05 16:19:45  southa
- * Build fixes
- *
  * Revision 1.28  2003/01/13 14:31:55  southa
  * Build frameworks for Mac OS X
  *
@@ -137,8 +106,6 @@
 using namespace Mushware;
 using namespace std;
 
-MUSHCORE_DATA_INSTANCE(GLTexture);
-
 GLTexture::~GLTexture()
 {
     if (m_bound)
@@ -196,22 +163,8 @@ GLTexture::BindTexture(void) const
     glGenTextures(1, &m_bindingName);
     glBindTexture(GL_TEXTURE_2D, m_bindingName);
     GLState::TextureParamsReset();
-    if (GLState::UseMipMap())
+    if (1)
     {
-#ifdef GL_VERSION_1_4
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-        
-        glTexImage2D(GL_TEXTURE_2D, // target
-                     0,             // level
-                     GL_RGBA,       // internal format
-                     Width(),       // width
-                     Height(),      // height
-                     0,             // border
-                     PixelFormat(), // format
-                     PixelType(),   // type
-                     DataPtr()      // pointer to data
-                     );   
-#else
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D, // target
                                     4,             // components
                                     Width(),       // width
@@ -221,14 +174,9 @@ GLTexture::BindTexture(void) const
                                     DataPtr()      // pointer to data
                                     );
         if (err != 0) cerr << "Error building mipmaps: " << gluErrorString(err) << endl;
-#endif
     }
     else
     {
-#ifdef GL_VERSION_1_4
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
-#endif
-
         glTexImage2D(GL_TEXTURE_2D, // target
                      0,             // level
                      GL_RGBA,       // internal format

@@ -1,45 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSHCORECONFIG_H
 #define MUSHCORECONFIG_H
-//%includeGuardStart } tk9OsM5FERwFoYSoHhFOZQ
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreConfig.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } melRB0+0hNyY/EGCcggsHg
+
 /*
- * $Id: MushcoreConfig.h,v 1.11 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.6 2003/02/03 23:15:49 southa Exp $
  * $Log: MushcoreConfig.h,v $
- * Revision 1.11  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.10  2003/10/04 12:23:08  southa
- * File renaming
- *
- * Revision 1.9  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.8  2003/08/21 23:09:09  southa
- * Fixed file headers
- *
- * Revision 1.7  2003/02/05 17:06:37  southa
- * Build fixes
- *
  * Revision 1.6  2003/02/03 23:15:49  southa
  * Build work for Visual C++
  *
@@ -92,13 +65,13 @@
  * Traits loader first stage
  *
  * Revision 1.6  2002/05/30 14:41:13  southa
- * InfernalData and loadtilemap command
+ * GameData and loadtilemap command
  *
  * Revision 1.5  2002/05/28 13:07:03  southa
  * Command parser extensions and TIFF loader
  *
  * Revision 1.4  2002/05/27 12:58:42  southa
- * InfernalContract and global configs added
+ * GameContract and global configs added
  *
  * Revision 1.3  2002/05/26 16:35:07  southa
  * MushcoreXML work
@@ -132,6 +105,4 @@ private:
     std::map<std::string, MushcoreScalar> m_config;
 };
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

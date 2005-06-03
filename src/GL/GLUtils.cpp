@@ -1,53 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLUtils.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } f6+nyib19+xpGJMCBF2GGw
+
 /*
- * $Id: GLUtils.cpp,v 1.60 2005/05/20 10:26:27 southa Exp $
+ * $Id: GLUtils.cpp,v 1.51 2003/01/20 10:45:24 southa Exp $
  * $Log: GLUtils.cpp,v $
- * Revision 1.60  2005/05/20 10:26:27  southa
- * Release work
- *
- * Revision 1.59  2005/05/19 13:02:01  southa
- * Mac release work
- *
- * Revision 1.58  2005/01/29 14:06:11  southa
- * OpenGL buffers and extensions
- *
- * Revision 1.57  2004/03/07 12:05:56  southa
- * Rendering work
- *
- * Revision 1.56  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.55  2003/10/04 12:22:58  southa
- * File renaming
- *
- * Revision 1.54  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.53  2003/08/21 23:08:33  southa
- * Fixed file headers
- *
- * Revision 1.52  2003/02/05 16:19:45  southa
- * Build fixes
- *
  * Revision 1.51  2003/01/20 10:45:24  southa
  * Singleton tidying
  *
@@ -199,7 +162,7 @@
  * Command parser extensions and TIFF loader
  *
  * Revision 1.2  2002/05/27 12:58:43  southa
- * InfernalContract and global configs added
+ * GameContract and global configs added
  *
  * Revision 1.1  2002/05/10 22:38:23  southa
  * Checkpoint
@@ -341,48 +304,25 @@ GLUtils::PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, t
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     GLPoint screenRatios(ScreenRatiosGet()*0.5);
-    tVal nearClip=0.01;
+    tVal nearClip=1.0;
     tVal scale=m_screenScale/m_eyeDistance*nearClip;
     glFrustum(-screenRatios.x*scale,screenRatios.x*scale,
               -screenRatios.y*scale,screenRatios.y*scale,
               nearClip, // zNear clipping plane distance from viewer
               m_eyeDistance*2 // zFar clipping plane distance from viewer
               );
-    
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(inCamera.x, inCamera.y, inCamera.z, // eye position
               inLookAt.x, inLookAt.y, inLookAt.z, // reference for -z axis
               sin(inAngle),cos(inAngle),0 // direction of up
               );
-    
+
     GLUtils::CheckGLError();
 }
 
-void
-GLUtils::StereoPerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt,
-                                 tVal inAngle, tVal inOffset)
-{
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    GLPoint screenRatios(ScreenRatiosGet()*0.5);
-    tVal nearClip=0.01;
-    tVal scale=m_screenScale/m_eyeDistance*nearClip;
-    glFrustum((inOffset-screenRatios.x)*scale,(inOffset+screenRatios.x)*scale,
-              -screenRatios.y*scale,screenRatios.y*scale,
-              nearClip, // zNear clipping plane distance from viewer
-              m_eyeDistance*2 // zFar clipping plane distance from viewer
-              );
-    
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(inCamera.x, inCamera.y, inCamera.z, // eye position
-              inLookAt.x, inLookAt.y, inLookAt.z, // reference for -z axis
-              sin(inAngle),cos(inAngle),0 // direction of up
-              );
-    
-    GLUtils::CheckGLError();
-}
+
 
 const GLPoint
 GLUtils::ScreenSizeGet(void)
@@ -427,7 +367,7 @@ GLUtils::DisplayPrologue(void)
         switch (glAppHandler.CurrentModeDefGet().SyncGet())
         {
             case GLModeDef::kSyncHard:
-                // glFinish();
+                glFinish();
             case GLModeDef::kSyncSoft:
                 PlatformVideoUtils::VBLWait();
             default:
@@ -440,7 +380,7 @@ void
 GLUtils::DisplayEpilogue(void)
 {
     glDrawBuffer(GL_BACK);
-    // glFlush();
+    glFlush();
     m_swapValid=true;
 }
 

@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlWebRouter.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } QgVYeHVnb0+kbOOk7qNckw
+
 /*
- * $Id: MustlWebRouter.cpp,v 1.15 2004/01/02 21:13:16 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.10 2003/01/13 15:01:20 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
- * Revision 1.15  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.14  2003/10/06 22:23:45  southa
- * Game to GameMustl move
- *
- * Revision 1.13  2003/09/17 19:40:38  southa
- * Source conditioning upgrades
- *
- * Revision 1.12  2003/08/21 23:09:33  southa
- * Fixed file headers
- *
- * Revision 1.11  2003/01/20 10:45:31  southa
- * Singleton tidying
- *
  * Revision 1.10  2003/01/13 15:01:20  southa
  * Fix Mustl command line build
  *
@@ -116,39 +91,32 @@ MustlWebRouter::ReceiveAll(void)
     for (MushcoreData<MustlWebLink>::tMapIterator p=MushcoreData<MustlWebLink>::Sgl().Begin();
          p != endValue; ++p)
     {
-        try
+        MUSTLASSERT(p->second != NULL);
+        MustlWebLink& webLink = *p->second;
+        if (callTick)
         {
-            MUSTLASSERT(p->second != NULL);
-            MustlWebLink& webLink = *p->second;
-            if (callTick)
+            webLink.Tick();
+        }
+
+        if (webLink.IsDead())
+        {
+            killValue=p;
+        }
+        else
+        {
+            string linkData;
+            for (U32 i=0; i<kMaxReceivesPerCall; ++i)
             {
-                webLink.Tick();
-            }
-    
-            if (webLink.IsDead())
-            {
-                killValue=p;
-            }
-            else
-            {
-                string linkData;
-                for (U32 i=0; i<kMaxReceivesPerCall; ++i)
+                if (webLink.Receive(linkData))
                 {
-                    if (webLink.Receive(linkData))
-                    {
-                        // MustlLog::Sgl().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
-                        webLink.ReceivedProcess(linkData);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    // MustlLog::Sgl().Log() << "Received on " << p->first << ": '" << MustlUtils::MakePrintable(data) << "'" << endl;
+                    webLink.ReceivedProcess(linkData);
+                }
+                else
+                {
+                    break;
                 }
             }
-        }
-        catch (MushcoreNonFatalFail& e)
-        {
-            MustlLog::Sgl().WebLog() << "Network exception: " << e.what() << endl;
         }
     }
     if (killValue != MushcoreData<MustlWebLink>::Sgl().End())

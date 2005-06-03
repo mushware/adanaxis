@@ -1,47 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlWebLink.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } GzA5BTbN0PNHQudhWRpuQQ
+
 /*
- * $Id: MustlWebLink.cpp,v 1.27 2004/09/26 21:07:16 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.20 2003/01/18 13:34:00 southa Exp $
  * $Log: MustlWebLink.cpp,v $
- * Revision 1.27  2004/09/26 21:07:16  southa
- * Mustl compilation fixes
- *
- * Revision 1.26  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.25  2004/01/01 21:15:46  southa
- * Created XCode project
- *
- * Revision 1.24  2003/10/06 22:23:45  southa
- * Game to GameMustl move
- *
- * Revision 1.23  2003/09/17 19:40:38  southa
- * Source conditioning upgrades
- *
- * Revision 1.22  2003/08/21 23:09:32  southa
- * Fixed file headers
- *
- * Revision 1.21  2003/01/20 10:45:31  southa
- * Singleton tidying
- *
  * Revision 1.20  2003/01/18 13:34:00  southa
  * Created MushcoreSingleton
  *
@@ -235,22 +204,8 @@ MustlWebLink::Receive(string& outStr)
     outStr="";
     do
     {
-        try
-        {
-            result=MustlPlatform::TCPReceive(m_tcpSocket, &byte, 1);
-        }
-        catch (MustlPermanentFail &e)
-        {
-			(void) e;
-            Disconnect();
-            throw;
-        }
-        catch (MustlTemporaryFail &e)
-        {
-			(void) e;
-            ++m_linkErrors;
-            throw;
-        }
+        result=MustlPlatform::TCPReceive(m_tcpSocket, &byte, 1);
+
         if (result == 1)
         {
             outStr += byte;
@@ -270,27 +225,11 @@ MustlWebLink::Send(MustlData& ioData)
     {
         throw(MustlFail("Attempt to send on dead WebLink"));
     }
-    try
-    {
-        U32 sendSize = ioData.ReadSizeGet();
-        MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
-        ioData.ReadPosAdd(sendSize);
-    
-    }
-    catch (MustlPermanentFail &e)
-    {
-		(void) e;
-        Disconnect();
-        throw;
-    }
-    catch (MustlTemporaryFail &e)
-    {
-		(void) e;
-        ++m_linkErrors;
-        throw;
-    }
+    U32 sendSize = ioData.ReadSizeGet();
+    MustlPlatform::TCPSend(m_tcpSocket, ioData.ReadPtrGet(), sendSize);
+    ioData.ReadPosAdd(sendSize);
 
-// MustlLog::Sgl().WebLog() << "Sending " << ioData << endl;
+    // MustlLog::Sgl().WebLog() << "Sending " << ioData << endl;
 }
 
 void
@@ -470,9 +409,9 @@ MustlWebLink::GetProcess(const string& inFilename)
             {
                 SendErrorPage(e.what());
             }
-            catch (MushcoreNonFatalFail &e2)
+            catch (MushcoreNonFatalFail &e)
             {
-                MustlLog::Sgl().WebLog() << "Exception sending error page: " << e2.what() << endl;
+                MustlLog::Sgl().WebLog() << "Exception sending error page: " << e.what() << endl;
             }
         }
     }

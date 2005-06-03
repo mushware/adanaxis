@@ -11,11 +11,8 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.3 2002/10/20 22:31:06 southa Exp $
+# $Id: MakeInstaller.sh,v 1.2 2002/08/27 13:18:11 southa Exp $
 # $Log: MakeInstaller.sh,v $
-# Revision 1.3  2002/10/20 22:31:06  southa
-# Fixed win32 release build
-#
 # Revision 1.2  2002/08/27 13:18:11  southa
 # Fixed line endings in LICENCE file
 #
@@ -25,59 +22,29 @@
 
 # Script for generating the win32 installer.
 
-if test "x$4" = "x"
+if test "x$1" = "x"
 then
-echo 'Usage: $0 <name> <version> <build directory> <data directory>'
+echo Usage: $0 [version]
+echo e.g. $0 0_0_1
 exit 1
 fi
 
-name="$1"
-package="$2"
-version="$3"
-builddir="$4"
-datadir="$5"
-releasedir="release/$name"
-readmedir="release/$name/documents"
-appdir="$datadir/system/"
+version=$1
 
-echo "Building win32 installer for '$name$' version '$version'"
-echo "from '$builddir' and '$datadir' to '$releasedir'"
-
-cp -pR "$builddir/$package.exe" "$appdir"
-
-for filename in VisualC/visualclibs/*.dll
-do
-cp "$filename" "${appdir}"
-done
-
-rm -rf "$releasedir"
-mkdir -p release
-cp -pR "$datadir" "$releasedir"
-
-find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
-find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
-
-cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
-
-mkdir -p "$readmedir"
-for filename in
-do
-cp "$filename" "${readmedir}"
-done
-
-cp COPYING "${readmedir}/Licence.txt"
-cp ChangeLog "${readmedir}/ChangeLog.txt"
-cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
-
+echo "Building win32 installer for version $version"
+strip --strip-unneeded -o release/system/ic2.exe src/ic2binary.exe 
+cp -p win32/ic2_app.ico release/system
 echo 'Converting text and XML file to DOS line endings'
-find "$releasedir" \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
-
+find release \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
+echo 'Converting LICENCE file to DOS line endings'
+unix2dos win32/LICENCE
 echo 'Building win32 installer'
+cd win32
 
 # Copy non-executable files
-cp 'win32/Mushware web site.url' "$releasedir"
+cp 'Mushware web site.url' ../release
+cp UpdateCheck.url ../release/system
 
-cd win32
 makensis installer.nsi
-
+mv IC2-win32-setup-0_0_0.exe IC2-win32-setup-$version.exe
 echo 'Done'

@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Media/MediaAudioCommandHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } prTllXwitkqZgo79W+/ADg
+
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.22 2004/01/06 20:46:51 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.17 2003/01/20 10:45:28 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
- * Revision 1.22  2004/01/06 20:46:51  southa
- * Build fixes
- *
- * Revision 1.21  2004/01/02 21:13:10  southa
- * Source conditioning
- *
- * Revision 1.20  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.19  2003/08/21 23:09:00  southa
- * Fixed file headers
- *
- * Revision 1.18  2003/01/20 12:23:22  southa
- * Code and interface tidying
- *
  * Revision 1.17  2003/01/20 10:45:28  southa
  * Singleton tidying
  *
@@ -94,7 +69,7 @@
 #include "MediaAudio.h"
 #include "MediaSTL.h"
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 using namespace Mushware;
 using namespace std;

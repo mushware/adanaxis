@@ -1,50 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameConfig.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } eOz11zG8+D0599nfvP2Npg
+
 /*
- * $Id: GameConfig.cpp,v 1.34 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameConfig.cpp,v 1.26 2003/01/20 10:45:24 southa Exp $
  * $Log: GameConfig.cpp,v $
- * Revision 1.34  2005/03/13 00:34:46  southa
- * Build fixes, key support and stereo
- *
- * Revision 1.33  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.32  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.31  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.30  2004/01/01 21:15:45  southa
- * Created XCode project
- *
- * Revision 1.29  2003/09/17 19:40:31  southa
- * Source conditioning upgrades
- *
- * Revision 1.28  2003/08/21 23:08:35  southa
- * Fixed file headers
- *
- * Revision 1.27  2003/01/20 12:23:21  southa
- * Code and interface tidying
- *
  * Revision 1.26  2003/01/20 10:45:24  southa
  * Singleton tidying
  *
@@ -130,11 +96,8 @@
 #include "GameConfigDef.h"
 #include "GameSTL.h"
 
+#include "Mustl.h"
 #include "mushPlatform.h"
-
-#ifdef MUSHWARE_USE_MUSTL
-#include "mushMustl.h"
-#endif
 
 using namespace Mushware;
 using namespace std;
@@ -239,7 +202,6 @@ GameConfig::SaveToFile(void) const
 void
 GameConfig::Update(void)
 {
-#ifdef MUSHWARE_USE_MUSTL
     if (ParameterExists("configperms"))
     {
         string configPerms=ParameterGet("configperms").StringGet();
@@ -264,7 +226,7 @@ GameConfig::Update(void)
     {
         MustlWebServer::Sgl().ExtraAllowedAddrSet(ParameterGet("configextra").StringGet());
     }
-#endif    
+    
 }
 
 // ----- XML stuff -----
@@ -314,7 +276,7 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
     bool savePasswords = false;
     if (ParameterExists("savepasswords"))
     {
-        savePasswords = ParameterGet("savepasswords").BoolGet();
+        savePasswords = ParameterGet("savepasswords").U32Get();
     }
     
     MushcoreData<GameConfigDef>::tMapIterator endValue=MushcoreData<GameConfigDef>::Sgl().End();
@@ -325,10 +287,10 @@ GameConfig::Pickle(ostream& inOut, const string& inPrefix) const
         if (dynamic_cast<GameConfigDefPassword *>(p->second) == NULL ||
             savePasswords)
         {
-            inOut << inPrefix << "  <value name=\"" << MushcoreUtil::MakeXMLSafe(p->first) << "\">";
+            inOut << inPrefix << "  <value name=\"" << MustlUtils::MakeXMLSafe(p->first) << "\">";
             if (p->second != NULL)
             {
-                inOut << MushcoreUtil::MakeXMLSafe(p->second->ValueGet().StringGet());
+                inOut << MustlUtils::MakeXMLSafe(p->second->ValueGet().StringGet());
             }
             inOut << "</value>" << endl;
         }
@@ -369,11 +331,11 @@ GameConfig::UnpickleEpilogue(void)
 void
 GameConfig::XMLStartHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p2 = m_startTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p = m_startTable[m_pickleState].find(inXML.TopTag());
 
-    if (p2 != m_startTable[m_pickleState].end())
+    if (p != m_startTable[m_pickleState].end())
     {
-        (this->*p2->second)(inXML);
+        (this->*p->second)(inXML);
     }
     else
     {
@@ -401,11 +363,11 @@ GameConfig::XMLStartHandler(MushcoreXML& inXML)
 void
 GameConfig::XMLEndHandler(MushcoreXML& inXML)
 {
-    ElementFunctionMap::iterator p2 = m_endTable[m_pickleState].find(inXML.TopTag());
+    ElementFunctionMap::iterator p = m_endTable[m_pickleState].find(inXML.TopTag());
 
-    if (p2 != m_endTable[m_pickleState].end())
+    if (p != m_endTable[m_pickleState].end())
     {
-        (this->*p2->second)(inXML);
+        (this->*p->second)(inXML);
     }
     else
     {
@@ -524,7 +486,7 @@ GameConfig::GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     U32 defaultValue;
     ioCommand.PopParam(name);
     ioCommand.PopParam(defaultValue);
-    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefBool(defaultValue != 0));
+    MushcoreData<GameConfigDef>::Sgl().Give(name, new GameConfigDefBool(defaultValue));
     return MushcoreScalar(0);
 }
 

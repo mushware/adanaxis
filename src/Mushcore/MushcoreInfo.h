@@ -1,42 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSHCOREINFO_H
 #define MUSHCOREINFO_H
-//%includeGuardStart } Ez8pYYNhqaFZHrLyeQoTFA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreInfo.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } S1UoE1Ybhd51+1HwlVDjjQ
+
 /*
- * $Id: MushcoreInfo.h,v 1.9 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.5 2003/01/20 12:23:23 southa Exp $
  * $Log: MushcoreInfo.h,v $
- * Revision 1.9  2004/01/02 21:13:13  southa
- * Source conditioning
- *
- * Revision 1.8  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.7  2003/08/21 23:09:14  southa
- * Fixed file headers
- *
- * Revision 1.6  2003/04/06 12:35:23  southa
- * Fixes for release
- *
  * Revision 1.5  2003/01/20 12:23:23  southa
  * Code and interface tidying
  *
@@ -80,6 +56,4 @@ public:
     virtual std::string PackageIDGet(void);
 };
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

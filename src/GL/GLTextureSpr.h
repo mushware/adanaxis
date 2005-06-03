@@ -1,42 +1,18 @@
-//%includeGuardStart {
 #ifndef GLTEXTURESPR_H
 #define GLTEXTURESPR_H
-//%includeGuardStart } xgWGc2akrEc8dYAXHAPsdA
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureSpr.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } O6+yfMla5kpK44e74edhgA
+
 /*
- * $Id: GLTextureSpr.h,v 1.11 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureSpr.h,v 1.7 2002/12/20 13:17:36 southa Exp $
  * $Log: GLTextureSpr.h,v $
- * Revision 1.11  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.10  2003/09/17 19:40:30  southa
- * Source conditioning upgrades
- *
- * Revision 1.9  2003/08/21 23:08:32  southa
- * Fixed file headers
- *
- * Revision 1.8  2002/12/29 20:30:53  southa
- * Work for gcc 3.1 build
- *
  * Revision 1.7  2002/12/20 13:17:36  southa
  * Namespace changes, licence changes and source conditioning
  *
@@ -100,6 +76,4 @@ private:
     Mushware::U32 m_mode;
     
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

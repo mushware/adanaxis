@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameCommandHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } Cs6Xs3C7C/AOl8tCFJhipg
+
 /*
- * $Id: GameCommandHandler.cpp,v 1.24 2004/01/06 20:46:49 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.18 2003/01/20 12:23:20 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
- * Revision 1.24  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.23  2004/01/02 21:13:06  southa
- * Source conditioning
- *
- * Revision 1.22  2003/10/04 15:32:08  southa
- * Module split
- *
- * Revision 1.21  2003/09/17 19:40:31  southa
- * Source conditioning upgrades
- *
- * Revision 1.20  2003/08/21 23:08:35  southa
- * Fixed file headers
- *
- * Revision 1.19  2003/02/05 17:06:35  southa
- * Build fixes
- *
  * Revision 1.18  2003/01/20 12:23:20  southa
  * Code and interface tidying
  *
@@ -100,13 +72,20 @@
 #include "GameAppHandler.h"
 #include "GameSTL.h"
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
 using namespace std;
 
 MushcoreInstaller GameCommandHandlerInstaller(GameCommandHandler::Install);
+
+MushcoreScalar
+GameCommandHandler::Game(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    MushcoreAppHandler::Sgl().Mutate(new GameAppHandler);
+    return MushcoreScalar(0);
+}
 
 MushcoreScalar
 GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
@@ -202,6 +181,7 @@ GameCommandHandler::ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv&
 void
 GameCommandHandler::Install(void)
 {
+    MushcoreInterpreter::Sgl().HandlerAdd("game", Game);
     MushcoreInterpreter::Sgl().HandlerAdd("setsavepath", SetSavePath);
     MushcoreInterpreter::Sgl().HandlerAdd("updatecheck", UpdateCheck);
     MushcoreInterpreter::Sgl().HandlerAdd("readdirectorytomenu", ReadDirectoryToMenu);

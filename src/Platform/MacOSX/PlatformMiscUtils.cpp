@@ -1,44 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Platform/MacOSX/PlatformMiscUtils.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } xlKGKHiSS4YJCguMT0MH9w
+
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.38 2005/01/29 18:27:31 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.32 2003/01/20 10:45:31 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
- * Revision 1.38  2005/01/29 18:27:31  southa
- * Vertex buffer stuff
- *
- * Revision 1.37  2005/01/29 14:06:12  southa
- * OpenGL buffers and extensions
- *
- * Revision 1.36  2004/01/02 21:13:16  southa
- * Source conditioning
- *
- * Revision 1.35  2003/09/17 19:40:39  southa
- * Source conditioning upgrades
- *
- * Revision 1.34  2003/08/21 23:09:35  southa
- * Fixed file headers
- *
- * Revision 1.33  2003/02/05 17:06:38  southa
- * Build fixes
- *
  * Revision 1.32  2003/01/20 10:45:31  southa
  * Singleton tidying
  *
@@ -154,8 +126,6 @@
 
 #include <dirent.h>
 #include <signal.h>
-
-#include <mach-o/dyld.h>
 
 using namespace Mushware;
 using namespace std;
@@ -503,30 +473,6 @@ PlatformMiscUtils::SleepMsec(U32 inMsec)
     usleep(inMsec*1000);
 }
 
-bool
-PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
-{
-    std::string mangledName = "_" + inName;
-    NSSymbol symbol;    
-    bool success = false;
     
-    if (NSIsSymbolNameDefined(mangledName.c_str()))
-    {
-        symbol = NSLookupAndBindSymbol(mangledName.c_str());
-        outPtr = NSAddressOfSymbol(symbol);
-        success = true;
-    }
-    return success;
-}
-
-void
-PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
-{
-    if (!FunctionPointerGetIfExists(outPtr, inName))
-    {
-        throw MushcoreRequestFail("Unknown symbol '"+inName+"'");
-    }
-}
-
 
 

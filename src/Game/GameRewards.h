@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef GAMEREWARDS_H
 #define GAMEREWARDS_H
-//%includeGuardStart } X8QK/A4gGDCWC+ItBQXJ0w
-//%Header {
 /*****************************************************************************
  *
- * File: src/Game/GameRewards.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 2jCeb7YZuI0tQX/9rGXtfQ
+
 /*
- * $Id: GameRewards.h,v 1.16 2004/01/06 20:46:50 southa Exp $
+ * $Id: GameRewards.h,v 1.9 2003/01/11 13:03:14 southa Exp $
  * $Log: GameRewards.h,v $
- * Revision 1.16  2004/01/06 20:46:50  southa
- * Build fixes
- *
- * Revision 1.15  2004/01/02 21:13:07  southa
- * Source conditioning
- *
- * Revision 1.14  2003/10/04 18:12:13  southa
- * Readded
- *
- * Revision 1.12  2003/09/17 19:40:33  southa
- * Source conditioning upgrades
- *
- * Revision 1.11  2003/08/21 23:08:53  southa
- * Fixed file headers
- *
- * Revision 1.10  2003/02/05 17:06:37  southa
- * Build fixes
- *
  * Revision 1.9  2003/01/11 13:03:14  southa
  * Use Mushcore header
  *
@@ -72,7 +42,7 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GameRewards : public MushcorePickle, protected MushcoreXMLHandler
 {
@@ -131,6 +101,4 @@ private:
     Mushware::tVal m_lastTime;
     Mushware::tVal m_lastTimeValid;
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

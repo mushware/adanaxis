@@ -1,41 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Media/MediaAudioSDL.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } 2rQt1idB0Ub+WrV7/U0XvA
+
 /*
- * $Id: MediaAudioSDL.cpp,v 1.19 2005/04/19 23:25:41 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.13 2003/01/17 13:30:39 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
- * Revision 1.19  2005/04/19 23:25:41  southa
- * Mode switching and recognition
- *
- * Revision 1.18  2004/01/02 21:13:10  southa
- * Source conditioning
- *
- * Revision 1.17  2003/09/17 19:40:34  southa
- * Source conditioning upgrades
- *
- * Revision 1.16  2003/08/21 23:09:01  southa
- * Fixed file headers
- *
- * Revision 1.15  2003/01/20 10:45:28  southa
- * Singleton tidying
- *
  * Revision 1.13  2003/01/17 13:30:39  southa
  * Source conditioning and build fixes
  *
@@ -166,8 +141,8 @@ MediaAudioSDL::MediaAudioSDL():
     m_softChannels = Mix_AllocateChannels(audioSoftChannels);
     m_channelState.resize(m_softChannels, kChannelIdle);
     m_activeSamples.resize(m_softChannels, NULL);
-    //cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
-    //cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
+    cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
+    cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
 }
 
 MediaAudioSDL::~MediaAudioSDL()
@@ -213,7 +188,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
+MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 {
     if (m_music != NULL)
     {
@@ -226,13 +201,7 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
     {
         if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
     }
-}
-
-void
-MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
-{
-    Load(inSoundStream);
-    if (m_music != NULL)
+    else
     {
         Mix_PlayMusic(m_music, inLoop);
     }
@@ -313,19 +282,4 @@ MediaAudioSDL::Free(MediaSound &inSound) const
         Mix_FreeChunk(chunk);
     }
     inSound.MixChunkSet(NULL);
-}
-
-void
-MediaAudioSDL::MusicFadeIn(Mushware::tVal inMsec)
-{
-    if (m_music != NULL)
-    {
-        Mix_FadeInMusic(m_music, 10000, static_cast<int>(inMsec));
-    }
-}
-
-void
-MediaAudioSDL::MusicFadeOut(Mushware::tVal inMsec)
-{
-    Mix_FadeOutMusic(static_cast<int>(inMsec));
 }

@@ -1,50 +1,16 @@
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mushcore/MushcoreBuiltinHandler.cpp
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } gG0m+EVdG1ahXL2o4gTJIg
+
 /*
- * $Id: MushcoreBuiltinHandler.cpp,v 1.16 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushcoreBuiltinHandler.cpp,v 1.8 2003/01/20 12:23:22 southa Exp $
  * $Log: MushcoreBuiltinHandler.cpp,v $
- * Revision 1.16  2004/01/07 18:01:19  southa
- * MushModel and Infernal work
- *
- * Revision 1.15  2004/01/06 00:34:56  southa
- * MushPie testing
- *
- * Revision 1.14  2004/01/05 20:13:15  southa
- * Target and test updates
- *
- * Revision 1.13  2004/01/05 14:27:41  southa
- * MushPie work and build fixes
- *
- * Revision 1.12  2004/01/02 21:13:12  southa
- * Source conditioning
- *
- * Revision 1.11  2003/09/17 19:40:35  southa
- * Source conditioning upgrades
- *
- * Revision 1.10  2003/08/21 23:09:06  southa
- * Fixed file headers
- *
- * Revision 1.9  2003/01/20 17:03:21  southa
- * Command line expression evaluator enhancements
- *
  * Revision 1.8  2003/01/20 12:23:22  southa
  * Code and interface tidying
  *
@@ -159,66 +125,11 @@ MushcoreBuiltinHandler::ConfigSet(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv
     return MushcoreScalar(0);
 }
 
-MushcoreScalar
-MushcoreBuiltinHandler::Test(MushcoreCommand& ioCommand, MushcoreEnv &ioEnv)
-{
-    std::vector<std::string> commandVec;
-    U32 numParams = ioCommand.NumParams();
-    if (numParams == 0)
-    {
-        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "^test\\w");
-    }
-    for (U32 i=0; i<numParams; ++i)
-    {
-        string moduleStr;
-        ioCommand.PopParam(moduleStr);
-        MushcoreInterpreter::Sgl().CommandsGet(commandVec, "^test"+moduleStr);
-    }
-
-    std::vector<std::string> failsVec;
-    U32 passCount = 0;
-    
-    for (U32 i=0; i<commandVec.size(); ++i)
-    {
-        cout << "Test " << commandVec[i] << "... ";
-        try
-        {
-            MushcoreInterpreter::Sgl().Execute(commandVec[i]);
-            ++passCount;
-            cout << "passed";
-        }
-        catch (MushcoreFail& e)
-        {
-            cout << "FAILED";
-            failsVec.push_back(commandVec[i]+": "+e.what());
-        }
-        cout << endl;
-    }
-    
-    if (failsVec.size() == 0)
-    {
-        cout << "All " << passCount << " tests passed" << endl;
-    }
-    else
-    {
-        cout << "****** " << failsVec.size() << " test failures" << endl;
-        cout << "Failure report:" << endl;
-        for (U32 i=0; i<failsVec.size(); ++i)
-        {
-            cout << failsVec[i] << endl;
-        }
-        throw MushcoreCommandFail("Testing failed");
-    }
-        
-    return MushcoreScalar(0);    
-}
-
 void
 MushcoreBuiltinHandler::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("load", Load);
     MushcoreInterpreter::Sgl().HandlerAdd("configset", ConfigSet);
-    MushcoreInterpreter::Sgl().HandlerAdd("MushcoreTest", Test);
 }
 
 void

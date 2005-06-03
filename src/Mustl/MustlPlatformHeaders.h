@@ -1,45 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSTLPLATFORMHEADERS_H
 #define MUSTLPLATFORMHEADERS_H
-//%includeGuardStart } y7EFdhSkcPaops1CuTlFAA
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlPlatformHeaders.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } sq84KGUPOQkp1PrLkwXRyQ
+
 /*
- * $Id: MustlPlatformHeaders.h,v 1.15 2004/01/02 21:13:15 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.10 2003/02/05 17:06:38 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
- * Revision 1.15  2004/01/02 21:13:15  southa
- * Source conditioning
- *
- * Revision 1.14  2003/09/17 19:40:38  southa
- * Source conditioning upgrades
- *
- * Revision 1.13  2003/08/21 23:23:06  southa
- * Replaced changes inadvertently lost
- *
- * Revision 1.12  2003/08/21 23:09:29  southa
- * Fixed file headers
- *
- * Revision 1.11  2003/07/17 19:14:01  southa
- * Unix include order fix
- *
  * Revision 1.10  2003/02/05 17:06:38  southa
  * Build fixes
  *
@@ -103,14 +76,15 @@
 // Mac OS X includes
 #ifdef MUSTL_MACOSX
 
-#include <Carbon/Carbon.h>
-
 // Mac OS X Carbon section
+#ifndef MUSTL_NO_CARBON
+#include <Carbon/Carbon.h>
 // Remove definitions which are also in the POSIX includes
 #undef TCP_NODELAY
 #undef TCP_MAXSEG
 #endif
 
+#endif
 
 // POSIX includes (including Mac OS X)
 #ifdef MUSTL_POSIX_OR_MACOSX
@@ -230,6 +204,4 @@
 #define MUSTL_HAVE_SOCKADDR_SA_LEN 1
 #endif
 
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

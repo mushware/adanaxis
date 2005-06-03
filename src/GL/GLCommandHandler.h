@@ -1,48 +1,18 @@
-//%includeGuardStart {
 #ifndef GLCOMMANDHANDLER_H
 #define GLCOMMANDHANDLER_H
-//%includeGuardStart } gJO88MJSAt/MwJK6xZTl0g
-//%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLCommandHandler.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } x17QErbfVu6MmbTM9o0L1w
+
 /*
- * $Id: GLCommandHandler.h,v 1.16 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.10 2003/01/09 14:56:58 southa Exp $
  * $Log: GLCommandHandler.h,v $
- * Revision 1.16  2004/09/27 22:42:08  southa
- * MSVC compilation fixes
- *
- * Revision 1.15  2004/01/06 20:46:49  southa
- * Build fixes
- *
- * Revision 1.14  2004/01/02 21:13:05  southa
- * Source conditioning
- *
- * Revision 1.13  2003/09/17 19:40:29  southa
- * Source conditioning upgrades
- *
- * Revision 1.12  2003/08/21 23:08:19  southa
- * Fixed file headers
- *
- * Revision 1.11  2003/01/11 13:03:11  southa
- * Use Mushcore header
- *
  * Revision 1.10  2003/01/09 14:56:58  southa
  * Created Mushcore
  *
@@ -84,16 +54,15 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "Mushcore.h"
 
 class GLCommandHandler
 {
 public:
     static void Install(void);
+    static MushcoreScalar InitGL(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar LoadPixmap(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar Decompose(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar DumpTextures(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

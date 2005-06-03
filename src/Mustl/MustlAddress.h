@@ -1,42 +1,18 @@
-//%includeGuardStart {
 #ifndef MUSTLADDRESS_H
 #define MUSTLADDRESS_H
-//%includeGuardStart } 4Jp6Mkt1utWkeCz6wh6Mpg
-//%Header {
 /*****************************************************************************
  *
- * File: src/Mustl/MustlAddress.h
+ * (Mushware file header version 1.2)
  *
- * Author: Andy Southgate 2002-2005
- *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
- *
- * This software carries NO WARRANTY of any kind.
+ * This file contains original work by Andy Southgate.
+ * Copyright Andy Southgate 2002.  All rights reserved.
+ * Contact details can be found at http://www.mushware.com/
  *
  ****************************************************************************/
-//%Header } lkDfWTU6jsYS1b6DDfi+Dg
+
 /*
- * $Id: MustlAddress.h,v 1.14 2004/01/02 21:13:14 southa Exp $
+ * $Id: MustlAddress.h,v 1.10 2003/01/17 13:30:41 southa Exp $
  * $Log: MustlAddress.h,v $
- * Revision 1.14  2004/01/02 21:13:14  southa
- * Source conditioning
- *
- * Revision 1.13  2003/09/17 19:40:36  southa
- * Source conditioning upgrades
- *
- * Revision 1.12  2003/08/21 23:09:20  southa
- * Fixed file headers
- *
- * Revision 1.11  2003/01/18 13:33:59  southa
- * Created MushcoreSingleton
- *
  * Revision 1.10  2003/01/17 13:30:41  southa
  * Source conditioning and build fixes
  *
@@ -191,6 +167,4 @@ operator<<(std::ostream& ioOut, const MustlAddress& inLink)
     inLink.Print(ioOut);
     return ioOut;
 }
-//%includeGuardEnd {
 #endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
