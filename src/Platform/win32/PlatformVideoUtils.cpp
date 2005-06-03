@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kWkUhkNRBAfL9OYY11vCpQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.18 2005/05/26 16:05:29 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.19 2005/06/03 13:36:44 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.19  2005/06/03 13:36:44  southa
+ * win32 build fixes
+ *
  * Revision 1.18  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -118,7 +121,7 @@ PlatformVideoUtils::ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight)
 PlatformVideoUtils::PlatformVideoUtils() :
     m_threadAttached(false)
 {
-    bool safeMode;
+    bool safeMode = false;
     const MushcoreScalar *pScalar;
 
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
