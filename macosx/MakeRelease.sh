@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.6 2005/06/04 13:18:44 southa Exp $
+# $Id: MakeRelease.sh,v 1.7 2005/06/04 13:45:11 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.7  2005/06/04 13:45:11  southa
+# Release 0.1.2 tweaks
+#
 # Revision 1.6  2005/06/04 13:18:44  southa
 # Updates for Mac OS Release 0.1.2
 #
@@ -90,8 +93,8 @@ find "${releasedir}" -perm +0100 -exec chmod 0777 "{}" \;
 find "${releasedir}" -false -perm +0100 -exec chmod 0666 "{}" \;
 
 echo Bulding disk image
-imagename="release/$name-macosx-$version.dmg"
-tempimagename="release/temp_$name-macosx-$version.dmg"
+imagename="release/$package-macosx-$version.dmg"
+tempimagename="release/temp_$package-macosx-$version.dmg"
 rm -f "${tempimagename}" "${imagename}"
 hdiutil create -ov -anyowners -fs HFS+ -srcFolder "${releasedir}" "${tempimagename}"
 hdiutil convert -ov -format UDZO -o "${imagename}" "${tempimagename}"

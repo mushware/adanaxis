@@ -2436,6 +2436,10 @@
 			7AE0F39A0851E7F700558675 = 7AE0F39A0851E7F700558675;
 			7AE0F39B0851E7F700558675 = 7AE0F39B0851E7F700558675;
 			7AE0F39C0851E7F700558675 = 7AE0F39C0851E7F700558675;
+			7AE0F3A20851E9D700558675 = 7AE0F3A20851E9D700558675;
+			7AE0F3A30851E9D700558675 = 7AE0F3A30851E9D700558675;
+			7AE0F3A40851E9D700558675 = 7AE0F3A40851E9D700558675;
+			7AE0F3A50851E9D700558675 = 7AE0F3A50851E9D700558675;
 		};
 		sourceControlManager = 7A62B32105A49923002A5F1C;
 		userBuildSettings = {
@@ -7626,9 +7630,9 @@
 		refType = 0;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1085, 1365}}";
-			sepNavSelRange = "{2298, 0}";
-			sepNavVisRect = "{{0, 845}, {1085, 472}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1085, 1404}}";
+			sepNavSelRange = "{2911, 0}";
+			sepNavVisRect = "{{0, 932}, {1085, 472}}";
 		};
 	};
 	7AD2B13F0851E18300156F71 = {
@@ -8159,11 +8163,51 @@
 		vrLen = 1197;
 		vrLoc = 5302;
 	};
+	7AE0F3A20851E9D700558675 = {
+		fRef = 7AE2756D083C88B200F22CA3;
+		isa = PBXTextBookmark;
+		name = "tesseracttrainer.def: 71";
+		rLen = 0;
+		rLoc = 2364;
+		rType = 0;
+		vrLen = 1452;
+		vrLoc = 912;
+	};
+	7AE0F3A30851E9D700558675 = {
+		fRef = 7AE2756D083C88B200F22CA3;
+		isa = PBXTextBookmark;
+		name = "tesseracttrainer.def: 71";
+		rLen = 0;
+		rLoc = 2364;
+		rType = 0;
+		vrLen = 1452;
+		vrLoc = 912;
+	};
+	7AE0F3A40851E9D700558675 = {
+		fRef = 7AD2B13E0851E18300156F71;
+		isa = PBXTextBookmark;
+		name = "MakeRelease.sh: 97";
+		rLen = 0;
+		rLoc = 2911;
+		rType = 0;
+		vrLen = 1385;
+		vrLoc = 1962;
+	};
+	7AE0F3A50851E9D700558675 = {
+		fRef = 7A6CE19E05A58DF000777D9B;
+		isa = PBXTextBookmark;
+		name = "autogen.pl: 488";
+		rLen = 0;
+		rLoc = 12482;
+		rType = 0;
+		vrLen = 1197;
+		vrLoc = 5302;
+	};
 	7AE2756D083C88B200F22CA3 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1085, 949}}";
 			sepNavSelRange = "{2364, 0}";
-			sepNavVisRect = "{{0, 425}, {1085, 472}}";
+			sepNavVisRect = "{{0, 477}, {1085, 472}}";
 			sepNavWindowFrame = "{{84, 552}, {750, 558}}";
 		};
 	};
