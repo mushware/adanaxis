@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.8 2005/05/27 19:25:24 southa Exp $
+# $Id: tesseracttrainer.def,v 1.9 2005/05/27 19:56:15 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.9  2005/05/27 19:56:15  southa
+# win32 build fixes
+#
 # Revision 1.8  2005/05/27 19:25:24  southa
 # win32 build fixes
 #
@@ -58,4 +61,4 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/tesseracttrainer* win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer\.nsi win32/Mushware.*lnk VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico)  
+Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/.*\.app macosx/.*\.scpt  win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer\.nsi win32/Mushware.*lnk VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico)  

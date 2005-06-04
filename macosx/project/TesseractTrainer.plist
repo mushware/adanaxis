@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>TesseractTrainer</string>
+	<string>Tesseract Trainer</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>CFBundleIconFile</key>
@@ -21,6 +21,6 @@
 	<key>CFBundleSignature</key>
 	<string>Mush</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.0</string>
+	<string>0.1.2</string>
 </dict>
 </plist>

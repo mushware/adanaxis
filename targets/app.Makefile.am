@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: ic2.Makefile.am,v 1.7 2003/11/13 23:25:29 southa Exp $
-# $Log: ic2.Makefile.am,v $
+# $Id: app.Makefile.am,v 1.1 2004/01/07 11:14:15 southa Exp $
+# $Log: app.Makefile.am,v $
+# Revision 1.1  2004/01/07 11:14:15  southa
+# Snapshot fixes
+#
 
 AUTOMAKE_OPTIONS=1.6
 SUBDIRS = @TOP_SUBDIRS@
@@ -22,5 +25,5 @@ BZIPFILE=snaphost-@APP_VERSION@.tar.bz2
 all:prebuild-script
 
 prebuild-script:
-	-$(SHELL) -c ./prebuild.sh
+	-$(SHELL) ./prebuild.sh
 

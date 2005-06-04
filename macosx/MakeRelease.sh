@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.4 2005/05/20 14:55:30 southa Exp $
+# $Id: MakeRelease.sh,v 1.5 2005/05/27 19:25:24 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.5  2005/05/27 19:25:24  southa
+# win32 build fixes
+#
 # Revision 1.4  2005/05/20 14:55:30  southa
 # Release tweaks
 #
@@ -26,9 +29,9 @@
 
 # Script for generating the Mac OS X release
 
-if test "x$4" = "x"
+if test "x$5" = "x"
 then
-echo Usage: $0 <name> <version> <build directory> <data directory>
+echo "Usage: $0 <name> <package name> <version> <build directory> <data directory>"
 exit 1
 fi
 
@@ -72,15 +75,16 @@ cp ChangeLog "${readmedir}/ChangeLog.txt"
 cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
 
 ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
+cp "macosx/Start in Recovery Mode.app" "${releasedir}"
 
 echo Fixing up file types
-find "${releaseDir}" -name '*.txt' -exec $SetFile -a E {} \;
-find "${releaseDir}" -name '*.pdf' -exec $SetFile -a E {} \;
+find "${releaseDir}" -name '*.txt' -exec $SetFile -a E "{}" \;
+find "${releaseDir}" -name '*.pdf' -exec echo $SetFile -a E "{}" \;
 # find ${releasedir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
 ln -s "system/$name.app" "${releasedir}/$name.app"
 echo Setting permissions
-find ${releasedir} -perm +0100 -exec chmod 0777 {} \;
-find ${releasedir} -false -perm +0100 -exec chmod 0666 {} \;
+find "${releasedir}" -perm +0100 -exec chmod 0777 "{}" \;
+find "${releasedir}" -false -perm +0100 -exec chmod 0666 "{}" \;
 
 echo Bulding disk image
 imagename="release/$name-macosx-$version.dmg"

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.18 2005/05/26 16:05:29 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.19 2005/06/03 13:36:44 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.19  2005/06/03 13:36:44  southa
+ * win32 build fixes
+ *
  * Revision 1.18  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -471,6 +474,7 @@ TesseractTrainerGame::Init(GameAppHandler& inAppHandler)
         if (pScalar->U32Get())
         {
             m_config.DisplayModeSet(0);
+            NamedDialoguesAdd("^safemode");
         }
     }
 

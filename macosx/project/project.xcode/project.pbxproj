@@ -64,6 +64,7 @@
 		};
 		20286C29FDCF999611CA2CEA = {
 			children = (
+				7AD2B1000851C8D100156F71,
 				7A5BE75607FB56AF00306E18,
 				7A4FA55A05F9EBCA00297E23,
 				7ABA723E05AC812900454BCE,
@@ -9863,7 +9864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../..\n./prebuild.sh";
+			shellScript = "cd ../..\n/bin/sh ./prebuild.sh\n";
 		};
 		7A63EB1B05AA311A0051D708 = {
 			fileRef = 7A657EE905A9CD1C00E727F8;
@@ -13347,8 +13348,8 @@
 		};
 		7A7194EC05A998B900C42A20 = {
 			buildPhases = (
-				7A7194E705A998B900C42A20,
 				7A63EAD805AA2E910051D708,
+				7A7194E705A998B900C42A20,
 				7A7194E805A998B900C42A20,
 				7A7194E905A998B900C42A20,
 				7A7194EA05A998B900C42A20,
@@ -14880,7 +14881,7 @@
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
 				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = TesseractTrainer;
+				PRODUCT_NAME = "Tesseract Trainer";
 			};
 			dependencies = (
 				7AAE6BAD07AFC4250085C60F,
@@ -14888,7 +14889,7 @@
 				7A632D420816D43D00637D49,
 			);
 			isa = PBXNativeTarget;
-			name = TesseractTrainer;
+			name = "Tesseract Trainer";
 			productName = All;
 			productReference = 7AAE6CD807AFC4250085C60F;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -14941,7 +14942,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "date\ncd ../..\n./prebuild.sh";
+			shellScript = "date\ncd ../..\n/bin/sh ./prebuild.sh";
 		};
 		7AAE6BB207AFC4250085C60F = {
 			buildActionMask = 2147483647;
@@ -15116,7 +15117,6 @@
 				7ABBAB2408087A3900A01FB4,
 				7A5C9F640809869B0017E78B,
 				7A7DE93C08157EE300CB5432,
-				7AD4B8C3083E983E0057E99C,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16117,7 +16117,6 @@
 				7A5C9F650809869B0017E78B,
 				7A7DE93D08157EE300CB5432,
 				7A47C7D8083CEB5D00FE6EF4,
-				7AD4B8C2083E983D0057E99C,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -16756,7 +16755,7 @@
 			explicitFileType = wrapper.application;
 			includeInIndex = 0;
 			isa = PBXFileReference;
-			path = TesseractTrainer.app;
+			path = "Tesseract Trainer.app";
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -20853,17 +20852,13 @@
 			settings = {
 			};
 		};
-		7AD4B8C2083E983D0057E99C = {
-			fileRef = 7A5C9EF5080979900017E78B;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7AD4B8C3083E983E0057E99C = {
-			fileRef = 7A5C9EF6080979900017E78B;
-			isa = PBXBuildFile;
-			settings = {
-			};
+		7AD2B1000851C8D100156F71 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.scpt;
+			path = untitled.scpt;
+			refType = 4;
+			sourceTree = "<group>";
 		};
 		7AD6D25007B2BA8800B1F060 = {
 			fileRef = 7A62B78105A49D04002A5F1C;

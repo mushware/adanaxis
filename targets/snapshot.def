@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.4 2005/02/03 21:03:15 southa Exp $
+# $Id: snapshot.def,v 1.5 2005/03/13 00:34:49 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.5  2005/03/13 00:34:49  southa
+# Build fixes, key support and stereo
+#
 # Revision 1.4  2005/02/03 21:03:15  southa
 # Build fixes
 #
@@ -19,7 +22,14 @@ Name: Snapshot
 Use: targets/app.Makefile.am as Makefile.am
 Use: targets/app.acinclude.m4 as acinclude.m4
 
-Subst: MUSH_APP_NAME 'snapshot'
+Subst: MUSH_APP_PACKAGE 'snapshot'
+Subst: MUSH_APP_NAME 'Snapshot'
+Subst: MUSH_APP_MAJOR_VERSION '0'
+Subst: MUSH_APP_MINOR_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
+Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
+Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
 Use: targets/sdl_app.configure.in as configure.in
 
 Create: src/Makefile.am
@@ -33,4 +43,4 @@ Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$
 Append: Makefile.am
 
 ExtraDist:
-Modules: targets/.*\.def targets/.*\.am targets/.*\.in targets/.*\.m4 macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh
+Modules: targets/.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/tesseracttrainer.*

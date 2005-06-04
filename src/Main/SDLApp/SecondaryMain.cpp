@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JIKO91mA9Mdkoz7baUMSZQ
 /*
- * $Id: SecondaryMain.cpp,v 1.4 2004/09/27 22:42:09 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.5 2005/05/19 13:02:07 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/09/27 22:42:09  southa
  * MSVC compilation fixes
  *
@@ -163,8 +166,6 @@ int main(int argc, char *argv[])
     MushcoreGlobalConfig::Sgl().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
     // cerr << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH") << endl;
 
-
-
     string str;
     for (int i=1; i<argc; i++)
     {
@@ -212,6 +213,8 @@ int main(int argc, char *argv[])
     catch (...)
     {
         cerr << "Unknown exception" << endl;
+        // rethrow to see if the OS knows about it
+        throw;
         retVal = 1;
     }
     return retVal;
