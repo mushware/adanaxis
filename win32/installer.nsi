@@ -39,7 +39,7 @@
   !include "MUI.nsh"
 
 Name "Tesseract Trainer"
-OutFile "tesseracttrainer-win32-0.1.1.exe"
+OutFile "tesseracttrainer-win32-0.1.2.exe"
 SetCompressor lzma
 
   !define MUI_ABORTWARNING
@@ -71,9 +71,9 @@ FunctionEnd
 VIAddVersionKey "ProductName" "Tesseract Trainer"
 VIAddVersionKey "CompanyName" "Mushware Limited"
 VIAddVersionKey "LegalCopyright" "©Mushware Limited and Andy Southgate"
-VIAddVersionKey "FileVersion" "0.1.1"
+VIAddVersionKey "FileVersion" "0.1.2"
 VIAddVersionKey "FileDescription" "Mushware software installer.  See http://www.mushware.com/."
-VIProductVersion "0.0.1.1"
+VIProductVersion "0.0.1.2"
 
 Icon tesseracttrainer_inst_app.ico
 UninstallIcon tesseracttrainer_uninst_app.ico

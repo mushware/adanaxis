@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.7 2005/05/26 16:05:28 southa Exp $
+# $Id: autogen.pl,v 1.8 2005/05/27 19:25:23 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.8  2005/05/27 19:25:23  southa
+# win32 build fixes
+#
 # Revision 1.7  2005/05/26 16:05:28  southa
 # win32 support
 #
@@ -223,7 +226,7 @@ sub Modules($$)
     elsif ($gTargetType == TARGETTYPE_EXTRADIST)
     {
         push @$outputRef,
-        "EXTRA_DIST=".join(' ', @sourceFiles).' '.join(' ', @headerFiles);        
+        "EXTRA_DIST=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);        
     }
     else
     {

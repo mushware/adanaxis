@@ -10,9 +10,9 @@ Unix/POSIX/Linux/FreeBSD
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf tesseracttrainer-0.1.1.tar.gz
-cd tesseracttrainer-0.1.1
-tar xvzf tesseracttrainer-0.1.1.tar.gz
+tar xvzf tesseracttrainer-0.1.2.tar.gz
+cd tesseracttrainer-0.1.2
+tar xvzf tesseracttrainer-0.1.2.tar.gz
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make

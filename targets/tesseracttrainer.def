@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.9 2005/05/27 19:56:15 southa Exp $
+# $Id: tesseracttrainer.def,v 1.10 2005/06/04 13:18:46 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.10  2005/06/04 13:18:46  southa
+# Updates for Mac OS Release 0.1.2
+#
 # Revision 1.9  2005/05/27 19:56:15  southa
 # win32 build fixes
 #
@@ -38,7 +41,7 @@ Subst: MUSH_APP_PACKAGE 'tesseracttrainer'
 Subst: MUSH_APP_NAME 'Tesseract Trainer'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '1'
+Subst: MUSH_APP_MICRO_VERSION '2'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
@@ -61,4 +64,4 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/.*\.app macosx/.*\.scpt  win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer\.nsi win32/Mushware.*lnk VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico)  
+Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer\.nsi win32/Mushware.*lnk VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico)  

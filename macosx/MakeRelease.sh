@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.5 2005/05/27 19:25:24 southa Exp $
+# $Id: MakeRelease.sh,v 1.6 2005/06/04 13:18:44 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.6  2005/06/04 13:18:44  southa
+# Updates for Mac OS Release 0.1.2
+#
 # Revision 1.5  2005/05/27 19:25:24  southa
 # win32 build fixes
 #
@@ -75,7 +78,7 @@ cp ChangeLog "${readmedir}/ChangeLog.txt"
 cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
 
 ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
-cp "macosx/Start in Recovery Mode.app" "${releasedir}"
+cp "macosx/Start_in_Recovery_Mode.app" "${releasedir}/Start in Recovery Mode.app"
 
 echo Fixing up file types
 find "${releaseDir}" -name '*.txt' -exec $SetFile -a E "{}" \;
