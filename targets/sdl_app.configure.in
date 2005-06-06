@@ -197,10 +197,11 @@ AC_TRY_COMPILE([
 #include <iosfwd>
 #undef main
 ],[
-extern std::ostringstream test;
+std::ostringstream test;
+test << "bar";
 ],,[
-AC_MSG_NOTICE([iosfwd does not contain stringstream])
-AC_DEFINE(HAVE_SSTREAM_NOT_IN_IOSFWD,1,[Define if including iosfwd doesn't bring in stringstream])
+AC_MSG_NOTICE([iosfwd does not define ostringstream])
+AC_DEFINE(HAVE_SSTREAM_NOT_IN_IOSFWD,1,[Define if including iosfwd doesn't define ostringstream])
 ]
 )
 AC_TRY_COMPILE([

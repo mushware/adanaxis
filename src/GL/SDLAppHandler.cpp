@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +lRBy3tXEG1uAcp7BgEAGg
 /*
- * $Id: SDLAppHandler.cpp,v 1.45 2005/05/26 16:05:29 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.46 2005/05/27 12:48:36 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.46  2005/05/27 12:48:36  southa
+ * Registration box tweaks
+ *
  * Revision 1.45  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -280,7 +283,9 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
+    PlatformVideoUtils::Sgl().ModeChangePrologue();
     MediaSDL::Sgl().InitVideoIfRequired();
+    
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -307,8 +312,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     {
         sdlFlags=SDL_OPENGL;
     }
-
-    PlatformVideoUtils::Sgl().ModeChangePrologue();
 
     SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
 
@@ -441,6 +444,8 @@ SDLAppHandler::MainLoop(void)
         }
         Idle();
     }
+    // Required for X11
+    MediaSDL::Sgl().QuitVideoIfRequired();
 }
 
 void

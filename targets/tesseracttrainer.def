@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.10 2005/06/04 13:18:46 southa Exp $
+# $Id: tesseracttrainer.def,v 1.11 2005/06/04 13:45:12 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.11  2005/06/04 13:45:12  southa
+# Release 0.1.2 tweaks
+#
 # Revision 1.10  2005/06/04 13:18:46  southa
 # Updates for Mac OS Release 0.1.2
 #
@@ -50,7 +53,7 @@ Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
 Use: targets/app.COPYING as COPYING
 Use: targets/app.INSTALL as INSTALL
-Use: targets/tesseracttrainer.CHANGELOG as CHANGELOG
+Use: targets/tesseracttrainer.ChangeLog as ChangeLog
 Use: targets/win32.installer.nsi as win32/installer.nsi
 
 Create: src/Makefile.am

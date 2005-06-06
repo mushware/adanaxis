@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iOrN2AGdWBFdRmViCdLj4A
 /*
- * $Id: PlatformInputUtils.cpp,v 1.14 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.15 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.15  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.14  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -88,4 +91,11 @@ using namespace std;
 void
 PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
+}
+
+bool
+PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
+{
+    bool retVal = false;
+    return retVal;
 }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JQniDXhOkxyip6Yh+nRoeQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.22 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.23 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.23  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.22  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -294,4 +297,20 @@ void
 PlatformMiscUtils::SleepMsec(U32 inMsec)
 {
     usleep(inMsec*1000);
+}
+
+bool
+PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
+{
+    bool success = false;
+    return success;
+}
+
+void
+PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
+{
+    if (!FunctionPointerGetIfExists(outPtr, inName))
+    {
+        throw MushcoreRequestFail("Unknown symbol '"+inName+"'");
+    }
 }

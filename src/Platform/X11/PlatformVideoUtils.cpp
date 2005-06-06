@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T8IdgRMx5TrZO7rO5suk7g
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.15 2004/01/02 21:13:16 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.16 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.16  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/02 21:13:16  southa
  * Source conditioning
  *
@@ -72,6 +75,7 @@
  */
 
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;
@@ -179,6 +183,7 @@ PlatformVideoUtils::AppActivate(void)
 void
 PlatformVideoUtils::ModeChangePrologue(void)
 {
+    MediaSDL::Sgl().QuitVideoIfRequired();
 }
 
 void
