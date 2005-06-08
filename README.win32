@@ -1,4 +1,12 @@
-To build for windows
+To build for Windows using Visual C++
+
+A project is available in the VisualC directory.  A cygwin installation
+will still be required to generate the release using make win32-release.
+
+To build for Windows using cygwin
+
+** The cygwin build has not been maintained since ddraw.h was added
+** to the main build.
 
 Install cygwin from cygwin.com
 Install the package MSYS from mingw.org in its default location
@@ -37,3 +45,6 @@ Errors:
 
 0xC000022 on application startup:  Permision denied.  Typically a DLL which doesn't have execute permission.
 When building libraries, libtool may expand library paths by prepending /usr/lib.  For now, remove or rename the offending libraries is cygwin's /usr/lib (usually expat and pcre).
+
+Use make win32-release to generate an installer.  This requires the
+NSIS package.

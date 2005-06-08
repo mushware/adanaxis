@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.5 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLV.cpp,v 1.6 2005/06/03 13:36:44 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.6  2005/06/03 13:36:44  southa
+ * win32 build fixes
+ *
  * Revision 1.5  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -61,6 +64,20 @@ MushGLV::MushGLV() :
 {
 }
 
+void *
+MushGLV::GetProcAddressWithARB(const std::string& inName) const
+{
+    void *fnPtr = NULL;
+    if (!PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, inName))
+    {
+    	if (!PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, inName+"ARB"))
+	{
+	    throw MushcoreRequestFail("Unknown symbol '"+inName+"'/'"+inName+"ARB'");
+	}
+    }
+    return fnPtr;
+}
+
 void
 MushGLV::Acquaint()
 {
@@ -86,21 +103,14 @@ MushGLV::Acquaint()
     if (!safeMode && m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
         try
-        {
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBindBuffer");
-            m_fpBindBuffer = (tfpBindBuffer)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBufferData");
-            m_fpBufferData = (tfpBufferData)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glBufferSubData");
-            m_fpBufferSubData = (tfpBufferSubData)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glDeleteBuffers");
-            m_fpDeleteBuffers = (tfpDeleteBuffers)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glGenBuffers");
-            m_fpGenBuffers = (tfpGenBuffers)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glMapBuffer");
-            m_fpMapBuffer = (tfpMapBuffer)fnPtr;
-            PlatformMiscUtils::FunctionPointerGet(fnPtr, "glUnmapBuffer");
-            m_fpUnmapBuffer = (tfpUnmapBuffer)fnPtr;
+        {   
+            m_fpBindBuffer = (tfpBindBuffer) GetProcAddressWithARB("glBindBuffer");
+            m_fpBufferData = (tfpBufferData) GetProcAddressWithARB("glBufferData");
+            m_fpBufferSubData = (tfpBufferSubData) GetProcAddressWithARB("glBufferSubData");
+            m_fpDeleteBuffers = (tfpDeleteBuffers) GetProcAddressWithARB("glDeleteBuffers");
+            m_fpGenBuffers = (tfpGenBuffers) GetProcAddressWithARB("glGenBuffers");
+            m_fpMapBuffer = (tfpMapBuffer) GetProcAddressWithARB("glMapBuffer");
+            m_fpUnmapBuffer = (tfpUnmapBuffer) GetProcAddressWithARB("glUnmapBuffer");
 
             m_hasVertexBuffer = true;
         }

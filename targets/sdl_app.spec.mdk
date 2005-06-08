@@ -1,0 +1,98 @@
+%define name MUSH_APP_PACKAGE
+%define version MUSH_APP_VERSION
+%define release MUSH_APP_RELEASE
+%define RUNFILE %{_bindir}/MUSH_APP_PACKAGE
+%define RUNFILESAFE %{_bindir}/MUSH_APP_PACKAGE-recover
+
+Summary: MUSH_APP_NAME
+Name: %{name}
+Version: %{version}
+Release: %{release}
+Source0: http://www.mushware.com/files/%{name}-%{version}.tar.bz2
+URL: http://www.mushware.com/
+Copyright: GPL
+Group: Sciences/Mathematics
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Prefix: %{_prefix}
+BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel
+Provides: MUSH_APP_PACKAGE-%{version}-%{release}
+
+%description
+Tesseract Trainer generates a full screen real time display of a rotating
+tesseract - the equivalent of the cube in 4 dimensions. This app also adds
+point textures, which give you a feel of what each of the eight faces are
+doing. There's a stereoscopic option which adds 3D depth to the projection
+from 4D, music and numerous options to play with. I'm very keen to get
+feedback as to whether anyone can 'see' the 4D effect here.
+
+The application contains a number of interesting features.  Point textures
+convey the orientation of each of the faces as the hypercube rotates.  The
+two invariant planes of the rotation are shown.  Any number of faces can be
+drawn, so each can be followed in turn.  The facets of each face can be
+textured, and faces on each axis are shown in different colours to distinguish
+them.  A manual is provided in PDF format, together with key control help
+whilst the application is running.  Display resolution can be selected to
+match the display.  Finally, some experimental seven-time music creates a bit
+of atmosphere.
+
+%prep
+rm -rf ${RPM_BUILD_ROOT}
+
+%setup -q
+
+%build
+%configure --program-transform-name=""
+# App segfaults when throwing an exception if omit-frame-pointers is used
+CXXFLAGS=`echo $CXXFLAGS | sed 's/-fomit-frame-pointer//'`
+make CXXFLAGS="$CXXFLAGS"
+
+%install
+%makeinstall
+install -m644 x11/icons/%{name}.16.png -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
+install -m644 x11/icons/%{name}.32.png -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
+install -m644 x11/icons/%{name}.48.png -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+mkdir -p $RPM_BUILD_ROOT%{_menudir}
+cat << EOF > $RPM_BUILD_ROOT%{_menudir}/MUSH_APP_PACKAGE
+?package(MUSH_APP_PACKAGE):command="MUSH_APP_PACKAGE" \
+icon="MUSH_APP_PACKAGE.png" needs="X11" section="More Applications/Games/Toys" \
+title="MUSH_APP_NAME" longtitle="Displays a 4D spinning hypercube"
+?package(MUSH_APP_PACKAGE):command="kfmclient exec %{_docdir}/%{name}-%{version}" \
+icon="MUSH_APP_PACKAGE.png" needs="X11" section="More Applications/Games/Toys" \
+title="MUSH_APP_NAME Help" longtitle="Documentation for MUSH_APP_NAME"
+EOF
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc README COPYING NEWS AUTHORS data-MUSH_APP_PACKAGE/About_Tesseract_Trainer.pdf
+%{_datadir}/MUSH_APP_PACKAGE
+%{_bindir}/MUSH_APP_PACKAGEbinary
+%{RUNFILE}
+%{RUNFILESAFE}
+%{_menudir}/MUSH_APP_PACKAGE
+%{_miconsdir}/%{name}.png
+%{_iconsdir}/%{name}.png
+%{_liconsdir}/%{name}.png
+%{_mandir}/man6/%{name}*.6*
+
+%post
+rm -f %{RUNFILE}
+echo #!/bin/sh > %{RUNFILE}
+echo cd %{_datadir}/%{name}/system >> %{RUNFILE}
+echo exec %{_bindir}/MUSH_APP_PACKAGEbinary >> %{RUNFILE}
+chmod 0755 %{RUNFILE}
+rm -f %{RUNFILESAFE}
+echo #!/bin/sh > %{RUNFILESAAFE}
+echo cd %{_datadir}/%{name}/system >> %{RUNFILESAFE}
+echo "exec %{_bindir}/MUSH_APP_PACKAGEbinary \"load('start_safe.txt')\"" >> %{RUNFILESAFE}
+chmod 0755 %{RUNFILESAFE}
+%{update_menus} 
+
+%postun 
+%{clean_menus} 
+
+%changelog
+* Tue Jun  8 2005 Andy Southgate <andy.southgate@mushware.com>
+- Version 0.1.3: Initial Mandrake 10.1 RPM

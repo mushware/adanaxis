@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 1cPm6Hnox103xUM9gkbzFw
 /*
- * $Id: TesseractTrainerConfig.h,v 1.3 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerConfig.h,v 1.4 2005/05/20 10:26:29 southa Exp $
  * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.4  2005/05/20 10:26:29  southa
+ * Release work
+ *
  * Revision 1.3  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -53,7 +56,7 @@ private:
     Mushware::tVal m_objectDistance; //:readwrite
     
     Mushware::U32 m_renderFaces; //:readwrite :wref
-    bool m_renderFaceOutlines; //:readwrite :toggle
+    Mushware::U32 m_renderFaceOutlines; //:readwrite :wref
     bool m_renderFaceTextures; //:readwrite :toggle
     Mushware::U32 m_renderFacePoints; //:readwrite :wref
     bool m_renderRotationPlanes; //:readwrite :toggle
@@ -80,9 +83,10 @@ public:
     void RenderFacesSet(const Mushware::U32& inValue) { m_renderFaces=inValue; }
     // Writable reference for m_renderFaces
     Mushware::U32& RenderFacesWRef(void) { return m_renderFaces; }
-    const bool& RenderFaceOutlines(void) const { return m_renderFaceOutlines; }
-    void RenderFaceOutlinesSet(const bool& inValue) { m_renderFaceOutlines=inValue; }
-    void RenderFaceOutlinesToggle(void) { m_renderFaceOutlines=!(m_renderFaceOutlines); }
+    const Mushware::U32& RenderFaceOutlines(void) const { return m_renderFaceOutlines; }
+    void RenderFaceOutlinesSet(const Mushware::U32& inValue) { m_renderFaceOutlines=inValue; }
+    // Writable reference for m_renderFaceOutlines
+    Mushware::U32& RenderFaceOutlinesWRef(void) { return m_renderFaceOutlines; }
     const bool& RenderFaceTextures(void) const { return m_renderFaceTextures; }
     void RenderFaceTexturesSet(const bool& inValue) { m_renderFaceTextures=inValue; }
     void RenderFaceTexturesToggle(void) { m_renderFaceTextures=!(m_renderFaceTextures); }
@@ -115,7 +119,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } COUqy4GU/NiLvkG0HBw2wA
+//%classPrototypes } Jtiw3WOi6j6+2dBjOYoeDQ
 };
 //%inlineHeader {
 inline std::ostream&

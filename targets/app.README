@@ -1,0 +1,13 @@
+MUSH_APP_NAME
+
+The documentation for this package is supplied in a PDF file
+name About MUSH_APP_NAME.  There may be a limited ammount of
+man infomation, accesible using:
+
+man MUSH_APP_PACKAGE
+
+at the command line.
+
+
+Andy Southgate
+andy.southgate@mushware.com

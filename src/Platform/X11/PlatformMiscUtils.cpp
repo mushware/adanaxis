@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JQniDXhOkxyip6Yh+nRoeQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.23 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.24 2005/06/06 15:07:10 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.24  2005/06/06 15:07:10  southa
+ * X11 work
+ *
  * Revision 1.23  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -108,6 +111,7 @@
  */
 
 #include "mushPlatform.h"
+#include "mushMedia.h"
 
 #include <sys/param.h>
 #include <sys/stat.h>
@@ -303,6 +307,13 @@ bool
 PlatformMiscUtils::FunctionPointerGetIfExists(void *& outPtr, const std::string& inName)
 {
     bool success = false;
+    void *fnPtr = SDL_GL_GetProcAddress(inName.c_str());
+    if (fnPtr != NULL)
+    {
+        outPtr = fnPtr;
+	success = true;
+    }
+    
     return success;
 }
 

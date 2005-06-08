@@ -17,7 +17,7 @@ AC_SUBST(APP_VERSION)
 AC_SUBST(APP_UNDERSCORE_VERSION)
 
 AM_INIT_AUTOMAKE(MUSH_APP_PACKAGE,$APP_VERSION)
-TOP_SUBDIRS="src"
+TOP_SUBDIRS="MUSH_TOP_SUBDIRS"
 AC_SUBST(TOP_SUBDIRS)
 AM_CONFIG_HEADER(config.h)
 
@@ -123,7 +123,7 @@ dnl Use GL
         fi
         AC_CHECK_HEADERS(GL/gl.h,, AC_MSG_ERROR([No GL/gl.h header]))
         AC_CHECK_HEADERS(GL/glu.h,, AC_MSG_ERROR([No GL/glu.h header]))
-        AC_CHECK_HEADERS(GL/glext.h,, AC_MSG_NOTICE([No GL/glext.h header]))
+dnl     AC_CHECK_HEADERS(GL/glext.h,, AC_MSG_NOTICE([No GL/glext.h header]))
 dnl     AC_CHECK_HEADERS(GL/glut.h,, [AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([No glut.h header]))])
         ;;
 esac
@@ -248,7 +248,7 @@ AC_MSG_ERROR([src/Makefile.am not present.  Please run autogen])
 
 LIBS="$LIBS $SDL_EXTRA_LIBS"
 
-AC_OUTPUT(Makefile src/Makefile)
+AC_OUTPUT(Makefile src/Makefile MUSH_DATA_DIR/Makefile)
 AC_MSG_NOTICE([Verdict was:])
 AC_MSG_NOTICE([CPPFLAGS=$CPPFLAGS])
 AC_MSG_NOTICE([LDFLAGS=$LDFLAGS])

@@ -12,7 +12,6 @@ Download and unpack the source and data files and build thus:
 
 tar xvzf MUSH_APP_PACKAGE-MUSH_APP_VERSION.tar.gz
 cd MUSH_APP_PACKAGE-MUSH_APP_VERSION
-tar xvzf MUSH_APP_PACKAGE-MUSH_APP_VERSION.tar.gz
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make

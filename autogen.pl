@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.8 2005/05/27 19:25:23 southa Exp $
+# $Id: autogen.pl,v 1.9 2005/06/04 13:45:11 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.9  2005/06/04 13:45:11  southa
+# Release 0.1.2 tweaks
+#
 # Revision 1.8  2005/05/27 19:25:23  southa
 # win32 build fixes
 #
@@ -45,6 +48,8 @@ use constant TARGETTYPE_NONE => 1;
 use constant TARGETTYPE_PROGRAM => 2;
 use constant TARGETTYPE_LIBRARY => 3;
 use constant TARGETTYPE_EXTRADIST => 4;
+use constant TARGETTYPE_PKGDATA => 5;
+use constant TARGETTYPE_MANUAL => 6;
 
 my $gVerbose=0;
 my $gTargetDirectory='targets';
@@ -91,7 +96,11 @@ sub FilenamesGet($$$$)
         }
         elsif ( -f $filename )
         {
-            if ($filename =~ $regExp)
+	    if ($filename =~ /~$/ || $filename =~ /^\./)
+	    {
+	        # Discard
+	    }
+            elsif ($filename =~ $regExp)
             {
                 push @$outputRef, $filename;
             }
@@ -168,21 +177,32 @@ sub Modules($$)
 
             my $searchExp = "";
             
-            if ($moduleExp =~ /\*/)
+            if ($moduleExp =~ /[*+?|]/)
             {
                 # Modulename has wildcards
                 $searchExp = $moduleExp;
+	        print "Wildcarded expression\n" if ($gVerbose);
             }
-            elsif ($modulePath eq "" && -f $moduleName )
+            elsif ($modulePath eq "" && -f $moduleExp )
             {
                 # Module is a single file
                 $searchExp = quotemeta $moduleExp;
+	        print "Single file without path\n" if ($gVerbose);
             }
-            elsif ( -f "$modulePath/$moduleName" )
+            elsif ( -f "$modulePath/$moduleExp" )
             {
                 # Module is a single file
                 $searchExp = quotemeta $moduleExp;
+                print "Single file with path '$modulePath'\n" if ($gVerbose);
             }
+	    else
+	    {
+	        print "Directory '$modulePath'\n" if ($gVerbose);
+		if ($moduleExp ne "")
+		{
+		    die "No file named '$moduleName'";
+		}
+	    }
             # print "modulePath=$modulePath, moduleExp=$moduleExp, searchExp=$searchExp\n";
             unless ( $modulePath eq "" || -d $modulePath )
             {
@@ -191,12 +211,24 @@ sub Modules($$)
             
             if ($searchExp ne "")
             {
+	        print "Searching in '$modulePath' using expression '$searchExp'\n" if ($gVerbose);
+
                 FilenamesGet(\@sourceFiles, $modulePath, "$searchExp", $recurse);
             }
             else
             {
-                FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp', $recurse);
-                FilenamesGet(\@headerFiles, $modulePath, '/.*\.h', $recurse);
+	        if ($gTargetType == TARGETTYPE_LIBRARY ||
+		    $gTargetType == TARGETTYPE_PROGRAM)
+		{
+	            print "Source searching in '$modulePath'\n" if ($gVerbose);
+                    FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp', $recurse);
+                    FilenamesGet(\@headerFiles, $modulePath, '/.*\.h', $recurse);
+		}
+		else
+		{
+	            print "Wide searching in '$modulePath'\n" if ($gVerbose);
+		    FilenamesGet(\@sourceFiles, $modulePath, '/.*', $recurse);
+		}
             }
             if ($gVerbose)
             {
@@ -227,6 +259,16 @@ sub Modules($$)
     {
         push @$outputRef,
         "EXTRA_DIST=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);        
+    }
+    elsif ($gTargetType == TARGETTYPE_PKGDATA)
+    {
+        push @$outputRef,
+        "nobase_dist_pkgdata_DATA=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);
+    }
+    elsif ($gTargetType == TARGETTYPE_MANUAL)
+    {
+        push @$outputRef,
+        "dist_man_MANS=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);
     }
     else
     {
@@ -356,6 +398,28 @@ sub Process($)
             if ($command =~ /ExtraDist:\s*$/)
             {
                 $gTargetType = TARGETTYPE_EXTRADIST;   
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /PkgData:/)
+        {
+            if ($command =~ /PkgData:\s*$/)
+            {
+                $gTargetType = TARGETTYPE_PKGDATA;   
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /Manual:/)
+        {
+            if ($command =~ /Manual:\s*$/)
+            {
+                $gTargetType = TARGETTYPE_MANUAL;   
             }
             else
             {

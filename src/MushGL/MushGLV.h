@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.8 2005/05/26 00:46:40 southa Exp $
+ * $Id: MushGLV.h,v 1.9 2005/05/26 16:05:29 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.9  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.8  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -96,6 +99,8 @@ private:
     typedef GLboolean (MUSHCORE_APIENTRY *tfpUnmapBuffer)(GLenum target);
     tfpUnmapBuffer m_fpUnmapBuffer; // :fnpointer
         
+    void *GetProcAddressWithARB(const std::string& inName) const;
+    
     std::string m_vendor;
     std::string m_renderer;
     std::string m_version;

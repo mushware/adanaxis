@@ -52,13 +52,11 @@ reversed using:
 
 sudo gcc_select 3
 
-Download the files <app name>-src-0_0_4.tar.gz and <app name>-data-0_0_4.tar.gz
-(or whichever version you choose to build) into your home directory.  Open
+Download the files <app name>-<version>.tar.gz into your home directory.  Open
 a terminal (Applications->Utilities->Terminal).
 
-tar xvzf <app name>-src-0_0_4.tar.gz
-cd <app name>-0.0.4
-tar xvzf ../<app name>-data-0_0_4.tar.gz
+tar xvzf <app name>-<version>.tar.gz
+cd <app name>-<version>
 ./configure
 
 Configure will complain about the absence of various libraries.  The

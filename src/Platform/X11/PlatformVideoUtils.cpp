@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T8IdgRMx5TrZO7rO5suk7g
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.16 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.17 2005/06/06 15:07:10 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.17  2005/06/06 15:07:10  southa
+ * X11 work
+ *
  * Revision 1.16  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -168,6 +171,17 @@ GLUtils::PushMatrix();
 void
 PlatformVideoUtils::VBLWait(void)
 {
+    /* Difficult to wait for VBL on X11.  Just install a crude speed limit
+     * for the moment
+     */
+    static U32 lastMsec = 0;
+    U32 msecNow = SDL_GetTicks();
+    static U32 msecSince = msecNow - lastMsec;
+    if (msecSince < 10)
+    {
+        PlatformMiscUtils::SleepMsec(10 - msecSince);
+    }
+    lastMsec = msecNow;
 }
 
 void

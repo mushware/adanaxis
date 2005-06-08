@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.11 2005/06/04 13:45:12 southa Exp $
+# $Id: tesseracttrainer.def,v 1.12 2005/06/06 15:07:11 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.12  2005/06/06 15:07:11  southa
+# X11 work
+#
 # Revision 1.11  2005/06/04 13:45:12  southa
 # Release 0.1.2 tweaks
 #
@@ -44,21 +47,26 @@ Subst: MUSH_APP_PACKAGE 'tesseracttrainer'
 Subst: MUSH_APP_NAME 'Tesseract Trainer'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '2'
+Subst: MUSH_APP_MICRO_VERSION '3'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
-Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
+Subst: MUSH_DATA_DIR 'data-tesseracttrainer'
+Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
 Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
+Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
 Use: targets/app.COPYING as COPYING
 Use: targets/app.INSTALL as INSTALL
+Use: targets/app.AUTHORS as AUTHORS
+Use: targets/app.README as README
 Use: targets/tesseracttrainer.ChangeLog as ChangeLog
 Use: targets/win32.installer.nsi as win32/installer.nsi
-
+Subst: MUSH_APP_RELEASE '0mdk'
+Use: targets/sdl_app.spec.mdk as tesseracttrainer.spec.mdk
 Create: src/Makefile.am
 
-Program: all
+Program: tesseracttrainerbinary
 Modules: API Game GL Main/SDLApp Media Mushcore MushGL MushMesh MushPie Platform Support TesseractTrainer
 
 ExtraDist:
@@ -67,4 +75,10 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer\.nsi win32/Mushware.*lnk VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico)  
+Modules: tesseracttrainer\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer.nsi VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico) x11/icons/tesseracttrainer\..*\.png$
+Manual:
+Modules: x11/man/tesseracttrainer.*
+
+Create: data-tesseracttrainer/Makefile.am
+PkgData:
+Modules: \.*pdf$ pixels waves system/.*\.xml$ system/.*\.txt$

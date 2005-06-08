@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.19 2005/06/03 13:36:44 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.20 2005/06/04 13:18:46 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.20  2005/06/04 13:18:46  southa
+ * Updates for Mac OS Release 0.1.2
+ *
  * Revision 1.19  2005/06/03 13:36:44  southa
  * win32 build fixes
  *
@@ -117,7 +120,8 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
     
     if (gameAppHandler.LatchedKeyStateTake('2'))
     {
-        m_config.RenderFaceOutlinesToggle();
+        ++m_config.RenderFaceOutlinesWRef();
+        if (m_config.RenderFaceOutlines() == 4) m_config.RenderFaceOutlinesSet(0);
     }
     
     if (gameAppHandler.LatchedKeyStateTake('3'))
@@ -371,7 +375,10 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     // glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
     
     glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
-    glLineWidth(m_config.LineWidth());
+    if (m_config.RenderFaceOutlines() > 0)
+    {
+        glLineWidth(m_config.RenderFaceOutlines() * m_config.LineWidth());
+    }
     if (m_config.RenderFacePoints() > 0)
     {
         glPointSize(pow(2.0, 1.0*m_config.RenderFacePoints())*m_config.PointSize()/2.0);
@@ -380,7 +387,7 @@ TesseractTrainerGame::RenderView(GameAppHandler& inAppHandler, tVal inStereo)
     GLState::TextureDisable();
     
     m_hypercube.RenderFacesSet(m_config.RenderFaces());
-    m_hypercube.RenderFaceOutlinesSet(m_config.RenderFaceOutlines());
+    m_hypercube.RenderFaceOutlinesSet(m_config.RenderFaceOutlines() != 0);
     m_hypercube.RenderFaceTexturesSet(m_config.RenderFaceTextures());
 
     m_hypersphere.RenderFacesSet(m_config.RenderFaces());
