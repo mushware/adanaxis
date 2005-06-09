@@ -42,7 +42,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %build
 %configure --program-transform-name=""
-# App segfaults when throwing an exception if omit-frame-pointers is used
+# App seen to segfault when throwing an exception if omit-frame-pointers is used
 CXXFLAGS=`echo $CXXFLAGS | sed 's/-fomit-frame-pointer//'`
 make CXXFLAGS="$CXXFLAGS"
 

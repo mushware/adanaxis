@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.13 2005/06/08 20:59:53 southa Exp $
+# $Id: tesseracttrainer.def,v 1.14 2005/06/09 00:04:59 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.14  2005/06/09 00:04:59  southa
+# X11 tweaks
+#
 # Revision 1.13  2005/06/08 20:59:53  southa
 # X11 release
 #
@@ -64,8 +67,9 @@ Use: targets/app.INSTALL as INSTALL
 Use: targets/app.AUTHORS as AUTHORS
 Use: targets/app.README as README
 Use: targets/tesseracttrainer.ChangeLog as ChangeLog
+Use: targets/tesseracttrainer.ChangeLog as NEWS
 Use: targets/win32.installer.nsi as win32/installer.nsi
-Subst: MUSH_APP_RELEASE '0mdk'
+Subst: MUSH_APP_RELEASE '1mdk'
 Use: targets/sdl_app.spec.mdk as tesseracttrainer.spec.mdk
 Create: src/Makefile.am
 
