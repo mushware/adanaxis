@@ -94,5 +94,5 @@ chmod 0755 %{RUNFILESAFE}
 %{clean_menus} 
 
 %changelog
-* Tue Jun  8 2005 Andy Southgate <andy.southgate@mushware.com> 0.1.3-0mdk
+* Tue Jun  8 2005 Andy Southgate <andy.southgate@mushware.com> 0.1.3-1mdk
 - Initial Mandrake 10.1 RPM

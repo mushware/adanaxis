@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: tesseracttrainer.Makefile.am,v 1.4 2005/05/27 19:25:24 southa Exp $
+# $Id: tesseracttrainer.Makefile.am,v 1.5 2005/06/08 20:59:52 southa Exp $
 # $Log: tesseracttrainer.Makefile.am,v $
+# Revision 1.5  2005/06/08 20:59:52  southa
+# X11 release
+#
 # Revision 1.4  2005/05/27 19:25:24  southa
 # win32 build fixes
 #
@@ -50,8 +53,8 @@ mac-release: dist
 win32-release: dist
 	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_WIN32_BUILD_PATH' 'MUSH_DATA_PATH')
 
-$(GZIPFILE): dist	
-	
+$(GZIPFILE): dist
+
 $(BZIPFILE):$(GZIPFILE)
 	rm -f $(BZIPFILE)
 	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
@@ -61,8 +64,9 @@ rpm:
 	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
 	@exit 1
 
-%-rpm:MUSH_APP_PACKAGE.spec.% $(BZIPFILE)
+%-rpm:MUSH_APP_PACKAGE.spec.%
 	cp -f $< MUSH_APP_PACKAGE.spec
+	rm -f $(BZIPFILE)
 	$(MAKE) $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
@@ -77,7 +81,7 @@ install-exec-hook:
 	echo cd $(DESTDIR)$(pkgdatadir)/system >> $(RUNFILESAFE)
 	echo "$(DESTDIR)$(bindir)/MUSH_APP_PACKAGEbinary \"load('start_safe.txt')\"" >> $(RUNFILESAFE)
 	chmod 0755 $(RUNFILESAFE)
-	
+
 uninstall-hook:
 	rm -f $(RUNFILE)
 	rm -f $(RUNFILESAFE)
