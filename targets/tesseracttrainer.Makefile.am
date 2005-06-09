@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: tesseracttrainer.Makefile.am,v 1.5 2005/06/08 20:59:52 southa Exp $
+# $Id: tesseracttrainer.Makefile.am,v 1.6 2005/06/09 12:25:10 southa Exp $
 # $Log: tesseracttrainer.Makefile.am,v $
+# Revision 1.6  2005/06/09 12:25:10  southa
+# X11 tweaks
+#
 # Revision 1.5  2005/06/08 20:59:52  southa
 # X11 release
 #
@@ -85,3 +88,5 @@ install-exec-hook:
 uninstall-hook:
 	rm -f $(RUNFILE)
 	rm -f $(RUNFILESAFE)
+
+# Blank line required - configuration scripts append here

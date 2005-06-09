@@ -11,7 +11,7 @@ Release: %{release}
 Source0: http://www.mushware.com/files/%{name}-%{version}.tar.bz2
 URL: http://www.mushware.com/
 Copyright: GPL
-Group: Sciences/Mathematics
+Group: Games/Other
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Prefix: %{_prefix}
 BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel
@@ -94,5 +94,8 @@ chmod 0755 %{RUNFILESAFE}
 %{clean_menus} 
 
 %changelog
+* Tue Jun  8 2005 Andy Southgate <andy.southgate@mushware.com> 0.1.4-1mdk
+- Minor tweaks and fixes
+
 * Tue Jun  8 2005 Andy Southgate <andy.southgate@mushware.com> 0.1.3-1mdk
 - Initial Mandrake 10.1 RPM
