@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.12 2005/06/06 15:07:11 southa Exp $
+# $Id: tesseracttrainer.def,v 1.13 2005/06/08 20:59:53 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.13  2005/06/08 20:59:53  southa
+# X11 release
+#
 # Revision 1.12  2005/06/06 15:07:11  southa
 # X11 work
 #
@@ -81,4 +84,6 @@ Modules: x11/man/tesseracttrainer.*
 
 Create: data-tesseracttrainer/Makefile.am
 PkgData:
-Modules: \.*pdf$ pixels waves system/.*\.xml$ system/.*\.txt$
+Modules: pixels waves system/.*\.xml$ system/.*\.txt$
+ExtraDist:
+Modules: \.*pdf$

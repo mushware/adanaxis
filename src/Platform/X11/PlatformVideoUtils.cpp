@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T8IdgRMx5TrZO7rO5suk7g
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.17 2005/06/06 15:07:10 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.18 2005/06/08 20:59:52 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.18  2005/06/08 20:59:52  southa
+ * X11 release
+ *
  * Revision 1.17  2005/06/06 15:07:10  southa
  * X11 work
  *
@@ -106,7 +109,34 @@ GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, 
 GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-;
+
+    for (U32 i=0; i<10; ++i)
+    {
+        std::vector<U32> modeDef;
+        std::ostringstream varName;
+        varName << "X11_MODE_" << i;
+        MushcoreScalar textValue;
+	if (MushcoreEnv::Sgl().VariableGetIfExists(textValue, varName.str()))
+	{
+            std::istringstream strIStrm(textValue.StringGet());
+            MushcoreXMLIStream xmlIStrm(strIStrm);
+            try
+	    {
+                xmlIStrm >> modeDef;
+                if (modeDef.size() >= 2)
+	        {
+	            std::ostringstream modeName;
+	            modeName << "User: " << modeDef[0] << "x" << modeDef[1];
+	            m_modeDefs.push_back(GLModeDef(modeName.str(),modeDef[0],modeDef[1],
+		        32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+                }
+	    }
+	    catch (MushcoreNonFatalFail& e)
+	    {
+	        cerr << "Mode syntax error in " << varName.str() << endl;
+	    }
+	}
+    }
 }
 
 U32
@@ -176,10 +206,10 @@ PlatformVideoUtils::VBLWait(void)
      */
     static U32 lastMsec = 0;
     U32 msecNow = SDL_GetTicks();
-    static U32 msecSince = msecNow - lastMsec;
-    if (msecSince < 10)
+    U32 msecSince = msecNow - lastMsec;
+    if (msecSince < 11)
     {
-        PlatformMiscUtils::SleepMsec(10 - msecSince);
+        PlatformMiscUtils::SleepMsec(11 - msecSince);
     }
     lastMsec = msecNow;
 }
