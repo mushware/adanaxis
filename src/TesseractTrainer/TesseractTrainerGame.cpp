@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.20 2005/06/04 13:18:46 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.21 2005/06/08 20:59:52 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.21  2005/06/08 20:59:52  southa
+ * X11 release
+ *
  * Revision 1.20  2005/06/04 13:18:46  southa
  * Updates for Mac OS Release 0.1.2
  *
@@ -176,8 +179,8 @@ TesseractTrainerGame::Process(GameAppHandler& inAppHandler)
     if (gameAppHandler.LatchedKeyStateTake('k'))
     {
         NamedDialoguesAdd("^keyhelp");
-    }    
-    
+    }
+
     if (m_lastRegCheckMsec + kRegTimeMsec < msecNow)
     {
         if (!RegCheck())
@@ -507,8 +510,6 @@ TesseractTrainerGame::Init(GameAppHandler& inAppHandler)
 void
 TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
 {
-    tVal msecNow = inAppHandler.MillisecondsGet();
-
     if (!m_inited)
     {
         Init(inAppHandler);
@@ -530,7 +531,8 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     }
     
     GLUtils::CheckGLError();
-    
+    tVal msecNow = inAppHandler.MillisecondsGet();
+   
     m_lastChangeMsec = 0;
     m_lastRegCheckMsec = msecNow;
     m_modeKeypressMsec = 0;
