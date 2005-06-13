@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Sadh94DLrs/FIT4AZy/cYg
 /*
- * $Id: Mushcore.h,v 1.19 2005/01/29 18:27:31 southa Exp $
+ * $Id: Mushcore.h,v 1.20 2005/05/19 13:02:13 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.20  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.19  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -87,6 +90,7 @@
 #include "MushcoreAbstractSingleton.h"
 #include "MushcoreAppHandler.h"
 #include "MushcoreAppSignal.h"
+#include "MushcoreAutoBool.h"
 #include "MushcoreAutoMonkey.h"
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"
@@ -105,7 +109,9 @@
 #include "MushcoreLog.h"
 // #include "MushcoreIO.h"
 #include "MushcoreObject.h"
+#include "MushcoreOrderedData.h"
 #include "MushcorePickle.h"
+#include "MushcorePipe.h"
 #include "MushcoreRegExp.h"
 #include "MushcoreScalar.h"
 #include "MushcoreScript.h"

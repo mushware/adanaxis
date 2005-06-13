@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sRZ+ShiK5Qx3jj9TSzKp5g
 /*
- * $Id: TestMushcoreIO.cpp,v 1.15 2005/03/25 22:04:51 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.16 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.16  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.15  2005/03/25 22:04:51  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -260,8 +263,6 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         testObject.PopulateObjects2();
         
         xmlOStream << testObject;
-        
-        cout << testOStream.str();
         
         TestMushcoreVirtualPointerObject readBackObject;
         

@@ -24,8 +24,11 @@
 //%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.23 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushcoreData.h,v 1.24 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.24  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.23  2005/05/18 15:53:27  southa
  * Made buildable using gcc 4.0/Mac OS X 10.4
  *
@@ -166,6 +169,7 @@ class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
 {
 public:
     typedef typename std::map<KeyType, RefType *> tMap;
+    typedef typename std::pair<KeyType, RefType *> tPair;
     typedef typename tMap::iterator tIterator;
     typedef typename tMap::iterator tMapIterator;
     typedef typename tMap::const_iterator tConstIterator;
@@ -174,6 +178,7 @@ public:
     inline MushcoreData();
     inline ~MushcoreData();
 
+    inline RefType *Set(const KeyType& inName, const RefType& inData);
     inline RefType *Give(const KeyType& inName, RefType *inData);
     inline RefType *Get(const KeyType& inName) const;
     inline RefType *GetOrReturnNull(const KeyType& inName) const;
@@ -221,6 +226,26 @@ MushcoreData<RefType, KeyType>::~MushcoreData(void)
     }
 }
 
+// Set copies the object
+template<class RefType, class KeyType>
+inline RefType *
+MushcoreData<RefType, KeyType>::Set(const KeyType& inName, const RefType& inData)
+{
+    RefType *retVal;
+    tMapIterator p = m_data.find(inName);
+    if (p != m_data.end())
+    {
+        *(p->second) = inData;
+        retVal = p->second;
+    }
+    else
+    {
+        retVal = m_data.insert(std::make_pair(inName, new RefType(inData))).first->second;
+    }
+    return retVal;
+}
+
+// Give takes ownership of the object pointed to
 template<class RefType, class KeyType>
 inline RefType *
 MushcoreData<RefType, KeyType>::Give(const KeyType& inName, RefType *inData)
