@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.6 2005/06/03 13:36:44 southa Exp $
+ * $Id: MushGLV.cpp,v 1.7 2005/06/08 20:59:51 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.7  2005/06/08 20:59:51  southa
+ * X11 release
+ *
  * Revision 1.6  2005/06/03 13:36:44  southa
  * win32 build fixes
  *
@@ -89,8 +92,6 @@ MushGLV::Acquaint()
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     m_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
     m_extensions = std::string(" ")+reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS))+" ";
-    
-    void *fnPtr;
 
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
     {

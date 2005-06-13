@@ -11,8 +11,11 @@
 ****************************************************************************/
 
 /*
- * $Id: PlatformBoxes.r,v 1.2 2002/11/01 18:46:26 southa Exp $
+ * $Id: PlatformBoxes.r,v 1.3 2002/11/24 12:57:02 southa Exp $
  * $Log: PlatformBoxes.r,v $
+ * Revision 1.3  2002/11/24 12:57:02  southa
+ * Added configuration host protection
+ *
  * Revision 1.2  2002/11/01 18:46:26  southa
  * UDP Links
  *
@@ -31,7 +34,7 @@ resource 'DITL' (kPlatformFatalErrorBox) {
 {20, 81, 42, 408},
     StaticText {
         disabled,
-        "Infernal Contractor II"
+        "Mushware Application"
     },
     /* [1] */
 {56, 21, 122, 408},
@@ -71,7 +74,7 @@ resource 'DITL' (kPlatformMinorErrorBox) {
 {20, 81, 42, 408},
     StaticText {
         disabled,
-        "Infernal Contractor II"
+        "Mushware Application"
     },
     /* [1] */
 {56, 21, 122, 408},
@@ -112,7 +115,7 @@ resource 'DITL' (kPlatformQuestionBox) {
 {20, 81, 42, 408},
     StaticText {
         disabled,
-        "Infernal Contractor II"
+        "Mushware Application"
     },
     /* [1] */
 {56, 21, 122, 408},
