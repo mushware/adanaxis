@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Bq8XxaaUUfoNxs2oOiSOLA
 /*
- * $Id: MushcoreLog.h,v 1.1 2005/01/29 18:27:31 southa Exp $
+ * $Id: MushcoreLog.h,v 1.2 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreLog.h,v $
+ * Revision 1.2  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -34,27 +37,37 @@
 
 #include "MushcoreSingleton.h"
 
+//:generate
 class MushcoreLog : public MushcoreSingleton<MushcoreLog>
 {
 public:
     MushcoreLog();
     ~MushcoreLog();
     
+    std::ostream& ErrorLog(void);
     std::ostream& InfoLog(void);
-    
-    bool InfoLog(void) const { return m_infoLog; }
-    void InfoLogSet(bool inLog) { m_infoLog = inLog; }
-    
-    void OpenFile(const std::string& inName);
-    void CloseFile(void);
+    void HeaderWrite(std::ostream& ioOut, const std::string inLogName);
+    void PackageHasChanged(void);
     
 protected:
-    std::ostream& Log(void);
+    std::ostream& ErrorStream(void);
+    std::ostream& StdStream(void);
     
 private:
-    std::ofstream *m_outStream;
+    std::ofstream *m_errorStream;
+    std::ofstream *m_stdStream;
     std::ostream *m_nullStream;
-    bool m_infoLog;
+    bool m_enableErrorLog; //:readwrite
+    bool m_enableInfoLog; //:readwrite
+    bool m_errorHeaderDone;
+    bool m_stdHeaderDone;
+//%classPrototypes {
+public:
+    const bool& EnableErrorLog(void) const { return m_enableErrorLog; }
+    void EnableErrorLogSet(const bool& inValue) { m_enableErrorLog=inValue; }
+    const bool& EnableInfoLog(void) const { return m_enableInfoLog; }
+    void EnableInfoLogSet(const bool& inValue) { m_enableInfoLog=inValue; }
+//%classPrototypes } 418BA5YjADN+uaqZW4cc0Q
 };
 
 //%includeGuardEnd {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rsLrJDEZpZMZ4q0OLomU3w
 /*
- * $Id: MushcoreVirtualObject.cpp,v 1.4 2005/04/19 19:23:14 southa Exp $
+ * $Id: MushcoreVirtualObject.cpp,v 1.5 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreVirtualObject.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/04/19 19:23:14  southa
  * Save and load config
  *
@@ -85,14 +88,17 @@ MushcoreVirtualObject::AutoFileLoad(const std::string& inName)
     AutoStreamLoad(fileStream);
 }
 
-void
+bool
 MushcoreVirtualObject::AutoFileIfExistsLoad(const std::string& inName)
 {
+    bool retVal = false;
     std::ifstream fileStream(MushcoreUtil::TranslateFilename(inName).c_str());
     if (fileStream)
     {
         AutoStreamLoad(fileStream);
+        retVal = true;
     }
+    return retVal;
 }
 
 void

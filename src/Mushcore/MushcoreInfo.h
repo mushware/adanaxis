@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } S1UoE1Ybhd51+1HwlVDjjQ
 /*
- * $Id: MushcoreInfo.h,v 1.9 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.10 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.10  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.9  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -78,6 +81,7 @@ public:
     virtual std::string PackageNameGet(void);
     virtual std::string PackageVersionGet(void);
     virtual std::string PackageIDGet(void);
+    virtual std::string PackageID(void) { return PackageIDGet(); }
 };
 
 //%includeGuardEnd {

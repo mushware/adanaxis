@@ -23,12 +23,19 @@
  ****************************************************************************/
 //%Header } /5SgL7LeEQuxoDg6ceZ7Kg
 /*
- * $Id: mushModel.h,v 1.1 2004/01/10 20:29:34 southa Exp $
+ * $Id: mushModel.h,v 1.2 2005/05/19 13:01:57 southa Exp $
  * $Log: mushModel.h,v $
+ * Revision 1.2  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/10 20:29:34  southa
  * Form and rendering work
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSHMODEL_MUSHMODEL_H)
 #include <MushModel/MushModel.h>

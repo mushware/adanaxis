@@ -3,24 +3,25 @@
  *
  * File: src/Adanaxis/AdanaxisCommandHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QR0UCT6QeReDIX3KBuPn+w
+//%Header } G+AEROct3bvbv3fqFEAz7A
 /*
- * $Id: AdanaxisCommandHandler.cpp,v 1.3 2005/06/03 13:36:44 southa Exp $
+ * $Id: AdanaxisCommandHandler.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
  * $Log: AdanaxisCommandHandler.cpp,v $
+ * Revision 1.1  2005/06/13 17:34:54  southa
+ * Adanaxis creation
+ *
  */
 
 #include "AdanaxisCommandHandler.h"
@@ -43,6 +44,8 @@ AdanaxisCommandHandler::Adanaxis(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
     AdanaxisAppHandler *pAppHandler = new AdanaxisAppHandler;
     MushcoreAppHandler::Sgl().Mutate(pAppHandler);
+    
+    MushcoreLog::Sgl().PackageHasChanged();
     
     return MushcoreScalar(0);
 }

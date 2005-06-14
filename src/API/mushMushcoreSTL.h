@@ -23,12 +23,19 @@
  ****************************************************************************/
 //%Header } 7thexzrte0M0K0JTMsu29w
 /*
- * $Id: mushMushcoreSTL.h,v 1.1 2004/01/06 20:46:49 southa Exp $
+ * $Id: mushMushcoreSTL.h,v 1.2 2005/05/19 13:01:57 southa Exp $
  * $Log: mushMushcoreSTL.h,v $
+ * Revision 1.2  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/06 20:46:49  southa
  * Build fixes
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/MushcoreSTL.h>

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.19 2005/03/25 19:13:50 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.20 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.20  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.19  2005/03/25 19:13:50  southa
  * GameDialogue work
  *
@@ -86,12 +89,15 @@
 #include "MushcoreUtil.h"
 #include "MushcoreVirtualObject.h"
 
+//#include <iomanip>
+
 class MushcoreXMLOStream : public MushcoreXMLStream
 {
 public:
     explicit MushcoreXMLOStream(std::ostream& inPStream);
     virtual ~MushcoreXMLOStream() {}
     std::ostream& OStreamGet() { return m_pStream; }
+    std::ostream& OStream() { return OStreamGet(); }
     std::string OpeningTagWrite(const std::string& inType="");
     void ClosingTagWrite(const std::string& inStr);
     const std::string& TagGet(void) { return m_tagStr; }
@@ -153,7 +159,12 @@ inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const double& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite();
-    ioOut.OStreamGet() << inObj;
+
+    std::ostream& ostreamRef = ioOut.OStreamGet();
+    std::streamsize oldPrecision = ostreamRef.precision(20);
+    ostreamRef << inObj;
+    ostreamRef.precision(oldPrecision);
+        
     ioOut.ClosingTagWrite(localTag);
     return ioOut;
 }

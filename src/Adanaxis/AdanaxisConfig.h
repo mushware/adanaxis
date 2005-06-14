@@ -7,24 +7,25 @@
  *
  * File: src/Adanaxis/AdanaxisConfig.h
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } BrE7yoZUpm837l9JJJwiIA
+//%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.5 2005/06/08 20:59:52 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.1 2005/06/13 17:34:54 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.1  2005/06/13 17:34:54  southa
+ * Adanaxis creation
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -35,12 +36,21 @@ class AdanaxisConfig : public MushcoreVirtualObject
 public:
     AdanaxisConfig();
     
+    virtual void ToDefaultSet(void);
+    virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);
+    virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
+    
 private:
-    Mushware::U32 m_version;
+    enum
+    {
+        kVersion = 200506014,
+    };
+    Mushware::U32 m_version; //:read
     Mushware::U32 m_displayMode; //:readwrite
     
 //%classPrototypes {
 public:
+    const Mushware::U32& Version(void) const { return m_version; }
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
     const char *AutoNameGet(void) const;
@@ -50,7 +60,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1XpbtZygGPL5/RDE+coVug
+//%classPrototypes } 574J3BnoZ2fChBLQ6S8Q+A
 };
 //%inlineHeader {
 inline std::ostream&

@@ -23,12 +23,19 @@
  ****************************************************************************/
 //%Header } or6F5iMCqPlHc0eR188xYQ
 /*
- * $Id: mushMustl.h,v 1.1 2004/01/06 20:46:49 southa Exp $
+ * $Id: mushMustl.h,v 1.2 2005/05/19 13:01:57 southa Exp $
  * $Log: mushMustl.h,v $
+ * Revision 1.2  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/06 20:46:49  southa
  * Build fixes
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSTL_MUSTL_H)
 #include <Mustl/Mustl.h>

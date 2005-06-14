@@ -23,12 +23,19 @@
  ****************************************************************************/
 //%Header } Y3f/qy3uEZJBjYXRc7KynQ
 /*
- * $Id: mushMushPie.h,v 1.1 2005/03/25 19:13:48 southa Exp $
+ * $Id: mushMushPie.h,v 1.2 2005/05/19 13:01:57 southa Exp $
  * $Log: mushMushPie.h,v $
+ * Revision 1.2  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSHPIE_MUSHPIE_H)
 #include <MushPie/MushPie.h>

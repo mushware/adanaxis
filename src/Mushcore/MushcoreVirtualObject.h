@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } A5JUCROnCrKysqG6sd4RBA
 /*
- * $Id: MushcoreVirtualObject.h,v 1.5 2005/04/19 19:23:14 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.6 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.6  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/04/19 19:23:14  southa
  * Save and load config
  *
@@ -70,7 +73,7 @@ public:
 
     virtual void AutoStreamLoad(std::istream& ioStream);
     virtual void AutoFileLoad(const std::string& inName);
-    virtual void AutoFileIfExistsLoad(const std::string& inName);
+    virtual bool AutoFileIfExistsLoad(const std::string& inName);
     virtual void AutoStreamSave(std::ostream& ioStream) const;
     virtual void AutoFileSave(const std::string& inName) const;
 };

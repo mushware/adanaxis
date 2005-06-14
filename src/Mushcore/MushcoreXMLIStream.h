@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QZNov6vf1irc8tAhC1nh9g
 /*
- * $Id: MushcoreXMLIStream.h,v 1.24 2005/03/25 22:04:50 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.25 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.25  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.24  2005/03/25 22:04:50  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -279,7 +282,7 @@ MushcoreXMLIStream::ObjectRead(T *& outpObj)
 
 /* Specialises the above.  The above still catches all cases derived from
  * MushcoreVirtualObject, but the above won't compile for plain
- * MushcoreVirtualObject because it it can't be allocated by the new.
+ * MushcoreVirtualObject because it can't be allocated by the new.
  */
 template<>
 inline void

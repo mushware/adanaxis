@@ -23,12 +23,19 @@
  ****************************************************************************/
 //%Header } 3VV4A35cZKrL3t39rYzzJQ
 /*
- * $Id: mushMushGL.h,v 1.1 2004/03/07 12:06:22 southa Exp $
+ * $Id: mushMushGL.h,v 1.2 2005/05/19 13:01:57 southa Exp $
  * $Log: mushMushGL.h,v $
+ * Revision 1.2  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/03/07 12:06:22  southa
  * Rendering work
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if defined(HAVE_MUSHGL_MUSHGL_H)
 #include <MushGL/MushGL.h>

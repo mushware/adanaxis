@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Nd4PoIz3nPwfnH84Wy1Y3w
 /*
- * $Id: MushcoreUtil.cpp,v 1.17 2005/04/11 23:31:41 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.18 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.18  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.17  2005/04/11 23:31:41  southa
  * Startup and registration screen
  *
@@ -306,6 +309,25 @@ MushcoreUtil::InsertMeta(const string& inStr)
         }
     }
     return retStr;
+}
+
+std::string
+MushcoreUtil::LogTimeString(void)
+{
+    std::time_t rawTime;
+    
+    std::time(&rawTime);
+    std::tm *pTM = std::gmtime(&rawTime);
+    
+    std::ostringstream timeStream;
+    timeStream << setfill('0') << setw(4) << 1900+pTM->tm_year;
+    timeStream << setw(2) << pTM->tm_mon;
+    timeStream << setw(2) << pTM->tm_mday;
+    timeStream << "T" << setw(2) << pTM->tm_hour;
+    timeStream << setw(2) << pTM->tm_min;
+    timeStream << setw(2) << pTM->tm_sec;
+    timeStream << "Z";
+    return timeStream.str();
 }
 
 const Mushware::U32 

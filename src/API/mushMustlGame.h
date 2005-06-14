@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4Egmmu2UdK5CGgYNRejP4Q
 /*
- * $Id: mushMustlGame.h,v 1.2 2004/01/02 21:13:04 southa Exp $
+ * $Id: mushMustlGame.h,v 1.3 2005/05/19 13:01:57 southa Exp $
  * $Log: mushMustlGame.h,v $
+ * Revision 1.3  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/01/02 21:13:04  southa
  * Source conditioning
  *
@@ -32,6 +35,10 @@
  * Include fixes
  *
  */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include "MustlGame/MustlGameBase.h"
 #include "MustlGame/MustlGameClient.h"

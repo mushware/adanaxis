@@ -7,24 +7,25 @@
  *
  * File: src/Adanaxis/AdanaxisAppHandler.h
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TKLe5TOvUyhHao7V53Mj9Q
+//%Header } K3hFA55rGfb+D50+6fnrZg
 /*
- * $Id: AdanaxisAppHandler.h,v 1.4 2005/06/03 13:36:44 southa Exp $
+ * $Id: AdanaxisAppHandler.h,v 1.1 2005/06/13 17:34:54 southa Exp $
  * $Log: AdanaxisAppHandler.h,v $
+ * Revision 1.1  2005/06/13 17:34:54  southa
+ * Adanaxis creation
+ *
  */
 
 #include "mushMushcore.h"

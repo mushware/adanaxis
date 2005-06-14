@@ -3,24 +3,25 @@
  *
  * File: src/Adanaxis/AdanaxisGame.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IoxuUJn/3JKFM0mp7Zolww
+//%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.22 2005/06/09 14:13:06 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.1  2005/06/13 17:34:54  southa
+ * Adanaxis creation
+ *
  */
 
 #include "AdanaxisGame.h"
@@ -77,14 +78,30 @@ AdanaxisGame::ScriptFunction(const std::string& inName, GameAppHandler& inAppHan
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
-    m_config.DisplayModeSet(MushcoreEnv::Sgl().VariableGet("TT_DISPLAY_MODE").U32Get());
+    const MushcoreScalar *pScalar; 
+    m_config.DisplayModeSet(MushcoreEnv::Sgl().VariableGet("MUSHGL_DISPLAY_MODE").U32Get());
     
-    const MushcoreScalar *pScalar;    
-    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
+    try
     {
-        m_config.AutoFileIfExistsLoad(pScalar->StringGet());
+        if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
+        {
+            if (!m_config.AutoFileIfExistsLoad(pScalar->StringGet()))
+            {
+                MushcoreLog::Sgl().InfoLog() << "Creating new configuration file '" << pScalar->StringGet() << "'" << endl;
+                m_config.ToDefaultSet();
+            }
+            if (m_config.Version() != AdanaxisConfig().Version())
+            {
+                throw MushcoreDataFail("Incompatible configuration file version - discarding");
+            }
+        }
     }
-
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
+        m_config.ToDefaultSet();
+    }
+    
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
     {
         if (pScalar->U32Get())
@@ -184,7 +201,9 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "modeKeypressMsec")
     {
@@ -220,4 +239,4 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } oDDThrvg6Ljnzhvq2jX2kw
+//%outOfLineFunctions } zwexsupJy5H07WzL0MH39w

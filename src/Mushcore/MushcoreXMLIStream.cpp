@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Dnly+DMhb+GJRvHlCxnkFA
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.21 2005/03/25 22:04:50 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.22 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.22  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.21  2005/03/25 22:04:50  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -121,6 +124,7 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
 {
     MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Entering" << endl));
     string tagStr;
+    
     do
     {
         U32 dataStartPos;
@@ -165,6 +169,9 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
             else
             {
                 outpObj = AllocateVirtual();
+                /* We'll come back into this function again for the newly
+                 * allocated object, so InputEiogue will run then
+                 */
             }
         }
 
@@ -173,14 +180,10 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
             MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Threading " << tagStr << endl));
             MUSHCOREXMLISTREAM_DEBUG((m_indentStr += " "));
             
-            outpObj->AutoInputPrologue(*this);
-            
             if (!outpObj->AutoXMLDataProcess(*this, tagStr))
             {
                 Throw("Unrecognised tag '"+tagStr+"'");
             }
-
-            outpObj->AutoInputEpilogue(*this);
             
             MUSHCOREXMLISTREAM_DEBUG((m_indentStr = m_indentStr.substr(0, m_indentStr.size()-1)));
             MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Unthreading " << tagStr << endl));
@@ -203,6 +206,7 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject *& outpObj)
         m_contentStart = dataStartPos;
         MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Checking exit critereon \"" << tagStr << "\" == \"obj\"" << endl));
     } while (tagStr != "obj");
+    
     MUSHCOREXMLISTREAM_DEBUG((cout << m_indentStr << "Exiting" << endl));
     if (m_indentStr == "")
     {
@@ -430,4 +434,3 @@ MushcoreXMLIStream::AllocateVirtual(void)
     }
     return retPtr;
 }    
-

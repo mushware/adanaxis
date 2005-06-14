@@ -1,11 +1,7 @@
-//%includeGuardStart {
-#ifndef MUSHMUSHMESH_H
-#define MUSHMUSHMESH_H
-//%includeGuardStart } fwvewLpO/vGUxo4OmGwZrg
 //%Header {
 /*****************************************************************************
  *
- * File: src/API/mushMushMesh.h
+ * File: src/MushGame/MushGameStandard.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,29 +17,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } I5acfr+gYkT3mgpzlYg1QQ
+//%Header } KHcCpXwK/1mpxswse1epug
 /*
- * $Id: mushMushMesh.h,v 1.2 2005/05/19 13:01:57 southa Exp $
- * $Log: mushMushMesh.h,v $
- * Revision 1.2  2005/05/19 13:01:57  southa
- * Mac release work
- *
- * Revision 1.1  2004/03/07 12:05:56  southa
- * Rendering work
- *
+ * $Id: MushGLStandard.cpp,v 1.2 2005/05/19 13:02:09 southa Exp $
+ * $Log: MushGLStandard.cpp,v $
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include "MushGLStandard.h"
 
-#if defined(HAVE_MUSHMESH_MUSHMESH_H)
-#include <MushMesh/MushMesh.h>
-#elif defined(HAVE_MUSHMESH_H)
-#include <MushMesh.h>
-#else
-#include "MushMesh/MushMesh.h"
-#endif
-//%includeGuardEnd {
-#endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

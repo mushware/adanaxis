@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } S1ShkioeDeCMuA2XF/bV/g
 /*
- * $Id: MushcoreLog.cpp,v 1.1 2005/01/29 18:27:31 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.2 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *
@@ -28,7 +31,9 @@
 
 #include "MushcoreLog.h"
 
+#include "MushcoreInfo.h"
 #include "MushcoreSTL.h"
+#include "MushcoreUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -36,39 +41,82 @@ using namespace std;
 MUSHCORE_SINGLETON_INSTANCE(MushcoreLog);
 
 MushcoreLog::MushcoreLog() :
-m_outStream(NULL),
-m_infoLog(true)
+    m_errorStream(NULL),
+    m_stdStream(NULL),
+    m_enableErrorLog(true),
+    m_enableInfoLog(true),
+    m_errorHeaderDone(false),
+    m_stdHeaderDone(false)
 {
     m_nullStream = new ostringstream;
 }
 
 MushcoreLog::~MushcoreLog()
 {
-    if (m_outStream != NULL) delete m_outStream;
     delete m_nullStream;
 }
 
+void
+MushcoreLog::HeaderWrite(ostream& ioOut, const std::string inLogName)
+{
+    ioOut << MushcoreUtil::LogTimeString() << ": Package " << MushcoreInfo::Sgl().PackageID() << " " << inLogName << endl;
+}
+
+void
+MushcoreLog::PackageHasChanged(void)
+{
+    m_errorHeaderDone = false;
+    m_stdHeaderDone = false;
+}
+
 ostream&
-MushcoreLog::Log(void)
+MushcoreLog::ErrorStream(void)
 {
     ostream *retStream;
-    if (m_outStream == NULL)
+    if (m_errorStream == NULL)
+    {
+        retStream = &std::cerr;
+    }
+    else
+    {
+        retStream = m_errorStream;
+    }
+    if (!m_errorHeaderDone)
+    {
+        HeaderWrite(*retStream, "error log");
+        m_errorHeaderDone = true;
+    }
+    *retStream << MushcoreUtil::LogTimeString() << ": Error: ";
+    return *retStream;
+}
+
+ostream&
+MushcoreLog::StdStream(void)
+{
+    ostream *retStream;
+    if (m_stdStream == NULL)
     {
         retStream = &std::cout;
     }
     else
     {
-        retStream = m_outStream;
+        retStream = m_stdStream;
     }
+    if (!m_stdHeaderDone)
+    {
+        HeaderWrite(*retStream, "standard log");
+        m_stdHeaderDone = true;
+    }
+    *retStream << MushcoreUtil::LogTimeString() << ": Info: ";
     return *retStream;
 }
 
 ostream&
-MushcoreLog::InfoLog(void)
+MushcoreLog::ErrorLog(void)
 {
-    if (m_infoLog)
+    if (m_enableErrorLog)
     {
-        return Log();
+        return ErrorStream();
     }
     else
     {
@@ -76,4 +124,19 @@ MushcoreLog::InfoLog(void)
         return *m_nullStream;
     }
 }
+
+ostream&
+MushcoreLog::InfoLog(void)
+{
+    if (m_enableInfoLog)
+    {
+        return StdStream();
+    }
+    else
+    {
+        m_nullStream->clear();
+        return *m_nullStream;
+    }
+}
+
 

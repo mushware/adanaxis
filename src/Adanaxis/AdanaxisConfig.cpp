@@ -3,33 +3,57 @@
  *
  * File: src/Adanaxis/AdanaxisConfig.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } n2nSue7N6TZsnR51N1Ujlw
+//%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.5 2005/05/26 00:46:41 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.1  2005/06/13 17:34:54  southa
+ * Adanaxis creation
+ *
  */
 
 #include "AdanaxisConfig.h"
 
 #include "AdanaxisSTL.h"
 
-AdanaxisConfig::AdanaxisConfig() :
-    m_version(1)
+using namespace Mushware;
+using namespace std;
+
+AdanaxisConfig::AdanaxisConfig()
 {
+    ToDefaultSet();
+}
+
+void
+AdanaxisConfig::ToDefaultSet(void)
+{
+    m_version = kVersion;
+    m_displayMode = 0;
+}
+
+void
+AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
+{
+    ToDefaultSet();
+}
+
+void
+AdanaxisConfig::AutoOutputPrologue(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.OStream() << "<!-- Saved by " << MushcoreInfo::Sgl().PackageID() <<
+        " " << MushcoreUtil::LogTimeString() << " -->" << endl;
 }
 
 //%outOfLineFunctions {
@@ -74,7 +98,9 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "version")
     {
@@ -98,4 +124,4 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } XuVb+LiWR8yD7TZLA/pxVQ
+//%outOfLineFunctions } Cwo2BVa5jY1fHlHJlu1aRw
