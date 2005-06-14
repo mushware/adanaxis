@@ -1,6 +1,6 @@
 //%includeGuardStart {
-#ifndef MUSHGAME_H
-#define MUSHGAME_H
+#ifndef API_MUSHGAME_H
+#define API_MUSHGAME_H
 //%includeGuardStart } CoDoLBXzZV/yPyG+jVhw3g
 //%Header {
 /*****************************************************************************
@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8E/libAdy/eMQkpEiSgz3w
 /*
- * $Id: mushGame.h,v 1.6 2005/04/11 23:31:40 southa Exp $
+ * $Id: mushGame.h,v 1.7 2005/05/19 13:01:57 southa Exp $
  * $Log: mushGame.h,v $
+ * Revision 1.7  2005/05/19 13:01:57  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/04/11 23:31:40  southa
  * Startup and registration screen
  *

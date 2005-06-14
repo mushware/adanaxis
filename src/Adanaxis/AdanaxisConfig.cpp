@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -39,7 +42,9 @@ AdanaxisConfig::AdanaxisConfig()
 void
 AdanaxisConfig::ToDefaultSet(void)
 {
-    m_version = kVersion;
+    MushGameConfigBase::ToDefaultSet();
+    VersionSet(kVersion);
+
     m_displayMode = 0;
 }
 
@@ -52,8 +57,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 void
 AdanaxisConfig::AutoOutputPrologue(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.OStream() << "<!-- Saved by " << MushcoreInfo::Sgl().PackageID() <<
-        " " << MushcoreUtil::LogTimeString() << " -->" << endl;
+    MushGameConfigBase::AutoOutputPrologue(ioOut);
 }
 
 //%outOfLineFunctions {
@@ -89,7 +93,7 @@ void
 AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "version=" << m_version << ", ";
+    MushGameConfigBase::AutoPrint(ioOut);
     ioOut << "displayMode=" << m_displayMode;
     ioOut << "]";
 }
@@ -102,13 +106,13 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "version")
-    {
-        ioIn >> m_version;
-    }
     else if (inTagStr == "displayMode")
     {
         ioIn >> m_displayMode;
+    }
+    else if (MushGameConfigBase::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
     }
     else
     {
@@ -119,9 +123,8 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("version");
-    ioOut << m_version;
+    MushGameConfigBase::AutoXMLPrint(ioOut);
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } Cwo2BVa5jY1fHlHJlu1aRw
+//%outOfLineFunctions } aE8p0nfHrUnRhjX1RUxvYQ

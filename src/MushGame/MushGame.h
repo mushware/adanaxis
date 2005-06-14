@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMUSHGAME_H
-#define MUSHMUSHGAME_H
-//%includeGuardStart } xmuT9O0Pm3r3ToEewF3dyw
+#ifndef MUSHGAME_H
+#define MUSHGAME_H
+//%includeGuardStart } CoDoLBXzZV/yPyG+jVhw3g
 //%Header {
 /*****************************************************************************
  *
- * File: src/API/mushMushGame.h
+ * File: src/MushGame/MushGame.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,26 +21,17 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pKLJFkvrfEgr0fWvAvo93g
+//%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: mushMushGame.h,v 1.1 2005/06/14 13:25:32 southa Exp $
- * $Log: mushMushGame.h,v $
- * Revision 1.1  2005/06/14 13:25:32  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
-#if defined(HAVE_MUSHGAME_MUSHGAME_H)
-#include <MushGame/MushGame.h>
-#elif defined(HAVE_MUSHGAME_H)
-#include <MushGame.h>
-#else
-#include "MushGame/MushGame.h"
-#endif
+#include "MushGameConfigBase.h"
+#include "MushGameConfigUtils.h"
+#include "MushGameDialogue.h"
+#include "MushGameDialogueUtils.h"
+#include "MushGameStandard.h"
 
 //%includeGuardEnd {
 #endif

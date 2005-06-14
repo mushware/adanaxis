@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } do/pC4WFtsQItE9mWclSaw
 /*
- * $Id: AdanaxisPixelSource.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisPixelSource.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisPixelSource.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -156,7 +159,9 @@ AdanaxisPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "frameTime")
     {
@@ -191,4 +196,4 @@ AdanaxisPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } WvdY9iFnRQD5vHZI9xV6Jw
+//%outOfLineFunctions } 7aaTy0iwzqEhafNc12bSOw

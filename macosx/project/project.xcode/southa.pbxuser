@@ -171,7 +171,7 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 140433601;
+			PBXPerProjectTemplateStateSaveDate = 140448632;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -2355,8 +2355,8 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "503 295 723 466 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 140433601;
-			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <040b747970656473747265616d8103e88401408484840e4e534d757461626c654172726179008484074e534172726179008484084e534f626a65637400858401690086>;
+			PBXWorkspaceStateSaveDate = 140448632;
+			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <40b047970756463747275616d618308e481004484848e0e435d457471626c656142727169700484870e435142727169700484880e435f426a656364700584810960068>;
 		};
 		perUserProjectItems = {
 			7A70CD18085DE9A80055C6FB = 7A70CD18085DE9A80055C6FB;
@@ -2606,6 +2606,36 @@
 			7AD23C6E085F11B50017859F = 7AD23C6E085F11B50017859F;
 			7AD23C6F085F11B50017859F = 7AD23C6F085F11B50017859F;
 			7AD23C71085F12010017859F = 7AD23C71085F12010017859F;
+			7AD3B594085F139600512DB1 = 7AD3B594085F139600512DB1;
+			7AD3B595085F139900512DB1 = 7AD3B595085F139900512DB1;
+			7AD3B5AB085F359C00512DB1 = 7AD3B5AB085F359C00512DB1;
+			7AD3B5AC085F359C00512DB1 = 7AD3B5AC085F359C00512DB1;
+			7AD3B5AD085F359C00512DB1 = 7AD3B5AD085F359C00512DB1;
+			7AD3B5AE085F359C00512DB1 = 7AD3B5AE085F359C00512DB1;
+			7AD3B5AF085F359C00512DB1 = 7AD3B5AF085F359C00512DB1;
+			7AD3B5B0085F359C00512DB1 = 7AD3B5B0085F359C00512DB1;
+			7AD3B5B1085F359C00512DB1 = 7AD3B5B1085F359C00512DB1;
+			7AD3B5B2085F359C00512DB1 = 7AD3B5B2085F359C00512DB1;
+			7AD3B5B3085F359C00512DB1 = 7AD3B5B3085F359C00512DB1;
+			7AD3B5B4085F359C00512DB1 = 7AD3B5B4085F359C00512DB1;
+			7AD3B5B5085F359C00512DB1 = 7AD3B5B5085F359C00512DB1;
+			7AD3B5B6085F359C00512DB1 = 7AD3B5B6085F359C00512DB1;
+			7AD3B5B7085F359C00512DB1 = 7AD3B5B7085F359C00512DB1;
+			7AD3B5B8085F359C00512DB1 = 7AD3B5B8085F359C00512DB1;
+			7AD3B5B9085F359C00512DB1 = 7AD3B5B9085F359C00512DB1;
+			7AD3B5BA085F359C00512DB1 = 7AD3B5BA085F359C00512DB1;
+			7AD3B5BB085F359C00512DB1 = 7AD3B5BB085F359C00512DB1;
+			7AD3B5BC085F359C00512DB1 = 7AD3B5BC085F359C00512DB1;
+			7AD3B5BD085F359C00512DB1 = 7AD3B5BD085F359C00512DB1;
+			7AD3B5BE085F359C00512DB1 = 7AD3B5BE085F359C00512DB1;
+			7AD3B5BF085F359C00512DB1 = 7AD3B5BF085F359C00512DB1;
+			7AD3B5C0085F359C00512DB1 = 7AD3B5C0085F359C00512DB1;
+			7AD3B5C1085F359C00512DB1 = 7AD3B5C1085F359C00512DB1;
+			7AD3B5C2085F359C00512DB1 = 7AD3B5C2085F359C00512DB1;
+			7AD3B5C3085F359C00512DB1 = 7AD3B5C3085F359C00512DB1;
+			7AD3B5C4085F359C00512DB1 = 7AD3B5C4085F359C00512DB1;
+			7AD3B5C5085F359C00512DB1 = 7AD3B5C5085F359C00512DB1;
+			7AD3B5C6085F359C00512DB1 = 7AD3B5C6085F359C00512DB1;
 			7AFFFFC8085DC82700999549 = 7AFFFFC8085DC82700999549;
 			7AFFFFD0085DC9AA00999549 = 7AFFFFD0085DC9AA00999549;
 			7AFFFFE0085DCE9A00999549 = 7AFFFFE0085DCE9A00999549;
@@ -2748,17 +2778,17 @@
 	};
 	7A5BE75B07FB56AF00306E18 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1085, 7839}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 7878}}";
 			sepNavSelRange = "{3990, 0}";
-			sepNavVisRect = "{{0, 1525}, {1085, 472}}";
+			sepNavVisRect = "{{0, 1525}, {891, 639}}";
 			sepNavWindowFrame = "{{457, 99}, {1055, 1020}}";
 		};
 	};
 	7A5BE75C07FB56B000306E18 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1162, 1820}}";
-			sepNavSelRange = "{3622, 0}";
-			sepNavVisRect = "{{0, 1313}, {1162, 472}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 2028}}";
+			sepNavSelRange = "{4133, 67}";
+			sepNavVisRect = "{{0, 1208}, {891, 639}}";
 			sepNavWindowFrame = "{{15, 375}, {750, 558}}";
 		};
 	};
@@ -2955,9 +2985,9 @@
 	};
 	7A62431707ABEE79006BCF7E = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1859}}";
-			sepNavSelRange = "{3159, 0}";
-			sepNavVisRect = "{{0, 1016}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1898}}";
+			sepNavSelRange = "{3224, 0}";
+			sepNavVisRect = "{{0, 1001}, {891, 639}}";
 		};
 	};
 	7A6252EE05AC1A8D006A2161 = {
@@ -3039,8 +3069,8 @@
 	7A62B70D05A49D04002A5F1C = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 949}}";
-			sepNavSelRange = "{1667, 0}";
-			sepNavVisRect = "{{0, 57}, {891, 639}}";
+			sepNavSelRange = "{58, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
 		};
 	};
 	7A62B70E05A49D04002A5F1C = {
@@ -4354,9 +4384,9 @@
 	};
 	7A62B80805A49D05002A5F1C = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 6721}}";
-			sepNavSelRange = "{4962, 61}";
-			sepNavVisRect = "{{0, 3964}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 6942}}";
+			sepNavSelRange = "{14673, 0}";
+			sepNavVisRect = "{{0, 4041}, {891, 639}}";
 			sepNavWindowFrame = "{{84, 376}, {750, 558}}";
 		};
 	};
@@ -4370,9 +4400,9 @@
 	};
 	7A62B80A05A49D05002A5F1C = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1038, 4082}}";
-			sepNavSelRange = "{8313, 0}";
-			sepNavVisRect = "{{0, 886}, {1038, 531}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 4238}}";
+			sepNavSelRange = "{3640, 0}";
+			sepNavVisRect = "{{0, 1079}, {891, 639}}";
 			sepNavWindowFrame = "{{153, 313}, {750, 558}}";
 		};
 	};
@@ -6968,9 +6998,9 @@
 	};
 	7A70CEB1085DF1C40055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1287}}";
-			sepNavSelRange = "{2241, 0}";
-			sepNavVisRect = "{{0, 609}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1326}}";
+			sepNavSelRange = "{1881, 0}";
+			sepNavVisRect = "{{0, 500}, {891, 639}}";
 		};
 	};
 	7A70CEB2085DF1C40055C6FB = {
@@ -6982,9 +7012,9 @@
 	};
 	7A70CEB3085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 754}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 793}}";
 			sepNavSelRange = "{1556, 0}";
-			sepNavVisRect = "{{0, 76}, {891, 639}}";
+			sepNavVisRect = "{{0, 154}, {891, 639}}";
 		};
 	};
 	7A70CEB4085DF1C50055C6FB = {
@@ -6996,37 +7026,37 @@
 	};
 	7A70CEB5085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1664}}";
-			sepNavSelRange = "{3008, 0}";
-			sepNavVisRect = "{{0, 402}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1703}}";
+			sepNavSelRange = "{1533, 0}";
+			sepNavVisRect = "{{0, 427}, {891, 639}}";
 		};
 	};
 	7A70CEB6085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1001}}";
-			sepNavSelRange = "{1323, 70}";
-			sepNavVisRect = "{{0, 0}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1053}}";
+			sepNavSelRange = "{1586, 0}";
+			sepNavVisRect = "{{0, 284}, {891, 639}}";
 		};
 	};
 	7A70CEB7085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 3159}}";
-			sepNavSelRange = "{2855, 0}";
-			sepNavVisRect = "{{0, 958}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 3081}}";
+			sepNavSelRange = "{1741, 0}";
+			sepNavVisRect = "{{0, 604}, {891, 639}}";
 		};
 	};
 	7A70CEB8085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1092}}";
-			sepNavSelRange = "{2664, 0}";
-			sepNavVisRect = "{{0, 453}, {891, 639}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1196}}";
+			sepNavSelRange = "{1466, 30}";
+			sepNavVisRect = "{{0, 390}, {891, 639}}";
 		};
 	};
 	7A70CEB9085DF1C50055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 845}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 897}}";
 			sepNavSelRange = "{1086, 0}";
-			sepNavVisRect = "{{0, 0}, {891, 639}}";
+			sepNavVisRect = "{{0, 258}, {891, 639}}";
 		};
 	};
 	7A70CEBA085DF1C50055C6FB = {
@@ -7253,7 +7283,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisGame.h: operator <<";
 		rLen = 0;
-		rLoc = 2664;
+		rLoc = 2782;
 		rType = 0;
 		vrLen = 1489;
 		vrLoc = 1248;
@@ -7300,9 +7330,9 @@
 	};
 	7A70D1F5085DF8870055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 884}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 923}}";
 			sepNavSelRange = "{1419, 0}";
-			sepNavVisRect = "{{0, 207}, {891, 639}}";
+			sepNavVisRect = "{{0, 195}, {891, 639}}";
 		};
 	};
 	7A70D205085DF8FB0055C6FB = {
@@ -7690,16 +7720,16 @@
 	};
 	7A7DE93808157EE300CB5432 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1098, 1729}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1807}}";
 			sepNavSelRange = "{2350, 0}";
-			sepNavVisRect = "{{0, 598}, {1098, 442}}";
+			sepNavVisRect = "{{0, 545}, {891, 639}}";
 		};
 	};
 	7A7DE93908157EE300CB5432 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1098, 2782}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 2886}}";
 			sepNavSelRange = "{6247, 0}";
-			sepNavVisRect = "{{0, 293}, {1098, 442}}";
+			sepNavVisRect = "{{0, 293}, {891, 639}}";
 		};
 	};
 	7A8A6E74067C5CE60025D379 = {
@@ -7718,16 +7748,16 @@
 	};
 	7A8FBB1F07F43A3900BAAFBE = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {689, 1204}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1248}}";
 			sepNavSelRange = "{1037, 0}";
-			sepNavVisRect = "{{0, 378}, {689, 696}}";
+			sepNavVisRect = "{{0, 609}, {891, 639}}";
 		};
 	};
 	7A8FBB2007F43A3900BAAFBE = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {689, 4312}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 4134}}";
 			sepNavSelRange = "{297, 1}";
-			sepNavVisRect = "{{0, 0}, {689, 696}}";
+			sepNavVisRect = "{{0, 3495}, {891, 639}}";
 		};
 	};
 	7A8FBC9A07F4572E00BAAFBE = {
@@ -7767,16 +7797,16 @@
 	};
 	7AAE6BA007AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1098, 9360}}";
-			sepNavSelRange = "{20838, 0}";
-			sepNavVisRect = "{{0, 2848}, {1098, 442}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 9737}}";
+			sepNavSelRange = "{7889, 714}";
+			sepNavVisRect = "{{0, 3573}, {891, 639}}";
 		};
 	};
 	7AAE6BA107AFC36C0085C60F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1098, 1950}}";
-			sepNavSelRange = "{2479, 0}";
-			sepNavVisRect = "{{0, 1167}, {1098, 442}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1950}}";
+			sepNavSelRange = "{4056, 44}";
+			sepNavVisRect = "{{0, 1139}, {891, 639}}";
 		};
 	};
 	7AAE6BA207AFC36C0085C60F = {
@@ -8357,7 +8387,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisAppHandler.cpp: 99";
 		rLen = 0;
-		rLoc = 2241;
+		rLoc = 2253;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 0;
@@ -8377,7 +8407,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisAppHandler.cpp: 99";
 		rLen = 0;
-		rLoc = 2241;
+		rLoc = 2253;
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 1288;
@@ -8602,10 +8632,16 @@
 	};
 	7AD23B83085EF8690017859F = {
 		isa = PBXFileReference;
+		lastKnownFileType = text.xml;
 		name = config.xml;
 		path = /Users/southa/.adanaxis/config.xml;
 		refType = 0;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{173, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
 	};
 	7AD23B84085EF8690017859F = {
 		fRef = 7A62431607ABEE79006BCF7E;
@@ -8729,9 +8765,9 @@
 	};
 	7AD23B9C085EFF870017859F = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 793}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 832}}";
 			sepNavSelRange = "{1646, 0}";
-			sepNavVisRect = "{{0, 0}, {891, 639}}";
+			sepNavVisRect = "{{0, 11}, {891, 639}}";
 		};
 	};
 	7AD23B9D085EFF870017859F = {
@@ -8744,7 +8780,7 @@
 	7AD23BA4085F007E0017859F = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
-			sepNavSelRange = "{143, 0}";
+			sepNavSelRange = "{1425, 0}";
 			sepNavVisRect = "{{0, 0}, {891, 639}}";
 		};
 	};
@@ -8843,7 +8879,7 @@
 		isa = PBXTextBookmark;
 		name = "mushGame.h: 52";
 		rLen = 0;
-		rLoc = 1667;
+		rLoc = 1675;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 107;
@@ -9162,8 +9198,8 @@
 		fRef = 7A70CEB7085DF1C50055C6FB;
 		isa = PBXTextBookmark;
 		name = "if (!m_config.AutoFileIfExistsLoad(pScalar->StringGet()))";
-		rLen = 70;
-		rLoc = 2286;
+		rLen = 0;
+		rLoc = 2670;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 1705;
@@ -9433,7 +9469,7 @@
 		isa = PBXTextBookmark;
 		name = "mushGame.h: 52";
 		rLen = 0;
-		rLoc = 1667;
+		rLoc = 1675;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 107;
@@ -9473,7 +9509,7 @@
 		isa = PBXTextBookmark;
 		name = "mushGame.h: 52";
 		rLen = 0;
-		rLoc = 1667;
+		rLoc = 1675;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 107;
@@ -9633,7 +9669,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisAppHandler.cpp: 96";
 		rLen = 0;
-		rLoc = 2241;
+		rLoc = 2253;
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 1289;
@@ -9663,7 +9699,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisAppHandler.cpp: 96";
 		rLen = 0;
-		rLoc = 2241;
+		rLoc = 2253;
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 1289;
@@ -9812,8 +9848,8 @@
 		fRef = 7A70CEB7085DF1C50055C6FB;
 		isa = PBXTextBookmark;
 		name = "if (!m_config.AutoFileIfExistsLoad(pScalar->StringGet()))";
-		rLen = 70;
-		rLoc = 2286;
+		rLen = 0;
+		rLoc = 2670;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 1710;
@@ -9823,7 +9859,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 128";
 		rLen = 0;
-		rLoc = 3008;
+		rLoc = 2958;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 957;
@@ -9913,7 +9949,7 @@
 		isa = PBXTextBookmark;
 		name = "virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;";
 		rLen = 70;
-		rLoc = 1323;
+		rLoc = 1381;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 0;
@@ -9923,7 +9959,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisGame.cpp: AutoXMLPrint";
 		rLen = 0;
-		rLoc = 5895;
+		rLoc = 5345;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 4785;
@@ -9943,7 +9979,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisGame.cpp: 244";
 		rLen = 0;
-		rLoc = 5920;
+		rLoc = 5370;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 4785;
@@ -9953,7 +9989,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 56";
 		rLen = 0;
-		rLoc = 1463;
+		rLoc = 1533;
 		rType = 0;
 		vrLen = 932;
 		vrLoc = 957;
@@ -9963,7 +9999,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.h: AutoInputEpilogue";
 		rLen = 0;
-		rLoc = 1353;
+		rLoc = 1411;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 996;
@@ -9973,7 +10009,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 49";
 		rLen = 0;
-		rLoc = 1298;
+		rLoc = 1339;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 957;
@@ -10023,7 +10059,7 @@
 		isa = PBXTextBookmark;
 		name = "{";
 		rLen = 2;
-		rLoc = 1375;
+		rLoc = 1416;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 986;
@@ -10043,7 +10079,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.h: AutoOutputPrologue";
 		rLen = 0;
-		rLoc = 1391;
+		rLoc = 1449;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 0;
@@ -10053,7 +10089,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 56";
 		rLen = 0;
-		rLoc = 1476;
+		rLoc = 1533;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 986;
@@ -10063,7 +10099,7 @@
 		isa = PBXTextBookmark;
 		name = "virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;";
 		rLen = 70;
-		rLoc = 1323;
+		rLoc = 1381;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 0;
@@ -10073,7 +10109,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 128";
 		rLen = 0;
-		rLoc = 3008;
+		rLoc = 2958;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 1012;
@@ -10083,7 +10119,7 @@
 		isa = PBXTextBookmark;
 		name = "config.xml: 6";
 		rLen = 0;
-		rLoc = 150;
+		rLoc = 140;
 		rType = 0;
 		vrLen = 150;
 		vrLoc = 0;
@@ -10103,7 +10139,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisConfig.cpp: 128";
 		rLen = 0;
-		rLoc = 3008;
+		rLoc = 2958;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 1012;
@@ -10113,7 +10149,7 @@
 		isa = PBXTextBookmark;
 		name = "config.xml: 6";
 		rLen = 0;
-		rLoc = 150;
+		rLoc = 140;
 		rType = 0;
 		vrLen = 150;
 		vrLoc = 0;
@@ -10133,7 +10169,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisGame.cpp: 101";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2670;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 1891;
@@ -10153,7 +10189,7 @@
 		isa = PBXTextBookmark;
 		name = "AdanaxisGame.cpp: 101";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2670;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 1891;
@@ -10167,6 +10203,390 @@
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 2107;
+	};
+	7AD3B594085F139600512DB1 = {
+		fRef = 7A62431707ABEE79006BCF7E;
+		isa = PBXTextBookmark;
+		name = "MushcoreLog.cpp: InfoLog";
+		rLen = 0;
+		rLoc = 3159;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 2079;
+	};
+	7AD3B595085F139900512DB1 = {
+		fRef = 7A62431707ABEE79006BCF7E;
+		isa = PBXTextBookmark;
+		name = "MushcoreLog.cpp: InfoLog";
+		rLen = 0;
+		rLoc = 3159;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 2079;
+	};
+	7AD3B59D085F326B00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{1257, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B59E085F326B00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1131}}";
+			sepNavSelRange = "{1122, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B5A5085F33C900512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 884}}";
+			sepNavSelRange = "{2095, 0}";
+			sepNavVisRect = "{{0, 245}, {891, 639}}";
+		};
+	};
+	7AD3B5A6085F33CA00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1261}}";
+			sepNavSelRange = "{1051, 0}";
+			sepNavVisRect = "{{0, 11}, {891, 639}}";
+		};
+	};
+	7AD3B5AB085F359C00512DB1 = {
+		fRef = 7A62431707ABEE79006BCF7E;
+		isa = PBXTextBookmark;
+		name = "MushcoreLog.cpp: 146";
+		rLen = 0;
+		rLoc = 3224;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 2079;
+	};
+	7AD3B5AC085F359C00512DB1 = {
+		fRef = 7A70CEB3085DF1C50055C6FB;
+		isa = PBXTextBookmark;
+		name = "AdanaxisCommandHandler.cpp: 49";
+		rLen = 0;
+		rLoc = 1556;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 479;
+	};
+	7AD3B5AD085F359C00512DB1 = {
+		fRef = 7A70CEB7085DF1C50055C6FB;
+		isa = PBXTextBookmark;
+		name = "AdanaxisGame.cpp: 85";
+		rLen = 0;
+		rLoc = 2670;
+		rType = 0;
+		vrLen = 1002;
+		vrLoc = 2082;
+	};
+	7AD3B5AE085F359C00512DB1 = {
+		fRef = 7AD3B5A6085F33CA00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.cpp: 17";
+		rLen = 0;
+		rLoc = 58;
+		rType = 0;
+		vrLen = 266;
+		vrLoc = 0;
+	};
+	7AD3B5AF085F359C00512DB1 = {
+		fRef = 7AD3B5A5085F33C900512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.h: 9";
+		rLen = 0;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 97;
+		vrLoc = 0;
+	};
+	7AD3B5B0085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase *inpConfig, const std::string& inName";
+		rLen = 56;
+		rLoc = 99;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 0;
+	};
+	7AD3B5B1085F359C00512DB1 = {
+		fRef = 7AD3B59D085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "AcquireConfig(MushcoreVirtualObject *inpConfig, const std::string& inName)";
+		rLen = 71;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 187;
+		vrLoc = 0;
+	};
+	7AD3B5B2085F359C00512DB1 = {
+		fRef = 7A62431707ABEE79006BCF7E;
+		isa = PBXTextBookmark;
+		name = "MushcoreLog.cpp: 146";
+		rLen = 0;
+		rLoc = 3224;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 2079;
+	};
+	7AD3B5B3085F359C00512DB1 = {
+		fRef = 7A70CEB3085DF1C50055C6FB;
+		isa = PBXTextBookmark;
+		name = "AdanaxisCommandHandler.cpp: 49";
+		rLen = 0;
+		rLoc = 1556;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 479;
+	};
+	7AD3B5B4085F359C00512DB1 = {
+		fRef = 7A70CEB7085DF1C50055C6FB;
+		isa = PBXTextBookmark;
+		name = "AdanaxisGame.cpp: 114";
+		rLen = 0;
+		rLoc = 2670;
+		rType = 0;
+		vrLen = 1399;
+		vrLoc = 2139;
+	};
+	7AD3B5B5085F359C00512DB1 = {
+		fRef = 7AD3B59D085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "AcquireConfig(MushcoreVirtualObject *inpConfig, const std::string& inName)";
+		rLen = 71;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 187;
+		vrLoc = 0;
+	};
+	7AD3B5B6085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 11";
+		rLen = 0;
+		rLoc = 1725;
+		rType = 0;
+		vrLen = 168;
+		vrLoc = 0;
+	};
+	7AD3B5B7085F359C00512DB1 = {
+		fRef = 7A70CEB7085DF1C50055C6FB;
+		isa = PBXTextBookmark;
+		name = "AdanaxisGame.cpp: 85";
+		rLen = 0;
+		rLoc = 2670;
+		rType = 0;
+		vrLen = 1002;
+		vrLoc = 2082;
+	};
+	7AD3B5B8085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 21";
+		rLen = 0;
+		rLoc = 567;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	7AD3B5B9085F359C00512DB1 = {
+		fRef = 7AD3B59D085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "AcquireConfig(MushcoreVirtualObject *inpConfig, const std::string& inName)";
+		rLen = 71;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 187;
+		vrLoc = 0;
+	};
+	7AD3B5BA085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 21";
+		rLen = 0;
+		rLoc = 567;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	7AD3B5BB085F359C00512DB1 = {
+		fRef = 7AD3B5A5085F33C900512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 155;
+		vrLoc = 0;
+	};
+	7AD3B5BC085F359C00512DB1 = {
+		fRef = 7AD3B5A6085F33CA00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.cpp: 3";
+		rLen = 0;
+		rLoc = 19;
+		rType = 0;
+		vrLen = 58;
+		vrLoc = 0;
+	};
+	7AD3B5BD085F359C00512DB1 = {
+		fRef = 7AD3B5A5085F33C900512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.h: 9";
+		rLen = 0;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 97;
+		vrLoc = 0;
+	};
+	7AD3B5BE085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 21";
+		rLen = 0;
+		rLoc = 567;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	7AD3B5BF085F359C00512DB1 = {
+		fRef = 7AD3B5A6085F33CA00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.cpp: 12";
+		rLen = 0;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 215;
+		vrLoc = 0;
+	};
+	7AD3B5C0085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 43";
+		rLen = 0;
+		rLoc = 1725;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 0;
+	};
+	7AD3B5C1085F359C00512DB1 = {
+		fRef = 7AD3B5A6085F33CA00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.cpp: 17";
+		rLen = 0;
+		rLoc = 58;
+		rType = 0;
+		vrLen = 266;
+		vrLoc = 0;
+	};
+	7AD3B5C2085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.cpp: 12";
+		rLen = 0;
+		rLoc = 199;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 0;
+	};
+	7AD3B5C3085F359C00512DB1 = {
+		fRef = 7AD3B59D085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "AcquireConfig(MushcoreVirtualObject *inpConfig, const std::string& inName)";
+		rLen = 71;
+		rLoc = 141;
+		rType = 0;
+		vrLen = 187;
+		vrLoc = 0;
+	};
+	7AD3B5C4085F359C00512DB1 = {
+		fRef = 7AD3B5A5085F33C900512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase.h: 9";
+		rLen = 0;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 97;
+		vrLoc = 0;
+	};
+	7AD3B5C5085F359C00512DB1 = {
+		fRef = 7AD3B59E085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigBase *inpConfig, const std::string& inName";
+		rLen = 56;
+		rLoc = 99;
+		rType = 0;
+		vrLen = 1179;
+		vrLoc = 0;
+	};
+	7AD3B5C6085F359C00512DB1 = {
+		fRef = 7AD3B59D085F326B00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGameConfigUtils.h: AcquireConfig";
+		rLen = 0;
+		rLoc = 211;
+		rType = 0;
+		vrLen = 184;
+		vrLoc = 0;
+	};
+	7AD3B5C9085F361F00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{1156, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B5CA085F361F00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{23, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B5D1085F398700512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{1479, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B5D2085F398700512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 897}}";
+			sepNavSelRange = "{1977, 0}";
+			sepNavVisRect = "{{0, 192}, {891, 639}}";
+		};
+	};
+	7AD3B5DF085F403C00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 845}}";
+			sepNavSelRange = "{986, 0}";
+			sepNavVisRect = "{{0, 182}, {891, 639}}";
+		};
+	};
+	7AD3B5E0085F403C00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1170}}";
+			sepNavSelRange = "{881, 0}";
+			sepNavVisRect = "{{0, 172}, {891, 639}}";
+		};
+	};
+	7AD3B5E7085F73EB00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{0, 24}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
+	};
+	7AD3B5E8085F73EB00512DB1 = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 639}}";
+			sepNavSelRange = "{24, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 639}}";
+		};
 	};
 	7AE2756D083C88B200F22CA3 = {
 		uiCtxt = {

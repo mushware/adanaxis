@@ -24,8 +24,11 @@
 //%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.24 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreData.h,v 1.25 2005/06/13 14:25:45 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.25  2005/06/13 14:25:45  southa
+ * Pipe and ordered data work
+ *
  * Revision 1.24  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -184,7 +187,10 @@ public:
     inline RefType *GetOrReturnNull(const KeyType& inName) const;
     inline RefType *GetOrCreate(const KeyType& inName);
     inline bool GetIfExists(RefType *& outData, const KeyType& inName) const;
+    inline bool IfExistsGet(RefType *& outData, const KeyType& inName) const
+        { return GetIfExists(outData, inName);}
     inline void Delete(const KeyType& inName);
+    inline void IfExistsDelete(const KeyType& inName);
     inline void Delete(const tMapIterator& inIterator);
     inline bool Exists(const KeyType& inName) const;
     inline void Clear(void);
@@ -323,6 +329,17 @@ MushcoreData<RefType, KeyType>::Delete(const KeyType& inName)
         throw(MushcoreReferenceFail("Delete of non-existent data '"+inName+"'"));
     }
     Delete(p);
+}
+
+template<class RefType, class KeyType>
+inline void
+MushcoreData<RefType, KeyType>::IfExistsDelete(const KeyType& inName)
+{
+    tMapIterator p = m_data.find(inName);
+    if (p != m_data.end())
+    {
+        Delete(p);
+    }
 }
 
 template<class RefType, class KeyType>

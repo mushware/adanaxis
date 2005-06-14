@@ -21,17 +21,22 @@
  ****************************************************************************/
 //%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
  */
 
 #include "AdanaxisStandard.h"
+#include "API/mushMushGame.h"
 
+//:xml1base MushGameConfigBase
 //:generate standard ostream xml1
-class AdanaxisConfig : public MushcoreVirtualObject
+class AdanaxisConfig : public MushGameConfigBase
 {
 public:
     AdanaxisConfig();
@@ -45,12 +50,11 @@ private:
     {
         kVersion = 200506014,
     };
-    Mushware::U32 m_version; //:read
+    
     Mushware::U32 m_displayMode; //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::U32& Version(void) const { return m_version; }
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
     const char *AutoNameGet(void) const;
@@ -60,7 +64,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 574J3BnoZ2fChBLQ6S8Q+A
+//%classPrototypes } 1XpbtZygGPL5/RDE+coVug
 };
 //%inlineHeader {
 inline std::ostream&

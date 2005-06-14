@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sZjJcPKhF62mPX+WEmXvZw
 /*
- * $Id: AdanaxisAppHandler.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisAppHandler.cpp,v 1.2 2005/06/14 13:25:32 southa Exp $
  * $Log: AdanaxisAppHandler.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:32  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -72,7 +75,7 @@ void
 AdanaxisAppHandler::PrepareNewGame(void)
 {
     
-    MushcoreData<GameBase>::Sgl().Give("adanaxis", new AdanaxisGame);
+    MushcoreData<GameBase>::Sgl().Give("adanaxis", new AdanaxisGame("adanaxis"));
 }
 
 void

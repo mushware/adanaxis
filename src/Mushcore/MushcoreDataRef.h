@@ -24,8 +24,11 @@
 //%Header } bpTH2j1gwXVLeRAUcanVcA
 
 /*
- * $Id: MushcoreDataRef.h,v 1.13 2004/01/10 20:29:35 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.14 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.14  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.13  2004/01/10 20:29:35  southa
  * Form and rendering work
  *
@@ -108,8 +111,10 @@ public:
     
     void NameSet(const KeyType& inName) { m_name=inName; m_dataPtr=NULL; }
     const KeyType& NameGet(void) const { return m_name; }
+    const KeyType& Name(void) const { return NameGet(); }
     inline RefType *Get(void) const;
     inline RefType& RefGet(void) const;
+    inline RefType& WRef(void) const { return RefGet(); }
     inline bool GetIfExists(RefType *& outRef) const;
     inline bool Exists(void) const;
     bool Equals(const MushcoreDataRef& inObj) const;

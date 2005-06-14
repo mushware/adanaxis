@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -33,12 +36,13 @@
 #include "mushGL.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisSaveData.h"
 
 //:generate virtual standard ostream xml1
 class AdanaxisGame : public GameBase
 {
 public:
-    AdanaxisGame();
+    explicit AdanaxisGame(const std::string& inName="anon-adanaxis");
     virtual ~AdanaxisGame();
     virtual void Process(GameAppHandler& inAppHandler);
     virtual void Display(GameAppHandler& inAppHandler);
@@ -54,10 +58,12 @@ protected:
 private:
 
     bool m_inited; //:ignore
+    std::string m_name;
+    
     Mushware::tVal m_modeKeypressMsec;
     Mushware::U32 m_newMode;
     
-    MushcoreData<GameDialogue> m_dialogues;
+    MushcoreDataRef<AdanaxisSaveData> m_saveDataRef;
     
     AdanaxisConfig m_config;
     

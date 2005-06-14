@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -29,12 +32,14 @@
 #include "mushPlatform.h"
 #include "mushMedia.h"
 #include "mushMushGL.h"
+#include "mushMushGame.h"
 
 using namespace Mushware;
 using namespace std;
 
-AdanaxisGame::AdanaxisGame() :
-    m_inited(false)
+AdanaxisGame::AdanaxisGame(const std::string& inName) :
+    m_inited(false),
+    m_name(inName)
 {
 }
 
@@ -43,21 +48,19 @@ AdanaxisGame::~AdanaxisGame()
 
 void
 AdanaxisGame::Process(GameAppHandler& inAppHandler)
-{
-    GameAppHandler& gameAppHandler = inAppHandler;
-    tVal msecNow = gameAppHandler.MillisecondsGet();
-    
+{    
     GLUtils::PostRedisplay();
 }
 
 void
 AdanaxisGame::Display(GameAppHandler& inAppHandler)
 {    
-    //GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    //tVal msecNow = gameAppHandler.MillisecondsGet();
+    //tVal msecNow = inAppHandler.MillisecondsGet();
     
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
+    
+    MushGameDialogueUtils::MoveAndRender(m_saveDataRef.WRef().DialoguesWRef(), inAppHandler);
     
     GLUtils::OrthoPrologue();
     
@@ -78,41 +81,22 @@ AdanaxisGame::ScriptFunction(const std::string& inName, GameAppHandler& inAppHan
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
-    const MushcoreScalar *pScalar; 
-    m_config.DisplayModeSet(MushcoreEnv::Sgl().VariableGet("MUSHGL_DISPLAY_MODE").U32Get());
+    m_saveDataRef.NameSet(m_name);
+    MushcoreData<AdanaxisSaveData>::Sgl().IfExistsDelete(m_saveDataRef.Name());
+    MushcoreData<AdanaxisSaveData>::Sgl().GetOrCreate(m_saveDataRef.Name());
+
+    MushGameConfigUtils::ConfigAcquire(&m_config);
     
-    try
+    if (m_config.SafeMode())
     {
-        if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
-        {
-            if (!m_config.AutoFileIfExistsLoad(pScalar->StringGet()))
-            {
-                MushcoreLog::Sgl().InfoLog() << "Creating new configuration file '" << pScalar->StringGet() << "'" << endl;
-                m_config.ToDefaultSet();
-            }
-            if (m_config.Version() != AdanaxisConfig().Version())
-            {
-                throw MushcoreDataFail("Incompatible configuration file version - discarding");
-            }
-        }
-    }
-    catch (MushcoreNonFatalFail& e)
-    {
-        MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
-        m_config.ToDefaultSet();
+        m_config.DisplayModeSet(0);
+        MushGameDialogueUtils::NamedDialoguesAdd(m_saveDataRef.WRef().DialoguesWRef(), "^safemode");
     }
     
-    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
-    {
-        if (pScalar->U32Get())
-        {
-            m_config.DisplayModeSet(0);
-            //NamedDialoguesAdd("^safemode");
-        }
-    }
+    MushGameDialogueUtils::NamedDialoguesAdd(m_saveDataRef.WRef().DialoguesWRef(), "^start");
 
-    //NamedDialoguesAdd("^start");
-
+    cout << MushcoreData<AdanaxisSaveData>::Sgl() << endl;
+    
     m_inited = true;
 }
 
@@ -190,9 +174,10 @@ void
 AdanaxisGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "name=" << m_name << ", ";
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
-    ioOut << "dialogues=" << m_dialogues << ", ";
+    ioOut << "saveDataRef=" << m_saveDataRef << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
 }
@@ -205,6 +190,10 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "name")
+    {
+        ioIn >> m_name;
+    }
     else if (inTagStr == "modeKeypressMsec")
     {
         ioIn >> m_modeKeypressMsec;
@@ -213,9 +202,9 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_newMode;
     }
-    else if (inTagStr == "dialogues")
+    else if (inTagStr == "saveDataRef")
     {
-        ioIn >> m_dialogues;
+        ioIn >> m_saveDataRef;
     }
     else if (inTagStr == "config")
     {
@@ -230,13 +219,15 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("name");
+    ioOut << m_name;
     ioOut.TagSet("modeKeypressMsec");
     ioOut << m_modeKeypressMsec;
     ioOut.TagSet("newMode");
     ioOut << m_newMode;
-    ioOut.TagSet("dialogues");
-    ioOut << m_dialogues;
+    ioOut.TagSet("saveDataRef");
+    ioOut << m_saveDataRef;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } zwexsupJy5H07WzL0MH39w
+//%outOfLineFunctions } WKEnce8QRjql7OBP/XFtrQ
