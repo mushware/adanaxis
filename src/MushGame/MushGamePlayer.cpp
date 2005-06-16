@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieSignal.cpp
+ * File: src/MushGame/MushGamePlayer.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,66 +17,74 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1C8j1hqSjBkuainavpw0IQ
+//%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushPieSignal.cpp,v 1.3 2005/05/19 13:02:13 southa Exp $
- * $Log: MushPieSignal.cpp,v $
- * Revision 1.3  2005/05/19 13:02:13  southa
- * Mac release work
- *
- * Revision 1.2  2005/02/10 12:34:16  southa
- * Template fixes
- *
- * Revision 1.1  2004/01/10 20:29:35  southa
- * Form and rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushPieSignal.h"
+#include "MushGamePlayer.h"
 
+using namespace Mushware;
+using namespace std;
+
+MushGamePlayer::MushGamePlayer(Mushware::U32 inPlayerID) :
+    m_playerID(inPlayerID)
+{
+}
+
+void
+MushGamePlayer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+{
+}
 //%outOfLineFunctions {
 
-const char *MushPieSignal::AutoNameGet(void) const
+const char *MushGamePlayer::AutoNameGet(void) const
 {
-    return "MushPieSignal";
+    return "MushGamePlayer";
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoClone(void) const
+MushcoreVirtualObject *MushGamePlayer::AutoClone(void) const
 {
-    return new MushPieSignal(*this);
+    return new MushGamePlayer(*this);
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoCreate(void) const
+MushcoreVirtualObject *MushGamePlayer::AutoCreate(void) const
 {
-    return new MushPieSignal;
+    return new MushGamePlayer;
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGamePlayer::AutoVirtualFactory(void)
 {
-    return new MushPieSignal;
+    return new MushGamePlayer;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushPieSignal", MushPieSignal::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGamePlayer", MushGamePlayer::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushPieSignal::AutoPrint(std::ostream& ioOut) const
+MushGamePlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "playerID=" << m_playerID;
     ioOut << "]";
 }
 bool
-MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "playerID")
+    {
+        ioIn >> m_playerID;
     }
     else
     {
@@ -85,7 +93,9 @@ MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     return true;
 }
 void
-MushPieSignal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("playerID");
+    ioOut << m_playerID;
 }
-//%outOfLineFunctions } 8k84t3PIC+J0B1jv9gbD4Q
+//%outOfLineFunctions } aftg6XwYIt+WUkcxbS4CHQ

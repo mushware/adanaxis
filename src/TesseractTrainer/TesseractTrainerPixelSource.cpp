@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } deJxNEsvw1K5S2rPw6UiPg
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.2 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.3 2005/05/26 00:46:41 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.3  2005/05/26 00:46:41  southa
+ * Made buildable on win32
+ *
  * Revision 1.2  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -161,7 +164,9 @@ TesseractTrainerPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const 
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "frameTime")
     {
@@ -196,4 +201,4 @@ TesseractTrainerPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } 2rnWar+ryFb47cBm2you2w
+//%outOfLineFunctions } 9jy2W93BEsEsiNYjqpzcew

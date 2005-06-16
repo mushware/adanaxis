@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ztSLO5E+zMTzTamKn6ueIQ
 /*
- * $Id: InfernalContract.cpp,v 1.13 2005/02/10 12:34:00 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.14 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.14  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.13  2005/02/10 12:34:00  southa
  * Template fixes
  *
@@ -1310,7 +1313,9 @@ InfernalContract::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "pickleState")
     {
@@ -1358,4 +1363,4 @@ InfernalContract::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("fastDiagnostics");
     ioOut << m_fastDiagnostics;
 }
-//%outOfLineFunctions } T1e0wW7mtVcSuqXwz0tXwg
+//%outOfLineFunctions } YClJuMlNMzjJF2uxE65OzA

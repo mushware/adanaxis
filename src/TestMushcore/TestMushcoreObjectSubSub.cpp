@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KIdxnUyOTil5902vWlZ1jw
 /*
- * $Id: TestMushcoreObjectSubSub.cpp,v 1.2 2005/02/10 12:34:24 southa Exp $
+ * $Id: TestMushcoreObjectSubSub.cpp,v 1.3 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObjectSubSub.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/02/10 12:34:24  southa
  * Template fixes
  *
@@ -81,7 +84,9 @@ TestMushcoreObjectSubSub::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "subSubObjectValue")
     {
@@ -104,4 +109,4 @@ TestMushcoreObjectSubSub::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subSubObjectValue");
     ioOut << m_subSubObjectValue;
 }
-//%outOfLineFunctions } BKsh9/ZsEUaoufXIUdMe6Q
+//%outOfLineFunctions } yOK1epGojqnsqv4N0iIf3w

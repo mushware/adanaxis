@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 03m51tzRRZ4J/ClESPY1sA
 /*
- * $Id: GLFontRef.cpp,v 1.12 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.13 2005/05/19 13:01:59 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.13  2005/05/19 13:01:59  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
@@ -142,7 +145,9 @@ GLFontRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "name")
     {
@@ -166,4 +171,4 @@ GLFontRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("size");
     ioOut << m_size;
 }
-//%outOfLineFunctions } JA7b5lM7O6fVj4J39SDyHQ
+//%outOfLineFunctions } jy3kiciwKlF+m84uTz9w7A

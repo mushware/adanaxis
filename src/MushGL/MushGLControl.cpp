@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } uBZy6/iKGqoZ51Zed4KVVw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLControl.cpp,v 1.1 2005/06/13 17:35:37 southa Exp $
+ * $Log: MushGLControl.cpp,v $
+ * Revision 1.1  2005/06/13 17:35:37  southa
+ * Adanaxis creation
+ *
  */
 
 #include "MushGLControl.h"
@@ -71,7 +74,9 @@ MushGLControl::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "timestamp")
     {
@@ -101,4 +106,4 @@ MushGLControl::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("axes");
     ioOut << m_axes;
 }
-//%outOfLineFunctions } MhIECWMMeK7+DKp96HjIzw
+//%outOfLineFunctions } rW4eLR3coL3dtsjS3m43RA

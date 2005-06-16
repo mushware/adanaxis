@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZbqDA500q75IjTv/A4Bk6Q
 /*
- * $Id: MaurheenGame.cpp,v 1.12 2005/04/19 23:25:40 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.13 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.13  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/04/19 23:25:40  southa
  * Mode switching and recognition
  *
@@ -213,7 +216,9 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else
     {
@@ -225,4 +230,4 @@ void
 MaurheenGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } FKoS/qlb96vSXXqTOsWo7w
+//%outOfLineFunctions } UWbhOECDt1EL3sq/JH423Q

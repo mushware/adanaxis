@@ -21,16 +21,21 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisSaveData.h,v 1.1 2005/06/14 20:39:40 southa Exp $
+ * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.1  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
 
 #include "API/mushGame.h"
+#include "API/mushMushGame.h"
 
+//:xml1base MushGameSaveData
 //:generate virtual standard ostream xml1
-class AdanaxisSaveData : public MushcoreVirtualObject
+class AdanaxisSaveData : public MushGameSaveData
 {
 public:
     

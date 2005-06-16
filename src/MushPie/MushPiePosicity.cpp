@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1ueBdipwBAr0SQ2f9drFZg
 /*
- * $Id: MushPiePosicity.cpp,v 1.4 2005/03/25 19:13:50 southa Exp $
+ * $Id: MushPiePosicity.cpp,v 1.5 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePosicity.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/03/25 19:13:50  southa
  * GameDialogue work
  *
@@ -93,7 +96,9 @@ MushPiePosicity::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "angPos")
     {
@@ -129,4 +134,4 @@ MushPiePosicity::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("vel");
     ioOut << m_vel;
 }
-//%outOfLineFunctions } HyVByFbjAGYwIihEgHCa1Q
+//%outOfLineFunctions } Ek+yDggD1qYAUySp4H7COg

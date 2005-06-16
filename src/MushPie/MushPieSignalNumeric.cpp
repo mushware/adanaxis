@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ayO3HxKF2plbUIsSd8qxzA
 /*
- * $Id: MushPieSignalNumeric.cpp,v 1.2 2005/02/10 12:34:16 southa Exp $
+ * $Id: MushPieSignalNumeric.cpp,v 1.3 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPieSignalNumeric.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/02/10 12:34:16  southa
  * Template fixes
  *
@@ -72,7 +75,9 @@ MushPieSignalNumeric::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "eventNumber")
     {
@@ -90,4 +95,4 @@ MushPieSignalNumeric::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("eventNumber");
     ioOut << m_eventNumber;
 }
-//%outOfLineFunctions } LU817k75K5S+Sfs1bLUkiw
+//%outOfLineFunctions } LU4j9Xj6YFUqHPF0DOWaQQ

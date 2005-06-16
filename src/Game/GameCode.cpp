@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jhdo/VCXESdIVB/METBPYg
 /*
- * $Id: GameCode.cpp,v 1.1 2005/04/11 23:31:41 southa Exp $
+ * $Id: GameCode.cpp,v 1.2 2005/05/19 13:02:01 southa Exp $
  * $Log: GameCode.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/04/11 23:31:41  southa
  * Startup and registration screen
  *
@@ -114,7 +117,9 @@ GameCode::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "code")
     {
@@ -138,4 +143,4 @@ GameCode::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("crypt");
     ioOut << m_crypt;
 }
-//%outOfLineFunctions } OsizbnSU6jHYE6zq+hyZLw
+//%outOfLineFunctions } KJTjOeU1IEiZk1GaYRQjiA

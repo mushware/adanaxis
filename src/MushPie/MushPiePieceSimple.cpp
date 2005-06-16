@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BZiJCDiOBWqtsOyCjq4lrA
 /*
- * $Id: MushPiePieceSimple.cpp,v 1.5 2005/02/10 12:34:14 southa Exp $
+ * $Id: MushPiePieceSimple.cpp,v 1.6 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePieceSimple.cpp,v $
+ * Revision 1.6  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/10 12:34:14  southa
  * Template fixes
  *
@@ -82,7 +85,9 @@ MushPiePieceSimple::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "pos")
     {
@@ -105,4 +110,4 @@ MushPiePieceSimple::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pos");
     ioOut << m_pos;
 }
-//%outOfLineFunctions } CMAqB0foit4lFBNG5M3IDw
+//%outOfLineFunctions } aoq/cwW6AcMwf8NBXTlhUg

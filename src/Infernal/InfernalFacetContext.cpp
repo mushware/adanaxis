@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } apsuPIkQzTaqWiIk89z8uA
 /*
- * $Id: InfernalFacetContext.cpp,v 1.2 2005/02/10 12:34:01 southa Exp $
+ * $Id: InfernalFacetContext.cpp,v 1.3 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalFacetContext.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/02/10 12:34:01  southa
  * Template fixes
  *
@@ -150,7 +153,9 @@ InfernalFacetContext::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "textureRef")
     {
@@ -216,4 +221,4 @@ InfernalFacetContext::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("contextValid");
     ioOut << m_contextValid;
 }
-//%outOfLineFunctions } ZjEBBfa8cx9qwqlyIFiFwg
+//%outOfLineFunctions } N701y7cepe6EAN9O6AxBmg

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } LccQwBTHLT37eo+dpTNBig
 /*
- * $Id: MushGLPixelSource.cpp,v 1.1 2005/02/13 22:44:07 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.2 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/13 22:44:07  southa
  * Tesseract stuff
  *
@@ -42,7 +45,9 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else
     {
@@ -54,4 +59,4 @@ void
 MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } iKvjvp4mIkqufh0e1Hc0HQ
+//%outOfLineFunctions } 3w4QPIqAN1anXzJkRs9lZg

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Bo1gjSKG7zQM3RoYlyyAYg
 /*
- * $Id: GameSoundSpec.cpp,v 1.1 2005/03/25 19:13:49 southa Exp $
+ * $Id: GameSoundSpec.cpp,v 1.2 2005/05/19 13:02:03 southa Exp $
  * $Log: GameSoundSpec.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/03/25 19:13:49  southa
  * GameDialogue work
  *
@@ -70,7 +73,9 @@ GameSoundSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "soundRef")
     {
@@ -94,4 +99,4 @@ GameSoundSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startTime");
     ioOut << m_startTime;
 }
-//%outOfLineFunctions } i7d7xiATDfSFzlwd6RWIYg
+//%outOfLineFunctions } EoIBrgTCwCXyOHsAQaMUiA

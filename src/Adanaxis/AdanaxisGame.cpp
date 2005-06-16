@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.3  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/14 13:25:33  southa
  * Adanaxis work
  *
@@ -28,6 +31,8 @@
  */
 
 #include "AdanaxisGame.h"
+
+#include "AdanaxisSaveData.h"
 
 #include "mushPlatform.h"
 #include "mushMedia.h"
@@ -60,7 +65,7 @@ AdanaxisGame::Display(GameAppHandler& inAppHandler)
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     
-    MushGameDialogueUtils::MoveAndRender(m_saveDataRef.WRef().DialoguesWRef(), inAppHandler);
+    MushGameDialogueUtils::MoveAndRender(SaveData().DialoguesWRef(), inAppHandler);
     
     GLUtils::OrthoPrologue();
     
@@ -82,20 +87,20 @@ void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
     m_saveDataRef.NameSet(m_name);
-    MushcoreData<AdanaxisSaveData>::Sgl().IfExistsDelete(m_saveDataRef.Name());
-    MushcoreData<AdanaxisSaveData>::Sgl().GetOrCreate(m_saveDataRef.Name());
+    MushcoreData<MushGameSaveData>::Sgl().IfExistsDelete(m_saveDataRef.Name());
+    MushcoreData<MushGameSaveData>::Sgl().Give(m_saveDataRef.Name(), new AdanaxisSaveData);
 
     MushGameConfigUtils::ConfigAcquire(&m_config);
     
     if (m_config.SafeMode())
     {
         m_config.DisplayModeSet(0);
-        MushGameDialogueUtils::NamedDialoguesAdd(m_saveDataRef.WRef().DialoguesWRef(), "^safemode");
+        MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^safemode");
     }
     
-    MushGameDialogueUtils::NamedDialoguesAdd(m_saveDataRef.WRef().DialoguesWRef(), "^start");
+    MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^start");
 
-    cout << MushcoreData<AdanaxisSaveData>::Sgl() << endl;
+    cout << MushcoreData<MushGameSaveData>::Sgl() << endl;
     
     m_inited = true;
 }

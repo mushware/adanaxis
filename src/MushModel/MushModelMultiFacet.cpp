@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KDrzMM/sHV2WFHQjP9ctgQ
 /*
- * $Id: MushModelMultiFacet.cpp,v 1.3 2005/02/10 12:34:10 southa Exp $
+ * $Id: MushModelMultiFacet.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
  * $Log: MushModelMultiFacet.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:10  southa
  * Template fixes
  *
@@ -161,7 +164,9 @@ MushModelMultiFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "facets")
     {
@@ -179,4 +184,4 @@ MushModelMultiFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facets");
     ioOut << m_facets;
 }
-//%outOfLineFunctions } LEUhvRLj/Y4UT0+CKANgUA
+//%outOfLineFunctions } 8xSS6bLn6B1c0qqYz33Vaw

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WTo3qhRr63RK1J47o9bcbQ
 /*
- * $Id: MushModelFacet.cpp,v 1.3 2005/02/10 12:34:08 southa Exp $
+ * $Id: MushModelFacet.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
  * $Log: MushModelFacet.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:08  southa
  * Template fixes
  *
@@ -81,7 +84,9 @@ MushModelFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "renderType")
     {
@@ -123,4 +128,4 @@ MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("normals");
     ioOut << m_normals;
 }
-//%outOfLineFunctions } 0dG/ACymQk84v7Mhm1UaVA
+//%outOfLineFunctions } AL+AhRZxANrH/2k1HwBthQ

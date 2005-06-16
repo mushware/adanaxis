@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PEy2CHiJNmS7LfNQy1wt/g
 /*
- * $Id: GameSoundStreamSpec.cpp,v 1.1 2005/03/25 19:13:49 southa Exp $
+ * $Id: GameSoundStreamSpec.cpp,v 1.2 2005/05/19 13:02:03 southa Exp $
  * $Log: GameSoundStreamSpec.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/03/25 19:13:49  southa
  * GameDialogue work
  *
@@ -71,7 +74,9 @@ GameSoundStreamSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "soundStreamRef")
     {
@@ -101,4 +106,4 @@ GameSoundStreamSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startTime");
     ioOut << startTime;
 }
-//%outOfLineFunctions } nNfWfv+1RoZRt457C5NYyQ
+//%outOfLineFunctions } p3CwqhA46dpnObTvLbCCxg

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PPbm75OUQfPK+juajmc50A
 /*
- * $Id: TestMushcoreObjectBase.cpp,v 1.2 2005/02/10 12:34:23 southa Exp $
+ * $Id: TestMushcoreObjectBase.cpp,v 1.3 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObjectBase.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/02/10 12:34:23  southa
  * Template fixes
  *
@@ -79,7 +82,9 @@ TestMushcoreObjectBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "baseObjectValue")
     {
@@ -97,4 +102,4 @@ TestMushcoreObjectBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("baseObjectValue");
     ioOut << m_baseObjectValue;
 }
-//%outOfLineFunctions } ACldnHdFk7OaVTSAxuU6bQ
+//%outOfLineFunctions } 0Bb1FjPpV/Nvw0CnO6TOxg

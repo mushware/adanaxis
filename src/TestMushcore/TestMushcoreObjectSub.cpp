@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bzZeP1dl7EEAL/nNQRoAFg
 /*
- * $Id: TestMushcoreObjectSub.cpp,v 1.3 2005/03/25 22:04:51 southa Exp $
+ * $Id: TestMushcoreObjectSub.cpp,v 1.4 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObjectSub.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/03/25 22:04:51  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -76,7 +79,9 @@ TestMushcoreObjectSub::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "subObjectValue")
     {
@@ -99,4 +104,4 @@ TestMushcoreObjectSub::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subObjectValue");
     ioOut << m_subObjectValue;
 }
-//%outOfLineFunctions } QqG9neq9C3ew57Pvz02Tcw
+//%outOfLineFunctions } 7BxrI9PRYwziIF9Lu6w2JA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x23JuTdZeZ6lv0VI6tjnsA
 /*
- * $Id: MushModelMaterial.cpp,v 1.3 2005/02/10 12:34:09 southa Exp $
+ * $Id: MushModelMaterial.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
  * $Log: MushModelMaterial.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:09  southa
  * Template fixes
  *
@@ -158,7 +161,9 @@ MushModelMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "textureName")
     {
@@ -176,4 +181,4 @@ MushModelMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("textureName");
     ioOut << m_textureName;
 }
-//%outOfLineFunctions } RS69lxyunWBXn3J9hig9DQ
+//%outOfLineFunctions } x8QRFuHmV/aDay16ONDOCw

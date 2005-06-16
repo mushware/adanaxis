@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMESERVER_H
-#define MUSHGAMESERVER_H
-//%includeGuardStart } /8O1HzUXaK1cJonENvb/UA
+#ifndef MUSHGAMEPLAYER_H
+#define MUSHGAMEPLAYER_H
+//%includeGuardStart } foHvGbTEB8G6XgqJu9SuYA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameServer.h
+ * File: src/MushGame/MushGamePlayer.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,13 +21,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } okZwqrFoOPduCmtBZnptBQ
+//%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGameServer.h,v 1.1 2005/06/16 10:49:00 southa Exp $
- * $Log: MushGameServer.h,v $
- * Revision 1.1  2005/06/16 10:49:00  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
@@ -36,18 +33,19 @@
 #include "MushGameMessage.h"
 
 //:generate virtual standard ostream xml1
-class MushGameServer : public MushcoreVirtualObject
+class MushGamePlayer : public MushcoreVirtualObject
 {
 public:
-    MushGameServer();
-    virtual ~MushGameServer() {}
+    explicit MushGamePlayer(Mushware::U32 inPlayerID = 0);
+    virtual ~MushGamePlayer() {}
     virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
-
+    
 private:
-        
+    Mushware::U32 m_playerID; //:read
     
 //%classPrototypes {
 public:
+    const Mushware::U32& PlayerID(void) const { return m_playerID; }
     virtual const char *AutoNameGet(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -55,16 +53,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } gnAZuCvapICQ1MjyCHbleg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameServer& inObj)
+operator<<(std::ostream& ioOut, const MushGamePlayer& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } wnCNdjxn4Bego5Zc0gqicA
+//%inlineHeader } qNoomoiXq6eGt3pwxj2Fmw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

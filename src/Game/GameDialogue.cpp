@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mPmCGCmDmQ75caXxvc1Qow
 /*
- * $Id: GameDialogue.cpp,v 1.29 2005/03/28 18:59:32 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.30 2005/05/19 13:02:02 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.30  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.29  2005/03/28 18:59:32  southa
  * Dialogues for Tesseract Trainer
  *
@@ -263,7 +266,9 @@ GameDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "strings")
     {
@@ -311,4 +316,4 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } y4OiVChZ45VHS4b05bz8dA
+//%outOfLineFunctions } sJBe+CT9l1c1RP/ZCJP0GA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ggvvg/klFTDl+UpqEnnMwA
 /*
- * $Id: GameReg.cpp,v 1.5 2005/05/26 00:46:40 southa Exp $
+ * $Id: GameReg.cpp,v 1.6 2005/05/27 12:48:37 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.6  2005/05/27 12:48:37  southa
+ * Registration box tweaks
+ *
  * Revision 1.5  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -360,7 +363,9 @@ GameReg::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagSt
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "regURL")
     {
@@ -390,5 +395,5 @@ GameReg::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("authValue");
     ioOut << m_authValue;
 }
-//%outOfLineFunctions } UjVeTVX86evV8ly5K5YldA
+//%outOfLineFunctions } I/iT4dAta1i2xJ5qv2AKYQ
 

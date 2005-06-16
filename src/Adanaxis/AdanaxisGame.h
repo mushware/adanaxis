@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.2 2005/06/14 13:25:33 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.3 2005/06/14 20:39:40 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.3  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/14 13:25:33  southa
  * Adanaxis work
  *
@@ -31,12 +34,15 @@
  *
  */
 
-#include "mushMushcore.h"
-#include "mushGame.h"
-#include "mushGL.h"
+#include "AdanaxisStandard.h"
 
 #include "AdanaxisConfig.h"
 #include "AdanaxisSaveData.h"
+
+#include "API/mushMushcore.h"
+#include "API/mushGame.h"
+#include "API/mushGL.h"
+#include "API/mushMushGame.h"
 
 //:generate virtual standard ostream xml1
 class AdanaxisGame : public GameBase
@@ -56,14 +62,15 @@ public:
 protected:
     
 private:
-
+    AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(m_saveDataRef.WRef()); }
+    
     bool m_inited; //:ignore
     std::string m_name;
     
     Mushware::tVal m_modeKeypressMsec;
     Mushware::U32 m_newMode;
     
-    MushcoreDataRef<AdanaxisSaveData> m_saveDataRef;
+    MushcoreDataRef<MushGameSaveData> m_saveDataRef;
     
     AdanaxisConfig m_config;
     

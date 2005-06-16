@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 52RIWum9xu087Tczq3jGIg
 /*
- * $Id: MushPiePieceMobile.cpp,v 1.5 2005/02/10 12:34:13 southa Exp $
+ * $Id: MushPiePieceMobile.cpp,v 1.6 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePieceMobile.cpp,v $
+ * Revision 1.6  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/10 12:34:13  southa
  * Template fixes
  *
@@ -93,7 +96,9 @@ MushPiePieceMobile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "pos0")
     {
@@ -134,4 +139,4 @@ MushPiePieceMobile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("newPosIndex");
     ioOut << m_newPosIndex;
 }
-//%outOfLineFunctions } qq52mgjwReQpZLCl4JoYDQ
+//%outOfLineFunctions } 5yFeRlotBSDjCYvrJ+ax8g

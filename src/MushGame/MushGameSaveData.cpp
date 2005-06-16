@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieSignal.cpp
+ * File: src/MushGame/MushGameSaveData.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,66 +17,64 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1C8j1hqSjBkuainavpw0IQ
+//%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushPieSignal.cpp,v 1.3 2005/05/19 13:02:13 southa Exp $
- * $Log: MushPieSignal.cpp,v $
- * Revision 1.3  2005/05/19 13:02:13  southa
- * Mac release work
- *
- * Revision 1.2  2005/02/10 12:34:16  southa
- * Template fixes
- *
- * Revision 1.1  2004/01/10 20:29:35  southa
- * Form and rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushPieSignal.h"
+#include "MushGameSaveData.h"
+
+MUSHCORE_DATA_INSTANCE(MushGameSaveData);
 
 //%outOfLineFunctions {
 
-const char *MushPieSignal::AutoNameGet(void) const
+const char *MushGameSaveData::AutoNameGet(void) const
 {
-    return "MushPieSignal";
+    return "MushGameSaveData";
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoClone(void) const
+MushcoreVirtualObject *MushGameSaveData::AutoClone(void) const
 {
-    return new MushPieSignal(*this);
+    return new MushGameSaveData(*this);
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoCreate(void) const
+MushcoreVirtualObject *MushGameSaveData::AutoCreate(void) const
 {
-    return new MushPieSignal;
+    return new MushGameSaveData;
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameSaveData::AutoVirtualFactory(void)
 {
-    return new MushPieSignal;
+    return new MushGameSaveData;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushPieSignal", MushPieSignal::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameSaveData", MushGameSaveData::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushPieSignal::AutoPrint(std::ostream& ioOut) const
+MushGameSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "players=" << m_players;
     ioOut << "]";
 }
 bool
-MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "players")
+    {
+        ioIn >> m_players;
     }
     else
     {
@@ -85,7 +83,9 @@ MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     return true;
 }
 void
-MushPieSignal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("players");
+    ioOut << m_players;
 }
-//%outOfLineFunctions } 8k84t3PIC+J0B1jv9gbD4Q
+//%outOfLineFunctions } cNf6GO7IqoEmNbK56Q9g8w

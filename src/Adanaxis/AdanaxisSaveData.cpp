@@ -17,13 +17,14 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisSaveData.cpp,v 1.1 2005/06/14 20:39:40 southa Exp $
+ * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.1  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisSaveData.h"
-
-MUSHCORE_DATA_INSTANCE(AdanaxisSaveData);
 
 //%outOfLineFunctions {
 
@@ -58,6 +59,7 @@ void
 AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGameSaveData::AutoPrint(ioOut);
     ioOut << "dialogues=" << m_dialogues;
     ioOut << "]";
 }
@@ -74,6 +76,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_dialogues;
     }
+    else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
     else
     {
         return false;
@@ -83,7 +89,8 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
 void
 AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGameSaveData::AutoXMLPrint(ioOut);
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } PXj7AAQKh8esD4sM5eYKeA
+//%outOfLineFunctions } mAqhJ1Varvk6KQVssfJ+Ww

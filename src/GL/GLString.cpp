@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T2OnH6NbDcsuezTIwyt4FA
 /*
- * $Id: GLString.cpp,v 1.12 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLString.cpp,v 1.13 2005/05/19 13:02:00 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.13  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
@@ -136,7 +139,9 @@ GLString::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "fontRef")
     {
@@ -166,4 +171,4 @@ GLString::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("alignment");
     ioOut << m_alignment;
 }
-//%outOfLineFunctions } hZnvuy5Muyh2YbZEIdXxjw
+//%outOfLineFunctions } iEBD1H7iuEGth6jWSX92+A

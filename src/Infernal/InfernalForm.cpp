@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } a8fQWtiAU9Jz7lV1nxPnhA
 /*
- * $Id: InfernalForm.cpp,v 1.4 2005/02/10 12:34:01 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.5 2005/05/19 13:02:05 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:05  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/10 12:34:01  southa
  * Template fixes
  *
@@ -261,7 +264,9 @@ InfernalForm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "modelRef")
     {
@@ -296,4 +301,4 @@ InfernalForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facetContextIndex");
     ioOut << m_facetContextIndex;
 }
-//%outOfLineFunctions } och7Rj5tPyTqnq9I36IBnA
+//%outOfLineFunctions } 5pGug+yaJhFojzTjc6kWBw

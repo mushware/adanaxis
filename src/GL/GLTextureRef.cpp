@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } asw/Xtq8JFLwPuHWwCzSHA
 /*
- * $Id: GLTextureRef.cpp,v 1.19 2005/02/10 12:33:56 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.20 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.20  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.19  2005/02/10 12:33:56  southa
  * Template fixes
  *
@@ -151,7 +154,9 @@ GLTextureRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "name")
     {
@@ -169,4 +174,4 @@ GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("name");
     ioOut << m_name;
 }
-//%outOfLineFunctions } iJv9AW5q5USnzdu48t2C9Q
+//%outOfLineFunctions } uqrTkjCXLubWyvnOcr1SFw

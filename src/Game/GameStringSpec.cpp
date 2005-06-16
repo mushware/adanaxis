@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eNQnZ9mXkx+CLF7sLqnxHg
 /*
- * $Id: GameStringSpec.cpp,v 1.1 2005/03/25 19:13:49 southa Exp $
+ * $Id: GameStringSpec.cpp,v 1.2 2005/05/19 13:02:03 southa Exp $
  * $Log: GameStringSpec.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/03/25 19:13:49  southa
  * GameDialogue work
  *
@@ -79,7 +82,9 @@ GameStringSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "string")
     {
@@ -157,4 +162,4 @@ GameStringSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endSize");
     ioOut << m_endSize;
 }
-//%outOfLineFunctions } sblV3eFjDnx5MPJKPpstWg
+//%outOfLineFunctions } D5hAPth80vb1spo7Giyq4A

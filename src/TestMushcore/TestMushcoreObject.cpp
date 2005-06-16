@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /C4CFFmSnufbqgXbq7HAiw
 /*
- * $Id: TestMushcoreObject.cpp,v 1.20 2005/02/10 12:34:22 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.21 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.21  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.20  2005/02/10 12:34:22  southa
  * Template fixes
  *
@@ -207,7 +210,9 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "vectorPolymorph")
     {
@@ -339,4 +344,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } P6iqVh8psOvzOMRnhb3nBA
+//%outOfLineFunctions } B1AaiFiquxKQgwocOSVAtw

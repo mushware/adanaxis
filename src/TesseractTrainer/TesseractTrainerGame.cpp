@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.21 2005/06/08 20:59:52 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.22 2005/06/09 14:13:06 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.22  2005/06/09 14:13:06  southa
+ * X11 fixes
+ *
  * Revision 1.21  2005/06/08 20:59:52  southa
  * X11 release
  *
@@ -663,7 +666,9 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "orientations")
     {
@@ -741,4 +746,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } vBC3u4fBe/aE1X55Ir2FUw
+//%outOfLineFunctions } rh+Vvrkl0rBR/vuBqUXU3A

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Jc7zA7p7ZQz1f9lxQyLUCw
 /*
- * $Id: MushPieDialogue.cpp,v 1.1 2005/02/10 12:34:11 southa Exp $
+ * $Id: MushPieDialogue.cpp,v 1.2 2005/05/19 13:02:12 southa Exp $
  * $Log: MushPieDialogue.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/10 12:34:11  southa
  * Template fixes
  *
@@ -98,7 +101,9 @@ MushPieDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "age")
     {
@@ -127,4 +132,4 @@ MushPieDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } UDOB44E6yQvn++YNR5OMAw
+//%outOfLineFunctions } KWjsdXF8kckviDi55Wez2g

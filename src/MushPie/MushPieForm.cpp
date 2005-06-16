@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 5btgIJdgvUud/9DtUw4GnQ
 /*
- * $Id: MushPieForm.cpp,v 1.3 2005/02/10 12:34:12 southa Exp $
+ * $Id: MushPieForm.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
  * $Log: MushPieForm.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:12  southa
  * Template fixes
  *
@@ -98,7 +101,9 @@ MushPieForm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else
     {
@@ -110,4 +115,4 @@ void
 MushPieForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } zI+WKptQ7zg51ndrsTOIJw
+//%outOfLineFunctions } CmRuNvu1X+X8L4vtG3rpxg

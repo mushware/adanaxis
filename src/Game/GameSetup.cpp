@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } tdoSfpSXz3jSwC871qqVIQ
 /*
- * $Id: GameSetup.cpp,v 1.44 2005/04/19 23:25:39 southa Exp $
+ * $Id: GameSetup.cpp,v 1.45 2005/05/19 13:02:03 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.45  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.44  2005/04/19 23:25:39  southa
  * Mode switching and recognition
  *
@@ -433,7 +436,9 @@ GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "gameState")
     {
@@ -475,4 +480,4 @@ GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("windowClicked");
     ioOut << m_windowClicked;
 }
-//%outOfLineFunctions } PMr12HgvmeSl2XTctCjcTw
+//%outOfLineFunctions } ZN7gER3LRUr9jX5LA6HWfg

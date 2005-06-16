@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w9bWvYgUJ8YH9Yome/fZPQ
 /*
- * $Id: GameQuit.cpp,v 1.22 2005/04/19 23:25:39 southa Exp $
+ * $Id: GameQuit.cpp,v 1.23 2005/05/19 13:02:02 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.23  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.22  2005/04/19 23:25:39  southa
  * Mode switching and recognition
  *
@@ -278,7 +281,9 @@ GameQuit::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "gameState")
     {
@@ -302,4 +307,4 @@ GameQuit::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startMsec");
     ioOut << m_startMsec;
 }
-//%outOfLineFunctions } awoKGs3YsJryFJYnTjvXMw
+//%outOfLineFunctions } dsD0201LE3O7OoxWO3lQDQ

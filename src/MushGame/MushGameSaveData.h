@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMESERVER_H
-#define MUSHGAMESERVER_H
-//%includeGuardStart } /8O1HzUXaK1cJonENvb/UA
+#ifndef MUSHGAMESAVEDATA_H
+#define MUSHGAMESAVEDATA_H
+//%includeGuardStart } 7yiKGTLNms/OxctrFNygVg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameServer.h
+ * File: src/MushGame/MushGameSaveData.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,33 +21,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } okZwqrFoOPduCmtBZnptBQ
+//%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameServer.h,v 1.1 2005/06/16 10:49:00 southa Exp $
- * $Log: MushGameServer.h,v $
- * Revision 1.1  2005/06/16 10:49:00  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameMailbox.h"
-#include "MushGameMessage.h"
+#include "MushGamePlayer.h"
 
 //:generate virtual standard ostream xml1
-class MushGameServer : public MushcoreVirtualObject
+class MushGameSaveData : public MushcoreVirtualObject
 {
 public:
-    MushGameServer();
-    virtual ~MushGameServer() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
-
-private:
-        
     
+    
+private:
+    MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
 //%classPrototypes {
 public:
+    const MushcoreData<MushGamePlayer>& Players(void) const { return m_players; }
+    void PlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_players=inValue; }
+    // Writable reference for m_players
+    MushcoreData<MushGamePlayer>& PlayersWRef(void) { return m_players; }
     virtual const char *AutoNameGet(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -55,16 +52,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } drB690lcXrWsgunfYZtTHQ
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameServer& inObj)
+operator<<(std::ostream& ioOut, const MushGameSaveData& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } wnCNdjxn4Bego5Zc0gqicA
+//%inlineHeader } t1GJfU09zSXc2hekGD1d9A
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

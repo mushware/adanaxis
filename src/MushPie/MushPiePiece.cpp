@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } onoupbr55NLpu8Aipjamrw
 /*
- * $Id: MushPiePiece.cpp,v 1.9 2005/02/10 12:34:13 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.10 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.10  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.9  2005/02/10 12:34:13  southa
  * Template fixes
  *
@@ -112,7 +115,9 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 {
     if (inTagStr == "obj")
     {
+        AutoInputPrologue(ioIn);
         ioIn >> *this;
+        AutoInputEpilogue(ioIn);
     }
     else if (inTagStr == "sleepState")
     {
@@ -136,4 +141,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("formRef");
     ioOut << m_formRef;
 }
-//%outOfLineFunctions } X8Z+1Gv6lFKM3UgytEBt1g
+//%outOfLineFunctions } LkPj3/WwkMfifzqheQCv4Q
