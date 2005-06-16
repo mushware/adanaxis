@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.20 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.21 2005/06/14 13:25:35 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.21  2005/06/14 13:25:35  southa
+ * Adanaxis work
+ *
  * Revision 1.20  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -246,6 +249,53 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
     typename std::vector<T *>::const_iterator pEnd = inObj.end();
     typename std::vector<T *>::const_iterator p = inObj.begin();
 
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+// Deque functions are a direct copy of vector functions
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::deque<T>& inObj)
+{
+    typename std::deque<T>::const_iterator pEnd = inObj.end();
+    typename std::deque<T>::const_iterator p = inObj.begin();
+    
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::deque<T *>& inObj)
+{
+    typename std::deque<T *>::const_iterator pEnd = inObj.end();
+    typename std::deque<T *>::const_iterator p = inObj.begin();
+    
     std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
     while (p != pEnd)

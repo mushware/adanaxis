@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAME_H
-#define MUSHGAME_H
-//%includeGuardStart } CoDoLBXzZV/yPyG+jVhw3g
+#ifndef MUSHGAMELINK_H
+#define MUSHGAMELINK_H
+//%includeGuardStart } eq6oZOrSs0esIGJaMi39ug
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGame.h
+ * File: src/MushGame/MushGameLink.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,25 +21,38 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 91HSyJ80zvMVrJEEjE/n9w
+//%Header } XtlsEZ8InVWH+g9tXmyfGg
 /*
- * $Id: MushGame.h,v 1.1 2005/06/14 20:39:41 southa Exp $
- * $Log: MushGame.h,v $
- * Revision 1.1  2005/06/14 20:39:41  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameClient.h"
-#include "MushGameConfigBase.h"
-#include "MushGameConfigUtils.h"
-#include "MushGameDialogue.h"
-#include "MushGameDialogueUtils.h"
-#include "MushGameDigest.h"
-#include "MushGameMessage.h"
-#include "MushGameServer.h"
 #include "MushGameStandard.h"
 
+//:generate virtual standard ostream xml1
+class MushGameLink : public MushcoreVirtualObject
+{
+public:
+    
+//%classPrototypes {
+public:
+    virtual const char *AutoNameGet(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+};
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushGameLink& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } lse6rc6/yrBS2SyQc7d5Hg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

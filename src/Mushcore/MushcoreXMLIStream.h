@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QZNov6vf1irc8tAhC1nh9g
 /*
- * $Id: MushcoreXMLIStream.h,v 1.25 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.26 2005/06/14 13:25:35 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.26  2005/06/14 13:25:35  southa
+ * Adanaxis work
+ *
  * Revision 1.25  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -122,6 +125,8 @@ public:
     template<class T> void ObjectRead(T *& outpObj);   
     template<class T> void ObjectRead(std::vector<T>& inVector);
     template<class T> void ObjectRead(std::vector<T *>& inVector);
+    template<class T> void ObjectRead(std::deque<T>& inVector);
+    template<class T> void ObjectRead(std::deque<T *>& inVector);
     template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
     template<class T, class U> void ObjectRead(std::map<T, U *>& inMap);
 
@@ -229,6 +234,20 @@ operator>>(MushcoreXMLIStream& ioIn, std::vector<T>& outObj)
 template<class T>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, std::vector<T *>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::deque<T>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::deque<T *>& outObj)
 {
     ioIn.ObjectRead(outObj);
 }
@@ -386,6 +405,89 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
     CompositeEpilogue(hasTag);
 }
 
+// Deque functions are a direct copy of vector functions
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(std::deque<T>& inVector)
+{
+    // Decode the (x,y,z) sequence
+    bool hasTag = CompositePrologue();
+    
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            inVector.push_back(T());
+            try
+            {
+                *this >> inVector.back();
+            }
+            catch (...)
+            {
+                // Remove partially written object
+                inVector.pop_back();
+                throw;
+            }
+            
+            Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in deque");
+            }
+        }
+    }
+    CompositeEpilogue(hasTag);
+}
+
+template<class T>
+inline void
+MushcoreXMLIStream::ObjectRead(std::deque<T *>& inVector)
+{
+    // Decode the (x,y,z) sequence
+    
+    bool hasTag = CompositePrologue();
+    
+    if (ByteGet() == ')')
+    {
+        // Consume the end marker
+        ByteTake();
+    }
+    else
+    {
+        for (;;)
+        {
+            T *newPtr = NULL;
+            *this >> newPtr;
+            inVector.push_back(newPtr);
+            
+            Mushware::U8 nextByte = ByteTake();
+            if (nextByte == ',')
+            {
+            }
+            else if (nextByte == ')')
+            {
+                return;
+            }
+            else
+            {
+                Throw("Bad delimiter in deque");
+            }
+        }
+    }
+    CompositeEpilogue(hasTag);
+}
 
 
 template<class T, class U>
