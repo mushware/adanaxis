@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAME_H
-#define MUSHGAME_H
-//%includeGuardStart } CoDoLBXzZV/yPyG+jVhw3g
+#ifndef MUSHGAMERECEIVER_H
+#define MUSHGAMERECEIVER_H
+//%includeGuardStart } guivrlPkjjvW1opalnnA8w
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGame.h
+ * File: src/MushGame/MushGameReceiver.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,41 +21,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 91HSyJ80zvMVrJEEjE/n9w
+//%Header } GCZE/kvpvmswNcaBrJ6a2A
 /*
- * $Id: MushGame.h,v 1.4 2005/06/20 14:30:35 southa Exp $
- * $Log: MushGame.h,v $
- * Revision 1.4  2005/06/20 14:30:35  southa
- * Adanaxis work
- *
- * Revision 1.3  2005/06/16 17:25:39  southa
- * Client/server work
- *
- * Revision 1.2  2005/06/16 10:48:59  southa
- * Client/server work
- *
- * Revision 1.1  2005/06/14 20:39:41  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameClient.h"
-#include "MushGameConfigBase.h"
-#include "MushGameConfigUtils.h"
-#include "MushGameDespatch.h"
-#include "MushGameDialogue.h"
-#include "MushGameDialogueUtils.h"
-#include "MushGameDigest.h"
-#include "MushGameLink.h"
-#include "MushGameMailbox.h"
-#include "MushGameMessage.h"
-#include "MushGameMessageJoinRequest.h"
-#include "MushGameMessageJoinDenied.h"
-#include "MushGamePlayer.h"
-#include "MushGameSaveData.h"
-#include "MushGameServer.h"
 #include "MushGameStandard.h"
 
+#include "MushGameMailbox.h"
+#include "MushGameMessage.h"
+
+class MushGameReceiver
+{
+public:
+    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+private:
+    
+};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

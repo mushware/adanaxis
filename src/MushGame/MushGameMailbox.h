@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HGOTUFiPB1QROOSnhLbE4Q
 /*
- * $Id: MushGameMailbox.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameMailbox.h,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameMailbox.h,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -40,10 +43,11 @@ class MushGameMailbox : public MushcoreVirtualObject
 public:
     virtual ~MushGameMailbox();
     virtual void Give(MushGameMessage *iopMessage);
-    virtual bool TakeIfAvialable(MushGameMessage *& iopMessage);
+    virtual bool TakeIfAvailable(MushGameMessage *& iopMessage);
     
 private:
     std::deque<MushGameMessage *> m_deque;
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

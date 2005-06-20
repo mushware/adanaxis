@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameLink.cpp
+ * File: src/MushGame/MushGameDespatch.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,64 +17,51 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3OteCOfn1xaSDLsPZcAEYQ
+//%Header } 0awNqNnQC+YqflGR/DoKBA
 /*
- * $Id: MushGameLink.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
- * $Log: MushGameLink.cpp,v $
- * Revision 1.2  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/16 10:48:59  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameLink.h"
-
-void
-MushGameLink::MessagesPump(void)
-{
-    // Meaningless operation for the base class
-    throw MushcoreLogicFail("Pump on MushGameLink");
-}
+#include "MushGameDespatch.h"
 
 //%outOfLineFunctions {
 
-const char *MushGameLink::AutoName(void) const
+const char *MushGameDespatch::AutoName(void) const
 {
-    return "MushGameLink";
+    return "MushGameDespatch";
 }
 
-MushcoreVirtualObject *MushGameLink::AutoClone(void) const
+MushcoreVirtualObject *MushGameDespatch::AutoClone(void) const
 {
-    return new MushGameLink(*this);
+    return new MushGameDespatch(*this);
 }
 
-MushcoreVirtualObject *MushGameLink::AutoCreate(void) const
+MushcoreVirtualObject *MushGameDespatch::AutoCreate(void) const
 {
-    return new MushGameLink;
+    return new MushGameDespatch;
 }
 
-MushcoreVirtualObject *MushGameLink::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameDespatch::AutoVirtualFactory(void)
 {
-    return new MushGameLink;
+    return new MushGameDespatch;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushGameLink", MushGameLink::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameDespatch", MushGameDespatch::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushGameLink::AutoPrint(std::ostream& ioOut) const
+MushGameDespatch::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "]";
 }
 bool
-MushGameLink::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameDespatch::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -89,7 +76,7 @@ MushGameLink::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     return true;
 }
 void
-MushGameLink::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameDespatch::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } FuV8JBtRlsDDaQjLuxLqog
+//%outOfLineFunctions } b0kL/G3Kw1byVMrzKFUjmQ

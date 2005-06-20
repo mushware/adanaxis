@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEDIGEST_H
-#define MUSHGAMEDIGEST_H
-//%includeGuardStart } UTdLACVl8zAuBSOebfTrvQ
+#ifndef MUSHGAMELINKLOCAL_H
+#define MUSHGAMELINKLOCAL_H
+//%includeGuardStart } 0/YY5aWWhNBrwLukR235Qw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameDigest.h
+ * File: src/MushGame/MushGameLinkLocal.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,39 +21,39 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +iRpAW4o6x6kDIKGqiMxdg
+//%Header } 3aRv+tX8/7XZNh7xGrmOrA
 /*
- * $Id: MushGameDigest.h,v 1.2 2005/06/20 14:30:36 southa Exp $
- * $Log: MushGameDigest.h,v $
- * Revision 1.2  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/16 10:48:59  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameMessage.h"
+#include "MushGameClient.h"
+#include "MushGameDigest.h"
+#include "MushGameLink.h"
+#include "MushGameServer.h"
 
+//:xml1base MushGameLink
 //:generate virtual standard ostream xml1
-class MushGameDigest : public MushcoreVirtualObject
+class MushGameLinkLocal : public MushGameLink
 {
 public:
-    MushGameDigest();
-    virtual ~MushGameDigest() {}
-    virtual void Give(MushGameMessage *iopMessage);
-    virtual bool TakeIfAvailable(MushGameMessage *& iopMessage);
+    virtual ~MushGameLinkLocal() {}
+    virtual void MessagesPump(void);
     
 private:
-    Mushware::U32 m_digestID; //:readwrite
-    std::deque<MushGameMessage *> m_deque;
+    MushcoreDataRef<MushGameClient> m_clientRef; //:readwrite
+    MushcoreDataRef<MushGameServer> m_serverRef; //:readwrite
+    MushcorePipe<MushGameMailbox> m_clientToServer; //:ignore
+    MushcorePipe<MushGameMailbox> m_serverToClient; //:ignore
     
 //%classPrototypes {
 public:
-    const Mushware::U32& DigestID(void) const { return m_digestID; }
-    void DigestIDSet(const Mushware::U32& inValue) { m_digestID=inValue; }
+    const MushcoreDataRef<MushGameClient>& ClientRef(void) const { return m_clientRef; }
+    void ClientRefSet(const MushcoreDataRef<MushGameClient>& inValue) { m_clientRef=inValue; }
+    const MushcoreDataRef<MushGameServer>& ServerRef(void) const { return m_serverRef; }
+    void ServerRefSet(const MushcoreDataRef<MushGameServer>& inValue) { m_serverRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,16 +61,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } rYWAYE1irJJ/I55hzbYJew
+//%classPrototypes } +W8szZZ0/vfABfyInM4o1g
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameDigest& inObj)
+operator<<(std::ostream& ioOut, const MushGameLinkLocal& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } RRbv32opygA93qNKNAusHw
+//%inlineHeader } GJAmucyBlwTyaWsSpOPcGw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

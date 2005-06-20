@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } V673evBt8atoG2oqzRL1Hg
 /*
- * $Id$
- * $Log$
+ * $Id: MushcorePipe.h,v 1.1 2005/06/13 14:25:46 southa Exp $
+ * $Log: MushcorePipe.h,v $
+ * Revision 1.1  2005/06/13 14:25:46  southa
+ * Pipe and ordered data work
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -32,6 +35,8 @@
 #include "MushcoreAutoBool.h"
 #include "MushcoreFail.h"
 #include "MushcoreSingleton.h"
+#include "MushcoreXMLIStream.h"
+#include "MushcoreXMLOStream.h"
 
 /* This pipe allows Give and TopGet/TopDelete from different threads.  However only
  * a single thread can add, and a single thread can take
@@ -45,7 +50,7 @@ public:
     MushcorePipe(Mushware::U32 inSize = MushcorePipe::kDefaultSize);
     ~MushcorePipe();
     void Give(T *ioObj);
-    bool TopGet(const T *& outRef);
+    bool TopGet(T *& outRef);
     void TopDelete();
     void NotAccessingSoGrow(const Mushware::U32 inLimit);
     
@@ -86,7 +91,7 @@ MushcorePipe<T>::MushcorePipe(Mushware::U32 inSize) :
 template<class T>
 MushcorePipe<T>::~MushcorePipe()
 {
-    const T *pDelete;
+    T *pDelete;
     while (TopGet(pDelete))
     {
         TopDelete();
@@ -135,7 +140,7 @@ MushcorePipe<T>::Give(T *ioObj)
 
 template<class T>
 inline bool
-MushcorePipe<T>::TopGet(const T *& outRef)
+MushcorePipe<T>::TopGet(T *& outRef)
 {
     if (m_readThreaded)
     {

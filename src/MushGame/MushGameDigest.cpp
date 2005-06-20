@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DEIbaed/fMvMVvkt6iWKMg
 /*
- * $Id: MushGameDigest.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameDigest.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameDigest.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -31,6 +34,27 @@
 MushGameDigest::MushGameDigest()
 {
 }
+
+void
+MushGameDigest::Give(MushGameMessage *iopMessage)
+{
+    m_deque.push_back(iopMessage);
+    //iopMessage = NULL;
+}
+
+bool
+MushGameDigest::TakeIfAvailable(MushGameMessage *& iopMessage)
+{
+    bool retVal = false;
+    if (!m_deque.empty())
+    {
+        iopMessage = m_deque.front();
+        m_deque.pop_front(); // caller now owns the object
+        retVal = true;
+    }
+    return retVal;
+}
+
 //%outOfLineFunctions {
 
 const char *MushGameDigest::AutoName(void) const
@@ -65,7 +89,7 @@ MushGameDigest::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "digestID=" << m_digestID << ", ";
-    ioOut << "content=" << m_content;
+    ioOut << "deque=" << m_deque;
     ioOut << "]";
 }
 bool
@@ -81,9 +105,9 @@ MushGameDigest::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_digestID;
     }
-    else if (inTagStr == "content")
+    else if (inTagStr == "deque")
     {
-        ioIn >> m_content;
+        ioIn >> m_deque;
     }
     else
     {
@@ -96,7 +120,7 @@ MushGameDigest::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("digestID");
     ioOut << m_digestID;
-    ioOut.TagSet("content");
-    ioOut << m_content;
+    ioOut.TagSet("deque");
+    ioOut << m_deque;
 }
-//%outOfLineFunctions } hoqKVoZXptIRU4P2f53peA
+//%outOfLineFunctions } doZMcrIqTrga2oRIExrm3A

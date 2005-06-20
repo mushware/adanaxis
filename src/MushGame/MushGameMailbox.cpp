@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id: MushGameMailbox.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -34,7 +37,7 @@ using namespace std;
 MushGameMailbox::~MushGameMailbox()
 {
     MushGameMessage *pMessage;
-    while (TakeIfAvialable(pMessage))
+    while (TakeIfAvailable(pMessage))
     {
         delete pMessage;
     }
@@ -48,7 +51,7 @@ MushGameMailbox::Give(MushGameMessage *iopMessage)
 }
 
 bool
-MushGameMailbox::TakeIfAvialable(MushGameMessage *& iopMessage)
+MushGameMailbox::TakeIfAvailable(MushGameMessage *& iopMessage)
 {
     bool retVal = false;
     if (!m_deque.empty())
