@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9wvYEOqMkw8/R2pHAfRAxg
 /*
- * $Id: TesseractTrainerGame.h,v 1.13 2005/04/19 23:25:43 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.14 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.14  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.13  2005/04/19 23:25:43  southa
  * Mode switching and recognition
  *
@@ -124,14 +127,14 @@ private:
     
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

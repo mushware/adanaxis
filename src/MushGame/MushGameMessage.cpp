@@ -19,7 +19,7 @@
  ****************************************************************************/
 //%Header } O8joXp2wbkSfRipztzWPwA
 /*
- * $Id$
+ * $Id: MushGameMessage.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
  * $Log
  */
 
@@ -31,7 +31,7 @@ MushGameMessage::MushGameMessage()
 
 //%outOfLineFunctions {
 
-const char *MushGameMessage::AutoNameGet(void) const
+const char *MushGameMessage::AutoName(void) const
 {
     return "MushGameMessage";
 }
@@ -83,4 +83,4 @@ void
 MushGameMessage::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } i8WJJAD8OqQQzHvSQGZ5kg
+//%outOfLineFunctions } 9OgiSD/E61EWlpidgjrVBA

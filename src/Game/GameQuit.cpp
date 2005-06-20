@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w9bWvYgUJ8YH9Yome/fZPQ
 /*
- * $Id: GameQuit.cpp,v 1.23 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameQuit.cpp,v 1.24 2005/06/16 17:25:38 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.24  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.23  2005/05/19 13:02:02  southa
  * Mac release work
  *
@@ -241,7 +244,7 @@ operator>>(MushcoreXMLIStream& ioIn, GameQuit::tGameState& inValue)
 
 //%outOfLineFunctions {
 
-const char *GameQuit::AutoNameGet(void) const
+const char *GameQuit::AutoName(void) const
 {
     return "GameQuit";
 }
@@ -307,4 +310,4 @@ GameQuit::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startMsec");
     ioOut << m_startMsec;
 }
-//%outOfLineFunctions } dsD0201LE3O7OoxWO3lQDQ
+//%outOfLineFunctions } 1nhnvnFMkYVyWy5HIOpWLA

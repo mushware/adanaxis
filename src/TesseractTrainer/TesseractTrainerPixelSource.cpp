@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } deJxNEsvw1K5S2rPw6UiPg
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.3 2005/05/26 00:46:41 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:41  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/05/26 00:46:41  southa
  * Made buildable on win32
  *
@@ -122,7 +125,7 @@ TesseractTrainerPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mush
 
 //%outOfLineFunctions {
 
-const char *TesseractTrainerPixelSource::AutoNameGet(void) const
+const char *TesseractTrainerPixelSource::AutoName(void) const
 {
     return "TesseractTrainerPixelSource";
 }
@@ -201,4 +204,4 @@ TesseractTrainerPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } 9jy2W93BEsEsiNYjqpzcew
+//%outOfLineFunctions } FV8y6SbBfTQdvqj+AlpWzA

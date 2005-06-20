@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4DWWBhAiLshALsS7XPoUWQ
 /*
- * $Id: MushModelMultiFacet.h,v 1.5 2005/02/10 12:34:10 southa Exp $
+ * $Id: MushModelMultiFacet.h,v 1.6 2005/05/19 13:02:12 southa Exp $
  * $Log: MushModelMultiFacet.h,v $
+ * Revision 1.6  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/10 12:34:10  southa
  * Template fixes
  *
@@ -74,14 +77,14 @@ private:
 public:
     const tContainer& Facets(void) const { return m_facets; }
     void FacetsSet(const tContainer& inValue) { m_facets=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } LkrigpigQgsqXr4Qjn7V1g
+//%classPrototypes } i591tBuSFPD9cd+MkDIoaQ
 };
 //%inlineHeader {
 inline std::ostream&

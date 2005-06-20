@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } A5JUCROnCrKysqG6sd4RBA
 /*
- * $Id: MushcoreVirtualObject.h,v 1.6 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.7 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.7  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -58,7 +61,7 @@ class MushcoreVirtualObject
 {
 public:
     virtual ~MushcoreVirtualObject() {}
-    virtual const char *AutoNameGet(void) const = 0;
+    virtual const char *AutoName(void) const = 0;
     virtual MushcoreVirtualObject *AutoClone(void) const = 0;
     virtual MushcoreVirtualObject *AutoCreate(void) const = 0;
 

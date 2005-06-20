@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 5btgIJdgvUud/9DtUw4GnQ
 /*
- * $Id: MushPieForm.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushPieForm.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
  * $Log: MushPieForm.cpp,v $
+ * Revision 1.5  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.4  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -63,7 +66,7 @@ MushPieForm::WriteableSignalHandle(MushPieSignal& inSignal)
 
 //%outOfLineFunctions {
 
-const char *MushPieForm::AutoNameGet(void) const
+const char *MushPieForm::AutoName(void) const
 {
     return "MushPieForm";
 }
@@ -115,4 +118,4 @@ void
 MushPieForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } CmRuNvu1X+X8L4vtG3rpxg
+//%outOfLineFunctions } rKWm20dFxFqSmDlPs1ywkw

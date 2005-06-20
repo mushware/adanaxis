@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } FMmVnTVJEIGX5O4wYovW2Q
 /*
- * $Id: AdanaxisPixelSource.h,v 1.1 2005/06/13 17:34:55 southa Exp $
+ * $Id: AdanaxisPixelSource.h,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisPixelSource.h,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:55  southa
  * Adanaxis creation
  *
@@ -58,14 +61,14 @@ public:
     void ColourSet(const Mushware::t4Val& inValue) { m_colour=inValue; }
     const Mushware::tLongVal& Seed(void) const { return m_seed; }
     void SeedSet(const Mushware::tLongVal& inValue) { m_seed=inValue; }
-    const char *AutoNameGet(void) const;
+    const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } IHyD2VNyJWz0tfZ0EcsB7g
+//%classPrototypes } zvsUsZgjCzTS1JynAhWuKA
 };
 //%inlineHeader {
 inline std::ostream&

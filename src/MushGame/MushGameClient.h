@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tEYrYr0gF9dIdGmExJumYA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameClient.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameClient.h,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -42,14 +45,14 @@ public:
 
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

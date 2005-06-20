@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9Me/nJIZR1YxOvHlqu+ysw
 /*
- * $Id: GameStringSpec.h,v 1.2 2005/03/25 22:04:49 southa Exp $
+ * $Id: GameStringSpec.h,v 1.3 2005/05/19 13:02:03 southa Exp $
  * $Log: GameStringSpec.h,v $
+ * Revision 1.3  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/03/25 22:04:49  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -84,14 +87,14 @@ public:
     void MidSizeSet(const Mushware::tVal& inValue) { m_midSize=inValue; }
     const Mushware::tVal& EndSize(void) const { return m_endSize; }
     void EndSizeSet(const Mushware::tVal& inValue) { m_endSize=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } vCSDvHm6AGkXbT7eTOwvMw
+//%classPrototypes } D9dvTy7QHCBlItv71cK+eQ
 };
 //%inlineHeader {
 inline std::ostream&

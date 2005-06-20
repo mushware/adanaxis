@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +iRpAW4o6x6kDIKGqiMxdg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameDigest.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameDigest.h,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -49,14 +52,14 @@ public:
     void ContentSet(const std::vector<MushGameMessage>& inValue) { m_content=inValue; }
     // Writable reference for m_content
     std::vector<MushGameMessage>& ContentWRef(void) { return m_content; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } vFyhkRHCVPCTW3C2fNPEhA
+//%classPrototypes } Qk/CenMUUfyArJJS3I+Kyg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1ueBdipwBAr0SQ2f9drFZg
 /*
- * $Id: MushPiePosicity.cpp,v 1.5 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPiePosicity.cpp,v 1.6 2005/06/16 17:25:40 southa Exp $
  * $Log: MushPiePosicity.cpp,v $
+ * Revision 1.6  2005/06/16 17:25:40  southa
+ * Client/server work
+ *
  * Revision 1.5  2005/05/19 13:02:13  southa
  * Mac release work
  *
@@ -44,7 +47,7 @@ using namespace Mushware;
 
 //%outOfLineFunctions {
 
-const char *MushPiePosicity::AutoNameGet(void) const
+const char *MushPiePosicity::AutoName(void) const
 {
     return "MushPiePosicity";
 }
@@ -134,4 +137,4 @@ MushPiePosicity::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("vel");
     ioOut << m_vel;
 }
-//%outOfLineFunctions } Ek+yDggD1qYAUySp4H7COg
+//%outOfLineFunctions } lXXeomurUIcejoTVsXObsA

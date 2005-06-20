@@ -19,11 +19,18 @@
  ****************************************************************************/
 //%Header } Ib2b3u1bPJ3KuhedcK69TA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameServer.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameServer.cpp,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameServer.h"
+
+#include "MushGameMessageJoinRequest.h"
+
+MUSHCORE_DATA_INSTANCE(MushGameServer);
 
 MushGameServer::MushGameServer()
 {
@@ -32,11 +39,26 @@ MushGameServer::MushGameServer()
 void
 MushGameServer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
 {
+    const MushGameMessageJoinRequest *joinRequest = dynamic_cast<const MushGameMessageJoinRequest *>(&inMessage);
+    if (joinRequest != NULL)
+    {
+        JoinRequestConsume(outReplyBox, inMessage);
+    }
+    else
+    {
+        throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName());
+    }
+}
+
+void
+MushGameServer::JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("No handler provided for ")+inMessage.AutoName());
 }
 
 //%outOfLineFunctions {
 
-const char *MushGameServer::AutoNameGet(void) const
+const char *MushGameServer::AutoName(void) const
 {
     return "MushGameServer";
 }
@@ -67,6 +89,7 @@ void
 MushGameServer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "saveDataRef=" << m_saveDataRef;
     ioOut << "]";
 }
 bool
@@ -78,6 +101,10 @@ MushGameServer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "saveDataRef")
+    {
+        ioIn >> m_saveDataRef;
+    }
     else
     {
         return false;
@@ -87,5 +114,7 @@ MushGameServer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGameServer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("saveDataRef");
+    ioOut << m_saveDataRef;
 }
-//%outOfLineFunctions } PgDobFCWPKI2pDDjSoYNCA
+//%outOfLineFunctions } CSvml7QDl5mOOJ/uHA/qQw

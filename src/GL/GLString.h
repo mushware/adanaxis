@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DaYQX3PnltFXkiFcLZ26YQ
 /*
- * $Id: GLString.h,v 1.15 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLString.h,v 1.16 2005/05/19 13:02:00 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.16  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.15  2005/03/25 19:13:48  southa
  * GameDialogue work
  *
@@ -94,7 +97,7 @@ private:
     Mushware::tVal m_alignment;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -102,7 +105,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } MqvS5R78ZXNteeszux3ZqA
+//%classPrototypes } ZEMcDmpGy7XyML1w84ffyQ
 };
 //%inlineHeader {
 

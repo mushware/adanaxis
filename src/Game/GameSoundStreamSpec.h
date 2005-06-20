@@ -44,14 +44,14 @@ public:
     void LoopSet(const Mushware::U32& inValue) { loop=inValue; }
     const Mushware::tVal& StartTime(void) const { return startTime; }
     void StartTimeSet(const Mushware::tVal& inValue) { startTime=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 0oaYNHkBWx3eM4JHOQTVJA
+//%classPrototypes } nLrqeRA+tv6+1kro+z4rLw
 };
 //%inlineHeader {
 inline std::ostream&

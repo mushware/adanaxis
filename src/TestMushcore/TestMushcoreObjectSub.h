@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } x9hluL6ZFcAi9PglYClnbA
 /*
- * $Id: TestMushcoreObjectSub.h,v 1.4 2005/03/25 22:04:51 southa Exp $
+ * $Id: TestMushcoreObjectSub.h,v 1.5 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObjectSub.h,v $
+ * Revision 1.5  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/03/25 22:04:51  southa
  * Dialogue and MushcoreIO fixes
  *
@@ -57,14 +60,14 @@ private:
 public:
     const Mushware::U32& SubObjectValue(void) const { return m_subObjectValue; }
     void SubObjectValueSet(const Mushware::U32& inValue) { m_subObjectValue=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } DKJ/iUTG1jb5YPjlcxpI4A
+//%classPrototypes } BcmLPI73fiB95KGMmZEE5A
 };
 //%inlineHeader {
 inline std::ostream&

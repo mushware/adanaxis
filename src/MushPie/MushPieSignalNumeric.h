@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } M1Ygs4rBiCB5xE6zMg/GNQ
 /*
- * $Id: MushPieSignalNumeric.h,v 1.3 2005/02/10 12:34:17 southa Exp $
+ * $Id: MushPieSignalNumeric.h,v 1.4 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPieSignalNumeric.h,v $
+ * Revision 1.4  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:17  southa
  * Template fixes
  *
@@ -53,14 +56,14 @@ private:
 //%classPrototypes {
 public:
     const Mushware::U32& EventNumber(void) const { return m_eventNumber; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } smhgIr1jYTAQsL5IlQhiuQ
+//%classPrototypes } egGqU3I0I02Erbk8xb1a9A
 };
 //%inlineHeader {
 inline std::ostream&

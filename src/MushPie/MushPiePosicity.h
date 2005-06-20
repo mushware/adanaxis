@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AMne94CNfIdP72gf5xPg0Q
 /*
- * $Id: MushPiePosicity.h,v 1.7 2005/03/25 19:13:50 southa Exp $
+ * $Id: MushPiePosicity.h,v 1.8 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePosicity.h,v $
+ * Revision 1.8  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.7  2005/03/25 19:13:50  southa
  * GameDialogue work
  *
@@ -81,7 +84,7 @@ public:
     void PosSet(const Mushware::t4Val& inValue) { m_pos=inValue; }
     const Mushware::t4Val& Vel(void) const { return m_vel; }
     void VelSet(const Mushware::t4Val& inValue) { m_vel=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -89,7 +92,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } sOpgXLUboTjij1lH0raC4w
+//%classPrototypes } 86kDuPoW5V2S4kjphyMulw
 };
 
 inline void

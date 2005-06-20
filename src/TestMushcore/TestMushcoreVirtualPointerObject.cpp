@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GqSRke6jt0OSPqPXXhIZtQ
 /*
- * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.3 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:41  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -63,7 +66,7 @@ TestMushcoreVirtualPointerObject::DeleteObjects(void)
 
 //%outOfLineFunctions {
 
-const char *TestMushcoreVirtualPointerObject::AutoNameGet(void) const
+const char *TestMushcoreVirtualPointerObject::AutoName(void) const
 {
     return "TestMushcoreVirtualPointerObject";
 }
@@ -174,4 +177,4 @@ TestMushcoreVirtualPointerObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subSubPtr");
     ioOut << m_subSubPtr;
 }
-//%outOfLineFunctions } 5CUbAqQ0paKYCZQC4zfb7A
+//%outOfLineFunctions } lPY8gK8bl9ZpghzNFk2NNA

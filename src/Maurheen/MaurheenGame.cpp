@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZbqDA500q75IjTv/A4Bk6Q
 /*
- * $Id: MaurheenGame.cpp,v 1.13 2005/05/19 13:02:07 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.14 2005/06/16 17:25:38 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.14  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.13  2005/05/19 13:02:07  southa
  * Mac release work
  *
@@ -178,7 +181,7 @@ MaurheenGame::SwapOut(GameAppHandler& inAppHandler)
 
 //%outOfLineFunctions {
 
-const char *MaurheenGame::AutoNameGet(void) const
+const char *MaurheenGame::AutoName(void) const
 {
     return "MaurheenGame";
 }
@@ -230,4 +233,4 @@ void
 MaurheenGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } UWbhOECDt1EL3sq/JH423Q
+//%outOfLineFunctions } BD+zf5csuzeU+4h8AOPN7Q

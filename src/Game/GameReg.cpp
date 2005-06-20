@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ggvvg/klFTDl+UpqEnnMwA
 /*
- * $Id: GameReg.cpp,v 1.6 2005/05/27 12:48:37 southa Exp $
+ * $Id: GameReg.cpp,v 1.7 2005/06/16 17:25:38 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.7  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.6  2005/05/27 12:48:37  southa
  * Registration box tweaks
  *
@@ -322,7 +325,7 @@ GameReg::SaveToFile(void)
 
 //%outOfLineFunctions {
 
-const char *GameReg::AutoNameGet(void) const
+const char *GameReg::AutoName(void) const
 {
     return "GameReg";
 }
@@ -395,5 +398,5 @@ GameReg::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("authValue");
     ioOut << m_authValue;
 }
-//%outOfLineFunctions } I/iT4dAta1i2xJ5qv2AKYQ
+//%outOfLineFunctions } et8LQczoaM+KkwyRYKnuFg
 

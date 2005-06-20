@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HGOTUFiPB1QROOSnhLbE4Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMailbox.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameMailbox.h,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -36,21 +39,21 @@ class MushGameMailbox : public MushcoreVirtualObject
 {
 public:
     virtual ~MushGameMailbox();
-    virtual void Give(MushGameMessage *& iopMessage);
+    virtual void Give(MushGameMessage *iopMessage);
     virtual bool TakeIfAvialable(MushGameMessage *& iopMessage);
     
 private:
     std::deque<MushGameMessage *> m_deque;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

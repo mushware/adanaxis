@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 03m51tzRRZ4J/ClESPY1sA
 /*
- * $Id: GLFontRef.cpp,v 1.13 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.14 2005/06/16 17:25:37 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.14  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.13  2005/05/19 13:01:59  southa
  * Mac release work
  *
@@ -97,7 +100,7 @@ GLFontRef::Exists(void) const
 }
 //%outOfLineFunctions {
 
-const char *GLFontRef::AutoNameGet(void) const
+const char *GLFontRef::AutoName(void) const
 {
     return "GLFontRef";
 }
@@ -171,4 +174,4 @@ GLFontRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("size");
     ioOut << m_size;
 }
-//%outOfLineFunctions } jy3kiciwKlF+m84uTz9w7A
+//%outOfLineFunctions } M8OeHP8jbecFpuxwdWNJww

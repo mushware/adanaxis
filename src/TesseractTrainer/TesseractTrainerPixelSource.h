@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6wrxduT8qjqQA8gwnwHt8A
 /*
- * $Id: TesseractTrainerPixelSource.h,v 1.1 2005/02/13 22:44:08 southa Exp $
+ * $Id: TesseractTrainerPixelSource.h,v 1.2 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerPixelSource.h,v $
+ * Revision 1.2  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/13 22:44:08  southa
  * Tesseract stuff
  *
@@ -60,14 +63,14 @@ public:
     void ColourSet(const Mushware::t4Val& inValue) { m_colour=inValue; }
     const Mushware::tLongVal& Seed(void) const { return m_seed; }
     void SeedSet(const Mushware::tLongVal& inValue) { m_seed=inValue; }
-    const char *AutoNameGet(void) const;
+    const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } IHyD2VNyJWz0tfZ0EcsB7g
+//%classPrototypes } zvsUsZgjCzTS1JynAhWuKA
 };
 //%inlineHeader {
 inline std::ostream&

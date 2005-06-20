@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WTo3qhRr63RK1J47o9bcbQ
 /*
- * $Id: MushModelFacet.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushModelFacet.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
  * $Log: MushModelFacet.cpp,v $
+ * Revision 1.5  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.4  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -41,7 +44,7 @@
 
 //%outOfLineFunctions {
 
-const char *MushModelFacet::AutoNameGet(void) const
+const char *MushModelFacet::AutoName(void) const
 {
     return "MushModelFacet";
 }
@@ -128,4 +131,4 @@ MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("normals");
     ioOut << m_normals;
 }
-//%outOfLineFunctions } AL+AhRZxANrH/2k1HwBthQ
+//%outOfLineFunctions } sXMPJc1HjsUFXe+H4g/0hg

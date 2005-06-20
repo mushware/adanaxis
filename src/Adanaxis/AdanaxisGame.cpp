@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.4 2005/06/16 17:25:37 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -32,7 +35,9 @@
 
 #include "AdanaxisGame.h"
 
+#include "AdanaxisClient.h"
 #include "AdanaxisSaveData.h"
+#include "AdanaxisServer.h"
 
 #include "mushPlatform.h"
 #include "mushMedia.h"
@@ -82,6 +87,18 @@ AdanaxisGame::Display(GameAppHandler& inAppHandler)
 void
 AdanaxisGame::ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const
 {}
+
+void 
+AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
+{
+    m_clientRef.NameSet(m_name);
+    MushcoreData<MushGameClient>::Sgl().IfExistsDelete(m_clientRef.Name());
+    MushcoreData<MushGameClient>::Sgl().Give(m_clientRef.Name(), new AdanaxisClient);
+    
+    m_serverRef.NameSet(m_name);
+    MushcoreData<MushGameServer>::Sgl().IfExistsDelete(m_serverRef.Name());
+    MushcoreData<MushGameServer>::Sgl().Give(m_serverRef.Name(), new AdanaxisServer);
+}
 
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
@@ -148,7 +165,7 @@ AdanaxisGame::SwapOut(GameAppHandler& inAppHandler)
 
 //%outOfLineFunctions {
 
-const char *AdanaxisGame::AutoNameGet(void) const
+const char *AdanaxisGame::AutoName(void) const
 {
     return "AdanaxisGame";
 }
@@ -183,6 +200,8 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
     ioOut << "saveDataRef=" << m_saveDataRef << ", ";
+    ioOut << "clientRef=" << m_clientRef << ", ";
+    ioOut << "serverRef=" << m_serverRef << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
 }
@@ -211,6 +230,14 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_saveDataRef;
     }
+    else if (inTagStr == "clientRef")
+    {
+        ioIn >> m_clientRef;
+    }
+    else if (inTagStr == "serverRef")
+    {
+        ioIn >> m_serverRef;
+    }
     else if (inTagStr == "config")
     {
         ioIn >> m_config;
@@ -232,7 +259,11 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_newMode;
     ioOut.TagSet("saveDataRef");
     ioOut << m_saveDataRef;
+    ioOut.TagSet("clientRef");
+    ioOut << m_clientRef;
+    ioOut.TagSet("serverRef");
+    ioOut << m_serverRef;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } WKEnce8QRjql7OBP/XFtrQ
+//%outOfLineFunctions } +oXJOHKRjfk43Pe8Cb9gig

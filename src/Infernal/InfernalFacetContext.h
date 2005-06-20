@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } CDbgvA4tSMWmMJpHdOog6g
 /*
- * $Id: InfernalFacetContext.h,v 1.3 2005/02/10 12:34:01 southa Exp $
+ * $Id: InfernalFacetContext.h,v 1.4 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalFacetContext.h,v $
+ * Revision 1.4  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:01  southa
  * Template fixes
  *
@@ -77,14 +80,14 @@ public:
     const std::vector<GLfloat>& Normals(void) const { return m_normals; }
     const bool& ContextValid(void) const { return m_contextValid; }
     void ContextValidSet(const bool& inValue) { m_contextValid=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } BUoQRzqlZySgL91dpGVkSg
+//%classPrototypes } 8irSwWHgKc2fMeEv/JUYVw
 };
 //%inlineHeader {
 inline std::ostream&

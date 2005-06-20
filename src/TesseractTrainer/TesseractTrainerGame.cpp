@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.22 2005/06/09 14:13:06 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.23 2005/06/16 17:25:40 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.23  2005/06/16 17:25:40  southa
+ * Client/server work
+ *
  * Revision 1.22  2005/06/09 14:13:06  southa
  * X11 fixes
  *
@@ -617,7 +620,7 @@ TesseractTrainerGame::NamedDialoguesAdd(const std::string& inRegExp)
 
 //%outOfLineFunctions {
 
-const char *TesseractTrainerGame::AutoNameGet(void) const
+const char *TesseractTrainerGame::AutoName(void) const
 {
     return "TesseractTrainerGame";
 }
@@ -746,4 +749,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } rh+Vvrkl0rBR/vuBqUXU3A
+//%outOfLineFunctions } WrCW5dLA1UQdaudhWzzswg

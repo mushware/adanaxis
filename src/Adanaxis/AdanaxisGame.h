@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.3 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.4 2005/06/16 17:25:37 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.4  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -60,7 +63,8 @@ public:
     static void Install(void);
     
 protected:
-    
+    virtual void LocalGameCreate(GameAppHandler& inAppHandler);
+        
 private:
     AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(m_saveDataRef.WRef()); }
     
@@ -71,19 +75,21 @@ private:
     Mushware::U32 m_newMode;
     
     MushcoreDataRef<MushGameSaveData> m_saveDataRef;
+    MushcoreDataRef<MushGameClient> m_clientRef;
+    MushcoreDataRef<MushGameServer> m_serverRef;
     
     AdanaxisConfig m_config;
     
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

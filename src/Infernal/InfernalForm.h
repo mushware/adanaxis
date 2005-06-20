@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rsuFpRZmb7Y0Qqq+tToTYg
 /*
- * $Id: InfernalForm.h,v 1.4 2005/02/10 12:34:01 southa Exp $
+ * $Id: InfernalForm.h,v 1.5 2005/05/19 13:02:05 southa Exp $
  * $Log: InfernalForm.h,v $
+ * Revision 1.5  2005/05/19 13:02:05  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/10 12:34:01  southa
  * Template fixes
  *
@@ -79,14 +82,14 @@ private:
 public:
     const MushcoreDataRef<MushModelMultiFacet>& ModelRef(void) const { return m_modelRef; }
     void ModelRefSet(const MushcoreDataRef<MushModelMultiFacet>& inValue) { m_modelRef=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FNWoO0wm7YuOJm09XR2ZCw
+//%classPrototypes } jO8mfLjDpCv2Pk7fo8SyUA
 };
 //%inlineHeader {
 inline std::ostream&

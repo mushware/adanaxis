@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.2 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGame.h,v 1.3 2005/06/16 17:25:39 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.3  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -42,6 +45,8 @@
 #include "MushGameLink.h"
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
+#include "MushGameMessageJoinRequest.h"
+#include "MushGameMessageJoinDenied.h"
 #include "MushGamePlayer.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"

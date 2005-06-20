@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.21 2005/06/14 13:25:35 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.22 2005/06/16 10:49:00 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.22  2005/06/16 10:49:00  southa
+ * Client/server work
+ *
  * Revision 1.21  2005/06/14 13:25:35  southa
  * Adanaxis work
  *
@@ -141,7 +144,7 @@ inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushcoreVirtualObject& inObj)
 {
     if (ioOut.TagGet() == "") ioOut.TagSet("obj");
-    std::string localTag = ioOut.OpeningTagWrite(inObj.AutoNameGet());
+    std::string localTag = ioOut.OpeningTagWrite(inObj.AutoName());
     ioOut.OStreamGet() << std::endl;
     inObj.AutoOutputPrologue(ioOut);
     inObj.AutoXMLPrint(ioOut);

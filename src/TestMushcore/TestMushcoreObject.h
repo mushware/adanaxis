@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kvNZhrtF7n6PTMxcwk+nkw
 /*
- * $Id: TestMushcoreObject.h,v 1.20 2005/02/10 12:34:23 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.21 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.21  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.20  2005/02/10 12:34:23  southa
  * Template fixes
  *
@@ -198,7 +201,7 @@ private:
     
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -206,7 +209,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oam5L+VJ7uqoK1Vf0YLbOQ
+//%classPrototypes } oW1K54zBpBNTb4dugOawAA
 };
 
 //%inlineHeader {

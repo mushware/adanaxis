@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.1 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.2 2005/06/16 17:25:37 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.2  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.1  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -47,14 +50,14 @@ public:
     void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
     // Writable reference for m_dialogues
     MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OvDEOoXgN9lJ61LWI79PtQ
+//%classPrototypes } PJK5FktExvI23HdQ62s29w
 };
 //%inlineHeader {
 inline std::ostream&

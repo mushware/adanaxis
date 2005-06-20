@@ -17,15 +17,37 @@
  ****************************************************************************/
 //%Header } 5jSH/Xb6MEG+qzzvWN1AjA
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisServer.cpp,v 1.1 2005/06/16 10:49:57 southa Exp $
+ * $Log: AdanaxisServer.cpp,v $
+ * Revision 1.1  2005/06/16 10:49:57  southa
+ * Client/server work
+ *
  */
 
 #include "AdanaxisServer.h"
 
+void
+AdanaxisServer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+{
+    MushGameServer::MessageConsume(outReplyBox, inMessage);
+}
+
+void
+AdanaxisServer::JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+{
+    if (SaveData().Players().Size() >= SaveData().MaxPlayersAllowed())
+    {
+        MushGameMessageJoinDenied *pJoinDenied = new MushGameMessageJoinDenied;
+        outReplyBox.Give(pJoinDenied);
+    }
+    else
+    {
+    }
+}
+
 //%outOfLineFunctions {
 
-const char *AdanaxisServer::AutoNameGet(void) const
+const char *AdanaxisServer::AutoName(void) const
 {
     return "AdanaxisServer";
 }
@@ -83,4 +105,4 @@ AdanaxisServer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameServer::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } D6yCp7ICZz+LNVCi4+Fx1g
+//%outOfLineFunctions } trMMGZRBwu0OySY7A/qsgg

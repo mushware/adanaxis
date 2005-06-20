@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.1 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.2 2005/06/16 17:25:37 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.2  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.1  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -28,7 +31,7 @@
 
 //%outOfLineFunctions {
 
-const char *AdanaxisSaveData::AutoNameGet(void) const
+const char *AdanaxisSaveData::AutoName(void) const
 {
     return "AdanaxisSaveData";
 }
@@ -93,4 +96,4 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } mAqhJ1Varvk6KQVssfJ+Ww
+//%outOfLineFunctions } GQPJU0/4jPhR45JXDZ/ovA

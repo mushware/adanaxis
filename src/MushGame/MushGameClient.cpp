@@ -19,15 +19,19 @@
  ****************************************************************************/
 //%Header } ZzA13XBaYAADYudEapYUYw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameClient.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameClient.cpp,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameClient.h"
 
+MUSHCORE_DATA_INSTANCE(MushGameClient);
+
 MushGameClient::MushGameClient()
-{
-    
+{    
 }
 
 void
@@ -37,7 +41,7 @@ MushGameClient::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessa
 
 //%outOfLineFunctions {
 
-const char *MushGameClient::AutoNameGet(void) const
+const char *MushGameClient::AutoName(void) const
 {
     return "MushGameClient";
 }
@@ -89,4 +93,4 @@ void
 MushGameClient::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } AQ27IcEsY8b5NMgNzQetvA
+//%outOfLineFunctions } O0XvTEabGhKnckgKFZWLTw

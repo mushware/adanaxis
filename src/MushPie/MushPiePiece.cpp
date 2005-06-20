@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } onoupbr55NLpu8Aipjamrw
 /*
- * $Id: MushPiePiece.cpp,v 1.10 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.11 2005/06/16 17:25:39 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.11  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.10  2005/05/19 13:02:13  southa
  * Mac release work
  *
@@ -67,7 +70,7 @@ operator>>(MushcoreXMLIStream& ioIn, MushPiePiece::tSleepState& outObj)
 
 //%outOfLineFunctions {
 
-const char *MushPiePiece::AutoNameGet(void) const
+const char *MushPiePiece::AutoName(void) const
 {
     return "MushPiePiece";
 }
@@ -141,4 +144,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("formRef");
     ioOut << m_formRef;
 }
-//%outOfLineFunctions } LkPj3/WwkMfifzqheQCv4Q
+//%outOfLineFunctions } h/qMKwGgzM3XEDhatynvqw

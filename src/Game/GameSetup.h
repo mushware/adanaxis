@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } lTso9kUtkH+4JIVsnGYQiA
 /*
- * $Id: GameSetup.h,v 1.18 2005/02/10 12:33:59 southa Exp $
+ * $Id: GameSetup.h,v 1.19 2005/05/19 13:02:03 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.19  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.18  2005/02/10 12:33:59  southa
  * Template fixes
  *
@@ -126,14 +129,14 @@ private:
     bool m_windowClicked;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

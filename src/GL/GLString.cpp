@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T2OnH6NbDcsuezTIwyt4FA
 /*
- * $Id: GLString.cpp,v 1.13 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLString.cpp,v 1.14 2005/06/16 17:25:37 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.14  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.13  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -89,7 +92,7 @@ GLString::Render(void) const
 }
 //%outOfLineFunctions {
 
-const char *GLString::AutoNameGet(void) const
+const char *GLString::AutoName(void) const
 {
     return "GLString";
 }
@@ -171,4 +174,4 @@ GLString::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("alignment");
     ioOut << m_alignment;
 }
-//%outOfLineFunctions } iEBD1H7iuEGth6jWSX92+A
+//%outOfLineFunctions } pXMsPnA56SnMYhN8Qt1WiQ

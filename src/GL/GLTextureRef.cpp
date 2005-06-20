@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } asw/Xtq8JFLwPuHWwCzSHA
 /*
- * $Id: GLTextureRef.cpp,v 1.20 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.21 2005/06/16 17:25:37 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.21  2005/06/16 17:25:37  southa
+ * Client/server work
+ *
  * Revision 1.20  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -115,7 +118,7 @@ GLTextureRef::BindingNameFetch(void) const
 }
 //%outOfLineFunctions {
 
-const char *GLTextureRef::AutoNameGet(void) const
+const char *GLTextureRef::AutoName(void) const
 {
     return "GLTextureRef";
 }
@@ -174,4 +177,4 @@ GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("name");
     ioOut << m_name;
 }
-//%outOfLineFunctions } uqrTkjCXLubWyvnOcr1SFw
+//%outOfLineFunctions } eXTMqNGfWHRHvfazTD907g

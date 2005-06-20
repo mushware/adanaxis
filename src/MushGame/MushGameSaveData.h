@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameSaveData.h,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Log: MushGameSaveData.h,v $
+ * Revision 1.1  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -35,24 +38,33 @@
 class MushGameSaveData : public MushcoreVirtualObject
 {
 public:
-    
+    MushGameSaveData();
     
 private:
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
+    Mushware::U32 m_nextPlayerID; //:readwrite :wref
+    Mushware::U32 m_maxPlayersAllowed; //:readwrite
+    
 //%classPrototypes {
 public:
     const MushcoreData<MushGamePlayer>& Players(void) const { return m_players; }
     void PlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_players=inValue; }
     // Writable reference for m_players
     MushcoreData<MushGamePlayer>& PlayersWRef(void) { return m_players; }
-    virtual const char *AutoNameGet(void) const;
+    const Mushware::U32& NextPlayerID(void) const { return m_nextPlayerID; }
+    void NextPlayerIDSet(const Mushware::U32& inValue) { m_nextPlayerID=inValue; }
+    // Writable reference for m_nextPlayerID
+    Mushware::U32& NextPlayerIDWRef(void) { return m_nextPlayerID; }
+    const Mushware::U32& MaxPlayersAllowed(void) const { return m_maxPlayersAllowed; }
+    void MaxPlayersAllowedSet(const Mushware::U32& inValue) { m_maxPlayersAllowed=inValue; }
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } drB690lcXrWsgunfYZtTHQ
+//%classPrototypes } 6LQKcu5oEU2B4jNaA6mYkA
 };
 //%inlineHeader {
 inline std::ostream&

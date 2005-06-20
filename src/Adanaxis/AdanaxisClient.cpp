@@ -17,15 +17,18 @@
  ****************************************************************************/
 //%Header } mGYcBWqP13PsBBDcwTbikQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisClient.cpp,v 1.1 2005/06/16 10:49:57 southa Exp $
+ * $Log: AdanaxisClient.cpp,v $
+ * Revision 1.1  2005/06/16 10:49:57  southa
+ * Client/server work
+ *
  */
 
 #include "AdanaxisClient.h"
 
 //%outOfLineFunctions {
 
-const char *AdanaxisClient::AutoNameGet(void) const
+const char *AdanaxisClient::AutoName(void) const
 {
     return "AdanaxisClient";
 }
@@ -83,4 +86,4 @@ AdanaxisClient::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameClient::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } NoxPSUtSRW4tH1vUL+Tgxw
+//%outOfLineFunctions } DtPH27t8tfKkDSEKDHrYYQ

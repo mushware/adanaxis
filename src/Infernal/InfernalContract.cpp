@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ztSLO5E+zMTzTamKn6ueIQ
 /*
- * $Id: InfernalContract.cpp,v 1.14 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.15 2005/06/16 17:25:38 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.15  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.14  2005/05/19 13:02:04  southa
  * Mac release work
  *
@@ -1269,7 +1272,7 @@ InfernalContract::Install(void)
 }
 //%outOfLineFunctions {
 
-const char *InfernalContract::AutoNameGet(void) const
+const char *InfernalContract::AutoName(void) const
 {
     return "InfernalContract";
 }
@@ -1363,4 +1366,4 @@ InfernalContract::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("fastDiagnostics");
     ioOut << m_fastDiagnostics;
 }
-//%outOfLineFunctions } YClJuMlNMzjJF2uxE65OzA
+//%outOfLineFunctions } PEbRB5uWAmGe+ZsHIC855A

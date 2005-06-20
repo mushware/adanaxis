@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIEFORM_H
-#define MUSHPIEFORM_H
-//%includeGuardStart } chr+rdZQI8cOcPal/mrI9Q
+#ifndef MUSHGAMEMESSAGEJOINCONFIRM_H
+#define MUSHGAMEMESSAGEJOINCONFIRM_H
+//%includeGuardStart } ncqNKv/Pw1HGEZ4QVCnOLA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieForm.h
+ * File: src/MushGame/MushGameMessageJoinConfirm.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,40 +21,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1BQXbY1FaXDINIqoeuQNIQ
+//%Header } jTZUWVCpGdWH39h9vPh0dA
 /*
- * $Id: MushPieForm.h,v 1.4 2005/05/19 13:02:12 southa Exp $
- * $Log: MushPieForm.h,v $
- * Revision 1.4  2005/05/19 13:02:12  southa
- * Mac release work
- *
- * Revision 1.3  2005/02/10 12:34:12  southa
- * Template fixes
- *
- * Revision 1.2  2004/01/10 20:29:35  southa
- * Form and rendering work
- *
- * Revision 1.1  2004/01/06 10:08:51  southa
- * MushcoreData and MushPieForm work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushPieStandard.h"
+#include "MushGameStandard.h"
+#include "MushGameMessage.h"
 
-class MushPieSignal;
-
+//:xml1base MushGameMessage
 //:generate virtual standard ostream xml1
-class MushPieForm : public MushcoreVirtualObject
+class MushGameMessageJoinConfirm : public MushGameMessage
 {
 public:
-    typedef MushcoreData<MushPieForm, Mushware::U32> tData;
-    typedef MushcoreDataRef<MushPieForm, Mushware::U32> tDataRef;
+    virtual ~MushGameMessageJoinConfirm() {}
     
-    MushPieForm() {}
-    virtual ~MushPieForm() {}
-    
-    virtual void SignalHandle(const MushPieSignal& inSignal);
-    virtual void WriteableSignalHandle(MushPieSignal& inSignal);
+private:
     
 //%classPrototypes {
 public:
@@ -69,12 +52,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushPieForm& inObj)
+operator<<(std::ostream& ioOut, const MushGameMessageJoinConfirm& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } t8f6LLmjLkfX4mZD/ckOag
+//%inlineHeader } viUsrq0dwybkoMu8vWWN6Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

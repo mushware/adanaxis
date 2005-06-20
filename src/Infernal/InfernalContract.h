@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FeFArv+OWW6dLJUa28/4kA
 /*
- * $Id: InfernalContract.h,v 1.9 2005/02/10 12:34:01 southa Exp $
+ * $Id: InfernalContract.h,v 1.10 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.10  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.9  2005/02/10 12:34:01  southa
  * Template fixes
  *
@@ -295,14 +298,14 @@ private:
     bool m_fastDiagnostics;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 
 //%inlineHeader {

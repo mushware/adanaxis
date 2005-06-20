@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7/HRE/AT2v6+wN5oGaaHMg
 /*
- * $Id: GameReg.h,v 1.2 2005/04/11 23:31:41 southa Exp $
+ * $Id: GameReg.h,v 1.3 2005/05/19 13:02:03 southa Exp $
  * $Log: GameReg.h,v $
+ * Revision 1.3  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/04/11 23:31:41  southa
  * Startup and registration screen
  *
@@ -71,14 +74,14 @@ private:
 
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

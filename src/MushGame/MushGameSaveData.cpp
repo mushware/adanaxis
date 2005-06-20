@@ -19,17 +19,25 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameSaveData.cpp,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.1  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameSaveData.h"
 
 MUSHCORE_DATA_INSTANCE(MushGameSaveData);
 
+MushGameSaveData::MushGameSaveData() :
+    m_nextPlayerID(2)
+{
+}
+
 //%outOfLineFunctions {
 
-const char *MushGameSaveData::AutoNameGet(void) const
+const char *MushGameSaveData::AutoName(void) const
 {
     return "MushGameSaveData";
 }
@@ -60,7 +68,9 @@ void
 MushGameSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "players=" << m_players;
+    ioOut << "players=" << m_players << ", ";
+    ioOut << "nextPlayerID=" << m_nextPlayerID << ", ";
+    ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed;
     ioOut << "]";
 }
 bool
@@ -76,6 +86,14 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_players;
     }
+    else if (inTagStr == "nextPlayerID")
+    {
+        ioIn >> m_nextPlayerID;
+    }
+    else if (inTagStr == "maxPlayersAllowed")
+    {
+        ioIn >> m_maxPlayersAllowed;
+    }
     else
     {
         return false;
@@ -87,5 +105,9 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("players");
     ioOut << m_players;
+    ioOut.TagSet("nextPlayerID");
+    ioOut << m_nextPlayerID;
+    ioOut.TagSet("maxPlayersAllowed");
+    ioOut << m_maxPlayersAllowed;
 }
-//%outOfLineFunctions } cNf6GO7IqoEmNbK56Q9g8w
+//%outOfLineFunctions } qB2bqso9RrltGnq98gqqIQ

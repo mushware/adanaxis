@@ -23,6 +23,8 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisSaveData.h"
+
 #include "API/mushMushGame.h"
 
 //:xml1base MushGameServer
@@ -30,16 +32,25 @@
 class AdanaxisServer : public MushGameServer
 {
 public:
+    virtual ~AdanaxisServer() {}
+    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual void JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+
+protected:
+    virtual AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(MushGameServer::SaveData()); }
+
+private:
+    
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

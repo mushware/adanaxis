@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } RiAVbikoHEcCHD1YSyzBEg
 /*
- * $Id: GLTextureRef.h,v 1.19 2005/02/10 12:33:57 southa Exp $
+ * $Id: GLTextureRef.h,v 1.20 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.20  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.19  2005/02/10 12:33:57  southa
  * Template fixes
  *
@@ -113,14 +116,14 @@ private:
     mutable Mushware::U32 m_bindingNameContext;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 
 inline GLTexture *

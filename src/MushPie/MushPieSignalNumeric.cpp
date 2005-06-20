@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ayO3HxKF2plbUIsSd8qxzA
 /*
- * $Id: MushPieSignalNumeric.cpp,v 1.3 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPieSignalNumeric.cpp,v 1.4 2005/06/16 17:25:40 southa Exp $
  * $Log: MushPieSignalNumeric.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:40  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/05/19 13:02:13  southa
  * Mac release work
  *
@@ -36,7 +39,7 @@
 
 //%outOfLineFunctions {
 
-const char *MushPieSignalNumeric::AutoNameGet(void) const
+const char *MushPieSignalNumeric::AutoName(void) const
 {
     return "MushPieSignalNumeric";
 }
@@ -95,4 +98,4 @@ MushPieSignalNumeric::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("eventNumber");
     ioOut << m_eventNumber;
 }
-//%outOfLineFunctions } LU4j9Xj6YFUqHPF0DOWaQQ
+//%outOfLineFunctions } H8dPs/vmhjVwKEXUGaH78g

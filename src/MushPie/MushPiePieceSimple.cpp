@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BZiJCDiOBWqtsOyCjq4lrA
 /*
- * $Id: MushPiePieceSimple.cpp,v 1.6 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPiePieceSimple.cpp,v 1.7 2005/06/16 17:25:40 southa Exp $
  * $Log: MushPiePieceSimple.cpp,v $
+ * Revision 1.7  2005/06/16 17:25:40  southa
+ * Client/server work
+ *
  * Revision 1.6  2005/05/19 13:02:13  southa
  * Mac release work
  *
@@ -45,7 +48,7 @@
 
 //%outOfLineFunctions {
 
-const char *MushPiePieceSimple::AutoNameGet(void) const
+const char *MushPiePieceSimple::AutoName(void) const
 {
     return "MushPiePieceSimple";
 }
@@ -110,4 +113,4 @@ MushPiePieceSimple::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pos");
     ioOut << m_pos;
 }
-//%outOfLineFunctions } aoq/cwW6AcMwf8NBXTlhUg
+//%outOfLineFunctions } XOEEat9G0QtbWYhDETIlWw

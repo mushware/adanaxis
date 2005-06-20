@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } r1FHucV07VBBiradUIkD9g
 /*
-* $Id: GLFontRef.h,v 1.13 2005/03/25 19:13:48 southa Exp $
+* $Id: GLFontRef.h,v 1.14 2005/05/19 13:01:59 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.14  2005/05/19 13:01:59  southa
+* Mac release work
+*
 * Revision 1.13  2005/03/25 19:13:48  southa
 * GameDialogue work
 *
@@ -91,7 +94,7 @@ private:
     mutable GLFont *m_fontPtr; //:ignore
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -99,7 +102,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } BnRK317IXs8murPqdpFesg
+//%classPrototypes } DiD+DcQBMJy5w1XqoDWDvQ
 };
 //%inlineHeader {
 

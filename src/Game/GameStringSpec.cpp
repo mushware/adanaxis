@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eNQnZ9mXkx+CLF7sLqnxHg
 /*
- * $Id: GameStringSpec.cpp,v 1.2 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameStringSpec.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
  * $Log: GameStringSpec.cpp,v $
+ * Revision 1.3  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/05/19 13:02:03  southa
  * Mac release work
  *
@@ -33,7 +36,7 @@
 
 //%outOfLineFunctions {
 
-const char *GameStringSpec::AutoNameGet(void) const
+const char *GameStringSpec::AutoName(void) const
 {
     return "GameStringSpec";
 }
@@ -162,4 +165,4 @@ GameStringSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endSize");
     ioOut << m_endSize;
 }
-//%outOfLineFunctions } D5hAPth80vb1spo7Giyq4A
+//%outOfLineFunctions } ZmAaM0l9pVDZ4UQ1R/QPVA

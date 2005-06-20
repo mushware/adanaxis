@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } M3UkBs5T8BrIGUpcmTAdqg
 /*
- * $Id: TesseractTrainerConfig.cpp,v 1.5 2005/05/26 00:46:41 southa Exp $
+ * $Id: TesseractTrainerConfig.cpp,v 1.6 2005/06/16 17:25:40 southa Exp $
  * $Log: TesseractTrainerConfig.cpp,v $
+ * Revision 1.6  2005/06/16 17:25:40  southa
+ * Client/server work
+ *
  * Revision 1.5  2005/05/26 00:46:41  southa
  * Made buildable on win32
  *
@@ -49,7 +52,7 @@ TesseractTrainerConfig::TesseractTrainerConfig() :
 
 //%outOfLineFunctions {
 
-const char *TesseractTrainerConfig::AutoNameGet(void) const
+const char *TesseractTrainerConfig::AutoName(void) const
 {
     return "TesseractTrainerConfig";
 }
@@ -220,4 +223,4 @@ TesseractTrainerConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("playMusic");
     ioOut << m_playMusic;
 }
-//%outOfLineFunctions } qtlmOotDb/Cx3amruWVrCw
+//%outOfLineFunctions } rZxvR3q+WmwEEUAF6tciHw

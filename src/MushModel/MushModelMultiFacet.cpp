@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KDrzMM/sHV2WFHQjP9ctgQ
 /*
- * $Id: MushModelMultiFacet.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushModelMultiFacet.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
  * $Log: MushModelMultiFacet.cpp,v $
+ * Revision 1.5  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.4  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -125,7 +128,7 @@ MushModelMultiFacet::NullFunction(void)
 
 //%outOfLineFunctions {
 
-const char *MushModelMultiFacet::AutoNameGet(void) const
+const char *MushModelMultiFacet::AutoName(void) const
 {
     return "MushModelMultiFacet";
 }
@@ -184,4 +187,4 @@ MushModelMultiFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facets");
     ioOut << m_facets;
 }
-//%outOfLineFunctions } 8xSS6bLn6B1c0qqYz33Vaw
+//%outOfLineFunctions } WZY312FM8es9FxMqin8KtA

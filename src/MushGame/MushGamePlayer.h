@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGamePlayer.h,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Log: MushGamePlayer.h,v $
+ * Revision 1.1  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -46,14 +49,14 @@ private:
 //%classPrototypes {
 public:
     const Mushware::U32& PlayerID(void) const { return m_playerID; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gnAZuCvapICQ1MjyCHbleg
+//%classPrototypes } CtkZrIoo4xZrv7mIfRarBw
 };
 //%inlineHeader {
 inline std::ostream&

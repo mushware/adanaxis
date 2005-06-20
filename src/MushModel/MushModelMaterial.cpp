@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x23JuTdZeZ6lv0VI6tjnsA
 /*
- * $Id: MushModelMaterial.cpp,v 1.4 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushModelMaterial.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
  * $Log: MushModelMaterial.cpp,v $
+ * Revision 1.5  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.4  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -122,7 +125,7 @@ MushModelMaterial::NullFunction(void)
 }
 //%outOfLineFunctions {
 
-const char *MushModelMaterial::AutoNameGet(void) const
+const char *MushModelMaterial::AutoName(void) const
 {
     return "MushModelMaterial";
 }
@@ -181,4 +184,4 @@ MushModelMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("textureName");
     ioOut << m_textureName;
 }
-//%outOfLineFunctions } x8QRFuHmV/aDay16ONDOCw
+//%outOfLineFunctions } 3ciSbYVdx3UQI/mA92mtlA

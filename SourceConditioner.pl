@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.35 2005/05/20 10:26:23 southa Exp $
+# $Id: SourceConditioner.pl,v 1.36 2005/06/14 13:25:30 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.36  2005/06/14 13:25:30  southa
+# Adanaxis work
+#
 # Revision 1.35  2005/05/20 10:26:23  southa
 # Release work
 #
@@ -549,7 +552,7 @@ sub StandardPrototypeGenerate($$)
 
     die "No class found for standard functions" unless defined ($className);
     
-    push @$outputRef, "$gConfig{INDENT}${virtual}const char *$gConfig{AUTO_PREFIX}NameGet(void) const;"; 
+    push @$outputRef, "$gConfig{INDENT}${virtual}const char *$gConfig{AUTO_PREFIX}Name(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Create(void) const;"; 
     push @$outputRef, "$gConfig{INDENT}static MushcoreVirtualObject *$gConfig{AUTO_PREFIX}VirtualFactory(void);"; 
@@ -570,7 +573,7 @@ sub StandardFunctionGenerate($$)
     push @$outputRef,
 $templatePrefix,
 "const char *".
-"${outerClassName}::$gConfig{AUTO_PREFIX}NameGet(void) const",
+"${outerClassName}::$gConfig{AUTO_PREFIX}Name(void) const",
 "{",
 "    return \"$className\";",
 "}",

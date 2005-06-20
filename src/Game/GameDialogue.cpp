@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mPmCGCmDmQ75caXxvc1Qow
 /*
- * $Id: GameDialogue.cpp,v 1.30 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.31 2005/06/16 17:25:38 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.31  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.30  2005/05/19 13:02:02  southa
  * Mac release work
  *
@@ -222,7 +225,7 @@ GameDialogue::Install(void)
 
 //%outOfLineFunctions {
 
-const char *GameDialogue::AutoNameGet(void) const
+const char *GameDialogue::AutoName(void) const
 {
     return "GameDialogue";
 }
@@ -316,4 +319,4 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } sJBe+CT9l1c1RP/ZCJP0GA
+//%outOfLineFunctions } wDlVVs+Hz5DEkVp9QtjQeQ

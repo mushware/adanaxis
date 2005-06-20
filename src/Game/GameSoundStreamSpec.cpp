@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PEy2CHiJNmS7LfNQy1wt/g
 /*
- * $Id: GameSoundStreamSpec.cpp,v 1.2 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameSoundStreamSpec.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
  * $Log: GameSoundStreamSpec.cpp,v $
+ * Revision 1.3  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/05/19 13:02:03  southa
  * Mac release work
  *
@@ -33,7 +36,7 @@
 
 //%outOfLineFunctions {
 
-const char *GameSoundStreamSpec::AutoNameGet(void) const
+const char *GameSoundStreamSpec::AutoName(void) const
 {
     return "GameSoundStreamSpec";
 }
@@ -106,4 +109,4 @@ GameSoundStreamSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startTime");
     ioOut << startTime;
 }
-//%outOfLineFunctions } p3CwqhA46dpnObTvLbCCxg
+//%outOfLineFunctions } 21T4JAts81evrgzi08khHQ

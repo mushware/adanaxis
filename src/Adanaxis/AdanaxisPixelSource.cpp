@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } do/pC4WFtsQItE9mWclSaw
 /*
- * $Id: AdanaxisPixelSource.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
+ * $Id: AdanaxisPixelSource.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
  * $Log: AdanaxisPixelSource.cpp,v $
+ * Revision 1.3  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/14 13:25:33  southa
  * Adanaxis work
  *
@@ -117,7 +120,7 @@ AdanaxisPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mushware::t2
 
 //%outOfLineFunctions {
 
-const char *AdanaxisPixelSource::AutoNameGet(void) const
+const char *AdanaxisPixelSource::AutoName(void) const
 {
     return "AdanaxisPixelSource";
 }
@@ -196,4 +199,4 @@ AdanaxisPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } 7aaTy0iwzqEhafNc12bSOw
+//%outOfLineFunctions } i8jPVHxhG5i0PUumNw2oPw

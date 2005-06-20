@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pJ3Ndkz2M6+Snlv4VP0kBw
 /*
- * $Id: MushPieSignal.h,v 1.2 2005/02/10 12:34:16 southa Exp $
+ * $Id: MushPieSignal.h,v 1.3 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPieSignal.h,v $
+ * Revision 1.3  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/02/10 12:34:16  southa
  * Template fixes
  *
@@ -46,14 +49,14 @@ private:
     
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

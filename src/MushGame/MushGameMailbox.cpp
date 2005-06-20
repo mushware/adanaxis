@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMailbox.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameMailbox.h"
@@ -38,10 +41,10 @@ MushGameMailbox::~MushGameMailbox()
 }
 
 void
-MushGameMailbox::Give(MushGameMessage *& iopMessage)
+MushGameMailbox::Give(MushGameMessage *iopMessage)
 {
     m_deque.push_back(iopMessage);
-    iopMessage = NULL;
+    //iopMessage = NULL;
 }
 
 bool
@@ -58,7 +61,7 @@ MushGameMailbox::TakeIfAvialable(MushGameMessage *& iopMessage)
 }
 //%outOfLineFunctions {
 
-const char *MushGameMailbox::AutoNameGet(void) const
+const char *MushGameMailbox::AutoName(void) const
 {
     return "MushGameMailbox";
 }
@@ -117,4 +120,4 @@ MushGameMailbox::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deque");
     ioOut << m_deque;
 }
-//%outOfLineFunctions } OJ0okdctjCfgL55JYsep8A
+//%outOfLineFunctions } Cs6twGKxsf0tj712OugIwA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Jc7zA7p7ZQz1f9lxQyLUCw
 /*
- * $Id: MushPieDialogue.cpp,v 1.2 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushPieDialogue.cpp,v 1.3 2005/06/16 17:25:39 southa Exp $
  * $Log: MushPieDialogue.cpp,v $
+ * Revision 1.3  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -60,7 +63,7 @@ MushPieDialogue::ExpireNow()
 
 //%outOfLineFunctions {
 
-const char *MushPieDialogue::AutoNameGet(void) const
+const char *MushPieDialogue::AutoName(void) const
 {
     return "MushPieDialogue";
 }
@@ -132,4 +135,4 @@ MushPieDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } KWjsdXF8kckviDi55Wez2g
+//%outOfLineFunctions } GJLt/9EDFPL7TjgOL/W4aw

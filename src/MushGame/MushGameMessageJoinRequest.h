@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHPIEFORM_H
-#define MUSHPIEFORM_H
-//%includeGuardStart } chr+rdZQI8cOcPal/mrI9Q
+#ifndef MUSHGAMEMESSAGEJOINREQUEST_H
+#define MUSHGAMEMESSAGEJOINREQUEST_H
+//%includeGuardStart } kXb2eEx91MHgRkrhpuhLuA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieForm.h
+ * File: src/MushGame/MushGameMessageJoinRequest.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,43 +21,29 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1BQXbY1FaXDINIqoeuQNIQ
+//%Header } rXRd7F8DnvTpUWdq+trMKw
 /*
- * $Id: MushPieForm.h,v 1.4 2005/05/19 13:02:12 southa Exp $
- * $Log: MushPieForm.h,v $
- * Revision 1.4  2005/05/19 13:02:12  southa
- * Mac release work
- *
- * Revision 1.3  2005/02/10 12:34:12  southa
- * Template fixes
- *
- * Revision 1.2  2004/01/10 20:29:35  southa
- * Form and rendering work
- *
- * Revision 1.1  2004/01/06 10:08:51  southa
- * MushcoreData and MushPieForm work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushPieStandard.h"
+#include "MushGameStandard.h"
+#include "MushGameMessage.h"
 
-class MushPieSignal;
-
+//:xml1base MushGameMessage
 //:generate virtual standard ostream xml1
-class MushPieForm : public MushcoreVirtualObject
+class MushGameMessageJoinRequest : public MushGameMessage
 {
 public:
-    typedef MushcoreData<MushPieForm, Mushware::U32> tData;
-    typedef MushcoreDataRef<MushPieForm, Mushware::U32> tDataRef;
+    virtual ~MushGameMessageJoinRequest() {}
     
-    MushPieForm() {}
-    virtual ~MushPieForm() {}
-    
-    virtual void SignalHandle(const MushPieSignal& inSignal);
-    virtual void WriteableSignalHandle(MushPieSignal& inSignal);
-    
+private:
+    std::string m_playerName; //:read
+    std::string m_packageID; //:read
 //%classPrototypes {
 public:
+    const std::string& PlayerName(void) const { return m_playerName; }
+    const std::string& PackageID(void) const { return m_packageID; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -65,16 +51,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } 6ilwKmHuV/0E2QocMRSOFA
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushPieForm& inObj)
+operator<<(std::ostream& ioOut, const MushGameMessageJoinRequest& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } t8f6LLmjLkfX4mZD/ckOag
+//%inlineHeader } dQQUqghoRVwgk6oCtNHS0Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

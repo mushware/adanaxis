@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bLWcqZiLGDFRgRVeCcr7Mw
 /*
- * $Id: MushPiePiece.h,v 1.11 2005/02/10 12:34:13 southa Exp $
+ * $Id: MushPiePiece.h,v 1.12 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePiece.h,v $
+ * Revision 1.12  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.11  2005/02/10 12:34:13  southa
  * Template fixes
  *
@@ -92,7 +95,7 @@ public:
     void SleepStateSet(const tSleepState& inValue) { m_sleepState=inValue; }
     const MushPieForm::tDataRef& FormRef(void) const { return m_formRef; }
     void FormRefSet(const MushPieForm::tDataRef& inValue) { m_formRef=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -100,7 +103,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } aMR9AexWbjfwnyQ9e1iI/Q
+//%classPrototypes } 4ytsmnByOpLZXbcJcb0sOQ
 };
 //%inlineHeader {
 

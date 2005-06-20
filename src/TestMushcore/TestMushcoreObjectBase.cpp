@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PPbm75OUQfPK+juajmc50A
 /*
- * $Id: TestMushcoreObjectBase.cpp,v 1.3 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreObjectBase.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
  * $Log: TestMushcoreObjectBase.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:41  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -36,7 +39,7 @@
 
 //%outOfLineFunctions {
 
-const char *TestMushcoreObjectBase::AutoNameGet(void) const
+const char *TestMushcoreObjectBase::AutoName(void) const
 {
     return "TestMushcoreObjectBase";
 }
@@ -102,4 +105,4 @@ TestMushcoreObjectBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("baseObjectValue");
     ioOut << m_baseObjectValue;
 }
-//%outOfLineFunctions } 0Bb1FjPpV/Nvw0CnO6TOxg
+//%outOfLineFunctions } 3gcZ1Zt0hNT6RsrPJS/rNg

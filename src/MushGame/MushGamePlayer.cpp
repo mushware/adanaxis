@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGamePlayer.cpp,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.1  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  */
 
 #include "MushGamePlayer.h"
@@ -39,7 +42,7 @@ MushGamePlayer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessa
 }
 //%outOfLineFunctions {
 
-const char *MushGamePlayer::AutoNameGet(void) const
+const char *MushGamePlayer::AutoName(void) const
 {
     return "MushGamePlayer";
 }
@@ -98,4 +101,4 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("playerID");
     ioOut << m_playerID;
 }
-//%outOfLineFunctions } aftg6XwYIt+WUkcxbS4CHQ
+//%outOfLineFunctions } XAUjD70cvTQJ8J2H50drhQ

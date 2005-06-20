@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 1cPm6Hnox103xUM9gkbzFw
 /*
- * $Id: TesseractTrainerConfig.h,v 1.4 2005/05/20 10:26:29 southa Exp $
+ * $Id: TesseractTrainerConfig.h,v 1.5 2005/06/08 20:59:52 southa Exp $
  * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.5  2005/06/08 20:59:52  southa
+ * X11 release
+ *
  * Revision 1.4  2005/05/20 10:26:29  southa
  * Release work
  *
@@ -112,14 +115,14 @@ public:
     const bool& PlayMusic(void) const { return m_playMusic; }
     void PlayMusicSet(const bool& inValue) { m_playMusic=inValue; }
     void PlayMusicToggle(void) { m_playMusic=!(m_playMusic); }
-    const char *AutoNameGet(void) const;
+    const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Jtiw3WOi6j6+2dBjOYoeDQ
+//%classPrototypes } BeVkcSzlrt8YifRDV18hOw
 };
 //%inlineHeader {
 inline std::ostream&

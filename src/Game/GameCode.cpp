@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jhdo/VCXESdIVB/METBPYg
 /*
- * $Id: GameCode.cpp,v 1.2 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameCode.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
  * $Log: GameCode.cpp,v $
+ * Revision 1.3  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -69,7 +72,7 @@ GameCode::CodeSet(const std::string& inStr)
 }
 //%outOfLineFunctions {
 
-const char *GameCode::AutoNameGet(void) const
+const char *GameCode::AutoName(void) const
 {
     return "GameCode";
 }
@@ -143,4 +146,4 @@ GameCode::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("crypt");
     ioOut << m_crypt;
 }
-//%outOfLineFunctions } KJTjOeU1IEiZk1GaYRQjiA
+//%outOfLineFunctions } doBk11fWFBKq4PiwB4Vgrg

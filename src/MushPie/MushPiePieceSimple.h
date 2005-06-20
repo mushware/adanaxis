@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } h5UycMFcedjK4mQzD07tmA
 /*
- * $Id: MushPiePieceSimple.h,v 1.6 2005/02/10 12:34:14 southa Exp $
+ * $Id: MushPiePieceSimple.h,v 1.7 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePieceSimple.h,v $
+ * Revision 1.7  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/02/10 12:34:14  southa
  * Template fixes
  *
@@ -64,14 +67,14 @@ private:
 public:
     const MushPiePosition& Pos(void) const { return m_pos; }
     void PosSet(const MushPiePosition& inValue) { m_pos=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } TWcI/rkUL/e8qTwqXdVZOA
+//%classPrototypes } s6US1P5CAkyS/r3hL8UhGg
 };
 //%inlineHeader {
 inline std::ostream&

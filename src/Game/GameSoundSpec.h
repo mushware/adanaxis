@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FuIc9TOssVkth72yZpItlg
 /*
- * $Id: GameSoundSpec.h,v 1.1 2005/03/25 19:13:49 southa Exp $
+ * $Id: GameSoundSpec.h,v 1.2 2005/05/19 13:02:03 southa Exp $
  * $Log: GameSoundSpec.h,v $
+ * Revision 1.2  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/03/25 19:13:49  southa
  * GameDialogue work
  *
@@ -50,14 +53,14 @@ public:
     void SoundRefSet(const MushcoreDataRef<MediaSound>& inValue) { m_soundRef=inValue; }
     const Mushware::tVal& StartTime(void) const { return m_startTime; }
     void StartTimeSet(const Mushware::tVal& inValue) { m_startTime=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gV9xDDOCWutV/QNpQOiE3g
+//%classPrototypes } 3niTv5bvjf9z4kFJigspzg
 };
 //%inlineHeader {
 inline std::ostream&

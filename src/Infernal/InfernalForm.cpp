@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } a8fQWtiAU9Jz7lV1nxPnhA
 /*
- * $Id: InfernalForm.cpp,v 1.5 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.6 2005/06/16 17:25:38 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.6  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.5  2005/05/19 13:02:05  southa
  * Mac release work
  *
@@ -222,7 +225,7 @@ namespace { MushcoreInstaller Installer(InfernalForm::Install); }
 
 //%outOfLineFunctions {
 
-const char *InfernalForm::AutoNameGet(void) const
+const char *InfernalForm::AutoName(void) const
 {
     return "InfernalForm";
 }
@@ -301,4 +304,4 @@ InfernalForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facetContextIndex");
     ioOut << m_facetContextIndex;
 }
-//%outOfLineFunctions } 5pGug+yaJhFojzTjc6kWBw
+//%outOfLineFunctions } 0WIWmFUI+G8Avuwjg9mdog

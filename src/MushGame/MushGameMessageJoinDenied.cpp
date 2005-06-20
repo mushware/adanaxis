@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushPie/MushPieSignal.cpp
+ * File: src/MushGame/MushGameMessageJoinDenied.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,69 +17,62 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1C8j1hqSjBkuainavpw0IQ
+//%Header } P+nosjqtH61VY4J6ugK5iQ
 /*
- * $Id: MushPieSignal.cpp,v 1.4 2005/06/16 17:25:40 southa Exp $
- * $Log: MushPieSignal.cpp,v $
- * Revision 1.4  2005/06/16 17:25:40  southa
- * Client/server work
- *
- * Revision 1.3  2005/05/19 13:02:13  southa
- * Mac release work
- *
- * Revision 1.2  2005/02/10 12:34:16  southa
- * Template fixes
- *
- * Revision 1.1  2004/01/10 20:29:35  southa
- * Form and rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushPieSignal.h"
+#include "MushGameMessageJoinDenied.h"
 
 //%outOfLineFunctions {
 
-const char *MushPieSignal::AutoName(void) const
+const char *MushGameMessageJoinDenied::AutoName(void) const
 {
-    return "MushPieSignal";
+    return "MushGameMessageJoinDenied";
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoClone(void) const
+MushcoreVirtualObject *MushGameMessageJoinDenied::AutoClone(void) const
 {
-    return new MushPieSignal(*this);
+    return new MushGameMessageJoinDenied(*this);
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoCreate(void) const
+MushcoreVirtualObject *MushGameMessageJoinDenied::AutoCreate(void) const
 {
-    return new MushPieSignal;
+    return new MushGameMessageJoinDenied;
 }
 
-MushcoreVirtualObject *MushPieSignal::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameMessageJoinDenied::AutoVirtualFactory(void)
 {
-    return new MushPieSignal;
+    return new MushGameMessageJoinDenied;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushPieSignal", MushPieSignal::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameMessageJoinDenied", MushGameMessageJoinDenied::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushPieSignal::AutoPrint(std::ostream& ioOut) const
+MushGameMessageJoinDenied::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGameMessage::AutoPrint(ioOut);
     ioOut << "]";
 }
 bool
-MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameMessageJoinDenied::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (MushGameMessage::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
     }
     else
     {
@@ -88,7 +81,8 @@ MushPieSignal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     return true;
 }
 void
-MushPieSignal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameMessageJoinDenied::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGameMessage::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } kn7MGdmGDFD9+eIK5mjweA
+//%outOfLineFunctions } ClIHq6eIllNFwzey62En5A

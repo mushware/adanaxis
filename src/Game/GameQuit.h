@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VLxpFpdgyVCv0Dlmip6apg
 /*
- * $Id: GameQuit.h,v 1.12 2005/02/10 12:33:58 southa Exp $
+ * $Id: GameQuit.h,v 1.13 2005/05/19 13:02:02 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.13  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/02/10 12:33:58  southa
  * Template fixes
  *
@@ -101,14 +104,14 @@ private:
     Mushware::U32 m_startMsec;
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

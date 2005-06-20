@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } apsuPIkQzTaqWiIk89z8uA
 /*
- * $Id: InfernalFacetContext.cpp,v 1.3 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalFacetContext.cpp,v 1.4 2005/06/16 17:25:38 southa Exp $
  * $Log: InfernalFacetContext.cpp,v $
+ * Revision 1.4  2005/06/16 17:25:38  southa
+ * Client/server work
+ *
  * Revision 1.3  2005/05/19 13:02:04  southa
  * Mac release work
  *
@@ -106,7 +109,7 @@ InfernalFacetContext::VerticesImport(const std::vector<Mushware::t3Val>& inVerti
 }
 //%outOfLineFunctions {
 
-const char *InfernalFacetContext::AutoNameGet(void) const
+const char *InfernalFacetContext::AutoName(void) const
 {
     return "InfernalFacetContext";
 }
@@ -221,4 +224,4 @@ InfernalFacetContext::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("contextValid");
     ioOut << m_contextValid;
 }
-//%outOfLineFunctions } N701y7cepe6EAN9O6AxBmg
+//%outOfLineFunctions } Ac0b2WNksOkFqFNvP+u3nQ

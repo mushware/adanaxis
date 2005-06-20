@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } L8O/LjuzQW4swwus1Q/+kQ
 /*
- * $Id: TestMushcoreObjectBase.h,v 1.3 2005/02/10 12:34:23 southa Exp $
+ * $Id: TestMushcoreObjectBase.h,v 1.4 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreObjectBase.h,v $
+ * Revision 1.4  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:23  southa
  * Template fixes
  *
@@ -51,7 +54,7 @@ private:
 public:
     const Mushware::U32& BaseObjectValue(void) const { return m_baseObjectValue; }
     void BaseObjectValueSet(const Mushware::U32& inValue) { m_baseObjectValue=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
@@ -59,7 +62,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } modtjWJ5ga5ax0yJwW2t2Q
+//%classPrototypes } OdpduZvemRzN2mhi+tZa7A
 };
 //%inlineHeader {
 

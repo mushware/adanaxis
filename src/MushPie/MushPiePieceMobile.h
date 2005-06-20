@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jjfpBGJYSlq87ZwdRNOaXA
 /*
- * $Id: MushPiePieceMobile.h,v 1.5 2005/02/10 12:34:14 southa Exp $
+ * $Id: MushPiePieceMobile.h,v 1.6 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePieceMobile.h,v $
+ * Revision 1.6  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/10 12:34:14  southa
  * Template fixes
  *
@@ -69,14 +72,14 @@ private:
     
 //%classPrototypes {
 public:
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FwEN8XJox/Ejr30NeyHzCg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 
 inline void

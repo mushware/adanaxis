@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.3  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/14 13:25:33  southa
  * Adanaxis work
  *
@@ -62,7 +65,7 @@ AdanaxisConfig::AutoOutputPrologue(MushcoreXMLOStream& ioOut) const
 
 //%outOfLineFunctions {
 
-const char *AdanaxisConfig::AutoNameGet(void) const
+const char *AdanaxisConfig::AutoName(void) const
 {
     return "AdanaxisConfig";
 }
@@ -127,4 +130,4 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } aE8p0nfHrUnRhjX1RUxvYQ
+//%outOfLineFunctions } 50x36Sya+I2lEuoASJgHDQ

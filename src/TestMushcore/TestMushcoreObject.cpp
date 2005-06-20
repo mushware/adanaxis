@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /C4CFFmSnufbqgXbq7HAiw
 /*
- * $Id: TestMushcoreObject.cpp,v 1.21 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.22 2005/06/16 17:25:41 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.22  2005/06/16 17:25:41  southa
+ * Client/server work
+ *
  * Revision 1.21  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -95,7 +98,7 @@ MUSHCORE_DATA_INSTANCE(TestMushcoreObject);
 
 //%outOfLineFunctions {
 
-const char *TestMushcoreObject::AutoNameGet(void) const
+const char *TestMushcoreObject::AutoName(void) const
 {
     return "TestMushcoreObject";
 }
@@ -344,4 +347,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } B1AaiFiquxKQgwocOSVAtw
+//%outOfLineFunctions } U8sDnCBXiuZjbEXEA83TTg

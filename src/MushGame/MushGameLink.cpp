@@ -19,15 +19,18 @@
  ****************************************************************************/
 //%Header } 3OteCOfn1xaSDLsPZcAEYQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLink.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameLink.cpp,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameLink.h"
 
 //%outOfLineFunctions {
 
-const char *MushGameLink::AutoNameGet(void) const
+const char *MushGameLink::AutoName(void) const
 {
     return "MushGameLink";
 }
@@ -79,4 +82,4 @@ void
 MushGameLink::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } Db1FBoNQnhLY+IKd21fIkA
+//%outOfLineFunctions } FuV8JBtRlsDDaQjLuxLqog

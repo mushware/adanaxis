@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jolLisLTBger7BjMB5WCXg
 /*
- * $Id: MushcoreFail.h,v 1.7 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreFail.h,v 1.8 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreFail.h,v $
+ * Revision 1.8  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.7  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -148,7 +151,8 @@ public:
 class MushcoreSyntaxFail : public MushcoreNonFatalFail
 {
 public:
-    MushcoreSyntaxFail(const std::string &inMessage);};
+    MushcoreSyntaxFail(const std::string &inMessage);
+};
 
 //%includeGuardEnd {
 #endif

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } edr+IsFCWwFE/fGY1LZExA
 /*
- * $Id: MushModelFacet.h,v 1.5 2005/02/10 12:34:09 southa Exp $
+ * $Id: MushModelFacet.h,v 1.6 2005/05/19 13:02:12 southa Exp $
  * $Log: MushModelFacet.h,v $
+ * Revision 1.6  2005/05/19 13:02:12  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/10 12:34:09  southa
  * Template fixes
  *
@@ -73,14 +76,14 @@ public:
     void TexCoordsSet(const std::vector< std::vector<Mushware::t4Val> >& inValue) { m_texCoords=inValue; }
     const std::vector<Mushware::t3Val>& Normals(void) const { return m_normals; }
     void NormalsSet(const std::vector<Mushware::t3Val>& inValue) { m_normals=inValue; }
-    virtual const char *AutoNameGet(void) const;
+    virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 52pb6TXzqoPnUA09USnWcw
+//%classPrototypes } Yz7GKVZK6et6uG4rk72AKw
 };
 //%inlineHeader {
 inline std::ostream&

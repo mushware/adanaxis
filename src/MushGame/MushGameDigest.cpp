@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DEIbaed/fMvMVvkt6iWKMg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameDigest.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Log: MushGameDigest.cpp,v $
+ * Revision 1.1  2005/06/16 10:48:59  southa
+ * Client/server work
+ *
  */
 
 #include "MushGameDigest.h"
@@ -30,7 +33,7 @@ MushGameDigest::MushGameDigest()
 }
 //%outOfLineFunctions {
 
-const char *MushGameDigest::AutoNameGet(void) const
+const char *MushGameDigest::AutoName(void) const
 {
     return "MushGameDigest";
 }
@@ -96,4 +99,4 @@ MushGameDigest::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("content");
     ioOut << m_content;
 }
-//%outOfLineFunctions } 7RyNvKO+3HJt47CY8x1zsQ
+//%outOfLineFunctions } hoqKVoZXptIRU4P2f53peA

@@ -24,8 +24,11 @@
 //%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.25 2005/06/13 14:25:45 southa Exp $
+ * $Id: MushcoreData.h,v 1.26 2005/06/14 20:39:42 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.26  2005/06/14 20:39:42  southa
+ * Adanaxis work
+ *
  * Revision 1.25  2005/06/13 14:25:45  southa
  * Pipe and ordered data work
  *
@@ -194,9 +197,9 @@ public:
     inline void Delete(const tMapIterator& inIterator);
     inline bool Exists(const KeyType& inName) const;
     inline void Clear(void);
-    inline Mushware::U32 Size(void);
+    inline Mushware::U32 Size(void) const;
     inline void Iterate(void (*inFnPtr)(RefType&));
-    inline void Dump(std::ostream& ioOut);
+    inline void Dump(std::ostream& ioOut) const;
     inline tMapIterator Begin(void);
     inline tMapIterator End(void);
     inline tMapConstIterator Begin(void) const;
@@ -379,7 +382,7 @@ MushcoreData<RefType, KeyType>::Clear(void)
 
 template<class RefType, class KeyType>
 inline Mushware::U32
-MushcoreData<RefType, KeyType>::Size(void)
+MushcoreData<RefType, KeyType>::Size(void) const
 {
     return m_data.size();
 }
@@ -397,7 +400,7 @@ MushcoreData<RefType, KeyType>::Iterate(void (*inFnPtr)(RefType&))
 
 template<class RefType, class KeyType>
 inline void
-MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut)
+MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut) const
 {
     tMapIterator endIter = m_data.end();
     for (tMapIterator p = m_data.begin(); p != endIter; ++p)
