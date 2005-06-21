@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 3aRv+tX8/7XZNh7xGrmOrA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLinkLocal.h,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Log: MushGameLinkLocal.h,v $
+ * Revision 1.1  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -34,13 +37,15 @@
 #include "MushGameLink.h"
 #include "MushGameServer.h"
 
+class MushGameLogic;
+
 //:xml1base MushGameLink
 //:generate virtual standard ostream xml1
 class MushGameLinkLocal : public MushGameLink
 {
 public:
     virtual ~MushGameLinkLocal() {}
-    virtual void MessagesPump(void);
+    virtual void MessagesPump(MushGameLogic& ioLogic);
     
 private:
     MushcoreDataRef<MushGameClient> m_clientRef; //:readwrite

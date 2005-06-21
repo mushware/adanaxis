@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.4 2005/06/16 17:25:37 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.5 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.5  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -77,6 +80,7 @@ private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef;
     MushcoreDataRef<MushGameClient> m_clientRef;
     MushcoreDataRef<MushGameServer> m_serverRef;
+    MushcoreDataRef<MushGameLogic> m_logicRef;
     
     AdanaxisConfig m_config;
     

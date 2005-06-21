@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZLCiVmbUjo5qfJ+17ayqmA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameVolatileData.cpp,v 1.1 2005/06/21 13:10:52 southa Exp $
+ * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.1  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameVolatileData.h"
@@ -30,6 +33,7 @@ MUSHCORE_DATA_INSTANCE(MushGameVolatileData);
 MushGameVolatileData::MushGameVolatileData()
 {
 }
+
 //%outOfLineFunctions {
 
 const char *MushGameVolatileData::AutoName(void) const

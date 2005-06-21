@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Fj6DJ9Nl9r0XWjQ8VWoIog
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLinkLocal.cpp,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Log: MushGameLinkLocal.cpp,v $
+ * Revision 1.1  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameLinkLocal.h"
@@ -28,31 +31,22 @@
 #include "MushGameUtil.h"
 
 void 
-MushGameLinkLocal::MessagesPump()
+MushGameLinkLocal::MessagesPump(MushGameLogic& ioLogic)
 {
+    // FIXME: Reply routing
     MushGameMailbox *pMailbox;
-    
-    MushGameMailbox *pReplyBox = new MushGameMailbox;
     
     while (m_clientToServer.TopGet(pMailbox))
     {
-        MushGameUtil::MailboxToServerMove(m_serverRef.WRef(), *pMailbox, *pReplyBox);
+        MushGameUtil::MailboxToServerMove(m_serverRef.WRef(), *pMailbox, ioLogic);
         m_clientToServer.TopDelete();
     }
 
-    m_serverToClient.Give(pReplyBox);
-    
-    pReplyBox = new MushGameMailbox;
-    
     while (m_serverToClient.TopGet(pMailbox))
     {
-        MushGameUtil::MailboxToClientMove(m_clientRef.WRef(), *pMailbox, *pReplyBox);
+        MushGameUtil::MailboxToClientMove(m_clientRef.WRef(), *pMailbox, ioLogic);
         m_serverToClient.TopDelete();
     }
-    
-    m_clientToServer.Give(pReplyBox);
-    
-    // FIXME: Leaks pReplyBox on exception
 }
 
 //%outOfLineFunctions {

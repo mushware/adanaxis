@@ -19,13 +19,82 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLogic.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameLogic.cpp,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameLogic.h"
 
+#include "MushGameJob.h"
+#include "MushGameMessageWake.h"
+
+#include "API/mushGame.h"
+
 MUSHCORE_DATA_INSTANCE(MushGameLogic);
+
+using namespace Mushware;
+using namespace std;
+
+Mushware::U32
+MushGameLogic::GameMsec(void) const
+{
+    GameAppHandler *pGameAppHandler=dynamic_cast<GameAppHandler *>(&MushcoreAppHandler::Sgl());
+    if (pGameAppHandler == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return pGameAppHandler->MillisecondsGet();
+    }
+}
+
+void
+MushGameLogic::JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList)
+{
+    U32 msecNow = GameMsec();
+    
+    for (tJobList::tIterator p = ioList.Begin(); p != ioList.End(); )
+    {
+        MushGameJob *pJob = p->second;
+        MUSHCOREASSERT(pJob != NULL);
+        if (pJob->ShouldWake())
+        {
+            if (pJob->WakeTime() <= msecNow)
+            {
+                MushGameMessageWake wakeMessage;
+                try
+                {
+                    pJob->MessageConsume(*this, wakeMessage);
+                }
+                catch (MushcoreNonFatalFail& e)
+                {
+                    MushcoreLog::Sgl().ErrorLog() << "Job wake consumption failure: " << e.what() << endl
+                        << "Job was '" << p->first << "': " << *pJob << endl;
+                    pJob->CompleteSet(true);
+                }
+            }
+        }
+        
+        tJobList::tIterator oldP = p;
+        ++p;
+
+        if (pJob->Complete())
+        {
+            ioList.Delete(oldP);
+        }
+    }
+}
+
+void
+MushGameLogic::PerFrameProcessing(void)
+{
+    JobListProcess(SaveData().ToServerMailboxWRef(), SaveData().JobListWRef());
+}
+
 //%outOfLineFunctions {
 
 const char *MushGameLogic::AutoName(void) const
@@ -59,6 +128,8 @@ void
 MushGameLogic::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "dataRef=" << m_dataRef << ", ";
+    ioOut << "hostDataRef=" << m_hostDataRef;
     ioOut << "]";
 }
 bool
@@ -70,6 +141,14 @@ MushGameLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "dataRef")
+    {
+        ioIn >> m_dataRef;
+    }
+    else if (inTagStr == "hostDataRef")
+    {
+        ioIn >> m_hostDataRef;
+    }
     else
     {
         return false;
@@ -79,5 +158,9 @@ MushGameLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
 void
 MushGameLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("dataRef");
+    ioOut << m_dataRef;
+    ioOut.TagSet("hostDataRef");
+    ioOut << m_hostDataRef;
 }
-//%outOfLineFunctions } cF3gamwz5aZDYiUpjr5L8g
+//%outOfLineFunctions } DVO9yyMiWy5cK9z0gQKXvQ

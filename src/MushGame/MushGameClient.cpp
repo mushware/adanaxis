@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZzA13XBaYAADYudEapYUYw
 /*
- * $Id: MushGameClient.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameClient.cpp,v 1.2 2005/06/20 14:30:35 southa Exp $
  * $Log: MushGameClient.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -35,7 +38,7 @@ MushGameClient::MushGameClient()
 }
 
 void
-MushGameClient::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+MushGameClient::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
 }
 

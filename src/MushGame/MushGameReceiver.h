@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GCZE/kvpvmswNcaBrJ6a2A
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameReceiver.h,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Log: MushGameReceiver.h,v $
+ * Revision 1.1  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -32,13 +35,15 @@
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
 
+class MushGameLogic;
+
 class MushGameReceiver
 {
 public:
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage) = 0;
 private:
-    
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

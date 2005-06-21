@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.2 2005/06/21 13:10:52 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.2  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -30,6 +33,9 @@
 
 #include "MushGameClient.h"
 #include "MushGameData.h"
+#include "MushGameHostData.h"
+#include "MushGameHostSaveData.h"
+#include "MushGameHostVolatileData.h"
 #include "MushGameLogic.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
@@ -46,22 +52,22 @@ MushGameUtil::MailboxToDigestMove(MushGameDigest& ioDigest, MushGameMailbox& ioM
 }
 
 void
-MushGameUtil::MailboxToServerMove(MushGameServer& ioServer, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox)
+MushGameUtil::MailboxToServerMove(MushGameServer& ioServer, MushGameMailbox& ioBoxToMove, MushGameLogic& ioLogic)
 {
     MushGameMessage *pMessage;
     while (ioBoxToMove.TakeIfAvailable(pMessage))
     {
-        ioServer.MessageConsume(ioReplyBox, *pMessage);
+        ioServer.MessageConsume(ioLogic, *pMessage);
     }
 }
 
 void
-MushGameUtil::MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox)
+MushGameUtil::MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameLogic& ioLogic)
 {
     MushGameMessage *pMessage;
     while (ioBoxToMove.TakeIfAvailable(pMessage))
     {
-        ioClient.MessageConsume(ioReplyBox, *pMessage);
+        ioClient.MessageConsume(ioLogic, *pMessage);
     }
 }
 
@@ -85,17 +91,13 @@ MushGameUtil::ObjectName(const std::string& inPrefix, const std::string& inSuffi
 void
 MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPrefix)
 {
-    MushGameData *pData = DataObjectCreate<MushGameData>(inName, inPrefix, "Data");
-    DataObjectCreate<MushGameSaveData>(inName, inPrefix, "SaveData");
-    DataObjectCreate<MushGameVolatileData>(inName, inPrefix, "VolatileData");
-    DataObjectCreate<MushGameServer>(inName, inPrefix, "Server");
-    DataObjectCreate<MushGameClient>(inName, inPrefix, "Client");
-    DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal");
-    
-    pData->SaveDataRefWRef().NameSet(inName);
-    pData->VolatileDataRefWRef().NameSet(inName);
-    
-    MushcoreXMLOStream xmlOut(std::cout);
-    xmlOut << MushcoreData<MushGameSaveData>::Sgl();
-    xmlOut << MushcoreData<MushGameVolatileData>::Sgl();
+    DataObjectCreate<MushGameData>(inName, inPrefix, "Data")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameSaveData>(inName, inPrefix, "SaveData")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameVolatileData>(inName, inPrefix, "VolatileData")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameHostData>(inName, inPrefix, "HostData")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameHostSaveData>(inName, inPrefix, "HostSaveData")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameHostVolatileData>(inName, inPrefix, "HostVolatileData")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameServer>(inName, inPrefix, "Server")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameClient>(inName, inPrefix, "Client")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal")->GroupingNameSet(inName);
 }

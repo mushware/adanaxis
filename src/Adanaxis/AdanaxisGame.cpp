@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.5 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.6 2005/06/21 13:10:50 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.6  2005/06/21 13:10:50  southa
+ * MushGame work
+ *
  * Revision 1.5  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -42,10 +45,10 @@
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
 
-#include "mushPlatform.h"
-#include "mushMedia.h"
-#include "mushMushGL.h"
-#include "mushMushGame.h"
+#include "API/mushPlatform.h"
+#include "API/mushMedia.h"
+#include "API/mushMushGL.h"
+#include "API/mushMushGame.h"
 
 using namespace Mushware;
 using namespace std;
@@ -62,6 +65,7 @@ AdanaxisGame::~AdanaxisGame()
 void
 AdanaxisGame::Process(GameAppHandler& inAppHandler)
 {    
+    m_logicRef.WRef().PerFrameProcessing();
     GLUtils::PostRedisplay();
 }
 
@@ -98,6 +102,7 @@ AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
     m_clientRef.NameSet(m_name);
     m_serverRef.NameSet(m_name);
     m_saveDataRef.NameSet(m_name);
+    m_logicRef.NameSet(m_name);
 }
 
 void
@@ -115,8 +120,6 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     
     MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^start");
 
-    cout << MushcoreData<MushGameSaveData>::Sgl() << endl;
-    
     m_inited = true;
 }
 
@@ -200,6 +203,7 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "saveDataRef=" << m_saveDataRef << ", ";
     ioOut << "clientRef=" << m_clientRef << ", ";
     ioOut << "serverRef=" << m_serverRef << ", ";
+    ioOut << "logicRef=" << m_logicRef << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
 }
@@ -236,6 +240,10 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_serverRef;
     }
+    else if (inTagStr == "logicRef")
+    {
+        ioIn >> m_logicRef;
+    }
     else if (inTagStr == "config")
     {
         ioIn >> m_config;
@@ -261,7 +269,9 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_clientRef;
     ioOut.TagSet("serverRef");
     ioOut << m_serverRef;
+    ioOut.TagSet("logicRef");
+    ioOut << m_logicRef;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } +oXJOHKRjfk43Pe8Cb9gig
+//%outOfLineFunctions } EbWvTrB6V4QdgXdU4KFoLA

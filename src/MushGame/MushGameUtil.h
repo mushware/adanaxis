@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id: MushGameUtil.h,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameUtil.h,v 1.2 2005/06/21 13:10:52 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.2  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -41,8 +44,8 @@ class MushGameUtil
 {
 public:
     static void MailboxToDigestMove(MushGameDigest& ioDigest, MushGameMailbox& ioMailbox);
-    static void MailboxToServerMove(MushGameServer& ioServer, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox);
-    static void MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox);
+    static void MailboxToServerMove(MushGameServer& ioServer, MushGameMailbox& ioBoxToMove, MushGameLogic& ioLogic);
+    static void MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameLogic& ioLogic);
     static std::string ObjectName(const std::string& inPrefix, const std::string& inSuffix);
     static void LocalGameCreate(const std::string& inName, const std::string& inPrefix);
     template <class T> static T *DataObjectCreate(const std::string& inName,

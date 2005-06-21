@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } P0/VYgYTHi4f0UnzJkIFQQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJobPlayerCreate.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameJobPlayerCreate.h,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -36,17 +39,20 @@
 class MushGameJobPlayerCreate : public MushGameJob
 {
 public:
-    MushGameJobPlayerCreate() {}
-    explicit MushGameJobPlayerCreate(const MushcoreDataRef<MushGameData>& inDataRef);
+    MushGameJobPlayerCreate();
     virtual ~MushGameJobPlayerCreate() {}
 
-private:
-    enum tState
-    {
-        kStateInit,
-        kStateWait
-    };
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void WakeConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     
+private:
+    enum
+    {
+        kStateInit = 2,
+        kStateWait,
+        kRetryMsec = 1000
+    };
+
     Mushware::U32 m_state;
     
 //%classPrototypes {

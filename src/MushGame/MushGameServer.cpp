@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Ib2b3u1bPJ3KuhedcK69TA
 /*
- * $Id: MushGameServer.cpp,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameServer.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameServer.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -37,12 +40,12 @@ MushGameServer::MushGameServer()
 }
 
 void
-MushGameServer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+MushGameServer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     const MushGameMessageJoinRequest *joinRequest = dynamic_cast<const MushGameMessageJoinRequest *>(&inMessage);
     if (joinRequest != NULL)
     {
-        JoinRequestConsume(outReplyBox, inMessage);
+        JoinRequestConsume(ioLogic, inMessage);
     }
     else
     {
@@ -51,7 +54,7 @@ MushGameServer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessa
 }
 
 void
-MushGameServer::JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+MushGameServer::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     throw MushcoreDataFail(std::string("No handler provided for ")+inMessage.AutoName());
 }

@@ -23,32 +23,30 @@
  ****************************************************************************/
 //%Header } ek+hHnjuKgN/u/6660BHEQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLogicLocal.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameLogicLocal.h,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
 
 #include "MushGameLogic.h"
 
-#include "MushGameData.h"
-#include "MushGameSaveData.h"
-
 //:generate virtual standard ostream xml1
 class MushGameLogicLocal : public MushGameLogic
 {
 public:
-    MushGameLogicLocal(const std::string& inDataName = "");
+    MushGameLogicLocal();
     virtual ~MushGameLogicLocal() {}
     
     virtual void SinglePlayerCheck(void);
-    virtual void Ticker(void);
+    virtual void PerFrameProcessing(void);
     
-protected:
-    MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
-    
+protected:    
 private:
-    MushcoreDataRef<MushGameData> m_dataRef;
+
     
 //%classPrototypes {
 public:

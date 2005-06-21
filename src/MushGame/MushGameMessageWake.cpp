@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameLink.cpp
+ * File: src/MushGame/MushGameMessageWake.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,73 +17,61 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3OteCOfn1xaSDLsPZcAEYQ
+//%Header } yZ79LpEYalG3wBFJ4waz3g
 /*
- * $Id: MushGameLink.cpp,v 1.3 2005/06/20 16:14:30 southa Exp $
- * $Log: MushGameLink.cpp,v $
- * Revision 1.3  2005/06/20 16:14:30  southa
- * Adanaxis work
- *
- * Revision 1.2  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/16 10:48:59  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameLink.h"
-
-void
-MushGameLink::MessagesPump(MushGameLogic& ioLogic)
-{
-    // Meaningless operation for the base class
-    throw MushcoreLogicFail("Pump on MushGameLink");
-}
-
+#include "MushGameMessageWake.h"
 //%outOfLineFunctions {
 
-const char *MushGameLink::AutoName(void) const
+const char *MushGameMessageWake::AutoName(void) const
 {
-    return "MushGameLink";
+    return "MushGameMessageWake";
 }
 
-MushcoreVirtualObject *MushGameLink::AutoClone(void) const
+MushcoreVirtualObject *MushGameMessageWake::AutoClone(void) const
 {
-    return new MushGameLink(*this);
+    return new MushGameMessageWake(*this);
 }
 
-MushcoreVirtualObject *MushGameLink::AutoCreate(void) const
+MushcoreVirtualObject *MushGameMessageWake::AutoCreate(void) const
 {
-    return new MushGameLink;
+    return new MushGameMessageWake;
 }
 
-MushcoreVirtualObject *MushGameLink::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameMessageWake::AutoVirtualFactory(void)
 {
-    return new MushGameLink;
+    return new MushGameMessageWake;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushGameLink", MushGameLink::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameMessageWake", MushGameMessageWake::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushGameLink::AutoPrint(std::ostream& ioOut) const
+MushGameMessageWake::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGameMessage::AutoPrint(ioOut);
     ioOut << "]";
 }
 bool
-MushGameLink::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameMessageWake::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (MushGameMessage::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
     }
     else
     {
@@ -92,7 +80,8 @@ MushGameLink::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     return true;
 }
 void
-MushGameLink::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameMessageWake::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGameMessage::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } FuV8JBtRlsDDaQjLuxLqog
+//%outOfLineFunctions } YlsKL0WxTJN7o4Lhfz/UZw

@@ -23,21 +23,57 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLogic.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameLogic.h,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
+
+#include "MushGameData.h"
+#include "MushGameHostData.h"
+#include "MushGameHostSaveData.h"
+#include "MushGameHostVolatileData.h"
+#include "MushGameJob.h"
+#include "MushGameSaveData.h"
+#include "MushGameVolatileData.h"
 
 //:generate virtual standard ostream xml1
 class MushGameLogic : public MushcoreVirtualObject
 {
 public:
+    typedef MushcoreData<MushGameJob> tJobList;
+    
     virtual ~MushGameLogic() {}
+    virtual void GroupingNameSet(const std::string& inName) { m_dataRef.NameSet(inName); m_hostDataRef.NameSet(inName); }
+
+    virtual void JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList);
+    virtual Mushware::U32 GameMsec(void) const;
+    virtual void PerFrameProcessing(void);
+    
+protected:
+    MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
+    MushGameVolatileData& VolatileData(void) { return m_dataRef.Ref().VolatileDataRef().WRef(); }
+    
+    MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
+    MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
     
 private:
+    MushcoreDataRef<MushGameData> m_dataRef; //:readwrite :wref
+    MushcoreDataRef<MushGameHostData> m_hostDataRef; //:readwrite :wref
+    
 //%classPrototypes {
 public:
+    const MushcoreDataRef<MushGameData>& DataRef(void) const { return m_dataRef; }
+    void DataRefSet(const MushcoreDataRef<MushGameData>& inValue) { m_dataRef=inValue; }
+    // Writable reference for m_dataRef
+    MushcoreDataRef<MushGameData>& DataRefWRef(void) { return m_dataRef; }
+    const MushcoreDataRef<MushGameHostData>& HostDataRef(void) const { return m_hostDataRef; }
+    void HostDataRefSet(const MushcoreDataRef<MushGameHostData>& inValue) { m_hostDataRef=inValue; }
+    // Writable reference for m_hostDataRef
+    MushcoreDataRef<MushGameHostData>& HostDataRefWRef(void) { return m_hostDataRef; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -45,7 +81,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } Bfr2pEaavQy7OxUU5VS7Fg
 };
 //%inlineHeader {
 inline std::ostream&

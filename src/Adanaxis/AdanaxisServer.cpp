@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5jSH/Xb6MEG+qzzvWN1AjA
 /*
- * $Id: AdanaxisServer.cpp,v 1.1 2005/06/16 10:49:57 southa Exp $
+ * $Id: AdanaxisServer.cpp,v 1.2 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisServer.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:49:57  southa
  * Client/server work
  *
@@ -27,18 +30,18 @@
 #include "AdanaxisServer.h"
 
 void
-AdanaxisServer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+AdanaxisServer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    MushGameServer::MessageConsume(outReplyBox, inMessage);
+    MushGameServer::MessageConsume(ioLogic, inMessage);
 }
 
 void
-AdanaxisServer::JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+AdanaxisServer::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     if (SaveData().Players().Size() >= SaveData().MaxPlayersAllowed())
     {
         MushGameMessageJoinDenied *pJoinDenied = new MushGameMessageJoinDenied;
-        outReplyBox.Give(pJoinDenied);
+        //outReplyBox.Give(pJoinDenied);
     }
     else
     {

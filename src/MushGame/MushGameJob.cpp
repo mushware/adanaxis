@@ -19,28 +19,26 @@
  ****************************************************************************/
 //%Header } x1hhF/NH4dT4y5U7K5AdDw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJob.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameJob.cpp,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameJob.h"
 
 #include "MushGameSaveData.h"
 
-MushGameJob::MushGameJob()
-{
-    throw MushcoreLogicFail("Wrong constructor for MushGameJob");
-}
-
-MushGameJob::MushGameJob(const MushcoreDataRef<MushGameData>& inDataRef) :
-    m_shouldWake(false),
-    m_wakeTime(0),
-    m_dataRef(inDataRef)
+MushGameJob::MushGameJob() :
+    m_shouldWake(true),
+    m_complete(false),
+    m_wakeTime(0)
 {
 }
 
 void
-MushGameJob::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+MushGameJob::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in MushGameJob");
 }

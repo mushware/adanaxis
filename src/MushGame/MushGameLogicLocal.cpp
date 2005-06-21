@@ -19,16 +19,18 @@
  ****************************************************************************/
 //%Header } qP/D11f61WKLayRHqTfr/g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameLogicLocal.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameLogicLocal.h"
 
 #include "MushGameJobPlayerCreate.h"
 
-MushGameLogicLocal::MushGameLogicLocal(const std::string& inDataName) : 
-    m_dataRef(inDataName)
+MushGameLogicLocal::MushGameLogicLocal()
 {
 }
 
@@ -40,16 +42,17 @@ MushGameLogicLocal::SinglePlayerCheck(void)
         std::string jobName = "localplayercreate";
         if (!SaveData().JobList().Exists(jobName))
         {
-            MushGameJobPlayerCreate *pCreate = new MushGameJobPlayerCreate(m_dataRef);
+            MushGameJobPlayerCreate *pCreate = new MushGameJobPlayerCreate;
             SaveData().JobListWRef().Give(jobName, pCreate);
         }
     }
 }
 
 void
-MushGameLogicLocal::Ticker(void)
+MushGameLogicLocal::PerFrameProcessing(void)
 {
     SinglePlayerCheck();
+    MushGameLogic::PerFrameProcessing();
 }
 //%outOfLineFunctions {
 
@@ -84,7 +87,6 @@ void
 MushGameLogicLocal::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "dataRef=" << m_dataRef;
     ioOut << "]";
 }
 bool
@@ -96,10 +98,6 @@ MushGameLogicLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "dataRef")
-    {
-        ioIn >> m_dataRef;
-    }
     else
     {
         return false;
@@ -109,7 +107,5 @@ MushGameLogicLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 MushGameLogicLocal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("dataRef");
-    ioOut << m_dataRef;
 }
-//%outOfLineFunctions } x/SlNNLMDg559UO2UWp9Jw
+//%outOfLineFunctions } alEi4IbB6ooex+HwUNBGeg

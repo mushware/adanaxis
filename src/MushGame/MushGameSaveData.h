@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.3 2005/06/21 13:10:52 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.3  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  * Revision 1.2  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -39,11 +42,14 @@
 #include "MushGameMailbox.h"
 #include "MushGamePlayer.h"
 
+#include "MushGameClient.h"
+
 //:generate virtual standard ostream xml1
 class MushGameSaveData : public MushcoreVirtualObject
 {
 public:
     MushGameSaveData();
+    virtual void GroupingNameSet(const std::string& inName) { m_clientRef.NameSet(inName); }
     
 private:
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
@@ -51,6 +57,7 @@ private:
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
+    MushcoreDataRef<MushGameClient> m_clientRef;
     
 //%classPrototypes {
 public:

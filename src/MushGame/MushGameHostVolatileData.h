@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEVOLATILEDATA_H
-#define MUSHGAMEVOLATILEDATA_H
-//%includeGuardStart } L/56G+fBB2mnO8ucZ4yhVQ
+#ifndef MUSHGAMEHOSTVOLATILEDATA_H
+#define MUSHGAMEHOSTVOLATILEDATA_H
+//%includeGuardStart } iqIxhs1tXIDVjt4TfDsZow
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameVolatileData.h
+ * File: src/MushGame/MushGameHostVolatileData.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,23 +21,20 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ciSqgHK3xIZ+HlSfS3hpnA
+//%Header } f9mSKLtY4rgl74+hGwreFg
 /*
- * $Id: MushGameVolatileData.h,v 1.1 2005/06/21 13:10:52 southa Exp $
- * $Log: MushGameVolatileData.h,v $
- * Revision 1.1  2005/06/21 13:10:52  southa
- * MushGame work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
 //:generate virtual standard ostream xml1
-class MushGameVolatileData : public MushcoreVirtualObject
+class MushGameHostVolatileData : public MushcoreVirtualObject
 {
 public:
-    MushGameVolatileData();
-    virtual ~MushGameVolatileData() {}
+    MushGameHostVolatileData();
+    virtual ~MushGameHostVolatileData() {}
     virtual void GroupingNameSet(const std::string& inName) {}
 
 private:
@@ -54,13 +51,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameVolatileData& inObj)
+operator<<(std::ostream& ioOut, const MushGameHostVolatileData& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } lBPzFyiUXK878tvfmNudfg
-
+//%inlineHeader } ZDxRA8ZiE41if3GELxbxgQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

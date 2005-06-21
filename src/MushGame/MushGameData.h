@@ -23,14 +23,17 @@
  ****************************************************************************/
 //%Header } mQ7a0aB9sYaMT3bmln5Sjw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameData.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameData.h,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameVolatileData.h"
 #include "MushGameSaveData.h"
+#include "MushGameVolatileData.h"
 
 //:generate virtual standard ostream xml1
 class MushGameData : public MushcoreVirtualObject
@@ -38,6 +41,8 @@ class MushGameData : public MushcoreVirtualObject
 public:
     MushGameData(const std::string& inName="");
     virtual ~MushGameData() {}
+    virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); m_volatileDataRef.NameSet(inName); }
+
     
 private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:readwrite :wref

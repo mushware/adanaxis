@@ -19,16 +19,60 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameJobPlayerCreate.h"
 
-MushGameJobPlayerCreate::MushGameJobPlayerCreate(const MushcoreDataRef<MushGameData>& inDataRef) :
-    MushGameJob(inDataRef),
+#include "MushGameLogic.h"
+
+#include "MushGameMessageWake.h"
+
+using namespace Mushware;
+using namespace std;
+
+MushGameJobPlayerCreate::MushGameJobPlayerCreate() :
     m_state(kStateInit)
 {
+}
+
+void
+MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    switch (m_state)
+    {
+        case kStateInit:
+        case kStateWait:
+            MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
+            WakeTimeSet(ioLogic.GameMsec() + kRetryMsec);
+            ShouldWakeSet(true);
+            m_state = kStateWait;
+            break;
+            
+        default:
+            MUSHCOREASSERT(false);
+            CompleteSet(true);
+            break;
+    }
+}
+
+void
+MushGameJobPlayerCreate::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const MushGameMessageWake *wakeMessage = dynamic_cast<const MushGameMessageWake *>(&inMessage);
+    if (wakeMessage != NULL)
+    {
+        WakeConsume(ioLogic, inMessage);
+    }
+    else
+    {
+        // Pass to base class
+        MushGameJob::MessageConsume(ioLogic, inMessage);
+    }
 }
 
 //%outOfLineFunctions {

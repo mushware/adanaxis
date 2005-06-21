@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tEYrYr0gF9dIdGmExJumYA
 /*
- * $Id: MushGameClient.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameClient.h,v 1.2 2005/06/20 14:30:35 southa Exp $
  * $Log: MushGameClient.h,v $
+ * Revision 1.2  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:48:59  southa
  * Client/server work
  *
@@ -32,16 +35,20 @@
 
 #include "MushGameStandard.h"
 
-#include "MushGameMailbox.h"
 #include "MushGameMessage.h"
+#include "MushGameReceiver.h"
+
+class MushGameLogic;
 
 //:generate virtual standard ostream xml1
-class MushGameClient : public MushcoreVirtualObject
+class MushGameClient : public MushGameReceiver, public MushcoreVirtualObject
 {
 public:
     MushGameClient();
     virtual ~MushGameClient() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual void GroupingNameSet(const std::string& inName) {}
+    
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
 //%classPrototypes {
 public:

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } okZwqrFoOPduCmtBZnptBQ
 /*
- * $Id: MushGameServer.h,v 1.2 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGameServer.h,v 1.3 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameServer.h,v $
+ * Revision 1.3  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -35,19 +38,22 @@
 
 #include "MushGameStandard.h"
 
-#include "MushGameMailbox.h"
 #include "MushGameMessage.h"
-
+#include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 
+class MushGameLogic;
+
 //:generate virtual standard ostream xml1
-class MushGameServer : public MushcoreVirtualObject
+class MushGameServer : public MushGameReceiver, public MushcoreVirtualObject
 {
 public:
     MushGameServer();
     virtual ~MushGameServer() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
-    virtual void JoinRequestConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); }
+    
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
 protected:
     virtual MushGameSaveData& SaveData(void) { return m_saveDataRef.WRef(); }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iI4TY+ZqKRCRDUBPoHinSg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJob.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Log: MushGameJob.h,v $
+ * Revision 1.1  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -32,16 +35,16 @@
 #include "MushGameReceiver.h"
 
 class MushGameData;
+class MushGameLogic;
 
 //:generate standard ostream xml1
 class MushGameJob : public MushGameReceiver, public MushcoreVirtualObject
 {
 public:
     MushGameJob();
-    explicit MushGameJob(const MushcoreDataRef<MushGameData>& inDataRef);
     virtual ~MushGameJob() {}
 
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
 protected:
     virtual MushGameData& Data(void) { return m_dataRef.WRef(); }
