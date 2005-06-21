@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -32,6 +35,8 @@
 
 #include "MushGameStandard.h"
 
+#include "MushGameJob.h"
+#include "MushGameMailbox.h"
 #include "MushGamePlayer.h"
 
 //:generate virtual standard ostream xml1
@@ -44,6 +49,8 @@ private:
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
     Mushware::U32 m_nextPlayerID; //:readwrite :wref
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
+    MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
+    MushGameMailbox m_toServerMailbox; //:readwrite :wref
     
 //%classPrototypes {
 public:
@@ -57,6 +64,14 @@ public:
     Mushware::U32& NextPlayerIDWRef(void) { return m_nextPlayerID; }
     const Mushware::U32& MaxPlayersAllowed(void) const { return m_maxPlayersAllowed; }
     void MaxPlayersAllowedSet(const Mushware::U32& inValue) { m_maxPlayersAllowed=inValue; }
+    const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
+    void JobListSet(const MushcoreData<MushGameJob>& inValue) { m_jobList=inValue; }
+    // Writable reference for m_jobList
+    MushcoreData<MushGameJob>& JobListWRef(void) { return m_jobList; }
+    const MushGameMailbox& ToServerMailbox(void) const { return m_toServerMailbox; }
+    void ToServerMailboxSet(const MushGameMailbox& inValue) { m_toServerMailbox=inValue; }
+    // Writable reference for m_toServerMailbox
+    MushGameMailbox& ToServerMailboxWRef(void) { return m_toServerMailbox; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -64,7 +79,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6LQKcu5oEU2B4jNaA6mYkA
+//%classPrototypes } IPpSZo7UiA5IZue1bi0jaQ
 };
 //%inlineHeader {
 inline std::ostream&

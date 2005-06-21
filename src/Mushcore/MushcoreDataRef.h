@@ -24,8 +24,11 @@
 //%Header } bpTH2j1gwXVLeRAUcanVcA
 
 /*
- * $Id: MushcoreDataRef.h,v 1.14 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.15 2005/06/14 20:39:42 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.15  2005/06/14 20:39:42  southa
+ * Adanaxis work
+ *
  * Revision 1.14  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -115,6 +118,7 @@ public:
     inline RefType *Get(void) const;
     inline RefType& RefGet(void) const;
     inline RefType& WRef(void) const { return RefGet(); }
+    inline const RefType& Ref(void) const { return RefGet(); }
     inline bool GetIfExists(RefType *& outRef) const;
     inline bool Exists(void) const;
     bool Equals(const MushcoreDataRef& inObj) const;

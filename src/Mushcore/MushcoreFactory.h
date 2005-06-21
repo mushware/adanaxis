@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eGIp1zU33Yrjl2u5aQhpWQ
 /*
- * $Id: MushcoreFactory.h,v 1.8 2005/02/10 12:34:18 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.9 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.9  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.8  2005/02/10 12:34:18  southa
  * Template fixes
  *
@@ -71,6 +74,8 @@ public:
     
     void FactoryAdd(const std::string& inName, tFactoryPtr inPtr);
     MushcoreVirtualObject *ObjectCreate(const std::string& inName) const;
+    bool Exists(const std::string& inName) const;
+    
     void TemplatesPrint(std::ostream& ioOut) const;
     void TypesPrint(std::ostream& ioOut) const;
     

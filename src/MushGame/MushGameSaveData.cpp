@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -70,7 +73,9 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "players=" << m_players << ", ";
     ioOut << "nextPlayerID=" << m_nextPlayerID << ", ";
-    ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed;
+    ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed << ", ";
+    ioOut << "jobList=" << m_jobList << ", ";
+    ioOut << "toServerMailbox=" << m_toServerMailbox;
     ioOut << "]";
 }
 bool
@@ -94,6 +99,14 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_maxPlayersAllowed;
     }
+    else if (inTagStr == "jobList")
+    {
+        ioIn >> m_jobList;
+    }
+    else if (inTagStr == "toServerMailbox")
+    {
+        ioIn >> m_toServerMailbox;
+    }
     else
     {
         return false;
@@ -109,5 +122,9 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_nextPlayerID;
     ioOut.TagSet("maxPlayersAllowed");
     ioOut << m_maxPlayersAllowed;
+    ioOut.TagSet("jobList");
+    ioOut << m_jobList;
+    ioOut.TagSet("toServerMailbox");
+    ioOut << m_toServerMailbox;
 }
-//%outOfLineFunctions } qB2bqso9RrltGnq98gqqIQ
+//%outOfLineFunctions } 79pSdfAdFZCsws/LXhXw4Q

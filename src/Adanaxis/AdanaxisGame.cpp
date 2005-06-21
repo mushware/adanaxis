@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.4 2005/06/16 17:25:37 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.5 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -91,22 +94,17 @@ AdanaxisGame::ScriptFunction(const std::string& inName, GameAppHandler& inAppHan
 void 
 AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
 {
+    MushGameUtil::LocalGameCreate("adanaxis", "Adanaxis");
     m_clientRef.NameSet(m_name);
-    MushcoreData<MushGameClient>::Sgl().IfExistsDelete(m_clientRef.Name());
-    MushcoreData<MushGameClient>::Sgl().Give(m_clientRef.Name(), new AdanaxisClient);
-    
     m_serverRef.NameSet(m_name);
-    MushcoreData<MushGameServer>::Sgl().IfExistsDelete(m_serverRef.Name());
-    MushcoreData<MushGameServer>::Sgl().Give(m_serverRef.Name(), new AdanaxisServer);
+    m_saveDataRef.NameSet(m_name);
 }
 
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
-    m_saveDataRef.NameSet(m_name);
-    MushcoreData<MushGameSaveData>::Sgl().IfExistsDelete(m_saveDataRef.Name());
-    MushcoreData<MushGameSaveData>::Sgl().Give(m_saveDataRef.Name(), new AdanaxisSaveData);
-
+    LocalGameCreate(inAppHandler);
+    
     MushGameConfigUtils::ConfigAcquire(&m_config);
     
     if (m_config.SafeMode())

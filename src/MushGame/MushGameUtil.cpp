@@ -19,11 +19,21 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameUtil.cpp,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Log: MushGameUtil.cpp,v $
+ * Revision 1.1  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameUtil.h"
+
+#include "MushGameClient.h"
+#include "MushGameData.h"
+#include "MushGameLogic.h"
+#include "MushGameSaveData.h"
+#include "MushGameServer.h"
+#include "MushGameVolatileData.h"
 
 void
 MushGameUtil::MailboxToDigestMove(MushGameDigest& ioDigest, MushGameMailbox& ioMailbox)
@@ -53,5 +63,39 @@ MushGameUtil::MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioB
     {
         ioClient.MessageConsume(ioReplyBox, *pMessage);
     }
+}
+
+std::string
+MushGameUtil::ObjectName(const std::string& inPrefix, const std::string& inSuffix)
+{
+    std::string basePrefix = "MushGame";
+
+    std::string retName = inPrefix + inSuffix;
+    if (!MushcoreFactory::Sgl().Exists(retName))
+    {
+        retName = basePrefix + inSuffix;
+        if (!MushcoreFactory::Sgl().Exists(retName))
+        {
+            throw MushcoreLogicFail("Unknown object name '"+inPrefix+"/"+basePrefix+inSuffix+"'");
+        }
+    }
+    return retName;
+}
+
+void
+MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPrefix)
+{
+    MushGameData *pData = DataObjectCreate<MushGameData>(inName, inPrefix, "Data");
+    DataObjectCreate<MushGameSaveData>(inName, inPrefix, "SaveData");
+    DataObjectCreate<MushGameVolatileData>(inName, inPrefix, "VolatileData");
+    DataObjectCreate<MushGameServer>(inName, inPrefix, "Server");
+    DataObjectCreate<MushGameClient>(inName, inPrefix, "Client");
+    DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal");
     
+    pData->SaveDataRefWRef().NameSet(inName);
+    pData->VolatileDataRefWRef().NameSet(inName);
+    
+    MushcoreXMLOStream xmlOut(std::cout);
+    xmlOut << MushcoreData<MushGameSaveData>::Sgl();
+    xmlOut << MushcoreData<MushGameVolatileData>::Sgl();
 }

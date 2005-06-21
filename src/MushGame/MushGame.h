@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.4 2005/06/20 14:30:35 southa Exp $
+ * $Id: MushGame.h,v 1.5 2005/06/20 16:14:30 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.5  2005/06/20 16:14:30  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/20 14:30:35  southa
  * Adanaxis work
  *
@@ -42,19 +45,30 @@
 #include "MushGameClient.h"
 #include "MushGameConfigBase.h"
 #include "MushGameConfigUtils.h"
+#include "MushGameData.h"
 #include "MushGameDespatch.h"
 #include "MushGameDialogue.h"
 #include "MushGameDialogueUtils.h"
 #include "MushGameDigest.h"
 #include "MushGameLink.h"
+#include "MushGameJob.h"
+#include "MushGameJobPlayerCreate.h"
+#include "MushGameLink.h"
+#include "MushGameLinkLocal.h"
+#include "MushGameLogic.h"
+#include "MushGameLogicLocal.h"
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
-#include "MushGameMessageJoinRequest.h"
+#include "MushGameMessageJoinConfirm.h"
 #include "MushGameMessageJoinDenied.h"
+#include "MushGameMessageJoinRequest.h"
 #include "MushGamePlayer.h"
+#include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
 #include "MushGameStandard.h"
+#include "MushGameUtil.h"
+#include "MushGameVolatileData.h"
 
 //%includeGuardEnd {
 #endif

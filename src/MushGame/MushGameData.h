@@ -1,0 +1,74 @@
+//%includeGuardStart {
+#ifndef MUSHGAMEDATA_H
+#define MUSHGAMEDATA_H
+//%includeGuardStart } J0x3N00IB49vTygTs4E50g
+//%Header {
+/*****************************************************************************
+ *
+ * File: src/MushGame/MushGameData.h
+ *
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+//%Header } mQ7a0aB9sYaMT3bmln5Sjw
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "MushGameStandard.h"
+
+#include "MushGameVolatileData.h"
+#include "MushGameSaveData.h"
+
+//:generate virtual standard ostream xml1
+class MushGameData : public MushcoreVirtualObject
+{
+public:
+    MushGameData(const std::string& inName="");
+    virtual ~MushGameData() {}
+    
+private:
+    MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:readwrite :wref
+    MushcoreDataRef<MushGameVolatileData> m_volatileDataRef; //:readwrite :wref
+//%classPrototypes {
+public:
+    const MushcoreDataRef<MushGameSaveData>& SaveDataRef(void) const { return m_saveDataRef; }
+    void SaveDataRefSet(const MushcoreDataRef<MushGameSaveData>& inValue) { m_saveDataRef=inValue; }
+    // Writable reference for m_saveDataRef
+    MushcoreDataRef<MushGameSaveData>& SaveDataRefWRef(void) { return m_saveDataRef; }
+    const MushcoreDataRef<MushGameVolatileData>& VolatileDataRef(void) const { return m_volatileDataRef; }
+    void VolatileDataRefSet(const MushcoreDataRef<MushGameVolatileData>& inValue) { m_volatileDataRef=inValue; }
+    // Writable reference for m_volatileDataRef
+    MushcoreDataRef<MushGameVolatileData>& VolatileDataRefWRef(void) { return m_volatileDataRef; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } QBUFDRUVWiHT0subXKI7zA
+};
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushGameData& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } amQQI1cmoPOho/k0IA5ToA
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

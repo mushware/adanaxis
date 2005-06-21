@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameUtil.h,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Log: MushGameUtil.h,v $
+ * Revision 1.1  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -40,9 +43,34 @@ public:
     static void MailboxToDigestMove(MushGameDigest& ioDigest, MushGameMailbox& ioMailbox);
     static void MailboxToServerMove(MushGameServer& ioServer, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox);
     static void MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameMailbox& ioReplyBox);
+    static std::string ObjectName(const std::string& inPrefix, const std::string& inSuffix);
+    static void LocalGameCreate(const std::string& inName, const std::string& inPrefix);
+    template <class T> static T *DataObjectCreate(const std::string& inName,
+        const std::string& inPrefix, const std::string& inSuffix);
 private:
     
 };
+
+template <class T>
+inline T *
+MushGameUtil::DataObjectCreate(const std::string& inName,
+    const std::string& inPrefix, const std::string& inSuffix)
+{
+    MushcoreData<T>::Sgl().IfExistsDelete(inName);
+    MushcoreVirtualObject *pObj = MushcoreFactory::Sgl().ObjectCreate(ObjectName(inPrefix, inSuffix));
+    T *pCastObj = dynamic_cast<T *>(pObj);
+    if (pCastObj == NULL)
+    {
+        if (pObj != NULL)
+        {
+            delete pObj;
+        }
+        throw MushcoreLogicFail("Object "+ObjectName(inPrefix, inSuffix)+" is of wrong type");
+    }
+    MushcoreData<T>::Sgl().Give(inName, pCastObj);
+    return pCastObj;
+}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

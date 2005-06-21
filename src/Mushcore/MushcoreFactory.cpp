@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x2zaHORqMzaHy+z0sz5CIg
 /*
- * $Id: MushcoreFactory.cpp,v 1.5 2004/01/08 16:06:11 southa Exp $
+ * $Id: MushcoreFactory.cpp,v 1.6 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreFactory.cpp,v $
+ * Revision 1.6  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/08 16:06:11  southa
  * XML fixes
  *
@@ -71,6 +74,21 @@ MushcoreFactory::ObjectCreate(const std::string& inName) const
         throw MushcoreReferenceFail("Unknown object type '"+inName+"' - cannot create");
     }
     return p->second();
+}
+
+bool
+MushcoreFactory::Exists(const std::string& inName) const
+{
+    tFactoryMap::const_iterator p = m_factories.find(inName);
+    
+    if (p == m_factories.end())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 void
