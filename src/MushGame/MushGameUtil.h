@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id: MushGameUtil.h,v 1.2 2005/06/21 13:10:52 southa Exp $
+ * $Id: MushGameUtil.h,v 1.3 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.3  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.2  2005/06/21 13:10:52  southa
  * MushGame work
  *
@@ -38,6 +41,7 @@
 #include "MushGameClient.h"
 #include "MushGameDigest.h"
 #include "MushGameMailbox.h"
+#include "MushGameMessage.h"
 #include "MushGameServer.h"
 
 class MushGameUtil
@@ -50,6 +54,7 @@ public:
     static void LocalGameCreate(const std::string& inName, const std::string& inPrefix);
     template <class T> static T *DataObjectCreate(const std::string& inName,
         const std::string& inPrefix, const std::string& inSuffix);
+    static std::string KeyFromMessage(const MushGameMessage& inMessage);
 private:
     
 };

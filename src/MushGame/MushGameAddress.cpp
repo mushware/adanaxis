@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameMessage.cpp
+ * File: src/MushGame/MushGameAddress.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,53 +17,55 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } O8joXp2wbkSfRipztzWPwA
+//%Header } TnlKjaEghVGIRsAL04WswQ
 /*
- * $Id: MushGameMessage.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
- * $Log
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameMessage.h"
+#include "MushGameAddress.h"
+
+MUSHCORE_DATA_INSTANCE(MushGameAddress);
 
 //%outOfLineFunctions {
 
-const char *MushGameMessage::AutoName(void) const
+const char *MushGameAddress::AutoName(void) const
 {
-    return "MushGameMessage";
+    return "MushGameAddress";
 }
 
-MushcoreVirtualObject *MushGameMessage::AutoClone(void) const
+MushcoreVirtualObject *MushGameAddress::AutoClone(void) const
 {
-    return new MushGameMessage(*this);
+    return new MushGameAddress(*this);
 }
 
-MushcoreVirtualObject *MushGameMessage::AutoCreate(void) const
+MushcoreVirtualObject *MushGameAddress::AutoCreate(void) const
 {
-    return new MushGameMessage;
+    return new MushGameAddress;
 }
 
-MushcoreVirtualObject *MushGameMessage::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameAddress::AutoVirtualFactory(void)
 {
-    return new MushGameMessage;
+    return new MushGameAddress;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushGameMessage", MushGameMessage::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameAddress", MushGameAddress::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushGameMessage::AutoPrint(std::ostream& ioOut) const
+MushGameAddress::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "srcAddrRef=" << m_srcAddrRef << ", ";
-    ioOut << "id=" << m_id;
+    ioOut << "name=" << m_name << ", ";
+    ioOut << "linkRef=" << m_linkRef;
     ioOut << "]";
 }
 bool
-MushGameMessage::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameAddress::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -71,13 +73,13 @@ MushGameMessage::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "srcAddrRef")
+    else if (inTagStr == "name")
     {
-        ioIn >> m_srcAddrRef;
+        ioIn >> m_name;
     }
-    else if (inTagStr == "id")
+    else if (inTagStr == "linkRef")
     {
-        ioIn >> m_id;
+        ioIn >> m_linkRef;
     }
     else
     {
@@ -86,9 +88,11 @@ MushGameMessage::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     return true;
 }
 void
-MushGameMessage::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameAddress::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("id");
-    ioOut << m_id;
+    ioOut.TagSet("name");
+    ioOut << m_name;
+    ioOut.TagSet("linkRef");
+    ioOut << m_linkRef;
 }
-//%outOfLineFunctions } 7GX//lDs9QeYUyo5PCPZZQ
+//%outOfLineFunctions } i+47pp6zSzmz3kGZeiceLw

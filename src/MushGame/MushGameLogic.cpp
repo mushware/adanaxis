@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -28,7 +31,9 @@
 
 #include "MushGameLogic.h"
 
+#include "MushGameAddress.h"
 #include "MushGameJob.h"
+#include "MushGameLink.h"
 #include "MushGameMessageWake.h"
 
 #include "API/mushGame.h"
@@ -93,6 +98,86 @@ void
 MushGameLogic::PerFrameProcessing(void)
 {
     JobListProcess(SaveData().ToServerMailboxWRef(), SaveData().JobListWRef());
+}
+
+void
+MushGameLogic::DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with no ID");
+}
+
+void
+MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with Job ID");
+}
+
+void
+MushGameLogic::PieceMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with Piece ID");
+}
+
+void
+MushGameLogic::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const std::string& msgID = inMessage.Id();
+    
+    if (msgID == "")
+    {
+        DefaultMessageConsume(ioLogic, inMessage);
+    }
+    else
+    {
+        switch (msgID[0])
+        {
+            case 'j':
+                JobMessageConsume(ioLogic, inMessage);
+                break;
+                
+            case 'p':
+                PieceMessageConsume(ioLogic, inMessage);
+                break;
+                
+            default:
+                throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with unknown ID prefix");
+                break;
+        }
+    }
+}
+
+void
+MushGameLogic::ReplyGive(MushGameMessage *inpReplyMessage, const MushGameMessage& inOrigMessage)
+{
+    try
+    {
+        const MushcoreDataRef<MushGameAddress>& destAddrRefRef = inOrigMessage.SrcAddrRef();
+    }
+    catch (...)
+    {
+        delete inpReplyMessage;    
+        throw;
+    }
+}
+
+void
+MushGameLogic::ServerAddressSet(const std::string& inName)
+{
+    SaveData().ServerAddrRefWRef().NameSet(inName);    
+}
+
+void
+MushGameLogic::CopyAndSendToServer(const MushGameMessage& inMessage)
+{
+    try
+    {
+        // Find the link
+        SaveData().ServerAddrRef().Ref().LinkRef().WRef().ToOutboxCopy(inMessage);
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
+    }
 }
 
 //%outOfLineFunctions {

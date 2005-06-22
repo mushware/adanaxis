@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } qP/D11f61WKLayRHqTfr/g
 /*
- * $Id: MushGameLogicLocal.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameLogicLocal.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -29,6 +32,7 @@
 #include "MushGameLogicLocal.h"
 
 #include "MushGameJobPlayerCreate.h"
+#include "MushGameUtil.h"
 
 MushGameLogicLocal::MushGameLogicLocal()
 {
@@ -42,7 +46,7 @@ MushGameLogicLocal::SinglePlayerCheck(void)
         std::string jobName = "localplayercreate";
         if (!SaveData().JobList().Exists(jobName))
         {
-            MushGameJobPlayerCreate *pCreate = new MushGameJobPlayerCreate;
+            MushGameJobPlayerCreate *pCreate = new MushGameJobPlayerCreate("j:"+jobName);
             SaveData().JobListWRef().Give(jobName, pCreate);
         }
     }
@@ -54,6 +58,15 @@ MushGameLogicLocal::PerFrameProcessing(void)
     SinglePlayerCheck();
     MushGameLogic::PerFrameProcessing();
 }
+
+void
+MushGameLogicLocal::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    std::string msgKey = MushGameUtil::KeyFromMessage(inMessage);
+    
+    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with Job ID");
+}
+
 //%outOfLineFunctions {
 
 const char *MushGameLogicLocal::AutoName(void) const

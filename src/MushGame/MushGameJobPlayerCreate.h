@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } P0/VYgYTHi4f0UnzJkIFQQ
 /*
- * $Id: MushGameJobPlayerCreate.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameJobPlayerCreate.h,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameJobPlayerCreate.h,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -39,7 +42,7 @@
 class MushGameJobPlayerCreate : public MushGameJob
 {
 public:
-    MushGameJobPlayerCreate();
+    explicit MushGameJobPlayerCreate(const std::string& inID = "");
     virtual ~MushGameJobPlayerCreate() {}
 
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);

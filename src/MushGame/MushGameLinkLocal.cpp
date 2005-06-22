@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Fj6DJ9Nl9r0XWjQ8VWoIog
 /*
- * $Id: MushGameLinkLocal.cpp,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameLinkLocal.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLinkLocal.cpp,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -30,23 +33,60 @@
 
 #include "MushGameUtil.h"
 
-void 
-MushGameLinkLocal::MessagesPump(MushGameLogic& ioLogic)
-{
-    // FIXME: Reply routing
-    MushGameMailbox *pMailbox;
-    
-    while (m_clientToServer.TopGet(pMailbox))
-    {
-        MushGameUtil::MailboxToServerMove(m_serverRef.WRef(), *pMailbox, ioLogic);
-        m_clientToServer.TopDelete();
-    }
+MushGameLinkLocal::tPipeData MushGameLinkLocal::m_pipeData;
 
-    while (m_serverToClient.TopGet(pMailbox))
+MushGameLinkLocal::MushGameLinkLocal() :
+    m_uplinkRef("", m_pipeData),
+    m_downlinkRef("", m_pipeData)
+{    
+}
+
+void
+MushGameLinkLocal::SrcDestSet(const std::string& inSrcName, const std::string& inDestName)
+{
+    MushGameLink::SrcDestSet(inSrcName, inDestName);
+    // Touch the data objects to create them
+    m_pipeData.GetOrCreate(inSrcName);
+    m_pipeData.GetOrCreate(inDestName);
+    m_uplinkRef.NameSet(inSrcName);
+    m_downlinkRef.NameSet(inDestName);
+}
+
+bool
+MushGameLinkLocal::OutboxSendUnlessEmpty(void)
+{
+    bool isEmpty = m_outBox.IsEmpty();
+    if (!isEmpty)
     {
-        MushGameUtil::MailboxToClientMove(m_clientRef.WRef(), *pMailbox, ioLogic);
-        m_serverToClient.TopDelete();
+        MushGameMailbox *pMailbox = new MushGameMailbox;
+        std::swap(*pMailbox, m_outBox); // Element-wise (shallow) swap
+        m_uplinkRef.WRef().Give(pMailbox);
     }
+    return isEmpty;
+}
+
+bool
+MushGameLinkLocal::InboxGet(MushGameMailbox& outMailbox)
+{
+    MushGameMailbox *pMailbox = NULL;
+    bool isEmpty = !m_downlinkRef.WRef().TopGet(pMailbox);
+    if (!isEmpty)
+    {
+        std::swap(outMailbox, *pMailbox); // Element-wise (shallow) swap
+        m_downlinkRef.WRef().TopDelete();
+    }
+    return isEmpty;
+}    
+
+void 
+MushGameLinkLocal::ToOutboxCopy(const MushGameMessage& inMessage)
+{
+    MushGameMessage *pMessage = dynamic_cast<MushGameMessage *>(inMessage.AutoClone());
+    if (pMessage == NULL)
+    {
+        throw MushcoreLogicFail("MushGameLinkLocal::CopyAndSend catastrophe");
+    }
+    m_outBox.Give(pMessage);
 }
 
 //%outOfLineFunctions {
@@ -83,8 +123,6 @@ MushGameLinkLocal::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameLink::AutoPrint(ioOut);
-    ioOut << "clientRef=" << m_clientRef << ", ";
-    ioOut << "serverRef=" << m_serverRef << ", ";
     ioOut << "]";
 }
 bool
@@ -95,14 +133,6 @@ MushGameLinkLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "clientRef")
-    {
-        ioIn >> m_clientRef;
-    }
-    else if (inTagStr == "serverRef")
-    {
-        ioIn >> m_serverRef;
     }
     else if (MushGameLink::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -118,9 +148,5 @@ void
 MushGameLinkLocal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLink::AutoXMLPrint(ioOut);
-    ioOut.TagSet("clientRef");
-    ioOut << m_clientRef;
-    ioOut.TagSet("serverRef");
-    ioOut << m_serverRef;
 }
-//%outOfLineFunctions } JGEt7I08j1ssgyv3n/GnMg
+//%outOfLineFunctions } DYtFqmdXUuZoTSDRQ32IcQ

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ek+hHnjuKgN/u/6660BHEQ
 /*
- * $Id: MushGameLogicLocal.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameLogicLocal.h,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLogicLocal.h,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -43,7 +46,8 @@ public:
     
     virtual void SinglePlayerCheck(void);
     virtual void PerFrameProcessing(void);
-    
+    virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+
 protected:    
 private:
 

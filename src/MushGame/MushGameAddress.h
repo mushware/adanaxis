@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEMESSAGEJOINDENIED_H
-#define MUSHGAMEMESSAGEJOINDENIED_H
-//%includeGuardStart } QybftCctCxTiQElwCdcVmw
+#ifndef MUSHGAMEADDRESS_H
+#define MUSHGAMEADDRESS_H
+//%includeGuardStart } L8/7BLdqwh1+COyQm5NWvw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameMessageJoinDenied.h
+ * File: src/MushGame/MushGameAddress.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,30 +21,34 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } S06wGVUPtHKxYR9MX3IsXw
+//%Header } zusmqz/Suh1Iq3SH28slRQ
 /*
- * $Id: MushGameMessageJoinDenied.h,v 1.1 2005/06/20 14:30:36 southa Exp $
- * $Log: MushGameMessageJoinDenied.h,v $
- * Revision 1.1  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
-#include "MushGameMessage.h"
 
-//:xml1base MushGameMessage
+class MushGameLink;
+
 //:generate virtual standard ostream xml1
-class MushGameMessageJoinDenied : public MushGameMessage
+class MushGameAddress : public MushcoreVirtualObject
 {
 public:
-    explicit MushGameMessageJoinDenied(const std::string& inID = "") : MushGameMessage(inID) {}
-    virtual ~MushGameMessageJoinDenied() {}
-
-private:
+    virtual ~MushGameAddress() {}
+    const std::string& Name(void) const { return m_name; }
+    virtual void NameSet(const std::string& inValue) { m_name=inValue; m_linkRef.NameSet(m_name); }
     
+private:
+    std::string m_name;
+    MushcoreDataRef<MushGameLink> m_linkRef; //:readwrite :wref
+
 //%classPrototypes {
 public:
+    const MushcoreDataRef<MushGameLink>& LinkRef(void) const { return m_linkRef; }
+    void LinkRefSet(const MushcoreDataRef<MushGameLink>& inValue) { m_linkRef=inValue; }
+    // Writable reference for m_linkRef
+    MushcoreDataRef<MushGameLink>& LinkRefWRef(void) { return m_linkRef; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -52,16 +56,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } M40yAD0sQnsx4C7/XGw2AQ
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameMessageJoinDenied& inObj)
+operator<<(std::ostream& ioOut, const MushGameAddress& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } C/iXeJRvavB5gOY0uN/Mnw
+//%inlineHeader } hRmbmkNx+6bS+4XgtVFp+Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

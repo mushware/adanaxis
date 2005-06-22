@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rXRd7F8DnvTpUWdq+trMKw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageJoinRequest.h,v 1.1 2005/06/20 14:30:36 southa Exp $
+ * $Log: MushGameMessageJoinRequest.h,v $
+ * Revision 1.1  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -35,15 +38,19 @@
 class MushGameMessageJoinRequest : public MushGameMessage
 {
 public:
+    explicit MushGameMessageJoinRequest(const std::string& inID = "") : MushGameMessage(inID) {}
     virtual ~MushGameMessageJoinRequest() {}
     
 private:
-    std::string m_playerName; //:read
-    std::string m_packageID; //:read
+    std::string m_playerName; //:readwrite
+    std::string m_packageID; //:readwrite
+
 //%classPrototypes {
 public:
     const std::string& PlayerName(void) const { return m_playerName; }
+    void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
     const std::string& PackageID(void) const { return m_packageID; }
+    void PackageIDSet(const std::string& inValue) { m_packageID=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -51,7 +58,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6ilwKmHuV/0E2QocMRSOFA
+//%classPrototypes } 8qO89Ol0bpt/oYcZN7OwBA
 };
 //%inlineHeader {
 inline std::ostream&

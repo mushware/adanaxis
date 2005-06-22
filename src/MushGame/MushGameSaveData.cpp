@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.3 2005/06/21 13:10:52 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.4 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.4  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.3  2005/06/21 13:10:52  southa
  * MushGame work
  *
@@ -79,7 +82,8 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed << ", ";
     ioOut << "jobList=" << m_jobList << ", ";
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
-    ioOut << "clientRef=" << m_clientRef;
+    ioOut << "clientRef=" << m_clientRef << ", ";
+    ioOut << "serverAddrRef=" << m_serverAddrRef;
     ioOut << "]";
 }
 bool
@@ -115,6 +119,10 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_clientRef;
     }
+    else if (inTagStr == "serverAddrRef")
+    {
+        ioIn >> m_serverAddrRef;
+    }
     else
     {
         return false;
@@ -136,5 +144,7 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_toServerMailbox;
     ioOut.TagSet("clientRef");
     ioOut << m_clientRef;
+    ioOut.TagSet("serverAddrRef");
+    ioOut << m_serverAddrRef;
 }
-//%outOfLineFunctions } lIUhMdkYnHJI2AeHpCXjBA
+//%outOfLineFunctions } HW0JwUPVsVCIOgVcUxl2og

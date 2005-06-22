@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HGOTUFiPB1QROOSnhLbE4Q
 /*
- * $Id: MushGameMailbox.h,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMailbox.h,v 1.3 2005/06/20 16:14:31 southa Exp $
  * $Log: MushGameMailbox.h,v $
+ * Revision 1.3  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -44,6 +47,7 @@ public:
     virtual ~MushGameMailbox();
     virtual void Give(MushGameMessage *iopMessage);
     virtual bool TakeIfAvailable(MushGameMessage *& iopMessage);
+    virtual bool IsEmpty(void) { return m_deque.empty(); }
     
 private:
     std::deque<MushGameMessage *> m_deque;

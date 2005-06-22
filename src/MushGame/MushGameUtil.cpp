@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.2 2005/06/21 13:10:52 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.3 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.3  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.2  2005/06/21 13:10:52  southa
  * MushGame work
  *
@@ -36,7 +39,9 @@
 #include "MushGameHostData.h"
 #include "MushGameHostSaveData.h"
 #include "MushGameHostVolatileData.h"
+#include "MushGameMessage.h"
 #include "MushGameLogic.h"
+#include "MushGameLink.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
 #include "MushGameVolatileData.h"
@@ -91,6 +96,7 @@ MushGameUtil::ObjectName(const std::string& inPrefix, const std::string& inSuffi
 void
 MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPrefix)
 {
+    // Create the game objects
     DataObjectCreate<MushGameData>(inName, inPrefix, "Data")->GroupingNameSet(inName);
     DataObjectCreate<MushGameSaveData>(inName, inPrefix, "SaveData")->GroupingNameSet(inName);
     DataObjectCreate<MushGameVolatileData>(inName, inPrefix, "VolatileData")->GroupingNameSet(inName);
@@ -99,5 +105,29 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     DataObjectCreate<MushGameHostVolatileData>(inName, inPrefix, "HostVolatileData")->GroupingNameSet(inName);
     DataObjectCreate<MushGameServer>(inName, inPrefix, "Server")->GroupingNameSet(inName);
     DataObjectCreate<MushGameClient>(inName, inPrefix, "Client")->GroupingNameSet(inName);
-    DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal")->GroupingNameSet(inName);
+    MushGameLogic *pLogic = DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal");
+    pLogic->GroupingNameSet(inName);
+
+    // Create local addresses and links
+    std::string serverName = inName+"-localserver";
+    std::string clientName = inName+"-localclient";
+    
+    DataObjectCreate<MushGameAddress>(serverName, inPrefix, "Address")->NameSet(serverName);
+    DataObjectCreate<MushGameAddress>(clientName, inPrefix, "Address")->NameSet(clientName);
+    
+    DataObjectCreate<MushGameLink>(serverName, inPrefix, "LinkLocal")->SrcDestSet(clientName, serverName);
+    DataObjectCreate<MushGameLink>(clientName, inPrefix, "LinkLocal")->SrcDestSet(serverName, clientName);
+    
+    pLogic->ServerAddressSet(serverName);
+}
+
+std::string
+MushGameUtil::KeyFromMessage(const MushGameMessage& inMessage)
+{
+    const std::string& idRef = inMessage.Id();
+    if (idRef.size() < 2)
+    {
+        throw MushcoreDataFail("Message ID '"+idRef+"' too short to extract key");
+    }
+    return idRef.substr(2);
 }

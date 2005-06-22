@@ -23,22 +23,31 @@
  ****************************************************************************/
 //%Header } Al9Y5dP49KJ9BK5Fce6sBw
 /*
- * $Id: MushGameMessage.h,v 1.1 2005/06/16 10:48:59 southa Exp $
+ * $Id: MushGameMessage.h,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log
  */
 
 #include "MushGameStandard.h"
 
+#include "MushGameAddress.h"
+
 //:generate virtual standard ostream xml1
 class MushGameMessage : public MushcoreVirtualObject
 {
 public:
-    MushGameMessage();
+    explicit MushGameMessage(const std::string& inID = "") : m_id(inID) {}
     virtual ~MushGameMessage() {}
     
 private:
+    MushcoreDataRef<MushGameAddress> m_srcAddrRef; //:xmlignore :readwrite
+    std::string m_id; //:readwrite   
+        
 //%classPrototypes {
 public:
+    const MushcoreDataRef<MushGameAddress>& SrcAddrRef(void) const { return m_srcAddrRef; }
+    void SrcAddrRefSet(const MushcoreDataRef<MushGameAddress>& inValue) { m_srcAddrRef=inValue; }
+    const std::string& Id(void) const { return m_id; }
+    void IdSet(const std::string& inValue) { m_id=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -46,7 +55,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } 50R194PmRusVUXoMrok/1A
 };
 //%inlineHeader {
 inline std::ostream&

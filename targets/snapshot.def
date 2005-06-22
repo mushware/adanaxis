@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.5 2005/03/13 00:34:49 southa Exp $
+# $Id: snapshot.def,v 1.6 2005/06/04 13:18:46 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.6  2005/06/04 13:18:46  southa
+# Updates for Mac OS Release 0.1.2
+#
 # Revision 1.5  2005/03/13 00:34:49  southa
 # Build fixes, key support and stereo
 #
@@ -17,25 +20,42 @@
 # Snapshot fixes
 #
 
-Name: Snapshot
-
-Use: targets/app.Makefile.am as Makefile.am
-Use: targets/app.acinclude.m4 as acinclude.m4
+Name: 'Snapshot'
 
 Subst: MUSH_APP_PACKAGE 'snapshot'
 Subst: MUSH_APP_NAME 'Snapshot'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '0'
-Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '1'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
-Subst: MUSH_DATA_PATH '$(top_srcdir)/data-tesseracttrainer'
+Subst: MUSH_DATA_DIR 'data-snapshot'
+Subst: MUSH_DATA_MAKEFILE ''
+Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
+Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
+Subst: MUSH_TOP_SUBDIRS 'src'
+
+Use: targets/app.Makefile.am as Makefile.am
+Use: targets/app.acinclude.m4 as acinclude.m4
 Use: targets/sdl_app.configure.in as configure.in
+Use: targets/app.COPYING as COPYING
+Use: targets/app.INSTALL as INSTALL
+Use: targets/app.AUTHORS as AUTHORS
+Use: targets/app.README as README
+#Use: targets/snapshot.ChangeLog as ChangeLog
+#Use: targets/snapshot.ChangeLog as NEWS
+Use: targets/win32.installer.nsi as win32/installer.nsi
+Subst: MUSH_APP_RELEASE '1mdk'
+Subst: MUSH_BUILD_REQUIRES 'BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel'
+Use: targets/sdl_app.spec.mdk as snapshot.spec.mdk
+Subst: MUSH_APP_RELEASE '1'
+Subst: MUSH_BUILD_REQUIRES ''
+Use: targets/sdl_app.spec as snapshot.spec.generic
 
 Create: src/Makefile.am
 
 Program: all
-Modules: API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover Mushcore MushGL MushMesh MushModel MushPie Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover Mushcore MushGame MushGL MushMesh MushModel MushPie Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
 Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$
@@ -43,4 +63,4 @@ Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$
 Append: Makefile.am
 
 ExtraDist:
-Modules: targets/.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/tesseracttrainer.*
+Modules: targets/.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/snapshot.*

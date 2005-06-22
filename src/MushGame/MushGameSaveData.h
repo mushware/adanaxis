@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.3 2005/06/21 13:10:52 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.4 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.4  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.3  2005/06/21 13:10:52  southa
  * MushGame work
  *
@@ -58,6 +61,7 @@ private:
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
     MushcoreDataRef<MushGameClient> m_clientRef;
+    MushcoreDataRef<MushGameAddress> m_serverAddrRef; //:readwrite :wref
     
 //%classPrototypes {
 public:
@@ -79,6 +83,10 @@ public:
     void ToServerMailboxSet(const MushGameMailbox& inValue) { m_toServerMailbox=inValue; }
     // Writable reference for m_toServerMailbox
     MushGameMailbox& ToServerMailboxWRef(void) { return m_toServerMailbox; }
+    const MushcoreDataRef<MushGameAddress>& ServerAddrRef(void) const { return m_serverAddrRef; }
+    void ServerAddrRefSet(const MushcoreDataRef<MushGameAddress>& inValue) { m_serverAddrRef=inValue; }
+    // Writable reference for m_serverAddrRef
+    MushcoreDataRef<MushGameAddress>& ServerAddrRefWRef(void) { return m_serverAddrRef; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -86,7 +94,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } IPpSZo7UiA5IZue1bi0jaQ
+//%classPrototypes } EflSsquI6PXkQ40RwhyMQQ
 };
 //%inlineHeader {
 inline std::ostream&

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5jSH/Xb6MEG+qzzvWN1AjA
 /*
- * $Id: AdanaxisServer.cpp,v 1.2 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisServer.cpp,v 1.3 2005/06/21 15:57:46 southa Exp $
  * $Log: AdanaxisServer.cpp,v $
+ * Revision 1.3  2005/06/21 15:57:46  southa
+ * MushGame work
+ *
  * Revision 1.2  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -40,8 +43,8 @@ AdanaxisServer::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage
 {
     if (SaveData().Players().Size() >= SaveData().MaxPlayersAllowed())
     {
-        MushGameMessageJoinDenied *pJoinDenied = new MushGameMessageJoinDenied;
-        //outReplyBox.Give(pJoinDenied);
+        MushGameMessageJoinDenied *pJoinDenied = new MushGameMessageJoinDenied(inMessage.Id());
+        ioLogic.ReplyGive(pJoinDenied, inMessage);
     }
     else
     {

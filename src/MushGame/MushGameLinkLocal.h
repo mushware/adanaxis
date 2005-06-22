@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 3aRv+tX8/7XZNh7xGrmOrA
 /*
- * $Id: MushGameLinkLocal.h,v 1.1 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameLinkLocal.h,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLinkLocal.h,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -33,7 +36,7 @@
 #include "MushGameStandard.h"
 
 #include "MushGameClient.h"
-#include "MushGameDigest.h"
+#include "MushGameMailbox.h"
 #include "MushGameLink.h"
 #include "MushGameServer.h"
 
@@ -44,21 +47,30 @@ class MushGameLogic;
 class MushGameLinkLocal : public MushGameLink
 {
 public:
+    typedef MushcoreData< MushcorePipe<MushGameMailbox> > tPipeData;
+    typedef MushcoreDataRef< MushcorePipe<MushGameMailbox> > tPipeDataRef;
+   
+    MushGameLinkLocal();
     virtual ~MushGameLinkLocal() {}
-    virtual void MessagesPump(MushGameLogic& ioLogic);
+    virtual void SrcDestSet(const std::string& inSrcName, const std::string& inDestName);
+
+    virtual bool OutboxSendUnlessEmpty(void);
+    virtual bool InboxGet(MushGameMailbox& outMailbox);
+    virtual void ToOutboxCopy(const MushGameMessage& inMessage);
+    
+protected:
+    // Pipe database for connecting links
+    static tPipeData m_pipeData;
     
 private:
-    MushcoreDataRef<MushGameClient> m_clientRef; //:readwrite
-    MushcoreDataRef<MushGameServer> m_serverRef; //:readwrite
-    MushcorePipe<MushGameMailbox> m_clientToServer; //:ignore
-    MushcorePipe<MushGameMailbox> m_serverToClient; //:ignore
+    MushGameMailbox m_outBox; //:ignore
+    MushGameMailbox m_inBox; //:ignore
+
+    tPipeDataRef m_uplinkRef; //:ignore
+    tPipeDataRef m_downlinkRef; //:ignore
     
 //%classPrototypes {
 public:
-    const MushcoreDataRef<MushGameClient>& ClientRef(void) const { return m_clientRef; }
-    void ClientRefSet(const MushcoreDataRef<MushGameClient>& inValue) { m_clientRef=inValue; }
-    const MushcoreDataRef<MushGameServer>& ServerRef(void) const { return m_serverRef; }
-    void ServerRefSet(const MushcoreDataRef<MushGameServer>& inValue) { m_serverRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,7 +78,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +W8szZZ0/vfABfyInM4o1g
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iI4TY+ZqKRCRDUBPoHinSg
 /*
- * $Id: MushGameJob.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameJob.h,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameJob.h,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -41,19 +44,18 @@ class MushGameLogic;
 class MushGameJob : public MushGameReceiver, public MushcoreVirtualObject
 {
 public:
-    MushGameJob();
+    explicit MushGameJob(const std::string& inID = "");
     virtual ~MushGameJob() {}
 
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
 protected:
-    virtual MushGameData& Data(void) { return m_dataRef.WRef(); }
     
 private:
     bool m_shouldWake; //:readwrite
     bool m_complete; //:readwrite
     Mushware::U32 m_wakeTime; //:readwrite
-    MushcoreDataRef<MushGameData> m_dataRef;
+    const std::string m_id;
     
 //%classPrototypes {
 public:

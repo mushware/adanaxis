@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameLogic.h,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -37,11 +40,12 @@
 #include "MushGameHostSaveData.h"
 #include "MushGameHostVolatileData.h"
 #include "MushGameJob.h"
+#include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 #include "MushGameVolatileData.h"
 
 //:generate virtual standard ostream xml1
-class MushGameLogic : public MushcoreVirtualObject
+class MushGameLogic : public MushGameReceiver, public MushcoreVirtualObject
 {
 public:
     typedef MushcoreData<MushGameJob> tJobList;
@@ -52,6 +56,13 @@ public:
     virtual void JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList);
     virtual Mushware::U32 GameMsec(void) const;
     virtual void PerFrameProcessing(void);
+    virtual void DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void PieceMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void ReplyGive(MushGameMessage *inpReplyMessage, const MushGameMessage& inOrigMessage);
+    virtual void ServerAddressSet(const std::string& inName);
+    virtual void CopyAndSendToServer(const MushGameMessage& inMessage);
     
 protected:
     MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }

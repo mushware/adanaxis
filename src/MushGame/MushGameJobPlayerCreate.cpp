@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.2  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -30,12 +33,14 @@
 
 #include "MushGameLogic.h"
 
+#include "MushGameMessageJoinRequest.h"
 #include "MushGameMessageWake.h"
 
 using namespace Mushware;
 using namespace std;
 
-MushGameJobPlayerCreate::MushGameJobPlayerCreate() :
+MushGameJobPlayerCreate::MushGameJobPlayerCreate(const std::string& inID) :
+    MushGameJob(inID),
     m_state(kStateInit)
 {
 }
@@ -47,11 +52,20 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
     {
         case kStateInit:
         case kStateWait:
+        {
             MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
+            
+            MushGameMessageJoinRequest joinRequest;
+            joinRequest.PlayerNameSet("localplayer");
+            joinRequest.PackageIDSet(MushcoreInfo::Sgl().PackageID());
+            
+            ioLogic.CopyAndSendToServer(joinRequest);
+            
             WakeTimeSet(ioLogic.GameMsec() + kRetryMsec);
             ShouldWakeSet(true);
             m_state = kStateWait;
-            break;
+        }
+        break;
             
         default:
             MUSHCOREASSERT(false);

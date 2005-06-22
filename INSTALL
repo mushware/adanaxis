@@ -3,20 +3,20 @@ Please report bugs or request support at http://www.mushware.com/
 Platform-specific details can be found in README.linux, README.win32 and
 README.macosx files.
 
-To compile and install Tesseract Trainer from this distribution:
+To compile and install Snapshot from this distribution:
 
 Unix/POSIX/Linux/FreeBSD
 ========================
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf tesseracttrainer-0.1.4.tar.gz
-cd tesseracttrainer-0.1.4
+tar xvzf snapshot-0.0.1.tar.gz
+cd snapshot-0.0.1
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make
 make install
-./tesseracttrainer
+./snapshot
 
 MacOS X
 =======

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.5 2005/06/20 16:14:30 southa Exp $
+ * $Id: MushGame.h,v 1.6 2005/06/21 13:10:51 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.6  2005/06/21 13:10:51  southa
+ * MushGame work
+ *
  * Revision 1.5  2005/06/20 16:14:30  southa
  * Adanaxis work
  *
@@ -42,6 +45,7 @@
  *
  */
 
+#include "MushGameAddress.h"
 #include "MushGameClient.h"
 #include "MushGameConfigBase.h"
 #include "MushGameConfigUtils.h"

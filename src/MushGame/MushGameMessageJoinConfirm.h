@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jTZUWVCpGdWH39h9vPh0dA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageJoinConfirm.h,v 1.1 2005/06/20 14:30:36 southa Exp $
+ * $Log: MushGameMessageJoinConfirm.h,v $
+ * Revision 1.1  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -35,6 +38,7 @@
 class MushGameMessageJoinConfirm : public MushGameMessage
 {
 public:
+    explicit MushGameMessageJoinConfirm(const std::string& inID = "") : MushGameMessage(inID) {}
     virtual ~MushGameMessageJoinConfirm() {}
     
 private:

@@ -1929,6 +1929,7 @@
 				7A069619086853E9007ACACE,
 				7A06962208685469007ACACE,
 				7A06969D08686175007ACACE,
+				7AD272AE0869DDCF008B104E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2286,6 +2287,7 @@
 				7A06961A086853E9007ACACE,
 				7A06962308685469007ACACE,
 				7A06969E08686175007ACACE,
+				7AD272AF0869DDCF008B104E,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12670,6 +12672,7 @@
 				7A069617086853E9007ACACE,
 				7A06962008685469007ACACE,
 				7A06969B08686175007ACACE,
+				7AD272AC0869DDCF008B104E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13767,6 +13770,7 @@
 				7A069618086853E9007ACACE,
 				7A06962108685469007ACACE,
 				7A06969C08686175007ACACE,
+				7AD272AD0869DDCF008B104E,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23783,6 +23787,8 @@
 			children = (
 				7AD3B5CA085F361F00512DB1,
 				7AD3B5C9085F361F00512DB1,
+				7AD272AB0869DDCF008B104E,
+				7AD272AA0869DDCF008B104E,
 				7AD3B5FA08617F9B00512DB1,
 				7AD3B5F908617F9B00512DB1,
 				7AD3B5A6085F33CA00512DB1,
@@ -23905,6 +23911,46 @@
 		};
 		7AD23BA6085F007E0017859F = {
 			fileRef = 7AD23BA4085F007E0017859F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD272AA0869DDCF008B104E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameAddress.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD272AB0869DDCF008B104E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameAddress.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD272AC0869DDCF008B104E = {
+			fileRef = 7AD272AA0869DDCF008B104E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD272AD0869DDCF008B104E = {
+			fileRef = 7AD272AB0869DDCF008B104E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD272AE0869DDCF008B104E = {
+			fileRef = 7AD272AA0869DDCF008B104E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD272AF0869DDCF008B104E = {
+			fileRef = 7AD272AB0869DDCF008B104E;
 			isa = PBXBuildFile;
 			settings = {
 			};
