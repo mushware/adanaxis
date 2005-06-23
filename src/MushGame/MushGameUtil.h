@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id: MushGameUtil.h,v 1.3 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameUtil.h,v 1.4 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.4  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -44,6 +47,8 @@
 #include "MushGameMessage.h"
 #include "MushGameServer.h"
 
+class MushGameLogic;
+
 class MushGameUtil
 {
 public:
@@ -52,9 +57,11 @@ public:
     static void MailboxToClientMove(MushGameClient& ioClient, MushGameMailbox& ioBoxToMove, MushGameLogic& ioLogic);
     static std::string ObjectName(const std::string& inPrefix, const std::string& inSuffix);
     static void LocalGameCreate(const std::string& inName, const std::string& inPrefix);
+    static void LocalGameJobsCreate(MushGameLogic& ioLogic);
     template <class T> static T *DataObjectCreate(const std::string& inName,
         const std::string& inPrefix, const std::string& inSuffix);
     static std::string KeyFromMessage(const MushGameMessage& inMessage);
+    static std::string ReplyIDFromMessage(const MushGameMessage& inMessage);
 private:
     
 };

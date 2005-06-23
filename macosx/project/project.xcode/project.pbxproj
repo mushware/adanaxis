@@ -1930,6 +1930,7 @@
 				7A06962208685469007ACACE,
 				7A06969D08686175007ACACE,
 				7AD272AE0869DDCF008B104E,
+				7A8040ED086AE085007B0F20,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2288,6 +2289,7 @@
 				7A06962308685469007ACACE,
 				7A06969E08686175007ACACE,
 				7AD272AF0869DDCF008B104E,
+				7A8040EE086AE085007B0F20,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12673,6 +12675,7 @@
 				7A06962008685469007ACACE,
 				7A06969B08686175007ACACE,
 				7AD272AC0869DDCF008B104E,
+				7A8040EB086AE085007B0F20,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13771,6 +13774,7 @@
 				7A06962108685469007ACACE,
 				7A06969C08686175007ACACE,
 				7AD272AD0869DDCF008B104E,
+				7A8040EC086AE085007B0F20,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -17347,6 +17351,46 @@
 		};
 		7A7DE93B08157EE300CB5432 = {
 			fileRef = 7A7DE93908157EE300CB5432;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A8040E9086AE085007B0F20 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameJobAdmission.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A8040EA086AE085007B0F20 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameJobAdmission.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A8040EB086AE085007B0F20 = {
+			fileRef = 7A8040E9086AE085007B0F20;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A8040EC086AE085007B0F20 = {
+			fileRef = 7A8040EA086AE085007B0F20;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A8040ED086AE085007B0F20 = {
+			fileRef = 7A8040E9086AE085007B0F20;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A8040EE086AE085007B0F20 = {
+			fileRef = 7A8040EA086AE085007B0F20;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -23813,6 +23857,8 @@
 				7A069615086853E9007ACACE,
 				7AD2058A0868206300F891C0,
 				7AD205890868206300F891C0,
+				7A8040EA086AE085007B0F20,
+				7A8040E9086AE085007B0F20,
 				7AD2059E086821F000F891C0,
 				7AD2059D086821F000F891C0,
 				7AD3B62C086185CB00512DB1,

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.7 2005/06/21 15:57:46 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.8 2005/06/23 11:58:27 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.8  2005/06/23 11:58:27  southa
+ * MushGame link work
+ *
  * Revision 1.7  2005/06/21 15:57:46  southa
  * MushGame work
  *
@@ -107,6 +110,7 @@ AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
     m_serverRef.NameSet(m_name);
     m_saveDataRef.NameSet(m_name);
     m_logicRef.NameSet(m_name);
+    MushGameUtil::LocalGameJobsCreate(m_logicRef.WRef());
 }
 
 void

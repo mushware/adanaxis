@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEJOB_H
-#define MUSHGAMEJOB_H
-//%includeGuardStart } VOJcgDgNeH1hnRUnE//qVA
+#ifndef MUSHGAMEJOBADMISSION_H
+#define MUSHGAMEJOBADMISSION_H
+//%includeGuardStart } yu6AJJDmPLuXA0KQ3WLErg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameJob.h
+ * File: src/MushGame/MushGameJobAdmission.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,55 +21,31 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iI4TY+ZqKRCRDUBPoHinSg
+//%Header } MeaV3G3CpMxQ+H/X4gGATA
 /*
- * $Id: MushGameJob.h,v 1.3 2005/06/22 20:01:58 southa Exp $
- * $Log: MushGameJob.h,v $
- * Revision 1.3  2005/06/22 20:01:58  southa
- * MushGame link work
- *
- * Revision 1.2  2005/06/21 15:57:48  southa
- * MushGame work
- *
- * Revision 1.1  2005/06/21 13:10:51  southa
- * MushGame work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameReceiver.h"
+#include "MushGameJob.h"
 
-class MushGameData;
-class MushGameLogic;
-
+//:xml1base MushGameJob
 //:generate standard ostream xml1
-class MushGameJob : public MushGameReceiver, public MushcoreVirtualObject
+class MushGameJobAdmission : public MushGameJob
 {
 public:
-    explicit MushGameJob(const std::string& inID = "");
-    virtual ~MushGameJob() {}
-
+    explicit MushGameJobAdmission(const std::string& inID = "");
+    virtual ~MushGameJobAdmission() {}
+    
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-
-protected:
+    virtual void JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     
 private:
-    bool m_shouldWake; //:readwrite
-    bool m_complete; //:readwrite
-    Mushware::U32 m_wakeTime; //:readwrite
-    std::string m_id; //:readwrite
     
 //%classPrototypes {
 public:
-    const bool& ShouldWake(void) const { return m_shouldWake; }
-    void ShouldWakeSet(const bool& inValue) { m_shouldWake=inValue; }
-    const bool& Complete(void) const { return m_complete; }
-    void CompleteSet(const bool& inValue) { m_complete=inValue; }
-    const Mushware::U32& WakeTime(void) const { return m_wakeTime; }
-    void WakeTimeSet(const Mushware::U32& inValue) { m_wakeTime=inValue; }
-    const std::string& Id(void) const { return m_id; }
-    void IdSet(const std::string& inValue) { m_id=inValue; }
     const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
@@ -77,16 +53,18 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } aMTmcW3u8W2urZC83sCvFQ
+//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
 };
+
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameJob& inObj)
+operator<<(std::ostream& ioOut, const MushGameJobAdmission& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } AM1BxnbmjjopfR/S6Pmvtg
+//%inlineHeader } 5rhtAOjHv4oNL6qR77ANeQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
+

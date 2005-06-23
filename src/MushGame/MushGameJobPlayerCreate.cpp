@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.4  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -36,6 +39,8 @@
 
 #include "MushGameLogic.h"
 
+#include "MushGameMessageJoinConfirm.h"
+#include "MushGameMessageJoinDenied.h"
 #include "MushGameMessageJoinRequest.h"
 #include "MushGameMessageWake.h"
 
@@ -46,6 +51,7 @@ MushGameJobPlayerCreate::MushGameJobPlayerCreate(const std::string& inID) :
     MushGameJob(inID),
     m_state(kStateInit)
 {
+    ShouldWakeSet(true);
 }
 
 void
@@ -58,7 +64,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
         {
             MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
             
-            MushGameMessageJoinRequest joinRequest("j:host");
+            MushGameMessageJoinRequest joinRequest("j:admission|"+Id());
             joinRequest.PlayerNameSet("localplayer");
             joinRequest.PackageIDSet(MushcoreInfo::Sgl().PackageID());
             
@@ -78,12 +84,31 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
 }
 
 void
+MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    MushcoreLog::Sgl().InfoLog() << "JoinConfirm" << endl;
+    CompleteSet(true);
+}
+
+void
+MushGameJobPlayerCreate::JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    MushcoreLog::Sgl().InfoLog() << "JoinDenied" << endl;
+    CompleteSet(true);
+}
+
+void
 MushGameJobPlayerCreate::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     const MushGameMessageWake *wakeMessage = dynamic_cast<const MushGameMessageWake *>(&inMessage);
+    const MushGameMessageJoinDenied *pJoinDenied;
     if (wakeMessage != NULL)
     {
         WakeConsume(ioLogic, inMessage);
+    }
+    else if ((pJoinDenied = dynamic_cast<const MushGameMessageJoinDenied *>(&inMessage)) != NULL)
+    {
+        JoinDeniedConsume(ioLogic, inMessage);
     }
     else
     {

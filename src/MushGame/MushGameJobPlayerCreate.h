@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } P0/VYgYTHi4f0UnzJkIFQQ
 /*
- * $Id: MushGameJobPlayerCreate.h,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameJobPlayerCreate.h,v 1.3 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameJobPlayerCreate.h,v $
+ * Revision 1.3  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -47,6 +50,8 @@ public:
 
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void WakeConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     
 private:
     enum

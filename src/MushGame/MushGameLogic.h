@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.3 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameLogic.h,v 1.4 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.4  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -57,34 +60,36 @@ public:
     virtual ~MushGameLogic() {}
     virtual void GroupingNameSet(const std::string& inName) { m_dataRef.NameSet(inName); m_hostDataRef.NameSet(inName); }
 
-    virtual void JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList);
+    virtual void JobListProcess(tJobList& ioList);
     virtual Mushware::U32 GameMsec(void) const;
     virtual void PerFrameProcessing(void);
     virtual void DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void PieceMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void ReplyGive(MushGameMessage *inpReplyMessage, const MushGameMessage& inOrigMessage);
     virtual void ServerAddressSet(const std::string& inName);
     virtual void ClientAddressAdd(const std::string& inName);
     virtual void CopyAndSendToServer(const MushGameMessage& inMessage);
+    virtual void AsReplyCopyAndSend(MushGameMessage& ioMessage, const MushGameMessage& inSrcMessage);
     
+    virtual void ClientMailboxConsume(MushGameMailbox& inMailbox);
     virtual void ServerMailboxConsume(MushGameMailbox& inMailbox);
     virtual void ClientReceiveSequence(void);
-    virtual void ClientSendSequence(void);
     virtual void ServerReceiveSequence(void);
+    virtual void ClientSendSequence(void);
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
     virtual void MainSequence(void);
+
+    virtual MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
+    virtual MushGameVolatileData& VolatileData(void) { return m_dataRef.Ref().VolatileDataRef().WRef(); }
+    
+    virtual MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
+    virtual MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
     
 protected:
-    MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
-    MushGameVolatileData& VolatileData(void) { return m_dataRef.Ref().VolatileDataRef().WRef(); }
-    
-    MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
-    MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
-    
+
 private:
     MushcoreDataRef<MushGameData> m_dataRef; //:readwrite :wref
     MushcoreDataRef<MushGameHostData> m_hostDataRef; //:readwrite :wref

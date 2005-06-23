@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PtE5rBAXGQWHrOsXuTDTuQ
 /*
- * $Id: MushGameHostSaveData.cpp,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Id: MushGameHostSaveData.cpp,v 1.2 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.2  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/21 15:57:47  southa
  * MushGame work
  *
@@ -28,9 +31,13 @@
 
 #include "MushGameHostSaveData.h"
 
+#include "MushGameJob.h"
+
 MUSHCORE_DATA_INSTANCE(MushGameHostSaveData);
 
-MushGameHostSaveData::MushGameHostSaveData()
+MushGameHostSaveData::MushGameHostSaveData() :
+    m_nextPlayerID(2),
+    m_maxPlayersAllowed(4)
 {
 }
 
@@ -67,6 +74,10 @@ void
 MushGameHostSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "hostPlayers=" << m_hostPlayers << ", ";
+    ioOut << "nextPlayerID=" << m_nextPlayerID << ", ";
+    ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed << ", ";
+    ioOut << "jobList=" << m_jobList << ", ";
     ioOut << "clientAddrRefs=" << m_clientAddrRefs;
     ioOut << "]";
 }
@@ -78,6 +89,22 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "hostPlayers")
+    {
+        ioIn >> m_hostPlayers;
+    }
+    else if (inTagStr == "nextPlayerID")
+    {
+        ioIn >> m_nextPlayerID;
+    }
+    else if (inTagStr == "maxPlayersAllowed")
+    {
+        ioIn >> m_maxPlayersAllowed;
+    }
+    else if (inTagStr == "jobList")
+    {
+        ioIn >> m_jobList;
     }
     else if (inTagStr == "clientAddrRefs")
     {
@@ -92,7 +119,15 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("hostPlayers");
+    ioOut << m_hostPlayers;
+    ioOut.TagSet("nextPlayerID");
+    ioOut << m_nextPlayerID;
+    ioOut.TagSet("maxPlayersAllowed");
+    ioOut << m_maxPlayersAllowed;
+    ioOut.TagSet("jobList");
+    ioOut << m_jobList;
     ioOut.TagSet("clientAddrRefs");
     ioOut << m_clientAddrRefs;
 }
-//%outOfLineFunctions } F8O6L78waRGPkZw6IpPspA
+//%outOfLineFunctions } tEhzUdY1wfXW8QMiQgTePw

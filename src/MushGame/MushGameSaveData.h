@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.4 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.5 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.5  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -56,8 +59,6 @@ public:
     
 private:
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
-    Mushware::U32 m_nextPlayerID; //:readwrite :wref
-    Mushware::U32 m_maxPlayersAllowed; //:readwrite
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
     MushcoreDataRef<MushGameClient> m_clientRef;
@@ -69,12 +70,6 @@ public:
     void PlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_players=inValue; }
     // Writable reference for m_players
     MushcoreData<MushGamePlayer>& PlayersWRef(void) { return m_players; }
-    const Mushware::U32& NextPlayerID(void) const { return m_nextPlayerID; }
-    void NextPlayerIDSet(const Mushware::U32& inValue) { m_nextPlayerID=inValue; }
-    // Writable reference for m_nextPlayerID
-    Mushware::U32& NextPlayerIDWRef(void) { return m_nextPlayerID; }
-    const Mushware::U32& MaxPlayersAllowed(void) const { return m_maxPlayersAllowed; }
-    void MaxPlayersAllowedSet(const Mushware::U32& inValue) { m_maxPlayersAllowed=inValue; }
     const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
     void JobListSet(const MushcoreData<MushGameJob>& inValue) { m_jobList=inValue; }
     // Writable reference for m_jobList
@@ -94,7 +89,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } EflSsquI6PXkQ40RwhyMQQ
+//%classPrototypes } Zd9No+DPwT3jxjS3+ef4cw
 };
 //%inlineHeader {
 inline std::ostream&

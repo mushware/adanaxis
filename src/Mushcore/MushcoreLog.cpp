@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } S1ShkioeDeCMuA2XF/bV/g
 /*
- * $Id: MushcoreLog.cpp,v 1.3 2005/06/14 13:25:34 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.4 2005/06/23 11:58:29 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.4  2005/06/23 11:58:29  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/14 13:25:34  southa
  * Adanaxis work
  *
@@ -90,7 +93,6 @@ MushcoreLog::ErrorStream(void)
         HeaderWrite(*retStream, "error log");
         m_errorHeaderDone = true;
     }
-    *retStream << MushcoreUtil::LogTimeString() << ": Error: ";
     return *retStream;
 }
 
@@ -111,50 +113,58 @@ MushcoreLog::StdStream(void)
         HeaderWrite(*retStream, "standard log");
         m_stdHeaderDone = true;
     }
-    *retStream << MushcoreUtil::LogTimeString() << ": Info: ";
     return *retStream;
 }
 
 ostream&
 MushcoreLog::ErrorLog(void)
 {
+    ostream *retStream;
     if (m_enableErrorLog)
     {
-        return ErrorStream();
+        retStream = &ErrorStream();
     }
     else
     {
         m_nullStream->clear();
-        return *m_nullStream;
+        retStream = m_nullStream;
     }
+    *retStream << MushcoreUtil::LogTimeString() << ": Error: ";
+    return *retStream;
 }
 
 ostream&
 MushcoreLog::WarningLog(void)
 {
+    ostream *retStream;
     if (m_enableWarningLog)
     {
-        return ErrorStream();
+        retStream = &ErrorStream();
     }
     else
     {
         m_nullStream->clear();
-        return *m_nullStream;
+        retStream = m_nullStream;
     }
+    *retStream << MushcoreUtil::LogTimeString() << ": Warning: ";
+    return *retStream;
 }
 
 ostream&
 MushcoreLog::InfoLog(void)
 {
+    ostream *retStream;
     if (m_enableInfoLog)
     {
-        return StdStream();
+        retStream = &StdStream();
     }
     else
     {
         m_nullStream->clear();
-        return *m_nullStream;
+        retStream = m_nullStream;
     }
+    *retStream << MushcoreUtil::LogTimeString() << ": Info: ";
+    return *retStream;
 }
 
 

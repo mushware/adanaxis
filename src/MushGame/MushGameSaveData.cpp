@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.4 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.5 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.5  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -39,8 +42,7 @@
 
 MUSHCORE_DATA_INSTANCE(MushGameSaveData);
 
-MushGameSaveData::MushGameSaveData() :
-    m_nextPlayerID(2)
+MushGameSaveData::MushGameSaveData()
 {
 }
 
@@ -78,8 +80,6 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "players=" << m_players << ", ";
-    ioOut << "nextPlayerID=" << m_nextPlayerID << ", ";
-    ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed << ", ";
     ioOut << "jobList=" << m_jobList << ", ";
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
     ioOut << "clientRef=" << m_clientRef << ", ";
@@ -98,14 +98,6 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     else if (inTagStr == "players")
     {
         ioIn >> m_players;
-    }
-    else if (inTagStr == "nextPlayerID")
-    {
-        ioIn >> m_nextPlayerID;
-    }
-    else if (inTagStr == "maxPlayersAllowed")
-    {
-        ioIn >> m_maxPlayersAllowed;
     }
     else if (inTagStr == "jobList")
     {
@@ -134,10 +126,6 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("players");
     ioOut << m_players;
-    ioOut.TagSet("nextPlayerID");
-    ioOut << m_nextPlayerID;
-    ioOut.TagSet("maxPlayersAllowed");
-    ioOut << m_maxPlayersAllowed;
     ioOut.TagSet("jobList");
     ioOut << m_jobList;
     ioOut.TagSet("toServerMailbox");
@@ -147,4 +135,4 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("serverAddrRef");
     ioOut << m_serverAddrRef;
 }
-//%outOfLineFunctions } HW0JwUPVsVCIOgVcUxl2og
+//%outOfLineFunctions } ThxgNOdiwLO3xaEGgJlUng

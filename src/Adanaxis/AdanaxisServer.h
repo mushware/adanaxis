@@ -34,7 +34,6 @@ class AdanaxisServer : public MushGameServer
 public:
     virtual ~AdanaxisServer() {}
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
 protected:
     virtual AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(MushGameServer::SaveData()); }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x1hhF/NH4dT4y5U7K5AdDw
 /*
- * $Id: MushGameJob.cpp,v 1.2 2005/06/21 15:57:47 southa Exp $
+ * $Id: MushGameJob.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameJob.cpp,v $
+ * Revision 1.3  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:47  southa
  * MushGame work
  *
@@ -34,7 +37,7 @@
 #include "MushGameSaveData.h"
 
 MushGameJob::MushGameJob(const std::string& inID) :
-    m_shouldWake(true),
+    m_shouldWake(false),
     m_complete(false),
     m_wakeTime(0),
     m_id(inID)
@@ -82,7 +85,8 @@ MushGameJob::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "shouldWake=" << m_shouldWake << ", ";
     ioOut << "complete=" << m_complete << ", ";
-    ioOut << "wakeTime=" << m_wakeTime;
+    ioOut << "wakeTime=" << m_wakeTime << ", ";
+    ioOut << "id=" << m_id;
     ioOut << "]";
 }
 bool
@@ -106,6 +110,10 @@ MushGameJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
     {
         ioIn >> m_wakeTime;
     }
+    else if (inTagStr == "id")
+    {
+        ioIn >> m_id;
+    }
     else
     {
         return false;
@@ -121,5 +129,7 @@ MushGameJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_complete;
     ioOut.TagSet("wakeTime");
     ioOut << m_wakeTime;
+    ioOut.TagSet("id");
+    ioOut << m_id;
 }
-//%outOfLineFunctions } UI5rMLgIvVbdhEutrLpSeQ
+//%outOfLineFunctions } 26RVangnmD+LtNDz7CtEYw

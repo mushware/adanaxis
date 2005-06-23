@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.3 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.4  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -38,6 +41,7 @@
 #include "MushGameJob.h"
 #include "MushGameLink.h"
 #include "MushGameMessageWake.h"
+#include "MushGameUtil.h"
 
 #include "API/mushGame.h"
 
@@ -61,7 +65,7 @@ MushGameLogic::GameMsec(void) const
 }
 
 void
-MushGameLogic::JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList)
+MushGameLogic::JobListProcess(tJobList& ioList)
 {
     U32 msecNow = GameMsec();
     
@@ -100,7 +104,8 @@ MushGameLogic::JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList)
 void
 MushGameLogic::PerFrameProcessing(void)
 {
-    JobListProcess(SaveData().ToServerMailboxWRef(), SaveData().JobListWRef());
+    JobListProcess(SaveData().JobListWRef());
+    JobListProcess(HostSaveData().JobListWRef());
 }
 
 void
@@ -150,20 +155,6 @@ MushGameLogic::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inM
 }
 
 void
-MushGameLogic::ReplyGive(MushGameMessage *inpReplyMessage, const MushGameMessage& inOrigMessage)
-{
-    try
-    {
-        const MushcoreDataRef<MushGameAddress>& destAddrRefRef = inOrigMessage.SrcAddrRef();
-    }
-    catch (...)
-    {
-        delete inpReplyMessage;    
-        throw;
-    }
-}
-
-void
 MushGameLogic::ServerAddressSet(const std::string& inName)
 {
     SaveData().ServerAddrRefWRef().NameSet(inName);    
@@ -186,7 +177,40 @@ MushGameLogic::CopyAndSendToServer(const MushGameMessage& inMessage)
     }
     catch (MushcoreNonFatalFail& e)
     {
-        MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
+        MushcoreLog::Sgl().WarningLog() << e.what() << endl;
+    }
+}
+
+void
+MushGameLogic::AsReplyCopyAndSend(MushGameMessage& ioMessage, const MushGameMessage& inSrcMessage)
+{
+    try
+    {
+        ioMessage.IdSet(MushGameUtil::ReplyIDFromMessage(inSrcMessage));
+        inSrcMessage.SrcAddrRef().Ref().LinkRef().WRef().ToOutboxCopy(ioMessage);
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().WarningLog() << e.what() << endl;
+    }
+}
+
+void
+MushGameLogic::ClientMailboxConsume(MushGameMailbox& inMailbox)
+{
+    std::auto_ptr<MushGameMessage> aMessage;
+    while (inMailbox.TakeIfAvailable(aMessage))
+    {
+        MUSHCOREASSERT(&*aMessage != NULL);
+        aMessage->SrcAddrRefSet(inMailbox.SrcAddrRef());
+        try
+        {
+            MessageConsume(*this, *aMessage);
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            MushcoreLog::Sgl().WarningLog() << e.what() << ": " << *aMessage << endl;
+        }
     }
 }
 
@@ -210,6 +234,20 @@ MushGameLogic::ServerMailboxConsume(MushGameMailbox& inMailbox)
 }
 
 void
+MushGameLogic::ClientReceiveSequence(void)
+{
+    // I am a client picking up messages from my server
+    MushGameMailbox mailbox;
+    const MushcoreDataRef<MushGameAddress>& addrDataRef = SaveData().ServerAddrRef();
+    if (addrDataRef.Ref().LinkRef().WRef().InboxGetUnlessEmpty(mailbox))
+    {
+        MushcoreLog::Sgl().InfoLog() << "Receiving from address " << addrDataRef.Ref() << endl;
+        mailbox.SrcAddrRefSet(addrDataRef);
+        ClientMailboxConsume(mailbox);
+    }
+}
+
+void
 MushGameLogic::ServerReceiveSequence(void)
 {
     // I am the server picking up my messages from clients
@@ -222,11 +260,17 @@ MushGameLogic::ServerReceiveSequence(void)
         MushGameMailbox mailbox;
         if (p->Ref().LinkRef().WRef().InboxGetUnlessEmpty(mailbox))
         {
-            MushcoreLog::Sgl().ErrorLog() << "Receiving " << *p << endl;
+            MushcoreLog::Sgl().InfoLog() << "Receiving from address " << p->Ref() << endl;
             mailbox.SrcAddrRefSet(*p);
             ServerMailboxConsume(mailbox);
         }
     }
+}
+
+void
+MushGameLogic::ClientSendSequence(void)
+{
+    SaveData().ServerAddrRef().Ref().LinkRef().WRef().OutboxSendUnlessEmpty();
 }
 
 void
@@ -241,17 +285,6 @@ MushGameLogic::ServerSendSequence(void)
     {
         p->Ref().LinkRef().WRef().OutboxSendUnlessEmpty();
     }
-}
-
-void
-MushGameLogic::ClientReceiveSequence(void)
-{
-}
-
-void
-MushGameLogic::ClientSendSequence(void)
-{
-    SaveData().ServerAddrRef().Ref().LinkRef().WRef().OutboxSendUnlessEmpty();
 }
 
 void

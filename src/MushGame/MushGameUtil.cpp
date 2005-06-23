@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.4 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.5 2005/06/23 11:58:29 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.5  2005/06/23 11:58:29  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -42,12 +45,16 @@
 #include "MushGameHostData.h"
 #include "MushGameHostSaveData.h"
 #include "MushGameHostVolatileData.h"
-#include "MushGameMessage.h"
+#include "MushGameJobAdmission.h"
 #include "MushGameLogic.h"
 #include "MushGameLink.h"
+#include "MushGameMessage.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
 #include "MushGameVolatileData.h"
+
+using namespace Mushware;
+using namespace std;
 
 void
 MushGameUtil::MailboxToDigestMove(MushGameDigest& ioDigest, MushGameMailbox& ioMailbox)
@@ -125,6 +132,14 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     pLogic->ClientAddressAdd(clientName);
 }
 
+void
+MushGameUtil::LocalGameJobsCreate(MushGameLogic& ioLogic)
+{
+    std::string nameStr = "admission";
+    MushGameJobAdmission *pCreate = new MushGameJobAdmission("j:"+nameStr);
+    ioLogic.HostSaveData().JobListWRef().Give(nameStr, pCreate);
+}
+
 std::string
 MushGameUtil::KeyFromMessage(const MushGameMessage& inMessage)
 {
@@ -133,5 +148,30 @@ MushGameUtil::KeyFromMessage(const MushGameMessage& inMessage)
     {
         throw MushcoreDataFail("Message ID '"+idRef+"' too short to extract key");
     }
-    return idRef.substr(2);
+    Mushware::U32 barPos = idRef.find("|");
+    if (barPos == idRef.npos || barPos < 2)
+    {
+        return idRef.substr(2);
+    }
+    else
+    {
+        return idRef.substr(2, barPos - 2);        
+    }
 }
+
+std::string
+MushGameUtil::ReplyIDFromMessage(const MushGameMessage& inMessage)
+{
+    const std::string& idRef = inMessage.Id();
+    if (idRef.size() < 2)
+    {
+        throw MushcoreDataFail("Message ID '"+idRef+"' too short to extract key");
+    }
+    Mushware::U32 barPos = idRef.find("|");
+    if (barPos == idRef.npos)
+    {
+        barPos = 0;
+    }
+    return idRef.substr(barPos+1);
+}
+
