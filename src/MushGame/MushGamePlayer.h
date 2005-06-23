@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -39,16 +42,20 @@
 class MushGamePlayer : public MushcoreVirtualObject
 {
 public:
-    explicit MushGamePlayer(Mushware::U32 inPlayerID = 0);
+    explicit MushGamePlayer(std::string inID = "");
     virtual ~MushGamePlayer() {}
     virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
     
 private:
-    Mushware::U32 m_playerID; //:read
+    std::string m_id; //:readwrite
+    std::string m_playerName; //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::U32& PlayerID(void) const { return m_playerID; }
+    const std::string& Id(void) const { return m_id; }
+    void IdSet(const std::string& inValue) { m_id=inValue; }
+    const std::string& PlayerName(void) const { return m_playerName; }
+    void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -56,7 +63,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } CtkZrIoo4xZrv7mIfRarBw
+//%classPrototypes } gvkiiHri0IKJ//RIXIKreQ
 };
 //%inlineHeader {
 inline std::ostream&

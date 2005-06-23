@@ -23,13 +23,18 @@
  ****************************************************************************/
 //%Header } MeaV3G3CpMxQ+H/X4gGATA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJobAdmission.h,v 1.1 2005/06/23 13:56:58 southa Exp $
+ * $Log: MushGameJobAdmission.h,v $
+ * Revision 1.1  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  */
 
 #include "MushGameStandard.h"
 
 #include "MushGameJob.h"
+
+#include "MushGameMessageJoinRequest.h"
 
 //:xml1base MushGameJob
 //:generate standard ostream xml1
@@ -40,7 +45,7 @@ public:
     virtual ~MushGameJobAdmission() {}
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessageJoinRequest& inMessage);
     
 private:
     

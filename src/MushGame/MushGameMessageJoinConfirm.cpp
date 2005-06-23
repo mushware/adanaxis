@@ -63,6 +63,10 @@ MushGameMessageJoinConfirm::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameMessage::AutoPrint(ioOut);
+    ioOut << "newPlayerID=" << m_newPlayerID << ", ";
+    ioOut << "hostName=" << m_hostName << ", ";
+    ioOut << "playerName=" << m_playerName << ", ";
+    ioOut << "hostPackageID=" << m_hostPackageID;
     ioOut << "]";
 }
 bool
@@ -73,6 +77,22 @@ MushGameMessageJoinConfirm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const s
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "newPlayerID")
+    {
+        ioIn >> m_newPlayerID;
+    }
+    else if (inTagStr == "hostName")
+    {
+        ioIn >> m_hostName;
+    }
+    else if (inTagStr == "playerName")
+    {
+        ioIn >> m_playerName;
+    }
+    else if (inTagStr == "hostPackageID")
+    {
+        ioIn >> m_hostPackageID;
     }
     else if (MushGameMessage::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -88,5 +108,13 @@ void
 MushGameMessageJoinConfirm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameMessage::AutoXMLPrint(ioOut);
+    ioOut.TagSet("newPlayerID");
+    ioOut << m_newPlayerID;
+    ioOut.TagSet("hostName");
+    ioOut << m_hostName;
+    ioOut.TagSet("playerName");
+    ioOut << m_playerName;
+    ioOut.TagSet("hostPackageID");
+    ioOut << m_hostPackageID;
 }
-//%outOfLineFunctions } 3uxh3huyfrR6VkkKurWiSg
+//%outOfLineFunctions } YrELIvPr3KfiwtML7X0MGg

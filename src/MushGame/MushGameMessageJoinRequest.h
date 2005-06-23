@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rXRd7F8DnvTpUWdq+trMKw
 /*
- * $Id: MushGameMessageJoinRequest.h,v 1.1 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMessageJoinRequest.h,v 1.2 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameMessageJoinRequest.h,v $
+ * Revision 1.2  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -42,11 +45,14 @@ public:
     virtual ~MushGameMessageJoinRequest() {}
     
 private:
+    std::string m_clientName; //:readwrite
     std::string m_playerName; //:readwrite
     std::string m_packageID; //:readwrite
 
 //%classPrototypes {
 public:
+    const std::string& ClientName(void) const { return m_clientName; }
+    void ClientNameSet(const std::string& inValue) { m_clientName=inValue; }
     const std::string& PlayerName(void) const { return m_playerName; }
     void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
     const std::string& PackageID(void) const { return m_packageID; }
@@ -58,7 +64,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 8qO89Ol0bpt/oYcZN7OwBA
+//%classPrototypes } YLWjpsVnWAdA8KwwFEjhjA
 };
 //%inlineHeader {
 inline std::ostream&

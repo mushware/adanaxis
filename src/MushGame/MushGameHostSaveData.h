@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KJPGwB9vha6Uq1oSN1g5gg
 /*
- * $Id: MushGameHostSaveData.h,v 1.3 2005/06/23 11:58:28 southa Exp $
+ * $Id: MushGameHostSaveData.h,v 1.4 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameHostSaveData.h,v $
+ * Revision 1.4  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/23 11:58:28  southa
  * MushGame link work
  *
@@ -53,22 +56,25 @@ public:
     virtual void GroupingNameSet(const std::string& inName) {}
     
 private:
+    std::string m_serverName; //:readwrite
     MushcoreData<MushGamePlayer> m_hostPlayers; //:readwrite :wref
-    Mushware::U32 m_nextPlayerID; //:readwrite :wref
+    Mushware::U32 m_nextPlayerNum; //:readwrite :wref
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
     tClientAddrRefs m_clientAddrRefs; //:readwrite :wref
 
 //%classPrototypes {
 public:
+    const std::string& ServerName(void) const { return m_serverName; }
+    void ServerNameSet(const std::string& inValue) { m_serverName=inValue; }
     const MushcoreData<MushGamePlayer>& HostPlayers(void) const { return m_hostPlayers; }
     void HostPlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_hostPlayers=inValue; }
     // Writable reference for m_hostPlayers
     MushcoreData<MushGamePlayer>& HostPlayersWRef(void) { return m_hostPlayers; }
-    const Mushware::U32& NextPlayerID(void) const { return m_nextPlayerID; }
-    void NextPlayerIDSet(const Mushware::U32& inValue) { m_nextPlayerID=inValue; }
-    // Writable reference for m_nextPlayerID
-    Mushware::U32& NextPlayerIDWRef(void) { return m_nextPlayerID; }
+    const Mushware::U32& NextPlayerNum(void) const { return m_nextPlayerNum; }
+    void NextPlayerNumSet(const Mushware::U32& inValue) { m_nextPlayerNum=inValue; }
+    // Writable reference for m_nextPlayerNum
+    Mushware::U32& NextPlayerNumWRef(void) { return m_nextPlayerNum; }
     const Mushware::U32& MaxPlayersAllowed(void) const { return m_maxPlayersAllowed; }
     void MaxPlayersAllowedSet(const Mushware::U32& inValue) { m_maxPlayersAllowed=inValue; }
     const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
@@ -86,7 +92,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } MoYmS03/pTpHePRH2HfeZQ
+//%classPrototypes } GIPIZlrvSauNNdMynlWTsA
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.5 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.5  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/23 11:58:28  southa
  * MushGame link work
  *
@@ -43,6 +46,7 @@
 #include "MushGameMessageJoinDenied.h"
 #include "MushGameMessageJoinRequest.h"
 #include "MushGameMessageWake.h"
+#include "MushGameUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -55,7 +59,7 @@ MushGameJobPlayerCreate::MushGameJobPlayerCreate(const std::string& inID) :
 }
 
 void
-MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessageWake& inMessage)
 {
     switch (m_state)
     {
@@ -65,6 +69,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
             MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
             
             MushGameMessageJoinRequest joinRequest("j:admission|"+Id());
+            joinRequest.ClientNameSet(ioLogic.SaveData().ClientName());
             joinRequest.PlayerNameSet("localplayer");
             joinRequest.PackageIDSet(MushcoreInfo::Sgl().PackageID());
             
@@ -84,31 +89,53 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
 }
 
 void
-MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessageJoinConfirm& inMessage)
 {
-    MushcoreLog::Sgl().InfoLog() << "JoinConfirm" << endl;
+    
+    std::string playerName = MushGameUtil::KeyFromString(inMessage.NewPlayerID());
+    
+    if (ioLogic.SaveData().Players().Exists(playerName))
+    {
+        throw MushcoreRequestFail("Attempt to create player that already exists");
+    }
+    
+    MushGamePlayer *pPlayer = ioLogic.SaveData().PlayersWRef().Give(playerName, ioLogic.PlayerNew(&inMessage));
+    
+    pPlayer->IdSet(inMessage.NewPlayerID());
+    pPlayer->PlayerNameSet(inMessage.PlayerName());
+
+    MushcoreXMLOStream xmlOut(MushcoreLog::Sgl().InfoLog());
+    xmlOut << ioLogic.HostSaveData();
+    xmlOut << ioLogic.SaveData();
+    
     CompleteSet(true);
 }
 
 void
-MushGameJobPlayerCreate::JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+MushGameJobPlayerCreate::JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessageJoinDenied& inMessage)
 {
-    MushcoreLog::Sgl().InfoLog() << "JoinDenied" << endl;
-    CompleteSet(true);
+    MushcoreLog::Sgl().InfoLog() << "Join request denied" << endl;
+    // Wait for timeout
 }
 
 void
 MushGameJobPlayerCreate::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageWake *wakeMessage = dynamic_cast<const MushGameMessageWake *>(&inMessage);
+    const MushGameMessageWake *pWakeMessage;
+    const MushGameMessageJoinConfirm *pJoinConfirm;
     const MushGameMessageJoinDenied *pJoinDenied;
-    if (wakeMessage != NULL)
+    
+    if ((pWakeMessage = dynamic_cast<const MushGameMessageWake *>(&inMessage)) != NULL)
     {
-        WakeConsume(ioLogic, inMessage);
+        WakeConsume(ioLogic, *pWakeMessage);
+    }
+    else if ((pJoinConfirm = dynamic_cast<const MushGameMessageJoinConfirm *>(&inMessage)) != NULL)
+    {
+        JoinConfirmConsume(ioLogic, *pJoinConfirm);
     }
     else if ((pJoinDenied = dynamic_cast<const MushGameMessageJoinDenied *>(&inMessage)) != NULL)
     {
-        JoinDeniedConsume(ioLogic, inMessage);
+        JoinDeniedConsume(ioLogic, *pJoinDenied);
     }
     else
     {

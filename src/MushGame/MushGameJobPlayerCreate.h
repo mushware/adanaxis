@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } P0/VYgYTHi4f0UnzJkIFQQ
 /*
- * $Id: MushGameJobPlayerCreate.h,v 1.3 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameJobPlayerCreate.h,v 1.4 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameJobPlayerCreate.h,v $
+ * Revision 1.4  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -40,6 +43,10 @@
 
 #include "MushGameJob.h"
 
+#include "MushGameMessageWake.h"
+#include "MushGameMessageJoinConfirm.h"
+#include "MushGameMessageJoinDenied.h"
+
 //:xml1base MushGameJob
 //:generate standard ostream xml1
 class MushGameJobPlayerCreate : public MushGameJob
@@ -49,9 +56,9 @@ public:
     virtual ~MushGameJobPlayerCreate() {}
 
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void WakeConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void WakeConsume(MushGameLogic& ioLogic, const MushGameMessageWake& inMessage);
+    virtual void JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessageJoinConfirm& inMessage);
+    virtual void JoinDeniedConsume(MushGameLogic& ioLogic, const MushGameMessageJoinDenied& inMessage);
     
 private:
     enum

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YalEpz8yBppohkHxqtvbBA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameJobAdmission.cpp,v 1.1 2005/06/23 13:56:58 southa Exp $
+ * $Log: MushGameJobAdmission.cpp,v $
+ * Revision 1.1  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  */
 
 #include "MushGameJobAdmission.h"
@@ -39,18 +42,47 @@ MushGameJobAdmission::MushGameJobAdmission(const std::string& inID) :
 }
 
 void
-MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
-{
-    U32 playerID = ioLogic.HostSaveData().NextPlayerID();
-    
-    if (ioLogic.HostSaveData().HostPlayers().Size() >= ioLogic.HostSaveData().MaxPlayersAllowed(), 1)
+MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessageJoinRequest& inMessage)
+{    
+    if (ioLogic.HostSaveData().HostPlayers().Size() >= ioLogic.HostSaveData().MaxPlayersAllowed())
     {
-        MushcoreLog::Sgl().InfoLog() << "Sending player denied" << endl;
         MushGameMessageJoinDenied deniedMessage;
         ioLogic.AsReplyCopyAndSend(deniedMessage, inMessage);
     }
     else
     {
+        U32 newPlayerNum = ioLogic.HostSaveData().NextPlayerNum();
+        ++ioLogic.HostSaveData().NextPlayerNumWRef();
+        
+        std::string newPlayerName;
+        {
+            ostringstream newPlayerStream;
+            newPlayerStream << newPlayerNum;
+            newPlayerName = newPlayerStream.str();
+        }
+        
+        if (ioLogic.HostSaveData().HostPlayers().Exists(newPlayerName))
+        {
+            throw MushcoreRequestFail("Attempt to create player that already exists");
+        }
+        
+        MushGamePlayer *pPlayer =
+            ioLogic.HostSaveData().HostPlayersWRef().Give(newPlayerName, ioLogic.PlayerNew(&inMessage));
+
+        pPlayer->IdSet("p:"+newPlayerName);
+        pPlayer->PlayerNameSet(inMessage.PlayerName());
+        
+        MushGameMessageJoinConfirm confirmMessage;
+        
+        ostringstream playerID;
+        playerID << newPlayerNum;
+
+        confirmMessage.NewPlayerIDSet("p:"+playerID.str());
+        confirmMessage.HostNameSet(ioLogic.HostSaveData().ServerName());
+        confirmMessage.PlayerNameSet(inMessage.PlayerName());;
+        confirmMessage.HostPackageIDSet(MushcoreInfo::Sgl().PackageID());;
+        
+        ioLogic.AsReplyCopyAndSend(confirmMessage, inMessage);
     }
 }
 
@@ -60,7 +92,7 @@ MushGameJobAdmission::MessageConsume(MushGameLogic& ioLogic, const MushGameMessa
     const MushGameMessageJoinRequest *joinRequest = dynamic_cast<const MushGameMessageJoinRequest *>(&inMessage);
     if (joinRequest != NULL)
     {
-        JoinRequestConsume(ioLogic, inMessage);
+        JoinRequestConsume(ioLogic, *joinRequest);
     }
     else
     {

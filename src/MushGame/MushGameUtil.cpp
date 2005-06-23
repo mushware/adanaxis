@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.5 2005/06/23 11:58:29 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.6 2005/06/23 13:56:59 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.6  2005/06/23 13:56:59  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/23 11:58:29  southa
  * MushGame link work
  *
@@ -122,6 +125,9 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     std::string serverName = inName+"-localserver";
     std::string clientName = inName+"-localclient";
     
+    pLogic->SaveData().ClientNameSet(clientName);
+    pLogic->HostSaveData().ServerNameSet(serverName);
+    
     DataObjectCreate<MushGameAddress>(serverName, inPrefix, "Address")->NameSet(serverName);
     DataObjectCreate<MushGameAddress>(clientName, inPrefix, "Address")->NameSet(clientName);
     
@@ -141,22 +147,27 @@ MushGameUtil::LocalGameJobsCreate(MushGameLogic& ioLogic)
 }
 
 std::string
-MushGameUtil::KeyFromMessage(const MushGameMessage& inMessage)
+MushGameUtil::KeyFromString(const std::string& inStr)
 {
-    const std::string& idRef = inMessage.Id();
-    if (idRef.size() < 2)
+    if (inStr.size() < 2)
     {
-        throw MushcoreDataFail("Message ID '"+idRef+"' too short to extract key");
+        throw MushcoreDataFail("Message ID '"+inStr+"' too short to extract key");
     }
-    Mushware::U32 barPos = idRef.find("|");
-    if (barPos == idRef.npos || barPos < 2)
+    Mushware::U32 barPos = inStr.find("|");
+    if (barPos == inStr.npos || barPos < 2)
     {
-        return idRef.substr(2);
+        return inStr.substr(2);
     }
     else
     {
-        return idRef.substr(2, barPos - 2);        
+        return inStr.substr(2, barPos - 2);        
     }
+}
+
+std::string
+MushGameUtil::KeyFromMessage(const MushGameMessage& inMessage)
+{
+    return KeyFromString(inMessage.Id());
 }
 
 std::string

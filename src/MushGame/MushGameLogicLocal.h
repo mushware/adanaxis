@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ek+hHnjuKgN/u/6660BHEQ
 /*
- * $Id: MushGameLogicLocal.h,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLogicLocal.h,v 1.3 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameLogicLocal.h,v $
+ * Revision 1.3  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -37,6 +40,7 @@
 
 #include "MushGameLogic.h"
 
+//:xml1base MushGameLogic
 //:generate virtual standard ostream xml1
 class MushGameLogicLocal : public MushGameLogic
 {

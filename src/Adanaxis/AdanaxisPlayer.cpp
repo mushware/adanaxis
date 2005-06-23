@@ -17,13 +17,16 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPlayer.cpp,v 1.1 2005/06/20 14:46:41 southa Exp $
+ * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.1  2005/06/20 14:46:41  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisPlayer.h"
 
-AdanaxisPlayer::AdanaxisPlayer(Mushware::U32 inPlayerID) :
+AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
     MushGamePlayer(inPlayerID)
 {
 }

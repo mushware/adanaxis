@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.5 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.6 2005/06/23 13:56:59 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.6  2005/06/23 13:56:59  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -58,6 +61,7 @@ public:
     virtual void GroupingNameSet(const std::string& inName) { m_clientRef.NameSet(inName); }
     
 private:
+    std::string m_clientName; //:readwrite
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
@@ -66,6 +70,8 @@ private:
     
 //%classPrototypes {
 public:
+    const std::string& ClientName(void) const { return m_clientName; }
+    void ClientNameSet(const std::string& inValue) { m_clientName=inValue; }
     const MushcoreData<MushGamePlayer>& Players(void) const { return m_players; }
     void PlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_players=inValue; }
     // Writable reference for m_players
@@ -89,7 +95,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Zd9No+DPwT3jxjS3+ef4cw
+//%classPrototypes } Wq6DON3gq0MdTZpAs5UkAg
 };
 //%inlineHeader {
 inline std::ostream&

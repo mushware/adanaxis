@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.5 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.6 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.6  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -79,6 +82,7 @@ void
 MushGameSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "clientName=" << m_clientName << ", ";
     ioOut << "players=" << m_players << ", ";
     ioOut << "jobList=" << m_jobList << ", ";
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
@@ -94,6 +98,10 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "clientName")
+    {
+        ioIn >> m_clientName;
     }
     else if (inTagStr == "players")
     {
@@ -124,6 +132,8 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
 void
 MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("clientName");
+    ioOut << m_clientName;
     ioOut.TagSet("players");
     ioOut << m_players;
     ioOut.TagSet("jobList");
@@ -135,4 +145,4 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("serverAddrRef");
     ioOut << m_serverAddrRef;
 }
-//%outOfLineFunctions } ThxgNOdiwLO3xaEGgJlUng
+//%outOfLineFunctions } USUaRO847U2n8PlTuVY/eg

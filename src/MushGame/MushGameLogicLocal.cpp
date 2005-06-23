@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } qP/D11f61WKLayRHqTfr/g
 /*
- * $Id: MushGameLogicLocal.cpp,v 1.3 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameLogicLocal.cpp,v 1.4 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.4  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -119,6 +122,7 @@ void
 MushGameLogicLocal::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGameLogic::AutoPrint(ioOut);
     ioOut << "]";
 }
 bool
@@ -130,6 +134,10 @@ MushGameLogicLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (MushGameLogic::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
     else
     {
         return false;
@@ -139,5 +147,6 @@ MushGameLogicLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 MushGameLogicLocal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGameLogic::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } alEi4IbB6ooex+HwUNBGeg
+//%outOfLineFunctions } iNC2gEeq5kaZQFGgaQ+6Iw

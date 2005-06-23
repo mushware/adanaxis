@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x1hhF/NH4dT4y5U7K5AdDw
 /*
- * $Id: MushGameJob.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameJob.cpp,v 1.4 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameJob.cpp,v $
+ * Revision 1.4  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -47,7 +50,7 @@ MushGameJob::MushGameJob(const std::string& inID) :
 void
 MushGameJob::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in MushGameJob");
+    throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in "+AutoName());
 }
 
 //%outOfLineFunctions {

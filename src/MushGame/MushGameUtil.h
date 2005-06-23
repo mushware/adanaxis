@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id: MushGameUtil.h,v 1.4 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameUtil.h,v 1.5 2005/06/23 13:56:59 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.5  2005/06/23 13:56:59  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -60,6 +63,7 @@ public:
     static void LocalGameJobsCreate(MushGameLogic& ioLogic);
     template <class T> static T *DataObjectCreate(const std::string& inName,
         const std::string& inPrefix, const std::string& inSuffix);
+    static std::string KeyFromString(const std::string& inStr);
     static std::string KeyFromMessage(const MushGameMessage& inMessage);
     static std::string ReplyIDFromMessage(const MushGameMessage& inMessage);
 private:

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPlayer.h,v 1.1 2005/06/20 14:46:41 southa Exp $
+ * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.1  2005/06/20 14:46:41  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -34,7 +37,7 @@
 class AdanaxisPlayer : public MushGamePlayer
 {
 public:
-    explicit AdanaxisPlayer(Mushware::U32 inPlayerID = 0);
+    explicit AdanaxisPlayer(const std::string& inPlayerID = 0);
     
 private:
 //%classPrototypes {

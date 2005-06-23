@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.1 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.2  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -31,8 +34,8 @@
 using namespace Mushware;
 using namespace std;
 
-MushGamePlayer::MushGamePlayer(Mushware::U32 inPlayerID) :
-    m_playerID(inPlayerID)
+MushGamePlayer::MushGamePlayer(std::string inID) :
+    m_id(inID)
 {
 }
 
@@ -40,6 +43,7 @@ void
 MushGamePlayer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
 {
 }
+
 //%outOfLineFunctions {
 
 const char *MushGamePlayer::AutoName(void) const
@@ -73,7 +77,8 @@ void
 MushGamePlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "playerID=" << m_playerID;
+    ioOut << "id=" << m_id << ", ";
+    ioOut << "playerName=" << m_playerName;
     ioOut << "]";
 }
 bool
@@ -85,9 +90,13 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "playerID")
+    else if (inTagStr == "id")
     {
-        ioIn >> m_playerID;
+        ioIn >> m_id;
+    }
+    else if (inTagStr == "playerName")
+    {
+        ioIn >> m_playerName;
     }
     else
     {
@@ -98,7 +107,9 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("playerID");
-    ioOut << m_playerID;
+    ioOut.TagSet("id");
+    ioOut << m_id;
+    ioOut.TagSet("playerName");
+    ioOut << m_playerName;
 }
-//%outOfLineFunctions } XAUjD70cvTQJ8J2H50drhQ
+//%outOfLineFunctions } SJ4axSi1k3T3wNGhWt3w/Q

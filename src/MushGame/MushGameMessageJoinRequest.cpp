@@ -63,6 +63,7 @@ MushGameMessageJoinRequest::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameMessage::AutoPrint(ioOut);
+    ioOut << "clientName=" << m_clientName << ", ";
     ioOut << "playerName=" << m_playerName << ", ";
     ioOut << "packageID=" << m_packageID;
     ioOut << "]";
@@ -75,6 +76,10 @@ MushGameMessageJoinRequest::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const s
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "clientName")
+    {
+        ioIn >> m_clientName;
     }
     else if (inTagStr == "playerName")
     {
@@ -98,9 +103,11 @@ void
 MushGameMessageJoinRequest::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameMessage::AutoXMLPrint(ioOut);
+    ioOut.TagSet("clientName");
+    ioOut << m_clientName;
     ioOut.TagSet("playerName");
     ioOut << m_playerName;
     ioOut.TagSet("packageID");
     ioOut << m_packageID;
 }
-//%outOfLineFunctions } +gkwUfjYZ4tU9/gvjUHUxA
+//%outOfLineFunctions } V4zLoBjQ9RVaICBNOkPnvw
