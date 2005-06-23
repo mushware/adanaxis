@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0gZ3zcMmn8FK1WXV3uYVgw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageWake.h,v 1.1 2005/06/21 15:57:48 southa Exp $
+ * $Log: MushGameMessageWake.h,v $
+ * Revision 1.1  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameMessage.h"
@@ -34,6 +37,7 @@
 class MushGameMessageWake : public MushGameMessage
 {
 public:
+    explicit MushGameMessageWake(const std::string& inID = "") : MushGameMessage(inID) {}
     virtual ~MushGameMessageWake() {}
 
 private:

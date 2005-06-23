@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HGOTUFiPB1QROOSnhLbE4Q
 /*
- * $Id: MushGameMailbox.h,v 1.3 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameMailbox.h,v 1.4 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameMailbox.h,v $
+ * Revision 1.4  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -47,13 +50,17 @@ public:
     virtual ~MushGameMailbox();
     virtual void Give(MushGameMessage *iopMessage);
     virtual bool TakeIfAvailable(MushGameMessage *& iopMessage);
+    virtual bool TakeIfAvailable(std::auto_ptr<MushGameMessage>& ioaMessage);
     virtual bool IsEmpty(void) { return m_deque.empty(); }
     
 private:
+    MushcoreDataRef<MushGameAddress> m_srcAddrRef; //:xmlignore :readwrite
     std::deque<MushGameMessage *> m_deque;
     
 //%classPrototypes {
 public:
+    const MushcoreDataRef<MushGameAddress>& SrcAddrRef(void) const { return m_srcAddrRef; }
+    void SrcAddrRefSet(const MushcoreDataRef<MushGameAddress>& inValue) { m_srcAddrRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,7 +68,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } mrIaE+wFtwVDLV/Igx+3dw
 };
 //%inlineHeader {
 inline std::ostream&

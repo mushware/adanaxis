@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Bq8XxaaUUfoNxs2oOiSOLA
 /*
- * $Id: MushcoreLog.h,v 1.2 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcoreLog.h,v 1.3 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreLog.h,v $
+ * Revision 1.3  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/05/19 13:02:16  southa
  * Mac release work
  *
@@ -45,6 +48,7 @@ public:
     ~MushcoreLog();
     
     std::ostream& ErrorLog(void);
+    std::ostream& WarningLog(void);
     std::ostream& InfoLog(void);
     void HeaderWrite(std::ostream& ioOut, const std::string inLogName);
     void PackageHasChanged(void);
@@ -58,6 +62,7 @@ private:
     std::ofstream *m_stdStream;
     std::ostream *m_nullStream;
     bool m_enableErrorLog; //:readwrite
+    bool m_enableWarningLog; //:readwrite
     bool m_enableInfoLog; //:readwrite
     bool m_errorHeaderDone;
     bool m_stdHeaderDone;
@@ -65,9 +70,11 @@ private:
 public:
     const bool& EnableErrorLog(void) const { return m_enableErrorLog; }
     void EnableErrorLogSet(const bool& inValue) { m_enableErrorLog=inValue; }
+    const bool& EnableWarningLog(void) const { return m_enableWarningLog; }
+    void EnableWarningLogSet(const bool& inValue) { m_enableWarningLog=inValue; }
     const bool& EnableInfoLog(void) const { return m_enableInfoLog; }
     void EnableInfoLogSet(const bool& inValue) { m_enableInfoLog=inValue; }
-//%classPrototypes } 418BA5YjADN+uaqZW4cc0Q
+//%classPrototypes } MZ4jgKhQvs0+TVUvwQK45Q
 };
 
 //%includeGuardEnd {

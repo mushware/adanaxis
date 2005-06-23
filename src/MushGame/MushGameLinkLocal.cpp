@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Fj6DJ9Nl9r0XWjQ8VWoIog
 /*
- * $Id: MushGameLinkLocal.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLinkLocal.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameLinkLocal.cpp,v $
+ * Revision 1.3  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -66,16 +69,16 @@ MushGameLinkLocal::OutboxSendUnlessEmpty(void)
 }
 
 bool
-MushGameLinkLocal::InboxGet(MushGameMailbox& outMailbox)
+MushGameLinkLocal::InboxGetUnlessEmpty(MushGameMailbox& outMailbox)
 {
     MushGameMailbox *pMailbox = NULL;
-    bool isEmpty = !m_downlinkRef.WRef().TopGet(pMailbox);
-    if (!isEmpty)
+    bool notEmpty = m_downlinkRef.WRef().TopGet(pMailbox);
+    if (notEmpty)
     {
         std::swap(outMailbox, *pMailbox); // Element-wise (shallow) swap
         m_downlinkRef.WRef().TopDelete();
     }
-    return isEmpty;
+    return notEmpty;
 }    
 
 void 
@@ -84,7 +87,7 @@ MushGameLinkLocal::ToOutboxCopy(const MushGameMessage& inMessage)
     MushGameMessage *pMessage = dynamic_cast<MushGameMessage *>(inMessage.AutoClone());
     if (pMessage == NULL)
     {
-        throw MushcoreLogicFail("MushGameLinkLocal::CopyAndSend catastrophe");
+        throw MushcoreLogicFail("MushGameLinkLocal::ToOutboxCopy catastrophe");
     }
     m_outBox.Give(pMessage);
 }

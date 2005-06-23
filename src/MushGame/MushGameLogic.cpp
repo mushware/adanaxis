@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.3 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.3  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -70,7 +73,7 @@ MushGameLogic::JobListProcess(MushGameMailbox& outReplyBox, tJobList& ioList)
         {
             if (pJob->WakeTime() <= msecNow)
             {
-                MushGameMessageWake wakeMessage;
+                MushGameMessageWake wakeMessage("wakeup");
                 try
                 {
                     pJob->MessageConsume(*this, wakeMessage);
@@ -167,6 +170,13 @@ MushGameLogic::ServerAddressSet(const std::string& inName)
 }
 
 void
+MushGameLogic::ClientAddressAdd(const std::string& inName)
+{
+    MushcoreDataRef<MushGameAddress> clientAddressRef(inName);
+    HostSaveData().ClientAddrRefsWRef().push_back(clientAddressRef);    
+}
+
+void
 MushGameLogic::CopyAndSendToServer(const MushGameMessage& inMessage)
 {
     try
@@ -178,6 +188,91 @@ MushGameLogic::CopyAndSendToServer(const MushGameMessage& inMessage)
     {
         MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
     }
+}
+
+void
+MushGameLogic::ServerMailboxConsume(MushGameMailbox& inMailbox)
+{
+    std::auto_ptr<MushGameMessage> aMessage;
+    while (inMailbox.TakeIfAvailable(aMessage))
+    {
+        MUSHCOREASSERT(&*aMessage != NULL);
+        aMessage->SrcAddrRefSet(inMailbox.SrcAddrRef());
+        try
+        {
+            MessageConsume(*this, *aMessage);
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            MushcoreLog::Sgl().WarningLog() << e.what() << ": " << *aMessage << endl;
+        }
+    }
+}
+
+void
+MushGameLogic::ServerReceiveSequence(void)
+{
+    // I am the server picking up my messages from clients
+    typedef MushGameHostSaveData::tClientAddrRefs tClientAddrRefs;
+    
+    tClientAddrRefs& clientAddrRefs = HostSaveData().ClientAddrRefsWRef();
+        
+    for (tClientAddrRefs::iterator p = clientAddrRefs.begin(); p != clientAddrRefs.end(); ++p)
+    {
+        MushGameMailbox mailbox;
+        if (p->Ref().LinkRef().WRef().InboxGetUnlessEmpty(mailbox))
+        {
+            MushcoreLog::Sgl().ErrorLog() << "Receiving " << *p << endl;
+            mailbox.SrcAddrRefSet(*p);
+            ServerMailboxConsume(mailbox);
+        }
+    }
+}
+
+void
+MushGameLogic::ServerSendSequence(void)
+{
+    // I am the server sending my outboxes
+    typedef MushGameHostSaveData::tClientAddrRefs tClientAddrRefs;
+    
+    tClientAddrRefs& clientAddrRefs = HostSaveData().ClientAddrRefsWRef();
+    
+    for (tClientAddrRefs::iterator p = clientAddrRefs.begin(); p != clientAddrRefs.end(); ++p)
+    {
+        p->Ref().LinkRef().WRef().OutboxSendUnlessEmpty();
+    }
+}
+
+void
+MushGameLogic::ClientReceiveSequence(void)
+{
+}
+
+void
+MushGameLogic::ClientSendSequence(void)
+{
+    SaveData().ServerAddrRef().Ref().LinkRef().WRef().OutboxSendUnlessEmpty();
+}
+
+void
+MushGameLogic::ReceiveSequence(void)
+{
+    ServerReceiveSequence();
+    ClientReceiveSequence();
+}
+
+void
+MushGameLogic::SendSequence(void)
+{
+    ServerSendSequence();
+    ClientSendSequence();
+}
+
+void
+MushGameLogic::MainSequence(void)
+{
+    ReceiveSequence();
+    SendSequence();
 }
 
 //%outOfLineFunctions {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id: MushGameMailbox.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.3 2005/06/20 16:14:31 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.3  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -62,6 +65,21 @@ MushGameMailbox::TakeIfAvailable(MushGameMessage *& iopMessage)
     }
     return retVal;
 }
+
+bool
+MushGameMailbox::TakeIfAvailable(std::auto_ptr<MushGameMessage>& ioaMessage)
+{
+    bool retVal = false;
+    MushGameMessage *pMessage;
+    if (TakeIfAvailable(pMessage))
+    {
+        ioaMessage = std::auto_ptr<MushGameMessage>(pMessage);
+        retVal = true;
+    }
+    return retVal;;
+}    
+
+
 //%outOfLineFunctions {
 
 const char *MushGameMailbox::AutoName(void) const
@@ -95,6 +113,7 @@ void
 MushGameMailbox::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "srcAddrRef=" << m_srcAddrRef << ", ";
     ioOut << "deque=" << m_deque;
     ioOut << "]";
 }
@@ -106,6 +125,10 @@ MushGameMailbox::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "srcAddrRef")
+    {
+        ioIn >> m_srcAddrRef;
     }
     else if (inTagStr == "deque")
     {
@@ -123,4 +146,4 @@ MushGameMailbox::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deque");
     ioOut << m_deque;
 }
-//%outOfLineFunctions } Cs6twGKxsf0tj712OugIwA
+//%outOfLineFunctions } lpcCHpO+vQnyUXaQ5XX5IA

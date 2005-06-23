@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3OteCOfn1xaSDLsPZcAEYQ
 /*
- * $Id: MushGameLink.cpp,v 1.4 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLink.cpp,v 1.5 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameLink.cpp,v $
+ * Revision 1.5  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -54,7 +57,7 @@ MushGameLink::OutboxSendUnlessEmpty(void)
 }
 
 bool
-MushGameLink::InboxGet(MushGameMailbox& outMailbox)
+MushGameLink::InboxGetUnlessEmpty(MushGameMailbox& outMailbox)
 {
     // Meaningless operation for the base class
     throw MushcoreLogicFail("InboxGet on MushGameLink");

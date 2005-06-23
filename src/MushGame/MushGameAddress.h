@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zusmqz/Suh1Iq3SH28slRQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAddress.h,v 1.1 2005/06/22 20:01:58 southa Exp $
+ * $Log: MushGameAddress.h,v $
+ * Revision 1.1  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -35,6 +38,8 @@ class MushGameLink;
 class MushGameAddress : public MushcoreVirtualObject
 {
 public:
+    MushGameAddress() {}
+    explicit MushGameAddress(const std::string& inName);
     virtual ~MushGameAddress() {}
     const std::string& Name(void) const { return m_name; }
     virtual void NameSet(const std::string& inValue) { m_name=inValue; m_linkRef.NameSet(m_name); }

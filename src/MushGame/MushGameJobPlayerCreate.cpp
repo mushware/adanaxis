@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.3  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -55,7 +58,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
         {
             MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
             
-            MushGameMessageJoinRequest joinRequest;
+            MushGameMessageJoinRequest joinRequest("j:host");
             joinRequest.PlayerNameSet("localplayer");
             joinRequest.PackageIDSet(MushcoreInfo::Sgl().PackageID());
             

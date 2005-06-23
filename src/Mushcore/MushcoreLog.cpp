@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } S1ShkioeDeCMuA2XF/bV/g
 /*
- * $Id: MushcoreLog.cpp,v 1.2 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.3 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.3  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/05/19 13:02:15  southa
  * Mac release work
  *
@@ -44,6 +47,7 @@ MushcoreLog::MushcoreLog() :
     m_errorStream(NULL),
     m_stdStream(NULL),
     m_enableErrorLog(true),
+    m_enableWarningLog(true),
     m_enableInfoLog(true),
     m_errorHeaderDone(false),
     m_stdHeaderDone(false)
@@ -115,6 +119,20 @@ ostream&
 MushcoreLog::ErrorLog(void)
 {
     if (m_enableErrorLog)
+    {
+        return ErrorStream();
+    }
+    else
+    {
+        m_nullStream->clear();
+        return *m_nullStream;
+    }
+}
+
+ostream&
+MushcoreLog::WarningLog(void)
+{
+    if (m_enableWarningLog)
     {
         return ErrorStream();
     }

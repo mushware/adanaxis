@@ -19,11 +19,13 @@
  ****************************************************************************/
 //%Header } O8joXp2wbkSfRipztzWPwA
 /*
- * $Id: MushGameMessage.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMessage.cpp,v 1.3 2005/06/22 20:01:59 southa Exp $
  * $Log
  */
 
 #include "MushGameMessage.h"
+
+Mushware::S32 MushGameMessage::m_instanceCounter = 0;
 
 //%outOfLineFunctions {
 

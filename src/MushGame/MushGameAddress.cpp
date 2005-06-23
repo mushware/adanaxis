@@ -19,11 +19,19 @@
  ****************************************************************************/
 //%Header } TnlKjaEghVGIRsAL04WswQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAddress.cpp,v 1.1 2005/06/22 20:01:58 southa Exp $
+ * $Log: MushGameAddress.cpp,v $
+ * Revision 1.1  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  */
 
 #include "MushGameAddress.h"
+
+MushGameAddress::MushGameAddress(const std::string& inName)
+{
+    NameSet(inName);
+}
 
 MUSHCORE_DATA_INSTANCE(MushGameAddress);
 

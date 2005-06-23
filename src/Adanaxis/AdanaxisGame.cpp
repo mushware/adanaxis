@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.6 2005/06/21 13:10:50 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.7 2005/06/21 15:57:46 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.7  2005/06/21 15:57:46  southa
+ * MushGame work
+ *
  * Revision 1.6  2005/06/21 13:10:50  southa
  * MushGame work
  *
@@ -66,6 +69,7 @@ void
 AdanaxisGame::Process(GameAppHandler& inAppHandler)
 {    
     m_logicRef.WRef().PerFrameProcessing();
+    Logic().MainSequence();
     GLUtils::PostRedisplay();
 }
 

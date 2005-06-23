@@ -23,7 +23,7 @@
  ****************************************************************************/
 //%Header } Al9Y5dP49KJ9BK5Fce6sBw
 /*
- * $Id: MushGameMessage.h,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMessage.h,v 1.3 2005/06/22 20:01:59 southa Exp $
  * $Log
  */
 
@@ -35,12 +35,20 @@
 class MushGameMessage : public MushcoreVirtualObject
 {
 public:
-    explicit MushGameMessage(const std::string& inID = "") : m_id(inID) {}
-    virtual ~MushGameMessage() {}
+    explicit MushGameMessage(const std::string& inID = "") : m_id(inID) { ++m_instanceCounter; }
+    
+    MushGameMessage(const MushGameMessage& inObj) :
+        m_srcAddrRef(inObj.m_srcAddrRef),
+        m_id(inObj.m_id)    
+    {
+            ++m_instanceCounter;
+    }
+    virtual ~MushGameMessage() { --m_instanceCounter; }
     
 private:
     MushcoreDataRef<MushGameAddress> m_srcAddrRef; //:xmlignore :readwrite
-    std::string m_id; //:readwrite   
+    std::string m_id; //:readwrite
+    static Mushware::S32 m_instanceCounter; //:readwrite
         
 //%classPrototypes {
 public:

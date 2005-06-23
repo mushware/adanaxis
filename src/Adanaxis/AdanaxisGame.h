@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.5 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.6 2005/06/21 15:57:46 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.6  2005/06/21 15:57:46  southa
+ * MushGame work
+ *
  * Revision 1.5  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -70,6 +73,7 @@ protected:
         
 private:
     AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(m_saveDataRef.WRef()); }
+    MushGameLogic& Logic() { return dynamic_cast<MushGameLogic&>(m_logicRef.WRef()); }
     
     bool m_inited; //:ignore
     std::string m_name;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } XtlsEZ8InVWH+g9tXmyfGg
 /*
- * $Id: MushGameLink.h,v 1.4 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLink.h,v 1.5 2005/06/22 20:01:58 southa Exp $
  * $Log: MushGameLink.h,v $
+ * Revision 1.5  2005/06/22 20:01:58  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -56,7 +59,7 @@ public:
     virtual void SrcDestSet(const std::string& inSrcName, const std::string& inDestName);
 
     virtual bool OutboxSendUnlessEmpty(void);
-    virtual bool InboxGet(MushGameMailbox& outMailbox);
+    virtual bool InboxGetUnlessEmpty(MushGameMailbox& outMailbox);
     virtual void ToOutboxCopy(const MushGameMessage& inMessage);
     
 private:

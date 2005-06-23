@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.3 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.4 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.4  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -119,6 +122,7 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     DataObjectCreate<MushGameLink>(clientName, inPrefix, "LinkLocal")->SrcDestSet(serverName, clientName);
     
     pLogic->ServerAddressSet(serverName);
+    pLogic->ClientAddressAdd(clientName);
 }
 
 std::string

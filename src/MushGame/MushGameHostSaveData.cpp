@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PtE5rBAXGQWHrOsXuTDTuQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameHostSaveData.cpp,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.1  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameHostSaveData.h"
@@ -64,6 +67,7 @@ void
 MushGameHostSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "clientAddrRefs=" << m_clientAddrRefs;
     ioOut << "]";
 }
 bool
@@ -75,6 +79,10 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "clientAddrRefs")
+    {
+        ioIn >> m_clientAddrRefs;
+    }
     else
     {
         return false;
@@ -84,5 +92,7 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("clientAddrRefs");
+    ioOut << m_clientAddrRefs;
 }
-//%outOfLineFunctions } hvAq3ttD1xqi8ZvivLlikQ
+//%outOfLineFunctions } F8O6L78waRGPkZw6IpPspA

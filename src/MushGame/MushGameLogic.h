@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameLogic.h,v 1.3 2005/06/22 20:01:59 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.3  2005/06/22 20:01:59  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -40,6 +43,7 @@
 #include "MushGameHostSaveData.h"
 #include "MushGameHostVolatileData.h"
 #include "MushGameJob.h"
+#include "MushGameMailbox.h"
 #include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 #include "MushGameVolatileData.h"
@@ -62,7 +66,17 @@ public:
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void ReplyGive(MushGameMessage *inpReplyMessage, const MushGameMessage& inOrigMessage);
     virtual void ServerAddressSet(const std::string& inName);
+    virtual void ClientAddressAdd(const std::string& inName);
     virtual void CopyAndSendToServer(const MushGameMessage& inMessage);
+    
+    virtual void ServerMailboxConsume(MushGameMailbox& inMailbox);
+    virtual void ClientReceiveSequence(void);
+    virtual void ClientSendSequence(void);
+    virtual void ServerReceiveSequence(void);
+    virtual void ServerSendSequence(void);
+    virtual void ReceiveSequence(void);
+    virtual void SendSequence(void);
+    virtual void MainSequence(void);
     
 protected:
     MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
