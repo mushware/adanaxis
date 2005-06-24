@@ -1931,6 +1931,9 @@
 				7A06969D08686175007ACACE,
 				7AD272AE0869DDCF008B104E,
 				7A8040ED086AE085007B0F20,
+				7ACFC879086C05CB00B0E7E4,
+				7ACFC882086C06B100B0E7E4,
+				7ACFC8A9086C0FCE00B0E7E4,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2290,6 +2293,9 @@
 				7A06969E08686175007ACACE,
 				7AD272AF0869DDCF008B104E,
 				7A8040EE086AE085007B0F20,
+				7ACFC87A086C05CB00B0E7E4,
+				7ACFC883086C06B100B0E7E4,
+				7ACFC8AA086C0FCE00B0E7E4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5236,6 +5242,8 @@
 				7A62B85B05A49D05002A5F1C,
 				7A6621360734D68D009EF45A,
 				7A6621350734D68D009EF45A,
+				7ACFC8A6086C0FCE00B0E7E4,
+				7ACFC8A5086C0FCE00B0E7E4,
 				7AFD67DF0764E9DD0009AFF6,
 				7AFD67DE0764E9DD0009AFF6,
 				7A651DA405A8622D0026CBAE,
@@ -11024,6 +11032,7 @@
 				7A6033AB07A6B23700350109,
 				7A654B9D07A9402200DE4A9D,
 				7A0673B407B284E00067AA64,
+				7ACFC8AC086C108B00B0E7E4,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11077,6 +11086,7 @@
 				7A6033AC07A6B23800350109,
 				7A654B9E07A9402200DE4A9D,
 				7A0673B507B284E00067AA64,
+				7ACFC8AB086C108B00B0E7E4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12676,6 +12686,8 @@
 				7A06969B08686175007ACACE,
 				7AD272AC0869DDCF008B104E,
 				7A8040EB086AE085007B0F20,
+				7ACFC877086C05CB00B0E7E4,
+				7ACFC880086C06B100B0E7E4,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13775,6 +13787,8 @@
 				7A06969C08686175007ACACE,
 				7AD272AD0869DDCF008B104E,
 				7A8040EC086AE085007B0F20,
+				7ACFC878086C05CB00B0E7E4,
+				7ACFC881086C06B100B0E7E4,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23587,6 +23601,126 @@
 			settings = {
 			};
 		};
+		7ACFC875086C05CB00B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameCamera.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC876086C05CB00B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameCamera.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC877086C05CB00B0E7E4 = {
+			fileRef = 7ACFC875086C05CB00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC878086C05CB00B0E7E4 = {
+			fileRef = 7ACFC876086C05CB00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC879086C05CB00B0E7E4 = {
+			fileRef = 7ACFC875086C05CB00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC87A086C05CB00B0E7E4 = {
+			fileRef = 7ACFC876086C05CB00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC87E086C06B100B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGamePiece.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC87F086C06B100B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGamePiece.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC880086C06B100B0E7E4 = {
+			fileRef = 7ACFC87E086C06B100B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC881086C06B100B0E7E4 = {
+			fileRef = 7ACFC87F086C06B100B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC882086C06B100B0E7E4 = {
+			fileRef = 7ACFC87E086C06B100B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC883086C06B100B0E7E4 = {
+			fileRef = 7ACFC87F086C06B100B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC8A5086C0FCE00B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMeshPosticity.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC8A6086C0FCE00B0E7E4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMeshPosticity.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7ACFC8A9086C0FCE00B0E7E4 = {
+			fileRef = 7ACFC8A5086C0FCE00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC8AA086C0FCE00B0E7E4 = {
+			fileRef = 7ACFC8A6086C0FCE00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC8AB086C108B00B0E7E4 = {
+			fileRef = 7ACFC8A6086C0FCE00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7ACFC8AC086C108B00B0E7E4 = {
+			fileRef = 7ACFC8A5086C0FCE00B0E7E4;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AD205890868206300F891C0 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -23833,6 +23967,8 @@
 				7AD3B5C9085F361F00512DB1,
 				7AD272AB0869DDCF008B104E,
 				7AD272AA0869DDCF008B104E,
+				7ACFC876086C05CB00B0E7E4,
+				7ACFC875086C05CB00B0E7E4,
 				7AD3B5FA08617F9B00512DB1,
 				7AD3B5F908617F9B00512DB1,
 				7AD3B5A6085F33CA00512DB1,
@@ -23883,6 +24019,8 @@
 				7A06969908686175007ACACE,
 				7AC4391D0861E020006D73D3,
 				7AC4391C0861E020006D73D3,
+				7ACFC87F086C06B100B0E7E4,
+				7ACFC87E086C06B100B0E7E4,
 				7ADBEEE20867142900CFB0B1,
 				7ADBEEE10867142900CFB0B1,
 				7AC439260861E1C3006D73D3,

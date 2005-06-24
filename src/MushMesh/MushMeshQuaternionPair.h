@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.4 2005/03/08 01:24:09 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.5 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.5  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/03/08 01:24:09  southa
  * Quaternion slerp between orientations
  *
@@ -59,6 +62,7 @@ public:
     
     void InPlaceRotate(Mushware::t4Val& ioVec) const;
     void InPlaceNormalise(void);
+    void ToRotationIdentitySet(void);
     
     MushMeshQuaternionPair<T> ConjugateGet(void) const;
         
@@ -124,6 +128,14 @@ MushMeshQuaternionPair<T>::InPlaceNormalise()
 {
     m_first.InPlaceNormalise();
     m_second.InPlaceNormalise();
+}
+
+template<class T>
+inline void
+MushMeshQuaternionPair<T>::ToRotationIdentitySet()
+{
+    m_first = MushMeshQuaternion<T>::MultiplicativeIdentityGet();
+    m_second = MushMeshQuaternion<T>::MultiplicativeIdentityGet();
 }
 
 template<class T>

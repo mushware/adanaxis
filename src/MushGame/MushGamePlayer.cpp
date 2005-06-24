@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.3 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.3  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.2  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -33,6 +36,8 @@
 
 using namespace Mushware;
 using namespace std;
+
+MUSHCORE_DATA_INSTANCE(MushGamePlayer);
 
 MushGamePlayer::MushGamePlayer(std::string inID) :
     m_id(inID)
@@ -77,6 +82,7 @@ void
 MushGamePlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
     ioOut << "playerName=" << m_playerName;
     ioOut << "]";
@@ -98,6 +104,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_playerName;
     }
+    else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
     else
     {
         return false;
@@ -107,9 +117,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGamePiece::AutoXMLPrint(ioOut);
     ioOut.TagSet("id");
     ioOut << m_id;
     ioOut.TagSet("playerName");
     ioOut << m_playerName;
 }
-//%outOfLineFunctions } SJ4axSi1k3T3wNGhWt3w/Q
+//%outOfLineFunctions } lUy/FHcSBAvNDcsHypPK+w

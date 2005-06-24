@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iKJwoqVdIXwCMTQh3g5qCg
 /*
- * $Id: MushMesh.h,v 1.20 2005/02/03 21:02:59 southa Exp $
+ * $Id: MushMesh.h,v 1.21 2005/05/19 13:02:09 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.21  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.20  2005/02/03 21:02:59  southa
  * Build fixes
  *
@@ -97,6 +100,7 @@
 #include "MushMeshPatchEnd.h"
 #include "MushMeshPatchPipe.h"
 #include "MushMeshPostMatrix.h"
+#include "MushMeshPosticity.h"
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
 #include "MushMeshQuaternionPair.h"

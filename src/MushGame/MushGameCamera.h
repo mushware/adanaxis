@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEPLAYER_H
-#define MUSHGAMEPLAYER_H
-//%includeGuardStart } foHvGbTEB8G6XgqJu9SuYA
+#ifndef MUSHGAMECAMERA_H
+#define MUSHGAMECAMERA_H
+//%includeGuardStart } tzdeCLD2iutbzAqx4mj2vw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGamePlayer.h
+ * File: src/MushGame/MushGameCamera.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,46 +21,34 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oGbXkYO013mPUX90XE1YJg
+//%Header } iR1nzzDghU7XG/JS99oDQQ
 /*
- * $Id: MushGamePlayer.h,v 1.3 2005/06/23 17:25:25 southa Exp $
- * $Log: MushGamePlayer.h,v $
- * Revision 1.3  2005/06/23 17:25:25  southa
- * MushGame link work
- *
- * Revision 1.2  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/16 17:25:39  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameMailbox.h"
-#include "MushGameMessage.h"
 #include "MushGamePiece.h"
+#include "MushGamePlayer.h"
 
-//:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class MushGamePlayer : public MushGamePiece
+class MushGameCamera : public MushcoreVirtualObject
 {
 public:
-    explicit MushGamePlayer(std::string inID = "");
-    virtual ~MushGamePlayer() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    MushGameCamera();
+    virtual ~MushGameCamera() {}
     
 private:
-    std::string m_id; //:readwrite
-    std::string m_playerName; //:readwrite
+    MushcoreDataRef<MushGamePiece> m_tiedPieceRef; //:readwrite
+    MushcoreDataRef<MushGamePlayer> m_tiedPlayerRef; //:readwrite
     
 //%classPrototypes {
 public:
-    const std::string& Id(void) const { return m_id; }
-    void IdSet(const std::string& inValue) { m_id=inValue; }
-    const std::string& PlayerName(void) const { return m_playerName; }
-    void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
+    const MushcoreDataRef<MushGamePiece>& TiedPieceRef(void) const { return m_tiedPieceRef; }
+    void TiedPieceRefSet(const MushcoreDataRef<MushGamePiece>& inValue) { m_tiedPieceRef=inValue; }
+    const MushcoreDataRef<MushGamePlayer>& TiedPlayerRef(void) const { return m_tiedPlayerRef; }
+    void TiedPlayerRefSet(const MushcoreDataRef<MushGamePlayer>& inValue) { m_tiedPlayerRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,16 +56,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gvkiiHri0IKJ//RIXIKreQ
+//%classPrototypes } 3J7gOZM0wYOdLro7YJytbw
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGamePlayer& inObj)
+operator<<(std::ostream& ioOut, const MushGameCamera& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } qNoomoiXq6eGt3pwxj2Fmw
+//%inlineHeader } yEL8lWokyDIR1M7RFn0mFw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

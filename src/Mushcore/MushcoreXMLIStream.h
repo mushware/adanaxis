@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QZNov6vf1irc8tAhC1nh9g
 /*
- * $Id: MushcoreXMLIStream.h,v 1.26 2005/06/14 13:25:35 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.27 2005/06/16 10:49:00 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.27  2005/06/16 10:49:00  southa
+ * Client/server work
+ *
  * Revision 1.26  2005/06/14 13:25:35  southa
  * Adanaxis work
  *
@@ -133,6 +136,7 @@ public:
     void ObjectReadVirtual(MushcoreVirtualObject *& outpObj);
     void ObjectReadVirtual(MushcoreVirtualObject& outObj);
 
+    void ObjectRead(Mushware::U64& outU64);
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(Mushware::tVal& outObj);
@@ -184,6 +188,12 @@ MushcoreXMLIStream::ByteTake(void)
     }
     // cout << "took '" << m_contentStr[m_contentStart] << "'" << endl;
     return m_contentStr[m_contentStart++];
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, Mushware::U64& outObj)
+{
+    ioIn.ObjectRead(outObj);
 }
 
 inline void

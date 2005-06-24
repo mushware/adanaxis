@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9ETNO07nndi1buun61a/EQ
 /*
- * $Id: MushcoreStandard.h,v 1.22 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.23 2005/05/26 16:05:29 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.23  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.22  2005/05/19 13:02:16  southa
  * Mac release work
  *
@@ -244,12 +247,14 @@ namespace Mushware
     typedef double tLongVal;
     typedef signed int S32;
     typedef unsigned int U32;
+    typedef unsigned long long U64;
     typedef signed short S16;
     typedef unsigned short U16;
     typedef signed char S8;
     typedef unsigned char U8;
     typedef double tXMLVal;
     typedef std::size_t tSize;
+    typedef U64 tUsec;
 };
 
 #ifdef MUSHCORE_MIMIC_VALARRAY

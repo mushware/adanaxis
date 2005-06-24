@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.18 2005/02/27 01:01:31 southa Exp $
+ * $Id: MushMeshVector.h,v 1.19 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.19  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.18  2005/02/27 01:01:31  southa
  * Eigenplane markers
  *
@@ -139,6 +142,8 @@ public:
     tThis ElementwiseProduct(const tThis& inB) const;
     Mushware::tVal Magnitude(void) const;
     void InPlaceNormalise(void);
+    void ToAdditiveIdentitySet(void);
+    void ToMultiplicativeIdentitySet(void);
     
     // Unchecked array operators
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
@@ -429,6 +434,25 @@ MushMeshVector<T, D>::InPlaceNormalise(void)
     *this /= Magnitude();
 }
 
+template <class T, Mushware::U32 D>
+inline void
+MushMeshVector<T, D>::ToAdditiveIdentitySet(void)
+{
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        m_value[i] = 0;
+    }
+}
+
+template <class T, Mushware::U32 D>
+inline void
+MushMeshVector<T, D>::ToMultiplicativeIdentitySet(void)
+{
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        m_value[i] = 1;
+    }
+}
 
 // Stream operators
 

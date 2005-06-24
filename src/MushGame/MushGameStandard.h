@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 224Ie4daUSboM1+BVBtEVQ
 /*
- * $Id: MushGLStandard.h,v 1.9 2005/05/27 19:25:24 southa Exp $
- * $Log: MushGLStandard.h,v $
+ * $Id: MushGameStandard.h,v 1.1 2005/06/14 13:25:34 southa Exp $
+ * $Log: MushGameStandard.h,v $
+ * Revision 1.1  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -54,6 +57,11 @@
 #else
 #include "MushGL/MushGL.h"
 #endif
+
+namespace Mushware
+{
+    typedef Mushware::U64 tGameUsec;
+}
 
 //%includeGuardEnd {
 #endif

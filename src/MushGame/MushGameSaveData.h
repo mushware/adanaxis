@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yr0bn8Zl2vbNp5TNb5qaQQ
 /*
- * $Id: MushGameSaveData.h,v 1.6 2005/06/23 13:56:59 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.7 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.7  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.6  2005/06/23 13:56:59  southa
  * MushGame link work
  *
@@ -47,11 +50,11 @@
 
 #include "MushGameStandard.h"
 
+#include "MushGameCamera.h"
+#include "MushGameClient.h"
 #include "MushGameJob.h"
 #include "MushGameMailbox.h"
 #include "MushGamePlayer.h"
-
-#include "MushGameClient.h"
 
 //:generate virtual standard ostream xml1
 class MushGameSaveData : public MushcoreVirtualObject
@@ -64,10 +67,11 @@ private:
     std::string m_clientName; //:readwrite
     MushcoreData<MushGamePlayer> m_players; //:readwrite :wref
     MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
+    MushcoreData<MushGameCamera> m_cameras; //:readwrite :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
     MushcoreDataRef<MushGameClient> m_clientRef;
     MushcoreDataRef<MushGameAddress> m_serverAddrRef; //:readwrite :wref
-    
+
 //%classPrototypes {
 public:
     const std::string& ClientName(void) const { return m_clientName; }
@@ -80,6 +84,10 @@ public:
     void JobListSet(const MushcoreData<MushGameJob>& inValue) { m_jobList=inValue; }
     // Writable reference for m_jobList
     MushcoreData<MushGameJob>& JobListWRef(void) { return m_jobList; }
+    const MushcoreData<MushGameCamera>& Cameras(void) const { return m_cameras; }
+    void CamerasSet(const MushcoreData<MushGameCamera>& inValue) { m_cameras=inValue; }
+    // Writable reference for m_cameras
+    MushcoreData<MushGameCamera>& CamerasWRef(void) { return m_cameras; }
     const MushGameMailbox& ToServerMailbox(void) const { return m_toServerMailbox; }
     void ToServerMailboxSet(const MushGameMailbox& inValue) { m_toServerMailbox=inValue; }
     // Writable reference for m_toServerMailbox
@@ -95,7 +103,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Wq6DON3gq0MdTZpAs5UkAg
+//%classPrototypes } h6rQPQe5uddfZUjNJJZosA
 };
 //%inlineHeader {
 inline std::ostream&

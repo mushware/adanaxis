@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Dnly+DMhb+GJRvHlCxnkFA
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.22 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.23 2005/06/14 13:25:35 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.23  2005/06/14 13:25:35  southa
+ * Adanaxis work
+ *
  * Revision 1.22  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -220,6 +223,17 @@ MushcoreXMLIStream::ObjectReadVirtual(MushcoreVirtualObject& outObj)
     MushcoreVirtualObject *pObj = &outObj;
     ObjectRead(pObj);
 }
+
+void
+MushcoreXMLIStream::ObjectRead(U64& outU64)
+{
+    string dataStr = DataUntilTake(",)=<");
+    istringstream dataStream(dataStr);
+    if (!(dataStream >> outU64))
+    {
+        Throw("Read unsigned failed");
+    }
+}    
 
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEPLAYER_H
-#define MUSHGAMEPLAYER_H
-//%includeGuardStart } foHvGbTEB8G6XgqJu9SuYA
+#ifndef MUSHGAMEPIECE_H
+#define MUSHGAMEPIECE_H
+//%includeGuardStart } fXnM4FD/EmJAfw+g836GPQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGamePlayer.h
+ * File: src/MushGame/MushGamePiece.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,46 +21,31 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oGbXkYO013mPUX90XE1YJg
+//%Header } T/MWnTXtRKRQsmRlB17JyQ
 /*
- * $Id: MushGamePlayer.h,v 1.3 2005/06/23 17:25:25 southa Exp $
- * $Log: MushGamePlayer.h,v $
- * Revision 1.3  2005/06/23 17:25:25  southa
- * MushGame link work
- *
- * Revision 1.2  2005/06/20 14:30:36  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/16 17:25:39  southa
- * Client/server work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGameMailbox.h"
-#include "MushGameMessage.h"
-#include "MushGamePiece.h"
+#include "API/mushMushMesh.h"
 
-//:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class MushGamePlayer : public MushGamePiece
+class MushGamePiece : public MushcoreVirtualObject
 {
 public:
-    explicit MushGamePlayer(std::string inID = "");
-    virtual ~MushGamePlayer() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    virtual ~MushGamePiece() {}
     
 private:
-    std::string m_id; //:readwrite
-    std::string m_playerName; //:readwrite
+    MushMeshPosticity m_posticity; //:readwrite :wref
     
 //%classPrototypes {
 public:
-    const std::string& Id(void) const { return m_id; }
-    void IdSet(const std::string& inValue) { m_id=inValue; }
-    const std::string& PlayerName(void) const { return m_playerName; }
-    void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
+    const MushMeshPosticity& Posticity(void) const { return m_posticity; }
+    void PosticitySet(const MushMeshPosticity& inValue) { m_posticity=inValue; }
+    // Writable reference for m_posticity
+    MushMeshPosticity& PosticityWRef(void) { return m_posticity; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,16 +53,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gvkiiHri0IKJ//RIXIKreQ
+//%classPrototypes } hHRy4DMAXjZ4wd3zTByMsQ
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGamePlayer& inObj)
+operator<<(std::ostream& ioOut, const MushGamePiece& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } qNoomoiXq6eGt3pwxj2Fmw
+//%inlineHeader } hzo4AnwoYg7g4RrSJcViWQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

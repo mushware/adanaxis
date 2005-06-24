@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.5 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameLogic.h,v 1.6 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.6  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -85,6 +88,8 @@ public:
     virtual void SendSequence(void);
     virtual void MainSequence(void);
 
+    virtual void ClientNewPlayerHandle(const std::string& inPlayerName);
+    
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new MushGamePlayer; }
     
     virtual MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
