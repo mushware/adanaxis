@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9ETNO07nndi1buun61a/EQ
 /*
- * $Id: MushcoreStandard.h,v 1.23 2005/05/26 16:05:29 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.24 2005/06/24 10:30:13 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.24  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.23  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -254,6 +257,7 @@ namespace Mushware
     typedef unsigned char U8;
     typedef double tXMLVal;
     typedef std::size_t tSize;
+    typedef U64 tMsec;
     typedef U64 tUsec;
 };
 

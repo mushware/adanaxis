@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.6 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.7 2005/06/29 09:07:56 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.7  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  * Revision 1.6  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -309,17 +312,51 @@ MushGameLogic::SendSequence(void)
 }
 
 void
+MushGameLogic::CameraMove(MushGameCamera& inCamera)
+{
+    inCamera.FromTiedObjectUpdate();
+}
+
+void
+MushGameLogic::CameraSequence(void)
+{
+    typedef MushcoreData<MushGameCamera>::tIterator tIterator;
+    MushcoreData<MushGameCamera>& cameraData = SaveData().CamerasWRef();
+    for (tIterator p = cameraData.Begin(); p != cameraData.End(); ++p)
+    {
+        CameraMove(*p->second);
+    }
+}
+
+void
 MushGameLogic::RenderSequence(void)
 {
-    // No action
+    typedef MushcoreData<MushGameCamera>::tIterator tIterator;
+    MushcoreData<MushGameCamera>& cameraData = SaveData().CamerasWRef();
+    for (tIterator p = cameraData.Begin(); p != cameraData.End(); ++p)
+    {
+        p->second->FromTiedObjectUpdate();
+        SaveData().RenderRef().WRef().FrameRender(*this, *p->second);
+    }
 }
 
 void
 MushGameLogic::MainSequence(void)
 {
-    ReceiveSequence();
-    SendSequence();
-    RenderSequence();
+    try { ReceiveSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
+    try { SendSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
+    try { CameraSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CameraSequence"); }
+    try { RenderSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
+}
+
+void
+MushGameLogic::ExceptionHandle(std::exception *inpFail, const std::string& inName) const
+{
+    MushcoreLog::Sgl().ErrorLog() << "In " << AutoName() << ": " << inpFail->what() << endl;
 }
 
 void

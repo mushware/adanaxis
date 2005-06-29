@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T/MWnTXtRKRQsmRlB17JyQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGamePiece.h,v 1.1 2005/06/24 10:30:12 southa Exp $
+ * $Log: MushGamePiece.h,v $
+ * Revision 1.1  2005/06/24 10:30:12  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -38,14 +41,14 @@ public:
     virtual ~MushGamePiece() {}
     
 private:
-    MushMeshPosticity m_posticity; //:readwrite :wref
+    MushMeshPosticity m_post; //:readwrite :wref
     
 //%classPrototypes {
 public:
-    const MushMeshPosticity& Posticity(void) const { return m_posticity; }
-    void PosticitySet(const MushMeshPosticity& inValue) { m_posticity=inValue; }
-    // Writable reference for m_posticity
-    MushMeshPosticity& PosticityWRef(void) { return m_posticity; }
+    const MushMeshPosticity& Post(void) const { return m_post; }
+    void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
+    // Writable reference for m_post
+    MushMeshPosticity& PostWRef(void) { return m_post; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -53,7 +56,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } hHRy4DMAXjZ4wd3zTByMsQ
+//%classPrototypes } xgYH1Kh+PR9uvdS4XNL1+w
 };
 //%inlineHeader {
 inline std::ostream&

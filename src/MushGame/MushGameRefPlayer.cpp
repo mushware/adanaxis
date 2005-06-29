@@ -19,11 +19,17 @@
  ****************************************************************************/
 //%Header } OuvMbRXRiwpwat99Zdh98w
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameRefPlayer.cpp,v 1.1 2005/06/29 09:07:56 southa Exp $
+ * $Log: MushGameRefPlayer.cpp,v $
+ * Revision 1.1  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushGameRefPlayer.h"
+
+using namespace Mushware;
+using namespace std;
 
 MushGameRefPlayer::MushGameRefPlayer(const std::string& inName, MushcoreData<MushGamePlayer> *inInstance) :
     m_playerRef(inName, *inInstance)

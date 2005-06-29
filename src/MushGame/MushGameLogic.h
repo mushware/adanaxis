@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.7 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGameLogic.h,v 1.8 2005/06/29 09:07:56 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.8  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  * Revision 1.7  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -89,6 +92,8 @@ public:
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
+    virtual void CameraMove(MushGameCamera& inCamera);
+    virtual void CameraSequence(void);
     virtual void RenderSequence(void);
     virtual void MainSequence(void);
 
@@ -102,6 +107,7 @@ public:
     virtual MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
     virtual MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
     
+    virtual void ExceptionHandle(std::exception *inpFail, const std::string& inName) const;
 protected:
 
 private:

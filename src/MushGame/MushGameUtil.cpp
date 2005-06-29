@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.6 2005/06/23 13:56:59 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.7 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.7  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.6  2005/06/23 13:56:59  southa
  * MushGame link work
  *
@@ -52,6 +55,7 @@
 #include "MushGameLogic.h"
 #include "MushGameLink.h"
 #include "MushGameMessage.h"
+#include "MushGameRender.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
 #include "MushGameVolatileData.h"
@@ -118,6 +122,7 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     DataObjectCreate<MushGameHostVolatileData>(inName, inPrefix, "HostVolatileData")->GroupingNameSet(inName);
     DataObjectCreate<MushGameServer>(inName, inPrefix, "Server")->GroupingNameSet(inName);
     DataObjectCreate<MushGameClient>(inName, inPrefix, "Client")->GroupingNameSet(inName);
+    DataObjectCreate<MushGameRender>(inName, inPrefix, "Render")->GroupingNameSet(inName);
     MushGameLogic *pLogic = DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal");
     pLogic->GroupingNameSet(inName);
 
@@ -126,6 +131,7 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     std::string clientName = inName+"-localclient";
     
     pLogic->SaveData().ClientNameSet(clientName);
+    pLogic->SaveData().RenderNameSet(inName);
     pLogic->HostSaveData().ServerNameSet(serverName);
     
     DataObjectCreate<MushGameAddress>(serverName, inPrefix, "Address")->NameSet(serverName);

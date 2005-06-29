@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } k666Ocml91vNr4/FqWJtSA
 /*
- * $Id: GameUtils.h,v 1.2 2005/04/11 23:31:41 southa Exp $
+ * $Id: GameUtils.h,v 1.3 2005/05/19 13:02:03 southa Exp $
  * $Log: GameUtils.h,v $
+ * Revision 1.3  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.2  2005/04/11 23:31:41  southa
  * Startup and registration screen
  *
@@ -35,13 +38,34 @@
 
 #include "mushMushcore.h"
 
+#include "GameAppHandler.h"
+
 class GameUtils
 {
 public:
     static Mushware::U32 Rotate(Mushware::U32 inVal, Mushware::U32 inRot);
     static Mushware::U32 GameUtils::HashGenerate(Mushware::U32 inCode);
     static bool CodeVerify(const std::string& inCode);
+    static GameAppHandler *AppHandlerPtr(void);
+    static GameAppHandler& AppHandler(void);
 };
+
+inline GameAppHandler *
+GameUtils::AppHandlerPtr(void)
+{
+    GameAppHandler *pGameAppHandler=dynamic_cast<GameAppHandler *>(&MushcoreAppHandler::Sgl());
+    if (pGameAppHandler == NULL)
+    {
+        throw MushcoreLogicFail("Access to NULL GameApphandler");
+    }
+    return pGameAppHandler;
+}
+
+inline GameAppHandler&
+GameUtils::AppHandler(void)
+{
+    return *AppHandlerPtr();
+}
 
 //%includeGuardEnd {
 #endif

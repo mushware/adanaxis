@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGamePiece.cpp
+ * File: src/MushGame/MushGameRender.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,57 +17,59 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xc9P/TG19PochVDX5THNbA
+//%Header } w2//WvMUbsPuYAvxQojk5g
 /*
- * $Id: MushGamePiece.cpp,v 1.1 2005/06/24 10:30:12 southa Exp $
- * $Log: MushGamePiece.cpp,v $
- * Revision 1.1  2005/06/24 10:30:12  southa
- * MushGame camera work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGamePiece.h"
+#include "MushGameRender.h"
 
-MUSHCORE_DATA_INSTANCE(MushGamePiece);
+MUSHCORE_DATA_INSTANCE(MushGameRender);
 
+void
+MushGameRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+{
+    // No operation
+}
 //%outOfLineFunctions {
 
-const char *MushGamePiece::AutoName(void) const
+const char *MushGameRender::AutoName(void) const
 {
-    return "MushGamePiece";
+    return "MushGameRender";
 }
 
-MushcoreVirtualObject *MushGamePiece::AutoClone(void) const
+MushcoreVirtualObject *MushGameRender::AutoClone(void) const
 {
-    return new MushGamePiece(*this);
+    return new MushGameRender(*this);
 }
 
-MushcoreVirtualObject *MushGamePiece::AutoCreate(void) const
+MushcoreVirtualObject *MushGameRender::AutoCreate(void) const
 {
-    return new MushGamePiece;
+    return new MushGameRender;
 }
 
-MushcoreVirtualObject *MushGamePiece::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGameRender::AutoVirtualFactory(void)
 {
-    return new MushGamePiece;
+    return new MushGameRender;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushGamePiece", MushGamePiece::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGameRender", MushGameRender::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushGamePiece::AutoPrint(std::ostream& ioOut) const
+MushGameRender::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "post=" << m_post;
+    ioOut << "groupingName=" << m_groupingName;
     ioOut << "]";
 }
 bool
-MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGameRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -75,9 +77,9 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "post")
+    else if (inTagStr == "groupingName")
     {
-        ioIn >> m_post;
+        ioIn >> m_groupingName;
     }
     else
     {
@@ -86,9 +88,9 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     return true;
 }
 void
-MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGameRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("post");
-    ioOut << m_post;
+    ioOut.TagSet("groupingName");
+    ioOut << m_groupingName;
 }
-//%outOfLineFunctions } ZXub1Cj61yMKrFnMrI2T2A
+//%outOfLineFunctions } 2hKtYVMcKekOTnMSdwRwAw

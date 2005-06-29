@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.8 2005/06/23 11:58:27 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.9 2005/06/23 13:56:56 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.9  2005/06/23 13:56:56  southa
+ * MushGame link work
+ *
  * Revision 1.8  2005/06/23 11:58:27  southa
  * MushGame link work
  *
@@ -81,21 +84,7 @@ AdanaxisGame::Display(GameAppHandler& inAppHandler)
 {    
     //tVal msecNow = inAppHandler.MillisecondsGet();
     
-    GLUtils::DisplayPrologue();
-    GLUtils::ClearScreen();
-    
-    MushGameDialogueUtils::MoveAndRender(SaveData().DialoguesWRef(), inAppHandler);
-    
-    GLUtils::OrthoPrologue();
-    
-    if (m_modeKeypressMsec != 0)
-    {
-        PlatformVideoUtils::Sgl().RenderModeInfo(m_newMode);
-    }
-    
-    GLUtils::OrthoEpilogue();
-    
-    GLUtils::DisplayEpilogue();
+
 }
 
 void

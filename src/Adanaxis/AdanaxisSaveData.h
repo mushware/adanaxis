@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.2 2005/06/16 17:25:37 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.3 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.3  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -41,15 +44,24 @@
 class AdanaxisSaveData : public MushGameSaveData
 {
 public:
+    AdanaxisSaveData();
+    virtual ~AdanaxisSaveData() {}
     
 private:
     MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
+    Mushware::tMsec m_modeKeypressMsec; //:readwrite
+    Mushware::tMsec m_newMode; //:readwrite
+    
 //%classPrototypes {
 public:
     const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
     void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
     // Writable reference for m_dialogues
     MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
+    const Mushware::tMsec& ModeKeypressMsec(void) const { return m_modeKeypressMsec; }
+    void ModeKeypressMsecSet(const Mushware::tMsec& inValue) { m_modeKeypressMsec=inValue; }
+    const Mushware::tMsec& NewMode(void) const { return m_newMode; }
+    void NewModeSet(const Mushware::tMsec& inValue) { m_newMode=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -57,7 +69,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PJK5FktExvI23HdQ62s29w
+//%classPrototypes } JXXEExKTSaEKr9leM4SKcg
 };
 //%inlineHeader {
 inline std::ostream&

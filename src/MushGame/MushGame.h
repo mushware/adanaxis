@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.7 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGame.h,v 1.8 2005/06/29 09:07:56 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.8  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  * Revision 1.7  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -73,6 +76,7 @@
 #include "MushGameReceiver.h"
 #include "MushGameRef.h"
 #include "MushGameRefPlayer.h"
+#include "MushGameRender.h"
 #include "MushGameSaveData.h"
 #include "MushGameServer.h"
 #include "MushGameStandard.h"

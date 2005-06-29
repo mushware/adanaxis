@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n4I3T2aUdqYB2n1/b+c3Kg
 /*
- * $Id: MushGameCamera.cpp,v 1.1 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGameCamera.cpp,v 1.2 2005/06/29 09:07:56 southa Exp $
  * $Log: MushGameCamera.cpp,v $
+ * Revision 1.2  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  * Revision 1.1  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -31,6 +34,7 @@
 MushGameCamera::MushGameCamera() :
     m_pTiedRef(NULL)
 {
+        m_post.ToIdentitySet();
 }
 
 MushGameCamera::~MushGameCamera()
@@ -39,6 +43,21 @@ MushGameCamera::~MushGameCamera()
     {
         delete m_pTiedRef;
     }
+}
+
+void
+MushGameCamera::FromTiedObjectUpdate(void)
+{
+    if (m_pTiedRef == NULL)
+    {
+        throw MushcoreDataFail(std::string(AutoName())+": No tied object to update from");
+    }
+    MushGamePiece *pPiece = dynamic_cast<MushGamePiece *>(&m_pTiedRef->Ref());
+    if (pPiece == NULL)
+    {
+        throw MushcoreDataFail(std::string(AutoName())+": Tied object of wrong type");
+    }
+    PostSet(pPiece->Post());
 }
 
 void
@@ -80,6 +99,7 @@ void
 MushGameCamera::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "post=" << m_post << ", ";
     if (m_pTiedRef == NULL)
     {
         ioOut << "pTiedRef=NULL" ;
@@ -99,6 +119,10 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "post")
+    {
+        ioIn >> m_post;
+    }
     else if (inTagStr == "pTiedRef")
     {
         ioIn >> m_pTiedRef;
@@ -112,7 +136,9 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGameCamera::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("post");
+    ioOut << m_post;
     ioOut.TagSet("pTiedRef");
     ioOut << m_pTiedRef;
 }
-//%outOfLineFunctions } asC+Zd9beEpR3oQsIFTtKw
+//%outOfLineFunctions } nQHw5/OloW8NNWOQ0aawAg

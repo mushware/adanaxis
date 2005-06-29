@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +eMrlpttHnUzQ/qPZM7tGQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshPosticity.h,v 1.1 2005/06/24 10:30:13 southa Exp $
+ * $Log: MushMeshPosticity.h,v $
+ * Revision 1.1  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -41,10 +44,10 @@ public:
     inline void ToIdentitySet(void);
     
 private:
-    Mushware::tQValPair m_angPos; //:readwrite
-    Mushware::tQValPair m_angVel; //:readwrite
-    Mushware::t4Val m_pos; //:readwrite
-    Mushware::t4Val m_vel; //:readwrite
+    Mushware::tQValPair m_angPos; //:readwrite :wref
+    Mushware::tQValPair m_angVel; //:readwrite :wref
+    Mushware::t4Val m_pos; //:readwrite :wref
+    Mushware::t4Val m_vel; //:readwrite :wref
     Mushware::tUsec m_timestamp; //:readwrite
     bool m_timeValid; //:readwrite
     
@@ -52,12 +55,20 @@ private:
 public:
     const Mushware::tQValPair& AngPos(void) const { return m_angPos; }
     void AngPosSet(const Mushware::tQValPair& inValue) { m_angPos=inValue; }
+    // Writable reference for m_angPos
+    Mushware::tQValPair& AngPosWRef(void) { return m_angPos; }
     const Mushware::tQValPair& AngVel(void) const { return m_angVel; }
     void AngVelSet(const Mushware::tQValPair& inValue) { m_angVel=inValue; }
+    // Writable reference for m_angVel
+    Mushware::tQValPair& AngVelWRef(void) { return m_angVel; }
     const Mushware::t4Val& Pos(void) const { return m_pos; }
     void PosSet(const Mushware::t4Val& inValue) { m_pos=inValue; }
+    // Writable reference for m_pos
+    Mushware::t4Val& PosWRef(void) { return m_pos; }
     const Mushware::t4Val& Vel(void) const { return m_vel; }
     void VelSet(const Mushware::t4Val& inValue) { m_vel=inValue; }
+    // Writable reference for m_vel
+    Mushware::t4Val& VelWRef(void) { return m_vel; }
     const Mushware::tUsec& Timestamp(void) const { return m_timestamp; }
     void TimestampSet(const Mushware::tUsec& inValue) { m_timestamp=inValue; }
     const bool& TimeValid(void) const { return m_timeValid; }
@@ -70,7 +81,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ubocSCPQFmqeL6ODeb2p0A
+//%classPrototypes } ADMCTvufrE442yluUAf8QQ
 };
 
 inline void

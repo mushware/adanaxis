@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.3 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.4 2005/06/24 10:30:13 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.4  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.3  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -41,6 +44,8 @@
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
 #include "MushGamePiece.h"
+
+#include "API/mushMushMesh.h"
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1

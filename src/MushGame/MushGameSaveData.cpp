@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.7 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.8 2005/06/24 10:30:13 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.8  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.7  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -91,7 +94,8 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "cameras=" << m_cameras << ", ";
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
     ioOut << "clientRef=" << m_clientRef << ", ";
-    ioOut << "serverAddrRef=" << m_serverAddrRef;
+    ioOut << "serverAddrRef=" << m_serverAddrRef << ", ";
+    ioOut << "renderRef=" << m_renderRef;
     ioOut << "]";
 }
 bool
@@ -131,6 +135,10 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_serverAddrRef;
     }
+    else if (inTagStr == "renderRef")
+    {
+        ioIn >> m_renderRef;
+    }
     else
     {
         return false;
@@ -154,5 +162,7 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_clientRef;
     ioOut.TagSet("serverAddrRef");
     ioOut << m_serverAddrRef;
+    ioOut.TagSet("renderRef");
+    ioOut << m_renderRef;
 }
-//%outOfLineFunctions } Pf5EJs6B7lUa9elWXoF1cg
+//%outOfLineFunctions } W5gdcpGRJGCzwMDq/DEgnA
