@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mQ7a0aB9sYaMT3bmln5Sjw
 /*
- * $Id: MushGameData.h,v 1.1 2005/06/21 13:10:51 southa Exp $
+ * $Id: MushGameData.h,v 1.2 2005/06/21 15:57:47 southa Exp $
  * $Log: MushGameData.h,v $
+ * Revision 1.2  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  * Revision 1.1  2005/06/21 13:10:51  southa
  * MushGame work
  *
@@ -42,7 +45,6 @@ public:
     MushGameData(const std::string& inName="");
     virtual ~MushGameData() {}
     virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); m_volatileDataRef.NameSet(inName); }
-
     
 private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:readwrite :wref

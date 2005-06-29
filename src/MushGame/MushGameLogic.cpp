@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.5 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.6 2005/06/24 10:30:12 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.6  2005/06/24 10:30:12  southa
+ * MushGame camera work
+ *
  * Revision 1.5  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -44,6 +47,7 @@
 #include "MushGameJob.h"
 #include "MushGameLink.h"
 #include "MushGameMessageWake.h"
+#include "MushGameRefPlayer.h"
 #include "MushGameUtil.h"
 
 #include "API/mushGame.h"
@@ -305,17 +309,28 @@ MushGameLogic::SendSequence(void)
 }
 
 void
+MushGameLogic::RenderSequence(void)
+{
+    // No action
+}
+
+void
 MushGameLogic::MainSequence(void)
 {
     ReceiveSequence();
     SendSequence();
+    RenderSequence();
 }
 
 void
 MushGameLogic::ClientNewPlayerHandle(const std::string& inPlayerName)
 {
     MushGameCamera *pCamera = SaveData().CamerasWRef().GetOrCreate("default-camera");
-    pCamera->TiedPlayerRefSet(MushcoreDataRef<MushGamePlayer>(inPlayerName, SaveData().PlayersWRef()));
+                          
+    // MushcoreDataRef<MushGamePlayer>(inPlayerName, SaveData().PlayersWRef());
+    
+    MushGameRefPlayer playerRef(inPlayerName, &SaveData().PlayersWRef());
+    pCamera->TiedRefCopy(&playerRef);
 }
 
 //%outOfLineFunctions {

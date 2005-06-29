@@ -1934,6 +1934,9 @@
 				7ACFC879086C05CB00B0E7E4,
 				7ACFC882086C06B100B0E7E4,
 				7ACFC8A9086C0FCE00B0E7E4,
+				7AD1B84E086C8F180079FBCF,
+				7AD1B873086C9F660079FBCF,
+				7AD1B87B086CA3A20079FBCF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2296,6 +2299,9 @@
 				7ACFC87A086C05CB00B0E7E4,
 				7ACFC883086C06B100B0E7E4,
 				7ACFC8AA086C0FCE00B0E7E4,
+				7AD1B84F086C8F180079FBCF,
+				7AD1B874086C9F660079FBCF,
+				7AD1B87C086CA3A20079FBCF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12688,6 +12694,9 @@
 				7A8040EB086AE085007B0F20,
 				7ACFC877086C05CB00B0E7E4,
 				7ACFC880086C06B100B0E7E4,
+				7AD1B850086C8F180079FBCF,
+				7AD1B875086C9F660079FBCF,
+				7AD1B87D086CA3A20079FBCF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13789,6 +13798,9 @@
 				7A8040EC086AE085007B0F20,
 				7ACFC878086C05CB00B0E7E4,
 				7ACFC881086C06B100B0E7E4,
+				7AD1B851086C8F180079FBCF,
+				7AD1B876086C9F660079FBCF,
+				7AD1B87E086CA3A20079FBCF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23721,6 +23733,126 @@
 			settings = {
 			};
 		};
+		7AD1B84C086C8F180079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameRefPiece.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B84D086C8F180079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameRefPiece.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B84E086C8F180079FBCF = {
+			fileRef = 7AD1B84C086C8F180079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B84F086C8F180079FBCF = {
+			fileRef = 7AD1B84D086C8F180079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B850086C8F180079FBCF = {
+			fileRef = 7AD1B84C086C8F180079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B851086C8F180079FBCF = {
+			fileRef = 7AD1B84D086C8F180079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B871086C9F660079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameRef.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B872086C9F660079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameRef.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B873086C9F660079FBCF = {
+			fileRef = 7AD1B871086C9F660079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B874086C9F660079FBCF = {
+			fileRef = 7AD1B872086C9F660079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B875086C9F660079FBCF = {
+			fileRef = 7AD1B871086C9F660079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B876086C9F660079FBCF = {
+			fileRef = 7AD1B872086C9F660079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B879086CA3A20079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameRefPlayer.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B87A086CA3A20079FBCF = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameRefPlayer.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD1B87B086CA3A20079FBCF = {
+			fileRef = 7AD1B879086CA3A20079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B87C086CA3A20079FBCF = {
+			fileRef = 7AD1B87A086CA3A20079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B87D086CA3A20079FBCF = {
+			fileRef = 7AD1B879086CA3A20079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD1B87E086CA3A20079FBCF = {
+			fileRef = 7AD1B87A086CA3A20079FBCF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7AD205890868206300F891C0 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -24023,6 +24155,12 @@
 				7ACFC87E086C06B100B0E7E4,
 				7ADBEEE20867142900CFB0B1,
 				7ADBEEE10867142900CFB0B1,
+				7AD1B872086C9F660079FBCF,
+				7AD1B871086C9F660079FBCF,
+				7AD1B84D086C8F180079FBCF,
+				7AD1B84C086C8F180079FBCF,
+				7AD1B87A086CA3A20079FBCF,
+				7AD1B879086CA3A20079FBCF,
 				7AC439260861E1C3006D73D3,
 				7AC439250861E1C3006D73D3,
 				7AD3B5F008617E6600512DB1,

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMECAMERA_H
-#define MUSHGAMECAMERA_H
-//%includeGuardStart } tzdeCLD2iutbzAqx4mj2vw
+#ifndef MUSHGAMEREF_H
+#define MUSHGAMEREF_H
+//%includeGuardStart } ziI+tP+jl6PLF7Qc1iXfMg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameCamera.h
+ * File: src/MushGame/MushGameRef.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,33 +21,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iR1nzzDghU7XG/JS99oDQQ
+//%Header } q1E1PZV0rLkYq5W8kePVFw
 /*
- * $Id: MushGameCamera.h,v 1.1 2005/06/24 10:30:12 southa Exp $
- * $Log: MushGameCamera.h,v $
- * Revision 1.1  2005/06/24 10:30:12  southa
- * MushGame camera work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
 #include "MushGamePiece.h"
-#include "MushGamePlayer.h"
-#include "MushGameRef.h"
 
 //:generate virtual standard ostream xml1
-class MushGameCamera : public MushcoreVirtualObject
+class MushGameRef : public MushcoreVirtualObject
 {
 public:
-    MushGameCamera();
-    virtual ~MushGameCamera();
-    
-    void TiedRefCopy(MushGameRef *inpRef);
+    virtual ~MushGameRef() {}
+    virtual MushcoreVirtualObject& Ref() { throw MushcoreLogicFail("Access to MushGameRef"); }
     
 private:
-    MushGameRef *m_pTiedRef;
-    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -61,12 +52,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameCamera& inObj)
+operator<<(std::ostream& ioOut, const MushGameRef& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } yEL8lWokyDIR1M7RFn0mFw
+//%inlineHeader } TQqIyWLcyEOjJQf8C983pA
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

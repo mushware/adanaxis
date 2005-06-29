@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMECAMERA_H
-#define MUSHGAMECAMERA_H
-//%includeGuardStart } tzdeCLD2iutbzAqx4mj2vw
+#ifndef MUSHGAMEREFPIECE_H
+#define MUSHGAMEREFPIECE_H
+//%includeGuardStart } J/WPmrB/9n93A5qDrulo0A
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameCamera.h
+ * File: src/MushGame/MushGameRefPiece.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,33 +21,27 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iR1nzzDghU7XG/JS99oDQQ
+//%Header } mUNxxFNF/fmm+APVZXr+kw
 /*
- * $Id: MushGameCamera.h,v 1.1 2005/06/24 10:30:12 southa Exp $
- * $Log: MushGameCamera.h,v $
- * Revision 1.1  2005/06/24 10:30:12  southa
- * MushGame camera work
- *
+ * $Id: MushcoreDataRef.h,v 1.16 2005/06/21 13:10:52 southa Exp $
+ * $Log: MushcoreDataRef.h,v $
  */
 
 #include "MushGameStandard.h"
 
-#include "MushGamePiece.h"
-#include "MushGamePlayer.h"
 #include "MushGameRef.h"
 
+#include "MushGamePiece.h"
+
+//:xml1base MushGameRef
 //:generate virtual standard ostream xml1
-class MushGameCamera : public MushcoreVirtualObject
+class MushGameRefPiece : public MushGameRef
 {
 public:
-    MushGameCamera();
-    virtual ~MushGameCamera();
-    
-    void TiedRefCopy(MushGameRef *inpRef);
+    virtual MushcoreVirtualObject& Ref() { return m_pieceRef.WRef(); }
     
 private:
-    MushGameRef *m_pTiedRef;
-    
+    MushcoreDataRef<MushGamePiece> m_pieceRef;
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -61,12 +55,13 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameCamera& inObj)
+operator<<(std::ostream& ioOut, const MushGameRefPiece& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } yEL8lWokyDIR1M7RFn0mFw
+//%inlineHeader } LkPDcQ2KSOo0IqKGljtqtA
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

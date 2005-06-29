@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.6 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameLogic.h,v 1.7 2005/06/24 10:30:12 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.7  2005/06/24 10:30:12  southa
+ * MushGame camera work
+ *
  * Revision 1.6  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -86,6 +89,7 @@ public:
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
+    virtual void RenderSequence(void);
     virtual void MainSequence(void);
 
     virtual void ClientNewPlayerHandle(const std::string& inPlayerName);

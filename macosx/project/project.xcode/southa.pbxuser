@@ -5,8 +5,8 @@
 		activeExecutable = 7A70CE7F085DEE2D0055C6FB;
 		activeTarget = 7A70CD4B085DEE2D0055C6FB;
 		addToTargets = (
-			7A70CD4B085DEE2D0055C6FB,
 			7A62B6F805A49C0B002A5F1C,
+			7A70CD4B085DEE2D0055C6FB,
 		);
 		breakpoints = (
 			7A64F649070816B80089CD14,
@@ -76,7 +76,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					814,
+					10,
 					20,
 					71,
 					43,
@@ -129,7 +129,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					447,
+					813,
 					20,
 					72,
 					43,
@@ -173,7 +173,7 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 141295395;
+			PBXPerProjectTemplateStateSaveDate = 141728244;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -2357,7 +2357,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "503 295 723 466 0 0 1280 1002 ";
 			};
-			PBXWorkspaceStateSaveDate = 141295395;
+			PBXWorkspaceStateSaveDate = 141728244;
 			com.apple.ide.smrt.PBXUserSmartGroupsKey.Rev10 = <40b047970756463747275616d618308e481004484848e0e435d457471626c656142727169700484870e435142727169700484880e435f426a656364700584810960068>;
 		};
 		perUserProjectItems = {
@@ -2372,7 +2372,6 @@
 			7A06964D08685CE0007ACACE = 7A06964D08685CE0007ACACE;
 			7A06964E08685CE0007ACACE = 7A06964E08685CE0007ACACE;
 			7A06965308685CE0007ACACE = 7A06965308685CE0007ACACE;
-			7A06965608685CE0007ACACE = 7A06965608685CE0007ACACE;
 			7A06965708685CE0007ACACE = 7A06965708685CE0007ACACE;
 			7A06965908685CE0007ACACE = 7A06965908685CE0007ACACE;
 			7A06965B08685CE0007ACACE = 7A06965B08685CE0007ACACE;
@@ -2386,6 +2385,11 @@
 			7A0696CC08687037007ACACE = 7A0696CC08687037007ACACE;
 			7A0696D108687037007ACACE = 7A0696D108687037007ACACE;
 			7A0696FF08687037007ACACE = 7A0696FF08687037007ACACE;
+			7A218C0908729A2E00EEA4E1 = 7A218C0908729A2E00EEA4E1;
+			7A218C0A08729A2E00EEA4E1 = 7A218C0A08729A2E00EEA4E1;
+			7A218C0B08729A2E00EEA4E1 = 7A218C0B08729A2E00EEA4E1;
+			7A218C0C08729A3E00EEA4E1 = 7A218C0C08729A3E00EEA4E1;
+			7A218C1008729A3E00EEA4E1 = 7A218C1008729A3E00EEA4E1;
 			7A70CD18085DE9A80055C6FB = 7A70CD18085DE9A80055C6FB;
 			7A70CD19085DE9A80055C6FB = 7A70CD19085DE9A80055C6FB;
 			7A70CD1A085DE9A80055C6FB = 7A70CD1A085DE9A80055C6FB;
@@ -2523,26 +2527,14 @@
 			7AC439E40861ECF2006D73D3 = 7AC439E40861ECF2006D73D3;
 			7AC439E70861ECF2006D73D3 = 7AC439E70861ECF2006D73D3;
 			7ACFC86F086C058B00B0E7E4 = 7ACFC86F086C058B00B0E7E4;
-			7ACFC870086C058B00B0E7E4 = 7ACFC870086C058B00B0E7E4;
 			7ACFC871086C058B00B0E7E4 = 7ACFC871086C058B00B0E7E4;
 			7ACFC884086C07EF00B0E7E4 = 7ACFC884086C07EF00B0E7E4;
 			7ACFC885086C07EF00B0E7E4 = 7ACFC885086C07EF00B0E7E4;
 			7ACFC886086C07EF00B0E7E4 = 7ACFC886086C07EF00B0E7E4;
-			7ACFC88C086C07EF00B0E7E4 = 7ACFC88C086C07EF00B0E7E4;
-			7ACFC88D086C07EF00B0E7E4 = 7ACFC88D086C07EF00B0E7E4;
 			7ACFC88E086C07EF00B0E7E4 = 7ACFC88E086C07EF00B0E7E4;
 			7ACFC88F086C07EF00B0E7E4 = 7ACFC88F086C07EF00B0E7E4;
-			7ACFC890086C07EF00B0E7E4 = 7ACFC890086C07EF00B0E7E4;
-			7ACFC891086C07EF00B0E7E4 = 7ACFC891086C07EF00B0E7E4;
 			7ACFC892086C07EF00B0E7E4 = 7ACFC892086C07EF00B0E7E4;
-			7ACFC893086C07EF00B0E7E4 = 7ACFC893086C07EF00B0E7E4;
-			7ACFC894086C07EF00B0E7E4 = 7ACFC894086C07EF00B0E7E4;
 			7ACFC895086C07EF00B0E7E4 = 7ACFC895086C07EF00B0E7E4;
-			7ACFC896086C07EF00B0E7E4 = 7ACFC896086C07EF00B0E7E4;
-			7ACFC897086C07EF00B0E7E4 = 7ACFC897086C07EF00B0E7E4;
-			7ACFC898086C07EF00B0E7E4 = 7ACFC898086C07EF00B0E7E4;
-			7ACFC899086C07EF00B0E7E4 = 7ACFC899086C07EF00B0E7E4;
-			7ACFC8AD086C17D200B0E7E4 = 7ACFC8AD086C17D200B0E7E4;
 			7ACFC8AE086C17D200B0E7E4 = 7ACFC8AE086C17D200B0E7E4;
 			7ACFC8AF086C17D200B0E7E4 = 7ACFC8AF086C17D200B0E7E4;
 			7ACFC8B0086C17D200B0E7E4 = 7ACFC8B0086C17D200B0E7E4;
@@ -2551,86 +2543,49 @@
 			7ACFC8B3086C17D200B0E7E4 = 7ACFC8B3086C17D200B0E7E4;
 			7ACFC8B4086C17D200B0E7E4 = 7ACFC8B4086C17D200B0E7E4;
 			7ACFC8B5086C17D200B0E7E4 = 7ACFC8B5086C17D200B0E7E4;
-			7ACFC8B6086C17D200B0E7E4 = 7ACFC8B6086C17D200B0E7E4;
 			7ACFC8B7086C17D200B0E7E4 = 7ACFC8B7086C17D200B0E7E4;
 			7ACFC8B8086C17D200B0E7E4 = 7ACFC8B8086C17D200B0E7E4;
 			7ACFC8B9086C17D200B0E7E4 = 7ACFC8B9086C17D200B0E7E4;
 			7ACFC8BA086C17D200B0E7E4 = 7ACFC8BA086C17D200B0E7E4;
 			7ACFC8BB086C17D200B0E7E4 = 7ACFC8BB086C17D200B0E7E4;
-			7ACFC8BC086C17D200B0E7E4 = 7ACFC8BC086C17D200B0E7E4;
-			7ACFC8BD086C17D200B0E7E4 = 7ACFC8BD086C17D200B0E7E4;
 			7ACFC8BE086C17D200B0E7E4 = 7ACFC8BE086C17D200B0E7E4;
 			7ACFC8BF086C17D200B0E7E4 = 7ACFC8BF086C17D200B0E7E4;
-			7ACFC8C0086C17D200B0E7E4 = 7ACFC8C0086C17D200B0E7E4;
-			7ACFC8C1086C17D200B0E7E4 = 7ACFC8C1086C17D200B0E7E4;
-			7ACFC8C2086C17D200B0E7E4 = 7ACFC8C2086C17D200B0E7E4;
-			7ACFC8C3086C17D200B0E7E4 = 7ACFC8C3086C17D200B0E7E4;
-			7ACFC8C4086C17D200B0E7E4 = 7ACFC8C4086C17D200B0E7E4;
-			7ACFC8C5086C17D200B0E7E4 = 7ACFC8C5086C17D200B0E7E4;
-			7ACFC8C6086C17D200B0E7E4 = 7ACFC8C6086C17D200B0E7E4;
-			7ACFC8C7086C17D200B0E7E4 = 7ACFC8C7086C17D200B0E7E4;
-			7ACFC8C8086C17D200B0E7E4 = 7ACFC8C8086C17D200B0E7E4;
-			7ACFC8C9086C17D200B0E7E4 = 7ACFC8C9086C17D200B0E7E4;
-			7ACFC8CA086C17D200B0E7E4 = 7ACFC8CA086C17D200B0E7E4;
-			7ACFC8CB086C17D200B0E7E4 = 7ACFC8CB086C17D200B0E7E4;
-			7ACFC8CC086C17D200B0E7E4 = 7ACFC8CC086C17D200B0E7E4;
-			7ACFC8CD086C17D200B0E7E4 = 7ACFC8CD086C17D200B0E7E4;
-			7ACFC8CE086C17D200B0E7E4 = 7ACFC8CE086C17D200B0E7E4;
-			7ACFC8CF086C17D200B0E7E4 = 7ACFC8CF086C17D200B0E7E4;
-			7ACFC8D0086C17D200B0E7E4 = 7ACFC8D0086C17D200B0E7E4;
 			7ACFC8D1086C17D200B0E7E4 = 7ACFC8D1086C17D200B0E7E4;
-			7ACFC8D2086C17D200B0E7E4 = 7ACFC8D2086C17D200B0E7E4;
-			7ACFC8D3086C17D200B0E7E4 = 7ACFC8D3086C17D200B0E7E4;
-			7ACFC8D4086C17D200B0E7E4 = 7ACFC8D4086C17D200B0E7E4;
-			7ACFC8D5086C17D200B0E7E4 = 7ACFC8D5086C17D200B0E7E4;
-			7ACFC8D6086C17D200B0E7E4 = 7ACFC8D6086C17D200B0E7E4;
-			7ACFC8D7086C17D200B0E7E4 = 7ACFC8D7086C17D200B0E7E4;
-			7ACFC8D8086C17D200B0E7E4 = 7ACFC8D8086C17D200B0E7E4;
-			7ACFC8D9086C17D200B0E7E4 = 7ACFC8D9086C17D200B0E7E4;
-			7ACFC8DA086C17D200B0E7E4 = 7ACFC8DA086C17D200B0E7E4;
 			7ACFC8DB086C17D200B0E7E4 = 7ACFC8DB086C17D200B0E7E4;
-			7ACFC8DC086C17D200B0E7E4 = 7ACFC8DC086C17D200B0E7E4;
-			7ACFC8DD086C17D200B0E7E4 = 7ACFC8DD086C17D200B0E7E4;
 			7ACFC8DE086C17D200B0E7E4 = 7ACFC8DE086C17D200B0E7E4;
 			7ACFC8DF086C17D200B0E7E4 = 7ACFC8DF086C17D200B0E7E4;
-			7ACFC8E0086C17D200B0E7E4 = 7ACFC8E0086C17D200B0E7E4;
-			7ACFC8E1086C17D200B0E7E4 = 7ACFC8E1086C17D200B0E7E4;
-			7ACFC8E2086C17D200B0E7E4 = 7ACFC8E2086C17D200B0E7E4;
-			7ACFC8E3086C17D200B0E7E4 = 7ACFC8E3086C17D200B0E7E4;
-			7ACFC8E4086C17D200B0E7E4 = 7ACFC8E4086C17D200B0E7E4;
-			7ACFC8E5086C17D200B0E7E4 = 7ACFC8E5086C17D200B0E7E4;
-			7ACFC8E6086C17D200B0E7E4 = 7ACFC8E6086C17D200B0E7E4;
 			7ACFC8E7086C17D200B0E7E4 = 7ACFC8E7086C17D200B0E7E4;
 			7ACFC8E8086C17D200B0E7E4 = 7ACFC8E8086C17D200B0E7E4;
-			7ACFC8E9086C17D200B0E7E4 = 7ACFC8E9086C17D200B0E7E4;
 			7ACFC8EA086C17D200B0E7E4 = 7ACFC8EA086C17D200B0E7E4;
-			7ACFC8EB086C17D200B0E7E4 = 7ACFC8EB086C17D200B0E7E4;
 			7ACFC8EC086C17D200B0E7E4 = 7ACFC8EC086C17D200B0E7E4;
-			7ACFC8ED086C17D200B0E7E4 = 7ACFC8ED086C17D200B0E7E4;
-			7ACFC8EE086C17D200B0E7E4 = 7ACFC8EE086C17D200B0E7E4;
-			7ACFC8EF086C17D200B0E7E4 = 7ACFC8EF086C17D200B0E7E4;
-			7ACFC8F0086C17D200B0E7E4 = 7ACFC8F0086C17D200B0E7E4;
-			7ACFC8F1086C17D200B0E7E4 = 7ACFC8F1086C17D200B0E7E4;
-			7ACFC8F2086C17D200B0E7E4 = 7ACFC8F2086C17D200B0E7E4;
-			7ACFC8F3086C17D200B0E7E4 = 7ACFC8F3086C17D200B0E7E4;
-			7ACFC8F4086C17D200B0E7E4 = 7ACFC8F4086C17D200B0E7E4;
-			7ACFC8F5086C17D200B0E7E4 = 7ACFC8F5086C17D200B0E7E4;
-			7ACFC8F6086C17D200B0E7E4 = 7ACFC8F6086C17D200B0E7E4;
-			7ACFC8F7086C17D200B0E7E4 = 7ACFC8F7086C17D200B0E7E4;
-			7ACFC8F8086C17D200B0E7E4 = 7ACFC8F8086C17D200B0E7E4;
-			7ACFC8F9086C17D200B0E7E4 = 7ACFC8F9086C17D200B0E7E4;
-			7ACFC8FA086C17D200B0E7E4 = 7ACFC8FA086C17D200B0E7E4;
-			7ACFC8FB086C17D200B0E7E4 = 7ACFC8FB086C17D200B0E7E4;
-			7ACFC8FC086C17D200B0E7E4 = 7ACFC8FC086C17D200B0E7E4;
-			7ACFC8FD086C17D200B0E7E4 = 7ACFC8FD086C17D200B0E7E4;
-			7ACFC8FE086C17D200B0E7E4 = 7ACFC8FE086C17D200B0E7E4;
-			7ACFC8FF086C17D200B0E7E4 = 7ACFC8FF086C17D200B0E7E4;
 			7ACFC900086C17D200B0E7E4 = 7ACFC900086C17D200B0E7E4;
-			7ACFC901086C17D200B0E7E4 = 7ACFC901086C17D200B0E7E4;
-			7ACFC902086C17D200B0E7E4 = 7ACFC902086C17D200B0E7E4;
-			7ACFC903086C17D200B0E7E4 = 7ACFC903086C17D200B0E7E4;
-			7ACFC904086C17D200B0E7E4 = 7ACFC904086C17D200B0E7E4;
-			7ACFC905086C17D200B0E7E4 = 7ACFC905086C17D200B0E7E4;
+			7AD1B855086C9D170079FBCF = 7AD1B855086C9D170079FBCF;
+			7AD1B856086C9D170079FBCF = 7AD1B856086C9D170079FBCF;
+			7AD1B862086C9D170079FBCF = 7AD1B862086C9D170079FBCF;
+			7AD1B865086C9D170079FBCF = 7AD1B865086C9D170079FBCF;
+			7AD1B87F086CC9300079FBCF = 7AD1B87F086CC9300079FBCF;
+			7AD1B880086CC9300079FBCF = 7AD1B880086CC9300079FBCF;
+			7AD1B881086CC9300079FBCF = 7AD1B881086CC9300079FBCF;
+			7AD1B882086CC9300079FBCF = 7AD1B882086CC9300079FBCF;
+			7AD1B883086CC9300079FBCF = 7AD1B883086CC9300079FBCF;
+			7AD1B884086CC9300079FBCF = 7AD1B884086CC9300079FBCF;
+			7AD1B885086CC9300079FBCF = 7AD1B885086CC9300079FBCF;
+			7AD1B886086CC9300079FBCF = 7AD1B886086CC9300079FBCF;
+			7AD1B887086CC9300079FBCF = 7AD1B887086CC9300079FBCF;
+			7AD1B888086CC9300079FBCF = 7AD1B888086CC9300079FBCF;
+			7AD1B889086CC9300079FBCF = 7AD1B889086CC9300079FBCF;
+			7AD1B88A086CC9300079FBCF = 7AD1B88A086CC9300079FBCF;
+			7AD1B88B086CC9300079FBCF = 7AD1B88B086CC9300079FBCF;
+			7AD1B88C086CC9300079FBCF = 7AD1B88C086CC9300079FBCF;
+			7AD1B88D086CC9300079FBCF = 7AD1B88D086CC9300079FBCF;
+			7AD1B88E086CC9300079FBCF = 7AD1B88E086CC9300079FBCF;
+			7AD1B88F086CC9300079FBCF = 7AD1B88F086CC9300079FBCF;
+			7AD1B890086CC9300079FBCF = 7AD1B890086CC9300079FBCF;
+			7AD1B89B086CC9300079FBCF = 7AD1B89B086CC9300079FBCF;
+			7AD1B8B4086CC9300079FBCF = 7AD1B8B4086CC9300079FBCF;
+			7AD1B8B8086CC9300079FBCF = 7AD1B8B8086CC9300079FBCF;
+			7AD1B8E5086CC9300079FBCF = 7AD1B8E5086CC9300079FBCF;
+			7AD1B8F7086CC9300079FBCF = 7AD1B8F7086CC9300079FBCF;
 			7AD20596086821B500F891C0 = 7AD20596086821B500F891C0;
 			7AD205A50868252700F891C0 = 7AD205A50868252700F891C0;
 			7AD205AB0868252700F891C0 = 7AD205AB0868252700F891C0;
@@ -2716,7 +2671,6 @@
 			7AD272890869CE4A008B104E = 7AD272890869CE4A008B104E;
 			7AD272B90869FAD8008B104E = 7AD272B90869FAD8008B104E;
 			7AD272BA0869FAD8008B104E = 7AD272BA0869FAD8008B104E;
-			7AD272C30869FAD8008B104E = 7AD272C30869FAD8008B104E;
 			7AD272C40869FAD8008B104E = 7AD272C40869FAD8008B104E;
 			7AD272CC0869FAD8008B104E = 7AD272CC0869FAD8008B104E;
 			7AD272D30869FAD8008B104E = 7AD272D30869FAD8008B104E;
@@ -2725,6 +2679,7 @@
 			7AD273370869FAD8008B104E = 7AD273370869FAD8008B104E;
 			7AD273540869FAD8008B104E = 7AD273540869FAD8008B104E;
 			7AD273580869FAD8008B104E = 7AD273580869FAD8008B104E;
+			7AD3AE21087299EC0095CF48 = 7AD3AE21087299EC0095CF48;
 			7AD3B5AC085F359C00512DB1 = 7AD3B5AC085F359C00512DB1;
 			7AD3B5B5085F359C00512DB1 = 7AD3B5B5085F359C00512DB1;
 			7AD3B5BC085F359C00512DB1 = 7AD3B5BC085F359C00512DB1;
@@ -2794,7 +2749,6 @@
 			7ADA3775086AD5B300098534 = 7ADA3775086AD5B300098534;
 			7ADA3777086AD5B300098534 = 7ADA3777086AD5B300098534;
 			7ADA377A086AD5B300098534 = 7ADA377A086AD5B300098534;
-			7ADA377F086AD5B300098534 = 7ADA377F086AD5B300098534;
 			7ADA37B3086ADAFC00098534 = 7ADA37B3086ADAFC00098534;
 			7ADA37B4086ADAFC00098534 = 7ADA37B4086ADAFC00098534;
 			7ADA37B6086ADAFC00098534 = 7ADA37B6086ADAFC00098534;
@@ -2803,7 +2757,6 @@
 			7ADBEEC80867125100CFB0B1 = 7ADBEEC80867125100CFB0B1;
 			7ADBEECA0867125100CFB0B1 = 7ADBEECA0867125100CFB0B1;
 			7ADBEEF3086722AB00CFB0B1 = 7ADBEEF3086722AB00CFB0B1;
-			7ADBEEF5086722AB00CFB0B1 = 7ADBEEF5086722AB00CFB0B1;
 			7ADBEEF6086722AB00CFB0B1 = 7ADBEEF6086722AB00CFB0B1;
 			7ADBEEFA086722AB00CFB0B1 = 7ADBEEFA086722AB00CFB0B1;
 			7ADBEEFD086722AB00CFB0B1 = 7ADBEEFD086722AB00CFB0B1;
@@ -2986,16 +2939,6 @@
 		vrLen = 1384;
 		vrLoc = 0;
 	};
-	7A06965608685CE0007ACACE = {
-		fRef = 7AD205B40868291D00F891C0;
-		isa = PBXTextBookmark;
-		name = "virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); m_volatileDataRef.NameSet(inName); }";
-		rLen = 129;
-		rLoc = 1492;
-		rType = 0;
-		vrLen = 1793;
-		vrLoc = 882;
-	};
 	7A06965708685CE0007ACACE = {
 		fRef = 7A06961E08685468007ACACE;
 		isa = PBXTextBookmark;
@@ -3168,6 +3111,56 @@
 			sepNavSelRange = "{4972, 0}";
 			sepNavVisRect = "{{0, 1554}, {693, 756}}";
 		};
+	};
+	7A218C0908729A2E00EEA4E1 = {
+		fRef = 7A62B80A05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushcoreDataRef.h: 175";
+		rLen = 0;
+		rLoc = 5128;
+		rType = 0;
+		vrLen = 866;
+		vrLoc = 8244;
+	};
+	7A218C0A08729A2E00EEA4E1 = {
+		fRef = 7A62B80A05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushcoreDataRef.h: 175";
+		rLen = 0;
+		rLoc = 5128;
+		rType = 0;
+		vrLen = 866;
+		vrLoc = 8244;
+	};
+	7A218C0B08729A2E00EEA4E1 = {
+		fRef = 7A70CEB1085DF1C40055C6FB;
+		isa = PBXTextBookmark;
+		name = "#include \"AdanaxisGame.h\"";
+		rLen = 26;
+		rLoc = 1254;
+		rType = 0;
+		vrLen = 651;
+		vrLoc = 1427;
+	};
+	7A218C0C08729A3E00EEA4E1 = {
+		fRef = 7A70CEB1085DF1C40055C6FB;
+		isa = PBXTextBookmark;
+		name = "#include \"AdanaxisGame.h\"";
+		rLen = 26;
+		rLoc = 1254;
+		rType = 0;
+		vrLen = 806;
+		vrLoc = 1375;
+	};
+	7A218C1008729A3E00EEA4E1 = {
+		fRef = 7A70CEB1085DF1C40055C6FB;
+		isa = PBXTextBookmark;
+		name = "#include \"AdanaxisGame.h\"";
+		rLen = 26;
+		rLoc = 1254;
+		rType = 0;
+		vrLen = 651;
+		vrLoc = 1427;
 	};
 	7A3E8BEE05A5E63B00AC6E8A = {
 		uiCtxt = {
@@ -3479,7 +3472,7 @@
 	};
 	7A62B32105A49923002A5F1C = {
 		fallbackIsa = XCSourceControlManager;
-		isSCMEnabled = 1;
+		isSCMEnabled = 0;
 		isa = PBXSourceControlManager;
 		scmConfiguration = {
 		};
@@ -4881,8 +4874,8 @@
 	7A62B80A05A49D05002A5F1C = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 4329}}";
-			sepNavSelRange = "{5384, 0}";
-			sepNavVisRect = "{{0, 2088}, {891, 564}}";
+			sepNavSelRange = "{5128, 0}";
+			sepNavVisRect = "{{0, 3861}, {891, 445}}";
 			sepNavWindowFrame = "{{153, 313}, {750, 558}}";
 		};
 	};
@@ -5284,9 +5277,9 @@
 	};
 	7A62B84305A49D05002A5F1C = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 7735}}";
-			sepNavSelRange = "{5723, 0}";
-			sepNavVisRect = "{{0, 2362}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 7774}}";
+			sepNavSelRange = "{7379, 30}";
+			sepNavVisRect = "{{0, 3430}, {891, 564}}";
 			sepNavWindowFrame = "{{635, 294}, {750, 558}}";
 		};
 	};
@@ -5301,7 +5294,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 4511}}";
 			sepNavSelRange = "{8978, 0}";
-			sepNavVisRect = "{{0, 1624}, {891, 625}}";
+			sepNavVisRect = "{{0, 2603}, {891, 445}}";
 			sepNavWindowFrame = "{{107, 355}, {750, 558}}";
 		};
 	};
@@ -7970,9 +7963,9 @@
 	};
 	7A70CEB1085DF1C40055C6FB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1365}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1053, 1365}}";
 			sepNavSelRange = "{1254, 26}";
-			sepNavVisRect = "{{0, 726}, {891, 639}}";
+			sepNavVisRect = "{{0, 655}, {1053, 562}}";
 		};
 	};
 	7A70CEB2085DF1C40055C6FB = {
@@ -9799,28 +9792,28 @@
 	};
 	7AC4391C0861E020006D73D3 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1092}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1131}}";
 			sepNavSelRange = "{2920, 0}";
-			sepNavVisRect = "{{0, 284}, {891, 564}}";
+			sepNavVisRect = "{{0, 439}, {891, 445}}";
 		};
 	};
 	7AC4391D0861E020006D73D3 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1651}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1690}}";
 			sepNavSelRange = "{3184, 0}";
-			sepNavVisRect = "{{0, 299}, {891, 564}}";
+			sepNavVisRect = "{{0, 307}, {891, 564}}";
 		};
 	};
 	7AC439250861E1C3006D73D3 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1547}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1586}}";
 			sepNavSelRange = "{4867, 0}";
-			sepNavVisRect = "{{0, 818}, {891, 564}}";
+			sepNavVisRect = "{{0, 840}, {891, 564}}";
 		};
 	};
 	7AC439260861E1C3006D73D3 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1976}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 2106}}";
 			sepNavSelRange = "{1498, 0}";
 			sepNavVisRect = "{{0, 299}, {891, 564}}";
 		};
@@ -10140,16 +10133,6 @@
 		vrLen = 1466;
 		vrLoc = 2832;
 	};
-	7ACFC870086C058B00B0E7E4 = {
-		fRef = 7AD23B9C085EFF870017859F;
-		isa = PBXTextBookmark;
-		name = "MushGameStandard.h: 63";
-		rLen = 0;
-		rLoc = 1827;
-		rType = 0;
-		vrLen = 841;
-		vrLoc = 1067;
-	};
 	7ACFC871086C058B00B0E7E4 = {
 		fRef = 7A62B83305A49D05002A5F1C;
 		isa = PBXTextBookmark;
@@ -10162,23 +10145,23 @@
 	};
 	7ACFC875086C05CB00B0E7E4 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 936}}";
-			sepNavSelRange = "{2645, 0}";
-			sepNavVisRect = "{{0, 193}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 949}}";
+			sepNavSelRange = "{2370, 0}";
+			sepNavVisRect = "{{0, 364}, {891, 445}}";
 		};
 	};
 	7ACFC876086C05CB00B0E7E4 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1222}}";
-			sepNavSelRange = "{1027, 0}";
-			sepNavVisRect = "{{0, 208}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1365}}";
+			sepNavSelRange = "{1314, 0}";
+			sepNavVisRect = "{{0, 311}, {891, 445}}";
 		};
 	};
 	7ACFC87E086C06B100B0E7E4 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 897}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 936}}";
 			sepNavSelRange = "{1129, 0}";
-			sepNavVisRect = "{{0, 71}, {891, 564}}";
+			sepNavVisRect = "{{0, 65}, {891, 564}}";
 		};
 	};
 	7ACFC87F086C06B100B0E7E4 = {
@@ -10218,26 +10201,6 @@
 		vrLen = 1149;
 		vrLoc = 0;
 	};
-	7ACFC88C086C07EF00B0E7E4 = {
-		fRef = 7AD23B9C085EFF870017859F;
-		isa = PBXTextBookmark;
-		name = "MushGameStandard.h: 65";
-		rLen = 0;
-		rLoc = 1830;
-		rType = 0;
-		vrLen = 839;
-		vrLoc = 1064;
-	};
-	7ACFC88D086C07EF00B0E7E4 = {
-		fRef = 7AD272AA0869DDCF008B104E;
-		isa = PBXTextBookmark;
-		name = "MushGameAddress.h: 77";
-		rLen = 0;
-		rLoc = 2831;
-		rType = 0;
-		vrLen = 1488;
-		vrLoc = 891;
-	};
 	7ACFC88E086C07EF00B0E7E4 = {
 		fRef = 7ACFC875086C05CB00B0E7E4;
 		isa = PBXTextBookmark;
@@ -10258,47 +10221,7 @@
 		vrLen = 995;
 		vrLoc = 0;
 	};
-	7ACFC890086C07EF00B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 39";
-		rLen = 0;
-		rLoc = 1406;
-		rType = 0;
-		vrLen = 1250;
-		vrLoc = 832;
-	};
-	7ACFC891086C07EF00B0E7E4 = {
-		fRef = 7ADBEEE20867142900CFB0B1;
-		isa = PBXTextBookmark;
-		name = "MushGameReceiver.cpp: 31";
-		rLen = 0;
-		rLoc = 1149;
-		rType = 0;
-		vrLen = 1149;
-		vrLoc = 0;
-	};
 	7ACFC892086C07EF00B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 15";
-		rLen = 0;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 203;
-		vrLoc = 0;
-	};
-	7ACFC893086C07EF00B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: 25";
-		rLen = 0;
-		rLoc = 965;
-		rType = 0;
-		vrLen = 1305;
-		vrLoc = 0;
-	};
-	7ACFC894086C07EF00B0E7E4 = {
 		fRef = 7ACFC87E086C06B100B0E7E4;
 		isa = PBXTextBookmark;
 		name = "MushGamePiece.h: 15";
@@ -10318,46 +10241,6 @@
 		vrLen = 53;
 		vrLoc = 0;
 	};
-	7ACFC896086C07EF00B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 15";
-		rLen = 0;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 203;
-		vrLoc = 0;
-	};
-	7ACFC897086C07EF00B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: 25";
-		rLen = 0;
-		rLoc = 965;
-		rType = 0;
-		vrLen = 1305;
-		vrLoc = 0;
-	};
-	7ACFC898086C07EF00B0E7E4 = {
-		fRef = 7AC4391C0861E020006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGamePlayer.h: 44";
-		rLen = 0;
-		rLoc = 1507;
-		rType = 0;
-		vrLen = 1475;
-		vrLoc = 1155;
-	};
-	7ACFC899086C07EF00B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: 25";
-		rLen = 0;
-		rLoc = 965;
-		rType = 0;
-		vrLen = 1305;
-		vrLoc = 0;
-	};
 	7ACFC8A5086C0FCE00B0E7E4 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 1404}}";
@@ -10371,16 +10254,6 @@
 			sepNavSelRange = "{920, 0}";
 			sepNavVisRect = "{{0, 0}, {891, 564}}";
 		};
-	};
-	7ACFC8AD086C17D200B0E7E4 = {
-		fRef = 7AC439260861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.cpp: 43";
-		rLen = 0;
-		rLoc = 1498;
-		rType = 0;
-		vrLen = 880;
-		vrLoc = 1048;
 	};
 	7ACFC8AE086C17D200B0E7E4 = {
 		fRef = 7A62B80805A49D05002A5F1C;
@@ -10462,16 +10335,6 @@
 		vrLen = 869;
 		vrLoc = 6053;
 	};
-	7ACFC8B6086C17D200B0E7E4 = {
-		fRef = 7A62B84305A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.h: operator >>";
-		rLen = 0;
-		rLoc = 5723;
-		rType = 0;
-		vrLen = 885;
-		vrLoc = 5405;
-	};
 	7ACFC8B7086C17D200B0E7E4 = {
 		fRef = 7A62B84205A49D05002A5F1C;
 		isa = PBXTextBookmark;
@@ -10522,26 +10385,6 @@
 		vrLen = 1942;
 		vrLoc = 1122;
 	};
-	7ACFC8BC086C17D200B0E7E4 = {
-		fRef = 7AC4391C0861E020006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGamePlayer.h: 84";
-		rLen = 0;
-		rLoc = 2920;
-		rType = 0;
-		vrLen = 1398;
-		vrLoc = 941;
-	};
-	7ACFC8BD086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 32";
-		rLen = 0;
-		rLoc = 1129;
-		rType = 0;
-		vrLen = 1561;
-		vrLoc = 129;
-	};
 	7ACFC8BE086C17D200B0E7E4 = {
 		fRef = 7AD205C408682F8E00F891C0;
 		isa = PBXTextBookmark;
@@ -10562,176 +10405,6 @@
 		vrLen = 1566;
 		vrLoc = 1875;
 	};
-	7ACFC8C0086C17D200B0E7E4 = {
-		fRef = 7AD2059E086821F000F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameJobPlayerCreate.cpp: 110";
-		rLen = 0;
-		rLoc = 3455;
-		rType = 0;
-		vrLen = 1327;
-		vrLoc = 2494;
-	};
-	7ACFC8C1086C17D200B0E7E4 = {
-		fRef = 7AC439250861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.h: 119";
-		rLen = 0;
-		rLoc = 4867;
-		rType = 0;
-		vrLen = 2681;
-		vrLoc = 1921;
-	};
-	7ACFC8C2086C17D200B0E7E4 = {
-		fRef = 7A62B80A05A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreDataRef.h: 188";
-		rLen = 0;
-		rLoc = 5384;
-		rType = 0;
-		vrLen = 1128;
-		vrLoc = 4728;
-	};
-	7ACFC8C3086C17D200B0E7E4 = {
-		fRef = 7AD205C508682F8E00F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameLogic.cpp: 318";
-		rLen = 0;
-		rLoc = 8735;
-		rType = 0;
-		vrLen = 913;
-		vrLoc = 8252;
-	};
-	7ACFC8C4086C17D200B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: MushGameCamera";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 875;
-		vrLoc = 774;
-	};
-	7ACFC8C5086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 72";
-		rLen = 0;
-		rLoc = 2645;
-		rType = 0;
-		vrLen = 1858;
-		vrLoc = 521;
-	};
-	7ACFC8C6086C17D200B0E7E4 = {
-		fRef = 7AC4391D0861E020006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGamePlayer.cpp: std";
-		rLen = 0;
-		rLoc = 1318;
-		rType = 0;
-		vrLen = 837;
-		vrLoc = 1042;
-	};
-	7ACFC8C7086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 65";
-		rLen = 0;
-		rLoc = 2251;
-		rType = 0;
-		vrLen = 1190;
-		vrLoc = 888;
-	};
-	7ACFC8C8086C17D200B0E7E4 = {
-		fRef = 7AC4391C0861E020006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGamePlayer.h: 84";
-		rLen = 0;
-		rLoc = 2920;
-		rType = 0;
-		vrLen = 1398;
-		vrLoc = 941;
-	};
-	7ACFC8C9086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 6";
-		rLen = 0;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 1562;
-		vrLoc = 0;
-	};
-	7ACFC8CA086C17D200B0E7E4 = {
-		fRef = 7ACFC87F086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.cpp: 85";
-		rLen = 0;
-		rLoc = 2139;
-		rType = 0;
-		vrLen = 1334;
-		vrLoc = 0;
-	};
-	7ACFC8CB086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: m_tiedPieceRef";
-		rLen = 0;
-		rLoc = 1406;
-		rType = 0;
-		vrLen = 1203;
-		vrLoc = 888;
-	};
-	7ACFC8CC086C17D200B0E7E4 = {
-		fRef = 7AC439260861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.cpp: 43";
-		rLen = 0;
-		rLoc = 1498;
-		rType = 0;
-		vrLen = 880;
-		vrLoc = 1048;
-	};
-	7ACFC8CD086C17D200B0E7E4 = {
-		fRef = 7AC439250861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.h: m_toServerMailbox";
-		rLen = 0;
-		rLoc = 2280;
-		rType = 0;
-		vrLen = 1831;
-		vrLoc = 1567;
-	};
-	7ACFC8CE086C17D200B0E7E4 = {
-		fRef = 7ACFC87F086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.cpp: m_pSingleton";
-		rLen = 0;
-		rLoc = 1033;
-		rType = 0;
-		vrLen = 1297;
-		vrLoc = 0;
-	};
-	7ACFC8CF086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: ~MushGameCamera";
-		rLen = 0;
-		rLoc = 1295;
-		rType = 0;
-		vrLen = 1218;
-		vrLoc = 888;
-	};
-	7ACFC8D0086C17D200B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: 31";
-		rLen = 0;
-		rLoc = 1031;
-		rType = 0;
-		vrLen = 1277;
-		vrLoc = 0;
-	};
 	7ACFC8D1086C17D200B0E7E4 = {
 		fRef = 7A62B80805A49D05002A5F1C;
 		isa = PBXTextBookmark;
@@ -10742,96 +10415,6 @@
 		vrLen = 2028;
 		vrLoc = 4966;
 	};
-	7ACFC8D2086C17D200B0E7E4 = {
-		fRef = 7ACFC87F086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.cpp: m_pSingleton";
-		rLen = 0;
-		rLoc = 1033;
-		rType = 0;
-		vrLen = 1297;
-		vrLoc = 0;
-	};
-	7ACFC8D3086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 40";
-		rLen = 0;
-		rLoc = 1333;
-		rType = 0;
-		vrLen = 1218;
-		vrLoc = 888;
-	};
-	7ACFC8D4086C17D200B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: 28";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 1307;
-		vrLoc = 0;
-	};
-	7ACFC8D5086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 40";
-		rLen = 0;
-		rLoc = 1333;
-		rType = 0;
-		vrLen = 1218;
-		vrLoc = 888;
-	};
-	7ACFC8D6086C17D200B0E7E4 = {
-		fRef = 7ACFC87F086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.cpp: m_pSingleton";
-		rLen = 0;
-		rLoc = 1020;
-		rType = 0;
-		vrLen = 1334;
-		vrLoc = 0;
-	};
-	7ACFC8D7086C17D200B0E7E4 = {
-		fRef = 7AD2059E086821F000F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameJobPlayerCreate.cpp: 218";
-		rLen = 0;
-		rLoc = 6260;
-		rType = 0;
-		vrLen = 1466;
-		vrLoc = 2832;
-	};
-	7ACFC8D8086C17D200B0E7E4 = {
-		fRef = 7AC439250861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.h: 119";
-		rLen = 0;
-		rLoc = 4867;
-		rType = 0;
-		vrLen = 2389;
-		vrLoc = 1732;
-	};
-	7ACFC8D9086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 6";
-		rLen = 0;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 1562;
-		vrLoc = 0;
-	};
-	7ACFC8DA086C17D200B0E7E4 = {
-		fRef = 7A651E8505A866F60026CBAE;
-		isa = PBXTextBookmark;
-		name = "MushPiePosicity.h: 104";
-		rLen = 0;
-		rLoc = 3643;
-		rType = 0;
-		vrLen = 1505;
-		vrLoc = 1685;
-	};
 	7ACFC8DB086C17D200B0E7E4 = {
 		fRef = 7A651E8605A866F60026CBAE;
 		isa = PBXTextBookmark;
@@ -10841,26 +10424,6 @@
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 827;
-	};
-	7ACFC8DC086C17D200B0E7E4 = {
-		fRef = 7A651E8505A866F60026CBAE;
-		isa = PBXTextBookmark;
-		name = "MushPiePosicity.h: m_angPos";
-		rLen = 174;
-		rLoc = 2267;
-		rType = 0;
-		vrLen = 1505;
-		vrLoc = 1685;
-	};
-	7ACFC8DD086C17D200B0E7E4 = {
-		fRef = 7A651E8605A866F60026CBAE;
-		isa = PBXTextBookmark;
-		name = "MushPiePosicity.cpp: 19";
-		rLen = 0;
-		rLoc = 855;
-		rType = 0;
-		vrLen = 886;
-		vrLoc = 1313;
 	};
 	7ACFC8DE086C17D200B0E7E4 = {
 		fRef = 7A0673B207B284E00067AA64;
@@ -10882,76 +10445,6 @@
 		vrLen = 1805;
 		vrLoc = 3709;
 	};
-	7ACFC8E0086C17D200B0E7E4 = {
-		fRef = 7A0673B207B284E00067AA64;
-		isa = PBXTextBookmark;
-		name = "MushMeshQuaternionPair.h: 233";
-		rLen = 0;
-		rLoc = 6647;
-		rType = 0;
-		vrLen = 1089;
-		vrLoc = 3910;
-	};
-	7ACFC8E1086C17D200B0E7E4 = {
-		fRef = 7A62B83305A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreStandard.h: 257";
-		rLen = 0;
-		rLoc = 6631;
-		rType = 0;
-		vrLen = 869;
-		vrLoc = 6053;
-	};
-	7ACFC8E2086C17D200B0E7E4 = {
-		fRef = 7A62B84205A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.cpp: 150";
-		rLen = 0;
-		rLoc = 4121;
-		rType = 0;
-		vrLen = 1515;
-		vrLoc = 3625;
-	};
-	7ACFC8E3086C17D200B0E7E4 = {
-		fRef = 7A62B84305A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.h: ObjectRead";
-		rLen = 0;
-		rLoc = 4246;
-		rType = 0;
-		vrLen = 1629;
-		vrLoc = 3268;
-	};
-	7ACFC8E4086C17D200B0E7E4 = {
-		fRef = 7A62B84205A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.cpp: 237";
-		rLen = 0;
-		rLoc = 7061;
-		rType = 0;
-		vrLen = 961;
-		vrLoc = 6500;
-	};
-	7ACFC8E5086C17D200B0E7E4 = {
-		fRef = 7A62B84305A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.h: operator >>";
-		rLen = 0;
-		rLoc = 5723;
-		rType = 0;
-		vrLen = 885;
-		vrLoc = 5405;
-	};
-	7ACFC8E6086C17D200B0E7E4 = {
-		fRef = 7A62B84205A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLIStream.cpp: 451";
-		rLen = 0;
-		rLoc = 12252;
-		rType = 0;
-		vrLen = 903;
-		vrLoc = 6606;
-	};
 	7ACFC8E7086C17D200B0E7E4 = {
 		fRef = 7AFD67DE0764E9DD0009AFF6;
 		isa = PBXTextBookmark;
@@ -10972,16 +10465,6 @@
 		vrLen = 154;
 		vrLoc = 0;
 	};
-	7ACFC8E9086C17D200B0E7E4 = {
-		fRef = 7ACFC8A5086C0FCE00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushMeshPosticity.h: 37";
-		rLen = 0;
-		rLoc = 815;
-		rType = 0;
-		vrLen = 815;
-		vrLoc = 0;
-	};
 	7ACFC8EA086C17D200B0E7E4 = {
 		fRef = 7ACFC8A6086C0FCE00B0E7E4;
 		isa = PBXTextBookmark;
@@ -10990,16 +10473,6 @@
 		rLoc = 920;
 		rType = 0;
 		vrLen = 978;
-		vrLoc = 0;
-	};
-	7ACFC8EB086C17D200B0E7E4 = {
-		fRef = 7ACFC8A5086C0FCE00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushMeshPosticity.h: 37";
-		rLen = 0;
-		rLoc = 815;
-		rType = 0;
-		vrLen = 815;
 		vrLoc = 0;
 	};
 	7ACFC8EC086C17D200B0E7E4 = {
@@ -11012,255 +10485,327 @@
 		vrLen = 1180;
 		vrLoc = 2204;
 	};
-	7ACFC8ED086C17D200B0E7E4 = {
-		fRef = 7ACFC8A6086C0FCE00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushMeshPosticity.cpp: 20";
-		rLen = 0;
-		rLoc = 920;
-		rType = 0;
-		vrLen = 978;
-		vrLoc = 0;
-	};
-	7ACFC8EE086C17D200B0E7E4 = {
-		fRef = 7A62B84B05A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushMesh.h: 118";
-		rLen = 0;
-		rLoc = 3456;
-		rType = 0;
-		vrLen = 1225;
-		vrLoc = 2159;
-	};
-	7ACFC8EF086C17D200B0E7E4 = {
-		fRef = 7ACFC8A5086C0FCE00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushMeshPosticity.h: 50";
-		rLen = 0;
-		rLoc = 1652;
-		rType = 0;
-		vrLen = 1942;
-		vrLoc = 1122;
-	};
-	7ACFC8F0086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 32";
-		rLen = 0;
-		rLoc = 1129;
-		rType = 0;
-		vrLen = 1379;
-		vrLoc = 0;
-	};
-	7ACFC8F1086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 40";
-		rLen = 0;
-		rLoc = 1333;
-		rType = 0;
-		vrLen = 1515;
-		vrLoc = 675;
-	};
-	7ACFC8F2086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 32";
-		rLen = 0;
-		rLoc = 1129;
-		rType = 0;
-		vrLen = 1379;
-		vrLoc = 0;
-	};
-	7ACFC8F3086C17D200B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: MushGameCamera";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 875;
-		vrLoc = 774;
-	};
-	7ACFC8F4086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: MushGameCamera";
-		rLen = 0;
-		rLoc = 1295;
-		rType = 0;
-		vrLen = 1515;
-		vrLoc = 675;
-	};
-	7ACFC8F5086C17D200B0E7E4 = {
-		fRef = 7AC4391C0861E020006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGamePlayer.h: 84";
-		rLen = 0;
-		rLoc = 2920;
-		rType = 0;
-		vrLen = 1398;
-		vrLoc = 941;
-	};
-	7ACFC8F6086C17D200B0E7E4 = {
-		fRef = 7ACFC87E086C06B100B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGamePiece.h: 32";
-		rLen = 0;
-		rLoc = 1129;
-		rType = 0;
-		vrLen = 1561;
-		vrLoc = 129;
-	};
-	7ACFC8F7086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: m_tiedPieceRef";
-		rLen = 0;
-		rLoc = 1406;
-		rType = 0;
-		vrLen = 1515;
-		vrLoc = 675;
-	};
-	7ACFC8F8086C17D200B0E7E4 = {
-		fRef = 7AC439250861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.h: 119";
-		rLen = 0;
-		rLoc = 4867;
-		rType = 0;
-		vrLen = 2389;
-		vrLoc = 1732;
-	};
-	7ACFC8F9086C17D200B0E7E4 = {
-		fRef = 7AD2059E086821F000F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameJobPlayerCreate.cpp: 123";
-		rLen = 0;
-		rLoc = 3847;
-		rType = 0;
-		vrLen = 1098;
-		vrLoc = 4053;
-	};
-	7ACFC8FA086C17D200B0E7E4 = {
-		fRef = 7A8040EA086AE085007B0F20;
-		isa = PBXTextBookmark;
-		name = "MushGameJobAdmission.cpp: 89";
-		rLen = 0;
-		rLoc = 3130;
-		rType = 0;
-		vrLen = 1563;
-		vrLoc = 1875;
-	};
-	7ACFC8FB086C17D200B0E7E4 = {
-		fRef = 7AD205C408682F8E00F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameLogic.h: PlayerNew";
-		rLen = 0;
-		rLoc = 3530;
-		rType = 0;
-		vrLen = 2369;
-		vrLoc = 2854;
-	};
-	7ACFC8FC086C17D200B0E7E4 = {
-		fRef = 7AD205C408682F8E00F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameLogic.h: PlayerNew";
-		rLen = 0;
-		rLoc = 3526;
-		rType = 0;
-		vrLen = 2447;
-		vrLoc = 2308;
-	};
-	7ACFC8FD086C17D200B0E7E4 = {
-		fRef = 7A8040EA086AE085007B0F20;
-		isa = PBXTextBookmark;
-		name = "MushGameJobAdmission.cpp: 89";
-		rLen = 0;
-		rLoc = 3130;
-		rType = 0;
-		vrLen = 1566;
-		vrLoc = 1875;
-	};
-	7ACFC8FE086C17D200B0E7E4 = {
-		fRef = 7AD2059E086821F000F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameJobPlayerCreate.cpp: 110";
-		rLen = 0;
-		rLoc = 3455;
-		rType = 0;
-		vrLen = 1327;
-		vrLoc = 2494;
-	};
-	7ACFC8FF086C17D200B0E7E4 = {
-		fRef = 7AC439250861E1C3006D73D3;
-		isa = PBXTextBookmark;
-		name = "MushGameSaveData.h: 119";
-		rLen = 0;
-		rLoc = 4867;
-		rType = 0;
-		vrLen = 2681;
-		vrLoc = 1921;
-	};
 	7ACFC900086C17D200B0E7E4 = {
 		fRef = 7AD205C508682F8E00F891C0;
 		isa = PBXTextBookmark;
 		name = "MushGameLogic.cpp: 318";
 		rLen = 0;
-		rLoc = 8682;
+		rLoc = 8713;
 		rType = 0;
 		vrLen = 913;
 		vrLoc = 8252;
 	};
-	7ACFC901086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: m_tiedPlayerRef";
-		rLen = 0;
-		rLoc = 1389;
-		rType = 0;
-		vrLen = 1582;
-		vrLoc = 675;
+	7AD1B84C086C8F180079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 884}}";
+			sepNavSelRange = "{1277, 0}";
+			sepNavVisRect = "{{0, 39}, {891, 564}}";
+		};
 	};
-	7ACFC902086C17D200B0E7E4 = {
-		fRef = 7AD205C508682F8E00F891C0;
-		isa = PBXTextBookmark;
-		name = "MushGameLogic.cpp: 318";
-		rLen = 0;
-		rLoc = 8735;
-		rType = 0;
-		vrLen = 913;
-		vrLoc = 8252;
+	7AD1B84D086C8F180079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1443}}";
+			sepNavSelRange = "{943, 23}";
+			sepNavVisRect = "{{0, 0}, {891, 564}}";
+		};
 	};
-	7ACFC903086C17D200B0E7E4 = {
-		fRef = 7ACFC876086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.cpp: MushGameCamera";
-		rLen = 0;
-		rLoc = 1027;
-		rType = 0;
-		vrLen = 875;
-		vrLoc = 774;
-	};
-	7ACFC904086C17D200B0E7E4 = {
-		fRef = 7ACFC875086C05CB00B0E7E4;
-		isa = PBXTextBookmark;
-		name = "MushGameCamera.h: 72";
-		rLen = 0;
-		rLoc = 2645;
-		rType = 0;
-		vrLen = 1858;
-		vrLoc = 521;
-	};
-	7ACFC905086C17D200B0E7E4 = {
+	7AD1B855086C9D170079FBCF = {
 		fRef = 7AC4391D0861E020006D73D3;
 		isa = PBXTextBookmark;
 		name = "MushGamePlayer.cpp: 127";
 		rLen = 0;
 		rLoc = 3184;
 		rType = 0;
-		vrLen = 813;
+		vrLen = 850;
 		vrLoc = 1042;
+	};
+	7AD1B856086C9D170079FBCF = {
+		fRef = 7ACFC87E086C06B100B0E7E4;
+		isa = PBXTextBookmark;
+		name = "MushGamePiece.h: 27";
+		rLen = 0;
+		rLoc = 1129;
+		rType = 0;
+		vrLen = 1553;
+		vrLoc = 129;
+	};
+	7AD1B862086C9D170079FBCF = {
+		fRef = 7AD1B84C086C8F180079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPiece.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 153;
+		vrLoc = 0;
+	};
+	7AD1B865086C9D170079FBCF = {
+		fRef = 7AD1B84D086C8F180079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPiece.cpp: 4";
+		rLen = 0;
+		rLoc = 21;
+		rType = 0;
+		vrLen = 56;
+		vrLoc = 0;
+	};
+	7AD1B871086C9F660079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 832}}";
+			sepNavSelRange = "{1223, 0}";
+			sepNavVisRect = "{{0, 260}, {891, 445}}";
+		};
+	};
+	7AD1B872086C9F660079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1131}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 445}}";
+		};
+	};
+	7AD1B879086CA3A20079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 936}}";
+			sepNavSelRange = "{2480, 0}";
+			sepNavVisRect = "{{0, 491}, {891, 445}}";
+		};
+	};
+	7AD1B87A086CA3A20079FBCF = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1313}}";
+			sepNavSelRange = "{1000, 0}";
+			sepNavVisRect = "{{0, 0}, {891, 564}}";
+		};
+	};
+	7AD1B87F086CC9300079FBCF = {
+		fRef = 7ADBEEE10867142900CFB0B1;
+		isa = PBXTextBookmark;
+		name = "virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage) = 0;";
+		rLen = 95;
+		rLoc = 1445;
+		rType = 0;
+		vrLen = 1367;
+		vrLoc = 258;
+	};
+	7AD1B880086CC9300079FBCF = {
+		fRef = 7AC439260861E1C3006D73D3;
+		isa = PBXTextBookmark;
+		name = "MushGameSaveData.cpp: 42";
+		rLen = 0;
+		rLoc = 1498;
+		rType = 0;
+		vrLen = 885;
+		vrLoc = 1048;
+	};
+	7AD1B881086CC9300079FBCF = {
+		fRef = 7AC439250861E1C3006D73D3;
+		isa = PBXTextBookmark;
+		name = "MushGameSaveData.h: 119";
+		rLen = 0;
+		rLoc = 4867;
+		rType = 0;
+		vrLen = 2642;
+		vrLoc = 1985;
+	};
+	7AD1B882086CC9300079FBCF = {
+		fRef = 7AD2059E086821F000F891C0;
+		isa = PBXTextBookmark;
+		name = "MushGameJobPlayerCreate.cpp: 111";
+		rLen = 0;
+		rLoc = 3455;
+		rType = 0;
+		vrLen = 1342;
+		vrLoc = 2482;
+	};
+	7AD1B883086CC9300079FBCF = {
+		fRef = 7AD3B5C9085F361F00512DB1;
+		isa = PBXTextBookmark;
+		name = "MushGame.h: 75";
+		rLen = 0;
+		rLoc = 2362;
+		rType = 0;
+		vrLen = 1153;
+		vrLoc = 1390;
+	};
+	7AD1B884086CC9300079FBCF = {
+		fRef = 7AD1B84D086C8F180079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPiece.cpp: 21";
+		rLen = 23;
+		rLoc = 943;
+		rType = 0;
+		vrLen = 1345;
+		vrLoc = 0;
+	};
+	7AD1B885086CC9300079FBCF = {
+		fRef = 7A62B84305A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "ioIn.ObjectRead(outpObj);";
+		rLen = 30;
+		rLoc = 7379;
+		rType = 0;
+		vrLen = 879;
+		vrLoc = 6992;
+	};
+	7AD1B886086CC9300079FBCF = {
+		fRef = 7AD1B84C086C8F180079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPiece.h: 36";
+		rLen = 0;
+		rLoc = 1277;
+		rType = 0;
+		vrLen = 1504;
+		vrLoc = 77;
+	};
+	7AD1B887086CC9300079FBCF = {
+		fRef = 7AD1B87A086CA3A20079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPlayer.cpp: 27";
+		rLen = 0;
+		rLoc = 1000;
+		rType = 0;
+		vrLen = 1375;
+		vrLoc = 0;
+	};
+	7AD1B888086CC9300079FBCF = {
+		fRef = 7AD205C508682F8E00F891C0;
+		isa = PBXTextBookmark;
+		name = "MushGameLogic.cpp: 398";
+		rLen = 0;
+		rLoc = 10459;
+		rType = 0;
+		vrLen = 778;
+		vrLoc = 8416;
+	};
+	7AD1B889086CC9300079FBCF = {
+		fRef = 7AD1B871086C9F660079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRef.h: 35";
+		rLen = 0;
+		rLoc = 1223;
+		rType = 0;
+		vrLen = 1098;
+		vrLoc = 882;
+	};
+	7AD1B88A086CC9300079FBCF = {
+		fRef = 7AD1B872086C9F660079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRef.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	7AD1B88B086CC9300079FBCF = {
+		fRef = 7AC4391C0861E020006D73D3;
+		isa = PBXTextBookmark;
+		name = "MushGamePlayer.h: 84";
+		rLen = 0;
+		rLoc = 2920;
+		rType = 0;
+		vrLen = 1055;
+		vrLoc = 1297;
+	};
+	7AD1B88C086CC9300079FBCF = {
+		fRef = 7AD205B40868291D00F891C0;
+		isa = PBXTextBookmark;
+		name = "MushGameData.h: 82";
+		rLen = 0;
+		rLoc = 3318;
+		rType = 0;
+		vrLen = 1529;
+		vrLoc = 1210;
+	};
+	7AD1B88D086CC9300079FBCF = {
+		fRef = 7A62B84505A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushcoreXMLOStream.h: 344";
+		rLen = 0;
+		rLoc = 8978;
+		rType = 0;
+		vrLen = 788;
+		vrLoc = 5552;
+	};
+	7AD1B88E086CC9300079FBCF = {
+		fRef = 7ACFC876086C05CB00B0E7E4;
+		isa = PBXTextBookmark;
+		name = "MushGameCamera.cpp: 43";
+		rLen = 0;
+		rLoc = 1314;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 1042;
+	};
+	7AD1B88F086CC9300079FBCF = {
+		fRef = 7ACFC875086C05CB00B0E7E4;
+		isa = PBXTextBookmark;
+		name = "MushGameCamera.h: 73";
+		rLen = 0;
+		rLoc = 2370;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 1200;
+	};
+	7AD1B890086CC9300079FBCF = {
+		fRef = 7AD1B879086CA3A20079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPlayer.h: 72";
+		rLen = 0;
+		rLoc = 2480;
+		rType = 0;
+		vrLen = 1165;
+		vrLoc = 1315;
+	};
+	7AD1B89B086CC9300079FBCF = {
+		fRef = 7AD1B871086C9F660079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRef.h: 13";
+		rLen = 0;
+		rLoc = 88;
+		rType = 0;
+		vrLen = 88;
+		vrLoc = 0;
+	};
+	7AD1B8B4086CC9300079FBCF = {
+		fRef = 7AD1B879086CA3A20079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPlayer.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 154;
+		vrLoc = 0;
+	};
+	7AD1B8B8086CC9300079FBCF = {
+		fRef = 7AD1B87A086CA3A20079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRefPlayer.cpp: 4";
+		rLen = 0;
+		rLoc = 23;
+		rType = 0;
+		vrLen = 57;
+		vrLoc = 0;
+	};
+	7AD1B8E5086CC9300079FBCF = {
+		fRef = 7AD1B872086C9F660079FBCF;
+		isa = PBXTextBookmark;
+		name = "MushGameRef.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 0;
+	};
+	7AD1B8F7086CC9300079FBCF = {
+		fRef = 7A62B80A05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushcoreDataRef.h: 175";
+		rLen = 0;
+		rLoc = 5128;
+		rType = 0;
+		vrLen = 786;
+		vrLoc = 8324;
 	};
 	7AD205890868206300F891C0 = {
 		uiCtxt = {
@@ -11295,9 +10840,9 @@
 	};
 	7AD2059E086821F000F891C0 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 2860}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 2899}}";
 			sepNavSelRange = "{3455, 0}";
-			sepNavVisRect = "{{0, 1017}, {891, 564}}";
+			sepNavVisRect = "{{0, 1035}, {891, 564}}";
 		};
 	};
 	7AD205A50868252700F891C0 = {
@@ -11322,9 +10867,9 @@
 	};
 	7AD205B40868291D00F891C0 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1053}}";
-			sepNavSelRange = "{1492, 129}";
-			sepNavVisRect = "{{0, 247}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1079}}";
+			sepNavSelRange = "{3318, 0}";
+			sepNavVisRect = "{{0, 400}, {891, 445}}";
 		};
 	};
 	7AD205B50868291D00F891C0 = {
@@ -11357,9 +10902,9 @@
 	};
 	7AD205C508682F8E00F891C0 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 5083}}";
-			sepNavSelRange = "{8735, 0}";
-			sepNavVisRect = "{{0, 3859}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 5187}}";
+			sepNavSelRange = "{10459, 0}";
+			sepNavVisRect = "{{0, 3952}, {891, 445}}";
 		};
 	};
 	7AD205CE0868301D00F891C0 = {
@@ -11501,7 +11046,7 @@
 		isa = PBXTextBookmark;
 		name = SaveDataRefWRef;
 		rLen = 15;
-		rLoc = 1959;
+		rLoc = 1958;
 		rType = 0;
 		vrLen = 1809;
 		vrLoc = 1063;
@@ -12231,16 +11776,6 @@
 		vrLen = 1497;
 		vrLoc = 0;
 	};
-	7AD272C30869FAD8008B104E = {
-		fRef = 7AD3B5C9085F361F00512DB1;
-		isa = PBXTextBookmark;
-		name = "#include \"MushGameAddress.h\"";
-		rLen = 29;
-		rLoc = 1530;
-		rType = 0;
-		vrLen = 1197;
-		vrLoc = 1043;
-	};
 	7AD272C40869FAD8008B104E = {
 		fRef = 7A6CE1A105A58DF000777D9B;
 		isa = PBXTextBookmark;
@@ -12321,6 +11856,16 @@
 		vrLen = 1522;
 		vrLoc = 1470;
 	};
+	7AD3AE21087299EC0095CF48 = {
+		fRef = 7A62B80A05A49D05002A5F1C;
+		isa = PBXTextBookmark;
+		name = "MushcoreDataRef.h: 175";
+		rLen = 0;
+		rLoc = 5128;
+		rType = 0;
+		vrLen = 866;
+		vrLoc = 8244;
+	};
 	7AD3B59D085F326B00512DB1 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 625}}";
@@ -12381,9 +11926,9 @@
 	};
 	7AD3B5C9085F361F00512DB1 = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {891, 1040}}";
-			sepNavSelRange = "{1530, 29}";
-			sepNavVisRect = "{{0, 336}, {891, 564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {891, 1105}}";
+			sepNavSelRange = "{2362, 0}";
+			sepNavVisRect = "{{0, 515}, {891, 564}}";
 		};
 	};
 	7AD3B5CA085F361F00512DB1 = {
@@ -13263,16 +12808,6 @@
 		vrLen = 1701;
 		vrLoc = 463;
 	};
-	7ADA377F086AD5B300098534 = {
-		fRef = 7ADBEEE10867142900CFB0B1;
-		isa = PBXTextBookmark;
-		name = "virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage) = 0;";
-		rLen = 95;
-		rLoc = 1445;
-		rType = 0;
-		vrLen = 1367;
-		vrLoc = 258;
-	};
 	7ADA37B3086ADAFC00098534 = {
 		fRef = 7AD3B62B086185CB00512DB1;
 		isa = PBXTextBookmark;
@@ -13375,7 +12910,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {891, 689}}";
 			sepNavSelRange = "{1445, 95}";
-			sepNavVisRect = "{{0, 115}, {891, 564}}";
+			sepNavVisRect = "{{0, 112}, {891, 564}}";
 		};
 	};
 	7ADBEEE20867142900CFB0B1 = {
@@ -13408,16 +12943,6 @@
 		rType = 0;
 		vrLen = 1552;
 		vrLoc = 3171;
-	};
-	7ADBEEF5086722AB00CFB0B1 = {
-		fRef = 7A62B84505A49D05002A5F1C;
-		isa = PBXTextBookmark;
-		name = "MushcoreXMLOStream.h: 344";
-		rLen = 0;
-		rLoc = 8978;
-		rType = 0;
-		vrLen = 1266;
-		vrLoc = 3599;
 	};
 	7ADBEEF6086722AB00CFB0B1 = {
 		fRef = 7A62B84705A49D05002A5F1C;

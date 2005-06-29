@@ -19,14 +19,32 @@
  ****************************************************************************/
 //%Header } n4I3T2aUdqYB2n1/b+c3Kg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameCamera.cpp,v 1.1 2005/06/24 10:30:12 southa Exp $
+ * $Log: MushGameCamera.cpp,v $
+ * Revision 1.1  2005/06/24 10:30:12  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushGameCamera.h"
 
-MushGameCamera::MushGameCamera()
+MushGameCamera::MushGameCamera() :
+    m_pTiedRef(NULL)
 {
+}
+
+MushGameCamera::~MushGameCamera()
+{
+    if (m_pTiedRef != NULL)
+    {
+        delete m_pTiedRef;
+    }
+}
+
+void
+MushGameCamera::TiedRefCopy(MushGameRef *inpRef)
+{
+    m_pTiedRef = dynamic_cast<MushGameRef *>(inpRef->AutoClone());
 }
 
 //%outOfLineFunctions {
@@ -62,8 +80,14 @@ void
 MushGameCamera::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "tiedPieceRef=" << m_tiedPieceRef << ", ";
-    ioOut << "tiedPlayerRef=" << m_tiedPlayerRef;
+    if (m_pTiedRef == NULL)
+    {
+        ioOut << "pTiedRef=NULL" ;
+    }
+    else
+    {
+        ioOut << "pTiedRef=" << *m_pTiedRef;
+    }
     ioOut << "]";
 }
 bool
@@ -75,13 +99,9 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "tiedPieceRef")
+    else if (inTagStr == "pTiedRef")
     {
-        ioIn >> m_tiedPieceRef;
-    }
-    else if (inTagStr == "tiedPlayerRef")
-    {
-        ioIn >> m_tiedPlayerRef;
+        ioIn >> m_pTiedRef;
     }
     else
     {
@@ -92,9 +112,7 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGameCamera::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("tiedPieceRef");
-    ioOut << m_tiedPieceRef;
-    ioOut.TagSet("tiedPlayerRef");
-    ioOut << m_tiedPlayerRef;
+    ioOut.TagSet("pTiedRef");
+    ioOut << m_pTiedRef;
 }
-//%outOfLineFunctions } sILENq5kDNWntwJb/rp+5w
+//%outOfLineFunctions } asC+Zd9beEpR3oQsIFTtKw
