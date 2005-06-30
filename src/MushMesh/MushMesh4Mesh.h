@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.2 2005/06/30 12:34:59 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.2  2005/06/30 12:34:59  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.1  2005/06/30 12:04:55  southa
  * Mesh work
  *
@@ -71,7 +74,8 @@ public:
     void FaceCentroidsBuild(void) const;
     void FaceBoundingRadiiBuild(void) const;
 
-    void Touch(void);
+    void TouchAll(void);
+    void TouchVertices(void);
     void Prebuild(void);
     
 private:

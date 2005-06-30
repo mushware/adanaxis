@@ -17,13 +17,17 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisRender.cpp,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.1  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  */
 
 #include "AdanaxisRender.h"
 
 #include "AdanaxisSaveData.h"
+#include "AdanaxisVolatileData.h"
 
 #include "API/mushGL.h"
 #include "API/mushMushGame.h"
@@ -36,23 +40,43 @@ using namespace std;
 void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
-    AdanaxisSaveData *pData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
+    AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
     
-    if (pData == NULL)
+    if (pSaveData == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisSaveData");
+    }
+    
+    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
+    
+    if (pVolData == NULL)
+    {
+        throw MushcoreDataFail("Uninitialised AdanaxisVolatileData");
     }
     
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     
-    MushGameDialogueUtils::MoveAndRender(pData->DialoguesWRef(), GameUtils::AppHandler());
+    // Projection prologue
+    
+    typedef AdanaxisVolatileData::tDecoList tDecoList;
+    
+    tDecoList::iterator endIter = pVolData->DecoListWRef().end();
+    for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != endIter; ++p)
+    {
+        p->Render(ioLogic, inCamera);
+    }
+        
+    // Projection epilogue
+    
+    MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), GameUtils::AppHandler());
+    
     
     GLUtils::OrthoPrologue();
     
-    if (pData->ModeKeypressMsec() != 0)
+    if (pVolData->ModeKeypressMsec() != 0)
     {
-        PlatformVideoUtils::Sgl().RenderModeInfo(pData->NewMode());
+        PlatformVideoUtils::Sgl().RenderModeInfo(pVolData->NewMode());
     }
     
     static U32 ctr=0;

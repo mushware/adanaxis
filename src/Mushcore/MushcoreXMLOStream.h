@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.22 2005/06/16 10:49:00 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.23 2005/06/20 14:30:38 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.23  2005/06/20 14:30:38  southa
+ * Adanaxis work
+ *
  * Revision 1.22  2005/06/16 10:49:00  southa
  * Client/server work
  *
@@ -252,6 +255,53 @@ operator<<(MushcoreXMLOStream& ioOut, const std::vector<T *>& inObj)
     typename std::vector<T *>::const_iterator pEnd = inObj.end();
     typename std::vector<T *>::const_iterator p = inObj.begin();
 
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+// List functions are a direct copy of vector functions
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::list<T>& inObj)
+{
+    typename std::list<T>::const_iterator pEnd = inObj.end();
+    typename std::list<T>::const_iterator p = inObj.begin();
+    
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << "(";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut.OStreamGet() << ',';
+        }
+    }
+    ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::list<T *>& inObj)
+{
+    typename std::list<T *>::const_iterator pEnd = inObj.end();
+    typename std::list<T *>::const_iterator p = inObj.begin();
+    
     std::string localTag = ioOut.OpeningTagWrite();
     ioOut.OStreamGet() << "(";
     while (p != pEnd)

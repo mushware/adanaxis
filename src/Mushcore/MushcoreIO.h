@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NNj6hj9phwRQNaj45QYBKA
 /*
- * $Id: MushcoreIO.h,v 1.10 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreIO.h,v 1.11 2005/06/16 10:49:00 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.11  2005/06/16 10:49:00  southa
+ * Client/server work
+ *
  * Revision 1.10  2005/05/19 13:02:15  southa
  * Mac release work
  *
@@ -122,6 +125,50 @@ operator<<(std::ostream& ioOut, const std::vector<T *>& inObj)
     ioOut << "]";
     return ioOut;
 }
+
+// std::list output (copy of vector)
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::list<T>& inObj)
+{
+    typename std::list<T>::const_iterator pEnd = inObj.end();
+    typename std::list<T>::const_iterator p = inObj.begin();
+    
+    ioOut << "[";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut << ", ";
+        }
+    }
+    ioOut << "]";
+    return ioOut;
+}
+
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::list<T *>& inObj)
+{
+    typename std::list<T *>::const_iterator pEnd = inObj.end();
+    typename std::list<T *>::const_iterator p = inObj.begin();
+    
+    ioOut << "[";
+    while (p != pEnd)
+    {
+        ioOut << *p;
+        ++p;
+        if (p != pEnd)
+        {
+            ioOut << ", ";
+        }
+    }
+    ioOut << "]";
+    return ioOut;
+}
+
 
 // std::deque output (copy of vector)
 template <class T>

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.19 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshVector.h,v 1.20 2005/06/24 10:30:13 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.20  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.19  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -141,6 +144,7 @@ public:
     void InPlaceElementwiseMultiply(const tThis& inB);
     tThis ElementwiseProduct(const tThis& inB) const;
     Mushware::tVal Magnitude(void) const;
+    Mushware::tVal MagnitudeSquared(void) const;
     void InPlaceNormalise(void);
     void ToAdditiveIdentitySet(void);
     void ToMultiplicativeIdentitySet(void);
@@ -417,14 +421,21 @@ MushMeshVector<T, D>::ElementwiseProduct(const tThis& inB) const
 
 template <class T, Mushware::U32 D>
 inline Mushware::tVal
-MushMeshVector<T, D>::Magnitude(void) const
+MushMeshVector<T, D>::MagnitudeSquared(void) const
 {
     Mushware::tVal retVal2 = 0;
     for (Mushware::U32 i=0; i<D; ++i)
     {
         retVal2 += m_value[i] * m_value[i];
     }
-    return std::sqrt(retVal2);
+    return retVal2;
+}
+
+template <class T, Mushware::U32 D>
+inline Mushware::tVal
+MushMeshVector<T, D>::Magnitude(void) const
+{
+    return std::sqrt(MagnitudeSquared());
 }
 
 template <class T, Mushware::U32 D>

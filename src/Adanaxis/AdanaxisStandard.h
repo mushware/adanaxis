@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } A6hQ6QPU4BM8nj46kNSMsw
 /*
- * $Id: AdanaxisStandard.h,v 1.1 2005/06/13 17:34:55 southa Exp $
+ * $Id: AdanaxisStandard.h,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisStandard.h,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:55  southa
  * Adanaxis creation
  *
@@ -34,10 +37,13 @@
 
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/Mushcore.h>
+#include <Mushcore/MushcoreIO.h>
 #elif defined(HAVE_MUSHCORE_H)
 #include <Mushcore.h>
+#include <MushcoreIO.h>
 #else
 #include "Mushcore/Mushcore.h"
+#include "Mushcore/MushcoreIO.h"
 #endif
 
 #if defined(HAVE_MUSHMESH_MUSHMESH_H)

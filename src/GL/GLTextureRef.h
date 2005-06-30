@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } RiAVbikoHEcCHD1YSyzBEg
 /*
- * $Id: GLTextureRef.h,v 1.20 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTextureRef.h,v 1.21 2005/06/20 14:30:34 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.21  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.20  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -111,9 +114,9 @@ private:
     void BindingNameFetch(void) const;
 
     std::string m_name;
-    mutable GLTexture *m_texPtr;
-    mutable GLuint m_bindingName;
-    mutable Mushware::U32 m_bindingNameContext;
+    mutable GLTexture *m_texPtr; //:ignore
+    mutable GLuint m_bindingName; //:ignore
+    mutable Mushware::U32 m_bindingNameContext; //:ignore
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

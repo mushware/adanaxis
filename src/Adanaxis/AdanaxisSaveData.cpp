@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.3 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.4 2005/06/29 11:11:15 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.4  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.3  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -32,9 +35,7 @@
 
 #include "AdanaxisSaveData.h"
 
-AdanaxisSaveData::AdanaxisSaveData() :
-    m_modeKeypressMsec(0),
-    m_newMode(0)
+AdanaxisSaveData::AdanaxisSaveData()
 {
 }
 
@@ -72,9 +73,7 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameSaveData::AutoPrint(ioOut);
-    ioOut << "dialogues=" << m_dialogues << ", ";
-    ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
-    ioOut << "newMode=" << m_newMode;
+    ioOut << "dialogues=" << m_dialogues;
     ioOut << "]";
 }
 bool
@@ -89,14 +88,6 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     else if (inTagStr == "dialogues")
     {
         ioIn >> m_dialogues;
-    }
-    else if (inTagStr == "modeKeypressMsec")
-    {
-        ioIn >> m_modeKeypressMsec;
-    }
-    else if (inTagStr == "newMode")
-    {
-        ioIn >> m_newMode;
     }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -114,9 +105,5 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGameSaveData::AutoXMLPrint(ioOut);
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
-    ioOut.TagSet("modeKeypressMsec");
-    ioOut << m_modeKeypressMsec;
-    ioOut.TagSet("newMode");
-    ioOut << m_newMode;
 }
-//%outOfLineFunctions } IlyxdwNH+6a6kpja17za/Q
+//%outOfLineFunctions } GQPJU0/4jPhR45JXDZ/ovA

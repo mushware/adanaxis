@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef ADANAXISSAVEDATA_H
-#define ADANAXISSAVEDATA_H
-//%includeGuardStart } Phse6V6gEtb3LIdaz1rQlw
+#ifndef ADANAXISVOLATILEDATA_H
+#define ADANAXISVOLATILEDATA_H
+//%includeGuardStart } WOSmULytubQRWj1H0kbf4g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisSaveData.h
+ * File: src/Adanaxis/AdanaxisVolatileData.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,46 +19,43 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lP1KYvwjO8U4fVO07cIsNw
+//%Header } T2Jvb6GmQsX2nP/3BMU8mg
 /*
- * $Id: AdanaxisSaveData.h,v 1.4 2005/06/29 11:11:15 southa Exp $
- * $Log: AdanaxisSaveData.h,v $
- * Revision 1.4  2005/06/29 11:11:15  southa
- * Camera and rendering work
- *
- * Revision 1.3  2005/06/20 14:30:33  southa
- * Adanaxis work
- *
- * Revision 1.2  2005/06/16 17:25:37  southa
- * Client/server work
- *
- * Revision 1.1  2005/06/14 20:39:40  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "AdanaxisStandard.h"
+#include "AdanaxisPieceDeco.h"
 
 #include "API/mushGame.h"
 #include "API/mushMushGame.h"
 
-//:xml1base MushGameSaveData
+//:xml1base MushGameVolatileData
 //:generate virtual standard ostream xml1
-class AdanaxisSaveData : public MushGameSaveData
+class AdanaxisVolatileData : public MushGameVolatileData
 {
 public:
-    AdanaxisSaveData();
-    virtual ~AdanaxisSaveData() {}
+    typedef AdanaxisPieceDeco tDeco;
+    typedef std::list<tDeco> tDecoList;
+    AdanaxisVolatileData();
+    virtual ~AdanaxisVolatileData() {}
     
 private:
-    MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
+    tDecoList m_decoList; //:readwrite :wref
+    Mushware::tMsec m_modeKeypressMsec; //:readwrite
+    Mushware::tMsec m_newMode; //:readwrite
     
 //%classPrototypes {
 public:
-    const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
-    void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
-    // Writable reference for m_dialogues
-    MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
+    const tDecoList& DecoList(void) const { return m_decoList; }
+    void DecoListSet(const tDecoList& inValue) { m_decoList=inValue; }
+    // Writable reference for m_decoList
+    tDecoList& DecoListWRef(void) { return m_decoList; }
+    const Mushware::tMsec& ModeKeypressMsec(void) const { return m_modeKeypressMsec; }
+    void ModeKeypressMsecSet(const Mushware::tMsec& inValue) { m_modeKeypressMsec=inValue; }
+    const Mushware::tMsec& NewMode(void) const { return m_newMode; }
+    void NewModeSet(const Mushware::tMsec& inValue) { m_newMode=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,16 +63,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PJK5FktExvI23HdQ62s29w
+//%classPrototypes } kAi3hm23IFuANWrzRm6kRg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const AdanaxisSaveData& inObj)
+operator<<(std::ostream& ioOut, const AdanaxisVolatileData& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } +jNhUDLSnXe2KY7BCQ1TrA
+//%inlineHeader } f8H5o1BtmcymrIW1lWAphw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

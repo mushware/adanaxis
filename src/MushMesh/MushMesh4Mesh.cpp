@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.2 2005/06/30 12:34:59 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.2  2005/06/30 12:34:59  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.1  2005/06/30 12:04:55  southa
  * Mesh work
  *
@@ -29,21 +32,31 @@
 #include "MushMesh4Mesh.h"
 
 #include "MushMeshMushcoreIO.h"
+#include "MushMeshSTL.h"
+
+using namespace Mushware;
+using namespace std;
 
 MushMesh4Mesh::MushMesh4Mesh()
 {
-    Touch();
+    TouchAll();
 }
 
 void
-MushMesh4Mesh::Touch(void)
+MushMesh4Mesh::TouchVertices(void)
 {
     m_normalsValid = false;
-    m_connectivityValid = false;
     m_centroidValid = false;
     m_boundingRadiusValid = false;
     m_faceCentroidsValid = false;
-    m_faceBoundingRadiiValid = false;
+    m_faceBoundingRadiiValid = false; 
+}
+
+void
+MushMesh4Mesh::TouchAll(void)
+{
+    TouchVertices();
+    m_connectivityValid = false;
 }
 
 void
@@ -66,18 +79,107 @@ MushMesh4Mesh::NormalsBuild(void) const
 void
 MushMesh4Mesh::ConnectivityBuild(void) const
 {
+    m_connectivity.resize(m_vertices.size());
+    for (U32 i=0; i<m_connectivity.size(); ++i)
+    {
+        m_connectivity[i].resize(0);
+    }    
+    
+    for (U32 i=0; i<m_faces.size(); ++i)
+    {
+        const MushMesh4Face& faceRef = m_faces[i];
+        const MushMesh4Face::tVertexList& vertexListRef = faceRef.VertexList();
+        const MushMesh4Face::tVertexGroupSize& vertexGroupSizeRef = faceRef.VertexGroupSize();
+        
+        U32 listIndex = 0;
+        for (U32 j=0; j<vertexGroupSizeRef.size(); ++j)
+        {
+            U32 vertexGroupSize = vertexGroupSizeRef[j];
+            if (vertexGroupSize > 1)
+            {
+                for (U32 k=0; k<vertexGroupSize; ++k)
+                {
+                    U32 vertIndex = listIndex+k;
+                    U32 otherVertIndex;
+                    if (k+1 < vertexGroupSize)
+                    {
+                        otherVertIndex = listIndex+k+1;
+                    }
+                    else
+                    {
+                        otherVertIndex = listIndex;
+                    }
+                    
+                    MUSHCOREASSERT(vertIndex < vertexListRef.size());
+                    MUSHCOREASSERT(otherVertIndex < vertexListRef.size());
+
+                    U32 vertNum = vertexListRef[vertIndex];
+                    U32 otherVertNum = vertexListRef[otherVertIndex];
+                    
+                    MUSHCOREASSERT(vertNum < m_connectivity.size());
+                    MUSHCOREASSERT(otherVertNum < m_connectivity.size());
+                    
+                    if (std::find(m_connectivity[vertNum].begin(),
+                             m_connectivity[vertNum].end(),
+                             otherVertNum) == m_connectivity[vertNum].end())
+                    {
+                        m_connectivity[vertNum].push_back(otherVertNum);
+                    }
+                    if (std::find(m_connectivity[otherVertNum].begin(),
+                             m_connectivity[otherVertNum].end(),
+                             vertNum) == m_connectivity[otherVertNum].end())
+                    {
+                        m_connectivity[otherVertNum].push_back(vertNum);
+                    }
+                }
+            }
+            listIndex += vertexGroupSize;
+        }
+    }
+    
+    for (U32 i=0; i<m_connectivity.size(); ++i)
+    {
+        std::sort(m_connectivity[i].begin(), m_connectivity[i].end());
+    }  
+    
     m_connectivityValid = true;
 }
 
 void
 MushMesh4Mesh::CentroidBuild(void) const
 {
+    m_centroid = t4Val(0,0,0,0);
+    U32 verticesSize = m_vertices.size();
+    for (U32 i=0; i<verticesSize; ++i)
+    {
+        m_centroid += m_vertices[i];
+    }
+    m_centroid /= verticesSize;
+    
     m_centroidValid = true;
 }
 
 void
 MushMesh4Mesh::BoundingRadiusBuild(void) const
 {
+    if (!m_centroidValid)
+    {
+        CentroidBuild();
+    }
+    
+    tVal maxRadiusSquared = 0;
+    
+    U32 verticesSize = m_vertices.size();
+    for (U32 i=0; i<verticesSize; ++i)
+    {
+        tVal radiusSquared = (m_centroid - m_vertices[i]).MagnitudeSquared();
+        if (radiusSquared >  maxRadiusSquared)
+        {
+             maxRadiusSquared = radiusSquared;
+        }
+    }
+    
+    m_boundingRadius = std::sqrt(maxRadiusSquared);
     m_boundingRadiusValid = true;
 }
 

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef ADANAXISSAVEDATA_H
-#define ADANAXISSAVEDATA_H
-//%includeGuardStart } Phse6V6gEtb3LIdaz1rQlw
+#ifndef ADANAXISPIECEDECO_H
+#define ADANAXISPIECEDECO_H
+//%includeGuardStart } oqn4Y6tbxdOzvAL0fqtoXA
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisSaveData.h
+ * File: src/Adanaxis/AdanaxisPieceDeco.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,46 +19,35 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lP1KYvwjO8U4fVO07cIsNw
+//%Header } enJUO8WAIa4qUMI3BXYVJA
 /*
- * $Id: AdanaxisSaveData.h,v 1.4 2005/06/29 11:11:15 southa Exp $
- * $Log: AdanaxisSaveData.h,v $
- * Revision 1.4  2005/06/29 11:11:15  southa
- * Camera and rendering work
- *
- * Revision 1.3  2005/06/20 14:30:33  southa
- * Adanaxis work
- *
- * Revision 1.2  2005/06/16 17:25:37  southa
- * Client/server work
- *
- * Revision 1.1  2005/06/14 20:39:40  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "AdanaxisStandard.h"
 
-#include "API/mushGame.h"
 #include "API/mushMushGame.h"
+#include "API/mushMushMesh.h"
 
-//:xml1base MushGameSaveData
+//:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class AdanaxisSaveData : public MushGameSaveData
+class AdanaxisPieceDeco : public MushGamePiece
 {
 public:
-    AdanaxisSaveData();
-    virtual ~AdanaxisSaveData() {}
+    explicit AdanaxisPieceDeco(const std::string& inID = 0);
+    virtual ~AdanaxisPieceDeco() {}
+    
+    virtual void Render(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     
 private:
-    MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
+    std::string m_id;
+    MushMesh4Mesh m_mesh; //:readwrite
     
 //%classPrototypes {
 public:
-    const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
-    void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
-    // Writable reference for m_dialogues
-    MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
+    const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
+    void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,16 +55,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PJK5FktExvI23HdQ62s29w
+//%classPrototypes } r3k1iP3VZ2PsVPp0+7UJNA
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const AdanaxisSaveData& inObj)
+operator<<(std::ostream& ioOut, const AdanaxisPieceDeco& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } +jNhUDLSnXe2KY7BCQ1TrA
+//%inlineHeader } U59qcX7inEXnV9haw5/Q8Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
