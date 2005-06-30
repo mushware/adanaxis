@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iKJwoqVdIXwCMTQh3g5qCg
 /*
- * $Id: MushMesh.h,v 1.21 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushMesh.h,v 1.22 2005/06/24 10:30:13 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.22  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.21  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -90,11 +93,17 @@
  *
  */
 
+#include "MushMesh4Face.h"
+#include "MushMesh4Library.h"
+#include "MushMesh4Mesh.h"
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
 #include "MushMeshConnector.h"
 #include "MushMeshDivide.h"
+#include "MushMeshFace.h"
 #include "MushMeshGroup.h"
+#include "MushMeshMaterialRef.h"
+#include "MushMeshMesh.h"
 #include "MushMeshOps.h"
 #include "MushMeshPatch.h"
 #include "MushMeshPatchEnd.h"

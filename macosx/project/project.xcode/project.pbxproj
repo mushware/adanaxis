@@ -2019,6 +2019,8 @@
 				7AD1B87B086CA3A20079FBCF,
 				7A218C3308729CAA00EEA4E1,
 				7A218C3D08729E8900EEA4E1,
+				7AD2B6450873EF0400DA5A9F,
+				7AD2B69C0873FC6600DA5A9F,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2386,6 +2388,8 @@
 				7AD1B87C086CA3A20079FBCF,
 				7A218C3408729CAA00EEA4E1,
 				7A218C3E08729E8900EEA4E1,
+				7AD2B6460873EF0400DA5A9F,
+				7AD2B69D0873FC6600DA5A9F,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5306,6 +5310,12 @@
 		};
 		7A62B84905A49D05002A5F1C = {
 			children = (
+				7AD2B67E0873F24300DA5A9F,
+				7AD2B67D0873F24300DA5A9F,
+				7AD2B6950873F9C300DA5A9F,
+				7AD2B6940873F9C300DA5A9F,
+				7AD2B6840873F25800DA5A9F,
+				7AD2B6830873F25800DA5A9F,
 				7A62B84A05A49D05002A5F1C,
 				7A62B84B05A49D05002A5F1C,
 				7A62B84C05A49D05002A5F1C,
@@ -5316,8 +5326,14 @@
 				7A62B85105A49D05002A5F1C,
 				7A654B9807A9402200DE4A9D,
 				7A654B9707A9402200DE4A9D,
+				7AD2B68A0873F34E00DA5A9F,
+				7AD2B6890873F34E00DA5A9F,
 				7A61B10B07A68FEA00C6B670,
 				7A61B10A07A68FEA00C6B670,
+				7AD2B6780873F22C00DA5A9F,
+				7AD2B6770873F22C00DA5A9F,
+				7AD2B6440873EF0400DA5A9F,
+				7AD2B6430873EF0400DA5A9F,
 				7A65205A05A87C750026CBAE,
 				7A65205905A87C750026CBAE,
 				7A66E04D074C06AC00759E06,
@@ -6905,6 +6921,8 @@
 		};
 		7A62B90005A49D05002A5F1C = {
 			children = (
+				7AD2B69B0873FC6600DA5A9F,
+				7AD2B69A0873FC6600DA5A9F,
 				7A62B90105A49D05002A5F1C,
 				7A62B90205A49D05002A5F1C,
 				7A62B90305A49D05002A5F1C,
@@ -10936,7 +10954,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../..\n./prebuild.sh";
+			shellScript = "date\ncd ../..\n/bin/sh ./prebuild.sh";
 		};
 		7A65812C05A9D09700E727F8 = {
 			buildActionMask = 2147483647;
@@ -10956,6 +10974,7 @@
 				7A66E082074C106500759E06,
 				7A69DF0807626B89004F23F7,
 				7AFD681E0764EE350009AFF6,
+				7AD2B69E0873FC6600DA5A9F,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10990,6 +11009,7 @@
 				7A66E083074C106500759E06,
 				7A69DF0907626B89004F23F7,
 				7AFD681F0764EE350009AFF6,
+				7AD2B69F0873FC6600DA5A9F,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11123,6 +11143,12 @@
 				7A654B9D07A9402200DE4A9D,
 				7A0673B407B284E00067AA64,
 				7ACFC8AC086C108B00B0E7E4,
+				7AD2B6490873EF1000DA5A9F,
+				7AD2B6790873F22C00DA5A9F,
+				7AD2B67F0873F24300DA5A9F,
+				7AD2B6850873F25800DA5A9F,
+				7AD2B68B0873F34E00DA5A9F,
+				7AD2B6960873F9C300DA5A9F,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11177,6 +11203,12 @@
 				7A654B9E07A9402200DE4A9D,
 				7A0673B507B284E00067AA64,
 				7ACFC8AB086C108B00B0E7E4,
+				7AD2B64A0873EF1100DA5A9F,
+				7AD2B67A0873F22C00DA5A9F,
+				7AD2B6800873F24300DA5A9F,
+				7AD2B6860873F25800DA5A9F,
+				7AD2B68C0873F34E00DA5A9F,
+				7AD2B6970873F9C300DA5A9F,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -24365,6 +24397,226 @@
 		};
 		7AD272AF0869DDCF008B104E = {
 			fileRef = 7AD272AB0869DDCF008B104E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6430873EF0400DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMeshMesh.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6440873EF0400DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMeshMesh.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6450873EF0400DA5A9F = {
+			fileRef = 7AD2B6430873EF0400DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6460873EF0400DA5A9F = {
+			fileRef = 7AD2B6440873EF0400DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6490873EF1000DA5A9F = {
+			fileRef = 7AD2B6430873EF0400DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B64A0873EF1100DA5A9F = {
+			fileRef = 7AD2B6440873EF0400DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6770873F22C00DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMeshMaterialRef.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6780873F22C00DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMeshMaterialRef.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6790873F22C00DA5A9F = {
+			fileRef = 7AD2B6770873F22C00DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B67A0873F22C00DA5A9F = {
+			fileRef = 7AD2B6780873F22C00DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B67D0873F24300DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMesh4Face.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B67E0873F24300DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMesh4Face.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B67F0873F24300DA5A9F = {
+			fileRef = 7AD2B67D0873F24300DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6800873F24300DA5A9F = {
+			fileRef = 7AD2B67E0873F24300DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6830873F25800DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMesh4Mesh.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6840873F25800DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMesh4Mesh.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6850873F25800DA5A9F = {
+			fileRef = 7AD2B6830873F25800DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6860873F25800DA5A9F = {
+			fileRef = 7AD2B6840873F25800DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6890873F34E00DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMeshFace.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B68A0873F34E00DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMeshFace.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B68B0873F34E00DA5A9F = {
+			fileRef = 7AD2B6890873F34E00DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B68C0873F34E00DA5A9F = {
+			fileRef = 7AD2B68A0873F34E00DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6940873F9C300DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushMesh4Library.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6950873F9C300DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushMesh4Library.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B6960873F9C300DA5A9F = {
+			fileRef = 7AD2B6940873F9C300DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B6970873F9C300DA5A9F = {
+			fileRef = 7AD2B6950873F9C300DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B69A0873FC6600DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestMushMesh4Library.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B69B0873FC6600DA5A9F = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestMushMesh4Library.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2B69C0873FC6600DA5A9F = {
+			fileRef = 7AD2B69A0873FC6600DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B69D0873FC6600DA5A9F = {
+			fileRef = 7AD2B69B0873FC6600DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B69E0873FC6600DA5A9F = {
+			fileRef = 7AD2B69A0873FC6600DA5A9F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2B69F0873FC6600DA5A9F = {
+			fileRef = 7AD2B69B0873FC6600DA5A9F;
 			isa = PBXBuildFile;
 			settings = {
 			};

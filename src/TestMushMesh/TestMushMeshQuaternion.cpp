@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } TGM/4ae2lNjW0/j6zPy6UA
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.4 2005/02/03 21:03:11 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.5 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/03 21:03:11  southa
  * Build fixes
  *
@@ -242,5 +245,5 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
 void
 TestMushMeshQuaternion::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshrquaternion", TestQuaternion);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshquaternion", TestQuaternion);
 }

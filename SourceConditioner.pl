@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.36 2005/06/14 13:25:30 southa Exp $
+# $Id: SourceConditioner.pl,v 1.37 2005/06/20 14:30:31 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.37  2005/06/20 14:30:31  southa
+# Adanaxis work
+#
 # Revision 1.36  2005/06/14 13:25:30  southa
 # Adanaxis work
 #
@@ -339,11 +342,11 @@ sub HeaderInfoCreate($$)
                 $state = HS_DONE;
             }
         
-            if ($line =~ /^\s+($gExprScopedType)\s*($gExprTemplateSuffix)?\s+($gExprVariableExpr)\s*;/)
+            if ($line =~ /^\s+(mutable\s+|const\s+)($gExprScopedType)\s*($gExprTemplateSuffix)?\s+($gExprVariableExpr)\s*;/)
             {
-                my $template = $2;
+                my $template = $3;
                 $template = "" unless defined($template);
-                AttributeAdd($infoRef, $1.$template, $3, $comments);
+                AttributeAdd($infoRef, $2.$template, $4, $comments);
             }
         }
         
