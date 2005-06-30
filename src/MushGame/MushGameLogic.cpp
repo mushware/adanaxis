@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.7 2005/06/29 09:07:56 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.8 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.8  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.7  2005/06/29 09:07:56  southa
  * MushGame camera work
  *
@@ -127,7 +130,25 @@ MushGameLogic::DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessa
 void
 MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with Job ID");
+    std::string jobName = MushGameUtil::KeyFromMessage(inMessage);
+    
+    MushGameJob *pJob;
+    if (SaveData().JobList().GetIfExists(pJob, jobName))
+    {
+        pJob->MessageConsume(ioLogic, inMessage);
+    }
+    else if (HostSaveData().JobList().GetIfExists(pJob, jobName))
+    {
+        pJob->MessageConsume(ioLogic, inMessage);        
+    }
+    else
+    {
+        MushcoreXMLOStream xmlOut(std::cout);
+        xmlOut << SaveData().JobList();
+        xmlOut << HostSaveData().JobList();
+        
+        throw MushcoreDataFail(std::string("Unknown job ID '")+jobName+"' in message type '"+inMessage.AutoName()+"'");
+    }
 }
 
 void

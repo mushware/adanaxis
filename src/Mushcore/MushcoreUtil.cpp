@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Nd4PoIz3nPwfnH84Wy1Y3w
 /*
- * $Id: MushcoreUtil.cpp,v 1.18 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.19 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.19  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.18  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -333,7 +336,13 @@ MushcoreUtil::LogTimeString(void)
 const Mushware::U32 
 MushcoreUtil::RandomU32(const Mushware::U32 inMin, const Mushware::U32 inMax)
 {
-    return static_cast<U32>(inMin + (inMax - inMin) *((double)std::rand() / RAND_MAX));
+    return static_cast<U32>(inMin + (inMax - inMin) * ((double)std::rand() / RAND_MAX));
+}
+
+const Mushware::tVal 
+MushcoreUtil::RandomVal(const Mushware::tVal inMin, const Mushware::tVal inMax)
+{
+    return static_cast<tVal>(inMin + (inMax - inMin) * ((double)std::rand() / RAND_MAX));
 }
 
 void

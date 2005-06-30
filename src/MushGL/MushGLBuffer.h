@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7OpR3zTj9YNW6vQRFe5IfA
 /*
- * $Id: MushGLBuffer.h,v 1.3 2005/02/01 13:40:37 southa Exp $
+ * $Id: MushGLBuffer.h,v 1.4 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLBuffer.h,v $
+ * Revision 1.4  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/01 13:40:37  southa
  * Rotating spheres and hypercube
  *
@@ -104,7 +107,6 @@ MushGLBuffer<T>::MushGLBuffer(const Mushware::tSize inSize) :
 }
 
 template <class T>
-inline
 MushGLBuffer<T>::~MushGLBuffer()
 {
     if (m_allocated)

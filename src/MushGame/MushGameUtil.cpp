@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.7 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.8 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.8  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.7  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -52,6 +55,7 @@
 #include "MushGameHostSaveData.h"
 #include "MushGameHostVolatileData.h"
 #include "MushGameJobAdmission.h"
+#include "MushGameJobPlayerCreate.h"
 #include "MushGameLogic.h"
 #include "MushGameLink.h"
 #include "MushGameMessage.h"
@@ -123,7 +127,7 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     DataObjectCreate<MushGameServer>(inName, inPrefix, "Server")->GroupingNameSet(inName);
     DataObjectCreate<MushGameClient>(inName, inPrefix, "Client")->GroupingNameSet(inName);
     DataObjectCreate<MushGameRender>(inName, inPrefix, "Render")->GroupingNameSet(inName);
-    MushGameLogic *pLogic = DataObjectCreate<MushGameLogic>(inName, inPrefix, "LogicLocal");
+    MushGameLogic *pLogic = DataObjectCreate<MushGameLogic>(inName, inPrefix, "Logic");
     pLogic->GroupingNameSet(inName);
 
     // Create local addresses and links
@@ -147,9 +151,13 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
 void
 MushGameUtil::LocalGameJobsCreate(MushGameLogic& ioLogic)
 {
-    std::string nameStr = "admission";
-    MushGameJobAdmission *pCreate = new MushGameJobAdmission("j:"+nameStr);
-    ioLogic.HostSaveData().JobListWRef().Give(nameStr, pCreate);
+    std::string admissionName = "admission";
+    MushGameJobAdmission *pAdmissionCreate = new MushGameJobAdmission("j:"+admissionName);
+    ioLogic.HostSaveData().JobListWRef().Give(admissionName, pAdmissionCreate);
+    
+    std::string localPlayerCreateName = "localplayercreate";
+    MushGameJobPlayerCreate *pLocalPlayerCreate = new MushGameJobPlayerCreate("j:"+localPlayerCreateName);
+    ioLogic.SaveData().JobListWRef().Give(localPlayerCreateName, pLocalPlayerCreate);
 }
 
 std::string

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceDeco.cpp,v 1.1 2005/06/30 14:26:35 southa Exp $
+ * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.1  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisPieceDeco.h"
@@ -29,14 +32,12 @@ using namespace std;
 AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
     m_id(inID)
 {
-    MushMesh4Library::Sgl().UnitTesseractCreate(m_mesh);
-    PostWRef().PosSet(t4Val(0,0,0,-10));
 }
 
 void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
-    cout << "Rendered" << endl;
+    // Fill me in
 }
 
 //%outOfLineFunctions {

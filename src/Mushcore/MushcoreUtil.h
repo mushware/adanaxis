@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.18 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.19 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.19  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.18  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -133,6 +136,7 @@ public:
     static std::string InsertMeta(const std::string& inStr);
 
     static const Mushware::U32 RandomU32(const Mushware::U32 inMin, const Mushware::U32 inMax);
+    static const Mushware::tVal RandomVal(const Mushware::tVal inMin, const Mushware::tVal inMax);
     static std::string LogTimeString(void);
     static void BreakpointFunction(void);
 };

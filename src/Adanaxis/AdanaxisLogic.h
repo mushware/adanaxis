@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef ADANAXISPIECEDECO_H
-#define ADANAXISPIECEDECO_H
-//%includeGuardStart } oqn4Y6tbxdOzvAL0fqtoXA
+#ifndef ADANAXISLOGIC_H
+#define ADANAXISLOGIC_H
+//%includeGuardStart } tlupkMe2RfcPxVQYrM2UbQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisPieceDeco.h
+ * File: src/Adanaxis/AdanaxisLogic.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,40 +19,32 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } enJUO8WAIa4qUMI3BXYVJA
+//%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.1 2005/06/30 14:26:35 southa Exp $
- * $Log: AdanaxisPieceDeco.h,v $
- * Revision 1.1  2005/06/30 14:26:35  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "AdanaxisStandard.h"
 
-#include "API/mushMushGame.h"
-#include "API/mushMushMesh.h"
+#include "AdanaxisSaveData.h"
+#include "AdanaxisVolatileData.h"
 
-//:xml1base MushGamePiece
+#include "API/mushMushGame.h"
+
+//:xml1base MushGameLogic
 //:generate virtual standard ostream xml1
-class AdanaxisPieceDeco : public MushGamePiece
+class AdanaxisLogic : public MushGameLogic 
 {
 public:
-    explicit AdanaxisPieceDeco(const std::string& inID = 0);
-    virtual ~AdanaxisPieceDeco() {}
+    virtual AdanaxisSaveData& SaveData(void);
+    virtual AdanaxisVolatileData& VolatileData(void);
     
-    virtual void Render(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
-    
+    // virtual AdanaxisHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
+    // virtual AdanaxisHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
 private:
-    std::string m_id;
-    MushMesh4Mesh m_mesh; //:readwrite :wref
-    
 //%classPrototypes {
 public:
-    const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
-    void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
-    // Writable reference for m_mesh
-    MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,16 +52,39 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } dQ2Lou6s06kQbpMrg13b9w
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+
+inline AdanaxisSaveData&
+AdanaxisLogic::SaveData(void)
+{
+    AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&MushGameLogic::SaveData());
+    if (pSaveData == NULL)
+    {
+        throw MushcoreLogicFail("AdanaxisSaveData of wrong type");
+    }
+    return *pSaveData;
+}
+
+inline AdanaxisVolatileData&
+AdanaxisLogic::VolatileData(void)
+{
+    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&MushGameLogic::VolatileData());
+    if (pVolData == NULL)
+    {
+        throw MushcoreLogicFail("AdanaxisVolatileData of wrong type");
+    }
+    return *pVolData;
+}
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const AdanaxisPieceDeco& inObj)
+operator<<(std::ostream& ioOut, const AdanaxisLogic& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } U59qcX7inEXnV9haw5/Q8Q
+//%inlineHeader } QIRY4KmklBxic6KkTAE0QQ
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.9 2005/06/23 13:56:56 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.10 2005/06/29 11:11:15 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.10  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.9  2005/06/23 13:56:56  southa
  * MushGame link work
  *
@@ -53,6 +56,7 @@
 #include "AdanaxisClient.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
+#include "AdanaxisUtil.h"
 
 #include "API/mushPlatform.h"
 #include "API/mushMedia.h"
@@ -117,6 +121,8 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     
     MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^start");
 
+    AdanaxisUtil::TestPiecesCreate(Logic());
+    
     m_inited = true;
 }
 

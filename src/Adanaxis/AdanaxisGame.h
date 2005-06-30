@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.6 2005/06/21 15:57:46 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.7 2005/06/23 11:58:27 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.7  2005/06/23 11:58:27  southa
+ * MushGame link work
+ *
  * Revision 1.6  2005/06/21 15:57:46  southa
  * MushGame work
  *
@@ -46,6 +49,7 @@
 #include "AdanaxisStandard.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisLogic.h"
 #include "AdanaxisSaveData.h"
 
 #include "API/mushMushcore.h"
@@ -72,8 +76,8 @@ protected:
     virtual void LocalGameCreate(GameAppHandler& inAppHandler);
         
 private:
-    AdanaxisSaveData& SaveData() { return dynamic_cast<AdanaxisSaveData&>(m_saveDataRef.WRef()); }
-    MushGameLogic& Logic() { return dynamic_cast<MushGameLogic&>(m_logicRef.WRef()); }
+    AdanaxisSaveData& SaveData();
+    AdanaxisLogic& Logic();
     
     bool m_inited; //:ignore
     std::string m_name;
@@ -99,6 +103,29 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+
+inline AdanaxisSaveData&
+AdanaxisGame::SaveData()
+{
+    AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&m_saveDataRef.WRef());
+    if (pSaveData == NULL)
+    {
+        throw MushcoreLogicFail(std::string("AdanaxisSaveData of wrong type '")+m_saveDataRef.Ref().AutoName()+"'");
+    }
+    return *pSaveData;
+}
+
+inline AdanaxisLogic&
+AdanaxisGame::Logic()
+{
+    AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&m_logicRef.WRef());
+    if (pLogic == NULL)
+    {
+        throw MushcoreLogicFail(std::string("AdanaxisLogic of wrong type '")+m_logicRef.Ref().AutoName()+"'");
+    }
+    return *pLogic;
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const AdanaxisGame& inObj)
