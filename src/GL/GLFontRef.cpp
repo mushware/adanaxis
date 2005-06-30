@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 03m51tzRRZ4J/ClESPY1sA
 /*
- * $Id: GLFontRef.cpp,v 1.14 2005/06/16 17:25:37 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.15 2005/06/20 14:30:33 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.15  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.14  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -140,7 +143,7 @@ GLFontRef::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
-    ioOut << "size=" << m_size;
+    ioOut << "size=" << m_size << ", ";
     ioOut << "]";
 }
 bool
@@ -174,4 +177,4 @@ GLFontRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("size");
     ioOut << m_size;
 }
-//%outOfLineFunctions } M8OeHP8jbecFpuxwdWNJww
+//%outOfLineFunctions } lj81/Bl6WfPa3au+hu4O5g

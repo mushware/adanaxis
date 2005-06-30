@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } J/gH6c/1gW8u07jqHybX0Q
 /*
- * $Id: MushMeshStitchable.cpp,v 1.3 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushMeshStitchable.cpp,v 1.4 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshStitchable.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.3  2004/01/02 21:13:11  southa
  * Source conditioning
  *
@@ -38,7 +41,23 @@ void
 MushMeshStitchable::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    if (m_pGeometry == NULL)
+    {
+        ioOut << "pGeometry=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "pGeometry=" << *m_pGeometry << ", ";
+    }
+    if (m_pActiveBox == NULL)
+    {
+        ioOut << "pActiveBox=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "pActiveBox=" << *m_pActiveBox << ", ";
+    }
     ioOut << "selection=" << m_selection;
     ioOut << "]";
 }
-//%outOfLineFunctions } h3Onb/ckx809sIFDZYadyA
+//%outOfLineFunctions } mgYtbL6jEKzdUfbYIuOUqA

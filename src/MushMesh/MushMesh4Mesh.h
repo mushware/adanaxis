@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Mesh.h,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -48,16 +51,28 @@ public:
     typedef std::vector<tNormal> tNormals;
     typedef std::vector<Mushware::U32> tConnection;
     typedef std::vector<tConnection> tConnectivity;
-    
+    typedef Mushware::t4Val tCentroid;
+    typedef Mushware::tVal tBoundingRadius;
+        
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
     
     const tNormals& Normals(void) const { if (!m_normalsValid) NormalsBuild(); return m_normals; }
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
-
+    const tCentroid& Centroid(Mushware::U32 inFaceNum) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
+    const tBoundingRadius BoundingRadius(Mushware::U32 inFaceNum) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
+    const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
+    const tBoundingRadius& FaceBoundingRadius(Mushware::U32 inFaceNum) const;
     
-    void NormalsBuild(void) const; // Also automatic
-    void ConnectivityBuild(void) const; // Also automatic
+    void NormalsBuild(void) const;
+    void ConnectivityBuild(void) const;    
+    void CentroidBuild(void) const;
+    void BoundingRadiusBuild(void) const;
+    void FaceCentroidsBuild(void) const;
+    void FaceBoundingRadiiBuild(void) const;
+
+    void Touch(void);
+    void Prebuild(void);
     
 private:
     // Minimal representation
@@ -68,10 +83,18 @@ private:
     // Derived representation
     mutable tNormals m_normals;
     mutable tConnectivity m_connectivity;
+    mutable tCentroid m_centroid;
+    mutable tBoundingRadius m_boundingRadius;
+    mutable std::vector<tCentroid> m_faceCentroids;
+    mutable std::vector<tBoundingRadius> m_faceBoundingRadii;
     
     mutable bool m_normalsValid;
     mutable bool m_connectivityValid;
-    
+    mutable bool m_centroidValid;
+    mutable bool m_boundingRadiusValid;
+    mutable bool m_faceCentroidsValid;
+    mutable bool m_faceBoundingRadiiValid;
+
 //%classPrototypes {
 public:
     const tVertices& Vertices(void) const { return m_vertices; }
@@ -95,6 +118,29 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } /FVhjQ5mJ568RN6f+goISQ
 };
+
+inline const MushMesh4Mesh::tCentroid&
+MushMesh4Mesh::FaceCentroid(Mushware::U32 inFaceNum) const
+{
+    if (!m_faceCentroidsValid)
+    {
+        FaceCentroidsBuild();
+    }
+    MushMeshUtils::BoundsCheck(inFaceNum, m_faceCentroids.size());
+    return m_faceCentroids[inFaceNum]; 
+}
+
+inline const MushMesh4Mesh::tBoundingRadius&
+MushMesh4Mesh::FaceBoundingRadius(Mushware::U32 inFaceNum) const
+{
+    if (!m_faceBoundingRadiiValid)
+    {
+        FaceBoundingRadiiBuild();
+    }
+    MushMeshUtils::BoundsCheck(inFaceNum, m_faceBoundingRadii.size());
+    return m_faceBoundingRadii[inFaceNum]; 
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushMesh4Mesh& inObj)

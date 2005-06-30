@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7DgjNfqEJ0p76LVccqeX4Q
 /*
- * $Id: MushMeshStitchable.h,v 1.6 2005/02/10 12:34:07 southa Exp $
+ * $Id: MushMeshStitchable.h,v 1.7 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshStitchable.h,v $
+ * Revision 1.7  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/02/10 12:34:07  southa
  * Template fixes
  *
@@ -73,7 +76,7 @@ public:
 
 private:
     const Mushware::tGeometryArray *m_pGeometry;
-    const Mushware::tTexCoordArrayVector *m_pTexVector;
+    const Mushware::tTexCoordArrayVector *m_pTexVector; //:ignore
     const Mushware::t2BoxU32 *m_pActiveBox;
     MushMeshSelection m_selection;
 //%classPrototypes {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5yE/wZtm0/nEX6N7oHMfOA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Face.h,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Face.h,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -41,7 +44,6 @@ public:
     typedef std::vector<Mushware::U32> tVertexList;
     typedef std::vector<Mushware::U32> tVertexGroupSize;
     typedef std::vector<Mushware::U32> tTexCoordList;
-    typedef Mushware::t4Val tCentroid;
     
     enum
     {
@@ -53,13 +55,6 @@ public:
     MushMesh4Face();
     virtual ~MushMesh4Face();
     
-    const tCentroid& Centroid(void) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
-    const Mushware::tVal BoundingRadius(void) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
-    void Touch(void) { m_centroidValid = false; m_boundingRadiusValid = false; }
-    
-    void CentroidBuild(void) const;
-    void BoundingRadiusBuild(void) const;
-    
 private:
     // Minimal representation
     Mushware::U32 m_faceType; //:readwrite
@@ -68,13 +63,6 @@ private:
     tTexCoordList m_texCoordList; //:readwrite :wref
     MushMeshMaterialRef m_faceMaterialRef; //:readwrite
     std::vector<Mushware::U8> m_edgeSmoothness; //:readwrite
-    
-    // Derived representation
-    mutable tCentroid m_centroid;
-    mutable Mushware::tVal m_boundingRadius;
-    
-    mutable bool m_centroidValid;
-    mutable bool m_boundingRadiusValid;
     
 //%classPrototypes {
 public:

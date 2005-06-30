@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } asw/Xtq8JFLwPuHWwCzSHA
 /*
- * $Id: GLTextureRef.cpp,v 1.21 2005/06/16 17:25:37 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.22 2005/06/20 14:30:34 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.22  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.21  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -149,7 +152,17 @@ void
 GLTextureRef::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "name=" << m_name;
+    ioOut << "name=" << m_name << ", ";
+    if (m_texPtr == NULL)
+    {
+        ioOut << "texPtr=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "texPtr=" << *m_texPtr << ", ";
+    }
+    ioOut << "bindingName=" << m_bindingName << ", ";
+    ioOut << "bindingNameContext=" << m_bindingNameContext;
     ioOut << "]";
 }
 bool
@@ -165,6 +178,18 @@ GLTextureRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_name;
     }
+    else if (inTagStr == "texPtr")
+    {
+        ioIn >> m_texPtr;
+    }
+    else if (inTagStr == "bindingName")
+    {
+        ioIn >> m_bindingName;
+    }
+    else if (inTagStr == "bindingNameContext")
+    {
+        ioIn >> m_bindingNameContext;
+    }
     else
     {
         return false;
@@ -176,5 +201,11 @@ GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("name");
     ioOut << m_name;
+    ioOut.TagSet("texPtr");
+    ioOut << m_texPtr;
+    ioOut.TagSet("bindingName");
+    ioOut << m_bindingName;
+    ioOut.TagSet("bindingNameContext");
+    ioOut << m_bindingNameContext;
 }
-//%outOfLineFunctions } eXTMqNGfWHRHvfazTD907g
+//%outOfLineFunctions } qQT0IFNKZQYPrMRuw64lXw

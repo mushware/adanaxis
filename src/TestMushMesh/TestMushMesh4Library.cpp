@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3FPaZkPeOCD2fVyuZWK2Lg
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMesh4Library.cpp,v 1.1 2005/06/30 12:04:56 southa Exp $
+ * $Log: TestMushMesh4Library.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:56  southa
+ * Mesh work
+ *
  */
 
 #include "TestMushMesh4Library.h"
@@ -38,6 +41,7 @@ TestMushMesh4Library::Test4Library(MushcoreCommand& ioCommand, MushcoreEnv& ioEn
     MushMesh4Mesh mesh;
     
     MushMesh4Library::Sgl().UnitTesseractCreate(mesh);
+    mesh.Prebuild();
     
     std::cout << endl;;
     xmlOut << mesh;

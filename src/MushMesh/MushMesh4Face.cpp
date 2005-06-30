@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Face.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMesh4Face.h"
@@ -28,26 +31,11 @@
 #include "MushMeshMushcoreIO.h"
 
 MushMesh4Face::MushMesh4Face() :
-    m_faceType(kFaceTypeNone),
-    m_centroidValid(false),
-    m_boundingRadiusValid(false)
-{
+    m_faceType(kFaceTypeNone){
 }
 
 MushMesh4Face::~MushMesh4Face()
 {
-}
-
-void
-MushMesh4Face::CentroidBuild(void) const
-{
-    m_centroidValid = true;
-}
-
-void
-MushMesh4Face::BoundingRadiusBuild(void) const
-{
-    m_boundingRadiusValid = true;
 }
 
 //%outOfLineFunctions {

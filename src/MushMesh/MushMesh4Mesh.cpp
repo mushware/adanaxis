@@ -19,18 +19,42 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Mesh.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMesh4Mesh.h"
 
 #include "MushMeshMushcoreIO.h"
 
-MushMesh4Mesh::MushMesh4Mesh() :
-    m_normalsValid(false),
-    m_connectivityValid(false)
+MushMesh4Mesh::MushMesh4Mesh()
 {
+    Touch();
+}
+
+void
+MushMesh4Mesh::Touch(void)
+{
+    m_normalsValid = false;
+    m_connectivityValid = false;
+    m_centroidValid = false;
+    m_boundingRadiusValid = false;
+    m_faceCentroidsValid = false;
+    m_faceBoundingRadiiValid = false;
+}
+
+void
+MushMesh4Mesh::Prebuild(void)
+{
+    NormalsBuild();
+    ConnectivityBuild();
+    CentroidBuild();
+    BoundingRadiusBuild();
+    FaceCentroidsBuild();
+    FaceBoundingRadiiBuild();
 }
 
 void
@@ -43,6 +67,30 @@ void
 MushMesh4Mesh::ConnectivityBuild(void) const
 {
     m_connectivityValid = true;
+}
+
+void
+MushMesh4Mesh::CentroidBuild(void) const
+{
+    m_centroidValid = true;
+}
+
+void
+MushMesh4Mesh::BoundingRadiusBuild(void) const
+{
+    m_boundingRadiusValid = true;
+}
+
+void
+MushMesh4Mesh::FaceCentroidsBuild(void) const
+{
+    m_faceCentroidsValid = true;
+}
+
+void
+MushMesh4Mesh::FaceBoundingRadiiBuild(void) const
+{
+    m_faceBoundingRadiiValid = true;
 }
 
 //%outOfLineFunctions {
@@ -81,7 +129,19 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     MushMeshMesh::AutoPrint(ioOut);
     ioOut << "vertices=" << m_vertices << ", ";
     ioOut << "texCoords=" << m_texCoords << ", ";
-    ioOut << "faces=" << m_faces;
+    ioOut << "faces=" << m_faces << ", ";
+    ioOut << "normals=" << m_normals << ", ";
+    ioOut << "connectivity=" << m_connectivity << ", ";
+    ioOut << "centroid=" << m_centroid << ", ";
+    ioOut << "boundingRadius=" << m_boundingRadius << ", ";
+    ioOut << "faceCentroids=" << m_faceCentroids << ", ";
+    ioOut << "faceBoundingRadii=" << m_faceBoundingRadii << ", ";
+    ioOut << "normalsValid=" << m_normalsValid << ", ";
+    ioOut << "connectivityValid=" << m_connectivityValid << ", ";
+    ioOut << "centroidValid=" << m_centroidValid << ", ";
+    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid << ", ";
+    ioOut << "faceCentroidsValid=" << m_faceCentroidsValid << ", ";
+    ioOut << "faceBoundingRadiiValid=" << m_faceBoundingRadiiValid;
     ioOut << "]";
 }
 bool
@@ -105,6 +165,54 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_faces;
     }
+    else if (inTagStr == "normals")
+    {
+        ioIn >> m_normals;
+    }
+    else if (inTagStr == "connectivity")
+    {
+        ioIn >> m_connectivity;
+    }
+    else if (inTagStr == "centroid")
+    {
+        ioIn >> m_centroid;
+    }
+    else if (inTagStr == "boundingRadius")
+    {
+        ioIn >> m_boundingRadius;
+    }
+    else if (inTagStr == "faceCentroids")
+    {
+        ioIn >> m_faceCentroids;
+    }
+    else if (inTagStr == "faceBoundingRadii")
+    {
+        ioIn >> m_faceBoundingRadii;
+    }
+    else if (inTagStr == "normalsValid")
+    {
+        ioIn >> m_normalsValid;
+    }
+    else if (inTagStr == "connectivityValid")
+    {
+        ioIn >> m_connectivityValid;
+    }
+    else if (inTagStr == "centroidValid")
+    {
+        ioIn >> m_centroidValid;
+    }
+    else if (inTagStr == "boundingRadiusValid")
+    {
+        ioIn >> m_boundingRadiusValid;
+    }
+    else if (inTagStr == "faceCentroidsValid")
+    {
+        ioIn >> m_faceCentroidsValid;
+    }
+    else if (inTagStr == "faceBoundingRadiiValid")
+    {
+        ioIn >> m_faceBoundingRadiiValid;
+    }
     else if (MushMeshMesh::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -125,5 +233,29 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_texCoords;
     ioOut.TagSet("faces");
     ioOut << m_faces;
+    ioOut.TagSet("normals");
+    ioOut << m_normals;
+    ioOut.TagSet("connectivity");
+    ioOut << m_connectivity;
+    ioOut.TagSet("centroid");
+    ioOut << m_centroid;
+    ioOut.TagSet("boundingRadius");
+    ioOut << m_boundingRadius;
+    ioOut.TagSet("faceCentroids");
+    ioOut << m_faceCentroids;
+    ioOut.TagSet("faceBoundingRadii");
+    ioOut << m_faceBoundingRadii;
+    ioOut.TagSet("normalsValid");
+    ioOut << m_normalsValid;
+    ioOut.TagSet("connectivityValid");
+    ioOut << m_connectivityValid;
+    ioOut.TagSet("centroidValid");
+    ioOut << m_centroidValid;
+    ioOut.TagSet("boundingRadiusValid");
+    ioOut << m_boundingRadiusValid;
+    ioOut.TagSet("faceCentroidsValid");
+    ioOut << m_faceCentroidsValid;
+    ioOut.TagSet("faceBoundingRadiiValid");
+    ioOut << m_faceBoundingRadiiValid;
 }
-//%outOfLineFunctions } +FMAuAskXJGxIeC722NMew
+//%outOfLineFunctions } eH02ZinmCnCeZF0Gs42A3g
