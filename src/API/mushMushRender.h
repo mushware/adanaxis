@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMESTANDARD_H
-#define MUSHGAMESTANDARD_H
-//%includeGuardStart } PZ6kre97A1TFf2hJNDPD+Q
+#ifndef MUSHMUSHRENDER_H
+#define MUSHMUSHRENDER_H
+//%includeGuardStart } OacmsbxJZoKMF6juP7YJ5Q
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameStandard.h
+ * File: src/API/mushMushRender.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,54 +21,19 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 224Ie4daUSboM1+BVBtEVQ
-/*
- * $Id: MushGameStandard.h,v 1.2 2005/06/24 10:30:13 southa Exp $
- * $Log: MushGameStandard.h,v $
- * Revision 1.2  2005/06/24 10:30:13  southa
- * MushGame camera work
- *
- * Revision 1.1  2005/06/14 13:25:34  southa
- * Adanaxis work
- *
- */
+//%Header } eA3I2asmbvy/bVzfm38PTg
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
- 
-#if defined(HAVE_MUSHCORE_MUSHCORE_H)
-#include <Mushcore/Mushcore.h>
-#elif defined(HAVE_MUSHCORE_H)
-#include <Mushcore.h>
+
+#if defined(HAVE_MUSHRENDER_MUSHRENDER_H)
+#include <MushRender/MushRender.h>
+#elif defined(HAVE_MUSHRENDER_H)
+#include <MushRender.h>
 #else
-#include "Mushcore/Mushcore.h"
+#include "MushRender/MushRender.h"
 #endif
-
-#if defined(HAVE_MUSHMESH_MUSHMESH_H)
-#include <MushMesh/MushMesh.h>
-#elif defined(HAVE_MUSHMESH_H)
-#include <MushMesh.h>
-#else
-#include "MushMesh/MushMesh.h"
-#endif
-
-#if 0
-
-#if defined(HAVE_MUSHGL_MUSHGL_H)
-#include <MushGL/MushGL.h>
-#elif defined(HAVE_MUSHGL_H)
-#include <MushGL.h>
-#else
-#include "MushGL/MushGL.h"
-#endif
-
-#endif
-
-namespace Mushware
-{
-    typedef Mushware::U64 tGameUsec;
-}
 
 //%includeGuardEnd {
 #endif

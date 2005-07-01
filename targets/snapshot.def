@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.6 2005/06/04 13:18:46 southa Exp $
+# $Id: snapshot.def,v 1.7 2005/06/22 20:02:00 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.7  2005/06/22 20:02:00  southa
+# MushGame link work
+#
 # Revision 1.6  2005/06/04 13:18:46  southa
 # Updates for Mac OS Release 0.1.2
 #
@@ -55,7 +58,7 @@ Use: targets/sdl_app.spec as snapshot.spec.generic
 Create: src/Makefile.am
 
 Program: all
-Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover Mushcore MushGame MushGL MushMesh MushModel MushPie Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover Mushcore MushGame MushGL MushMesh MushModel MushPie MushRender Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
 Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$

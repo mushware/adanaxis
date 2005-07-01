@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHRENDER_H
+#define MUSHRENDER_H
+//%includeGuardStart } 5fmF16UOHKnng34sEDWRmg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameStandard.cpp
+ * File: src/MushRender/MushRender.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,14 +21,16 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } KHcCpXwK/1mpxswse1epug
+//%Header } NUzrLBU/hE8fJ4WHp26kcQ
 /*
- * $Id: MushGameStandard.cpp,v 1.1 2005/06/14 13:25:34 southa Exp $
- * $Log: MushGameStandard.cpp,v $
- * Revision 1.1  2005/06/14 13:25:34  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGameStandard.h"
+#include "MushRenderMesh.h"
+#include "MushRenderSpec.h"
+#include "MushRenderStandard.h"
 
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

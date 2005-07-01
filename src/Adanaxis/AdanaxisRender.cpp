@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.2 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.3 2005/07/01 10:03:30 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.3  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.2  2005/06/30 14:26:35  southa
  * Adanaxis work
  *
@@ -72,7 +75,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     tDecoList::iterator endIter = pVolData->DecoListWRef().end();
     for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != endIter; ++p)
     {
-        p->Render(ioLogic, inCamera);
+        // p->Render(ioLogic, inCamera);
     }
         
     // Projection epilogue

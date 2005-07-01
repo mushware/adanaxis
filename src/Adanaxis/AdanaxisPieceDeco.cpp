@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.1 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.2 2005/06/30 16:29:24 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.2  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/30 14:26:35  southa
  * Adanaxis work
  *
@@ -35,7 +38,7 @@ AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
 }
 
 void
-AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     // Fill me in
 }

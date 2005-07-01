@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } enJUO8WAIa4qUMI3BXYVJA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.1 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.2 2005/06/30 16:29:24 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.2  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/30 14:26:35  southa
  * Adanaxis work
  *
@@ -32,6 +35,7 @@
 
 #include "API/mushMushGame.h"
 #include "API/mushMushMesh.h"
+#include "API/mushMushRender.h"
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
@@ -41,7 +45,7 @@ public:
     explicit AdanaxisPieceDeco(const std::string& inID = 0);
     virtual ~AdanaxisPieceDeco() {}
     
-    virtual void Render(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
 private:
     std::string m_id;
