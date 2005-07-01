@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } fI0WsoHuercGBXLtlsT3Lg
 /*
- * $Id: MushMeshPostMatrix.h,v 1.2 2004/12/13 11:09:11 southa Exp $
+ * $Id: MushMeshPostMatrix.h,v 1.3 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshPostMatrix.h,v $
+ * Revision 1.3  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/12/13 11:09:11  southa
  * Quaternion and vector tweaks
  *
@@ -141,6 +144,48 @@ operator<<(std::ostream& ioOut, const MushMeshPostMatrix<T, C, R>& inMatrix)
     ioOut << preMatrix;
     return ioOut;
 }
+
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushMeshPostMatrix<T, C, R>& outMatrix)
+{
+    std::vector< std::vector<T> > valueVec;
+    ioIn >> valueVec;
+    for (Mushware::U32 r=0; r<R; ++r)
+    {
+        for (Mushware::U32 c=0; c<C; ++c)
+        {
+            if (r < valueVec.size() && c < valueVec[r].size())
+            {
+                outMatrix.RCSet(valueVec[r][c], r, c);
+            }
+            else
+            {
+                outMatrix.RCSet(0, r, c);
+            }
+        }
+    }
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushMeshPostMatrix<T, C, R>& inMatrix)
+{
+    std::vector< std::vector<T> > valueVec(R);
+    for (Mushware::U32 r=0; r<R; ++r)
+    {
+        valueVec[r].resize(C);
+        for (Mushware::U32 c=0; c<C; ++c)
+        {
+            valueVec[r][c] = inMatrix.RCGet(r, c);
+        }
+    }
+    ioOut << valueVec;
+    
+    return ioOut;
+}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

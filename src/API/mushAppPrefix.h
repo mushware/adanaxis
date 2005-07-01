@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGL_H
-#define MUSHGL_H
-//%includeGuardStart } sZMkMkP9fHs6SjzxXh/O8Q
+#ifndef MUSHAPPPREFIX_H
+#define MUSHAPPPREFIX_H
+//%includeGuardStart } qRfZvzLMQJYXPXj7oZCrVQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGL.h
+ * File: src/API/mushAppPrefix.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,37 +21,18 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c8LaySAshLTgIZq/9pb54Q
+//%Header } lLel0sP7AN55YxmmADEuYg
 /*
- * $Id: MushGL.h,v 1.6 2005/05/19 13:02:09 southa Exp $
- * $Log: MushGL.h,v $
- * Revision 1.6  2005/05/19 13:02:09  southa
- * Mac release work
- *
- * Revision 1.5  2005/02/13 22:44:07  southa
- * Tesseract stuff
- *
- * Revision 1.4  2005/02/01 13:40:37  southa
- * Rotating spheres and hypercube
- *
- * Revision 1.3  2005/01/29 14:06:12  southa
- * OpenGL buffers and extensions
- *
- * Revision 1.2  2004/09/20 21:50:47  southa
- * Added GLV
- *
- * Revision 1.1  2004/03/07 12:05:56  southa
- * Rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGLArrays.h"
-#include "MushGLBuffer.h"
-#include "MushGLStandard.h"
-#include "MushGLPixelSource.h"
-#include "MushGLProjection.h"
-#include "MushGLV.h"
-#include "MushGLVertexBuffer.h"
+// For use as precompiled header for application builds
+
+#include "mushGL.h"
+#include "mushMushcore.h"
+#include "mushMushcoreSTL.h"
+#include "mushMushcoreIO.h"
 
 //%includeGuardEnd {
 #endif

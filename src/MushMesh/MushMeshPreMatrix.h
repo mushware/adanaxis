@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7Y7qw9fXK5qyxNASaSz7KA
 /*
- * $Id: MushMeshPreMatrix.h,v 1.6 2005/01/29 14:06:12 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.7 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.7  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/01/29 14:06:12  southa
  * OpenGL buffers and extensions
  *
@@ -104,6 +107,8 @@ public:
 
     void RowSet(const tThisVec& inVec, Mushware::U32 inR) { RowBoundsCheck(inR); m_value[inR] = inVec; }
     
+    void PreMultiply(MushMeshVector<T, C>& ioVec) const;
+    
     static const tThis Identity(void);
     
 protected:
@@ -126,6 +131,17 @@ MushMeshPreMatrix<T, C, R>::ColumnGet(Mushware::U32 inC) const
         retValue.Set(m_value[r][inC], r);
     }
     return retValue;
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline void
+MushMeshPreMatrix<T, C, R>::PreMultiply(MushMeshVector<T, C>& ioVec) const
+{
+    MushMeshVector<T, R> vecCopy(ioVec);
+    for (Mushware::U32 i = 0; i < R; ++i)
+    {
+        ioVec.Set(RowGet(i) * vecCopy, i);
+    }
 }
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
@@ -199,6 +215,46 @@ operator<<(std::ostream& ioOut, const MushMeshPreMatrix<T, C, R>& inMatrix)
         }
     }
     ioOut << ']';
+    return ioOut;
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushMeshPreMatrix<T, C, R>& outMatrix)
+{
+    std::vector< std::vector<T> > valueVec;
+    ioIn >> valueVec;
+    for (Mushware::U32 r=0; r<R; ++r)
+    {
+        for (Mushware::U32 c=0; c<C; ++c)
+        {
+            if (r < valueVec.size() && c < valueVec[r].size())
+            {
+                outMatrix.RCSet(valueVec[r][c], r, c);
+            }
+            else
+            {
+                outMatrix.RCSet(0, r, c);
+            }
+        }
+    }
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushMeshPreMatrix<T, C, R>& inMatrix)
+{
+    std::vector< std::vector<T> > valueVec(R);
+    for (Mushware::U32 r=0; r<R; ++r)
+    {
+        valueVec[r].resize(C);
+        for (Mushware::U32 c=0; c<C; ++c)
+        {
+            valueVec[r][c] = inMatrix.RCGet(r, c);
+        }
+    }
+    ioOut << valueVec;
+    
     return ioOut;
 }
 

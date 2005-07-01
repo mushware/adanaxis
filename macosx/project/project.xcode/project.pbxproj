@@ -964,6 +964,7 @@
 				GCC_MODEL_CPU = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_STRICT_ALIASING = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -2105,6 +2106,8 @@
 				7ACF38420874333E0012CFFE,
 				7A321517087443960056D5C4,
 				7A321520087444380056D5C4,
+				7AD25BD30875348800560382,
+				7AD25C5A0875479100560382,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2478,6 +2481,7 @@
 				7ACF38430874333E0012CFFE,
 				7A321518087443960056D5C4,
 				7A321521087444380056D5C4,
+				7AD25BD40875348800560382,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2631,6 +2635,7 @@
 				7ACC327B05AB3A09001A0873,
 				7A62B71005A49D04002A5F1C,
 				7A62B71105A49D04002A5F1C,
+				7AD25C580875479100560382,
 			);
 			isa = PBXGroup;
 			path = API;
@@ -11153,6 +11158,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "MushMesh-Info.plist";
@@ -12105,6 +12112,8 @@
 				7A70CD10085DE6A90055C6FB,
 				7A62BCF407BE2C9D00C05896,
 				7A62BCF307BE2C9D00C05896,
+				7AD25BD00875348800560382,
+				7AD25BCF0875348800560382,
 				7A66E40205FB256A00135328,
 				7A66E40105FB256A00135328,
 				7AC5D50A06FF502E00EF3984,
@@ -12613,9 +12622,10 @@
 				DEAD_CODE_STRIPPING = YES;
 				DSTROOT = "";
 				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
+				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
 				HEADER_SEARCH_PATHS = "../../src ../../src/API";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
 				INSTALL_PATH = "$(USER_APPS_DIR)";
@@ -12625,7 +12635,6 @@
 			dependencies = (
 				7A70CD4C085DEE2D0055C6FB,
 				7A70CD4D085DEE2D0055C6FB,
-				7A70CD4E085DEE2D0055C6FB,
 			);
 			isa = PBXNativeTarget;
 			name = Adanaxis;
@@ -12669,11 +12678,6 @@
 			isa = PBXTargetDependency;
 			target = 7A65813905A9D09C00E727F8;
 			targetProxy = 7A23841005F9E98000505F59;
-		};
-		7A70CD4E085DEE2D0055C6FB = {
-			isa = PBXTargetDependency;
-			target = 7A657E8905A9CD1C00E727F8;
-			targetProxy = 7A632D410816D43D00637D49;
 		};
 		7A70CD4F085DEE2D0055C6FB = {
 			buildActionMask = 2147483647;
@@ -12907,6 +12911,8 @@
 				7ACF38440874333E0012CFFE,
 				7A321519087443960056D5C4,
 				7A321522087444380056D5C4,
+				7AD25BD10875348800560382,
+				7AD25C590875479100560382,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14017,6 +14023,7 @@
 				7ACF38450874333E0012CFFE,
 				7A32151A087443960056D5C4,
 				7A321523087444380056D5C4,
+				7AD25BD20875348800560382,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14705,7 +14712,6 @@
 			files = (
 				7A70CE79085DEE2D0055C6FB,
 				7A70CE7A085DEE2D0055C6FB,
-				7A70CE7B085DEE2D0055C6FB,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14718,12 +14724,6 @@
 		};
 		7A70CE7A085DEE2D0055C6FB = {
 			fileRef = 7A65815405A9D09C00E727F8;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		7A70CE7B085DEE2D0055C6FB = {
-			fileRef = 7A657EE905A9CD1C00E727F8;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -24541,6 +24541,66 @@
 		};
 		7AD23BA6085F007E0017859F = {
 			fileRef = 7AD23BA4085F007E0017859F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25BCF0875348800560382 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGLProjection.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD25BD00875348800560382 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGLProjection.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD25BD10875348800560382 = {
+			fileRef = 7AD25BCF0875348800560382;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25BD20875348800560382 = {
+			fileRef = 7AD25BD00875348800560382;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25BD30875348800560382 = {
+			fileRef = 7AD25BCF0875348800560382;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25BD40875348800560382 = {
+			fileRef = 7AD25BD00875348800560382;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25C580875479100560382 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushAppPrefix.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD25C590875479100560382 = {
+			fileRef = 7AD25C580875479100560382;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD25C5A0875479100560382 = {
+			fileRef = 7AD25C580875479100560382;
 			isa = PBXBuildFile;
 			settings = {
 			};

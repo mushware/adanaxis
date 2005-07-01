@@ -21,22 +21,30 @@
  ****************************************************************************/
 //%Header } ApiIiDIkgHS1hGasLAa6EQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisRender.h,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Log: AdanaxisRender.h,v $
+ * Revision 1.1  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  */
 
 #include "AdanaxisStandard.h"
 
 #include "API/mushMushGame.h"
+#include "API/mushMushGL.h"
 
 //:generate standard ostream xml1
 class AdanaxisRender : public MushGameRender
 {
 public:
+    AdanaxisRender();
     virtual ~AdanaxisRender() {}
     
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
 
+protected:
+    MushGLProjection m_projection;
+    
 private:
 //%classPrototypes {
 public:

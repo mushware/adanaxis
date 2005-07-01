@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.2 2005/06/30 14:26:35 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.2  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -36,6 +39,11 @@
 
 using namespace Mushware;
 using namespace std;
+
+AdanaxisRender::AdanaxisRender()
+{
+    m_projection.FromFAspectNearFarMake(m_projection.FValueFromViewHalfRadians(M_PI/8), 16.0/10, 0.1, 100.0);
+}
 
 void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
@@ -81,8 +89,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     static U32 ctr=0;
 
-    if (ctr++ < 5) std::cout << "Camera " << inCamera << endl;
-    
+    if (ctr++ < 5)
+    {
+        MushcoreXMLOStream xmlOut(std::cout);
+        std::cout << "Camera " << inCamera << endl;
+        xmlOut << m_projection;
+    }
     GLUtils::OrthoEpilogue();
     
     GLUtils::DisplayEpilogue();
@@ -121,6 +133,7 @@ void
 AdanaxisRender::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "projection=" << m_projection;
     ioOut << "]";
 }
 bool
@@ -132,6 +145,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "projection")
+    {
+        ioIn >> m_projection;
+    }
     else
     {
         return false;
@@ -141,5 +158,7 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("projection");
+    ioOut << m_projection;
 }
-//%outOfLineFunctions } fijB+kNsAePk1dtY8iyeDg
+//%outOfLineFunctions } Y86cz1VUtb/D0tLtfKLsQA

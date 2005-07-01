@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisUtil.cpp,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.1  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisUtil.h"
@@ -32,10 +35,14 @@ void
 AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 {
     AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
-    decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
-    AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
     
-    decoRef.PostWRef().PosSet(t4Val(0,0,0,-10));
-    MushMesh4Library::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+    for (U32 i=0; i<1; ++i)
+    {
+        decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
+        AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
+        
+        decoRef.PostWRef().PosSet(t4Val(0,0,0,-10));
+        MushMesh4Library::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+    }
 }
 

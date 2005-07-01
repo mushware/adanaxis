@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.4 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.5 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.5  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.4  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -46,7 +49,6 @@ MushGamePlayer::MushGamePlayer(std::string inID) :
     m_id(inID)
 {
     PostWRef().ToIdentitySet();
-    PostWRef().PosWRef() += t4Val(1,2,3,4);
 }
 
 void
