@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.38 2005/06/30 12:04:53 southa Exp $
+# $Id: SourceConditioner.pl,v 1.39 2005/06/30 12:34:58 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.39  2005/06/30 12:34:58  southa
+# Mesh and source conditioner work
+#
 # Revision 1.38  2005/06/30 12:04:53  southa
 # Mesh work
 #
@@ -576,6 +579,16 @@ sub StandardFunctionGenerate($$)
     
     die "Cannot generate 'standard' inline " if $$infoRef{INLINE};
     
+    my $cloneCommand;
+    if ($$infoRef{NOCOPY})
+    {
+        $cloneCommand = "throw MushcoreRequestFail(\"Cannot clone \'$className\'\");";
+    }
+    else
+    {
+        $cloneCommand = "return new $className(*this)";
+    }
+    
     push @$outputRef,
 $templatePrefix,
 "const char *".
@@ -587,7 +600,7 @@ $templatePrefix,
 "MushcoreVirtualObject *".
 "${outerClassName}::$gConfig{AUTO_PREFIX}Clone(void) const",
 "{",
-"    return new $className(*this);",
+"    $cloneCommand;",
 "}",
 $templatePrefix,
 "MushcoreVirtualObject *".
@@ -1213,6 +1226,7 @@ sub ProcessHeader($$)
     if (defined($commandsRef))
     {
         push @ classPrototypes, "public:";
+        $headerInfo{NOCOPY} = 0;
         $headerInfo{INLINE} = 0;
         $headerInfo{VIRTUAL} = "";
         
@@ -1225,6 +1239,9 @@ sub ProcessHeader($$)
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
             $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
             $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
+            $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
+            $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
+            
             
             # Standard functions
             if ($$commandsRef[$i] =~ /\bgenerate.*\bstandard\b/)
@@ -1307,6 +1324,7 @@ sub ProcessCPP($$)
     
     my @outOfLineCode;
     my $commandsRef = $headerInfo{COMMANDS};
+    $headerInfo{NOCOPY} = 0;
     $headerInfo{INLINE} = 0;
     $headerInfo{VIRTUAL} = "";
     
@@ -1318,6 +1336,8 @@ sub ProcessCPP($$)
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
             $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
             $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
+            $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
+            $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
             
             unless ($headerInfo{INLINE})
             {

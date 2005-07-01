@@ -42,7 +42,7 @@ const char *AdanaxisVolatileData::AutoName(void) const
 
 MushcoreVirtualObject *AdanaxisVolatileData::AutoClone(void) const
 {
-    return new AdanaxisVolatileData(*this);
+    throw MushcoreRequestFail("Cannot clone 'AdanaxisVolatileData'");;
 }
 
 MushcoreVirtualObject *AdanaxisVolatileData::AutoCreate(void) const
@@ -69,7 +69,8 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     MushGameVolatileData::AutoPrint(ioOut);
     ioOut << "decoList=" << m_decoList << ", ";
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
-    ioOut << "newMode=" << m_newMode;
+    ioOut << "newMode=" << m_newMode << ", ";
+    ioOut << "aRenderMesh=" << m_aRenderMesh;
     ioOut << "]";
 }
 bool
@@ -93,6 +94,10 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_newMode;
     }
+    else if (inTagStr == "aRenderMesh")
+    {
+        ioIn >> m_aRenderMesh;
+    }
     else if (MushGameVolatileData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -113,5 +118,7 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_modeKeypressMsec;
     ioOut.TagSet("newMode");
     ioOut << m_newMode;
+    ioOut.TagSet("aRenderMesh");
+    ioOut << m_aRenderMesh;
 }
-//%outOfLineFunctions } 2yYqdMzDrsMC44zWgLGTQg
+//%outOfLineFunctions } sRu611VwZrtrS8LE4spg/w

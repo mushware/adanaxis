@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.2 2005/07/01 14:58:59 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.2  2005/07/01 14:58:59  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.1  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -26,9 +29,14 @@
 
 #include "AdanaxisLogic.h"
 
+#include "AdanaxisRender.h"
+
+void
 AdanaxisLogic::InitialDataCreate(void)
 {
-    
+    VolatileData().ARenderMeshWRef().reset(new MushRenderMesh);
+}
+
 
 //%outOfLineFunctions {
 

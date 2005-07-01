@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XttDYnY7xVQ0Mej3+yO1wQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderSpec.cpp,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.1  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  */
 
 #include "MushRenderSpec.h"
@@ -58,6 +61,7 @@ void
 MushRenderSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "projection=" << m_projection;
     ioOut << "]";
 }
 bool
@@ -69,6 +73,10 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "projection")
+    {
+        ioIn >> m_projection;
+    }
     else
     {
         return false;
@@ -78,5 +86,7 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("projection");
+    ioOut << m_projection;
 }
-//%outOfLineFunctions } bp50Dtu4R7P4kd1DlmNNJg
+//%outOfLineFunctions } yH5EUSfGJYsRLoKVd1py8w

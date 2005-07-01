@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.7 2005/06/23 11:58:27 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.8 2005/06/30 16:29:24 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.8  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/06/23 11:58:27  southa
  * MushGame link work
  *
@@ -77,6 +80,7 @@ protected:
         
 private:
     AdanaxisSaveData& SaveData();
+    AdanaxisVolatileData& VolatileData();
     AdanaxisLogic& Logic();
     
     bool m_inited; //:ignore
@@ -86,6 +90,7 @@ private:
     Mushware::U32 m_newMode;
     
     MushcoreDataRef<MushGameSaveData> m_saveDataRef;
+    MushcoreDataRef<MushGameVolatileData> m_volatileDataRef;
     MushcoreDataRef<MushGameClient> m_clientRef;
     MushcoreDataRef<MushGameServer> m_serverRef;
     MushcoreDataRef<MushGameLogic> m_logicRef;
@@ -113,6 +118,17 @@ AdanaxisGame::SaveData()
         throw MushcoreLogicFail(std::string("AdanaxisSaveData of wrong type '")+m_saveDataRef.Ref().AutoName()+"'");
     }
     return *pSaveData;
+}
+
+inline AdanaxisVolatileData&
+AdanaxisGame::VolatileData()
+{
+    AdanaxisVolatileData *pVolatileData = dynamic_cast<AdanaxisVolatileData *>(&m_volatileDataRef.WRef());
+    if (pVolatileData == NULL)
+    {
+        throw MushcoreLogicFail(std::string("AdanaxisVolatileData of wrong type '")+m_volatileDataRef.Ref().AutoName()+"'");
+    }
+    return *pVolatileData;
 }
 
 inline AdanaxisLogic&

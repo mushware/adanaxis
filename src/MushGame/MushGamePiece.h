@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T/MWnTXtRKRQsmRlB17JyQ
 /*
- * $Id: MushGamePiece.h,v 1.1 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGamePiece.h,v 1.2 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.2  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.1  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -38,6 +41,7 @@
 class MushGamePiece : public MushcoreVirtualObject
 {
 public:
+    MushGamePiece();
     virtual ~MushGamePiece() {}
     
 private:

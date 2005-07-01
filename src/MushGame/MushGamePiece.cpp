@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } xc9P/TG19PochVDX5THNbA
 /*
- * $Id: MushGamePiece.cpp,v 1.1 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.2 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.2  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.1  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -29,6 +32,11 @@
 #include "MushGamePiece.h"
 
 MUSHCORE_DATA_INSTANCE(MushGamePiece);
+
+MushGamePiece::MushGamePiece()
+{
+    m_post.ToIdentitySet();
+}
 
 //%outOfLineFunctions {
 

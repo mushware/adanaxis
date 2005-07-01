@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5NT3TUzeT9fSzmpfPY/lmQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMesh.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Log: MushRenderMesh.h,v $
+ * Revision 1.1  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  */
 
 #include "MushRenderStandard.h"
@@ -32,7 +35,7 @@
 #include "MushRenderSpec.h"
 
 //:generate standard ostream xml1
-class MushRenderMesh : MushcoreVirtualObject
+class MushRenderMesh : public MushcoreVirtualObject
 {
 public:
     virtual ~MushRenderMesh() {}

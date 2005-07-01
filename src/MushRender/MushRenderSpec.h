@@ -23,13 +23,18 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderSpec.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Log: MushRenderSpec.h,v $
+ * Revision 1.1  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  */
 
 #include "MushRenderStandard.h"
 
 #include "MushRenderSpec.h"
+
+#include "API/mushMushGL.h"
 
 //:generate standard ostream xml1
 class MushRenderSpec : MushcoreVirtualObject
@@ -37,9 +42,19 @@ class MushRenderSpec : MushcoreVirtualObject
 public:
     virtual ~MushRenderSpec() {}
     
+    // const MushGLModelView& ModelToClipMatress() const;
+    
 private:
+    MushGLProjection m_projection; //:readwrite
+    // MushGLModelView m_model;
+    // MushGLModelView m_view;
+    // MushGLModelView m_model;
+
+    
 //%classPrototypes {
 public:
+    const MushGLProjection& Projection(void) const { return m_projection; }
+    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
     const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
@@ -47,7 +62,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+//%classPrototypes } cOgDI5pt7BAmW26IhBENoQ
 };
 //%inlineHeader {
 inline std::ostream&

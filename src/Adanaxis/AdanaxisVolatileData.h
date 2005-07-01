@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } T2Jvb6GmQsX2nP/3BMU8mg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisVolatileData.h,v 1.1 2005/06/30 14:26:35 southa Exp $
+ * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.1  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -32,7 +35,7 @@
 #include "API/mushMushGame.h"
 
 //:xml1base MushGameVolatileData
-//:generate virtual standard ostream xml1
+//:generate virtual nocopy standard ostream xml1
 class AdanaxisVolatileData : public MushGameVolatileData
 {
 public:
@@ -45,6 +48,7 @@ private:
     tDecoList m_decoList; //:readwrite :wref
     Mushware::tMsec m_modeKeypressMsec; //:readwrite
     Mushware::tMsec m_newMode; //:readwrite
+    std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
     
 //%classPrototypes {
 public:
@@ -56,6 +60,9 @@ public:
     void ModeKeypressMsecSet(const Mushware::tMsec& inValue) { m_modeKeypressMsec=inValue; }
     const Mushware::tMsec& NewMode(void) const { return m_newMode; }
     void NewModeSet(const Mushware::tMsec& inValue) { m_newMode=inValue; }
+    const std::auto_ptr<MushRenderMesh>& ARenderMesh(void) const { return m_aRenderMesh; }
+    // Writable reference for m_aRenderMesh
+    std::auto_ptr<MushRenderMesh>& ARenderMeshWRef(void) { return m_aRenderMesh; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -63,7 +70,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } kAi3hm23IFuANWrzRm6kRg
+//%classPrototypes } aoxAeEjBISuc6I+8Wp8r+A
 };
 //%inlineHeader {
 inline std::ostream&
