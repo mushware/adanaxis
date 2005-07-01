@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Nd4PoIz3nPwfnH84Wy1Y3w
 /*
- * $Id: MushcoreUtil.cpp,v 1.19 2005/06/14 13:25:34 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.20 2005/06/30 16:29:25 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.20  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.19  2005/06/14 13:25:34  southa
  * Adanaxis work
  *
@@ -140,7 +143,13 @@ MushcoreUtil::XMLMetaInsert(const string& inStr)
     {
         U8 byte=inStr[i];
 
-        if (byte == '<')
+        if (byte < ' ')
+        {
+            ostringstream metaStream;
+            metaStream << "&#" << static_cast<U32>(byte) << ";";
+            retStr += metaStream.str();
+        }
+        else if (byte == '<')
         {
             retStr+="&lt;";
         }
@@ -169,6 +178,7 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
 {
     string retStr(inStr);
     U32 replacePos;
+
     replacePos = 0;
     while (replacePos = retStr.find("&lt;", replacePos), replacePos != string::npos)
     {
@@ -185,6 +195,36 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
     while (replacePos = retStr.find("&quot;", replacePos), replacePos != string::npos)
     {
         retStr = retStr.substr(0, replacePos) + "\"" + retStr.substr(replacePos + 6, string::npos);
+        ++replacePos;
+    }
+    replacePos = 0;
+    while (replacePos = retStr.find("&#", replacePos), replacePos != string::npos)
+    {
+        U32 semicolonPos = retStr.find(";", replacePos);
+        std::string valueStr(1, '\0');
+        
+        if (semicolonPos == string::npos)
+        {
+            throw MushcoreSyntaxFail("XML bad numeric entity (missing semicolon) '"+retStr.substr(replacePos, string::npos));
+        }
+        for (U32 i=0; i + 2 < semicolonPos - replacePos; ++i)
+        {
+            MUSHCOREASSERT(replacePos+2+i < retStr.size());
+            U8 byteValue = retStr[replacePos+2+i];
+            
+            if (i > 2 || byteValue < '0' || byteValue > '9')
+            {
+                throw MushcoreSyntaxFail("XML bad numeric entity '"+retStr.substr(replacePos, string::npos));
+            }
+            valueStr[0] *= 10;
+            valueStr[0] += byteValue - '0';
+        }
+        if (valueStr == "&")
+        {
+            // Make sure this is skipped in the next stage
+            valueStr = "&amp;";
+        }
+        retStr = retStr.substr(0, replacePos) + valueStr + retStr.substr(semicolonPos+1, string::npos);
         ++replacePos;
     }
     replacePos = 0;

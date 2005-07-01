@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sRZ+ShiK5Qx3jj9TSzKp5g
 /*
- * $Id: TestMushcoreIO.cpp,v 1.16 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.17 2005/06/13 14:25:46 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.17  2005/06/13 14:25:46  southa
+ * Pipe and ordered data work
+ *
  * Revision 1.16  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -156,8 +159,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
         if (testObject != readBackObject)
         {
+            ostringstream readBackStream;
+            MushcoreXMLOStream xmlOut(readBackStream);
+            xmlOut << readBackObject;
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            message << "MushcoreIO readback fault 1 '"+testOStream.str()+"' != " << readBackStream.str() << ", " << testObject << " != " << readBackObject;
             throw MushcoreCommandFail(message.str());
         }
     }
@@ -185,8 +191,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         if (testData != readBackData)
         {
+            ostringstream readBackStream;
+            MushcoreXMLOStream xmlOut(readBackStream);
+            xmlOut << readBackData;
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testData << " != " << readBackData;
+            message << "MushcoreIO readback fault 2 '"+testOStream.str()+"' != '" << readBackStream.str() << "', " << testData << " != " << readBackData;
             throw MushcoreCommandFail(message.str());
         }
         
@@ -227,8 +236,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         if (testObject != readBackObject)
         {
+            ostringstream readBackStream;
+            MushcoreXMLOStream xmlOut(readBackStream);
+            xmlOut << readBackObject;
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            message << "MushcoreIO readback fault 3 '"+testOStream.str()+"' != " << readBackStream.str() << ", " << testObject << " != " << readBackObject;
             throw MushcoreCommandFail(message.str());
         }
     }
@@ -250,8 +262,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         
         if (testObject != readBackObject)
         {
+            ostringstream readBackStream;
+            MushcoreXMLOStream xmlOut(readBackStream);
+            xmlOut << readBackObject;
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            message << "MushcoreIO readback fault 4 '"+testOStream.str()+"' != " << readBackStream.str() << ", " << testObject << " != " << readBackObject;
             throw MushcoreCommandFail(message.str());
         }
     }
@@ -273,8 +288,11 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 
         if (testObject != readBackObject)
         {
+            ostringstream readBackStream;
+            MushcoreXMLOStream xmlOut(readBackStream);
+            xmlOut << readBackObject;
             ostringstream message;
-            message << "MushcoreIO readback fault '"+testOStream.str()+"', " << testObject << " != " << readBackObject;
+            message << "MushcoreIO readback fault 5 '"+testOStream.str()+"' != " << readBackStream.str() << ", " << testObject << " != " << readBackObject;
             throw MushcoreCommandFail(message.str());
         }
     }

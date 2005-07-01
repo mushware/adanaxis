@@ -17,11 +17,18 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisLogic.cpp,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.1  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisLogic.h"
+
+AdanaxisLogic::InitialDataCreate(void)
+{
+    
 
 //%outOfLineFunctions {
 

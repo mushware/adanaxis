@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NNj6hj9phwRQNaj45QYBKA
 /*
- * $Id: MushcoreIO.h,v 1.11 2005/06/16 10:49:00 southa Exp $
+ * $Id: MushcoreIO.h,v 1.12 2005/06/30 14:26:36 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.12  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.11  2005/06/16 10:49:00  southa
  * Client/server work
  *
@@ -61,6 +64,22 @@
  */
 
 #include "MushcoreStandard.h"
+
+// std::auto_ptr output
+template <class T>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::auto_ptr<T>& inObj)
+{
+    if (inObj.get() ==  NULL)
+    {
+        ioOut << "NULL";   
+    }
+    else
+    {
+        ioOut << *inObj.get();
+    }
+    return ioOut;
+}
 
 // Special cases to avoid printing U8s as chars
 inline std::ostream&

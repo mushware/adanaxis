@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kvNZhrtF7n6PTMxcwk+nkw
 /*
- * $Id: TestMushcoreObject.h,v 1.21 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.22 2005/06/20 14:30:39 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.22  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.21  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -104,6 +107,11 @@ public:
         m_testObject(NULL),
         m_polymorph(NULL)
     {
+            for (Mushware::U32 i=0; i<256; ++i)
+            {
+                m_fullRangeString += static_cast<Mushware::U8>(i);
+            }
+            
             m_u8Vector.push_back(4);
             m_u8Vector.push_back(16);
             m_u8Vector.push_back(7);
@@ -138,6 +146,7 @@ public:
             m_vectorMap[2][14] = "fourt,)(\"een";
 
             m_pU32 = new Mushware::U32(2);
+            m_aU32.reset(new Mushware::U32(17));
             m_pVectorU32 = new std::vector<Mushware::U32>;
             m_pVectorU32->push_back(4);
             m_pVectorU32->push_back(18);
@@ -178,6 +187,7 @@ private:
     Mushware::U8 m_u8;
     Mushware::U32 m_u32;
     std::string m_string;
+    std::string m_fullRangeString;
     std::vector<Mushware::U8> m_u8Vector;
     std::vector<Mushware::U32> m_u32Vector;
     std::vector<std::string> m_stringVector;
@@ -190,11 +200,12 @@ private:
     std::vector< std::map<Mushware::U32, std::string> > m_vectorMap;
 
     Mushware::U32 *m_pU32;
+    std::auto_ptr<Mushware::U32> m_aU32;
     std::vector<Mushware::U32> *m_pVectorU32;
     std::vector<Mushware::U32 *> m_vectorpU32; // nobasic
 
     Mushware::U32 *m_pNull;
-
+    std::auto_ptr<Mushware::U32> m_aNull;
 
     TestMushcoreObject *m_testObject;
     MushcoreVirtualObject *m_polymorph; // nobasic
@@ -211,6 +222,13 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } oW1K54zBpBNTb4dugOawAA
 };
+
+template<class T>
+inline bool
+operator==(const std::auto_ptr<T>& inA, const std::auto_ptr<T>& inB)
+{
+    return (inA.get() == inB.get() || (inA.get() != NULL && inB.get() != NULL && *inA == *inB));
+}
 
 //%inlineHeader {
 

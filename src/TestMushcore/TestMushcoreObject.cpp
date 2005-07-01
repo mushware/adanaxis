@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /C4CFFmSnufbqgXbq7HAiw
 /*
- * $Id: TestMushcoreObject.cpp,v 1.22 2005/06/16 17:25:41 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.23 2005/06/20 14:30:39 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.23  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.22  2005/06/16 17:25:41  southa
  * Client/server work
  *
@@ -132,6 +135,7 @@ TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
         && (m_u8 == inObj.m_u8)
         && (m_u32 == inObj.m_u32)
         && (m_string == inObj.m_string)
+        && (m_fullRangeString == inObj.m_fullRangeString)
         && (m_u8Vector == inObj.m_u8Vector)
         && (m_u32Vector == inObj.m_u32Vector)
         && (m_stringVector == inObj.m_stringVector)
@@ -142,8 +146,10 @@ TestMushcoreObject::AutoEquals(const TestMushcoreObject& inObj) const
         && (m_mapVector == inObj.m_mapVector)
         && (m_vectorMap == inObj.m_vectorMap)
         && (m_pU32 == inObj.m_pU32 || (m_pU32 != NULL && inObj.m_pU32 != NULL && *m_pU32 == *inObj.m_pU32))
+        && (m_aU32 == inObj.m_aU32)
         && (m_pVectorU32 == inObj.m_pVectorU32 || (m_pVectorU32 != NULL && inObj.m_pVectorU32 != NULL && *m_pVectorU32 == *inObj.m_pVectorU32))
         && (m_pNull == inObj.m_pNull || (m_pNull != NULL && inObj.m_pNull != NULL && *m_pNull == *inObj.m_pNull))
+        && (m_aNull == inObj.m_aNull)
         && (m_testObject == inObj.m_testObject || (m_testObject != NULL && inObj.m_testObject != NULL && *m_testObject == *inObj.m_testObject))
     ;
 }
@@ -156,6 +162,7 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     ioOut << "u8=" << static_cast<Mushware::U32>(m_u8) << ", ";
     ioOut << "u32=" << m_u32 << ", ";
     ioOut << "string=" << m_string << ", ";
+    ioOut << "fullRangeString=" << m_fullRangeString << ", ";
     ioOut << "u8Vector=" << m_u8Vector << ", ";
     ioOut << "u32Vector=" << m_u32Vector << ", ";
     ioOut << "stringVector=" << m_stringVector << ", ";
@@ -173,6 +180,7 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     {
         ioOut << "pU32=" << *m_pU32 << ", ";
     }
+    ioOut << "aU32=" << m_aU32 << ", ";
     if (m_pVectorU32 == NULL)
     {
         ioOut << "pVectorU32=NULL"  << ", ";
@@ -190,6 +198,7 @@ TestMushcoreObject::AutoPrint(std::ostream& ioOut) const
     {
         ioOut << "pNull=" << *m_pNull << ", ";
     }
+    ioOut << "aNull=" << m_aNull << ", ";
     if (m_testObject == NULL)
     {
         ioOut << "testObject=NULL"  << ", ";
@@ -237,6 +246,10 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_string;
     }
+    else if (inTagStr == "fullRangeString")
+    {
+        ioIn >> m_fullRangeString;
+    }
     else if (inTagStr == "u8Vector")
     {
         ioIn >> m_u8Vector;
@@ -277,6 +290,10 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_pU32;
     }
+    else if (inTagStr == "aU32")
+    {
+        ioIn >> m_aU32;
+    }
     else if (inTagStr == "pVectorU32")
     {
         ioIn >> m_pVectorU32;
@@ -288,6 +305,10 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     else if (inTagStr == "pNull")
     {
         ioIn >> m_pNull;
+    }
+    else if (inTagStr == "aNull")
+    {
+        ioIn >> m_aNull;
     }
     else if (inTagStr == "testObject")
     {
@@ -316,6 +337,8 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_u32;
     ioOut.TagSet("string");
     ioOut << m_string;
+    ioOut.TagSet("fullRangeString");
+    ioOut << m_fullRangeString;
     ioOut.TagSet("u8Vector");
     ioOut << m_u8Vector;
     ioOut.TagSet("u32Vector");
@@ -336,15 +359,19 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_vectorMap;
     ioOut.TagSet("pU32");
     ioOut << m_pU32;
+    ioOut.TagSet("aU32");
+    ioOut << m_aU32;
     ioOut.TagSet("pVectorU32");
     ioOut << m_pVectorU32;
     ioOut.TagSet("vectorpU32");
     ioOut << m_vectorpU32;
     ioOut.TagSet("pNull");
     ioOut << m_pNull;
+    ioOut.TagSet("aNull");
+    ioOut << m_aNull;
     ioOut.TagSet("testObject");
     ioOut << m_testObject;
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } U8sDnCBXiuZjbEXEA83TTg
+//%outOfLineFunctions } A3Zpi66975ARq7VZCZDFYg

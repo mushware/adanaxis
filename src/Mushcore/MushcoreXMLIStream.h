@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QZNov6vf1irc8tAhC1nh9g
 /*
- * $Id: MushcoreXMLIStream.h,v 1.28 2005/06/24 10:30:14 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.29 2005/06/30 14:26:36 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.29  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.28  2005/06/24 10:30:14  southa
  * MushGame camera work
  *
@@ -349,6 +352,18 @@ inline void
 operator>>(MushcoreXMLIStream& ioIn, MushcoreVirtualObject *& outpObj)
 {
     ioIn.ObjectReadVirtual(outpObj);
+}
+
+template<class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::auto_ptr<T>& outaObj)
+{
+    T *pObj = outaObj.get();
+    ioIn >> pObj;
+    if (pObj != outaObj.get())
+    {
+        outaObj.reset(pObj);
+    }
 }
 
 template<class T>

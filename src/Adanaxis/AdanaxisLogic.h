@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisLogic.h,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Log: AdanaxisLogic.h,v $
+ * Revision 1.1  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -37,6 +40,9 @@
 class AdanaxisLogic : public MushGameLogic 
 {
 public:
+    
+    virtual void InitialDataCreate(void);
+    
     virtual AdanaxisSaveData& SaveData(void);
     virtual AdanaxisVolatileData& VolatileData(void);
     

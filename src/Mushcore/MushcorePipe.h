@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } V673evBt8atoG2oqzRL1Hg
 /*
- * $Id: MushcorePipe.h,v 1.1 2005/06/13 14:25:46 southa Exp $
+ * $Id: MushcorePipe.h,v 1.2 2005/06/20 16:14:31 southa Exp $
  * $Log: MushcorePipe.h,v $
+ * Revision 1.2  2005/06/20 16:14:31  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 14:25:46  southa
  * Pipe and ordered data work
  *
@@ -50,7 +53,8 @@ public:
     MushcorePipe(Mushware::U32 inSize = MushcorePipe::kDefaultSize);
     ~MushcorePipe();
     void Give(T *ioObj);
-    bool TopGet(T *& outRef);
+    bool TopGet(const T *& outRef);
+    bool TopGet(T *& outRef) { return TopGet(*const_cast<const T **>(&outRef)); }
     void TopDelete();
     void NotAccessingSoGrow(const Mushware::U32 inLimit);
     
@@ -140,7 +144,7 @@ MushcorePipe<T>::Give(T *ioObj)
 
 template<class T>
 inline bool
-MushcorePipe<T>::TopGet(T *& outRef)
+MushcorePipe<T>::TopGet(const T *& outRef)
 {
     if (m_readThreaded)
     {

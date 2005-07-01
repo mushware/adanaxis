@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.23 2005/06/20 14:30:38 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.24 2005/06/30 14:26:36 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.24  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.23  2005/06/20 14:30:38  southa
  * Adanaxis work
  *
@@ -203,6 +206,24 @@ operator<<(MushcoreXMLOStream& ioOut, T *inpObj)
     }
     return ioOut;
 }
+
+template<class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::auto_ptr<T>& inaObj)
+{
+    if (inaObj.get() == NULL)
+    {
+        std::string localTag = ioOut.OpeningTagWrite();
+        ioOut.OStreamGet() << "NULL";
+        ioOut.ClosingTagWrite(localTag);
+    }
+    else
+    {
+        ioOut << *inaObj.get();
+    }
+    return ioOut;
+}
+
 
 template<>
 inline MushcoreXMLOStream&

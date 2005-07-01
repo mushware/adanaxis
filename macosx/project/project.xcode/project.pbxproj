@@ -17088,6 +17088,8 @@
 			buildRules = (
 			);
 			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "TestMushcore-Info.plist";
@@ -17675,9 +17677,7 @@
 				7A85878E0875518400ED67ED,
 				7A8587970875526700ED67ED,
 				7A8587960875526700ED67ED,
-				7A85878A08754F2400ED67ED,
 				7A85875C08754D4100ED67ED,
-				7A85878B08754F3400ED67ED,
 				7A85875D08754D4100ED67ED,
 			);
 			isa = PBXGroup;
@@ -17784,22 +17784,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		7A85878A08754F2400ED67ED = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			path = MushGameStandard.cpp;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		7A85878B08754F3400ED67ED = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = MushGameStandard.h;
-			refType = 4;
-			sourceTree = "<group>";
 		};
 		7A85878E0875518400ED67ED = {
 			fileEncoding = 4;
