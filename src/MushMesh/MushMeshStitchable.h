@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7DgjNfqEJ0p76LVccqeX4Q
 /*
- * $Id: MushMeshStitchable.h,v 1.7 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshStitchable.h,v 1.8 2005/06/30 12:34:59 southa Exp $
  * $Log: MushMeshStitchable.h,v $
+ * Revision 1.8  2005/06/30 12:34:59  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.7  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -81,8 +84,8 @@ private:
     MushMeshSelection m_selection;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 
 inline

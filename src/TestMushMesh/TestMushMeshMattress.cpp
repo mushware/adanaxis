@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/TestMushMesh/TestMushMesh4Library.cpp
+ * File: src/TestMushMesh/TestMushMeshMattress.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,43 +17,43 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3FPaZkPeOCD2fVyuZWK2Lg
+//%Header } /3rWQ+PBevPGAR8k/1jYTA
 /*
- * $Id: TestMushMesh4Library.cpp,v 1.2 2005/06/30 12:34:59 southa Exp $
- * $Log: TestMushMesh4Library.cpp,v $
- * Revision 1.2  2005/06/30 12:34:59  southa
- * Mesh and source conditioner work
- *
- * Revision 1.1  2005/06/30 12:04:56  southa
- * Mesh work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "TestMushMesh4Library.h"
+#include "TestMushMeshMattress.h"
 
 using namespace Mushware;
 using namespace std;
 
-MushcoreInstaller TestMushMesh4Library(TestMushMesh4Library::Install);
+MushcoreInstaller TestMushMeshMattress(TestMushMeshMattress::Install);
 
 MushcoreScalar
-TestMushMesh4Library::Test4Library(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+TestMushMeshMattress::TestMattress(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     MushcoreXMLOStream xmlOut(std::cout);
     
-    MushMesh4Mesh mesh;
+    t4Val testVec(1,2,3,4);
+    t4x4Val testMatrix(t4Val(0,1,0,0),
+                       t4Val(0,0,1,0),
+                       t4Val(0,0,0,1),
+                       t4Val(1,0,0,0));
     
-    MushMesh4Library::Sgl().UnitTesseractCreate(mesh);
-    mesh.Prebuild();
+    t4Val offsetVec(t4Val(2,3,4,5));
+    t4x4o4Val testMattress(testMatrix, offsetVec);
     
-    //std::cout << endl;;
-    //xmlOut << mesh;
-    
+    xmlOut << testMattress;
+    xmlOut << (testMattress * testVec);
+    xmlOut << (testMattress * testMattress);
+    xmlOut << testMattress * (testMattress * testVec);
+    xmlOut << (testMattress * testMattress) * testVec;
     return MushcoreScalar(0);
 }
 
 void
-TestMushMesh4Library::Install(void)
+TestMushMeshMattress::Install(void)
 {
-    MushcoreInterpreter::Sgl().HandlerAdd("testmushmesh4library", Test4Library);
+    MushcoreInterpreter::Sgl().HandlerAdd("testmushmeshmattress", TestMattress);
 }

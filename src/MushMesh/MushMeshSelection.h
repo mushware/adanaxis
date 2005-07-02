@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tJYYj+Qfq9IjergstaSiwQ
 /*
- * $Id: MushMeshSelection.h,v 1.4 2005/02/10 12:34:07 southa Exp $
+ * $Id: MushMeshSelection.h,v 1.5 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshSelection.h,v $
+ * Revision 1.5  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/10 12:34:07  southa
  * Template fixes
  *
@@ -51,8 +54,8 @@ public:
     Mushware::U32 size;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 //%inlineHeader {
 inline std::ostream&

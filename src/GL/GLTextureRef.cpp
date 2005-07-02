@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } asw/Xtq8JFLwPuHWwCzSHA
 /*
- * $Id: GLTextureRef.cpp,v 1.23 2005/06/30 12:34:58 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.24 2005/06/30 14:26:35 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.24  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  * Revision 1.23  2005/06/30 12:34:58  southa
  * Mesh and source conditioner work
  *
@@ -171,7 +174,7 @@ GLTextureRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_name;
     }
-    else
+    else 
     {
         return false;
     }
@@ -183,4 +186,4 @@ GLTextureRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("name");
     ioOut << m_name;
 }
-//%outOfLineFunctions } DuVCV75c5qDpNJYi+CqENA
+//%outOfLineFunctions } QCtOstAeAKWYYEJfHYzpmw

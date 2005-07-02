@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 03m51tzRRZ4J/ClESPY1sA
 /*
- * $Id: GLFontRef.cpp,v 1.15 2005/06/20 14:30:33 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.16 2005/06/30 12:34:58 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.16  2005/06/30 12:34:58  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.15  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -163,7 +166,7 @@ GLFontRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
     {
         ioIn >> m_size;
     }
-    else
+    else 
     {
         return false;
     }
@@ -177,4 +180,4 @@ GLFontRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("size");
     ioOut << m_size;
 }
-//%outOfLineFunctions } lj81/Bl6WfPa3au+hu4O5g
+//%outOfLineFunctions } rx05BbB94qVLsgjoytUSDA

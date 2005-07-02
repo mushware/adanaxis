@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zlEUQXfSjpEXuKmYV4vLFg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameConfigBase.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.1  2005/06/14 20:39:41  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameConfigBase.h"
@@ -79,7 +82,7 @@ MushGameConfigBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_safeMode;
     }
-    else
+    else 
     {
         return false;
     }
@@ -93,4 +96,4 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("safeMode");
     ioOut << m_safeMode;
 }
-//%outOfLineFunctions } nx60ldBnkSzSnxwo7OU3RQ
+//%outOfLineFunctions } XEWLNF4TkJV0jVqVdQ8EYA

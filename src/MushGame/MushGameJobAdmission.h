@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } MeaV3G3CpMxQ+H/X4gGATA
 /*
- * $Id: MushGameJobAdmission.h,v 1.1 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameJobAdmission.h,v 1.2 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameJobAdmission.h,v $
+ * Revision 1.2  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -51,14 +54,14 @@ private:
     
 //%classPrototypes {
 public:
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 
 //%inlineHeader {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 1cPm6Hnox103xUM9gkbzFw
 /*
- * $Id: TesseractTrainerConfig.h,v 1.5 2005/06/08 20:59:52 southa Exp $
+ * $Id: TesseractTrainerConfig.h,v 1.6 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.6  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/08 20:59:52  southa
  * X11 release
  *
@@ -115,14 +118,14 @@ public:
     const bool& PlayMusic(void) const { return m_playMusic; }
     void PlayMusicSet(const bool& inValue) { m_playMusic=inValue; }
     void PlayMusicToggle(void) { m_playMusic=!(m_playMusic); }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } BeVkcSzlrt8YifRDV18hOw
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } JU5PE3O5oWIkm4dLmn+6lg
 };
 //%inlineHeader {
 inline std::ostream&

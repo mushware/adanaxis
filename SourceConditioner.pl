@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.39 2005/06/30 12:34:58 southa Exp $
+# $Id: SourceConditioner.pl,v 1.40 2005/07/01 16:42:51 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.40  2005/07/01 16:42:51  southa
+# Render work
+#
 # Revision 1.39  2005/06/30 12:34:58  southa
 # Mesh and source conditioner work
 #
@@ -877,13 +880,20 @@ sub XMLIStreamWriteFunctionGenerate($$)
     push @$outputRef,
 "${decPrefix}bool",
 "${outerClassName}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
-"{",
+"{";
+    
+    my $else = "";
+    if ($$infoRef{VIRTUAL} ne "")
+    {
+        push @$outputRef,
 "    if (inTagStr == \"obj\")",
 "    {",
 "        AutoInputPrologue(ioIn);",        
 "        ioIn >> *this;",
 "        AutoInputEpilogue(ioIn);",        
 "    }";
+        $else = "else ";
+    }
 
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
@@ -897,11 +907,11 @@ sub XMLIStreamWriteFunctionGenerate($$)
             my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,
-"    else if (inTagStr == \"$trimmedAttr\")",
+"    ${else}if (inTagStr == \"$trimmedAttr\")",
 "    {",
 "        ioIn >> $baseAttr;",
 "    }";
-
+            $else = "else ";
         }
     }
     my $xmlBases = $$infoRef{XML_BASES};
@@ -910,14 +920,15 @@ sub XMLIStreamWriteFunctionGenerate($$)
         foreach my $base (@$xmlBases)
         {
             push @$outputRef,
-"    else if (${base}::$gConfig{AUTO_PREFIX}XMLDataProcess(ioIn, inTagStr))",
+"    ${else}if (${base}::$gConfig{AUTO_PREFIX}XMLDataProcess(ioIn, inTagStr))",
 "    {",
 "        // Tag consumed by base class",
 "    }";
+            $else = "else ";
         }
     }
     push @$outputRef,
-"    else",
+"    ${else}",
 "    {",
 "        return false;",
 "    }",
@@ -1011,6 +1022,32 @@ sub XMLOStreamWriteFunctionGenerate($$)
         }
     }
     push @$outputRef, "}";
+}
+
+sub XMLOStreamOperatorGenerate($$)
+{
+    my ($outputRef, $infoRef) = @_;
+    
+    my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
+    
+    # XMLOStream operator
+    
+    if ($$infoRef{VIRTUAL} eq "")
+    {
+        if ($templatePrefix ne "")
+        {
+            push @$outputRef, $templatePrefix;
+        }
+        push @$outputRef, "inline MushcoreXMLOStream&";
+        push @$outputRef, "operator<<(MushcoreXMLOStream& ioOut, const $outerClassName& inObj)";
+        push @$outputRef,
+            "{",
+            "    inObj.$gConfig{AUTO_PREFIX}XMLPrint(ioOut);",
+            "    return ioOut;",
+            "}";    
+    }
 }
 
 sub OldBlocksStrip($$)
@@ -1228,7 +1265,7 @@ sub ProcessHeader($$)
         push @ classPrototypes, "public:";
         $headerInfo{NOCOPY} = 0;
         $headerInfo{INLINE} = 0;
-        $headerInfo{VIRTUAL} = "";
+        $headerInfo{VIRTUAL} = "virtual ";
         
         # Member accessors and modifers
         AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
@@ -1238,10 +1275,11 @@ sub ProcessHeader($$)
             $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
             $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
-            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
+            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnonvirtual\b/;
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
             
+            die "notvirtual should be nonvirtual" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
             
             # Standard functions
             if ($$commandsRef[$i] =~ /\bgenerate.*\bstandard\b/)
@@ -1267,7 +1305,7 @@ sub ProcessHeader($$)
                 XMLIStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 # XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
                 XMLOStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
-                # XMLOStreamOperatorGenerate(\@inlineheader, \%headerInfo);
+                XMLOStreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
             
             if ($headerInfo{INLINE})
@@ -1326,7 +1364,7 @@ sub ProcessCPP($$)
     my $commandsRef = $headerInfo{COMMANDS};
     $headerInfo{NOCOPY} = 0;
     $headerInfo{INLINE} = 0;
-    $headerInfo{VIRTUAL} = "";
+    $headerInfo{VIRTUAL} = "virtual ";
     
     if (defined($commandsRef))
     {
@@ -1335,7 +1373,7 @@ sub ProcessCPP($$)
             $headerInfo{INLINE} = 1 if $$commandsRef[$i] =~ /\binline\b/;
             $headerInfo{INLINE} = 0 if $$commandsRef[$i] =~ /\bnotinline\b/;
             $headerInfo{VIRTUAL} = "virtual " if $$commandsRef[$i] =~ /\bvirtual\b/;
-            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
+            $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnonvirtual\b/;
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
             

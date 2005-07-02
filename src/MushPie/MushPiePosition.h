@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Fy/IUGeeVM06aENrKG7H5w
 /*
- * $Id: MushPiePosition.h,v 1.3 2005/02/10 12:34:15 southa Exp $
+ * $Id: MushPiePosition.h,v 1.4 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPiePosition.h,v $
+ * Revision 1.4  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:15  southa
  * Template fixes
  *
@@ -49,8 +52,8 @@ public:
 
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 
 void

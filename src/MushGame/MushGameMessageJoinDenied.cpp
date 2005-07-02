@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } P+nosjqtH61VY4J6ugK5iQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageJoinDenied.cpp,v 1.1 2005/06/20 14:30:36 southa Exp $
+ * $Log: MushGameMessageJoinDenied.cpp,v $
+ * Revision 1.1  2005/06/20 14:30:36  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameMessageJoinDenied.h"
@@ -74,7 +77,7 @@ MushGameMessageJoinDenied::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const st
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -85,4 +88,4 @@ MushGameMessageJoinDenied::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameMessage::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } ClIHq6eIllNFwzey62En5A
+//%outOfLineFunctions } bPOzu0v61cZnsis9PgYiMw

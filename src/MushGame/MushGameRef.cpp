@@ -73,7 +73,7 @@ MushGameRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -83,4 +83,4 @@ void
 MushGameRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } 0d5KeZJVlYRQDra+i+9ZOg
+//%outOfLineFunctions } AdaIrpCYoLvBJAPCubbu5g

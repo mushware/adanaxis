@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DJDbUJa+Ksug6ny/9yE+0Q
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.23 2005/06/16 17:25:40 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.24 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.24  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.23  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -717,7 +720,7 @@ TesseractTrainerGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_config;
     }
-    else
+    else 
     {
         return false;
     }
@@ -749,4 +752,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } WrCW5dLA1UQdaudhWzzswg
+//%outOfLineFunctions } SlowAEcGI1pppOxVP89tLw

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } a8fQWtiAU9Jz7lV1nxPnhA
 /*
- * $Id: InfernalForm.cpp,v 1.6 2005/06/16 17:25:38 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.7 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.7  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -287,7 +290,7 @@ InfernalForm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -304,4 +307,4 @@ InfernalForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facetContextIndex");
     ioOut << m_facetContextIndex;
 }
-//%outOfLineFunctions } 0WIWmFUI+G8Avuwjg9mdog
+//%outOfLineFunctions } dz8CZXYbvrj/nSW6Pos+GQ

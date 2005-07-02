@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0awNqNnQC+YqflGR/DoKBA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameDespatch.cpp,v 1.1 2005/06/20 16:14:30 southa Exp $
+ * $Log: MushGameDespatch.cpp,v $
+ * Revision 1.1  2005/06/20 16:14:30  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameDespatch.h"
@@ -69,7 +72,7 @@ MushGameDespatch::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -79,4 +82,4 @@ void
 MushGameDespatch::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } b0kL/G3Kw1byVMrzKFUjmQ
+//%outOfLineFunctions } kfbxuxA1GBQa6vMsU9Ds6w

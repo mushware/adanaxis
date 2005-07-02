@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } T2OnH6NbDcsuezTIwyt4FA
 /*
- * $Id: GLString.cpp,v 1.14 2005/06/16 17:25:37 southa Exp $
+ * $Id: GLString.cpp,v 1.15 2005/06/20 14:30:33 southa Exp $
  * $Log: GLString.cpp,v $
+ * Revision 1.15  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.14  2005/06/16 17:25:37  southa
  * Client/server work
  *
@@ -158,7 +161,7 @@ GLString::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     {
         ioIn >> m_alignment;
     }
-    else
+    else 
     {
         return false;
     }
@@ -174,4 +177,4 @@ GLString::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("alignment");
     ioOut << m_alignment;
 }
-//%outOfLineFunctions } pXMsPnA56SnMYhN8Qt1WiQ
+//%outOfLineFunctions } GAGZ4tgQtD9cwGKJ9X+Kbg

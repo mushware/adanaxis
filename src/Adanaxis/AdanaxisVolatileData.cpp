@@ -102,7 +102,7 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -121,4 +121,4 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("aRenderMesh");
     ioOut << m_aRenderMesh;
 }
-//%outOfLineFunctions } sRu611VwZrtrS8LE4spg/w
+//%outOfLineFunctions } WKuQrnfpDIjUvAn7Vh6j1Q

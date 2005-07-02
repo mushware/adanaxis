@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } M3UkBs5T8BrIGUpcmTAdqg
 /*
- * $Id: TesseractTrainerConfig.cpp,v 1.6 2005/06/16 17:25:40 southa Exp $
+ * $Id: TesseractTrainerConfig.cpp,v 1.7 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerConfig.cpp,v $
+ * Revision 1.7  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -179,7 +182,7 @@ TesseractTrainerConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
     {
         ioIn >> m_playMusic;
     }
-    else
+    else 
     {
         return false;
     }
@@ -223,4 +226,4 @@ TesseractTrainerConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("playMusic");
     ioOut << m_playMusic;
 }
-//%outOfLineFunctions } rZxvR3q+WmwEEUAF6tciHw
+//%outOfLineFunctions } Y8/oEQ0xllLAALeUqBtIIQ

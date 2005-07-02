@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id: MushRenderSpec.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.2 2005/07/01 16:42:54 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.2  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.1  2005/07/01 10:36:46  southa
  * MushRender work
  *
@@ -55,14 +58,14 @@ private:
 public:
     const MushGLProjection& Projection(void) const { return m_projection; }
     void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } cOgDI5pt7BAmW26IhBENoQ
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } Q5OIIIyHT4uiimE+u/KsZg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ztSLO5E+zMTzTamKn6ueIQ
 /*
- * $Id: InfernalContract.cpp,v 1.15 2005/06/16 17:25:38 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.16 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.16  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.15  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -1344,7 +1347,7 @@ InfernalContract::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_fastDiagnostics;
     }
-    else
+    else 
     {
         return false;
     }
@@ -1366,4 +1369,4 @@ InfernalContract::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("fastDiagnostics");
     ioOut << m_fastDiagnostics;
 }
-//%outOfLineFunctions } PEbRB5uWAmGe+ZsHIC855A
+//%outOfLineFunctions } aZfBDUS5jfwzBW9jmFhciw

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iI4TY+ZqKRCRDUBPoHinSg
 /*
- * $Id: MushGameJob.h,v 1.3 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameJob.h,v 1.4 2005/06/23 13:56:58 southa Exp $
  * $Log: MushGameJob.h,v $
+ * Revision 1.4  2005/06/23 13:56:58  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -70,14 +73,14 @@ public:
     void WakeTimeSet(const Mushware::U32& inValue) { m_wakeTime=inValue; }
     const std::string& Id(void) const { return m_id; }
     void IdSet(const std::string& inValue) { m_id=inValue; }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } aMTmcW3u8W2urZC83sCvFQ
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } gP2iRqmke68HfJx7psmP0g
 };
 //%inlineHeader {
 inline std::ostream&

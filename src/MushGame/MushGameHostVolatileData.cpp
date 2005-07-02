@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +BtfryiA5pq8ckSQBVzibQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameHostVolatileData.cpp,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Log: MushGameHostVolatileData.cpp,v $
+ * Revision 1.1  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameHostVolatileData.h"
@@ -75,7 +78,7 @@ MushGameHostVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -85,4 +88,4 @@ void
 MushGameHostVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } qR5DJ/NZXso5dcamHteFvg
+//%outOfLineFunctions } ZcMiWHoes92oYotzMo710g

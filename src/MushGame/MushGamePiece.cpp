@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } xc9P/TG19PochVDX5THNbA
 /*
- * $Id: MushGamePiece.cpp,v 1.2 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.3 2005/07/01 16:42:54 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.3  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.2  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -87,7 +90,7 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_post;
     }
-    else
+    else 
     {
         return false;
     }
@@ -99,4 +102,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("post");
     ioOut << m_post;
 }
-//%outOfLineFunctions } ZXub1Cj61yMKrFnMrI2T2A
+//%outOfLineFunctions } FmY+VRhBiBMRCR5fji3QdQ

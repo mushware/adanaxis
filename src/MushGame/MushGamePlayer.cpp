@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.5 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.6 2005/07/01 10:03:30 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.6  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.5  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -115,7 +118,7 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -130,4 +133,4 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("playerName");
     ioOut << m_playerName;
 }
-//%outOfLineFunctions } lUy/FHcSBAvNDcsHypPK+w
+//%outOfLineFunctions } 2T2dLbaYg9kRAzV4W0Amuw

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w9bWvYgUJ8YH9Yome/fZPQ
 /*
- * $Id: GameQuit.cpp,v 1.24 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameQuit.cpp,v 1.25 2005/06/20 14:30:34 southa Exp $
  * $Log: GameQuit.cpp,v $
+ * Revision 1.25  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.24  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -296,7 +299,7 @@ GameQuit::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     {
         ioIn >> m_startMsec;
     }
-    else
+    else 
     {
         return false;
     }
@@ -310,4 +313,4 @@ GameQuit::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startMsec");
     ioOut << m_startMsec;
 }
-//%outOfLineFunctions } 1nhnvnFMkYVyWy5HIOpWLA
+//%outOfLineFunctions } BG3ZdMAPQHDxHx1aMUelxA

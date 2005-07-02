@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BZiJCDiOBWqtsOyCjq4lrA
 /*
- * $Id: MushPiePieceSimple.cpp,v 1.7 2005/06/16 17:25:40 southa Exp $
+ * $Id: MushPiePieceSimple.cpp,v 1.8 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPiePieceSimple.cpp,v $
+ * Revision 1.8  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -100,7 +103,7 @@ MushPiePieceSimple::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -113,4 +116,4 @@ MushPiePieceSimple::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pos");
     ioOut << m_pos;
 }
-//%outOfLineFunctions } XOEEat9G0QtbWYhDETIlWw
+//%outOfLineFunctions } 8Ha57RgHInH3ZQdWoV+seg

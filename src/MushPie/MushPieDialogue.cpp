@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Jc7zA7p7ZQz1f9lxQyLUCw
 /*
- * $Id: MushPieDialogue.cpp,v 1.3 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushPieDialogue.cpp,v 1.4 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPieDialogue.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -120,7 +123,7 @@ MushPieDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -135,4 +138,4 @@ MushPieDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } GJLt/9EDFPL7TjgOL/W4aw
+//%outOfLineFunctions } Cqf8rf1BxI1wCxPudieyqg

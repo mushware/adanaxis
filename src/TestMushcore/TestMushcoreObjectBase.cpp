@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PPbm75OUQfPK+juajmc50A
 /*
- * $Id: TestMushcoreObjectBase.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
+ * $Id: TestMushcoreObjectBase.cpp,v 1.5 2005/06/20 14:30:39 southa Exp $
  * $Log: TestMushcoreObjectBase.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:41  southa
  * Client/server work
  *
@@ -93,7 +96,7 @@ TestMushcoreObjectBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
     {
         ioIn >> m_baseObjectValue;
     }
-    else
+    else 
     {
         return false;
     }
@@ -105,4 +108,4 @@ TestMushcoreObjectBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("baseObjectValue");
     ioOut << m_baseObjectValue;
 }
-//%outOfLineFunctions } 3gcZ1Zt0hNT6RsrPJS/rNg
+//%outOfLineFunctions } jyHQaNSLvV01nl5Rs3KDig

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iPr3iVUkIZotRXQmnn7Wiw
 /*
- * $Id: GameDialogue.h,v 1.24 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameDialogue.h,v 1.25 2005/06/20 14:30:34 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.25  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.24  2005/05/19 13:02:02  southa
  * Mac release work
  *
@@ -73,14 +76,14 @@ private:
     bool m_expired;
 //%classPrototypes {
 public:
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

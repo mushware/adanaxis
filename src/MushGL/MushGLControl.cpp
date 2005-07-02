@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } uBZy6/iKGqoZ51Zed4KVVw
 /*
- * $Id: MushGLControl.cpp,v 1.2 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGLControl.cpp,v 1.3 2005/06/20 14:30:35 southa Exp $
  * $Log: MushGLControl.cpp,v $
+ * Revision 1.3  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -93,7 +96,7 @@ MushGLControl::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_axes;
     }
-    else
+    else 
     {
         return false;
     }
@@ -109,4 +112,4 @@ MushGLControl::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("axes");
     ioOut << m_axes;
 }
-//%outOfLineFunctions } 2Fiqr3Zb3h2N40oh3wohsQ
+//%outOfLineFunctions } Ldo4MEjmsEEXQ6mtx/v8Dg

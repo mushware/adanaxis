@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.4 2005/06/29 11:11:15 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.5 2005/06/30 14:26:35 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.5  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -93,7 +96,7 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -106,4 +109,4 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } GQPJU0/4jPhR45JXDZ/ovA
+//%outOfLineFunctions } zkHkQBSChGVCz5wtNcwjqA

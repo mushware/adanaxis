@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bzZeP1dl7EEAL/nNQRoAFg
 /*
- * $Id: TestMushcoreObjectSub.cpp,v 1.5 2005/06/16 17:25:41 southa Exp $
+ * $Id: TestMushcoreObjectSub.cpp,v 1.6 2005/06/20 14:30:39 southa Exp $
  * $Log: TestMushcoreObjectSub.cpp,v $
+ * Revision 1.6  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/16 17:25:41  southa
  * Client/server work
  *
@@ -94,7 +97,7 @@ TestMushcoreObjectSub::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -107,4 +110,4 @@ TestMushcoreObjectSub::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subObjectValue");
     ioOut << m_subObjectValue;
 }
-//%outOfLineFunctions } UlpoDQLYmMTFln5OdW7FdA
+//%outOfLineFunctions } jKdWMvn2PupKHBpmwbmlAw

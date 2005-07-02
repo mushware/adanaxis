@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ayO3HxKF2plbUIsSd8qxzA
 /*
- * $Id: MushPieSignalNumeric.cpp,v 1.4 2005/06/16 17:25:40 southa Exp $
+ * $Id: MushPieSignalNumeric.cpp,v 1.5 2005/06/20 14:30:38 southa Exp $
  * $Log: MushPieSignalNumeric.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:38  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -86,7 +89,7 @@ MushPieSignalNumeric::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_eventNumber;
     }
-    else
+    else 
     {
         return false;
     }
@@ -98,4 +101,4 @@ MushPieSignalNumeric::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("eventNumber");
     ioOut << m_eventNumber;
 }
-//%outOfLineFunctions } H8dPs/vmhjVwKEXUGaH78g
+//%outOfLineFunctions } mn7fRCOCQ024A/DkMGBwRQ

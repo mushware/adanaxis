@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /C4CFFmSnufbqgXbq7HAiw
 /*
- * $Id: TestMushcoreObject.cpp,v 1.23 2005/06/20 14:30:39 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.24 2005/07/01 14:59:00 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.24  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.23  2005/06/20 14:30:39  southa
  * Adanaxis work
  *
@@ -318,7 +321,7 @@ TestMushcoreObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_polymorph;
     }
-    else
+    else 
     {
         return false;
     }
@@ -374,4 +377,4 @@ TestMushcoreObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("polymorph");
     ioOut << m_polymorph;
 }
-//%outOfLineFunctions } A3Zpi66975ARq7VZCZDFYg
+//%outOfLineFunctions } PM0AewMPwDd7ySTS724PyA

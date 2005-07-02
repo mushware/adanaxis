@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RGouKCAnfPKJ4WGuheaYpA
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMesh.cpp,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Log: MushRenderMesh.cpp,v $
+ * Revision 1.1  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  */
 
 #include "MushRenderMesh.h"
@@ -75,7 +78,7 @@ MushRenderMesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -85,4 +88,4 @@ void
 MushRenderMesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } Cjkt0e4dBA+PpRgbWo3blg
+//%outOfLineFunctions } qaoiRfg+HPe2DQ7C+MKFKw

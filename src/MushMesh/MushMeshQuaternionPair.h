@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.5 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.6 2005/06/24 10:30:13 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.6  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  * Revision 1.5  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -93,9 +96,9 @@ public:
     void FirstSet(const MushMeshQuaternion<T>& inValue) { m_first=inValue; }
     const MushMeshQuaternion<T>& Second(void) const { return m_second; }
     void SecondSet(const MushMeshQuaternion<T>& inValue) { m_second=inValue; }
-    bool AutoEquals(const MushMeshQuaternionPair& inObj) const;
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } 4abaurIVgYYyfv8JFiCIsw
+    virtual bool AutoEquals(const MushMeshQuaternionPair& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } F6dbaqtDAqhPsRpGUg9OSQ
 };
 
 template<class T>

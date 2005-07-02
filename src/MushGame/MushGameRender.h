@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 758vG5RYBv9QjPDnAkLDSw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameRender.h,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Log: MushGameRender.h,v $
+ * Revision 1.1  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  */
 
 #include "MushGameRender.h"
@@ -47,14 +50,14 @@ private:
 //%classPrototypes {
 public:
     const std::string& GroupingName(void) const { return m_groupingName; }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9La4JOmCXKaIp00b6L4iIQ
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } LwveyIxAwfx75093rFgjKg
 };
 //%inlineHeader {
 inline std::ostream&

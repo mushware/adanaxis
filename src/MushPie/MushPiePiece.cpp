@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } onoupbr55NLpu8Aipjamrw
 /*
- * $Id: MushPiePiece.cpp,v 1.11 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.12 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.12  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.11  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -130,7 +133,7 @@ MushPiePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_formRef;
     }
-    else
+    else 
     {
         return false;
     }
@@ -144,4 +147,4 @@ MushPiePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("formRef");
     ioOut << m_formRef;
 }
-//%outOfLineFunctions } h/qMKwGgzM3XEDhatynvqw
+//%outOfLineFunctions } hZq8x7Ci/G3KAyC1Z5rB/Q

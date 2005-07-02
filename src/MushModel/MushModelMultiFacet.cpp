@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KDrzMM/sHV2WFHQjP9ctgQ
 /*
- * $Id: MushModelMultiFacet.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushModelMultiFacet.cpp,v 1.6 2005/06/20 14:30:37 southa Exp $
  * $Log: MushModelMultiFacet.cpp,v $
+ * Revision 1.6  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -175,7 +178,7 @@ MushModelMultiFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         ioIn >> m_facets;
     }
-    else
+    else 
     {
         return false;
     }
@@ -187,4 +190,4 @@ MushModelMultiFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facets");
     ioOut << m_facets;
 }
-//%outOfLineFunctions } WZY312FM8es9FxMqin8KtA
+//%outOfLineFunctions } IYmolzjgl921QZUPFMF2pA

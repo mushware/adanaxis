@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PtE5rBAXGQWHrOsXuTDTuQ
 /*
- * $Id: MushGameHostSaveData.cpp,v 1.3 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameHostSaveData.cpp,v 1.4 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.4  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -118,7 +121,7 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_clientAddrRefs;
     }
-    else
+    else 
     {
         return false;
     }
@@ -140,4 +143,4 @@ MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("clientAddrRefs");
     ioOut << m_clientAddrRefs;
 }
-//%outOfLineFunctions } UKTENnA0cyC2t+vDOUgLmg
+//%outOfLineFunctions } gu8lzlMCgCY6gqI8sEZrnA

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iKJwoqVdIXwCMTQh3g5qCg
 /*
- * $Id: MushMesh.h,v 1.22 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushMesh.h,v 1.23 2005/06/30 12:04:55 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.23  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  * Revision 1.22  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -103,6 +106,7 @@
 #include "MushMeshFace.h"
 #include "MushMeshGroup.h"
 #include "MushMeshMaterialRef.h"
+#include "MushMeshMattress.h"
 #include "MushMeshMesh.h"
 #include "MushMeshOps.h"
 #include "MushMeshPatch.h"

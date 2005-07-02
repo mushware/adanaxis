@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eNQnZ9mXkx+CLF7sLqnxHg
 /*
- * $Id: GameStringSpec.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameStringSpec.cpp,v 1.4 2005/06/20 14:30:34 southa Exp $
  * $Log: GameStringSpec.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -133,7 +136,7 @@ GameStringSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_endSize;
     }
-    else
+    else 
     {
         return false;
     }
@@ -165,4 +168,4 @@ GameStringSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endSize");
     ioOut << m_endSize;
 }
-//%outOfLineFunctions } ZmAaM0l9pVDZ4UQ1R/QPVA
+//%outOfLineFunctions } hQscBf9xfKRUBS1wwv92uw

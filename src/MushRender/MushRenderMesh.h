@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5NT3TUzeT9fSzmpfPY/lmQ
 /*
- * $Id: MushRenderMesh.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Id: MushRenderMesh.h,v 1.2 2005/07/01 16:42:54 southa Exp $
  * $Log: MushRenderMesh.h,v $
+ * Revision 1.2  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.1  2005/07/01 10:36:46  southa
  * MushRender work
  *
@@ -45,14 +48,14 @@ public:
 private:
 //%classPrototypes {
 public:
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.2 2005/06/30 12:34:59 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.3 2005/06/30 14:26:36 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.3  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/30 12:34:59  southa
  * Mesh and source conditioner work
  *
@@ -319,7 +322,7 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -360,4 +363,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("faceBoundingRadiiValid");
     ioOut << m_faceBoundingRadiiValid;
 }
-//%outOfLineFunctions } eH02ZinmCnCeZF0Gs42A3g
+//%outOfLineFunctions } ROpaK4LEsMCBrNTLLWCCrg

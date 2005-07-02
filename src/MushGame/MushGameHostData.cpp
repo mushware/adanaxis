@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sy410e8hWJve2v94RqKtew
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameHostData.cpp,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Log: MushGameHostData.cpp,v $
+ * Revision 1.1  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameHostData.h"
@@ -86,7 +89,7 @@ MushGameHostData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_volatileDataRef;
     }
-    else
+    else 
     {
         return false;
     }
@@ -100,4 +103,4 @@ MushGameHostData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("volatileDataRef");
     ioOut << m_volatileDataRef;
 }
-//%outOfLineFunctions } QvCsWaEneoyM834YQTGmCg
+//%outOfLineFunctions } QSkyIHK3sNqw8Yo0MD9MiQ

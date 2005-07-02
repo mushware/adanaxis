@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ApiIiDIkgHS1hGasLAa6EQ
 /*
- * $Id: AdanaxisRender.h,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.2 2005/07/01 10:03:30 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.2  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.1  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -48,14 +51,14 @@ protected:
 private:
 //%classPrototypes {
 public:
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

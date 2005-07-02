@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YhOMN0lltAKj2CZMFJS+0A
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLProjection.cpp,v 1.1 2005/07/01 10:03:30 southa Exp $
+ * $Log: MushGLProjection.cpp,v $
+ * Revision 1.1  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  */
 
 #include "MushGLProjection.h"
@@ -107,7 +110,7 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_offset;
     }
-    else
+    else 
     {
         return false;
     }
@@ -121,4 +124,4 @@ MushGLProjection::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("offset");
     ioOut << m_offset;
 }
-//%outOfLineFunctions } 5zdpVltsmRAHgk/ED/fQ4g
+//%outOfLineFunctions } /nt50jQ5fExMvdQP+m/YGg

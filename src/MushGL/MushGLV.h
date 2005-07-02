@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.9 2005/05/26 16:05:29 southa Exp $
+ * $Id: MushGLV.h,v 1.10 2005/06/08 20:59:51 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.10  2005/06/08 20:59:51  southa
+ * X11 release
+ *
  * Revision 1.9  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -110,8 +113,8 @@ private:
 //%classPrototypes {
 public:
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } tZpXkTA5BVxgV6b1/yA+aA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } aSXvyLUCgDCMBt87MWqeRQ
 };
 
 //%inlineHeader {

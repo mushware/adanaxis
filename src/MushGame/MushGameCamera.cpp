@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n4I3T2aUdqYB2n1/b+c3Kg
 /*
- * $Id: MushGameCamera.cpp,v 1.2 2005/06/29 09:07:56 southa Exp $
+ * $Id: MushGameCamera.cpp,v 1.3 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGameCamera.cpp,v $
+ * Revision 1.3  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.2  2005/06/29 09:07:56  southa
  * MushGame camera work
  *
@@ -127,7 +130,7 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_pTiedRef;
     }
-    else
+    else 
     {
         return false;
     }
@@ -141,4 +144,4 @@ MushGameCamera::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pTiedRef");
     ioOut << m_pTiedRef;
 }
-//%outOfLineFunctions } nQHw5/OloW8NNWOQ0aawAg
+//%outOfLineFunctions } BeqK9INbLxzSY8rA7GaUCA

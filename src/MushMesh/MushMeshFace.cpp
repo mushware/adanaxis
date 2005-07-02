@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } EdF8rw7ulzOAVAjW1Qr63A
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshFace.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMeshFace.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMeshFace.h"
@@ -69,7 +72,7 @@ MushMeshFace::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -79,4 +82,4 @@ void
 MushMeshFace::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } toLs3S/6ocCiV4v2tMTAlw
+//%outOfLineFunctions } D2wwK4GSXIijunstkr/qfg

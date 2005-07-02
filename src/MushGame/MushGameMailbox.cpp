@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id: MushGameMailbox.cpp,v 1.3 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.4  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/20 16:14:31  southa
  * Adanaxis work
  *
@@ -134,7 +137,7 @@ MushGameMailbox::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_deque;
     }
-    else
+    else 
     {
         return false;
     }
@@ -146,4 +149,4 @@ MushGameMailbox::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deque");
     ioOut << m_deque;
 }
-//%outOfLineFunctions } lpcCHpO+vQnyUXaQ5XX5IA
+//%outOfLineFunctions } 2oQBIB+uCFbODZUmkmscTg

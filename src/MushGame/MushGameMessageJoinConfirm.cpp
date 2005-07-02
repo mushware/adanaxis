@@ -98,7 +98,7 @@ MushGameMessageJoinConfirm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const s
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -117,4 +117,4 @@ MushGameMessageJoinConfirm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("hostPackageID");
     ioOut << m_hostPackageID;
 }
-//%outOfLineFunctions } YrELIvPr3KfiwtML7X0MGg
+//%outOfLineFunctions } MWdtyx2FRae+oGz4cO5JBg

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 6t5YCxegLAOWEyrIZSFPLw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshPosticity.cpp,v 1.1 2005/06/24 10:30:13 southa Exp $
+ * $Log: MushMeshPosticity.cpp,v $
+ * Revision 1.1  2005/06/24 10:30:13  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushMeshPosticity.h"
@@ -111,7 +114,7 @@ MushMeshPosticity::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_timeValid;
     }
-    else
+    else 
     {
         return false;
     }
@@ -133,4 +136,4 @@ MushMeshPosticity::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("timeValid");
     ioOut << m_timeValid;
 }
-//%outOfLineFunctions } 5pOGc6kB3mKRYmjI4W/LKA
+//%outOfLineFunctions } 9RLjOHmJ+KGuDf3hVF4yAw

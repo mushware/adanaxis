@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 5btgIJdgvUud/9DtUw4GnQ
 /*
- * $Id: MushPieForm.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushPieForm.cpp,v 1.6 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPieForm.cpp,v $
+ * Revision 1.6  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -108,7 +111,7 @@ MushPieForm::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -118,4 +121,4 @@ void
 MushPieForm::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } rKWm20dFxFqSmDlPs1ywkw
+//%outOfLineFunctions } g1wsfIKpSBNkWevX7X7gVA

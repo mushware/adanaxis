@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jhdo/VCXESdIVB/METBPYg
 /*
- * $Id: GameCode.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameCode.cpp,v 1.4 2005/06/20 14:30:34 southa Exp $
  * $Log: GameCode.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -132,7 +135,7 @@ GameCode::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     {
         ioIn >> m_crypt;
     }
-    else
+    else 
     {
         return false;
     }
@@ -146,4 +149,4 @@ GameCode::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("crypt");
     ioOut << m_crypt;
 }
-//%outOfLineFunctions } doBk11fWFBKq4PiwB4Vgrg
+//%outOfLineFunctions } 4ehmdPjlyT0y+nCcw4hqng

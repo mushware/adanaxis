@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5jSH/Xb6MEG+qzzvWN1AjA
 /*
- * $Id: AdanaxisServer.cpp,v 1.4 2005/06/22 20:01:57 southa Exp $
+ * $Id: AdanaxisServer.cpp,v 1.5 2005/06/23 13:56:57 southa Exp $
  * $Log: AdanaxisServer.cpp,v $
+ * Revision 1.5  2005/06/23 13:56:57  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/22 20:01:57  southa
  * MushGame link work
  *
@@ -90,7 +93,7 @@ AdanaxisServer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -101,4 +104,4 @@ AdanaxisServer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameServer::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } trMMGZRBwu0OySY7A/qsgg
+//%outOfLineFunctions } 6ZhKK88QgMUPxqzwtFIPJQ

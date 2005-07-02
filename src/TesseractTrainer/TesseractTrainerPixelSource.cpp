@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } deJxNEsvw1K5S2rPw6UiPg
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.5 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:41  southa
  * Client/server work
  *
@@ -187,7 +190,7 @@ TesseractTrainerPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const 
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -204,4 +207,4 @@ TesseractTrainerPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } FV8y6SbBfTQdvqj+AlpWzA
+//%outOfLineFunctions } Q5ZbjsYggaAO+p0VchLWpA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Fj6DJ9Nl9r0XWjQ8VWoIog
 /*
- * $Id: MushGameLinkLocal.cpp,v 1.3 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameLinkLocal.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameLinkLocal.cpp,v $
+ * Revision 1.4  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -141,7 +144,7 @@ MushGameLinkLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -152,4 +155,4 @@ MushGameLinkLocal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLink::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } DYtFqmdXUuZoTSDRQ32IcQ
+//%outOfLineFunctions } /xf57gE2rIpFXRs0R+xA1A

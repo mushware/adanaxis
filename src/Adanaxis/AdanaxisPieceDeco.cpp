@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.2 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.3 2005/07/01 10:36:46 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.3  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  * Revision 1.2  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -102,7 +105,7 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -117,4 +120,4 @@ AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("mesh");
     ioOut << m_mesh;
 }
-//%outOfLineFunctions } neZ3KmlpqSp58Luj5M2Nsg
+//%outOfLineFunctions } h2ez6IvLtVaYkrI4F/M4Ew

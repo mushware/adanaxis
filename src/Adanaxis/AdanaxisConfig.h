@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.3 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.4 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.4  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -60,14 +63,14 @@ private:
 public:
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Gmx2iKNH0HGZI2MMHyzomg
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } EBRMAX6M4zxbXKmqH8v9cA
 };
 //%inlineHeader {
 inline std::ostream&

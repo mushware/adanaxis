@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XttDYnY7xVQ0Mej3+yO1wQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.2 2005/07/01 16:42:54 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.2  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.1  2005/07/01 10:36:46  southa
  * MushRender work
  *
@@ -77,7 +80,7 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_projection;
     }
-    else
+    else 
     {
         return false;
     }
@@ -89,4 +92,4 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("projection");
     ioOut << m_projection;
 }
-//%outOfLineFunctions } yH5EUSfGJYsRLoKVd1py8w
+//%outOfLineFunctions } v/BEqayINgKBEFMEqAMWNA

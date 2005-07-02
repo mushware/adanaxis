@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } tdoSfpSXz3jSwC871qqVIQ
 /*
- * $Id: GameSetup.cpp,v 1.46 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameSetup.cpp,v 1.47 2005/06/20 14:30:34 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.47  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.46  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -463,7 +466,7 @@ GameSetup::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTag
     {
         ioIn >> m_windowClicked;
     }
-    else
+    else 
     {
         return false;
     }
@@ -483,4 +486,4 @@ GameSetup::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("windowClicked");
     ioOut << m_windowClicked;
 }
-//%outOfLineFunctions } ankyeJHOtx1bsMHiolmzjQ
+//%outOfLineFunctions } I4pbLqHwrNu5+sK7z8chOw

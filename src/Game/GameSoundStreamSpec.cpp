@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PEy2CHiJNmS7LfNQy1wt/g
 /*
- * $Id: GameSoundStreamSpec.cpp,v 1.3 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameSoundStreamSpec.cpp,v 1.4 2005/06/20 14:30:34 southa Exp $
  * $Log: GameSoundStreamSpec.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -93,7 +96,7 @@ GameSoundStreamSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         ioIn >> startTime;
     }
-    else
+    else 
     {
         return false;
     }
@@ -109,4 +112,4 @@ GameSoundStreamSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("startTime");
     ioOut << startTime;
 }
-//%outOfLineFunctions } 21T4JAts81evrgzi08khHQ
+//%outOfLineFunctions } VgPbUQN9b8XsIxfXD40Jsw

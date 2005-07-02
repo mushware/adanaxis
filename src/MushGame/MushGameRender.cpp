@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w2//WvMUbsPuYAvxQojk5g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameRender.cpp,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Log: MushGameRender.cpp,v $
+ * Revision 1.1  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  */
 
 #include "MushGameRender.h"
@@ -81,7 +84,7 @@ MushGameRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_groupingName;
     }
-    else
+    else 
     {
         return false;
     }
@@ -93,4 +96,4 @@ MushGameRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("groupingName");
     ioOut << m_groupingName;
 }
-//%outOfLineFunctions } 2hKtYVMcKekOTnMSdwRwAw
+//%outOfLineFunctions } S4xWtMTmFOzf3j9ZFnCXDw

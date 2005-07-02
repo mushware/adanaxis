@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZbqDA500q75IjTv/A4Bk6Q
 /*
- * $Id: MaurheenGame.cpp,v 1.14 2005/06/16 17:25:38 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.15 2005/06/20 14:30:35 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.15  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.14  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -223,7 +226,7 @@ MaurheenGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -233,4 +236,4 @@ void
 MaurheenGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } BD+zf5csuzeU+4h8AOPN7Q
+//%outOfLineFunctions } VD1k+zuJlUyUMXOXGGuiHw

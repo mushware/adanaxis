@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ggvvg/klFTDl+UpqEnnMwA
 /*
- * $Id: GameReg.cpp,v 1.7 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameReg.cpp,v 1.8 2005/06/20 14:30:34 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.8  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -382,7 +385,7 @@ GameReg::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagSt
     {
         ioIn >> m_authValue;
     }
-    else
+    else 
     {
         return false;
     }
@@ -398,5 +401,5 @@ GameReg::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("authValue");
     ioOut << m_authValue;
 }
-//%outOfLineFunctions } et8LQczoaM+KkwyRYKnuFg
+//%outOfLineFunctions } +WGSujrVJYuJwX8jNp/RWA
 

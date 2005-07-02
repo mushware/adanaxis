@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GqSRke6jt0OSPqPXXhIZtQ
 /*
- * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.4 2005/06/16 17:25:41 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.5 2005/06/20 14:30:40 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:40  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:41  southa
  * Client/server work
  *
@@ -159,7 +162,7 @@ TestMushcoreVirtualPointerObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, c
     {
         ioIn >> m_subSubPtr;
     }
-    else
+    else 
     {
         return false;
     }
@@ -177,4 +180,4 @@ TestMushcoreVirtualPointerObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subSubPtr");
     ioOut << m_subSubPtr;
 }
-//%outOfLineFunctions } lPY8gK8bl9ZpghzNFk2NNA
+//%outOfLineFunctions } O4fndAUkr72zHWuSsbMMZA

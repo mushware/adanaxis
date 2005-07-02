@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } qP/D11f61WKLayRHqTfr/g
 /*
- * $Id: MushGameLogicLocal.cpp,v 1.5 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameLogicLocal.cpp,v 1.6 2005/06/30 16:29:25 southa Exp $
  * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.6  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -123,7 +126,7 @@ MushGameLogicLocal::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -134,4 +137,4 @@ MushGameLogicLocal::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLogic::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } iNC2gEeq5kaZQFGgaQ+6Iw
+//%outOfLineFunctions } 96dDf3dow9nkQEE6n/tInA

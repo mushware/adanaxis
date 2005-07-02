@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mPmCGCmDmQ75caXxvc1Qow
 /*
- * $Id: GameDialogue.cpp,v 1.31 2005/06/16 17:25:38 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.32 2005/06/20 14:30:34 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.32  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.31  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -297,7 +300,7 @@ GameDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_expired;
     }
-    else
+    else 
     {
         return false;
     }
@@ -319,4 +322,4 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } wDlVVs+Hz5DEkVp9QtjQeQ
+//%outOfLineFunctions } pMZF79hRXwW8iK1Da/c4IQ

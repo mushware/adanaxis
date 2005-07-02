@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 52RIWum9xu087Tczq3jGIg
 /*
- * $Id: MushPiePieceMobile.cpp,v 1.7 2005/06/16 17:25:40 southa Exp $
+ * $Id: MushPiePieceMobile.cpp,v 1.8 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPiePieceMobile.cpp,v $
+ * Revision 1.8  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -123,7 +126,7 @@ MushPiePieceMobile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -142,4 +145,4 @@ MushPiePieceMobile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("newPosIndex");
     ioOut << m_newPosIndex;
 }
-//%outOfLineFunctions } p98KukjyWpnuk2yrKil8KA
+//%outOfLineFunctions } oVvwAulK/YSBA8a5eWW6Fw

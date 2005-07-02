@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1ueBdipwBAr0SQ2f9drFZg
 /*
- * $Id: MushPiePosicity.cpp,v 1.6 2005/06/16 17:25:40 southa Exp $
+ * $Id: MushPiePosicity.cpp,v 1.7 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPiePosicity.cpp,v $
+ * Revision 1.7  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/06/16 17:25:40  southa
  * Client/server work
  *
@@ -119,7 +122,7 @@ MushPiePosicity::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_vel;
     }
-    else
+    else 
     {
         return false;
     }
@@ -137,4 +140,4 @@ MushPiePosicity::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("vel");
     ioOut << m_vel;
 }
-//%outOfLineFunctions } lXXeomurUIcejoTVsXObsA
+//%outOfLineFunctions } idsK+Gclj+9CkS88anChQQ

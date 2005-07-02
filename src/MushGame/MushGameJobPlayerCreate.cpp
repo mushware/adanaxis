@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.6 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.7 2005/06/24 10:30:12 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.7  2005/06/24 10:30:12  southa
+ * MushGame camera work
+ *
  * Revision 1.6  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -203,7 +206,7 @@ MushGameJobPlayerCreate::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -216,4 +219,4 @@ MushGameJobPlayerCreate::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("state");
     ioOut << m_state;
 }
-//%outOfLineFunctions } P2jjAP8v6YWFeewtzlkY7Q
+//%outOfLineFunctions } d7q5twlznrcBv2/n0btoQA

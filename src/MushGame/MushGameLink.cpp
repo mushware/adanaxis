@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3OteCOfn1xaSDLsPZcAEYQ
 /*
- * $Id: MushGameLink.cpp,v 1.5 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameLink.cpp,v 1.6 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameLink.cpp,v $
+ * Revision 1.6  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/22 20:01:58  southa
  * MushGame link work
  *
@@ -131,7 +134,7 @@ MushGameLink::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_destAddrRef;
     }
-    else
+    else 
     {
         return false;
     }
@@ -145,4 +148,4 @@ MushGameLink::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("destAddrRef");
     ioOut << m_destAddrRef;
 }
-//%outOfLineFunctions } SLbKbkeXSvnW1IC8omftPQ
+//%outOfLineFunctions } 3NEXlQSb13oG0nJ2y51KHw

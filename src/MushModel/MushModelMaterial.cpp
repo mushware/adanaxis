@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x23JuTdZeZ6lv0VI6tjnsA
 /*
- * $Id: MushModelMaterial.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushModelMaterial.cpp,v 1.6 2005/06/20 14:30:37 southa Exp $
  * $Log: MushModelMaterial.cpp,v $
+ * Revision 1.6  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -172,7 +175,7 @@ MushModelMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_textureName;
     }
-    else
+    else 
     {
         return false;
     }
@@ -184,4 +187,4 @@ MushModelMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("textureName");
     ioOut << m_textureName;
 }
-//%outOfLineFunctions } 3ciSbYVdx3UQI/mA92mtlA
+//%outOfLineFunctions } EdHz5AmFcPFumZinjr3cjQ

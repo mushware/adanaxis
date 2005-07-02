@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n/UkWx9jYA8DIO4Ho+6crA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshMaterialRef.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMeshMaterialRef.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMeshMaterialRef.h"
@@ -69,7 +72,7 @@ MushMeshMaterialRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -79,4 +82,4 @@ void
 MushMeshMaterialRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } 8wyMLgxX+AeAnQlC4dawDQ
+//%outOfLineFunctions } DyIwh0bXkCOC9IcLYzJGzw

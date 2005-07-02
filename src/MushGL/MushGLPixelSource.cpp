@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } LccQwBTHLT37eo+dpTNBig
 /*
- * $Id: MushGLPixelSource.cpp,v 1.2 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.3 2005/06/16 17:25:39 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.3  2005/06/16 17:25:39  southa
+ * Client/server work
+ *
  * Revision 1.2  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -49,7 +52,7 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -59,4 +62,4 @@ void
 MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } 3w4QPIqAN1anXzJkRs9lZg
+//%outOfLineFunctions } 37WCFQbqqNiTIIL+iLYvhw

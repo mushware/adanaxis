@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6wrxduT8qjqQA8gwnwHt8A
 /*
- * $Id: TesseractTrainerPixelSource.h,v 1.2 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerPixelSource.h,v 1.3 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerPixelSource.h,v $
+ * Revision 1.3  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -63,14 +66,14 @@ public:
     void ColourSet(const Mushware::t4Val& inValue) { m_colour=inValue; }
     const Mushware::tLongVal& Seed(void) const { return m_seed; }
     void SeedSet(const Mushware::tLongVal& inValue) { m_seed=inValue; }
-    const char *AutoName(void) const;
-    MushcoreVirtualObject *AutoClone(void) const;
-    MushcoreVirtualObject *AutoCreate(void) const;
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
     static MushcoreVirtualObject *AutoVirtualFactory(void);
-    void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } zvsUsZgjCzTS1JynAhWuKA
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 03HVpbGkUkG1vQNs27aIZA
 };
 //%inlineHeader {
 inline std::ostream&

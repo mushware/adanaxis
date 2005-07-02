@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.8 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.9 2005/06/30 16:29:25 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.9  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -445,7 +448,7 @@ MushGameLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_hostDataRef;
     }
-    else
+    else 
     {
         return false;
     }
@@ -459,4 +462,4 @@ MushGameLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("hostDataRef");
     ioOut << m_hostDataRef;
 }
-//%outOfLineFunctions } DVO9yyMiWy5cK9z0gQKXvQ
+//%outOfLineFunctions } iFXIT4kZZC5R+63KfE3VMw

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.2 2005/07/01 14:58:59 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.3 2005/07/01 16:42:54 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.3  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.2  2005/07/01 14:58:59  southa
  * Mushcore auto_ptr and binary string fixes
  *
@@ -87,7 +90,7 @@ AdanaxisLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -98,4 +101,4 @@ AdanaxisLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLogic::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } i810fq7uLu8LgqN5Dfw4QQ
+//%outOfLineFunctions } CJla1G67YOsafSjFedjYqA

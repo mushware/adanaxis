@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eGIp1zU33Yrjl2u5aQhpWQ
 /*
- * $Id: MushcoreFactory.h,v 1.9 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreFactory.h,v 1.10 2005/06/21 13:10:52 southa Exp $
  * $Log: MushcoreFactory.h,v $
+ * Revision 1.10  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  * Revision 1.9  2005/05/19 13:02:15  southa
  * Mac release work
  *
@@ -86,8 +89,8 @@ private:
     tFactoryMap m_factories;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 //%inlineHeader {
 inline std::ostream&

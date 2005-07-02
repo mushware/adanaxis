@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id: MushMesh4Face.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.2 2005/06/30 12:34:59 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.2  2005/06/30 12:34:59  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.1  2005/06/30 12:04:55  southa
  * Mesh work
  *
@@ -117,7 +120,7 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -140,4 +143,4 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("edgeSmoothness");
     ioOut << m_edgeSmoothness;
 }
-//%outOfLineFunctions } mCGBGIxLSvWeuozc2tqBJA
+//%outOfLineFunctions } 0TS0VY6VOnWjnyoJfiHc3A

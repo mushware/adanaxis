@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 9OVBujwZBOJmcBAY7m0pHg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameRefPiece.cpp,v 1.1 2005/06/29 09:07:56 southa Exp $
+ * $Log: MushGameRefPiece.cpp,v $
+ * Revision 1.1  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushGameRefPiece.h"
@@ -79,7 +82,7 @@ MushGameRefPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -92,4 +95,4 @@ MushGameRefPiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pieceRef");
     ioOut << m_pieceRef;
 }
-//%outOfLineFunctions } AjIr7CIqUnBD/Tc16dJf5g
+//%outOfLineFunctions } g3D5qPrkMolOUeAya1U8Vw

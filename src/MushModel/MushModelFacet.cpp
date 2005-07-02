@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WTo3qhRr63RK1J47o9bcbQ
 /*
- * $Id: MushModelFacet.cpp,v 1.5 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushModelFacet.cpp,v 1.6 2005/06/20 14:30:37 southa Exp $
  * $Log: MushModelFacet.cpp,v $
+ * Revision 1.6  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -111,7 +114,7 @@ MushModelFacet::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_normals;
     }
-    else
+    else 
     {
         return false;
     }
@@ -131,4 +134,4 @@ MushModelFacet::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("normals");
     ioOut << m_normals;
 }
-//%outOfLineFunctions } sXMPJc1HjsUFXe+H4g/0hg
+//%outOfLineFunctions } yKowFzH8cvRWU3a++x6pOQ

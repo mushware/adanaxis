@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DEIbaed/fMvMVvkt6iWKMg
 /*
- * $Id: MushGameDigest.cpp,v 1.2 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameDigest.cpp,v 1.3 2005/06/20 16:14:30 southa Exp $
  * $Log: MushGameDigest.cpp,v $
+ * Revision 1.3  2005/06/20 16:14:30  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/20 14:30:36  southa
  * Adanaxis work
  *
@@ -109,7 +112,7 @@ MushGameDigest::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_deque;
     }
-    else
+    else 
     {
         return false;
     }
@@ -123,4 +126,4 @@ MushGameDigest::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deque");
     ioOut << m_deque;
 }
-//%outOfLineFunctions } doZMcrIqTrga2oRIExrm3A
+//%outOfLineFunctions } Q8eQWtAKCXjOR0zaKJkNAw

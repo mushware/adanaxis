@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZzA13XBaYAADYudEapYUYw
 /*
- * $Id: MushGameClient.cpp,v 1.2 2005/06/20 14:30:35 southa Exp $
+ * $Id: MushGameClient.cpp,v 1.3 2005/06/21 15:57:47 southa Exp $
  * $Log: MushGameClient.cpp,v $
+ * Revision 1.3  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  * Revision 1.2  2005/06/20 14:30:35  southa
  * Adanaxis work
  *
@@ -86,7 +89,7 @@ MushGameClient::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -96,4 +99,4 @@ void
 MushGameClient::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } O0XvTEabGhKnckgKFZWLTw
+//%outOfLineFunctions } cbnKsomm2pgbV/XUnmfWXw

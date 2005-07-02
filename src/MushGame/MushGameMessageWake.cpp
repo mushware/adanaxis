@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yZ79LpEYalG3wBFJ4waz3g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageWake.cpp,v 1.1 2005/06/21 15:57:48 southa Exp $
+ * $Log: MushGameMessageWake.cpp,v $
+ * Revision 1.1  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameMessageWake.h"
@@ -73,7 +76,7 @@ MushGameMessageWake::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -84,4 +87,4 @@ MushGameMessageWake::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameMessage::AutoXMLPrint(ioOut);
 }
-//%outOfLineFunctions } YlsKL0WxTJN7o4Lhfz/UZw
+//%outOfLineFunctions } U6Si6BjxRS9EdduL13RUKQ

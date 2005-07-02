@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.3 2005/07/01 10:03:30 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.4 2005/07/01 10:36:46 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.4  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  * Revision 1.3  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -152,7 +155,7 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_projection;
     }
-    else
+    else 
     {
         return false;
     }
@@ -164,4 +167,4 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("projection");
     ioOut << m_projection;
 }
-//%outOfLineFunctions } Y86cz1VUtb/D0tLtfKLsQA
+//%outOfLineFunctions } 49sh+J/XIT6IrpHNnFnlJg

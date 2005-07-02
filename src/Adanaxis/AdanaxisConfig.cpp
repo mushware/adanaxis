@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.4 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -117,7 +120,7 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -130,4 +133,4 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } 50x36Sya+I2lEuoASJgHDQ
+//%outOfLineFunctions } 8oBV4c5HOpTu8yLeXwWcGw

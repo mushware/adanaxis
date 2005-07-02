@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } do/pC4WFtsQItE9mWclSaw
 /*
- * $Id: AdanaxisPixelSource.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
+ * $Id: AdanaxisPixelSource.cpp,v 1.4 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisPixelSource.cpp,v $
+ * Revision 1.4  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -182,7 +185,7 @@ AdanaxisPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         // Tag consumed by base class
     }
-    else
+    else 
     {
         return false;
     }
@@ -199,4 +202,4 @@ AdanaxisPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("seed");
     ioOut << m_seed;
 }
-//%outOfLineFunctions } i8jPVHxhG5i0PUumNw2oPw
+//%outOfLineFunctions } XYglSTmXExscrNHIxOTuTQ

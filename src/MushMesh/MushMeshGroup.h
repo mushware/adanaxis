@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0SrhrbHl8czT7t/5C4bjNw
 /*
- * $Id: MushMeshGroup.h,v 1.3 2005/02/10 12:34:05 southa Exp $
+ * $Id: MushMeshGroup.h,v 1.4 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshGroup.h,v $
+ * Revision 1.4  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/10 12:34:05  southa
  * Template fixes
  *
@@ -120,8 +123,8 @@ private:
     tOrder m_group;
 //%classPrototypes {
 public:
-    void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
 
 inline const MushMeshGroup::tValue

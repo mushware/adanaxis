@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } apsuPIkQzTaqWiIk89z8uA
 /*
- * $Id: InfernalFacetContext.cpp,v 1.4 2005/06/16 17:25:38 southa Exp $
+ * $Id: InfernalFacetContext.cpp,v 1.5 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalFacetContext.cpp,v $
+ * Revision 1.5  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/16 17:25:38  southa
  * Client/server work
  *
@@ -196,7 +199,7 @@ InfernalFacetContext::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_contextValid;
     }
-    else
+    else 
     {
         return false;
     }
@@ -224,4 +227,4 @@ InfernalFacetContext::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("contextValid");
     ioOut << m_contextValid;
 }
-//%outOfLineFunctions } Ac0b2WNksOkFqFNvP+u3nQ
+//%outOfLineFunctions } SuKQTBYmNTkkNqW/ele5Fg

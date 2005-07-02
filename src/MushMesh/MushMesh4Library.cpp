@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } U7p/xUoHUXuIfNSiEWFaVQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Library.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Library.cpp,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
 #include "MushMesh4Library.h"
@@ -184,7 +187,7 @@ MushMesh4Library::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else
+    else 
     {
         return false;
     }
@@ -194,4 +197,4 @@ void
 MushMesh4Library::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } cLOa9IfppcBS0/XVorX1Tg
+//%outOfLineFunctions } 46bunZr3mWoIQD27zj9fyw

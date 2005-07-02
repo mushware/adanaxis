@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.11 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.12 2005/07/01 16:42:54 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.12  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.11  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -266,7 +269,7 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_config;
     }
-    else
+    else 
     {
         return false;
     }
@@ -294,4 +297,4 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } /TyS9F55DR7+FmJUk6h4fg
+//%outOfLineFunctions } OXfsVqwWbNjOhix/C82ggw

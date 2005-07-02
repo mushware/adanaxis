@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x1hhF/NH4dT4y5U7K5AdDw
 /*
- * $Id: MushGameJob.cpp,v 1.4 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameJob.cpp,v 1.5 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameJob.cpp,v $
+ * Revision 1.5  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -117,7 +120,7 @@ MushGameJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
     {
         ioIn >> m_id;
     }
-    else
+    else 
     {
         return false;
     }
@@ -135,4 +138,4 @@ MushGameJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("id");
     ioOut << m_id;
 }
-//%outOfLineFunctions } 26RVangnmD+LtNDz7CtEYw
+//%outOfLineFunctions } d8SCAKb4/EEakq925tuONQ
