@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.12 2005/07/01 16:42:54 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.13 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.13  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.12  2005/07/01 16:42:54  southa
  * Render work
  *
@@ -133,7 +136,7 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     
     {
         MushcoreXMLOStream xmlOut(std::cout);
-        xmlOut << VolatileData();
+        //xmlOut << VolatileData();
     }
     
     m_inited = true;

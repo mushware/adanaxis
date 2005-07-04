@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Nd4PoIz3nPwfnH84Wy1Y3w
 /*
- * $Id: MushcoreUtil.cpp,v 1.20 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.21 2005/07/01 14:59:00 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.21  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.20  2005/06/30 16:29:25  southa
  * Adanaxis work
  *
@@ -391,3 +394,18 @@ MushcoreUtil::BreakpointFunction(void)
     cerr << "Hit BreakpointFuncton" << endl;
 }
 
+void
+MushcoreUtil::BoundaryThrow(U32 inValue, U32 inLimit)
+{
+    ostringstream message;
+    message << "Access out of bounds (" << inValue << " >= " << inLimit << ')';
+    throw MushcoreLogicFail(message.str()) ;
+}
+
+void
+MushcoreUtil::BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2)
+{
+    ostringstream message;
+    message << "Access out of bounds (" << inValue1 << " >= " << inLimit1 << " or " << inValue2 << " >= " << inLimit2 << ')';
+    throw MushcoreLogicFail(message.str()) ;
+}

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7OpR3zTj9YNW6vQRFe5IfA
 /*
- * $Id: MushGLBuffer.h,v 1.5 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushGLBuffer.h,v 1.6 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLBuffer.h,v $
+ * Revision 1.6  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.5  2005/06/30 16:29:25  southa
  * Adanaxis work
  *
@@ -264,7 +267,7 @@ MushGLBuffer<T>::Ref(const Mushware::tSize inIndex)
         throw MushcoreLogicFail("MushGLBuffer: Ref to unmapped buffer");
     }
     
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     return m_pData[inIndex];
 }
 
@@ -276,7 +279,7 @@ MushGLBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
     {
         throw MushcoreLogicFail("MushGLBuffer: Set on unmapped buffer");
     }
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     m_pData[inIndex] = inValue;
 }
 
@@ -288,7 +291,7 @@ MushGLBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
     {
         throw MushcoreLogicFail("MushGLBuffer: AddrForGLGet on mapped buffer");
     }
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     if (m_isVertexBuffer)
     {
         return reinterpret_cast<void *>(inIndex*sizeof(T));

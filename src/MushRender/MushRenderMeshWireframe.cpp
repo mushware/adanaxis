@@ -19,11 +19,16 @@
  ****************************************************************************/
 //%Header } nnreRrgtAG1/ZKElYmX31w
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMeshWireframe.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushRenderMeshWireframe.h"
+
+#include "MushRenderUtil.h"
 
 #include "API/mushMushMesh.h"
 #include "API/mushMushGL.h"
@@ -66,10 +71,17 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
     }
     
     const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Input vertices
-    U32 srcVerticesSize = srcVertices.size(); // Number of input vertices
+    // U32 srcVerticesSize = srcVertices.size(); // Number of input vertices
     const MushMesh4Mesh::tConnectivity& srcConnect = p4Mesh->Connectivity(); // Input connectivity (vector of vectors)
     U32 srcConnectSize = srcConnect.size(); // Size of connectivity's outer vector
-
+    
+    MushGLWorkspace<MushGLBuffers::tVertex>& projectedWorkspace =
+        glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
+    MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
+    // Create the projected vertices
+    MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
+    U32 projectedVerticesSize = projectedVertices.size(); // Size of projected vertex vector array
+    
     U32 numLines = p4Mesh->NumConnections(); // Number of connections => number of lines
     U32 numVertices = numLines * 2; // Number of output vertices, i.e. space to reserve in the output buffer
     
@@ -106,20 +118,29 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
                 {
                     throw MushcoreDataFail("Overflow in connectivity data");
                 }
-                if (i >= srcVerticesSize || vertexNum > srcVerticesSize)
+                if (i >= projectedVerticesSize || vertexNum > projectedVerticesSize)
                 {
                     throw MushcoreDataFail("Out of range in connectivity data");
                 }
                 
-                destVertices.Set(srcVertices[i], destVertexIndex);
+                destVertices.Set(projectedVertices[i], destVertexIndex);
                 destVertexIndex++;
-                destVertices.Set(srcVertices[vertexNum], destVertexIndex);
+                destVertices.Set(projectedVertices[vertexNum], destVertexIndex);
                 destVertexIndex++;            
             }
             else if (vertexNum == i)
             {
                 throw MushcoreDataFail("Self-connection fault in connectivity data");
             }
+        }
+    }
+    
+    static U32 ctr=0;
+    if (++ctr < 3)
+    {
+        for (U32 i=0; i<destVertexIndex; ++i)
+        {
+            cout << destVertices.Ref(i) << endl;
         }
     }
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.3 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.4 2005/07/04 11:10:43 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.4  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.3  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -135,7 +138,7 @@ MushMesh4Mesh::FaceCentroid(Mushware::U32 inFaceNum) const
     {
         FaceCentroidsBuild();
     }
-    MushMeshUtils::BoundsCheck(inFaceNum, m_faceCentroids.size());
+    MushcoreUtil::BoundsCheck(inFaceNum, m_faceCentroids.size());
     return m_faceCentroids[inFaceNum]; 
 }
 
@@ -146,7 +149,7 @@ MushMesh4Mesh::FaceBoundingRadius(Mushware::U32 inFaceNum) const
     {
         FaceBoundingRadiiBuild();
     }
-    MushMeshUtils::BoundsCheck(inFaceNum, m_faceBoundingRadii.size());
+    MushcoreUtil::BoundsCheck(inFaceNum, m_faceBoundingRadii.size());
     return m_faceBoundingRadii[inFaceNum]; 
 }
 

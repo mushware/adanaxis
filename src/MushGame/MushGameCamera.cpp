@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n4I3T2aUdqYB2n1/b+c3Kg
 /*
- * $Id: MushGameCamera.cpp,v 1.3 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameCamera.cpp,v 1.4 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameCamera.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -38,6 +41,17 @@ MushGameCamera::MushGameCamera() :
     m_pTiedRef(NULL)
 {
         m_post.ToIdentitySet();
+}
+
+const MushGameCamera&
+MushGameCamera::operator=(const MushGameCamera& inCamera)
+{
+    if (this != &inCamera)
+    {
+        MushGameCamera tempObj(inCamera);
+        std::swap(tempObj, *this);
+    }
+    return *this;
 }
 
 MushGameCamera::~MushGameCamera()
@@ -103,6 +117,7 @@ MushGameCamera::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "post=" << m_post << ", ";
+    ioOut << "projection=" << m_projection << ", ";
     if (m_pTiedRef == NULL)
     {
         ioOut << "pTiedRef=NULL" ;
@@ -126,6 +141,10 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_post;
     }
+    else if (inTagStr == "projection")
+    {
+        ioIn >> m_projection;
+    }
     else if (inTagStr == "pTiedRef")
     {
         ioIn >> m_pTiedRef;
@@ -141,7 +160,9 @@ MushGameCamera::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("post");
     ioOut << m_post;
+    ioOut.TagSet("projection");
+    ioOut << m_projection;
     ioOut.TagSet("pTiedRef");
     ioOut << m_pTiedRef;
 }
-//%outOfLineFunctions } BeqK9INbLxzSY8rA7GaUCA
+//%outOfLineFunctions } 0dULot/zTlzib3FjxKUx0A

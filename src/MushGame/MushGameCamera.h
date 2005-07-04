@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iR1nzzDghU7XG/JS99oDQQ
 /*
- * $Id: MushGameCamera.h,v 1.2 2005/06/29 09:07:56 southa Exp $
+ * $Id: MushGameCamera.h,v 1.3 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.3  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.2  2005/06/29 09:07:56  southa
  * MushGame camera work
  *
@@ -39,6 +42,7 @@
 #include "MushGamePlayer.h"
 #include "MushGameRef.h"
 
+#include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 
 //:generate virtual standard ostream xml1
@@ -46,6 +50,26 @@ class MushGameCamera : public MushcoreVirtualObject
 {
 public:
     MushGameCamera();
+    MushGameCamera(const MushGameCamera& inCamera)
+    {
+        // Deep copy
+        m_post = inCamera.m_post;
+        m_projection = inCamera.m_projection;
+        if (inCamera.m_pTiedRef == NULL)
+        {
+            m_pTiedRef = NULL;
+        }
+        else
+        {
+            m_pTiedRef = dynamic_cast<MushGameRef *>(inCamera.m_pTiedRef->AutoClone());
+            if (m_pTiedRef == NULL)
+            {
+                throw MushcoreDataFail(std::string("Clone failure: MushGameRef != ")+inCamera.m_pTiedRef->AutoName());
+            }
+        }
+    }
+    const MushGameCamera& operator=(const MushGameCamera& inCamera);
+    
     virtual ~MushGameCamera();
     
     virtual void FromTiedObjectUpdate(void);
@@ -53,12 +77,15 @@ public:
     
 private:
     MushMeshPosticity m_post; //:readwrite
+    MushGLProjection m_projection; //:readwrite
     MushGameRef *m_pTiedRef;
     
 //%classPrototypes {
 public:
     const MushMeshPosticity& Post(void) const { return m_post; }
     void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
+    const MushGLProjection& Projection(void) const { return m_projection; }
+    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,7 +93,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } bYrWlL9gkU9u2rKZSes7wA
+//%classPrototypes } 6Znngf6eU1lxCXv2olz8HA
 };
 //%inlineHeader {
 inline std::ostream&

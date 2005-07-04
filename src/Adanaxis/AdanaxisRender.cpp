@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.5 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.6 2005/07/04 11:10:43 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.6  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.5  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -74,16 +77,21 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
     
+    GLColour(0.8,0.8,0.8,0.5).Apply();
+    
     // Projection prologue
     
     typedef AdanaxisVolatileData::tDecoList tDecoList;
     
     MushRenderMeshWireframe renderMesh;
+    MushGameCamera camera(inCamera);
+    
+    camera.ProjectionSet(m_projection);
     
     tDecoList::iterator endIter = pVolData->DecoListWRef().end();
     for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != endIter; ++p)
     {
-        p->Render(ioLogic, renderMesh, inCamera);
+        p->Render(ioLogic, renderMesh, camera);
     }
         
     // Projection epilogue
@@ -100,11 +108,11 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     static U32 ctr=0;
 
-    if (ctr++ < 5)
+    if (ctr++ < 2)
     {
         MushcoreXMLOStream xmlOut(std::cout);
-        std::cout << "Camera " << inCamera << endl;
-        xmlOut << m_projection;
+        // std::cout << "Camera " << inCamera << endl;
+        // xmlOut << m_projection;
     }
     GLUtils::OrthoEpilogue();
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.20 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushMeshVector.h,v 1.21 2005/06/30 14:26:36 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.21  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.20  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -89,8 +92,6 @@
 
 #include "MushMeshStandard.h"
 
-#include "MushMeshUtils.h"
-
 template <class T, Mushware::U32 D>
 class MushMeshVector
 {
@@ -153,7 +154,7 @@ public:
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
 
 protected:
-    void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushMeshUtils::BoundaryThrow(i, D); }
+    void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushcoreUtil::BoundaryThrow(i, D); }
 
 #ifdef MUSHWARE_NO_TEMPLATE_FRIENDS
 	/* Make private data public if template friends are not allowed.

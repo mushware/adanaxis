@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9Me/nJIZR1YxOvHlqu+ysw
 /*
- * $Id: GameStringSpec.h,v 1.3 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameStringSpec.h,v 1.4 2005/06/20 14:30:34 southa Exp $
  * $Log: GameStringSpec.h,v $
+ * Revision 1.4  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/05/19 13:02:03  southa
  * Mac release work
  *
@@ -36,10 +39,10 @@
  *
  */
 
-#include "mushMushcore.h"
+#include "API/mushMushcore.h"
 
-#include "mushGL.h"
-#include "mushMushPie.h"
+#include "API/mushGL.h"
+#include "API/mushMushMesh.h"
 
 //:generate virtual standard ostream xml1
 class GameStringSpec : public MushcoreVirtualObject
@@ -49,7 +52,7 @@ public:
         
 private:
     GLString m_string; //:readwrite :wref
-    MushPiePosicity m_posicity; //:readwrite :wref
+    MushMeshPosticity m_posticity; //:readwrite :wref
     GLColour m_startColour; //:readwrite
     GLColour m_midColour; //:readwrite
     GLColour m_endColour; //:readwrite
@@ -65,10 +68,10 @@ public:
     void StringSet(const GLString& inValue) { m_string=inValue; }
     // Writable reference for m_string
     GLString& StringWRef(void) { return m_string; }
-    const MushPiePosicity& Posicity(void) const { return m_posicity; }
-    void PosicitySet(const MushPiePosicity& inValue) { m_posicity=inValue; }
-    // Writable reference for m_posicity
-    MushPiePosicity& PosicityWRef(void) { return m_posicity; }
+    const MushMeshPosticity& Posticity(void) const { return m_posticity; }
+    void PosticitySet(const MushMeshPosticity& inValue) { m_posticity=inValue; }
+    // Writable reference for m_posticity
+    MushMeshPosticity& PosticityWRef(void) { return m_posticity; }
     const GLColour& StartColour(void) const { return m_startColour; }
     void StartColourSet(const GLColour& inValue) { m_startColour=inValue; }
     const GLColour& MidColour(void) const { return m_midColour; }
@@ -94,7 +97,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } D9dvTy7QHCBlItv71cK+eQ
+//%classPrototypes } ECrSpI49LDLt2PS0hhgSFA
 };
 //%inlineHeader {
 inline std::ostream&

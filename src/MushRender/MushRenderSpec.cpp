@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XttDYnY7xVQ0Mej3+yO1wQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.4 2005/07/04 11:10:43 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.4  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.3  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -68,6 +71,8 @@ MushRenderSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "projection=" << m_projection << ", ";
+    ioOut << "view=" << m_view << ", ";
+    ioOut << "model=" << m_model << ", ";
     ioOut << "buffersRef=" << m_buffersRef;
     ioOut << "]";
 }
@@ -84,6 +89,14 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_projection;
     }
+    else if (inTagStr == "view")
+    {
+        ioIn >> m_view;
+    }
+    else if (inTagStr == "model")
+    {
+        ioIn >> m_model;
+    }
     else if (inTagStr == "buffersRef")
     {
         ioIn >> m_buffersRef;
@@ -99,7 +112,11 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("projection");
     ioOut << m_projection;
+    ioOut.TagSet("view");
+    ioOut << m_view;
+    ioOut.TagSet("model");
+    ioOut << m_model;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
 }
-//%outOfLineFunctions } JpalBjzD3uCwsNNCGmWIGA
+//%outOfLineFunctions } 55gRE4bQ3trC07QiLy6ZOw

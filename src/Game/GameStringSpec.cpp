@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eNQnZ9mXkx+CLF7sLqnxHg
 /*
- * $Id: GameStringSpec.cpp,v 1.4 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameStringSpec.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
  * $Log: GameStringSpec.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/20 14:30:34  southa
  * Adanaxis work
  *
@@ -71,7 +74,7 @@ GameStringSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "string=" << m_string << ", ";
-    ioOut << "posicity=" << m_posicity << ", ";
+    ioOut << "posticity=" << m_posticity << ", ";
     ioOut << "startColour=" << m_startColour << ", ";
     ioOut << "midColour=" << m_midColour << ", ";
     ioOut << "endColour=" << m_endColour << ", ";
@@ -96,9 +99,9 @@ GameStringSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_string;
     }
-    else if (inTagStr == "posicity")
+    else if (inTagStr == "posticity")
     {
-        ioIn >> m_posicity;
+        ioIn >> m_posticity;
     }
     else if (inTagStr == "startColour")
     {
@@ -147,8 +150,8 @@ GameStringSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("string");
     ioOut << m_string;
-    ioOut.TagSet("posicity");
-    ioOut << m_posicity;
+    ioOut.TagSet("posticity");
+    ioOut << m_posticity;
     ioOut.TagSet("startColour");
     ioOut << m_startColour;
     ioOut.TagSet("midColour");
@@ -168,4 +171,4 @@ GameStringSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endSize");
     ioOut << m_endSize;
 }
-//%outOfLineFunctions } hQscBf9xfKRUBS1wwv92uw
+//%outOfLineFunctions } g0m0lp9+h741nIHXwP02gQ

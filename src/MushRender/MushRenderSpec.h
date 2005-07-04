@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id: MushRenderSpec.h,v 1.3 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.4 2005/07/04 11:10:43 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.4  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.3  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -43,24 +46,35 @@
 #include "API/mushMushGL.h"
 
 //:generate standard ostream xml1
-class MushRenderSpec : MushcoreVirtualObject
+class MushRenderSpec : public MushcoreVirtualObject
 {
 public:
+    typedef Mushware::t4x4o4Val tMattress;
     virtual ~MushRenderSpec() {}
     
-    // const MushGLModelView& ModelToClipMatress() const;
+    const tMattress ModelToClipMattress(void) const { return m_projection * (m_view * m_model); }
     
 private:
-    MushGLProjection m_projection; //:readwrite
-    // MushGLModelView m_model;
-    // MushGLModelView m_view;
-    // MushGLModelView m_model;
+    tMattress m_projection; //:readwrite :wref
+    tMattress m_view; //:readwrite :wref
+    tMattress m_model; //:readwrite :wref
+
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     
 //%classPrototypes {
 public:
-    const MushGLProjection& Projection(void) const { return m_projection; }
-    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
+    const tMattress& Projection(void) const { return m_projection; }
+    void ProjectionSet(const tMattress& inValue) { m_projection=inValue; }
+    // Writable reference for m_projection
+    tMattress& ProjectionWRef(void) { return m_projection; }
+    const tMattress& View(void) const { return m_view; }
+    void ViewSet(const tMattress& inValue) { m_view=inValue; }
+    // Writable reference for m_view
+    tMattress& ViewWRef(void) { return m_view; }
+    const tMattress& Model(void) const { return m_model; }
+    void ModelSet(const tMattress& inValue) { m_model=inValue; }
+    // Writable reference for m_model
+    tMattress& ModelWRef(void) { return m_model; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
     virtual const char *AutoName(void) const;
@@ -70,7 +84,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 80NZ6huRRIsP6kV/PlyqyQ
+//%classPrototypes } 4T/hwFhDix0gU1I8m+i8ag
 };
 //%inlineHeader {
 inline std::ostream&

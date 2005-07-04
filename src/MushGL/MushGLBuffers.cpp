@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iJqp18kDKyw/qVmGx/vsLQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLBuffers.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLBuffers.cpp,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLBuffers.h"
@@ -65,7 +68,9 @@ MushGLBuffers::AutoPrint(std::ostream& ioOut) const
     ioOut << "owner=" << static_cast<Mushware::U32>(m_owner) << ", ";
     ioOut << "vertexBuffer=" << m_vertexBuffer << ", ";
     ioOut << "colourBuffer=" << m_colourBuffer << ", ";
-    ioOut << "texCoordBuffers=" << m_texCoordBuffers;
+    ioOut << "texCoordBuffers=" << m_texCoordBuffers << ", ";
+    ioOut << "worldVertices=" << m_worldVertices << ", ";
+    ioOut << "projectedVertices=" << m_projectedVertices;
     ioOut << "]";
 }
 bool
@@ -93,6 +98,14 @@ MushGLBuffers::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_texCoordBuffers;
     }
+    else if (inTagStr == "worldVertices")
+    {
+        ioIn >> m_worldVertices;
+    }
+    else if (inTagStr == "projectedVertices")
+    {
+        ioIn >> m_projectedVertices;
+    }
     else 
     {
         return false;
@@ -110,5 +123,9 @@ MushGLBuffers::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_colourBuffer;
     ioOut.TagSet("texCoordBuffers");
     ioOut << m_texCoordBuffers;
+    ioOut.TagSet("worldVertices");
+    ioOut << m_worldVertices;
+    ioOut.TagSet("projectedVertices");
+    ioOut << m_projectedVertices;
 }
-//%outOfLineFunctions } /2ZcKv5GYhw/y3hcxBYYtw
+//%outOfLineFunctions } mdrgy0VT50p3EFI9JVcbow

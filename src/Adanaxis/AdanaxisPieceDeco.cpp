@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.4 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.5 2005/07/04 11:10:43 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.5  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.4  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -41,6 +44,7 @@ using namespace std;
 AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
     m_id(inID)
 {
+    PostWRef().ToIdentitySet();
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
     MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
 }
@@ -48,8 +52,23 @@ AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
 void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
+    PostWRef().InPlaceVelocityAdd();
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(m_buffersRef);
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
+    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
+    renderSpec.ProjectionSet(inCamera.Projection().Mattress());
+    
+    static U32 ctr=0;
+    
+    if (ctr++ < 2)
+    {
+        MushcoreXMLOStream xmlOut(std::cout);
+        std::cout << "Camera " << inCamera << endl;
+        xmlOut << inCamera;
+        std::cout << "RenderSpec " << renderSpec << endl;
+        xmlOut << renderSpec;
+    }
     
     inRender.MeshRender(renderSpec, m_mesh);
 }

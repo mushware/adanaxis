@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } X9UP1KNKwyumuL+woGoUdg
 /*
- * $Id: MushMeshMattress.h,v 1.1 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushMeshMattress.h,v 1.2 2005/07/04 11:10:43 southa Exp $
  * $Log: MushMeshMattress.h,v $
+ * Revision 1.2  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.1  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -48,6 +51,8 @@ public:
     MushMeshMattress() {}
     MushMeshMattress(const tMatrix& inMatrix, const tOffset& inOffset) :
         m_matrix(inMatrix), m_offset(inOffset) {}
+    
+    void ToIdentitySet(void) { m_matrix.ToMultiplicativeIdentitySet(); m_offset.ToAdditiveIdentitySet(); }
     
 private:
     tMatrix m_matrix; //:readwrite :wref

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } a1qjCz0bBuANTo2cXSx3YQ
 /*
- * $Id: MushMeshTriangularArray.h,v 1.7 2005/02/03 15:46:54 southa Exp $
+ * $Id: MushMeshTriangularArray.h,v 1.8 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.8  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.7  2005/02/03 15:46:54  southa
  * Quaternion work
  *
@@ -152,7 +155,7 @@ MushMeshTriangularArray<T>::BoundsCheck(Mushware::U32 inX, Mushware::U32 inY) co
 {
     if (inX >= m_xSize || inY >= inX * m_order)
     {
-        MushMeshUtils::BoundaryThrow(inX, m_xSize, inY, inX * m_order);
+        MushcoreUtil::BoundaryThrow(inX, m_xSize, inY, inX * m_order);
     }
     return true;
 }
@@ -224,9 +227,20 @@ template <class T>
 inline bool
 MushMeshTriangularArray<T>::EqualIs(const MushMeshTriangularArray<T>& inObj) const
 {
-    return (m_xSize == inObj.m_xSize) &&
-           (m_order == inObj.m_order) &&
-           MushMeshUtils::EqualIs(m_values, inObj.m_values); // Workaround for STL problem
+    if (m_values.size() != inObj.m_values.size())
+    {
+        return false;
+    }
+    
+    for (Mushware::U32 i=0; i < m_values.size(); ++i)
+    {
+        if (m_values[i] != inObj.m_values[i])
+        {
+            return false;
+        }
+    }
+    return ((m_xSize == inObj.m_xSize) &&
+            (m_order == inObj.m_order));
 }
 
 template <class T>

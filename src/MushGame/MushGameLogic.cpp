@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.9 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.10 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.10  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.9  2005/06/30 16:29:25  southa
  * Adanaxis work
  *
@@ -359,7 +362,6 @@ MushGameLogic::RenderSequence(void)
     MushcoreData<MushGameCamera>& cameraData = SaveData().CamerasWRef();
     for (tIterator p = cameraData.Begin(); p != cameraData.End(); ++p)
     {
-        p->second->FromTiedObjectUpdate();
         SaveData().RenderRef().WRef().FrameRender(*this, *p->second);
     }
 }

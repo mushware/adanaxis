@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vwV6SiVDpdczt8FUUII4/g
 /*
- * $Id: MushMeshUtils.cpp,v 1.9 2005/02/10 12:34:07 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.10 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.10  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.9  2005/02/10 12:34:07  southa
  * Template fixes
  *
@@ -71,22 +74,6 @@ const tVal MushMeshUtils::m_alphaTable[kMaxValence] =
     13.3978
 };
 
-void
-MushMeshUtils::BoundaryThrow(U32 inValue, U32 inLimit)
-{
-    ostringstream message;
-    message << "Access out of bounds (" << inValue << " >= " << inLimit << ')';
-    throw MushcoreLogicFail(message.str()) ;
-}
-
-void
-MushMeshUtils::BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2)
-{
-    ostringstream message;
-    message << "Access out of bounds (" << inValue1 << " >= " << inLimit1 << " or " << inValue2 << " >= " << inLimit2 << ')';
-    throw MushcoreLogicFail(message.str()) ;
-}
-
 tVal
 MushMeshUtils::SubdivisionAlphaCalculate(Mushware::U32 inN)
 {
@@ -130,5 +117,4 @@ MushMeshUtils::SimpleDivide4Mesh(MushMeshGroup& outGroup, const MushMeshGroup& i
     }
     
 }
-
 

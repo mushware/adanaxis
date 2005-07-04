@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hWNbm86RBoWi7/IeO2I8bQ
 /*
- * $Id: MushGLVertexBuffer.h,v 1.6 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.7 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.7  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.6  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -291,7 +294,7 @@ MushGLVertexBuffer<T>::Ref(const Mushware::tSize inIndex)
         throw MushcoreLogicFail("MushGLVertexBuffer: Ref to unmapped buffer");
     }
     
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     return m_pData[inIndex];
 }
 
@@ -303,7 +306,7 @@ MushGLVertexBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
     {
         throw MushcoreLogicFail("MushGLVertexBuffer: Set on unmapped buffer");
     }
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     m_pData[inIndex] = inValue;
 }
 
@@ -315,7 +318,7 @@ MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
     {
         throw MushcoreLogicFail("MushGLVertexBuffer: AddrForGLGet on mapped buffer");
     }
-    MushMeshUtils::BoundsCheck(inIndex, m_size);
+    MushcoreUtil::BoundsCheck(inIndex, m_size);
     if (m_isVertexBuffer)
     {
         if (m_contextNum != MushGLV::Sgl().ContextNum())

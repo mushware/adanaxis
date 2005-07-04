@@ -23,13 +23,17 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLBuffers.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLBuffers.h,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLStandard.h"
 
 #include "MushGLVertexBuffer.h"
+#include "MushGLWorkspace.h"
 
 //:generate standard ostream xml1
 class MushGLBuffers : public MushcoreVirtualObject
@@ -43,9 +47,12 @@ public:
         kOwnerOther
     };
     
-    typedef MushGLVertexBuffer<Mushware::t4GLVal> tVertexBuffer;
-    typedef MushGLVertexBuffer<Mushware::t4GLVal> tColourBuffer;
-    typedef MushGLVertexBuffer<Mushware::t4GLVal> tTexCoordBuffer;
+    typedef Mushware::t4GLVal tVertex;
+    typedef Mushware::t4GLVal tColour;
+    typedef Mushware::t4GLVal tTexCoord;
+    typedef MushGLVertexBuffer<tVertex> tVertexBuffer;
+    typedef MushGLVertexBuffer<tColour> tColourBuffer;
+    typedef MushGLVertexBuffer<tTexCoord> tTexCoordBuffer;
     typedef MushcoreData<MushGLBuffers, Mushware::U32> tData;
     typedef MushcoreDataRef<MushGLBuffers, Mushware::U32> tDataRef;
     
@@ -64,6 +71,8 @@ private:
     tColourBuffer m_colourBuffer; //:read :wref
     std::vector<tTexCoordBuffer> m_texCoordBuffers; //:wref
 
+    MushGLWorkspace<tVertex> m_worldVertices; //:read :wref
+    MushGLWorkspace<tVertex> m_projectedVertices; //:read :wref
     static Mushware::U32 m_nextBufferNum;
     
 //%classPrototypes {
@@ -76,6 +85,12 @@ public:
     tColourBuffer& ColourBufferWRef(void) { return m_colourBuffer; }
     // Writable reference for m_texCoordBuffers
     std::vector<tTexCoordBuffer>& TexCoordBuffersWRef(void) { return m_texCoordBuffers; }
+    const MushGLWorkspace<tVertex>& WorldVertices(void) const { return m_worldVertices; }
+    // Writable reference for m_worldVertices
+    MushGLWorkspace<tVertex>& WorldVerticesWRef(void) { return m_worldVertices; }
+    const MushGLWorkspace<tVertex>& ProjectedVertices(void) const { return m_projectedVertices; }
+    // Writable reference for m_projectedVertices
+    MushGLWorkspace<tVertex>& ProjectedVerticesWRef(void) { return m_projectedVertices; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -83,7 +98,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Q1Md88FkC9CMnNLJdBTbGA
+//%classPrototypes } yTEeRDt9b/0AI3v9hTq5TQ
 };
 
 inline void

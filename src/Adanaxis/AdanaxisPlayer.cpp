@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.2 2005/06/23 17:25:24 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.3 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.3  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/06/23 17:25:24  southa
  * MushGame link work
  *
@@ -29,10 +32,15 @@
 
 #include "AdanaxisPlayer.h"
 
+using namespace Mushware;
+using namespace std;
+
 AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
     MushGamePlayer(inPlayerID)
 {
+    PostWRef().PosSet(t4Val(0,0,0,2));
 }
+
 //%outOfLineFunctions {
 
 const char *AdanaxisPlayer::AutoName(void) const

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } CMAbsfWUKn4bEfUeIQQR7g
 /*
- * $Id: MushMeshArray.h,v 1.15 2005/02/03 15:46:51 southa Exp $
+ * $Id: MushMeshArray.h,v 1.16 2005/05/19 13:02:09 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.16  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.15  2005/02/03 15:46:51  southa
  * Quaternion work
  *
@@ -271,9 +274,21 @@ template <class T>
 inline bool
 MushMeshArray<T>::EqualIs(const MushMeshArray<T>& inObj) const
 {
-    return (m_xSize == inObj.m_xSize) &&
-           (m_ySize == inObj.m_ySize) &&
-           MushMeshUtils::EqualIs(m_values, inObj.m_values); // Workaround for STL problem
+    if (m_values.size() != inObj.m_values.size())
+    {
+        return false;
+    }
+    
+    for (Mushware::U32 i=0; i < m_values.size(); ++i)
+    {
+        if (m_values[i] != inObj.m_values[i])
+        {
+            return false;
+        }
+    }
+    
+    return ((m_xSize == inObj.m_xSize) &&
+        (m_ySize == inObj.m_ySize));
 }
 
 template <class T>

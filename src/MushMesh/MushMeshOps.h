@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rbf8AK++JTeVEs9EtXBbeg
 /*
- * $Id: MushMeshOps.h,v 1.5 2005/03/08 01:24:09 southa Exp $
+ * $Id: MushMeshOps.h,v 1.6 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshOps.h,v $
+ * Revision 1.6  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/03/08 01:24:09  southa
  * Quaternion slerp between orientations
  *
@@ -44,10 +47,12 @@
 
 #include "MushMeshStandard.h"
 
-#include "MushMeshVector.h"
+#include "MushMeshMattress.h"
+#include "MushMeshPosticity.h"
 #include "MushMeshPreMatrix.h"
 #include "MushMeshQuaternion.h"
 #include "MushMeshQuaternionPair.h"
+#include "MushMeshVector.h"
 
 class MushMeshOps
 {
@@ -68,8 +73,8 @@ public:
     template <class T, Mushware::U32 D> static MushMeshVector<T, D> SlerpNormalised(const MushMeshVector<T, D>& inA, const MushMeshVector<T, D>& inB, const Mushware::tVal inProp);
     template <class T> static MushMeshQuaternionPair<T> SlerpNormalised(const MushMeshQuaternionPair<T>& inA, const MushMeshQuaternionPair<T>& inB, const Mushware::tVal inProp);
 
+    static void PosticityToMattress(Mushware::t4x4o4Val& outMattress, const MushMeshPosticity& inPost);
 };
-
 
 template <class T, Mushware::U32 D>
 inline bool

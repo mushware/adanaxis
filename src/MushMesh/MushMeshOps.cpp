@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ALTYrsUnRmh8nIy3s/p33Q
 /*
- * $Id: MushMeshOps.cpp,v 1.4 2005/02/03 21:03:00 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.5 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/03 21:03:00  southa
  * Build fixes
  *
@@ -225,3 +228,11 @@ Q3LARGEST:
     outPair.FirstSet(qS * qP);
     outPair.SecondSet(qP.ConjugateGet());
 }
+
+void
+MushMeshOps::PosticityToMattress(Mushware::t4x4o4Val& outMattress, const MushMeshPosticity& inPost)
+{
+    QuaternionPairToRotationMatrix(outMattress.MatrixWRef(), inPost.AngPos());
+    outMattress.OffsetSet(inPost.Pos());
+}
+

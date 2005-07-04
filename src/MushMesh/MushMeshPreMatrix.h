@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7Y7qw9fXK5qyxNASaSz7KA
 /*
- * $Id: MushMeshPreMatrix.h,v 1.7 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.8 2005/07/01 10:03:30 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.8  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.7  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -112,8 +115,8 @@ public:
     static const tThis Identity(void);
     
 protected:
-    void RowBoundsCheck(Mushware::U32 inR) const { if (inR >= R) MushMeshUtils::BoundaryThrow(inR, R); }
-    void ColumnBoundsCheck(Mushware::U32 inC) const { if (inC >= C) MushMeshUtils::BoundaryThrow(inC, C); }
+    void RowBoundsCheck(Mushware::U32 inR) const { if (inR >= R) MushcoreUtil::BoundaryThrow(inR, R); }
+    void ColumnBoundsCheck(Mushware::U32 inC) const { if (inC >= C) MushcoreUtil::BoundaryThrow(inC, C); }
     void RCBoundsCheck(Mushware::U32 inR, Mushware::U32 inC) const { RowBoundsCheck(inR); ColumnBoundsCheck(inC); }
     
 private:

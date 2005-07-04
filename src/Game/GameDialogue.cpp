@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mPmCGCmDmQ75caXxvc1Qow
 /*
- * $Id: GameDialogue.cpp,v 1.32 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.33 2005/07/02 00:42:37 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.33  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.32  2005/06/20 14:30:34  southa
  * Adanaxis work
  *
@@ -86,7 +89,7 @@ GameDialogue::Render(void) const
             
             GLUtils::PushMatrix();
             GLUtils gl;
-            gl.MoveTo(specRef.Posicity().Pos().X(), specRef.Posicity().Pos().Y());
+            gl.MoveTo(specRef.Posticity().Pos().X(), specRef.Posticity().Pos().Y());
             // FIXME GLUtils::RotateAboutZ(m_angle);
             GLColour colour=
                 startMult*specRef.StartColour() +
@@ -119,7 +122,7 @@ GameDialogue::Move(void)
             expired=false;
             if (m_age >= specRef.StartTime())
             {
-                specRef.PosicityWRef().InPlaceVelocityAdd();
+                specRef.PosticityWRef().InPlaceVelocityAdd();
             }
         }
     }

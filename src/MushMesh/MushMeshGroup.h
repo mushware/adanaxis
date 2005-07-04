@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0SrhrbHl8czT7t/5C4bjNw
 /*
- * $Id: MushMeshGroup.h,v 1.4 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshGroup.h,v 1.5 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMeshGroup.h,v $
+ * Revision 1.5  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -42,7 +45,6 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshMushcoreIO.h"
-#include "MushMeshUtils.h"
 
 /* Terminology
  *
@@ -130,9 +132,9 @@ public:
 inline const MushMeshGroup::tValue
 MushMeshGroup::Value(const tSize inSuperGroup, const tSize inGroup, const tSize inIndex) const
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
-    MushMeshUtils::BoundsCheck(inGroup, m_group[inSuperGroup].size());
-    MushMeshUtils::BoundsCheck(inIndex, m_group[inSuperGroup][inGroup].size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inGroup, m_group[inSuperGroup].size());
+    MushcoreUtil::BoundsCheck(inIndex, m_group[inSuperGroup][inGroup].size());
 
     return m_group[inSuperGroup][inGroup][inIndex];
 }
@@ -158,60 +160,60 @@ MushMeshGroup::ValueAdd(const tValue inVal, const tSize inSuperGroup, const tSiz
 inline const MushMeshGroup::tSuperGroup&
 MushMeshGroup::SuperGroup(const tSize inSuperGroup) const
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
     return m_group[inSuperGroup];
 }
 
 inline MushMeshGroup::tSuperGroup&
 MushMeshGroup::SuperGroup(const tSize inSuperGroup)
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
     return m_group[inSuperGroup];
 }
 
 inline const MushMeshGroup::tGroup&
 MushMeshGroup::GroupAtSuperGroupGroup(const tSize inSuperGroup, const tSize inGroup) const
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
-    MushMeshUtils::BoundsCheck(inGroup, m_group[inSuperGroup].size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inGroup, m_group[inSuperGroup].size());
     return m_group[inSuperGroup][inGroup];
 }
 
 inline MushMeshGroup::tGroup&
 MushMeshGroup::GroupAtSuperGroupGroup(const tSize inSuperGroup, const tSize inGroup)
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
-    MushMeshUtils::BoundsCheck(inGroup, m_group[inSuperGroup].size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inGroup, m_group[inSuperGroup].size());
     return m_group[inSuperGroup][inGroup];
 }
 
 inline void
 MushMeshGroup::ValuePush(const tValue inVal)
 {
-    MushMeshUtils::BoundsCheck(0, m_group.size());
-    MushMeshUtils::BoundsCheck(0, m_group.back().size());
+    MushcoreUtil::BoundsCheck(0, m_group.size());
+    MushcoreUtil::BoundsCheck(0, m_group.back().size());
     m_group.back().back().push_back(inVal);
 }
 
 inline void
 MushMeshGroup::GroupPush(const tGroup inVal)
 {
-    MushMeshUtils::BoundsCheck(0, m_group.size());
+    MushcoreUtil::BoundsCheck(0, m_group.size());
     m_group.back().push_back(inVal);
 }
 
 inline const MushMeshGroup::tSize
 MushMeshGroup::SuperGroupSize(const tSize inSuperGroup) const
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
     return m_group[inSuperGroup].size();
 }
 
 inline const MushMeshGroup::tSize
 MushMeshGroup::GroupSize(const tSize inSuperGroup, const tSize inGroup) const
 {
-    MushMeshUtils::BoundsCheck(inSuperGroup, m_group.size());
-    MushMeshUtils::BoundsCheck(inGroup, m_group[inSuperGroup].size());
+    MushcoreUtil::BoundsCheck(inSuperGroup, m_group.size());
+    MushcoreUtil::BoundsCheck(inGroup, m_group[inSuperGroup].size());
     return m_group[inSuperGroup][inGroup].size();
 }
 

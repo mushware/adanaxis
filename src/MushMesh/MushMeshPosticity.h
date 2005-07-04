@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +eMrlpttHnUzQ/qPZM7tGQ
 /*
- * $Id: MushMeshPosticity.h,v 1.1 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushMeshPosticity.h,v 1.2 2005/06/29 11:11:15 southa Exp $
  * $Log: MushMeshPosticity.h,v $
+ * Revision 1.2  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.1  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -42,6 +45,7 @@ public:
     virtual ~MushMeshPosticity() {}
     
     inline void ToIdentitySet(void);
+    inline void InPlaceVelocityAdd(void);
     
 private:
     Mushware::tQValPair m_angPos; //:readwrite :wref
@@ -93,6 +97,14 @@ MushMeshPosticity::ToIdentitySet(void)
     m_vel.ToAdditiveIdentitySet();
     m_timeValid = false;
 }
+
+inline void
+MushMeshPosticity::InPlaceVelocityAdd(void)
+{
+    m_pos += m_vel;
+    m_angPos.OuterMultiplyBy(m_angVel);
+}
+
 //%inlineHeader {
 
 inline bool

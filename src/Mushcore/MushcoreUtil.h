@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.19 2005/06/14 13:25:34 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.20 2005/06/30 16:29:25 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.20  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.19  2005/06/14 13:25:34  southa
  * Adanaxis work
  *
@@ -139,6 +142,9 @@ public:
     static const Mushware::tVal RandomVal(const Mushware::tVal inMin, const Mushware::tVal inMax);
     static std::string LogTimeString(void);
     static void BreakpointFunction(void);
+    static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
+    static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
+    static void BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
 };
 
 template<class T>
@@ -151,6 +157,15 @@ MushcoreUtil::ArrayToVector(const T inArray[], Mushware::U32 inSize)
         valueVec[i] = inArray[i];
     }
     return valueVec;
+}
+
+inline void
+MushcoreUtil::BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
+{
+    if (inValue > inLimit)
+    {
+        BoundaryThrow(inValue, inLimit);
+    }
 }
 
 #if 0

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oDMbV4yZBqA1axMEQLMt9A
 /*
- * $Id: MushMeshUtils.h,v 1.10 2005/01/27 21:00:39 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.11 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.11  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.10  2005/01/27 21:00:39  southa
  * Division and rendering
  *
@@ -59,16 +62,13 @@
 
 #include "MushMeshStandard.h"
 
-class MushMeshGroup;
-
-template<class T, Mushware::U32 D> class MushMeshVector;
+#include "MushMeshGroup.h"
+#include "MushMeshVector.h"
 
 class MushMeshUtils
 {
 public:
-    static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
-    static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
-    static void BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
+
 
     static Mushware::tVal SubdivisionAlphaGet(Mushware::U32 inN);
     static Mushware::tVal SubdivisionAlphaCalculate(Mushware::U32 inN);
@@ -77,7 +77,7 @@ public:
     static void SimpleDivide4Mesh(MushMeshGroup& outGroup, const MushMeshGroup& inGroup, const Mushware::tVal inShrink);
     
     template<class T> static bool EqualIs(const MushwareValarray<T>& a, const MushwareValarray<T>& b);
-
+    
 private:
     enum
     {
@@ -86,15 +86,6 @@ private:
 
     static const Mushware::tVal m_alphaTable[kMaxValence];
 };
-
-inline void
-MushMeshUtils::BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
-{
-    if (inValue > inLimit)
-    {
-        BoundaryThrow(inValue, inLimit);
-    }
-}
 
 inline Mushware::tVal
 MushMeshUtils::SubdivisionAlphaGet(Mushware::U32 inN)
