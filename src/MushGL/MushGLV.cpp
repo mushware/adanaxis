@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.7 2005/06/08 20:59:51 southa Exp $
+ * $Id: MushGLV.cpp,v 1.8 2005/06/13 17:34:56 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.8  2005/06/13 17:34:56  southa
+ * Adanaxis creation
+ *
  * Revision 1.7  2005/06/08 20:59:51  southa
  * X11 release
  *
@@ -45,7 +48,9 @@
  */
 
 #include "MushGLV.h"
+
 #include "MushGLStandard.h"
+#include "MushGLState.h"
 
 #include "mushPlatform.h"
 
@@ -120,6 +125,8 @@ MushGLV::Acquaint()
             MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
         }
     }
+    
+    MushGLState::Sgl().ResetWriteAll();
 }
 
 //%outOfLineFunctions {

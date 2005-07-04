@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VKiAyvW8TZ5sqz0FUo06vw
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.8 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.9 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.9  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.8  2005/05/18 15:53:27  southa
  * Made buildable using gcc 4.0/Mac OS X 10.4
  *
@@ -66,6 +69,10 @@
 #define MUSHCORE_SINGLETON_INSTANCE(SingletonType) \
 template<> SingletonType *MushcoreAbstractSingleton< SingletonType >::m_pSingleton=NULL; \
 template<> MushcoreAbstractSingleton< SingletonType >::SingletonDestroyer MushcoreAbstractSingleton< SingletonType >::m_singletonDestroyer
+
+#define MUSHCORE_SINGLETON_INSTANCE2(SingletonType1, SingletonType2) \
+template<> SingletonType1, SingletonType2 *MushcoreAbstractSingleton< SingletonType1, SingletonType2 >::m_pSingleton=NULL; \
+template<> MushcoreAbstractSingleton< SingletonType1, SingletonType2 >::SingletonDestroyer MushcoreAbstractSingleton< SingletonType1, SingletonType2 >::m_singletonDestroyer
 
 template<class SingletonType> class MushcoreAbstractSingleton
 {

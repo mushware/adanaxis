@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c8LaySAshLTgIZq/9pb54Q
 /*
- * $Id: MushGL.h,v 1.6 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGL.h,v 1.7 2005/07/01 10:03:30 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.7  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.6  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -47,11 +50,18 @@
 
 #include "MushGLArrays.h"
 #include "MushGLBuffer.h"
-#include "MushGLStandard.h"
+#include "MushGLBuffers.h"
+#include "MushGLClaimer.h"
+#include "MushGLControl.h"
+#include "MushGLJob.h"
+#include "MushGLJobRender.h"
 #include "MushGLPixelSource.h"
 #include "MushGLProjection.h"
+#include "MushGLStandard.h"
+#include "MushGLState.h"
 #include "MushGLV.h"
 #include "MushGLVertexBuffer.h"
+#include "MushGLWorkSpec.h"
 
 //%includeGuardEnd {
 #endif

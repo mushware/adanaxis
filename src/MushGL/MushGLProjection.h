@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } A82t3KCFKhG+wPnlmwzf2Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLProjection.h,v 1.1 2005/07/01 10:03:30 southa Exp $
+ * $Log: MushGLProjection.h,v $
+ * Revision 1.1  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  */
 
 #include "MushGLStandard.h"
@@ -42,18 +45,14 @@ public:
     Mushware::t4Val TransformedVector(const Mushware::t4Val& ioVec) const;
     
 private:
-    Mushware::t4x4Val m_matrix; //:readwrite :wref
-    Mushware::t4Val m_offset; //:readwrite :wref
+    Mushware::t4x4o4Val m_mattress; //:readwrite :wref
+    
 //%classPrototypes {
 public:
-    const Mushware::t4x4Val& Matrix(void) const { return m_matrix; }
-    void MatrixSet(const Mushware::t4x4Val& inValue) { m_matrix=inValue; }
-    // Writable reference for m_matrix
-    Mushware::t4x4Val& MatrixWRef(void) { return m_matrix; }
-    const Mushware::t4Val& Offset(void) const { return m_offset; }
-    void OffsetSet(const Mushware::t4Val& inValue) { m_offset=inValue; }
-    // Writable reference for m_offset
-    Mushware::t4Val& OffsetWRef(void) { return m_offset; }
+    const Mushware::t4x4o4Val& Mattress(void) const { return m_mattress; }
+    void MattressSet(const Mushware::t4x4o4Val& inValue) { m_mattress=inValue; }
+    // Writable reference for m_mattress
+    Mushware::t4x4o4Val& MattressWRef(void) { return m_mattress; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,13 +60,13 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ivFZlHEwUvzALC3RHQLQzg
+//%classPrototypes } iZiP6ZByJNl3NsbrMdqzqA
 };
 
 inline void
 MushGLProjection::TransformVector(Mushware::t4Val& ioVec) const
 {
-    ioVec = m_matrix * ioVec + m_offset;
+    ioVec = m_mattress * ioVec;
 }
 
 inline Mushware::t4Val

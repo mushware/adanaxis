@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRENDER_H
-#define MUSHRENDER_H
-//%includeGuardStart } 5fmF16UOHKnng34sEDWRmg
+#ifndef MUSHGLCLAIMER_H
+#define MUSHGLCLAIMER_H
+//%includeGuardStart } 4OgFyVD5b4MruLBSe1Mx6A
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRender.h
+ * File: src/MushGL/MushGLClaimer.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,20 +21,40 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NUzrLBU/hE8fJ4WHp26kcQ
+//%Header } UTm+lqxmBpXRamcZhOG4vw
 /*
- * $Id: MushRender.h,v 1.1 2005/07/01 10:36:46 southa Exp $
- * $Log: MushRender.h,v $
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderMesh.h"
-#include "MushRenderMeshWireframe.h"
-#include "MushRenderSpec.h"
-#include "MushRenderStandard.h"
+#include "MushGLStandard.h"
 
+#include "MushGLBuffers.h"
+
+template<class T>
+class MushGLClaimer
+{
+public:
+    enum
+    {
+        kOwnerInvalid,
+        kOwnerNone,
+        kOwnerMushGL,
+        kOwnerOther
+    };
+    explicit MushGLClaimer(T& ioClaimed, Mushware::U32 inOwner = MushGLBuffers::kOwnerOther) :
+        m_claimed(ioClaimed),
+        m_owner(inOwner)
+    {
+        m_claimed.Claim(m_owner);
+    }
+
+    ~MushGLClaimer() { m_claimed.Release(m_owner); }
+
+private:
+    T& m_claimed;
+    Mushware::U32 m_owner;
+};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

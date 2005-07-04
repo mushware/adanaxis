@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRENDERSPEC_H
-#define MUSHRENDERSPEC_H
-//%includeGuardStart } MUbKk7V90INvJGmjmfoblQ
+#ifndef MUSHGLJOB_H
+#define MUSHGLJOB_H
+//%includeGuardStart } qrNqino2HIZwqIafk+8szQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRenderSpec.h
+ * File: src/MushGL/MushGLJob.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,48 +21,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hzHOaqG45RxILxoV7rJ+JA
+//%Header } 2itDwCcu0MoHHQO6fPcMdA
 /*
- * $Id: MushRenderSpec.h,v 1.3 2005/07/02 00:42:38 southa Exp $
- * $Log: MushRenderSpec.h,v $
- * Revision 1.3  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.2  2005/07/01 16:42:54  southa
- * Render work
- *
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderStandard.h"
+#include "MushGLStandard.h"
 
-#include "MushRenderSpec.h"
-
-#include "API/mushMushGL.h"
-
-//:generate standard ostream xml1
-class MushRenderSpec : MushcoreVirtualObject
+//:generate virtual standard ostream xml1
+class MushGLJob : public MushcoreVirtualObject
 {
 public:
-    virtual ~MushRenderSpec() {}
-    
-    // const MushGLModelView& ModelToClipMatress() const;
+    virtual ~MushGLJob() {}
     
 private:
-    MushGLProjection m_projection; //:readwrite
-    // MushGLModelView m_model;
-    // MushGLModelView m_view;
-    // MushGLModelView m_model;
-    MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    
 //%classPrototypes {
 public:
-    const MushGLProjection& Projection(void) const { return m_projection; }
-    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
-    const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
-    void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -70,16 +45,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 80NZ6huRRIsP6kV/PlyqyQ
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushRenderSpec& inObj)
+operator<<(std::ostream& ioOut, const MushGLJob& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } AwM/RwQovTTCL3UpRXcpCg
+//%inlineHeader } JsF+b3iyfSo3aoygjkl+OQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

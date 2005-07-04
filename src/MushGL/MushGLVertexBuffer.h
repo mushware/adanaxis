@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hWNbm86RBoWi7/IeO2I8bQ
 /*
- * $Id: MushGLVertexBuffer.h,v 1.5 2005/04/19 23:25:42 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.6 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.6  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/04/19 23:25:42  southa
  * Mode switching and recognition
  *
@@ -46,6 +49,7 @@
 
 #include "MushGLV.h"
 
+//:generate inline nonvirtual ostream xml1
 template <class T>
 class MushGLVertexBuffer
 {
@@ -68,6 +72,7 @@ public:
     void *AddrForGLGet(const Mushware::tSize inIndex = 0);
     
     void ClearAndResize(const Mushware::tSize inSize);
+    void Decache(void);
     
     GLuint GLName() const { return m_handle; }
     
@@ -80,12 +85,18 @@ private:
     bool m_isVertexBuffer;
     bool m_mapped;
     bool m_allocated;
-    Mushware::tSize m_size;
+    Mushware::tSize m_size; //:read
     tVec *m_pData;
     Mushware::U32 m_contextNum;
     
 public:
-    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes {
+public:
+    const Mushware::tSize& Size(void) const { return m_size; }
+    void AutoPrint(std::ostream& ioOut) const;
+    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 0xz9VyEM1/KbY14QiQ5KQQ
 };
 
 template <class T>
@@ -173,6 +184,18 @@ MushGLVertexBuffer<T>::Deallocate()
     m_allocated = false;
     m_mapped = false;
 }    
+
+template <class T>
+inline void
+MushGLVertexBuffer<T>::Decache(void)
+{
+    if (m_allocated)
+    {
+        Deallocate();
+    }
+}
+
+
 
 template <class T>
 inline void
@@ -318,6 +341,7 @@ MushGLVertexBuffer<T>::ClearAndResize(const Mushware::tSize inSize)
     Allocate(inSize);
 }
 
+//%inlineHeader {
 template <class T>
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGLVertexBuffer<T>& inObj)
@@ -325,7 +349,20 @@ operator<<(std::ostream& ioOut, const MushGLVertexBuffer<T>& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-
+template <class T>
+inline MushcoreXMLIStream&
+operator>>(MushcoreXMLIStream& ioIn, MushGLVertexBuffer<T>& outObj)
+{
+    throw MushcoreDataFail("Cannot read XML object type 'MushGLVertexBuffer'");
+    return ioIn;
+}
+template <class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushGLVertexBuffer<T>& inObj)
+{
+    inObj.AutoXMLPrint(ioOut);
+    return ioOut;
+}
 template <class T>
 inline void
 MushGLVertexBuffer<T>::AutoPrint(std::ostream& ioOut) const
@@ -338,14 +375,73 @@ MushGLVertexBuffer<T>::AutoPrint(std::ostream& ioOut) const
     ioOut << "size=" << m_size << ", ";
     if (m_pData == NULL)
     {
-        ioOut << "pData=NULL" ;
+        ioOut << "pData=NULL"  << ", ";
     }
     else
     {
-        ioOut << "pData=" << *m_pData;
+        ioOut << "pData=" << *m_pData << ", ";
     }
+    ioOut << "contextNum=" << m_contextNum;
     ioOut << "]";
 }
+template <class T>
+inline bool
+MushGLVertexBuffer<T>::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "handle")
+    {
+        ioIn >> m_handle;
+    }
+    else if (inTagStr == "isVertexBuffer")
+    {
+        ioIn >> m_isVertexBuffer;
+    }
+    else if (inTagStr == "mapped")
+    {
+        ioIn >> m_mapped;
+    }
+    else if (inTagStr == "allocated")
+    {
+        ioIn >> m_allocated;
+    }
+    else if (inTagStr == "size")
+    {
+        ioIn >> m_size;
+    }
+    else if (inTagStr == "pData")
+    {
+        ioIn >> m_pData;
+    }
+    else if (inTagStr == "contextNum")
+    {
+        ioIn >> m_contextNum;
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+template <class T>
+inline void
+MushGLVertexBuffer<T>::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("handle");
+    ioOut << m_handle;
+    ioOut.TagSet("isVertexBuffer");
+    ioOut << m_isVertexBuffer;
+    ioOut.TagSet("mapped");
+    ioOut << m_mapped;
+    ioOut.TagSet("allocated");
+    ioOut << m_allocated;
+    ioOut.TagSet("size");
+    ioOut << m_size;
+    ioOut.TagSet("pData");
+    ioOut << m_pData;
+    ioOut.TagSet("contextNum");
+    ioOut << m_contextNum;
+}
+//%inlineHeader } cUhwAoJ1+vgk3brL5mUrag
 
 //%includeGuardEnd {
 #endif

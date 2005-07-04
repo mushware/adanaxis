@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7OpR3zTj9YNW6vQRFe5IfA
 /*
- * $Id: MushGLBuffer.h,v 1.4 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLBuffer.h,v 1.5 2005/06/30 16:29:25 southa Exp $
  * $Log: MushGLBuffer.h,v $
+ * Revision 1.5  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -43,6 +46,7 @@
 
 #include "MushGLV.h"
 
+//:generate
 template <class T>
 class MushGLBuffer
 {
@@ -55,6 +59,7 @@ public:
     
     void Bind(void);
     void MapReadWrite();
+    void MapWriteOnly();
     bool AttemptUnmap();
     
     tVec& Ref(const Mushware::tSize inIndex);
@@ -71,16 +76,21 @@ private:
         
     void Allocate(const Mushware::tSize inSize);
     void Deallocate();
-    
+    void MapBuffer(GLenum inType);
+
     GLuint m_handle;
     bool m_isVertexBuffer;
     bool m_mapped;
     bool m_allocated;
-    Mushware::tSize m_size;
+    Mushware::tSize m_size; //:read
     tVec *m_pData;
 
 public:
     virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes {
+public:
+    const Mushware::tSize& Size(void) const { return m_size; }
+//%classPrototypes } jazfCOGeY7DCFjd3s5jseg
 };
 
 template <class T>
@@ -172,6 +182,20 @@ template <class T>
 inline void
 MushGLBuffer<T>::MapReadWrite(void)
 {
+    MapBuffer(GL_READ_WRITE);
+}
+
+template <class T>
+inline void
+MushGLBuffer<T>::MapWriteOnly(void)
+{
+    MapBuffer(GL_READ_WRITE);
+}
+
+template <class T>
+inline void
+MushGLBuffer<T>::MapBuffer(GLenum inType)
+{
     if (m_mapped)
     {
         throw MushcoreLogicFail("MushGLBuffer attempt to map buffer twice");
@@ -181,7 +205,7 @@ MushGLBuffer<T>::MapReadWrite(void)
     {
         Bind();
         T *pData;
-        pData = reinterpret_cast<T *>(MushGLV::Sgl().MapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
+        pData = reinterpret_cast<T *>(MushGLV::Sgl().MapBuffer(GL_ARRAY_BUFFER, inType));
         if (pData == NULL)
         {
             GLenum glErr = glGetError();

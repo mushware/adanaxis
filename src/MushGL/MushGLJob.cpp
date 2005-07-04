@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRenderMesh.cpp
+ * File: src/MushGL/MushGLJob.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,63 +17,51 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RGouKCAnfPKJ4WGuheaYpA
+//%Header } Z8IWlTO52vl3ETv0fGwD7w
 /*
- * $Id: MushRenderMesh.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
- * $Log: MushRenderMesh.cpp,v $
- * Revision 1.2  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderMesh.h"
-
-void
-MushRenderMesh::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
-{
-    // No render output
-}
+#include "MushGLJob.h"
 
 //%outOfLineFunctions {
 
-const char *MushRenderMesh::AutoName(void) const
+const char *MushGLJob::AutoName(void) const
 {
-    return "MushRenderMesh";
+    return "MushGLJob";
 }
 
-MushcoreVirtualObject *MushRenderMesh::AutoClone(void) const
+MushcoreVirtualObject *MushGLJob::AutoClone(void) const
 {
-    return new MushRenderMesh(*this);
+    return new MushGLJob(*this);
 }
 
-MushcoreVirtualObject *MushRenderMesh::AutoCreate(void) const
+MushcoreVirtualObject *MushGLJob::AutoCreate(void) const
 {
-    return new MushRenderMesh;
+    return new MushGLJob;
 }
 
-MushcoreVirtualObject *MushRenderMesh::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushGLJob::AutoVirtualFactory(void)
 {
-    return new MushRenderMesh;
+    return new MushGLJob;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushRenderMesh", MushRenderMesh::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushGLJob", MushGLJob::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushRenderMesh::AutoPrint(std::ostream& ioOut) const
+MushGLJob::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "]";
 }
 bool
-MushRenderMesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushGLJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -88,7 +76,7 @@ MushRenderMesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     return true;
 }
 void
-MushRenderMesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushGLJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
 }
-//%outOfLineFunctions } qaoiRfg+HPe2DQ7C+MKFKw
+//%outOfLineFunctions } ZDzrkr4i8K59cOdOA+iKrw

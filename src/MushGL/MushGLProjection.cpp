@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YhOMN0lltAKj2CZMFJS+0A
 /*
- * $Id: MushGLProjection.cpp,v 1.1 2005/07/01 10:03:30 southa Exp $
+ * $Id: MushGLProjection.cpp,v 1.2 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGLProjection.cpp,v $
+ * Revision 1.2  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.1  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -50,11 +53,11 @@ MushGLProjection::FromFAspectNearFarMake(Mushware::tVal inF, Mushware::tVal inAs
         throw MushcoreDataFail("Bad values for projection");
     }
     
-    m_matrix = t4x4Val(t4Val(inF/inAspect, 0,   0,  0),
-                       t4Val(0,            inF, 0,  0),
-                       t4Val(0,            0,   0,  (inFar+inNear)/(inNear-inFar)),
-                       t4Val(0,            0,   0,  -1));
-    m_offset = t4Val(0, 0, 2*inFar*inNear/(inNear - inFar), 0);    
+    m_mattress.MatrixSet(t4x4Val(t4Val(inF/inAspect, 0,   0,  0),
+                         t4Val(0,            inF, 0,  0),
+                         t4Val(0,            0,   0,  (inFar+inNear)/(inNear-inFar)),
+                         t4Val(0,            0,   0,  -1)));
+    m_mattress.OffsetSet(t4Val(0, 0, 2*inFar*inNear/(inNear - inFar), 0));    
 }
 //%outOfLineFunctions {
 
@@ -89,8 +92,7 @@ void
 MushGLProjection::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "matrix=" << m_matrix << ", ";
-    ioOut << "offset=" << m_offset;
+    ioOut << "mattress=" << m_mattress;
     ioOut << "]";
 }
 bool
@@ -102,13 +104,9 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "matrix")
+    else if (inTagStr == "mattress")
     {
-        ioIn >> m_matrix;
-    }
-    else if (inTagStr == "offset")
-    {
-        ioIn >> m_offset;
+        ioIn >> m_mattress;
     }
     else 
     {
@@ -119,9 +117,7 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
 void
 MushGLProjection::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("matrix");
-    ioOut << m_matrix;
-    ioOut.TagSet("offset");
-    ioOut << m_offset;
+    ioOut.TagSet("mattress");
+    ioOut << m_mattress;
 }
-//%outOfLineFunctions } /nt50jQ5fExMvdQP+m/YGg
+//%outOfLineFunctions } ru+eeA0F3Qz8dpznaAQi7A

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } eKtxHeAsO7WKLWrqWJNU3w
 /*
- * $Id: MushGLStandard.h,v 1.8 2005/05/27 12:48:37 southa Exp $
+ * $Id: MushGLStandard.h,v 1.9 2005/05/27 19:25:24 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.9  2005/05/27 19:25:24  southa
+ * win32 build fixes
+ *
  * Revision 1.8  2005/05/27 12:48:37  southa
  * Registration box tweaks
  *
@@ -128,8 +131,8 @@ typedef ptrdiff_t GLsizeiptr;
 typedef ptrdiff_t GLintptr;
 #endif
 
-#include "mushMushcore.h"
-#include "mushMushMesh.h"
+#include "API/mushMushcore.h"
+#include "API/mushMushMesh.h"
  
 #include <cmath>
 
@@ -142,6 +145,7 @@ namespace Mushware
 }
 
 #define MUSHGL_VALTYPE GL_FLOAT
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

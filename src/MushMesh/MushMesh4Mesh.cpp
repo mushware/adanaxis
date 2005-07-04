@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.3 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.4 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -82,6 +85,7 @@ MushMesh4Mesh::NormalsBuild(void) const
 void
 MushMesh4Mesh::ConnectivityBuild(void) const
 {
+    m_numConnections = 0;
     m_connectivity.resize(m_vertices.size());
     for (U32 i=0; i<m_connectivity.size(); ++i)
     {
@@ -127,12 +131,14 @@ MushMesh4Mesh::ConnectivityBuild(void) const
                              otherVertNum) == m_connectivity[vertNum].end())
                     {
                         m_connectivity[vertNum].push_back(otherVertNum);
+                        ++m_numConnections;
                     }
                     if (std::find(m_connectivity[otherVertNum].begin(),
                              m_connectivity[otherVertNum].end(),
                              vertNum) == m_connectivity[otherVertNum].end())
                     {
                         m_connectivity[otherVertNum].push_back(vertNum);
+                        ++m_numConnections;
                     }
                 }
             }
@@ -144,6 +150,9 @@ MushMesh4Mesh::ConnectivityBuild(void) const
     {
         std::sort(m_connectivity[i].begin(), m_connectivity[i].end());
     }  
+    
+    // Each connection counted twice (once from each end), so divide
+    m_numConnections /= 2;
     
     m_connectivityValid = true;
 }
@@ -241,6 +250,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "boundingRadius=" << m_boundingRadius << ", ";
     ioOut << "faceCentroids=" << m_faceCentroids << ", ";
     ioOut << "faceBoundingRadii=" << m_faceBoundingRadii << ", ";
+    ioOut << "numConnections=" << m_numConnections << ", ";
     ioOut << "normalsValid=" << m_normalsValid << ", ";
     ioOut << "connectivityValid=" << m_connectivityValid << ", ";
     ioOut << "centroidValid=" << m_centroidValid << ", ";
@@ -293,6 +303,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "faceBoundingRadii")
     {
         ioIn >> m_faceBoundingRadii;
+    }
+    else if (inTagStr == "numConnections")
+    {
+        ioIn >> m_numConnections;
     }
     else if (inTagStr == "normalsValid")
     {
@@ -350,6 +364,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceCentroids;
     ioOut.TagSet("faceBoundingRadii");
     ioOut << m_faceBoundingRadii;
+    ioOut.TagSet("numConnections");
+    ioOut << m_numConnections;
     ioOut.TagSet("normalsValid");
     ioOut << m_normalsValid;
     ioOut.TagSet("connectivityValid");
@@ -363,4 +379,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("faceBoundingRadiiValid");
     ioOut << m_faceBoundingRadiiValid;
 }
-//%outOfLineFunctions } ROpaK4LEsMCBrNTLLWCCrg
+//%outOfLineFunctions } jO+f+zBR25Zb2usY/uQnPg

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } X9UP1KNKwyumuL+woGoUdg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshMattress.h,v 1.1 2005/07/02 00:42:38 southa Exp $
+ * $Log: MushMeshMattress.h,v $
+ * Revision 1.1  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -89,6 +92,13 @@ operator<<(std::ostream& ioOut, const MushMeshMattress<T, D>& inObj)
     return ioOut;
 }
 template<class T, Mushware::U32 D>
+inline MushcoreXMLIStream&
+operator>>(MushcoreXMLIStream& ioIn, MushMeshMattress<T, D>& outObj)
+{
+    throw MushcoreDataFail("Cannot read XML object type 'MushMeshMattress'");
+    return ioIn;
+}
+template<class T, Mushware::U32 D>
 inline MushcoreXMLOStream&
 operator<<(MushcoreXMLOStream& ioOut, const MushMeshMattress<T, D>& inObj)
 {
@@ -131,7 +141,7 @@ MushMeshMattress<T, D>::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("offset");
     ioOut << m_offset;
 }
-//%inlineHeader } jnhEBp38sTRp12/h11hQgQ
+//%inlineHeader } SP6VDzn8mXsF/jXuwugg6A
 
 namespace Mushware
 {

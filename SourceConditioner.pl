@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.40 2005/07/01 16:42:51 southa Exp $
+# $Id: SourceConditioner.pl,v 1.41 2005/07/02 00:42:36 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.41  2005/07/02 00:42:36  southa
+# Conditioning tweaks
+#
 # Revision 1.40  2005/07/01 16:42:51  southa
 # Render work
 #
@@ -939,11 +942,27 @@ sub XMLIStreamWriteFunctionGenerate($$)
 sub XMLIStreamOperatorGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
-
-    my $className = $$infoRef{CLASSNAME};
-
-    die "No class found for XMLIStream operator" unless defined ($className);
     
+    my $className = $$infoRef{CLASSNAME};
+    my $outerClassName = $$infoRef{OUTER_CLASSNAME};
+    my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
+    
+    # XMLIStream operator
+    
+    if ($$infoRef{VIRTUAL} eq "")
+    {
+        if ($templatePrefix ne "")
+        {
+            push @$outputRef, $templatePrefix;
+        }
+        push @$outputRef, "inline MushcoreXMLIStream&";
+        push @$outputRef, "operator>>(MushcoreXMLIStream& ioIn, $outerClassName& outObj)";
+        push @$outputRef,
+            "{",
+            "    throw MushcoreDataFail(\"Cannot read XML object type '$className'\");",
+            "    return ioIn;",
+            "}";    
+    }
 }
 
 ##########################################################
@@ -1299,11 +1318,11 @@ sub ProcessHeader($$)
                 OstreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
  
-            # MushcoreXMLOstream
+            # MushcoreXMLIStream/MushcoreXMLOStream
             if ($$commandsRef[$i] =~ /\bgenerate.*\bxml1(.*)\b/)
             {
                 XMLIStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
-                # XMLIStreamOperatorGenerate(\@inlineNamespaced, \%headerInfo);
+                XMLIStreamOperatorGenerate(\@inlineHeader, \%headerInfo);
                 XMLOStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 XMLOStreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }

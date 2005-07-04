@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.10 2005/06/08 20:59:51 southa Exp $
+ * $Id: MushGLV.h,v 1.11 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.11  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.10  2005/06/08 20:59:51  southa
  * X11 release
  *
@@ -67,6 +70,8 @@ public:
     MushGLV();
     virtual ~MushGLV() {};
     virtual void Acquaint();
+    
+    void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
     
     bool HasVertexBuffer() const { return m_hasVertexBuffer; }
     bool UseVertexBuffer() const { return m_hasVertexBuffer; }
@@ -116,6 +121,12 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
 //%classPrototypes } aSXvyLUCgDCMBt87MWqeRQ
 };
+
+inline void
+MushGLV::DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount)
+{
+    glDrawArrays(inMode, inFirst, inCount);
+}
 
 //%inlineHeader {
 inline std::ostream&

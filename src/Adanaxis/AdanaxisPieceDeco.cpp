@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.3 2005/07/01 10:36:46 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.4 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/07/01 10:36:46  southa
  * MushRender work
  *
@@ -38,12 +41,17 @@ using namespace std;
 AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
     m_id(inID)
 {
+    m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
+    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
 }
 
 void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    // Fill me in
+    MushRenderSpec renderSpec;
+    renderSpec.BuffersRefSet(m_buffersRef);
+    
+    inRender.MeshRender(renderSpec, m_mesh);
 }
 
 //%outOfLineFunctions {
@@ -81,7 +89,8 @@ AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
-    ioOut << "mesh=" << m_mesh;
+    ioOut << "mesh=" << m_mesh << ", ";
+    ioOut << "buffersRef=" << m_buffersRef;
     ioOut << "]";
 }
 bool
@@ -101,6 +110,10 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_mesh;
     }
+    else if (inTagStr == "buffersRef")
+    {
+        ioIn >> m_buffersRef;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -119,5 +132,7 @@ AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_id;
     ioOut.TagSet("mesh");
     ioOut << m_mesh;
+    ioOut.TagSet("buffersRef");
+    ioOut << m_buffersRef;
 }
-//%outOfLineFunctions } h2ez6IvLtVaYkrI4F/M4Ew
+//%outOfLineFunctions } 8IECvxeHlwRBQh1H5NuTiQ

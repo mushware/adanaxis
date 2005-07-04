@@ -19,12 +19,8 @@
  ****************************************************************************/
 //%Header } 7OD/vmyRmpaeg7QxsVEN5w
 /*
- *  MushGLBuffer.cpp
- *  project
- *
- *  Created by Andy Southgate on 29/01/2005.
- *  Copyright 2005 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGLBuffer.h"

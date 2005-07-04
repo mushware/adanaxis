@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRENDER_H
-#define MUSHRENDER_H
-//%includeGuardStart } 5fmF16UOHKnng34sEDWRmg
+#ifndef MUSHRENDERMESHWIREFRAME_H
+#define MUSHRENDERMESHWIREFRAME_H
+//%includeGuardStart } yWUi9oXnokdSM/hurSycsQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRender.h
+ * File: src/MushRender/MushRenderMeshWireframe.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,20 +21,26 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NUzrLBU/hE8fJ4WHp26kcQ
+//%Header } tS7SXrOHlPA5Gu5Vj1LZkg
 /*
- * $Id: MushRender.h,v 1.1 2005/07/01 10:36:46 southa Exp $
- * $Log: MushRender.h,v $
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderMesh.h"
-#include "MushRenderMeshWireframe.h"
-#include "MushRenderSpec.h"
 #include "MushRenderStandard.h"
 
+#include "MushRenderMesh.h"
+
+class MushRenderMeshWireframe : public MushRenderMesh
+{
+public:
+    virtual ~MushRenderMeshWireframe() {}
+
+    virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
+    
+private:
+    bool OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
+};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

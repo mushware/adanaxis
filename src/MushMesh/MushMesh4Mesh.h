@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.2 2005/06/30 12:34:59 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.3 2005/06/30 14:26:36 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.3  2005/06/30 14:26:36  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/30 12:34:59  southa
  * Mesh and source conditioner work
  *
@@ -62,6 +65,7 @@ public:
     
     const tNormals& Normals(void) const { if (!m_normalsValid) NormalsBuild(); return m_normals; }
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
+    const Mushware::U32 NumConnections(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_numConnections; }
     const tCentroid& Centroid(Mushware::U32 inFaceNum) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
     const tBoundingRadius BoundingRadius(Mushware::U32 inFaceNum) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
     const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
@@ -91,6 +95,7 @@ private:
     mutable tBoundingRadius m_boundingRadius;
     mutable std::vector<tCentroid> m_faceCentroids;
     mutable std::vector<tBoundingRadius> m_faceBoundingRadii;
+    mutable Mushware::U32 m_numConnections;
     
     mutable bool m_normalsValid;
     mutable bool m_connectivityValid;
