@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FFOWGlxGnFcqp9CSkWsEAw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAnimPostManip.h,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Log: MushGameAnimPostManip.h,v $
+ * Revision 1.1  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -33,13 +36,20 @@
 class MushGameAnimPostManip : public MushcoreVirtualObject
 {
 public:
+    MushGameAnimPostManip();
     virtual ~MushGameAnimPostManip() {}
     void PostAdjust(MushMeshPosticity& ioPost);
 
 private:
+    Mushware::tVal m_posSpeed; //:readwrite
+    Mushware::tVal m_angSpeed; //:readwrite
     
 //%classPrototypes {
 public:
+    const Mushware::tVal& PosSpeed(void) const { return m_posSpeed; }
+    void PosSpeedSet(const Mushware::tVal& inValue) { m_posSpeed=inValue; }
+    const Mushware::tVal& AngSpeed(void) const { return m_angSpeed; }
+    void AngSpeedSet(const Mushware::tVal& inValue) { m_angSpeed=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -47,7 +57,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } aU1OUTIp4fMMoMAB0QR5OA
 };
 //%inlineHeader {
 inline std::ostream&

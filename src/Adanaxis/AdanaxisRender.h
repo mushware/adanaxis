@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ApiIiDIkgHS1hGasLAa6EQ
 /*
- * $Id: AdanaxisRender.h,v 1.2 2005/07/01 10:03:30 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.3 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.3  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -47,10 +50,16 @@ public:
 
 protected:
     MushGLProjection m_projection;
+    Mushware::tVal m_halfAngle; //:readwrite
+    Mushware::tVal m_halfAngleAttractor; //:readwrite
     
 private:
 //%classPrototypes {
 public:
+    const Mushware::tVal& HalfAngle(void) const { return m_halfAngle; }
+    void HalfAngleSet(const Mushware::tVal& inValue) { m_halfAngle=inValue; }
+    const Mushware::tVal& HalfAngleAttractor(void) const { return m_halfAngleAttractor; }
+    void HalfAngleAttractorSet(const Mushware::tVal& inValue) { m_halfAngleAttractor=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -58,7 +67,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } GgpsTEU9hkWCMlscEoyb+w
 };
 //%inlineHeader {
 inline std::ostream&

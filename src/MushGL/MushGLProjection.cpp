@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YhOMN0lltAKj2CZMFJS+0A
 /*
- * $Id: MushGLProjection.cpp,v 1.2 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGLProjection.cpp,v 1.3 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLProjection.cpp,v $
+ * Revision 1.3  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.2  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -35,7 +38,7 @@ using namespace Mushware;
 using namespace std;
 
 Mushware::tVal
-MushGLProjection::FValueFromViewHalfRadians(Mushware::tVal inRadians)
+MushGLProjection::FValueFromViewHalfRadians(Mushware::tVal inRadians) const
 {
     if (inRadians < 0 || inRadians > M_PI/2)
     {
@@ -44,21 +47,23 @@ MushGLProjection::FValueFromViewHalfRadians(Mushware::tVal inRadians)
     return 1/std::tan(inRadians);
 }
 
-
 void
-MushGLProjection::FromFAspectNearFarMake(Mushware::tVal inF, Mushware::tVal inAspect, Mushware::tVal inNear, Mushware::tVal inFar)
+MushGLProjection::FromAspectNearFarMake(Mushware::tVal inAspect, Mushware::tVal inNear, Mushware::tVal inFar)
 {
+    tVal fValue = FValueFromViewHalfRadians(m_viewHalfRadians);
+    
     if (inAspect == 0 || inNear == 0 || inNear == inFar)
     {
         throw MushcoreDataFail("Bad values for projection");
     }
     
-    m_mattress.MatrixSet(t4x4Val(t4Val(inF/inAspect, 0,   0,  0),
-                         t4Val(0,            inF, 0,  0),
-                         t4Val(0,            0,   0,  (inFar+inNear)/(inNear-inFar)),
-                         t4Val(0,            0,   0,  -1)));
+    m_mattress.MatrixSet(t4x4Val(t4Val(fValue/inAspect, 0,      0,  0),
+                                 t4Val(0,               fValue, 0,  0),
+                                 t4Val(0,               0,      0,  (inFar+inNear)/(inNear-inFar)),
+                                 t4Val(0,               0,      0,  -1)));
     m_mattress.OffsetSet(t4Val(0, 0, 2*inFar*inNear/(inNear - inFar), 0));    
 }
+
 //%outOfLineFunctions {
 
 const char *MushGLProjection::AutoName(void) const
@@ -92,6 +97,7 @@ void
 MushGLProjection::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "viewHalfRadians=" << m_viewHalfRadians << ", ";
     ioOut << "mattress=" << m_mattress;
     ioOut << "]";
 }
@@ -103,6 +109,10 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "viewHalfRadians")
+    {
+        ioIn >> m_viewHalfRadians;
     }
     else if (inTagStr == "mattress")
     {
@@ -117,7 +127,9 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
 void
 MushGLProjection::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("viewHalfRadians");
+    ioOut << m_viewHalfRadians;
     ioOut.TagSet("mattress");
     ioOut << m_mattress;
 }
-//%outOfLineFunctions } ru+eeA0F3Qz8dpznaAQi7A
+//%outOfLineFunctions } YEDUaNmiEL8/fzIbpMKyVA

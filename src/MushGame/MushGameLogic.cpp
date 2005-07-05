@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.11 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.12 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.12  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.11  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -345,7 +348,7 @@ MushGameLogic::SendSequence(void)
 void
 MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
 {
-    MushGameAnimPostManip manip;
+    static MushGameAnimPostManip manip;
     manip.PostAdjust(inPlayer.PostWRef());
     inPlayer.PostWRef().InPlaceVelocityAdd();
 }

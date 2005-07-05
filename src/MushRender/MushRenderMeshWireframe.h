@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tS7SXrOHlPA5Gu5Vj1LZkg
 /*
- * $Id: MushRenderMeshWireframe.h,v 1.2 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushRenderMeshWireframe.h,v 1.3 2005/07/05 13:52:22 southa Exp $
  * $Log: MushRenderMeshWireframe.h,v $
+ * Revision 1.3  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -50,7 +53,7 @@ public:
     virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
     
 protected:
-    void DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex);
+    void DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex, const MushRenderSpec& inSpec);
     
 private:
     bool OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id: MushRenderSpec.h,v 1.5 2005/07/04 15:59:01 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.6 2005/07/05 13:52:22 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.6  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/07/04 15:59:01  southa
  * Adanaxis work
  *
@@ -56,10 +59,10 @@ public:
     virtual ~MushRenderSpec() {}
     const tMattress ModelToEyeMattress(void) const { return m_view * (m_special * m_model); }
     
-    const tMattress ModelToClipMattress(void) const { return m_projection * ModelToEyeMattress(); }
+    const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
     
 private:
-    tMattress m_projection; //:readwrite :wref
+    MushGLProjection m_projection; //:readwrite :wref
     tMattress m_view; //:readwrite :wref
     tMattress m_special; //:readwrite :wref
     tMattress m_model; //:readwrite :wref
@@ -68,10 +71,10 @@ private:
     
 //%classPrototypes {
 public:
-    const tMattress& Projection(void) const { return m_projection; }
-    void ProjectionSet(const tMattress& inValue) { m_projection=inValue; }
+    const MushGLProjection& Projection(void) const { return m_projection; }
+    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
     // Writable reference for m_projection
-    tMattress& ProjectionWRef(void) { return m_projection; }
+    MushGLProjection& ProjectionWRef(void) { return m_projection; }
     const tMattress& View(void) const { return m_view; }
     void ViewSet(const tMattress& inValue) { m_view=inValue; }
     // Writable reference for m_view
@@ -93,7 +96,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } zp96tdLN87Ypj3TKTjNw0A
+//%classPrototypes } DSa9jBUVXHBnMVUe4LDQIA
 };
 //%inlineHeader {
 inline std::ostream&

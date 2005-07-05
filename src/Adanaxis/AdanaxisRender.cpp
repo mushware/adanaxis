@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.7 2005/07/04 15:59:00 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.8 2005/07/05 13:52:22 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.8  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -55,7 +58,9 @@
 using namespace Mushware;
 using namespace std;
 
-AdanaxisRender::AdanaxisRender()
+AdanaxisRender::AdanaxisRender() :
+    m_halfAngle(M_PI/16),
+    m_halfAngleAttractor(M_PI/16)
 {
 }
 
@@ -77,8 +82,16 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     }
     
     tVal aspectRatio = MushGLUtil::ScreenAspectRatio();
-    m_projection.FromFAspectNearFarMake(m_projection.FValueFromViewHalfRadians(M_PI/8), aspectRatio, 0.1, 100.0);
+    
+    m_projection.ViewHalfRadiansSet(m_halfAngle);
+    m_projection.FromAspectNearFarMake(aspectRatio, 1.0, 10000.0);
 
+    m_halfAngle = m_halfAngle * 0.90 + m_halfAngleAttractor * 0.1;
+    
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(9))
+    {
+        m_halfAngleAttractor = M_PI/3 - m_halfAngleAttractor;
+    }
     
     MushGLUtil::DisplayPrologue();
     MushGLUtil::ClearScreen();
@@ -158,7 +171,9 @@ void
 AdanaxisRender::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "projection=" << m_projection;
+    ioOut << "projection=" << m_projection << ", ";
+    ioOut << "halfAngle=" << m_halfAngle << ", ";
+    ioOut << "halfAngleAttractor=" << m_halfAngleAttractor;
     ioOut << "]";
 }
 bool
@@ -174,6 +189,14 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_projection;
     }
+    else if (inTagStr == "halfAngle")
+    {
+        ioIn >> m_halfAngle;
+    }
+    else if (inTagStr == "halfAngleAttractor")
+    {
+        ioIn >> m_halfAngleAttractor;
+    }
     else 
     {
         return false;
@@ -185,5 +208,9 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("projection");
     ioOut << m_projection;
+    ioOut.TagSet("halfAngle");
+    ioOut << m_halfAngle;
+    ioOut.TagSet("halfAngleAttractor");
+    ioOut << m_halfAngleAttractor;
 }
-//%outOfLineFunctions } 49sh+J/XIT6IrpHNnFnlJg
+//%outOfLineFunctions } aAe1Jck4WoR6xPb7tD1Caw

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nnreRrgtAG1/ZKElYmX31w
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.2 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.3 2005/07/05 13:52:22 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.3  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -67,7 +70,7 @@ MushRenderMeshWireframe::MeshRender(const MushRenderSpec& inSpec, const MushMesh
 }
 
 inline void
-MushRenderMeshWireframe::DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex)
+MushRenderMeshWireframe::DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex, const MushRenderSpec& inSpec)
 {
     if (inEyeVertex.W() >= 0)
     {
@@ -83,7 +86,7 @@ MushRenderMeshWireframe::DerivedColourSet(Mushware::t4Val& outColour, const Mush
     }
     else
     {
-        tVal discrim = inEyeVertex.Z() / inEyeVertex.W();
+        tVal discrim = (inEyeVertex.Z() * inSpec.Projection().FValue()) / inEyeVertex.W();
         if (discrim < -1.0)
         {
             outColour = m_colourZLeft;
@@ -185,10 +188,10 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
                 }
                 
                 destVertices.Set(projectedVertices[i], destVertexIndex);
-                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[i]);
+                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[i], inSpec);
                 destVertexIndex++;
                 destVertices.Set(projectedVertices[vertexNum], destVertexIndex);
-                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum]);
+                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum], inSpec);
                 destVertexIndex++;            
             }
             else if (vertexNum == i)

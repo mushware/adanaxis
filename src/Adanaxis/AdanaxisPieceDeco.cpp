@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.6 2005/07/04 15:59:00 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.7 2005/07/05 13:52:22 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.7  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -72,7 +75,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     MushMeshOps::PosticityToMattress(renderSpec.SpecialWRef(), viewOffset);
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), viewAng);
 
-    renderSpec.ProjectionSet(inCamera.Projection().Mattress());
+    renderSpec.ProjectionSet(inCamera.Projection());
     
     static U32 ctr=0;
     

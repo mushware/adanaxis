@@ -19,14 +19,24 @@
  ****************************************************************************/
 //%Header } slrkoNIBI9nz7vtTH5Yo6g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAnimPostManip.cpp,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Log: MushGameAnimPostManip.cpp,v $
+ * Revision 1.1  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameAnimPostManip.h"
 
 using namespace Mushware;
 using namespace std;
+
+MushGameAnimPostManip::MushGameAnimPostManip() :
+    m_posSpeed(0.1),
+    m_angSpeed(0.02)
+{
+        
+}
 
 void
 MushGameAnimPostManip::PostAdjust(MushMeshPosticity& ioPost)
@@ -36,8 +46,10 @@ MushGameAnimPostManip::PostAdjust(MushMeshPosticity& ioPost)
     ioPost.VelWRef().ToAdditiveIdentitySet();
     ioPost.AngVelWRef().ToRotationIdentitySet();
     
-    tVal posSpeed = 0.1;
-    tVal angSpeed = 0.02;
+    tVal posSpeed = m_posSpeed;
+    tVal angSpeed = m_angSpeed;
+    
+    m_posSpeed = 0.1 + m_posSpeed / 2;
     
     if (appHandler.KeyStateGet('q')) ioPost.VelWRef() -= t4Val(posSpeed,0,0,0);
     if (appHandler.KeyStateGet('a')) ioPost.VelWRef() += t4Val(posSpeed,0,0,0);
@@ -45,8 +57,8 @@ MushGameAnimPostManip::PostAdjust(MushMeshPosticity& ioPost)
     if (appHandler.KeyStateGet('s')) ioPost.VelWRef() += t4Val(0,posSpeed,0,0);
     if (appHandler.KeyStateGet('e')) ioPost.VelWRef() -= t4Val(0,0,posSpeed,0);
     if (appHandler.KeyStateGet('d')) ioPost.VelWRef() += t4Val(0,0,posSpeed,0);
-    if (appHandler.KeyStateGet('r')) ioPost.VelWRef() -= t4Val(0,0,0,posSpeed);
-    if (appHandler.KeyStateGet('f')) ioPost.VelWRef() += t4Val(0,0,0,posSpeed);
+    if (appHandler.KeyStateGet('r')) { ioPost.VelWRef() -= t4Val(0,0,0,posSpeed); m_posSpeed += 0.8; }
+    if (appHandler.KeyStateGet('f')) { ioPost.VelWRef() += t4Val(0,0,0,posSpeed); m_posSpeed += 0.8; }
     
     ioPost.AngVelWRef().OuterMultiplyBy(ioPost.AngPos().ConjugateGet());
     if (appHandler.KeyStateGet('t')) ioPost.AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, -angSpeed));
@@ -101,6 +113,8 @@ void
 MushGameAnimPostManip::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "posSpeed=" << m_posSpeed << ", ";
+    ioOut << "angSpeed=" << m_angSpeed;
     ioOut << "]";
 }
 bool
@@ -112,6 +126,14 @@ MushGameAnimPostManip::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "posSpeed")
+    {
+        ioIn >> m_posSpeed;
+    }
+    else if (inTagStr == "angSpeed")
+    {
+        ioIn >> m_angSpeed;
+    }
     else 
     {
         return false;
@@ -121,5 +143,9 @@ MushGameAnimPostManip::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
 void
 MushGameAnimPostManip::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("posSpeed");
+    ioOut << m_posSpeed;
+    ioOut.TagSet("angSpeed");
+    ioOut << m_angSpeed;
 }
-//%outOfLineFunctions } S5a28pn8TSdMWitkwrp2Sg
+//%outOfLineFunctions } 2i0/L0ngk9ZwuIPsoJdCUw

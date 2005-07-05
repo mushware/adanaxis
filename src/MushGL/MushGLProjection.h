@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } A82t3KCFKhG+wPnlmwzf2Q
 /*
- * $Id: MushGLProjection.h,v 1.1 2005/07/01 10:03:30 southa Exp $
+ * $Id: MushGLProjection.h,v 1.2 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLProjection.h,v $
+ * Revision 1.2  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.1  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -36,19 +39,25 @@
 class MushGLProjection : public MushcoreVirtualObject
 {
 public:
+    MushGLProjection() : m_viewHalfRadians(0) {}
     virtual ~MushGLProjection() {}
     
-    virtual Mushware::tVal FValueFromViewHalfRadians(Mushware::tVal inRadians);
-    virtual void FromFAspectNearFarMake(Mushware::tVal inF, Mushware::tVal inAspect, Mushware::tVal inNear, Mushware::tVal inFar);
-    
+    virtual void FromAspectNearFarMake(Mushware::tVal inAspect, Mushware::tVal inNear, Mushware::tVal inFar);
+    virtual Mushware::tVal FValue(void) const { return FValueFromViewHalfRadians(m_viewHalfRadians); }
     void TransformVector(Mushware::t4Val& ioVec) const;
     Mushware::t4Val TransformedVector(const Mushware::t4Val& ioVec) const;
-    
+
+protected:
+    virtual Mushware::tVal FValueFromViewHalfRadians(Mushware::tVal inRadians) const;
+
 private:
+    Mushware::tVal m_viewHalfRadians; //:readwrite
     Mushware::t4x4o4Val m_mattress; //:readwrite :wref
     
 //%classPrototypes {
 public:
+    const Mushware::tVal& ViewHalfRadians(void) const { return m_viewHalfRadians; }
+    void ViewHalfRadiansSet(const Mushware::tVal& inValue) { m_viewHalfRadians=inValue; }
     const Mushware::t4x4o4Val& Mattress(void) const { return m_mattress; }
     void MattressSet(const Mushware::t4x4o4Val& inValue) { m_mattress=inValue; }
     // Writable reference for m_mattress
@@ -60,7 +69,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } iZiP6ZByJNl3NsbrMdqzqA
+//%classPrototypes } 037OLSbiURR5PdfKEfp5HA
 };
 
 inline void
