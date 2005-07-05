@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.2 2005/07/01 10:03:30 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.3 2005/07/04 15:59:00 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.3  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -42,12 +45,14 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<10; ++i)
+    for (U32 i=0; i<100; ++i)
     {
         decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
         AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
         
-        decoRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-5,5),MushMeshTools::Random(-5,5),MushMeshTools::Random(-5,5),MushMeshTools::Random(-30,-5)));
+        decoRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1)));
+        
+        decoRef.PostWRef().PosWRef() *= 20;
         
         tQValPair orientation = MushMeshTools::RandomOrientation();
         decoRef.PostWRef().AngPosSet(orientation);

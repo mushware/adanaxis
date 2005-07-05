@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id: AdanaxisPlayer.h,v 1.1 2005/06/20 14:46:41 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.2 2005/06/23 17:25:24 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.2  2005/06/23 17:25:24  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/20 14:46:41  southa
  * Adanaxis work
  *
@@ -37,9 +40,11 @@
 class AdanaxisPlayer : public MushGamePlayer
 {
 public:
-    explicit AdanaxisPlayer(const std::string& inPlayerID = 0);
+    explicit AdanaxisPlayer(const std::string& inPlayerID = "");
     
 private:
+    MushGameAnimPostManip m_postManip;
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

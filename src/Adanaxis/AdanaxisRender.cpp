@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.6 2005/07/04 11:10:43 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.7 2005/07/04 15:59:00 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.7  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -54,7 +57,6 @@ using namespace std;
 
 AdanaxisRender::AdanaxisRender()
 {
-    m_projection.FromFAspectNearFarMake(m_projection.FValueFromViewHalfRadians(M_PI/8), 16.0/10, 0.1, 100.0);
 }
 
 void
@@ -74,12 +76,16 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         throw MushcoreDataFail("Uninitialised AdanaxisVolatileData");
     }
     
-    GLUtils::DisplayPrologue();
-    GLUtils::ClearScreen();
+    tVal aspectRatio = MushGLUtil::ScreenAspectRatio();
+    m_projection.FromFAspectNearFarMake(m_projection.FValueFromViewHalfRadians(M_PI/8), aspectRatio, 0.1, 100.0);
+
+    
+    MushGLUtil::DisplayPrologue();
+    MushGLUtil::ClearScreen();
     
     GLColour(0.8,0.8,0.8,0.5).Apply();
     
-    // Projection prologue
+    MushGLUtil::IdentityPrologue();
     
     typedef AdanaxisVolatileData::tDecoList tDecoList;
     
@@ -94,12 +100,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         p->Render(ioLogic, renderMesh, camera);
     }
         
-    // Projection epilogue
+    MushGLUtil::IdentityEpilogue();
     
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), GameUtils::AppHandler());
     
     
-    GLUtils::OrthoPrologue();
+    MushGLUtil::OrthoPrologue();
     
     if (pVolData->ModeKeypressMsec() != 0)
     {
@@ -114,9 +120,9 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         // std::cout << "Camera " << inCamera << endl;
         // xmlOut << m_projection;
     }
-    GLUtils::OrthoEpilogue();
+    MushGLUtil::OrthoEpilogue();
     
-    GLUtils::DisplayEpilogue();
+    MushGLUtil::DisplayEpilogue();
 }
 
 //%outOfLineFunctions {

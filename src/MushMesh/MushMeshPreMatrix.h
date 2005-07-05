@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7Y7qw9fXK5qyxNASaSz7KA
 /*
- * $Id: MushMeshPreMatrix.h,v 1.8 2005/07/01 10:03:30 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.9 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.9  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -111,6 +114,7 @@ public:
     void RowSet(const tThisVec& inVec, Mushware::U32 inR) { RowBoundsCheck(inR); m_value[inR] = inVec; }
     
     void PreMultiply(MushMeshVector<T, C>& ioVec) const;
+    void ToMultiplicativeIdentitySet(void);
     
     static const tThis Identity(void);
     
@@ -148,8 +152,30 @@ MushMeshPreMatrix<T, C, R>::PreMultiply(MushMeshVector<T, C>& ioVec) const
 }
 
 template <class T, Mushware::U32 C, Mushware::U32 R>
+inline void
+MushMeshPreMatrix<T, C, R>::ToMultiplicativeIdentitySet(void)
+{
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        for (Mushware::U32 c = 0; c < C; ++c)
+        {
+            if (r == c)
+            {
+                RCSet(1, r, c);
+            }
+            else
+            {
+                RCSet(0, r, c);
+            }
+        }
+    }
+}
+
+
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
 inline const typename MushMeshPreMatrix<T, C, R>::tThis
-MushMeshPreMatrix<T, C, R>::Identity()
+MushMeshPreMatrix<T, C, R>::Identity(void)
 {
     MushMeshPreMatrix<T, C, R> retValue;
     for (Mushware::U32 r = 0; r < R; ++r)

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id: MushGLBuffers.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.2 2005/07/04 15:59:00 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.2  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -72,6 +75,7 @@ private:
     std::vector<tTexCoordBuffer> m_texCoordBuffers; //:wref
 
     MushGLWorkspace<tVertex> m_worldVertices; //:read :wref
+    MushGLWorkspace<tVertex> m_eyeVertices; //:read :wref
     MushGLWorkspace<tVertex> m_projectedVertices; //:read :wref
     static Mushware::U32 m_nextBufferNum;
     
@@ -88,6 +92,9 @@ public:
     const MushGLWorkspace<tVertex>& WorldVertices(void) const { return m_worldVertices; }
     // Writable reference for m_worldVertices
     MushGLWorkspace<tVertex>& WorldVerticesWRef(void) { return m_worldVertices; }
+    const MushGLWorkspace<tVertex>& EyeVertices(void) const { return m_eyeVertices; }
+    // Writable reference for m_eyeVertices
+    MushGLWorkspace<tVertex>& EyeVerticesWRef(void) { return m_eyeVertices; }
     const MushGLWorkspace<tVertex>& ProjectedVertices(void) const { return m_projectedVertices; }
     // Writable reference for m_projectedVertices
     MushGLWorkspace<tVertex>& ProjectedVerticesWRef(void) { return m_projectedVertices; }
@@ -98,7 +105,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } yTEeRDt9b/0AI3v9hTq5TQ
+//%classPrototypes } wYdzZVuNen/570raLWFIHA
 };
 
 inline void

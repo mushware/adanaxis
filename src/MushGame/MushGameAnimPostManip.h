@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEPIECE_H
-#define MUSHGAMEPIECE_H
-//%includeGuardStart } fXnM4FD/EmJAfw+g836GPQ
+#ifndef MUSHGAMEANIMPOSTMANIP_H
+#define MUSHGAMEANIMPOSTMANIP_H
+//%includeGuardStart } kKBUf99bhDV6sUzDfKprzw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGamePiece.h
+ * File: src/MushGame/MushGameAnimPostManip.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,44 +21,25 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } T/MWnTXtRKRQsmRlB17JyQ
+//%Header } FFOWGlxGnFcqp9CSkWsEAw
 /*
- * $Id: MushGamePiece.h,v 1.3 2005/07/01 16:42:54 southa Exp $
- * $Log: MushGamePiece.h,v $
- * Revision 1.3  2005/07/01 16:42:54  southa
- * Render work
- *
- * Revision 1.2  2005/06/29 11:11:15  southa
- * Camera and rendering work
- *
- * Revision 1.1  2005/06/24 10:30:12  southa
- * MushGame camera work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-class MushGameLogic;
-
-#include "API/mushMushMesh.h"
-
-//:generate virtual standard ostream xml1
-class MushGamePiece : public MushcoreVirtualObject
+//:generate standard ostream xml1
+class MushGameAnimPostManip : public MushcoreVirtualObject
 {
 public:
-    MushGamePiece();
-    virtual ~MushGamePiece() {}
-    virtual void Move(MushGameLogic& ioLogic) {}
-    
+    virtual ~MushGameAnimPostManip() {}
+    void PostAdjust(MushMeshPosticity& ioPost);
+
 private:
-    MushMeshPosticity m_post; //:readwrite :wref
     
 //%classPrototypes {
 public:
-    const MushMeshPosticity& Post(void) const { return m_post; }
-    void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
-    // Writable reference for m_post
-    MushMeshPosticity& PostWRef(void) { return m_post; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,16 +47,17 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xgYH1Kh+PR9uvdS4XNL1+w
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGamePiece& inObj)
+operator<<(std::ostream& ioOut, const MushGameAnimPostManip& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } hzo4AnwoYg7g4RrSJcViWQ
+//%inlineHeader } vjiZSxLd/otw4RLWhr3hKA
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

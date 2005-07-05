@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.8 2005/06/29 09:07:56 southa Exp $
+ * $Id: MushGameLogic.h,v 1.9 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.9  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.8  2005/06/29 09:07:56  southa
  * MushGame camera work
  *
@@ -59,6 +62,7 @@
 #include "MushGameHostVolatileData.h"
 #include "MushGameJob.h"
 #include "MushGameMailbox.h"
+#include "MushGamePlayer.h"
 #include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 #include "MushGameVolatileData.h"
@@ -92,6 +96,8 @@ public:
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
+    virtual void PlayerMove(MushGamePlayer& inPlayer);
+    virtual void MoveSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
     virtual void RenderSequence(void);

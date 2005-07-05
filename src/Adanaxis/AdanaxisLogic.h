@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisLogic.h,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.2 2005/07/01 14:58:59 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.2  2005/07/01 14:58:59  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.1  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -31,6 +34,7 @@
 #include "AdanaxisStandard.h"
 
 #include "AdanaxisSaveData.h"
+#include "AdanaxisPlayer.h"
 #include "AdanaxisVolatileData.h"
 
 #include "API/mushMushGame.h"
@@ -42,6 +46,8 @@ class AdanaxisLogic : public MushGameLogic
 public:
     
     virtual void InitialDataCreate(void);
+    
+    virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPlayer; }
     
     virtual AdanaxisSaveData& SaveData(void);
     virtual AdanaxisVolatileData& VolatileData(void);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } SqyVyfS1ZdPjvWXinM57nQ
 /*
- * $Id: GLAppHandler.h,v 1.30 2005/05/19 13:01:57 southa Exp $
+ * $Id: GLAppHandler.h,v 1.31 2005/05/27 12:48:36 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.31  2005/05/27 12:48:36  southa
+ * Registration box tweaks
+ *
  * Revision 1.30  2005/05/19 13:01:57  southa
  * Mac release work
  *
@@ -150,6 +153,9 @@ public:
     virtual void SwapBuffers(void) = 0;
     virtual Mushware::U32 WidthGet(void) const = 0;
     virtual Mushware::U32 HeightGet(void) const = 0;
+    virtual Mushware::U32 ScreenWidth(void) const { return WidthGet(); }
+    virtual Mushware::U32 ScreenHeight(void) const { return HeightGet(); }
+
     virtual Mushware::U32 MillisecondsGet(void) const = 0;
     virtual bool HasFocus(void) const = 0;
     virtual void SetCursorState(bool inValue) = 0;

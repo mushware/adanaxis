@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.10 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.11 2005/07/04 15:59:00 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.11  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.10  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -56,6 +59,7 @@
 #include "MushGameLogic.h"
 
 #include "MushGameAddress.h"
+#include "MushGameAnimPostManip.h"
 #include "MushGameJob.h"
 #include "MushGameLink.h"
 #include "MushGameMessageWake.h"
@@ -339,6 +343,25 @@ MushGameLogic::SendSequence(void)
 }
 
 void
+MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
+{
+    MushGameAnimPostManip manip;
+    manip.PostAdjust(inPlayer.PostWRef());
+    inPlayer.PostWRef().InPlaceVelocityAdd();
+}
+
+void
+MushGameLogic::MoveSequence(void)
+{
+    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
+    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    {
+        PlayerMove(*p->second);
+    }
+}
+
+void
 MushGameLogic::CameraMove(MushGameCamera& inCamera)
 {
     inCamera.FromTiedObjectUpdate();
@@ -373,6 +396,8 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
+    try { MoveSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
     try { CameraSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CameraSequence"); }
     try { RenderSequence(); }

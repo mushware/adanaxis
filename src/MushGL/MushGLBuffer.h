@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7OpR3zTj9YNW6vQRFe5IfA
 /*
- * $Id: MushGLBuffer.h,v 1.6 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLBuffer.h,v 1.7 2005/07/04 15:59:00 southa Exp $
  * $Log: MushGLBuffer.h,v $
+ * Revision 1.7  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -65,7 +68,8 @@ public:
     void MapWriteOnly();
     bool AttemptUnmap();
     
-    tVec& Ref(const Mushware::tSize inIndex);
+    tVec& WRef(const Mushware::tSize inIndex);
+    tVec& Ref(const Mushware::tSize inIndex) { return WRef(inIndex); }
     void Set(const tVec& inValue, const Mushware::tSize inIndex);
     void *AddrForGLGet(const Mushware::tSize inIndex = 0);
     
@@ -260,7 +264,7 @@ MushGLBuffer<T>::AttemptUnmap(void)
 
 template <class T>
 inline typename MushGLBuffer<T>::tVec&
-MushGLBuffer<T>::Ref(const Mushware::tSize inIndex)
+MushGLBuffer<T>::WRef(const Mushware::tSize inIndex)
 {
     if (!m_mapped)
     {
