@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.13 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.14 2005/07/04 15:59:00 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.14  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.13  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -62,6 +65,7 @@
 
 #include "AdanaxisGame.h"
 
+#include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
@@ -132,14 +136,33 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^start");
 
     Logic().InitialDataCreate();
+
+    UpdateFromConfig();
+    
     AdanaxisUtil::TestPiecesCreate(Logic());
     
     {
-        MushcoreXMLOStream xmlOut(std::cout);
-        //xmlOut << VolatileData();
+        // MushcoreXMLOStream xmlOut(std::cout);
+        // xmlOut << VolatileData();
     }
     
+    cout << ";=" <<(U32)';' << endl;
+    
+    for (U32 i='a'; i<'z'; ++i)
+    {
+        cout << (U8)i << "=" << i << endl;
+    }
     m_inited = true;
+}
+
+void
+AdanaxisGame::UpdateFromConfig(void)
+{
+    AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
+    for (U32 i=0; i < m_config.AxisDefs().size(); ++i)
+    {
+        appHandler.AxisDefSet(m_config.AxisDefs(i), i);
+    }
 }
 
 void

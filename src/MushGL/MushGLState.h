@@ -23,11 +23,16 @@
  ****************************************************************************/
 //%Header } d/h1MgTijF1xZZlnCvknWQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLState.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLState.h,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLStandard.h"
+
+#include "MushGLVertexBuffer.h"
 
 //:generate standard ostream xml1
 class MushGLState : public MushcoreVirtualObject, public MushcoreSingleton<MushGLState>

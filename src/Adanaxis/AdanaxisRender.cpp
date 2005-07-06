@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.8 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.9 2005/07/05 16:35:53 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.9  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -127,11 +130,11 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     static U32 ctr=0;
 
-    if (ctr++ < 2)
+    if (ctr++ < 0)
     {
         MushcoreXMLOStream xmlOut(std::cout);
-        // std::cout << "Camera " << inCamera << endl;
-        // xmlOut << m_projection;
+        std::cout << "Camera " << inCamera << endl;
+        xmlOut << m_projection;
     }
     MushGLUtil::OrthoEpilogue();
     

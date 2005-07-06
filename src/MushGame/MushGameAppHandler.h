@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef GLTEXTUREPROC_H
-#define GLTEXTUREPROC_H
-//%includeGuardStart } h07cy255ooQoRIKB503C5Q
+#ifndef MUSHGAMEAPPHANDLER_H
+#define MUSHGAMEAPPHANDLER_H
+//%includeGuardStart } 7ZwYn7TuuYmYE/eLrNwCTw
 //%Header {
 /*****************************************************************************
  *
- * File: src/GL/GLTextureProc.h
+ * File: src/MushGame/MushGameAppHandler.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,33 +21,39 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } R9VYvYQhq/zckwVdMTtiXQ
+//%Header } JEoS3kjwIi/5WzNfzKQqBA
 /*
- * $Id: GLTextureProc.h,v 1.2 2005/05/19 13:02:00 southa Exp $
- * $Log: GLTextureProc.h,v $
- * Revision 1.2  2005/05/19 13:02:00  southa
- * Mac release work
- *
- * Revision 1.1  2005/02/13 22:44:07  southa
- * Tesseract stuff
- *
+ * $Id$
+ * $Log$
  */
 
-#include "GLTexture.h"
+#include "MushGameStandard.h"
 
-class MushGLPixelSource;
+#include "MushGameAxisDef.h"
+#include "MushGameMailbox.h"
 
-class GLTextureProc : public GLTexture
+#include "API/mushGame.h"
+
+class MushGameAppHandler : public GameAppHandler
 {
 public:
-    GLTextureProc(const MushGLPixelSource& inSource);
-    GLTextureProc *Clone(void) const {return new GLTextureProc(*this);}
+    MushGameAppHandler(const std::string& inName = "");
+    
+    virtual void GroupingNameSet(const std::string& inName);
+    virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
+    virtual void Idle(void);
     
 protected:
-        
+    virtual void AxisTicker(Mushware::tMsec inTimeslice);    
+    virtual void FillAxisPipe(void);
+    
 private:
-    const char *FiletypeName(void) const;
+    std::string m_groupingName;
+    std::vector<MushGameAxisDef> m_axisDefs;
+    Mushware::tMsec m_lastTickerMsec;
+    MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

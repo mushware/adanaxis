@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.4 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.5 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -50,14 +53,50 @@ AdanaxisConfig::ToDefaultSet(void)
 {
     MushGameConfigBase::ToDefaultSet();
     VersionSet(kVersion);
-
+    m_axisDefs.resize(0);
     m_displayMode = 0;
 }
+
+void
+AdanaxisConfig::AxesToDefaultSet(void)
+{
+    m_axisDefs.resize(0);
+    
+    try
+    {
+        std::string axisFilename = MushcoreEnv::Sgl().VariableGet("AXISCONFIG_DEFAULT_FILENAME").StringGet();
+        
+        std::ifstream fileStream(MushcoreUtil::TranslateFilename(axisFilename).c_str());
+        if (!fileStream)
+        {
+            throw MushcoreFileFail(axisFilename, "Could not open file");
+        }
+        
+        MushcoreXMLIStream xmlIn(fileStream);
+        xmlIn >> m_axisDefs;
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Failed to load default control axis configuration: " << e.what() << endl;
+    }
+    
+    m_axisDefs.resize(kNumAxes);
+}
+
 
 void
 AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
     ToDefaultSet();
+}
+
+void
+AdanaxisConfig::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
+{
+    if (m_axisDefs.size() != kNumAxes)
+    {
+        AxesToDefaultSet();
+    }
 }
 
 void
@@ -100,6 +139,7 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameConfigBase::AutoPrint(ioOut);
+    ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "displayMode=" << m_displayMode;
     ioOut << "]";
 }
@@ -111,6 +151,10 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "axisDefs")
+    {
+        ioIn >> m_axisDefs;
     }
     else if (inTagStr == "displayMode")
     {
@@ -130,7 +174,9 @@ void
 AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameConfigBase::AutoXMLPrint(ioOut);
+    ioOut.TagSet("axisDefs");
+    ioOut << m_axisDefs;
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } 8oBV4c5HOpTu8yLeXwWcGw
+//%outOfLineFunctions } iyqNB0Jlf69bXMLIi+y2XA

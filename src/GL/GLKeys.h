@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9IFiQ0brOhQKES+BNzDKMA
 /*
- * $Id: GLKeys.h,v 1.14 2005/03/13 00:34:45 southa Exp $
+ * $Id: GLKeys.h,v 1.15 2005/05/19 13:01:59 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.15  2005/05/19 13:01:59  southa
+ * Mac release work
+ *
  * Revision 1.14  2005/03/13 00:34:45  southa
  * Build fixes, key support and stereo
  *
@@ -71,7 +74,8 @@
 
 #include "mushMushcore.h"
 
-class GLKeys
+//:generate standard ostream xml1
+class GLKeys : public MushcoreVirtualObject
 {
 public:
     enum tKeyValue
@@ -107,13 +111,36 @@ public:
         kKeyQuit,
         kNumberOfKeys
     };
-    GLKeys(Mushware::U32 inKeyValue): m_keyValue(static_cast<tKeyValue>(inKeyValue)) {}
-    GLKeys(tKeyValue inKeyValue): m_keyValue(inKeyValue) {}
+    GLKeys() {}
+    GLKeys(Mushware::U32 inKeyValue): m_keyValue(inKeyValue) {}
+    GLKeys(tKeyValue inKeyValue): m_keyValue(static_cast<Mushware::U32>(inKeyValue)) {}
     Mushware::U32 ValueGet(void) const {return m_keyValue;}
     
 private:
-    tKeyValue m_keyValue;
+    Mushware::U32 m_keyValue; //:readwrite
+    
+//%classPrototypes {
+public:
+    const Mushware::U32& KeyValue(void) const { return m_keyValue; }
+    void KeyValueSet(const Mushware::U32& inValue) { m_keyValue=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } ml2boRUrSoeXDYErW7d29g
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLKeys& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } cqUQB5uB5mxzaAvZqqSgvQ
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

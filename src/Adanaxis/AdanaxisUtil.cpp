@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.3 2005/07/04 15:59:00 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.4 2005/07/05 13:52:22 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.4  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -32,10 +35,22 @@
 
 #include "AdanaxisUtil.h"
 
+#include "AdanaxisAppHandler.h"
 #include "AdanaxisVolatileData.h"
 
 using namespace Mushware;
 using namespace std;
+
+AdanaxisAppHandler&
+AdanaxisUtil::AppHandler(void)
+{
+    AdanaxisAppHandler *pAppHandler=dynamic_cast<AdanaxisAppHandler *>(&MushcoreAppHandler::Sgl());
+    if (pAppHandler == NULL)
+    {
+        throw MushcoreRequestFail("AppHandler of wrong type for AdanaxisAppHandler");
+    }
+    return *pAppHandler;
+}
 
 void
 AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)

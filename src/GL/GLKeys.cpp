@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 5RNowm+VQDwcPHSdd0Mbuw
 /*
- * $Id: GLKeys.cpp,v 1.11 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLKeys.cpp,v 1.12 2005/05/19 13:01:59 southa Exp $
  * $Log: GLKeys.cpp,v $
+ * Revision 1.12  2005/05/19 13:01:59  southa
+ * Mac release work
+ *
  * Revision 1.11  2004/01/02 21:13:05  southa
  * Source conditioning
  *
@@ -61,3 +64,65 @@
 using namespace Mushware;
 using namespace std;
 
+//%outOfLineFunctions {
+
+const char *GLKeys::AutoName(void) const
+{
+    return "GLKeys";
+}
+
+MushcoreVirtualObject *GLKeys::AutoClone(void) const
+{
+    return new GLKeys(*this);
+}
+
+MushcoreVirtualObject *GLKeys::AutoCreate(void) const
+{
+    return new GLKeys;
+}
+
+MushcoreVirtualObject *GLKeys::AutoVirtualFactory(void)
+{
+    return new GLKeys;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GLKeys", GLKeys::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+GLKeys::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "keyValue=" << m_keyValue;
+    ioOut << "]";
+}
+bool
+GLKeys::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "keyValue")
+    {
+        ioIn >> m_keyValue;
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+GLKeys::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("keyValue");
+    ioOut << m_keyValue;
+}
+//%outOfLineFunctions } QApUFO08KObKyp5ixpqcrw

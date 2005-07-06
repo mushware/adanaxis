@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QZNov6vf1irc8tAhC1nh9g
 /*
- * $Id: MushcoreXMLIStream.h,v 1.29 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.30 2005/07/01 14:59:00 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.30  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.29  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -132,14 +135,15 @@ public:
     Mushware::U8 ByteTake(void);
     
     template<class T> void ObjectRead(T *& outpObj);   
-    template<class T> void ObjectRead(std::vector<T>& inVector);
-    template<class T> void ObjectRead(std::vector<T *>& inVector);
-    template<class T> void ObjectRead(std::list<T>& inVector);
-    template<class T> void ObjectRead(std::list<T *>& inVector);
-    template<class T> void ObjectRead(std::deque<T>& inVector);
-    template<class T> void ObjectRead(std::deque<T *>& inVector);
-    template<class T, class U> void ObjectRead(std::map<T, U>& inMap);
-    template<class T, class U> void ObjectRead(std::map<T, U *>& inMap);
+    template<class T> void ObjectRead(std::vector<T>& outVector);
+    template<class T> void ObjectRead(std::vector<T *>& outVector);
+    template<class T> void ObjectRead(std::list<T>& outVector);
+    template<class T> void ObjectRead(std::list<T *>& outVector);
+    template<class T> void ObjectRead(std::deque<T>& outVector);
+    template<class T> void ObjectRead(std::deque<T *>& outVector);
+    template<class T, class U> void ObjectRead(std::map<T, U>& outMap);
+    template<class T, class U> void ObjectRead(std::map<T, U *>& outMap);
+    template<class T, class U> void ObjectRead(std::pair<T, U>& outObj);
 
     void ObjectReadVirtual(MushcoreVirtualObject *& outpObj);
     void ObjectReadVirtual(MushcoreVirtualObject& outObj);
@@ -298,6 +302,13 @@ operator>>(MushcoreXMLIStream& ioIn, std::map<T, U *>& outObj)
     ioIn.ObjectRead(outObj);
 }
 
+template<class T, class U>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::pair<T, U>& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
 template<class T>
 inline void
 operator>>(MushcoreXMLIStream& ioIn, T *& outpObj)
@@ -368,7 +379,7 @@ operator>>(MushcoreXMLIStream& ioIn, std::auto_ptr<T>& outaObj)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
+MushcoreXMLIStream::ObjectRead(std::vector<T>& outVector)
 {
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
@@ -382,15 +393,15 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
     {
         for (;;)
         {
-            inVector.push_back(T());
+            outVector.push_back(T());
             try
             {
-                *this >> inVector.back();
+                *this >> outVector.back();
             }
             catch (...)
             {
                 // Remove partially written object
-                inVector.pop_back();
+                outVector.pop_back();
                 throw;
             }
             
@@ -400,7 +411,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -413,7 +424,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& inVector)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
+MushcoreXMLIStream::ObjectRead(std::vector<T *>& outVector)
 {
     // Decode the (x,y,z) sequence
 
@@ -430,7 +441,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
         {
             T *newPtr = NULL;
             *this >> newPtr;
-            inVector.push_back(newPtr);
+            outVector.push_back(newPtr);
 
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -438,7 +449,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -452,7 +463,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& inVector)
 // List functions are a direct copy of vector functions
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::list<T>& inVector)
+MushcoreXMLIStream::ObjectRead(std::list<T>& outVector)
 {
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
@@ -466,15 +477,15 @@ MushcoreXMLIStream::ObjectRead(std::list<T>& inVector)
     {
         for (;;)
         {
-            inVector.push_back(T());
+            outVector.push_back(T());
             try
             {
-                *this >> inVector.back();
+                *this >> outVector.back();
             }
             catch (...)
             {
                 // Remove partially written object
-                inVector.pop_back();
+                outVector.pop_back();
                 throw;
             }
             
@@ -484,7 +495,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -497,7 +508,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T>& inVector)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::list<T *>& inVector)
+MushcoreXMLIStream::ObjectRead(std::list<T *>& outVector)
 {
     // Decode the (x,y,z) sequence
     
@@ -514,7 +525,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T *>& inVector)
         {
             T *newPtr = NULL;
             *this >> newPtr;
-            inVector.push_back(newPtr);
+            outVector.push_back(newPtr);
             
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -522,7 +533,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T *>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -536,7 +547,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T *>& inVector)
 // Deque functions are a direct copy of vector functions
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::deque<T>& inVector)
+MushcoreXMLIStream::ObjectRead(std::deque<T>& outVector)
 {
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
@@ -550,15 +561,15 @@ MushcoreXMLIStream::ObjectRead(std::deque<T>& inVector)
     {
         for (;;)
         {
-            inVector.push_back(T());
+            outVector.push_back(T());
             try
             {
-                *this >> inVector.back();
+                *this >> outVector.back();
             }
             catch (...)
             {
                 // Remove partially written object
-                inVector.pop_back();
+                outVector.pop_back();
                 throw;
             }
             
@@ -568,7 +579,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -581,7 +592,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T>& inVector)
 
 template<class T>
 inline void
-MushcoreXMLIStream::ObjectRead(std::deque<T *>& inVector)
+MushcoreXMLIStream::ObjectRead(std::deque<T *>& outVector)
 {
     // Decode the (x,y,z) sequence
     
@@ -598,7 +609,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T *>& inVector)
         {
             T *newPtr = NULL;
             *this >> newPtr;
-            inVector.push_back(newPtr);
+            outVector.push_back(newPtr);
             
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -606,7 +617,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T *>& inVector)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -619,7 +630,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T *>& inVector)
 
 template<class T, class U>
 inline void
-MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
+MushcoreXMLIStream::ObjectRead(std::map<T, U>& outMap)
 {
     bool hasTag = CompositePrologue();
 
@@ -642,7 +653,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
             // Read completely before setting the map, in case of exception
             U valueValue;
             *this >> valueValue;
-            inMap[keyValue] = valueValue;
+            outMap[keyValue] = valueValue;
             
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -650,7 +661,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -663,7 +674,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& inMap)
 
 template<class T, class U>
 inline void
-MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
+MushcoreXMLIStream::ObjectRead(std::map<T, U *>& outMap)
 {
     bool hasTag = CompositePrologue();
     
@@ -687,7 +698,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
             // Read completely before setting the map, in case of exception
             U *valuePtr = NULL;
             *this >> valuePtr;
-            inMap[keyValue] = valuePtr;
+            outMap[keyValue] = valuePtr;
             
             Mushware::U8 nextByte = ByteTake();
             if (nextByte == ',')
@@ -695,7 +706,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
             }
             else if (nextByte == ')')
             {
-                return;
+                break;
             }
             else
             {
@@ -703,6 +714,34 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& inMap)
             }
         }
     }
+    CompositeEpilogue(hasTag);
+}
+
+template<class T, class U>
+inline void
+MushcoreXMLIStream::ObjectRead(std::pair<T, U>& outObj)
+{
+    bool hasTag = CompositePrologue();
+
+    T keyValue;
+    *this >> keyValue;
+    
+    if (ByteTake() != '=')
+    {
+        Throw("Bad separator in pair");
+    }
+    
+    U valueValue;
+    *this >> valueValue;
+    outObj.first = keyValue;
+    outObj.second = valueValue;
+    
+    Mushware::U8 nextByte = ByteTake();
+    if (nextByte != ')')
+    {
+        Throw("Bad delimiter in pair");
+    }
+
     CompositeEpilogue(hasTag);
 }
 

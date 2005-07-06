@@ -19,14 +19,19 @@
  ****************************************************************************/
 //%Header } slrkoNIBI9nz7vtTH5Yo6g
 /*
- * $Id: MushGameAnimPostManip.cpp,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGameAnimPostManip.cpp,v 1.2 2005/07/05 16:35:53 southa Exp $
  * $Log: MushGameAnimPostManip.cpp,v $
+ * Revision 1.2  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
  */
 
 #include "MushGameAnimPostManip.h"
+
+#include "API/mushMushGL.h"
 
 using namespace Mushware;
 using namespace std;

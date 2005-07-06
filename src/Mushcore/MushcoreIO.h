@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NNj6hj9phwRQNaj45QYBKA
 /*
- * $Id: MushcoreIO.h,v 1.12 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushcoreIO.h,v 1.13 2005/07/01 14:59:00 southa Exp $
  * $Log: MushcoreIO.h,v $
+ * Revision 1.13  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.12  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -307,6 +310,17 @@ operator<<(std::ostream& ioOut, const std::map<T, U *>& inObj)
             ioOut << ", ";
         }
     }
+    ioOut << "]";
+    return ioOut;
+}
+
+// std::pair output
+template <class T, class U>
+inline std::ostream&
+operator<<(std::ostream& ioOut, const std::pair<T, U>& inObj)
+{
+    ioOut << "[";
+    ioOut << inObj.first << " => " << inObj.second;
     ioOut << "]";
     return ioOut;
 }

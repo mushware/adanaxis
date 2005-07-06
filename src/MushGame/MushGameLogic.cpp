@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.12 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.13 2005/07/05 16:35:53 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.13  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.12  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -156,9 +159,9 @@ MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& 
     }
     else
     {
-        MushcoreXMLOStream xmlOut(std::cout);
-        xmlOut << SaveData().JobList();
-        xmlOut << HostSaveData().JobList();
+        // MushcoreXMLOStream xmlOut(std::cout);
+        // xmlOut << SaveData().JobList();
+        // xmlOut << HostSaveData().JobList();
         
         throw MushcoreDataFail(std::string("Unknown job ID '")+jobName+"' in message type '"+inMessage.AutoName()+"'");
     }
@@ -348,9 +351,7 @@ MushGameLogic::SendSequence(void)
 void
 MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
 {
-    static MushGameAnimPostManip manip;
-    manip.PostAdjust(inPlayer.PostWRef());
-    inPlayer.PostWRef().InPlaceVelocityAdd();
+    inPlayer.ControlMailboxProcess(*this);
 }
 
 void

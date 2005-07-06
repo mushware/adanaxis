@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.4 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.5 2005/06/29 11:11:15 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.5  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.4  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -43,6 +46,7 @@
 
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
+#include "MushGameMessageControlInfo.h"
 #include "MushGamePiece.h"
 
 #include "API/mushMushMesh.h"
@@ -54,11 +58,17 @@ class MushGamePlayer : public MushGamePiece
 public:
     explicit MushGamePlayer(std::string inID = "");
     virtual ~MushGamePlayer() {}
-    virtual void MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage);
+    
+    virtual void ControlMailboxNameSet(const std::string& inName);// { m_controlMailboxRef.NameSet(inName); }
+    virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void ControlMailboxProcess(MushGameLogic& ioLogic);
     
 private:
     std::string m_id; //:readwrite
     std::string m_playerName; //:readwrite
+    MushcoreDataRef<MushGameMailbox> m_controlMailboxRef;
+    bool m_useControlMailbox;
     
 //%classPrototypes {
 public:

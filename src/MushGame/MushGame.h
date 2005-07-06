@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.9 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGame.h,v 1.10 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.10  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.9  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -56,6 +59,8 @@
 
 #include "MushGameAddress.h"
 #include "MushGameAnimPostManip.h"
+#include "MushGameAppHandler.h"
+#include "MushGameAxisDef.h"
 #include "MushGameClient.h"
 #include "MushGameConfigBase.h"
 #include "MushGameConfigUtils.h"
@@ -73,6 +78,7 @@
 #include "MushGameLogicLocal.h"
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
+#include "MushGameMessageControlInfo.h"
 #include "MushGameMessageJoinConfirm.h"
 #include "MushGameMessageJoinDenied.h"
 #include "MushGameMessageJoinRequest.h"

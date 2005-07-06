@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sZjJcPKhF62mPX+WEmXvZw
 /*
- * $Id: AdanaxisAppHandler.cpp,v 1.2 2005/06/14 13:25:32 southa Exp $
+ * $Id: AdanaxisAppHandler.cpp,v 1.3 2005/06/14 20:39:40 southa Exp $
  * $Log: AdanaxisAppHandler.cpp,v $
+ * Revision 1.3  2005/06/14 20:39:40  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/14 13:25:32  southa
  * Adanaxis work
  *
@@ -41,7 +44,8 @@
 using namespace Mushware;
 using namespace std;
 
-AdanaxisAppHandler::AdanaxisAppHandler()
+AdanaxisAppHandler::AdanaxisAppHandler(const std::string& inName) :
+    MushGameAppHandler(inName)
 {
 }
 

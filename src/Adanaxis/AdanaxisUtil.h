@@ -21,18 +21,25 @@
  ****************************************************************************/
 //%Header } h0Ba5isJoX+glev7XNkQ4g
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisUtil.h,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Log: AdanaxisUtil.h,v $
+ * Revision 1.1  2005/06/30 16:29:24  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
 
 #include "AdanaxisLogic.h"
 
+class AdanaxisAppHandler;
+
 class AdanaxisUtil
 {
 public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
+    static AdanaxisAppHandler& AppHandler(void);
+
 };
 //%includeGuardEnd {
 #endif

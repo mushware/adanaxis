@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.4 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.5 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.5  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -38,6 +41,7 @@
  */
 
 #include "AdanaxisStandard.h"
+
 #include "API/mushMushGame.h"
 
 //:xml1base MushGameConfigBase
@@ -45,22 +49,43 @@
 class AdanaxisConfig : public MushGameConfigBase
 {
 public:
+    enum
+    {
+        kAxisX = 0,
+        kAxisY = 1,
+        kAxisZ = 2,
+        kAxisW = 3,
+        kAxisXY = 4,
+        kAxisZW = 5,
+        kAxisXZ = 6,
+        kAxisYW = 7,
+        kAxisXW = 8,
+        kAxisYZ = 9,
+        kNumAxes = 10
+    };
+    
+    
     AdanaxisConfig();
     
     virtual void ToDefaultSet(void);
+    virtual void AxesToDefaultSet(void);
     virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);
+    virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
-    
+    const MushGameAxisDef& AxisDefs(Mushware::U32 inAxisDefNum) const { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); return m_axisDefs[inAxisDefNum]; }
+
 private:
     enum
     {
         kVersion = 200506014,
     };
     
+    std::vector<MushGameAxisDef> m_axisDefs; //:read
     Mushware::U32 m_displayMode; //:readwrite
     
 //%classPrototypes {
 public:
+    const std::vector<MushGameAxisDef>& AxisDefs(void) const { return m_axisDefs; }
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
     virtual const char *AutoName(void) const;
@@ -70,7 +95,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } EBRMAX6M4zxbXKmqH8v9cA
+//%classPrototypes } na4pw3NZxg6lGCbHrt/zjA
 };
 //%inlineHeader {
 inline std::ostream&

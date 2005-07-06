@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.4 2005/07/04 15:59:00 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.5 2005/07/05 13:52:22 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.5  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -43,6 +46,14 @@ AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
 {
     PostWRef().PosSet(t4Val(0,0,0,20));
 }
+
+void
+AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage)
+{
+    MushcoreXMLOStream xmlOut(std::cout);
+    xmlOut << inMessage;
+}
+
 
 //%outOfLineFunctions {
 
@@ -78,7 +89,6 @@ AdanaxisPlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePlayer::AutoPrint(ioOut);
-    ioOut << "postManip=" << m_postManip;
     ioOut << "]";
 }
 bool
@@ -89,10 +99,6 @@ AdanaxisPlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "postManip")
-    {
-        ioIn >> m_postManip;
     }
     else if (MushGamePlayer::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -108,7 +114,5 @@ void
 AdanaxisPlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePlayer::AutoXMLPrint(ioOut);
-    ioOut.TagSet("postManip");
-    ioOut << m_postManip;
 }
-//%outOfLineFunctions } 8a3ZQQ1VuL7/gplsOwseXg
+//%outOfLineFunctions } VUFOgW1uJTqHPBRwf9LXBg

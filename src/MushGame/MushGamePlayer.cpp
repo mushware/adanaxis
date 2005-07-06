@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.6 2005/07/01 10:03:30 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.7 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.7  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.6  2005/07/01 10:03:30  southa
  * Projection work
  *
@@ -49,14 +52,57 @@ using namespace std;
 MUSHCORE_DATA_INSTANCE(MushGamePlayer);
 
 MushGamePlayer::MushGamePlayer(std::string inID) :
-    m_id(inID)
+    m_id(inID),
+    m_useControlMailbox(false)
 {
     PostWRef().ToIdentitySet();
 }
 
 void
-MushGamePlayer::MessageConsume(MushGameMailbox& outReplyBox, const MushGameMessage& inMessage)
+MushGamePlayer::ControlMailboxNameSet(const std::string& inName)
 {
+    m_controlMailboxRef.NameSet(inName);
+    m_useControlMailbox = true;
+}
+
+void
+MushGamePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage)
+{
+    MushcoreXMLOStream xmlOut(std::cout);
+    xmlOut << inMessage;
+}
+
+void
+MushGamePlayer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const MushGameMessageControlInfo *pControlInfo;
+    
+    if ((pControlInfo = dynamic_cast<const MushGameMessageControlInfo *>(&inMessage)) != NULL)
+    {
+        ControlInfoConsume(ioLogic, *pControlInfo);
+    }
+    else
+    {
+        // Pass to base class
+        MushGamePiece::MessageConsume(ioLogic, inMessage);
+    }
+}
+
+void
+MushGamePlayer::ControlMailboxProcess(MushGameLogic& ioLogic)
+{
+    if (m_useControlMailbox)
+    {
+        MushGameMailbox& mailboxRef = m_controlMailboxRef.WRef();
+        
+        std::auto_ptr<MushGameMessage> aMessage;
+        
+        while (mailboxRef.TakeIfAvailable(aMessage))
+        {
+            MUSHCOREASSERT(aMessage.get() != NULL);
+            MessageConsume(ioLogic, *aMessage);
+        }
+    }
 }
 
 //%outOfLineFunctions {
@@ -94,7 +140,9 @@ MushGamePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
-    ioOut << "playerName=" << m_playerName;
+    ioOut << "playerName=" << m_playerName << ", ";
+    ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
+    ioOut << "useControlMailbox=" << m_useControlMailbox;
     ioOut << "]";
 }
 bool
@@ -114,6 +162,14 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_playerName;
     }
+    else if (inTagStr == "controlMailboxRef")
+    {
+        ioIn >> m_controlMailboxRef;
+    }
+    else if (inTagStr == "useControlMailbox")
+    {
+        ioIn >> m_useControlMailbox;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -132,5 +188,9 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_id;
     ioOut.TagSet("playerName");
     ioOut << m_playerName;
+    ioOut.TagSet("controlMailboxRef");
+    ioOut << m_controlMailboxRef;
+    ioOut.TagSet("useControlMailbox");
+    ioOut << m_useControlMailbox;
 }
-//%outOfLineFunctions } 2T2dLbaYg9kRAzV4W0Amuw
+//%outOfLineFunctions } 14GNm+0iGoSWqw0vJ29scg

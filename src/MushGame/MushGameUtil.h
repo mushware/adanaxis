@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 18albJPuAsa/sx4nUMy3jA
 /*
- * $Id: MushGameUtil.h,v 1.5 2005/06/23 13:56:59 southa Exp $
+ * $Id: MushGameUtil.h,v 1.6 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.6  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.5  2005/06/23 13:56:59  southa
  * MushGame link work
  *
@@ -50,6 +53,7 @@
 #include "MushGameMessage.h"
 #include "MushGameServer.h"
 
+class MushGameAppHandler;
 class MushGameLogic;
 
 class MushGameUtil
@@ -66,6 +70,8 @@ public:
     static std::string KeyFromString(const std::string& inStr);
     static std::string KeyFromMessage(const MushGameMessage& inMessage);
     static std::string ReplyIDFromMessage(const MushGameMessage& inMessage);
+    static MushGameAppHandler& AppHandler(void);
+    
 private:
     
 };

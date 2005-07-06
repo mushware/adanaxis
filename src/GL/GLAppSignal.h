@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +jtQjhh0MjE7AsiOTYWrQw
 /*
- * $Id: GLAppSignal.h,v 1.15 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLAppSignal.h,v 1.16 2005/05/19 13:01:58 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.16  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/06 20:46:49  southa
  * Build fixes
  *
@@ -98,6 +101,12 @@ public:
         mouseX(inMouseX),
         mouseY(inMouseY)
         {}
+    
+    const bool& KeyDown(void) { return keyDown; }
+    const GLKeys& KeyValue(void) { return keyValue; }
+    const Mushware::tVal& MouseX(void) { return mouseX; }
+    const Mushware::tVal& MouseY(void) { return mouseY; }
+    
     bool keyDown;
     GLKeys keyValue;
     Mushware::tVal mouseX;

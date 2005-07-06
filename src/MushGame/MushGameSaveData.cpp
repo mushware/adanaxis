@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.9 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.10 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.10  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.9  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -98,7 +101,8 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
     ioOut << "clientRef=" << m_clientRef << ", ";
     ioOut << "serverAddrRef=" << m_serverAddrRef << ", ";
-    ioOut << "renderRef=" << m_renderRef;
+    ioOut << "renderRef=" << m_renderRef << ", ";
+    ioOut << "controlMailboxName=" << m_controlMailboxName;
     ioOut << "]";
 }
 bool
@@ -142,6 +146,10 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_renderRef;
     }
+    else if (inTagStr == "controlMailboxName")
+    {
+        ioIn >> m_controlMailboxName;
+    }
     else 
     {
         return false;
@@ -167,5 +175,7 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_serverAddrRef;
     ioOut.TagSet("renderRef");
     ioOut << m_renderRef;
+    ioOut.TagSet("controlMailboxName");
+    ioOut << m_controlMailboxName;
 }
-//%outOfLineFunctions } /pW8ejJbK7LKnLjlGTjmTQ
+//%outOfLineFunctions } F77mz93g4CAn+pCKX2u5+A

@@ -23,13 +23,17 @@
  ****************************************************************************/
 //%Header } Zr5wbyAZiaCJveyAEJ0s5A
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLAppHandler.h,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Log: MushGLAppHandler.h,v $
+ * Revision 1.1  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  */
 
 #include "API/mushGL.h"
 
 typedef GLAppHandler MushGLAppHandler;
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

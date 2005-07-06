@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nnreRrgtAG1/ZKElYmX31w
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.3 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.4 2005/07/05 16:35:53 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.4  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -202,7 +205,7 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
     }
     
     static U32 ctr=0;
-    if (++ctr < 3)
+    if (++ctr < 0)
     {
         for (U32 i=0; i<destVertexIndex; ++i)
         {

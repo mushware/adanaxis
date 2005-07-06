@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yeXGnep1s2Nq0rSrBquM9w
 /*
- * $Id: GLTextureProc.cpp,v 1.1 2005/02/13 22:44:06 southa Exp $
+ * $Id: GLTextureProc.cpp,v 1.2 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureProc.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/13 22:44:06  southa
  * Tesseract stuff
  *
@@ -29,6 +32,8 @@
 #include "GLTextureProc.h"
 
 #include "GLSTL.h"
+
+#include "API/mushMushGL.h"
 
 using namespace Mushware;
 using namespace std;

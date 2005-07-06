@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEPIECE_H
-#define MUSHGAMEPIECE_H
-//%includeGuardStart } fXnM4FD/EmJAfw+g836GPQ
+#ifndef MUSHGAMEMESSAGECONTROLINFO_H
+#define MUSHGAMEMESSAGECONTROLINFO_H
+//%includeGuardStart } gCGkj9mJmJXi0VgLnk9jXQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGamePiece.h
+ * File: src/MushGame/MushGameMessageControlInfo.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,50 +21,40 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } T/MWnTXtRKRQsmRlB17JyQ
+//%Header } 5Ugw6aV4AgXqjsY6ZzybrA
 /*
- * $Id: MushGamePiece.h,v 1.4 2005/07/05 13:52:22 southa Exp $
- * $Log: MushGamePiece.h,v $
- * Revision 1.4  2005/07/05 13:52:22  southa
- * Adanaxis work
- *
- * Revision 1.3  2005/07/01 16:42:54  southa
- * Render work
- *
- * Revision 1.2  2005/06/29 11:11:15  southa
- * Camera and rendering work
- *
- * Revision 1.1  2005/06/24 10:30:12  southa
- * MushGame camera work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-class MushGameLogic;
-class MushGameMessage;
+#include "MushGameMessage.h"
 
-#include "API/mushMushMesh.h"
-
+//:xml1base MushGameMessage
 //:generate virtual standard ostream xml1
-class MushGamePiece : public MushcoreVirtualObject
+class MushGameMessageControlInfo : public MushGameMessage
 {
 public:
-    MushGamePiece();
-    virtual ~MushGamePiece() {}
-    virtual void Move(MushGameLogic& ioLogic) {}
+    typedef std::pair<Mushware::U32, Mushware::tVal> tAxisEvent;
+    typedef std::pair<Mushware::U32, bool> tKeyEvent;
     
-    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-
+    explicit MushGameMessageControlInfo(const std::string& inID = "") : MushGameMessage(inID) {}
+    virtual ~MushGameMessageControlInfo() {}
+    
 private:
-    MushMeshPosticity m_post; //:readwrite :wref
-    
+    Mushware::tMsec m_timestamp; //:readwrite
+    std::vector<tAxisEvent> m_axisEvents; //:read :wref
+    std::vector<tKeyEvent> m_keyEvents; //: read :wref
 //%classPrototypes {
 public:
-    const MushMeshPosticity& Post(void) const { return m_post; }
-    void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
-    // Writable reference for m_post
-    MushMeshPosticity& PostWRef(void) { return m_post; }
+    const Mushware::tMsec& Timestamp(void) const { return m_timestamp; }
+    void TimestampSet(const Mushware::tMsec& inValue) { m_timestamp=inValue; }
+    const std::vector<tAxisEvent>& AxisEvents(void) const { return m_axisEvents; }
+    // Writable reference for m_axisEvents
+    std::vector<tAxisEvent>& AxisEventsWRef(void) { return m_axisEvents; }
+    // Writable reference for m_keyEvents
+    std::vector<tKeyEvent>& KeyEventsWRef(void) { return m_keyEvents; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -72,16 +62,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xgYH1Kh+PR9uvdS4XNL1+w
+//%classPrototypes } /pcknjlz0H+vDDLCGfzC/w
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGamePiece& inObj)
+operator<<(std::ostream& ioOut, const MushGameMessageControlInfo& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } hzo4AnwoYg7g4RrSJcViWQ
+//%inlineHeader } mMVFEAYvgk8lbOhsC+U+2g
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

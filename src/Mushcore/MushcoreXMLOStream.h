@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l3dxj6hsHPcPtyzEiaaDbw
 /*
- * $Id: MushcoreXMLOStream.h,v 1.24 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushcoreXMLOStream.h,v 1.25 2005/07/01 14:59:00 southa Exp $
  * $Log: MushcoreXMLOStream.h,v $
+ * Revision 1.25  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.24  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -404,6 +407,20 @@ operator<<(MushcoreXMLOStream& ioOut, const std::map<T, U>& inObj)
             ioOut.OStreamGet() << ',';
         }
     }
+    ioOut.OStreamGet() << ")";
+    ioOut.ClosingTagWrite(localTag);
+    return ioOut;
+}
+
+template<class T, class U>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const std::pair<T, U>& inObj)
+{
+    std::string localTag = ioOut.OpeningTagWrite();
+    ioOut.OStreamGet() << "(";
+
+    ioOut << inObj.first << "=" << inObj.second;
+    
     ioOut.OStreamGet() << ")";
     ioOut.ClosingTagWrite(localTag);
     return ioOut;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } xc9P/TG19PochVDX5THNbA
 /*
- * $Id: MushGamePiece.cpp,v 1.3 2005/07/01 16:42:54 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.4 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/07/01 16:42:54  southa
  * Render work
  *
@@ -34,11 +37,19 @@
 
 #include "MushGamePiece.h"
 
+#include "MushGameMessage.h"
+
 MUSHCORE_DATA_INSTANCE(MushGamePiece);
 
 MushGamePiece::MushGamePiece()
 {
     m_post.ToIdentitySet();
+}
+
+void
+MushGamePiece::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in "+AutoName());
 }
 
 //%outOfLineFunctions {

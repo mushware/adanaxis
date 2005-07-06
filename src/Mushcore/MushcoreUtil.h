@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.20 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.21 2005/07/04 15:59:01 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.21  2005/07/04 15:59:01  southa
+ * Adanaxis work
+ *
  * Revision 1.20  2005/06/30 16:29:25  southa
  * Adanaxis work
  *
@@ -140,6 +143,9 @@ public:
 
     static const Mushware::U32 RandomU32(const Mushware::U32 inMin, const Mushware::U32 inMax);
     static const Mushware::tVal RandomVal(const Mushware::tVal inMin, const Mushware::tVal inMax);
+    
+    template<class T> static void Constrain(T& ioValue, const T& inLowLim, const T& inHighLim);
+    
     static std::string LogTimeString(void);
     static void BreakpointFunction(void);
     static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
@@ -165,6 +171,20 @@ MushcoreUtil::BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
     if (inValue > inLimit)
     {
         BoundaryThrow(inValue, inLimit);
+    }
+}
+
+template<class T>
+inline void
+MushcoreUtil::Constrain(T& ioValue, const T& inLowLim, const T& inHighLim)
+{
+    if (ioValue < inLowLim)
+    {
+        ioValue = inLowLim;
+    }
+    else if (ioValue > inHighLim)
+    {
+        ioValue = inHighLim;
     }
 }
 

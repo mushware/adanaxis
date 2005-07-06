@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id: MushGameMailbox.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/23 11:58:28  southa
  * MushGame link work
  *
@@ -40,20 +43,38 @@
 using namespace Mushware;
 using namespace std;
 
+MUSHCORE_DATA_INSTANCE(MushGameMailbox);
+
 MushGameMailbox::~MushGameMailbox()
 {
+    DiscardAll();
+}
+
+void
+MushGameMailbox::DiscardAll(void)
+{
     MushGameMessage *pMessage;
+    
     while (TakeIfAvailable(pMessage))
     {
         delete pMessage;
     }
+    
+    m_messageCount = 0; // Just in case
 }
 
 void
 MushGameMailbox::Give(MushGameMessage *iopMessage)
 {
     m_deque.push_back(iopMessage);
-    //iopMessage = NULL;
+    ++m_messageCount;
+    
+    if (m_messageCount > m_messageLimit)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Mailbox (source " << m_srcAddrRef << ") exceeded limit (" << m_messageLimit << ".  Discarding all messages" << endl;
+        
+        DiscardAll();
+    }
 }
 
 bool
@@ -64,6 +85,12 @@ MushGameMailbox::TakeIfAvailable(MushGameMessage *& iopMessage)
     {
         iopMessage = m_deque.front();
         m_deque.pop_front(); // caller now owns the object
+        
+        if (m_messageCount > 0)
+        {
+            --m_messageCount;
+        }
+        
         retVal = true;
     }
     return retVal;
@@ -80,8 +107,7 @@ MushGameMailbox::TakeIfAvailable(std::auto_ptr<MushGameMessage>& ioaMessage)
         retVal = true;
     }
     return retVal;;
-}    
-
+}
 
 //%outOfLineFunctions {
 
@@ -117,7 +143,9 @@ MushGameMailbox::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "srcAddrRef=" << m_srcAddrRef << ", ";
-    ioOut << "deque=" << m_deque;
+    ioOut << "deque=" << m_deque << ", ";
+    ioOut << "messageCount=" << m_messageCount << ", ";
+    ioOut << "messageLimit=" << m_messageLimit;
     ioOut << "]";
 }
 bool
@@ -137,6 +165,14 @@ MushGameMailbox::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_deque;
     }
+    else if (inTagStr == "messageCount")
+    {
+        ioIn >> m_messageCount;
+    }
+    else if (inTagStr == "messageLimit")
+    {
+        ioIn >> m_messageLimit;
+    }
     else 
     {
         return false;
@@ -148,5 +184,9 @@ MushGameMailbox::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("deque");
     ioOut << m_deque;
+    ioOut.TagSet("messageCount");
+    ioOut << m_messageCount;
+    ioOut.TagSet("messageLimit");
+    ioOut << m_messageLimit;
 }
-//%outOfLineFunctions } 2oQBIB+uCFbODZUmkmscTg
+//%outOfLineFunctions } 7SB8tbY/nJXLCPdwx5C8PQ

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.8 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.9 2005/07/01 16:42:54 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.9  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.8  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -72,6 +75,8 @@ public:
     virtual void SwapIn(GameAppHandler& inAppHandler);
     virtual void SwapOut(GameAppHandler& inAppHandler);
     virtual void Init(GameAppHandler& inAppHandler);
+    
+    virtual void UpdateFromConfig(void);
     
     static void Install(void);
     

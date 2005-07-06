@@ -21,20 +21,24 @@
  ****************************************************************************/
 //%Header } K3hFA55rGfb+D50+6fnrZg
 /*
- * $Id: AdanaxisAppHandler.h,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisAppHandler.h,v 1.2 2005/06/14 13:25:32 southa Exp $
  * $Log: AdanaxisAppHandler.h,v $
+ * Revision 1.2  2005/06/14 13:25:32  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
  */
 
-#include "mushMushcore.h"
-#include "mushGame.h"
+#include "AdanaxisStandard.h"
 
-class AdanaxisAppHandler : public GameAppHandler
+#include "API/mushMushGame.h"
+
+class AdanaxisAppHandler : public MushGameAppHandler
 {
 public:
-    AdanaxisAppHandler();
+    AdanaxisAppHandler(const std::string& inName = "");
     virtual ~AdanaxisAppHandler();
     virtual void SetupModeEnter(void);
     virtual void GameModeEnter(bool inResume);

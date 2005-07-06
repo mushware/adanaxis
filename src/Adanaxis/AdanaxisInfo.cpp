@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gLnaIsWRWcFfwxhJ8tzlTg
 /*
- * $Id: AdanaxisInfo.cpp,v 1.1 2005/06/13 17:34:54 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:54  southa
  * Adanaxis creation
  *
@@ -31,7 +34,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "0.1.3"
+#define VERSION "0.0.1"
 #endif
 
 #include "AdanaxisSTL.h"

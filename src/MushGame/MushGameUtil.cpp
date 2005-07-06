@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.8 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.9 2005/06/30 16:29:25 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.9  2005/06/30 16:29:25  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -49,6 +52,7 @@
 
 #include "MushGameUtil.h"
 
+#include "MushGameAppHandler.h"
 #include "MushGameClient.h"
 #include "MushGameData.h"
 #include "MushGameHostData.h"
@@ -136,6 +140,7 @@ MushGameUtil::LocalGameCreate(const std::string& inName, const std::string& inPr
     
     pLogic->SaveData().ClientNameSet(clientName);
     pLogic->SaveData().RenderNameSet(inName);
+    pLogic->SaveData().ControlMailboxNameSet(inName+"-controlmailbox");
     pLogic->HostSaveData().ServerNameSet(serverName);
     
     DataObjectCreate<MushGameAddress>(serverName, inPrefix, "Address")->NameSet(serverName);
@@ -200,3 +205,13 @@ MushGameUtil::ReplyIDFromMessage(const MushGameMessage& inMessage)
     return idRef.substr(barPos+1);
 }
 
+MushGameAppHandler&
+MushGameUtil::AppHandler(void)
+{
+    MushGameAppHandler *pAppHandler=dynamic_cast<MushGameAppHandler *>(&MushcoreAppHandler::Sgl());
+    if (pAppHandler == NULL)
+    {
+        throw MushcoreRequestFail("AppHandler of wrong type for MushGameAppHandler");
+    }
+    return *pAppHandler;
+}

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.7 2005/06/24 10:30:12 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.8 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.8  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.7  2005/06/24 10:30:12  southa
  * MushGame camera work
  *
@@ -109,12 +112,9 @@ MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGa
     
     pPlayer->IdSet(inMessage.NewPlayerID());
     pPlayer->PlayerNameSet(inMessage.PlayerName());
+    pPlayer->ControlMailboxNameSet(ioLogic.SaveData().ControlMailboxName());
 
     ioLogic.ClientNewPlayerHandle(playerName);
-    
-    MushcoreXMLOStream xmlOut(MushcoreLog::Sgl().InfoLog());
-    xmlOut << ioLogic.HostSaveData();
-    xmlOut << ioLogic.SaveData();
     
     CompleteSet(true);
 }

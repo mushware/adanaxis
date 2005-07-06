@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HGOTUFiPB1QROOSnhLbE4Q
 /*
- * $Id: MushGameMailbox.h,v 1.4 2005/06/22 20:01:59 southa Exp $
+ * $Id: MushGameMailbox.h,v 1.5 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameMailbox.h,v $
+ * Revision 1.5  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/22 20:01:59  southa
  * MushGame link work
  *
@@ -47,20 +50,28 @@
 class MushGameMailbox : public MushcoreVirtualObject
 {
 public:
+    MushGameMailbox() : m_messageCount(0), m_messageLimit(1000) {}
     virtual ~MushGameMailbox();
     virtual void Give(MushGameMessage *iopMessage);
     virtual bool TakeIfAvailable(MushGameMessage *& iopMessage);
     virtual bool TakeIfAvailable(std::auto_ptr<MushGameMessage>& ioaMessage);
     virtual bool IsEmpty(void) { return m_deque.empty(); }
+    virtual void DiscardAll(void);
     
 private:
     MushcoreDataRef<MushGameAddress> m_srcAddrRef; //:xmlignore :readwrite
     std::deque<MushGameMessage *> m_deque;
+    Mushware::U32 m_messageCount; //:readwrite
+    Mushware::U32 m_messageLimit; //:readwrite
     
 //%classPrototypes {
 public:
     const MushcoreDataRef<MushGameAddress>& SrcAddrRef(void) const { return m_srcAddrRef; }
     void SrcAddrRefSet(const MushcoreDataRef<MushGameAddress>& inValue) { m_srcAddrRef=inValue; }
+    const Mushware::U32& MessageCount(void) const { return m_messageCount; }
+    void MessageCountSet(const Mushware::U32& inValue) { m_messageCount=inValue; }
+    const Mushware::U32& MessageLimit(void) const { return m_messageLimit; }
+    void MessageLimitSet(const Mushware::U32& inValue) { m_messageLimit=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,7 +79,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } mrIaE+wFtwVDLV/Igx+3dw
+//%classPrototypes } Jl57Dk8ApazrafbogACMNg
 };
 //%inlineHeader {
 inline std::ostream&

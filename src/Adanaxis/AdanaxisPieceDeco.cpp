@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.7 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.8 2005/07/05 16:35:53 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.8  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -79,7 +82,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     
     static U32 ctr=0;
     
-    if (ctr++ < 2)
+    if (ctr++ < 0)
     {
         MushcoreXMLOStream xmlOut(std::cout);
         std::cout << "Camera " << inCamera << endl;
