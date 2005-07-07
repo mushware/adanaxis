@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.5 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.6 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.6  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.5  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -38,6 +41,8 @@
 
 #include "AdanaxisPlayer.h"
 
+#include "AdanaxisConfig.h"
+
 using namespace Mushware;
 using namespace std;
 
@@ -48,10 +53,105 @@ AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
 }
 
 void
+AdanaxisPlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
+{
+    PostWRef().InPlaceVelocityAdd();
+    PostWRef().VelWRef().ToAdditiveIdentitySet();
+    PostWRef().AngVelWRef().ToRotationIdentitySet();
+}
+
+void
+AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
+{    
+    if (inAxisNum <= AdanaxisConfig::kAxisW)
+    {
+        t4Val vel;
+        vel.ToAdditiveIdentitySet();
+        
+        switch (inAxisNum)
+        {
+            case AdanaxisConfig::kAxisX:
+                vel = t4Val(inDelta,0,0,0);
+                break;
+                
+            case AdanaxisConfig::kAxisY:
+                vel = t4Val(0,inDelta,0,0);
+                break;
+                
+            case AdanaxisConfig::kAxisZ:
+                vel = t4Val(0,0,inDelta,0);
+                break;
+                
+            case AdanaxisConfig::kAxisW:
+                vel = t4Val(0,0,0,inDelta);
+                break;
+                
+            default:
+                throw MushcoreLogicFail("Axis value fault");
+        }
+        Post().AngPos().InPlaceRotate(vel);
+        PostWRef().VelWRef() += vel;
+    }
+    else
+    {
+        tQValPair angVel;
+        angVel.ToRotationIdentitySet();
+
+        U32 rotationAxisNum = inAxisNum - AdanaxisConfig::kAxisXY;
+        if (rotationAxisNum > 5)
+        {
+            throw MushcoreDataFail("Bad axis number");
+        }
+        
+        angVel.OuterMultiplyBy(Post().AngPos().ConjugateGet());
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(rotationAxisNum, inDelta));
+        angVel.OuterMultiplyBy(Post().AngPos());
+
+        angVel.InPlaceNormalise();
+        PostWRef().AngVelWRef().OuterMultiplyBy(angVel);
+    }
+}
+
+void
 AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage)
 {
-    MushcoreXMLOStream xmlOut(std::cout);
-    xmlOut << inMessage;
+    Mushware::U32 axisEventsSize = inMessage.AxisEvents().size();
+    Mushware::U32 lastAxesSize = m_lastAxes.size();
+    
+    if (lastAxesSize > 0)
+    {
+        for (U32 i=0; i<axisEventsSize; ++i)
+        {
+            U32 axisNum = inMessage.AxisEvents()[i].first;
+            tVal axisValue = inMessage.AxisEvents()[i].second;
+            
+            if (axisNum <= lastAxesSize)
+            {
+                AxisDeltaHandle(m_lastAxes[axisNum] - axisValue, axisNum);
+                m_lastAxes[axisNum] = axisValue;
+            }
+            else
+            {
+                throw MushcoreDataFail(std::string("Axis number too high in")+AutoName());
+            }
+        }
+    }
+    else
+    {
+        m_lastAxes.resize(AdanaxisConfig::kNumAxes);
+        lastAxesSize = m_lastAxes.size();
+        for (U32 i=0; i<axisEventsSize; ++i)
+        {
+            U32 axisNum = inMessage.AxisEvents()[i].first;
+            tVal axisValue = inMessage.AxisEvents()[i].second;
+            
+            if (axisNum <= lastAxesSize)
+            {
+                m_lastAxes[axisNum] = axisValue;
+            }
+        }
+    }
+    
 }
 
 
@@ -89,6 +189,7 @@ AdanaxisPlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePlayer::AutoPrint(ioOut);
+    ioOut << "lastAxes=" << m_lastAxes;
     ioOut << "]";
 }
 bool
@@ -99,6 +200,10 @@ AdanaxisPlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "lastAxes")
+    {
+        ioIn >> m_lastAxes;
     }
     else if (MushGamePlayer::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -114,5 +219,7 @@ void
 AdanaxisPlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePlayer::AutoXMLPrint(ioOut);
+    ioOut.TagSet("lastAxes");
+    ioOut << m_lastAxes;
 }
-//%outOfLineFunctions } VUFOgW1uJTqHPBRwf9LXBg
+//%outOfLineFunctions } db2HxbL5n1vrtyu4ZQLaRw

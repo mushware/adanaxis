@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id: AdanaxisPlayer.h,v 1.3 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.4 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.4  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.3  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -45,10 +48,14 @@ class AdanaxisPlayer : public MushGamePlayer
 public:
     explicit AdanaxisPlayer(const std::string& inPlayerID = "");
     
+    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
+
+    virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
 
 private:
-    
+    std::vector<Mushware::tVal> m_lastAxes;
+        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

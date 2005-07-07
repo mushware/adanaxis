@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.5 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.6 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.6  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.5  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -53,8 +56,8 @@ AdanaxisConfig::ToDefaultSet(void)
 {
     MushGameConfigBase::ToDefaultSet();
     VersionSet(kVersion);
-    m_axisDefs.resize(0);
     m_displayMode = 0;
+    AxesToDefaultSet();
 }
 
 void
@@ -87,7 +90,10 @@ AdanaxisConfig::AxesToDefaultSet(void)
 void
 AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
-    ToDefaultSet();
+    MushGameConfigBase::AutoInputPrologue(ioIn);
+    VersionSet(kVersion);
+    m_displayMode = 0;
+    m_axisDefs.resize(0);
 }
 
 void

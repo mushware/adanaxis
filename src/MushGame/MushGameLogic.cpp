@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.13 2005/07/05 16:35:53 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.14 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.14  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.13  2005/07/05 16:35:53  southa
  * Adanaxis work
  *
@@ -352,6 +355,7 @@ void
 MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
 {
     inPlayer.ControlMailboxProcess(*this);
+    inPlayer.Move(*this, 1);
 }
 
 void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 2CFncbRjYIdlO9JtmJIUgg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAxisDef.cpp,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameAxisDef.h"
@@ -50,6 +53,11 @@ MushGameAxisDef::Accelerate(Mushware::tVal inAmount)
 {
     if (m_integrate)
     {
+        if (m_vel * inAmount < 0)
+        {
+            // Acceleration against the direction of movement, so decelerate as well
+            Decelerate(fabs(inAmount));
+        }
         m_vel += m_accel * inAmount;
         MushcoreUtil::Constrain(m_vel, -m_velLimit, m_velLimit);
     }

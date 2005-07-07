@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.14 2005/07/04 15:59:00 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.15 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.15  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.14  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -146,12 +149,15 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
         // xmlOut << VolatileData();
     }
     
+#if 0
     cout << ";=" <<(U32)';' << endl;
     
     for (U32 i='a'; i<'z'; ++i)
     {
         cout << (U8)i << "=" << i << endl;
     }
+#endif
+    
     m_inited = true;
 }
 

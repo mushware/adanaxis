@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T/MWnTXtRKRQsmRlB17JyQ
 /*
- * $Id: MushGamePiece.h,v 1.4 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGamePiece.h,v 1.5 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.5  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.4  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -52,7 +55,7 @@ class MushGamePiece : public MushcoreVirtualObject
 public:
     MushGamePiece();
     virtual ~MushGamePiece() {}
-    virtual void Move(MushGameLogic& ioLogic) {}
+    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice) {}
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
