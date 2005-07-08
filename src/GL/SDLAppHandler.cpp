@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +lRBy3tXEG1uAcp7BgEAGg
 /*
- * $Id: SDLAppHandler.cpp,v 1.46 2005/05/27 12:48:36 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.47 2005/06/06 15:07:09 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.47  2005/06/06 15:07:09  southa
+ * X11 work
+ *
  * Revision 1.46  2005/05/27 12:48:36  southa
  * Registration box tweaks
  *
@@ -276,6 +279,18 @@ SDLAppHandler::UnboundedMousePositionGet(S32& outX, S32& outY) const
 {
     outX=m_unboundedMouseX;
     outY=-m_unboundedMouseY;
+}
+
+tVal
+SDLAppHandler::ScaledUnboundedMouseX(void) const
+{
+    return m_unboundedMouseX / m_greatestDimension;
+}
+
+tVal
+SDLAppHandler::ScaledUnboundedMouseY(void) const
+{
+    return -m_unboundedMouseY / m_greatestDimension;
 }
 
 void

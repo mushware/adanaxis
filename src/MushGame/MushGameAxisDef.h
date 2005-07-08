@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NprwN+FyryU9/ZcPzxfcPA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAxisDef.h,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameAxisDef.h,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -41,16 +44,18 @@ public:
         m_useKeys(false),
         m_useBounds(false),
         m_integrate(false),
-        m_upKeyTime(0),
-        m_downKeyTime(0),
+        m_deviceSensitivity(1),
+        m_requiredKey(0),
         m_pos(0),
         m_vel(0),
         m_accel(1),
         m_velLimit(1),
-        m_posHasMoved(true)
+        m_posHasMoved(true),
+        m_deviceAccelerate(false)
     {}
     
     void Accelerate(Mushware::tVal inAmount);
+    void DeviceAccelerate(Mushware::tVal inAmount);
     void Decelerate(Mushware::tVal inAmount);
     void ApplyIntegration(Mushware::tVal inAmount);
     void PosConstrainAndSet(Mushware::tVal inPos);
@@ -64,14 +69,13 @@ private:
 
     Mushware::U32 m_deviceNum; //:readwrite
     Mushware::U32 m_deviceAxisNum; //:readwrite
+    Mushware::tVal m_deviceSensitivity; //:readwrite
+    Mushware::tVal m_deviceDamping; //:readwrite
     
     GLKeys m_upKey; //:readwrite
     GLKeys m_downKey; //:readwrite
-    Mushware::tMsec m_upKeyTime; //:readwrite
-    Mushware::tMsec m_downKeyTime; //:readwrite
     
-    std::vector<GLKeys> m_requiredKeys; //:read :wref
-    std::vector<GLKeys> m_disallowedKeys; //:read :wref
+    Mushware::U32 m_requiredKey; //:readwrite
     
     Mushware::tVal m_minBound; //:readwrite
     Mushware::tVal m_maxBound; //:readwrite
@@ -84,6 +88,7 @@ private:
     Mushware::tVal m_accel; //:readwrite
     Mushware::tVal m_velLimit; //:readwrite
     bool m_posHasMoved; //:readwrite
+    bool m_deviceAccelerate;
     
 //%classPrototypes {
 public:
@@ -99,20 +104,16 @@ public:
     void DeviceNumSet(const Mushware::U32& inValue) { m_deviceNum=inValue; }
     const Mushware::U32& DeviceAxisNum(void) const { return m_deviceAxisNum; }
     void DeviceAxisNumSet(const Mushware::U32& inValue) { m_deviceAxisNum=inValue; }
+    const Mushware::tVal& DeviceSensitivity(void) const { return m_deviceSensitivity; }
+    void DeviceSensitivitySet(const Mushware::tVal& inValue) { m_deviceSensitivity=inValue; }
+    const Mushware::tVal& DeviceDamping(void) const { return m_deviceDamping; }
+    void DeviceDampingSet(const Mushware::tVal& inValue) { m_deviceDamping=inValue; }
     const GLKeys& UpKey(void) const { return m_upKey; }
     void UpKeySet(const GLKeys& inValue) { m_upKey=inValue; }
     const GLKeys& DownKey(void) const { return m_downKey; }
     void DownKeySet(const GLKeys& inValue) { m_downKey=inValue; }
-    const Mushware::tMsec& UpKeyTime(void) const { return m_upKeyTime; }
-    void UpKeyTimeSet(const Mushware::tMsec& inValue) { m_upKeyTime=inValue; }
-    const Mushware::tMsec& DownKeyTime(void) const { return m_downKeyTime; }
-    void DownKeyTimeSet(const Mushware::tMsec& inValue) { m_downKeyTime=inValue; }
-    const std::vector<GLKeys>& RequiredKeys(void) const { return m_requiredKeys; }
-    // Writable reference for m_requiredKeys
-    std::vector<GLKeys>& RequiredKeysWRef(void) { return m_requiredKeys; }
-    const std::vector<GLKeys>& DisallowedKeys(void) const { return m_disallowedKeys; }
-    // Writable reference for m_disallowedKeys
-    std::vector<GLKeys>& DisallowedKeysWRef(void) { return m_disallowedKeys; }
+    const Mushware::U32& RequiredKey(void) const { return m_requiredKey; }
+    void RequiredKeySet(const Mushware::U32& inValue) { m_requiredKey=inValue; }
     const Mushware::tVal& MinBound(void) const { return m_minBound; }
     void MinBoundSet(const Mushware::tVal& inValue) { m_minBound=inValue; }
     const Mushware::tVal& MaxBound(void) const { return m_maxBound; }
@@ -135,7 +136,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } S04h0lrVIpE0uFzuS+kX0g
+//%classPrototypes } ZoGBtbVdD3Gl8+O+HLw+vw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vTDmm7/9yQPLbrRCYbzIaw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAppHandler.cpp,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameAppHandler.h"
@@ -32,7 +35,8 @@ using namespace std;
 
 MushGameAppHandler::MushGameAppHandler(const std::string& inName) :
     GameAppHandler(),
-    m_lastTickerMsec(0)
+    m_lastTickerMsec(0),
+    m_lastAxesValid(false)
 {
     GroupingNameSet(inName);
 }
@@ -87,35 +91,105 @@ MushGameAppHandler::FillAxisPipe(void)
 }
 
 void
+MushGameAppHandler::AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::tVal inAmount)
+{
+    static tVal lastMouseX = 0;
+    static tVal lastMouseY = 0;
+    
+    if (ioAxisDef.DeviceNum() == 0)
+    {
+        // Mouse device
+        switch (ioAxisDef.DeviceAxisNum())
+        {
+            case 0:
+            {
+                if (m_lastAxesValid)
+                {
+                    ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseX() - lastMouseX));
+                }
+                lastMouseX = ScaledUnboundedMouseX();
+            }
+            break;
+                
+            case 1:
+            {
+                if (m_lastAxesValid)
+                {
+                    ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseY() - lastMouseY));
+                }
+                lastMouseY = ScaledUnboundedMouseY();
+            }
+            break;
+                
+            default:
+                throw MushcoreDataFail("Bad control axis number");
+        }
+    }
+    else
+    {
+        throw MushcoreDataFail("Bad control device number");
+    }
+}    
+
+void
 MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
 {
     tVal amount = inTimeslice / 1000.0;
+    
+    
+    /* Loop through axes and apply the device movements that
+     * match their required key.  Unclaimed device movements will
+     * be claimed in the next pass
+     */  
+    for (U32 i=0; i<m_axisDefs.size(); ++i)
+    {
+        MushGameAxisDef& axisDefRef = m_axisDefs[i];
+        if (axisDefRef.UseDevice())
+        {
+            GLKeys requiredKey = axisDefRef.RequiredKey();
+            if (requiredKey.Value() != 0 && KeyStateGet(requiredKey))
+            {
+                AxisFromDeviceUpdate(axisDefRef, amount);
+            }
+        }        
+    }
     
     // Loop through axes and apply the effect of keys
     for (U32 i=0; i<m_axisDefs.size(); ++i)
     {
         MushGameAxisDef& axisDefRef = m_axisDefs[i];
+        bool decelerate = true;
         
         if (axisDefRef.UseKeys())
         {
             if (KeyStateGet(axisDefRef.UpKey()))
             {
                 axisDefRef.Accelerate(amount);
+                decelerate = false;
             }
             else if (KeyStateGet(axisDefRef.DownKey()))
             {
                 axisDefRef.Accelerate(-amount);
-            }
-            else
-            {
-                axisDefRef.Decelerate(amount);
+                decelerate = false;
             }
         }
+        
+        if (decelerate)
+        {
+            axisDefRef.Decelerate(amount);
+        }
+        
+        if (axisDefRef.UseDevice() && axisDefRef.RequiredKey() == 0)
+        {
+            AxisFromDeviceUpdate(axisDefRef, amount);
+        } 
+        
         if (axisDefRef.Integrate())
         {
             axisDefRef.ApplyIntegration(amount);
         }
     }
+    m_lastAxesValid = true;
 }
 
 void

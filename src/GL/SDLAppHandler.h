@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 73dxJ2aq0CnII0Vg/zkZdg
 /*
- * $Id: SDLAppHandler.h,v 1.25 2005/05/19 13:02:01 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.26 2005/05/27 12:48:37 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.26  2005/05/27 12:48:37  southa
+ * Registration box tweaks
+ *
  * Revision 1.25  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -126,6 +129,8 @@ public:
     virtual bool LatchedKeyStateTake(const GLKeys& inKey);
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const;
+    virtual Mushware::tVal ScaledUnboundedMouseX(void) const;
+    virtual Mushware::tVal ScaledUnboundedMouseY(void) const;
     virtual void EnterScreen(const GLModeDef& inDef);
     virtual void PostRedisplay(void);
     virtual void SwapBuffers(void);

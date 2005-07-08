@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.6 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.7 2005/07/07 16:54:17 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.7  2005/07/07 16:54:17  southa
+ * Control tweaks
+ *
  * Revision 1.6  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -109,6 +112,7 @@ AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
 
         angVel.InPlaceNormalise();
         PostWRef().AngVelWRef().OuterMultiplyBy(angVel);
+        PostWRef().AngVelWRef().InPlaceNormalise();
     }
 }
 

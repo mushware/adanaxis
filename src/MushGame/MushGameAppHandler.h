@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JEoS3kjwIi/5WzNfzKQqBA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameAppHandler.h,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameAppHandler.h,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -44,6 +47,7 @@ public:
     virtual void Idle(void);
     
 protected:
+    virtual void AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::tVal inAmount);
     virtual void AxisTicker(Mushware::tMsec inTimeslice);    
     virtual void FillAxisPipe(void);
     
@@ -52,6 +56,7 @@ private:
     std::vector<MushGameAxisDef> m_axisDefs;
     Mushware::tMsec m_lastTickerMsec;
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
+    bool m_lastAxesValid;
 };
 
 //%includeGuardEnd {

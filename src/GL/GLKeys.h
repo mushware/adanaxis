@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9IFiQ0brOhQKES+BNzDKMA
 /*
- * $Id: GLKeys.h,v 1.15 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLKeys.h,v 1.16 2005/07/06 19:08:26 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.16  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.15  2005/05/19 13:01:59  southa
  * Mac release work
  *
@@ -114,7 +117,8 @@ public:
     GLKeys() {}
     GLKeys(Mushware::U32 inKeyValue): m_keyValue(inKeyValue) {}
     GLKeys(tKeyValue inKeyValue): m_keyValue(static_cast<Mushware::U32>(inKeyValue)) {}
-    Mushware::U32 ValueGet(void) const {return m_keyValue;}
+    Mushware::U32 Value(void) const { return m_keyValue; }
+    Mushware::U32 ValueGet(void) const { return Value(); }
     
 private:
     Mushware::U32 m_keyValue; //:readwrite
