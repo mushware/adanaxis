@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vTDmm7/9yQPLbrRCYbzIaw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.2 2005/07/08 12:07:07 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.2  2005/07/08 12:07:07  southa
+ * MushGaem control work
+ *
  * Revision 1.1  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -65,7 +68,21 @@ MushGameAppHandler::AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 i
 }
 
 void
-MushGameAppHandler::FillAxisPipe(void)
+MushGameAppHandler::KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum)
+{
+    if (inKeyNum > 64)
+    {
+        throw MushcoreDataFail("Key number too high");
+    }
+    if (inKeyNum >= m_keyDefs.size())
+    {
+        m_keyDefs.resize(inKeyNum+1);
+    }
+    m_keyDefs[inKeyNum] = inKeyDef;
+}
+
+void
+MushGameAppHandler::FillControlPipe(void)
 {
     typedef MushGameMessageControlInfo tMessage;
     std::auto_ptr<MushGameMessageControlInfo> aControlInfo;
@@ -83,7 +100,23 @@ MushGameAppHandler::FillAxisPipe(void)
             aControlInfo->AxisEventsWRef().push_back(tMessage::tAxisEvent(i, axisDefRef.Pos()));
             axisDefRef.PosHasMovedSet(false);
         }
-    }        
+    }
+    
+    for (U32 i=0; i<m_keyDefs.size(); ++i)
+    {
+        MushGameKeyDef& keyDefRef = m_keyDefs[i];
+        if (keyDefRef.StateHasChanged())
+        {
+            if (aControlInfo.get() == NULL)
+            {
+                aControlInfo.reset(new MushGameMessageControlInfo);
+                aControlInfo->TimestampSet(MillisecondsGet());
+            }
+            aControlInfo->KeyEventsWRef().push_back(tMessage::tKeyEvent(i, keyDefRef.State()));
+            keyDefRef.StateHasChangedSet(false);
+        }
+    }
+    
     if (aControlInfo.get() != NULL)
     {
         m_controlMailboxRef.WRef().Give(aControlInfo.release());
@@ -193,6 +226,22 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
 }
 
 void
+MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
+{
+    for (U32 i=0; i<m_keyDefs.size(); ++i)
+    {
+        MushGameKeyDef& keyDefRef = m_keyDefs[i];
+        GLKeys keyValue = keyDefRef.KeyValue();
+        bool keyState = KeyStateGet(keyValue);
+        if (keyState != keyDefRef.State())
+        {
+            keyDefRef.StateSet(keyState);
+            keyDefRef.StateHasChangedSet(true);
+        }
+    }
+}
+
+void
 MushGameAppHandler::Idle(void)
 {
     tMsec msecNow = MillisecondsGet();
@@ -207,7 +256,8 @@ MushGameAppHandler::Idle(void)
         if (m_lastTickerMsec != 0)
         {
             AxisTicker(timesliceMsec);
-            FillAxisPipe();
+            KeyTicker(timesliceMsec);
+            FillControlPipe();
         }
         m_lastTickerMsec = msecNow;
     }

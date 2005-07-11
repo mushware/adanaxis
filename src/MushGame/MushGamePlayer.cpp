@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.8 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.9 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.9  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.8  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -97,8 +100,14 @@ MushGamePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
 void
 MushGamePlayer::UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage)
 {
+    // cout << inMessage << endl;
     PostSet(inMessage.Post());
-    FireStateSet(inMessage.FireState());   
+    if (inMessage.FireState() && !FireState())
+    {
+        // Start of firing
+        FireStartMsecSet(ioLogic.FrameMsec());
+    }
+    FireStateSet(inMessage.FireState());
 }
 
 void
@@ -176,6 +185,7 @@ MushGamePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "id=" << m_id << ", ";
     ioOut << "playerName=" << m_playerName << ", ";
     ioOut << "fireState=" << m_fireState << ", ";
+    ioOut << "fireStartMsec=" << m_fireStartMsec << ", ";
     ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
     ioOut << "useControlMailbox=" << m_useControlMailbox;
     ioOut << "]";
@@ -200,6 +210,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "fireState")
     {
         ioIn >> m_fireState;
+    }
+    else if (inTagStr == "fireStartMsec")
+    {
+        ioIn >> m_fireStartMsec;
     }
     else if (inTagStr == "controlMailboxRef")
     {
@@ -229,9 +243,11 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_playerName;
     ioOut.TagSet("fireState");
     ioOut << m_fireState;
+    ioOut.TagSet("fireStartMsec");
+    ioOut << m_fireStartMsec;
     ioOut.TagSet("controlMailboxRef");
     ioOut << m_controlMailboxRef;
     ioOut.TagSet("useControlMailbox");
     ioOut << m_useControlMailbox;
 }
-//%outOfLineFunctions } TXroI228G7zVIndK/vqz6w
+//%outOfLineFunctions } O2GZfooHMigztUXMbm1oKA

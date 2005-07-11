@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.7 2005/07/07 16:54:17 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.8 2005/07/08 12:07:07 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.8  2005/07/08 12:07:07  southa
+ * MushGaem control work
+ *
  * Revision 1.7  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -117,6 +120,31 @@ AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
 }
 
 void
+AdanaxisPlayer::KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum)
+{
+    switch (inKeyNum)
+    {
+        case AdanaxisConfig::kKeyFire:
+        {
+            if (inState)
+            {
+                FireStateSet(FireState() | 1);
+            }
+            else
+            {
+                FireStateSet(FireState() & ~1);
+            }
+            ioLogic.QuickPlayerUplinkIsRequired();
+        }
+        break;
+            
+        default:
+            throw MushcoreDataFail("Bad key number");
+            break;
+    }        
+}
+
+void
 AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage)
 {
     Mushware::U32 axisEventsSize = inMessage.AxisEvents().size();
@@ -156,6 +184,22 @@ AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
         }
     }
     
+    Mushware::U32 keyEventsSize = inMessage.KeyEvents().size();
+    
+    for (U32 i=0; i<keyEventsSize; ++i)
+    {
+        U32 keyNum = inMessage.KeyEvents()[i].first;
+        bool keyState = inMessage.KeyEvents()[i].second;
+        
+        if (keyNum < AdanaxisConfig::kNumKeys)
+        {
+            KeyChangeHandle(ioLogic, keyState, keyNum);
+        }
+        else
+        {
+            throw MushcoreDataFail(std::string("Key number too high in")+AutoName());
+        }
+    }
 }
 
 

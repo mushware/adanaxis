@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.10 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGame.h,v 1.11 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.11  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.10  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -72,6 +75,7 @@
 #include "MushGameLink.h"
 #include "MushGameJob.h"
 #include "MushGameJobPlayerCreate.h"
+#include "MushGameKeyDef.h"
 #include "MushGameLink.h"
 #include "MushGameLinkLocal.h"
 #include "MushGameLogic.h"

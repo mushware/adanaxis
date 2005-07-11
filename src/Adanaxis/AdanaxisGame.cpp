@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.15 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.16 2005/07/07 16:54:17 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.16  2005/07/07 16:54:17  southa
+ * Control tweaks
+ *
  * Revision 1.15  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -168,6 +171,11 @@ AdanaxisGame::UpdateFromConfig(void)
     for (U32 i=0; i < m_config.AxisDefs().size(); ++i)
     {
         appHandler.AxisDefSet(m_config.AxisDefs(i), i);
+    }
+    
+    for (U32 i=0; i < m_config.KeyDefs().size(); ++i)
+    {
+        appHandler.KeyDefSet(m_config.KeyDefs(i), i);
     }
 }
 

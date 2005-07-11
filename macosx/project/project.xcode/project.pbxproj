@@ -797,6 +797,54 @@
 			settings = {
 			};
 		};
+		7A3A86A40882CB40008A5F9C = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushGameKeyDef.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A3A86A50882CB40008A5F9C = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushGameKeyDef.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A3A86A60882CB40008A5F9C = {
+			fileRef = 7A3A86A40882CB40008A5F9C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A3A86A70882CB40008A5F9C = {
+			fileRef = 7A3A86A50882CB40008A5F9C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A3A86A80882CB40008A5F9C = {
+			fileRef = 7A3A86A40882CB40008A5F9C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A3A86A90882CB40008A5F9C = {
+			fileRef = 7A3A86A50882CB40008A5F9C;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A3A86AD0882CD7D008A5F9C = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = "keyconfig-default.xml";
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		7A3E8BEE05A5E63B00AC6E8A = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -2130,6 +2178,7 @@
 				7AD2BB34087C46A600DB2E4B,
 				7AD008320882B0FE004EEAA8,
 				7AD0083B0882B1B9004EEAA8,
+				7A3A86A80882CB40008A5F9C,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2526,6 +2575,7 @@
 				7AD2BB35087C46A600DB2E4B,
 				7AD008330882B0FE004EEAA8,
 				7AD0083C0882B1B9004EEAA8,
+				7A3A86A90882CB40008A5F9C,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13007,6 +13057,7 @@
 				7AD2BB32087C46A600DB2E4B,
 				7AD008340882B0FE004EEAA8,
 				7AD0083D0882B1B9004EEAA8,
+				7A3A86A60882CB40008A5F9C,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14139,6 +14190,7 @@
 				7AD2BB33087C46A600DB2E4B,
 				7AD008350882B0FE004EEAA8,
 				7AD0083E0882B1B9004EEAA8,
+				7A3A86A70882CB40008A5F9C,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15156,6 +15208,7 @@
 				7A70D1F5085DF8870055C6FB,
 				7A70D1F6085DF8870055C6FB,
 				7AD2BA88087C284000DB2E4B,
+				7A3A86AD0882CD7D008A5F9C,
 			);
 			isa = PBXGroup;
 			path = system;
@@ -25072,6 +25125,8 @@
 				7A8040E9086AE085007B0F20,
 				7AD2059E086821F000F891C0,
 				7AD2059D086821F000F891C0,
+				7A3A86A50882CB40008A5F9C,
+				7A3A86A40882CB40008A5F9C,
 				7AD3B62C086185CB00512DB1,
 				7AD3B62B086185CB00512DB1,
 				7ADBEEAA0867113600CFB0B1,

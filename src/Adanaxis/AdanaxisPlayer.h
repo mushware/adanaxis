@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id: AdanaxisPlayer.h,v 1.4 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.5 2005/07/07 16:54:17 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.5  2005/07/07 16:54:17  southa
+ * Control tweaks
+ *
  * Revision 1.4  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -51,6 +54,7 @@ public:
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
 
     virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
+    virtual void KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
 
 private:

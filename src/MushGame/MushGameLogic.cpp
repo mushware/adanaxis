@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.15 2005/07/07 16:54:17 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.16 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.16  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.15  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -391,13 +394,19 @@ MushGameLogic::UplinkSequence(void)
 
     tMsec nextUplink = lastUplink + uplinkPeriod;
     
-    if (msecNow > nextUplink)
+    if (VolatileData().QuickPlayerUplinkRequired())
+    {
+        VolatileData().QuickPlayerUplinkRequiredSet(false);
+        nextUplink = msecNow;
+    }
+    
+    if (msecNow >= nextUplink)
     {
         if (msecNow > nextUplink + uplinkPeriod)
         {
             nextUplink = msecNow; // Catch up
         }
-        // Update now, so exceptions in the update don't cause network thrash
+        // Update lastPlayerUplinkMsec now, so exceptions in the update don't cause network thrash
         VolatileData().LastPlayerUplinkMsecSet(nextUplink);
         
         PlayerUplinkSequence();
@@ -453,6 +462,7 @@ MushGameLogic::RenderSequence(void)
 void
 MushGameLogic::MainSequence(void)
 {
+    VolatileData().FrameMsecSet(GameMsec());
     try { ReceiveSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }

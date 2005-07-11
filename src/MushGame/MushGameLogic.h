@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.10 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGameLogic.h,v 1.11 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.11  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.10  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -81,6 +84,7 @@ public:
 
     virtual void JobListProcess(tJobList& ioList);
     virtual Mushware::U32 GameMsec(void) const;
+    virtual Mushware::tMsec FrameMsec(void) const { return ConstVolatileData().FrameMsec(); }
     virtual void PerFrameProcessing(void);
     virtual void DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
@@ -90,6 +94,7 @@ public:
     virtual void ClientAddressAdd(const std::string& inName);
     virtual void CopyAndSendToServer(const MushGameMessage& inMessage);
     virtual void AsReplyCopyAndSend(MushGameMessage& ioMessage, const MushGameMessage& inSrcMessage);
+    virtual void QuickPlayerUplinkIsRequired(void) { VolatileData().QuickPlayerUplinkRequiredSet(true); }
     
     virtual void ClientMailboxConsume(MushGameMailbox& inMailbox);
     virtual void ServerMailboxConsume(MushGameMailbox& inMailbox);
@@ -115,6 +120,7 @@ public:
     
     virtual MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
     virtual MushGameVolatileData& VolatileData(void) { return m_dataRef.Ref().VolatileDataRef().WRef(); }
+    virtual const MushGameVolatileData& ConstVolatileData(void) const { return m_dataRef.Ref().VolatileDataRef().Ref(); }
     
     virtual MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
     virtual MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }

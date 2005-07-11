@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JEoS3kjwIi/5WzNfzKQqBA
 /*
- * $Id: MushGameAppHandler.h,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.2 2005/07/08 12:07:07 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.2  2005/07/08 12:07:07  southa
+ * MushGaem control work
+ *
  * Revision 1.1  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -33,6 +36,7 @@
 #include "MushGameStandard.h"
 
 #include "MushGameAxisDef.h"
+#include "MushGameKeyDef.h"
 #include "MushGameMailbox.h"
 
 #include "API/mushGame.h"
@@ -44,16 +48,19 @@ public:
     
     virtual void GroupingNameSet(const std::string& inName);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
+    virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
     virtual void Idle(void);
     
 protected:
     virtual void AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::tVal inAmount);
     virtual void AxisTicker(Mushware::tMsec inTimeslice);    
-    virtual void FillAxisPipe(void);
+    virtual void KeyTicker(Mushware::tMsec inTimeslice);    
+    virtual void FillControlPipe(void);
     
 private:
     std::string m_groupingName;
     std::vector<MushGameAxisDef> m_axisDefs;
+    std::vector<MushGameKeyDef> m_keyDefs;
     Mushware::tMsec m_lastTickerMsec;
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
     bool m_lastAxesValid;

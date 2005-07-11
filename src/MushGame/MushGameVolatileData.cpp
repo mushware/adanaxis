@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZLCiVmbUjo5qfJ+17ayqmA
 /*
- * $Id: MushGameVolatileData.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.4 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.4  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.3  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -37,8 +40,10 @@
 MUSHCORE_DATA_INSTANCE(MushGameVolatileData);
 
 MushGameVolatileData::MushGameVolatileData() :
-    m_playerUplinkPeriodMsec(100),
-    m_lastPlayerUplinkMsec(0)
+    m_playerUplinkPeriodMsec(1000),
+    m_lastPlayerUplinkMsec(0),
+    m_quickPlayerUplinkRequired(false),
+    m_frameMsec(0)
 {
 }
 
@@ -76,7 +81,9 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "playerUplinkPeriodMsec=" << m_playerUplinkPeriodMsec << ", ";
-    ioOut << "lastPlayerUplinkMsec=" << m_lastPlayerUplinkMsec;
+    ioOut << "lastPlayerUplinkMsec=" << m_lastPlayerUplinkMsec << ", ";
+    ioOut << "quickPlayerUplinkRequired=" << m_quickPlayerUplinkRequired << ", ";
+    ioOut << "frameMsec=" << m_frameMsec;
     ioOut << "]";
 }
 bool
@@ -96,6 +103,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_lastPlayerUplinkMsec;
     }
+    else if (inTagStr == "quickPlayerUplinkRequired")
+    {
+        ioIn >> m_quickPlayerUplinkRequired;
+    }
+    else if (inTagStr == "frameMsec")
+    {
+        ioIn >> m_frameMsec;
+    }
     else 
     {
         return false;
@@ -109,5 +124,9 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_playerUplinkPeriodMsec;
     ioOut.TagSet("lastPlayerUplinkMsec");
     ioOut << m_lastPlayerUplinkMsec;
+    ioOut.TagSet("quickPlayerUplinkRequired");
+    ioOut << m_quickPlayerUplinkRequired;
+    ioOut.TagSet("frameMsec");
+    ioOut << m_frameMsec;
 }
-//%outOfLineFunctions } Df9tUbqlhQcIRkdMumUsoA
+//%outOfLineFunctions } +mXl5Pds94gOY1axZ/S3bw

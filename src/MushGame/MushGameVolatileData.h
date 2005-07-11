@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ciSqgHK3xIZ+HlSfS3hpnA
 /*
- * $Id: MushGameVolatileData.h,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.3 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.3  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -46,14 +49,19 @@ public:
 private:
     Mushware::U32 m_playerUplinkPeriodMsec; //:readwrite
     Mushware::U32 m_lastPlayerUplinkMsec; //:readwrite
+    bool m_quickPlayerUplinkRequired; //:readwrite
+    Mushware::tMsec m_frameMsec; //:readwrite
     
-        
 //%classPrototypes {
 public:
     const Mushware::U32& PlayerUplinkPeriodMsec(void) const { return m_playerUplinkPeriodMsec; }
     void PlayerUplinkPeriodMsecSet(const Mushware::U32& inValue) { m_playerUplinkPeriodMsec=inValue; }
     const Mushware::U32& LastPlayerUplinkMsec(void) const { return m_lastPlayerUplinkMsec; }
     void LastPlayerUplinkMsecSet(const Mushware::U32& inValue) { m_lastPlayerUplinkMsec=inValue; }
+    const bool& QuickPlayerUplinkRequired(void) const { return m_quickPlayerUplinkRequired; }
+    void QuickPlayerUplinkRequiredSet(const bool& inValue) { m_quickPlayerUplinkRequired=inValue; }
+    const Mushware::tMsec& FrameMsec(void) const { return m_frameMsec; }
+    void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,7 +69,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OOQUxUClIYj+0m/x9HnS8A
+//%classPrototypes } 8bjioYlBxf7LekBf2t2TlA
 };
 //%inlineHeader {
 inline std::ostream&

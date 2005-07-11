@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5Ugw6aV4AgXqjsY6ZzybrA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageControlInfo.h,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameMessageControlInfo.h,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -45,7 +48,7 @@ public:
 private:
     Mushware::tMsec m_timestamp; //:readwrite
     std::vector<tAxisEvent> m_axisEvents; //:read :wref
-    std::vector<tKeyEvent> m_keyEvents; //: read :wref
+    std::vector<tKeyEvent> m_keyEvents; //:read :wref
 //%classPrototypes {
 public:
     const Mushware::tMsec& Timestamp(void) const { return m_timestamp; }
@@ -53,6 +56,7 @@ public:
     const std::vector<tAxisEvent>& AxisEvents(void) const { return m_axisEvents; }
     // Writable reference for m_axisEvents
     std::vector<tAxisEvent>& AxisEventsWRef(void) { return m_axisEvents; }
+    const std::vector<tKeyEvent>& KeyEvents(void) const { return m_keyEvents; }
     // Writable reference for m_keyEvents
     std::vector<tKeyEvent>& KeyEventsWRef(void) { return m_keyEvents; }
     virtual const char *AutoName(void) const;
@@ -62,7 +66,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } /pcknjlz0H+vDDLCGfzC/w
+//%classPrototypes } PkvSklsOzytLUcmkPGKkJA
 };
 //%inlineHeader {
 inline std::ostream&

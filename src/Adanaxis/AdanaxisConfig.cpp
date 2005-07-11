@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.6 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.7 2005/07/07 16:54:17 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.7  2005/07/07 16:54:17  southa
+ * Control tweaks
+ *
  * Revision 1.6  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -58,6 +61,7 @@ AdanaxisConfig::ToDefaultSet(void)
     VersionSet(kVersion);
     m_displayMode = 0;
     AxesToDefaultSet();
+    KeysToDefaultSet();
 }
 
 void
@@ -67,7 +71,7 @@ AdanaxisConfig::AxesToDefaultSet(void)
     
     try
     {
-        std::string axisFilename = MushcoreEnv::Sgl().VariableGet("AXISCONFIG_DEFAULT_FILENAME").StringGet();
+        std::string axisFilename = MushcoreEnv::Sgl().VariableGet("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME").StringGet();
         
         std::ifstream fileStream(MushcoreUtil::TranslateFilename(axisFilename).c_str());
         if (!fileStream)
@@ -86,6 +90,31 @@ AdanaxisConfig::AxesToDefaultSet(void)
     m_axisDefs.resize(kNumAxes);
 }
 
+void
+AdanaxisConfig::KeysToDefaultSet(void)
+{
+    m_keyDefs.resize(0);
+    
+    try
+    {
+        std::string keysFilename = MushcoreEnv::Sgl().VariableGet("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME").StringGet();
+        
+        std::ifstream fileStream(MushcoreUtil::TranslateFilename(keysFilename).c_str());
+        if (!fileStream)
+        {
+            throw MushcoreFileFail(keysFilename, "Could not open file");
+        }
+        
+        MushcoreXMLIStream xmlIn(fileStream);
+        xmlIn >> m_keyDefs;
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Failed to load default control key configuration: " << e.what() << endl;
+    }
+    
+    m_keyDefs.resize(kNumKeys);
+}
 
 void
 AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
@@ -102,6 +131,10 @@ AdanaxisConfig::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
     if (m_axisDefs.size() != kNumAxes)
     {
         AxesToDefaultSet();
+    }
+    if (m_keyDefs.size() != kNumKeys)
+    {
+        KeysToDefaultSet();
     }
 }
 
@@ -146,6 +179,7 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGameConfigBase::AutoPrint(ioOut);
     ioOut << "axisDefs=" << m_axisDefs << ", ";
+    ioOut << "keyDefs=" << m_keyDefs << ", ";
     ioOut << "displayMode=" << m_displayMode;
     ioOut << "]";
 }
@@ -161,6 +195,10 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "axisDefs")
     {
         ioIn >> m_axisDefs;
+    }
+    else if (inTagStr == "keyDefs")
+    {
+        ioIn >> m_keyDefs;
     }
     else if (inTagStr == "displayMode")
     {
@@ -182,7 +220,9 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGameConfigBase::AutoXMLPrint(ioOut);
     ioOut.TagSet("axisDefs");
     ioOut << m_axisDefs;
+    ioOut.TagSet("keyDefs");
+    ioOut << m_keyDefs;
     ioOut.TagSet("displayMode");
     ioOut << m_displayMode;
 }
-//%outOfLineFunctions } iyqNB0Jlf69bXMLIi+y2XA
+//%outOfLineFunctions } 6AFaM9y4sAQcSufpY1UqMg
