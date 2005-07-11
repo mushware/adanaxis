@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } f9mSKLtY4rgl74+hGwreFg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameHostVolatileData.h,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Log: MushGameHostVolatileData.h,v $
+ * Revision 1.1  2005/06/21 15:57:47  southa
+ * MushGame work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -38,6 +41,7 @@ public:
     virtual void GroupingNameSet(const std::string& inName) {}
 
 private:
+        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

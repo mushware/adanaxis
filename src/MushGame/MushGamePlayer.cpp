@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.7 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.8 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.8  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.7  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -46,6 +49,9 @@
 
 #include "MushGamePlayer.h"
 
+#include "MushGameLogic.h"
+#include "MushGameMessageUplinkPlayer.h"
+
 using namespace Mushware;
 using namespace std;
 
@@ -53,9 +59,21 @@ MUSHCORE_DATA_INSTANCE(MushGamePlayer);
 
 MushGamePlayer::MushGamePlayer(std::string inID) :
     m_id(inID),
+    m_fireState(0),
     m_useControlMailbox(false)
 {
     PostWRef().ToIdentitySet();
+}
+
+void
+MushGamePlayer::UplinkSend(MushGameLogic& ioLogic)
+{
+    MushGameMessageUplinkPlayer uplinkPlayer(Id());
+    
+    uplinkPlayer.PostSet(Post());
+    uplinkPlayer.FireStateSet(FireState());
+    
+    ioLogic.CopyAndSendToServer(uplinkPlayer);
 }
 
 void
@@ -68,18 +86,34 @@ MushGamePlayer::ControlMailboxNameSet(const std::string& inName)
 void
 MushGamePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage)
 {
-    MushcoreXMLOStream xmlOut(std::cout);
-    xmlOut << inMessage;
+    static U8 errCtr=0;
+    if (errCtr == 0)
+    {
+        ++errCtr;
+        throw MushcoreDataFail(std::string("Discarding messages of type '")+inMessage.AutoName()+"' in MushGamePlayer");
+    }
+}
+
+void
+MushGamePlayer::UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage)
+{
+    PostSet(inMessage.Post());
+    FireStateSet(inMessage.FireState());   
 }
 
 void
 MushGamePlayer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     const MushGameMessageControlInfo *pControlInfo;
+    const MushGameMessageUplinkPlayer *pUplinkPlayer;
     
     if ((pControlInfo = dynamic_cast<const MushGameMessageControlInfo *>(&inMessage)) != NULL)
     {
         ControlInfoConsume(ioLogic, *pControlInfo);
+    }
+    else if ((pUplinkPlayer = dynamic_cast<const MushGameMessageUplinkPlayer *>(&inMessage)) != NULL)
+    {
+        UplinkPlayerConsume(ioLogic, *pUplinkPlayer);
     }
     else
     {
@@ -141,6 +175,7 @@ MushGamePlayer::AutoPrint(std::ostream& ioOut) const
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
     ioOut << "playerName=" << m_playerName << ", ";
+    ioOut << "fireState=" << m_fireState << ", ";
     ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
     ioOut << "useControlMailbox=" << m_useControlMailbox;
     ioOut << "]";
@@ -161,6 +196,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "playerName")
     {
         ioIn >> m_playerName;
+    }
+    else if (inTagStr == "fireState")
+    {
+        ioIn >> m_fireState;
     }
     else if (inTagStr == "controlMailboxRef")
     {
@@ -188,9 +227,11 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_id;
     ioOut.TagSet("playerName");
     ioOut << m_playerName;
+    ioOut.TagSet("fireState");
+    ioOut << m_fireState;
     ioOut.TagSet("controlMailboxRef");
     ioOut << m_controlMailboxRef;
     ioOut.TagSet("useControlMailbox");
     ioOut << m_useControlMailbox;
 }
-//%outOfLineFunctions } 14GNm+0iGoSWqw0vJ29scg
+//%outOfLineFunctions } TXroI228G7zVIndK/vqz6w

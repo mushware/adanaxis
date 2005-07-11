@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.5 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.6 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.6  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.5  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -47,6 +50,7 @@
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
 #include "MushGameMessageControlInfo.h"
+#include "MushGameMessageUplinkPlayer.h"
 #include "MushGamePiece.h"
 
 #include "API/mushMushMesh.h"
@@ -59,14 +63,17 @@ public:
     explicit MushGamePlayer(std::string inID = "");
     virtual ~MushGamePlayer() {}
     
-    virtual void ControlMailboxNameSet(const std::string& inName);// { m_controlMailboxRef.NameSet(inName); }
+    virtual void ControlMailboxNameSet(const std::string& inName);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
+    virtual void UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void ControlMailboxProcess(MushGameLogic& ioLogic);
+    virtual void UplinkSend(MushGameLogic& ioLogic);
     
 private:
     std::string m_id; //:readwrite
     std::string m_playerName; //:readwrite
+    Mushware::U32 m_fireState; //:readwrite
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef;
     bool m_useControlMailbox;
     
@@ -76,6 +83,8 @@ public:
     void IdSet(const std::string& inValue) { m_id=inValue; }
     const std::string& PlayerName(void) const { return m_playerName; }
     void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
+    const Mushware::U32& FireState(void) const { return m_fireState; }
+    void FireStateSet(const Mushware::U32& inValue) { m_fireState=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -83,7 +92,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gvkiiHri0IKJ//RIXIKreQ
+//%classPrototypes } BKDCuU+DWJ0ml7JCL4z7RA
 };
 //%inlineHeader {
 inline std::ostream&

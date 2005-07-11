@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.14 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.15 2005/07/07 16:54:17 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.15  2005/07/07 16:54:17  southa
+ * Control tweaks
+ *
  * Revision 1.14  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -171,9 +174,19 @@ MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& 
 }
 
 void
-MushGameLogic::PieceMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+MushGameLogic::ServerPlayerMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with Piece ID");
+    std::string playerName = MushGameUtil::KeyFromMessage(inMessage);
+    
+    MushGamePlayer *pPlayer;
+    if (HostSaveData().HostPlayers().GetIfExists(pPlayer, playerName))
+    {
+        pPlayer->MessageConsume(ioLogic, inMessage);
+    }
+    else
+    {
+        throw MushcoreDataFail(std::string("Unknown player ID '")+playerName+"' in message type '"+inMessage.AutoName()+"'");
+    }
 }
 
 void
@@ -194,7 +207,7 @@ MushGameLogic::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inM
                 break;
                 
             case 'p':
-                PieceMessageConsume(ioLogic, inMessage);
+                ServerPlayerMessageConsume(ioLogic, inMessage);
                 break;
                 
             default:
@@ -291,7 +304,7 @@ MushGameLogic::ClientReceiveSequence(void)
     const MushcoreDataRef<MushGameAddress>& addrDataRef = SaveData().ServerAddrRef();
     if (addrDataRef.Ref().LinkRef().WRef().InboxGetUnlessEmpty(mailbox))
     {
-        MushcoreLog::Sgl().InfoLog() << "Receiving from address " << addrDataRef.Ref() << endl;
+        // MushcoreLog::Sgl().InfoLog() << "Receiving from address " << addrDataRef.Ref() << endl;
         mailbox.SrcAddrRefSet(addrDataRef);
         ClientMailboxConsume(mailbox);
     }
@@ -310,7 +323,7 @@ MushGameLogic::ServerReceiveSequence(void)
         MushGameMailbox mailbox;
         if (p->Ref().LinkRef().WRef().InboxGetUnlessEmpty(mailbox))
         {
-            MushcoreLog::Sgl().InfoLog() << "Receiving from address " << p->Ref() << endl;
+            // MushcoreLog::Sgl().InfoLog() << "Receiving from address " << p->Ref() << endl;
             mailbox.SrcAddrRefSet(*p);
             ServerMailboxConsume(mailbox);
         }
@@ -349,6 +362,46 @@ MushGameLogic::SendSequence(void)
 {
     ServerSendSequence();
     ClientSendSequence();
+}
+
+void
+MushGameLogic::PlayerUplink(MushGamePlayer& inPlayer)
+{
+    inPlayer.UplinkSend(*this);
+}    
+
+void
+MushGameLogic::PlayerUplinkSequence(void)
+{
+    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
+    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    {
+        PlayerUplink(*p->second);
+    }
+}
+
+void
+MushGameLogic::UplinkSequence(void)
+{
+    tMsec msecNow = GameMsec();
+
+    tMsec lastUplink = VolatileData().LastPlayerUplinkMsec();
+    tMsec uplinkPeriod = VolatileData().PlayerUplinkPeriodMsec();
+
+    tMsec nextUplink = lastUplink + uplinkPeriod;
+    
+    if (msecNow > nextUplink)
+    {
+        if (msecNow > nextUplink + uplinkPeriod)
+        {
+            nextUplink = msecNow; // Catch up
+        }
+        // Update now, so exceptions in the update don't cause network thrash
+        VolatileData().LastPlayerUplinkMsecSet(nextUplink);
+        
+        PlayerUplinkSequence();
+    }
 }
 
 void
@@ -406,6 +459,8 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     try { MoveSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+    try { UplinkSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "UplinkSequence"); }
     try { CameraSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CameraSequence"); }
     try { RenderSequence(); }

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGAMEVOLATILEDATA_H
-#define MUSHGAMEVOLATILEDATA_H
-//%includeGuardStart } L/56G+fBB2mnO8ucZ4yhVQ
+#ifndef MUSHGAMEMESSAGEUPLINKPIECE_H
+#define MUSHGAMEMESSAGEUPLINKPIECE_H
+//%includeGuardStart } TOTGErNU987aoOImssnOHw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGame/MushGameVolatileData.h
+ * File: src/MushGame/MushGameMessageUplinkPiece.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,39 +21,33 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ciSqgHK3xIZ+HlSfS3hpnA
+//%Header } 0n7NVZ2LB6nxLC3rOPUIEA
 /*
- * $Id: MushGameVolatileData.h,v 1.2 2005/06/21 15:57:48 southa Exp $
- * $Log: MushGameVolatileData.h,v $
- * Revision 1.2  2005/06/21 15:57:48  southa
- * MushGame work
- *
- * Revision 1.1  2005/06/21 13:10:52  southa
- * MushGame work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGameStandard.h"
 
-//:generate virtual standard ostream xml1
-class MushGameVolatileData : public MushcoreVirtualObject
+#include "MushGameMessage.h"
+
+//:xml1base MushGameMessage
+//:generate standard ostream xml1
+class MushGameMessageUplinkPiece : public MushGameMessage
 {
 public:
-    MushGameVolatileData();
-    virtual ~MushGameVolatileData() {}
-    virtual void GroupingNameSet(const std::string& inName) {}
+    explicit MushGameMessageUplinkPiece(const std::string& inID = "") : MushGameMessage(inID) {}
+    virtual ~MushGameMessageUplinkPiece() {}
 
 private:
-    Mushware::U32 m_playerUplinkPeriodMsec; //:readwrite
-    Mushware::U32 m_lastPlayerUplinkMsec; //:readwrite
+    MushMeshPosticity m_post; //:readwrite :wref
     
-        
 //%classPrototypes {
 public:
-    const Mushware::U32& PlayerUplinkPeriodMsec(void) const { return m_playerUplinkPeriodMsec; }
-    void PlayerUplinkPeriodMsecSet(const Mushware::U32& inValue) { m_playerUplinkPeriodMsec=inValue; }
-    const Mushware::U32& LastPlayerUplinkMsec(void) const { return m_lastPlayerUplinkMsec; }
-    void LastPlayerUplinkMsecSet(const Mushware::U32& inValue) { m_lastPlayerUplinkMsec=inValue; }
+    const MushMeshPosticity& Post(void) const { return m_post; }
+    void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
+    // Writable reference for m_post
+    MushMeshPosticity& PostWRef(void) { return m_post; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,17 +55,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OOQUxUClIYj+0m/x9HnS8A
+//%classPrototypes } xgYH1Kh+PR9uvdS4XNL1+w
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGameVolatileData& inObj)
+operator<<(std::ostream& ioOut, const MushGameMessageUplinkPiece& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } lBPzFyiUXK878tvfmNudfg
-
+//%inlineHeader } TSLzgxNvUjvIdIMdjN/n+Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

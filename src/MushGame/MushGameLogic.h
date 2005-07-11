@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.9 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameLogic.h,v 1.10 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.10  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.9  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -81,7 +84,7 @@ public:
     virtual void PerFrameProcessing(void);
     virtual void DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void PieceMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void ServerPlayerMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void ServerAddressSet(const std::string& inName);
     virtual void ClientAddressAdd(const std::string& inName);
@@ -96,6 +99,9 @@ public:
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
+    virtual void PlayerUplink(MushGamePlayer& inPlayer);
+    virtual void PlayerUplinkSequence(void);    
+    virtual void UplinkSequence(void);
     virtual void PlayerMove(MushGamePlayer& inPlayer);
     virtual void MoveSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);

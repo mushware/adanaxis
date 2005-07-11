@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZLCiVmbUjo5qfJ+17ayqmA
 /*
- * $Id: MushGameVolatileData.cpp,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.3  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -33,7 +36,9 @@
 
 MUSHCORE_DATA_INSTANCE(MushGameVolatileData);
 
-MushGameVolatileData::MushGameVolatileData()
+MushGameVolatileData::MushGameVolatileData() :
+    m_playerUplinkPeriodMsec(100),
+    m_lastPlayerUplinkMsec(0)
 {
 }
 
@@ -70,6 +75,8 @@ void
 MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "playerUplinkPeriodMsec=" << m_playerUplinkPeriodMsec << ", ";
+    ioOut << "lastPlayerUplinkMsec=" << m_lastPlayerUplinkMsec;
     ioOut << "]";
 }
 bool
@@ -81,6 +88,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "playerUplinkPeriodMsec")
+    {
+        ioIn >> m_playerUplinkPeriodMsec;
+    }
+    else if (inTagStr == "lastPlayerUplinkMsec")
+    {
+        ioIn >> m_lastPlayerUplinkMsec;
+    }
     else 
     {
         return false;
@@ -90,5 +105,9 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
 void
 MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("playerUplinkPeriodMsec");
+    ioOut << m_playerUplinkPeriodMsec;
+    ioOut.TagSet("lastPlayerUplinkMsec");
+    ioOut << m_lastPlayerUplinkMsec;
 }
-//%outOfLineFunctions } yq5ItSgEYoTa97pTtmBLAA
+//%outOfLineFunctions } Df9tUbqlhQcIRkdMumUsoA
