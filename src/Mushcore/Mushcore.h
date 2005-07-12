@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Sadh94DLrs/FIT4AZy/cYg
 /*
- * $Id: Mushcore.h,v 1.20 2005/05/19 13:02:13 southa Exp $
+ * $Id: Mushcore.h,v 1.21 2005/06/13 14:25:45 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.21  2005/06/13 14:25:45  southa
+ * Pipe and ordered data work
+ *
  * Revision 1.20  2005/05/19 13:02:13  southa
  * Mac release work
  *
@@ -91,6 +94,7 @@
 #include "MushcoreAppHandler.h"
 #include "MushcoreAppSignal.h"
 #include "MushcoreAutoBool.h"
+#include "MushcoreAutoClonePtr.h"
 #include "MushcoreAutoMonkey.h"
 #include "MushcoreCommand.h"
 #include "MushcoreCommandHandler.h"

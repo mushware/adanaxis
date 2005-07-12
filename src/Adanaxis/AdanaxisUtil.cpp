@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.4 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.5 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.5  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.4  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -37,6 +40,8 @@
 
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisVolatileData.h"
+
+#include "API/mushMushMeshLibrary.h"
 
 using namespace Mushware;
 using namespace std;
@@ -82,7 +87,24 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         
         decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.ConjugateGet());
 
-        MushMesh4Library::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+        MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+        
+        tQValPair rotation;
+        rotation.ToRotationIdentitySet();
+        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
+
+        MushMeshLibraryFGenExtrude faceExtrude;
+        faceExtrude.FaceExtrude(decoRef.MeshWRef(), 0, 1);
+
+        MushMeshLibraryVGenExtrude vertexExtrude;
+        vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 0, 1);
+        static U32 ctr=0;
+        if (ctr == 0)
+        {
+            ++ctr;
+            MushcoreXMLOStream xmlOut(cout);
+            xmlOut << decoRef.Mesh();
+        }
     }
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KK7io9uf110YEoDRq4ooEg
 /*
- * $Id: TestMushcoreAuto.cpp,v 1.6 2004/01/05 14:27:41 southa Exp $
+ * $Id: TestMushcoreAuto.cpp,v 1.7 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreAuto.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.6  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -42,6 +45,8 @@
  */
 
 #include "TestMushcoreAuto.h"
+
+#include "TestMushcoreVirtualPointerObject.h"
 
 using namespace Mushware;
 using namespace std;
@@ -209,6 +214,18 @@ TestMushcoreAuto::TestAuto(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         throw MushcoreLogicFail("MushcoreAutoMonkey fault 100");
     }
     delete &monkey5;
+    
+    MushcoreAutoClonePtr<TestMushcoreVirtualPointerObject> clonePtr1(new TestMushcoreVirtualPointerObject);
+    MushcoreAutoClonePtr<TestMushcoreVirtualPointerObject> clonePtr2(clonePtr1);
+    
+    clonePtr1->TestValueSet(3);
+    clonePtr2->TestValueSet(4);
+    if (clonePtr1->TestValue() != 3 || clonePtr2->TestValue() != 4)
+    {
+        throw MushcoreLogicFail("MushcoreAutoClonePtr fault 1");
+    }
+    
+    
     return MushcoreScalar(0);
 }
 

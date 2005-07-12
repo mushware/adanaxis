@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id: MushMesh4Face.cpp,v 1.2 2005/06/30 12:34:59 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.3  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/06/30 12:34:59  southa
  * Mesh and source conditioner work
  *
@@ -32,14 +35,49 @@
 #include "MushMesh4Face.h"
 
 #include "MushMeshMushcoreIO.h"
+#include "MushMeshSTL.h"
+
+using namespace Mushware;
+using namespace std;
 
 MushMesh4Face::MushMesh4Face() :
-    m_faceType(kFaceTypeNone){
+    m_faceType(kFaceTypeNone),
+    m_renderable(true)
+{
+    VerticesTouch();
 }
 
 MushMesh4Face::~MushMesh4Face()
 {
 }
+
+void
+MushMesh4Face::VerticesTouch(void)
+{
+    m_uniqueVertexListValid = false;
+    m_faceCentroidValid = false;
+    m_boundingRadiusValid = false;
+}
+
+void
+MushMesh4Face::UniqueVertexListBuild(void) const
+{
+    m_uniqueVertexList.resize(0);
+    U32 vertexListSize = m_vertexList.size();
+    for (U32 i=0; i<vertexListSize; ++i)
+    {
+        Mushware::U32 vertexNum = m_vertexList[i];
+        
+        if (std::find(m_uniqueVertexList.begin(),
+                      m_uniqueVertexList.end(),
+                      vertexNum) == m_uniqueVertexList.end())
+        {
+            m_uniqueVertexList.push_back(vertexNum);
+        }
+    }
+    m_uniqueVertexListValid = true;
+}
+
 
 //%outOfLineFunctions {
 
@@ -80,7 +118,14 @@ MushMesh4Face::AutoPrint(std::ostream& ioOut) const
     ioOut << "vertexGroupSize=" << m_vertexGroupSize << ", ";
     ioOut << "texCoordList=" << m_texCoordList << ", ";
     ioOut << "faceMaterialRef=" << m_faceMaterialRef << ", ";
-    ioOut << "edgeSmoothness=" << m_edgeSmoothness;
+    ioOut << "edgeSmoothness=" << m_edgeSmoothness << ", ";
+    ioOut << "renderable=" << m_renderable << ", ";
+    ioOut << "uniqueVertexList=" << m_uniqueVertexList << ", ";
+    ioOut << "faceCentroid=" << m_faceCentroid << ", ";
+    ioOut << "boundingRadius=" << m_boundingRadius << ", ";
+    ioOut << "uniqueVertexListValid=" << m_uniqueVertexListValid << ", ";
+    ioOut << "faceCentroidValid=" << m_faceCentroidValid << ", ";
+    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid;
     ioOut << "]";
 }
 bool
@@ -116,6 +161,34 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_edgeSmoothness;
     }
+    else if (inTagStr == "renderable")
+    {
+        ioIn >> m_renderable;
+    }
+    else if (inTagStr == "uniqueVertexList")
+    {
+        ioIn >> m_uniqueVertexList;
+    }
+    else if (inTagStr == "faceCentroid")
+    {
+        ioIn >> m_faceCentroid;
+    }
+    else if (inTagStr == "boundingRadius")
+    {
+        ioIn >> m_boundingRadius;
+    }
+    else if (inTagStr == "uniqueVertexListValid")
+    {
+        ioIn >> m_uniqueVertexListValid;
+    }
+    else if (inTagStr == "faceCentroidValid")
+    {
+        ioIn >> m_faceCentroidValid;
+    }
+    else if (inTagStr == "boundingRadiusValid")
+    {
+        ioIn >> m_boundingRadiusValid;
+    }
     else if (MushMeshFace::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -142,5 +215,19 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceMaterialRef;
     ioOut.TagSet("edgeSmoothness");
     ioOut << m_edgeSmoothness;
+    ioOut.TagSet("renderable");
+    ioOut << m_renderable;
+    ioOut.TagSet("uniqueVertexList");
+    ioOut << m_uniqueVertexList;
+    ioOut.TagSet("faceCentroid");
+    ioOut << m_faceCentroid;
+    ioOut.TagSet("boundingRadius");
+    ioOut << m_boundingRadius;
+    ioOut.TagSet("uniqueVertexListValid");
+    ioOut << m_uniqueVertexListValid;
+    ioOut.TagSet("faceCentroidValid");
+    ioOut << m_faceCentroidValid;
+    ioOut.TagSet("boundingRadiusValid");
+    ioOut << m_boundingRadiusValid;
 }
-//%outOfLineFunctions } 0TS0VY6VOnWjnyoJfiHc3A
+//%outOfLineFunctions } EuOWF9S0cHsxH/5vvhNW7w

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.9 2005/07/11 16:37:46 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.10 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.10  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.9  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -55,6 +58,8 @@
 #include "AdanaxisPieceProjectile.h"
 #include "AdanaxisUtil.h"
 #include "AdanaxisVolatileData.h"
+
+#include "API/mushMushMeshLibrary.h"
 
 using namespace Mushware;
 using namespace std;
@@ -229,7 +234,7 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     inMessage.Post().AngPos().InPlaceRotate(velocity);
     projectileRef.PostWRef().VelSet(velocity);
     
-    MushMesh4Library::Sgl().UnitTesseractCreate(projectileRef.MeshWRef());
+    MushMeshLibraryBase::Sgl().UnitTesseractCreate(projectileRef.MeshWRef());
 }
 
 void

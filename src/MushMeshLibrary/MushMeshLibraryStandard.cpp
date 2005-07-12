@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMesh4Library.cpp
+ * File: src/MushMeshLibrary/MushMeshLibraryStandard.cpp
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,18 +17,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } U7p/xUoHUXuIfNSiEWFaVQ
+//%Header } BCnbeG0FpIdKoh3RrD9ngQ
 /*
- * $Id: MushMesh4Library.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
- * $Log: MushMesh4Library.cpp,v $
- * Revision 1.2  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.1  2005/06/30 12:04:55  southa
- * Mesh work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMesh4Library.h"
+#include "MushMeshLibraryStandard.h"
 
-// Moved to MushMeshLibraryBase

@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHMESHLIBRARY_H
+#define MUSHMESHLIBRARY_H
+//%includeGuardStart } 8hSXwlwf47Uh9dCvKfKknA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMesh4Library.cpp
+ * File: src/MushMeshLibrary/MushMeshLibrary.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -17,18 +21,17 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } U7p/xUoHUXuIfNSiEWFaVQ
+//%Header } UzWc7hQotn25M33U2yfmhg
 /*
- * $Id: MushMesh4Library.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
- * $Log: MushMesh4Library.cpp,v $
- * Revision 1.2  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.1  2005/06/30 12:04:55  southa
- * Mesh work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMesh4Library.h"
+#include "MushMeshLibraryBase.h"
+#include "MushMeshLibraryFGenExtrude.h"
+#include "MushMeshLibraryStandard.h"
+#include "MushMeshLibraryVGenExtrude.h"
 
-// Moved to MushMeshLibraryBase
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

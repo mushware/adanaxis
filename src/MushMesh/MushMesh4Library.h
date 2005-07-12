@@ -23,42 +23,15 @@
  ****************************************************************************/
 //%Header } 2SsIiJDXPA+aIKfeb+6LAw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Library.h,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Log: MushMesh4Library.h,v $
+ * Revision 1.1  2005/06/30 12:04:55  southa
+ * Mesh work
+ *
  */
 
-#include "MushMeshStandard.h"
+// Moved to MushMeshLibraryBase
 
-#include "MushMesh4Mesh.h"
-
-//:generate virtual standard ostream xml1
-class MushMesh4Library : public MushcoreVirtualObject, public MushcoreSingleton<MushMesh4Library>
-{
-public:
-    virtual ~MushMesh4Library() {}
-    
-    void UnitTesseractCreate(MushMesh4Mesh& outMesh) const;
-    
-private:
-//%classPrototypes {
-public:
-    virtual const char *AutoName(void) const;
-    virtual MushcoreVirtualObject *AutoClone(void) const;
-    virtual MushcoreVirtualObject *AutoCreate(void) const;
-    static MushcoreVirtualObject *AutoVirtualFactory(void);
-    virtual void AutoPrint(std::ostream& ioOut) const;
-    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
-};
-//%inlineHeader {
-inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMesh4Library& inObj)
-{
-    inObj.AutoPrint(ioOut);
-    return ioOut;
-}
-//%inlineHeader } U78PzMNLDqUAFhI+TvvSww
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

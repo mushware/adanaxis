@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bPRUCJmmoAJZryzLENxKpg
 /*
- * $Id: TestMushcoreVirtualPointerObject.h,v 1.4 2005/05/19 13:02:25 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.h,v 1.5 2005/06/20 14:30:40 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.h,v $
+ * Revision 1.5  2005/06/20 14:30:40  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/05/19 13:02:25  southa
  * Mac release work
  *
@@ -63,12 +66,15 @@ public:
     virtual ~TestMushcoreVirtualPointerObject() { DeleteObjects(); }
     
 private:
+    Mushware::U32 m_testValue; //:readwrite
     Mushware::U32 m_virtualPointerObjectValue; //:readwrite
     TestMushcoreObjectBase *m_basePtr;
     TestMushcoreObjectSub *m_subPtr;
     TestMushcoreObjectSubSub *m_subSubPtr;
 //%classPrototypes {
 public:
+    const Mushware::U32& TestValue(void) const { return m_testValue; }
+    void TestValueSet(const Mushware::U32& inValue) { m_testValue=inValue; }
     const Mushware::U32& VirtualPointerObjectValue(void) const { return m_virtualPointerObjectValue; }
     void VirtualPointerObjectValueSet(const Mushware::U32& inValue) { m_virtualPointerObjectValue=inValue; }
     virtual const char *AutoName(void) const;
@@ -79,7 +85,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tnJyFCf+hsr8K4CrAZdeXQ
+//%classPrototypes } XqHxlMiqOQt0hvgOq0TOsw
 };
 //%inlineHeader {
 

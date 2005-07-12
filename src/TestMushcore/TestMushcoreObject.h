@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kvNZhrtF7n6PTMxcwk+nkw
 /*
- * $Id: TestMushcoreObject.h,v 1.22 2005/06/20 14:30:39 southa Exp $
+ * $Id: TestMushcoreObject.h,v 1.23 2005/07/01 14:59:00 southa Exp $
  * $Log: TestMushcoreObject.h,v $
+ * Revision 1.23  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.22  2005/06/20 14:30:39  southa
  * Adanaxis work
  *
@@ -185,7 +188,7 @@ private:
     std::vector<TestMushcoreObject *> m_vectorTestObject; // nobasic;
     
     Mushware::U8 m_u8;
-    Mushware::U32 m_u32;
+    Mushware::U32 m_u32; //:readwrite
     std::string m_string;
     std::string m_fullRangeString;
     std::vector<Mushware::U8> m_u8Vector;
@@ -212,6 +215,8 @@ private:
     
 //%classPrototypes {
 public:
+    const Mushware::U32& U32(void) const { return m_u32; }
+    void U32Set(const Mushware::U32& inValue) { m_u32=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -220,7 +225,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oW1K54zBpBNTb4dugOawAA
+//%classPrototypes } cyOU831J5xwK6o4WilHNDw
 };
 
 template<class T>

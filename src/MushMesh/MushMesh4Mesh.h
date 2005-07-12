@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.4 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.5 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.5  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -43,6 +46,8 @@
 
 #include "MushMeshMesh.h"
 #include "MushMesh4Face.h"
+#include "MushMesh4FaceGenerator.h"
+#include "MushMesh4VertexGenerator.h"
 #include "MushMeshVector.h"
 
 //:xml1base MushMeshMesh
@@ -66,23 +71,27 @@ public:
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
     
+    const tVertex& Vertex(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
+    tVertex& VertexWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
+    const tFace& Face(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_faces.size()); return m_faces[inNum]; }
+    tFace& FaceWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_faces.size()); return m_faces[inNum]; }
+    
     const tNormals& Normals(void) const { if (!m_normalsValid) NormalsBuild(); return m_normals; }
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
     const Mushware::U32 NumConnections(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_numConnections; }
     const tCentroid& Centroid(Mushware::U32 inFaceNum) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
     const tBoundingRadius BoundingRadius(Mushware::U32 inFaceNum) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
     const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
-    const tBoundingRadius& FaceBoundingRadius(Mushware::U32 inFaceNum) const;
     
     void NormalsBuild(void) const;
     void ConnectivityBuild(void) const;    
     void CentroidBuild(void) const;
     void BoundingRadiusBuild(void) const;
-    void FaceCentroidsBuild(void) const;
+    void FaceCentroidBuild(Mushware::U32 inFaceNum) const;
     void FaceBoundingRadiiBuild(void) const;
 
-    void TouchAll(void);
-    void TouchVertices(void);
+    void AllTouch(void);
+    void VerticesTouch(void);
     void Prebuild(void);
     
 private:
@@ -90,6 +99,12 @@ private:
     tVertices m_vertices; //:readwrite :wref
     tTexCoords m_texCoords; //:readwrite :wref
     tFaces m_faces; //:readwrite :wref
+
+    // Generation and animation
+    Mushware::U32 m_vertexCounter; //:readwrite
+    Mushware::U32 m_faceCounter; //:readwrite
+    MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
+    MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
     
     // Derived representation
     mutable tNormals m_normals;
@@ -104,8 +119,6 @@ private:
     mutable bool m_connectivityValid;
     mutable bool m_centroidValid;
     mutable bool m_boundingRadiusValid;
-    mutable bool m_faceCentroidsValid;
-    mutable bool m_faceBoundingRadiiValid;
 
 //%classPrototypes {
 public:
@@ -121,6 +134,18 @@ public:
     void FacesSet(const tFaces& inValue) { m_faces=inValue; }
     // Writable reference for m_faces
     tFaces& FacesWRef(void) { return m_faces; }
+    const Mushware::U32& VertexCounter(void) const { return m_vertexCounter; }
+    void VertexCounterSet(const Mushware::U32& inValue) { m_vertexCounter=inValue; }
+    const Mushware::U32& FaceCounter(void) const { return m_faceCounter; }
+    void FaceCounterSet(const Mushware::U32& inValue) { m_faceCounter=inValue; }
+    const MushcoreAutoClonePtr<MushMesh4FaceGenerator>& FaceGenerator(void) const { return m_faceGenerator; }
+    void FaceGeneratorSet(const MushcoreAutoClonePtr<MushMesh4FaceGenerator>& inValue) { m_faceGenerator=inValue; }
+    // Writable reference for m_faceGenerator
+    MushcoreAutoClonePtr<MushMesh4FaceGenerator>& FaceGeneratorWRef(void) { return m_faceGenerator; }
+    const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGenerator(void) const { return m_vertexGenerator; }
+    void VertexGeneratorSet(const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& inValue) { m_vertexGenerator=inValue; }
+    // Writable reference for m_vertexGenerator
+    MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGeneratorWRef(void) { return m_vertexGenerator; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -128,29 +153,19 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } /FVhjQ5mJ568RN6f+goISQ
+//%classPrototypes } CcxZ/GBJkj38L1vcKm5nbA
 };
 
 inline const MushMesh4Mesh::tCentroid&
 MushMesh4Mesh::FaceCentroid(Mushware::U32 inFaceNum) const
 {
-    if (!m_faceCentroidsValid)
+    const tFace& faceRef = Face(inFaceNum);
+    if (!faceRef.FaceCentroidValid())
     {
-        FaceCentroidsBuild();
+        FaceCentroidBuild(inFaceNum);
     }
-    MushcoreUtil::BoundsCheck(inFaceNum, m_faceCentroids.size());
-    return m_faceCentroids[inFaceNum]; 
-}
-
-inline const MushMesh4Mesh::tBoundingRadius&
-MushMesh4Mesh::FaceBoundingRadius(Mushware::U32 inFaceNum) const
-{
-    if (!m_faceBoundingRadiiValid)
-    {
-        FaceBoundingRadiiBuild();
-    }
-    MushcoreUtil::BoundsCheck(inFaceNum, m_faceBoundingRadii.size());
-    return m_faceBoundingRadii[inFaceNum]; 
+    MUSHCOREASSERT(faceRef.FaceCentroidValid());
+    return faceRef.FaceCentroid(); 
 }
 
 //%inlineHeader {

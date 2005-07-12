@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5yE/wZtm0/nEX6N7oHMfOA
 /*
- * $Id: MushMesh4Face.h,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMesh4Face.h,v 1.2 2005/06/30 12:34:59 southa Exp $
  * $Log: MushMesh4Face.h,v $
+ * Revision 1.2  2005/06/30 12:34:59  southa
+ * Mesh and source conditioner work
+ *
  * Revision 1.1  2005/06/30 12:04:55  southa
  * Mesh work
  *
@@ -55,6 +58,20 @@ public:
     MushMesh4Face();
     virtual ~MushMesh4Face();
     
+    void VerticesTouch(void);
+    
+    // Read access for mutable elements
+    const tVertexList& UniqueVertexList(void) const;
+    const Mushware::t4Val& FaceCentroid(void) const;
+
+    // Write access for mutable elements
+    void FaceCentroidSet(const Mushware::t4Val& inValue) const { m_faceCentroid=inValue; m_faceCentroidValid = true; }
+    void BoundingRadiusSet(const Mushware::tVal& inValue) const { m_boundingRadius=inValue; }
+    void BoundingRadiusValidSet(const bool inValue) const { m_boundingRadiusValid=inValue; }
+    
+protected:
+    void UniqueVertexListBuild(void) const;
+    
 private:
     // Minimal representation
     Mushware::U32 m_faceType; //:readwrite
@@ -63,6 +80,15 @@ private:
     tTexCoordList m_texCoordList; //:readwrite :wref
     MushMeshMaterialRef m_faceMaterialRef; //:readwrite
     std::vector<Mushware::U8> m_edgeSmoothness; //:readwrite
+    bool m_renderable; //:readwrite
+    
+    // Derived representation
+    mutable tVertexList m_uniqueVertexList;
+    mutable Mushware::t4Val m_faceCentroid;
+    mutable Mushware::tVal m_boundingRadius; //:read
+    mutable bool m_uniqueVertexListValid; //:read
+    mutable bool m_faceCentroidValid; //:read
+    mutable bool m_boundingRadiusValid; //:read
     
 //%classPrototypes {
 public:
@@ -84,6 +110,12 @@ public:
     void FaceMaterialRefSet(const MushMeshMaterialRef& inValue) { m_faceMaterialRef=inValue; }
     const std::vector<Mushware::U8>& EdgeSmoothness(void) const { return m_edgeSmoothness; }
     void EdgeSmoothnessSet(const std::vector<Mushware::U8>& inValue) { m_edgeSmoothness=inValue; }
+    const bool& Renderable(void) const { return m_renderable; }
+    void RenderableSet(const bool& inValue) { m_renderable=inValue; }
+    const Mushware::tVal& BoundingRadius(void) const { return m_boundingRadius; }
+    const bool& UniqueVertexListValid(void) const { return m_uniqueVertexListValid; }
+    const bool& FaceCentroidValid(void) const { return m_faceCentroidValid; }
+    const bool& BoundingRadiusValid(void) const { return m_boundingRadiusValid; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -91,8 +123,31 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } EJTo+TOmP2VcoOC4KEqFbQ
+//%classPrototypes } qZ9c+z8Vr1cnKHxoPlRsEA
 };
+
+inline const MushMesh4Face::tVertexList&
+MushMesh4Face::UniqueVertexList(void) const
+{
+    if (!m_uniqueVertexListValid)
+    {
+        UniqueVertexListBuild();
+    }
+    MUSHCOREASSERT(m_uniqueVertexListValid);
+    return m_uniqueVertexList;
+}
+
+inline const Mushware::t4Val&
+MushMesh4Face::FaceCentroid(void) const
+{
+    if (!m_faceCentroidValid)
+    {
+        throw MushcoreRequestFail("Face centroid not valid (FaceCentroid() must be called on mesh object)");
+    }
+    return m_faceCentroid;
+}
+
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushMesh4Face& inObj)

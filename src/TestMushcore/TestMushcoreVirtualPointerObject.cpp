@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GqSRke6jt0OSPqPXXhIZtQ
 /*
- * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.5 2005/06/20 14:30:40 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.cpp,v 1.6 2005/07/02 00:42:39 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.cpp,v $
+ * Revision 1.6  2005/07/02 00:42:39  southa
+ * Conditioning tweaks
+ *
  * Revision 1.5  2005/06/20 14:30:40  southa
  * Adanaxis work
  *
@@ -100,6 +103,7 @@ bool
 TestMushcoreVirtualPointerObject::AutoEquals(const TestMushcoreVirtualPointerObject& inObj) const
 {
     return 1
+        && (m_testValue == inObj.m_testValue)
         && (m_virtualPointerObjectValue == inObj.m_virtualPointerObjectValue)
         && (m_basePtr == inObj.m_basePtr || (m_basePtr != NULL && inObj.m_basePtr != NULL && *m_basePtr == *inObj.m_basePtr))
         && (m_subPtr == inObj.m_subPtr || (m_subPtr != NULL && inObj.m_subPtr != NULL && *m_subPtr == *inObj.m_subPtr))
@@ -110,6 +114,7 @@ void
 TestMushcoreVirtualPointerObject::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "testValue=" << m_testValue << ", ";
     ioOut << "virtualPointerObjectValue=" << m_virtualPointerObjectValue << ", ";
     if (m_basePtr == NULL)
     {
@@ -146,6 +151,10 @@ TestMushcoreVirtualPointerObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, c
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "testValue")
+    {
+        ioIn >> m_testValue;
+    }
     else if (inTagStr == "virtualPointerObjectValue")
     {
         ioIn >> m_virtualPointerObjectValue;
@@ -171,6 +180,8 @@ TestMushcoreVirtualPointerObject::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, c
 void
 TestMushcoreVirtualPointerObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("testValue");
+    ioOut << m_testValue;
     ioOut.TagSet("virtualPointerObjectValue");
     ioOut << m_virtualPointerObjectValue;
     ioOut.TagSet("basePtr");
@@ -180,4 +191,4 @@ TestMushcoreVirtualPointerObject::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("subSubPtr");
     ioOut << m_subSubPtr;
 }
-//%outOfLineFunctions } O4fndAUkr72zHWuSsbMMZA
+//%outOfLineFunctions } LiYelguxL+/DtcZL24EhWg

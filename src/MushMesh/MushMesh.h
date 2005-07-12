@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iKJwoqVdIXwCMTQh3g5qCg
 /*
- * $Id: MushMesh.h,v 1.23 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMesh.h,v 1.24 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.24  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.23  2005/06/30 12:04:55  southa
  * Mesh work
  *
@@ -97,11 +100,13 @@
  */
 
 #include "MushMesh4Face.h"
-#include "MushMesh4Library.h"
+#include "MushMesh4FaceGenerator.h"
 #include "MushMesh4Mesh.h"
+#include "MushMesh4VertexGenerator.h"
 #include "MushMeshArray.h"
 #include "MushMeshBox.h"
 #include "MushMeshConnector.h"
+#include "MushMeshDisplacement.h"
 #include "MushMeshDivide.h"
 #include "MushMeshFace.h"
 #include "MushMeshGroup.h"

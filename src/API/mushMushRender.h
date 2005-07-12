@@ -22,6 +22,10 @@
  *
  ****************************************************************************/
 //%Header } eA3I2asmbvy/bVzfm38PTg
+/*
+ * $Id$
+ * $Log$
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
