@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id: AdanaxisPlayer.h,v 1.5 2005/07/07 16:54:17 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.6 2005/07/11 16:37:46 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.6  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.5  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -56,6 +59,8 @@ public:
     virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
     virtual void KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
+    virtual void FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
+    virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
 
 private:
     std::vector<Mushware::tVal> m_lastAxes;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.9 2005/07/11 14:48:46 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.10 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.10  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.9  2005/07/11 14:48:46  southa
  * Uplink work
  *
@@ -53,6 +56,7 @@
 #include "MushGamePlayer.h"
 
 #include "MushGameLogic.h"
+#include "MushGameMessageFire.h"
 #include "MushGameMessageUplinkPlayer.h"
 
 using namespace Mushware;
@@ -63,6 +67,7 @@ MUSHCORE_DATA_INSTANCE(MushGamePlayer);
 MushGamePlayer::MushGamePlayer(std::string inID) :
     m_id(inID),
     m_fireState(0),
+    m_fireLastMsec(0),
     m_useControlMailbox(false)
 {
     PostWRef().ToIdentitySet();
@@ -98,6 +103,34 @@ MushGamePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
 }
 
 void
+MushGamePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
+{
+    static U8 errCtr=0;
+    if (errCtr == 0)
+    {
+        ++errCtr;
+        throw MushcoreDataFail(std::string("Discarding messages of type '")+inMessage.AutoName()+"' in MushGamePlayer");
+    }
+}
+
+Mushware::tMsec
+MushGamePlayer::FirePeriodMsec(void)
+{
+    return 500;   
+}
+
+void
+MushGamePlayer::ServerSideFire(MushGameLogic& ioLogic)
+{
+    FireLastMsecSet(ioLogic.FrameMsec());
+    MushGameMessageFire fireMessage(Id());
+    fireMessage.PostSet(Post());
+    fireMessage.TypeSet(0);
+    fireMessage.OwnerSet(Id());
+    ioLogic.CopyAndBroadcast(fireMessage);
+}
+                                    
+void
 MushGamePlayer::UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage)
 {
     // cout << inMessage << endl;
@@ -115,6 +148,7 @@ MushGamePlayer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& in
 {
     const MushGameMessageControlInfo *pControlInfo;
     const MushGameMessageUplinkPlayer *pUplinkPlayer;
+    const MushGameMessageFire *pFire;
     
     if ((pControlInfo = dynamic_cast<const MushGameMessageControlInfo *>(&inMessage)) != NULL)
     {
@@ -123,6 +157,10 @@ MushGamePlayer::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& in
     else if ((pUplinkPlayer = dynamic_cast<const MushGameMessageUplinkPlayer *>(&inMessage)) != NULL)
     {
         UplinkPlayerConsume(ioLogic, *pUplinkPlayer);
+    }
+    else if ((pFire = dynamic_cast<const MushGameMessageFire *>(&inMessage)) != NULL)
+    {
+        FireConsume(ioLogic, *pFire);
     }
     else
     {
@@ -145,6 +183,16 @@ MushGamePlayer::ControlMailboxProcess(MushGameLogic& ioLogic)
             MUSHCOREASSERT(aMessage.get() != NULL);
             MessageConsume(ioLogic, *aMessage);
         }
+    }
+}
+
+void
+MushGamePlayer::TickerProcess(MushGameLogic& ioLogic)
+{
+    if (FireState() &&
+        ioLogic.FrameMsec() >= FireLastMsec() + FirePeriodMsec())
+    {
+        ServerSideFire(ioLogic);
     }
 }
 
@@ -186,6 +234,7 @@ MushGamePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "playerName=" << m_playerName << ", ";
     ioOut << "fireState=" << m_fireState << ", ";
     ioOut << "fireStartMsec=" << m_fireStartMsec << ", ";
+    ioOut << "fireLastMsec=" << m_fireLastMsec << ", ";
     ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
     ioOut << "useControlMailbox=" << m_useControlMailbox;
     ioOut << "]";
@@ -214,6 +263,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "fireStartMsec")
     {
         ioIn >> m_fireStartMsec;
+    }
+    else if (inTagStr == "fireLastMsec")
+    {
+        ioIn >> m_fireLastMsec;
     }
     else if (inTagStr == "controlMailboxRef")
     {
@@ -245,9 +298,11 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_fireState;
     ioOut.TagSet("fireStartMsec");
     ioOut << m_fireStartMsec;
+    ioOut.TagSet("fireLastMsec");
+    ioOut << m_fireLastMsec;
     ioOut.TagSet("controlMailboxRef");
     ioOut << m_controlMailboxRef;
     ioOut.TagSet("useControlMailbox");
     ioOut << m_useControlMailbox;
 }
-//%outOfLineFunctions } O2GZfooHMigztUXMbm1oKA
+//%outOfLineFunctions } T7N0qPMBuSKFG3D6LVsEjA

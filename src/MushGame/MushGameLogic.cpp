@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.16 2005/07/11 14:48:46 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.17 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.17  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.16  2005/07/11 14:48:46  southa
  * Uplink work
  *
@@ -262,6 +265,27 @@ MushGameLogic::AsReplyCopyAndSend(MushGameMessage& ioMessage, const MushGameMess
 }
 
 void
+MushGameLogic::CopyAndBroadcast(const MushGameMessage& inMessage)
+{
+    // Send message to all clients on the server's list
+    typedef MushGameHostSaveData::tClientAddrRefs tClientAddrRefs;
+    
+    tClientAddrRefs& clientAddrRefs = HostSaveData().ClientAddrRefsWRef();
+    
+    for (tClientAddrRefs::iterator p = clientAddrRefs.begin(); p != clientAddrRefs.end(); ++p)
+    {
+        try
+        {
+            p->Ref().LinkRef().WRef().ToOutboxCopy(inMessage);
+        }
+        catch (MushcoreNonFatalFail& e)
+        {
+            MushcoreLog::Sgl().WarningLog() << e.what() << endl;
+        }
+    }
+}
+
+void
 MushGameLogic::ClientMailboxConsume(MushGameMailbox& inMailbox)
 {
     std::auto_ptr<MushGameMessage> aMessage;
@@ -432,6 +456,23 @@ MushGameLogic::MoveSequence(void)
 }
 
 void
+MushGameLogic::PlayerTicker(MushGamePlayer& inPlayer)
+{
+    inPlayer.TickerProcess(*this);
+}
+
+void
+MushGameLogic::TickerSequence(void)
+{
+    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
+    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    {
+        PlayerTicker(*p->second);
+    }
+}
+
+void
 MushGameLogic::CameraMove(MushGameCamera& inCamera)
 {
     inCamera.FromTiedObjectUpdate();
@@ -469,6 +510,8 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     try { MoveSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+    try { TickerSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "TickerSequence"); }
     try { UplinkSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "UplinkSequence"); }
     try { CameraSequence(); }

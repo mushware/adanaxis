@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.8 2005/07/08 12:07:07 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.9 2005/07/11 16:37:46 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.9  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.8  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -48,6 +51,10 @@
 #include "AdanaxisPlayer.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisSaveData.h"
+#include "AdanaxisPieceProjectile.h"
+#include "AdanaxisUtil.h"
+#include "AdanaxisVolatileData.h"
 
 using namespace Mushware;
 using namespace std;
@@ -200,6 +207,35 @@ AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
             throw MushcoreDataFail(std::string("Key number too high in")+AutoName());
         }
     }
+}
+
+void
+AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
+{
+    AdanaxisSaveData::tProjectileList& projectileListRef =
+        AdanaxisUtil::Logic(ioLogic).SaveData().ProjectileListWRef();
+
+    projectileListRef.push_back(AdanaxisPieceProjectile("proj"+Id()));
+    AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
+    
+    projectileRef.OwnerSet(Id());
+    projectileRef.PostSet(inMessage.Post());
+    projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
+    
+    MushMeshTools::RandomAngularVelocityMake(projectileRef.PostWRef().AngVelWRef(), 0.03);
+    
+    t4Val velocity = t4Val(0,0,0,-projectileRef.InitialVelocity());
+    
+    inMessage.Post().AngPos().InPlaceRotate(velocity);
+    projectileRef.PostWRef().VelSet(velocity);
+    
+    MushMesh4Library::Sgl().UnitTesseractCreate(projectileRef.MeshWRef());
+}
+
+void
+AdanaxisPlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
+{
+    FirePieceCreate(ioLogic, inMessage);
 }
 
 

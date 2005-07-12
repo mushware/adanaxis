@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisLogic.h,v 1.2 2005/07/01 14:58:59 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.3 2005/07/05 13:52:22 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.3  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/01 14:58:59  southa
  * Mushcore auto_ptr and binary string fixes
  *
@@ -49,6 +52,9 @@ public:
     
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPlayer; }
     
+    virtual void ProjectilesMove(void);
+    virtual void MoveSequence(void);
+
     virtual AdanaxisSaveData& SaveData(void);
     virtual AdanaxisVolatileData& VolatileData(void);
     

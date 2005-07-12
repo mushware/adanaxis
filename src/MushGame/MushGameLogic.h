@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.11 2005/07/11 14:48:46 southa Exp $
+ * $Id: MushGameLogic.h,v 1.12 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.12  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.11  2005/07/11 14:48:46  southa
  * Uplink work
  *
@@ -94,6 +97,7 @@ public:
     virtual void ClientAddressAdd(const std::string& inName);
     virtual void CopyAndSendToServer(const MushGameMessage& inMessage);
     virtual void AsReplyCopyAndSend(MushGameMessage& ioMessage, const MushGameMessage& inSrcMessage);
+    virtual void CopyAndBroadcast(const MushGameMessage& inMessage);
     virtual void QuickPlayerUplinkIsRequired(void) { VolatileData().QuickPlayerUplinkRequiredSet(true); }
     
     virtual void ClientMailboxConsume(MushGameMailbox& inMailbox);
@@ -109,6 +113,8 @@ public:
     virtual void UplinkSequence(void);
     virtual void PlayerMove(MushGamePlayer& inPlayer);
     virtual void MoveSequence(void);
+    virtual void PlayerTicker(MushGamePlayer& inPlayer);
+    virtual void TickerSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
     virtual void RenderSequence(void);

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.3 2005/07/01 16:42:54 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.4 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/07/01 16:42:54  southa
  * Render work
  *
@@ -40,6 +43,33 @@ AdanaxisLogic::InitialDataCreate(void)
     VolatileData().ARenderMeshWRef().reset(new MushRenderMesh);
 }
 
+void
+AdanaxisLogic::ProjectilesMove(void)
+{
+    typedef AdanaxisSaveData::tProjectileList tProjectileList;
+    
+    tProjectileList::iterator projectileEndIter = SaveData().ProjectileListWRef().end();
+    for (tProjectileList::iterator p = SaveData().ProjectileListWRef().begin(); p != projectileEndIter;)
+    {
+        p->Move(*this, 1);
+        tProjectileList::iterator nextP = p;
+        ++nextP;
+        
+        if (p->ExpireFlag())
+        {
+            SaveData().ProjectileListWRef().erase(p);
+        }
+        p = nextP;
+    }
+}
+
+void
+AdanaxisLogic::MoveSequence(void)
+{
+    MushGameLogic::MoveSequence();
+    ProjectilesMove();
+    
+}
 
 //%outOfLineFunctions {
 

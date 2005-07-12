@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rV7W1a77HVUWXl5PMDq1vw
 /*
- * $Id: MushMeshTools.cpp,v 1.3 2005/02/27 01:01:31 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.4 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/27 01:01:31  southa
  * Eigenplane markers
  *
@@ -195,4 +198,22 @@ Mushware::tVal
 MushMeshTools::Random(const Mushware::tVal inMin, const Mushware::tVal inMax)
 {
     return inMin + (inMax - inMin) * static_cast<double>(std::rand())/RAND_MAX;
+}
+
+void
+MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount)
+{
+    tQValPair orientation = MushMeshTools::RandomOrientation();
+    outPair.ToRotationIdentitySet();
+    
+    outPair.OuterMultiplyBy(orientation);
+    
+    // Rotate in xy
+    outPair.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                    (0, MushMeshTools::Random(-inAmount, inAmount)));
+    // Rotate in zw
+    outPair.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                    (1, MushMeshTools::Random(-inAmount, inAmount)));
+    
+    outPair.OuterMultiplyBy(orientation.ConjugateGet());
 }

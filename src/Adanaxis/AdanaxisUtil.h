@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } h0Ba5isJoX+glev7XNkQ4g
 /*
- * $Id: AdanaxisUtil.h,v 1.1 2005/06/30 16:29:24 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.2 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.2  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.1  2005/06/30 16:29:24  southa
  * Adanaxis work
  *
@@ -39,8 +42,20 @@ class AdanaxisUtil
 public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static AdanaxisAppHandler& AppHandler(void);
-
+    static AdanaxisLogic& Logic(MushGameLogic& ioLogic);
 };
+
+inline AdanaxisLogic&
+AdanaxisUtil::Logic(MushGameLogic& ioLogic)
+{
+    AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&ioLogic);
+    if (pLogic == NULL)
+    {
+        throw MushcoreLogicFail("AdanaxisLogic of wrong type");
+    }
+    return *pLogic;
+}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef ADANAXISPIECEDECO_H
-#define ADANAXISPIECEDECO_H
-//%includeGuardStart } oqn4Y6tbxdOzvAL0fqtoXA
+#ifndef ADANAXISPIECEPROJECTILE_H
+#define ADANAXISPIECEPROJECTILE_H
+//%includeGuardStart } tP6o2lew/9PZ78Rtte9Qvw
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisPieceDeco.h
+ * File: src/Adanaxis/AdanaxisPieceProjectile.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,22 +19,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } enJUO8WAIa4qUMI3BXYVJA
+//%Header } oprIPxIlqMIU0R5tKHZ3SA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.4 2005/07/04 11:10:43 southa Exp $
- * $Log: AdanaxisPieceDeco.h,v $
- * Revision 1.4  2005/07/04 11:10:43  southa
- * Rendering pipeline
- *
- * Revision 1.3  2005/07/01 10:36:46  southa
- * MushRender work
- *
- * Revision 1.2  2005/06/30 16:29:24  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/30 14:26:35  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "AdanaxisStandard.h"
@@ -46,21 +34,38 @@
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class AdanaxisPieceDeco : public MushGamePiece
+class AdanaxisPieceProjectile : public MushGamePiece
 {
 public:
-    explicit AdanaxisPieceDeco(const std::string& inID = "");
-    virtual ~AdanaxisPieceDeco() {}
+    explicit AdanaxisPieceProjectile(const std::string& inID = "");
+    virtual ~AdanaxisPieceProjectile() {}
     
+    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
+
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
 private:
     std::string m_id;
+    std::string m_owner; //:readwrite
+    Mushware::tVal m_initialVelocity; //:readwrite
+    Mushware::tMsec m_lifeMsec; //:readwrite
+    Mushware::tMsec m_expiryMsec; //:readwrite
+    bool m_expireFlag; //:readwrite
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     
 //%classPrototypes {
 public:
+    const std::string& Owner(void) const { return m_owner; }
+    void OwnerSet(const std::string& inValue) { m_owner=inValue; }
+    const Mushware::tVal& InitialVelocity(void) const { return m_initialVelocity; }
+    void InitialVelocitySet(const Mushware::tVal& inValue) { m_initialVelocity=inValue; }
+    const Mushware::tMsec& LifeMsec(void) const { return m_lifeMsec; }
+    void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
+    const Mushware::tMsec& ExpiryMsec(void) const { return m_expiryMsec; }
+    void ExpiryMsecSet(const Mushware::tMsec& inValue) { m_expiryMsec=inValue; }
+    const bool& ExpireFlag(void) const { return m_expireFlag; }
+    void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
     const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
     void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
     // Writable reference for m_mesh
@@ -74,16 +79,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } M39FVg2TvHcPuJT29BZkpg
+//%classPrototypes } 70INbYWY3BiCbNYTAY7PYA
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const AdanaxisPieceDeco& inObj)
+operator<<(std::ostream& ioOut, const AdanaxisPieceProjectile& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } U59qcX7inEXnV9haw5/Q8Q
+//%inlineHeader } KpZ65HGy/OlB/f3k/Y6E3w
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

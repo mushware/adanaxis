@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oDMbV4yZBqA1axMEQLMt9A
 /*
- * $Id: MushMeshUtils.h,v 1.11 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshUtils.h,v 1.12 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshUtils.h,v $
+ * Revision 1.12  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.11  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -63,6 +66,7 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshGroup.h"
+#include "MushMeshQuaternionPair.h"
 #include "MushMeshVector.h"
 
 class MushMeshUtils

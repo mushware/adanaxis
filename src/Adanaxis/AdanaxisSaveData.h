@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.4 2005/06/29 11:11:15 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.5 2005/06/30 14:26:35 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.5  2005/06/30 14:26:35  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -39,6 +42,8 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPieceProjectile.h"
+
 #include "API/mushGame.h"
 #include "API/mushMushGame.h"
 
@@ -47,14 +52,22 @@
 class AdanaxisSaveData : public MushGameSaveData
 {
 public:
+    typedef AdanaxisPieceProjectile tProjectile;
+    typedef std::list<tProjectile> tProjectileList;
+
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
     
 private:
+    tProjectileList m_projectileList; //:readwrite :wref
     MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
     
 //%classPrototypes {
 public:
+    const tProjectileList& ProjectileList(void) const { return m_projectileList; }
+    void ProjectileListSet(const tProjectileList& inValue) { m_projectileList=inValue; }
+    // Writable reference for m_projectileList
+    tProjectileList& ProjectileListWRef(void) { return m_projectileList; }
     const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
     void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
     // Writable reference for m_dialogues
@@ -66,7 +79,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PJK5FktExvI23HdQ62s29w
+//%classPrototypes } gzSeQ+uaiPsRP5xECDjS4Q
 };
 //%inlineHeader {
 inline std::ostream&

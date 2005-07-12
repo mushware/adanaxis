@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.9 2005/07/05 16:35:53 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.10 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.10  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.9  2005/07/05 16:35:53  southa
  * Adanaxis work
  *
@@ -110,12 +113,20 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     camera.ProjectionSet(m_projection);
     
-    tDecoList::iterator endIter = pVolData->DecoListWRef().end();
-    for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != endIter; ++p)
+    tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
+    for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
     {
         p->Render(ioLogic, renderMesh, camera);
     }
         
+    typedef AdanaxisSaveData::tProjectileList tProjectileList;
+    
+    tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
+    for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
+    {
+        p->Render(ioLogic, renderMesh, camera);
+    }    
+    
     MushGLUtil::IdentityEpilogue();
     
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), GameUtils::AppHandler());

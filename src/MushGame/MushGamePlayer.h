@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.7 2005/07/11 14:48:46 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.8 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.8  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.7  2005/07/11 14:48:46  southa
  * Uplink work
  *
@@ -53,6 +56,7 @@
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
 #include "MushGameMessageControlInfo.h"
+#include "MushGameMessageFire.h"
 #include "MushGameMessageUplinkPlayer.h"
 #include "MushGamePiece.h"
 
@@ -69,15 +73,20 @@ public:
     virtual void ControlMailboxNameSet(const std::string& inName);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
     virtual void UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage);
+    virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void ControlMailboxProcess(MushGameLogic& ioLogic);
+    virtual void TickerProcess(MushGameLogic& ioLogic);
     virtual void UplinkSend(MushGameLogic& ioLogic);
+    virtual Mushware::tMsec FirePeriodMsec(void);
+    virtual void ServerSideFire(MushGameLogic& ioLogic);
     
 private:
     std::string m_id; //:readwrite
     std::string m_playerName; //:readwrite
     Mushware::U32 m_fireState; //:readwrite
     Mushware::tMsec m_fireStartMsec; //:readwrite
+    Mushware::tMsec m_fireLastMsec; //:readwrite
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef;
     bool m_useControlMailbox;
     
@@ -91,6 +100,8 @@ public:
     void FireStateSet(const Mushware::U32& inValue) { m_fireState=inValue; }
     const Mushware::tMsec& FireStartMsec(void) const { return m_fireStartMsec; }
     void FireStartMsecSet(const Mushware::tMsec& inValue) { m_fireStartMsec=inValue; }
+    const Mushware::tMsec& FireLastMsec(void) const { return m_fireLastMsec; }
+    void FireLastMsecSet(const Mushware::tMsec& inValue) { m_fireLastMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -98,7 +109,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } AcAw7KPA3qv1OJ+O5sNoZg
+//%classPrototypes } KeNYb6uoWdiwoZeovEfqRA
 };
 //%inlineHeader {
 inline std::ostream&

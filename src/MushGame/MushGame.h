@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.11 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGame.h,v 1.12 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.12  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.11  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -83,9 +86,12 @@
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
 #include "MushGameMessageControlInfo.h"
+#include "MushGameMessageFire.h"
 #include "MushGameMessageJoinConfirm.h"
 #include "MushGameMessageJoinDenied.h"
 #include "MushGameMessageJoinRequest.h"
+#include "MushGameMessageUplinkPiece.h"
+#include "MushGameMessageUplinkPlayer.h"
 #include "MushGamePlayer.h"
 #include "MushGameReceiver.h"
 #include "MushGameRef.h"

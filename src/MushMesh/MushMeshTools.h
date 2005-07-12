@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } MRqkmNXxP7DiVadot5CVdg
 /*
- * $Id: MushMeshTools.h,v 1.4 2005/02/27 01:01:31 southa Exp $
+ * $Id: MushMeshTools.h,v 1.5 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.5  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.4  2005/02/27 01:01:31  southa
  * Eigenplane markers
  *
@@ -53,6 +56,7 @@ public:
     static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
     static Mushware::tQValPair RandomOrientation(void);
     static Mushware::tVal Random(const Mushware::tVal inMin, const Mushware::tVal inMax);
+    static void RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount);
 };
 //%includeGuardEnd {
 #endif
