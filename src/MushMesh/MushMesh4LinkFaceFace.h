@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHLIBRARYFGENEXTRUDE_H
-#define MUSHMESHLIBRARYFGENEXTRUDE_H
-//%includeGuardStart } Z1xfm1lBZkdDgXQlA5E8IA
+#ifndef MUSHMESH4LINKFACEFACE_H
+#define MUSHMESH4LINKFACEFACE_H
+//%includeGuardStart } Ts/6esfbQFVxvfonUaZAUw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshLibrary/MushMeshLibraryFGenExtrude.h
+ * File: src/MushMesh/MushMesh4LinkFaceFace.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,29 +21,33 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rWTR9VGBEQumCT7LMzSnOw
+//%Header } ZLHJRaPgNIEqpmXsmUcjIg
 /*
- * $Id: MushMeshLibraryFGenExtrude.h,v 1.1 2005/07/12 20:39:05 southa Exp $
- * $Log: MushMeshLibraryFGenExtrude.h,v $
- * Revision 1.1  2005/07/12 20:39:05  southa
- * Mesh library work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshLibraryStandard.h"
+#include "MushMeshStandard.h"
 
-//:xml1base MushMesh4FaceGenerator
 //:generate virtual standard ostream xml1
-class MushMeshLibraryFGenExtrude : public MushMesh4FaceGenerator
+class MushMesh4LinkFaceFace : public MushcoreVirtualObject
 {
 public:
-    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum);
-    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum, Mushware::U32 inNum);
+    MushMesh4LinkFaceFace() {}
+    virtual ~MushMesh4LinkFaceFace() {}
     
 private:
-        
+    Mushware::U32 m_faceNum; //:readwrite
+    Mushware::U32 m_localFacetNum; //:readwrite
+    Mushware::U32 m_remoteFacetNum; //:readwrite
 //%classPrototypes {
 public:
+    const Mushware::U32& FaceNum(void) const { return m_faceNum; }
+    void FaceNumSet(const Mushware::U32& inValue) { m_faceNum=inValue; }
+    const Mushware::U32& LocalFacetNum(void) const { return m_localFacetNum; }
+    void LocalFacetNumSet(const Mushware::U32& inValue) { m_localFacetNum=inValue; }
+    const Mushware::U32& RemoteFacetNum(void) const { return m_remoteFacetNum; }
+    void RemoteFacetNumSet(const Mushware::U32& inValue) { m_remoteFacetNum=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -51,16 +55,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } RWHYhncadx94i1MjlIis1w
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMeshLibraryFGenExtrude& inObj)
+operator<<(std::ostream& ioOut, const MushMesh4LinkFaceFace& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } 0jMxmCKtw2pO5/9sCc2TeA
+//%inlineHeader } JT7LgmuuM0WYbTWrdpqzdQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

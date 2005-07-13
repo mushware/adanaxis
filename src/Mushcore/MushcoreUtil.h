@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.21 2005/07/04 15:59:01 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.22 2005/07/06 19:08:27 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.22  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.21  2005/07/04 15:59:01  southa
  * Adanaxis work
  *
@@ -145,6 +148,7 @@ public:
     static const Mushware::tVal RandomVal(const Mushware::tVal inMin, const Mushware::tVal inMax);
     
     template<class T> static void Constrain(T& ioValue, const T& inLowLim, const T& inHighLim);
+    template<class T> static Mushware::U32 CountMatchesInSortedUnique(const std::vector<T>& inA, const std::vector<T>& inB, Mushware::tSize inLimit);
     
     static std::string LogTimeString(void);
     static void BreakpointFunction(void);
@@ -188,17 +192,39 @@ MushcoreUtil::Constrain(T& ioValue, const T& inLowLim, const T& inHighLim)
     }
 }
 
-#if 0
 template<class T>
-inline void
-MushcoreUtil::VectorToArrayPad(T outArray[], const std::vector<T>& inVec, Mushware::U32 inSize, const T& inPadValue)
+inline Mushware::U32
+MushcoreUtil::CountMatchesInSortedUnique(const std::vector<T>& inA, const std::vector<T>& inB, Mushware::tSize inLimit)
 {
-    for (Mushware::U32 i=0; i<inSize; ++i)
+    Mushware::U32 retVal = 0;
+    Mushware::tSize aSize = inA.size();
+    Mushware::tSize bSize = inB.size();
+    
+    Mushware::tSize i=0;
+    Mushware::tSize j=0;
+
+    for (; i < aSize && j < bSize; )
     {
-        outArray[i] = (i < inVec.size())?inVec[i]:inPadValue;
+        if (inA[i] == inB[j])
+        {
+            ++retVal;
+            if (retVal >= inLimit) break;
+            ++i;
+            ++j;
+        }
+        else if (inA[i] > inB[j])
+        {
+            ++j;
+        }
+        else
+        {
+            ++i;
+        }
     }
+    MUSHCOREASSERT(retVal <= inLimit);
+    return retVal;
 }
-#endif
+
 
 //%includeGuardEnd {
 #endif

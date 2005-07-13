@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.5 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.6 2005/07/12 20:39:04 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.6  2005/07/12 20:39:04  southa
+ * Mesh library work
+ *
  * Revision 1.5  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -103,7 +106,11 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         {
             ++ctr;
             MushcoreXMLOStream xmlOut(cout);
-            xmlOut << decoRef.Mesh();
+            //xmlOut << decoRef.Mesh();
+            for (U32 i=0; i<8; ++i)
+            {
+                decoRef.Mesh().FaceConnectivityBuild(i);
+            }
         }
     }
 }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.5 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.6 2005/07/12 20:39:05 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.6  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  * Revision 1.5  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -135,18 +138,21 @@ MushMesh4Mesh::ConnectivityBuild(void) const
                     MUSHCOREASSERT(vertNum < m_connectivity.size());
                     MUSHCOREASSERT(otherVertNum < m_connectivity.size());
                     
-                    if (std::find(m_connectivity[vertNum].begin(),
-                             m_connectivity[vertNum].end(),
-                             otherVertNum) == m_connectivity[vertNum].end())
+                    tConnection& vertexConnection = m_connectivity[vertNum];
+                    tConnection& otherVertexConnection = m_connectivity[otherVertNum];
+
+                    if (std::find(vertexConnection.begin(),
+                                  vertexConnection.end(),
+                                  otherVertNum) == vertexConnection.end())
                     {
-                        m_connectivity[vertNum].push_back(otherVertNum);
+                        vertexConnection.push_back(otherVertNum);
                         ++m_numConnections;
                     }
-                    if (std::find(m_connectivity[otherVertNum].begin(),
-                             m_connectivity[otherVertNum].end(),
-                             vertNum) == m_connectivity[otherVertNum].end())
+                    if (std::find(otherVertexConnection.begin(),
+                                  otherVertexConnection.end(),
+                                  vertNum) == otherVertexConnection.end())
                     {
-                        m_connectivity[otherVertNum].push_back(vertNum);
+                        otherVertexConnection.push_back(vertNum);
                         ++m_numConnections;
                     }
                 }
@@ -164,6 +170,115 @@ MushMesh4Mesh::ConnectivityBuild(void) const
     m_numConnections /= 2;
     
     m_connectivityValid = true;
+}
+
+void
+MushMesh4Mesh::FaceConnectivityBuild(Mushware::U32 inFaceNum) const
+{
+    const MushMesh4Face& srcFaceRef = Face(inFaceNum);
+    
+    const MushMesh4Face::tVertexList& srcUniqueVertexListRef = srcFaceRef.UniqueVertexList();
+    
+    srcFaceRef.FaceConnectivityWRef().resize(0);
+    
+    /* Loop through each face looking for those that are connected to the source face,
+     * i.e. they share at least one facet
+     */
+    
+    for (U32 i=0; i<m_faces.size(); ++i)
+    {
+        bool faceConnected = false;
+        Mushware::U32 srcFacetNum = 0;
+        Mushware::U32 testFacetNum = 0;
+        
+        // but don't check whether this face is connected to itself
+        if (i != inFaceNum)
+        {
+            const MushMesh4Face& testFaceRef = m_faces[i];
+            const MushMesh4Face::tVertexList& testUniqueVertexListRef = testFaceRef.UniqueVertexList();
+
+            // Quick check - faces must have at least three vertices in common to share a facet
+            U32 countedMatches = MushcoreUtil::CountMatchesInSortedUnique(srcUniqueVertexListRef, testUniqueVertexListRef, 16);
+            if (countedMatches > 2)
+            {
+                // Candidate for match.  Now find the common facet
+                const MushMesh4Face::tVertexList& srcVertexListRef = srcFaceRef.VertexList();
+                const U32 srcVertexListSize = srcVertexListRef.size();
+                const MushMesh4Face::tVertexGroupSize& srcVertexGroupSizeRef = srcFaceRef.VertexGroupSize();
+                const MushMesh4Face::tVertexList& testVertexListRef = testFaceRef.VertexList();
+                const U32 testVertexListSize = testVertexListRef.size();
+                const MushMesh4Face::tVertexGroupSize& testVertexGroupSizeRef = testFaceRef.VertexGroupSize();
+
+                /* Loop through all source face facets looking for one which is connected.  Once
+                 * faceConnected is true after the facet-to-facet test we know the faces are
+                 * connected and exit
+                 */
+                U32 srcVertexIndex = 0;
+                srcFacetNum = 0;
+                for (U32 srcVGIndex = 0; !faceConnected && srcVGIndex < srcVertexGroupSizeRef.size(); ++srcVGIndex)
+                {
+                    U32 srcVGSize = srcVertexGroupSizeRef[srcVGIndex];
+
+                    U32 testVertexIndex = 0;
+                    testFacetNum = 0;
+                    
+                    // Find one facet in the test face which connects to this source facet
+                    for (U32 testVGIndex = 0; !faceConnected && testVGIndex < testVertexGroupSizeRef.size(); ++testVGIndex)
+                    {
+                        U32 testVGSize = testVertexGroupSizeRef[testVGIndex];
+                        if (testVGSize == srcVGSize)
+                        {
+                            faceConnected = true;
+                            // For every vertex in the source vertex group, find it in the test group
+                            for (U32 srcInd = 0; faceConnected && srcInd < srcVGSize; ++srcInd)
+                            {
+                                if (srcVertexIndex + srcInd >= srcVertexListSize)
+                                {
+                                    throw MushcoreDataFail("Source face vertex index overrun");
+                                }
+                                Mushware::U32 srcVertexNum = srcVertexListRef[srcVertexIndex + srcInd];
+                                bool vertexResult = false;
+                                U32 testIndLimit = testVertexIndex + testVGSize;
+                                for (U32 testInd = testVertexIndex; testInd < testIndLimit; ++testInd)
+                                {
+                                    if (testInd >= testVertexListSize)
+                                    {
+                                        throw MushcoreDataFail("Test face vertex index overrun");
+                                    }
+                                    if (srcVertexNum == testVertexListRef[testInd])
+                                    {
+                                        vertexResult = true;
+                                        break;
+                                    }
+                                }
+                                faceConnected = faceConnected && vertexResult;
+                            }
+                        }
+                        testVertexIndex += testVGSize;
+                        if (!faceConnected)
+                        {
+                            ++testFacetNum;
+                        }
+                    }
+                    srcVertexIndex += srcVGSize;
+                    if (!faceConnected)
+                    {
+                        ++srcFacetNum;
+                    }
+                }
+            }
+        }
+        if (faceConnected)
+        {
+            // cout << "Face " << inFaceNum << " is connected to face " << i << " via " << srcFacetNum << " -> " << testFacetNum << endl;
+            tFace::tFaceConnection connection;
+            connection.FaceNumSet(i);
+            connection.LocalFacetNumSet(srcFacetNum);
+            connection.RemoteFacetNumSet(testFacetNum);
+            srcFaceRef.FaceConnectivityWRef().push_back(connection);
+        }
+    }
+    srcFaceRef.FaceConnectivityValidSet(true);
 }
 
 void

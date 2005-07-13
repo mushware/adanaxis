@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.10 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.11 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.11  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.10  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -65,8 +68,8 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisRender::AdanaxisRender() :
-    m_halfAngle(M_PI/16),
-    m_halfAngleAttractor(M_PI/16)
+    m_halfAngle(M_PI/12),
+    m_halfAngleAttractor(M_PI/12)
 {
 }
 

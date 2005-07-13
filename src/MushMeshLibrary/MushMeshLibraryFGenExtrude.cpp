@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } l0+UwpoHyOGqSBuOhWU1Vw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshLibraryFGenExtrude.h"
@@ -29,73 +32,112 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 inFace)
+MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum)
 {
-    /* Generated faces are:
-     *   1.  An image of the face we're extruding from, containing all of the new vertices
-     *   2.  Faces connecting each of the new facets on that face to the corresponding facet
-     *       on the original face
-     */
-
-    // Faces are held in a vector, so creating new faces can invalidate references
-
     MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
-    facesRef.push_back(MushMesh4Mesh::tFace(ioMesh.Face(inFace)));
-    MushMesh4Mesh::tFace& newFaceRef = facesRef.back();
+    U32 numNewFaces = 0;
 
-    const MushMesh4Mesh::tFace& oldFaceRef = ioMesh.Face(inFace);
+    {
+        const MushMesh4Mesh::tFace::tFaceConnectivity& connectivityRef =
+            ioMesh.FaceConnectivity(inFaceNum);
+        // We need the number of faces in the connectivity of the source face, plus one
+        numNewFaces = 1 + connectivityRef.size();
+        U32 newFacesSize = ioMesh.FaceCounter() + numNewFaces;
+
+        if (newFacesSize > facesRef.size())
+        {
+            facesRef.resize(newFacesSize);
+        }
+        // References to objects within faces invalid after resize, so discard
+    }
+
+    const MushMesh4Mesh::tFace& srcFaceRef = ioMesh.Face(inFaceNum);
+    const MushMesh4Mesh::tFace::tFaceConnectivity& srcConnectivityRef =
+        ioMesh.Face(inFaceNum).FaceConnectivity();
     
+    // Generate the key face, by copying the source face to it
+    MushMesh4Mesh::tFace& keyFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter());
     
-    const MushMesh4Face::tVertexList& uniqueVertexListRef = oldFaceRef.UniqueVertexList();
-    tSize uniqueVertexListSize = uniqueVertexListRef.size();
+    keyFaceRef = srcFaceRef; // Partial copy would be better
 
+    /* Fill the extrusion map.  It maps vertex numbers in the source face to vertex numbers
+     * in all of the newly generated faces
+     */
+    MushMesh4Face::tExtrusionMap& extrusionMapRef = keyFaceRef.ExtrusionMapWRef();
+    extrusionMapRef.clear();
+    
+    // Add the new vertices used to generate the key face
+    const MushMesh4Face::tVertexList& srcUniqueVertexListRef = srcFaceRef.UniqueVertexList();
+    tSize srcUniqueVertexListSize = srcUniqueVertexListRef.size();
 
-
-
-
-
-    // Build the correspondance list in this face
     U32 vertexBase = ioMesh.VertexCounter();
 
-    /* Correspondance lists map a vertex number in the old face to the same
-     * vertex in the extruded face
-     */
-    
-    std::map<U32, U32> vertexOldToNew;
-    std::map<U32, U32> vertexNewToOld;
-    for (U32 i=0; i<uniqueVertexListSize; ++i)
+    for (U32 i=0; i<srcUniqueVertexListSize; ++i)
     {
-        vertexOldToNew[uniqueVertexListRef[i]] = vertexBase;
-        vertexNewToOld[vertexBase] = uniqueVertexListRef[i];
+        extrusionMapRef[srcUniqueVertexListRef[i]] = vertexBase;
         ++vertexBase;
     }
-    
-    MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
-    tSize newVertexListSize = newVertexListRef.size();
-    
-    for (U32 i=0; i<newVertexListSize; ++i)
+
+    // Copy the other faces into position
+    for (U32 newFaceNum=0; newFaceNum < srcConnectivityRef.size(); ++newFaceNum)
     {
-        U32 vertexNum = newVertexListRef[i];
-        std::map<U32, U32>::iterator p = vertexOldToNew.find(vertexNum);
-        if (p == vertexOldToNew.end())
+        const MushMesh4Face::tFaceConnection& vertConnection = srcConnectivityRef[newFaceNum];
+        
+        MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + 1 + newFaceNum);
+        newFaceRef = ioMesh.Face(vertConnection.FaceNum());
+        MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
+        tSize newVertexListSize = newVertexListRef.size();
+
+        for (U32 i=0; i<newVertexListSize; ++i)
         {
-            cout << "vertexOldToNew=" << vertexOldToNew << endl;
-            cout << "vertexNum=" << vertexNum << endl;
-            throw MushcoreLogicFail(std::string(AutoName())+": Invalid correspondance map");
-        }
-        else
-        {
-            newVertexListRef[i] = p->second;
+            U32 vertexNum = newVertexListRef[i];
+            std::map<U32, U32>::iterator p = extrusionMapRef.find(vertexNum);
+            if (p == extrusionMapRef.end())
+            {
+                U32 newVertexNum;
+                if (newFaceRef.ConnectedVertexInFacetFind(newVertexNum, vertConnection.RemoteFacetNum(), vertexNum))
+                {
+                    extrusionMapRef[vertexNum] = newVertexNum;
+                }
+                else
+                {
+                    throw MushcoreDataFail(std::string(AutoName())+": Failed to create correspondance map");
+                }
+            }
         }
     }
+    for (U32 newFaceNum=0; newFaceNum < numNewFaces; ++newFaceNum)
+    {
+        MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + newFaceNum);
+        MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
+        tSize newVertexListSize = newVertexListRef.size();
+        
+        for (U32 i=0; i<newVertexListSize; ++i)
+        {
+            U32 vertexNum = newVertexListRef[i];
+            std::map<U32, U32>::iterator p = extrusionMapRef.find(vertexNum);
+            if (p == extrusionMapRef.end())
+            {
+                throw MushcoreDataFail(std::string(AutoName())+": Invalid correspondance map");
+            }
+            else
+            {
+                newVertexListRef[i] = p->second;
+            }
+        }
+    }
+    
+    // Commit the new faces
+    ioMesh.FaceWRef(inFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
+    ioMesh.FaceCounterWRef() += numNewFaces;
 }
 
 void
-MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, Mushware::U32 inFace, Mushware::U32 inNum)
+MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum, Mushware::U32 inNum)
 {
     for (U32 i=0; i<inNum; ++i)
     {
-        FaceExtrudeOne(ioMesh, inFace);
+        FaceExtrudeOne(ioMesh, inFaceNum);
     }
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id: MushMesh4Face.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.4 2005/07/12 20:39:04 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.4  2005/07/12 20:39:04  southa
+ * Mesh library work
+ *
  * Revision 1.3  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -42,9 +45,9 @@ using namespace std;
 
 MushMesh4Face::MushMesh4Face() :
     m_faceType(kFaceTypeNone),
-    m_renderable(true)
+    m_internal(false)
 {
-    VerticesTouch();
+    AllTouch();
 }
 
 MushMesh4Face::~MushMesh4Face()
@@ -58,6 +61,77 @@ MushMesh4Face::VerticesTouch(void)
     m_faceCentroidValid = false;
     m_boundingRadiusValid = false;
 }
+
+void
+MushMesh4Face::AllTouch(void)
+{
+    VerticesTouch();
+    m_faceConnectivityValid = false;
+    m_vertexConnectivityValid = false;
+}
+
+void
+MushMesh4Face::FacetLimitsGet(Mushware::U32& outStart, Mushware::U32& outEnd, Mushware::U32 inFacetNum) const
+{
+    U32 start = 0;
+    MushcoreUtil::BoundsCheck(inFacetNum, m_vertexGroupSize.size());
+    
+    for (U32 i=0; i < inFacetNum; ++i)
+    {
+        start += m_vertexGroupSize[i];
+    }
+    outStart = start;
+    outEnd = start + m_vertexGroupSize[inFacetNum];
+    U32 vertexListSize = m_vertexList.size();
+    if (outStart >= vertexListSize || outEnd > vertexListSize)
+    {
+        throw MushcoreDataFail("Bad facet limits");
+    }
+}
+
+bool
+MushMesh4Face::ConnectedVertexInFacetFind(Mushware::U32& outNum, Mushware::U32 inFacetNum, Mushware::U32 inVertNum) const
+{
+    // Return a vertex (if any) which is in the facet and connected to the vertex
+    
+    bool success = false;
+    
+    // Build vertex connectivity
+    VertexConnectivity();
+    
+    tVertexConnectivity::iterator vertexConnection = m_vertexConnectivity.find(inVertNum);
+    if (vertexConnection == m_vertexConnectivity.end())
+    {
+        ostringstream message;
+        message << "Request for connected vertex " << inVertNum << " not in face";
+        throw MushcoreDataFail(message.str());
+    }
+    
+    U32 start, end;
+    FacetLimitsGet(start, end, inFacetNum);
+    
+    for (U32 i=start; !success && i<end; ++i)
+    {
+        MUSHCOREASSERT(i < m_vertexList.size());
+        U32 testVertNum = m_vertexList[i];
+        if (testVertNum == inVertNum)
+        {
+            ostringstream message;
+            message << "Request for connected vertex " << inVertNum << " within facet " << inFacetNum;
+            throw MushcoreDataFail(message.str());
+        }
+        
+        if (std::find(vertexConnection->second.begin(),
+                      vertexConnection->second.end(),
+                      testVertNum) != vertexConnection->second.end())
+        {
+            outNum = testVertNum;
+            success = true;
+        }
+    }
+    return success;
+}
+
 
 void
 MushMesh4Face::UniqueVertexListBuild(void) const
@@ -75,9 +149,81 @@ MushMesh4Face::UniqueVertexListBuild(void) const
             m_uniqueVertexList.push_back(vertexNum);
         }
     }
+    
+    std::sort(m_uniqueVertexList.begin(), m_uniqueVertexList.end());
+
     m_uniqueVertexListValid = true;
 }
 
+void
+MushMesh4Face::VertexConnectivityBuild(void) const
+{
+    m_numVertexConnections = 0;
+    
+    // Build the unique vertex list
+    UniqueVertexList();
+
+    m_vertexConnectivity.clear();
+    
+    U32 listIndex = 0;
+    for (U32 j=0; j<m_vertexGroupSize.size(); ++j)
+    {
+        U32 vertexGroupSize = m_vertexGroupSize[j];
+        if (vertexGroupSize > 1)
+        {
+            for (U32 k=0; k<vertexGroupSize; ++k)
+            {
+                U32 vertIndex = listIndex+k;
+                U32 otherVertIndex;
+                if (k+1 < vertexGroupSize)
+                {
+                    otherVertIndex = listIndex+k+1;
+                }
+                else
+                {
+                    otherVertIndex = listIndex;
+                }
+                
+                MUSHCOREASSERT(vertIndex < m_vertexList.size());
+                MUSHCOREASSERT(otherVertIndex < m_vertexList.size());
+                
+                U32 vertNum = m_vertexList[vertIndex];
+                U32 otherVertNum = m_vertexList[otherVertIndex];
+                
+                tVertexConnection& vertexConnection = m_vertexConnectivity[vertNum];
+                tVertexConnection& otherVertexConnection = m_vertexConnectivity[otherVertNum];
+                
+                if (std::find(vertexConnection.begin(),
+                              vertexConnection.end(),
+                              otherVertNum) == vertexConnection.end())
+                {
+                    vertexConnection.push_back(otherVertNum);
+                    ++m_numVertexConnections;
+                }
+                if (std::find(otherVertexConnection.begin(),
+                              otherVertexConnection.end(),
+                              vertNum) == otherVertexConnection.end())
+                {
+                    otherVertexConnection.push_back(vertNum);
+                    ++m_numVertexConnections;
+                }
+            }
+        }
+        listIndex += vertexGroupSize;
+    }
+    
+    tVertexConnectivity::iterator iterEnd = m_vertexConnectivity.end();
+    for (tVertexConnectivity::iterator p = m_vertexConnectivity.begin();
+         p != iterEnd; ++p)
+    {
+        std::sort(p->second.begin(), p->second.end());
+    }  
+    
+    // Each connection counted twice (once from each end), so divide
+    m_numVertexConnections /= 2;
+    
+    m_vertexConnectivityValid = true;
+}
 
 //%outOfLineFunctions {
 
@@ -119,13 +265,20 @@ MushMesh4Face::AutoPrint(std::ostream& ioOut) const
     ioOut << "texCoordList=" << m_texCoordList << ", ";
     ioOut << "faceMaterialRef=" << m_faceMaterialRef << ", ";
     ioOut << "edgeSmoothness=" << m_edgeSmoothness << ", ";
-    ioOut << "renderable=" << m_renderable << ", ";
+    ioOut << "internal=" << m_internal << ", ";
+    ioOut << "extrusionMap=" << m_extrusionMap << ", ";
+    ioOut << "extrudedFaces=" << m_extrudedFaces << ", ";
     ioOut << "uniqueVertexList=" << m_uniqueVertexList << ", ";
     ioOut << "faceCentroid=" << m_faceCentroid << ", ";
     ioOut << "boundingRadius=" << m_boundingRadius << ", ";
+    ioOut << "faceConnectivity=" << m_faceConnectivity << ", ";
+    ioOut << "vertexConnectivity=" << m_vertexConnectivity << ", ";
     ioOut << "uniqueVertexListValid=" << m_uniqueVertexListValid << ", ";
     ioOut << "faceCentroidValid=" << m_faceCentroidValid << ", ";
-    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid;
+    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid << ", ";
+    ioOut << "faceConnectivityValid=" << m_faceConnectivityValid << ", ";
+    ioOut << "vertexConnectivityValid=" << m_vertexConnectivityValid << ", ";
+    ioOut << "numVertexConnections=" << m_numVertexConnections;
     ioOut << "]";
 }
 bool
@@ -161,9 +314,17 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_edgeSmoothness;
     }
-    else if (inTagStr == "renderable")
+    else if (inTagStr == "internal")
     {
-        ioIn >> m_renderable;
+        ioIn >> m_internal;
+    }
+    else if (inTagStr == "extrusionMap")
+    {
+        ioIn >> m_extrusionMap;
+    }
+    else if (inTagStr == "extrudedFaces")
+    {
+        ioIn >> m_extrudedFaces;
     }
     else if (inTagStr == "uniqueVertexList")
     {
@@ -177,6 +338,14 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_boundingRadius;
     }
+    else if (inTagStr == "faceConnectivity")
+    {
+        ioIn >> m_faceConnectivity;
+    }
+    else if (inTagStr == "vertexConnectivity")
+    {
+        ioIn >> m_vertexConnectivity;
+    }
     else if (inTagStr == "uniqueVertexListValid")
     {
         ioIn >> m_uniqueVertexListValid;
@@ -188,6 +357,18 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "boundingRadiusValid")
     {
         ioIn >> m_boundingRadiusValid;
+    }
+    else if (inTagStr == "faceConnectivityValid")
+    {
+        ioIn >> m_faceConnectivityValid;
+    }
+    else if (inTagStr == "vertexConnectivityValid")
+    {
+        ioIn >> m_vertexConnectivityValid;
+    }
+    else if (inTagStr == "numVertexConnections")
+    {
+        ioIn >> m_numVertexConnections;
     }
     else if (MushMeshFace::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -215,19 +396,33 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceMaterialRef;
     ioOut.TagSet("edgeSmoothness");
     ioOut << m_edgeSmoothness;
-    ioOut.TagSet("renderable");
-    ioOut << m_renderable;
+    ioOut.TagSet("internal");
+    ioOut << m_internal;
+    ioOut.TagSet("extrusionMap");
+    ioOut << m_extrusionMap;
+    ioOut.TagSet("extrudedFaces");
+    ioOut << m_extrudedFaces;
     ioOut.TagSet("uniqueVertexList");
     ioOut << m_uniqueVertexList;
     ioOut.TagSet("faceCentroid");
     ioOut << m_faceCentroid;
     ioOut.TagSet("boundingRadius");
     ioOut << m_boundingRadius;
+    ioOut.TagSet("faceConnectivity");
+    ioOut << m_faceConnectivity;
+    ioOut.TagSet("vertexConnectivity");
+    ioOut << m_vertexConnectivity;
     ioOut.TagSet("uniqueVertexListValid");
     ioOut << m_uniqueVertexListValid;
     ioOut.TagSet("faceCentroidValid");
     ioOut << m_faceCentroidValid;
     ioOut.TagSet("boundingRadiusValid");
     ioOut << m_boundingRadiusValid;
+    ioOut.TagSet("faceConnectivityValid");
+    ioOut << m_faceConnectivityValid;
+    ioOut.TagSet("vertexConnectivityValid");
+    ioOut << m_vertexConnectivityValid;
+    ioOut.TagSet("numVertexConnections");
+    ioOut << m_numVertexConnections;
 }
-//%outOfLineFunctions } EuOWF9S0cHsxH/5vvhNW7w
+//%outOfLineFunctions } hqUxdbzJXo4i1boJ/s39rw
