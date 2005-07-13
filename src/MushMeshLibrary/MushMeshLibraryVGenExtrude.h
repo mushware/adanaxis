@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tPEzc8nLw6dNYeKlc4A5WQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryVGenExtrude.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshLibraryVGenExtrude.h,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshLibraryStandard.h"
@@ -34,8 +37,8 @@
 class MushMeshLibraryVGenExtrude : public MushMesh4VertexGenerator
 {
 public:
-    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFace);
-    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFace, Mushware::U32 inNum);
+    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFaceNum);
+    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFaceNum, Mushware::U32 inNum);
 
 private:
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id: MushMesh4Face.cpp,v 1.4 2005/07/12 20:39:04 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.5 2005/07/13 16:45:05 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.5  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.4  2005/07/12 20:39:04  southa
  * Mesh library work
  *
@@ -102,6 +105,9 @@ MushMesh4Face::ConnectedVertexInFacetFind(Mushware::U32& outNum, Mushware::U32 i
     tVertexConnectivity::iterator vertexConnection = m_vertexConnectivity.find(inVertNum);
     if (vertexConnection == m_vertexConnectivity.end())
     {
+        cout << "inFacetNum=" << inFacetNum << endl;
+        MushcoreXMLOStream xmlOut(cout);
+        xmlOut << *this;
         ostringstream message;
         message << "Request for connected vertex " << inVertNum << " not in face";
         throw MushcoreDataFail(message.str());
@@ -268,6 +274,7 @@ MushMesh4Face::AutoPrint(std::ostream& ioOut) const
     ioOut << "internal=" << m_internal << ", ";
     ioOut << "extrusionMap=" << m_extrusionMap << ", ";
     ioOut << "extrudedFaces=" << m_extrudedFaces << ", ";
+    ioOut << "extrusionTransformList=" << m_extrusionTransformList << ", ";
     ioOut << "uniqueVertexList=" << m_uniqueVertexList << ", ";
     ioOut << "faceCentroid=" << m_faceCentroid << ", ";
     ioOut << "boundingRadius=" << m_boundingRadius << ", ";
@@ -325,6 +332,10 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "extrudedFaces")
     {
         ioIn >> m_extrudedFaces;
+    }
+    else if (inTagStr == "extrusionTransformList")
+    {
+        ioIn >> m_extrusionTransformList;
     }
     else if (inTagStr == "uniqueVertexList")
     {
@@ -402,6 +413,8 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_extrusionMap;
     ioOut.TagSet("extrudedFaces");
     ioOut << m_extrudedFaces;
+    ioOut.TagSet("extrusionTransformList");
+    ioOut << m_extrusionTransformList;
     ioOut.TagSet("uniqueVertexList");
     ioOut << m_uniqueVertexList;
     ioOut.TagSet("faceCentroid");
@@ -425,4 +438,4 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numVertexConnections");
     ioOut << m_numVertexConnections;
 }
-//%outOfLineFunctions } hqUxdbzJXo4i1boJ/s39rw
+//%outOfLineFunctions } SbAUcuENn1t3J6X5sLsxfA

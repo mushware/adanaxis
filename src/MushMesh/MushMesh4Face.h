@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5yE/wZtm0/nEX6N7oHMfOA
 /*
- * $Id: MushMesh4Face.h,v 1.3 2005/07/12 20:39:04 southa Exp $
+ * $Id: MushMesh4Face.h,v 1.4 2005/07/13 16:45:05 southa Exp $
  * $Log: MushMesh4Face.h,v $
+ * Revision 1.4  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.3  2005/07/12 20:39:04  southa
  * Mesh library work
  *
@@ -56,6 +59,8 @@ public:
     typedef std::vector<Mushware::U32> tVertexConnection;
     typedef std::map<Mushware::U32, tVertexConnection> tVertexConnectivity;
     typedef std::map<Mushware::U32, Mushware::U32> tExtrusionMap;
+    typedef std::pair<Mushware::U32, Mushware::U32> tTransform;
+    typedef std::vector<tTransform> tTransformList;
     
     enum
     {
@@ -104,6 +109,7 @@ private:
     // Derived representation
     tExtrusionMap m_extrusionMap; //:read :wref
     std::vector<Mushware::U32> m_extrudedFaces; //:read :wref
+    tTransformList m_extrusionTransformList; //:read :wref
     
     mutable tVertexList m_uniqueVertexList;
     mutable Mushware::t4Val m_faceCentroid;
@@ -145,6 +151,9 @@ public:
     const std::vector<Mushware::U32>& ExtrudedFaces(void) const { return m_extrudedFaces; }
     // Writable reference for m_extrudedFaces
     std::vector<Mushware::U32>& ExtrudedFacesWRef(void) { return m_extrudedFaces; }
+    const tTransformList& ExtrusionTransformList(void) const { return m_extrusionTransformList; }
+    // Writable reference for m_extrusionTransformList
+    tTransformList& ExtrusionTransformListWRef(void) { return m_extrusionTransformList; }
     const Mushware::tVal& BoundingRadius(void) const { return m_boundingRadius; }
     const bool& UniqueVertexListValid(void) const { return m_uniqueVertexListValid; }
     const bool& FaceCentroidValid(void) const { return m_faceCentroidValid; }
@@ -159,7 +168,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } R28kHralBPfhEXN3/cJNpQ
+//%classPrototypes } XaY/rP9lvmQoTOGcDuIitA
 };
 
 inline const MushMesh4Face::tVertexList&

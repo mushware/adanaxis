@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } l0+UwpoHyOGqSBuOhWU1Vw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.2 2005/07/13 16:45:05 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.2  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -59,12 +62,16 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
     MushMesh4Mesh::tFace& keyFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter());
     
     keyFaceRef = srcFaceRef; // Partial copy would be better
-
+    keyFaceRef.AllTouch();
+    
     /* Fill the extrusion map.  It maps vertex numbers in the source face to vertex numbers
      * in all of the newly generated faces
      */
     MushMesh4Face::tExtrusionMap& extrusionMapRef = keyFaceRef.ExtrusionMapWRef();
     extrusionMapRef.clear();
+    
+    MushMesh4Face::tTransformList& extrusionTransformListRef = keyFaceRef.ExtrusionTransformListWRef();
+    extrusionTransformListRef.clear();
     
     // Add the new vertices used to generate the key face
     const MushMesh4Face::tVertexList& srcUniqueVertexListRef = srcFaceRef.UniqueVertexList();
@@ -75,6 +82,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
     for (U32 i=0; i<srcUniqueVertexListSize; ++i)
     {
         extrusionMapRef[srcUniqueVertexListRef[i]] = vertexBase;
+        extrusionTransformListRef.push_back(MushMesh4Face::tTransform(srcUniqueVertexListRef[i], vertexBase));
         ++vertexBase;
     }
 
@@ -85,6 +93,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
         
         MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + 1 + newFaceNum);
         newFaceRef = ioMesh.Face(vertConnection.FaceNum());
+        newFaceRef.AllTouch();
         MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
         tSize newVertexListSize = newVertexListRef.size();
 
@@ -130,6 +139,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
     // Commit the new faces
     ioMesh.FaceWRef(inFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
     ioMesh.FaceCounterWRef() += numNewFaces;
+    ioMesh.VertexCounterSet(vertexBase);
 }
 
 void

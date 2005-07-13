@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 2KTLnycOd02KKD1ahGuagQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshLibraryVGenExtrude.cpp,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshLibraryVGenExtrude.h"
@@ -29,50 +32,61 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFace)
+MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFaceNum)
 {
-    const MushMesh4Face& faceRef = ioMesh.Face(inFace);
-    
-    const MushMesh4Face::tVertexList& uniqueVertexListRef = faceRef.UniqueVertexList();
-    tSize uniqueVertexListSize = uniqueVertexListRef.size();
-    
-    U32 vertexBase = ioMesh.VertexCounter();
-    tSize newSize = vertexBase + uniqueVertexListSize;
-    
-    MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
-    U32 verticesSize = verticesRef.size();
+    const MushMesh4Face& srcFaceRef = ioMesh.Face(inFaceNum);
 
-    if (verticesRef.size() < newSize)
-    {
-        verticesRef.resize(newSize);
-        verticesSize = verticesRef.size();
-    }
+    const std::vector<U32>& extrudedFacesRef = srcFaceRef.ExtrudedFaces();
     
-    t4Val centroid = ioMesh.FaceCentroid(inFace);
-    
-    for (U32 i=0; i<uniqueVertexListSize; ++i)
+    for (U32 i=0; i < extrudedFacesRef.size(); ++i)
     {
-        MUSHCOREASSERT(i < uniqueVertexListRef.size());
-        U32 newVertexNum = uniqueVertexListRef[i];
-        MUSHCOREASSERT(newVertexNum < verticesSize);
-        t4Val newVertex = verticesRef[newVertexNum];
+        const MushMesh4Face& extrudedFaceRef = ioMesh.Face(extrudedFacesRef[i]);
+        const MushMesh4Face::tTransformList& extrusionTransformListRef = extrudedFaceRef.ExtrusionTransformList();
+        Mushware::U32 extrusionTransformListSize = extrusionTransformListRef.size();
         
-        newVertex = inDisp.Scale() * (newVertex - centroid);
-        inDisp.Rotation().InPlaceRotate(newVertex);
-        newVertex += inDisp.Offset();
-        newVertex += centroid;
+        t4Val centroid = ioMesh.FaceCentroid(inFaceNum);
         
-        verticesRef[vertexBase + i] = newVertex;
+        MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
+        U32 verticesSize = verticesRef.size();
+        
+        for (U32 i=0; i<extrusionTransformListSize; ++i)
+        {
+            const MushMesh4Face::tTransform& transformRef = extrusionTransformListRef[i];
+            U32 oldVertexNum = transformRef.first;
+            U32 newVertexNum = transformRef.second;
+            
+            if (oldVertexNum >= verticesSize || newVertexNum >= verticesSize)
+            {
+                throw MushcoreDataFail("Index overrun in extrusion transform map");
+            }
+            
+            t4Val newVertex = verticesRef[oldVertexNum];
+            
+            newVertex = inDisp.Scale() * (newVertex - centroid);
+            inDisp.Rotation().InPlaceRotate(newVertex);
+            newVertex += inDisp.Offset();
+            newVertex += centroid;
+            
+            verticesRef[newVertexNum] = newVertex;
+        }
+        
+        // Looping through these wouldn't work as each extrusion needs it's own ioDisp
+        break;
     }
-    ioMesh.VertexCounterSet(newSize); 
 }    
 
 void
-MushMeshLibraryVGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFace, Mushware::U32 inNum)
+MushMeshLibraryVGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFaceNum, Mushware::U32 inNum)
 {
+    MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
+    if (ioMesh.VertexCounter() > verticesRef.size())
+    {
+        verticesRef.resize(ioMesh.VertexCounter());
+    }
+    
     for (U32 i=0; i<inNum; ++i)
     {
-        FaceExtrudeOne(ioMesh, ioDisp, inFace);
+        FaceExtrudeOne(ioMesh, ioDisp, inFaceNum);
     }
 }
 

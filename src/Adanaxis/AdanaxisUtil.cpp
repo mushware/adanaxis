@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.6 2005/07/12 20:39:04 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.7 2005/07/13 16:45:04 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.7  2005/07/13 16:45:04  southa
+ * Extrusion work
+ *
  * Revision 1.6  2005/07/12 20:39:04  southa
  * Mesh library work
  *
@@ -68,7 +71,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<100; ++i)
+    for (U32 i=0; i<40; ++i)
     {
         decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
         AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
@@ -92,25 +95,46 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 
         MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
         
+        MushMeshLibraryFGenExtrude faceExtrude;
+        MushMeshLibraryVGenExtrude vertexExtrude;
         tQValPair rotation;
         rotation.ToRotationIdentitySet();
         MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
-
-        MushMeshLibraryFGenExtrude faceExtrude;
-        faceExtrude.FaceExtrude(decoRef.MeshWRef(), 0, 1);
-
-        MushMeshLibraryVGenExtrude vertexExtrude;
-        vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 0, 1);
-        static U32 ctr=0;
-        if (ctr == 0)
+        
+        if (i < 10)
         {
-            ++ctr;
-            MushcoreXMLOStream xmlOut(cout);
-            //xmlOut << decoRef.Mesh();
-            for (U32 i=0; i<8; ++i)
+            for (U32 j=0; j<8; ++j)
             {
-                decoRef.Mesh().FaceConnectivityBuild(i);
+                faceExtrude.FaceExtrude(decoRef.MeshWRef(), j, 1);
             }
+            disp.ScaleSet(0.3);
+            tVal dist = 3.0;
+            disp.OffsetSet(t4Val(0,0,0,dist));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 0, 1);
+            disp.OffsetSet(t4Val(0,0,0,-dist));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 1, 1);
+            disp.OffsetSet(t4Val(0,0,dist,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 2, 1);
+            disp.OffsetSet(t4Val(0,0,-dist,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 3, 1);
+            disp.OffsetSet(t4Val(0,dist,0,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 4, 1);
+            disp.OffsetSet(t4Val(0,-dist,0,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 5, 1);
+            disp.OffsetSet(t4Val(dist,0,0,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 6, 1);
+            disp.OffsetSet(t4Val(-dist,0,0,0));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 7, 1);     
+        }
+        else
+        {
+            faceExtrude.FaceExtrude(decoRef.MeshWRef(), 0, 1);
+            faceExtrude.FaceExtrude(decoRef.MeshWRef(), 1, 1);
+
+            disp.OffsetSet(t4Val(0,0,0,1));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 0, 1);
+            disp.OffsetSet(t4Val(0,0,0,-1));
+            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), disp, 1, 1);
         }
     }
 }
