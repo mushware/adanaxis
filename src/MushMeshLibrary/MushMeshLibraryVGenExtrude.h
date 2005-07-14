@@ -7,24 +7,25 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryVGenExtrude.h
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tPEzc8nLw6dNYeKlc4A5WQ
+//%Header } ZbKz+1qwL0mYKshPmA8tnA
 /*
- * $Id: MushMeshLibraryVGenExtrude.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryVGenExtrude.h,v 1.2 2005/07/13 20:35:48 southa Exp $
  * $Log: MushMeshLibraryVGenExtrude.h,v $
+ * Revision 1.2  2005/07/13 20:35:48  southa
+ * Extrusion work
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -32,13 +33,15 @@
 
 #include "MushMeshLibraryStandard.h"
 
+#include "MushMeshLibraryExtrusionContext.h"
+
 //:xml1base MushMesh4VertexGenerator
 //:generate virtual standard ostream xml1
 class MushMeshLibraryVGenExtrude : public MushMesh4VertexGenerator
 {
 public:
-    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFaceNum);
-    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFaceNum, Mushware::U32 inNum);
+    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32& ioFaceNum);
+    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryExtrusionContext& ioContext, Mushware::U32 inNum);
 
 private:
 

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.41 2005/07/02 00:42:36 southa Exp $
+# $Id: SourceConditioner.pl,v 1.42 2005/07/04 11:10:41 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.42  2005/07/04 11:10:41  southa
+# Rendering pipeline
+#
 # Revision 1.41  2005/07/02 00:42:36  southa
 # Conditioning tweaks
 #
@@ -171,7 +174,7 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^Adanaxis' => [
+'^(Adanaxis|MushMeshLibrary)' => [
 '/*****************************************************************************',
 ' *',
 ' * File: @FILENAME@',

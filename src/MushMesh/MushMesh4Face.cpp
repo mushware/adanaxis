@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zQQ0t0djv+gKXVED+/n+hw
 /*
- * $Id: MushMesh4Face.cpp,v 1.5 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.6 2005/07/13 20:35:48 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.6  2005/07/13 20:35:48  southa
+ * Extrusion work
+ *
  * Revision 1.5  2005/07/13 16:45:05  southa
  * Extrusion work
  *
@@ -60,7 +63,6 @@ MushMesh4Face::~MushMesh4Face()
 void
 MushMesh4Face::VerticesTouch(void)
 {
-    m_uniqueVertexListValid = false;
     m_faceCentroidValid = false;
     m_boundingRadiusValid = false;
 }
@@ -69,6 +71,7 @@ void
 MushMesh4Face::AllTouch(void)
 {
     VerticesTouch();
+    m_uniqueVertexListValid = false;
     m_faceConnectivityValid = false;
     m_vertexConnectivityValid = false;
 }

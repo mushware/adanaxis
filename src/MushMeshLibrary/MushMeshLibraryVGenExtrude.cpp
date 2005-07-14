@@ -3,24 +3,25 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryVGenExtrude.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2KTLnycOd02KKD1ahGuagQ
+//%Header } xl+RaDfLSM+fS7txnPLwTQ
 /*
- * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.2 2005/07/13 20:35:48 southa Exp $
  * $Log: MushMeshLibraryVGenExtrude.cpp,v $
+ * Revision 1.2  2005/07/13 20:35:48  southa
+ * Extrusion work
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -32,26 +33,28 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32 inFaceNum)
+MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMeshDisplacement& inDisp, Mushware::U32& ioFaceNum)
 {
-    const MushMesh4Face& srcFaceRef = ioMesh.Face(inFaceNum);
+    const MushMesh4Face& srcFaceRef = ioMesh.Face(ioFaceNum);
 
     const std::vector<U32>& extrudedFacesRef = srcFaceRef.ExtrudedFaces();
+    U32 keyFaceNum = 0;
     
     for (U32 i=0; i < extrudedFacesRef.size(); ++i)
     {
+        keyFaceNum = extrudedFacesRef[i];
         const MushMesh4Face& extrudedFaceRef = ioMesh.Face(extrudedFacesRef[i]);
         const MushMesh4Face::tTransformList& extrusionTransformListRef = extrudedFaceRef.ExtrusionTransformList();
         Mushware::U32 extrusionTransformListSize = extrusionTransformListRef.size();
         
-        t4Val centroid = ioMesh.FaceCentroid(inFaceNum);
+        t4Val centroid = ioMesh.FaceCentroid(ioFaceNum);
         
         MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
         U32 verticesSize = verticesRef.size();
         
-        for (U32 i=0; i<extrusionTransformListSize; ++i)
+        for (U32 j=0; j<extrusionTransformListSize; ++j)
         {
-            const MushMesh4Face::tTransform& transformRef = extrusionTransformListRef[i];
+            const MushMesh4Face::tTransform& transformRef = extrusionTransformListRef[j];
             U32 oldVertexNum = transformRef.first;
             U32 newVertexNum = transformRef.second;
             
@@ -73,10 +76,12 @@ MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMesh
         // Looping through these wouldn't work as each extrusion needs it's own ioDisp
         break;
     }
+    
+    ioFaceNum = keyFaceNum;
 }    
 
 void
-MushMeshLibraryVGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacement& ioDisp, Mushware::U32 inFaceNum, Mushware::U32 inNum)
+MushMeshLibraryVGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryExtrusionContext& ioContext, Mushware::U32 inNum)
 {
     MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
     if (ioMesh.VertexCounter() > verticesRef.size())
@@ -86,7 +91,8 @@ MushMeshLibraryVGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshDisplacem
     
     for (U32 i=0; i<inNum; ++i)
     {
-        FaceExtrudeOne(ioMesh, ioDisp, inFaceNum);
+        FaceExtrudeOne(ioMesh, ioContext.RollingDispWRef(), ioContext.RollingFaceNumWRef());
+        ioContext.VelocityAdd();
     }
 }
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NsK1vgnlKsr599coHkcjRA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshDisplacement.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshDisplacement.h,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -40,12 +43,12 @@ public:
     MushMeshDisplacement(const Mushware::t4Val& inOffset, const Mushware::tQValPair& inRotation, Mushware::tVal inScale) :
         m_offset(inOffset), m_rotation(inRotation), m_scale(inScale) {}
     
-    void ToIdentitySet(void) { m_rotation.ToRotationIdentitySet(); m_offset.ToAdditiveIdentitySet(); m_scale = 1; }
+    void ToIdentitySet(void) { m_rotation.ToRotationIdentitySet(); m_offset.ToAdditiveIdentitySet(); m_scale = 1;}
     
 private:
     Mushware::t4Val m_offset; //:readwrite :wref
     Mushware::tQValPair m_rotation; //:readwrite :wref
-    Mushware::tVal m_scale; //:readwrite
+    Mushware::tVal m_scale; //:readwrite :wref
     
 //%classPrototypes {
 public:
@@ -59,6 +62,8 @@ public:
     Mushware::tQValPair& RotationWRef(void) { return m_rotation; }
     const Mushware::tVal& Scale(void) const { return m_scale; }
     void ScaleSet(const Mushware::tVal& inValue) { m_scale=inValue; }
+    // Writable reference for m_scale
+    Mushware::tVal& ScaleWRef(void) { return m_scale; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,7 +71,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } lzSja8HGcZ4sAN23dGsiPw
+//%classPrototypes } YsnPi/1DwXAZh1VRc8P5KA
 };
 //%inlineHeader {
 inline std::ostream&

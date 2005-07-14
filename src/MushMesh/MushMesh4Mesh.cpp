@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.6 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.7 2005/07/13 16:45:05 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.7  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.6  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -175,6 +178,8 @@ MushMesh4Mesh::ConnectivityBuild(void) const
 void
 MushMesh4Mesh::FaceConnectivityBuild(Mushware::U32 inFaceNum) const
 {
+    // cout << "Face connectivity for face " << inFaceNum <<  endl;
+
     const MushMesh4Face& srcFaceRef = Face(inFaceNum);
     
     const MushMesh4Face::tVertexList& srcUniqueVertexListRef = srcFaceRef.UniqueVertexList();

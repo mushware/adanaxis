@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } +lRBy3tXEG1uAcp7BgEAGg
 /*
- * $Id: SDLAppHandler.cpp,v 1.47 2005/06/06 15:07:09 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.48 2005/07/08 12:07:07 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.48  2005/07/08 12:07:07  southa
+ * MushGaem control work
+ *
  * Revision 1.47  2005/06/06 15:07:09  southa
  * X11 work
  *
@@ -284,13 +287,13 @@ SDLAppHandler::UnboundedMousePositionGet(S32& outX, S32& outY) const
 tVal
 SDLAppHandler::ScaledUnboundedMouseX(void) const
 {
-    return m_unboundedMouseX / m_greatestDimension;
+    return m_unboundedMouseX / 640.0;
 }
 
 tVal
 SDLAppHandler::ScaledUnboundedMouseY(void) const
 {
-    return -m_unboundedMouseY / m_greatestDimension;
+    return -m_unboundedMouseY / 640.0;
 }
 
 void

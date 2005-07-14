@@ -3,24 +3,25 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryFGenExtrude.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } l0+UwpoHyOGqSBuOhWU1Vw
+//%Header } 5mXJjsgE9FySBp3B30JsGw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.2 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.3 2005/07/13 20:35:48 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.3  2005/07/13 20:35:48  southa
+ * Extrusion work
+ *
  * Revision 1.2  2005/07/13 16:45:05  southa
  * Extrusion work
  *
@@ -35,14 +36,14 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum)
+MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32& ioFaceNum)
 {
     MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
     U32 numNewFaces = 0;
 
     {
         const MushMesh4Mesh::tFace::tFaceConnectivity& connectivityRef =
-            ioMesh.FaceConnectivity(inFaceNum);
+            ioMesh.FaceConnectivity(ioFaceNum);
         // We need the number of faces in the connectivity of the source face, plus one
         numNewFaces = 1 + connectivityRef.size();
         U32 newFacesSize = ioMesh.FaceCounter() + numNewFaces;
@@ -54,14 +55,20 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
         // References to objects within faces invalid after resize, so discard
     }
 
-    const MushMesh4Mesh::tFace& srcFaceRef = ioMesh.Face(inFaceNum);
+    const MushMesh4Mesh::tFace& srcFaceRef = ioMesh.Face(ioFaceNum);
     const MushMesh4Mesh::tFace::tFaceConnectivity& srcConnectivityRef =
-        ioMesh.Face(inFaceNum).FaceConnectivity();
+        ioMesh.FaceConnectivity(ioFaceNum);
     
     // Generate the key face, by copying the source face to it
     MushMesh4Mesh::tFace& keyFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter());
+    U32 keyFaceNum = ioMesh.FaceCounter();
     
     keyFaceRef = srcFaceRef; // Partial copy would be better
+
+    /* After this touch, we must be careful not to create any of the derived information
+     * before the vertex renumbering is done.  No function with side effect should be
+     * called on this face before then
+     */
     keyFaceRef.AllTouch();
     
     /* Fill the extrusion map.  It maps vertex numbers in the source face to vertex numbers
@@ -92,8 +99,15 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
         const MushMesh4Face::tFaceConnection& vertConnection = srcConnectivityRef[newFaceNum];
         
         MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + 1 + newFaceNum);
-        newFaceRef = ioMesh.Face(vertConnection.FaceNum());
+        const MushMesh4Mesh::tFace& connectedFaceRef = ioMesh.Face(vertConnection.FaceNum());
+        newFaceRef = connectedFaceRef;
+        
+        /* After this touch, we must be careful not to create any of the derived information
+         * before the vertex renumbering is done.  No function should be called on this face
+         * before then
+         */
         newFaceRef.AllTouch();
+
         MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
         tSize newVertexListSize = newVertexListRef.size();
 
@@ -104,7 +118,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
             if (p == extrusionMapRef.end())
             {
                 U32 newVertexNum;
-                if (newFaceRef.ConnectedVertexInFacetFind(newVertexNum, vertConnection.RemoteFacetNum(), vertexNum))
+                if (connectedFaceRef.ConnectedVertexInFacetFind(newVertexNum, vertConnection.RemoteFacetNum(), vertexNum))
                 {
                     extrusionMapRef[vertexNum] = newVertexNum;
                 }
@@ -137,17 +151,19 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32 
     }
     
     // Commit the new faces
-    ioMesh.FaceWRef(inFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
+    ioMesh.FaceWRef(ioFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
     ioMesh.FaceCounterWRef() += numNewFaces;
     ioMesh.VertexCounterSet(vertexBase);
+    ioFaceNum = keyFaceNum; // Modifies parameter - keep last
 }
 
 void
-MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum, Mushware::U32 inNum)
+MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryExtrusionContext& ioContext, Mushware::U32 inNum)
 {
     for (U32 i=0; i<inNum; ++i)
     {
-        FaceExtrudeOne(ioMesh, inFaceNum);
+        FaceExtrudeOne(ioMesh, ioContext.RollingFaceNumWRef());
+        ioContext.VelocityAdd();
     }
 }
 
