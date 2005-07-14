@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } S1ShkioeDeCMuA2XF/bV/g
 /*
- * $Id: MushcoreLog.cpp,v 1.4 2005/06/23 11:58:29 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.5 2005/06/23 13:56:59 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.5  2005/06/23 13:56:59  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/23 11:58:29  southa
  * MushGame link work
  *
@@ -49,6 +52,8 @@ MUSHCORE_SINGLETON_INSTANCE(MushcoreLog);
 MushcoreLog::MushcoreLog() :
     m_errorStream(NULL),
     m_stdStream(NULL),
+    m_xmlErrorStream(NULL),
+    m_xmlStdStream(NULL),
     m_enableErrorLog(true),
     m_enableWarningLog(true),
     m_enableInfoLog(true),
@@ -61,6 +66,8 @@ MushcoreLog::MushcoreLog() :
 MushcoreLog::~MushcoreLog()
 {
     delete m_nullStream;
+    delete m_xmlErrorStream;
+    delete m_xmlStdStream;    
 }
 
 void
@@ -116,6 +123,28 @@ MushcoreLog::StdStream(void)
     return *retStream;
 }
 
+MushcoreXMLOStream&
+MushcoreLog::XMLErrorStream(void)
+{
+    if (m_xmlErrorStream == NULL)
+    {
+        m_xmlErrorStream = new MushcoreXMLOStream(ErrorStream());
+    }
+    
+    return *m_xmlErrorStream;
+}
+
+MushcoreXMLOStream&
+MushcoreLog::XMLStdStream(void)
+{
+    if (m_xmlStdStream == NULL)
+    {
+        m_xmlStdStream = new MushcoreXMLOStream(StdStream());
+    }
+    
+    return *m_xmlStdStream;
+}
+
 ostream&
 MushcoreLog::ErrorLog(void)
 {
@@ -167,4 +196,27 @@ MushcoreLog::InfoLog(void)
     return *retStream;
 }
 
+MushcoreXMLOStream&
+MushcoreLog::XMLErrorLog(void)
+{
+    MushcoreXMLOStream *retStream = &XMLErrorStream();
+    retStream->OStream() << MushcoreUtil::LogTimeString() << ": Error: ";
+    return *retStream;
+}
 
+
+MushcoreXMLOStream&
+MushcoreLog::XMLWarningLog(void)
+{
+    MushcoreXMLOStream *retStream = &XMLErrorStream();
+    retStream->OStream() << MushcoreUtil::LogTimeString() << ": Warning: ";
+    return *retStream;
+}
+
+MushcoreXMLOStream&
+MushcoreLog::XMLInfoLog(void)
+{
+    MushcoreXMLOStream *retStream = &XMLStdStream();
+    retStream->OStream() << MushcoreUtil::LogTimeString() << ": Info: ";
+    return *retStream;
+}

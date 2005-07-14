@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Bq8XxaaUUfoNxs2oOiSOLA
 /*
- * $Id: MushcoreLog.h,v 1.3 2005/06/14 13:25:34 southa Exp $
+ * $Id: MushcoreLog.h,v 1.4 2005/06/23 11:58:29 southa Exp $
  * $Log: MushcoreLog.h,v $
+ * Revision 1.4  2005/06/23 11:58:29  southa
+ * MushGame link work
+ *
  * Revision 1.3  2005/06/14 13:25:34  southa
  * Adanaxis work
  *
@@ -39,6 +42,7 @@
 #include "MushcoreStandard.h"
 
 #include "MushcoreSingleton.h"
+#include "MushcoreXMLOStream.h"
 
 //:generate
 class MushcoreLog : public MushcoreSingleton<MushcoreLog>
@@ -50,17 +54,27 @@ public:
     std::ostream& ErrorLog(void);
     std::ostream& WarningLog(void);
     std::ostream& InfoLog(void);
+    MushcoreXMLOStream& XMLErrorLog(void);
+    MushcoreXMLOStream& XMLWarningLog(void);
+    MushcoreXMLOStream& XMLInfoLog(void);
+    
     void HeaderWrite(std::ostream& ioOut, const std::string inLogName);
     void PackageHasChanged(void);
     
 protected:
     std::ostream& ErrorStream(void);
     std::ostream& StdStream(void);
+    MushcoreXMLOStream& XMLErrorStream(void);
+    MushcoreXMLOStream& XMLStdStream(void);
     
 private:
     std::ofstream *m_errorStream;
     std::ofstream *m_stdStream;
+    MushcoreXMLOStream *m_xmlErrorStream;
+    MushcoreXMLOStream *m_xmlStdStream;
+    
     std::ostream *m_nullStream;
+    
     bool m_enableErrorLog; //:readwrite
     bool m_enableWarningLog; //:readwrite
     bool m_enableInfoLog; //:readwrite

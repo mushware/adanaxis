@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.8 2005/07/13 20:35:47 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.9 2005/07/14 12:50:30 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.9  2005/07/14 12:50:30  southa
+ * Extrusion work
+ *
  * Revision 1.8  2005/07/13 20:35:47  southa
  * Extrusion work
  *
@@ -98,8 +101,15 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             
             decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.ConjugateGet());
         }
-        MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
-        
+        if (i > 100)
+        {
+            
+            MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+        }
+        else
+        {
+            MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
+        }
         MushMeshLibraryFGenExtrude faceExtrude;
         MushMeshLibraryVGenExtrude vertexExtrude;
         tQValPair rotation;
@@ -107,8 +117,11 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
-        
-        if (i > 30)
+        if (1)
+        {
+            
+        }
+        else if (i > 30)
         {
             for (U32 j=0; j<8; ++j)
             {
@@ -150,7 +163,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             {
                 disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                     (1, M_PI/number));
-                MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).InPlaceRotate(offset);
+                MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).VectorRotate(offset);
                 disp.OffsetSet(offset);
                 extrusionContext.DispSet(disp);
             }

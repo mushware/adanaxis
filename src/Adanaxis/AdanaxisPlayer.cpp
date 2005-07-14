@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.10 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.11 2005/07/12 20:39:04 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.11  2005/07/12 20:39:04  southa
+ * Mesh library work
+ *
  * Revision 1.10  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -107,7 +110,7 @@ AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
             default:
                 throw MushcoreLogicFail("Axis value fault");
         }
-        Post().AngPos().InPlaceRotate(vel);
+        Post().AngPos().VectorRotate(vel);
         PostWRef().VelWRef() += vel;
     }
     else
@@ -231,7 +234,7 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     
     t4Val velocity = t4Val(0,0,0,-projectileRef.InitialVelocity());
     
-    inMessage.Post().AngPos().InPlaceRotate(velocity);
+    inMessage.Post().AngPos().VectorRotate(velocity);
     projectileRef.PostWRef().VelSet(velocity);
     
     MushMeshLibraryBase::Sgl().UnitTesseractCreate(projectileRef.MeshWRef());

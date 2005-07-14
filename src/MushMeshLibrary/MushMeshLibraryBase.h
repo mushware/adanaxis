@@ -7,24 +7,25 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryBase.h
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mWHW4AKBymr/Qdcf+QHDiA
+//%Header } RoNLC7hPh49geDtJu2CaFA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryBase.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshLibraryBase.h,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshLibraryStandard.h"
@@ -35,9 +36,19 @@ class MushMeshLibraryBase : public MushcoreVirtualObject, public MushcoreSinglet
 public:
     virtual ~MushMeshLibraryBase() {}
     
-    virtual void UnitTesseractVerticesCreate(MushMesh4Mesh& outMesh) const;
-    virtual void UnitTesseractCreate(MushMesh4Mesh& outMesh) const;
+    virtual void UnitTesseractVerticesCreate(MushMesh4Mesh& ioMesh) const;
+    virtual void UnitTesseractCreate(MushMesh4Mesh& ioMesh) const;
+
+    virtual void PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
+    virtual void PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
     
+protected:
+    virtual void NewFaceCreate(MushMesh4Mesh& ioMesh,
+                               MushMesh4Face *& outpFace,
+                               MushMesh4Face::tVertexList *& outpVertexList,
+                               MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize) const;
+    virtual void CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum1, Mushware::U32 inFaceNum2) const;
+
 private:
 
 //%classPrototypes {

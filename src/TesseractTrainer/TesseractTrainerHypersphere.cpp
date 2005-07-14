@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FD3CFDwuOpfxWOkJrDCd/Q
 /*
- * $Id: TesseractTrainerHypersphere.cpp,v 1.7 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerHypersphere.cpp,v 1.8 2005/06/03 16:23:11 southa Exp $
  * $Log: TesseractTrainerHypersphere.cpp,v $
+ * Revision 1.8  2005/06/03 16:23:11  southa
+ * win32 fixes
+ *
  * Revision 1.7  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -171,7 +174,7 @@ TesseractTrainerHypersphere::Render(tVal frame)
     
     for (U32 j=0; j < m_numVertices; ++j)
     {
-        m_orientation.InPlaceRotate(vertices[j]);
+        m_orientation.VectorRotate(vertices[j]);
     }
     
     

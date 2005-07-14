@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } qHF16jWiujtgFrXirYEQLw
 /*
- * $Id: TesseractTrainerHypercube.cpp,v 1.6 2005/04/11 23:31:42 southa Exp $
+ * $Id: TesseractTrainerHypercube.cpp,v 1.7 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerHypercube.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/04/11 23:31:42  southa
  * Startup and registration screen
  *
@@ -206,7 +209,7 @@ TesseractTrainerHypercube::Render(tVal frame)
     
     for (U32 j=0; j<vertices.size(); ++j)
     {
-        m_orientation.InPlaceRotate(vertices[j]);
+        m_orientation.VectorRotate(vertices[j]);
     }
     
     const MushMeshGroup::tSuperGroup& srcOne = m_facetGroup.SuperGroup(1);

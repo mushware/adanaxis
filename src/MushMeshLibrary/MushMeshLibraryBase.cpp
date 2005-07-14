@@ -3,24 +3,25 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryBase.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2005
  *
- * This file contains original work by Andy Southgate.  The author and his
- * employer (Mushware Limited) irrevocably waive all of their copyright rights
- * vested in this particular version of this file to the furthest extent
- * permitted.  The author and Mushware Limited also irrevocably waive any and
- * all of their intellectual property rights arising from said file and its
- * creation that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.
+ * This file may be used and distributed under the terms of the Mushware
+ * software licence version 1.0, under the terms for 'Proprietary original
+ * source files'.  If not supplied with this software, a copy of the licence
+ * can be obtained from Mushware Limited via http://www.mushware.com/.
+ * One of your options under that licence is to use and distribute this file
+ * under the terms of the GNU General Public Licence version 2.
  *
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 752ukf+mxORJr82bohXIMQ
+//%Header } wT/XlXiDrkjXl6HW1CFN3Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryBase.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMeshLibraryBase.h"
@@ -31,11 +32,11 @@ using namespace std;
 MUSHCORE_SINGLETON_INSTANCE(MushMeshLibraryBase);
 
 void
-MushMeshLibraryBase::UnitTesseractVerticesCreate(MushMesh4Mesh& outMesh) const
+MushMeshLibraryBase::UnitTesseractVerticesCreate(MushMesh4Mesh& ioMesh) const
 {
     tVal scale = 0.5;
     
-    MushMesh4Mesh::tVertices& verticesRef = outMesh.VerticesWRef();
+    MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
     
     if (verticesRef.size() < 16)
     {
@@ -52,16 +53,16 @@ MushMeshLibraryBase::UnitTesseractVerticesCreate(MushMesh4Mesh& outMesh) const
         vertex.ZSet(((i & 4) == 0)?-scale:scale);
         vertex.WSet(((i & 8) == 0)?-scale:scale);
     }
-    outMesh.VertexCounterSet(16);
+    ioMesh.VertexCounterSet(16);
 }
 
 void
-MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& outMesh) const
+MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
 {
-    MushMesh4Mesh::tFaces& facesRef = outMesh.FacesWRef();
+    MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
     
     // Vertices
-    UnitTesseractVerticesCreate(outMesh);
+    UnitTesseractVerticesCreate(ioMesh);
     
     U32 fixedAxis = 8;
     
@@ -151,8 +152,150 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& outMesh) const
             fixedAxis /= 2;
         }
     }
-    outMesh.FaceCounterSet(8);
+    ioMesh.FaceCounterSet(8);
 }
+
+void
+MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const
+{
+    MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
+
+    U32 numVertices = inOrder * 4;
+    
+    if (verticesRef.size() < numVertices)
+    {
+        verticesRef.resize(numVertices);
+    }
+    
+    tVal angularStep = M_PI * 2.0 / inOrder;
+    U32 vertexNum = 0;
+    
+    // Vertices
+    for (U32 i=0; i<4; ++i)
+    {
+        for (U32 j=0; j<inOrder; ++j)
+        {
+            MushMesh4Mesh::tVertex& vertex = verticesRef[vertexNum];
+            
+            vertex.XSet(inScale.X() * cos(angularStep * j));
+            vertex.YSet(inScale.Y() * sin(angularStep * j));
+            vertex.ZSet(((i & 1) == 0)?-inScale.Z():inScale.Z());
+            vertex.WSet(((i & 2) == 0)?-inScale.W():inScale.W());
+            
+            ++vertexNum;
+        }
+    }
+    MUSHCOREASSERT(vertexNum == numVertices);
+    ioMesh.VertexCounterSet(numVertices);
+}
+
+void
+MushMeshLibraryBase::NewFaceCreate(MushMesh4Mesh& ioMesh,
+                                   MushMesh4Face *& outpFace,
+                                   MushMesh4Face::tVertexList *& outpVertexList,
+                                   MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize) const
+{
+    ioMesh.FacesWRef().push_back(MushMesh4Mesh::tFace());
+
+    outpFace = &ioMesh.FacesWRef().back();
+    outpVertexList = &outpFace->VertexListWRef();
+    outpVertexGroupSize = &outpFace->VertexGroupSizeWRef();
+    
+    ++ioMesh.FaceCounterWRef();
+}
+
+
+void
+MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const
+{
+    ioMesh.FaceCounterSet(0);
+
+    MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
+    facesRef.resize(0);
+    
+    MushMesh4Face *pFace = NULL;
+    MushMesh4Face::tVertexList *pVertexList = NULL;
+    MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
+    
+    // Vertices
+    PolygonPrismVerticesCreate(ioMesh, inScale, inOrder);
+    
+    U32 zStep = inOrder;
+    U32 wStep = 2*inOrder;
+    
+    // w-fixed faces
+    
+    for (U32 w=0; w<2; ++w)
+    {
+        // Polygon facets
+        // Creating new faces invalidates references to other faces and their components
+        NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        U32 vBase = w * wStep;   
+        for (U32 z=0; z<2; ++z)
+        {
+            // zw-fixed facets
+            for (U32 n=0; n<inOrder; ++n)
+            {
+                pVertexList->push_back(vBase + z*zStep + n);
+            }
+            pVertexGroupSize->push_back(inOrder);
+        }
+        
+        // radial facets
+        for (U32 n=0; n<inOrder; ++n)
+        {
+            U32 nPlusOneModOrder = (n + 1) % inOrder;
+            pVertexList->push_back(vBase + n);
+            pVertexList->push_back(vBase + nPlusOneModOrder);
+            pVertexList->push_back(vBase + zStep + nPlusOneModOrder);
+            pVertexList->push_back(vBase + zStep + n);
+            pVertexGroupSize->push_back(4);
+        }
+    }
+    CongruentFacesJoin(ioMesh, ioMesh.FaceCounter() - 1, ioMesh.FaceCounter() - 2);
+}
+
+void
+MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum1, Mushware::U32 inFaceNum2) const
+{
+    // Loop through the vertex groups (i.e. each facet) in the source face
+    U32 srcVertNum = 0;
+    for (U32 i=0; i< ioMesh.Face(inFaceNum1).VertexGroupSize().size(); ++i)
+    {        
+        MushMesh4Face *pFace = NULL;
+        MushMesh4Face::tVertexList *pVertexList = NULL;
+        MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
+        
+        // Create a new (joining) face for each facet in the source face
+        // Creating new faces invalidates references to other faces and their components
+        NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        
+        const MushMesh4Face& face1Ref = ioMesh.Face(inFaceNum1);
+        const MushMesh4Face::tVertexList& vertexList1Ref = face1Ref.VertexList();
+        const MushMesh4Face& face2Ref = ioMesh.Face(inFaceNum2);
+        const MushMesh4Face::tVertexList& vertexList2Ref = face2Ref.VertexList();
+        
+        U32 groupSize = ioMesh.Face(inFaceNum1).VertexGroupSize()[i];
+        
+        // Copy the facets from the two input faces to this new face
+        std::copy(vertexList1Ref.begin(), vertexList1Ref.begin()+groupSize, back_inserter(*pVertexList));
+        pVertexGroupSize->push_back(groupSize);
+        std::copy(vertexList2Ref.begin(), vertexList2Ref.begin()+groupSize, back_inserter(*pVertexList));
+        pVertexGroupSize->push_back(groupSize);
+        
+        for (U32 n=0; n<groupSize; ++n)
+        {
+            U32 nPlusOneModOrder = (n + 1) % groupSize;
+            pVertexList->push_back(vertexList1Ref[srcVertNum + n]);
+            pVertexList->push_back(vertexList1Ref[srcVertNum + nPlusOneModOrder]);
+            pVertexList->push_back(vertexList2Ref[srcVertNum + nPlusOneModOrder]);
+            pVertexList->push_back(vertexList2Ref[srcVertNum + n]);
+            pVertexGroupSize->push_back(4);
+        }
+        srcVertNum += groupSize;
+    }
+}
+
 //%outOfLineFunctions {
 
 const char *MushMeshLibraryBase::AutoName(void) const

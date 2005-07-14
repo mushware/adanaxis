@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.6 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.7 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.7  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.6  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -63,7 +66,8 @@ public:
     void InnerMultiplyBy(const MushMeshQuaternionPair& inVal);
     void OuterMultiplyBy(const MushMeshQuaternionPair& inVal);
     
-    void InPlaceRotate(Mushware::t4Val& ioVec) const;
+    void VectorRotate(Mushware::t4Val& ioVec) const;
+    
     void InPlaceNormalise(void);
     void ToRotationIdentitySet(void);
     
@@ -119,7 +123,7 @@ MushMeshQuaternionPair<T>::OuterMultiplyBy(const MushMeshQuaternionPair<T>& inVa
 
 template<class T>
 inline void
-MushMeshQuaternionPair<T>::InPlaceRotate(Mushware::t4Val& ioVec) const
+MushMeshQuaternionPair<T>::VectorRotate(Mushware::t4Val& ioVec) const
 {
     m_first.PreMultiplyVector(ioVec);
     m_second.PostMultiplyVector(ioVec);

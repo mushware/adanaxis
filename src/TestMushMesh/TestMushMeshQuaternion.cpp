@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } TGM/4ae2lNjW0/j6zPy6UA
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.5 2005/05/19 13:02:23 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.6 2005/06/30 12:04:56 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.6  2005/06/30 12:04:56  southa
+ * Mesh work
+ *
  * Revision 1.5  2005/05/19 13:02:23  southa
  * Mac release work
  *
@@ -229,12 +232,12 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
             orient.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(i, cos((i+1)*(1.0+seed/30.0))*4*sin(seed/4)));
         }
         
-        orient.InPlaceRotate(aVec);
+        orient.VectorRotate(aVec);
         
         if (!MushMeshOps::ApproxEquals(aVec, bVec))
         {
             ostringstream message;
-            message << "InPlaceRotate failed : " << aQuat << " != " << bQuat;
+            message << "VectorRotate failed : " << aQuat << " != " << bQuat;
             throw MushcoreCommandFail(message.str());
         }
     }  

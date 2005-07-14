@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TE/rDUf2Sf89WHdHn2RHUA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryExtrusionContext.h,v 1.1 2005/07/14 12:50:31 southa Exp $
+ * $Log: MushMeshLibraryExtrusionContext.h,v $
+ * Revision 1.1  2005/07/14 12:50:31  southa
+ * Extrusion work
+ *
  */
 
 #include "MushMeshLibraryStandard.h"
@@ -61,7 +64,7 @@ public:
     void VelocityAdd(void)
     {
         m_rollingDisp.ScaleWRef() += m_scaleVelocity;
-        m_rollingDisp.Rotation().InPlaceRotate(m_rollingDisp.OffsetWRef());
+        m_rollingDisp.Rotation().VectorRotate(m_rollingDisp.OffsetWRef());
     }
     
 private:
