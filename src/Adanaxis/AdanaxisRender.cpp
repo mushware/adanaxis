@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.11 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.12 2005/07/13 16:45:04 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.12  2005/07/13 16:45:04  southa
+ * Extrusion work
+ *
  * Revision 1.11  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -111,6 +114,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     typedef AdanaxisVolatileData::tDecoList tDecoList;
     
+    //MushRenderMeshDiagnostic renderMesh;
     MushRenderMeshWireframe renderMesh;
     MushGameCamera camera(inCamera);
     

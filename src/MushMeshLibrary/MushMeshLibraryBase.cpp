@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wT/XlXiDrkjXl6HW1CFN3Q
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.2 2005/07/14 16:55:09 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.2  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -79,7 +82,7 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
         
         // fixedAxisOffset: 0->fixed to -scale, fixedAxis->fixed to +scale
         U32 fixedAxisOffset;
-        if ((i % 2) == 1)
+        if ((i % 2) == 0)
         {
             fixedAxisOffset = 0;
         }
@@ -112,7 +115,7 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
             }
             
             U32 planeAxisOffset;
-            if ((j % 2) == 1)
+            if ((j % 2) == 0)
             {
                 planeAxisOffset = 0;
             }
@@ -278,9 +281,9 @@ MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inF
         U32 groupSize = ioMesh.Face(inFaceNum1).VertexGroupSize()[i];
         
         // Copy the facets from the two input faces to this new face
-        std::copy(vertexList1Ref.begin(), vertexList1Ref.begin()+groupSize, back_inserter(*pVertexList));
+        std::copy(vertexList1Ref.begin()+srcVertNum, vertexList1Ref.begin()+srcVertNum+groupSize, back_inserter(*pVertexList));
         pVertexGroupSize->push_back(groupSize);
-        std::copy(vertexList2Ref.begin(), vertexList2Ref.begin()+groupSize, back_inserter(*pVertexList));
+        std::copy(vertexList2Ref.begin()+srcVertNum, vertexList2Ref.begin()+srcVertNum+groupSize, back_inserter(*pVertexList));
         pVertexGroupSize->push_back(groupSize);
         
         for (U32 n=0; n<groupSize; ++n)

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.9 2005/07/14 12:50:30 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.10 2005/07/14 16:55:08 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.10  2005/07/14 16:55:08  southa
+ * Mesh library work
+ *
  * Revision 1.9  2005/07/14 12:50:30  southa
  * Extrusion work
  *
@@ -77,7 +80,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<40; ++i)
+    for (U32 i=0; i<10; ++i)
     {
         decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
         AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
@@ -90,7 +93,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         decoRef.PostWRef().AngPosSet(orientation);
         decoRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
         
-        if (i % 3)
+        if (i % 4 > 1)
         {
             decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
             
@@ -101,15 +104,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             
             decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.ConjugateGet());
         }
-        if (i > 100)
-        {
-            
-            MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
-        }
-        else
-        {
-            MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
-        }
+
         MushMeshLibraryFGenExtrude faceExtrude;
         MushMeshLibraryVGenExtrude vertexExtrude;
         tQValPair rotation;
@@ -117,70 +112,83 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
-        if (1)
+        switch (i % 3)
         {
+            case 0:
+            {
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
+                
+            }
+            break;
+                
+            case 1:
+            {
+                MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+                //MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
+                for (U32 j=0; j<8; ++j)
+                {
+                    extrusionContext.ResetNewFace(j);
+                    faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                }
+                disp.ScaleSet(0.3);
+                tVal dist = 3.0;
+                disp.OffsetSet(t4Val(0,0,0,dist));
+                extrusionContext.ResetNewDispFace(disp, 0);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(0,0,0,-dist));
+                extrusionContext.ResetNewDispFace(disp, 1);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(0,0,dist,0));
+                extrusionContext.ResetNewDispFace(disp, 2);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(0,0,-dist,0));
+                extrusionContext.ResetNewDispFace(disp, 3);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(0,dist,0,0));
+                extrusionContext.ResetNewDispFace(disp, 4);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(0,-dist,0,0));
+                extrusionContext.ResetNewDispFace(disp, 5);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(dist,0,0,0));
+                extrusionContext.ResetNewDispFace(disp, 6);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                disp.OffsetSet(t4Val(-dist,0,0,0));
+                extrusionContext.ResetNewDispFace(disp, 7);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);     
+            }
+            break;
             
-        }
-        else if (i > 30)
-        {
-            for (U32 j=0; j<8; ++j)
+            case 2:
             {
-                extrusionContext.ResetNewFace(j);
-                faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            }
-            disp.ScaleSet(0.3);
-            tVal dist = 3.0;
-            disp.OffsetSet(t4Val(0,0,0,dist));
-            extrusionContext.ResetNewDispFace(disp, 0);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(0,0,0,-dist));
-            extrusionContext.ResetNewDispFace(disp, 1);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(0,0,dist,0));
-            extrusionContext.ResetNewDispFace(disp, 2);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(0,0,-dist,0));
-            extrusionContext.ResetNewDispFace(disp, 3);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(0,dist,0,0));
-            extrusionContext.ResetNewDispFace(disp, 4);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(0,-dist,0,0));
-            extrusionContext.ResetNewDispFace(disp, 5);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(dist,0,0,0));
-            extrusionContext.ResetNewDispFace(disp, 6);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
-            disp.OffsetSet(t4Val(-dist,0,0,0));
-            extrusionContext.ResetNewDispFace(disp, 7);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);     
-        }
-        else
-        {
-            U32 number = 6;
-            t4Val offset(0,0,0,1);
-            if (i % 1 == 0)
-            {
-                disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
-                                                    (1, M_PI/number));
-                MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).VectorRotate(offset);
-                disp.OffsetSet(offset);
-                extrusionContext.DispSet(disp);
-            }
-            extrusionContext.ScaleVelocitySet(0.2);
-            extrusionContext.ResetNewFace(0);
-            faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
-            extrusionContext.ResetNewFace(1);
-            faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                //MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,1,1), 12);            
+                U32 number = 12;
+                t4Val offset(0,0,0,-1);
+                if (i % 1 == 0)
+                {
+                    disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                        (1, M_PI/number));
+                    MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).VectorRotate(offset);
+                    disp.OffsetSet(offset);
+                    extrusionContext.DispSet(disp);
+                }
+                extrusionContext.ScaleVelocitySet(1.0/number);
+                extrusionContext.ResetNewFace(0);
+                faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                extrusionContext.ResetNewFace(1);
+                faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
 
-            disp.OffsetSet(offset);
-            extrusionContext.ResetNewDispFace(disp, 0);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
-            offset.WSet(-offset.W());
-            disp.OffsetSet(offset);
-            disp.RotationSet(disp.Rotation().ConjugateGet());
-            extrusionContext.ResetNewDispFace(disp, 1);
-            vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                disp.OffsetSet(offset);
+                extrusionContext.ResetNewDispFace(disp, 0);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                offset.WSet(-offset.W());
+                disp.OffsetSet(offset);
+                disp.RotationSet(disp.Rotation().ConjugateGet());
+                extrusionContext.ResetNewDispFace(disp, 1);
+                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+            }
+            break;
         }
     }
 }

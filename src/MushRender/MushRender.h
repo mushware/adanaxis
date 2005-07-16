@@ -23,14 +23,18 @@
  ****************************************************************************/
 //%Header } NUzrLBU/hE8fJ4WHp26kcQ
 /*
- * $Id: MushRender.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Id: MushRender.h,v 1.2 2005/07/04 11:10:43 southa Exp $
  * $Log: MushRender.h,v $
+ * Revision 1.2  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.1  2005/07/01 10:36:46  southa
  * MushRender work
  *
  */
 
 #include "MushRenderMesh.h"
+#include "MushRenderMeshDiagnostic.h"
 #include "MushRenderMeshWireframe.h"
 #include "MushRenderSpec.h"
 #include "MushRenderStandard.h"
